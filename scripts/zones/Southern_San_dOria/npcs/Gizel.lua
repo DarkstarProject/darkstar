@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San dOria
--- NPC: Gizel
+--  NPC: Gizel
 -- Type: Event Scene Replayer NPC
 -- @zone: 230
 -- @pos -34.412 0.000 33.362
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,10 +51,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

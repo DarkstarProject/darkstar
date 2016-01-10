@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Black Mage
+-- MOB: Fomor Black Mage
 -----------------------------------
 
 

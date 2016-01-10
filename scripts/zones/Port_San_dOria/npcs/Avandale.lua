@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Avandale
---  Type: Standard NPC
+-- Area: Port San d'Oria
+--  NPC: Avandale
+-- Type: Standard NPC
 -- @zone: 232
---  @pos -105.524 -9 -125.274
+-- @pos -105.524 -9 -125.274
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

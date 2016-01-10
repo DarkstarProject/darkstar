@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Magian Moogle (Blue Bobble)
+--  NPC: Magian Moogle (Blue Bobble)
 -- Type: Magian Trials NPC (Relic Armor)
 -- @pos -6.843 2.459 121.9 64
 -----------------------------------

@@ -1,6 +1,6 @@
 
 -----------------------------------
---  MOB: Orcish Beastrider
+-- MOB: Orcish Beastrider
 -- Area: Lufaise_Meadows
 -----------------------------------
 

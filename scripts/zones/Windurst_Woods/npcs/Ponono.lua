@@ -57,10 +57,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x271b and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4099);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,4099);
         else
             player:addItem(4099);
-            player:messageSpecial(text.ITEM_OBTAINED,4099);
+            player:messageSpecial(text.text.ITEM_OBTAINED,4099);
             signupGuild(player,8);
         end
     end

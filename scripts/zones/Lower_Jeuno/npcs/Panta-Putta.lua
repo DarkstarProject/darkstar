@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Panta-Putta
+--  NPC: Panta-Putta
 -- Starts and Finishes Quest: The Wonder Magic Set, The kind cardian
 -- Involved in Quests: The Lost Cardian
 -- @zone 245
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,18 +75,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x004D and option == 1) then 
         player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
     elseif (csid == 0x0021) then 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13328);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13328);
         else
             player:addTitle(FOOLS_ERRAND_RUNNER);
             player:delKeyItem(WONDER_MAGIC_SET);
             player:addItem(13328);
-            player:messageSpecial(ITEM_OBTAINED,13328);
+            player:messageSpecial(text.ITEM_OBTAINED,13328);
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:needToZone(true);
             player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
@@ -95,18 +95,15 @@ function onEventFinish(player,csid,option)
         player:setVar("theLostCardianVar",2);
     elseif (csid == 0x0023) then 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13596);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13596);
         else
             player:addTitle(BRINGER_OF_BLISS);
             player:delKeyItem(TWO_OF_SWORDS);
             player:setVar("theKindCardianVar",0);
             player:addItem(13596);
-            player:messageSpecial(ITEM_OBTAINED,13596); -- Green Cape
+            player:messageSpecial(text.ITEM_OBTAINED,13596); -- Green Cape
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:completeQuest(JEUNO,THE_KIND_CARDIAN);
         end
     end
 end;
-
-
-

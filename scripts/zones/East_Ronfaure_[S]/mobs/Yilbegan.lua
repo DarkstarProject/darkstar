@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

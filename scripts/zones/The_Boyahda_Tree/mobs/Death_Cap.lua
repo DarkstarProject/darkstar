@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Death Cap
+-- MOB: Death Cap
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

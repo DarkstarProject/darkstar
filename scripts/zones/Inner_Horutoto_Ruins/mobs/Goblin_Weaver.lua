@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Weaver
+-- MOB: Goblin Weaver
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

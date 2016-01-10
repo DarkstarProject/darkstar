@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Tazhaal
+--  NPC: Tazhaal
 -- Admits players to the dock in Aht Urhgan
 -- @pos -5.195 -1 -98.966 50
 -----------------------------------

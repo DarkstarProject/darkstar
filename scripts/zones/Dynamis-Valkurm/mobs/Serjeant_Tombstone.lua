@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
--- NPC:  Serjeant_Tombstone
+--  NPC: Serjeant_Tombstone
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
@@ -37,6 +37,6 @@ end;
 
 function onMobDeath(mob,killer,ally)
     
---    local mobID = mob:getID();
+-- local mobID = mob:getID();
     
 end;

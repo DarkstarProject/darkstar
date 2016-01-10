@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Gambler
+-- MOB: Goblin Gambler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

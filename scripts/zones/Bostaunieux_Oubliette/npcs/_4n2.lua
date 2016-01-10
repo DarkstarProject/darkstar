@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Obliette
--- NPC:  _4n2 (Sewer Lid)
+--  NPC: _4n2 (Sewer Lid)
 -- @pos -19.000 -17.899 20.000 167
 -----------------------------------
 
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(SEEMS_LOCKED);
+    player:messageSpecial(text.SEEMS_LOCKED);
 end;
 
 -----------------------------------
@@ -24,8 +24,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -33,6 +33,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

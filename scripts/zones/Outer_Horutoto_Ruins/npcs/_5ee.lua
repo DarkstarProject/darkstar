@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  Ancient Magical Gizmo #1 (E out of E, F, G, H, I, J)
---  Involved In Mission: The Heart of the Matter
+-- Area: Inner Horutoto Ruins
+--  NPC: Ancient Magical Gizmo #1 (E out of E, F, G, H, I, J)
+-- Involved In Mission: The Heart of the Matter
 -----------------------------------
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -32,20 +32,20 @@ function onTrigger(player,npc)
             if (player:getVar("MissionStatus_orb1") == 1) then
                 player:startEvent(0x002e);
             else
-                player:messageSpecial(ORB_ALREADY_PLACED);
+                player:messageSpecial(text.ORB_ALREADY_PLACED);
             end
         elseif (MissionStatus == 4) then
             -- Took out a Glowing Orb
             if (player:getVar("MissionStatus_orb1") == 2) then
                 player:startEvent(0x002e);
             else
-                player:messageSpecial(G_ORB_ALREADY_GOTTEN);
+                player:messageSpecial(text.G_ORB_ALREADY_GOTTEN);
             end
         else
-            player:messageSpecial(DARK_MANA_ORB_RECHARGER);
+            player:messageSpecial(text.DARK_MANA_ORB_RECHARGER);
         end
     else
-        player:messageSpecial(DARK_MANA_ORB_RECHARGER);
+        player:messageSpecial(text.DARK_MANA_ORB_RECHARGER);
     end
     
     return 1;
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002e) then
         orb_value = player:getVar("MissionStatus_orb1");
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
         if (orb_value == 1) then
             player:setVar("MissionStatus_orb1",2);
             -- Push the text that the player has placed the orb
-            player:messageSpecial(FIRST_DARK_ORB_IN_PLACE);
+            player:messageSpecial(text.FIRST_DARK_ORB_IN_PLACE);
             --Delete the key item
             player:delKeyItem(FIRST_DARK_MANA_ORB);
             
@@ -85,14 +85,14 @@ function onEventFinish(player,csid,option)
                player:getVar("MissionStatus_orb4") == 2 and 
                player:getVar("MissionStatus_orb5") == 2 and 
                player:getVar("MissionStatus_orb6") == 2) then
-                player:messageSpecial(ALL_DARK_MANA_ORBS_SET);
+                player:messageSpecial(text.ALL_DARK_MANA_ORBS_SET);
                 player:setVar("MissionStatus",3);
             end
         elseif (orb_value == 2) then
             player:setVar("MissionStatus_orb1",3);
             -- Time to get the glowing orb out
             player:addKeyItem(FIRST_GLOWING_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,FIRST_GLOWING_MANA_ORB);
+            player:messageSpecial(text.KEYITEM_OBTAINED,FIRST_GLOWING_MANA_ORB);
             
             -- Check if all orbs have been placed or not
             if (player:getVar("MissionStatus_orb2") == 3 and 
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
                player:getVar("MissionStatus_orb4") == 3 and 
                player:getVar("MissionStatus_orb5") == 3 and 
                player:getVar("MissionStatus_orb6") == 3) then
-                player:messageSpecial(RETRIEVED_ALL_G_ORBS);
+                player:messageSpecial(text.RETRIEVED_ALL_G_ORBS);
                 player:setVar("MissionStatus",5);
             end
         end

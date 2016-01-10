@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---  MOB: Yagudo_Persecutor
+-- MOB: Yagudo_Persecutor
 -----------------------------------
 
 require("scripts/zones/Giddeus/MobIDs");

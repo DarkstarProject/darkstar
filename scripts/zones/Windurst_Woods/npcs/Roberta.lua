@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Roberta
---    Working 100%
---     @zone 241
---  @pos 21 -4 -157
+-- Area: Windurst Woods
+--  NPC: Roberta
+-- Working 100%
+-- @zone 241
+-- @pos 21 -4 -157
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0178 and option == 1 or csid == 0x0179 and option == 1) then
         if (player:getFreeSlotsCount() >= 1) then
             local blueRibbonProg = player:getVar("BlueRibbonBluesProg");
@@ -68,9 +68,9 @@ function onEventFinish(player,csid,option)
                 player:setVar("BlueRibbonBluesProg",4);
             end
             player:addItem(13569);
-            player:messageSpecial(text.ITEM_OBTAINED,13569);
+            player:messageSpecial(text.text.ITEM_OBTAINED,13569);
         else
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13569);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,13569);
         end
     end
 end;

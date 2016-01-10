@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Rex
+--  NPC: Rex
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

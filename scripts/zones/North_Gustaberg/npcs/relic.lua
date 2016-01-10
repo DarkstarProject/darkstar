@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC:  <this space intentionally left blank>
+--  NPC: <this space intentionally left blank>
 -- @pos -217 97 461 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,18 +42,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 254) then
       if (player:getFreeSlotsCount() < 2) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18306);
-         player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,1450);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,18306);
+         player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE,1450);
       else
          player:tradeComplete();
          player:addItem(18306);
          player:addItem(1450,30);
-         player:messageSpecial(ITEM_OBTAINED,18306);
-         player:messageSpecial(ITEMS_OBTAINED,1450,30);
+         player:messageSpecial(text.ITEM_OBTAINED,18306);
+         player:messageSpecial(text.ITEMS_OBTAINED,1450,30);
          player:setVar("RELIC_IN_PROGRESS",0);
       end
    end

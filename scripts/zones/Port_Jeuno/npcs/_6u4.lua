@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:  Door: Departures Exit (for San D'Oria)
+--  NPC: Door: Departures Exit (for San D'Oria)
 -- @zone 246
 -- @pos -76 8 54
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0026) then 
         Z = player:getZPos();

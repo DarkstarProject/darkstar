@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Tavnazia
--- NPC: Nightmare_Makara
+--  NPC: Nightmare_Makara
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;

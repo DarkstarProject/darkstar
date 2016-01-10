@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Shepherd
+-- MOB: Goblin Shepherd
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

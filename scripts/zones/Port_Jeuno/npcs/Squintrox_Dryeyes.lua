@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Port Jeuno
---   NPC: Squintrox Dryeyes
---  Type: Addon Mission Merchant
---  @pos -100.071 -1 11.869 246
+-- Area: Port Jeuno
+--  NPC: Squintrox Dryeyes
+-- Type: Addon Mission Merchant
+-- @pos -100.071 -1 11.869 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -39,16 +39,16 @@ function onTrade(player,npc,trade)
     local LastCrimson = player:getVar("LastCrimsonKey"); -- When last Crimson key was obtained
 
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
-        player:showText(npc,GET_LOST);
+        player:showText(npc, text.GET_LOST);
     else    -- Crimson Key: Trade Seedspall's Lux, Luna, Astrum
         if (ENABLE_ACP == 1 and sLux and sLuna and sAstrum and count == 3 and ACPm >= GATHERER_OF_LIGHT_I and CrimsonKey == false and now ~= LastCrimson) then -- and timer stuff here) then
             player:tradeComplete();
             player:addKeyItem(CRIMSON_KEY);
             player:setVar("LastCrimsonKey", os.date("%j"));
-            player:messageSpecial(DRYEYES_2);
-            player:messageSpecial(KEYITEM_OBTAINED,CRIMSON_KEY);
+            player:messageSpecial(text.DRYEYES_2);
+            player:messageSpecial(text.KEYITEM_OBTAINED,CRIMSON_KEY);
         elseif (sLux and sLuna and sAstrum and count == 3 and (now == LastCrimson or CrimsonKey == true)) then
-            player:messageSpecial(DRYEYES_3,CRIMSON_KEY);
+            player:messageSpecial(text.DRYEYES_3,CRIMSON_KEY);
         -- White Coral Key:
         -- elseif (ENABLE_AMK == 1 and 
             -- haven't even started AMK related trades yet.
@@ -62,7 +62,7 @@ end;
 
 function onTrigger(player,npc)
     if (ENABLE_ACP == 0 and ENABLE_AMK == 0 and ENABLE_ASA ==0) then
-        player:showText(npc,GET_LOST);
+        player:showText(npc, text.GET_LOST);
     else
         player:startEvent(0x0143);
     end
@@ -106,9 +106,9 @@ function onEventFinish(player,csid,option)
                 player:delKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
                 player:setVar("LastViridianKey", os.date("%j"));
                 player:showText(player,DRYEYES_2);
-                player:messageSpecial(KEYITEM_OBTAINED,VIRIDIAN_KEY);
+                player:messageSpecial(text.KEYITEM_OBTAINED,VIRIDIAN_KEY);
             elseif (now == LastViridian or ViridianKey == true) then
-                player:messageSpecial(DRYEYES_3,VIRIDIAN_KEY);
+                player:messageSpecial(text.DRYEYES_3,VIRIDIAN_KEY);
             else
                 -- player:showText(player, ? );
                 -- Doesn't seem to be a message for trying when you don't have the key items?

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Bull Dhalmel
+-- MOB: Bull Dhalmel
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

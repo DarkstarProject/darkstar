@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus (145)
---  MOB: Yagudo_Mendicant
+-- MOB: Yagudo_Mendicant
 -----------------------------------
 
 require("scripts/zones/Giddeus/MobIDs");

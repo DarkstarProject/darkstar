@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Mamerie
+--  NPC: Mamerie
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,MAMERIE_SHOP_DIALOG);
+    player:showText(npc, text.MAMERIE_SHOP_DIALOG);
 
-stock = {0x11C1,62,        -- Gysahl Greens
+    local stock =
+    {
+    0x11C1,62,        -- Gysahl Greens
      0x0348,7,        -- Chocobo Feather
      0x4278,11,        -- Pet Food Alpha Biscuit
      0x4279,82,        -- Pet Food Beta Biscuit
@@ -33,7 +35,7 @@ stock = {0x11C1,62,        -- Gysahl Greens
      0x45CA,695,        -- Carrion Broth
      0x13D1,50784}        -- Scroll of Chocobo Mazurka
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -41,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,9 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

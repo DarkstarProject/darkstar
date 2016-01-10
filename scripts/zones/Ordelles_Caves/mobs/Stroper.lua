@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Stroper
+-- MOB: Stroper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

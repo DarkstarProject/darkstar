@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC:  Telchines_Monk
+--  NPC: Telchines_Monk
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

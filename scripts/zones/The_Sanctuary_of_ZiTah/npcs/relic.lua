@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
--- NPC:  <this space intentionally left blank>
+--  NPC: <this space intentionally left blank>
 -- @pos 646 -2 -165 121
 -- @pos -18 0 55 121
 -----------------------------------
@@ -35,7 +35,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,30 +52,30 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 207) then
       if (player:getFreeSlotsCount() < 2) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18270);
-         player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,1456);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,18270);
+         player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE,1456);
       else
          player:tradeComplete();
          player:addItem(18270);
          player:addItem(1456,30);
-         player:messageSpecial(ITEM_OBTAINED,18270);
-         player:messageSpecial(ITEMS_OBTAINED,1456,30);
+         player:messageSpecial(text.ITEM_OBTAINED,18270);
+         player:messageSpecial(text.ITEMS_OBTAINED,1456,30);
          player:setVar("RELIC_IN_PROGRESS",0);
       end
    elseif (csid == 216) then
       if (player:getFreeSlotsCount() < 2) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18324);
-         player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,1453);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,18324);
+         player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE,1453);
       else
          player:tradeComplete();
          player:addItem(18324);
          player:addItem(1453,30);
-         player:messageSpecial(ITEM_OBTAINED,18324);
-         player:messageSpecial(ITEMS_OBTAINED,1453,30);
+         player:messageSpecial(text.ITEM_OBTAINED,18324);
+         player:messageSpecial(text.ITEMS_OBTAINED,1453,30);
          player:setVar("RELIC_IN_PROGRESS",0);
       end
    end

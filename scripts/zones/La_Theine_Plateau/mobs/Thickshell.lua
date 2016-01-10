@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Thickshell
+-- MOB: Thickshell
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

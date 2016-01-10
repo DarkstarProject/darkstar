@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Bolster
+-- MOB: Bolster
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

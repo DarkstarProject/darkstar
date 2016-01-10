@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Succusbus Bats
+-- MOB: Succusbus Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

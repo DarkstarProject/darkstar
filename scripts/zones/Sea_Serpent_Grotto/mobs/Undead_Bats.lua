@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Undead Bats
+-- MOB: Undead Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

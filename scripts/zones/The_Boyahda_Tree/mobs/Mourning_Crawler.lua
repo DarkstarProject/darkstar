@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Mourning Crawler
+-- MOB: Mourning Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Dread Dragon
+-- MOB: Dread Dragon
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 

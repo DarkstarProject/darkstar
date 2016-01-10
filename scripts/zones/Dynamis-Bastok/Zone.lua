@@ -10,7 +10,7 @@ require("scripts/globals/status");
 require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

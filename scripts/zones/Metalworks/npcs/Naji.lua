@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Naji
+--  NPC: Naji
 -- Involved in Quests: The doorman (finish), Riding on the Clouds 
 -- Involved in Mission: Bastok 6-2
 -- @pos 64 -14 -4 237
@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
     
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
             if (player:hasKeyItem(LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
                 player:startEvent(0x02c9);
             else
-                player:showText(npc,GOOD_LUCK);
+                player:showText(npc, text.GOOD_LUCK);
             end
         elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
             player:startEvent(0x02d0);
@@ -89,39 +89,39 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x02ee) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(16678);
-            player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
+            player:messageSpecial(text.ITEM_OBTAINED, 16678); -- Razor Axe
             player:delKeyItem(YASINS_SWORD);
             player:setVar("theDoormanCS",0);
             player:addFame(BASTOK,BAS_FAME*30);
             player:completeQuest(BASTOK,THE_DOORMAN);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
+           player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
     elseif (csid == 0x02C6) then
         player:delKeyItem(ZERUHN_REPORT);
         player:completeMission(BASTOK,THE_ZERUHN_REPORT);
     elseif (csid == 0x02c9) then
         player:addKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_BASTOK);
         player:setVar("MissionStatus",1);
     elseif (csid == 0x02d0 and option == 0 or csid == 0x02d1) then
         player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);
         player:addKeyItem(NEW_FEIYIN_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
         player:setVar("MissionStatus",10);
     elseif (csid == 0x02d0 and option == 1) then
         player:delKeyItem(MESSAGE_TO_JEUNO_BASTOK);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Ghebi Damomohe
+--  NPC: Ghebi Damomohe
 -- Type: Standard Merchant
 -- Starts and Finishes Quest: Tenshodo Membership
 -- @zone 245
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x006a and option == 0) then
         stock = {0x1135,144,  -- Rice Ball
                  0x1169,2700, -- Eel Kabob 
@@ -82,36 +82,33 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x006b) then 
         player:tradeComplete();
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,548);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,548);
         else 
             player:addTitle(TENSHODO_MEMBER);
             player:delKeyItem(TENSHODO_APPLICATION_FORM);
             player:addKeyItem(TENSHODO_MEMBERS_CARD);
-            player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
             player:addItem(548);
-            player:messageSpecial(ITEM_OBTAINED,548);
+            player:messageSpecial(text.ITEM_OBTAINED,548);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
         end
     elseif (csid == 0x006c) then 
         player:addTitle(TENSHODO_MEMBER);
         player:addKeyItem(TENSHODO_MEMBERS_CARD);
-        player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
-        player:messageSpecial(ITEM_OBTAINED,548);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TENSHODO_MEMBERS_CARD);
+        player:messageSpecial(text.ITEM_OBTAINED,548);
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,TENSHODO_MEMBERSHIP);
         
     elseif (csid == 0x0034) then     
         player:tradeComplete();
         player:addKeyItem(PSOXJA_PASS);
-        player:messageSpecial(KEYITEM_OBTAINED,PSOXJA_PASS);  
+        player:messageSpecial(text.KEYITEM_OBTAINED,PSOXJA_PASS);  
         player:addGil(500);
-        player:messageSpecial(GIL_OBTAINED,500);
+        player:messageSpecial(text.GIL_OBTAINED,500);
         player:setVar("PXPassGetGems",0);
     elseif (csid == 54) then
         player:setVar("PXPassGetGems",1);
     end
 end;
-
-
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Ashene
+--  NPC: Ashene
 -- Standard Merchant NPC
 -- @zone 230 
 -- @pos 70 0 61
@@ -25,7 +25,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -36,9 +36,11 @@ end;
 
 function onTrigger(player,npc)
       
-    player:showText(npc,ASH_THADI_ENE_SHOP_DIALOG);
+    player:showText(npc, text.ASH_THADI_ENE_SHOP_DIALOG);
 
-    local stock = {0x4047,4309,1,        --Baselard
+    local stock =
+    {
+    0x4047,4309,1,        --Baselard
              0x4094,16934,1,    --Gladius
              0x40a1,21067,1,    --Broadsword
              0x40c0,35769,1,    --Hunting Sword
@@ -64,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,10 +75,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

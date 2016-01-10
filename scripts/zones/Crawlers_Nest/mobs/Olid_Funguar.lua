@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Olid Funguar
+-- MOB: Olid Funguar
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

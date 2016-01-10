@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Mugger
+-- MOB: Goblin Mugger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

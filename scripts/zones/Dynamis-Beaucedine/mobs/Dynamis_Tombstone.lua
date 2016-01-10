@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Tombstone
+--  NPC: Dynamis Tombstone
 -- Trigger for Fire Pukis respawn
 -----------------------------------
 

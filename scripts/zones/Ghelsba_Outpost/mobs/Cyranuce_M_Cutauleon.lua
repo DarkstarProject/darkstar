@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Hut Door
+-- MOB: Hut Door
 -- Involved in Quest: The Holy Crest
 -----------------------------------
 

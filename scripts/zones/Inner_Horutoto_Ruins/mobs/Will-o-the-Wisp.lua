@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Will-o-the-Wisp
+-- MOB: Will-o-the-Wisp
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

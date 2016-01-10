@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  ???
+--  NPC: ???
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
 -- @pos -504 20 -419 208
 -----------------------------------
@@ -28,14 +28,14 @@ function onTrigger(player,npc)
         if (player:needToZone() and player:getVar("AncientVesselKilled") == 1) then
             player:setVar("AncientVesselKilled",0);
             player:addKeyItem(SCRAP_OF_PAPYRUS);
-            player:messageSpecial(KEYITEM_OBTAINED,SCRAP_OF_PAPYRUS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SCRAP_OF_PAPYRUS);
         else
             player:startEvent(0x000c);
         end
     elseif (player:hasCompletedMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL) or player:hasKeyItem(SCRAP_OF_PAPYRUS)) then
-        player:messageSpecial(YOU_FIND_NOTHING);
+        player:messageSpecial(text.YOU_FIND_NOTHING);
     else
-        player:messageSpecial(SOMETHING_IS_BURIED);
+        player:messageSpecial(text.SOMETHING_IS_BURIED);
     end
     
 end; 
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x000c and option == 1) then
         SpawnMob(17629642,600):updateClaim(player); -- Ancient Vessel

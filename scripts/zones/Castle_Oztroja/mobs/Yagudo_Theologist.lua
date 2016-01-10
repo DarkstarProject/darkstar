@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Theologist
+-- MOB: Yagudo_Theologist
 -----------------------------------
 
 require("scripts/zones/Castle_Oztroja/MobIDs");

@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(910);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     if (csid == 500) then
         local r = math.random(1,3);
         player:addKeyItem(PURE_WHITE_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then

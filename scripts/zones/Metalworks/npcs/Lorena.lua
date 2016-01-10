@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Metalworks
+-- Area: Metalworks
 --  NPC: Lorena
---  Type: Blacksmithing Guildworker's Union Representative
---  @zone: 237
---  @pos -104.990 1 30.995
+-- Type: Blacksmithing Guildworker's Union Representative
+-- @zone: 237
+-- @pos -104.990 1 30.995
 -----------------------------------
 
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x320) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     elseif (csid == 0x321) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(text.GP_OBTAINED, option);
     end
 end;
 

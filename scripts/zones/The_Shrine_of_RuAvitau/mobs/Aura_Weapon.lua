@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Aura Weapon
+-- MOB: Aura Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

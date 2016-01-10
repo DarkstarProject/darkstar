@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Irmilant
+--  NPC: Irmilant
 -- Starts and Ends Quests: The Immortal Lu Shang and Indomitable Spirit
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,15 +63,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x004d) then
         player:addQuest(OUTLANDS,THE_IMMORTAL_LU_SHANG);
     elseif (csid == 0x004e) then
         player:tradeComplete();
         player:addTitle(265);
         player:addItem(17386); -- Lu Shang's Fishing Rod
-        player:messageSpecial(ITEM_OBTAINED, 17386); 
+        player:messageSpecial(text.ITEM_OBTAINED, 17386); 
         player:completeQuest(OUTLANDS,THE_IMMORTAL_LU_SHANG);
         player:addFame(OUTLANDS,60);  
     elseif (csid == 0x0083) then
@@ -81,16 +81,13 @@ function onEventFinish(player,csid,option)
         player:setVar("IndomitableSpiritVar", os.date("%j")); -- %M for next minute, %j for next day
     elseif (csid == 0x0086) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17011); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17011); 
         else
             player:addTitle(265);
             player:addItem(17011); -- Ebisu Fishing Rod
-            player:messageSpecial(ITEM_OBTAINED, 17011); 
+            player:messageSpecial(text.ITEM_OBTAINED, 17011); 
             player:completeQuest(OUTLANDS,201);
             player:addFame(OUTLANDS,100);  
         end
     end
 end;
-
-
-

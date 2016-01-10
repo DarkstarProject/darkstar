@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x0276 and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,2,2);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,2,2);
         player:addStatusEffect(EFFECT_SMITHING_IMAGERY,1,0,120);
     end
 end;

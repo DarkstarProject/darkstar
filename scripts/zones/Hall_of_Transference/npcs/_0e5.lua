@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Hall of Transference
--- NPC:  Large Apparatus (Left) - Dem
+--  NPC: Large Apparatus (Left) - Dem
 -- @pos -239 -41 -270 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(0x00A0);
     else
-        player:messageSpecial(NO_RESPONSE_OFFSET);
+        player:messageSpecial(text.NO_RESPONSE_OFFSET);
     end
 end;
 

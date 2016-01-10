@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Forest Funguar
+-- MOB: Forest Funguar
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

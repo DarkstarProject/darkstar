@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Samourai
+-- MOB: Fomor Samourai
 -----------------------------------
 
 

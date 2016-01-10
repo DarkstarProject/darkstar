@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  NM:  Calcabrina
+-- NM:  Calcabrina
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

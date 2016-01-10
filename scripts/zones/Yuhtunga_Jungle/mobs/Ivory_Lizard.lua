@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Ivory Lizard
+-- MOB: Ivory Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Monberaux
+--  NPC: Monberaux
 -- Starts and Finishes Quest: The Lost Cardian (finish), The kind cardian (start)
 -- Involved in Quests: Save the Clock Tower
 -- @pos -43 0 -1 244
@@ -89,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -98,14 +98,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0006) then
         player:setVar("COP_Tenzen_s_Path",5);    
     elseif (csid == 0x004a) then
         player:setVar("COP_Tenzen_s_Path",3);
         player:addKeyItem(ENVELOPE_FROM_MONBERAUX);
-        player:messageSpecial(KEYITEM_OBTAINED,ENVELOPE_FROM_MONBERAUX);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 0x000a) then
         player:setVar("PromathiaStatus",0);
         player:addKeyItem(MYSTERIOUS_AMULET_DRAINED);
@@ -125,9 +125,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(TWOS_COMPANY);
         player:setVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100);
         player:addKeyItem(TWO_OF_SWORDS);
-        player:messageSpecial(KEYITEM_OBTAINED,TWO_OF_SWORDS); -- Two of Swords (Key Item)
+        player:messageSpecial(text.KEYITEM_OBTAINED,TWO_OF_SWORDS); -- Two of Swords (Key Item)
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,THE_LOST_CARDIAN);
         player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"

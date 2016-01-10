@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Maat
+-- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;

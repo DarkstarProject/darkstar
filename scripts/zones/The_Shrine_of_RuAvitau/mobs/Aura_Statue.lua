@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Aura Statue
+-- MOB: Aura Statue
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

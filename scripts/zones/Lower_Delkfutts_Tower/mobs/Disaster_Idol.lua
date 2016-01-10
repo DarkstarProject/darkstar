@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower_Delkfutts_tower
---  Mob: Disaster_Idol
+-- Mob: Disaster_Idol
 -----------------------------------
 
 require("scripts/globals/missions");

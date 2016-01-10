@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Mushussu
+-- MOB: Mushussu
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

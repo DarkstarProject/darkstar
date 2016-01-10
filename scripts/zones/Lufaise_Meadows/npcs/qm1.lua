@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  ??? - Amaltheia spawn
+--  NPC: ??? - Amaltheia spawn
 -- @pos 347.897 -10.895 264.382 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;

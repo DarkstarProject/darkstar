@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Palborough Mines
--- NPC:  Mythril Seam
+--  NPC: Mythril Seam
 -- Involved In Mission: Journey Abroad
 -- Involved in quest: Rock Racketeer
 -- @zone 143
@@ -78,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -87,13 +87,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002b) then
         player:tradeComplete();
         player:addItem(597);
-        player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel
+        player:messageSpecial(text.ITEM_OBTAINED,597); -- Mine Gravel
     end
     
 end;

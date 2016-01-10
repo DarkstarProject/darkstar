@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Gordov's Ghost
+-- MOB: Gordov's Ghost
 -----------------------------------
 
 require("scripts/globals/missions");

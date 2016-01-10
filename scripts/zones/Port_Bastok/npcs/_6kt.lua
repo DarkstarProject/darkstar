@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Drawbridge
+--  NPC: Drawbridge
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

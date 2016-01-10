@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC:  Guillerme
---  Involved in Quest: Rosel the Armorer
---  @zone: 231
---  @pos -4.500 0.000 99.000
+-- Area: Northern San d'Oria
+--  NPC: Guillerme
+-- Involved in Quest: Rosel the Armorer
+-- @zone: 231
+-- @pos -4.500 0.000 99.000
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
         player:startEvent(0x01fb);
     else
-        player:showText(npc,GUILERME_DIALOG);
+        player:showText(npc, text.GUILERME_DIALOG);
     end
         
 end; 
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "Rosel the Armorer", give receipt to NPC:Guilerme
     if (csid == 0x01fb) then
@@ -72,7 +72,4 @@ function onEventFinish(player,csid,option)
     end;
         
 end;
-
-
-
 

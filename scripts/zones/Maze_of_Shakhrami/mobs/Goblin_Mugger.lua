@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Mugger
+-- MOB: Goblin Mugger
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---   NPC: Charmealaut
---  Type: Merchant
+-- Area: Northern San d'Oria
+--  NPC: Charmealaut
+-- Type: Merchant
 -- @zone: 231
---  @pos 0.000 -0.501 29.303
+-- @pos 0.000 -0.501 29.303
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

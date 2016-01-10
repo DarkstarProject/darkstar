@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Vunkerl Inlet (S) (I-6)
--- NPC: Leadavox
+--  NPC: Leadavox
 -- Involved in Quests
 -- @pos 206 -32 316
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0065) then
         player:setVar("BetterPartOfValProg",3);
@@ -52,6 +52,6 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("BetterPartOfValProg",4)
         player:addKeyItem(XHIFHUT);
-        player:messageSpecial(KEYITEM_OBTAINED,XHIFHUT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,XHIFHUT);
     end     
 end;

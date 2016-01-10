@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Shohrun-Tuhrun
+--  NPC: Shohrun-Tuhrun
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,SHOHRUNTUHRUN_SHOP_DIALOG);
+    player:showText(npc, text.SHOHRUNTUHRUN_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x1239, 18000,1,     --Haste
 
         0x120C,  5178,2,     --Scroll of Raise
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

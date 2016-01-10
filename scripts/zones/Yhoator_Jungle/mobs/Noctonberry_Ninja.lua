@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Noctonberry Ninja
+-- MOB: Noctonberry Ninja
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

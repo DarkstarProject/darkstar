@@ -204,8 +204,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x002e and option == 1) then
         player:setPos(-226.193, -46.459, -280.046, 127, 14); -- To Hall of Transference {R}

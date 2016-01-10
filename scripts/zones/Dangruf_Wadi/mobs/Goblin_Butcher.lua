@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Butcher
+-- MOB: Goblin Butcher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

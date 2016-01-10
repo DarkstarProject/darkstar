@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Eya Bhithroh
+--  NPC: Eya Bhithroh
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

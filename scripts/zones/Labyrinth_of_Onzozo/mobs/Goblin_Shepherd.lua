@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Goblin Shepherd
+-- MOB: Goblin Shepherd
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Narcheral
+--  NPC: Narcheral
 -- Starts and Finishes Quest: Messenger from Beyond, Prelude of Black and White (Finish), Pieuje's Decision (Finish)
 -- @zone 231
 -- @pos 129 -11 126
@@ -75,32 +75,32 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,MESSENGER_FROM_BEYOND);
     elseif (csid == 0x02b2) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17422);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17422);
         else
             player:addItem(17422);
-            player:messageSpecial(ITEM_OBTAINED,17422); -- Blessed Hammer
+            player:messageSpecial(text.ITEM_OBTAINED,17422); -- Blessed Hammer
             player:tradeComplete();
             player:addFame(SANDORIA,SAN_FAME*AF1_FAME);
             player:completeQuest(SANDORIA,MESSENGER_FROM_BEYOND);
         end
     elseif (csid == 0x02b3) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14091); -- Healer's Duckbills
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14091); -- Healer's Duckbills
         else
             player:addItem(14091);
-            player:messageSpecial(ITEM_OBTAINED,14091); -- Healer's Duckbills
+            player:messageSpecial(text.ITEM_OBTAINED,14091); -- Healer's Duckbills
             player:tradeComplete();
             player:addFame(SANDORIA,SAN_FAME*AF2_FAME);
             player:completeQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
         end
     elseif (csid == 0x02b4) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
         else
             player:addTitle(PARAGON_OF_WHITE_MAGE_EXCELLENCE);
             player:setVar("pieujesDecisionCS",0);
             player:addItem(12640);
-            player:messageSpecial(ITEM_OBTAINED,12640); -- Healer's Briault
+            player:messageSpecial(text.ITEM_OBTAINED,12640); -- Healer's Briault
             player:tradeComplete();
             player:addFame(SANDORIA,SAN_FAME*AF3_FAME);
             player:completeQuest(SANDORIA,PIEUJE_S_DECISION);

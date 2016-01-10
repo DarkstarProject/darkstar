@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Medusa
+-- MOB: Medusa
 -----------------------------------
 
 require("scripts/globals/titles");

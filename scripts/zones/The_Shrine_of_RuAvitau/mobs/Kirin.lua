@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Kirin
+-- MOB: Kirin
 -----------------------------------
 package.loaded[ "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" ] = nil;
 -----------------------------------

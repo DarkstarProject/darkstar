@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Darter
+-- MOB: Darter
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

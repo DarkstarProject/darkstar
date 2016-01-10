@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
+-- Area: Al Zahbi
 --  NPC: Bornahn
---  Guild Merchant NPC: Goldsmithing Guild 
---  @pos 46.011 0.000 -42.713 48
+-- Guild Merchant NPC: Goldsmithing Guild 
+-- @pos 46.011 0.000 -42.713 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(60429,8,23,4)) then
-        player:showText(npc,BORNAHN_SHOP_DIALOG);
+        player:showText(npc, text.BORNAHN_SHOP_DIALOG);
     end
 end;
 

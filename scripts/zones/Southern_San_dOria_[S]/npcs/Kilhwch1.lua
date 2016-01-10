@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Kilhwch
+--  NPC: Kilhwch
 -- @zone 80
 -- @pos -63 2 -50
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 11143) -- I advise you distance yourself from Lady Ulla. I know not your intentions, but am inclined to believe they are crooked
+    player:showText(npc, text.11143) -- I advise you distance yourself from Lady Ulla. I know not your intentions, but am inclined to believe they are crooked
 end;
 
 -----------------------------------
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,6 +37,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

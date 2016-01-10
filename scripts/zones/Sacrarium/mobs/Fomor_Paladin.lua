@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Paladin
+-- MOB: Fomor Paladin
 -----------------------------------
 
 

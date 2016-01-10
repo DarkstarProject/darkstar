@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Wespe
+-- MOB: Wespe
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

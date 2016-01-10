@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Fisher
+-- MOB: Goblin Fisher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Pathdfinder
+-- MOB: Goblin Pathdfinder
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

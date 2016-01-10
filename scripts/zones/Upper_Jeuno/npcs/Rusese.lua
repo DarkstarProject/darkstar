@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Rusese
+--  NPC: Rusese
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;

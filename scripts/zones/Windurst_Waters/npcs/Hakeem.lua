@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x2721 and option == 1) then
-        player:messageSpecial(COOKING_SUPPORT,0,8,2);
+        player:messageSpecial(text.COOKING_SUPPORT,0,8,2);
         player:addStatusEffect(EFFECT_COOKING_IMAGERY,1,0,120);
     end
 end;

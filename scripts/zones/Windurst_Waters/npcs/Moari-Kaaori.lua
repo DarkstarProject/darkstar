@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Moari-Kaaori
---    Working 100%
+-- Area: Windurst Waters
+--  NPC: Moari-Kaaori
+-- Working 100%
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0202 and option == 1) then
         if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_COMPLETED) then
@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,SAY_IT_WITH_FLOWERS);
         player:addFame(WINDURST,WIN_FAME*30);
         player:addItem(16536);
-        player:messageSpecial(ITEM_OBTAINED,16536);
+        player:messageSpecial(text.ITEM_OBTAINED,16536);
         player:setVar("FLOWER_PROGRESS",0);
         player:setLocalVar("FLOWER_ZONE",1);
         player:setTitle(CUPIDS_FLORIST);
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,SAY_IT_WITH_FLOWERS);
         player:tradeComplete();
         player:addGil(100);
-        player:messageSpecial(GIL_OBTAINED,100);
+        player:messageSpecial(text.GIL_OBTAINED,100);
         player:addFame(WINDURST,WIN_FAME*10);
         player:setLocalVar("FLOWER_ZONE",1);
         player:setVar("FLOWER_PROGRESS",0);
@@ -104,6 +104,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FLOWER_PROGRESS",2);
     end
 end;
-
-
-

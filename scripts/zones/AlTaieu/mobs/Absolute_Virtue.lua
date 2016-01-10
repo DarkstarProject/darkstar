@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  HNM: Absolute Virtue
+-- HNM: Absolute Virtue
 -----------------------------------
 
 require("scripts/globals/titles");

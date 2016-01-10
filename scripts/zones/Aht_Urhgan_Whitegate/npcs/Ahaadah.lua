@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Ahaadah
+--  NPC: Ahaadah
 -- @pos -70 -6 105 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

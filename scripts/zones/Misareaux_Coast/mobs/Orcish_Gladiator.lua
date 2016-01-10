@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish Gladiator
+-- MOB: Orcish Gladiator
 -----------------------------------
 
 

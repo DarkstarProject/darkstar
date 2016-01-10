@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Desert Dhalmel
+-- MOB: Desert Dhalmel
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tonberry Decapitator
+-- MOB: Tonberry Decapitator
 -----------------------------------
 
 -----------------------------------

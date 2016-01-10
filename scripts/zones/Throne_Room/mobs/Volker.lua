@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Volker
+-- MOB: Volker
 -- Throne room volker npc bastok mission 9-2
 -----------------------------------
 

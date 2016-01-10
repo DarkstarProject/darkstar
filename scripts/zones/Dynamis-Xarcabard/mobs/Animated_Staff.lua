@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Staff
+-- MOB: Animated Staff
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Leacher
+-- MOB: Goblin Leacher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

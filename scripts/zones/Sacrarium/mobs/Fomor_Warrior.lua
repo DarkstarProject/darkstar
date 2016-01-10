@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Warrior
+-- MOB: Fomor Warrior
 -----------------------------------
 
 

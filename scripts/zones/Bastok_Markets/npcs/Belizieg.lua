@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Belizieg
---  Type: Item Deliverer
+-- Area: Bastok Markets
+--  NPC: Belizieg
+-- Type: Item Deliverer
 -- @zone: 235
---  @pos -323.673 -16.001 -49.930
+-- @pos -323.673 -16.001 -49.930
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

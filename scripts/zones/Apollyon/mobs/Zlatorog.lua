@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
--- NPC:  Zlatorog 
+--  NPC: Zlatorog 
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

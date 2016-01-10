@@ -75,9 +75,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
             player:delStatusEffect(EFFECT_SANCTION);
             player:delStatusEffect(EFFECT_SIGNET);
             player:addStatusEffect(EFFECT_SIGIL, power, 0, duration, 0, subPower, 0);
-            player:messageSpecial(ALLIED_SIGIL);
+            player:messageSpecial(text.ALLIED_SIGIL);
 
             if (cost > 0) then
                 player:delCurrency("allied_notes", cost);

@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Moreno-Toeno
---    Starts and Finishes Quest: Teacher's Pet
---  @pos  
+-- Area: Windurst Waters
+--  NPC: Moreno-Toeno
+-- Starts and Finishes Quest: Teacher's Pet
+-- @pos  
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -128,8 +128,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -137,8 +137,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01b6 and option == 0) then
         player:addQuest(WINDURST,TEACHER_S_PET);
@@ -156,14 +156,14 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x00B6 or csid == 0x02AF) and option ~= 1 then -- start
         player:addKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED,CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",1);
         player:setVar("testingTime_start_day",VanadielDayOfTheYear());
         player:setVar("testingTime_start_hour",VanadielHour());
         player:setVar("testingTime_start_time",os.time());
     elseif (csid == 0x00C6 or csid == 0x00C7 or csid == 0x00CA or csid == 0x00D0) then -- failed testing time
         player:delKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED + 1,CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(text.KEYITEM_OBTAINED + 1,CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",0);
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
@@ -187,7 +187,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02F0) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(STAR_SEEKER);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_SEEKER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STAR_SEEKER);
         player:addTitle(FUGITIVE_MINISTER_BOUNTY_HUNTER);
         
     elseif (csid == 0x02F6) then

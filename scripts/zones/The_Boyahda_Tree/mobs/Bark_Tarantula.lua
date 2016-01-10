@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Bark Tarantula
+-- MOB: Bark Tarantula
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

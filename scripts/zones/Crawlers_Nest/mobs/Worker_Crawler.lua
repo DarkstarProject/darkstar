@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Worker Crawler
+-- MOB: Worker Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

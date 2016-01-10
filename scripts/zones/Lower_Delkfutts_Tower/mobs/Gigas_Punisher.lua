@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Punisher
+-- MOB: Gigas Punisher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Shey Wayatih
+--  NPC: Shey Wayatih
 -- Standard Info NPC
 -----------------------------------
 

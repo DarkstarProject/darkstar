@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC: Cryptonberry_Skulker
+--  NPC: Cryptonberry_Skulker
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Chaser
+-- MOB: Goblin Chaser
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

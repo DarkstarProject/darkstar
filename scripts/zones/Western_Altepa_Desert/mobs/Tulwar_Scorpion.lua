@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Tulwar Scorpion
+-- MOB: Tulwar Scorpion
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

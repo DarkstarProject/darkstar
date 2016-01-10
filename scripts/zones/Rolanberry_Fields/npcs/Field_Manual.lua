@@ -1,6 +1,6 @@
 -----------------------------------    
 -- Area: Rolanberry Fields    
--- NPC:  Field Manual    
+--  NPC: Field Manual    
 -----------------------------------    
     
 require("scripts/globals/settings");    

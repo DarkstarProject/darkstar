@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
---  MOB: Maat
+-- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;

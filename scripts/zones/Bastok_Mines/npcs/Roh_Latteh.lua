@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Roh Latteh
+--  NPC: Roh Latteh
 -- Involved in Quest: Mom, The Adventurer?
 -- Finishes Quest: The Signpost Marks the Spot
 -----------------------------------
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x005f) then
         player:addKeyItem(LETTER_FROM_ROH_LATTEH);
-        player:messageSpecial(KEYITEM_OBTAINED, LETTER_FROM_ROH_LATTEH);
+        player:messageSpecial(text.KEYITEM_OBTAINED, LETTER_FROM_ROH_LATTEH);
         player:setVar("MomTheAdventurer_Event",2);
         player:tradeComplete();
     elseif (csid == 0x0060) then
@@ -73,9 +73,9 @@ function onEventFinish(player,csid,option)
             player:addTitle(TREASURE_SCAVENGER);
             player:addFame(BASTOK,BAS_FAME*50);
             player:addItem(12601);
-            player:messageSpecial(ITEM_OBTAINED,12601); -- Linen Robe
+            player:messageSpecial(text.ITEM_OBTAINED,12601); -- Linen Robe
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12601);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12601);
         end
     end
 

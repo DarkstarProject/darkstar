@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Kwadaaf
+--  NPC: Kwadaaf
 -- Type: Entry to Alzadaal Undersea Ruins
 -- @pos -639.000 12.323 -260.000 79
 -----------------------------------

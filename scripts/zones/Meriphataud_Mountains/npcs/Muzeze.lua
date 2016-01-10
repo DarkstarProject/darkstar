@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Meriphataud Mountains
---  NPC:  Muzeze
---  Type: Armor Storer
---  @pos -6.782 -18.428 208.185 119
+-- Area: Meriphataud Mountains
+--  NPC: Muzeze
+-- Type: Armor Storer
+-- @pos -6.782 -18.428 208.185 119
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 -----------------------------------

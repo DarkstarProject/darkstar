@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs (105)
---  MOB: Lumber Jack
+-- MOB: Lumber Jack
 -----------------------------------
 
 require("scripts/globals/status");

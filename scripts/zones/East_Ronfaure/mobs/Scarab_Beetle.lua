@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Scarab Beetle
+-- MOB: Scarab Beetle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

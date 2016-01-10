@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -57,7 +57,7 @@ end;
 function onZoneIn(player,prevZone)
 local cs = -1;
 
-return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -178,7 +178,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x000e) then
         player:addItem(12516);
-        player:messageSpecial(ITEM_OBTAINED,12516); -- Chaos Burgeonet
+        player:messageSpecial(text.ITEM_OBTAINED,12516); -- Chaos Burgeonet
         player:addTitle(PARAGON_OF_DARK_KNIGHT_EXCELLENCE);
         player:setVar("bladeOfEvilCS",0);
         player:addFame(BASTOK,AF3_FAME);

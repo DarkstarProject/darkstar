@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Mighty Fist
+--  NPC: Mighty Fist
 -- Starts & Finishes Quest: The Darksmith (R)
 -- Involved in Quest: Dark Legacy
 -- @pos -47 2 -30 237
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0235) then
         player:addQuest(BASTOK,THE_DARKSMITH);            
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
         
         player:tradeComplete();
         player:addGil(GIL_RATE*8000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*8000);
         
         if (TheDarksmith == QUEST_ACCEPTED) then
             player:addFame(BASTOK,BAS_FAME*30);
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02f0) then
         player:setVar("darkLegacyCS",2);
         player:addKeyItem(LETTER_FROM_THE_DARKSTEEL_FORGE);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_THE_DARKSTEEL_FORGE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_FROM_THE_DARKSTEEL_FORGE);
     end
     
 end;

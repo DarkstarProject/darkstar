@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus
--- NPC:  Quu Bokye
+--  NPC: Quu Bokye
 -- Involved in Quest: Dark Legacy
 -- @pos -159 16 181 145
 -----------------------------------
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("EARLY_BIRD_TRACK_BOOK",2);
         player:addKeyItem(ART_FOR_EVERYONE);
-        player:messageSpecial(KEYITEM_OBTAINED,ART_FOR_EVERYONE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ART_FOR_EVERYONE);
     end
     
 end;

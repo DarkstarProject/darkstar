@@ -50,11 +50,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         if (player:hasSpell(299) == false) then
             player:addSpell(299); -- Titan
-            player:messageSpecial(TITAN_UNLOCKED,0,0,1); 
+            player:messageSpecial(text.TITAN_UNLOCKED,0,0,1); 
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeEarth_date", 0);
         player:addFame(BASTOK,BAS_FAME*30);

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Sauromugue Champaign
+-- Area: Sauromugue Champaign
 --  NPC: qm7 (???) (Tower 7) 
---  Involved in Quest: THF AF "As Thick As Thieves"
---  @pos -193.869 15.400 276.837 120
+-- Involved in Quest: THF AF "As Thick As Thieves"
+-- @pos -193.869 15.400 276.837 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 
     if (thickAsThievesGrapplingCS >= 2 and thickAsThievesGrapplingCS <= 7) then
         if (trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
-            player:messageSpecial(THF_AF_WALL_OFFSET+3,0,17474); -- You cannot get a decent grip on the wall using the [Grapnel].
+            player:messageSpecial(text.THF_AF_WALL_OFFSET+3,0,17474); -- You cannot get a decent grip on the wall using the [Grapnel].
         end
     end
 end;
@@ -38,17 +38,17 @@ function onTrigger(player,npc)
     
     if (thickAsThieves == QUEST_ACCEPTED) then
         if (thickAsThievesGrapplingCS == 7) then
-            player:messageSpecial(THF_AF_MOB);    
+            player:messageSpecial(text.THF_AF_MOB);    
             SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise
             setMobPos(17269107,194,15,269,0);        
         elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
             thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
             thickAsThievesGrapplingCS == 4 or thickAsThievesGrapplingCS == 5 or
             thickAsThievesGrapplingCS == 6) then
-            player:messageSpecial(THF_AF_WALL_OFFSET);        
+            player:messageSpecial(text.THF_AF_WALL_OFFSET);        
         end    
     else 
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);        
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);        
     end
     
 end;

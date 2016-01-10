@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Ix'aern (drg)
+-- MOB: Ix'aern (drg)
 -----------------------------------
 
 require("scripts/globals/status");

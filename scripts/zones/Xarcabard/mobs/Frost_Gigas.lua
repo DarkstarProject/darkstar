@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Frost Gigas
+-- MOB: Frost Gigas
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

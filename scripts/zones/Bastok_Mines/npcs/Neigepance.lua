@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Neigepance
+--  NPC: Neigepance
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -20,9 +20,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,NEIGEPANCE_SHOP_DIALOG);
+    player:showText(npc, text.NEIGEPANCE_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x439B,     9,1,     --Dart
         0x034D,  1150,1,     --Black Chocobo Feather
         0x11C1,    62,3,     --Gysahl Greens
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -12,8 +12,8 @@ require("scripts/zones/Periqia/IDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(Periqia.text.ASSAULT_31_START, 1);
-    player:messageSpecial(Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(text.Periqia.text.ASSAULT_31_START, 1);
+    player:messageSpecial(text.Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;    
 
 -----------------------------------
@@ -66,7 +66,7 @@ function onInstanceTimeUpdate(instance, elapsed)
         end
         if (wipe) then
             for i,v in pairs(players) do
-                v:messageSpecial(Periqia.text.PARTY_FALLEN, 3);
+                v:messageSpecial(text.Periqia.text.PARTY_FALLEN, 3);
             end
             instance:setWipeTime(elapsed);
         end
@@ -99,9 +99,9 @@ function onInstanceTimeUpdate(instance, elapsed)
     if (message ~= 0) then
         for i,v in pairs(players) do
             if (remainingTimeLimit >= 60) then
-                v:messageSpecial(Periqia.text.TIME_REMAINING_MINUTES, remainingTimeLimit / 60);
+                v:messageSpecial(text.Periqia.text.TIME_REMAINING_MINUTES, remainingTimeLimit / 60);
             else
-                v:messageSpecial(Periqia.text.TIME_REMAINING_SECONDS, remainingTimeLimit);
+                v:messageSpecial(text.Periqia.text.TIME_REMAINING_SECONDS, remainingTimeLimit);
             end
         end
         instance:setLastTimeUpdate(message);
@@ -117,7 +117,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Periqia.text.MISSION_FAILED,10,10);
+        v:messageSpecial(text.Periqia.text.MISSION_FAILED,10,10);
         v:startEvent(0x66);
     end
 end;
@@ -143,7 +143,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Periqia.text.RUNE_UNLOCKED_POS, 8, 8);
+        v:messageSpecial(text.Periqia.text.RUNE_UNLOCKED_POS, 8, 8);
     end
     
     local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);

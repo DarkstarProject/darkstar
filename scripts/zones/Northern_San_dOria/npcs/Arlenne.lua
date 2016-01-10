@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Arlenne
+--  NPC: Arlenne
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -23,7 +23,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -33,9 +33,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ARLENNE_SHOP_DIALOG);
+    player:showText(npc, text.ARLENNE_SHOP_DIALOG);
 
-    stock = {17051,1409,1,  --Yew Wand 
+    local stock =
+    {
+    17051,1409,1,  --Yew Wand 
              17090,3245,1,  --Elm Staff  
              17097,16416,1, --Elm Pole 
              16835,15876,1, --Spear 
@@ -61,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,9 +72,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

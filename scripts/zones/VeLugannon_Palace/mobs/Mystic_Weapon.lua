@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Mystic Weapon
+-- MOB: Mystic Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

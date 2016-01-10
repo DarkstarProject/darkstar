@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Akbaba
+-- MOB: Akbaba
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

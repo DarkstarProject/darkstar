@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Shashan-Mishan
+--  NPC: Shashan-Mishan
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;

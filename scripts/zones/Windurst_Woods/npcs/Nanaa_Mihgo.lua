@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC:  Nanaa Mihgo
+--  NPC: Nanaa Mihgo
 -- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start), Rock Racketeer (start, listed as ROCK_RACKETTER in quests.lua)
 -- Involved In Quest: Crying Over Onions
 -- Involved in Mission 2-1
@@ -192,22 +192,22 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
         player:setVar("theTenshodoShowdownCS",1);
         player:addKeyItem(LETTER_FROM_THE_TENSHODO);
-        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,LETTER_FROM_THE_TENSHODO);
     elseif (csid == 0x01f8 and option == 1) then  -- start quest "as thick as thieves"
         player:addQuest(WINDURST,AS_THICK_AS_THIEVES);
         player:setVar("thickAsThievesCS",1);
         player:addKeyItem(GANG_WHEREABOUTS_NOTE);
         player:addKeyItem(FIRST_FORGED_ENVELOPE);
         player:addKeyItem(SECOND_FORGED_ENVELOPE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,GANG_WHEREABOUTS_NOTE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,FIRST_FORGED_ENVELOPE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,SECOND_FORGED_ENVELOPE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,GANG_WHEREABOUTS_NOTE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,FIRST_FORGED_ENVELOPE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,SECOND_FORGED_ENVELOPE);
     elseif (csid == 0x01fc) then    -- complete quest "as thick as thieves"
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12514);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,12514);
         else
             player:addItem(12514);
-            player:messageSpecial(text.ITEM_OBTAINED,12514);
+            player:messageSpecial(text.text.ITEM_OBTAINED,12514);
             player:completeQuest(WINDURST,AS_THICK_AS_THIEVES);
             player:setVar("thickAsThievesCS",0);
             player:setVar("thickAsThievesGrapplingCS",0);
@@ -221,7 +221,7 @@ function onEventFinish(player,csid,option)
         player:setVar("hittingTheMarquisateYatnielCS",1);
         player:setVar("hittingTheMarquisateHagainCS",1);
         player:addKeyItem(CAT_BURGLARS_NOTE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,CAT_BURGLARS_NOTE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,CAT_BURGLARS_NOTE);
     elseif (csid == 0x0204) then  -- end first part of "hitting The Marquisate "
         player:setVar("hittingTheMarquisateNanaaCS",1);
         player:setVar("hittingTheMarquisateYatnielCS",0);
@@ -229,7 +229,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00a5 and option == 1) then -- Windurst Mission 2-1 continuation
         -- Add the key item for the mission
         player:addKeyItem(LAPIS_MONOCLE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_MONOCLE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,LAPIS_MONOCLE);
         -- Mark the progress
         player:setVar("MissionStatus",2);
     elseif (csid == 0x00a9) then -- Windurst Mission 2-1 continuation
@@ -238,7 +238,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(LAPIS_MONOCLE);
         player:delKeyItem(LAPIS_CORAL);
         player:addKeyItem(HIDEOUT_KEY);
-        player:messageSpecial(text.KEYITEM_OBTAINED,HIDEOUT_KEY);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,HIDEOUT_KEY);
     elseif (csid == 0x02dc) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",4,true);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Davoi Mush
+-- MOB: Davoi Mush
 -----------------------------------
 
 require("scripts/globals/settings");

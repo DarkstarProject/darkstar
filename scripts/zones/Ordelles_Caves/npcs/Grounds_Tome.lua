@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

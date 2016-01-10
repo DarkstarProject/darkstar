@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Puffer Pugil
+-- MOB: Puffer Pugil
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

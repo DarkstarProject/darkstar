@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Tavnazia
--- NPC:  Nightmare_Cluster
+--  NPC: Nightmare_Cluster
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;

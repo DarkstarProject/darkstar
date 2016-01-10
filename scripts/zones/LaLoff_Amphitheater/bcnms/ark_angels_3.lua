@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
    if (csid == 0x7d01) then
       if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
          player:addKeyItem(SHARD_OF_ENVY);
-         player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_ENVY);
+         player:messageSpecial(text.KEYITEM_OBTAINED,SHARD_OF_ENVY);
          if (AAKeyitems == true) then
             player:completeMission(ZILART,ARK_ANGELS);
             player:addMission(ZILART,THE_SEALED_SHRINE);

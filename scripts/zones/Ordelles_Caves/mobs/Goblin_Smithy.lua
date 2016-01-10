@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

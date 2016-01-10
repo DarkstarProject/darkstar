@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---   NM:  Cactrot Rapido
+-- NM:  Cactrot Rapido
 -----------------------------------
 
 require("scripts/globals/titles");

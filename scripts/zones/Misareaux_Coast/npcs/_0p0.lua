@@ -33,10 +33,10 @@ function onTrigger(player,npc)
             SpawnMob(16879894,180):updateClaim(player);
             SpawnMob(16879895,180):updateClaim(player);
         else
-            player:messageSpecial(DOOR_CLOSED);
+            player:messageSpecial(text.DOOR_CLOSED);
         end
     else
-        player:messageSpecial(DOOR_CLOSED);
+        player:messageSpecial(text.DOOR_CLOSED);
     end
 end;
 

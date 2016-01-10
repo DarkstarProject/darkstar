@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Lower Jeuno
---   NPC: Sniggnix
---  Type: Standard NPC
+-- Area: Lower Jeuno
+--  NPC: Sniggnix
+-- Type: Standard NPC
 -- @zone: 245
---  @pos -45.832 4.498 -135.029
+-- @pos -45.832 4.498 -135.029
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
         player:setVar("thickAsThievesGamblingCS",8);
         player:delKeyItem(SECOND_FORGED_ENVELOPE);
         player:addKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SECOND_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SECOND_SIGNED_FORGED_ENVELOPE);
     end    
     
     

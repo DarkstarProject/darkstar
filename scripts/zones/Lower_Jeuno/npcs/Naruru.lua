@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Naruru
+--  NPC: Naruru
 -- Starts and Finishes Quests: Cook's Pride
 -- @pos -56 0.1 -138 245
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,23 +73,23 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if ((csid == 0x00BD or csid == 0x00BC) and option == 0) then 
         player:addQuest(JEUNO,COOK_S_PRIDE);
     elseif (csid == 0x00BD and option == 1) then 
         player:setVar("CooksPrideVar",1);
     elseif (csid == 0x00BB) then 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13446);
         else
             player:addTitle(MERCY_ERRAND_RUNNER);
             player:delKeyItem(SUPER_SOUP_POT);
             player:setVar("CooksPrideVar",0);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(13446);
-            player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
+            player:messageSpecial(text.ITEM_OBTAINED,13446); -- Mythril Ring
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:completeQuest(JEUNO,COOK_S_PRIDE);
         end

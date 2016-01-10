@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Taumila
+--  NPC: Taumila
 -- Starts and Finishes Quest: Tiger's Teeth (R)
 -- @pos -140 -5 -8 230
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x023e and option == 0) then
         player:addQuest(SANDORIA,TIGER_S_TEETH);
@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(FANG_FINDER);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100)
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100)
         if (player:getQuestStatus(SANDORIA,TIGER_S_TEETH) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,TIGER_S_TEETH);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Flamingo
+-- MOB: Flamingo
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

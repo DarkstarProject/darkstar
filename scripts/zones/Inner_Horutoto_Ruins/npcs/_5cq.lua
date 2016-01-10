@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  _5cq (Magical Gizmo) #2 
---  Involved In Mission: The Horutoto Ruins Experiment
+-- Area: Inner Horutoto Ruins
+--  NPC: _5cq (Magical Gizmo) #2 
+-- Involved In Mission: The Horutoto Ruins Experiment
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         else
             if (player:getVar("MissionStatus_op2") == 2) then
                 -- We've already examined this
-                player:messageSpecial(EXAMINED_RECEPTACLE);
+                player:messageSpecial(text.EXAMINED_RECEPTACLE);
             else
                 -- Opened the wrong one
                 player:startEvent(0x0033);
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- If we just finished the cutscene for Windurst Mission 1-1
     -- The cutscene that we opened the correct Magical Gizmo
@@ -70,12 +70,12 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
         player:setVar("MissionStatus_rv", 0);
         player:addKeyItem(CRACKED_MANA_ORBS);
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MANA_ORBS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CRACKED_MANA_ORBS);
     elseif (csid == 0x0033) then
         -- Opened the wrong one
         player:setVar("MissionStatus_op2", 2);
         -- Give the message that thsi orb is not broken
-        player:messageSpecial(NOT_BROKEN_ORB);
+        player:messageSpecial(text.NOT_BROKEN_ORB);
     end
     
 end;

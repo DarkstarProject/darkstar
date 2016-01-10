@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Thug
+-- MOB: Goblin Thug
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

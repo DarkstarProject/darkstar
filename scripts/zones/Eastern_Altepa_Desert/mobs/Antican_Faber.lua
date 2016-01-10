@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Faber
+-- MOB: Antican Faber
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

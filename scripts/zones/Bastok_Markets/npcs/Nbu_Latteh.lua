@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Nbu Latteh
+--  NPC: Nbu Latteh
 -- Starts & Finishes Quest: Mom, The Adventurer?
 -- Starts Quest: The Signpost Marks the Spot
 -----------------------------------
@@ -69,9 +69,9 @@ function onEventFinish(player,csid,option)
             player:addQuest(BASTOK,MOM_THE_ADVENTURER);
             player:setVar("MomTheAdventurer_Event",1);
             player:addItem(4096);
-            player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
+            player:messageSpecial(text.ITEM_OBTAINED,4096); -- Fire Crystal
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4096);
         end
     elseif (csid == 0x00e9 or csid == 0x00ea) then
         if (player:seenKeyItem(LETTER_FROM_ROH_LATTEH)) then
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(LETTER_FROM_ROH_LATTEH);
         player:addTitle(RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
-        player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
+        player:messageSpecial(text.GIL_OBTAINED, GIL_RATE*gilReward);
         player:setVar("MomTheAdventurer_Event",0);
 
         if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_ACCEPTED) then

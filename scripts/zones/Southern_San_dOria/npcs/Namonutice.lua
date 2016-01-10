@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Southern San d'Oria
+-- Area: Southern San d'Oria
 --  NPC: Namonutice
---  Fame Checker
---  @zone: 230
+-- Fame Checker
+-- @zone: 230
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
  
  

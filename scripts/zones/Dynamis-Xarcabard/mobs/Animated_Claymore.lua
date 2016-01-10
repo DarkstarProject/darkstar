@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Claymore
+-- MOB: Animated Claymore
 -----------------------------------
 
 require("scripts/globals/status");

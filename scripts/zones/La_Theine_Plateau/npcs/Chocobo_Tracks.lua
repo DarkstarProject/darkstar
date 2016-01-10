@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Chocobo Tracks
+--  NPC: Chocobo Tracks
 -- Involved in quest: Chocobo on the Loose!
 -- @pos -556 0 523 102
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,CHOCOBO_ON_THE_LOOSE) == QUEST_ACCEPTED and player:getVar("ChocoboOnTheLoose") < 2) then
         player:startEvent(0x00D1);
     else
-        player:messageSpecial(CHOCOBO_TRACKS);
+        player:messageSpecial(text.CHOCOBO_TRACKS);
     end
 end;
 

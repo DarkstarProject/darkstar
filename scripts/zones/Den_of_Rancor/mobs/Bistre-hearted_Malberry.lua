@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  NM:  Bistre-hearted Malberry
+-- NM:  Bistre-hearted Malberry
 -----------------------------------
 
 -----------------------------------

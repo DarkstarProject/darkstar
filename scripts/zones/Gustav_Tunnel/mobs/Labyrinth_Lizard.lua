@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Labyrinth Lizard
+-- MOB: Labyrinth Lizard
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

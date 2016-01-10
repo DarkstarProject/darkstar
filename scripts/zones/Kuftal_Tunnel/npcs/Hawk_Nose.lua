@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Kuftal Tunnel
---  NPC:  Hawk Nose
---  Type: Quest NPC
---  @pos .1 -1 .1 174
+-- Area: Kuftal Tunnel
+--  NPC: Hawk Nose
+-- Type: Quest NPC
+-- @pos .1 -1 .1 174
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------

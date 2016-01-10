@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Cha Lebagta
---  Type: Standard NPC
---  @zone: 241
---  @pos 58.385 -6.249 216.670
---    Involved in Quests: As Thick as Thieves, Mihgo's Amigo
+-- Type: Standard NPC
+-- @zone: 241
+-- @pos 58.385 -6.249 216.670
+-- Involved in Quests: As Thick as Thieves, Mihgo's Amigo
 -----------------------------------
 
 -----------------------------------

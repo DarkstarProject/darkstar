@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Ju Kamja
---  Type: Item Deliverer
---  @zone: 241
---  @pos 58.145 -2.5 -136.91
+-- Type: Item Deliverer
+-- @zone: 241
+-- @pos 58.145 -2.5 -136.91
 -----------------------------------
 
 local text = require("scripts/zones/Windurst_Woods/TextIDs");
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

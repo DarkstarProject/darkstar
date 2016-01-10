@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Rafaela
+--  NPC: Rafaela
 -- Standard Info NPC
 -----------------------------------
 
@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
 
-player:startEvent(0x0016);
+    player:startEvent(0x0016);
 
 end; 
 
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 PastPerfectVar = player:getVar("PastPerfectVar");
 
@@ -48,6 +48,3 @@ PastPerfectVar = player:getVar("PastPerfectVar");
     end
 
 end;
-
-
-

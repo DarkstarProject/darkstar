@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Shikigami Weapon
+-- MOB: Shikigami Weapon
 -----------------------------------
 
 

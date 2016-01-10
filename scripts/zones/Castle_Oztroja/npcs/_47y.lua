@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Castle Oztroja
--- NPC:   _47y (Torch Stand)
+--  NPC:  _47y (Torch Stand)
 -- Notes: Opens door _474
 -- @pos -57.575 24.218 -67.651 151
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,5 +51,5 @@ function onEventFinish(player,csid,option)
 
 end;
 
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);

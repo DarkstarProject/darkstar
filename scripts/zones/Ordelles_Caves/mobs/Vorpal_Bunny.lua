@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Vorpal Bunny
+-- MOB: Vorpal Bunny
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(text.NOTHING_HAPPENS);
 end;
 
 -----------------------------------

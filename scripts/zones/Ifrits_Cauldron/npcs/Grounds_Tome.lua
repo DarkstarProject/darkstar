@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

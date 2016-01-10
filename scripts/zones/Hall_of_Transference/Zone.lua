@@ -13,7 +13,7 @@ require("scripts/globals/missions");
 require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

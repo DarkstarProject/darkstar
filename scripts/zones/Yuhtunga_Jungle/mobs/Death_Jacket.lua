@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Death Jacket
+-- MOB: Death Jacket
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

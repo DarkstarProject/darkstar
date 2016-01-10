@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Jack of Batons
+-- MOB: Jack of Batons
 -----------------------------------
 
 require("scripts/globals/titles");

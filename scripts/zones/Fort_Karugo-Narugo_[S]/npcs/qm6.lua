@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Fort Karugo Narugo [S]
+-- Area: Fort Karugo Narugo [S]
 --  NPC: ???
---  Type: Quest
---  @zone: 96
---  @pos -63 -75 4
+-- Type: Quest
+-- @zone: 96
+-- @pos -63 -75 4
 --
 -----------------------------------
 
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         
     end
 end;
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

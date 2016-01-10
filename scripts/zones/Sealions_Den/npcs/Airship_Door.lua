@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: 
--- NPC:  Airship_Door 
+--  NPC: Airship_Door 
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------

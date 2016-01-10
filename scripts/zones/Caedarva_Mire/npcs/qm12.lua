@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  ??? 
+--  NPC: ??? 
 -- @pos 456.993 -7.000 -270.815 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     elseif (player:getVar("notmeanttobeMoshdahnKilled") == 1 and player:getVar("notmeanttobeLamia27Killed") == 1) then
         player:startEvent(0x0012);
     else        
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

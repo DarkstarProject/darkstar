@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Jelly
+-- MOB: Jelly
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

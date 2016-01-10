@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Supiroro
+--  NPC: Supiroro
 -- Standard Info NPC
 -----------------------------------
 

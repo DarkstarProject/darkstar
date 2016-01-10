@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Raminel
+--  NPC: Raminel
 -- Involved in Quests: Riding on the Clouds
 -- @zone 230
 -- @pos -56 2 -21
@@ -91,7 +91,7 @@ function onPath(npc)
         local lus = GetNPCByID(17719350);
 
         -- give package to Lusiane
-        lus:showText(npc, RAMINEL_DELIVERY);
+        lus:showText(npc, text.RAMINEL_DELIVERY);
         npc:showText(lus, LUSIANE_THANK);
 
         -- wait default duration 4 seconds
@@ -117,7 +117,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 
@@ -126,7 +126,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
             player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
 

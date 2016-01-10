@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Robber Crab
+-- MOB: Robber Crab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

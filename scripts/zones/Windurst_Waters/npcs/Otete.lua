@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst_Waters
--- NPC:  Otete
+--  NPC: Otete
 -- Only sells when Windurst controlls Li'Telor Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(LITELOR);
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,OTETE_CLOSED_DIALOG);
+        player:showText(npc, text.OTETE_CLOSED_DIALOG);
     else
-        player:showText(npc,OTETE_OPEN_DIALOG);
+        player:showText(npc, text.OTETE_OPEN_DIALOG);
 
         stock = {
             0x026F,   119,   --Bay Leaves
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

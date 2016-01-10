@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Wraith
+-- MOB: Wraith
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

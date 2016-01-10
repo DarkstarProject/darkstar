@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zitah
--- NPC:  ???
+--  NPC: ???
 -- Finishes Quest: Lovers in the Dusk
 -- @zone 121
 -----------------------------------
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     if (TOTD == TIME_DUSK and LoversInTheDusk == QUEST_ACCEPTED) then
         player:startEvent(0x00cc);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,15 +49,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00cc) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17346);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17346);
         else 
             player:addItem(17346);
-            player:messageSpecial(ITEM_OBTAINED,17346); -- Siren Flute
+            player:messageSpecial(text.ITEM_OBTAINED,17346); -- Siren Flute
             player:addFame(BASTOK,BAS_FAME*120);
             player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
         end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Pehki Machumaht
+--  NPC: Pehki Machumaht
 -- Map Seller NPC
 -----------------------------------
 

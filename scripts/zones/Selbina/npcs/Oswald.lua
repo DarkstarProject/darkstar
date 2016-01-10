@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Oswald
+--  NPC: Oswald
 -- Starts and Finishes Quest: Under the sea (finish), The gift, The real gift
 -- @pos 48 -15 9 248
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,32 +76,32 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0020) then 
         player:setVar("underTheSeaVar",2);
     elseif (csid == 0x0025) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13335);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13335);
         else 
             player:completeQuest(OTHER_AREAS,UNDER_THE_SEA);
             player:addTitle(LIL_CUPID);
             player:delKeyItem(ETCHED_RING);
             player:setVar("underTheSeaVar",0);
             player:addItem(13335);
-            player:messageSpecial(ITEM_OBTAINED,13335); -- Amber Earring
+            player:messageSpecial(text.ITEM_OBTAINED,13335); -- Amber Earring
             player:addFame(OTHER_AREAS,30);
         end
     elseif (csid == 0x0046 and option == 50) then
         player:addQuest(OTHER_AREAS,THE_GIFT);
     elseif (csid == 0x0048) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16497);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16497);
         else 
             player:completeQuest(OTHER_AREAS,THE_GIFT);
             player:addTitle(SAVIOR_OF_LOVE);
             player:addItem(16497);
-            player:messageSpecial(ITEM_OBTAINED,16497); -- Sleep Dagger
+            player:messageSpecial(text.ITEM_OBTAINED,16497); -- Sleep Dagger
             player:addFame(OTHER_AREAS,30);
             player:tradeComplete();
         end
@@ -109,17 +109,14 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS,THE_REAL_GIFT);
     elseif (csid == 0x004b) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17385);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17385);
         else 
             player:completeQuest(OTHER_AREAS,THE_REAL_GIFT);
             player:addTitle(THE_LOVE_DOCTOR);
             player:addItem(17385);
-            player:messageSpecial(ITEM_OBTAINED,17385); -- Glass Fiber Fishing Rod
+            player:messageSpecial(text.ITEM_OBTAINED,17385); -- Glass Fiber Fishing Rod
             player:addFame(OTHER_AREAS,30);
             player:tradeComplete();
         end
     end
 end;
-
-
-

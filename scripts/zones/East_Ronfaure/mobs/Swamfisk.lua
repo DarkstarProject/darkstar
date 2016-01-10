@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  NM:  Swamfisk
+-- NM:  Swamfisk
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

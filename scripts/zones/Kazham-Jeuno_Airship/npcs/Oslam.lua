@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham-Jeuno Airship
--- NPC:  Oslam
+--  NPC: Oslam
 -- Standard Info NPC
 -----------------------------------
 
@@ -74,7 +74,7 @@ function onTrigger(player,npc)
         vHour = 0;
     end
 
-    player:messageSpecial( message, math.floor((2.4 * vMinutes) / 60), math.floor( vMinutes / 60 + 0.5));
+    player:messageSpecial(text.message, math.floor((2.4 * vMinutes) / 60), math.floor( vMinutes / 60 + 0.5));
 end;
 
 -----------------------------------

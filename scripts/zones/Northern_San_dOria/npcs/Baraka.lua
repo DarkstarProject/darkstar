@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Baraka
+--  NPC: Baraka
 -- Involved in Missions 2-3
 -- @zone 231
 -- @pos 36 -2 -2
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             if (missionStatus == 1) then
                 player:startEvent(0x0245);
             elseif (missionStatus == 2) then
-                player:showText(npc,11141);
+                player:showText(npc, text.11141);
             elseif (missionStatus == 7) then
                 player:startEvent(0x0245);
             else
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0245) then
         if (player:getCurrentMission(BASTOK) == THE_EMISSARY) then

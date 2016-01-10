@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Pirvidiauce
+--  NPC: Pirvidiauce
 -- Conquest depending medicine seller
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -23,7 +23,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -33,9 +33,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,PIRVIDIAUCE_SHOP_DIALOG);
+    player:showText(npc, text.PIRVIDIAUCE_SHOP_DIALOG);
 
-    stock = {0x32ba,9180,1, --Chestnut Sabbots
+    local stock =
+    {
+    0x32ba,9180,1, --Chestnut Sabbots
              0x1020,4445,1,    --Ether
              0x1010,837,1,    --Potion
 
@@ -59,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,9 +70,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

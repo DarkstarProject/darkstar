@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Caretaker
+-- MOB: Caretaker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

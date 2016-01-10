@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Secodiand
+--  NPC: Secodiand
 -- Starts and Finishes Quest: Fear of the dark
 -- @zone 231
 -- @pos -160 -0 137
@@ -18,7 +18,7 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
  
 function onTrade(player,npc,trade)
---    
+-- 
     if (player:getQuestStatus(SANDORIA,FEAR_OF_THE_DARK) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(922,2) and trade:getItemCount() == 2) then 
             player:startEvent(0x0012);
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,15 +57,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
---    
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+-- 
     if (csid == 0x0013 and option == 1) then
         player:addQuest(SANDORIA,FEAR_OF_THE_DARK);
     elseif (csid == 0x0012) then
         player:tradeComplete();
         player:addGil(GIL_RATE*200);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*200);
         if (player:getQuestStatus(SANDORIA,FEAR_OF_THE_DARK) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,FEAR_OF_THE_DARK);

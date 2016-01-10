@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Mhaura
---  NPC:  Wilhelm
---  Type: Standard NPC
---  @pos -22.746 -5 17.157 249
+-- Area: Mhaura
+--  NPC: Wilhelm
+-- Type: Standard NPC
+-- @pos -22.746 -5 17.157 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
   --print("armor"..armor);
     if (armor > 0) then 
         if (player:getFreeSlotsCount()==0 or player:hasItem(armor) ) then     
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,armor); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,armor); 
         else
             if (armor == 15241 or armor == 14489 or armor == 14906 or armor == 15577 or armor == 15662) then  -- utlima
                 player:startEvent(0x0148,armor);
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
      
     if (csid== 0x0148 or csid == 0x014A) then
         player:addItem(option);
-        player:messageSpecial(ITEM_OBTAINED,option);
+        player:messageSpecial(text.ITEM_OBTAINED,option);
         player:tradeComplete();
      end
 end;

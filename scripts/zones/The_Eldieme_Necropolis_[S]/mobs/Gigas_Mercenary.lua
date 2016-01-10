@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S) (175)
---  MOB: Gigas_Mercenary
+-- MOB: Gigas_Mercenary
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

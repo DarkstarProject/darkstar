@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Secutor
+-- MOB: Antican Secutor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

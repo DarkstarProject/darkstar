@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Flesher
+-- MOB: Goblin Flesher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

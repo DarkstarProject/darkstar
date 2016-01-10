@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner_Forest_[S]
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

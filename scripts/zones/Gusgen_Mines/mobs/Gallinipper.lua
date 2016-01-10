@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Gallinipper
+-- MOB: Gallinipper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

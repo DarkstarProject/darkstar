@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Tunnel Worm
+-- MOB: Tunnel Worm
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Ranguemont Pass
---  NPC:  Myffore
---  Type: NPC
---  @pos -179.951 4 -172.234 166
+-- Area: Ranguemont Pass
+--  NPC: Myffore
+-- Type: NPC
+-- @pos -179.951 4 -172.234 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------

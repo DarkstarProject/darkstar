@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Majjih Bakrhamab
+--  NPC: Majjih Bakrhamab
 -- Standard Info NPC
 -----------------------------------
 

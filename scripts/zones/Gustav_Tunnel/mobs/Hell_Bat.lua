@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Hell Bat
+-- MOB: Hell Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

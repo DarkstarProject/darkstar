@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Master Coeurl
+-- MOB: Master Coeurl
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

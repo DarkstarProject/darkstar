@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Ornate Gate
+--  NPC: Ornate Gate
 -- @pos -95 -24 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 2) then
         player:startEvent(0x0024);
     else
-        player:messageSpecial(NOTHING_OUT_HERE);
+        player:messageSpecial(text.NOTHING_OUT_HERE);
     end
     
 end; 
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0024) then
         player:setVar("PromathiaStatus",3);

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Nazar
---  Type: Standard NPC
+-- Area: Port San d'Oria
+--  NPC: Nazar
+-- Type: Standard NPC
 -----------------------------------
 
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

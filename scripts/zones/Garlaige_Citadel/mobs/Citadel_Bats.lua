@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Citadel Bats
+-- MOB: Citadel Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

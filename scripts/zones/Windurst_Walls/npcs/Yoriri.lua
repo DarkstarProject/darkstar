@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Walls
---  NPC:  Yoriri
---  Type: Standard NPC
---  @pos 65.268 -8.5 -58.309 239
+-- Area: Windurst Walls
+--  NPC: Yoriri
+-- Type: Standard NPC
+-- @pos 65.268 -8.5 -58.309 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------

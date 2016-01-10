@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  Mob: Mammet-22_Zeta
+-- Mob: Mammet-22_Zeta
 -----------------------------------
 
 require("scripts/globals/status");

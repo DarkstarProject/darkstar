@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Altar Room
---   NPC: Hooknox
---  Type: Standard NPC
+-- Area: Altar Room
+--  NPC: Hooknox
+-- Type: Standard NPC
 -- @zone: 152
---  @pos -265.248 11.693 -102.547
+-- @pos -265.248 11.693 -102.547
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

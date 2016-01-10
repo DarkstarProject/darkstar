@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: River_Crab
+-- Area: Zeruhn Mines (172)
+-- Mob: River_Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

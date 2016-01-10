@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC: Zovriace
+--  NPC: Zovriace
 -- Type: Patrol NPC
 -- @pos -436.356 -15.851 -258.168 100
 -----------------------------------
@@ -1025,7 +1025,7 @@ function onPath(npc)
 
     if (npc:atPoint(pathfind.get(path, 288))) then
         local Colmaie = GetNPCByID(npc:getID() + 4);
-        Colmaie:showText(npc, ZOVRIACE_REPORT);
+        Colmaie:showText(npc, text.ZOVRIACE_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
@@ -1046,7 +1046,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ZOVRIACE_DIALOG);
+    player:showText(npc, text.ZOVRIACE_DIALOG);
     npc:wait();
 end;
 

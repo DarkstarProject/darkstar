@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Chetak
+--  NPC: Chetak
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,CHETAK_SHOP_DIALOG);
+    player:showText(npc, text.CHETAK_SHOP_DIALOG);
 
-stock = {0x30B2,20000, -- Red Cap
+    local stock =
+    {
+    0x30B2,20000, -- Red Cap
      0x30B3,45760, -- Wool Cap
      0x30BA,11166, -- Wool Hat
      0x3132,32500, -- Gambison
@@ -36,7 +38,7 @@ stock = {0x30B2,20000, -- Red Cap
      0x31BA,10234, -- Wool Cuffs 
      0x31C1,4443}  -- White Mitts
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

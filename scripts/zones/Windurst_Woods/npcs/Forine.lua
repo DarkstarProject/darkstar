@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Forine
+--  NPC: Forine
 -- Involved In Mission: Journey Abroad
 -- @zone 241
 -- @pos -52.677 -0.501 -26.299

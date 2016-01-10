@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Labyrinth Manticore
+-- MOB: Labyrinth Manticore
 -- Note: Place holder Narasimha
 -----------------------------------
 

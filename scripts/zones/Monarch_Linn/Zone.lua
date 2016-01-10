@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Monarch_Linn/TextIDs"] = nil;
 require("scripts/zones/Monarch_Linn/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
 
     local cs = -1;
 
-return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,9 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

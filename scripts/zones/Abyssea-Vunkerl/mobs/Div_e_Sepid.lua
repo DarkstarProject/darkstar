@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Vunkerl
---  MOB: Div-e Sepid
+-- MOB: Div-e Sepid
 -- ID: 17666515
 -- Note: No position data in the database (won't spawn)
 -----------------------------------

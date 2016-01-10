@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Ardea
+--  NPC: Ardea
 -- @zone 235
 -- @pos -198 -6 -69
 -- Involved in quests: Chasing Quotas, Rock Racketeer
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- Rock Racketeer
     if (csid == 0x0105 and option ~= 1) then
@@ -71,6 +71,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-
-

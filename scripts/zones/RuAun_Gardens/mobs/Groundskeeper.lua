@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Groundskeeper
+-- MOB: Groundskeeper
 -- Note: Place holder Despot
 -----------------------------------
 

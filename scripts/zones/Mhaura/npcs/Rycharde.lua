@@ -1,12 +1,12 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Rycharde 
---    Standard Info NPC
---  Starts & Finishes non Repeatable Quest: Rycharde the Chef,
---  WAY_OF_THE_COOK, UNENDING_CHASE
---     his name is Valgeir (not completed correctly, ferry not implemented)
---     the clue (100%)
---     the basics (not completed correctly, ferry not implemented)
+-- Area: Mhaura
+--  NPC: Rycharde 
+-- Standard Info NPC
+-- Starts & Finishes non Repeatable Quest: Rycharde the Chef,
+-- WAY_OF_THE_COOK, UNENDING_CHASE
+-- his name is Valgeir (not completed correctly, ferry not implemented)
+-- the clue (100%)
+-- the basics (not completed correctly, ferry not implemented)
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -17,30 +17,30 @@ require("scripts/globals/settings");
 require("scripts/zones/Mhaura/TextIDs");
 
 
---   player:startEvent(0x4a); -- first quest completed ok
---   player:startEvent(0x4b); -- nothing to do
---   player:startEvent(0x4c); -- second quest start  --WAY_OF_THE_COOK 
---   player:startEvent(0x4e); -- you have x hours left
---   player:startEvent(0x4f); -- not yet done
---   player:startEvent(0x50); -- second quest completed
---   player:startEvent(0x51); -- too late second quest
---   player:startEvent(0x52);-- third quest             
---   player:startEvent(0x53);-- third quest completed 
---   player:startEvent(0x54);-- third quest  said no, ask again
---   player:startEvent(0x55);-- third quest  comment no hurry
---   player:startEvent(0x56);-- forth quest   His Name is Valgeir
---   player:startEvent(0x57);-- forth quest   not done yet
---   player:startEvent(0x58);-- forth quest   done!
---   player:startEvent(0x59);-- nothing to do
---   player:startEvent(0x5a);-- fifth quest The Clue
---   player:startEvent(0x5b);-- fifth quest The Clue asked again
---   player:startEvent(0x5c);-- fifth quest completed
---   player:startEvent(0x5d);-- fifth quest not enogh
---   player:startEvent(0x5e);-- sixth quest The Basics
---   player:startEvent(0x5f);-- sixth quest not done yet
---   player:startEvent(0x60);-- sixth quest completed
---   player:startEvent(0x61);-- sixth quest completed commentary
---   player:startEvent(0x62);-- sixth quest completed commentary 2
+-- player:startEvent(0x4a); -- first quest completed ok
+-- player:startEvent(0x4b); -- nothing to do
+-- player:startEvent(0x4c); -- second quest start  --WAY_OF_THE_COOK 
+-- player:startEvent(0x4e); -- you have x hours left
+-- player:startEvent(0x4f); -- not yet done
+-- player:startEvent(0x50); -- second quest completed
+-- player:startEvent(0x51); -- too late second quest
+-- player:startEvent(0x52);-- third quest             
+-- player:startEvent(0x53);-- third quest completed 
+-- player:startEvent(0x54);-- third quest  said no, ask again
+-- player:startEvent(0x55);-- third quest  comment no hurry
+-- player:startEvent(0x56);-- forth quest   His Name is Valgeir
+-- player:startEvent(0x57);-- forth quest   not done yet
+-- player:startEvent(0x58);-- forth quest   done!
+-- player:startEvent(0x59);-- nothing to do
+-- player:startEvent(0x5a);-- fifth quest The Clue
+-- player:startEvent(0x5b);-- fifth quest The Clue asked again
+-- player:startEvent(0x5c);-- fifth quest completed
+-- player:startEvent(0x5d);-- fifth quest not enogh
+-- player:startEvent(0x5e);-- sixth quest The Basics
+-- player:startEvent(0x5f);-- sixth quest not done yet
+-- player:startEvent(0x60);-- sixth quest completed
+-- player:startEvent(0x61);-- sixth quest completed commentary
+-- player:startEvent(0x62);-- sixth quest completed commentary 2
 
 -----------------------------------
 -- onTrade Action
@@ -194,16 +194,13 @@ else
     end
 end
 end;
-
-
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -225,7 +222,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestRychardetheChef_var",0);
         player:setVar("QuestRychardeTCCompDay_var",VanadielDayOfTheYear());
         player:setVar("QuestRychardeTCCompYear_var",VanadielYear());
@@ -241,7 +238,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(ONESTAR_PURVEYOR);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestWayotcHourStarted_var",0);
         player:setVar("QuestRychardeTCDayStarted_var",0);
         player:setVar("QuestRychardeTCCompDay_var",0);
@@ -254,7 +251,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*1000);
         player:setVar("QuestWayotcHourStarted_var",0);
         player:setVar("QuestRychardeTCDayStarted_var",0);
         player:setVar("QuestRychardeTCCompDay_var",0);
@@ -276,7 +273,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(TWOSTAR_PURVEYOR);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100);
         player:setVar("QuestUnendingCAskedAlready_var",0);
         player:setVar("QuestWayofTCCompDay_var",0); -- completition day of WAY_OF_THE_COOK delete variable
         player:setVar("QuestWayofTCCompYear_var",0);
@@ -287,13 +284,13 @@ function onEventFinish(player,csid,option)
         if (option == 80 ) then -- answer yes!
             
             player:addKeyItem(ARAGONEU_PIZZA); --give pizza to player
-            player:messageSpecial(KEYITEM_OBTAINED,ARAGONEU_PIZZA);
+            player:messageSpecial(text.KEYITEM_OBTAINED,ARAGONEU_PIZZA);
             player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);    
         end
     elseif (csid == 0x58) then  -- end quest 4 his name is Valgeir
         player:addFame(WINDURST,WIN_FAME*120);
         player:addKeyItem(MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal 
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_TORAIMARAI_CANAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_THE_TORAIMARAI_CANAL);
         player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
         player:setVar("QuestUnendingCCompYear_var",0);
         player:setVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
@@ -309,7 +306,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(FOURSTAR_PURVEYOR);
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*3000);
         player:setVar("QuestTheClueStatus_var",0);
         player:setVar("QuestExpertiseCompDay_var",0); -- completition day of expertice quest
         player:setVar("QuestExpertiseCompYear_var",0);
@@ -320,7 +317,7 @@ function onEventFinish(player,csid,option)
         if (option == 85 ) then
                         --TODO pay for ferry
             player:addKeyItem(MHAURAN_COUSCOUS); --MHAURAN_COUSCOUS                = 92;
-            player:messageSpecial(KEYITEM_OBTAINED,MHAURAN_COUSCOUS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MHAURAN_COUSCOUS);
             player:addQuest(OTHER_AREAS,THE_BASICS);        
         end
     elseif (csid == 0x60) then   -- end quest the basics
@@ -328,10 +325,10 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*120);
         player:addTitle(FIVESTAR_PURVEYOR);
         if (player:getFreeSlotsCount() <= 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,133);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,133);
         else
             player:addItem(133);
-            player.messageSpecial(ITEM_OBTAINED,133);
+            player.messageSpecial(text.ITEM_OBTAINED,133);
             player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
             player:setVar("QuestTheClueCompYear_var",0);
             player:setVar("QuestTheBasicsComentary_var",1);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: BCNM
---  MOB: Lambton Worm
+-- MOB: Lambton Worm
 -----------------------------------
 
 require("scripts/globals/titles");

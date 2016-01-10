@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC:  Praetorian_Guard
+--  NPC: Praetorian_Guard
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos Central 1floor    
--- NPC: Iruci
+--  NPC: Iruci
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

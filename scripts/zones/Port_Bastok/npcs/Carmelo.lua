@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Carmelo
+--  NPC: Carmelo
 -- Start & Finishes Quest: Love and Ice, A Test of True Love
 -- Start Quest: Lovers in the Dusk
 -- Involved in Quest: The Siren's Tear
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 
@@ -82,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0006) then
         player:setVar("SirensTear",1);
@@ -92,16 +92,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00b9) then
         player:addQuest(BASTOK,LOVE_AND_ICE);
         player:addKeyItem(CARMELOS_SONG_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
     elseif (csid == 0x00ba) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17356);
         else 
             player:setVar("LoveAndIceProgress",0);
             player:needToZone(true);
             player:addTitle(SORROW_DROWNER);
             player:addItem(17356);
-            player:messageSpecial(ITEM_OBTAINED,17356); -- Lamia Harp
+            player:messageSpecial(text.ITEM_OBTAINED,17356); -- Lamia Harp
             player:addFame(BASTOK,BAS_FAME*120);
             player:completeQuest(BASTOK,LOVE_AND_ICE);
         end
@@ -118,6 +118,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0113) then
         player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
         player:addKeyItem(CHANSON_DE_LIBERTE);
-        player:messageSpecial(KEYITEM_OBTAINED,CHANSON_DE_LIBERTE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CHANSON_DE_LIBERTE);
     end
 end;

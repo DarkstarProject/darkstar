@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NPC:  Magicite
+--  NPC: Magicite
 -- Involved in Mission: Magicite
 -- @pos 11 25 -81 148
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             player:startEvent(0x0000); -- don't play Lion part of the CS 
         end
     else
-        player:messageSpecial(THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(text.THE_MAGICITE_GLOWS_OMINOUSLY);
     end
     
 end;
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0000) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(MAGICITE_AURASTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGICITE_AURASTONE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAGICITE_AURASTONE);
     end
     
 end;

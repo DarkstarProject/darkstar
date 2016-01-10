@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  MOB: Ultima
+-- MOB: Ultima
 -----------------------------------
 
 require("scripts/globals/titles");

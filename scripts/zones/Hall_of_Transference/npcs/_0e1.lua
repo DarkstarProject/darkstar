@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Hall of Transference
--- NPC:  Cermet Gate - Dem
+--  NPC: Cermet Gate - Dem
 -- @pos -220 -46 -279 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) > BELOW_THE_ARKS) then
         player:startEvent(0x0096);
     else
-        player:messageSpecial(NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
+        player:messageSpecial(text.NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
     end
     
 end;

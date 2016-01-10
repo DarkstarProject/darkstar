@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Koyol-Futenol
+--  NPC: Koyol-Futenol
 -- Title Change NPC
 -- @pos -129 2 -20 50
 -----------------------------------

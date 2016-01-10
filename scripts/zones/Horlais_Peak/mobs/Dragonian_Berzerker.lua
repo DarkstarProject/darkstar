@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Dragonian_Bezerker
+-- MOB: Dragonian_Bezerker
 -- KSNM30
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
---  MOB: Ix_ghrah
+-- MOB: Ix_ghrah
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/missions");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
---  MOB: Qn'aern (WHM)
+-- MOB: Qn'aern (WHM)
 -- ID: 16916817
 -----------------------------------
 

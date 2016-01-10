@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- NPC:  ??? - Awd Goggie spawn
+--  NPC: ??? - Awd Goggie spawn
 -- @pos -253.026 -1.867 253.055 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
             SpawnMob(17584135,120):updateClaim(player); -- Awd Goggie
             npc:setStatus(STATUS_DISAPPEAR) -- hide ???
         else 
-            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                
+            player:messageSpecial(text.NOTHING_SEEMS_TO_HAPPEN);                
         end
     end
 end; 

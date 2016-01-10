@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -------------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -------------------------------------

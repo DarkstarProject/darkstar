@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: macroplasm
+-- MOB: macroplasm
 -----------------------------------
 package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 -----------------------------------

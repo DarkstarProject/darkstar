@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
---  MOB: Colibri
+-- MOB: Colibri
 -----------------------------------
 
 require("scripts/globals/status");

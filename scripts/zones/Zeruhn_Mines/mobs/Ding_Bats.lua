@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: Ding_Bats
+-- Area: Zeruhn Mines (172)
+-- Mob: Ding_Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Waters
---  NPC:  Ohbiru-Dohbiru
---  Involved in quest: Food For Thought, Say It with Flowers
---  Starts and finishes quest: Toraimarai Turmoil
+-- Area: Windurst Waters
+--  NPC: Ohbiru-Dohbiru
+-- Involved in quest: Food For Thought, Say It with Flowers
+-- Starts and finishes quest: Toraimarai Turmoil
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -137,8 +137,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -146,8 +146,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     -- Check Missions first (priority?)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
     if (csid == 0x8f) then
@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
             player:addTitle(FAST_FOOD_DELIVERER);
             player:addGil(GIL_RATE*440);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*440);
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
@@ -183,23 +183,23 @@ function onEventFinish(player,csid,option)
         else
             player:tradeComplete();
             player:addGil(GIL_RATE*440);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*440);
             player:setVar("Ohbiru_Food_var",3); -- If this is NOT the last NPC given food, flag this NPC as completed.
         end
     elseif (csid == 0x0311 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
-        player:messageSpecial(KEYITEM_OBTAINED,267);
+        player:messageSpecial(text.KEYITEM_OBTAINED,267);
         player:addKeyItem(267); -- Rhinostery Certificate
     elseif (csid == 0x0317 and turmoil == QUEST_ACCEPTED) then -- Completes Toraimarai turmoil - first time
         player:addGil(GIL_RATE*4500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*4500);
         player:completeQuest(WINDURST,TORAIMARAI_TURMOIL);
         player:addFame(WINDURST,WIN_FAME*100);
         player:addTitle(CERTIFIED_RHINOSTERY_VENTURER);
         player:tradeComplete();
     elseif (csid == 0x0317 and turmoil == 2) then -- Completes Toraimarai turmoil - repeats
         player:addGil(GIL_RATE*4500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*4500);
         player:addFame(WINDURST,WIN_FAME*50);
         player:tradeComplete();
     elseif (csid == 0x0160 and option == 0 or csid == 0x0162) then
@@ -208,9 +208,9 @@ function onEventFinish(player,csid,option)
                 player:addQuest(WINDURST,WATER_WAY_TO_GO);
             end
             player:addItem(504);
-            player:messageSpecial(ITEM_OBTAINED,504);
+            player:messageSpecial(text.ITEM_OBTAINED,504);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,504);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,504);
         end
     elseif (csid == 0x0163) then
         player:addGil(GIL_RATE*900);
@@ -224,32 +224,32 @@ function onEventFinish(player,csid,option)
         if (option == 0) then
             player:delGil(300);
             player:addItem(948); -- Carnation
-            player:messageSpecial(ITEM_OBTAINED,948);
+            player:messageSpecial(text.ITEM_OBTAINED,948);
             player:needToZone(true);
         elseif (option == 1) then
             player:delGil(200);
             player:addItem(941); -- Red Rose
-            player:messageSpecial(ITEM_OBTAINED,941);
+            player:messageSpecial(text.ITEM_OBTAINED,941);
             player:needToZone(true);
         elseif (option == 2) then
             player:delGil(250);
             player:addItem(949); -- Rain Lily
-            player:messageSpecial(ITEM_OBTAINED,949);
+            player:messageSpecial(text.ITEM_OBTAINED,949);
             player:needToZone(true);
         elseif (option == 3) then
             player:delGil(150);
             player:addItem(956); -- Lilac
-            player:messageSpecial(ITEM_OBTAINED,956);
+            player:messageSpecial(text.ITEM_OBTAINED,956);
             player:needToZone(true);
         elseif (option == 4) then
             player:delGil(200);
             player:addItem(957); -- Amaryllis
-            player:messageSpecial(ITEM_OBTAINED,957);
+            player:messageSpecial(text.ITEM_OBTAINED,957);
             player:needToZone(true);
         elseif (option == 5) then
             player:delGil(100);
             player:addItem(958); -- Marguerite
-            player:messageSpecial(ITEM_OBTAINED,958);
+            player:messageSpecial(text.ITEM_OBTAINED,958);
             player:needToZone(true);
         elseif (option == 7) then
             player:setVar("FLOWER_PROGRESS",1);

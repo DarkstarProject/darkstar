@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: NiZho Bladebender
+-- MOB: NiZho Bladebender
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

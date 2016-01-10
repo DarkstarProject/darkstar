@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Galahad
---  Type: Consulate Representative NPC
---  @zone: 231
---  @pos -51.984 -2.000 -15.373
+-- Type: Consulate Representative NPC
+-- @zone: 231
+-- @pos -51.984 -2.000 -15.373
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,GALAHAD_DIALOG);
+    player:showText(npc, text.GALAHAD_DIALOG);
 end;
 
 -----------------------------------

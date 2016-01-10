@@ -55,6 +55,6 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 1 and option == 0) then
         player:addKeyItem(RED_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, RED_RECOMMENDATION_LETTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED, RED_RECOMMENDATION_LETTER);
     end
 end;

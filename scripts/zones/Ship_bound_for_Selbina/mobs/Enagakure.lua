@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Balga Dais
---  MOB: Enagakure
+-- MOB: Enagakure
 -- Involved in Quest: I'll Take the Big Box
 -----------------------------------
 

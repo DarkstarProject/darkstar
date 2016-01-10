@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcanic Gas
+-- MOB: Volcanic Gas
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Demonic Doll
+-- MOB: Demonic Doll
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

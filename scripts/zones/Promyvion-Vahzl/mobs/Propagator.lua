@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion vahzl
---  MOB: Propagator
+-- MOB: Propagator
 -----------------------------------
 
 

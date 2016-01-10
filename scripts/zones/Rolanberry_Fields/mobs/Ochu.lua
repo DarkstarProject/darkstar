@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Ochu
+-- MOB: Ochu
 -- Note: PH for Drooling Daisy
 -----------------------------------
 

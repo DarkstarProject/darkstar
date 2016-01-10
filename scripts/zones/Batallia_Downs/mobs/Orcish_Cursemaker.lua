@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Cursemaker
+-- MOB: Orcish Cursemaker
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

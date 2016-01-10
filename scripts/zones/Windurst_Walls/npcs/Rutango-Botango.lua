@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Windurst Walls
---  Location: X:-92  Y:-9  Z:107
---    NPC:  Rutango-Botango
---    Working 100%
---  Involved in Quest: To Bee or Not to Bee?
+-- Area: Windurst Walls
+-- Location: X:-92  Y:-9  Z:107
+--  NPC: Rutango-Botango
+-- Working 100%
+-- Involved in Quest: To Bee or Not to Bee?
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,9 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

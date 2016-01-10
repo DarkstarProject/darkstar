@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Tonberry Pursuer
+-- MOB: Tonberry Pursuer
 -----------------------------------
 
 -----------------------------------

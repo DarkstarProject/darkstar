@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Reaper
+-- MOB: Goblin Reaper
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

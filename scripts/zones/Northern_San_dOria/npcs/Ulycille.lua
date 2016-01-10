@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x026F and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(IMAGE_SUPPORT,0,1,0);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,1,0);
         player:addStatusEffect(EFFECT_WOODWORKING_IMAGERY,3,0,480);
     end
 end;

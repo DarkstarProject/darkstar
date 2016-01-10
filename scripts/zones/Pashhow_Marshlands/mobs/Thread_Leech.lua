@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Thread Leech
+-- MOB: Thread Leech
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

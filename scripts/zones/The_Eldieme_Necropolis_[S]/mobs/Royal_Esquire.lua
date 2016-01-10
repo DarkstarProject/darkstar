@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S) (175)
---  MOB: Royal_Esquire
+-- MOB: Royal_Esquire
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

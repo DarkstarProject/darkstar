@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Monk
+-- MOB: Fomor Monk
 -----------------------------------
 
 

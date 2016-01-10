@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Windurst
---  MOB: Tzee Xicu Idol
+-- MOB: Tzee Xicu Idol
 -----------------------------------
 
 require("scripts/globals/titles");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Greater Quadav
+-- MOB: Greater Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Blabbivix
+--  NPC: Blabbivix
 -- Standard merchant, though he acts like a guild merchant
 -- @pos -110.209 4.898 22.957 236
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(60418,11,22,3)) then
-        player:showText(npc,BLABBIVIX_SHOP_DIALOG);
+        player:showText(npc, text.BLABBIVIX_SHOP_DIALOG);
     end
 end; 
 
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,6 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

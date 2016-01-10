@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Goblin Bandit
+-- MOB: Goblin Bandit
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
 

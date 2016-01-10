@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Aedilis
+-- MOB: Antican Aedilis
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

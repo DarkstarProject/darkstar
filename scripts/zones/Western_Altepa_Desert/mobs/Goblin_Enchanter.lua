@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Enchanter
+-- MOB: Goblin Enchanter
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

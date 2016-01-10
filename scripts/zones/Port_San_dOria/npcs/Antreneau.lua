@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Antreneau
---  Type: Standard NPC
+-- Area: Port San d'Oria
+--  NPC: Antreneau
+-- Type: Standard NPC
 -- @zone: 232
---  @pos -71 -5 -39
+-- @pos -71 -5 -39
 -- 
 -- Involved in Quest: A Taste For Meat
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,17 +58,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x020f) then
         player:setVar("aTasteForMeat", 1);
     elseif (csid == 0x0212) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 4371);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED_2, 4371);
         else
             player:addItem(4371,1);
-            player:messageSpecial(ITEM_OBTAINED,4371);
+            player:messageSpecial(text.ITEM_OBTAINED,4371);
             player:setVar("aTasteForMeat", 0);
         end;
     end;

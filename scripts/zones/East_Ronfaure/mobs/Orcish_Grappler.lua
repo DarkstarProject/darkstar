@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Orcish Grappler
+-- MOB: Orcish Grappler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

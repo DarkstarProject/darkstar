@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Bibiki Bay
---  NPC:  Noih Tahparawh
---  Type: Manaclipper
---  @pos -392 -3 -385 4
+-- Area: Bibiki Bay
+--  NPC: Noih Tahparawh
+-- Type: Manaclipper
+-- @pos -392 -3 -385 4
 -----------------------------------
 
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;

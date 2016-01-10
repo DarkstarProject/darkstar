@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Chocobo
+--  NPC: Chocobo
 -- Chocobo 
 -----------------------------------
 
@@ -18,13 +18,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
---        player:startEvent(0x0259); 
---        player:startEvent(0x0334) --crazy hang
---        player:startEvent(0x0335) --crazy hang
---        player:startEvent(0x0258)
---        player:startEvent(0x0257) 
---        player:startEvent(0x035e) -- cool choco debug menu
---        player:startEvent(0x0333) 
+-- player:startEvent(0x0259); 
+-- player:startEvent(0x0334) --crazy hang
+-- player:startEvent(0x0335) --crazy hang
+-- player:startEvent(0x0258)
+-- player:startEvent(0x0257) 
+-- player:startEvent(0x035e) -- cool choco debug menu
+-- player:startEvent(0x0333) 
         player:startEvent(0x0332)
     end;
 

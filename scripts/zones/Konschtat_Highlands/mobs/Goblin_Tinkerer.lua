@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Goblin Tinkerer
+-- MOB: Goblin Tinkerer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

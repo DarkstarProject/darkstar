@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Stag Beetle
+-- MOB: Stag Beetle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

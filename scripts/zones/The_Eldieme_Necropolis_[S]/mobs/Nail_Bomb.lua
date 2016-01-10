@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S) (175)
---  MOB: Nail_Bomb
+-- MOB: Nail_Bomb
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

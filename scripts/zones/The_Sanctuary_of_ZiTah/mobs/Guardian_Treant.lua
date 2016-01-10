@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Guardian Treant
+-- MOB: Guardian Treant
 -- Involved in Quest: Forge Your Destiny
 -----------------------------------
 

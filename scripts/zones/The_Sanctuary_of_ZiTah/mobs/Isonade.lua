@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Isonade
+-- MOB: Isonade
 -- Involved in Quest: The Sacred Katana
 -----------------------------------
 

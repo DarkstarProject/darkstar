@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Hecteyes
+-- MOB: Hecteyes
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S) (175)
---  MOB: Confederate_Mantelet
+-- MOB: Confederate_Mantelet
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

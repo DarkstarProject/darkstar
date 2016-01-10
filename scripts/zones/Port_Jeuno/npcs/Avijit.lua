@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Avijit
+--  NPC: Avijit
 -- Standard Info NPC
 -----------------------------------
 

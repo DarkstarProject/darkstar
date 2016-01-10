@@ -28,15 +28,15 @@ function onTrigger(player,npc)
         if (player:hasItem(1090) == false and player:hasKeyItem(BOMB_COAL_FRAGMENT1) == false
         and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(BOMB_COAL_FRAGMENT1);
-            player:messageSpecial(KEYITEM_OBTAINED,BOMB_COAL_FRAGMENT1);
+            player:messageSpecial(text.KEYITEM_OBTAINED,BOMB_COAL_FRAGMENT1);
         end
 
         if (player:hasKeyItem(BOMB_COAL_FRAGMENT1) and player:hasKeyItem(BOMB_COAL_FRAGMENT2) and player:hasKeyItem(BOMB_COAL_FRAGMENT3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1090, 1);
-                player:messageSpecial(ITEM_OBTAINED, 1090);
+                player:messageSpecial(text.ITEM_OBTAINED, 1090);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1090);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1090);
             end
         end
 

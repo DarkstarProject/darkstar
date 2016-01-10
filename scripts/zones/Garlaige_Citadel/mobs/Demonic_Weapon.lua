@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Demonic Weapon
+-- MOB: Demonic Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

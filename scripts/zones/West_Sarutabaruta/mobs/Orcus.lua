@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Krabkatoa
+-- MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

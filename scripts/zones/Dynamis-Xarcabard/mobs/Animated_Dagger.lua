@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Dagger
+-- MOB: Animated Dagger
 -----------------------------------
 
 require("scripts/globals/status");

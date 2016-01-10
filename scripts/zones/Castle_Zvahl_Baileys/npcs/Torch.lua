@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
--- NPC: Torch (x4)
+--  NPC: Torch (x4)
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
 -- @zone 161
 -- @pos 63 -24 21
@@ -34,12 +34,12 @@ function onTrigger(player,npc)
             if (X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
                 if (player:getVar("BorghertzChooseTorch") == 2) then 
                     player:addKeyItem(211);
-                    player:messageSpecial(KEYITEM_OBTAINED,211);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,211);
                     player:setVar("BorghertzSparkKilled",0);
                     player:setVar("BorghertzChooseTorch",0);
                     player:setVar("BorghertzCS",0);
                 else
-                    player:messageSpecial(SENSE_OF_FOREBODING);
+                    player:messageSpecial(text.SENSE_OF_FOREBODING);
                     SpawnMob(17436964,180):updateClaim(player);
                     player:setVar("BorghertzSparkKilled",0);
                     player:setVar("BorghertzChooseTorch",2);
@@ -47,12 +47,12 @@ function onTrigger(player,npc)
             elseif (X >= 57 and X <= 67 and Z >= 13 and Z <= 20) then -- Left Torch
                 if (player:getVar("BorghertzChooseTorch") == 1) then 
                     player:addKeyItem(211);
-                    player:messageSpecial(KEYITEM_OBTAINED,211);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,211);
                     player:setVar("BorghertzSparkKilled",0);
                     player:setVar("BorghertzChooseTorch",0);
                     player:setVar("BorghertzCS",0);
                 else
-                    player:messageSpecial(SENSE_OF_FOREBODING);
+                    player:messageSpecial(text.SENSE_OF_FOREBODING);
                     SpawnMob(17436964,180):updateClaim(player);
                     player:setVar("BorghertzSparkKilled",0);
                     player:setVar("BorghertzChooseTorch",1);
@@ -60,17 +60,17 @@ function onTrigger(player,npc)
             end
         else
             if (X >= 57 and X <= 67 and Z >= 20 and Z <= 26) then -- Right Torch
-                player:messageSpecial(SENSE_OF_FOREBODING);
+                player:messageSpecial(text.SENSE_OF_FOREBODING);
                 SpawnMob(17436964,180):updateClaim(player);
                 player:setVar("BorghertzChooseTorch",2);
             elseif (X >= 57 and X <= 67 and Z >= 13 and Z <= 20) then -- Left Torch
-                player:messageSpecial(SENSE_OF_FOREBODING);
+                player:messageSpecial(text.SENSE_OF_FOREBODING);
                 SpawnMob(17436964,180):updateClaim(player);
                 player:setVar("BorghertzChooseTorch",1);
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end; 
 
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,9 +88,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

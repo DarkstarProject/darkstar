@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Huge Wasp
+-- MOB: Huge Wasp
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

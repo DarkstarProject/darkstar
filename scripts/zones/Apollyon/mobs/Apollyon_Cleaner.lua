@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Apollyon Cleaner
+--  NPC: Apollyon Cleaner
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

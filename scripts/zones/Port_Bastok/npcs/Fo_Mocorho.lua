@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Fo Mocorho
+--  NPC: Fo Mocorho
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

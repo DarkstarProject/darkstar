@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Poison Leech
+-- MOB: Poison Leech
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

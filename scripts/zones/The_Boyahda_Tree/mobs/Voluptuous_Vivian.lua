@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  NM:  Voluptuous Vivian (NM)
+-- NM:  Voluptuous Vivian (NM)
 -----------------------------------
 
 require("scripts/zones/The_Boyahda_Tree/MobIDs");

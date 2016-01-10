@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Malene
---  Type: Quest NPC
+-- Area: Bastok Markets
+--  NPC: Malene
+-- Type: Quest NPC
 -- @zone: 235
---  @pos -173 -4 64
+-- @pos -173 -4 64
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0066) then -- Quest: The Cold Light of Day
         if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) == QUEST_AVAILABLE) then
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete( );
         player:addTitle(CRAB_CRUSHER);            
         player:addGil(GIL_RATE*500);
-        player:messageSpecial(GIL_OBTAINED, GIL_RATE*500);    
+        player:messageSpecial(text.GIL_OBTAINED, GIL_RATE*500);    
         
         if (TheColdLightofDay == QUEST_ACCEPTED) then 
             player:addFame(BASTOK, BAS_FAME * 50);

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area:   Northern San d'Oria
---  NPC:    Porter Moogle
---  Type:   Storage Moogle
---  @zone 231
---  @pos TODO
+-- Area: Northern San d'Oria
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- @zone 231
+-- @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

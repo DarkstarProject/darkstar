@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Bilis Leech
+-- MOB: Bilis Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

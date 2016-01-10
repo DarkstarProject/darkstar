@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Kerkopes
+--  NPC: Kerkopes
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

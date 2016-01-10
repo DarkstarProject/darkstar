@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  NM:  Tyrant
+-- NM:  Tyrant
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

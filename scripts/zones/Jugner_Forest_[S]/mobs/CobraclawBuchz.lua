@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest [S]
---  MOB: Cobrawclaw Buchzvotch
+-- MOB: Cobrawclaw Buchzvotch
 -- Wrath of the Griffon Fight
 -----------------------------------
 

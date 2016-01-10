@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Baldric
---  Type: Quest Giver
+-- Area: Metalworks
+--  NPC: Baldric
+-- Type: Quest Giver
 -- @zone: 237
---  @pos -50.858 1.777 -31.141
+-- @pos -50.858 1.777 -31.141
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -53,15 +53,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x022A) then
         player:addQuest(BASTOK,STARDUST);
     elseif (csid == 0x022B) then
         player:tradeComplete();
         player:addGil(300);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*300);
         player:completeQuest(BASTOK,STARDUST);
     end
 end;

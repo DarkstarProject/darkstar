@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S) (175)
---  MOB: War_Smilodon
+-- MOB: War_Smilodon
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

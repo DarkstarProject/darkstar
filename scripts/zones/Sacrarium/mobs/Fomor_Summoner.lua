@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Summoner
+-- MOB: Fomor Summoner
 -----------------------------------
 
 

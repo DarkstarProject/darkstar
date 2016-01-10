@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Pius
+--  NPC: Pius
 -- Involved In Mission: Journey Abroad
 -- @pos 99 -21 -12 237
 -----------------------------------

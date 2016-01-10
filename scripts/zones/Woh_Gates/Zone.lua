@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Woh_Gates/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

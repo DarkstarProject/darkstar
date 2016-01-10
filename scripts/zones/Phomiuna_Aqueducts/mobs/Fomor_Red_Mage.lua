@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Red mage
+-- MOB: Fomor Red mage
 -----------------------------------
 
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
---  MOB: Princeps V-XI
+-- MOB: Princeps V-XI
 -- Zilart 6 Fight
 -----------------------------------
 

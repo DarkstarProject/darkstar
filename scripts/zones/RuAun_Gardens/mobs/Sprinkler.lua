@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Sprinkler
+-- MOB: Sprinkler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  MOB: Vanguard Vindicator
+-- MOB: Vanguard Vindicator
 -----------------------------------
 
 require("scripts/globals/dynamis");

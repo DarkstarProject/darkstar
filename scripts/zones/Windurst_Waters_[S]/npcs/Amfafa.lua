@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Amfafa
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Amfafa
+-- Type: Standard NPC
 -- @zone: 94
---  @pos -24.938 -2 -185.729
+-- @pos -24.938 -2 -185.729
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

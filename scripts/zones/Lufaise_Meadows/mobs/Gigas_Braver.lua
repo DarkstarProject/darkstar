@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigas_Braver
+-- MOB: Gigas_Braver
 -----------------------------------
 
 

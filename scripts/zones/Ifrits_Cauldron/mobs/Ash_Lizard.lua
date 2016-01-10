@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Ash Lizard
+-- MOB: Ash Lizard
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

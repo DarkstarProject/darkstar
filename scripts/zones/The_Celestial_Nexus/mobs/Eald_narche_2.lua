@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Celestial Nexus
---  MOB: Eald'Narche - Phase 2
+-- MOB: Eald'Narche - Phase 2
 -- Zilart Mission 16 BCNM Fight
 -----------------------------------
 

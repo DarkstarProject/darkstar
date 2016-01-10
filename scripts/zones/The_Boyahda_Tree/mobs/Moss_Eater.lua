@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Moss Eater
+-- MOB: Moss Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

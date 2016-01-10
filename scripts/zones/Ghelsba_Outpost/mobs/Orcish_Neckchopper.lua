@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost (140)
---  MOB: Orcish_Neckchopper
+-- MOB: Orcish_Neckchopper
 -----------------------------------
 
 require("scripts/zones/Ghelsba_Outpost/MobIDs");

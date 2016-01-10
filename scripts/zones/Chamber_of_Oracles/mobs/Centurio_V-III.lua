@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
---  MOB: Centurio V-III
+-- MOB: Centurio V-III
 -- Zilart 6 Fight
 -----------------------------------
 

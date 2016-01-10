@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Goobbue Gardener
+-- MOB: Goobbue Gardener
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ship_bound_for_Selbina
--- NPC:  Map
+--  NPC: Map
 -- @pos 0.278 -14.707 -1.411 220
 -----------------------------------
 package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,6 +37,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

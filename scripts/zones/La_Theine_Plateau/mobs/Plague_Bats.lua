@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Plague Bats
+-- MOB: Plague Bats
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

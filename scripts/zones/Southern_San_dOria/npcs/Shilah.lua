@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San dOria
--- NPC: Shilah
+--  NPC: Shilah
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -23,7 +23,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -34,9 +34,11 @@ end;
 
 function onTrigger(player,npc)
     
-    player:showText(npc,SHILAH_SHOP_DIALOG);
+    player:showText(npc, text.SHILAH_SHOP_DIALOG);
 
-    stock = {0x1152,4500,1,    --Mushroom Risotto
+    local stock =
+    {
+    0x1152,4500,1,    --Mushroom Risotto
              0x1143,6300,1,    --Mushroom Soup
              0x118e,2494,1,    --Sah d'Orian Tea
 
@@ -61,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,10 +72,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

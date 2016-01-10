@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Wata Khamazom
+--  NPC: Wata Khamazom
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,WATAKHAMAZOM_SHOP_DIALOG);
+    player:showText(npc, text.WATAKHAMAZOM_SHOP_DIALOG);
 
-stock = {0x4300,44,        -- Shortbow
+    local stock =
+    {
+    0x4300,44,        -- Shortbow
      0x4301,536,        -- Self Bow
      0x4302,7920,        -- Wrapped Bow
      0x4308,492,        -- Longbow
@@ -36,7 +38,7 @@ stock = {0x4300,44,        -- Shortbow
      0x43B8,6,        -- Crossbow Bolt
      0x4752,248}        -- Throwing Tomahawk
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

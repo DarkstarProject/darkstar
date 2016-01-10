@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Uleguerand
---  MOB: Ermit Imp
+-- MOB: Ermit Imp
 -----------------------------------
 
 require("scripts/globals/status");

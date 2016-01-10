@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Kuftal Digger
+-- MOB: Kuftal Digger
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

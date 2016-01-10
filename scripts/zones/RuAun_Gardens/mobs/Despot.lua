@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  NM:  Despot
+-- NM:  Despot
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

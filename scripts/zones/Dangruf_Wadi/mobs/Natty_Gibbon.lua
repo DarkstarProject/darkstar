@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Natty Gibbon
+-- MOB: Natty Gibbon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

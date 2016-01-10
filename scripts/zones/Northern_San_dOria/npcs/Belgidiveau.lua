@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Belgidiveau
+--  NPC: Belgidiveau
 -- Starts and Finishes Quest: Trouble at the Sluice
 -- @zone 231
 -- @pos -98 0 69
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,20 +56,20 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0039 and option == 0) then
         player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
         player:setVar("troubleAtTheSluiceVar",1);
     elseif (csid == 0x0038) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
         else
             player:tradeComplete();
             player:delKeyItem(NEUTRALIZER);
             player:addItem(16706);
-            player:messageSpecial(ITEM_OBTAINED,16706); -- Heavy Axe
+            player:messageSpecial(text.ITEM_OBTAINED,16706); -- Heavy Axe
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
         end

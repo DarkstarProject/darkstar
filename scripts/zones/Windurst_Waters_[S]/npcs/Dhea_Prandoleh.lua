@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Dhea Prandoleh
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Dhea Prandoleh
+-- Type: Standard NPC
 -- @zone: 94
---  @pos 1 -1 15
+-- @pos 1 -1 15
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
     elseif (csid == 0x0086) then
         player:addItem(139);
-        player:messageSpecial(ITEM_OBTAINED,139);
+        player:messageSpecial(text.ITEM_OBTAINED,139);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
         player:needToZone(true);
         player:addTitle(AJIDOMARUJIDOS_MINDER);

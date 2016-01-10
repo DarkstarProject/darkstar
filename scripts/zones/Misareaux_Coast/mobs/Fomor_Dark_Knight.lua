@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Dark Knight
+-- MOB: Fomor Dark Knight
 -----------------------------------
 
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
---  MOB: Ix_aern_mnk
+-- MOB: Ix_aern_mnk
 -- ID: 16916815
 -----------------------------------
 

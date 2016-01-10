@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  qm4 (???)
+--  NPC: qm4 (???)
 -- Involved in Quests: Atop the Highest Mountains
 -- @pos -21 -25 -490 112
 -----------------------------------
@@ -28,12 +28,12 @@ function onTrigger(player,npc)
     if ((OldSchoolG2 == false) or (BorealHound == ACTION_NONE or BorealHound == ACTION_SPAWN)) then
         if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
             player:addKeyItem(TRIANGULAR_FRIGICITE);
-            player:messageSpecial(KEYITEM_OBTAINED, TRIANGULAR_FRIGICITE);
+            player:messageSpecial(text.KEYITEM_OBTAINED, TRIANGULAR_FRIGICITE);
         else
-            player:messageSpecial(ONLY_SHARDS);
+            player:messageSpecial(text.ONLY_SHARDS);
         end
     else
-        player:messageSpecial(ONLY_SHARDS);
+        player:messageSpecial(text.ONLY_SHARDS);
     end
 end;
 
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

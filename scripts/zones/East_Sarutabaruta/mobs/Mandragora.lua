@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Mandragora
+-- MOB: Mandragora
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

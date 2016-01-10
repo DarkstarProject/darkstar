@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Beach Bunny
+-- MOB: Beach Bunny
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

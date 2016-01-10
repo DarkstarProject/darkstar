@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x012F and option == 1) then
-        player:messageSpecial(GOLDSMITHING_SUPPORT,0,3,1);
+        player:messageSpecial(text.GOLDSMITHING_SUPPORT,0,3,1);
         player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,1,0,120);
     end
 end;

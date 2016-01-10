@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Quaestor
+-- MOB: Antican Quaestor
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

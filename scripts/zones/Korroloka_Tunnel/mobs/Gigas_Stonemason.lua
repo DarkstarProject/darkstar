@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Gigas Stonemason
+-- MOB: Gigas Stonemason
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  HNM: King Behemoth
+-- HNM: King Behemoth
 -----------------------------------
 
 require("scripts/globals/settings");

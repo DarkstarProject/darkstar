@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Pagisalis
+--  NPC: Pagisalis
 -- Involved In Quest: Enveloped in Darkness
 -- @zone 231
 -- @pos 
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,19 +73,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0232 and option == 0) then
         player:addQuest(SANDORIA,UNDYING_FLAMES);
     elseif (csid == 0x0233) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
             player:addTitle(FAITH_LIKE_A_CANDLE);
             player:addItem(13211);
-            player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
+            player:messageSpecial(text.ITEM_OBTAINED,13211); -- Friars Rope
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,UNDYING_FLAMES);
         end
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:delKeyItem(OLD_POCKET_WATCH);
         player:addKeyItem(OLD_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,OLD_BOOTS);
     end
     
 end;

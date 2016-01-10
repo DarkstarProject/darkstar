@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Young Opo-opo
+-- MOB: Young Opo-opo
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

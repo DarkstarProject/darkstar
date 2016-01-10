@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Light Headstone)
 -- @pos 235 0 280 121
 -----------------------------------
@@ -35,23 +35,23 @@ function onTrigger(player,npc)
             -- Check and see if all fragments have been found (no need to check wind and dark frag)
             if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
                player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(WIND_FRAGMENT)) then
-                player:messageSpecial(FOUND_ALL_FRAGS,LIGHT_FRAGMENT);
+                player:messageSpecial(text.FOUND_ALL_FRAGS,LIGHT_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,LIGHT_FRAGMENT);
+                player:messageSpecial(text.KEYITEM_OBTAINED,LIGHT_FRAGMENT);
             end
         else
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,LIGHT_FRAGMENT);
+            player:messageSpecial(text.ALREADY_OBTAINED_FRAG,LIGHT_FRAGMENT);
         end
   elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING) == false) then    
         player:addQuest(OUTLANDS,SOUL_SEARCHING);
       player:startEvent(0x00CA,PRISMATIC_FRAGMENT);  
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
+        player:messageSpecial(text.ZILART_MONUMENT);
     else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
+        player:messageSpecial(text.CANNOT_REMOVE_FRAG);
         
     end
     
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,19 +71,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17272839,300):updateClaim(player); -- Doomed Pilgrims
         SetServerVariable("[ZM4]Light_Headstone_Active",0);
     elseif (csid == 0x00CA) then
         if (player:getFreeSlotsCount() == 0) then
-             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13416);
+             player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13416);
         else        
             player:tradeComplete();
             player:addItem(13416);        
-            player:messageSpecial(ITEM_OBTAINED,13416);            
+            player:messageSpecial(text.ITEM_OBTAINED,13416);            
             player:completeQuest(OUTLANDS,SOUL_SEARCHING);            
             player:addTitle(GUIDER_OF_SOULS_TO_THE_SANCTUARY);    
         end            

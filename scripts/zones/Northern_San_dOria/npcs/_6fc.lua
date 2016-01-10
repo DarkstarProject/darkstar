@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Northern San d'Oria
---  NPC:  Papal Chambers
---  Finish Mission: The Davoi Report
---  @pos 131 -11 122 231
+-- Area: Northern San d'Oria
+--  NPC: Papal Chambers
+-- Finish Mission: The Davoi Report
+-- @pos 131 -11 122 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Kususu 
+--  NPC: Kususu 
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,KUSUSU_SHOP_DIALOG);
+    player:showText(npc, text.KUSUSU_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x1221,  1165,1,     --Diaga
         0x1236,  7025,1,     --Stoneskin
         0x1238,   837,1,     --Slow 
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

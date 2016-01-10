@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Ryan 
+--  NPC: Ryan 
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,RYAN_SHOP_DIALOG);
+    player:showText(npc, text.RYAN_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x4100,   290,       -- Bronze Axe
         0x4097,   246,       -- Bronze Sword
         0x43B8,     5,       -- Crossbow Bolt
@@ -49,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,6 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

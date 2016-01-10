@@ -1,5 +1,5 @@
 -----------------------------------
--- NPC:  _0s8 (Wooden Gate)
+--  NPC: _0s8 (Wooden Gate)
 -- Area: Sacrarium
 -- Involved in Mission: Secrets of Worship
 -- @pos 45.500 -1.500 10.000 28
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
             player:startEvent(0x006E);
         end
     else
-        player:messageSpecial(CANNOT_OPEN_SIDE);
+        player:messageSpecial(text.CANNOT_OPEN_SIDE);
     end    
     return 1;
 end;
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Grand Palace of Hu'Xzoi
---  NPC:  ???   (Ix'Aern - MNK)
---  @pos 460 0 540
---  ID: 16916819
+-- Area: Grand Palace of Hu'Xzoi
+--  NPC: ???   (Ix'Aern - MNK)
+-- @pos 460 0 540
+-- ID: 16916819
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 -----------------------------------

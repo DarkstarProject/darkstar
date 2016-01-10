@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Tyger
+-- MOB: Tyger
 -- @pos -766 -12 632
 -- Spawn with Singed Buffalo: @additem 2593
 -----------------------------------

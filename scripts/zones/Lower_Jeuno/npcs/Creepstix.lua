@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Creepstix
+--  NPC: Creepstix
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,CREEPSTIX_SHOP_DIALOG);
+    player:showText(npc, text.CREEPSTIX_SHOP_DIALOG);
 
-stock = {0x139f,8160,    -- Scroll of Goblin Gavotte 
+    local stock =
+    {
+    0x139f,8160,    -- Scroll of Goblin Gavotte 
      0x127e,7074,    -- Scroll of Protectra II
      0x1282,1700,    -- Scroll of Shellra
      0x13e1,73740,    -- Scroll of Gain-VIT
@@ -36,7 +38,7 @@ stock = {0x139f,8160,    -- Scroll of Goblin Gavotte
      0x13ec,81900,    -- Scroll of Boost-CHR
      0x12f1,130378}    -- Scroll of Addle
 
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

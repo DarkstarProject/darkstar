@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Chaser Bats
+-- MOB: Chaser Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

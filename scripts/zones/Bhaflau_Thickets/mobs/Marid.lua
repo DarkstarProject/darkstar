@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Marid
+-- MOB: Marid
 -- Note: Place holder Mahishasura
 -----------------------------------
 

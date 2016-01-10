@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Soldier Crawler
+-- MOB: Soldier Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

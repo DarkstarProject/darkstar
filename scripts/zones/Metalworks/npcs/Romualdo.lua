@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Romualdo
+--  NPC: Romualdo
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;

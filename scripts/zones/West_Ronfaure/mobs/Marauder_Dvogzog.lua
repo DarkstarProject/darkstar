@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Marauder Dvogzog
+-- MOB: Marauder Dvogzog
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

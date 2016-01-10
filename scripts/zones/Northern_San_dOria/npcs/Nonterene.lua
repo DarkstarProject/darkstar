@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Nonterene
---  Type: Adventurer's Assistant NPC
---  @zone: 231
---  @pos -6.347 0.000 -11.265
+-- Type: Adventurer's Assistant NPC
+-- @zone: 231
+-- @pos -6.347 0.000 -11.265
 --
 -----------------------------------
 

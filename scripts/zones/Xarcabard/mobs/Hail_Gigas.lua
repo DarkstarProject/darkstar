@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Hail Gigas
+-- MOB: Hail Gigas
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

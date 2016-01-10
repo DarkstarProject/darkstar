@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Quntsu-Nointsu
+--  NPC: Quntsu-Nointsu
 -- Title Change NPC
 -- @pos -67 -1 34 252
 -----------------------------------

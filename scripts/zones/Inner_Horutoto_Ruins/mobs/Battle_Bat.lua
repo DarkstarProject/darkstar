@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Battle Bat
+-- MOB: Battle Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- NPC: qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Quest: Searching for the Right Words
 -- @pos 34.651 -20.183 -61.647 153
 -----------------------------------
@@ -35,23 +35,23 @@ function onTrigger(player,npc)
     
     if (GetMobAction(17404337) == 0) then
         if (player:hasKeyItem(MOONDROP)) then
-            player:messageSpecial(CAN_SEE_SKY);
+            player:messageSpecial(text.CAN_SEE_SKY);
             
         elseif (SearchingForWords == QUEST_ACCEPTED) then
         
             if (IsMoonNew() or not correctTime) then
-                player:messageSpecial(CANNOT_SEE_MOON);
+                player:messageSpecial(text.CANNOT_SEE_MOON);
                 
             elseif (player:getVar("Searching_AgasKilled") == 1) then
                 player:startEvent(0x000e);
                 
             else
-                player:messageSpecial(SOMETHING_NOT_RIGHT);
+                player:messageSpecial(text.SOMETHING_NOT_RIGHT);
                 SpawnMob(17404337,288):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
             end
             
         else
-            player:messageSpecial(CAN_SEE_SKY);
+            player:messageSpecial(text.CAN_SEE_SKY);
         end
     end
 end;
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,11 +70,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x000e) then
         player:addKeyItem(MOONDROP);
-        player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);
+        player:messageSpecial(text.KEYITEM_OBTAINED, MOONDROP);
         player:setVar("Searching_AgasKilled", 0);
     end
     

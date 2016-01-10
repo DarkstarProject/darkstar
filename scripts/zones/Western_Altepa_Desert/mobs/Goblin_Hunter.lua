@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Hunter
+-- MOB: Goblin Hunter
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

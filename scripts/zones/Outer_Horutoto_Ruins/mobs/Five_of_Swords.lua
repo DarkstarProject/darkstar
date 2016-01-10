@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Five of Swords
+-- MOB: Five of Swords
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

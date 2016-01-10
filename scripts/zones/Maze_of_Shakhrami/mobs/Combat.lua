@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Combat
+-- MOB: Combat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

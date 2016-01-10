@@ -28,15 +28,15 @@ function onTrigger(player,npc)
         if (player:hasItem(1088) == false and player:hasKeyItem(ANCIENT_PAPYRUS_SHRED1) == false
         and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(ANCIENT_PAPYRUS_SHRED1);
-            player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_PAPYRUS_SHRED1);
+            player:messageSpecial(text.KEYITEM_OBTAINED,ANCIENT_PAPYRUS_SHRED1);
         end
 
         if (player:hasKeyItem(ANCIENT_PAPYRUS_SHRED1) and player:hasKeyItem(ANCIENT_PAPYRUS_SHRED2) and player:hasKeyItem(ANCIENT_PAPYRUS_SHRED3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1088, 1);
-                player:messageSpecial(ITEM_OBTAINED, 1088);
+                player:messageSpecial(text.ITEM_OBTAINED, 1088);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1088);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1088);
             end
         end
 

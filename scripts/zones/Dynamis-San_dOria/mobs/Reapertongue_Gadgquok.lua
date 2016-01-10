@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis San d'Oria
--- NPC:  Reapertongue Gadgquok
+--  NPC: Reapertongue Gadgquok
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
 

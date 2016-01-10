@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Samigo-Pormigo
---  Type: Guildworker's Union Representative
---  @zone: 241
---  @pos -9.782 -5.249 -134.432
+-- Type: Guildworker's Union Representative
+-- @zone: 241
+-- @pos -9.782 -5.249 -134.432
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -112,6 +112,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 0x2726) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     elseif (csid == 0x2727) then
-        player:messageSpecial(text.GP_OBTAINED, option);
+        player:messageSpecial(text.text.GP_OBTAINED, option);
     end
 end;

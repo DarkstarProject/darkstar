@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Panna Cotta
+-- MOB: Panna Cotta
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

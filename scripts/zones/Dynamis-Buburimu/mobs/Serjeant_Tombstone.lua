@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
---  MOB: Serjeant_Tombstone
+-- MOB: Serjeant_Tombstone
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;

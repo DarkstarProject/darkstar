@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Trailblazer
+-- MOB: Goblin Trailblazer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

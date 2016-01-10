@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 2) then
         player:addKeyItem(SCHULTS_SEALED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, SCHULTS_SEALED_LETTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED, SCHULTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 3);
     end
 end;

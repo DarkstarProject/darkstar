@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option)
     if (option > 256 and option < 2818) then
         if (player:getDominionNotes() > Price) then
             if (player:getFreeSlotsCount() >= 1) then
-                player:messageSpecial(ITEM_OBTAINED,ItemID);
+                player:messageSpecial(text.ITEM_OBTAINED,ItemID);
                 if (TempItem == true) then
                     player:addTempItem(ItemID,1);
                 else
@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
                 end
                 player:delDominionNotes(Price);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,ItemID);
             end
         end
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Pygmytoise
+-- MOB: Pygmytoise
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

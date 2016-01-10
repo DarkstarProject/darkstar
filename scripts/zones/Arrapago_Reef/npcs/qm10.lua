@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef 
--- NPC: ???
+--  NPC: ???
 -- Starts: Corsair Af1 ,AF2 ,AF3
 -- @pos 457.128 -8.249 60.795 54
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0E4) then
         player:addQuest(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
@@ -75,13 +75,13 @@ function onEventFinish(player,csid,option)
         player:setVar("NavigatingtheUnfriendlySeas",1);
     elseif (csid == 0x0E9) then
         player:addItem(15601) -- Receive item Corsairs culottes
-        player:messageSpecial(ITEM_OBTAINED,15601);
+        player:messageSpecial(text.ITEM_OBTAINED,15601);
         player:completeQuest(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS);
         player:setVar("NavigatingtheUnfriendlySeas",0);
         player:setVar("HydrogauageTimer",0);
     elseif (csid == 0x00d6) then
         player:addKeyItem(798);
-        player:messageSpecial(KEYITEM_OBTAINED,ANTIQUE_AUTOMATON);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ANTIQUE_AUTOMATON);
         player:setVar("NoStringsAttachedProgress",4);
     end
 end;

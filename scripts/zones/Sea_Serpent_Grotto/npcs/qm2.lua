@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  ??? Used for Norg quest "The Sahagin's Stash"
+--  NPC: ??? Used for Norg quest "The Sahagin's Stash"
 -- @zone 176
 -- @pos 295.276 27.129 213.043
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,10 +46,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
         if (csid == 0x0001) then
             player:addKeyItem(296);
-            player:messageSpecial(KEYITEM_OBTAINED,296);
+            player:messageSpecial(text.KEYITEM_OBTAINED,296);
         end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Tiger
+-- MOB: Ark Angel's Tiger
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------

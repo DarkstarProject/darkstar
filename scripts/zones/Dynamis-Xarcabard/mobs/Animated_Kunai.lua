@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Kunai
+-- MOB: Animated Kunai
 -----------------------------------
 
 require("scripts/globals/status");

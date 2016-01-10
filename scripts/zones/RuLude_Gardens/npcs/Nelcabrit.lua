@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Nelcabrit
+--  NPC: Nelcabrit
 -- Involved in Mission: San d'Oria 3-3, 4-1
 -- @pos -32 9 -49 243
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002a) then
         player:setVar("MissionStatus",4);
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0082 and option == 1) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
     elseif (csid == 0x0027 or csid == 0x0024) then
         finishMissionTimeline(player,3,csid,option);
     end

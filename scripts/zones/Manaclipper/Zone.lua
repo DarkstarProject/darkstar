@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Manaclipper/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

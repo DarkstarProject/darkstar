@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: The Shrine of Ru'Avitau
---  NPC:  Yve'noile
---  Type: Quest Giver
---  @pos 0.001 -1 0.001 178
+-- Area: The Shrine of Ru'Avitau
+--  NPC: Yve'noile
+-- Type: Quest Giver
+-- @pos 0.001 -1 0.001 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------

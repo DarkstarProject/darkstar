@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: River Crab
+-- MOB: River Crab
 -- Note: PH for Duke Decapod
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Patripatan
+-- MOB: Patripatan
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

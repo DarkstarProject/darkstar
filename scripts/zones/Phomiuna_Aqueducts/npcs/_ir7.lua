@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  _ir7 (Iron Gate)
+--  NPC: _ir7 (Iron Gate)
 -- @pos -70.800 -1.500 60.000 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
     if (player:getXPos() <= -71) then
         npc:openDoor(15); -- Retail timed
     elseif (npc:getAnimation() == 9) then -- don't want it to say the door is locked when it's wide open!
-        player:messageSpecial(DOOR_LOCKED,1660);
+        player:messageSpecial(text.DOOR_LOCKED,1660);
     end
     return 1;
 end; 
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

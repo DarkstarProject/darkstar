@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Quemaricond
+--  NPC: Quemaricond
 -- Involved in Mission: Infiltrate Davoi
 -- @pos 23 0.1 -23 149
 -----------------------------------
@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0075);
         npc:wait(-1);
     else
-        player:showText(npc, QUEMARICOND_DIALOG);
+        player:showText(npc, text.QUEMARICOND_DIALOG);
         npc:wait(2000);
     end
     
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,13 +69,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0075) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

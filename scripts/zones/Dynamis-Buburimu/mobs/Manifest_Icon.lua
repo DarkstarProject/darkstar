@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
---  MOB: Manifest_Icon
+-- MOB: Manifest_Icon
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Isacio
+--  NPC: Isacio
 -- Finishes Quest: Elder Memories
 -- @pos -54 -1 -44 248
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006f and option == 40) then
         player:addQuest(OTHER_AREAS, ELDER_MEMORIES);
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:unlockJob(0);
         player:setVar("IsacioElderMemVar", 0);
-        player:messageSpecial(SUBJOB_UNLOCKED);
+        player:messageSpecial(text.SUBJOB_UNLOCKED);
         player:completeQuest(OTHER_AREAS, ELDER_MEMORIES);
     end
     

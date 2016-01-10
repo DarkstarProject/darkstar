@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Pso'Xja
--- NPC:   _099 (Stone Gate)
+--  NPC:  _099 (Stone Gate)
 -- Notes: Spawns Gargoyle when triggered
 -- @pos 250.000 -1.925 -58.399 9
 -----------------------------------
@@ -25,15 +25,15 @@ function onTrade(player,npc,trade)
                 if (GetMobAction(16814090) == 0) then
                     local Rand = math.random(1,2); -- estimated 50% success as per the wiki
                     if (Rand == 1) then -- Spawn Gargoyle
-                        player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); 
+                        player:messageSpecial(text.DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); 
                         SpawnMob(16814090,120):updateClaim(player); -- Gargoyle
                     else
-                        player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
+                        player:messageSpecial(text.DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
                         npc:openDoor(30);
                     end
                     player:tradeComplete();
                 else
-                    player:messageSpecial(DOOR_LOCKED);
+                    player:messageSpecial(text.DOOR_LOCKED);
                 end
             end
         end
@@ -54,14 +54,14 @@ function onTrigger(player,npc)
             if (GetMobAction(16814090) == 0) then
                 local Rand = math.random(1,10);
                 if (Rand <=9) then -- Spawn Gargoyle
-                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
+                    player:messageSpecial(text.TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
                     SpawnMob(16814090,120):updateClaim(player); -- Gargoyle
                 else
-                    player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true); -- 10% Chance the door will simply open without Gargoyle pop
+                    player:messageSpecial(text.TRAP_FAILS + 0x8000, 0, 0, 0, 0, true); -- 10% Chance the door will simply open without Gargoyle pop
                     npc:openDoor(30);
                 end    
             else
-                player:messageSpecial(DOOR_LOCKED);
+                player:messageSpecial(text.DOOR_LOCKED);
             end    
         elseif (Z >= -58) then
             player:startEvent(0x001A);
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

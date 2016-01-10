@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Land Worm
+-- MOB: Land Worm
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

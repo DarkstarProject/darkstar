@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Deloknok
+-- MOB: Deloknok
 -- Involved in Quest: The First Meeting
 -----------------------------------
 

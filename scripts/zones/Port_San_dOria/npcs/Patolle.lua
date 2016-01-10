@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC: Patolle
---    Only sells when San d'Oria controlls Kuzotz Region
---    Working 100%
+-- Area: Port San d'Oria
+--  NPC: Patolle
+-- Only sells when San d'Oria controlls Kuzotz Region
+-- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -38,15 +38,17 @@ function onTrigger(player,npc)
 RegionOwner = GetRegionOwner(KUZOTZ);
 
 if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,PATOLLE_CLOSED_DIALOG);
+    player:showText(npc, text.PATOLLE_CLOSED_DIALOG);
 else
-    player:showText(npc,PATOLLE_OPEN_DIALOG);
+    player:showText(npc, text.PATOLLE_OPEN_DIALOG);
     
-    stock = {0x0394,855, --Cactuar Needle
+    local stock =
+    {
+    0x0394,855, --Cactuar Needle
              0x113c,299, --Thundermelon
              0x118b,184} --Watermelon
  
-showShop(player,SANDORIA,stock);
+    showShop(player,SANDORIA,stock);
 end
 end; 
 
@@ -55,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,10 +66,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

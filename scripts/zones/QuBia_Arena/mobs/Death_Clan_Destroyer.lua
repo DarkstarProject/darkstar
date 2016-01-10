@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: QuBia_Arena
---  MOB: Death Clan Destroyer
+-- MOB: Death Clan Destroyer
 -----------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------

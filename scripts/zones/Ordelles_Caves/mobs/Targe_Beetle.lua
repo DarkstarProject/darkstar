@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Targe Beetle
+-- MOB: Targe Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

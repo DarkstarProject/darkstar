@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  Mep Nhapopoluko
+--  NPC: Mep Nhapopoluko
 -- Type: Guild Merchant NPC (Fishing Guild)
 -- @pos 464.350 -6 752.731 4
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(519,1,18,5)) then
-        player:showText(npc, MEP_NHAPOPOLUKO_DIALOG);
+        player:showText(npc, text.MEP_NHAPOPOLUKO_DIALOG);
     end
 end;
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Shanruru
+--  NPC: Shanruru
 -- Involved in Quest: Riding on the Clouds
 -- @zone 240
 -- @pos -1 -6 187
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
     
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -84,6 +84,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

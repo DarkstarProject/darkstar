@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  NM:  Beryl-footed Molberry
+-- NM:  Beryl-footed Molberry
 -----------------------------------
 
 -----------------------------------

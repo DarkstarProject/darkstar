@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  Anguenet
---  Type: Adventurer's Assistant
---  @pos 214.672 -3.013 -527.561 2
+-- Area: Carpenters' Landing
+--  NPC: Anguenet
+-- Type: Adventurer's Assistant
+-- @pos 214.672 -3.013 -527.561 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

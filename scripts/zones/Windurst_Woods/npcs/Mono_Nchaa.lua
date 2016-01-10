@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Mono Nchaa
+--  NPC: Mono Nchaa
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -20,9 +20,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,text.MONONCHAA_SHOP_DIALOG);
+    player:showText(npc, text.text.MONONCHAA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x43A6,     3,2,     --Wooden Arrow
         0x439C,    55,2,     --Hawkeye
         0x4340,   165,2,     --Light Crossbow
@@ -40,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

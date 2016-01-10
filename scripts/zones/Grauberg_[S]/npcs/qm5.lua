@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Grauberg [S]
---  NPC:  ???
---  Quest - Fires of Discontent
+-- Area: Grauberg [S]
+--  NPC: ???
+-- Quest - Fires of Discontent
 -- pos 258 33 516
 -----------------------------------
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;

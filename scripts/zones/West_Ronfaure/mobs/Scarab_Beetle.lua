@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure(100)
---  MOB: Scarab Beetle
+-- MOB: Scarab Beetle
 -- Note: Place holder for Fungus Beetle
 -----------------------------------
 

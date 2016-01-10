@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Hoodoo
+-- MOB: Goblin Hoodoo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Sugandhi
+--  NPC: Sugandhi
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,SUGANDHI_SHOP_DIALOG);
+    player:showText(npc, text.SUGANDHI_SHOP_DIALOG);
 
-stock = {0x4059,5589,1,        -- Kukri
+    local stock =
+    {
+    0x4059,5589,1,        -- Kukri
      0x40A1,21067,1,        -- Broadsword
      0x4081,11588,1,        -- Tuck
      0x40AE,61200,1,        -- Falchion
@@ -47,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,9 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

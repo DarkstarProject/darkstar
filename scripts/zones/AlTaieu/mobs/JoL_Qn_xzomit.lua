@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Qn'xzomit
+-- MOB: Qn'xzomit
 -- Jailor of Love Pet version
 -----------------------------------
 

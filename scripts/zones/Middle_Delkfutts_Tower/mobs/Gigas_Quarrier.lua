@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Quarrier
+-- MOB: Gigas Quarrier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

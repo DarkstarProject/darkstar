@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Temple of Uggalepih
--- NPC:   _mf9 (Granite Door)
+--  NPC:  _mf9 (Granite Door)
 -- Notes: Opens with Prelate Key
 -- @pos -60 -8 -99 159
 -----------------------------------
@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     
     if (trade:hasItemQty(1137,1) and trade:getItemCount() == 1) then -- Trade Prelate Key
         player:tradeComplete();
-        player:messageSpecial(YOUR_KEY_BREAKS,0000,1137);
+        player:messageSpecial(text.YOUR_KEY_BREAKS,0000,1137);
         npc:openDoor(6.5);
     end
     
@@ -30,7 +30,7 @@ end;
 function onTrigger(player,npc)
     
     if (player:getXPos() > -62) then
-        player:messageSpecial(THE_DOOR_IS_LOCKED,1137);
+        player:messageSpecial(text.THE_DOOR_IS_LOCKED,1137);
     else
         npc:openDoor(11); -- retail timed
     end
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

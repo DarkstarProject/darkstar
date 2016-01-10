@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Vuntar
+--  NPC: Vuntar
 -- Starts and Finishes Quest: Cargo (R)
 -- @pos 7 -2 -15 248
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0032) then 
         player:addQuest(OTHER_AREAS,CARGO);
     elseif (csid == 0x0034) then 
@@ -77,19 +77,16 @@ function onEventFinish(player,csid,option)
         end
         if (option == 1) then 
             player:addGil(800);
-            player:messageSpecial(GIL_OBTAINED,800);
+            player:messageSpecial(text.GIL_OBTAINED,800);
             player:tradeComplete();
         elseif (option == 2) then 
             player:addGil(2000);
-            player:messageSpecial(GIL_OBTAINED,2000);
+            player:messageSpecial(text.GIL_OBTAINED,2000);
             player:tradeComplete();
         elseif (option == 3) then 
             player:addGil(3000);
-            player:messageSpecial(GIL_OBTAINED,3000);
+            player:messageSpecial(text.GIL_OBTAINED,3000);
             player:tradeComplete();
         end
     end
 end;
-
-
-

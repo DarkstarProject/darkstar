@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Qutiba
+--  NPC: Qutiba
 -- Type: Standard NPC
 -- @pos 92.341 -7.5 -129.980 50
 -----------------------------------
@@ -61,12 +61,12 @@ function onEventFinish(player,csid,option)
         player:setVar("vanishingactCS",2);
     elseif (csid == 0x002d) then
          if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:setVar("vanishingactCS",0);
             player:delKeyItem(RAINBOW_BERRY);
             player:addItem(2185,1);
-            player:messageSpecial(ITEM_OBTAINED,2185);
+            player:messageSpecial(text.ITEM_OBTAINED,2185);
             player:completeQuest(AHT_URHGAN,VANISHING_ACT);
         end
     end

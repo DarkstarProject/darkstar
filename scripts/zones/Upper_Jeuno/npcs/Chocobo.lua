@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Chocobo
+--  NPC: Chocobo
 -- Finishes Quest: Chocobo's Wounds
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -73,7 +73,7 @@ function onTrigger(player,npc)
     if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(CHOCOBO_LICENSE) == false) then
         -- this is a quick hack to let people get their license if it was lost
         player:addKeyItem(CHOCOBO_LICENSE);
-        player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
+        player:messageSpecial(text.KEYITEM_OBTAINED, CHOCOBO_LICENSE);
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(0x003e);
     elseif (ChocobosWounds == QUEST_ACCEPTED) then
@@ -104,8 +104,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -113,8 +113,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0039) then
         player:setVar("ChocobosWounds_Event", 2);
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 0x0040) then
         player:addKeyItem(CHOCOBO_LICENSE);
-        player:messageSpecial(KEYITEM_OBTAINED, CHOCOBO_LICENSE);
+        player:messageSpecial(text.KEYITEM_OBTAINED, CHOCOBO_LICENSE);
         player:addTitle(CHOCOBO_TRAINER);
         player:setVar("ChocobosWounds_Event", 0);
         player:setVar("ChocobosWounds_Min", 0);

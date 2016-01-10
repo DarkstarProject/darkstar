@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Castle Oztroja
--- NPC:   _47b (Handle)
+--  NPC:  _47b (Handle)
 -- Notes: Opens Trap Door (_47a) or Brass Door (_470)
 -- @pos 22.310 -1.087 -14.320 151
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002B) then
         player:setVar("MissionStatus",4);

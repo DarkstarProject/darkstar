@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Battue Bats
+-- MOB: Battue Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

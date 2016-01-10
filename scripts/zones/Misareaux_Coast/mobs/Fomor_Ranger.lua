@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Ranger
+-- MOB: Fomor Ranger
 -----------------------------------
 
 

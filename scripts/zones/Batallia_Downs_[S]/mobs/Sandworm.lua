@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
---  MOB: Sandworm
+-- MOB: Sandworm
 -- Note: Title Given if Sandworm does not Doomvoid
 -----------------------------------
 

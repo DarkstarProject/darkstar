@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  ??? (qm5)
+--  NPC: ??? (qm5)
 -- Involved In Quest: Dark Puppet
 -- @pos -92 -28 -70 193
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (player:getVar("darkPuppetCS") >= 3 and player:hasItem(16940) == false) then
         if (trade:hasItemQty(16681,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Axe
             player:tradeComplete();
-            player:messageSpecial(GERWITZS_SWORD_DIALOG);
+            player:messageSpecial(text.GERWITZS_SWORD_DIALOG);
             SpawnMob(17568136,180):updateClaim(player);
         end
     end
@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

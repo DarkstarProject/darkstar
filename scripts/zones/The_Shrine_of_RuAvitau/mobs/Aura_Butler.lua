@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Aura Butler
+-- MOB: Aura Butler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

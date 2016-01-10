@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Bigclaw
+-- MOB: Bigclaw
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

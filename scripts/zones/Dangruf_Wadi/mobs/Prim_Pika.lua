@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Prim Pika
+-- MOB: Prim Pika
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

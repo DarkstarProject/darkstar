@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Statue
+--  NPC: Dynamis Statue
 -- Trigger for Poison Pukis respawn
 -----------------------------------
 

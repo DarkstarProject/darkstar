@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Dauperiat
+--  NPC: Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
 -- @zone 231
 -- @pos 
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -91,13 +91,13 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0283) then
         player:addQuest(SANDORIA,BLACKMAIL);
         player:addKeyItem(SUSPICIOUS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
     elseif (csid == 0x0286 and option == 1) then
         player:setVar("BlackMailQuest",2);
     elseif (csid == 0x0288) then
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*900)
         if (player:getQuestStatus(SANDORIA,BLACKMAIL) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,BLACKMAIL);

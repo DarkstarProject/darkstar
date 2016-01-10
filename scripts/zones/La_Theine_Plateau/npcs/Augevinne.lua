@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Augevinne
+--  NPC: Augevinne
 -- Involved in Mission: The Rescue Drill
 -- @pos -361 39 266 102
 -----------------------------------
@@ -29,14 +29,14 @@ function onTrigger(player,npc)
         if (MissionStatus >= 5 and MissionStatus <= 7) then
             player:startEvent(0x0067);
         elseif (MissionStatus == 8) then
-            player:showText(npc, RESCUE_DRILL + 21);
+            player:showText(npc, text.RESCUE_DRILL + 21);
         elseif (MissionStatus >= 9) then
-            player:showText(npc, RESCUE_DRILL + 26);
+            player:showText(npc, text.RESCUE_DRILL + 26);
         else
-            player:showText(npc, RESCUE_DRILL);
+            player:showText(npc, text.RESCUE_DRILL);
         end
     else
-        player:showText(npc, RESCUE_DRILL);
+        player:showText(npc, text.RESCUE_DRILL);
     end
     
 end;
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

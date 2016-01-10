@@ -86,11 +86,11 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,221);
     elseif (csid == 0x044d) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14226);
         else
             player:delKeyItem(SEANCE_STAFF);
             player:addItem(14226);
-            player:messageSpecial(ITEM_OBTAINED,14226); -- Ninja Hakama
+            player:messageSpecial(text.ITEM_OBTAINED,14226); -- Ninja Hakama
             player:setVar("Enagakure_Killed",0);
             player:setVar("illTakeTheBigBoxCS",0);
             player:addFame(OUTLANDS,NORG_FAME*30);

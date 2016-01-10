@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 6-1
 -- @pos -325 0 -111 125
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         if (GetMobAction(17289654) == 0 and GetMobAction(17289655) == 0) then
             if (player:getVar("Mission6-1MobKilled") >= 1) then
                 player:addKeyItem(ALTEPA_MOONPEBBLE);
-                player:messageSpecial(KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
+                player:messageSpecial(text.KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
                 player:setVar("Mission6-1MobKilled",0);
                 player:setVar("MissionStatus",3);
             else
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end; 
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

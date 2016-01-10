@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Cape Teriggan
---  NM:  Tegmine
+-- NM:  Tegmine
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

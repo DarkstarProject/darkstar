@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Mighty Rarab
+-- MOB: Mighty Rarab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

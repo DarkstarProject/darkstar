@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delfutt's Tower
---  MOB: Gerwitz's Scythe
+-- MOB: Gerwitz's Scythe
 -- Involved In Quest: Blade of Evil
 -----------------------------------
 

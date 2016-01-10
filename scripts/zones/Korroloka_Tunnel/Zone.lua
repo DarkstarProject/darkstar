@@ -61,15 +61,15 @@ function onRegionEnter(player,region)
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)  -- Left Pool
-                player:messageSpecial(ENTERED_SPRING);
+                player:messageSpecial(text.ENTERED_SPRING);
                 player:setLocalVar("POOL_TIME", os.time());
             end,
             [2] = function (x)  -- Center Pool
-                player:messageSpecial(ENTERED_SPRING);
+                player:messageSpecial(text.ENTERED_SPRING);
                 player:setLocalVar("POOL_TIME", os.time());
             end,
             [3] = function (x)  -- Right pool
-                player:messageSpecial(ENTERED_SPRING);
+                player:messageSpecial(text.ENTERED_SPRING);
                 player:setLocalVar("POOL_TIME", os.time());
             end,
         }
@@ -89,11 +89,11 @@ function onRegionLeave(player,region)
     
     if(RegionID <= 3 and player:getVar("BathedInScent") == 1) then
         if pooltime >= 300 then
-            player:messageSpecial(LEFT_SPRING_CLEAN);
+            player:messageSpecial(text.LEFT_SPRING_CLEAN);
             player:setLocalVar("POOL_TIME", 0);
             player:setVar("BathedInScent", 0);
         else
-            player:messageSpecial(LEFT_SPRING_EARLY);
+            player:messageSpecial(text.LEFT_SPRING_EARLY);
             player:setLocalVar("POOL_TIME", 0);
         end
     end

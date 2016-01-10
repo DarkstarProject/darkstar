@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  Mob: Dark_Aspic
+-- Mob: Dark_Aspic
 -----------------------------------
 
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");

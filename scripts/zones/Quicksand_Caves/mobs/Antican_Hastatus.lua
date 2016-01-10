@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Hastatus
+-- MOB: Antican Hastatus
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  MOB: Krabkatoa
+-- MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Rock Golem
+-- MOB: Rock Golem
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Grav'Iton
+-- MOB: Grav'Iton
 -- Zilart Mission 4 BCNM Fight
 -----------------------------------
 

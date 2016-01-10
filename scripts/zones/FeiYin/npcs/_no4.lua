@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Fei'Yin
---  NPC:  Cermet Door (triggers Rukususu dialog)
---  Type: Quest NPC
---  @pos -183 0 190 204
---     Involved in Quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
---    Involved in Missions: Windurst 5-1/7-2/8-2
+-- Area: Fei'Yin
+--  NPC: Cermet Door (triggers Rukususu dialog)
+-- Type: Quest NPC
+-- @pos -183 0 190 204
+-- Involved in Quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
+-- Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(SHANTOTTOS_NEW_SPELL); -- remove key item
     elseif (csid == 0x0016) then
         player:addKeyItem(RHINOSTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,RHINOSTERY_RING);
+        player:messageSpecial(text.KEYITEM_OBTAINED,RHINOSTERY_RING);
         if (player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(OPTISTERY_RING)) then
             player:setVar("MissionStatus",2)
         end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Zantaviat
+--  NPC: Zantaviat
 -- Involved in Mission: The Davoi Report
 -- @pos 215 0.1 -10 149
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0064) then
         player:setVar("MissionStatus",1);
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
         player:delKeyItem(LOST_DOCUMENT);
         player:addKeyItem(TEMPLE_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TEMPLE_KNIGHTS_DAVOI_REPORT);
     elseif (csid == 0x0066) then
         player:setVar("MissionStatus",6);
     elseif (csid == 0x0069) then

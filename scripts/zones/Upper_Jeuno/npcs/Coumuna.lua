@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Coumuna
+--  NPC: Coumuna
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,COUMUNA_SHOP_DIALOG);
+    player:showText(npc, text.COUMUNA_SHOP_DIALOG);
 
-stock = {0x4141,4186, -- Greataxe
+    local stock =
+    {
+    0x4141,4186, -- Greataxe
      0x4086,31000, -- Mythril Degen
      0x404C,11128, -- Kris 
      0x4053,14560, -- Mythril Knife
@@ -32,7 +34,7 @@ stock = {0x4141,4186, -- Greataxe
      0x401C,29760, -- Mythril Claws
      0x40B7,85250} -- Knight's Sword
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -40,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,9 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Carrion Crow
+-- MOB: Carrion Crow
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

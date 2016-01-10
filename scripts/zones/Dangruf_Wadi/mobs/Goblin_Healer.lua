@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Healer
+-- MOB: Goblin Healer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

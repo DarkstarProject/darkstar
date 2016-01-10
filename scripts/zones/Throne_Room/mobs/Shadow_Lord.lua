@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Shadow Lord
+-- MOB: Shadow Lord
 -- Mission 5-2 BCNM Fight
 -----------------------------------
 

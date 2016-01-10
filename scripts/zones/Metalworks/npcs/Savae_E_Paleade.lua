@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Savae E Paleade
+--  NPC: Savae E Paleade
 -- Involved In Mission: Journey Abroad
 -- @pos 23.724 -17.39 -43.360 237
 -----------------------------------
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:addMission(SANDORIA,JOURNEY_ABROAD);
         player:delKeyItem(KINDRED_CREST);
         player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
     end
     
 end;

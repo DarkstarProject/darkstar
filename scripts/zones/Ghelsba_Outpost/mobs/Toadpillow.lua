@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Toadpillow
+-- MOB: Toadpillow
 -- BCNM30
 -----------------------------------
 

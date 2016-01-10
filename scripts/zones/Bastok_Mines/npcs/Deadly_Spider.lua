@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Deadly Spider
+--  NPC: Deadly Spider
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;

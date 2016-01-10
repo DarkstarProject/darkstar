@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Tabar
+-- MOB: Animated Tabar
 -----------------------------------
 
 require("scripts/globals/status");

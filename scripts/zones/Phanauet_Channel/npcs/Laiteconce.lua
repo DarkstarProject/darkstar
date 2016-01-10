@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Phanauet Channel
---  NPC:  Laiteconce
---  Type: Standard NPC
---  @pos 4.066 -4.5 -10.450 1
+-- Area: Phanauet Channel
+--  NPC: Laiteconce
+-- Type: Standard NPC
+-- @pos 4.066 -4.5 -10.450 1
 -----------------------------------
 package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
 -----------------------------------

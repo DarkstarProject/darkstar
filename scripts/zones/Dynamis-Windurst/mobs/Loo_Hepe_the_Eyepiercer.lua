@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Loo Hepe the Eyepiercer
+--  NPC: Loo Hepe the Eyepiercer
 -- Boss Trigger for MEGA BOSS
 -----------------------------------
 

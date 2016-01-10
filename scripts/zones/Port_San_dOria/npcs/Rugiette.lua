@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
             player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Drozga
+--  NPC: Drozga
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,DROZGA_SHOP_DIALOG);
+    player:showText(npc, text.DROZGA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         12432,   1493,       -- Faceguard
         12560,   2296,       -- Scale Mail
         12688,   1225,       -- Scale Fng. Gnt.
@@ -42,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

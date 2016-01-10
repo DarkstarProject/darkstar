@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Sentry
+-- MOB: Giant Sentry
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

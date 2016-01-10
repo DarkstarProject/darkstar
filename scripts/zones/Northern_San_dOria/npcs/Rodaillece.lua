@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Rodaillece
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -246.943 7.000 46.836
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -246.943 7.000 46.836
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,RODAILLECE_DIALOG);
+    player:showText(npc, text.RODAILLECE_DIALOG);
 end;
 
 -----------------------------------

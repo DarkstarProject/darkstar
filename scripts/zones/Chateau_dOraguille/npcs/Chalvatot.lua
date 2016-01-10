@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Chalvatot
+--  NPC: Chalvatot
 -- Finish Mission "The Crystal Spring"
 -- Start & Finishes Quests: Her Majesty's Garden
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
         if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     elseif (trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
         if (player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN) == QUEST_ACCEPTED) then
@@ -86,8 +86,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x022c or csid == 0x006f) then
         finishMissionTimeline(player,3,csid,option);
@@ -98,14 +98,14 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0053) then
         player:tradeComplete();
         player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
     elseif (csid == 0x0063) then
         if (option == 1) then
             player:setVar("circleTime",7);
             player:addKeyItem(MOON_RING);
-            player:messageSpecial(KEYITEM_OBTAINED,MOON_RING);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MOON_RING);
         else
             player:setVar("circleTime",6);
         end
@@ -113,17 +113,17 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:setVar("circleTime",7);
             player:addKeyItem(MOON_RING);
-            player:messageSpecial(KEYITEM_OBTAINED,MOON_RING);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MOON_RING);
         end
     elseif (csid == 0x0060) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
-            player:messageSpecial(ITEM_OBTAINED,12647)
+            player:messageSpecial(text.ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
             player:addTitle(PARAGON_OF_BARD_EXCELLENCE);
             player:setVar("circleTime",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED);
         end
     end
 

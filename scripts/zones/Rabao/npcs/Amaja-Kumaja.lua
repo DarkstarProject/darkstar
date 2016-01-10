@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Amaja-Kumaja
+--  NPC: Amaja-Kumaja
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;

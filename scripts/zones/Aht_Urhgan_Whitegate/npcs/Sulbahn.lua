@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:startEvent(0x027D,17160,1,19405,21215,30030,0,7,0);
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, text.IMAGE_SUPPORT_ACTIVE);
             end
         end
     end
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x027D) then
-        player:messageSpecial(IMAGE_SUPPORT,0,7,0);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,7,0);
         player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,480);
     end
 end;

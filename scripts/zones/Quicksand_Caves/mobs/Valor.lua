@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Valor
+-- MOB: Valor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 

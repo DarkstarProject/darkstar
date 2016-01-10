@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Troglodyte Dhalmel 
+--  NPC: Troglodyte Dhalmel 
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

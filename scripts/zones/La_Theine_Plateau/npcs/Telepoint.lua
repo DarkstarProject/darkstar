@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Telepoint
+--  NPC: Telepoint
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -20,9 +20,9 @@ function onTrade(player,npc,trade)
         if (player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
             player:tradeComplete();
             player:addItem(613);
-            player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
+            player:messageSpecial(text.ITEM_OBTAINED,613); -- Faded Crystal
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
         end
     end
     
@@ -36,9 +36,9 @@ function onTrigger(player,npc)
     
     if (player:hasKeyItem(HOLLA_GATE_CRYSTAL) == false) then
         player:addKeyItem(HOLLA_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLLA_GATE_CRYSTAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,HOLLA_GATE_CRYSTAL);
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE);
+        player:messageSpecial(text.ALREADY_OBTAINED_TELE);
     end
     
 end;
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

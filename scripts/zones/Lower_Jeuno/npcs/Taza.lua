@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Taza
+--  NPC: Taza
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,TAZA_SHOP_DIALOG);
+    player:showText(npc, text.TAZA_SHOP_DIALOG);
 
-stock = {0x1311,10304,        -- Scroll of Sleepga
+    local stock =
+    {
+    0x1311,10304,        -- Scroll of Sleepga
      0x1232,26244,        -- Scroll of Shell III
      0x127f,19200,        -- Scroll of Protectra III
      0x1283,14080,        -- Scroll of Shellra II
@@ -40,7 +42,7 @@ stock = {0x1311,10304,        -- Scroll of Sleepga
      0x1297,39368,        -- Scroll of Blizzard III
      0x12a6,45930}        -- Scroll of Thunder III
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -48,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,9 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

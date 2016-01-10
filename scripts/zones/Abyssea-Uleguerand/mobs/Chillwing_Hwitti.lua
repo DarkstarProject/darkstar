@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Uleguerand
---  MOB: Chillwing Hwitti
+-- MOB: Chillwing Hwitti
 -- ID: 17813939
 -----------------------------------
 

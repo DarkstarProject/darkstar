@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Snaggletooth Peapuk
+-- MOB: Snaggletooth Peapuk
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

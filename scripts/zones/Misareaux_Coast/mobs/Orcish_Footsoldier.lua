@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Orcish_Footsoldier
+-- MOB: Orcish_Footsoldier
 -----------------------------------
 
 

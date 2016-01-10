@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Stellar Fulcrum
---  MOB: Kam'lanaut
+-- MOB: Kam'lanaut
 -- Zilart Mission 8 BCNM Fight
 -----------------------------------
 

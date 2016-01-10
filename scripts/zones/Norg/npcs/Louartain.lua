@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Louartain
+--  NPC: Louartain
 -- Standard Info NPC
 -----------------------------------
 
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0054);
+    player:startEvent(0x0054);
 npc:wait(-1);
 end;
 
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,10 +58,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     npc:wait(0);
 end;
-
-
-

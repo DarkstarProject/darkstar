@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  Hume Bones
+--  NPC: Hume Bones
 -- Involved in Quests: Blue Ribbon Blues
 -- @pos 299 0.1 19 195
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
                 if (GetMobAction(17575937) == 0) then
                     player:tradeComplete();
                     SpawnMob(17575937):updateClaim(player); -- Lich C Magnus NM
-                    player:messageSpecial(RETURN_RIBBON_TO_HER);
+                    player:messageSpecial(text.RETURN_RIBBON_TO_HER);
                 end
             end
         end
@@ -38,13 +38,13 @@ function onTrigger(player,npc)
     if (player:getVar("Lich_C_Magnus_Died") == 1 and player:hasItem(12521) == false) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addItem(12521);
-            player:messageSpecial(ITEM_OBTAINED,12521);
+            player:messageSpecial(text.ITEM_OBTAINED,12521);
             player:setVar("Lich_C_Magnus_Died",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12521);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12521);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 -- 
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,7 +62,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;

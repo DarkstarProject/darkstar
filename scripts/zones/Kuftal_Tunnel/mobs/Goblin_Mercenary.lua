@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Mercenary
+-- MOB: Goblin Mercenary
 -- Note: Place Holder for Bloodthirster Madkix
 -----------------------------------
 

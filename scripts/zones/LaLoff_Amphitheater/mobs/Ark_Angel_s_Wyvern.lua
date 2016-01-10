@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Wyvern
+-- MOB: Ark Angel's Wyvern
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------

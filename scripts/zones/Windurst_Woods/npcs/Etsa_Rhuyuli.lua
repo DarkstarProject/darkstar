@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---  NPC:  Etsa Rhuyuli
---  Type: Standard NPC
---  @pos 62.482 -8.499 -139.836 241
+-- Area: Windurst Woods
+--  NPC: Etsa Rhuyuli
+-- Type: Standard NPC
+-- @pos 62.482 -8.499 -139.836 241
 -----------------------------------
 
 require("scripts/globals/quests");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Ze'Vho Fallsplitter
+--  NPC: Ze'Vho Fallsplitter
 -- Boss Trigger for Gu'Dha Effigy
 -----------------------------------
 

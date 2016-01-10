@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: evil_oscar
+-- MOB: evil_oscar
 -- KSNM30
 -----------------------------------
 

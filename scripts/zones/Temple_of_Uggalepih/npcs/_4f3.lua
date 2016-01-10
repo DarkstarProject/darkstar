@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Temple of Uggalepih
---  NPC:  _4f3
+--  NPC: _4f3
 -- Notes: Tonberry Priest Room (Offers Tonberry Hate Reset)
 -- @pos 60.001 -1.653 -147.755 159
 -----------------------------------
@@ -30,10 +30,10 @@ function onTrigger(player,npc)
             local payment = 250 * ((killCount/20)+1);
             player:startEvent(0x0042,0,payment);
         else
-            player:messageSpecial(NO_HATE); -- Hate is already 0
+            player:messageSpecial(text.NO_HATE); -- Hate is already 0
         end
     else
-        player:messageSpecial(DOOR_SHUT);
+        player:messageSpecial(text.DOOR_SHUT);
     end
 
 end;
@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0042 and option == 1) then
         if (player:delGil(250 * ((player:getVar("EVERYONES_GRUDGE_KILLS")/20)+1))) then
             player:setVar("EVERYONES_GRUDGE_KILLS",0);
-            player:messageSpecial(HATE_RESET);
+            player:messageSpecial(text.HATE_RESET);
             --GetNPCByID(17428933):castSpell(260);
             local mob = GetNPCByID( 17428933 );
             if (mob ~= nil) then

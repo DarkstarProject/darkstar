@@ -25,7 +25,7 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
---printf("leavecode: %u",leavecode);
+    -- printf("leavecode: %u",leavecode);
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then

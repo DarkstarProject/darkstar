@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Dancing Jewel
+-- MOB: Dancing Jewel
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

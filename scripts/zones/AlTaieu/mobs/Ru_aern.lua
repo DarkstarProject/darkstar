@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru_aern
+-- MOB: Ru_aern
 -----------------------------------
 
 require("scripts/globals/missions");

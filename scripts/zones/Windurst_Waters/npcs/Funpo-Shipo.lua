@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Waters
---  NPC:  Funpo-Shipo
---  Type: Standard NPC
---  @pos -44.091 -4.499 41.728 238
+-- Area: Windurst Waters
+--  NPC: Funpo-Shipo
+-- Type: Standard NPC
+-- @pos -44.091 -4.499 41.728 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

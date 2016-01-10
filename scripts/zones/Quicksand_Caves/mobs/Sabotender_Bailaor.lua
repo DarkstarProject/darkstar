@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sabotender Bailaor
+-- MOB: Sabotender Bailaor
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

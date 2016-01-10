@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos Central 1floor    
--- NPC: Temenos_Cleaner
+--  NPC: Temenos_Cleaner
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Yilbegan
+-- MOB: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

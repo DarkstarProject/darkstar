@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---  NPC:  Ibwam
---  Type: Warp NPC
---  @pos -25.655 1.749 -60.651 241
+-- Area: Windurst Woods
+--  NPC: Ibwam
+-- Type: Warp NPC
+-- @pos -25.655 1.749 -60.651 241
 -----------------------------------
 
 package.loaded["scripts/globals/settings"] = nil;
@@ -97,21 +97,21 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x02e0) then
         player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
         player:setVar("WildcatWindurst",0);
         player:addKeyItem(GREEN_SENTINEL_BADGE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,GREEN_SENTINEL_BADGE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,GREEN_SENTINEL_BADGE);
     elseif (csid == 0x02e3) then
         player:completeQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
         player:addFame(WINDURST,150);
         player:setVar("WildcatWindurst",0);
         player:delKeyItem(GREEN_SENTINEL_BADGE);
         player:addKeyItem(GREEN_INVITATION_CARD);
-        player:messageSpecial(text.KEYITEM_LOST,GREEN_SENTINEL_BADGE);
-        player:messageSpecial(text.KEYITEM_OBTAINED,GREEN_INVITATION_CARD);
+        player:messageSpecial(text.text.KEYITEM_LOST,GREEN_SENTINEL_BADGE);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,GREEN_INVITATION_CARD);
     elseif (csid == 0x031a) then
         player:tradeComplete();
         toAhtUrhganWhitegate(player);

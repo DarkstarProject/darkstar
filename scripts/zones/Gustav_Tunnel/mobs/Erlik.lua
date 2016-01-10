@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Erlik
+-- MOB: Erlik
 -- Note: Place holder Baobhan Sith
 -----------------------------------
 

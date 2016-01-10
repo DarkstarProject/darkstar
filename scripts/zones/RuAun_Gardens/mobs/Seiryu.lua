@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NM:  Seiryu
+-- NM:  Seiryu
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------

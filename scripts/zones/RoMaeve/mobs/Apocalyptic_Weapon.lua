@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Apocalyptic Weapon
+-- MOB: Apocalyptic Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

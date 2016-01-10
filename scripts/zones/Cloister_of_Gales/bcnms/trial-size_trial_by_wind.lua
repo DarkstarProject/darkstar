@@ -50,11 +50,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         if (player:hasSpell(301) == false) then
         player:addSpell(301); -- Garuda
-        player:messageSpecial(GARUDA_UNLOCKED,0,0,3);
+        player:messageSpecial(text.GARUDA_UNLOCKED,0,0,3);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeWind_date", 0);
         player:addFame(RABAO,30);

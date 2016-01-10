@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Pavvke
+--  NPC: Pavvke
 -- Starts Quests: Fallen Comrades (100%)
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x005a) then
         player:addQuest(BASTOK,FALLEN_COMRADES);
@@ -71,15 +71,12 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,FALLEN_COMRADES);
         player:addFame(BASTOK,BAS_FAME*120);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*550);
     elseif (csid == 0x005c) then
         player:addFame(BASTOK,BAS_FAME*8);
         player:addGil(GIL_RATE*550);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*550);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*550);
     end
         
 end;
-
-
-
 

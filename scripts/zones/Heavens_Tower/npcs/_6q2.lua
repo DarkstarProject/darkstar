@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Vestal Chamber (chamber of the Star Sibyl)
+--  NPC: Vestal Chamber (chamber of the Star Sibyl)
 -- @pos 0.1 -49 37 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,19 +66,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0099) then
         player:setVar("MissionStatus",1);
         player:delKeyItem(STAR_CRESTED_SUMMONS);
         player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 0x00A6 or csid == 0x00BE) then
         if (option == 0) then
             player:addMission(WINDURST,THE_FINAL_SEAL);
             player:addKeyItem(NEW_FEIYIN_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
+            player:messageSpecial(text.KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
             player:setVar("MissionStatus",10);
         end
         player:delKeyItem(MESSAGE_TO_JEUNO_WINDURST);
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         player:addTitle(HERO_ON_BEHALF_OF_WINDURST);
         player:addKeyItem(HOLY_ONES_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_INVITATION);
+        player:messageSpecial(text.KEYITEM_OBTAINED,HOLY_ONES_INVITATION);
     elseif (csid == 0x0138) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 0x00C0 or csid == 0x00D8) then

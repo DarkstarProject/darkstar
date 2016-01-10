@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Tsaagan
+-- MOB: Tsaagan
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

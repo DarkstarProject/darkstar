@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Haunt
+-- MOB: Haunt
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Anieuvansand
---  Type: Standard Info NPC
---  @zone: 231
---  @pos -18.608 -0.199 83.911
+-- Type: Standard Info NPC
+-- @zone: 231
+-- @pos -18.608 -0.199 83.911
 --
 -----------------------------------
 

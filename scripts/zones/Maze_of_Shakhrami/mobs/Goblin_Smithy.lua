@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Dire Bat
+-- MOB: Dire Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

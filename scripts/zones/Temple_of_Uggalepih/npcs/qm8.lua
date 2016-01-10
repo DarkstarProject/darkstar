@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih (159)
--- NPC:  qm8 (???) 
+--  NPC: qm8 (???) 
 -- Notes: Used to spawn Habetrot
 -- @pos -57.434 -8.484 55.317 0
 -----------------------------------
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(BITS_OF_VEGETABLE);
+    player:messageSpecial(text.BITS_OF_VEGETABLE);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

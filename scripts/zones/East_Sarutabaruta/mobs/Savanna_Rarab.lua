@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Savanna Rarab
+-- MOB: Savanna Rarab
 -- Note: PH for Sharp Eared Ropipi
 -----------------------------------
 

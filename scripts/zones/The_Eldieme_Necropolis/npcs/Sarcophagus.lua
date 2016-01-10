@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC: Sarcophagus
+--  NPC: Sarcophagus
 -- Involved in Quest: The Requiem (BARD AF2)
 -- @pos -420 8 500 195
 -----------------------------------
@@ -45,13 +45,13 @@ function onTrade(player,npc,trade)
         
         if (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom") and player:getVar("TheRequiemYumKilled") == 0) then 
             player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
+            player:messageSpecial(text.SENSE_OF_FOREBODING);
             player:setVar("TheRequiemAlreadyPoped",1);
             SpawnMob(17576264,300):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
             SpawnMob(17576267,180):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
             SpawnMob(17576266,180):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
         else
-            player:messageSpecial(NOTHING_HAPPENED);
+            player:messageSpecial(text.NOTHING_HAPPENED);
         end
     end
     
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
         if (player:getVar("TheRequiemYumKilled") == 1) then
             player:startEvent(0x002e);
         elseif (player:getVar("TheRequiemAlreadyPoped") == 1) then
-            player:messageSpecial(SENSE_OF_FOREBODING);
+            player:messageSpecial(text.SENSE_OF_FOREBODING);
             SpawnMob(17576264):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
             SpawnMob(17576267):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
             SpawnMob(17576266):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
@@ -91,7 +91,7 @@ function onTrigger(player,npc)
         
     -- Standard Dialogue
     else
-        player:messageSpecial(SARCOPHAGUS_CANNOT_BE_OPENED);
+        player:messageSpecial(text.SARCOPHAGUS_CANNOT_BE_OPENED);
     end
     
 end; 
@@ -101,8 +101,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -110,8 +110,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002e) then 
         player:setVar("TheRequiemCS",0);
@@ -119,13 +119,13 @@ function onEventFinish(player,csid,option)
         player:setVar("TheRequiemRandom",0);
         player:setVar("TheRequiemAlreadyPoped",0);
         player:addKeyItem(STAR_RING1);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_RING1); -- Star Ring (Key Item). 
+        player:messageSpecial(text.KEYITEM_OBTAINED,STAR_RING1); -- Star Ring (Key Item). 
     elseif (csid == 0x002d) then
         player:setVar("ANewDawn_Event",6);
         player:delKeyItem(217); 
         player:addTitle(196); 
         player:addItem(14222,1); 
-        player:messageSpecial(ITEM_OBTAINED,14222);
+        player:messageSpecial(text.ITEM_OBTAINED,14222);
         player:completeQuest(JEUNO,A_NEW_DAWN);
         player:addFame(JEUNO, JEUNO_FAME*30);
     end

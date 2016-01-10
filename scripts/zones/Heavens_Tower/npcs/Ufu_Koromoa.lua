@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Heavens Tower
---  NPC:  Ufu Koromoa
---  Type: Standard NPC
---  @pos -2.074 -48 14.000 242
+-- Area: Heavens Tower
+--  NPC: Ufu Koromoa
+-- Type: Standard NPC
+-- @pos -2.074 -48 14.000 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

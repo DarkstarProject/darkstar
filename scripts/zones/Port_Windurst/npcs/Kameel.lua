@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Port Windurst
---   NPC: Kameel
---  Type: Standard NPC
+-- Area: Port Windurst
+--  NPC: Kameel
+-- Type: Standard NPC
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

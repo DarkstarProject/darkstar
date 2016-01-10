@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Stirge
+-- MOB: Stirge
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

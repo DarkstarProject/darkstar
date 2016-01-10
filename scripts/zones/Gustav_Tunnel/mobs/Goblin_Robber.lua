@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Robber
+-- MOB: Goblin Robber
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

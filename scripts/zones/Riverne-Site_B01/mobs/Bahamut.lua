@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne - Site B01 (BCNM)
---  NM:  Bahamut
+-- NM:  Bahamut
 -----------------------------------
 
 require("scripts/globals/quests");

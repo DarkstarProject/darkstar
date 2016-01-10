@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Ghelsba
---  NM:  Chariotbuster Byakzak
+-- NM:  Chariotbuster Byakzak
 -----------------------------------
 
 -----------------------------------

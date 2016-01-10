@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Processionaire
+-- MOB: Processionaire
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

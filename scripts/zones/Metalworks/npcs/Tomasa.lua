@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Tomasa
+--  NPC: Tomasa
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,TOMASA_SHOP_DIALOG);
+    player:showText(npc, text.TOMASA_SHOP_DIALOG);
 
-stock = {0x112C,257,1,        -- Sausage Roll
+    local stock =
+    {
+    0x112C,257,1,        -- Sausage Roll
      0x1139,73,1,        -- Hard-Boiled Egg
      0x1141,3036,1,        -- Egg Soup
      0x115A,368,1,        -- Pineapple Juice
@@ -46,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,9 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

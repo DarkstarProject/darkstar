@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
---  MOB: Vrtra
+-- MOB: Vrtra
 -----------------------------------
 
 require("scripts/globals/status");

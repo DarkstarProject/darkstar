@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Corann
+--  NPC: Corann
 -- Start & Finishes Quest: The Quadav's Curse
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0050) then
         player:addQuest(BASTOK,THE_QUADAV_S_CURSE);
@@ -74,11 +74,8 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,THE_QUADAV_S_CURSE);
         player:addFame(BASTOK,BAS_FAME*120);
         player:addItem(12832);
-        player:messageSpecial(ITEM_OBTAINED,12832);
+        player:messageSpecial(text.ITEM_OBTAINED,12832);
     end
 
 end;
-
-
-
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Doglix Muttsnout
+-- MOB: Doglix Muttsnout
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 

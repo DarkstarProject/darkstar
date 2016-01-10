@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Skimmer
+-- MOB: Skimmer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

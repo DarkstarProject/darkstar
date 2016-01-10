@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  NM:  Hoar-knuckled Rimberry
+-- NM:  Hoar-knuckled Rimberry
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

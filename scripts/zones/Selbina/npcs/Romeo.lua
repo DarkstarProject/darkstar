@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Romeo
+--  NPC: Romeo
 -- Starts and Finishes Quest: Donate to Recycling
 -- @zone 248
 -- @pos -11 -11 -6
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,23 +57,20 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0014) then
         player:addQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
     elseif (csid == 0x0015) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,89);
         else 
             player:completeQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
             player:addTitle(ECOLOGIST);
             player:addItem(89);
-            player:messageSpecial(ITEM_OBTAINED,89); -- Wastebasket
+            player:messageSpecial(text.ITEM_OBTAINED,89); -- Wastebasket
             player:addFame(OTHER_AREAS,30);
             player:tradeComplete();
         end
     end
 end;
-
-
-

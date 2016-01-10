@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Cyaneous-toed_Yallberry
+-- MOB: Cyaneous-toed_Yallberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 

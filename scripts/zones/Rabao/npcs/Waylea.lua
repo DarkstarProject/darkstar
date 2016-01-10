@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Rabao
---   NPC: Waylea
---  Type: Reputation
+-- Area: Rabao
+--  NPC: Waylea
+-- Type: Reputation
 -- @zone: 247
---  @pos 12.384 4.658 -32.392
+-- @pos 12.384 4.658 -32.392
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

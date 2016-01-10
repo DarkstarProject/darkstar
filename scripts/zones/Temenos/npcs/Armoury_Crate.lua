@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -------------------------------------

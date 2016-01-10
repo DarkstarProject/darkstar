@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Fetor Bats
+-- MOB: Fetor Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

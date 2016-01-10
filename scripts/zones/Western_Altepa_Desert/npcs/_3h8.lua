@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Western Altepa Desert
--- NPC:   _3h8 (Sapphire Column)
+--  NPC:  _3h8 (Sapphire Column)
 -- Notes: Mechanism for Altepa Gate
 -- @pos -499 10 224 125
 -----------------------------------
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         npc:setAnimation(8);
         GetNPCByID(SapphireID-4):setAnimation(8);
     else
-        player:messageSpecial(DOES_NOT_RESPOND);
+        player:messageSpecial(text.DOES_NOT_RESPOND);
     end
 
     if (Emerald == 8 and Ruby == 8 and Topaz == 8) then
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

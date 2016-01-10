@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Valley Manticore
+-- MOB: Valley Manticore
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

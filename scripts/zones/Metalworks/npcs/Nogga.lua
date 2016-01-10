@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Nogga
+--  NPC: Nogga
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,NOGGA_SHOP_DIALOG);
+    player:showText(npc, text.NOGGA_SHOP_DIALOG);
 
-stock = {0x43A4,675,2,        -- Bomb Arm
+    local stock =
+    {
+    0x43A4,675,2,        -- Bomb Arm
 
      0x43A1,1083,3,        -- Grenade
      0x0ae8,92,3}        -- Catalytic Oil
@@ -37,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,9 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

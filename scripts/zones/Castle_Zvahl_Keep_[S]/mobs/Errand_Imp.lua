@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (S)
---  MOB: Errand Imp
+-- MOB: Errand Imp
 -----------------------------------
 
 require("scripts/globals/status");

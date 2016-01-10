@@ -97,9 +97,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x00) then
-        player:messageSpecial(ITEM_OBTAINED,0x218);
+        player:messageSpecial(text.ITEM_OBTAINED,0x218);
     elseif (csid == 0x7534 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(text.HOMEPOINT_SET);
     end
 end;

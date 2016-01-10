@@ -1,5 +1,5 @@
 -----------------------------------    
--- NPC:   Stale Draft
+--  NPC:  Stale Draft
 -- Area:  Sacrarium
 -- Notes: Used to spawn Swift Belt NM's
 -----------------------------------
@@ -17,13 +17,13 @@ function onTrigger(player,npc)
     local Hate = player:getVar("FOMOR_HATE");    
     
      if (Hate < 8) then --hate lvl 1
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
      elseif (Hate < 12) then
-        player:messageSpecial(START_GET_GOOSEBUMPS);
+        player:messageSpecial(text.START_GET_GOOSEBUMPS);
      elseif (Hate < 50) then
-        player:messageSpecial(HEART_RACING);
+        player:messageSpecial(text.HEART_RACING);
      elseif (Hate >= 50) then
-        player:messageSpecial(LEAVE_QUICKLY_AS_POSSIBLE);
+        player:messageSpecial(text.LEAVE_QUICKLY_AS_POSSIBLE);
      end        
      
 end;    
@@ -48,10 +48,10 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 SpawnMob(16892069,180):updateClaim(player);
             else
-                player:messageSpecial(NOTHING_HAPPENS);
+                player:messageSpecial(text.NOTHING_HAPPENS);
             end           
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end        
         
     elseif (X == 7) then --Caithleann spawnpoint
@@ -61,10 +61,10 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 SpawnMob(16892073,180):updateClaim(player);
             else
-                player:messageSpecial(NOTHING_HAPPENS);
+                player:messageSpecial(text.NOTHING_HAPPENS);
            end           
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end        
     
     elseif (X == 47) then --Indich spawnpoint
@@ -74,10 +74,10 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 SpawnMob(16892074,180):updateClaim(player);
             else
-                player:messageSpecial(NOTHING_HAPPENS);
+                player:messageSpecial(text.NOTHING_HAPPENS);
            end           
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end    
     
     elseif (X == 113) then --Lobais spawnpoint
@@ -87,10 +87,10 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 SpawnMob(16892070,180):updateClaim(player);
             else
-                player:messageSpecial(NOTHING_HAPPENS);
+                player:messageSpecial(text.NOTHING_HAPPENS);
            end           
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end    
         
     elseif (X == 33) then --Balor spawnpoint--
@@ -100,10 +100,10 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 SpawnMob(16892068,180):updateClaim(player);
             else
-                player:messageSpecial(NOTHING_HAPPENS);
+                player:messageSpecial(text.NOTHING_HAPPENS);
             end           
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end        
     end    
 

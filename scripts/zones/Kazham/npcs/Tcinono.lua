@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Tcinono
+--  NPC: Tcinono
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;

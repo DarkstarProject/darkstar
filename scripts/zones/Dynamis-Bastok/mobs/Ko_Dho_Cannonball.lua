@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Ko'Dho Cannonball
+--  NPC: Ko'Dho Cannonball
 -- Boss Trigger for Gu'Dha Effigy
 -----------------------------------
 

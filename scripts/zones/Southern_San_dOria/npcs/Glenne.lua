@@ -1,6 +1,6 @@
 -------------------------------------
 -- Area: Southern San d'Oria
--- NPC: Glenne
+--  NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
 -- @zone 230
 -- @pos -122 -2 15
@@ -50,7 +50,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and
         trade:hasItemQty(532,1) and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
 
     elseif (player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL) == QUEST_ACCEPTED and
         trade:hasItemQty(601,1) and count == 1) then
@@ -91,8 +91,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -100,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     npc:wait(5000);
     
@@ -109,25 +109,25 @@ function onEventFinish(player,csid,option,npc)
         if (player:getFreeSlotsCount() > 0) then
             player:addQuest(SANDORIA,A_SENTRY_S_PERIL);
             player:addItem(600);
-            player:messageSpecial(ITEM_OBTAINED,600);
+            player:messageSpecial(text.ITEM_OBTAINED,600);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
         end     
     elseif (csid == 0x0284) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(600);
-            player:messageSpecial(ITEM_OBTAINED,600);
+            player:messageSpecial(text.ITEM_OBTAINED,600);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
         end
     elseif (csid == 0x0201) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
         else
             player:tradeComplete();
             player:addTitle(RONFAURIAN_RESCUER);
             player:addItem(12832);
-            player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
+            player:messageSpecial(text.ITEM_OBTAINED,12832); -- Bronze Subligar
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
         end

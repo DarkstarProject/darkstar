@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Silver Sea route to Al Zahbi
---  MOB: Imp
+-- MOB: Imp
 -----------------------------------
 
 require("scripts/globals/status");

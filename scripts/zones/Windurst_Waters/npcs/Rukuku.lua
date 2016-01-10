@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Rukuku
---  Involved in Quest: Making the Grade
---    Working 100% 
---  @zone = 238
---  @pos = 130 -6 160
+-- Area: Windurst Waters
+--  NPC: Rukuku
+-- Involved in Quest: Making the Grade
+-- Working 100% 
+-- @zone = 238
+-- @pos = 130 -6 160
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,9 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

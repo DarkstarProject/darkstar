@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Upital-Lupital
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Upital-Lupital
+-- Type: Standard NPC
 -- @zone: 94
---  @pos -57.809 -13.339 122.753
+-- @pos -57.809 -13.339 122.753
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

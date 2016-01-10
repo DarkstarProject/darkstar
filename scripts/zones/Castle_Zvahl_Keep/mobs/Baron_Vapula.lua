@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Baron_Vapula
+-- MOB: Baron_Vapula
 -----------------------------------
 
 require("scripts/globals/titles");

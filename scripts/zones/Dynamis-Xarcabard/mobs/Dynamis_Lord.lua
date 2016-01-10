@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  NM:  Dynamis_Lord
+-- NM:  Dynamis_Lord
 --
 -- In OLD Dynamis, he is spawned by killing 15 Kindred NMs..
 -- ..NOT by killing Ying and Yang.

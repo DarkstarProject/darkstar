@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: River Sahagin
+-- MOB: River Sahagin
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

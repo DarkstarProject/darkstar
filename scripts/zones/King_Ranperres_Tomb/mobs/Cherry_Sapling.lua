@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
--- NPC:  Cherry Sapling
+--  NPC: Cherry Sapling
 -----------------------------------
 
 require("scripts/globals/titles");

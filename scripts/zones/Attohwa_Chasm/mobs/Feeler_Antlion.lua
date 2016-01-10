@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Feeler Antlion
+-- MOB: Feeler Antlion
 -----------------------------------
 
 require("scripts/globals/titles");

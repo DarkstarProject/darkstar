@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Kupipi
+--  NPC: Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
 -- @pos 2 0.1 30 242
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
     if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
@@ -124,8 +124,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -133,46 +133,46 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00ee) then
         if (player:getNation() == BASTOK) then
             player:setVar("MissionStatus",4);
             player:addKeyItem(SWORD_OFFERING);
-            player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SWORD_OFFERING);
         else
             player:setVar("MissionStatus",5);
             player:addKeyItem(SHIELD_OFFERING);
-            player:messageSpecial(KEYITEM_OBTAINED,SHIELD_OFFERING);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SHIELD_OFFERING);
         end
     elseif (csid == 0x00f4 or csid == 0x00f6) then
         player:setVar("MissionStatus",10);
     elseif (csid == 0x00f2) then
         player:addKeyItem(DARK_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,DARK_KEY);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DARK_KEY);
         player:setVar("MissionStatus",8);
     elseif (csid == 0x005F) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
     elseif (csid == 0x0067) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(STARWAY_STAIRWAY_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
     elseif (csid == 0x0065) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 0x0123) then -- All condition met, grant Portal Charm
         player:tradeComplete();
         player:addKeyItem(PORTAL_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PORTAL_CHARM);
     elseif (csid == 0x0124) then -- Traded rolanberry, but not all conditions met
         player:tradeComplete();
         player:setVar("OwesPortalCharm",1);
     elseif (csid == 0x0125) then -- Traded rolanberry before, and all conditions are now met
         player:setVar("OwesPortalCharm",0);
         player:addKeyItem(PORTAL_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PORTAL_CHARM);
     elseif (csid == 0x0146) then
         player:setVar("MissionStatus",4);
     end

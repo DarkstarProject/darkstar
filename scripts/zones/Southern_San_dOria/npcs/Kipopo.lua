@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x028B and option == 1) then
-        player:messageSpecial(LEATHER_SUPPORT,0,5,1);
+        player:messageSpecial(text.LEATHER_SUPPORT,0,5,1);
         player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,1,0,120);
     end
 end;

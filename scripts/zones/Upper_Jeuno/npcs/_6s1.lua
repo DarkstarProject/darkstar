@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Marble Bridge Eatery (Door)
+--  NPC: Marble Bridge Eatery (Door)
 -- @pos -96.6 -0.2 92.3 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 
 function onEventFinish(player,csid,option)
 local currentday = tonumber(os.date("%j")); 
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 local ringtakeNbr=player:getVar("COP-RingTakeNbr");
     if (csid ==  0x271B) then 
        player:setVar("PromathiaStatus",2);
@@ -84,25 +84,22 @@ local ringtakeNbr=player:getVar("COP-RingTakeNbr");
        player:setVar("PromathiaStatus",5);
        
     elseif ((csid == 0x0054 or csid == 0x00CC) and  option > 4 and player:getFreeSlotsCount() == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,(option-5)+RajasRing);
+        player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,(option-5)+RajasRing);
         
     elseif ((csid == 0x0054 or csid == 0x00CC)and option == 5) then--5 rajas
           player:addItem(RajasRing);
-        player:messageSpecial(ITEM_OBTAINED,RajasRing);
+        player:messageSpecial(text.ITEM_OBTAINED,RajasRing);
         player:setVar("COP-RingTakeNbr",ringtakeNbr+1);
         player:setVar("COP-lastRingday",currentday);
     elseif ((csid == 0x0054 or csid == 0x00CC)and option == 6) then--6 Sattva
         player:addItem(SattvaRing);
-        player:messageSpecial(ITEM_OBTAINED,SattvaRing);
+        player:messageSpecial(text.ITEM_OBTAINED,SattvaRing);
         player:setVar("COP-RingTakeNbr",ringtakeNbr+1);    
         player:setVar("COP-lastRingday",currentday);
     elseif ((csid == 0x0054 or csid == 0x00CC) and option == 7) then--7 Tamas
          player:addItem(TamasRing);
-        player:messageSpecial(ITEM_OBTAINED,TamasRing);
+        player:messageSpecial(text.ITEM_OBTAINED,TamasRing);
         player:setVar("COP-RingTakeNbr",ringtakeNbr+1);
         player:setVar("COP-lastRingday",currentday);
     end
 end;
-
-
-

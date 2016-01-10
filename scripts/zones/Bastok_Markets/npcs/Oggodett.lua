@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Oggodett
+--  NPC: Oggodett
 -- Only sells when Bastok controlls Aragoneu Region
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
@@ -26,9 +26,9 @@ function onTrigger(player,npc)
 
     RegionOwner = GetRegionOwner(ARAGONEU);
     if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,OGGODETT_CLOSED_DIALOG);
+        player:showText(npc, text.OGGODETT_CLOSED_DIALOG);
     else
-        player:showText(npc,OGGODETT_OPEN_DIALOG);
+        player:showText(npc, text.OGGODETT_OPEN_DIALOG);
 
         stock = {
             0x0277,    36,   --Horo Flour
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

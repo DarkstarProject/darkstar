@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Labyrinth of Onzozo
---   NM: Mysticmaker Profblix
+-- NM: Mysticmaker Profblix
 -----------------------------------
 
 -----------------------------------

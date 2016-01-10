@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Chatarre
---  Type: Standard NPC
---  @pos -266.850 -72.000 421.370 100
+-- Area: West Ronfaure
+--  NPC: Chatarre
+-- Type: Standard NPC
+-- @pos -266.850 -72.000 421.370 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

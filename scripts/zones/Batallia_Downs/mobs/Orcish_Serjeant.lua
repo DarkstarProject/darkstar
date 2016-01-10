@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Serjeant
+-- MOB: Orcish Serjeant
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Sorrowful Sage
---  Type: Assault Mission Giver
---  @pos 134.096 0.161 -30.401 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Sorrowful Sage
+-- Type: Assault Mission Giver
+-- @pos 134.096 0.161 -30.401 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ISLE_ASSAULT_ORDERS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,NYZUL_ISLE_ASSAULT_ORDERS);
         end
     end
 end;

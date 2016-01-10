@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC:  Palcomondau
+--  NPC: Palcomondau
 -- Type: Patrol
 -- @pos -349.796 -45.345 344.733 100
 -----------------------------------
@@ -322,7 +322,7 @@ function onPath(npc)
 
     if (npc:atPoint(pathfind.get(path, 45))) then
         local Gachemage = GetNPCByID(npc:getID() + 3);
-        Gachemage:showText(npc, PALCOMONDAU_REPORT);
+        Gachemage:showText(npc, text.PALCOMONDAU_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
@@ -343,7 +343,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, PALCOMONDAU_DIALOG);
+    player:showText(npc, text.PALCOMONDAU_DIALOG);
     --npc:wait(1500);
 end;
 

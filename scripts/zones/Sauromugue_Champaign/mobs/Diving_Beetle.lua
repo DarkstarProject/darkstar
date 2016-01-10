@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Diving Beetle
+-- MOB: Diving Beetle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

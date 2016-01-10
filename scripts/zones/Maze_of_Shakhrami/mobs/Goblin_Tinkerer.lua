@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Tinkerer
+-- MOB: Goblin Tinkerer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

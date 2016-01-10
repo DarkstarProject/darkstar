@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Ominous Weapon
+-- MOB: Ominous Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

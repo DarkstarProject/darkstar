@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Pso'xja
--- NPC:   ??? (qm1)
+--  NPC:  ??? (qm1)
 -- Notes: Used to spawn Golden-Tongued Culberry
 -- @pos -270.063 31.395 256.812 9
 -----------------------------------
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(BROKEN_KNIFE);
+    player:messageSpecial(text.BROKEN_KNIFE);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

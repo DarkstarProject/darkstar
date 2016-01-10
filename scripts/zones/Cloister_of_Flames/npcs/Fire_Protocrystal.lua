@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Flames
--- NPC:  Fire Protocrystal
+--  NPC: Fire Protocrystal
 -- Involved in Quests: Trial by Fire, Trial Size Trial by Fire
 -- @pos -721 0 -598 207
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);            
+        player:messageSpecial(text.PROTOCRYSTAL);            
     end
     
 end;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("onUpdate CSID: %u",csid);
-    --printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -58,13 +58,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("onFinish CSID: %u",csid);
-    --printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (csid==0x0002) then
         player:delKeyItem(DOMINAS_SCARLET_SEAL);
         player:addKeyItem(SCARLET_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,SCARLET_COUNTERSEAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SCARLET_COUNTERSEAL);
         player:setVar("ASA4_Scarlet","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

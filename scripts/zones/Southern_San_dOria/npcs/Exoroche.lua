@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Exoroche
+--  NPC: Exoroche
 -- Involved in Quests: Father and Son, A Boy's Dream
 -- @zone 230
 -- @pos 72 -1 60
@@ -25,7 +25,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -36,10 +36,10 @@ end;
 
 function onTrigger(player,npc)
   
---    player:startEvent(0x004f)  -- how the paper works -- under oath
---    player:startEvent(0x0033)  -- it says what i dont beleive you -- under oath
---    player:startEvent(0x0013)  -- thanks for your help i have to tell trion -- under oath
---     player:startEvent(0x004d)    -- a boys dream
+-- player:startEvent(0x004f)  -- how the paper works -- under oath
+-- player:startEvent(0x0033)  -- it says what i dont beleive you -- under oath
+-- player:startEvent(0x0013)  -- thanks for your help i have to tell trion -- under oath
+-- player:startEvent(0x004d)    -- a boys dream
 -- "Father and Son" Event Dialogs
     if (player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(0x021e);
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x021e) then
         player:setVar("QuestfatherAndSonVar",1);
     elseif (csid == 0x0032) then
@@ -88,5 +88,5 @@ function onEventFinish(player,csid,option)
     end
 end;
 ------- used in expansions
---    player:startEvent(0x03b2)  -- you want to hear of my father go talk to albieche
---    player:startEvent(0x03b3) -- trainees spectacles
+-- player:startEvent(0x03b2)  -- you want to hear of my father go talk to albieche
+-- player:startEvent(0x03b3) -- trainees spectacles

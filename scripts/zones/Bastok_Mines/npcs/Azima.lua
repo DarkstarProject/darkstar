@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x007A and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(ALCHEMY_SUPPORT,0,7,0);
+        player:messageSpecial(text.ALCHEMY_SUPPORT,0,7,0);
         player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,480);
     end
 end;

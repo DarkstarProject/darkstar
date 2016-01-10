@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Granite Door 
+--  NPC: Granite Door 
 -- Involved in Missions: San dOria Mission 8-2
 -- @pos -50 -17 -154
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0041) then
         player:setVar("Mission8-2Kills",0);

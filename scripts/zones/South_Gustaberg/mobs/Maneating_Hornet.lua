@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Maneating Hornet
+-- MOB: Maneating Hornet
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

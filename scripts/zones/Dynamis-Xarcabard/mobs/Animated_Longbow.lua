@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Longbow
+-- MOB: Animated Longbow
 -----------------------------------
 
 require("scripts/globals/status");

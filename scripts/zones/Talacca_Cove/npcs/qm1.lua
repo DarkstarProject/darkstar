@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Talacca_Cove
--- NPC:  ??? (corsair job flag quest)
+--  NPC: ??? (corsair job flag quest)
 -- 
 -----------------------------------
 package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0002) then
         player:setVar("LuckOfTheDraw",4);    
         player:addKeyItem(FORGOTTEN_HEXAGUN);
-        player:messageSpecial(KEYITEM_OBTAINED,FORGOTTEN_HEXAGUN);
+        player:messageSpecial(text.KEYITEM_OBTAINED,FORGOTTEN_HEXAGUN);
     end
 
 end;

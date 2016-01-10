@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Sola Jaab
+--  NPC: Sola Jaab
 -- Involved in Quest: Riding on the Clouds
 -- @zone 241
 -- @pos 109 -5 -25
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
 
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

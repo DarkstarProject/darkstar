@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batok Markets
--- NPC: Zaira
+--  NPC: Zaira
 -- Standard Merchant NPC
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
@@ -22,9 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ZAIRA_SHOP_DIALOG);
+    player:showText(npc, text.ZAIRA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x12FE,   111,1,     --Scroll of Blind
 
         0x12E6,   360,2,     --Scroll of Bio
@@ -53,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,6 +64,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

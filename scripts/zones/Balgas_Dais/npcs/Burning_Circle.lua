@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Balga's Dais
--- NPC:  Burning Circle
+--  NPC: Burning Circle
 -- Balga's Dais Burning Circle
 -- @pos 299 -123 345 146
 -------------------------------------
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -73,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (EventFinishBCNM(player,csid,option)) then
         return;

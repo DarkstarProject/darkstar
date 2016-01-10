@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Jatan-Paratan
---    Starts and Finished Quest: Wondering Minstrel
---    Working 100%
---  @zone = 238
---  @pos = -59 -4 22
+-- Area: Windurst Waters
+--  NPC: Jatan-Paratan
+-- Starts and Finished Quest: Wondering Minstrel
+-- Working 100%
+-- @zone = 238
+-- @pos = -59 -4 22
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,18 +77,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x027a) then    -- WONDERING_MINSTREL: Quest Start
         player:addQuest(WINDURST,WONDERING_MINSTREL);
     elseif (csid == 0x027e) then  -- WONDERING_MINSTREL: Quest Finish
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17349);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17349);
         else
             player:tradeComplete(trade);
             player:completeQuest(WINDURST,WONDERING_MINSTREL)
             player:addItem(17349);
-            player:messageSpecial(ITEM_OBTAINED,17349);
+            player:messageSpecial(text.ITEM_OBTAINED,17349);
             player:addFame(WINDURST,WIN_FAME*75);
             player:addTitle(DOWN_PIPER_PIPEUPPERER);
             player:needToZone(true);

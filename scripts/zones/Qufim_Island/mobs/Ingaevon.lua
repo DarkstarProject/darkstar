@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Ingaevon
+-- MOB: Ingaevon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

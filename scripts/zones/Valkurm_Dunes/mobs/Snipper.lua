@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Snipper
+-- MOB: Snipper
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

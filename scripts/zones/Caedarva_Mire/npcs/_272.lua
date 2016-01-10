@@ -34,10 +34,10 @@ function onTrigger(player,npc)
         if (assaultid ~= 0) then
             player:startEvent(0x008C, assaultid, -4, 0, recommendedLevel, 0, armband);
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(text.NOTHING_HAPPENS);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

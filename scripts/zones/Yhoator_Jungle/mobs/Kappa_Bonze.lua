@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Kappa Bonze
+-- MOB: Kappa Bonze
 -- Involved in Quest: True will
 -----------------------------------
 

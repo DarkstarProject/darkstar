@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Raging Tiger
+--  NPC: Raging Tiger
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,9 +41,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

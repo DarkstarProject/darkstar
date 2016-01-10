@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Death Wasp
+-- MOB: Death Wasp
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

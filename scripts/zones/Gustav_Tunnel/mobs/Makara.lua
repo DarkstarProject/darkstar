@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Makara
+-- MOB: Makara
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

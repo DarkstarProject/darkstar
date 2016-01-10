@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Castle Oztroja
--- NPC:   _m74 (Torch Stand)
+--  NPC:  _m74 (Torch Stand)
 -- Notes: Opens door _477 when _m72 to _m75 are lit
 -- @pos -59.525 -72.320 -62.379 151
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     if (DoorA == 9 and TorchStand3A == 9) then
         player:startEvent(0x000a);    
     else
-        player:messageSpecial(TORCH_LIT);
+        player:messageSpecial(text.TORCH_LIT);
     end
 end;
 
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (option == 1) then
         GetNPCByID(Torch3):openDoor(55);

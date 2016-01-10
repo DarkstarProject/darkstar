@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Ugahar
---  Type: Standard NPC
+-- Area: Al Zahbi
+--  NPC: Ugahar
+-- Type: Standard NPC
 -- @zone: 48
---  @pos 52.262 -1 123.185
+-- @pos 52.262 -1 123.185
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

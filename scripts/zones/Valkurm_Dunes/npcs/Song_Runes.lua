@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  Song Runes
+--  NPC: Song Runes
 -- Finishes Quest: Path of the Bard
 -- @pos -721 -7 102 103
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,15 +46,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0002) then
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*3000);
         player:addTitle(WANDERING_MINSTREL);
         player:unlockJob(10); -- Bard
-        player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
+        player:messageSpecial(text.UNLOCK_BARD);  --You can now become a bard!
         player:setVar("PathOfTheBard_Event",0);
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,PATH_OF_THE_BARD);

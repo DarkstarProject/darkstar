@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Tunnel Worm
+-- MOB: Tunnel Worm
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

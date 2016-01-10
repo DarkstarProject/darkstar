@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Carnivorous Crawler
+-- MOB: Carnivorous Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

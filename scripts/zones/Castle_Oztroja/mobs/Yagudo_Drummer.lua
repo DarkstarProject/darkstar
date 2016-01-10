@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Drummer
+-- MOB: Yagudo_Drummer
 -----------------------------------
 
 require("scripts/zones/Castle_Oztroja/MobIDs");

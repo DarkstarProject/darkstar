@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Wind Bats
+-- MOB: Wind Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

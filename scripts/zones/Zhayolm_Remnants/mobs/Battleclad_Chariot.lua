@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Battleclad Chariot
+-- MOB: Battleclad Chariot
 -----------------------------------
 
 require("scripts/globals/titles");

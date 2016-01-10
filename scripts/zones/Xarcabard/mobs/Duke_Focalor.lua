@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Duke Focalor
+-- NM:  Duke Focalor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

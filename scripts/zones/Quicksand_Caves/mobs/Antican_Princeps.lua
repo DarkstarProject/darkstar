@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Princeps
+-- MOB: Antican Princeps
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

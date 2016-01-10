@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Leleroon
+--  NPC: Leleroon
 -- Standard Info NPC -- Corsair SideQuests
 -- @pos -14.687 0.000 25.114 53
 -----------------------------------
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 
     if (option == 0) then
@@ -68,27 +68,24 @@ function onEventFinish(player,csid,option)
     elseif (option == 1) then
         if (player:hasKeyItem(LELEROONS_LETTER_RED) or player:hasKeyItem(LELEROONS_LETTER_BLUE) or player:hasKeyItem(LELEROONS_LETTER_GREEN) == false) then  -- 
             player:addKeyItem(LELEROONS_LETTER_GREEN);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_GREEN)
+            player:messageSpecial(text.KEYITEM_OBTAINED,LELEROONS_LETTER_GREEN)
             player:setVar("LeleroonsLetterGreen",1);
             player:setVar("AgainstAllOddsSideQuests",2);
         end
     elseif (option == 2) then 
         if (player:hasKeyItem(LELEROONS_LETTER_RED) or player:hasKeyItem(LELEROONS_LETTER_BLUE) or player:hasKeyItem(LELEROONS_LETTER_GREEN) == false) then -- 
             player:addKeyItem(LELEROONS_LETTER_BLUE);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_BLUE)
+            player:messageSpecial(text.KEYITEM_OBTAINED,LELEROONS_LETTER_BLUE)
             player:setVar("LeleroonsLetterBlue",1);
             player:setVar("AgainstAllOddsSideQuests",2);
         end    
     elseif (option == 3) then 
         if (player:hasKeyItem(LELEROONS_LETTER_RED) or player:hasKeyItem(LELEROONS_LETTER_BLUE) or player:hasKeyItem(LELEROONS_LETTER_GREEN) == false) then -- 
             player:addKeyItem(LELEROONS_LETTER_RED);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_RED)
+            player:messageSpecial(text.KEYITEM_OBTAINED,LELEROONS_LETTER_RED)
             player:setVar("LeleroonsLetterRed",1);
             player:setVar("AgainstAllOddsSideQuests",2);
         end
     end        
 
 end;
-
-
-

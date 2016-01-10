@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Wingrats
+-- MOB: Wingrats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Ripapa 
+--  NPC: Ripapa 
 -- Starts and Finishes Quest: Trial by Lightning
 -- @pos 29 -15 55 249
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -87,10 +87,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
         player:setVar("TrialByLightning_date", 0);
         player:addKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 0x2728) then
         player:addKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 0x2723) then 
         item = 0;
         if (option == 1) then item = 17531;         -- Ramuh's Staff
@@ -100,17 +100,17 @@ function onEventFinish(player,csid,option)
         end
         
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
         else 
             if (option == 5) then 
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then 
                 player:addSpell(303); -- Ramuh Spell
-                player:messageSpecial(RAMUH_UNLOCKED,0,0,5); 
+                player:messageSpecial(text.RAMUH_UNLOCKED,0,0,5); 
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
@@ -121,10 +121,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x2726 or csid == 0x2727) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1172);
-            player:messageSpecial(ITEM_OBTAINED,1172);
+            player:messageSpecial(text.ITEM_OBTAINED,1172);
             player:setVar("CarbuncleDebacleProgress",3);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1172);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1172);
         end;
     end
     

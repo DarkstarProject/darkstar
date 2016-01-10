@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  NM:  Carmine-tailed Janberry
+-- NM:  Carmine-tailed Janberry
 -----------------------------------
 
 -----------------------------------

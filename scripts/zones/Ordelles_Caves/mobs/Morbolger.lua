@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelles Caves (193)
---  MOB: Morbolger
+-- MOB: Morbolger
 -----------------------------------
 
 require("scripts/globals/titles");

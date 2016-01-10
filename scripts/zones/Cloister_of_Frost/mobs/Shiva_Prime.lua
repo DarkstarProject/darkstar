@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Frost
---  MOB: Shiva Prime
+-- MOB: Shiva Prime
 -- Involved in Quest: Trial by Ice
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------

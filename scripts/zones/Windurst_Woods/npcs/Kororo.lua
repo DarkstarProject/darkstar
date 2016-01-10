@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Kororo
---  Type: Standard NPC
---  @zone: 241
---  @pos -11.883 -3.75 5.508
---  Starts quest: A Greeting Cardian
---  Involved in quests: Lost Chick
---  Auto-Script: Requires Verification (Verfied by Brawndo)
+-- Type: Standard NPC
+-- @zone: 241
+-- @pos -11.883 -3.75 5.508
+-- Starts quest: A Greeting Cardian
+-- Involved in quests: Lost Chick
+-- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
 
 package.loaded["scripts/globals/quests"] = nil;
@@ -83,10 +83,10 @@ function onEventFinish(player,csid,option)
         player:setVar("AGreetingCardian_Event",4);
     elseif (csid == 0x012f) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
         else
             player:addItem(13330);
-            player:messageSpecial(text.ITEM_OBTAINED, 13330); -- Tourmaline Earring
+            player:messageSpecial(text.text.ITEM_OBTAINED, 13330); -- Tourmaline Earring
             player:addFame(WINDURST,WIN_FAME*30);
             player:completeQuest(WINDURST,A_GREETING_CARDIAN);
             player:needToZone(true); -- zone before starting Legendary Plan B

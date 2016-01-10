@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Shadow
+-- MOB: Shadow
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

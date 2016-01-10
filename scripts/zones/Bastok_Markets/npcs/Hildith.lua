@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Hildith
---  Type: Room Renters
+-- Area: Bastok Markets
+--  NPC: Hildith
+-- Type: Room Renters
 -- @zone: 235
---  @pos -176.664 -9 25.158
+-- @pos -176.664 -9 25.158
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Pygmaioi
+-- MOB: Pygmaioi
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

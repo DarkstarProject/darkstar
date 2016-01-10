@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Machitata
---    Involved in Quest: Hat in Hand
---    Working 100%
---  @zone = 238
---  @pos = 163 0 -22
+-- Area: Windurst Waters
+--  NPC: Machitata
+-- Involved in Quest: Hat in Hand
+-- Working 100%
+-- @zone = 238
+-- @pos = 163 0 -22
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,9 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

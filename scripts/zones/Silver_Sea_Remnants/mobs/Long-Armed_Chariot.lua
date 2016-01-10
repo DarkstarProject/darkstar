@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Long-Armed_Chariot
+-- MOB: Long-Armed_Chariot
 -----------------------------------
 
 require("scripts/globals/titles");

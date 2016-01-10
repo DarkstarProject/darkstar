@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Will-o-the-Wisp
+-- MOB: Will-o-the-Wisp
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

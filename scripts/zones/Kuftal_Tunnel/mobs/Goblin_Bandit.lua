@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Bandit
+-- MOB: Goblin Bandit
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

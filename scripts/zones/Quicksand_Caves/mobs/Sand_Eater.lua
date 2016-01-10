@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Eater
+-- MOB: Sand Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Griselda
+--  NPC: Griselda
 -- Standard Merchant NPC
 -- @pos -25.749 -0.044 52.360 234
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(0x01fb);
     else
 
-        player:showText(npc,GRISELDA_SHOP_DIALOG);
+        player:showText(npc, text.GRISELDA_SHOP_DIALOG);
     
         stock = {
             0x115A,   360,1,     --Bottle of pineapple juice
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01fb) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",15,true);

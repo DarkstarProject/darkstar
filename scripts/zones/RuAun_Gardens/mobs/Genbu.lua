@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NM:  Genbu
+-- NM:  Genbu
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------

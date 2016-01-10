@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC: Soni-Muni
---    Starts & Finishes Quest: The Amazin' Scorpio
---  @pos -17.073 1.749 -59.327 241
+-- Area: Windurst Woods
+--  NPC: Soni-Muni
+-- Starts & Finishes Quest: The Amazin' Scorpio
+-- @pos -17.073 1.749 -59.327 241
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01e1) then
         player:addQuest(WINDURST,THE_AMAZIN_SCORPIO);
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*80);
         player:addTitle(GREAT_GRAPPLER_SCORPIO);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(text.text.GIL_OBTAINED,GIL_RATE*1500);
         player:tradeComplete();
     elseif (csid == 0x02df) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",0,true);

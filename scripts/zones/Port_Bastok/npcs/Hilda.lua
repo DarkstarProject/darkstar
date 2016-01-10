@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Hilda
+--  NPC: Hilda
 -- Involved in Quest: Cid's Secret, Riding on the Clouds
 -- Starts & Finishes: The Usual
 -- @pos -163 -8 13 236
@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
 
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,13 +90,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0085) then
         player:tradeComplete();
         player:addKeyItem(UNFINISHED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,UNFINISHED_LETTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,UNFINISHED_LETTER);
     elseif (csid == 0x0086 and option == 0) then
         if (player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,THE_USUAL);
@@ -104,16 +104,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0087) then
         player:tradeComplete();
         player:addKeyItem(STEAMING_SHEEP_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,STEAMING_SHEEP_INVITATION);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STEAMING_SHEEP_INVITATION);
     elseif (csid == 0x0088) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17170);
         else
             player:addTitle(STEAMING_SHEEP_REGULAR);
             player:delKeyItem(STEAMING_SHEEP_INVITATION);
             player:setVar("TheUsual_Event",0);
             player:addItem(17170);
-            player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow
+            player:messageSpecial(text.ITEM_OBTAINED,17170); -- Speed Bow
             player:addFame(BASTOK,BAS_FAME*30);
             player:completeQuest(BASTOK,THE_USUAL);
         end

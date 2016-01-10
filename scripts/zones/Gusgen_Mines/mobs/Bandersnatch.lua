@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Bandersnatch
+-- MOB: Bandersnatch
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Delta Sahagin
+-- MOB: Delta Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

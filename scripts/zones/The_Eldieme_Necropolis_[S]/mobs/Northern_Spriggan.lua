@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: The Eldieme Necropolis (S) (175)
---   Mob: Northern_Spriggan
+-- Area: The Eldieme Necropolis (S) (175)
+-- Mob: Northern_Spriggan
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Valah Molkot
+--  NPC: Valah Molkot
 -- Starts and Finishes Quest: A Lady's Heart
 -- @zone 236
 -- @pos 59 8 -221
@@ -85,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 
@@ -95,15 +95,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00a0 and option == 2002) then
         player:tradeComplete();
         player:completeQuest(BASTOK,A_LADY_S_HEART);
         player:addFame(BASTOK,BAS_FAME*120);
         player:moghouseFlag(2);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(text.MOGHOUSE_EXIT);
     elseif (csid == 0x00a0 and option == 1) then
         player:tradeComplete();
         player:addQuest(BASTOK,A_LADY_S_HEART);

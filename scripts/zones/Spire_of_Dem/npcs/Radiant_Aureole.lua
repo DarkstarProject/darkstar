@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Spire of Dem
--- NPC:  Radiant Aureole
+--  NPC: Radiant Aureole
 -- @pos 0.044 -119.249 -360.028 19
 -----------------------------------
 
@@ -24,8 +24,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------

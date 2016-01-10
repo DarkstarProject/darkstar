@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Uleguerand_Range
---   NPC: Geush Urvan
+-- Area: Uleguerand_Range
+--  NPC: Geush Urvan
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Mainchelite
+--  NPC: Mainchelite
 -- @zone 80
 -- @pos -16 1 -30
 -- CS IDs:
@@ -109,10 +109,10 @@ function onEventFinish(player,csid,option)
                 player:delKeyItem(CHARRED_PROPELLER);
                 player:delKeyItem(OXIDIZED_PLATE);
                 player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:messageSpecial(text.KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(1);

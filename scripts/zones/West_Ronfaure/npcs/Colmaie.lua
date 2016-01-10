@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Colmaie
---  Type: Standard NPC
---  @pos -133.627 -61.999 272.373 100
+-- Area: West Ronfaure
+--  NPC: Colmaie
+-- Type: Standard NPC
+-- @pos -133.627 -61.999 272.373 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -24,9 +24,9 @@ function onTrigger(player,npc)
     local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
 
     if (thePickpocket > 0) then
-        player:showText(npc, 7263);
+        player:showText(npc, text.7263);
     else
-        player:showText(npc, COLMAIE_DIALOG);
+        player:showText(npc, text.COLMAIE_DIALOG);
     end
 end;
 

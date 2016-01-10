@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Tavnazia
--- NPC:  Nightmare_Hornet
+--  NPC: Nightmare_Hornet
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;

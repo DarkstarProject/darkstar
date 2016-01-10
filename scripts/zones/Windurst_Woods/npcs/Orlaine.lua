@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Orlaine
+--  NPC: Orlaine
 -- Chocobo Vendor
 -----------------------------------
 

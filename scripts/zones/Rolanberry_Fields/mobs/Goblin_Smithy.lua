@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ function onMobDeath(mob,killer,ally)
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             ally:addKeyItem(JUG_OF_GREASY_GOBLIN_JUICE);
-            ally:messageSpecial(KEYITEM_OBTAINED,JUG_OF_GREASY_GOBLIN_JUICE);
+            ally:messageSpecial(text.KEYITEM_OBTAINED,JUG_OF_GREASY_GOBLIN_JUICE);
         end
     end
 

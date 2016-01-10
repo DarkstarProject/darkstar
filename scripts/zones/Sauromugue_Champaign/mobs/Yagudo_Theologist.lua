@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Theologist
+-- MOB: Yagudo Theologist
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

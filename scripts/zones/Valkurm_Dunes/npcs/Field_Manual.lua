@@ -1,6 +1,6 @@
 -----------------------------------    
 -- Area: Valkurm Dunes    
--- NPC:  Field Manual    
+--  NPC: Field Manual    
 -----------------------------------    
     
 require("scripts/globals/settings");    

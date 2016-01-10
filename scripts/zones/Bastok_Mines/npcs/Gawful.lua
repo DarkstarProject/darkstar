@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Mines
---   NPC: Gawful
---  Type: Item Deliverer
+-- Area: Bastok Mines
+--  NPC: Gawful
+-- Type: Item Deliverer
 -- @zone: 234
---  @pos -22.416 -3.999 -56.076
+-- @pos -22.416 -3.999 -56.076
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

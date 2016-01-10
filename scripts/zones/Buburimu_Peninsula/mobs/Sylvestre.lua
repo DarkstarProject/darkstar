@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Sylvestre
+-- MOB: Sylvestre
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

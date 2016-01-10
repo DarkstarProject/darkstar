@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  ??? - Kurrea spawn
+--  NPC: ??? - Kurrea spawn
 -- @pos -249.320 -16.189 41.497 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_THE_ORDINARY);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T    
--- NPC: Enhanced_Mandragora
+--  NPC: Enhanced_Mandragora
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

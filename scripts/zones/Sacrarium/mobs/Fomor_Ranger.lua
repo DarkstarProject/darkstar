@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Ranger
+-- MOB: Fomor Ranger
 -----------------------------------
 
 

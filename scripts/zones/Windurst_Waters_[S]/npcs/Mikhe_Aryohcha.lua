@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Mikhe Aryohcha
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Mikhe Aryohcha
+-- Type: Standard NPC
 -- @zone: 94
---  @pos -56.645 -4.5 13.014
+-- @pos -56.645 -4.5 13.014
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, MIKHE_ARYOHCHA_DIALOG);
+    player:showText(npc, text.MIKHE_ARYOHCHA_DIALOG);
 end;
 
 -----------------------------------

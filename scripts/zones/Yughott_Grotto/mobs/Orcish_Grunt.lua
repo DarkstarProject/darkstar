@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yughott Grotto (142)
---  MOB: Orcish_Grunt
+-- MOB: Orcish_Grunt
 -----------------------------------
 
 require("scripts/zones/Yughott_Grotto/MobIDs");

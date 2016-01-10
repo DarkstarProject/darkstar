@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Ba
+-- MOB: Ba
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

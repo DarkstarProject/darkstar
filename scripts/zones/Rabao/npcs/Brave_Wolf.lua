@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Brave Wolf
+--  NPC: Brave Wolf
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,BRAVEWOLF_SHOP_DIALOG);
+    player:showText(npc, text.BRAVEWOLF_SHOP_DIALOG);
 
-stock = {0x300D,31201,    --Buckler
+    local stock =
+    {
+    0x300D,31201,    --Buckler
     0x300E,60260,    --Darksteel Buckler
     0x369B,24373,    --Silver Bangles
     0x310A,66066,    --Banded Mail
@@ -39,7 +41,7 @@ stock = {0x300D,31201,    --Buckler
     0x3224,23063,    --Iron Subligar
     0x32A2,14327}    --Leggins
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -47,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,9 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

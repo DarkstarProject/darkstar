@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Nasheefa
+--  NPC: Nasheefa
 -- Type: Alzadaal Undersea Ruins
 -- @pos -440.998 0.107 -740.015 79
 -----------------------------------

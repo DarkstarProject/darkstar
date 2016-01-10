@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Dark knight
+-- MOB: Fomor Dark knight
 -----------------------------------
 
 

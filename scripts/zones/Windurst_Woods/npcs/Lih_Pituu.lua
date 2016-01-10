@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
---  NPC:  Lih Pituu
+--  NPC: Lih Pituu
 -- Type: Bonecraft Adv. Image Support
 -- @pos -5.471 -6.25 -141.211 241
 -----------------------------------
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x2722 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(text.IMAGE_SUPPORT,0,6,0);
+        player:messageSpecial(text.text.IMAGE_SUPPORT,0,6,0);
         player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,3,0,480);
     end
 end;

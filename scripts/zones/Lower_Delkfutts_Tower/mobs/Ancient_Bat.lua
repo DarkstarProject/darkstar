@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Ancient Bat
+-- MOB: Ancient Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

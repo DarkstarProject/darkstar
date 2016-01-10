@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Magic Urn
+-- MOB: Magic Urn
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

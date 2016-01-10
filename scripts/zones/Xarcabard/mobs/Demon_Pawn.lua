@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Pawn
+-- MOB: Demon Pawn
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

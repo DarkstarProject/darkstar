@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Leafallia/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

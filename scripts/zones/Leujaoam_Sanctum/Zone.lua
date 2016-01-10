@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Leujaoam_Sanctum/IDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

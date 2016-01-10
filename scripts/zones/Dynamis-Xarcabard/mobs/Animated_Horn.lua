@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Horn
+-- MOB: Animated Horn
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ehrhard
+--  NPC: Ehrhard
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

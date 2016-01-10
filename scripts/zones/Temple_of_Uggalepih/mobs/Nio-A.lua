@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Nio A
+-- MOB: Nio A
 -----------------------------------
 
 require("scripts/globals/missions");

@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Yujuju
---  Involved In Quest: Making Headlines
---  @pos 201.523 -4.785 138.978 240
+-- Area: Port Windurst
+--  NPC: Yujuju
+-- Involved In Quest: Making Headlines
+-- @pos 201.523 -4.785 138.978 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,12 +67,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x013a) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(PORT_WINDURST_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,PORT_WINDURST_SCOOP);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+2);
     elseif (csid == 0x0250)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
@@ -80,6 +80,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",19,true);
     end    
 end;
-
-
-

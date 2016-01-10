@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
--- NPC:  Serjeant_Tombstone
+--  NPC: Serjeant_Tombstone
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;

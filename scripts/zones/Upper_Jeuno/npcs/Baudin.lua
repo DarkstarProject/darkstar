@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Baudin
+--  NPC: Baudin
 -- Starts and Finishes Quest: Crest of Davoi, Save My Sister
 -- Involved in Quests: Save the Clock Tower
 -- @zone 244
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00b1) then --1
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 32);
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("saveMySisterVar",1);
         player:addKeyItem(CREST_OF_DAVOI_KI);
-        player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
         player:addFame(JEUNO, JEUNO_FAME*30);
         player:completeQuest(JEUNO,CREST_OF_DAVOI);
         
@@ -94,13 +94,13 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterVar",3);
     elseif (csid == 0x006b) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17041);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17041);
         else 
             player:addTitle(EXORCIST_IN_TRAINING);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(17041);
-            player:messageSpecial(ITEM_OBTAINED,17041);
+            player:messageSpecial(text.ITEM_OBTAINED,17041);
             player:tradeComplete();
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:completeQuest(JEUNO,SAVE_MY_SISTER);

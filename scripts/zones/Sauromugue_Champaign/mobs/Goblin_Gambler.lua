@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Goblin Gambler
+-- MOB: Goblin Gambler
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ function onMobDeath(mob,killer,ally)
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             ally:addKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
-            ally:messageSpecial(KEYITEM_OBTAINED,CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            ally:messageSpecial(text.KEYITEM_OBTAINED,CHUNK_OF_SMOKED_GOBLIN_GRUB);
         end
     end
 

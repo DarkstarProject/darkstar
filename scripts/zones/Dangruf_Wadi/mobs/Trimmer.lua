@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Trimmer
+-- MOB: Trimmer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

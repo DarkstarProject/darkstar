@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Hawker
+-- MOB: Hawker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

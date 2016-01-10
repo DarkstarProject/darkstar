@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beadeaux (S)
---  MOB: Observant Zekka
+-- MOB: Observant Zekka
 -- ID: 17154359
 -- @pos 128 0.4 161
 -----------------------------------

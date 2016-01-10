@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Batallia Downs
+-- Area: Batallia Downs
 --  NPC: qm4 (???)
---  
+-- 
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0000);
     elseif (player:getCurrentMission(COP) == THREE_PATHS and (missionProgress == 6 or missionProgress == 7) and player:hasKeyItem(DELKFUTT_RECOGNITION_DEVICE) == false) then    
         player:addKeyItem(DELKFUTT_RECOGNITION_DEVICE);
-        player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DELKFUTT_RECOGNITION_DEVICE);
     end
 
 end;
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x0000) then
        player:setVar("COP_Tenzen_s_Path",6);
    end

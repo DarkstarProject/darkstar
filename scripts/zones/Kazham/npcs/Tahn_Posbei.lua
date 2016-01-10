@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Tahn Posbei
+--  NPC: Tahn Posbei
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,TAHNPOSBEI_SHOP_DIALOG);
+    player:showText(npc, text.TAHNPOSBEI_SHOP_DIALOG);
 
-stock = {0x3001,110,        -- Lauan Shield
+    local stock =
+    {
+    0x3001,110,        -- Lauan Shield
      0x3004,4531,        -- Mahogany Shield
      0x3007,59607,        -- Round Shield
      0x30A7,7026,        -- Beetle Mask
@@ -37,7 +39,7 @@ stock = {0x3001,110,        -- Lauan Shield
      0x3298,309,        -- Leather Highboots
      0x3324,28777}        -- Coeurl Gorget
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -45,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,9 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

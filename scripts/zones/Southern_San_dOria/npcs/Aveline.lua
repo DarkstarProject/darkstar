@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Aveline
+--  NPC: Aveline
 -- Standard Merchant NPC
 -- @zone 230 
 -- @pos -139 -6 46
@@ -25,7 +25,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -36,9 +36,11 @@ end;
 
 function onTrigger(player,npc)
 
-    player:showText(npc,AVELINE_SHOP_DIALOG);
+    player:showText(npc, text.AVELINE_SHOP_DIALOG);
 
-    stock = {0x0271,79,1,    --Apple Vinegar
+    local stock =
+    {
+    0x0271,79,1,    --Apple Vinegar
              0x026f,117,1,    --Bay Leaves
              0x111e,28,1,    --Frost Turnip
              0x1128,28,1,    --Saruta Orange
@@ -60,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,10 +71,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

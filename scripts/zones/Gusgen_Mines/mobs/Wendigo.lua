@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Wendigo
+-- MOB: Wendigo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

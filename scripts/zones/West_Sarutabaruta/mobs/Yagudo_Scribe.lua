@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Scribe
+-- MOB: Yagudo Scribe
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

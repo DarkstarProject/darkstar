@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Ornery Sheep
+-- MOB: Ornery Sheep
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

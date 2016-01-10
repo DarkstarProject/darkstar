@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Amethyst Quadav
+-- MOB: Amethyst Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Chauxnatte 
+--  NPC: Chauxnatte 
 -- @zone 80
 -- @pos 85 1 -51
 -----------------------------------

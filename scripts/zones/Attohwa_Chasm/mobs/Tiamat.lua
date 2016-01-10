@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Tiamat
+-- MOB: Tiamat
 -----------------------------------
 
 require("scripts/globals/titles");

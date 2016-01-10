@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht'Urhgan Whitegate
--- NPC: Riyadahf
+--  NPC: Riyadahf
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

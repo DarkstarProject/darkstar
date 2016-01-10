@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

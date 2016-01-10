@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
---  NM:  Jailer of Temperance
+-- NM:  Jailer of Temperance
 -----------------------------------
 
 require("scripts/globals/magic");

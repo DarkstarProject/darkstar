@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al Zahbi
--- NPC: Chayaya
+--  NPC: Chayaya
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,CHAYAYA_SHOP_DIALOG);
+    player:showText(npc, text.CHAYAYA_SHOP_DIALOG);
 
-stock = {0x439B,10,    --Dart
+    local stock =
+    {
+    0x439B,10,    --Dart
      0x439C,60,        --Hawkeye
      0x43A1,1204,    --Grenade
      0x43A8,8,        --Iron Arrow
@@ -42,7 +44,7 @@ stock = {0x439B,10,    --Dart
      0x1577,63375,    --Dancer Die
      0x1578,68250}    --Scholar Die
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -50,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,9 +61,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

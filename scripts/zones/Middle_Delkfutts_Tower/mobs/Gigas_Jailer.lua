@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Jailer
+-- MOB: Gigas Jailer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

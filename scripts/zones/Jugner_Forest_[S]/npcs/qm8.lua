@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Jugner Forest (S)
---  NPC:  ???
---  Type: Quest NPC
---  @pos -6 0 -295
+-- Area: Jugner Forest (S)
+--  NPC: ???
+-- Type: Quest NPC
+-- @pos -6 0 -295
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

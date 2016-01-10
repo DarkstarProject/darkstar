@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Wandering Sapling
+-- MOB: Wandering Sapling
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

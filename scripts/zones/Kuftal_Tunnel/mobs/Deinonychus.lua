@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Deinonychus
+-- MOB: Deinonychus
 -- Note: Place Holder for Yowie
 -----------------------------------
 

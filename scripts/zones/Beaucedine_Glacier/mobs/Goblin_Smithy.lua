@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

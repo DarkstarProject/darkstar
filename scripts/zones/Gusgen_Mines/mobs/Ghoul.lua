@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Ghoul
+-- MOB: Ghoul
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Amethyst Quadav
+-- MOB: Amethyst Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

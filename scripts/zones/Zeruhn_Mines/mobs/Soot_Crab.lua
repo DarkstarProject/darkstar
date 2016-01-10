@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: Soot Crab
+-- Area: Zeruhn Mines (172)
+-- Mob: Soot Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

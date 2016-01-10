@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Kalamainu
+-- MOB: Kalamainu
 -- BCNM30
 -----------------------------------
 

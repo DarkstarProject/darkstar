@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Sharin-Garin
+--  NPC: Sharin-Garin
 -- Type: Adventurer's Assistant
 -- @pos 122.658 -1.315 33.001 50
 -----------------------------------
@@ -62,11 +62,11 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x008C and option == 1) then
         player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
         player:delCurrency("imperial_standing", 200);
     elseif (csid == 0x008C and option == 2) then
         player:addKeyItem(RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,RUNIC_PORTAL_USE_PERMIT);
     end
     
 end;

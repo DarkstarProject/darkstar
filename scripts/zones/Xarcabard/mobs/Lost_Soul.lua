@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Lost Soul
+-- MOB: Lost Soul
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

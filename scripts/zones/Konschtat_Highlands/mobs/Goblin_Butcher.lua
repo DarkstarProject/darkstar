@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Goblin Butcher
+-- MOB: Goblin Butcher
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

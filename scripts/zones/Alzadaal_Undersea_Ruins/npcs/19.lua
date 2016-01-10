@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
--- NPC:  19 (no name)
+--  NPC: 19 (no name)
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(DEVICE_MALFUNCTIONING);
+    player:messageSpecial(text.DEVICE_MALFUNCTIONING);
 end;
 
 -----------------------------------

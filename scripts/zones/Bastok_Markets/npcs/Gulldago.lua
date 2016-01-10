@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Gulldago
---  Type: Tutorial NPC
+-- Area: Bastok Markets
+--  NPC: Gulldago
+-- Type: Tutorial NPC
 -- @zone: 235
---  @pos -364.121 -11.034 -167.456
+-- @pos -364.121 -11.034 -167.456
 -----------------------------------
 
 -----------------------------------

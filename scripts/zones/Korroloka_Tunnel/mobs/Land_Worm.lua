@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Land Worm
+-- MOB: Land Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

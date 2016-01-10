@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(DRAGON_CURSE_REMEDY);
         player:unlockJob(14);
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
+        player:messageSpecial(text.YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,THE_HOLY_CREST);

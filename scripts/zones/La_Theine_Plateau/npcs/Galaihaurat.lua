@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Galaihaurat
+--  NPC: Galaihaurat
 -- Involved in Mission: The Rescue Drill
 -- @pos -482 -7 222 102
 -----------------------------------
@@ -29,28 +29,28 @@ function onTrigger(player,npc)
         if (MissionStatus == 0) then
             player:startEvent(0x006e);
         elseif (MissionStatus == 2) then
-            player:showText(npc, RESCUE_DRILL + 16);
+            player:showText(npc, text.RESCUE_DRILL + 16);
         elseif (MissionStatus == 8) then
             if (player:getVar("theRescueDrillRandomNPC") == 1) then
                 player:startEvent(0x0072); 
             else
-                player:showText(npc, RESCUE_DRILL + 21);
+                player:showText(npc, text.RESCUE_DRILL + 21);
             end
         elseif (MissionStatus == 9) then
             if (player:getVar("theRescueDrillRandomNPC") == 1) then
-                player:showText(npc, RESCUE_DRILL + 25);
+                player:showText(npc, text.RESCUE_DRILL + 25);
             else
-                player:showText(npc, RESCUE_DRILL + 26);
+                player:showText(npc, text.RESCUE_DRILL + 26);
             end
         elseif (MissionStatus >= 10) then
-            player:showText(npc, RESCUE_DRILL + 30);
+            player:showText(npc, text.RESCUE_DRILL + 30);
         else
-            player:showText(npc, RESCUE_DRILL);
+            player:showText(npc, text.RESCUE_DRILL);
         end
     elseif (player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL)) then
-        player:showText(npc, RESCUE_DRILL + 30);
+        player:showText(npc, text.RESCUE_DRILL + 30);
     else
-        player:showText(npc, RESCUE_DRILL);
+        player:showText(npc, text.RESCUE_DRILL);
     end
     
 end;
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,17 +69,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006e) then
         player:setVar("MissionStatus",2);
     elseif (csid == 0x0072) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16535); -- Bronze Sword
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16535); -- Bronze Sword
         else
             player:addItem(16535);
-            player:messageSpecial(ITEM_OBTAINED, 16535); -- Bronze Sword
+            player:messageSpecial(text.ITEM_OBTAINED, 16535); -- Bronze Sword
             player:setVar("MissionStatus",9);
         end
     end

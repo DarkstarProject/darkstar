@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Triarius
+-- MOB: Antican Triarius
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcanic Bomb
+-- MOB: Volcanic Bomb
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

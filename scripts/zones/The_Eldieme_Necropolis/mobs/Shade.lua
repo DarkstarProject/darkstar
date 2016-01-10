@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Shade
+-- MOB: Shade
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

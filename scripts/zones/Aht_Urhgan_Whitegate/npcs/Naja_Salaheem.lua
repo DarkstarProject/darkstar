@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Naja Salaheem
---  Type: Standard NPC
---  @pos 22.700 -8.804 -45.591 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Naja Salaheem
+-- Type: Standard NPC
+-- @pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
         player:addCurrency("imperial_standing", 150);
         player:addTitle(PRIVATE_SECOND_CLASS);
         player:addKeyItem(PSC_WILDCAT_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,PSC_WILDCAT_BADGE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PSC_WILDCAT_BADGE);
     elseif (csid == 0x0BCC) then
         player:completeMission(TOAU,PRESIDENT_SALAHEEM);
         player:addMission(TOAU,KNIGHT_OF_GOLD);
@@ -98,10 +98,10 @@ function onEventFinish(player,csid,option)
             player:completeMission(TOAU,WESTERLY_WINDS)
         player:addMission(TOAU,A_MERCENARY_LIFE)
             if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
                 else
             player:addItem(2185,1)
-                    player:messageSpecial(ITEM_OBTAINED,2185)
+                    player:messageSpecial(text.ITEM_OBTAINED,2185)
                     player:addItem(2185,1)
                 end
         elseif (csid == 0x0bec) then

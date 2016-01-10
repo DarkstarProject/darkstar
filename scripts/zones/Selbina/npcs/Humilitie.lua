@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Humilitie
+--  NPC: Humilitie
 -- Reports the time remaining before boat arrival.
 -- @pos 17.979 -2.39 -58.800 248
 -----------------------------------

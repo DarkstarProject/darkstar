@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Aja-Panja
---  Type: Standard NPC
+-- Area: Windurst Woods
+--  NPC: Aja-Panja
+-- Type: Standard NPC
 -- @zone: 241
---  @pos -7.251 -6.55 -134.127
+-- @pos -7.251 -6.55 -134.127
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

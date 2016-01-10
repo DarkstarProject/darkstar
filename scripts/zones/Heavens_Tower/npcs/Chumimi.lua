@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Chumimi
+--  NPC: Chumimi
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- @pos 0.1 30 21 242
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0104) then
         -- option 3: Koru-Moru -- option 2: Shantotto -- option 1: Yoran-Oran
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theThreeMagiSupport",option);
     elseif (csid == 0x010d) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
         else
             choosetitle = player:getVar("theThreeMagiSupport");
 
@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
 
             player:tradeComplete();
             player:addItem(17423);
-            player:messageSpecial(ITEM_OBTAINED, 17423); -- Casting Wand
+            player:messageSpecial(text.ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
             player:setVar("theThreeMagiSupport",0);
             player:addFame(WINDURST,WIN_FAME*AF1_FAME);
@@ -124,12 +124,12 @@ function onEventFinish(player,csid,option)
         player:setVar("recollectionsQuest",2);
     elseif (csid == 0x0113) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
             player:setVar("recollectionsQuest",0);
             player:delKeyItem(FOE_FINDER_MK_I);
             player:addItem(14092);
-            player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(text.ITEM_OBTAINED,14092); -- wizards sabots
             player:addFame(WINDURST,WIN_FAME*AF2_FAME);
             player:completeQuest(WINDURST,RECOLLECTIONS);
         end
@@ -138,14 +138,14 @@ function onEventFinish(player,csid,option)
         player:setVar("rootProblem",1);
     elseif (csid == 0x117) then
         player:addKeyItem(SLUICE_SURVEYOR_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,SLUICE_SURVEYOR_MK_I);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SLUICE_SURVEYOR_MK_I);
     elseif (csid == 0x119) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED);
         else
             player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
             player:addItem(13856);
-            player:messageSpecial(ITEM_OBTAINED,13856);
+            player:messageSpecial(text.ITEM_OBTAINED,13856);
             player:addTitle(PARAGON_OF_BLACK_MAGE_EXCELLENCE);
             player:delKeyItem(SLUICE_SURVEYOR_MK_I);
         end

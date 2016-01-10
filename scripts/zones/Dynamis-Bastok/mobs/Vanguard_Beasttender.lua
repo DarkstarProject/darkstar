@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Vanguard Beasttender + Vanguard's Scorpion
+--  NPC: Vanguard Beasttender + Vanguard's Scorpion
 -----------------------------------
 
 -----------------------------------

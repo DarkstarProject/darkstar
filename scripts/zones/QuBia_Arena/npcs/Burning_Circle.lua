@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
--- NPC:  Burning Circle
+--  NPC: Burning Circle
 -- @pos -221 -24 19 206
 -------------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;

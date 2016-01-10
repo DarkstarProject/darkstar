@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Ranguemont Pass
---  NPC:  Perchond
---  @pos -182.844 4 -164.948 166
+-- Area: Ranguemont Pass
+--  NPC: Perchond
+-- @pos -182.844 4 -164.948 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 5) then
         player:tradeComplete();
         player:addKeyItem(PERCHONDS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
     

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Vespo
+-- MOB: Vespo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

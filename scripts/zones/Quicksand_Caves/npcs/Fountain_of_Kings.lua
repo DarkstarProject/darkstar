@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  Fountain of Kings
+--  NPC: Fountain of Kings
 -- @pos 567 18 -939 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
@@ -27,9 +27,9 @@ function onTrigger(player,npc)
         SpawnMob(17629186,180);
     elseif (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 3) then
         player:addKeyItem(DROPS_OF_AMNIO);
-        player:messageSpecial(KEYITEM_OBTAINED,DROPS_OF_AMNIO);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DROPS_OF_AMNIO);
     else
-        player:messageSpecial(POOL_OF_WATER);
+        player:messageSpecial(text.POOL_OF_WATER);
     end
 end; 
 
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

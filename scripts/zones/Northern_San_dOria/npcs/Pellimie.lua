@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Pellimie
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 145.459 0.000 131.540
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos 145.459 0.000 131.540
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,PELLIMIE_DIALOG);
+    player:showText(npc, text.PELLIMIE_DIALOG);
 end;
 
 -----------------------------------

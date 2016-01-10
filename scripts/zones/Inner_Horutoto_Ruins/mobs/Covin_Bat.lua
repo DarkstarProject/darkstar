@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Covin Bat
+-- MOB: Covin Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Beastrider
+-- MOB: Orcish Beastrider
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

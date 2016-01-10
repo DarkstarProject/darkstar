@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Famad
---  Type: Assault Mission Giver
---  @pos 134.098 0.161 -43.759 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Famad
+-- Type: Assault Mission Giver
+-- @pos 134.098 0.161 -43.759 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(LEBROS_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,LEBROS_ASSAULT_ORDERS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,LEBROS_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
             end
             
             player:addItem(itemID);
-            player:messageSpecial(ITEM_OBTAINED,itemID);
+            player:messageSpecial(text.ITEM_OBTAINED,itemID);
             player:delAssaultPoint(LEBROS_ASSAULT_POINT,price);
         end
     end

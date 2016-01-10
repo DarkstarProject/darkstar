@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Inhumer
+--  NPC: Inhumer
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

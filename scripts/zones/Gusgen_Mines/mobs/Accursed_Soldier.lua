@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Accursed Soldier
+-- MOB: Accursed Soldier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

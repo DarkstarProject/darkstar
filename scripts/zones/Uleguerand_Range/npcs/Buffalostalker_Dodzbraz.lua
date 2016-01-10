@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Uleguerand Range
---   NPC: Buffalostalker Dodzbraz
---  Type: Quest NPC
---  @pos -380.171 -24.89 -180.797 5
+-- Area: Uleguerand Range
+--  NPC: Buffalostalker Dodzbraz
+-- Type: Quest NPC
+-- @pos -380.171 -24.89 -180.797 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

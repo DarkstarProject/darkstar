@@ -1,9 +1,9 @@
 -----------------------------------
---  Area:   Western Adoulin
---  NPC:    Porter Moogle
---  Type:   Storage Moogle
---  @zone 256
---  @pos TODO
+-- Area: Western Adoulin
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- @zone 256
+-- @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

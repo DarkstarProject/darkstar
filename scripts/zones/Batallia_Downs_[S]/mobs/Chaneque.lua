@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs (S)
---  NM:  Chaneque
+-- NM:  Chaneque
 -----------------------------------
 
 require("scripts/globals/status");

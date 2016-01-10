@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Doomed Pilgrims
+-- MOB: Doomed Pilgrims
 -----------------------------------
 
 -----------------------------------

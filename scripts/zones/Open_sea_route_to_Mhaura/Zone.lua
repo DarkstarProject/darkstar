@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
 require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -34,7 +34,7 @@ end;
 
 function onTransportEvent(player,transport)
     player:startEvent(0x0404);
-    player:messageSpecial(DOCKING_IN_MHAURA);
+    player:messageSpecial(text.DOCKING_IN_MHAURA);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0404) then
         player:setPos(0,0,0,0,249);
     end

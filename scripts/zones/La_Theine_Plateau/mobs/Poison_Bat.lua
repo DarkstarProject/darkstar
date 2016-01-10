@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Poison Bat
+-- MOB: Poison Bat
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

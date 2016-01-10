@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Quelpia
+--  NPC: Quelpia
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,QUELPIA_SHOP_DIALOG);
+    player:showText(npc, text.QUELPIA_SHOP_DIALOG);
 
-stock = {0x1202,585,        -- Scroll of Cure II
+    local stock =
+    {
+    0x1202,585,        -- Scroll of Cure II
      0x1203,3261,        -- Scroll of Cure III
      0x1208,10080,        -- Scroll of Curaga II
      0x120C,5178,        -- Scroll of Raise
@@ -41,7 +43,7 @@ stock = {0x1202,585,        -- Scroll of Cure II
      0x1268,1363,        -- Scroll of Enthunder
      0x1269,6366}        -- Scroll of Enwater
 
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end;
 
 -----------------------------------
@@ -49,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,9 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

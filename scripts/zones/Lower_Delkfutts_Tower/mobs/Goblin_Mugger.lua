@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Goblin Mugger
+-- MOB: Goblin Mugger
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

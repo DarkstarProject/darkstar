@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Carnivorous Crawler
+-- MOB: Carnivorous Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

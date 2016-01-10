@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Goblin Fisher
+-- MOB: Goblin Fisher
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

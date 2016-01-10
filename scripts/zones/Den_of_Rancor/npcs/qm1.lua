@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  ??? - HakuTaku spawn
+--  NPC: ??? - HakuTaku spawn
 -- @pos 24 25 -306 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Giant Spider
+-- MOB: Giant Spider
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

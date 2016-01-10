@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Nenepp
+--  NPC: Nenepp
 -- Standard Info NPC
 -----------------------------------
 
@@ -87,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -96,8 +96,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00F1) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();
@@ -106,15 +106,15 @@ function onEventFinish(player,csid,option,npc)
             player:addFame(KAZHAM, WIN_FAME*75);
             player:completeQuest(OUTLANDS, THE_OPO_OPO_AND_I);
             player:addItem(13870);   -- opo opo crown
-            player:messageSpecial(ITEM_OBTAINED,13870);
+            player:messageSpecial(text.ITEM_OBTAINED,13870);
             player:addItem(4468,3);  -- 3 pamamas
-            player:messageSpecial(ITEM_OBTAINED,4468,3);
+            player:messageSpecial(text.ITEM_OBTAINED,4468,3);
             player:setVar("OPO_OPO_PROGRESS",0);
             player:setVar("OPO_OPO_FAILED", 0);
             player:setVar("OPO_OPO_RETRY", 0);
             player:setTitle(257);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED);
         end
     elseif (csid == 0x00EE) then              -- wrong trade, restart at first opo
         player:setVar("OPO_OPO_FAILED",1);
@@ -123,6 +123,3 @@ function onEventFinish(player,csid,option,npc)
         npc:wait(0);
     end
 end;
-
-
-

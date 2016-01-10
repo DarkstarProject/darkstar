@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Warchief Vatgit
+-- MOB: Warchief Vatgit
 -- Involved in Mission 2-3
 -----------------------------------
 

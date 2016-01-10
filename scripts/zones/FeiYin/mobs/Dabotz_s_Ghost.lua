@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  NM:  Dabotz's Ghost
+-- NM:  Dabotz's Ghost
 -----------------------------------
 
 require("scripts/globals/keyitems");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Thiazi
+--  NPC: Thiazi
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

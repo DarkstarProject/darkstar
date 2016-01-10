@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Amaura
+--  NPC: Amaura
 -- Involved in Quest: The Medicine Woman, To Cure a Cough
 -- @zone 230
 -- @pos -85 -6 89
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,23 +72,23 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x027C and option == 0) then
         player:addKeyItem(AMAURAS_FORMULA);
-        player:messageSpecial(KEYITEM_OBTAINED,AMAURAS_FORMULA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,AMAURAS_FORMULA);
     elseif (csid == 0x027D) then
         player:tradeComplete();
         player:delKeyItem(AMAURAS_FORMULA);
         player:addKeyItem(COLD_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,COLD_MEDICINE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,COLD_MEDICINE);
     elseif (csid == 0x0285) then 
         player:addQuest(SANDORIA,TO_CURE_A_COUGH);
     elseif (csid == 0x0286) then 
         player:delKeyItem(THYME_MOSS);
         player:addKeyItem(COUGH_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,COUGH_MEDICINE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,COUGH_MEDICINE);
     end
     
 end;

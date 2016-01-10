@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Fuligo
+-- MOB: Fuligo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

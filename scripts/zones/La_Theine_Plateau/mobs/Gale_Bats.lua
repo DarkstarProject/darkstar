@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Gale Bats
+-- MOB: Gale Bats
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

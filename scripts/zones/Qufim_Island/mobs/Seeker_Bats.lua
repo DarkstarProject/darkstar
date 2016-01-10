@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Seeker Bats
+-- MOB: Seeker Bats
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

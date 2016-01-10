@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Stream Sahagin
+-- MOB: Stream Sahagin
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

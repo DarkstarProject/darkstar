@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Lebros_Cavern/IDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

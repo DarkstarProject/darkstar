@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Tinkerer
+-- MOB: Goblin Tinkerer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

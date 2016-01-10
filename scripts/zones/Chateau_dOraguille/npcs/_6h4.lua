@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,13 +75,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0219) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 0x003D) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 87) then

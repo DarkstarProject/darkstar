@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Phoochuchu
+--  NPC: Phoochuchu
 -- Involved in Quest: A Thief in Norg!?
 -- @pos -4 -4 69 249
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Red Canyon
+--  NPC: Red Canyon
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------

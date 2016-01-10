@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Spartoi Sorcerer
+-- MOB: Spartoi Sorcerer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

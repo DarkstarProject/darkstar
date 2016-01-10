@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Saradorial
---  Type: Goldfish Scooping
---  @pos -399.671 -10.999 -438.910 100
+-- Area: West Ronfaure
+--  NPC: Saradorial
+-- Type: Goldfish Scooping
+-- @pos -399.671 -10.999 -438.910 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

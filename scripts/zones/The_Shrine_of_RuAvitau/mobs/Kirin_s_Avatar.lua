@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  Kirin's Avatar: 17506675
+--  NPC: Kirin's Avatar: 17506675
 -----------------------------------
 package.loaded[ "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" ] = nil;
 -----------------------------------

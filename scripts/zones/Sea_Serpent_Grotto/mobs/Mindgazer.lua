@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Mindgazer
+-- MOB: Mindgazer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

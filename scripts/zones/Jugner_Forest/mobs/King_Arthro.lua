@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: King Arthro
+-- MOB: King Arthro
 -----------------------------------
 
 require("scripts/globals/titles");

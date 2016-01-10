@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -78,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0229) then
         player:setVar("MissionStatus",2);
@@ -89,14 +89,14 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 0x0058) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14095);
         else
             if (player:getMainJob() == 7) then 
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
             player:delKeyItem(KNIGHTS_BOOTS);
             player:addItem(14095);
-            player:messageSpecial(ITEM_OBTAINED,14095); -- Gallant Leggings
+            player:messageSpecial(text.ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
             player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
             player:completeQuest(SANDORIA,A_BOY_S_DREAM);
@@ -106,10 +106,10 @@ function onEventFinish(player,csid,option)
         player:setVar("UnderOathCS",0);
     elseif (csid == 0x0059) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12644);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12644);
         else
             player:addItem(12644);
-            player:messageSpecial(ITEM_OBTAINED,12644); -- Gallant Surcoat
+            player:messageSpecial(text.ITEM_OBTAINED,12644); -- Gallant Surcoat
             player:setVar("UnderOathCS",9);
             player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
             player:setTitle(PARAGON_OF_PALADIN_EXCELLENCE);

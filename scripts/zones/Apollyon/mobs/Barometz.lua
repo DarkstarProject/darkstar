@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Barometz
+--  NPC: Barometz
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

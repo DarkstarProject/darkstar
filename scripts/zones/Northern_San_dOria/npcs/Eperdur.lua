@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Eperdur
+--  NPC: Eperdur
 -- Starts and Finishes Quest: Altana's Sorrow (finish), Acting in Good Faith (finish), Healing the Land, 
 -- @pos 129 -6 96 231
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -69,42 +69,42 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02a7) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4731);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4731);
         else
             player:addTitle(PILGRIM_TO_DEM);
             player:delKeyItem(LETTER_FROM_VIRNAGE);
             player:addItem(4731);
-            player:messageSpecial(ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
+            player:messageSpecial(text.ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
             player:addFame(BASTOK,BAS_FAME*30);
             player:completeQuest(BASTOK,ALTANA_S_SORROW);
         end
     elseif (csid == 0x02a8) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4732);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4732);
         else
             player:addTitle(PILGRIM_TO_MEA);
             player:delKeyItem(GANTINEUXS_LETTER);
             player:addItem(4732);
-            player:messageSpecial(ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
+            player:messageSpecial(text.ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
             player:addFame(WINDURST,WIN_FAME*30);
             player:completeQuest(WINDURST,ACTING_IN_GOOD_FAITH);
         end
     elseif (csid == 0x02a9 and option == 0) then
         player:addQuest(SANDORIA,HEALING_THE_LAND);
         player:addKeyItem(SEAL_OF_BANISHING);
-        player:messageSpecial(KEYITEM_OBTAINED,SEAL_OF_BANISHING);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SEAL_OF_BANISHING);
     elseif (csid == 0x02ab) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4730);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4730);
         else
             player:addTitle(PILGRIM_TO_HOLLA);
             player:addItem(4730);
-            player:messageSpecial(ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
+            player:messageSpecial(text.ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
             player:needToZone(true);
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,HEALING_THE_LAND);
@@ -113,11 +113,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,SORCERY_OF_THE_NORTH);
     elseif (csid == 0x02af) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4747);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4747);
         else
             player:delKeyItem(FEIYIN_MAGIC_TOME);
             player:addItem(4747);
-            player:messageSpecial(ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
+            player:messageSpecial(text.ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,SORCERY_OF_THE_NORTH);
         end

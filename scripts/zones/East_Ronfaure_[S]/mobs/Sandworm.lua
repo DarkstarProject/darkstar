@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
---  MOB: Sandworm
+-- MOB: Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 

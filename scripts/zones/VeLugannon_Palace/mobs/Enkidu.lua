@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Enkidu
+-- MOB: Enkidu
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

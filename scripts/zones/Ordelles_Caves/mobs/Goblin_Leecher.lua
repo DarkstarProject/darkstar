@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Leecher
+-- MOB: Goblin Leecher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

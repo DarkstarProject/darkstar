@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Sauromugue Skink
+-- MOB: Sauromugue Skink
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

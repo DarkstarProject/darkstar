@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Ranger
+-- MOB: Fomor Ranger
 -----------------------------------
 
 

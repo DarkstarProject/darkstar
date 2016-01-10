@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Doman
+-- MOB: Doman
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 

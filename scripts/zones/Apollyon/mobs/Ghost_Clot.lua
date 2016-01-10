@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Ghost_Clot
+--  NPC: Ghost_Clot
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

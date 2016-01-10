@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved In Mission: Bastok 3-2
 -- @pos 206 -60 -101 196
 -----------------------------------
@@ -39,7 +39,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -56,18 +56,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x000a) then
         if (player:getFreeSlotsCount() > 0) then    
             player:addItem(16637);
             player:addTitle(BLACK_DEATH);
             player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16637);
+            player:messageSpecial(text.ITEM_OBTAINED,16637);
             player:delKeyItem(LETTER_FROM_ZEID);
             player:completeQuest(BASTOK,BLADE_OF_DEATH);
         else    
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16637);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16637);
         end
     end
     

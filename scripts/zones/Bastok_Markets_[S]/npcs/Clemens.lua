@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets (S) (I-10)
--- NPC: Clemens
+--  NPC: Clemens
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;

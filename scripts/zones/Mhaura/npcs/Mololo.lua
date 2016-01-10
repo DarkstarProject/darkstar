@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Mololo
+--  NPC: Mololo
 -- Guild Merchant NPC: Blacksmithing Guild 
 -- @pos -64.278 -16.624 34.120 249
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(532,8,23,2)) then
-        player:showText(npc,SMITHING_GUILD);
+        player:showText(npc, text.SMITHING_GUILD);
     end
 end;
 
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,6 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

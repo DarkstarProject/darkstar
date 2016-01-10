@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

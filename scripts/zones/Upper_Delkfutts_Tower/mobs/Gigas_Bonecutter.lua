@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Bonecutter
+-- MOB: Gigas Bonecutter
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

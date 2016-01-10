@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Combat
+-- MOB: Combat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

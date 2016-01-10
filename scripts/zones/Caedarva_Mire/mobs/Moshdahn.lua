@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Moshdahn
+-- MOB: Moshdahn
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");

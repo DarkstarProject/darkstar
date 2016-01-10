@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Norg
---   NPC: Vaultimand
---  Type: Fame Checker
+-- Area: Norg
+--  NPC: Vaultimand
+-- Type: Fame Checker
 -- @zone: 252
---  @pos -10.839 -1 18.730
+-- @pos -10.839 -1 18.730
 -- 
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

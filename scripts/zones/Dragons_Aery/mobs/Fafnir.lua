@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dragons Aery
---  HNM: Fafnir
+-- HNM: Fafnir
 -----------------------------------
 
 require("scripts/globals/settings");

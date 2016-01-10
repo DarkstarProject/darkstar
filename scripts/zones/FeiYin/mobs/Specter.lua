@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Specter
+-- MOB: Specter
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

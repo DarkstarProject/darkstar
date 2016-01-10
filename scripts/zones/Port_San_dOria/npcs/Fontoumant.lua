@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Fontoumant
+--  NPC: Fontoumant
 -- Starts Quest: The Brugaire Consortium
 -- Involved in Quests: Riding on the Clouds
 -- @zone 232
@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
     
@@ -49,7 +49,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
             player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
     
@@ -86,8 +86,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -95,13 +95,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local freeSlots = player:getFreeSlotsCount();
     if (csid == 0x01fd and option == 0) then
         if (freeSlots ~= 0) then
             player:addItem(593);
-            player:messageSpecial(ITEM_OBTAINED,593);
+            player:messageSpecial(text.ITEM_OBTAINED,593);
             player:addQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM)
             player:setVar("TheBrugaireConsortium-Parcels",10)
         else
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01ff) then
         if (freeSlots ~= 0) then
             player:addItem(594);
-            player:messageSpecial(ITEM_OBTAINED,594);
+            player:messageSpecial(text.ITEM_OBTAINED,594);
             player:setVar("TheBrugaireConsortium-Parcels",20);
         else
             player:startEvent(0x0219);
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0200) then
         if (freeSlots ~= 0) then
             player:addItem(595);
-            player:messageSpecial(ITEM_OBTAINED,595);
+            player:messageSpecial(text.ITEM_OBTAINED,595);
             player:setVar("TheBrugaireConsortium-Parcels",30);
         else
             player:startEvent(0x0219);
@@ -128,7 +128,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0203) then
         if (freeSlots ~= 0) then
             player:addItem(0x3001);
-            player:messageSpecial(ITEM_OBTAINED,0x3001);
+            player:messageSpecial(text.ITEM_OBTAINED,0x3001);
             player:addTitle(COURIER_EXTRAORDINAIRE);
             player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,SAN_FAME*30);

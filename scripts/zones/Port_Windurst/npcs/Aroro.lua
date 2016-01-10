@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Aroro
+--  NPC: Aroro
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ARORO_SHOP_DIALOG);
+    player:showText(npc, text.ARORO_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x12FE,   114,1,     --Blind
 
         0x12DC,    84,2,     --Poison
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

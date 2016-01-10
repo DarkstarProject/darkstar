@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Effigy Prototype
+-- MOB: Effigy Prototype
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
 -----------------------------------

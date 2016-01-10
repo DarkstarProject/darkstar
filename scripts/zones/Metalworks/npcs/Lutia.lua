@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Lutia
---  Type: Standard NPC
+-- Area: Metalworks
+--  NPC: Lutia
+-- Type: Standard NPC
 -- @zone: 237
---  @pos 24.076 -17 -33.060
+-- @pos 24.076 -17 -33.060
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

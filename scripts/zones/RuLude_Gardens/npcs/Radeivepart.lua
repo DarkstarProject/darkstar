@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Radeivepart
+--  NPC: Radeivepart
 -- Starts and Finishes Quest: Northward
 -- Involved in Quests: Save the Clock Tower
 -- @zone 243
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00a0) then 
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 1);
@@ -72,12 +72,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(ENVOY_TO_THE_NORTH);
         if (player:hasKeyItem(MAP_OF_CASTLE_ZVAHL) == false) then
             player:addKeyItem(MAP_OF_CASTLE_ZVAHL);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_CASTLE_ZVAHL);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_CASTLE_ZVAHL);
         end
         player:addFame(JEUNO, JEUNO_FAME*30);
         player:tradeComplete();
     end
 end;
-
-
-

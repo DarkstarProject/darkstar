@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: The Eldieme Necropolis (S) (175)
---   Mob: Royal_Provisioner
+-- Area: The Eldieme Necropolis (S) (175)
+-- Mob: Royal_Provisioner
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

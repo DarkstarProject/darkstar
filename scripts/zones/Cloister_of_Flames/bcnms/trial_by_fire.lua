@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         player:delKeyItem(TUNING_FORK_OF_FIRE);
         player:addKeyItem(WHISPER_OF_FLAMES);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FLAMES);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WHISPER_OF_FLAMES);
     end
     
 end;

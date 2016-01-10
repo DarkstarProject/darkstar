@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Kolin-Olin
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Kolin-Olin
+-- Type: Standard NPC
 -- @zone: 94
---  @pos 9.981 -2.478 33.786
+-- @pos 9.981 -2.478 33.786
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

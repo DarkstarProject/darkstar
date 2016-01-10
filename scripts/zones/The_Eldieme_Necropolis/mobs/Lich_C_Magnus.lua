@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Lich_C_Magnus
+-- MOB: Lich_C_Magnus
 -----------------------------------
 
 require("scripts/globals/titles");

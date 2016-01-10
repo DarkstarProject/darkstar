@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Yurim
+--  NPC: Yurim
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
@@ -292,8 +292,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -301,17 +301,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0211) then
         local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
         if (player:getFreeSlotsCount()==0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemtarget);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,itemtarget);
         else
             player:tradeComplete();
             player:completeQuest(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
             player:addItem(itemtarget);
-            player:messageSpecial(ITEM_OBTAINED,itemtarget); -- Item
+            player:messageSpecial(text.ITEM_OBTAINED,itemtarget); -- Item
             player:setVar("NAME_OF_SCIENCE_target",0);
         end
     end

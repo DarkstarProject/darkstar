@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Selbina
+-- Area: Selbina
 --  NPC: Velema
---  Type: Standard NPC
---  @pos 28.164 -3.947 -12.788 248
+-- Type: Standard NPC
+-- @pos 28.164 -3.947 -12.788 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

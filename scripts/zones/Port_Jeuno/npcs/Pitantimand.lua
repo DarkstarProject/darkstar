@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Pitantimand
+--  NPC: Pitantimand
 -- Involved in Quests: Save the Clock Tower
 -- @zone 246
 -- @pos -63 8 46
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0040) then 
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 512);

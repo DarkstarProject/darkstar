@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Giant Bee
+-- MOB: Giant Bee
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

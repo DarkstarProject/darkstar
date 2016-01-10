@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Amulya
+--  NPC: Amulya
 -- Type: Guild Merchant (Blacksmithing Guild)
 -- @pos -106.093 0.999 -24.564 237
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5332,8,23,2)) then
-        player:showText(npc, AMULYA_SHOP_DIALOG);
+        player:showText(npc, text.AMULYA_SHOP_DIALOG);
     end
 end;
 

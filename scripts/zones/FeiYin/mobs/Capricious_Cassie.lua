@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  NM:  Capricious_Cassie
+-- NM:  Capricious_Cassie
 -----------------------------------
 
 require("scripts/globals/titles");

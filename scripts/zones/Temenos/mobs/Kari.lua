@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC:  Kari
+--  NPC: Kari
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

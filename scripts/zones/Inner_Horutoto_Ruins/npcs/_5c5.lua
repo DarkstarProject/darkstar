@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  Gate: Magical Gizmo
---  Involved In Mission: The Horutoto Ruins Experiment
---    @pos 419 0 -27 192
+-- Area: Inner Horutoto Ruins
+--  NPC: Gate: Magical Gizmo
+-- Involved In Mission: The Horutoto Ruins Experiment
+-- @pos 419 0 -27 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
         player:startEvent(0x002A);
     else
-        player:showText(npc,DOOR_FIRMLY_CLOSED);
+        player:showText(npc, text.DOOR_FIRMLY_CLOSED);
     end
     
     return 1;
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002A) then
         player:setVar("MissionStatus",2);

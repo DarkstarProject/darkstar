@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Grave_Digger
+--  NPC: Grave_Digger
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

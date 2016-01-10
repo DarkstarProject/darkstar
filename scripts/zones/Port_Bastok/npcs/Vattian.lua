@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Vattian
+--  NPC: Vattian
 -- Only sells when Bastok controlls Kuzotz Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(KUZOTZ);
     if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,VATTIAN_CLOSED_DIALOG);
+        player:showText(npc, text.VATTIAN_CLOSED_DIALOG);
     else
-        player:showText(npc,VATTIAN_OPEN_DIALOG);
+        player:showText(npc, text.VATTIAN_OPEN_DIALOG);
 
         stock = {
             0x0394,   855,   --Cactuar Needle
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

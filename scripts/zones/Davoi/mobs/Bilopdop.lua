@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Bilopdop
+-- MOB: Bilopdop
 -- Involved in Quest: The First Meeting
 -----------------------------------
 

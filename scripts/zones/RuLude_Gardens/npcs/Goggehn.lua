@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Goggehn
+--  NPC: Goggehn
 -- Involved in Mission: Bastok 3-3, 4-1
 -- @zone 243
 -- @pos 3 9 -76
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0029) then
         player:setVar("MissionStatus",2);
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
             player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(text.KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
         end
     elseif (csid == 0x0026 or csid == 0x0023) then
         finishMissionTimeline(player,1,csid,option);

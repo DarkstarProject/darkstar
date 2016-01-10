@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Celennia_Memorial_Library/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

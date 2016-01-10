@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Coeurl
+-- MOB: Coeurl
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

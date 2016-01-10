@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Attohwa Chasm
---  NPC:  ??? (qm1)
---  @pos -402.574 3.999 -202.750 7
+-- Area: Attohwa Chasm
+--  NPC: ??? (qm1)
+-- @pos -402.574 3.999 -202.750 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
@@ -35,7 +35,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(OCCASIONAL_LUMPS);
+    player:messageSpecial(text.OCCASIONAL_LUMPS);
 end;
 
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

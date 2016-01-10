@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Appolyon
--- NPC:  Sentinel_Column
+--  NPC: Sentinel_Column
 -- @pos 
 -----------------------------------
 require("scripts/globals/limbus");

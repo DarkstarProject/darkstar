@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
             player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
             player:addKeyItem(DARK_FRAGMENT);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
+            player:messageSpecial(text.KEYITEM_OBTAINED,DARK_FRAGMENT);
             player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
             player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
         end

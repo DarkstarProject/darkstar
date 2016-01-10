@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Wall of Dark Arts
+--  NPC: Wall of Dark Arts
 -- Involved in Mission: Magicite
 -- @pos -22 1 -66 149
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Lesser Gaylas
+-- MOB: Lesser Gaylas
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

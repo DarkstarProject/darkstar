@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Rock Eater
+-- MOB: Rock Eater
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

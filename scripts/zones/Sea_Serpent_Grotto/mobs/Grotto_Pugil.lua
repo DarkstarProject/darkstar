@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Grotto Pugil
+-- MOB: Grotto Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

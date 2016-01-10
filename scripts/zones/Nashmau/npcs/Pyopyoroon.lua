@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC: Pyopyoroon
+--  NPC: Pyopyoroon
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,15 +52,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0115) then
         player:setVar("TOAUM12",1);
     elseif (csid == 0x0117 and player:getVar("TOAUM12") == 1) then
         player:setVar("TOAUM12",0);
         player:tradeComplete();
         player:addKeyItem(VIAL_OF_SPECTRAL_SCENT);
-        player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SPECTRAL_SCENT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,VIAL_OF_SPECTRAL_SCENT);
         player:completeMission(TOAU,ROYAL_PUPPETEER);
         player:addMission(TOAU,LOST_KINGDOM);
     end

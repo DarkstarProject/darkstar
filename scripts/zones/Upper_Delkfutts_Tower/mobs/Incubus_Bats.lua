@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Incubus Bats
+-- MOB: Incubus Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

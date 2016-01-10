@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
--- NPC: Kamih Mapokhalam
+--  NPC: Kamih Mapokhalam
 -- 20 -30 597 z 52 
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,15 +56,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0079) then
         player:setPos(325.137,-3.999,-619.968,0,72); -- To Alzadaal Undersea Ruins G-8 {R}
     elseif (csid == 0x0092) then
         player:tradeComplete();
         player:addKeyItem(MAP_OF_ALZADAAL_RUINS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
     end
     
 end;

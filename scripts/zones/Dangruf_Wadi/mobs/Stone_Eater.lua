@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Stone Eater
+-- MOB: Stone Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

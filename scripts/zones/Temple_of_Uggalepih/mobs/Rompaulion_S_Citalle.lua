@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Rompaulion S Ciralle
+-- MOB: Rompaulion S Ciralle
 -- Involved with San d'Oria quest "Knight Stalker"
 -----------------------------------
 

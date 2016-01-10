@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
--- NPC:  Engraved Tablet
+--  NPC: Engraved Tablet
 -- @pos -64 -11 -641 51
 -----------------------------------
 

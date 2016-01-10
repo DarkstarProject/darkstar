@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Hall of Transference
--- NPC:  Large Apparatus (Right) - Dem
+--  NPC: Large Apparatus (Right) - Dem
 -- @pos -243.723 -41.482 -289.937 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getVar("DemChipRegistration") == 1) then
-        player:messageSpecial(NO_RESPONSE_OFFSET+6); -- Device seems to be functioning correctly. 
+        player:messageSpecial(text.NO_RESPONSE_OFFSET+6); -- Device seems to be functioning correctly. 
     else
         player:startEvent(0x00A7); -- Hexagonal Cones
     end
@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
     if (csid == 0x00A8) then
-        player:messageSpecial(NO_RESPONSE_OFFSET+4,478); -- You fit.. 
-        player:messageSpecial(NO_RESPONSE_OFFSET+5);     -- Device has been repaired
+        player:messageSpecial(text.NO_RESPONSE_OFFSET+4,478); -- You fit.. 
+        player:messageSpecial(text.NO_RESPONSE_OFFSET+5);     -- Device has been repaired
         player:setVar("DemChipRegistration",1); 
     end
 end;

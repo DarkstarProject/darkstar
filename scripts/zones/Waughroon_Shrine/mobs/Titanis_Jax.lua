@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Titanis_Jax
+-- MOB: Titanis_Jax
 -----------------------------------
 
 

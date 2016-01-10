@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
     local Cost = getAdvImageSupportCost(player,8);
     if (csid == 0x271D and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(text.IMAGE_SUPPORT,0,4,0);
+        player:messageSpecial(text.text.IMAGE_SUPPORT,0,4,0);
         player:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,480);
     end
 end;

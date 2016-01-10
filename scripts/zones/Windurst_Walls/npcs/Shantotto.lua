@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Shantotto
---    @pos 122 -2 112 239
---  CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
+-- Area: Windurst Walls
+--  NPC: Shantotto
+-- @pos 122 -2 112 239
+-- CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -119,8 +119,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -129,18 +129,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0xad) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17081); 
         else
             player:tradeComplete();
             player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear());
             player:setVar("CursesFoiledAgainYear",VanadielYear());
             player:addFame(WINDURST,WIN_FAME*80);
             player:addItem(17081);
-            player:messageSpecial(ITEM_OBTAINED,17081);
+            player:messageSpecial(text.ITEM_OBTAINED,17081);
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_1);
         end
     
@@ -162,12 +162,12 @@ function onEventFinish(player,csid,option)
     
     elseif (csid == 0x00B7) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17116); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17116); 
         else
             player:tradeComplete();
             player:setTitle(HEXER_VEXER);
             player:addItem(17116);
-            player:messageSpecial(ITEM_OBTAINED,17116);
+            player:messageSpecial(text.ITEM_OBTAINED,17116);
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2);
             player:needToZone(true);
             player:addFame(WINDURST,WIN_FAME*90);
@@ -182,12 +182,12 @@ function onEventFinish(player,csid,option)
         
     elseif (csid == 0x0156) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4870); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4870); 
         else
             player:completeQuest(WINDURST,CURSES_FOILED_A_GOLEM);
             player:setVar("foiledagolemdeliverycomplete",0);
             player:addItem(4870);
-            player:messageSpecial(ITEM_OBTAINED,4870);
+            player:messageSpecial(text.ITEM_OBTAINED,4870);
             player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
             player:addFame(WINDURST,WIN_FAME*120);
         end
@@ -197,7 +197,7 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
     elseif (csid == 0x018D) then
         player:addKeyItem(GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:messageSpecial(KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
         player:setVar("MissionStatus",8)
     elseif (csid == 0x18f) then
         player:setVar("ShantottoCS",0)

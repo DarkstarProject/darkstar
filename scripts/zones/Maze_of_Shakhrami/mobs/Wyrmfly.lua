@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze Of Shakhrami
---  MOB: Wyrmfly
+-- MOB: Wyrmfly
 -- Involved in Eco Warrior (Windurst)
 -----------------------------------
 

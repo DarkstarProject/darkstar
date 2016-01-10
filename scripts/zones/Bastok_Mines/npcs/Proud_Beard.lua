@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Proud Beard
+--  NPC: Proud Beard
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -22,9 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,PROUDBEARD_SHOP_DIALOG);
+    player:showText(npc, text.PROUDBEARD_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x3157,   276,       --Hume Tunic
         0x3158,   276,       --Hume Vest
         0x31D2,   165,       --Hume M Gloves
@@ -47,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

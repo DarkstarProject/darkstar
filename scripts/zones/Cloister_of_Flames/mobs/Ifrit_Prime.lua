@@ -1,6 +1,6 @@
 -----------------------------------------------------
 -- Area: Cloister of Flames
---  MOB: Ifrit Prime
+-- MOB: Ifrit Prime
 -- Involved in Quest: Trial by Fire
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------------------------

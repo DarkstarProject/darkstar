@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Picklix Longindex
+-- MOB: Picklix Longindex
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 

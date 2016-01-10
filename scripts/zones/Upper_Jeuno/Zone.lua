@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x7534 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(text.HOMEPOINT_SET);
     elseif (csid == 0x0002) then
         player:setVar("PromathiaStatus",1);
     end

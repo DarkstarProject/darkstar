@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Pontaudarme
---  Type: Standard Info NPC
---  @zone: 231
---  @pos -51.628 -0.199 16.593
+-- Type: Standard Info NPC
+-- @zone: 231
+-- @pos -51.628 -0.199 16.593
 --
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
--- NPC:  Engraved Tablet
+--  NPC: Engraved Tablet
 -- @pos 320 -15.35 -379 61
 -----------------------------------
 

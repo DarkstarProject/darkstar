@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beadeaux
---  MOB: Copper Quadav
+-- MOB: Copper Quadav
 -- Involved in Mission 3-1 (Bastok)
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;

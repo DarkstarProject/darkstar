@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Capiria
---  Type: Involved in Quest (Flyers for Regine)
---  @zone: 231
---  @pos -127.355 0.000 130.461
+-- Type: Involved in Quest (Flyers for Regine)
+-- @zone: 231
+-- @pos -127.355 0.000 130.461
 --
 -----------------------------------
 
@@ -17,13 +17,13 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeCapiria") == 0) then 
-            player:messageSpecial(CAPIRIA_DIALOG);
+            player:messageSpecial(text.CAPIRIA_DIALOG);
             player:setVar("FFR",player:getVar("FFR") - 1);
             player:setVar("tradeCapiria",1);
-            player:messageSpecial(FLYER_ACCEPTED);
+            player:messageSpecial(text.FLYER_ACCEPTED);
             player:tradeComplete();
             elseif (player:getVar("tradeCapiria") ==1) then
-                player:messageSpecial(FLYER_ALREADY);
+                player:messageSpecial(text.FLYER_ALREADY);
             end
         end
     end;
@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,CAPIRIA_DIALOG);
+    player:showText(npc, text.CAPIRIA_DIALOG);
 end;
 
 -----------------------------------

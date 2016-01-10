@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
---  MOB: Fomor Samourai
+-- MOB: Fomor Samourai
 -----------------------------------
 
 

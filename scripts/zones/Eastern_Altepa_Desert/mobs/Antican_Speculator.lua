@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Speculator
+-- MOB: Antican Speculator
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

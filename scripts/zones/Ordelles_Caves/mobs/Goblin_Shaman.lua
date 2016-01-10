@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Shaman
+-- MOB: Goblin Shaman
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

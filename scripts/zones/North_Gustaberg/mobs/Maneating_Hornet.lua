@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Maneating Hornet
+-- MOB: Maneating Hornet
 -- Note: Place Holder For Stinging Sophie
 -----------------------------------
 

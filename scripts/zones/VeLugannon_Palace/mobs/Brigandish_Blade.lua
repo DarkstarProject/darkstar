@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
---  NM:  Brigandish Blade
+-- NM:  Brigandish Blade
 -----------------------------------
 
 require("scripts/globals/status");

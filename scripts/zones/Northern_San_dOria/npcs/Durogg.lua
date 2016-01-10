@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---   NPC: Durogg
---  Type: Past Event Watcher
+-- Area: Northern San d'Oria
+--  NPC: Durogg
+-- Type: Past Event Watcher
 -- @zone: 231
---  @pos: 15 0 -18
+-- @pos: 15 0 -18
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -30,16 +30,16 @@ function onTrigger(player,npc)
         AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
     end
 -- *Need the correct csid
---    if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
---        AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
---    end
+-- if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
+-- AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
+-- end
 
     -- Seekers of Adoulin
     local SeekersOfAdoulin = 0xFFFFFFFE;
 -- *Need the correct csid
---    if (player:hasCompletedMission(SOA,RUMORS_FROM_THE_WEST)) then
---        SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
---    end
+-- if (player:hasCompletedMission(SOA,RUMORS_FROM_THE_WEST)) then
+-- SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
+-- end
 
     -- Determine if any cutscenes are available for the player.
     local gil = player:getGil();
@@ -79,10 +79,10 @@ function onEventFinish(player,csid,option)
     if (player:getLocalVar("Durogg_PlayCutscene") < 2) then
         if (   option ==   1) then        -- Drenched! It Began with a Raindrop
             player:startEvent(0x7549,0,0,0,0,0,0,231);
---        elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
---            player:startEvent(CSID,0,0,0,0,0,0,231);
---        elseif (option ==  33) then        -- Rumors from the West
---            player:startEvent(CSID);
+-- elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
+-- player:startEvent(CSID,0,0,0,0,0,0,231);
+-- elseif (option ==  33) then        -- Rumors from the West
+-- player:startEvent(CSID);
         end
     end
 

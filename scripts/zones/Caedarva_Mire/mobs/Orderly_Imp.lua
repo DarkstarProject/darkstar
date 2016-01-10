@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Ordlerly Imp
+-- MOB: Ordlerly Imp
 -----------------------------------
 
 require("scripts/globals/status");

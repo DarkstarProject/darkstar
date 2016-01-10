@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Interrogator
+-- MOB: Yagudo Interrogator
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

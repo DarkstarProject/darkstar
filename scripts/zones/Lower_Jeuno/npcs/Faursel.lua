@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Lower Jeuno
---  NPC:  Faursel
---  Type: Aht Urhgan Quest NPC
---  Involved in Quests: The Road to Aht Urhgan
---  @pos 37.985 3.118 -45.208 245
+-- Area: Lower Jeuno
+--  NPC: Faursel
+-- Type: Aht Urhgan Quest NPC
+-- Involved in Quests: The Road to Aht Urhgan
+-- @pos 37.985 3.118 -45.208 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -122,9 +122,9 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x2753) then
         player:addKeyItem(MAP_OF_WAJAOM_WOODLANDS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_WAJAOM_WOODLANDS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_WAJAOM_WOODLANDS);
         player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,BOARDING_PERMIT);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",4);
         toWajaomLaypoint(player);
     elseif (csid == 0x2754) then
@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO, JEUNO_FAME*30);
     elseif (csid == 0x2756) then
         player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,BOARDING_PERMIT);
         player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC:  Tsutsuroon
+--  NPC: Tsutsuroon
 -- Type: Tenshodo Merchant
 -- @pos -15.193 0.000 31.356 53
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60431, 1, 23, 7)) then
-            player:showText(npc,TSUTSUROON_SHOP_DIALOG);
+            player:showText(npc, text.TSUTSUROON_SHOP_DIALOG);
         end
     else
         -- player:startEvent(0x0096);
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

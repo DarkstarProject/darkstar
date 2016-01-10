@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Jack of Coins
+-- MOB: Jack of Coins
 -----------------------------------
 
 require("scripts/globals/titles");

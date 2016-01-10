@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x0274 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(IMAGE_SUPPORT,0,2,0);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,2,0);
         player:addStatusEffect(EFFECT_SMITHING_IMAGERY,3,0,480);
     end
 end;

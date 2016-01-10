@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Apururu
+--  NPC: Apururu
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
 -- @zone 241
 -- @pos -11 -2 13
@@ -124,8 +124,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -133,8 +133,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- Windurst mission 1-2 start
     if (csid == 0x0089) then
@@ -147,12 +147,12 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(FIFTH_DARK_MANA_ORB);
         player:addKeyItem(SIXTH_DARK_MANA_ORB);
 
-        player:messageSpecial(text.KEYITEM_OBTAINED,FIRST_DARK_MANA_ORB);    -- Display the key item messages
-        player:messageSpecial(text.KEYITEM_OBTAINED,SECOND_DARK_MANA_ORB);
-        player:messageSpecial(text.KEYITEM_OBTAINED,THIRD_DARK_MANA_ORB);
-        player:messageSpecial(text.KEYITEM_OBTAINED,FOURTH_DARK_MANA_ORB);
-        player:messageSpecial(text.KEYITEM_OBTAINED,FIFTH_DARK_MANA_ORB);
-        player:messageSpecial(text.KEYITEM_OBTAINED,SIXTH_DARK_MANA_ORB);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,FIRST_DARK_MANA_ORB);    -- Display the key item messages
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,SECOND_DARK_MANA_ORB);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,THIRD_DARK_MANA_ORB);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,FOURTH_DARK_MANA_ORB);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,FIFTH_DARK_MANA_ORB);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,SIXTH_DARK_MANA_ORB);
 
         player:setVar("MissionStatus_orb1",1);    -- Set the orb variables; 1 = not handled; 2 = handled;
         player:setVar("MissionStatus_orb2",1);
@@ -209,7 +209,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
     elseif (csid == 0x026D) then
         player:setVar("MissionStatus",7);
-        player:messageSpecial(KEYITEM_REMOVED,LETTER_FROM_ZONPAZIPPA);
+        player:messageSpecial(text.KEYITEM_REMOVED,LETTER_FROM_ZONPAZIPPA);
         player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
     end
 end;

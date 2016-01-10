@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Acolyte
+-- MOB: Yagudo Acolyte
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

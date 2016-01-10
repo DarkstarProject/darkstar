@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  NM:  Bright-handed Kunberry
+-- NM:  Bright-handed Kunberry
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

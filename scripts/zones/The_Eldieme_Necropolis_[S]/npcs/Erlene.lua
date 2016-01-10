@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S)
--- NPC:  Erlene
+--  NPC: Erlene
 -- Involved in Quest: "A Little Knowledge"
 -- @pos 376.936 -39.999 17.914 175
 -----------------------------------
@@ -124,28 +124,28 @@ function onEventFinish(player,csid,option)
         player:addTitle(SCHULTZ_SCHOLAR);
         player:setVar("ALittleKnowledge", 0);
         player:setVar("SheetsofVellum", 0);
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_SCHOLAR);
+        player:messageSpecial(text.YOU_CAN_NOW_BECOME_A_SCHOLAR);
         player:completeQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
     elseif (csid == 0x002F) then
         if (player:canLearnSpell(478) and player:canLearnSpell(502)) then
             player:addSpell(478, true);
             player:addSpell(502, true);
-            player:messageSpecial(YOU_LEARN_EMBRAVA_AND_KAUSTRA);
+            player:messageSpecial(text.YOU_LEARN_EMBRAVA_AND_KAUSTRA);
         end
     elseif (csid == 0x0012) then
         player:addQuest(CRYSTAL_WAR, ON_SABBATICAL);
         player:addKeyItem(ULBRECHTS_SEALED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ULBRECHTS_SEALED_LETTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED, ULBRECHTS_SEALED_LETTER);
         player:setVar("OnSabbatical", 1);
     elseif (csid == 0x0014) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED);
         else
             player:delKeyItem(ULBRECHTS_SEALED_LETTER);
             player:delKeyItem(SCHULTS_SEALED_LETTER);
             player:completeQuest(CRYSTAL_WAR,ON_SABBATICAL);
             player:addItem(6058); --klimaform
-            player:messageSpecial(ITEM_OBTAINED, 6058);
+            player:messageSpecial(text.ITEM_OBTAINED, 6058);
             player:setVar("onSabbatical",0);
             player:setVar("Erlene_Sabbatical_Timer",VanadielDayOfTheYear());
         end
@@ -156,11 +156,11 @@ function onEventFinish(player,csid,option)
         player:setVar("DownwardHelix",2);
     elseif (csid == 0x001B) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED);
         else
             player:completeQuest(CRYSTAL_WAR, DOWNWARD_HELIX);
             player:addItem(15004); -- Schlar's Bracers
-            player:messageSpecial(ITEM_OBTAINED, 15004);
+            player:messageSpecial(text.ITEM_OBTAINED, 15004);
             player:setVar("DownwardHelix",0);
         end
     end

@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Crawlers' Nest [S]
+-- Area: Crawlers' Nest [S]
 --  NPC: Chodopopo
---  Type: Item Deliverer
---  @zone: 171
---  @pos 100.528    -32.272    -58.739
+-- Type: Item Deliverer
+-- @zone: 171
+-- @pos 100.528    -32.272    -58.739
 
 --
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Nuimahn
+--  NPC: Nuimahn
 -- Type: Alzadaal Undersea Ruins
 -- @pos  -380 0 -381 79
 -----------------------------------

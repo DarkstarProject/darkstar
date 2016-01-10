@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Gabwaleid
+--  NPC: Gabwaleid
 -- Involved in Quest: Riding on the Clouds
 -- @pos -17 -7 11 248
 -----------------------------------
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SOMBER_STONE);
         end
     end
     
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0258);
+    player:startEvent(0x0258);
 end; 
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

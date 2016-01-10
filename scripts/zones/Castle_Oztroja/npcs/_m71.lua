@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  _m71 (Torch Stand)
+--  NPC: _m71 (Torch Stand)
 -- Involved in Mission: Magicite
 -- @pos -99 24 -105 151
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(YAGUDO_TORCH)) then
         player:startEvent(0x000b);
     else
-        player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
+        player:messageSpecial(text.PROBABLY_WORKS_WITH_SOMETHING_ELSE);
     end
     
     return 1;

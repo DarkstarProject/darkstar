@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern
---  MOB: Orcish Warlord (Overlord Bakgodek PH)
+-- MOB: Orcish Warlord (Overlord Bakgodek PH)
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

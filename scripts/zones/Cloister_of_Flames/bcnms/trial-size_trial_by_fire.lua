@@ -51,11 +51,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         if (player:hasSpell(298) == false) then
         player:addSpell(298); -- Ifrit
-        player:messageSpecial(IFRIT_UNLOCKED,0,0,0);
+        player:messageSpecial(text.IFRIT_UNLOCKED,0,0,0);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeFire_date", 0);
         player:addFame(KAZHAM,WIN_FAME*30);

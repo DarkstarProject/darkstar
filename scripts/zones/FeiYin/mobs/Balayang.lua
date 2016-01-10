@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Balayang
+-- MOB: Balayang
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

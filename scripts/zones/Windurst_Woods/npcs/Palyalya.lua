@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Palyalya
---  Type: Adv. Assistant
+-- Area: Windurst Woods
+--  NPC: Palyalya
+-- Type: Adv. Assistant
 -- @zone: 241
---  @pos 62.298 -3.499 -128.093
+-- @pos 62.298 -3.499 -128.093
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

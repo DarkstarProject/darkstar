@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Vunkerl
---  MOB: Clammy Imp
+-- MOB: Clammy Imp
 -----------------------------------
 
 require("scripts/globals/status");

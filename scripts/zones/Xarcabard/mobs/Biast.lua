@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Biast
+-- NM:  Biast
 -- ID: 17235988
 -----------------------------------
 require("scripts/globals/status");

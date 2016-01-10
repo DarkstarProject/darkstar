@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Huge Hornet
+-- MOB: Huge Hornet
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

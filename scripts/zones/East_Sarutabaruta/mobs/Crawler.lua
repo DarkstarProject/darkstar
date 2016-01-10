@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Crawler
+-- MOB: Crawler
 -- Note: PH for Spiny Spipi
 -----------------------------------
 

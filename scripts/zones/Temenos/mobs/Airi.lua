@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos Central 1floor    
--- NPC: Airi
+--  NPC: Airi
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Wije Tiren
+--  NPC: Wije Tiren
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -20,9 +20,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,text.WIJETIREN_SHOP_DIALOG);
+    player:showText(npc, text.text.WIJETIREN_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x1034,   290,       --Antidote
         0x119d,    10,       --Distilled Water
         0x1037,   728,       --Echo Drops
@@ -41,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

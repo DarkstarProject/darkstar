@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Ellard
---  Type: Guildworker's Union Representative
+-- Area: Bastok Markets
+--  NPC: Ellard
+-- Type: Guildworker's Union Representative
 -- @zone: 235
---  @pos -214.355 -7.814 -63.809
+-- @pos -214.355 -7.814 -63.809
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -123,7 +123,7 @@ function onEventFinish(player,csid,option,target)
     if (csid == 0x154) then
         unionRepresentativeTriggerFinish(player, option, target, 3, "guild_goldsmithing", keyitems, items);
     elseif (csid == 0x155) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(text.GP_OBTAINED, option);
     end
 end;
 

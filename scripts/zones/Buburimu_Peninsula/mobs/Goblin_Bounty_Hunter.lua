@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Bounty Hunter
+-- MOB: Goblin Bounty Hunter
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

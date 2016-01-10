@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Old Opo-opo
+-- MOB: Old Opo-opo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

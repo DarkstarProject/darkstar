@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Jailer_of_Fortitude
+--  NPC: Jailer_of_Fortitude
 -----------------------------------
 
 require("scripts/globals/status");

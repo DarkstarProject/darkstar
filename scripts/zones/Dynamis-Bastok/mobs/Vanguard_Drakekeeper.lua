@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  DRG Vanguard Drakekeeper + Vanguard's Wyvern
+--  NPC: DRG Vanguard Drakekeeper + Vanguard's Wyvern
 -----------------------------------
 
 -----------------------------------

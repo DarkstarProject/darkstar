@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Styi Palneh
+--  NPC: Styi Palneh
 -- Title Change NPC
 -- @pos 28 4 -15 236
 -----------------------------------

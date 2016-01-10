@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Korroloka Leech
---  Involved in Quest: Ayame and Kaede
+-- MOB: Korroloka Leech
+-- Involved in Quest: Ayame and Kaede
 -----------------------------------
 
 require("scripts/globals/settings");

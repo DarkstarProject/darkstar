@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Toraimarai Canal
---  NM:  Magic Sludge
+-- NM:  Magic Sludge
 -----------------------------------
 
 require("scripts/globals/titles");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Habetrot
+-- MOB: Habetrot
 -- @pos -60 -8 58 220
 -----------------------------------
 

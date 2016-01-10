@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok_Mines
--- NPC: Rodellieux
+--  NPC: Rodellieux
 -- Only sells when Bastok controlls Fauregandi Region
 -----------------------------------
 
@@ -23,9 +23,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(FAUREGANDI);
     if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,RODELLIEUX_CLOSED_DIALOG);
+        player:showText(npc, text.RODELLIEUX_CLOSED_DIALOG);
     else
-        player:showText(npc,RODELLIEUX_OPEN_DIALOG);
+        player:showText(npc, text.RODELLIEUX_OPEN_DIALOG);
         stock = {
             0x11db,    90,   --Beaugreens
             0x110b,    39,   --Faerie Apple
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

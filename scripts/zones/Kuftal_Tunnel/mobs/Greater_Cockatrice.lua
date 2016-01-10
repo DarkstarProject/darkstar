@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Greater Cockatrice
+-- MOB: Greater Cockatrice
 -- Note: Place Holder for Pelican
 -----------------------------------
 

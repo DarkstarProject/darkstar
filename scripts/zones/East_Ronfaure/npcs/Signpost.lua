@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
--- NPC:  Signpost
+--  NPC: Signpost
 -- Involved in Quest: To Cure a Cough
 -- @pos 257 -45 212 101
 -----------------------------------
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             player:startEvent(20);
             player:delKeyItem(SCROLL_OF_TREASURE);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*3000);
         else
             player:startEvent(5);        
         end
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

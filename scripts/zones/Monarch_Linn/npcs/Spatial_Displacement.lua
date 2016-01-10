@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monarch_Linn
--- NPC:  Spatial Displacement
+--  NPC: Spatial Displacement
 -- @pos -35 -1 -539 31
 -----------------------------------
 package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    --printf("npcID : %u",npcID);
+    -- printf("npcID : %u",npcID);
     
     local npcID = npc:getID();
     local X = player:getXPos();
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
         return 1;
     else
-        player:messageSpecial(GLOWING_MIST); -- needs confirmation
+        player:messageSpecial(text.GLOWING_MIST); -- needs confirmation
     end
     
 end;
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (csid == 0x0B and option == 1) then
         player:setPos(-508.582,-8.471,-387.670,92,30); -- To Riv Site A (Retail confirmed)

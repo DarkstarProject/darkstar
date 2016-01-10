@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Brawler
+-- MOB: Orcish Brawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

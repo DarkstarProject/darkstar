@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Red mage
+-- MOB: Fomor Red mage
 -----------------------------------
 
 

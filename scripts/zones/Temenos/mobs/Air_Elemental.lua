@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos E T    
--- NPC: Air_Elemental
+--  NPC: Air_Elemental
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Carnagechief_Jackbodokk
+-- MOB: Carnagechief_Jackbodokk
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Funditor
+-- MOB: Antican Funditor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Shadows
+-- MOB: Shadows
 -- Mission 9-2 BCNM Fight
 -----------------------------------
 

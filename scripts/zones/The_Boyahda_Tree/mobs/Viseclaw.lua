@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Viseclaw
+-- MOB: Viseclaw
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

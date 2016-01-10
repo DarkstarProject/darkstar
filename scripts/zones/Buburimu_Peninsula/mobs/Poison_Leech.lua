@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Poison Leech
+-- MOB: Poison Leech
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

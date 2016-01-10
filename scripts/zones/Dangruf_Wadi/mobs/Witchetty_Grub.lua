@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Witchetty Grub
+-- MOB: Witchetty Grub
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

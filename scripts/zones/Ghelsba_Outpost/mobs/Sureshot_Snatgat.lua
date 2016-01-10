@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Sureshot Snatgat
+-- MOB: Sureshot Snatgat
 -- Involved in Mission: Save the Children
 -----------------------------------
 

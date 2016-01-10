@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Kuriodo-Moido
---  Involved In Quest: Making Amends, Wonder Wands
---  Starts and Finishes: Making Amens!
---    Working 100%
+-- Area: Port Windurst
+--  NPC: Kuriodo-Moido
+-- Involved In Quest: Making Amends, Wonder Wands
+-- Starts and Finishes: Making Amens!
+-- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -84,8 +84,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -93,8 +93,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0118) then
         player:addQuest(WINDURST,MAKING_AMENS);
     elseif (csid == 0x011c) then
@@ -102,11 +102,8 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(BROKEN_WAND);
         player:addTitle(HAKKURURINKURUS_BENEFACTOR);
         player:addGil(GIL_RATE*6000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*6000);
         player:addFame(WINDURST,WIN_FAME*150);
         player:completeQuest(WINDURST,MAKING_AMENS);
     end
 end;
-
-
-

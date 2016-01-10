@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",11);
     elseif (csid == 0x0010) then
         player:addKeyItem(LETTER_FROM_DALZAKK);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_DALZAKK);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_FROM_DALZAKK);
     elseif (csid == 0x0017) then
         player:setVar("MissionStatus",3);
     elseif (csid == 0x001D) then

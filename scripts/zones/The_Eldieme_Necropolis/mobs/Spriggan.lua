@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Spriggan
+-- MOB: Spriggan
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

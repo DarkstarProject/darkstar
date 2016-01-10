@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Taajiji
+--  NPC: Taajiji
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,TAAJIJI_SHOP_DIALOG);
+    player:showText(npc, text.TAAJIJI_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x113B,   756,1,     --Dhalmel Pie
         0x1152,  5050,1,     --Mushroom Risotto
         0x11CA, 12762,1,     --Shallops Tropicale
@@ -51,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,6 +62,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

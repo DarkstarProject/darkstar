@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Toadbolster
+-- MOB: Toadbolster
 -- BCNM30
 -----------------------------------
 

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: The Garden of Ru'Hmet
---  NPC:  Cermet Portal
---  @pos -419 0.1 356 35
+-- Area: The Garden of Ru'Hmet
+--  NPC: Cermet Portal
+-- @pos -419 0.1 356 35
 -----------------------------------
 
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         end
     else
         if (player:getZPos() <= 360) then
-            player:messageSpecial(PORTAL_SEALED);
+            player:messageSpecial(text.PORTAL_SEALED);
         else
             player:startEvent(0x008b);
         end

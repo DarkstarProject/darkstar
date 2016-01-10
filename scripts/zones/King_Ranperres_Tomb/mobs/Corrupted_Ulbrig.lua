@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Corrupted Ulbrig
+-- MOB: Corrupted Ulbrig
 -----------------------------------
 
 require("scripts/globals/missions");

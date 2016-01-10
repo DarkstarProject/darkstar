@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Ryoma
+--  NPC: Ryoma
 -- Start and Finish Quest: 20 in Pirate Years, I'll Take the Big Box, True Will
 -- Involved in Quest: Ayame and Kaede
 -- @pos -23 0 -9 252
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,12 +74,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x005f) then
         player:addKeyItem(SEALED_DAGGER);
-        player:messageSpecial(KEYITEM_OBTAINED, SEALED_DAGGER);
+        player:messageSpecial(text.KEYITEM_OBTAINED, SEALED_DAGGER);
         player:delKeyItem(STRANGELY_SHAPED_CORAL);
         player:setVar("AyameAndKaede_Event", 4);
     elseif (csid == 0x0085) then
@@ -87,13 +87,13 @@ function onEventFinish(player,csid,option)
         player:setVar("twentyInPirateYearsCS",1);
     elseif (csid == 0x0086) then
         if (player:getFreeSlotsCount() <= 1) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17771);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17771);
         else
             player:delKeyItem(TRICK_BOX);
             player:addItem(17771);
             player:addItem(17772);
-            player:messageSpecial(ITEM_OBTAINED, 17771); -- Anju 
-            player:messageSpecial(ITEM_OBTAINED, 17772); -- Zushio
+            player:messageSpecial(text.ITEM_OBTAINED, 17771); -- Anju 
+            player:messageSpecial(text.ITEM_OBTAINED, 17772); -- Zushio
             player:needToZone();
             player:setVar("twentyInPirateYearsCS",0);
             player:addFame(OUTLANDS,NORG_FAME*30);

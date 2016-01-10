@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Najib
+--  NPC: Najib
 -- Standard Info NPC
 -----------------------------------
 

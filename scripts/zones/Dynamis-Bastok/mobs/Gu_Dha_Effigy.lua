@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  MOB: Gu'Dha Effigy
+-- MOB: Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
 require("scripts/globals/status");

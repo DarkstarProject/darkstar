@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Prerivon
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 142.324 0.000 132.515
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos 142.324 0.000 132.515
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,PRERIVON_DIALOG);
+    player:showText(npc, text.PRERIVON_DIALOG);
 end;
 
 -----------------------------------

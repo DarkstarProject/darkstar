@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  NM:  Cemetery Cherry
+-- NM:  Cemetery Cherry
 -- @pos 33.000 0.500 -287.000 190
 -----------------------------------
 

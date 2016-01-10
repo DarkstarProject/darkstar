@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
---  MOB: Manifest_Idol
+-- MOB: Manifest_Idol
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,8 @@
 ----------------------------------
---  Area: Mhaura
+-- Area: Mhaura
 --  NPC: Mauriri
---  Type: Item Deliverer
---  @pos 10.883    -15.99    66.186 249
+-- Type: Item Deliverer
+-- @pos 10.883    -15.99    66.186 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, MAURIRI_DELIVERY_DIALOG);
+    player:showText(npc, text.MAURIRI_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

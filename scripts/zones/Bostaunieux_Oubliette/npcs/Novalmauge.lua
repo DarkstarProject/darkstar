@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Obliette
--- NPC:  Novalmauge
+--  NPC: Novalmauge
 -- Starts and Finishes Quest: The Rumor
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- @pos 70 -24 21 167
@@ -99,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -108,25 +108,25 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0006) then
         player:setVar("TheHolyCrest_Event",2);
     elseif (csid == 0x0011) then
         player:tradeComplete();
         player:addKeyItem(NEUTRALIZER);
-        player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,NEUTRALIZER);
         player:setVar("troubleAtTheSluiceVar",0);
     elseif (csid == 0x000d and option == 1) then
         player:addQuest(SANDORIA,THE_RUMOR);
     elseif (csid == 0x000c) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
         else
             player:tradeComplete();
             player:addItem(4853);
-            player:messageSpecial(ITEM_OBTAINED, 4853); -- Scroll of Drain
+            player:messageSpecial(text.ITEM_OBTAINED, 4853); -- Scroll of Drain
 
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,THE_RUMOR);

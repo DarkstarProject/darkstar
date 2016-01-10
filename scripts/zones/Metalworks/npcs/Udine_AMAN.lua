@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Udine A.M.A.N
+--  NPC: Udine A.M.A.N
 -- Type: Mentor Recruiter
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;

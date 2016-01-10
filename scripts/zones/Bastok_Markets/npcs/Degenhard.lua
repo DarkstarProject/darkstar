@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Degenhard
+--  NPC: Degenhard
 -- Starts & Ends Quest: The Bare Bones
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 235
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0156) then
         player:setVar("BeatAroundTheBushin",4);
@@ -74,12 +74,9 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,THE_BARE_BONES);
     elseif (csid == 0x0102) then
         player:addKeyItem(0x188);
-        player:messageSpecial(KEYITEM_OBTAINED,0x188);
+        player:messageSpecial(text.KEYITEM_OBTAINED,0x188);
         player:addFame(BASTOK,BAS_FAME*60);
     end
     
 end;
-
-
-
 

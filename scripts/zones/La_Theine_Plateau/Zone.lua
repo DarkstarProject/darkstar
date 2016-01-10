@@ -131,7 +131,7 @@ function onEventFinish( player, csid, option)
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x007a) then
         player:addItem( 14096);
-        player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
+        player:messageSpecial(text.ITEM_OBTAINED, 14096); -- Chaos Sollerets
         player:setVar( "darkPuppetCS", 0);
         player:addFame( BASTOK, AF2_FAME);
         player:completeQuest( BASTOK,DARK_PUPPET);

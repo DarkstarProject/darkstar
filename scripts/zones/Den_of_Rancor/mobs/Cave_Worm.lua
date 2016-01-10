@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Cave Worm
+-- MOB: Cave Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

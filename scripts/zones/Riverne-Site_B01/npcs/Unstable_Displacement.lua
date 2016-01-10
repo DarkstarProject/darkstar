@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne Site #B01
--- NPC:  Unstable Displacement
+--  NPC: Unstable Displacement
 -- ENM Battlefield
 -- @pos -612 4 693
 -----------------------------------
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return 1;
     else
-        player:messageSpecial(SPACE_SEEMS_DISTORTED);
+        player:messageSpecial(text.SPACE_SEEMS_DISTORTED);
     end
 end;
 

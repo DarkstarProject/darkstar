@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Stray_Mary
+-- MOB: Stray_Mary
 -----------------------------------
 
 require("scripts/globals/titles");

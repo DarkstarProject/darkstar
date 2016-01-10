@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
---  MOB: Ark Angel's Mandragora
+-- MOB: Ark Angel's Mandragora
 -----------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -----------------------------------

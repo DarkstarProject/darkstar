@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Knight Crab
+-- MOB: Knight Crab
 -----------------------------------
 
 require("scripts/globals/titles");

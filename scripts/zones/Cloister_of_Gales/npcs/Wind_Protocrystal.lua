@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
--- NPC:  Wind Protocrystal
+--  NPC: Wind Protocrystal
 -- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
 -- @zone -361 1 -381 201
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);                    
+        player:messageSpecial(text.PROTOCRYSTAL);                    
     end
     
 end;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -58,13 +58,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("onFinish CSID: %u",csid);
-    --printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (csid==0x0002) then
         player:delKeyItem(DOMINAS_EMERALD_SEAL);
         player:addKeyItem(EMERALD_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,EMERALD_COUNTERSEAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,EMERALD_COUNTERSEAL);
         player:setVar("ASA4_Emerald","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

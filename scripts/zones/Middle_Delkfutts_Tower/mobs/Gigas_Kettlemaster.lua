@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Kettlemaster
+-- MOB: Gigas Kettlemaster
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

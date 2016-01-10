@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Goblin Bouncer
+-- MOB: Goblin Bouncer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

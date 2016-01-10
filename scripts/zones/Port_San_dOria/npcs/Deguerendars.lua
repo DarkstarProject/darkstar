@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC:  Deguerendars
---    Only sells when San d'Oria contrls Tavnazian Archipelago
---    Only available to those with CoP Ch. 4.1 or higher
+-- Area: Port San d'Oria
+--  NPC: Deguerendars
+-- Only sells when San d'Oria contrls Tavnazian Archipelago
+-- Only available to those with CoP Ch. 4.1 or higher
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -40,9 +40,9 @@ cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
 if (cop >= 40) then
     if (RegionOwner ~= SANDORIA) then 
-        player:showText(npc,DEGUERENDARS_CLOSED_DIALOG);
+        player:showText(npc, text.DEGUERENDARS_CLOSED_DIALOG);
     else
-        player:showText(npc,DEGUERENDARS_OPEN_DIALOG);
+        player:showText(npc, text.DEGUERENDARS_OPEN_DIALOG);
 
         stock = {0x05f3,290,  --Apple Mint
                  0x142c,1945, --Ground Wasabi
@@ -52,7 +52,7 @@ if (cop >= 40) then
         showShop(player,SANDORIA,stock);
     end
 else
-    player:showText(npc,DEGUERENDARS_COP_NOT_COMPLETED);
+    player:showText(npc, text.DEGUERENDARS_COP_NOT_COMPLETED);
 end
 end; 
 
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,10 +70,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

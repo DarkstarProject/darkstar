@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Fort Karugo Narugo [S]
+-- Area: Fort Karugo Narugo [S]
 --  NPC: Mortimer
---  Type: Item Deliverer
---  @zone: 96
---  @pos -24.08    -68.508    93.88
+-- Type: Item Deliverer
+-- @zone: 96
+-- @pos -24.08    -68.508    93.88
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

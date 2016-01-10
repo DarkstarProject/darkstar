@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Walking Sapling
+-- MOB: Walking Sapling
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

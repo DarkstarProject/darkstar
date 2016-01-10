@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Eotyrannus
+-- MOB: Eotyrannus
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

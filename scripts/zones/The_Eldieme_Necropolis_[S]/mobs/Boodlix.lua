@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: The Eldieme Necropolis (S) (175)
---   Mob: Boodlix
+-- Area: The Eldieme Necropolis (S) (175)
+-- Mob: Boodlix
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

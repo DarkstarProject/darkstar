@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Killer Bee
+-- MOB: Killer Bee
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

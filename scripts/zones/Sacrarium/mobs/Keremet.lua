@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Keremet
+-- MOB: Keremet
 -----------------------------------
 
 require("scripts/globals/keyitems");

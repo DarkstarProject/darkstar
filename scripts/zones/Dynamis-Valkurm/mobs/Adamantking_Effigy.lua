@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
---  MOB: Adamantking_Effigy
+-- MOB: Adamantking_Effigy
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------

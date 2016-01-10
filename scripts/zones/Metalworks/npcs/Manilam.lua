@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Metalworks
---  NPC:  Manilam
---  Type: Quest NPC
---  @pos -57.300 -11 22.332 237
+-- Area: Metalworks
+--  NPC: Manilam
+-- Type: Quest NPC
+-- @pos -57.300 -11 22.332 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

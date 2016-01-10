@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Bodaway
+--  NPC: Bodaway
 -- Standard Info NPC
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Sedal-Godjal
+--  NPC: Sedal-Godjal
 -- Mini Quest used in : Whence Blows the Wind
 -- @pos 185 -3 -116 149
 -----------------------------------
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -81,19 +81,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0016 and option == 1) then
         player:setVar("miniQuestForORB_CS",1);
         player:addKeyItem(WHITE_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED, WHITE_ORB);
+        player:messageSpecial(text.KEYITEM_OBTAINED, WHITE_ORB);
     elseif (csid == 0x0019) then 
         player:setVar("miniQuestForORB_CS",0);
         player:setVar("countRedPoolForORB",0);
         player:delKeyItem(CURSED_ORB);
         player:addKeyItem(CRIMSON_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED, CRIMSON_ORB);
+        player:messageSpecial(text.KEYITEM_OBTAINED, CRIMSON_ORB);
     elseif (csid == 0x0076) then
         player:delKeyItem(STAR_SEEKER);
         player:addKeyItem(MAGIC_DRAINED_STAR_SEEKER);
@@ -103,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
     elseif (csid == 0x007A) then
         player:addKeyItem(AURASTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,AURASTERY_RING);
+        player:messageSpecial(text.KEYITEM_OBTAINED,AURASTERY_RING);
         if (player:hasKeyItem(OPTISTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end

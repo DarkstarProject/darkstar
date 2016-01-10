@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC: Gioh Ajihri
---    Starts & Finishes Repeatable Quest: Twinstone Bonding
+-- Area: Windurst Woods
+--  NPC: Gioh Ajihri
+-- Starts & Finishes Repeatable Quest: Twinstone Bonding
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01e7) then
         player:addQuest(WINDURST,TWINSTONE_BONDING);
@@ -84,12 +84,12 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,TWINSTONE_BONDING);
             player:addFame(WINDURST,WIN_FAME*80);
             player:addItem(17154);
-            player:messageSpecial(text.ITEM_OBTAINED,17154);
+            player:messageSpecial(text.text.ITEM_OBTAINED,17154);
             player:addTitle(BOND_FIXER);
         else
             player:addFame(WINDURST,WIN_FAME*10);
             player:addGil(GIL_RATE*900);
-            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*900);
+            player:messageSpecial(text.text.GIL_OBTAINED,GIL_RATE*900);
         end
     elseif (csid == 0x01e8) then
         player:setVar("GiohAijhriSpokenTo",1);

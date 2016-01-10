@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Platoon Scorpion
+-- MOB: Platoon Scorpion
 -----------------------------------
 
 

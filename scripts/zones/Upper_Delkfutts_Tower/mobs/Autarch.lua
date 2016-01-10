@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  NM:  Autarch
+-- NM:  Autarch
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

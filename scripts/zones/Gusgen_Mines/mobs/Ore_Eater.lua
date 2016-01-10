@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Ore Eater
+-- MOB: Ore Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

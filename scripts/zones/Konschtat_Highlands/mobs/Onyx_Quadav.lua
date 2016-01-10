@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Onyx Quadav
+-- MOB: Onyx Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

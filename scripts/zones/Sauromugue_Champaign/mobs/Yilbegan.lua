@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

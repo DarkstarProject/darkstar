@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Powhatan
+--  NPC: Powhatan
 -- Starts & Ends Quest: Welcome to Bastok, Guest of Hauteur
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(POWHATAN_DIALOG_1);
+        player:messageSpecial(text.POWHATAN_DIALOG_1);
     end
     
 end;
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,18 +72,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x32 and option == 0) then
         player:addQuest(BASTOK,WELCOME_TO_BASTOK);
     elseif (csid == 0x35) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16565);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16565);
         else
             player:addTitle(BASTOK_WELCOMING_COMMITTEE);
             player:addItem(16565);
-            player:messageSpecial(ITEM_OBTAINED,16565); -- Spatha
+            player:messageSpecial(text.ITEM_OBTAINED,16565); -- Spatha
             player:setVar("WelcomeToBastok_Event",0);
             player:addFame(BASTOK,BAS_FAME*80);
             player:completeQuest(BASTOK,WELCOME_TO_BASTOK);
@@ -92,11 +92,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,GUEST_OF_HAUTEUR);
     elseif (csid == 0x3a) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12300);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12300);
         else
             player:addTitle(BASTOK_WELCOMING_COMMITTEE);
             player:addItem(12300);
-            player:messageSpecial(ITEM_OBTAINED,12300); -- Targe
+            player:messageSpecial(text.ITEM_OBTAINED,12300); -- Targe
             player:delKeyItem(LETTERS_FROM_DOMIEN);
             player:setVar("GuestofHauteur_Event",0);
             player:addFame(BASTOK,BAS_FAME*80);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Jack of Cups
+-- MOB: Jack of Cups
 -----------------------------------
 
 require("scripts/globals/titles");

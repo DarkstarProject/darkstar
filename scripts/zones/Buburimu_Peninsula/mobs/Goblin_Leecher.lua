@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Leecher
+-- MOB: Goblin Leecher
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

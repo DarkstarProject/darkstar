@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Arienh
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -37.292 -2.000 -6.817
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -37.292 -2.000 -6.817
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ARIENH_DIALOG);
+    player:showText(npc, text.ARIENH_DIALOG);
 end;
 
 -----------------------------------

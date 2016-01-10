@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Corrupted Soffeil
+-- MOB: Corrupted Soffeil
 -----------------------------------
 
 require("scripts/globals/missions");

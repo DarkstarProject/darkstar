@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Decorative Weapon
+-- MOB: Decorative Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

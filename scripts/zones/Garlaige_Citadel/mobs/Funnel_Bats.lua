@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Funnel Bats
+-- MOB: Funnel Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

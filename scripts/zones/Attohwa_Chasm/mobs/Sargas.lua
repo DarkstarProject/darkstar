@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  NM:  Sargas
+-- NM:  Sargas
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

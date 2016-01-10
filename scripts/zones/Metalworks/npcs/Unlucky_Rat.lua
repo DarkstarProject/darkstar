@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Unlucky Rat
+--  NPC: Unlucky Rat
 -- Starts & Finishes Quest: Mean Machine
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
                 player:startEvent(0x022d);
             end
         else
-            player:messageSpecial(FULL_INVENTORY_AFTER_TRADE, 4731);
+            player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE, 4731);
         end
     end
     
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x022c) then
         player:addQuest(BASTOK,MEAN_MACHINE);            
@@ -79,11 +79,8 @@ function onEventFinish(player,csid,option)
         player:addFame(BASTOK,BAS_FAME*120);
         player:tradeComplete();
         player:addItem(4869);
-        player:messageSpecial(ITEM_OBTAINED,4869);
+        player:messageSpecial(text.ITEM_OBTAINED,4869);
     end
 
 end;
-
-
-
 

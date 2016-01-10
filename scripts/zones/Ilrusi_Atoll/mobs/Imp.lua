@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll
---  MOB: Imp
+-- MOB: Imp
 -----------------------------------
 
 require("scripts/globals/status");

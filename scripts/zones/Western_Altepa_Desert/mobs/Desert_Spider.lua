@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Spider
+-- MOB: Desert Spider
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

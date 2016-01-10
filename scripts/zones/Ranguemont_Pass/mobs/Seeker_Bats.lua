@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Seeker Bats
+-- MOB: Seeker Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

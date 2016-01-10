@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Tyamah
+--  NPC: Tyamah
 -- Type: Alzadaal Undersea Ruins
 -- @pos 320.003 0.124 -700.011 79
 -----------------------------------

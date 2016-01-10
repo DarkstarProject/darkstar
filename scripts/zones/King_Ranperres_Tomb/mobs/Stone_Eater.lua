@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Stone Eater
+-- MOB: Stone Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

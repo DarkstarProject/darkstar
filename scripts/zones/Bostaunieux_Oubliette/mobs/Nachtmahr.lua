@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Nachtmahr
+-- MOB: Nachtmahr
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

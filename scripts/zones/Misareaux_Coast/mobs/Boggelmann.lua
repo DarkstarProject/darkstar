@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  Mob: Boggelmann
+-- Mob: Boggelmann
 -----------------------------------
 
 require("scripts/globals/missions");

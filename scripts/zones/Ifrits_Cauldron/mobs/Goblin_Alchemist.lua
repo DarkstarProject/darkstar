@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Alchemist
+-- MOB: Goblin Alchemist
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  Oil lamp
+--  NPC: Oil lamp
 -- @pos -60 -23 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
@@ -24,11 +24,11 @@ function onTrigger(player,npc)
 
     local DoorOffset = npc:getID();
 
-    player:messageSpecial(LAMP_OFFSET+3); -- wind lamp
+    player:messageSpecial(text.LAMP_OFFSET+3); -- wind lamp
     npc:openDoor(7); -- lamp animation
 
     local element = VanadielDayElement();
-    --printf("element: %u",element);
+    -- printf("element: %u",element);
     
     if (element == 3) then -- winday
         if (GetNPCByID(DoorOffset-1):getAnimation() == 8) then -- lamp earth open?
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

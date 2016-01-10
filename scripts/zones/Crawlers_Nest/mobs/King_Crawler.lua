@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: King Crawler
+-- MOB: King Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

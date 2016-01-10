@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pso'Xja
--- NPC:  Stone Gate
+--  NPC: Stone Gate
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     elseif (posZ < 25) then
         player:startEvent(0x0011);
     else
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(text.DOOR_LOCKED);
     end
     return 1;
 end;
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

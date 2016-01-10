@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Oldton Movalpolos
---  NPC:  Tarnotik
---  Type: Standard NPC
---  @pos 160.896 10.999 -55.659 11
+-- Area: Oldton Movalpolos
+--  NPC: Tarnotik
+-- Type: Standard NPC
+-- @pos 160.896 10.999 -55.659 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

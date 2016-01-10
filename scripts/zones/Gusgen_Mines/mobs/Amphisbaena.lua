@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Amphisbaena
+-- MOB: Amphisbaena
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

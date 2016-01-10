@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quest "The Siren's Tear"
 -- @pos 309.600, 2.600, 324.000 106 | DB start position
 -- @pos 290.000, 0.600, 332.100 106 | alternative start position
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
     if (csid == 0x000a and option == 0) then
@@ -59,21 +59,21 @@ function onEventFinish(player,csid,option)
             local SirensTearProgress = player:getVar("SirensTear");
 
             if (SirensTear == QUEST_COMPLETED and SirensTearProgress < 2) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,576);
             else
                 if (freeslots == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,576);
                 elseif (alreadyHasItem) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED_TWICE,576);
                     player:addItem(576);
                 else
                     player:addItem(576);
-                    player:messageSpecial(ITEM_OBTAINED,576);
+                    player:messageSpecial(text.ITEM_OBTAINED,576);
                     resetSirenTear(npc);
                 end
             end
         else
-            player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);
+            player:messageSpecial(text.SHINING_OBJECT_SLIPS_AWAY);
             moveSirenTear(npc);
         end
     end 

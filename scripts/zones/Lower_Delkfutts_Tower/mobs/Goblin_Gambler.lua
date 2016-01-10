@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Goblin Gambler
+-- MOB: Goblin Gambler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

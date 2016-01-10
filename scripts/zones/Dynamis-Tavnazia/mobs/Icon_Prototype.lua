@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis tavnazia
---  MOB: Icon_Prototype
+-- MOB: Icon_Prototype
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

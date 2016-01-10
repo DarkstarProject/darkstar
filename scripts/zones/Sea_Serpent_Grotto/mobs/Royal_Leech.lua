@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Royal Leech
+-- MOB: Royal Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

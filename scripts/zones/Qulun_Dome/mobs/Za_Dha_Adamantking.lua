@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun Dome
---  NM:  Za Dha Adamantking
+-- NM:  Za Dha Adamantking
 -----------------------------------
 
 require("scripts/globals/titles");

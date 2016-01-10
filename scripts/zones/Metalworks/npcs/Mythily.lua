@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Mythily
+--  NPC: Mythily
 -- Type: Immigration NPC
 -- @pos 94 -20 -8 237
 -----------------------------------

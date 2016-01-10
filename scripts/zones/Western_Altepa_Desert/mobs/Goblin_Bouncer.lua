@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Bouncer
+-- MOB: Goblin Bouncer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

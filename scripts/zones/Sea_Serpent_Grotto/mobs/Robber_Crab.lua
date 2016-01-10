@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Robber Crab
+-- MOB: Robber Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

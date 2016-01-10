@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Azer
+-- MOB: Azer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

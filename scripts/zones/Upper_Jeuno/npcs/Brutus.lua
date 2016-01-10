@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Brutus
+--  NPC: Brutus
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
 -- @pos -55 8 95 244
 -----------------------------------
@@ -143,7 +143,7 @@ function onEventFinish(player,csid,option)
                 player:setVar("ChocoboOnTheLooseYear", 0);
                 player:addFame(JEUNO, JEUNO_FAME*30);
                 player:addItem(2317);
-                player:messageSpecial(ITEM_OBTAINED,2317); -- Chocobo Egg (a bit warm)
+                player:messageSpecial(text.ITEM_OBTAINED,2317); -- Chocobo Egg (a bit warm)
                 player:completeQuest(JEUNO,CHOCOBO_ON_THE_LOOSE);
         elseif (csid == 0x0047 and option == 1) then
                 player:addQuest(JEUNO,CHOCOBO_S_WOUNDS);
@@ -152,7 +152,7 @@ function onEventFinish(player,csid,option)
                 player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
                 player:addTitle(ANIMAL_TRAINER);
                 player:unlockJob(9); -- Beastmaster
-                player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER);
+                player:messageSpecial(text.YOU_CAN_NOW_BECOME_A_BEASTMASTER);
                 player:addFame(JEUNO, JEUNO_FAME*30);
                 player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER);
         elseif ((csid == 0x008b or csid == 0x0089) and option == 1) then
@@ -160,11 +160,11 @@ function onEventFinish(player,csid,option)
                 player:setVar("wingsOfGold_shortCS",0);
         elseif (csid == 0x008a) then
                 if (player:getFreeSlotsCount() < 1) then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16680);
+                        player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16680);
                 else
                         player:delKeyItem(GUIDING_BELL);
                         player:addItem(16680);
-                        player:messageSpecial(ITEM_OBTAINED,16680); -- Barbaroi Axe
+                        player:messageSpecial(text.ITEM_OBTAINED,16680); -- Barbaroi Axe
                         player:addFame(JEUNO,AF1_FAME);
                         player:completeQuest(JEUNO,WINGS_OF_GOLD);
                 end
@@ -174,16 +174,16 @@ function onEventFinish(player,csid,option)
                 player:addKeyItem(AQUAFLORA1);
                 player:addKeyItem(AQUAFLORA2);
                 player:addKeyItem(AQUAFLORA3);
-                player:messageSpecial(KEYITEM_OBTAINED,AQUAFLORA1);
+                player:messageSpecial(text.KEYITEM_OBTAINED,AQUAFLORA1);
         elseif (csid == 0x0090) then
                 player:setVar("scatIntoShadowCS",1);
         elseif (csid == 0x0087) then
                 if (player:getFreeSlotsCount() < 1) then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14097);
+                        player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14097);
                 else
                         player:setVar("scatIntoShadowCS",0);
                         player:addItem(14097);
-                        player:messageSpecial(ITEM_OBTAINED,14097); -- Beast Gaiters
+                        player:messageSpecial(text.ITEM_OBTAINED,14097); -- Beast Gaiters
                         player:addFame(JEUNO,JEUNO_FAME*AF2_FAME);
                         player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW);
                 end

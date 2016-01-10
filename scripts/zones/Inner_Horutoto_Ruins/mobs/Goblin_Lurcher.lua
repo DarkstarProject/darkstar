@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Lurcher
+-- MOB: Goblin Lurcher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

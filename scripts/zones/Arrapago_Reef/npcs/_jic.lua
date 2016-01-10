@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         end
         player:startEvent(0x00DB, assaultid, -4, 0, recommendedLevel, 2, armband);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

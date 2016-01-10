@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Tomb Wolf
+-- MOB: Tomb Wolf
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

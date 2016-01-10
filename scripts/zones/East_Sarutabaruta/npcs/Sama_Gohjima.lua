@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: East Sarutabaruta
---     NPC:  Sama Gohjima
---  Involved in Mission: The Horutoto Ruins Experiment (optional)
---    @pos 377 -13 98 116
+-- Area: East Sarutabaruta
+--  NPC: Sama Gohjima
+-- Involved in Mission: The Horutoto Ruins Experiment (optional)
+-- @pos 377 -13 98 116
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -22,9 +22,9 @@ end;
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") == 1) then
-        player:showText(npc, text.SAMA_GOHJIMA_PREDIALOG);
+        player:showText(npc, text.text.SAMA_GOHJIMA_PREDIALOG);
     elseif (player:getCurrentMission(WINDURST) == THE_HORUTOTO_RUINS_EXPERIMENT and player:getVar("MissionStatus") ~= 1) then
-        player:messageSpecial(text.SAMA_GOHJIMA_POSTDIALOG);
+        player:messageSpecial(text.text.SAMA_GOHJIMA_POSTDIALOG);
     else
         player:startEvent(0x002b);
     end
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,6 +45,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

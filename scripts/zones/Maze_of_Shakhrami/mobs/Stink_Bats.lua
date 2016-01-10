@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Stink Bats
+-- MOB: Stink Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

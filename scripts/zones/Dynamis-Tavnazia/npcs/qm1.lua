@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Dynamis-Tavnazia
---  NPC:  ???
---  @pos 
+-- Area: Dynamis-Tavnazia
+--  NPC: ???
+-- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
 require("scripts/globals/settings");
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
                         GetMobByID(DiabolosID):setMobMod(MOBMOD_SUPERLINK,ShortID);
                         GetMobByID(DiabolosID):setPos(npcX-1,npcY-2,npcZ-1);
                         GetMobByID(DiabolosID):setSpawn(npcX-1,npcY-2,npcZ-1);         
-    --printf("DiabolosID: %u",DiabolosID);     
+    -- printf("DiabolosID: %u",DiabolosID);     
     
 
             if (DiabolosID == 16949252) then -- diabolos smn                
@@ -47,7 +47,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-     player:messageSpecial(DIABOLOS,3459);
+     player:messageSpecial(text.DIABOLOS,3459);
 end;
 
 -----------------------------------

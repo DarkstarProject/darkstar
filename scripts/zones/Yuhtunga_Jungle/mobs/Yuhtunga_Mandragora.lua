@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Yuhtunga Mandragora
+-- MOB: Yuhtunga Mandragora
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

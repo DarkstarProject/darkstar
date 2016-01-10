@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta (S)
---   NM: Ramponneau
+-- NM: Ramponneau
 -----------------------------------
  
 require("scripts/globals/status");

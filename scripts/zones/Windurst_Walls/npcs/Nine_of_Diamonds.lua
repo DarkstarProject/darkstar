@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Walls
---   NPC: Nine of Diamonds
---  Type: Standard NPC
+-- Area: Windurst Walls
+--  NPC: Nine of Diamonds
+-- Type: Standard NPC
 -- @zone: 239
---  @pos -76.446 -10.822 107.692
+-- @pos -76.446 -10.822 107.692
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Digger
+-- MOB: Sand Digger
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

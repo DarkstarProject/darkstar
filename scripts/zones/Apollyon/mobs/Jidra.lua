@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
--- NPC:  Jidra 
+--  NPC: Jidra 
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

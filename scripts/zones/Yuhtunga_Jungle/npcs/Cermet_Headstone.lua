@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Fire Fragment)
 -- @pos 491 20 301 123
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
              player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
              player:startEvent(0x00CA,790);
         else
-             player:messageSpecial(NOTHING_HAPPENS);     
+             player:messageSpecial(text.NOTHING_HAPPENS);     
         end     
     end    
 end; 
@@ -47,20 +47,20 @@ function onTrigger(player,npc)
             -- Check and see if all fragments have been found (no need to check fire and dark frag)
             if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
                player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
-                player:messageSpecial(FOUND_ALL_FRAGS,FIRE_FRAGMENT);
+                player:messageSpecial(text.FOUND_ALL_FRAGS,FIRE_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,FIRE_FRAGMENT);
+                player:messageSpecial(text.KEYITEM_OBTAINED,FIRE_FRAGMENT);
             end
         else
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,FIRE_FRAGMENT);
+            player:messageSpecial(text.ALREADY_OBTAINED_FRAG,FIRE_FRAGMENT);
         end
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
+        player:messageSpecial(text.ZILART_MONUMENT);
     else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
+        player:messageSpecial(text.CANNOT_REMOVE_FRAG);
     end
     
 end; 
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17281031,300):updateClaim(player); -- Carthi
@@ -88,11 +88,11 @@ function onEventFinish(player,csid,option)
         SetServerVariable("[ZM4]Fire_Headstone_Active",0);
     elseif (csid == 0x00CA) then
         if (player:getFreeSlotsCount() == 0) then
-             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13143);
+             player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13143);
         else        
             player:tradeComplete();
             player:addItem(13143);        
-            player:messageSpecial(ITEM_OBTAINED,13143);            
+            player:messageSpecial(text.ITEM_OBTAINED,13143);            
             player:completeQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);        
             player:addTitle(FRIEND_OF_THE_OPOOPOS);
         end            

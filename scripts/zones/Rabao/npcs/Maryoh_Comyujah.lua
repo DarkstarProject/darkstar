@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Maryoh Comyujah
+--  NPC: Maryoh Comyujah
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
 -- @pos 0 8 73 247
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0051 and option == 1) then
         player:setVar("ZilartStatus",1);
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ZilartStatus",2);
         player:delKeyItem(SCRAP_OF_PAPYRUS);
         player:addKeyItem(CERULEAN_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,CERULEAN_CRYSTAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CERULEAN_CRYSTAL);
     end
     
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis San d'Oria
---  MOB: Voidstreaker Butchnotch
+-- MOB: Voidstreaker Butchnotch
 -----------------------------------
 
 require("scripts/globals/dynamis");

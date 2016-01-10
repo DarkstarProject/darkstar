@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Bounty Hunter
+-- MOB: Goblin Bounty Hunter
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  Brass Statue
+--  NPC: Brass Statue
 -- Type: Passageway Machine
 -- @pos -60.061 -4.348 -61.538 151    (1)
 -- @pos -18.599 -19.307 20.024 151    (2)

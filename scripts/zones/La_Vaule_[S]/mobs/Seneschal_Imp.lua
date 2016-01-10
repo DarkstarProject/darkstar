@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Vaule (S)
---  MOB: Seneschal Imp
+-- MOB: Seneschal Imp
 -----------------------------------
 
 require("scripts/globals/status");

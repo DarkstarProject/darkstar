@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Carmelide
+--  NPC: Carmelide
 -- Standard Merchant NPC
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
@@ -22,9 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,CARMELIDE_SHOP_DIALOG);
+    player:showText(npc, text.CARMELIDE_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x0326,  1676,2,     --Tourmaline
         0x0327,  1676,2,     --Sardonyx
         0x0320,  1676,2,     --Amethyst
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

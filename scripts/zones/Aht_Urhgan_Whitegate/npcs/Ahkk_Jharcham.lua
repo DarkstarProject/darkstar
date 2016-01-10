@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Ahkk Jharcham
+--  NPC: Ahkk Jharcham
 -- Quest 'Keeping Notes'
 -- @pos 0.1 -1 -76 50
 -----------------------------------

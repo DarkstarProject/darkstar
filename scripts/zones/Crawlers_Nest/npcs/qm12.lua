@@ -28,15 +28,15 @@ function onTrigger(player,npc)
         if (player:hasItem(1089) == false and player:hasKeyItem(EXORAY_MOLD_CRUMB3) == false
         and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(EXORAY_MOLD_CRUMB3);
-            player:messageSpecial(KEYITEM_OBTAINED,EXORAY_MOLD_CRUMB3);
+            player:messageSpecial(text.KEYITEM_OBTAINED,EXORAY_MOLD_CRUMB3);
         end
 
         if (player:hasKeyItem(EXORAY_MOLD_CRUMB1) and player:hasKeyItem(EXORAY_MOLD_CRUMB2) and player:hasKeyItem(EXORAY_MOLD_CRUMB3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1089, 1);
-                player:messageSpecial(ITEM_OBTAINED, 1089);
+                player:messageSpecial(text.ITEM_OBTAINED, 1089);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1089);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1089);
             end
         end
 

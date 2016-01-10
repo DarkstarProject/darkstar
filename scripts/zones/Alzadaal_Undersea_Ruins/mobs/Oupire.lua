@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Oupire
+-- MOB: Oupire
 -----------------------------------
 
 require("scripts/globals/titles");

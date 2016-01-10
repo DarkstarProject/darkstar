@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Lacerator
+-- MOB: Lacerator
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

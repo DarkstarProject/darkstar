@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Timeworn Warrior
+-- MOB: Timeworn Warrior
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
--- NPC:  ??? (Spawn Gration)
+--  NPC: ??? (Spawn Gration)
 -- @pos 113.563 -16.302 38.912 25
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

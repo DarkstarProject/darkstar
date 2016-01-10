@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Sabertooth Tiger
+-- MOB: Sabertooth Tiger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

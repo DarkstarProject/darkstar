@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Warlock
+-- MOB: Demon Warlock
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

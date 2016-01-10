@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  MOB: Aern_s_Wynav
+-- MOB: Aern_s_Wynav
 -----------------------------------
 
 require("scripts/globals/status");

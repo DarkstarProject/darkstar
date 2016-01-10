@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Kazham
+-- Area: Kazham
 --  NPC: Dodmos
---  Starts Quest: Trial Size Trial By Fire
---  @pos 102.647 -14.999 -97.664 250
+-- Starts Quest: Trial Size Trial By Fire
+-- @pos 102.647 -14.999 -97.664 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
@@ -68,19 +68,19 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x011e and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
         else
             player:setVar("TrialSizeFire_date", 0);
             player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
             player:addItem(1544); 
-            player:messageSpecial(ITEM_OBTAINED,1544); 
+            player:messageSpecial(text.ITEM_OBTAINED,1544); 
         end
     elseif (csid == 0x0122 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork 
         else
             player:addItem(1544); 
-            player:messageSpecial(ITEM_OBTAINED,1544); 
+            player:messageSpecial(text.ITEM_OBTAINED,1544); 
         end
     elseif (csid == 0x011f and option == 1) then
         toCloisterOfFlames(player);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Pherimociel
+--  NPC: Pherimociel
 -- Involved in mission: COP 1-2
 -- @pos -31.627 1.002 67.956 243
 -----------------------------------

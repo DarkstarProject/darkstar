@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Canyon Crawler
+-- MOB: Canyon Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Gatekeeper
+-- MOB: Giant Gatekeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

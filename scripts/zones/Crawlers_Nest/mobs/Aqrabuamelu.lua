@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  NM:  Aqrabuamelu
+-- NM:  Aqrabuamelu
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

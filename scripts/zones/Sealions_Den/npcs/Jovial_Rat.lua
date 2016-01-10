@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---   NPC: Jovial Rat
---  Type: Past Event Watcher
+-- Area: Northern San d'Oria
+--  NPC: Jovial Rat
+-- Type: Past Event Watcher
 -- @zone: 32
---  @pos 
+-- @pos 
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

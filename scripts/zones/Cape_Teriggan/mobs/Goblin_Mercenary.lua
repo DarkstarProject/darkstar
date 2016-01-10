@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Mercenary
+-- MOB: Goblin Mercenary
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

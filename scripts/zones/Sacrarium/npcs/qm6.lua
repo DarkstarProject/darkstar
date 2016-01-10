@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Sacrarium
--- NPC:   qm6 (???)
+--  NPC:  qm6 (???)
 -- Notes: Used to spawn Old Prof. Mariselle
 -- @pos 62.668 -3.111 -127.310 28
 -----------------------------------
@@ -20,18 +20,18 @@ function onTrigger(player,npc)
 
     if (GetServerVariable("Old_Prof_Spawn_Location") == 6) then
         if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and player:hasKeyItem(RELIQUIARIUM_KEY)==false and GetMobAction(OldProfessor) == 0) then 
-            player:messageSpecial(EVIL_PRESENCE);
+            player:messageSpecial(text.EVIL_PRESENCE);
             SpawnMob(OldProfessor,300):updateClaim(player);
             GetMobByID(OldProfessor):setPos(npc:getXPos()+1, npc:getYPos(), npc:getZPos()+1); -- Set Prof. spawn x and z pos. +1 from NPC
         else
-            player:messageSpecial(DRAWER_SHUT);
+            player:messageSpecial(text.DRAWER_SHUT);
         end            
     elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY)==false) then
         player:addKeyItem(RELIQUIARIUM_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,RELIQUIARIUM_KEY);    
+        player:messageSpecial(text.KEYITEM_OBTAINED,RELIQUIARIUM_KEY);    
     else
-        player:messageSpecial(DRAWER_OPEN);
-        player:messageSpecial(DRAWER_EMPTY);        
+        player:messageSpecial(text.DRAWER_OPEN);
+        player:messageSpecial(text.DRAWER_EMPTY);        
     end    
 end;
 

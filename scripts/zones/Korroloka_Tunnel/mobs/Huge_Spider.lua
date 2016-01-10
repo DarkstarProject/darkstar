@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Korroloka Tunnel (173)
---   Mob: Huge_Spider
+-- Area: Korroloka Tunnel (173)
+-- Mob: Huge_Spider
 -----------------------------------
 
 require("scripts/zones/Korroloka_Tunnel/MobIDs");

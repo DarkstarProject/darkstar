@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -- Waughroon Shrine Burning Armoury_Crate
 -------------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;

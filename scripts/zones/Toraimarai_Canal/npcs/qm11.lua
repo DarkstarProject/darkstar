@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  ???
+--  NPC: ???
 -- Involved In Quest: Wild Card
 -- @zone 169 // not accurate
 -- @pos 220 16 -50 // not accurate
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x30 and option ~= 0) then
         SpawnMob(17469516,180):updateClaim(player);

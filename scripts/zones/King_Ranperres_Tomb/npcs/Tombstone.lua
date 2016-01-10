@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
--- NPC:  Tombstone
+--  NPC: Tombstone
 -- Involved in Quest: Grave Concerns
 -- @pos 1 0.1 -101 190
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0004) then
         player:setVar("MissionStatus",2);
@@ -72,21 +72,21 @@ function onEventFinish(player,csid,option)
         
         if (graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then 
             if (player:getFreeSlotsCount() == 0) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,547); -- Tomb Waterskin
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,547); -- Tomb Waterskin
             else
                 player:addItem(547);
-                player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+                player:messageSpecial(text.ITEM_OBTAINED,547); -- Tomb Waterskin
             end
         end
     elseif (csid == 0x0003) then
         player:tradeComplete();
         player:setVar("OfferingWaterOK",1);
         player:addItem(547);
-        player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+        player:messageSpecial(text.ITEM_OBTAINED,547); -- Tomb Waterskin
     elseif (csid == 0x0008) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(ANCIENT_SANDORIAN_BOOK);
-        player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);
+        player:messageSpecial(text.KEYITEM_OBTAINED,ANCIENT_SANDORIAN_BOOK);
     end
     
 end;

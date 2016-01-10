@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Sagittarius
+-- MOB: Antican Sagittarius
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Rahal
+--  NPC: Rahal
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
 -- @pos -28 0.1 -6 233
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
     
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,12 +90,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x003c) then
         player:addKeyItem(DRAGON_CURSE_REMEDY);
-        player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
+        player:messageSpecial(text.KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
     elseif (csid == 0x022f) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
     elseif (csid == 121) then
@@ -119,7 +119,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("MissionStatus",2);
             player:addKeyItem(CRYSTAL_DOWSER);
-            player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
+            player:messageSpecial(text.KEYITEM_OBTAINED,CRYSTAL_DOWSER);
         end
     end
 end;

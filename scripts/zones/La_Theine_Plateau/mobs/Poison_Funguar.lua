@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Poison Funguar
+-- MOB: Poison Funguar
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

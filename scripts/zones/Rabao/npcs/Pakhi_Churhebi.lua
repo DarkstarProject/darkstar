@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Rabao
+-- Area: Rabao
 --  NPC: Pakhi Churhebi
---  Type: Item Deliverer
---  @zone: 247
---  @pos 158.428    7.999    78.009
+-- Type: Item Deliverer
+-- @zone: 247
+-- @pos 158.428    7.999    78.009
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, PAKHI_DELIVERY_DIALOG);
+    player:showText(npc, text.PAKHI_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

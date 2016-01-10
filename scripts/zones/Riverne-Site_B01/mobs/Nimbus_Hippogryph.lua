@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne - Site B01
---  MOB: Nimbus Hippogryph
+-- MOB: Nimbus Hippogryph
 -- Note: Place holder Imdugud
 -----------------------------------
 

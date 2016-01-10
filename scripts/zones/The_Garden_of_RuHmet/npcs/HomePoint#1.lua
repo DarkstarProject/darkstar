@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
---  NPC:  HomePoint#1
---  @pos -426 0 368 35
+--  NPC: HomePoint#1
+-- @pos -426 0 368 35
 -----------------------------------
 
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,14 +40,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x21fc) then
 
         if (option == 1) then    
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(text.HOMEPOINT_SET);
         else
             hpTeleport( player, option);
         end

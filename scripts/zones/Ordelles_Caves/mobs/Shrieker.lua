@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Shrieker
+-- MOB: Shrieker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

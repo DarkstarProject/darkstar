@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Orez-Ebrez
+--  NPC: Orez-Ebrez
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,OREZEBREZ_SHOP_DIALOG);
+    player:showText(npc, text.OREZEBREZ_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x30B2, 20000,1,     --Red Cap
         0x30AA,  8972,1,     --Soil Hachimaki
         0x30A7,  7026,1,     --Beetle Mask
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

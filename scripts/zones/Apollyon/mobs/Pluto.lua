@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NW
--- NPC:  Pluto
+--  NPC: Pluto
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

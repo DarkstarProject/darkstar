@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Goblin Welldigger
+-- MOB: Goblin Welldigger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

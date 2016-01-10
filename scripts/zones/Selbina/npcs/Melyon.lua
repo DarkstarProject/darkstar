@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Melyon
+--  NPC: Melyon
 -- Starts and Finishes Quest: Only the Best (R)
 -- Involved in Quest: Riding on the Clouds
 -- @pos 25 -6 6 248
@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SOMBER_STONE);
         end
     end
     
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,15 +75,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x003c and option == 10) then
         player:addQuest(OTHER_AREAS,ONLY_THE_BEST);
     elseif (csid == 0x003e) then
         player:tradeComplete();
         player:addGil(100);
-        player:messageSpecial(GIL_OBTAINED,100);
+        player:messageSpecial(text.GIL_OBTAINED,100);
         player:addFame(BASTOK,  BAS_FAME*10);
         player:addFame(SANDORIA,SAN_FAME*10);
         player:addFame(JEUNO, JEUNO_FAME*10);
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x003f) then
         player:tradeComplete();
         player:addGil(120);
-        player:messageSpecial(GIL_OBTAINED,120);
+        player:messageSpecial(text.GIL_OBTAINED,120);
         player:addFame(BASTOK,  BAS_FAME*20);
         player:addFame(SANDORIA,SAN_FAME*20);
         player:addFame(JEUNO, JEUNO_FAME*20);
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0040) then
         player:tradeComplete();
         player:addGil(600);
-        player:messageSpecial(GIL_OBTAINED,600);
+        player:messageSpecial(text.GIL_OBTAINED,600);
         player:addFame(BASTOK,  BAS_FAME*30);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:addFame(JEUNO, JEUNO_FAME*30);

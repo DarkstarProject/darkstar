@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC:  Phairet
+--  NPC: Phairet
 -- Involved in Quest: The Trader in the Forest
 -- @pos -57 -1 -501 100
 -----------------------------------
@@ -25,11 +25,11 @@ function onTrade(player,npc,trade)
     elseif (theTraderInTheforest == QUEST_COMPLETED) then 
         if (trade:getGil() == 50) then 
             if (player:getFreeSlotsCount() == 0) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4367);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4367);
             else
                 player:tradeComplete();
                 player:addItem(4367);
-                player:messageSpecial(ITEM_OBTAINED,4367); -- Clump of Batagreens
+                player:messageSpecial(text.ITEM_OBTAINED,4367); -- Clump of Batagreens
             end
         end
     end
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,16 +73,16 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x007c) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4367);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4367);
         else
             player:tradeComplete();
             player:addItem(4367);
-            player:messageSpecial(ITEM_OBTAINED, 4367);
+            player:messageSpecial(text.ITEM_OBTAINED, 4367);
         end
     end
     

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Legendary Weapon
+-- MOB: Legendary Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Silver Beastcoin Door
+--  NPC: Silver Beastcoin Door
 -- @zone 176
 -- @pos 280 18.549 -100
 -----------------------------------
@@ -34,25 +34,25 @@ function onTrigger(player,npc)
     
     if (X <= 280  and Z >= -104) then 
         if (SilverDoorCheck == 0) then --Door has never been checked
-            player:messageSpecial(FIRST_CHECK);
+            player:messageSpecial(text.FIRST_CHECK);
             player:setVar("SSG_SilverDoor",1);
         elseif (SilverDoorCheck == 1) then --Door has been checked once
-            player:messageSpecial(SECOND_CHECK);
+            player:messageSpecial(text.SECOND_CHECK);
             player:setVar("SSG_SilverDoor",2);
         elseif (SilverDoorCheck == 2) then --Door has been checked twice
-            player:messageSpecial(THIRD_CHECK);
+            player:messageSpecial(text.THIRD_CHECK);
             player:setVar("SSG_SilverDoor",3);
         elseif (SilverDoorCheck == 3) then --Door has been checked three times
-            player:messageSpecial(FOURTH_CHECK);
+            player:messageSpecial(text.FOURTH_CHECK);
             player:setVar("SSG_SilverDoor",4);
         elseif (SilverDoorCheck == 4) then --Door has been checked four times
-            player:messageSpecial(FIFTH_CHECK);
+            player:messageSpecial(text.FIFTH_CHECK);
             player:setVar("SSG_SilverDoor",5);
         elseif (SilverDoorCheck == 5) then --Door has been checked five times
-            player:messageSpecial(SILVER_CHECK);
+            player:messageSpecial(text.SILVER_CHECK);
             player:setVar("SSG_SilverDoor",6);
         elseif (SilverDoorCheck == 6 or SilverDoorCheck == 7) then --Door has been checked six or more times
-            player:messageSpecial(COMPLETED_CHECK,750);
+            player:messageSpecial(text.COMPLETED_CHECK,750);
             player:setVar("SSG_SilverDoor",7);
         end
     return 1 --Keep the door closed
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,6 +76,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Altar Room
--- NPC:  Magicite
+--  NPC: Magicite
 -- Involved in Mission: Magicite
 -- @zone 152
 -- @pos -344 25 43
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             player:startEvent(0x002c); -- don't play Lion part of the CS 
         end
     else
-        player:messageSpecial(THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(text.THE_MAGICITE_GLOWS_OMINOUSLY);
     end
     
 end;
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x002c) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(MAGICITE_ORASTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGICITE_ORASTONE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAGICITE_ORASTONE);
     end
     
 end;

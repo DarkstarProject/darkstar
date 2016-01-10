@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Gulemont
---  Type: Quest Giver
+-- Area: Port San d'Oria
+--  NPC: Gulemont
+-- Type: Quest Giver
 -- @zone: 232
---  @pos -69 -5 -38
+-- @pos -69 -5 -38
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end;
     end;
     
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- "The Dismayed Customer"
     if (csid == 0x025d and option == 0) then
@@ -78,11 +78,8 @@ function onEventFinish(player,csid,option)
         player:addTitle(LOST_CHILD_OFFICER);
         player:completeQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
         player:addGil(560*GIL_RATE);
-        player:messageSpecial(GIL_OBTAINED,560*GIL_RATE);
+        player:messageSpecial(text.GIL_OBTAINED,560*GIL_RATE);
     end;
     
 end;
-
-
-
 

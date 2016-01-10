@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Agas
+-- MOB: Agas
 -----------------------------------
 
 require("scripts/globals/quests");

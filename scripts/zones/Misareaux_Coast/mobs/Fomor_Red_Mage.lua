@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Red Mage
+-- MOB: Fomor Red Mage
 -----------------------------------
 
 

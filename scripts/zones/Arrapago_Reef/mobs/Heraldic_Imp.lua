@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Heraldic Imp
+-- MOB: Heraldic Imp
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
---  MOB: Galgalim
+-- MOB: Galgalim
 -- Involved in Quest: The Puppet Master
 -----------------------------------
 

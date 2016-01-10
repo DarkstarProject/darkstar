@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Seneschal Imp
+-- MOB: Seneschal Imp
 -----------------------------------
 
 require("scripts/globals/status");

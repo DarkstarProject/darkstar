@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Galmut's door
+--  NPC: Galmut's door
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
 -- @zone 244
 -- @pos -80 0 104
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0077 and option == 1) then 
         player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);
@@ -74,33 +74,30 @@ function onEventFinish(player,csid,option)
         player:setVar("aClockMostdelicateVar",0);
     elseif (csid == 0x00ca) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12727);
         else 
             player:addTitle(PROFESSIONAL_LOAFER);
             player:delKeyItem(CLOCK_TOWER_OIL);
             player:addGil(1200);
-            player:messageSpecial(GIL_OBTAINED,1200);
+            player:messageSpecial(text.GIL_OBTAINED,1200);
             player:addItem(12727);
-            player:messageSpecial(ITEM_OBTAINED,12727);
+            player:messageSpecial(text.ITEM_OBTAINED,12727);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,A_CLOCK_MOST_DELICATE);
             player:addQuest(JEUNO,SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
         end
     elseif (csid == 0x0098) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17083);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17083);
         else 
             player:addQuest(JEUNO,THE_CLOCKMASTER);
             player:addTitle(TIMEKEEPER);
             player:addGil(1200);
-            player:messageSpecial(GIL_OBTAINED,1200);
+            player:messageSpecial(text.GIL_OBTAINED,1200);
             player:addItem(17083);
-            player:messageSpecial(ITEM_OBTAINED,17083);
+            player:messageSpecial(text.ITEM_OBTAINED,17083);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,THE_CLOCKMASTER);
         end
     end
 end;
-
-
-

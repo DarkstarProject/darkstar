@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Warden Beetle
+-- MOB: Warden Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

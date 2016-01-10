@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  HomePoint#1
+--  NPC: HomePoint#1
 -- @pos -98.588 0.001 -183.416 241
 -----------------------------------
 
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,14 +38,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x21fc) then
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(text.HOMEPOINT_SET);
+            player:messageSpecial(text.text.HOMEPOINT_SET);
         else
             hpTeleport( player, option);
         end

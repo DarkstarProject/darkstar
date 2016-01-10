@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Vulture
+-- MOB: Vulture
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

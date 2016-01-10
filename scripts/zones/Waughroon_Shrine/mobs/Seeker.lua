@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Searcher
+-- MOB: Searcher
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 

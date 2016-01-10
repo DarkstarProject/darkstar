@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Foss
+--  NPC: Foss
 -- Starts & Finishes Repeatable Quest: Buckets of Gold
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x010f and option == 0) then
         player:addQuest(BASTOK,BUCKETS_OF_GOLD);            
@@ -79,11 +79,8 @@ function onEventFinish(player,csid,option)
         
         player:tradeComplete();
         player:addGil(GIL_RATE*300);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*300);
     end
 
 end;
-
-
-
 

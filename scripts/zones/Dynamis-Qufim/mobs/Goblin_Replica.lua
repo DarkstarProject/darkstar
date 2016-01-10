@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis qufim
---  MOB: Goblin Replica
+-- MOB: Goblin Replica
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;

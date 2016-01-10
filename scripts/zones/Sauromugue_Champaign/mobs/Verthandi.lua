@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Verthandi
+-- MOB: Verthandi
 -----------------------------------
 
 require("scripts/globals/titles");

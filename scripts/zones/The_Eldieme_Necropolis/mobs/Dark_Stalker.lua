@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Dark Stalker
+-- MOB: Dark Stalker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Shupah Mujuuk
+--  NPC: Shupah Mujuuk
 -- Title Change NPC
 -- @pos 12 8 20 247
 -----------------------------------

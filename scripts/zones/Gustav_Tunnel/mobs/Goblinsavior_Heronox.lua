@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---   NM: Goblinsavior Heronox
+-- NM: Goblinsavior Heronox
 -----------------------------------
 
 -----------------------------------

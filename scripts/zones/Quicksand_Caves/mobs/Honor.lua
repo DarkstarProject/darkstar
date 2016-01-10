@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Honor
+-- MOB: Honor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 

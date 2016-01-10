@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Colo-colo
+-- MOB: Colo-colo
 -- BCNM20
 -----------------------------------
 

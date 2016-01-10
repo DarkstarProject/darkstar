@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Samourai
+-- MOB: Fomor Samourai
 -----------------------------------
 
 

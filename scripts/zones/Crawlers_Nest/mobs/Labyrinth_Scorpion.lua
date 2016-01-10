@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Labyrinth Scorpion
+-- MOB: Labyrinth Scorpion
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

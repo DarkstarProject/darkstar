@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Pawn
+-- MOB: Demon_Pawn
 -----------------------------------
 
 require("scripts/zones/Castle_Zvahl_Keep/MobIDs");

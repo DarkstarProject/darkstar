@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Lamepaue
---  Type: Past Event Watcher
+-- Area: Bastok Markets
+--  NPC: Lamepaue
+-- Type: Past Event Watcher
 -- @zone: 235
---  @pos -172.136 -5 -69.632
+-- @pos -172.136 -5 -69.632
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
         BastokQuests = BastokQuests - 2;     -- The Return of the Adventurer
     end
 -- *Need the correct csid
---     if (player:hasCompleteQuest(BASTOK,THE_FIRST_MEETING)) then
---         BastokQuests = BastokQuests - 4;     -- The First Meeting
---     end
+-- if (player:hasCompleteQuest(BASTOK,THE_FIRST_MEETING)) then
+-- BastokQuests = BastokQuests - 4;     -- The First Meeting
+-- end
     if (player:hasCompleteQuest(BASTOK,WISH_UPON_A_STAR)) then
         BastokQuests = BastokQuests - 8;     -- Wish Upon a Star (pt.1)
         BastokQuests = BastokQuests - 16;    -- Wish Upon a Star (pt.2)
@@ -49,9 +49,9 @@ function onTrigger(player,npc)
     end
 
 -- *Need the correct csid/parameters
---    if (player:hasCompleteQuest(BASTOK,ALL_BY_MYSELF)) then
---        BastokQuests = BastokQuests - 64;    -- All by Myself
---    end
+-- if (player:hasCompleteQuest(BASTOK,ALL_BY_MYSELF)) then
+-- BastokQuests = BastokQuests - 64;    -- All by Myself
+-- end
     if (player:hasCompleteQuest(BASTOK,ACHIEVING_TRUE_POWER)) then
         BastokQuests = BastokQuests - 128;   -- Achieving True Power
     end
@@ -94,10 +94,10 @@ function onTrigger(player,npc)
     end
     
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,DANCER_ATTIRE)) then
---         OtherQuests = OtherQuests - 2048;   -- Dancer Attire (pt.1)
---         OtherQuests = OtherQuests - 4096;   -- Dancer Attire (pt.2)
---     end
+-- if (player:hasCompleteQuest(**Unknown**,DANCER_ATTIRE)) then
+-- OtherQuests = OtherQuests - 2048;   -- Dancer Attire (pt.1)
+-- OtherQuests = OtherQuests - 4096;   -- Dancer Attire (pt.2)
+-- end
     if (player:hasCompleteQuest(CRYSTAL_WAR,DRAFTED_BY_THE_DUCHY)) then
         OtherQuests = OtherQuests - 8192;   -- Drafted by the Duchy
     end
@@ -109,27 +109,27 @@ function onTrigger(player,npc)
     end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,RECORDS_OF_EMINENCE)) then
---         OtherQuests = OtherQuests - 65536;  -- Records of Eminence
---     end
+-- if (player:hasCompleteQuest(**Unknown**,RECORDS_OF_EMINENCE)) then
+-- OtherQuests = OtherQuests - 65536;  -- Records of Eminence
+-- end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,TRUST_MUMOR)) then
---         OtherQuests = OtherQuests - 131072; -- Trust (Mumor)
---     end
+-- if (player:hasCompleteQuest(**Unknown**,TRUST_MUMOR)) then
+-- OtherQuests = OtherQuests - 131072; -- Trust (Mumor)
+-- end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,UNITY_CONCORD)) then
---         OtherQuests = OtherQuests - 262144; -- Unity Concord (pt.1)
---         OtherQuests = OtherQuests - 524288; -- Unity Concord (pt.2)
---     end
+-- if (player:hasCompleteQuest(**Unknown**,UNITY_CONCORD)) then
+-- OtherQuests = OtherQuests - 262144; -- Unity Concord (pt.1)
+-- OtherQuests = OtherQuests - 524288; -- Unity Concord (pt.2)
+-- end
 
     -- Seekers of Adoulin
     local SeekersOfAdoulin = 0xFFFFFFFE;
 -- *Need the correct csid
---    if (player:hasCompletedMission (SOA,RUMORS_FROM_THE_WEST)) then
---        SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
---    end
+-- if (player:hasCompletedMission (SOA,RUMORS_FROM_THE_WEST)) then
+-- SeekersOfAdoulin = SeekersOfAdoulin - 2; -- Rumors from the West
+-- end
 
     -- Determine if any cutscenes are available for the player.
     local gil = player:getGil();
@@ -175,16 +175,16 @@ function onEventFinish(player,csid,option)
             player:startEvent(0x03F2);
         elseif (option ==  33) then        -- The Return of the Adventurer
             player:startEvent(0x00F3);            
---        elseif (option ==  34) then        -- The First Meeting
---            player:startEvent(CSID);                   
+-- elseif (option ==  34) then        -- The First Meeting
+-- player:startEvent(CSID);                   
         elseif (option ==  35) then        -- Wish Upon a Star (pt.1)
             player:startEvent(0x0149);                    
         elseif (option ==  36) then        -- Wish Upon a Star (pt.2)
             player:startEvent(0x014C);                     
         elseif (option ==  37) then        -- Wish Upon a Star (pt.3)
             player:startEvent(0x014E);                           
---        elseif (option ==  38) then        -- All by Myself
---            player:startEvent(0x00B9);                  
+-- elseif (option ==  38) then        -- All by Myself
+-- player:startEvent(0x00B9);                  
         elseif (option ==  39) then        -- Achieving True Power
             player:startEvent(0x01B9);                  
         elseif (option ==  40) then        -- Too Many Chefs
@@ -222,10 +222,10 @@ function onEventFinish(player,csid,option)
             player:startEvent(0x01B7);        
         elseif (option ==  74) then        -- Comeback Queen
             player:startEvent(0x01EA);        
---        elseif (option ==  75) then        -- Dancer Attire (pt.1)
---            player:startEvent(CSID);                      
---        elseif (option ==  76) then        -- Dancer Attire (pt.2)
---            player:startEvent(CSID);
+-- elseif (option ==  75) then        -- Dancer Attire (pt.1)
+-- player:startEvent(CSID);                      
+-- elseif (option ==  76) then        -- Dancer Attire (pt.2)
+-- player:startEvent(CSID);
 -- Drafted by the Duchy and Battle on a New Front cutscenes need to be verified,ids may need to be changed or have additional parameters.
         elseif (option ==  77) then        -- Drafted by the Duchy
             player:startEvent(0x0012);    
@@ -233,16 +233,16 @@ function onEventFinish(player,csid,option)
             player:startEvent(0x000C);            
         elseif (option ==  79) then        -- VW Op. #126: Qufim Incursion
             player:startEvent(0x0102);            
---        elseif (option ==  80) then        -- Records of Eminence
---            player:startEvent(CSID);        
---        elseif (option ==  81) then        -- Trust (Mumor)
---            player:startEvent(CSID);        
---        elseif (option ==  82) then        -- Unity Concord (pt.1)
---            player:startEvent(CSID);           
---        elseif (option ==  83) then        -- Unity Concord (pt.2)
---            player:startEvent(CSID);            
---        elseif (option ==  129) then        -- Rumors from the West
---            player:startEvent(CSID);            
+-- elseif (option ==  80) then        -- Records of Eminence
+-- player:startEvent(CSID);        
+-- elseif (option ==  81) then        -- Trust (Mumor)
+-- player:startEvent(CSID);        
+-- elseif (option ==  82) then        -- Unity Concord (pt.1)
+-- player:startEvent(CSID);           
+-- elseif (option ==  83) then        -- Unity Concord (pt.2)
+-- player:startEvent(CSID);            
+-- elseif (option ==  129) then        -- Rumors from the West
+-- player:startEvent(CSID);            
         end
     end
 

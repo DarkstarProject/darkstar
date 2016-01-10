@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Fume Lizard
+-- MOB: Fume Lizard
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

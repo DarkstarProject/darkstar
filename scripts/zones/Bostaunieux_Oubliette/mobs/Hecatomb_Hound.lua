@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Hecatomb Hound
+-- MOB: Hecatomb Hound
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

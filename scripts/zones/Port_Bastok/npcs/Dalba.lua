@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port Bastok
---   NPC: Dalba
---  Type: Past Event Watcher
+-- Area: Port Bastok
+--  NPC: Dalba
+-- Type: Past Event Watcher
 -- @zone: 236
---  @pos: -174.101 -7 -19.611
+-- @pos: -174.101 -7 -19.611
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -137,9 +137,9 @@ function onTrigger(player,npc)
         AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
     end
 -- *Need the correct csid
---    if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
---        AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
---    end
+-- if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
+-- AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
+-- end
 
     -- Determine if any cutscenes are available for the player.
     local gil = player:getGil();
@@ -260,8 +260,8 @@ function onEventFinish(player,csid,option)
             player:startEvent(0x0132);        
         elseif (option == 129) then        -- Drenched! It Began with a Raindrop.
             player:startEvent(0x7549,0,0,0,0,0,0,236);
---        elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
---            player:startEvent(CSID,0,0,0,0,0,0,236);
+-- elseif (option ==   2) then        -- Hasten! In a Jam in Jeuno?
+-- player:startEvent(CSID,0,0,0,0,0,0,236);
         end
     end
 

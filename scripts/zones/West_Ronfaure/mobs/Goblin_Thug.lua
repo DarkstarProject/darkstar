@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Goblin Thug
+-- MOB: Goblin Thug
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

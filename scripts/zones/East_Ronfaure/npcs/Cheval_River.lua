@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: East Ronfaure
---  NPC:  Cheval_River
---  @pos 223 -58 426 101
---  Involved in Quest: Waters of Cheval
+-- Area: East Ronfaure
+--  NPC: Cheval_River
+-- @pos 223 -58 426 101
+-- Involved in Quest: Waters of Cheval
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -21,9 +21,9 @@ function onTrade(player,npc,trade)
         if (trade:getItemCount() == 1 and player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
             player:addItem(603);
-            player:messageSpecial(CHEVAL_RIVER_WATER, 603);
+            player:messageSpecial(text.CHEVAL_RIVER_WATER, 603);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 603);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 603);
         end;
     end;
             
@@ -36,9 +36,9 @@ end;
 function onTrigger(player,npc)
     
     if (player:hasItem(602) == true) then
-        player:messageSpecial(BLESSED_WATERSKIN);
+        player:messageSpecial(text.BLESSED_WATERSKIN);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end;
     
 end; 
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,11 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
-
-
-
 

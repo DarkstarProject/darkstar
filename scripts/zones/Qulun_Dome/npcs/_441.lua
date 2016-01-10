@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NPC:  Door
+--  NPC: Door
 -- Involved in Mission: Limit Break 3
 -- @pos 299.999 37.864 47.067 148
 -----------------------------------
@@ -26,13 +26,13 @@ function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
         if (player:getZPos() < 46) then
             if (player:hasKeyItem(SILVER_BELL) and player:hasKeyItem(CORUSCANT_ROSARY) and player:hasKeyItem(BLACK_MATINEE_NECKLACE)) then
-                player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
+                player:messageSpecial(text.THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
                 npc:openDoor(20); -- retail timed
             else
-                player:messageSpecial(IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);
+                player:messageSpecial(text.IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);
             end
         else
-            player:messageSpecial(CANNOT_BE_OPENED_FROM_THIS_SIDE);
+            player:messageSpecial(text.CANNOT_BE_OPENED_FROM_THIS_SIDE);
         end
     end    
     return 1;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Pso'Xja
--- NPC:   _090 (Stone Gate)
+--  NPC:  _090 (Stone Gate)
 -- Notes: Spawns Gargoyle when triggered
 -- @pos 341.600 -1.925 -50.000 9
 -----------------------------------
@@ -27,15 +27,15 @@ function onTrade(player,npc,trade)
                     local Rand = math.random(1,2); -- estimated 50% success as per the wiki
                     if (Rand == 1) then -- Spawn Gargoyle
                         -- + 0x8000 along with the 6th param being true makes it display the player's name properly as part of the message.
-                        player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true);
+                        player:messageSpecial(text.DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true);
                         SpawnMob(16814081,120):updateClaim(player); -- Gargoyle
                     else
-                        player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
+                        player:messageSpecial(text.DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
                         npc:openDoor(30);
                     end
                     player:tradeComplete();
                 else
-                    player:messageSpecial(DOOR_LOCKED);
+                    player:messageSpecial(text.DOOR_LOCKED);
                 end
             end
         end
@@ -56,14 +56,14 @@ function onTrigger(player,npc)
             if (GetMobAction(16814081) == 0) then
                 local Rand = math.random(1,10);
                 if (Rand <=9) then -- Spawn Gargoyle
-                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
+                    player:messageSpecial(text.TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
                     SpawnMob(16814081,120):updateClaim(player); -- Gargoyle
                 else
-                    player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
+                    player:messageSpecial(text.TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);
                 end    
             else
-                player:messageSpecial(DOOR_LOCKED);
+                player:messageSpecial(text.DOOR_LOCKED);
             end    
         elseif (X >= 342) then
             player:startEvent(0x001A);
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

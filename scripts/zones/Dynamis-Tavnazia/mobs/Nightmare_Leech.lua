@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Tavnazia
--- NPC:  Nightmare_Leech
+--  NPC: Nightmare_Leech
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;

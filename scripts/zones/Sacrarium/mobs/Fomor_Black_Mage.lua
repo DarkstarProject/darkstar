@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Black mage
+-- MOB: Fomor Black mage
 -----------------------------------
 
 

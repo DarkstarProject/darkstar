@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Magephaud
+--  NPC: Magephaud
 -- Standard Info NPC
 -----------------------------------
 
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0074) then
         player:addQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:setVar("EveryonesGrudgeStarted",1);
@@ -60,11 +60,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addFame(OUTLANDS,NORG_FAME*80);
         player:addKeyItem(291);    -- Permanent Tonberry key
-        player:messageSpecial(KEYITEM_OBTAINED,291);
+        player:messageSpecial(text.KEYITEM_OBTAINED,291);
         player:setVar("EveryonesGrudgeStarted",0);
         player:addTitle(HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end
 end;
-
-
-

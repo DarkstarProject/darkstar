@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Altiret 
+--  NPC: Altiret 
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -44,7 +44,7 @@ function onTrade(player,npc,trade)
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         elseif (MagicFlyer == false) then
             player:startEvent(0x0227);
         end;
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,8 +90,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" reward with light axe, done with quest
     if (csid == 0x0226) then
@@ -99,7 +99,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(6403, 16667);
     end;
 end;
-
-
-
 

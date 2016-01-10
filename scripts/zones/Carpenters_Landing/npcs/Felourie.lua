@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  Felourie
---  Type: Standard NPC
---  @pos -300.134 -2.999 505.016 2
+-- Area: Carpenters' Landing
+--  NPC: Felourie
+-- Type: Standard NPC
+-- @pos -300.134 -2.999 505.016 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

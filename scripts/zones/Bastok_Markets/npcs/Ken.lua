@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Bastok Markets
---  NPC:  Ken
---  Type: Quest NPC
---  @pos -340.857 -11.003 -149.008 235
+-- Area: Bastok Markets
+--  NPC: Ken
+-- Type: Quest NPC
+-- @pos -340.857 -11.003 -149.008 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

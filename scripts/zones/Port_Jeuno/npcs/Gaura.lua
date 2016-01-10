@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Guara
+--  NPC: Guara
 -- Standard Info NPC
 -----------------------------------
 

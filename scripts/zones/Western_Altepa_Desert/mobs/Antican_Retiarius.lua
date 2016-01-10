@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Retiarius
+-- MOB: Antican Retiarius
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

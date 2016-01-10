@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Thread Leech
+-- MOB: Thread Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Recluse Spider
+-- MOB: Recluse Spider
 -- Note: Place Holder for Arachne
 -----------------------------------
 

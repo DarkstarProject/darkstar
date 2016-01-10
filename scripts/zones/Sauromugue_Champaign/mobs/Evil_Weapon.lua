@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Evil Weapon
+-- MOB: Evil Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

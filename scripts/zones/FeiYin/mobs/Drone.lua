@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Drone
+-- MOB: Drone
 -----------------------------------
 
 require("scripts/globals/keyitems");

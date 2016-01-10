@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Furrier
+-- MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

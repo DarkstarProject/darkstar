@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Teigero Bangero
+--  NPC: Teigero Bangero
 -- Involved in Quests: Save the Clock Tower, The Lost Cardian
 -- @zone 245
 -- @pos -58 0 -143
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x004a) then 
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 128);

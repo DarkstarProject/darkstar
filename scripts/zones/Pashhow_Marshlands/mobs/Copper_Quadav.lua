@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Copper Quadav
+-- MOB: Copper Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

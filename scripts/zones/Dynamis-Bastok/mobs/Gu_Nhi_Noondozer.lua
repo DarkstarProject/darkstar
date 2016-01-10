@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  MOB: Gu'Nhi Noondozer
+-- MOB: Gu'Nhi Noondozer
 -- Time Extender: 30min
 -----------------------------------
 

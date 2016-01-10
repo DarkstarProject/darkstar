@@ -52,7 +52,7 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    --printf("leavecode: %u",leavecode);
+    -- printf("leavecode: %u",leavecode);
     
 end;
 

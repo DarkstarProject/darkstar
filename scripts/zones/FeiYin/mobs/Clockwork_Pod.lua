@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Clockwork Pod
+-- MOB: Clockwork Pod
 -----------------------------------
 
 require("scripts/globals/keyitems");

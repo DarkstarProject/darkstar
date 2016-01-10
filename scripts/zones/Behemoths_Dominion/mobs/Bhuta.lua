@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Bhuta
+-- MOB: Bhuta
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  MOB: Birdtrap
+-- MOB: Birdtrap
 -- Note: Placeholder Orctrap
 -----------------------------------
 

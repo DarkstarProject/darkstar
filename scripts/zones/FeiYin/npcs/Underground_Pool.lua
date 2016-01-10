@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
--- NPC:  Underground Pool
+--  NPC: Underground Pool
 -- Involved In Quest: Scattered into Shadow
 -- @pos 7 0 32 204 (H-8)
 -- @pos 7 0 247 204 (H-5)
@@ -46,10 +46,10 @@ function onTrigger(player,npc)
                 SpawnMob(17613129,300):updateClaim(player);
             end
         else
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+            player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0015) then
         player:delKeyItem(AQUAFLORA1);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Bat Eye
+-- MOB: Bat Eye
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

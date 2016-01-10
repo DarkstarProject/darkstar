@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Grass Funguar
+-- MOB: Grass Funguar
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

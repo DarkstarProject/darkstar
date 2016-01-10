@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Cursed Puppet
+-- MOB: Cursed Puppet
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

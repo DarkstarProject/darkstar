@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Haa Pevi the Stentorian
+--  NPC: Haa Pevi the Stentorian
 -- Boss Trigger for RDM NM
 -----------------------------------
 

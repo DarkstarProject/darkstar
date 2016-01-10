@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Chaos Elemental
+-- MOB: Chaos Elemental
 -- Spawned for Quest: The Three Magi
 -- @pos -335.245 -26.403 -49.190 112
 -----------------------------------

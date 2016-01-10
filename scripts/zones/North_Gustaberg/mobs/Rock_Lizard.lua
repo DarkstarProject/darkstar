@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Rock Lizard
+-- MOB: Rock Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

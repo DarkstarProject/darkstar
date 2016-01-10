@@ -86,8 +86,8 @@ end;
 -----------------------------------    
 
 function onEventUpdate(player,csid,option)    
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;    
 
 -----------------------------------    
@@ -95,10 +95,10 @@ end;
 -----------------------------------    
 
 function onEventFinish(player,csid,option)    
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x006E) then
-        player:messageSpecial(KI_STOLEN,0,MYSTERIOUS_AMULET);
+        player:messageSpecial(text.KI_STOLEN,0,MYSTERIOUS_AMULET);
         player:delKeyItem(MYSTERIOUS_AMULET);
         player:setVar("PromathiaStatus",1);
     elseif (csid == 0x006F) then

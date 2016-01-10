@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Ossuary Worm
+-- MOB: Ossuary Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

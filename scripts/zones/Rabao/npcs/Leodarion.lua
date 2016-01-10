@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Leodarion
+--  NPC: Leodarion
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box, True Will
 -- @pos -50 8 40 247
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x005a) then
         player:setVar("illTakeTheBigBoxCS",2);
@@ -90,17 +90,17 @@ function onEventFinish(player,csid,option)
         player:setVar("illTakeTheBigBox_Timer",0);
         player:setVar("illTakeTheBigBoxCS",4);
         player:addKeyItem(SEANCE_STAFF);
-        player:messageSpecial(KEYITEM_OBTAINED,SEANCE_STAFF);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SEANCE_STAFF);
     elseif (csid == 0x0061) then
         player:delKeyItem(OLD_TRICK_BOX);
         player:setVar("trueWillCS",2);
     elseif (csid == 0x0063) then
         if (player:getFreeSlotsCount() < 1) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13782);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13782);
         else
             player:delKeyItem(LARGE_TRICK_BOX);
             player:addItem(13782);
-            player:messageSpecial(ITEM_OBTAINED,13782); -- Ninja Chainmail
+            player:messageSpecial(text.ITEM_OBTAINED,13782); -- Ninja Chainmail
             player:setVar("trueWillCS",0);
             player:addFame(OUTLANDS,NORG_FAME*30);
             player:completeQuest(OUTLANDS,TRUE_WILL);

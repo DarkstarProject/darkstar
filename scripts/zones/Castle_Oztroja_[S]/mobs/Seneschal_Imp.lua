@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (S)
---  MOB: Seneschal Imp
+-- MOB: Seneschal Imp
 -----------------------------------
 
 require("scripts/globals/status");

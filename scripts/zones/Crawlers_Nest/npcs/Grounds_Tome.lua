@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers Nest
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

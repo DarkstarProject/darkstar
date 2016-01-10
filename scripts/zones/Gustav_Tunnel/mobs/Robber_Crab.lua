@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Robber Crab
+-- MOB: Robber Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

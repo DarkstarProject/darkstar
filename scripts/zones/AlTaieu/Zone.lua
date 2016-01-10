@@ -61,8 +61,8 @@ end;
 ----------------------------------- 
 
 function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;    
 
 ----------------------------------- 
@@ -70,12 +70,12 @@ end;
 ----------------------------------- 
 
 function onEventFinish(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0001) then
         player:setVar("PromathiaStatus",1);
         player:addKeyItem(LIGHT_OF_ALTAIEU);
-        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
         player:addTitle(SEEKER_OF_THE_LIGHT);    
     elseif (csid == 0x00A7) then        
         player:setVar("PromathiaStatus",1);

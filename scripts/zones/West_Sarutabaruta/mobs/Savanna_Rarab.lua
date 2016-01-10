@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Savanna Rarab
+-- MOB: Savanna Rarab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

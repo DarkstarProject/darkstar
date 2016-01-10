@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  MOB: Vanguard Constable
+-- MOB: Vanguard Constable
 -----------------------------------
 
 require("scripts/globals/dynamis");

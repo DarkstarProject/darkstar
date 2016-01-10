@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Thunder Elemental
+-- MOB: Thunder Elemental
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

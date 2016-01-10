@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Lower Jeuno
+-- Area: Lower Jeuno
 --  NPC: Mesukiki
---  Type: Item Deliverer
---  @zone: 245
---  @pos -19.832    -0.101    -39.075
+-- Type: Item Deliverer
+-- @zone: 245
+-- @pos -19.832    -0.101    -39.075
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

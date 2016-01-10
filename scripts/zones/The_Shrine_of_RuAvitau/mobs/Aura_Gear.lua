@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Aura Gear
+-- MOB: Aura Gear
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

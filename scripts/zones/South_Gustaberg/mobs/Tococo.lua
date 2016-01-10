@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  NM:  Tococo
+-- NM:  Tococo
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------

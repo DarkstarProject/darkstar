@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Seven of Coins
+-- MOB: Seven of Coins
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

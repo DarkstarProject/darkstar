@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Gudav
+--  NPC: Gudav
 -- Starts Quests: A Foreman's Best Friend
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -54,15 +54,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006e) then
         player:addQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
     elseif (csid == 0x0070) then
         if (player:hasKeyItem(MAP_OF_THE_GUSGEN_MINES) == false) then
             player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
         end
         player:addFame(BASTOK,BAS_FAME*60);
         player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);

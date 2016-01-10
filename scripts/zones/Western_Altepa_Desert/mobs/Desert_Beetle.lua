@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Beetle
+-- MOB: Desert Beetle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

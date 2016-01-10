@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Onryo
+-- MOB: Onryo
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 

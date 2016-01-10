@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Conjurer
+-- MOB: Goblin Conjurer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

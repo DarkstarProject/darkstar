@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Spirekeeper
+-- MOB: Gigas Spirekeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

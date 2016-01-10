@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Giant Ascetic
+-- MOB: Giant Ascetic
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

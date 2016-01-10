@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Mourioche
+-- MOB: Mourioche
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

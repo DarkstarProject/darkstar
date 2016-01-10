@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern
--- NPC:  Altar
+--  NPC: Altar
 -- Involved in Quests: The Circle of Time
 -- @pos 109 -3 -145 150
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
            end  
        end
      else
-        player:messageSpecial(ALTAR)     
+        player:messageSpecial(text.ALTAR)     
    end
 end;
 
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
    if (csid == 0x03) then
        player:setVar("circleTime",9); -- After bugaboo is killed, and final CS shows up

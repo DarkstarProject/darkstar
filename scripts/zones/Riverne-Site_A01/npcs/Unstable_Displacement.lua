@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Riverne Site #A01
--- NPC:  Unstable Displacement
+--  NPC: Unstable Displacement
 -- ENM Battlefield
 -----------------------------------
 package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(SPACE_SEEMS_DISTORTED);
+    player:messageSpecial(text.SPACE_SEEMS_DISTORTED);
 end;
 
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,6 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

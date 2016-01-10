@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Norg
+-- Area: Norg
 --  NPC: Achika
---  Type: Tenshodo Merchant
---  @pos 1.300 0.000 19.259 252
+-- Type: Tenshodo Merchant
+-- @pos 1.300 0.000 19.259 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60421,9,23,7)) then
-            player:showText(npc, ACHIKA_SHOP_DIALOG);
+            player:showText(npc, text.ACHIKA_SHOP_DIALOG);
         end
     else
         -- player:startEvent(0x0096);

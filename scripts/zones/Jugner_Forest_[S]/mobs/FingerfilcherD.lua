@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest [S]
---  NM:  Fingerfilcher Dradzad
+-- NM:  Fingerfilcher Dradzad
 -----------------------------------
 
 require("scripts/globals/titles");

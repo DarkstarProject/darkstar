@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Mouse Bat
+-- MOB: Mouse Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

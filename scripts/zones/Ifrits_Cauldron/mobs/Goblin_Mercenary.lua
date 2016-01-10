@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Mercenary
+-- MOB: Goblin Mercenary
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

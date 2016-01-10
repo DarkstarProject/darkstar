@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Apstaule
+--  NPC: Apstaule
 -- Not used cutscenes: 541
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -23,7 +23,7 @@ AuctionParcel = trade:hasItemQty(0x0252,1);
     if (MagicFlyer == true and count == 1) then
         FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     elseif (AuctionParcel == true and count == 1) then
         TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,10 +58,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

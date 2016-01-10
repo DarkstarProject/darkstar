@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Vault Weapon
+-- MOB: Vault Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

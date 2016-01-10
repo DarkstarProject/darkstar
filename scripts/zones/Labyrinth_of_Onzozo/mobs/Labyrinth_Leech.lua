@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Labyrinth Leech
+-- MOB: Labyrinth Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

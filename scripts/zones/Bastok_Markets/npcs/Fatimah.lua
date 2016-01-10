@@ -58,11 +58,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x012E and option == 1) then
         if (player:getGil() >= Cost) then
-            player:messageSpecial(GOLDSMITHING_SUPPORT,0,3,0);
+            player:messageSpecial(text.GOLDSMITHING_SUPPORT,0,3,0);
             player:addStatusEffect(EFFECT_GOLDSMITHING_IMAGERY,3,0,480);
             player:delGil(Cost);
         else
-            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+            player:messageSpecial(text.NOT_HAVE_ENOUGH_GIL);
         end
     end
 end;

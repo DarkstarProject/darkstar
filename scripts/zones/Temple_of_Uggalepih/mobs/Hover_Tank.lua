@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Hover Tank
+-- MOB: Hover Tank
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

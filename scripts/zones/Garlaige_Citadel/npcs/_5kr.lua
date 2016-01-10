@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- NPC:  _5kr (Crematory Hatch)
+--  NPC: _5kr (Crematory Hatch)
 -- Type: Door
 -- @pos 139 -6 127 200
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     if ((X >= 135 and X <= 144) and (Z >= 128 and Z <= 135)) then 
         player:startEvent(0x0005);
     else
-        player:messageSpecial(OPEN_WITH_THE_RIGHT_KEY);
+        player:messageSpecial(text.OPEN_WITH_THE_RIGHT_KEY);
         return 0;
     end
 end; 
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,9 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

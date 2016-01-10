@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port Windurst
+-- Area: Port Windurst
 --  NPC: Fennella
---  Type: Guildworker's Union Representative
---  @zone: 240
---  @pos -177.811 -2.835 65.639
+-- Type: Guildworker's Union Representative
+-- @zone: 240
+-- @pos -177.811 -2.835 65.639
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -113,6 +113,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 0x2724) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     elseif (csid == 0x2725) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(text.GP_OBTAINED, option);
     end
 end;

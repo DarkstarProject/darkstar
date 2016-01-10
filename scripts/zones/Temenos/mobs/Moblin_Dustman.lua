@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC:  Moblin_Dustman
+--  NPC: Moblin_Dustman
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Babaula
+-- MOB: Babaula
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

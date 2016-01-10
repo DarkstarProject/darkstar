@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  NM:  Axesarion the Wanderer
+-- NM:  Axesarion the Wanderer
 -----------------------------------
 
 -----------------------------------

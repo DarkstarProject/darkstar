@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC: Moozo-Koozo
---  Title Change NPC
---  @pos 83 0 120 230
+-- Area: Southern San d'Oria
+--  NPC: Moozo-Koozo
+-- Title Change NPC
+-- @pos 83 0 120 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -44,7 +44,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;

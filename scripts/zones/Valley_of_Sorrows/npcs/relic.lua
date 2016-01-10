@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
--- NPC:  <this space intentionally left blank>
+--  NPC: <this space intentionally left blank>
 -- @pos -14 -3 56 128
 -----------------------------------
 package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,18 +42,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 15) then
       if (player:getFreeSlotsCount() < 2) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18342);
-         player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,1450);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,18342);
+         player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE,1450);
       else
          player:tradeComplete();
          player:addItem(18342);
          player:addItem(1450,30);
-         player:messageSpecial(ITEM_OBTAINED,18342);
-         player:messageSpecial(ITEMS_OBTAINED,1450,30);
+         player:messageSpecial(text.ITEM_OBTAINED,18342);
+         player:messageSpecial(text.ITEMS_OBTAINED,1450,30);
          player:setVar("RELIC_IN_PROGRESS",0);
       end
    end

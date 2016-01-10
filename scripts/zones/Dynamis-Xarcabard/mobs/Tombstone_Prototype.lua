@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Tombstone Prototype
+-- MOB: Tombstone Prototype
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
 -----------------------------------

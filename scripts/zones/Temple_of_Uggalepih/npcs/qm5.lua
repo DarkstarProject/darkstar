@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Crimson-toothed Pawberry NM)
+--  NPC: ??? (Crimson-toothed Pawberry NM)
 -- @pos -39 -24 27 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         SpawnMob(17428813,300):updateClaim(player);
         SpawnMob(17428815,300):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 
 end;
@@ -32,5 +32,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NM_OFFSET + 1);
+    player:messageSpecial(text.NM_OFFSET + 1);
 end;

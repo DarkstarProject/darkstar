@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Horlais Peak
---  MOB: Dragonian_Minstrel
+-- MOB: Dragonian_Minstrel
 -- KSNM30
 -----------------------------------
 

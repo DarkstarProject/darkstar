@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Antares
+-- MOB: Antares
 -- Note: Place holder Amikiri
 -----------------------------------
 

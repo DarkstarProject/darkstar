@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Bullbeggar
+-- MOB: Bullbeggar
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

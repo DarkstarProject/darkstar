@@ -110,8 +110,8 @@ end;
 -----------------------------------
 
 function onEventUpdate( player, csid, option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0030) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x003e or csid == 0x003f) then
@@ -130,8 +130,8 @@ end;
 -----------------------------------
 
 function onEventFinish( player, csid, option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0030) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x003e or csid == 0x003f) then

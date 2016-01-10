@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
             points = 1000 - math.max(0, #chars - 3);
         end
         for i,v in pairs(chars) do
-            v:messageSpecial(Leujaoam.text.ASSAULT_POINTS_OBTAINED,points);
+            v:messageSpecial(text.Leujaoam.text.ASSAULT_POINTS_OBTAINED,points);
             v:addAssaultPoint(LEUJAOAM_ASSAULT_POINT,points);
             v:setVar("AssaultComplete",1);
             if (v:hasCompletedAssault(v:getCurrentAssault())) then

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Wild Dhalmel
+-- MOB: Wild Dhalmel
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Sable-tongued_Gonberry
+-- MOB: Sable-tongued_Gonberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 

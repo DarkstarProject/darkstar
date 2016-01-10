@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Dynamis-San_dOria/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

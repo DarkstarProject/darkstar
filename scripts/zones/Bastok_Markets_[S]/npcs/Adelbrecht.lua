@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x008B and option == 1) then
         player:addKeyItem(BATTLE_RATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,BATTLE_RATIONS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,BATTLE_RATIONS);
         player:addQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
         player:setVar("BLUE_R_LETTER_USED",1);
         player:delKeyItem(BLUE_RECOMMENDATION_LETTER);
@@ -99,10 +99,10 @@ function onEventFinish(player,csid,option)
                 player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:messageSpecial(text.KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(2);

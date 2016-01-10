@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Etemmu
+-- MOB: Etemmu
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

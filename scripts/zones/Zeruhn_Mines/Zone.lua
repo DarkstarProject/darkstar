@@ -84,9 +84,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then    
             player:addItem(16607);
             player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16607);
+            player:messageSpecial(text.ITEM_OBTAINED,16607);
         else    
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16607);
         end    
         player:setVar("ZeruhnMines_Zeid_CS", 1);    
     end        

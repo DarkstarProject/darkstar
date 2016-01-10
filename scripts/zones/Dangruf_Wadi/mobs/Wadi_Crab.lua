@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Crab
+-- MOB: Wadi Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

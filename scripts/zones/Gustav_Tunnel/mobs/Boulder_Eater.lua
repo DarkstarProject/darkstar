@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Boulder Eater
+-- MOB: Boulder Eater
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

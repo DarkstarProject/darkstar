@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Alizabe
+--  NPC: Alizabe
 -- Only sells when Windurst controls the Tavnazian Archipelago
 -- Only available to those with CoP Ch. 4.1 or higher
 -- Confirmed shop stock, August 2013
@@ -28,9 +28,9 @@ function onTrigger(player,npc)
 
     if (cop >= 40) then
         if (RegionOwner ~= WINDURST) then 
-            player:showText(npc,ALIZABE_CLOSED_DIALOG);
+            player:showText(npc, text.ALIZABE_CLOSED_DIALOG);
         else
-            player:showText(npc,ALIZABE_OPEN_DIALOG);
+            player:showText(npc, text.ALIZABE_OPEN_DIALOG);
 
             stock = {
                 0x05F3,   290,   --Apple Mint
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
             showShop(player,WINDURST,stock);
         end
     else
-        player:showText(npc,ALIZABE_COP_NOT_COMPLETED);
+        player:showText(npc, text.ALIZABE_COP_NOT_COMPLETED);
     end
 end;
 
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,6 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Shaman
+-- MOB: Goblin Shaman
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Demon Wizard
+-- MOB: Demon Wizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

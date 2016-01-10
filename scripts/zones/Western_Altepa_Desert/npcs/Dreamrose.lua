@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  Dreamrose
+--  NPC: Dreamrose
 -- Involved in Mission: San D'Oria 6-1
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
@@ -30,7 +30,7 @@ local currentMission = player:getCurrentMission(SANDORIA);
         if (GetMobAction(17289653) == 0) then
             if (player:getVar("Mission6-1MobKilled") == 1) then
                 player:addKeyItem(DREAMROSE);
-                player:messageSpecial(KEYITEM_OBTAINED,DREAMROSE);
+                player:messageSpecial(text.KEYITEM_OBTAINED,DREAMROSE);
                 player:setVar("Mission6-1MobKilled",0);
                 player:setVar("MissionStatus",3);
             else
@@ -38,7 +38,7 @@ local currentMission = player:getCurrentMission(SANDORIA);
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end; 
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

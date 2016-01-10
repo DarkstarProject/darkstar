@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Mist Lizard
+-- MOB: Mist Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

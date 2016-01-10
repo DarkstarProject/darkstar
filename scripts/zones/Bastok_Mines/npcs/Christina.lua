@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Mines
---   NPC: Christina
---  Type: Special Event Coordinator
+-- Area: Bastok Mines
+--  NPC: Christina
+-- Type: Special Event Coordinator
 -- @zone: 234
---  @pos 23.703 -1 -86.034
+-- @pos 23.703 -1 -86.034
 --
 -- Auto-Script: Requires Verification
 -----------------------------------

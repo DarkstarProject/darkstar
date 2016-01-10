@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gusberg
---  MOB: Gambilox Wanderling
+-- MOB: Gambilox Wanderling
 -- Quest NM - "As Thick as Thieves"
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Hellbound Warlock
+-- MOB: Hellbound Warlock
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

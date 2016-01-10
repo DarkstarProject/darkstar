@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Darksteel Golem
+-- MOB: Darksteel Golem
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

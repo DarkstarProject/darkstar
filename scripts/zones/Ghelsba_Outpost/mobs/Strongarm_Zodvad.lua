@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Strongarm Zodvad
+-- MOB: Strongarm Zodvad
 -- Involved in Mission: Save the Children
 -----------------------------------
 

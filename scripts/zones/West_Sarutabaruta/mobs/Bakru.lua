@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Bakru
+-- MOB: Bakru
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Crane Fly
+-- MOB: Crane Fly
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

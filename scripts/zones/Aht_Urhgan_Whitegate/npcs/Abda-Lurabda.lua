@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Abda Lurabda
+--  NPC: Abda Lurabda
 -- Standard Info NPC
 -----------------------------------
 
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %d",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %d",option);
     
     if (csid == 0x288 and bit.band(option, 0x80000000) ~= 0) then
         player:delGil(9800);

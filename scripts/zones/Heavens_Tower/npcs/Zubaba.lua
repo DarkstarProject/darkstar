@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heavens Tower
--- NPC:  Zubaba
+--  NPC: Zubaba
 -- Involved in Mission 3-2
 -- @pos 15 -27 18 242
 -----------------------------------
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x0079) then
         player:addKeyItem(CHARM_OF_LIGHT);
-        player:messageSpecial(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
     elseif (csid == 0x0095 or csid == 0x0101) then
         player:setVar("MissionStatus",3);

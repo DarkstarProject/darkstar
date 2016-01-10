@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Weaver
+-- MOB: Goblin Weaver
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Cockatrice
+-- MOB: Cockatrice
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

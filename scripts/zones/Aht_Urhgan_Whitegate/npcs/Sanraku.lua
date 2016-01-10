@@ -63,7 +63,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(seals[znm]);
                     player:startEvent(0x0390,0,0,0,seals[znm]);
                 else
-                    player:messageSpecial(SANCTION + 8,seals[znm]); -- You already possess .. (not sure this is authentic)
+                    player:messageSpecial(text.SANCTION + 8,seals[znm]); -- You already possess .. (not sure this is authentic)
                 end
             end
         end

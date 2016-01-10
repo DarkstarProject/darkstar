@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  Sealed Portal
---  Involved in Quest: Making the Grade
---    Working 50%
---  Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
---  @pos -259 -1 -20 192
+-- Area: Inner Horutoto Ruins
+--  NPC: Sealed Portal
+-- Involved in Quest: Making the Grade
+-- Working 50%
+-- Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
+-- @pos -259 -1 -20 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -32,14 +32,14 @@ function onTrigger(player,npc)
  ----------------------------------------------------------------------------------------------------------
     
     if (player:getZPos() >= -15) then
-        player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
+        player:messageSpecial(text.PORTAL_NOT_OPEN_THAT_SIDE);
     else
         if (player:hasKeyItem(PORTAL_CHARM)) then
             npc:openDoor(30);
         elseif (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
             -- quest not scripted ?
         else
-            player:messageSpecial(PORTAL_SEALED_BY_3_MAGIC)
+            player:messageSpecial(text.PORTAL_SEALED_BY_3_MAGIC)
         end
     end
     
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +61,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

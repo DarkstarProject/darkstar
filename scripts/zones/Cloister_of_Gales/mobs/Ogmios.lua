@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
---  MOB: Ogmios
+-- MOB: Ogmios
 -- Involved in Quest: Carbuncle Debacle
 -----------------------------------
 

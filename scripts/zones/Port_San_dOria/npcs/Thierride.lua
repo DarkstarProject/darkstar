@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Thierride
---  Type: Quest Giver
+-- Area: Port San d'Oria
+--  NPC: Thierride
+-- Type: Quest Giver
 -- @zone: 232
---  @pos -67 -5 -28
+-- @pos -67 -5 -28
 --
 -- Starts and Finishes Quest: A Taste For Meat
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x020e) then
         if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_AVAILABLE) then
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:setVar("aTasteForMeat", 1);
         player:addFame(SANDORIA, SAN_FAME*30);
         player:addGil(GIL_RATE*150);
-        player:messageSpecial(GIL_OBTAINED, GIL_RATE*150);
+        player:messageSpecial(text.GIL_OBTAINED, GIL_RATE*150);
         player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
         player:addTitle(RABBITER);
     end;

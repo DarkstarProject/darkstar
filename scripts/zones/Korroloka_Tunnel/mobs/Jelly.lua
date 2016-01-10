@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Jelly
+-- MOB: Jelly
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

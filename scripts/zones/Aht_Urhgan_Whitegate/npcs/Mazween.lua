@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Mazween
+--  NPC: Mazween
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,MAZWEEN_SHOP_DIALOG);
+    player:showText(npc, text.MAZWEEN_SHOP_DIALOG);
 
-stock = {0x1313,11200,        -- Scroll of Sleepga
+    local stock =
+    {
+    0x1313,11200,        -- Scroll of Sleepga
      0x12A6,18720,        -- Scroll of Sleep II
      0x1292,25200,        -- Poison II
      0x12E7,14000,        -- Bio II
@@ -41,7 +43,7 @@ stock = {0x1313,11200,        -- Scroll of Sleepga
      0x1315,70560,        -- Dread Spikes
      4856,79800}        -- Aspir II
 
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end;
 
 -----------------------------------
@@ -49,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,9 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

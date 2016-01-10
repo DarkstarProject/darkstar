@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Duke Gomory
+-- MOB: Duke Gomory
 -----------------------------------
 
 require("scripts/globals/dynamis");
@@ -44,7 +44,7 @@ function onMobDeath(mob,killer,ally)
     end
     
     if (Animate_Trigger == 32767) then
-        ally:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
+        ally:messageSpecial(text.PRISON_OF_SOULS_HAS_SET_FREE);
     end
     
 end;

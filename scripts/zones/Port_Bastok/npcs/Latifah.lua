@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Latifah
+--  NPC: Latifah
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Palborough Mines
--- NPC:  Refiner Lid
+--  NPC: Refiner Lid
 -- Involved In Mission: Journey Abroad
 -- @zone 143
 -- @pos 180 -32 167
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

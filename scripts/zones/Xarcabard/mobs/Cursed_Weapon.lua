@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Cursed Weapon
+-- MOB: Cursed Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

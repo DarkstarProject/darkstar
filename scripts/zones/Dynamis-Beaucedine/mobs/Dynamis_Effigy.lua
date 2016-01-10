@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Effigy
+--  NPC: Dynamis Effigy
 -- Trigger for Petro Pukis respawn
 -----------------------------------
 

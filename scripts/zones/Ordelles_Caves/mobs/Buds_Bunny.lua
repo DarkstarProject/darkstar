@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Buds Bunny
+-- MOB: Buds Bunny
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

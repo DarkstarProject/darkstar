@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Maze Maker
+-- MOB: Maze Maker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

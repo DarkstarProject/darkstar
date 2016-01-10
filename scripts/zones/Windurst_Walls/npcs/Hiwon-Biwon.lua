@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Hiwon-Biwon
---  Involved In Quest: Making Headlines, Curses, Foiled...Again!?
---    Working 100%
+-- Area: Windurst Walls
+--  NPC: Hiwon-Biwon
+-- Involved In Quest: Making Headlines, Curses, Foiled...Again!?
+-- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -85,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -95,26 +95,23 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- Making Headlines
     if (csid == 0x0119 or csid == 0x011b or csid == 0x011c) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(WINDURST_WALLS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,WINDURST_WALLS_SCOOP);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
     
     -- Curses,Foiled...Again!?
     elseif (csid == 0x00B6) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
         else
             player:addItem(552);
-            player:messageSpecial(ITEM_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(text.ITEM_OBTAINED,552); -- Hiwon's hair
         end
     end
 end;
-
-
-

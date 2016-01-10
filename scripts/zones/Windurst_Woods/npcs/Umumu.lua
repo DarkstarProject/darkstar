@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Umumu
---  Involved In Quest: Making Headlines
---  @pos 32.575 -5.250 141.372 241
+-- Area: Windurst Woods
+--  NPC: Umumu
+-- Involved In Quest: Making Headlines
+-- @pos 32.575 -5.250 141.372 241
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,12 +76,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x017d) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(WINDURST_WOODS_SCOOP);
-        player:messageSpecial(text.KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,WINDURST_WOODS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+8);
     elseif (csid == 0x02db) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",3,true);

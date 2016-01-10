@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,8)) then
         player:startEvent(0x0388);
     else
-        player:messageSpecial(text.NOTHING_HAPPENS);
+        player:messageSpecial(text.text.NOTHING_HAPPENS);
     end
 end;
 

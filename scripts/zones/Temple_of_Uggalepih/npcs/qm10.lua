@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Sozu Rogberry NM)
+--  NPC: ??? (Sozu Rogberry NM)
 -- @pos  159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
@@ -28,5 +28,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;

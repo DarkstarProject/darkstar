@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Resauchamet
+--  NPC: Resauchamet
 -- Standard Info NPC
 -----------------------------------
 
@@ -23,7 +23,7 @@ function onTrigger(player,npc)
   elseif (kill< 50) then n=2; 
   elseif (kill>= 50) then n=3; 
   end
-player:startEvent(0x0163,n);
+    player:startEvent(0x0163,n);
 end; 
 
 -----------------------------------
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,9 +40,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

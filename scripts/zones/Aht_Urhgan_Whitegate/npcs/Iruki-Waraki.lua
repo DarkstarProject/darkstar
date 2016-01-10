@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Iruki-Waraki
---  Type: Standard NPC
---  Involved in quest: No Strings Attached
---  @pos 101.329 -6.999 -29.042 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Iruki-Waraki
+-- Type: Standard NPC
+-- Involved in quest: No Strings Attached
+-- @pos 101.329 -6.999 -29.042 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -69,14 +69,14 @@ function onEventFinish(player,csid,option)
             player:addTitle(PROUD_AUTOMATON_OWNER);
             player:unlockJob(18);
             player:addItem(17859);
-            player:messageSpecial(ITEM_OBTAINED,17859); -- animator
+            player:messageSpecial(text.ITEM_OBTAINED,17859); -- animator
             player:messageSpecial(5699); -- "You can now become a puppetmaster."
             player:setVar("NoStringsAttachedProgress",0);
             player:setPetName(PETTYPE_AUTOMATON, option+118);
             player:unlockAttachment(8224); --Harlequin Frame
             player:unlockAttachment(8193); --Harlequin Head
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17859);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17859);
         end;
     end;
 end;

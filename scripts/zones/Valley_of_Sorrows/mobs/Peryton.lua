@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Peryton
+-- MOB: Peryton
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

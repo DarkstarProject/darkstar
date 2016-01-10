@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Ogrefly
+-- MOB: Ogrefly
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Tanner
+-- MOB: Goblin Tanner
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

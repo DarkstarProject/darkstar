@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Stone Eater
+-- MOB: Stone Eater
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

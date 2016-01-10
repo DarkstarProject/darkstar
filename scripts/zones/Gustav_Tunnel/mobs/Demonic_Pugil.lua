@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Demonic Pugil
+-- MOB: Demonic Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Grauberg [S]
---  NPC:  ???
---  Quest - DNC AF1
+-- Area: Grauberg [S]
+--  NPC: ???
+-- Quest - DNC AF1
 -----------------------------------
 package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 -------------------------------------
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
 
     elseif (csid==0x0D) then
         player:addKeyItem(THE_ESSENCE_OF_DANCE);
-        player:messageSpecial(KEYITEM_OBTAINED,THE_ESSENCE_OF_DANCE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,THE_ESSENCE_OF_DANCE);
         player:setVar("QuestStatus_DNC_AF1", 5);
     end
 

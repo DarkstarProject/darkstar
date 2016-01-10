@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Illrusi atoll
---  MOB: Cursed Chest
+-- MOB: Cursed Chest
 -----------------------------------
 
 require("scripts/globals/titles");

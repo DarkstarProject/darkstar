@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Ancient Bat
+-- MOB: Ancient Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

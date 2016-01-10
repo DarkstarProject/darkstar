@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis tavnazia
---  MOB: Prototype_Eye
+-- MOB: Prototype_Eye
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

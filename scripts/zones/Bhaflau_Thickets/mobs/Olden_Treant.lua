@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Olden Treant
+-- MOB: Olden Treant
 -- Note: Place holder Emergent Elm
 -----------------------------------
 

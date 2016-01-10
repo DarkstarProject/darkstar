@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Jugner Forest (S)
---  NPC:  Roiloux, R.K.
---  Type: Campaign Arbiter
---  @pos 70.493 -0.602 -9.185 82
+-- Area: Jugner Forest (S)
+--  NPC: Roiloux, R.K.
+-- Type: Campaign Arbiter
+-- @pos 70.493 -0.602 -9.185 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------

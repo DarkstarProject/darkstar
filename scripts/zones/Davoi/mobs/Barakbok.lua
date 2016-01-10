@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Barakbok
+-- MOB: Barakbok
 -- Involved in Quest: The Doorman
 -----------------------------------
 

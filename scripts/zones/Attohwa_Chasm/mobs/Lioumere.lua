@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Lioumere
+-- MOB: Lioumere
 -----------------------------------
 
 require("scripts/globals/keyitems");

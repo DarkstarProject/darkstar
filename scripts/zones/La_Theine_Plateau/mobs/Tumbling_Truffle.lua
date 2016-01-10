@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Tumbling Truffle
+-- MOB: Tumbling Truffle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

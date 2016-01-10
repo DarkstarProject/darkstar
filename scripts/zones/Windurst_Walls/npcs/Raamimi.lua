@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Windurst Walls
---  Location: X:-81  Y:-9  Z:103
---    NPC:  Raamimi
---    Working 100%
---  Involved in Quest: To Bee or Not to Bee?
+-- Area: Windurst Walls
+-- Location: X:-81  Y:-9  Z:103
+--  NPC: Raamimi
+-- Working 100%
+-- Involved in Quest: To Bee or Not to Bee?
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -37,12 +37,12 @@ function onTrigger(player,npc)
     end
 end;
 
---    Event ID List for NPC
---     player:startEvent(0x0128); -- Standard Conversation
---  player:startEvent(0x0043); -- Quest is kicked off already, he gives you honey
---    player:startEvent(0x0044); -- After honey is given to player...... before given to Zayhi????
---  player:startEvent(0x0050); -- Quest Finish - Gives Mulsum
---  player:startEvent(0x004F); -- After Quest but before zoning: "it's certainly gotten quiet around here..."
+-- Event ID List for NPC
+-- player:startEvent(0x0128); -- Standard Conversation
+-- player:startEvent(0x0043); -- Quest is kicked off already, he gives you honey
+-- player:startEvent(0x0044); -- After honey is given to player...... before given to Zayhi????
+-- player:startEvent(0x0050); -- Quest Finish - Gives Mulsum
+-- player:startEvent(0x004F); -- After Quest but before zoning: "it's certainly gotten quiet around here..."
 
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,23 +64,20 @@ printf("RESULT: %u",option);
 
     if (csid == 0x0043) then  
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
         else
             player:addQuest(WINDURST,TO_BEE_OR_NOT_TO_BEE);
             player:addItem(4370);
-            player:messageSpecial(ITEM_OBTAINED, 4370); -- Gives player Honey x1
+            player:messageSpecial(text.ITEM_OBTAINED, 4370); -- Gives player Honey x1
         end
     elseif (csid == 0x0050) then -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4156); -- Cannot give Mulsum because player Inventory is full
         else
             player:setVar("ToBeeOrNot_var",0);
             player:addItem(4156,3); -- Mulsum x3
-            player:messageSpecial(ITEMS_OBTAINED, 4156,3);  
+            player:messageSpecial(text.ITEMS_OBTAINED, 4156,3);  
             player:needToZone(true);
         end
     end
 end;
-
-
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Hill Lizard
+-- MOB: Hill Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

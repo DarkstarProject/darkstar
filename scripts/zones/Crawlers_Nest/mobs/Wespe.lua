@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Crawlers' Nest (197)
---   Mob: Wespe
+-- Area: Crawlers' Nest (197)
+-- Mob: Wespe
 -----------------------------------
 
 require("scripts/zones/Crawlers_Nest/MobIDs");

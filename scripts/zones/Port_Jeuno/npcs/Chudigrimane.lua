@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Chudigrimane
+--  NPC: Chudigrimane
 -- Standard Info NPC
 -----------------------------------
 

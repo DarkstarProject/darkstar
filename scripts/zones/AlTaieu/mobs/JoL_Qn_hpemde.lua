@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Qn'hpemde
+-- MOB: Qn'hpemde
 -- Jailor of Love Pet version
 -----------------------------------
 

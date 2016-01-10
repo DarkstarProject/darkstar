@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Steelshell
+-- MOB: Steelshell
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

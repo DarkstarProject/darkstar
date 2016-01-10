@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Bloodtear_Baldurf
+-- MOB: Bloodtear_Baldurf
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

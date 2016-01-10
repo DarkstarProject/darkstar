@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Skinnymajinx
+-- MOB: Skinnymajinx
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

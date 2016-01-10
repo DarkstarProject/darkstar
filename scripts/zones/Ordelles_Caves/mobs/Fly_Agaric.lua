@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Fly Agaric
+-- MOB: Fly Agaric
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

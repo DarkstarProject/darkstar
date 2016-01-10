@@ -42,7 +42,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(IRREPRESSIBLE_MIGHT);
+    player:messageSpecial(text.IRREPRESSIBLE_MIGHT);
 end;
 
 -----------------------------------

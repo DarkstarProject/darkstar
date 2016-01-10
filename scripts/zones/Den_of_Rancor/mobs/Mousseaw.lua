@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Mousseaw
+-- MOB: Mousseaw
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

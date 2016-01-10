@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Rockmill
+-- MOB: Rockmill
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

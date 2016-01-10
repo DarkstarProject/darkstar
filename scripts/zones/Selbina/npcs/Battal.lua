@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Selbina
---  NPC:  Battal
---  Type: Event Scene Replayer
---  @pos -17.429 -11.604 25.966 248
+-- Area: Selbina
+--  NPC: Battal
+-- Type: Event Scene Replayer
+-- @pos -17.429 -11.604 25.966 248
 -----------------------------------
 
 -----------------------------------

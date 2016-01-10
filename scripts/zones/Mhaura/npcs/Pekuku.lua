@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC: Pekuku
+--  NPC: Pekuku
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;

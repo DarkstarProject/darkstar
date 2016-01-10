@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  MOB: Velociraptor
+-- MOB: Velociraptor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

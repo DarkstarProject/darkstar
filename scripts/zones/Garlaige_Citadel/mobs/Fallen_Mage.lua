@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Mage
+-- MOB: Fallen Mage
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

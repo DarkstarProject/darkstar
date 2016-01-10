@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Greater Colibri
+-- MOB: Greater Colibri
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Phara
+--  NPC: Phara
 -- Starts and Finishes Quest: The doorman (start)
 -- Involved in Quest: The Talekeeper's Truth
 -- @zone 234
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0097) then
         player:addQuest(BASTOK,THE_DOORMAN);
@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(SWORD_GRIP_MATERIAL);
     elseif (csid == 0x0099) then
         player:addKeyItem(YASINS_SWORD);
-        player:messageSpecial(KEYITEM_OBTAINED,YASINS_SWORD);
+        player:messageSpecial(text.KEYITEM_OBTAINED,YASINS_SWORD);
         player:setVar("theDoormanCS",3);
         player:setVar("theDoorman_time",0);
     elseif (csid == 0x009a) then

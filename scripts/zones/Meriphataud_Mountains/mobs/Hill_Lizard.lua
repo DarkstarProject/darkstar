@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Hill Lizard
+-- MOB: Hill Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

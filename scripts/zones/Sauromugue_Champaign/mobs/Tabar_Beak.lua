@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Tabar Beak
+-- MOB: Tabar Beak
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Qn'phuabo
+-- MOB: Qn'phuabo
 -- Jailor of Love Pet version
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Vunkerl Inlet (S) (F-5)
--- NPC: Leafy Patch
+--  NPC: Leafy Patch
 -- Involved in Quests
 -- @pos -418 -33 576
 -----------------------------------
@@ -46,11 +46,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x006B) then
         if (option == 1) then
             player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:messageSpecial(text.KEYITEM_OBTAINED, VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",3);
         else
             player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:messageSpecial(text.KEYITEM_OBTAINED, VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",4);
         end
     end

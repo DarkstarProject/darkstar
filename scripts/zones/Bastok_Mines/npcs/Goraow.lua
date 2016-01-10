@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Goraow
+--  NPC: Goraow
 -- Starts Quests: Vengeful Wrath
 -- @pos 38 .1 14 234
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x006a) then
         player:addQuest(BASTOK, VENGEFUL_WRATH);
@@ -77,13 +77,10 @@ function onEventFinish(player,csid,option)
         end
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*900);
         player:completeQuest(BASTOK, VENGEFUL_WRATH); -- for save fame
     elseif (csid == 0x01fa) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",16,true);
     end
 end;
-
-
-
 

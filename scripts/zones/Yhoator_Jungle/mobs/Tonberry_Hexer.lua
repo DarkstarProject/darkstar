@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Hexer
+-- MOB: Tonberry Hexer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Herald
+-- MOB: Yagudo Herald
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

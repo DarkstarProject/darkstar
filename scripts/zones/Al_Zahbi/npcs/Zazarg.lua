@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Zazarg
---  Type: Stoneserpent General
+-- Area: Al Zahbi
+--  NPC: Zazarg
+-- Type: Stoneserpent General
 -- @zone: 48
---  @pos -41.675 -8 104.452
+-- @pos -41.675 -8 104.452
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

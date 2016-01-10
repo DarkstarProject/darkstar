@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
---  MOB: Defoliate Leshy
+-- MOB: Defoliate Leshy
 -----------------------------------
 
 

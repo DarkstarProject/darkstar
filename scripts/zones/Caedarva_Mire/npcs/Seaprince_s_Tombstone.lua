@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Seaprince's Tombstone
+--  NPC: Seaprince's Tombstone
 -- Involved in quest: Forging a New Myth
 -- @pos  -433 7 -586 79
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(SEAPRINCES_TOMBSTONE);
+    player:messageSpecial(text.SEAPRINCES_TOMBSTONE);
 end;
 
 -----------------------------------

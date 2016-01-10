@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Guttrix
+--  NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
 -- @zone: 245
 -- @pos -36.010 4.499 -139.714
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
         local rseGear = getRSE(player,option);
 
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,rseGear);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,rseGear);
         else
             if (questStatus == QUEST_ACCEPTED) then
                 player:addFame(JEUNO, JEUNO_FAME*30);
@@ -125,7 +125,7 @@ function onEventFinish(player,csid,option)
 
             player:delKeyItem(MAGICAL_PATTERN);
             player:addItem(rseGear);
-            player:messageSpecial(ITEM_OBTAINED,rseGear);
+            player:messageSpecial(text.ITEM_OBTAINED,rseGear);
         end
     end
 end;

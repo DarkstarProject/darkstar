@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Coral Crab
+-- MOB: Coral Crab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

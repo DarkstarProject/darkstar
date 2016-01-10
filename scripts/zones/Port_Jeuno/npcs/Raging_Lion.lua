@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Raging Lion
+--  NPC: Raging Lion
 -- Standard Info NPC
 -----------------------------------
 

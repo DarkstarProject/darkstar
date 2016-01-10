@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grauberg[S]
---  MOB: Migratory_Hippogryph
+-- MOB: Migratory_Hippogryph
 -----------------------------------
 
 require("scripts/globals/titles");

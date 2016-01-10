@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Walls
---   NPC: Esmeralda
---  Type: Consul. Rep.
+-- Area: Windurst Walls
+--  NPC: Esmeralda
+-- Type: Consul. Rep.
 -- @zone: 239
---  @pos 128.629 -12.5 139.387
+-- @pos 128.629 -12.5 139.387
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

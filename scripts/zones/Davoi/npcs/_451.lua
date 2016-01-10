@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  _451 (Elevator Lever)
+--  NPC: _451 (Elevator Lever)
 -- Notes: Used to operate Elevator @450 (actual npc script is _454)
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
@@ -30,8 +30,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,6 +39,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

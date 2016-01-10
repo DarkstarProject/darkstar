@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Warlock
+-- MOB: Doom Warlock
 -- Note: Place holder Taxim
 -----------------------------------
 

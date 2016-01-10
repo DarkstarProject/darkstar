@@ -67,7 +67,7 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    --printf("leavecode: %u",leavecode);
+    -- printf("leavecode: %u",leavecode);
     
 end;
 
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
     player:startEvent(0x0003);
     if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==2) then
         player:addKeyItem(TEAR_OF_ALTANA);
-        player:messageSpecial(KEYITEM_OBTAINED,TEAR_OF_ALTANA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TEAR_OF_ALTANA);
         player:setVar("Promathia_kill_day",tonumber(os.date("%j")));       
     player:setVar("PromathiaStatus",3);
     end

@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Pew Sahbaraef
---  Type: Item Deliverer
---  @zone: 241
---  @pos 61.899 -2.5 -112.956
+-- Type: Item Deliverer
+-- @zone: 241
+-- @pos 61.899 -2.5 -112.956
 -----------------------------------
 
 local text = require("scripts/zones/Windurst_Woods/TextIDs");
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

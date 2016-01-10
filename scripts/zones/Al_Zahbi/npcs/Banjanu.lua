@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Banjanu
---  Type: Standard NPC
+-- Area: Al Zahbi
+--  NPC: Banjanu
+-- Type: Standard NPC
 -- @zone: 48
---  @pos -75.954 0.999 105.367
+-- @pos -75.954 0.999 105.367
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

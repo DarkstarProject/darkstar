@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Hope
+-- NM:  Jailer of Hope
 -----------------------------------
 
 require("scripts/globals/status");

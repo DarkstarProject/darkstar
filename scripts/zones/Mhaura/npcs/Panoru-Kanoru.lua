@@ -1,8 +1,8 @@
 ----------------------------------
---  Area: Mhaura
+-- Area: Mhaura
 --  NPC: Panoru-Kanoru
---  Type: Item Deliverer
---  @pos 5.241    -4.035    93.891 249
+-- Type: Item Deliverer
+-- @pos 5.241    -4.035    93.891 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, PANORU_DELIVERY_DIALOG);
+    player:showText(npc, text.PANORU_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

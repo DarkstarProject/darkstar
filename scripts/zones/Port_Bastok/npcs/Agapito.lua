@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Agapito
+--  NPC: Agapito
 -- Start & Finishes Quest: The Stars of Ifrit
 -- @zone: 236
 -- @pos -72.093 -3.097 9.309
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
     elseif (csid == 0x00b5) then
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(BASTOK,BAS_FAME*100);
         player:addTitle(STAR_OF_IFRIT);
         player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);

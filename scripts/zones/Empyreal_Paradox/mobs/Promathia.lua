@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Empyreal Paradox
---  MOB: Promathia
+-- MOB: Promathia
 -----------------------------------
 package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pso'Xja
--- NPC:  Stone Gate
+--  NPC: Stone Gate
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     elseif (player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR)or player:hasCompletedMission(COP,THE_LAST_VERSE)) then
         player:startEvent(0x0032); -- Start Floor 1
     else
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(text.DOOR_LOCKED);
     end
   return 1;
 end;
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(COP,THE_ENDURING_TUMULT_OF_WAR);
         player:addMission(COP,DESIRES_OF_EMPTINESS);
         player:addKeyItem(LIGHT_OF_VAHZL);
-        player:messageSpecial(LIGHT_OF_VAHZL);
+        player:messageSpecial(text.LIGHT_OF_VAHZL);
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}
     elseif (csid == 0x0032 and option == 1) then
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}

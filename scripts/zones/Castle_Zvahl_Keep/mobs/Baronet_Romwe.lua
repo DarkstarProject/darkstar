@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Baronet_Romwe
+-- MOB: Baronet_Romwe
 -----------------------------------
 
 require("scripts/globals/titles");

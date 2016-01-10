@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC: Chipmy-Popmy
---    Working 100%
+-- Area: Port Windurst
+--  NPC: Chipmy-Popmy
+-- Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,12 +40,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
   if (csid == 0x026B) then
      player:setVar("COP_3-taru_story",1);
   end
 end;
-
-
-

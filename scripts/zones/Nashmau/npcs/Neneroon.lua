@@ -1,8 +1,8 @@
 ----------------------------------
---  Area: Nashmau
---  NPC:  Neneroon
---  Type: Item Deliverer
---  @pos -0.866    -5.999    36.942 53
+-- Area: Nashmau
+--  NPC: Neneroon
+-- Type: Item Deliverer
+-- @pos -0.866    -5.999    36.942 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, NENE_DELIVERY_DIALOG);
+    player:showText(npc, text.NENE_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

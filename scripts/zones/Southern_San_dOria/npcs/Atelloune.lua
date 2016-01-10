@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Atelloune
+--  NPC: Atelloune
 -- Starts and Finishes Quest: Atelloune's Lament
 -- @zone 230
 -- @pos 122 0 82
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
     -----lady bug
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,17 +71,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x037a) then
         player:addQuest(SANDORIA,ATELLOUNE_S_LAMENT);
     elseif (csid == 0x037b) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
         else
             player:addItem(15008);
-            player:messageSpecial(ITEM_OBTAINED,15008); -- Trainee Gloves
+            player:messageSpecial(text.ITEM_OBTAINED,15008); -- Trainee Gloves
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,ATELLOUNE_S_LAMENT);
         end

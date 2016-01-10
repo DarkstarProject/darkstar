@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Tainted Flesh
+-- MOB: Tainted Flesh
 -- Note: Place holder Hellion
 -----------------------------------
 

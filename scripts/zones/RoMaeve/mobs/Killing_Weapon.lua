@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Killing Weapon
+-- MOB: Killing Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

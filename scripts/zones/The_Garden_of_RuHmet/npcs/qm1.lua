@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  ??? (Jailer of Fortitude Spawn)
+--  NPC: ??? (Jailer of Fortitude Spawn)
 -- Allows players to spawn the Jailer of Fortitude by trading 12 Ghrah M Chips to a ???.
 -- @pos random ,-420 0 755, -43,0.00,460, -260,0.00,44.821, -580,0.00,43, -796,0.00,460
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 end;

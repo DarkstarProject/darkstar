@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Bubbly Bernie
+-- MOB: Bubbly Bernie
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

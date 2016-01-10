@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Rabao
---    NPC:  Shiny Teeth
---    Standard Merchant NPC
---    @pos -30 8 99 247
+-- Area: Rabao
+--  NPC: Shiny Teeth
+-- Standard Merchant NPC
+-- @pos -30 8 99 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -23,9 +23,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,SHINY_TEETH_SHOP_DIALOG);
+    player:showText(npc, text.SHINY_TEETH_SHOP_DIALOG);
 
-stock = {0x4042,1867,    --Dagger     1867 - 2111
+    local stock =
+    {
+    0x4042,1867,    --Dagger     1867 - 2111
          0x404C,11128,    --Kris     11128 - 12096
          0x4052,2231,    --Knife     2231 - 2522
          0x40A8,4163,    --Scimitar     4163 - 4706
@@ -40,7 +42,7 @@ stock = {0x4042,1867,    --Dagger     1867 - 2111
          0x43A3,5460,    --Riot Grenade     5460 - 5520
          0x4384,8996}    --Chakram     8996 - 10995 
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -48,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

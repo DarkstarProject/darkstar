@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Velociraptor
+-- MOB: Velociraptor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

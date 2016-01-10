@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Raustigne
+--  NPC: Raustigne
 -- @zone 80
 -- @pos 4 -2 44
 -----------------------------------

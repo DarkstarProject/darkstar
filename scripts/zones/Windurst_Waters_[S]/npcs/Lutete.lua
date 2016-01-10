@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Lutete
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Lutete
+-- Type: Standard NPC
 -- @zone: 94
---  @pos 169.205 -0.879 -9.107
+-- @pos 169.205 -0.879 -9.107
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, LUTETE_DIALOG);
+    player:showText(npc, text.LUTETE_DIALOG);
 end;
 
 -----------------------------------

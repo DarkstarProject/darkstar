@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Emeige A.M.A.N.
+--  NPC: Emeige A.M.A.N.
 -- Type: Mentor Recruiter
 -----------------------------------
 

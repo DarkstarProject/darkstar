@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

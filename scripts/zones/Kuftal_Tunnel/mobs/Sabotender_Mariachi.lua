@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Kuftal Tunnel
---   NM: Sabotender Mariachi
+-- NM: Sabotender Mariachi
 -- ToDo: Auto-Regen during the day
 -----------------------------------
 

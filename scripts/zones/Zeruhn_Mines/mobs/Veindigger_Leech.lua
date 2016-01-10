@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: Veindigger Leech
+-- Area: Zeruhn Mines (172)
+-- Mob: Veindigger Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Eron-Tomaron
+--  NPC: Eron-Tomaron
 -- Title Change NPC
 -- @pos -22 -4 -24 250
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Thread Leech
+-- MOB: Thread Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

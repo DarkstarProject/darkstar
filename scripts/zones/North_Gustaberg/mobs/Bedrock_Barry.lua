@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  NM:  Bedrock Barry
+-- NM:  Bedrock Barry
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (S)
---  MOB: Keep Imp
+-- MOB: Keep Imp
 -----------------------------------
 
 require("scripts/globals/status");

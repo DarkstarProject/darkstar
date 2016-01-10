@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Lower Jeuno
---   NPC: Parike-Poranke
---  Type: Adventurer's Assistant
+-- Area: Lower Jeuno
+--  NPC: Parike-Poranke
+-- Type: Adventurer's Assistant
 -- @zone: 245
---  @pos -33.161 -1 -61.303
+-- @pos -33.161 -1 -61.303
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(PARIKE_PORANKE_DIALOG);
+    player:messageSpecial(text.PARIKE_PORANKE_DIALOG);
 end;
 
 -----------------------------------

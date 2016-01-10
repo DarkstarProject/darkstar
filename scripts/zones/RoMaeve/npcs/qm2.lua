@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ro'Maeve
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 7-1
 -- @pos 102 -4 -114 122 and <many pos>
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
             if (player:getVar("Mission7-1MobKilled") >= 1) then
                 player:addKeyItem(REINFORCED_CERMET);
-                player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
+                player:messageSpecial(text.KEYITEM_OBTAINED,REINFORCED_CERMET);
                 player:setVar("Mission7-1MobKilled",0);
                 player:setVar("MissionStatus",2);
             else
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end; 
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Infernal Weapon
+-- MOB: Infernal Weapon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

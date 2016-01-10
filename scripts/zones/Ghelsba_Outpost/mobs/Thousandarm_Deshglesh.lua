@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost (140)
---  NM:  Thousandarm_Deshglesh
+-- NM:  Thousandarm_Deshglesh
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Patt-Pott
+--  NPC: Patt-Pott
 -- Type: Consulate Representative
 -- @pos 23 -17 42 237
 -----------------------------------
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
         player:delKeyItem(KINDRED_CREST);
         player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
     elseif (csid == 0x00ff) then
         player:tradeComplete();
         player:setVar("MissionStatus",7);

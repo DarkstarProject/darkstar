@@ -1,8 +1,8 @@
 ----------------------------------
---  Area: Selbina
+-- Area: Selbina
 --  NPC: Wenzel
---  Type: Item Deliverer
---  @pos 31.961 -14.661 57.997 248
+-- Type: Item Deliverer
+-- @pos 31.961 -14.661 57.997 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, WENZEL_DELIVERY_DIALOG);
+    player:showText(npc, text.WENZEL_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

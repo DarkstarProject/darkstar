@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC:  Aaveleon
+--  NPC: Aaveleon
 -- Involved in Quest: A Sentry's Peril
 -- @pos -431 -45 343 100
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,16 +49,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0064) then
         player:tradeComplete();
         player:addItem(601);
-        player:messageSpecial(ITEM_OBTAINED,601);
+        player:messageSpecial(text.ITEM_OBTAINED,601);
     end
     
 end;
-
-
-

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Southern San d`Oria
---   NPC: Alaune
---  Type: Tutorial NPC
---  @zone: 230
---  @pos -90 1 -56
+-- Area: Southern San d`Oria
+--  NPC: Alaune
+-- Type: Tutorial NPC
+-- @zone: 230
+-- @pos -90 1 -56
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,TUTORIAL_NPC);
+    player:showText(npc, text.TUTORIAL_NPC);
 end;
 
 -----------------------------------

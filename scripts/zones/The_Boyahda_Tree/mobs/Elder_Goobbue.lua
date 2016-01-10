@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Elder Goobbue
+-- MOB: Elder Goobbue
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

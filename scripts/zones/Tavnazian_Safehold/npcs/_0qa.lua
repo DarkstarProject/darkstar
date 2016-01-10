@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC:  walnut door
+--  NPC: walnut door
 -- Involved in mission 2-4
 -- @pos 111 -41 41 26
 -----------------------------------

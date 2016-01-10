@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign (120)
---  HNM: Roc
+-- HNM: Roc
 -----------------------------------
 
 require("scripts/globals/titles");

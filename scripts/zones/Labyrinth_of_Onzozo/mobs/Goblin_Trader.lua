@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Goblin Trader
+-- MOB: Goblin Trader
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

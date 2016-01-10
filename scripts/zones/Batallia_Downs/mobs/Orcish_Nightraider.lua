@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Orcish Nightraider
+-- MOB: Orcish Nightraider
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

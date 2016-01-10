@@ -1,6 +1,6 @@
 -----------------------------------    
 -- Area: Rolanberry Fields    
--- NPC:  Signpost        
+--  NPC: Signpost        
 -----------------------------------    
     
 require("scripts/globals/settings");    
@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 -----------------------------------    
     
 function onTrigger(player,npc)    
-    player:messageSpecial(SIGN);
+    player:messageSpecial(text.SIGN);
 end;    
     
 -----------------------------------    

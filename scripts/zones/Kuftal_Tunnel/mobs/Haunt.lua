@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Haunt
+-- MOB: Haunt
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -104,7 +104,7 @@ end;
 -----------------------------------    
 
 function onRegionLeave(player,region)    
-player:setVar("TOAUM",0);
+    player:setVar("TOAUM",0);
 end;    
 
 -----------------------------------        
@@ -156,25 +156,25 @@ printf("RESULT: %u",option);
         player:setPos(60,0,-71,38);
     elseif (csid == 0xBB8 and option == 0) then
         player:addKeyItem(SUPPLIES_PACKAGE);
-        player:messageSpecial(KEYITEM_OBTAINED,SUPPLIES_PACKAGE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SUPPLIES_PACKAGE);
     elseif (csid == 0x0bd0) then
             player:setVar("TOAUM4",3);
     elseif (csid == 0x0bd2) then
             player:setVar("TOAUM4",0);
             player:addKeyItem(RAILLEFALS_LETTER);
-            player:messageSpecial(KEYITEM_OBTAINED,RAILLEFALS_LETTER);
+            player:messageSpecial(text.KEYITEM_OBTAINED,RAILLEFALS_LETTER);
             player:completeMission(TOAU,KNIGHT_OF_GOLD);
             player:addMission(TOAU,CONFESSIONS_OF_ROYALTY);
         elseif (csid ==0x0BD3) then
             player:setVar("TOAUM7",1)
             player:addKeyItem(RAILLEFALS_NOTE);
-            player:messageSpecial(KEYITEM_OBTAINED,RAILLEFALS_NOTE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,RAILLEFALS_NOTE);
         player:setTitle(483);
         if (player:getFreeSlotsCount() == 0) then 
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+        player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
             else
             player:addItem(2185,1);
-                player:messageSpecial(ITEM_OBTAINED,2185);
+                player:messageSpecial(text.ITEM_OBTAINED,2185);
         end
         elseif (csid == 0x0bea) then
             player:completeMission(TOAU,A_MERCENARY_LIFE);

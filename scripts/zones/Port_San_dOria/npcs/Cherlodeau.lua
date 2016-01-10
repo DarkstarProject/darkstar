@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Cherlodeau
+--  NPC: Cherlodeau
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos -20 -4 -69 232
 -----------------------------------
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
     
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02ec) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",12,true);

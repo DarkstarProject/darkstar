@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Kaboom
+-- MOB: Kaboom
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

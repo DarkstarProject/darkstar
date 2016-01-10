@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  NM:  Martinet
+-- NM:  Martinet
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

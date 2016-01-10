@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Dabigo
---  Type: Delivery Box Manager
+-- Area: Al Zahbi
+--  NPC: Dabigo
+-- Type: Delivery Box Manager
 -- @zone: 48
---  @pos -34.289 -1 -129.141
+-- @pos -34.289 -1 -129.141
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

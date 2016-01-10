@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Lich
+-- MOB: Lich
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

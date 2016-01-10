@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x2724 and option == 1) then
-        player:messageSpecial(text.IMAGE_SUPPORT,0,6,2);
+        player:messageSpecial(text.text.IMAGE_SUPPORT,0,6,2);
         player:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,1,0,120);
     end
 end;

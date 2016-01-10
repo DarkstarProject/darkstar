@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Lemures
+-- MOB: Lemures
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

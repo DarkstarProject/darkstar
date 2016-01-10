@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Tundra Tiger
+-- MOB: Tundra Tiger
 -- Note: PH for Nue, Kirata
 -----------------------------------
 

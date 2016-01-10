@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Dustbuster
+-- MOB: Dustbuster
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

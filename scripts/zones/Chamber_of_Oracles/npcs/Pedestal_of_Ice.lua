@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chamber of Oracles
--- NPC:  Pedestal of Ice
+--  NPC: Pedestal of Ice
 -- Involved in Zilart Mission 7
 -- @pos 199 -2 36 168
 -------------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(ICE_FRAGMENT)) then
             player:delKeyItem(ICE_FRAGMENT);
             player:setVar("ZilartStatus",ZilartStatus + 8);
-            player:messageSpecial(YOU_PLACE_THE,ICE_FRAGMENT);
+            player:messageSpecial(text.YOU_PLACE_THE,ICE_FRAGMENT);
             
             if (ZilartStatus == 255) then
                 player:startEvent(0x0001);
@@ -36,12 +36,12 @@ function onTrigger(player,npc)
         elseif (ZilartStatus == 255) then -- Execute cutscene if the player is interrupted.
             player:startEvent(0x0001);
         else
-            player:messageSpecial(IS_SET_IN_THE_PEDESTAL,ICE_FRAGMENT);
+            player:messageSpecial(text.IS_SET_IN_THE_PEDESTAL,ICE_FRAGMENT);
         end
     elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES)) then
-        player:messageSpecial(HAS_LOST_ITS_POWER,ICE_FRAGMENT);
+        player:messageSpecial(text.HAS_LOST_ITS_POWER,ICE_FRAGMENT);
     else
-        player:messageSpecial(PLACED_INTO_THE_PEDESTAL);
+        player:messageSpecial(text.PLACED_INTO_THE_PEDESTAL);
     end
     
 end;
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,14 +60,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (csid == 0x0001) then
         player:addTitle(LIGHTWEAVER);
         player:setVar("ZilartStatus",2);
         player:addKeyItem(PRISMATIC_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);
         player:completeMission(ZILART,THE_CHAMBER_OF_ORACLES);
         player:addMission(ZILART,RETURN_TO_DELKFUTTS_TOWER);
     end

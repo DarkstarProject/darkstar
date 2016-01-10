@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Ground Guzzler
+-- MOB: Ground Guzzler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

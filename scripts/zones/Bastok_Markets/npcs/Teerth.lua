@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --  NPC: Teerth
---  Guild Merchant NPC: Goldsmithing Guild 
---  @zone: 235
---  @pos -205.190 -7.814 -56.507
+-- Guild Merchant NPC: Goldsmithing Guild 
+-- @zone: 235
+-- @pos -205.190 -7.814 -56.507
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(527,8,23,4)) then
-        player:showText(npc,TEERTH_SHOP_DIALOG);
+        player:showText(npc, text.TEERTH_SHOP_DIALOG);
     end
 end;
 

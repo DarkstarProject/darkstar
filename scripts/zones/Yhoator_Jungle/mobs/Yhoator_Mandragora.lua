@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Yhoator Mandragora
+-- MOB: Yhoator Mandragora
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

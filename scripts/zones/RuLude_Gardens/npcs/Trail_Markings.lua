@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rulude Gardens
--- NPC:  Trail Markings
+--  NPC: Trail Markings
 -- Dynamis-Jeuno Enter
 -- @pos 35 9 -51 243
 -----------------------------------
@@ -39,15 +39,15 @@ function onTrigger(player,npc)
         end
         
         if (player:getMainLvl() < DYNA_LEVEL_MIN) then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+            player:messageSpecial(text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaJeuno]UniqueID")) then
             player:startEvent(0x271c,4,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,4);
+            player:messageSpecial(text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,4);
         end
     else
-        player:messageSpecial(UNUSUAL_ARRANGEMENT_LEAVES);
+        player:messageSpecial(text.UNUSUAL_ARRANGEMENT_LEAVES);
     end
     
 end;
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,12 +66,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("finishRESULT: %u",option);
     
     if (csid == 0x2720) then
         player:addKeyItem(VIAL_OF_SHROUDED_SAND);
-        player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
+        player:messageSpecial(text.KEYITEM_OBTAINED,VIAL_OF_SHROUDED_SAND);
         player:setVar("Dynamis_Status",0);
     elseif (csid == 0x272a) then
         player:setVar("DynaJeuno_Win",0);

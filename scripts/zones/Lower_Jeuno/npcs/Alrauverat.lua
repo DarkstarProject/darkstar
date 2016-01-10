@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
---  NPC:Alrauverat
+-- NPC:Alrauverat
 -- @pos -101 0 -182 245
 -------------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
                     -- Logic to impose limits on exp bands
                     if (option >= 32933 and option <= 32935) then
                         if (checkConquestRing(player) > 0) then
-                            player:messageSpecial(CONQUEST+60,0,0,inventory[Item+2]);
+                            player:messageSpecial(text.CONQUEST+60,0,0,inventory[Item+2]);
                             break;
                         else
                             player:setVar("CONQUEST_RING_TIMER",getConquestTally());
@@ -103,9 +103,9 @@ function onEventFinish(player,csid,option)
                     itemCP = inventory[Item + 1];
                     player:delCP(itemCP);
                     player:addItem(inventory[Item + 2],1);
-                    player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
+                    player:messageSpecial(text.ITEM_OBTAINED,inventory[Item + 2]);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
                 end;
                 break;
             end;

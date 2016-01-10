@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  Mob: Garm
+-- Mob: Garm
 -----------------------------------
 
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs");

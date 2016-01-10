@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Beadeaux
---  NPC:  Haggleblix
---  Type: Dynamis NPC
---  @pos -255.847 0.595 106.485 147
+-- Area: Beadeaux
+--  NPC: Haggleblix
+-- Type: Dynamis NPC
+-- @pos -255.847 0.595 106.485 147
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
@@ -67,12 +67,12 @@ function onTrade(player,npc,trade)
    -- Item obtained dialog appears before CS.  Could be fixed with a non-local variable and onEventFinish, but meh.
    if (buying == true) then
       if (player:getFreeSlotsCount() == 0) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,exchange[2]);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,exchange[2]);
       else
          player:startEvent(137,1456,exchange[1],exchange[2]);
          player:tradeComplete();
          player:addItem(exchange[2]);
-         player:messageSpecial(ITEM_OBTAINED,exchange[2]);
+         player:messageSpecial(text.ITEM_OBTAINED,exchange[2]);
       end
    end
 end;
@@ -136,42 +136,42 @@ function onEventFinish(player,csid,option)
 
    if (csid == 134) then -- Buying an Hourglass
       if (player:getFreeSlotsCount() == 0 or player:hasItem(4236) == true) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4236);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4236);
       else
          player:tradeComplete();
          player:addItem(4236);
-         player:messageSpecial(ITEM_OBTAINED,4236);
+         player:messageSpecial(text.ITEM_OBTAINED,4236);
       end
    elseif (csid == 153) then -- Bringing back an hourglass for gil.
       player:tradeComplete();
       player:addGil(TIMELESS_HOURGLASS_COST);
-      player:messageSpecial(GIL_OBTAINED,TIMELESS_HOURGLASS_COST);
+      player:messageSpecial(text.GIL_OBTAINED,TIMELESS_HOURGLASS_COST);
    elseif (csid == 135) then -- Trading Singles for a Hundred
       if (player:getFreeSlotsCount() == 0) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1456);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1456);
       else
          player:tradeComplete();
          player:addItem(1456);
-         player:messageSpecial(ITEM_OBTAINED,1456);
+         player:messageSpecial(text.ITEM_OBTAINED,1456);
       end
    elseif (csid == 136) then -- Trading 100 Hundreds for Ten thousand
       if (player:getFreeSlotsCount() == 0) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1457);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1457);
       else
          player:tradeComplete();
          player:addItem(1457);
-         player:messageSpecial(ITEM_OBTAINED,1457);
+         player:messageSpecial(text.ITEM_OBTAINED,1457);
       end
    elseif (csid == 138) then -- Trading Ten thousand for 100 Hundreds
       if (player:getFreeSlotsCount() <= 1) then
-         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1456);
+         player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1456);
       else
          player:tradeComplete();
          player:addItem(1456,CURRENCY_EXCHANGE_RATE);
          if (CURRENCY_EXCHANGE_RATE >= 100) then -- Turns out addItem cannot add > stackSize, so we need to addItem twice for quantities > 99.
             player:addItem(1456,CURRENCY_EXCHANGE_RATE - 99);
          end
-         player:messageSpecial(ITEMS_OBTAINED,1456,CURRENCY_EXCHANGE_RATE);
+         player:messageSpecial(text.ITEMS_OBTAINED,1456,CURRENCY_EXCHANGE_RATE);
       end
    end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Transporter
+--  NPC: Transporter
 -- Involved In Windurst Mission 7-1
 -- @zone 169
 -- @pos 182 11 -60 169
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:startEvent(0x0047);    
+    player:startEvent(0x0047);    
 end;
 
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0047 and option == 1) then
         player:setPos(0,0,-22,192,242);

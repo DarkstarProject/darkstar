@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Qufim
--- NPC:  Adamantking_Effigy
+--  NPC: Adamantking_Effigy
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;

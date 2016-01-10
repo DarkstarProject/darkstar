@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Greater Pugil
+-- MOB: Greater Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

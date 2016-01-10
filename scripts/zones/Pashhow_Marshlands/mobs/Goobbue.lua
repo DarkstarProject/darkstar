@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Goobbue
+-- MOB: Goobbue
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

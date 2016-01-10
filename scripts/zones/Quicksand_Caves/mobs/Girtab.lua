@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Girtab
+-- MOB: Girtab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

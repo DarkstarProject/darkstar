@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T    
--- NPC: Enhanced_Lizard
+--  NPC: Enhanced_Lizard
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

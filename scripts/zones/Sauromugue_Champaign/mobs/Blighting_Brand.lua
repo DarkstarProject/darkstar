@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Blighting Brand
+-- MOB: Blighting Brand
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

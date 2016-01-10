@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Reaper
+-- MOB: Goblin Reaper
 -- Note: Place holder Goblinsavior Heronox
 -----------------------------------
 

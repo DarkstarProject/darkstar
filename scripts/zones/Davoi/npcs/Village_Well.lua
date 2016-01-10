@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  Village Well
+--  NPC: Village Well
 -- Involved in Quest: Under Oath
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
         player:startEvent(0x0071);
         player:tradeComplete();
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(text.A_WELL);
     end
 end; 
 
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     elseif (player:getVar("UnderOathCS") == 6 and player:hasKeyItem(KNIGHTS_CONFESSION)) then
         player:startEvent(0x0070);  --Under Oath -- Reads contents of the letter
     else
-        player:messageSpecial(A_WELL);
+        player:messageSpecial(text.A_WELL);
     end
     
 end; 
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,11 +55,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0071) then
         player:addKeyItem(KNIGHTS_CONFESSION);
-        player:messageSpecial(KEYITEM_OBTAINED,KNIGHTS_CONFESSION);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KNIGHTS_CONFESSION);
         player:setVar("UnderOathCS",6);
         player:delKeyItem(STRANGE_SHEET_OF_PAPER);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Strolling Sapling
+-- MOB: Strolling Sapling
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

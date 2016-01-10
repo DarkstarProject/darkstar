@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Killing Weapon
+-- MOB: Killing Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Underworld Bats
+-- MOB: Underworld Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Elysia
+--  NPC: Elysia
 -- Starts Quest: Unforgiven
 -- @zone 26
 -- @pos -50.410 -22.204 -41.640
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 if (csid == 0x00C8) then
     player:addQuest(OTHER_AREAS,UNFORGIVEN);
 

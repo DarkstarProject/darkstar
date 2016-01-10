@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Jazaraat
+-- MOB: Jazaraat
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");

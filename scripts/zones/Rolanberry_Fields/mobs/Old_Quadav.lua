@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Old Quadav
+-- MOB: Old Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

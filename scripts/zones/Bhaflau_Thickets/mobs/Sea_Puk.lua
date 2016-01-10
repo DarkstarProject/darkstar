@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Sea Puk
+-- MOB: Sea Puk
 -- Note: Place holder Nis Puk
 -----------------------------------
 

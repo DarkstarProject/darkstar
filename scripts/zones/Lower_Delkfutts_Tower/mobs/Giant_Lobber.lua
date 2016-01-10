@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Giant Lobber
+-- MOB: Giant Lobber
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

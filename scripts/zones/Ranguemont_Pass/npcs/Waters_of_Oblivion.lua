@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- NPC:  Waters of Oblivion
+--  NPC: Waters of Oblivion
 -- Finish Quest: Painful Memory (BARD AF1)
 -- @pos -284 -45 210 166
 -----------------------------------
@@ -28,12 +28,12 @@ function onTrigger(player,npc)
     TrosKilled = player:getVar("TrosKilled");
     
     if (player:hasKeyItem(MERTAIRES_BRACELET) and (TrosKilled == 0 or (os.time() - player:getVar("Tros_Timer")) > 60)) then 
-        player:messageSpecial(SENSE_OF_FOREBODING);
+        player:messageSpecial(text.SENSE_OF_FOREBODING);
         SpawnMob(17457309,180):updateClaim(player); -- Spawn Tros NM
     elseif (player:hasKeyItem(MERTAIRES_BRACELET) == true and TrosKilled == 1) then 
         player:startEvent(0x0008); -- Finish Quest "Painful Memory"
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end; 
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,18 +52,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0008) then 
         if (player:getFreeSlotsCount() == 0 or player:hasItem(16766)) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16766);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16766);
         else 
             player:delKeyItem(MERTAIRES_BRACELET); -- Mertaire's Bracelet (key item).
             player:setVar("TrosKilled",0);
             player:setVar("Tros_Timer",0);
             player:addItem(16766);
-            player:messageSpecial(ITEM_OBTAINED,16766); -- Paper Knife
+            player:messageSpecial(text.ITEM_OBTAINED,16766); -- Paper Knife
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,PAINFUL_MEMORY);
         end

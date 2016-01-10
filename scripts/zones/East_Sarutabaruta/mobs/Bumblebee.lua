@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
---  MOB: Bumblebee
+-- MOB: Bumblebee
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

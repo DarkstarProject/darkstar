@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Goblin Pathfinder
+-- MOB: Goblin Pathfinder
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

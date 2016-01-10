@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Goblin Robber
+-- MOB: Goblin Robber
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

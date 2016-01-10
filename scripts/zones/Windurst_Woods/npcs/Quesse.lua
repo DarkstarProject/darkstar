@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Quesse
+--  NPC: Quesse
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -20,9 +20,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,text.QUESSE_SHOP_DIALOG);
+    player:showText(npc, text.text.QUESSE_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x034D,  1150,1,     --Black Chocobo Feather
 
         0x439B,     9,2,     --Dart
@@ -46,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

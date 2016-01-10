@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Pathfinder
+-- MOB: Goblin Pathfinder
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

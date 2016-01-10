@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
--- NPC:  Fir Bholg
+--  NPC: Fir Bholg
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

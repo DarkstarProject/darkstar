@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Engelhart
+--  NPC: Engelhart
 -- Quest NPC
 -- pos -79 -4 -125
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0074) then
         player:setVar("BetterPartOfValProg",1);
         player:delKeyItem(CLUMP_OF_ANIMAL_HAIR);
@@ -79,9 +79,9 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(XHIFHUT);
         player:completeQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
         player:addKeyItem(WARNING_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,WARNING_LETTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WARNING_LETTER);
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000);
         player:setVar("BetterPartOfValProg",0);
         player:needToZone(true);
     elseif (csid == 0x0078) then
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00A4) then
         player:completeQuest(CRYSTAL_WAR,FIRES_OF_DISCONTENT);
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000);
         player:setVar("FiresOfDiscProg",0);
     end
 end;

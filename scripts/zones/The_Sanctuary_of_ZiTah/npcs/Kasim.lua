@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zitah
--- NPC:  Kasim
+--  NPC: Kasim
 -- @pos -46 0 -148 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil;
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
     
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     if (option == 1) then
         ShowOPVendorShop(player);

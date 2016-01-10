@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Ru'Lude Gardens
---  NPC:  Magian Moogle (Green Bobble)
---  Type: Magian Trials NPC (Job Emotes)
---  @pos -4.558 2.451 111.305 64
+-- Area: Ru'Lude Gardens
+--  NPC: Magian Moogle (Green Bobble)
+-- Type: Magian Trials NPC (Job Emotes)
+-- @pos -4.558 2.451 111.305 64
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
     printf("RESULT: %u",option);
     if (csid == 10160 and option == 1) then
         if (player:hasKeyItem(MAGIAN_TRIAL_LOG) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,MAGIAN_LEARNERS_LOG);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MAGIAN_LEARNERS_LOG);
             player:addKeyItem(MAGIAN_LEARNERS_LOG);
         end
         player:setVar("MetGreenMagianMog",1);

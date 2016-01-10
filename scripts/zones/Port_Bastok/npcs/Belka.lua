@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Belka
+--  NPC: Belka
 -- Only sells when Bastok controlls Derfland Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(DERFLAND);
     if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,BELKA_CLOSED_DIALOG);
+        player:showText(npc, text.BELKA_CLOSED_DIALOG);
     else
-        player:showText(npc,BELKA_OPEN_DIALOG);
+        player:showText(npc, text.BELKA_OPEN_DIALOG);
         stock = {
             0x1100,   128,   --Derfland Pear
             0x0269,   142,   --Ginger
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

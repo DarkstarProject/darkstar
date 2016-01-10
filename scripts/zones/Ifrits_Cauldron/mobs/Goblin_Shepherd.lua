@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Shepherd
+-- MOB: Goblin Shepherd
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

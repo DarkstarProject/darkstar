@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Furrier
+-- MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

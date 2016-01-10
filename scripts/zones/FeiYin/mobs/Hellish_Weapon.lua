@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Hellish Weapon
+-- MOB: Hellish Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

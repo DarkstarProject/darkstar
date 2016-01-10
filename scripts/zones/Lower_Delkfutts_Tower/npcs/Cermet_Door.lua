@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Lower Delkfutt's Tower
--- NPC:   Cermet Door
+--  NPC:  Cermet Door
 -- Notes: Leads to Upper Delkfutt's Tower.
 -- @pos 524 16 20 184
 -----------------------------------

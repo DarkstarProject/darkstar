@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Dragoon
+-- MOB: Fomor Dragoon
 -----------------------------------
 
 

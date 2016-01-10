@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Derrick
+--  NPC: Derrick
 -- Involved in Quests and finish : Save the Clock Tower
 -- @zone 245
 -- @pos -32 -1 -7
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00e6 and option == 10) then
         if (player:delGil(500000)) then
@@ -76,35 +76,35 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00e6 and option == 10) then
         if (player:hasKeyItem(AIRSHIP_PASS) == true) then
-            player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,AIRSHIP_PASS);
         end
     elseif (csid == 0x00e6 and option == 20) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,555);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,555);
         else 
             player:addItem(555);
-            player:messageSpecial(ITEM_OBTAINED,555);
+            player:messageSpecial(text.ITEM_OBTAINED,555);
             player:setVar("saveTheClockTowerVar",1);
             player:setVar("saveTheClockTowerNPCz1",0);
             player:setVar("saveTheClockTowerNPCz2",0);
         end
     elseif (csid == 0x00e6 and option == 30) then 
         if (player:hasItem(555) == true) then 
-            player:messageSpecial(ITEM_OBTAINED,555);
+            player:messageSpecial(text.ITEM_OBTAINED,555);
             player:setVar("saveTheClockTowerVar",1);
             player:setVar("saveTheClockTowerNPCz1",0);
             player:setVar("saveTheClockTowerNPCz2",0);
         else 
             if (player:getFreeSlotsCount() == 0) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,555);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,555);
             else
                 player:addItem(555);
-                player:messageSpecial(ITEM_OBTAINED,555);
+                player:messageSpecial(text.ITEM_OBTAINED,555);
                 player:setVar("saveTheClockTowerVar",1);
                 player:setVar("saveTheClockTowerNPCz1",0);
                 player:setVar("saveTheClockTowerNPCz2",0);
@@ -120,6 +120,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);
     end
 end;
-
-
-

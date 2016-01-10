@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Siege Bat
+-- MOB: Siege Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
---  MOB: Colorful Leshy
+-- MOB: Colorful Leshy
 -----------------------------------
 
 

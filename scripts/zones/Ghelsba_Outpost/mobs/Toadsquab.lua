@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Toadsquab
+-- MOB: Toadsquab
 -- BCNM30
 -----------------------------------
 

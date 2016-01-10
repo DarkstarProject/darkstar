@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Myconid
+-- MOB: Myconid
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

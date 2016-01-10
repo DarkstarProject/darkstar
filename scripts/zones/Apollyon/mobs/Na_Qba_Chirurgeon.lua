@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Na_Qba_Chirurgeon
+-- MOB: Na_Qba_Chirurgeon
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

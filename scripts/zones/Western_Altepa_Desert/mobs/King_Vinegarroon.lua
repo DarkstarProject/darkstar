@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---   NM: King Vinegarroon
+-- NM: King Vinegarroon
 -----------------------------------
 
 require("scripts/globals/titles");

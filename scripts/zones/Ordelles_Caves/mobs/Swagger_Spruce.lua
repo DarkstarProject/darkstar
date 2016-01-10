@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Swagger Spruce
+-- MOB: Swagger Spruce
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

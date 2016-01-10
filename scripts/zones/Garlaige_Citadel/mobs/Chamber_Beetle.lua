@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Chamber Beetle
+-- MOB: Chamber Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Marsh Funguar
+-- MOB: Marsh Funguar
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

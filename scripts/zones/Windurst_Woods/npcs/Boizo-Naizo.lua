@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Boizo-Naizo
+--  NPC: Boizo-Naizo
 -- Involved in Quest: Riding on the Clouds
 -- @zone 241
 -- @pos -9.581 -3.75 -26.062
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC:  Justinius
+--  NPC: Justinius
 -- Involved in mission : COP2-3
 -- @pos 76 -34 68 26
 -----------------------------------

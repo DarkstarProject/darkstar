@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
---  MOB: Canyon Rarab
+-- MOB: Canyon Rarab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: Hungry Wolf
---  Type: Quest Giver
---  @pos -25.861 -11 -30.172 237
+-- Area: Metalworks
+--  NPC: Hungry Wolf
+-- Type: Quest Giver
+-- @pos -25.861 -11 -30.172 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -- Updated for "Smoke on the Mountain" by EccentricAnata 03.22.13
@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01ad) then
         player:tradeComplete();
         player:addGil(GIL_RATE*300)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*300);
       player:addTitle(HOT_DOG);
         if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
             player:addFame(BASTOK,BAS_FAME*30);

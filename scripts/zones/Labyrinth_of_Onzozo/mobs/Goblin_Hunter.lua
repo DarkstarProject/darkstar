@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Goblin Hunter
+-- MOB: Goblin Hunter
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

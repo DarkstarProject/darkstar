@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Thug
+-- MOB: Goblin Thug
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

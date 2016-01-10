@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters
---   NPC: Chyuk-Kochak
---  Type: Standard NPC
+-- Area: Windurst Waters
+--  NPC: Chyuk-Kochak
+-- Type: Standard NPC
 -- @zone: 238
---  @pos -252.162 -6.319 -307.011
+-- @pos -252.162 -6.319 -307.011
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

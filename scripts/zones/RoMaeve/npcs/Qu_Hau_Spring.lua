@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     if (CurrentMission == VAIN and MissionStatus >= 1) then
         player:startEvent(2);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -58,16 +58,16 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 7) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1550);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1550);
         else 
             player:addItem(1550);
-            player:messageSpecial(ITEM_OBTAINED,1550);
+            player:messageSpecial(text.ITEM_OBTAINED,1550);
             player:tradeComplete();
         end
     elseif (csid == 8) then
         player:tradeComplete();
         player:addKeyItem(MOONLIGHT_ORE);
-        player:messageSpecial(KEYITEM_OBTAINED,MOONLIGHT_ORE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MOONLIGHT_ORE);
     elseif (csid == 2 and player:getCurrentMission(WINDURST) == VAIN) then
         player:setVar("MissionStatus",2);
     end

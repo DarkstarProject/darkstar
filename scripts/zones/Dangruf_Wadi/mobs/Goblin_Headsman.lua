@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Headsman
+-- MOB: Goblin Headsman
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

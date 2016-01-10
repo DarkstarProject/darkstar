@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 require("scripts/zones/Abyssea-Tahrongi/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

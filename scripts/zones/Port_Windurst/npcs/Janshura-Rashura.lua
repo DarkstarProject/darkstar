@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Janshura Rashura
---    Starts Windurst Missions
---    @pos -227 -8 184 240
+-- Area: Port Windurst
+--  NPC: Janshura Rashura
+-- Starts Windurst Missions
+-- @pos -227 -8 184 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
-                player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
+                player:showText(npc, text.ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     finishMissionTimeline(player,3,csid,option);
     
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(NEW_BEST_OF_THE_WEST_RECRUIT);
     elseif (csid == 0x004e and (option == 12 or option == 15)) then
         player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
     end
     
 end;

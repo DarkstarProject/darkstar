@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Dark Elemental
+-- MOB: Dark Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Eraser (Monster)
+-- MOB: Eraser (Monster)
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

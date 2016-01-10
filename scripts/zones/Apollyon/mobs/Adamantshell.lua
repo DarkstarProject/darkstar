@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Adamantshell
+--  NPC: Adamantshell
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

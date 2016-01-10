@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Port San d'Oria
---    NPC:  Fiva
---     Only sells when San d'Oria controls Kolshushu
+-- Area: Port San d'Oria
+--  NPC: Fiva
+-- Only sells when San d'Oria controls Kolshushu
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -37,17 +37,19 @@ function onTrigger(player,npc)
 RegionOwner = GetRegionOwner(KOLSHUSHU);
 
 if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,FIVA_CLOSED_DIALOG);
+    player:showText(npc, text.FIVA_CLOSED_DIALOG);
 else
-    player:showText(npc,FIVA_OPEN_DIALOG);
+    player:showText(npc, text.FIVA_OPEN_DIALOG);
     
-    stock = {0x1197,184,  --Buburimu Grape
+    local stock =
+    {
+    0x1197,184,  --Buburimu Grape
              0x0460,1620, --Casablanca
              0x1107,220,  --Dhalmel Meat
              0x0266,72,   --Mhaura Garlic
              0x115d,40}   --Yagudo Cherry
 
-showShop(player,SANDORIA,stock);
+    showShop(player,SANDORIA,stock);
 end
 end; 
 
@@ -56,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,10 +67,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

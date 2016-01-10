@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Gwill
+--  NPC: Gwill
 -- Starts & Ends Quest: The Return of the Adventurer
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
 -- @zone 235
@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
     
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00f2) then
         player:addQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
@@ -81,11 +81,11 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addTitle(KULATZ_BRIDGE_COMPANION);
             player:addItem(12498);
-            player:messageSpecial(ITEM_OBTAINED,12498);
+            player:messageSpecial(text.ITEM_OBTAINED,12498);
             player:addFame(BASTOK,BAS_FAME*80);
             player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12498);
         end
     end
     

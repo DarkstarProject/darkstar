@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Ketos
+-- MOB: Ketos
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

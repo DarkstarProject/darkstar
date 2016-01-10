@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Melek
+--  NPC: Melek
 -- Involved in Mission 2-3
 -- @zone 240
 -- @pos -80 -5 158
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
                 if (missionStatus == 1) then
                     player:startEvent(0x0030);
                 elseif (missionStatus == 7) then
-                    player:showText(npc,MELEK_DIALOG_C)
+                    player:showText(npc, text.MELEK_DIALOG_C)
                 -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
                 elseif (missionStatus == 6) then
                     player:startEvent(0x003D);
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
                 elseif (player:hasKeyItem(SWORD_OFFERING)) then
                 player:startEvent(0x0035);
                 elseif (missionStatus <= 5) then
-                    player:showText(npc,MELEK_DIALOG_B)
+                    player:showText(npc, text.MELEK_DIALOG_B)
                 elseif (missionStatus == 6) then
                     player:startEvent(0x0037);
                 end
@@ -60,7 +60,7 @@ function onTrigger(player,npc)
                 if (missionStatus == 7) then
                     player:startEvent(0x0040);
                 elseif (missionStatus == 8) then
-                    player:showText(npc,MELEK_DIALOG_A)
+                    player:showText(npc, text.MELEK_DIALOG_A)
                 elseif (player:hasKeyItem(KINDRED_CREST)) then
                     player:startEvent(0x0042);
                 end
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0030) then
         player:addMission(BASTOK,THE_EMISSARY_WINDURST);
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
     elseif (csid == 0x0035) then
         player:addKeyItem(DULL_SWORD)
-        player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DULL_SWORD);
         player:setVar("MissionStatus",4);  --> Gideus next
         player:delKeyItem(SWORD_OFFERING) -- remove sword offering
     elseif (csid == 0x0037) then
@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0042) then
         player:addMission(BASTOK,THE_EMISSARY);
         player:addKeyItem(KINDRED_REPORT)
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
         player:setVar("MissionStatus",10);  -- return to Bastok
         player:delKeyItem(KINDRED_CREST)
     end

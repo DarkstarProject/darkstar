@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
--- NPC:  Signpost
+--  NPC: Signpost
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------
@@ -21,15 +21,15 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getID() == 17261155) then
-        player:messageSpecial(SIGN_5);    
+        player:messageSpecial(text.SIGN_5);    
     elseif (npc:getID() == 17261156) then
-        player:messageSpecial(SIGN_4);            
+        player:messageSpecial(text.SIGN_4);            
     elseif (npc:getID() == 17261157) then
-        player:messageSpecial(SIGN_3);
+        player:messageSpecial(text.SIGN_3);
     elseif (npc:getID() == 17261158) then
-        player:messageSpecial(SIGN_2);
+        player:messageSpecial(text.SIGN_2);
     elseif (npc:getID() == 17261159) or (npc:getID() == 17261160) or (npc:getID() == 17261161) then
-        player:messageSpecial(SIGN_1);            
+        player:messageSpecial(text.SIGN_1);            
     end
     
 end; 
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

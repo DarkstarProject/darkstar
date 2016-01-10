@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Skeleton Warrior
+-- MOB: Skeleton Warrior
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

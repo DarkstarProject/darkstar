@@ -1,6 +1,6 @@
 -----------------------------------    
 -- Area: Ro'Maeve
--- NPC:  _3e0 (Moongate)
+--  NPC: _3e0 (Moongate)
 -----------------------------------    
 
 require("scripts/globals/settings");

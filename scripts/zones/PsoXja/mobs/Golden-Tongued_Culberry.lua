@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pso'xja
---  MOB: Golden-Tongued Culberry
+-- MOB: Golden-Tongued Culberry
 -----------------------------------
 
 

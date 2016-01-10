@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Leyla
+--  NPC: Leyla
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,LEYLA_SHOP_DIALOG);
+    player:showText(npc, text.LEYLA_SHOP_DIALOG);
 
-stock = {0x439c,55,        -- Hawkeye     
+    local stock =
+    {
+    0x439c,55,        -- Hawkeye     
      0x43a8,7,        -- Iron Arrow      
      0x43b8,5,        -- Crossbow Bolt  
      0x119d,10,        -- Distilled Water 
@@ -35,7 +37,7 @@ stock = {0x439c,55,        -- Hawkeye
      0x13a9,2815,        -- Dextrous Etude 
      0x13a8,3146}        -- Sinewy Etude     
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -43,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,9 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

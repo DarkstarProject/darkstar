@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Scamplix
+--  NPC: Scamplix
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,SCAMPLIX_SHOP_DIALOG);
+    player:showText(npc, text.SCAMPLIX_SHOP_DIALOG);
 
-stock = {0x119D,10,        -- Distilled Waterr
+    local stock =
+    {
+    0x119D,10,        -- Distilled Waterr
      0x1118,108,        -- Meat Jerky
      0x116A,270,        -- Goblin Bread
      0x0719,720,        -- Cactus Arm
@@ -37,7 +39,7 @@ stock = {0x119D,10,        -- Distilled Waterr
      0x006B,180,        -- Water Jug
      0x0b34,9000}        -- Rabao Waystone
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -45,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,9 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

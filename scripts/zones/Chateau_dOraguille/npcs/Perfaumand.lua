@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Perfaumand
+--  NPC: Perfaumand
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos -39 -3 69 233
 -----------------------------------
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 

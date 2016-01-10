@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Mheca Khetashipah
---  Type: Standard NPC
+-- Area: Windurst Woods
+--  NPC: Mheca Khetashipah
+-- Type: Standard NPC
 -- @zone: 241
---  @pos 66.881 -6.249 185.752
+-- @pos 66.881 -6.249 185.752
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Sand Tarantula
+-- MOB: Sand Tarantula
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

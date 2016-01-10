@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon NE    
--- NPC:  Sirin
+--  NPC: Sirin
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

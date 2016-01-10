@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Wight
+-- MOB: Wight
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

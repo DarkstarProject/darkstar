@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigas Fighter
+-- MOB: Gigas Fighter
 -----------------------------------
 
 

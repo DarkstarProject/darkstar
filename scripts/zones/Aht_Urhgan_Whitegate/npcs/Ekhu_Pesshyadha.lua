@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Ekhu Pesshyadha
---  Type: Standard NPC
---  @pos -13.043 0.999 103.423 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Ekhu Pesshyadha
+-- Type: Standard NPC
+-- @pos -13.043 0.999 103.423 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
        player:setVar("gotitallCS",2);
     elseif (csid == 0x020c) then
        player:addKeyItem(VIAL_OF_LUMINOUS_WATER);
-       player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_LUMINOUS_WATER);
+       player:messageSpecial(text.KEYITEM_OBTAINED,VIAL_OF_LUMINOUS_WATER);
        player:setVar("gotitallCS",4);
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Bark Spider
+-- MOB: Bark Spider
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

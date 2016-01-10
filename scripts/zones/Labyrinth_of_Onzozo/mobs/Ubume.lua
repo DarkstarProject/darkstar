@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Ubume
+-- MOB: Ubume
 -- Involved in Quest: Yomi Okuri
 -----------------------------------
 

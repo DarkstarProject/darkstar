@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---   NM: Guivre
+-- NM: Guivre
 -----------------------------------
 
 local path =

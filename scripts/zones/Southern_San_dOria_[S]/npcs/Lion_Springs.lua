@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Door:Lion Springs
+--  NPC: Door:Lion Springs
 -- @zone 80
 -- @pos 96 0 106
 -----------------------------------

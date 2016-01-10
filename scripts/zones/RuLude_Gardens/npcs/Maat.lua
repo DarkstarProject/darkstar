@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Maat
+--  NPC: Maat
 -- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 243
@@ -101,7 +101,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(JEUNO,BEYOND_THE_SUN) == QUEST_AVAILABLE and mJob <= 15 and player:getVar("maatsCap") == 32767) then
         player:startEvent(0x004a); -- Finish Quest "Beyond The Sun"
     else
-        player:showText(npc,MAAT_DIALOG);
+        player:showText(npc, text.MAAT_DIALOG);
     end
 
 end;
@@ -113,8 +113,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("upCSID: %u",csid);
---printf("upRESULT: %u",option);
+    -- printf("upCSID: %u",csid);
+    -- printf("upRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -122,8 +122,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0075) then
         player:setVar("BeatAroundTheBushin",6);
@@ -145,7 +145,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(SQUARE_FRIGICITE);
         player:delKeyItem(TRIANGULAR_FRIGICITE);
         player:levelCap(60);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_60);
         player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
         player:addFame(JEUNO, JEUNO_FAME*40);    
     -- Genkai 3
@@ -157,7 +157,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(QUADAV_CREST);
         player:delKeyItem(YAGUDO_CREST);
         player:levelCap(65);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_65);
         player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
         player:addFame(JEUNO, JEUNO_FAME*50);        
     elseif (csid == 0x0058) then
@@ -176,7 +176,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(SOMBER_STONE);
         player:delKeyItem(SPIRITED_STONE);
         player:levelCap(70);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_70);
         player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
         player:addFame(JEUNO, JEUNO_FAME*60);    
     elseif (csid == 0x005c) then
@@ -192,7 +192,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(STAR_BREAKER);
         player:levelCap(75);
         player:setVar("maatDefeated",0);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_75);
         player:completeQuest(JEUNO,SHATTERING_STARS);
         player:addFame(JEUNO, JEUNO_FAME*80);        
     elseif (csid==0x004a) then
@@ -201,7 +201,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(ULTIMATE_CHAMPION_OF_THE_WORLD);
             player:setVar("maatsCap",0);
             player:addItem(15194);
-            player:messageSpecial(ITEM_OBTAINED,15194);
+            player:messageSpecial(text.ITEM_OBTAINED,15194);
         end
     end
     

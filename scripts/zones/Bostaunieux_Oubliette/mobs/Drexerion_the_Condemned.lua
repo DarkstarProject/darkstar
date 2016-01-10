@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  MOB: Drexerion_the_Condemned
+-- MOB: Drexerion_the_Condemned
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Kubhe Ijyuhla
+--  NPC: Kubhe Ijyuhla
 -- Standard Info NPC
 -- @pos 23.257 0.000 21.532 50
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0344) then
        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
        player:setVar("threemenandaclosetCS",2);
@@ -65,15 +65,12 @@ function onEventFinish(player,csid,option)
        player:setVar("threemenandaclosetCS",4); 
     elseif (csid == 0x034d) then
         if (player:getFreeSlotsCount() == 0) then
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+           player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2184);
         else
            player:setVar("threemenandaclosetCS",0); 
            player:addItem(2184,1);
-           player:messageSpecial(ITEM_OBTAINEDX,2184,1);
+           player:messageSpecial(text.ITEM_OBTAINEDX,2184,1);
            player:completeQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
         end
     end
 end;
-
-
-

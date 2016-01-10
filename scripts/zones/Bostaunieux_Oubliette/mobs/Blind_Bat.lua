@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Blind Bat
+-- MOB: Blind Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

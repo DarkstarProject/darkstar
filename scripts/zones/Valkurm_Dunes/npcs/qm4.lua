@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  qm4 (???)
+--  NPC: qm4 (???)
 -- Involved in quest: Pirate's Chart
 -- @pos -160 4 -131 103
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(MONSTERS_KILLED_ADVENTURERS);
+    player:messageSpecial(text.MONSTERS_KILLED_ADVENTURERS);
 end;
 
 -----------------------------------

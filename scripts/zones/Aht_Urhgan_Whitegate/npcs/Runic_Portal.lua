@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Runic Portal
+--  NPC: Runic Portal
 -- Aht Urhgan Teleporter to Other Areas
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -27,14 +27,14 @@ function onTrigger(player,npc)
     local hasAssault, keyitem = hasAssaultOrders(player);
     
     if (hasAssault > 0) then
-        player:messageSpecial(RUNIC_PORTAL + 9, keyitem);
+        player:messageSpecial(text.RUNIC_PORTAL + 9, keyitem);
         player:startEvent(hasAssault);
     else
         if (player:hasKeyItem(RUNIC_PORTAL_USE_PERMIT)) then
-            player:messageSpecial(RUNIC_PORTAL + 2,RUNIC_PORTAL_USE_PERMIT);
+            player:messageSpecial(text.RUNIC_PORTAL + 2,RUNIC_PORTAL_USE_PERMIT);
             player:startEvent(0x0065,0,player:getNationTeleport(AHTURHGAN));
         else
-            player:messageSpecial(RUNIC_PORTAL);
+            player:messageSpecial(text.RUNIC_PORTAL);
         end
     end
     
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0065) then
         if (option == 101) then

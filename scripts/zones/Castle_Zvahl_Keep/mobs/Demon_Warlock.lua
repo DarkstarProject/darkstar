@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (162)
---  MOB: Demon_Warlock
+-- MOB: Demon_Warlock
 -----------------------------------
 
 require("scripts/zones/Castle_Zvahl_Keep/MobIDs");

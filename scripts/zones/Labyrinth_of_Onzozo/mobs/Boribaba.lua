@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Boribaba
+-- MOB: Boribaba
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

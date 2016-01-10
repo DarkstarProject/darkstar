@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Wekufe
+-- MOB: Wekufe
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

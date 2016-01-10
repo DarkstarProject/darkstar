@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Waters
---  NPC:  Npopo
---  Type: Standard NPC
---  @pos -35.464 -5.999 239.120 238
+-- Area: Windurst Waters
+--  NPC: Npopo
+-- Type: Standard NPC
+-- @pos -35.464 -5.999 239.120 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

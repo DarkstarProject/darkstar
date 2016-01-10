@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sealions Den
---  MOB: Omega
+-- MOB: Omega
 -----------------------------------
 
 require("scripts/globals/titles");

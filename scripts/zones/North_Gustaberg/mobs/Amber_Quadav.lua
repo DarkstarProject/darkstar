@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Amber Quadav
+-- MOB: Amber Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Ornamental Weapon
+-- MOB: Ornamental Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

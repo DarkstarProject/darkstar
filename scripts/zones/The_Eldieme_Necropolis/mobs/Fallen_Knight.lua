@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Fallen Knight
+-- MOB: Fallen Knight
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

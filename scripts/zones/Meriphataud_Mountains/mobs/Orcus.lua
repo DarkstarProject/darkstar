@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Krabkatoa
+-- MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

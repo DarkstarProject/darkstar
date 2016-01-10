@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier (S)
---  MOB: Glacial Imp
+-- MOB: Glacial Imp
 -----------------------------------
 
 require("scripts/globals/status");

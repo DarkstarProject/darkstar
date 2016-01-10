@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  ??? (qm2)
---  Involved in Missions: Calm Before the Storm (CoP 7-4)
---  @pos 120.615 -5.457 -390.133 2
+-- Area: Carpenters' Landing
+--  NPC: ??? (qm2)
+-- Involved in Missions: Calm Before the Storm (CoP 7-4)
+-- @pos 120.615 -5.457 -390.133 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         SpawnMob(Assassin2ID,420);
         SpawnMob(Assassin3ID,420);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
   end
 

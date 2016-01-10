@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Crimson-toothed Pawberry
+-- MOB: Crimson-toothed Pawberry
 -----------------------------------
 
 -----------------------------------

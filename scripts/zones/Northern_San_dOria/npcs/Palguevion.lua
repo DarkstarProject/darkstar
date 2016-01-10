@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Northern San d'Oria
---    NPC: Palguevion
---    Only sells when San d'Oria controlls Valdeaunia Region
+-- Area: Northern San d'Oria
+--  NPC: Palguevion
+-- Only sells when San d'Oria controlls Valdeaunia Region
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -39,14 +39,16 @@ function onTrigger(player,npc)
 RegionOwner = GetRegionOwner(VALDEAUNIA);
 
 if (RegionOwner ~= SANDORIA) then 
-    player:showText(npc,PALGUEVION_CLOSED_DIALOG);
+    player:showText(npc, text.PALGUEVION_CLOSED_DIALOG);
 else
-    player:showText(npc,PALGUEVION_OPEN_DIALOG);
+    player:showText(npc, text.PALGUEVION_OPEN_DIALOG);
     
-    stock = {0x111e,29,        -- Frost Turnip
+    local stock =
+    {
+    0x111e,29,        -- Frost Turnip
          0x027e,170}        -- Sage
               
-showShop(player,SANDORIA,stock);
+    showShop(player,SANDORIA,stock);
 end
 end; 
 
@@ -55,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,9 +66,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

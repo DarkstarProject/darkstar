@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Chululu
+--  NPC: Chululu
 -- Starts and Finishes Quests: Collect Tarut Cards, Rubbish Day
 -- Optional Cutscene at end of Quest: Searching for the Right Words
 -- @pos -13 -6 -42 245
@@ -42,12 +42,12 @@ function onTrigger(player,npc)
     elseif (CollectTarutCards == QUEST_ACCEPTED) then
         player:startEvent(0x001B); -- During quest "Collect Tarut Cards"
     elseif (CollectTarutCards == QUEST_COMPLETED and RubbishDay == QUEST_AVAILABLE and player:getVar("RubbishDay_day") ~= VanadielDayOfTheYear()) then
---      prog = player:getVar("RubbishDay_prog");
---      if (prog <= 2) then
---          player:startEvent(0x00c7); -- Required to get compatibility 3x on 3 diff game days before quest is kicked off
---      elseif (prog == 3) then
+-- prog = player:getVar("RubbishDay_prog");
+-- if (prog <= 2) then
+-- player:startEvent(0x00c7); -- Required to get compatibility 3x on 3 diff game days before quest is kicked off
+-- elseif (prog == 3) then
             player:startEvent(0x00c6); -- Start quest "Rubbish Day" with option
---      end
+-- end
     elseif (CollectTarutCards == QUEST_COMPLETED and RubbishDay == QUEST_AVAILABLE) then
         player:startEvent(0x0039); -- Standard dialog between 2 quests
     elseif (RubbishDay == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then
@@ -102,11 +102,11 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,card);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,card);
         else
             player:addQuest(JEUNO,COLLECT_TARUT_CARDS);
             player:addItem(card,5);
-            player:messageSpecial(ITEM_OBTAINED,card);
+            player:messageSpecial(text.ITEM_OBTAINED,card);
         end
     elseif (csid == 0x00c8) then
         player:addTitle(CARD_COLLECTOR);
@@ -119,17 +119,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00c6 and option == 0) then
         player:addQuest(JEUNO,RUBBISH_DAY);
         player:addKeyItem(MAGIC_TRASH);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGIC_TRASH);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAGIC_TRASH);
         player:setVar("RubbishDay_prog",0);
         player:setVar("RubbishDay_day",0);
     elseif (csid == 0x00c5) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13083);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13083);
         else
             player:addGil(GIL_RATE*6000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*6000);
             player:addItem(13083);
-            player:messageSpecial(ITEM_OBTAINED,13083);
+            player:messageSpecial(text.ITEM_OBTAINED,13083);
             player:setVar("RubbishDayVar",0);
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:completeQuest(JEUNO,RUBBISH_DAY);

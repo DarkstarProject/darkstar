@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Posso Ruhbini
+--  NPC: Posso Ruhbini
 -- Regional Marchant NPC 
 -- Only sells when Windurst controlls Norvallen
 -- Confirmed shop stock, August 2013
@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(NORVALLEN);
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,POSSORUHBINI_CLOSED_DIALOG);
+        player:showText(npc, text.POSSORUHBINI_CLOSED_DIALOG);
     else
-        player:showText(npc,POSSORUHBINI_OPEN_DIALOG);
+        player:showText(npc, text.POSSORUHBINI_OPEN_DIALOG);
 
         stock = {
             0x02B0,    18,   --Arrowwood Log
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Attohwa Chasm
---  NPC:  Jakaka
---  Type: ENM
---  @pos -144.711 6.246 -250.309 7
+-- Area: Attohwa Chasm
+--  NPC: Jakaka
+-- Type: ENM
+-- @pos -144.711 6.246 -250.309 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------
@@ -65,15 +65,15 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 12) then
         player:addKeyItem(MIASMA_FILTER);
-        player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MIASMA_FILTER);
         player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
     elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
             return;
         else
             player:addItem(1777);
-            player:messageSpecial(ITEM_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(text.ITEM_OBTAINED, 1777); -- Flaxen Pouch
         end
     end
 end;

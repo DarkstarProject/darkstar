@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Forest Tiger
+-- MOB: Forest Tiger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

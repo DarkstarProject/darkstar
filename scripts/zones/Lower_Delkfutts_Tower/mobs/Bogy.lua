@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Bogy
+-- MOB: Bogy
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

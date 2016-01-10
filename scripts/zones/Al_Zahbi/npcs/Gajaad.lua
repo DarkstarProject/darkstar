@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Gajaad
---  Type: Donation Taker
---  @pos 40.781 -1.398 116.261 48
+-- Area: Al Zahbi
+--  NPC: Gajaad
+-- Type: Donation Taker
+-- @pos 40.781 -1.398 116.261 48
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -21,10 +21,10 @@ function onTrade(player,npc,trade)
     if (TradeCount > 0 and TradeCount == trade:getItemCount()) then
         if (walahraCoinCount + TradeCount > 1000) then -- give player turban, donated over 1000
             if (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15270);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,15270);
             else 
                 player:addItem(15270);
-                player:messageSpecial(ITEM_OBTAINED,15270);
+                player:messageSpecial(text.ITEM_OBTAINED,15270);
                 player:setVar("walahraCoinCount", walahraCoinCount - (1000 - TradeCount));
                 player:tradeComplete();
                 player:startEvent(0x0066, 2184, 0, TradeCount);
@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:setVar("walahraCoinCount", walahraCoinCount + TradeCount);
                 player:addItem(5354);
-                player:messageSpecial(ITEM_OBTAINED,5354);
+                player:messageSpecial(text.ITEM_OBTAINED,5354);
                 player:startEvent(0x0066, 2184, 0, TradeCount);
             else
                 player:tradeComplete();

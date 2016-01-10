@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Ninja
+-- MOB: Fomor Ninja
 -----------------------------------
 
 

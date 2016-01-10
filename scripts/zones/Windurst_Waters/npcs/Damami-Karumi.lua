@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters
---   NPC: Damami-Karumi
---  Type: Standard NPC
+-- Area: Windurst Waters
+--  NPC: Damami-Karumi
+-- Type: Standard NPC
 -- @zone: 238
---  @pos -5.362 -2 18.059
+-- @pos -5.362 -2 18.059
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

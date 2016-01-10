@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Greater Manticore
+-- MOB: Greater Manticore
 -- Note: Place Holder for Frostmane
 -----------------------------------
 

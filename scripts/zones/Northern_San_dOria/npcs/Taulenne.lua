@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Taulenne
+--  NPC: Taulenne
 -- Armor Storage NPC
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
       count = trade:getItemCount();
       MagicFlyer = trade:hasItemQty(532,1);
       if (MagicFlyer == true and count == 1) then
-         player:messageSpecial(FLYER_REFUSED);
+         player:messageSpecial(text.FLYER_REFUSED);
       end;
    end;
    for SetId = 1,ArraySize,11 do
@@ -58,7 +58,7 @@ function onTrade(player,npc,trade)
                if (T2 == true and T3 == true and T4 == true and T5 == true) then
                   player:startEvent(Deposit,0,0,0,0,0,StorageArray[SetId + 9]);
                   player:addKeyItem(StorageArray[SetId + 10]);
-                  player:messageSpecial(KEYITEM_OBTAINED,StorageArray[SetId + 10]);
+                  player:messageSpecial(text.KEYITEM_OBTAINED,StorageArray[SetId + 10]);
                   break;
                end;
             end;
@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
             for Item = 2,6,1 do
                if (StorageArray[option * 11 - Item] > 0) then
                   player:addItem(StorageArray[option * 11 - Item],1);
-                  player:messageSpecial(ITEM_OBTAINED,StorageArray[option * 11 - Item]);
+                  player:messageSpecial(text.ITEM_OBTAINED,StorageArray[option * 11 - Item]);
                end;
             end;
             player:delKeyItem(StorageArray[option * 11]);
@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option)
          else
             for Item = 2,6,1 do
                if (StorageArray[option * 11 - Item] > 0) then
-                  player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,StorageArray[option * 11 - Item]);
+                  player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,StorageArray[option * 11 - Item]);
                end;
             end;
          end;

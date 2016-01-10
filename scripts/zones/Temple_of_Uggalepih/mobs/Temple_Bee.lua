@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Temple Bee
+-- MOB: Temple Bee
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

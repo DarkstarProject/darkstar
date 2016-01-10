@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: ZuahLepahnyu
+--  NPC: ZuahLepahnyu
 -- Title Change NPC
 -- @pos 0 0 8 246
 -----------------------------------

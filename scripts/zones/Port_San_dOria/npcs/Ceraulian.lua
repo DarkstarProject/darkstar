@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Ceraulian
+--  NPC: Ceraulian
 -- Involved in Quest: The Holy Crest
 -- @pos 0 -8 -122 232
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -97,8 +97,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0018) then
         player:setVar("TheHolyCrest_Event",1);
@@ -121,11 +121,11 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
         if (player:getFreeSlotsCount() < 1) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14227);
         else
             player:delKeyItem(RANCHURIOMES_LEGACY);
             player:addItem(14227);
-            player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
+            player:messageSpecial(text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
             player:completeQuest(SANDORIA,CHASING_QUOTAS);
             player:setVar("ChasingQuotas_Progress",0);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Sabiliont
+--  NPC: Sabiliont
 -- @zone 80
 -- @pos 9 2 -87
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-player:showText(npc, 6999); -- (Couldn't find default dialogue) What are you doing here? This is no place for civillians
+    player:showText(npc, text.6999); -- (Couldn't find default dialogue) What are you doing here? This is no place for civillians
 end;
 
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x01B) then -- Gifts Of Griffon Trade
         player:tradeComplete();
         local mask = player:getVar("GiftsOfGriffonPlumes");

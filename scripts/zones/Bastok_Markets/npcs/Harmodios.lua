@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Harmodios
+--  NPC: Harmodios
 -- Standard Merchant NPC
 -- @pos -79.928 -4.824 -135.114 235
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(0x01ae);
     else
     
-        player:showText(npc,HARMODIOS_SHOP_DIALOG);
+        player:showText(npc, text.HARMODIOS_SHOP_DIALOG);
         stock = {
             0x43C3,   990,1,     --Piccolo
     
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01ae) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",10,true);

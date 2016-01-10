@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Seeker Bats
+-- MOB: Seeker Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

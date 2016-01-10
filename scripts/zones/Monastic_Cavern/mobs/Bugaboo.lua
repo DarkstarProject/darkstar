@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern
---  MOB: Bugaboo
+-- MOB: Bugaboo
 -----------------------------------
 
 require("scripts/globals/titles");

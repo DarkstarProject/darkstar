@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Boyahda Sapling
+-- MOB: Boyahda Sapling
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

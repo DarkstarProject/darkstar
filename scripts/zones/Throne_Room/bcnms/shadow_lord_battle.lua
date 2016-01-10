@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
             player:addMission(ZILART,THE_NEW_FRONTIER);
             player:addKeyItem(SHADOW_FRAGMENT);
-            player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SHADOW_FRAGMENT);
             player:setVar("MissionStatus",4);
         end
         -- You will be transported back to the entrance of Castle Zvahl Baileys

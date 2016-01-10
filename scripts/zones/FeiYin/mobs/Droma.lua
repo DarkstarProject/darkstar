@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
---  MOB: Droma
+-- MOB: Droma
 -----------------------------------
 
 require("scripts/globals/keyitems");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Uleguerand_Range
---  MOB: Geush Urvan
+-- MOB: Geush Urvan
 -- Notes: Spawned from qm1
 -----------------------------------
 

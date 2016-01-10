@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Vola
+--  NPC: Vola
 -- Starts and Finishes Quest: Fistful of Fury
 -- Involved in Quests: Beat Around the Bushin (before the quest)
 -- @zone 245
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,17 +64,17 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00D8 and option == 1) then
         player:addQuest(JEUNO,FISTFUL_OF_FURY);
     elseif (csid == 0x00D5) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13202);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13202);
         else 
             player:addTitle(BROWN_BELT);
             player:addItem(13202);
-            player:messageSpecial(ITEM_OBTAINED,13202);
+            player:messageSpecial(text.ITEM_OBTAINED,13202);
             player:addFame(NORG,NORG_FAME*125);
             player:tradeComplete();
             player:completeQuest(JEUNO,FISTFUL_OF_FURY);
@@ -83,6 +83,3 @@ function onEventFinish(player,csid,option)
         player:setVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
     end
 end;
-
-
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Living Statue
+-- MOB: Living Statue
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Summoner
+-- MOB: Fomor Summoner
 -----------------------------------
 
 

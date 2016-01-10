@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Ishwar
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -47.103 -1.999 -19.582
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -47.103 -1.999 -19.582
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ISHWAR_DIALOG);
+    player:showText(npc, text.ISHWAR_DIALOG);
 end;
 
 -----------------------------------

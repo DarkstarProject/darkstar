@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Bki Tbujhja
+--  NPC: Bki Tbujhja
 -- Involved in Quest: The Old Monument
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- @zone 245
@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -78,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00b5) then
            player:setVar("TheOldMonument_Event",2);
@@ -92,13 +92,13 @@ function onEventFinish(player,csid,option)
         player:setVar("TheRequiemCS",1);
     elseif (csid == 0x0097) then 
         player:setVar("TheRequiemCS",3);
-        player:messageSpecial(ITEM_OBTAINED,4154); -- Holy Water (just message)
+        player:messageSpecial(text.ITEM_OBTAINED,4154); -- Holy Water (just message)
     elseif (csid == 0x0096) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14098);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14098);
         else 
             player:addItem(14098);
-            player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
+            player:messageSpecial(text.ITEM_OBTAINED,14098); -- Choral Slippers
             player:addFame(JEUNO, JEUNO_FAME*30);
             player:completeQuest(JEUNO,THE_REQUIEM);
         end        

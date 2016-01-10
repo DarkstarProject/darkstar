@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Conquistador
+-- MOB: Yagudo_Conquistador
 -----------------------------------
 
 require("scripts/zones/Castle_Oztroja/MobIDs");

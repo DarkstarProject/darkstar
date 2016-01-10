@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  NM:  Ghillie Dhu
+-- NM:  Ghillie Dhu
 -----------------------------------
 
 require("scripts/globals/utils");

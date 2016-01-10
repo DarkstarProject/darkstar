@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Gulmama
+--  NPC: Gulmama
 -- Starts and Finishes Quest: Trial by Ice
 -- Involved in Quest: Class Reunion
 -- @pos -186 0 107 231
@@ -86,10 +86,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,TRIAL_BY_ICE);
         player:setVar("TrialByIce_date", 0);
         player:addKeyItem(TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
     elseif (csid == 0x02ce) then 
         player:addKeyItem(TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
     elseif (csid == 0x02c5) then
         local item = 0;
         if (option == 1) then item = 17492;         -- Shiva's Claws
@@ -99,17 +99,17 @@ function onEventFinish(player,csid,option)
         end
         
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
         else 
             if (option == 5) then 
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then 
                 player:addSpell(302); -- Avatar
-                player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
+                player:messageSpecial(text.SHIVA_UNLOCKED,0,0,4);
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_ICE);
             player:delKeyItem(WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
@@ -120,10 +120,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02c9 or csid == 0x02c8) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1171);
-            player:messageSpecial(ITEM_OBTAINED,1171);
+            player:messageSpecial(text.ITEM_OBTAINED,1171);
             player:setVar("ClassReunionProgress",5);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1171);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1171);
         end;
     end;
     

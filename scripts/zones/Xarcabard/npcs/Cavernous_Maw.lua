@@ -36,7 +36,7 @@ function onTrigger(player,npc)
             player:startEvent(204,0,1); -- No param = no entry.
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 

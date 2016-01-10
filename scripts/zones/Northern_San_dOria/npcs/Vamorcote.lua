@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
---   NPC: Vamorcote
---    Starts and Finishes Quest: The Setting Sun
+-- Area: Northern San d'Oria
+--  NPC: Vamorcote
+-- Starts and Finishes Quest: The Setting Sun
 -- @zone: 231
---  @pos -137.070 10.999 161.855
+-- @pos -137.070 10.999 161.855
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0292) then --The player trades the Engraved Key to the NPC. Here come the rewards!
         player:tradeComplete();
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,THE_SETTING_SUN);
     end;

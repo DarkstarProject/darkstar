@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Mandragora
+-- MOB: Mandragora
 -- Note: PH for Tom Tit Tat
 -----------------------------------
 

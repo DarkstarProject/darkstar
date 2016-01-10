@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Zeruhn Mines (172)
---  Mob: Colliery Bat
+-- Mob: Colliery Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

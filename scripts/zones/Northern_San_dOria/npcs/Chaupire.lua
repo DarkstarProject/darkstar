@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Chaupire
+--  NPC: Chaupire
 -- Guild Merchant NPC: Woodworking Guild 
 -- @pos -174.476 3.999 281.854 231
 -----------------------------------
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5132,6,21,0)) then
-        player:showText(npc,CHAUPIRE_SHOP_DIALOG);
+        player:showText(npc, text.CHAUPIRE_SHOP_DIALOG);
     end
 end; 
 
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,10 +43,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

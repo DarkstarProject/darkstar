@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:  Scanning_Device
+--  NPC: Scanning_Device
 -- @pos 
 -----------------------------------
 require("scripts/globals/limbus");

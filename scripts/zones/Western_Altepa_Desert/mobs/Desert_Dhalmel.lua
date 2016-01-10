@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Desert Dhalmel
+-- MOB: Desert Dhalmel
 -- Note: Place holder for Celphie
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Maysoon
+--  NPC: Maysoon
 -- Starts and Finishes Quest: Hoist the Jelly, Roger
 -- Involved in Quests: Cook's Pride
 -- @zone 238
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,18 +55,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x2710) then 
         player:addQuest(WINDURST,HOIST_THE_JELLY_ROGER);
     elseif (csid == 0x2711) then 
         player:completeQuest(WINDURST,HOIST_THE_JELLY_ROGER);
         player:addKeyItem(SUPER_SOUP_POT);
-        player:messageSpecial(KEYITEM_OBTAINED,SUPER_SOUP_POT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SUPER_SOUP_POT);
         player:addFame(WINDURST,WIN_FAME*30);
         player:tradeComplete();
     end
 end;
-
-
-

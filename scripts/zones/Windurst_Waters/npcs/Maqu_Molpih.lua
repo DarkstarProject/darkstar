@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Maqu Molpih
+--  NPC: Maqu Molpih
 -- Only sells when Windurst controlls Aragoneu Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -26,9 +26,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ARAGONEU);
     if (RegionOwner ~= WINDURST) then
-        player:showText(npc,MAQUMOLPIH_CLOSED_DIALOG);
+        player:showText(npc, text.MAQUMOLPIH_CLOSED_DIALOG);
     else
-        player:showText(npc,MAQUMOLPIH_OPEN_DIALOG);
+        player:showText(npc, text.MAQUMOLPIH_OPEN_DIALOG);
 
         stock = {
             0x0277,    36,   --Horo Flour
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

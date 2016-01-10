@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x271B and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(FISHING_SUPPORT,0,0,0);
+        player:messageSpecial(text.FISHING_SUPPORT,0,0,0);
         player:addStatusEffect(EFFECT_FISHING_IMAGERY,2,0,7200);
     end
 end;

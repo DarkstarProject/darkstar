@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Mokkurkalfi
+-- MOB: Mokkurkalfi
 -----------------------------------
 
 require("scripts/globals/missions");

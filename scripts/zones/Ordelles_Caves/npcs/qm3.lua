@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
--- NPC:  ??? (qm3)
+--  NPC: ??? (qm3)
 -- Involved in Quest: A Squire's Test II
 -- @pos -139 0.1 264 193
 -------------------------------------
@@ -25,14 +25,14 @@ end;
 function onTrigger(player,npc) 
 
     if (os.time() - player:getVar("SquiresTestII") <= 60 and player:hasKeyItem(STALACTITE_DEW) == false) then
-        player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_II);
+        player:messageSpecial(text.A_SQUIRE_S_TEST_II_DIALOG_II);
         player:addKeyItem(STALACTITE_DEW);
-        player:messageSpecial(KEYITEM_OBTAINED, STALACTITE_DEW);
+        player:messageSpecial(text.KEYITEM_OBTAINED, STALACTITE_DEW);
         player:setVar("SquiresTestII",0);
     elseif (player:hasKeyItem(STALACTITE_DEW)) then
-        player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_III);
+        player:messageSpecial(text.A_SQUIRE_S_TEST_II_DIALOG_III);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         player:setVar("SquiresTestII",0);
     end
     
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

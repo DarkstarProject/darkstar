@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Aura Pot
+-- MOB: Aura Pot
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

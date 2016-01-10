@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Mushuhi-Metahi
+--  NPC: Mushuhi-Metahi
 -- Type: Weather Reporter
 -----------------------------------
 

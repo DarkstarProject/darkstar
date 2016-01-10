@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Dynamis Icon
+--  NPC: Dynamis Icon
 -- Trigger for Wind Pukis respawn
 -----------------------------------
 

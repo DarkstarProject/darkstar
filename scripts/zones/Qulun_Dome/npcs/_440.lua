@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NPC:  Door
+--  NPC: Door
 -- Involved in Mission: Magicite
 -- @pos 60 24 -2 148
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             player:startEvent(0x0032);
         end
     else
-        player:messageSpecial(IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);
+        player:messageSpecial(text.IT_SEEMS_TO_BE_LOCKED_BY_POWERFUL_MAGIC);
     end
     
     return 1;
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
 -- printf("RESULT: %u",option);    
     
     if ((csid == 0x0032 or csid == 0x0033) and option == 1) then
-        player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
+        player:messageSpecial(text.THE_3_ITEMS_GLOW_FAINTLY,SILVER_BELL,CORUSCANT_ROSARY,BLACK_MATINEE_NECKLACE);
     end
     
 end;

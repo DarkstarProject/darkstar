@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Stalking Sapling
+-- MOB: Stalking Sapling
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

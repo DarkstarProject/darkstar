@@ -1,4 +1,4 @@
---  MOB: Orcish_Bowshooter
+-- MOB: Orcish_Bowshooter
 -----------------------------------
 -- Area: Misareaux_Coast
 -----------------------------------

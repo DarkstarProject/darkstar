@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Empyreal Paradox
---  MOB: Prishe
+-- MOB: Prishe
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
 

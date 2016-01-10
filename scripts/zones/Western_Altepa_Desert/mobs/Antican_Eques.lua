@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Eques
+-- MOB: Antican Eques
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

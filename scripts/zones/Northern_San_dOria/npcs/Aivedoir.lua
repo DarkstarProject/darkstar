@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Aivedoir
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -123.119 7.999 134.490
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -123.119 7.999 134.490
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,AIVEDOIR_DIALOG);
+    player:showText(npc, text.AIVEDOIR_DIALOG);
 end;
 
 -----------------------------------

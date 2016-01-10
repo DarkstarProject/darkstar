@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Goblin Mercenary
+-- MOB: Goblin Mercenary
 -- Note: Place holder Wyvernpoacher Drachlox
 -----------------------------------
 

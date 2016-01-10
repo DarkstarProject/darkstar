@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Matata
---  Type: Standard NPC
---  @zone: 241
---  @pos 131 -5 -109
---  Involved in quest: In a Stew
+-- Area: Windurst Woods
+--  NPC: Matata
+-- Type: Standard NPC
+-- @zone: 241
+-- @pos 131 -5 -109
+-- Involved in quest: In a Stew
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- In a Stew
     if (csid == 0x00E9) then

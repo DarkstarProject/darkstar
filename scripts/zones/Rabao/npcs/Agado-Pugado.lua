@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Agado-Pugado
+--  NPC: Agado-Pugado
 -- Starts and Finishes Quest: Trial by Wind
 -- @pos -17 7 -10 247
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0042 and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND) == QUEST_COMPLETED) then
             player:delQuest(OUTLANDS,TRIAL_BY_WIND);
@@ -88,10 +88,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,TRIAL_BY_WIND);
         player:setVar("TrialByWind_date", 0);
         player:addKeyItem(TUNING_FORK_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
     elseif (csid == 0x006b) then
         player:addKeyItem(TUNING_FORK_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_WIND);
     elseif (csid == 0x0045) then 
         item = 0;
         if (option == 1) then item = 17627;         -- Garuda's Dagger
@@ -101,17 +101,17 @@ function onEventFinish(player,csid,option)
         end
         
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
         else 
             if (option == 5) then 
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then 
                 player:addSpell(301); -- Garuda Spell
-                player:messageSpecial(GARUDA_UNLOCKED,0,0,3); 
+                player:messageSpecial(text.GARUDA_UNLOCKED,0,0,3); 
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_WIND);
             player:delKeyItem(WHISPER_OF_GALES); --Whisper of Gales, as a trade for the above rewards
@@ -122,13 +122,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0056 or csid == 0x0057) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1174);
-            player:messageSpecial(ITEM_OBTAINED,1174);
+            player:messageSpecial(text.ITEM_OBTAINED,1174);
             player:setVar("CarbuncleDebacleProgress",6);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1174);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1174);
         end;
     end
 end;
-
-
-

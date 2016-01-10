@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Shepherd
+-- MOB: Goblin Shepherd
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

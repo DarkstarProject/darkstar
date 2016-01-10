@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King_Ranperre's Tomb
--- NPC:  Strange Apparatus
+--  NPC: Strange Apparatus
 -- @pos -260 7 -142 190
 -----------------------------------
 

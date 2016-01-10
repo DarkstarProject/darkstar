@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Gigas Catapulter
+-- MOB: Gigas Catapulter
 -----------------------------------
 
 

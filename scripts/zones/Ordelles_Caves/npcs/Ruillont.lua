@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  Ruillont
+--  NPC: Ruillont
 -- Involved in Mission: The Rescue Drill
 -- @pos -70 1 607 193
 -----------------------------------
@@ -36,13 +36,13 @@ function onTrigger(player,npc)
         if (MissionStatus == 7) then
             player:startEvent(0x0001);
         elseif (MissionStatus >= 10 or player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL)) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 9);
+            player:showText(npc, text.RUILLONT_INITIAL_DIALOG + 9);
         elseif (MissionStatus >= 8) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG);
+            player:showText(npc, text.RUILLONT_INITIAL_DIALOG);
         elseif (player:getNation() == SANDORIA) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 2);
+            player:showText(npc, text.RUILLONT_INITIAL_DIALOG + 2);
         else
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 1);
+            player:showText(npc, text.RUILLONT_INITIAL_DIALOG + 1);
         end
     end
     
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0001) then
         local rand = math.random(1,3);

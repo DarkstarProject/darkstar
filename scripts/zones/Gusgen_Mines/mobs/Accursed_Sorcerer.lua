@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Accursed Sorcerer
+-- MOB: Accursed Sorcerer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

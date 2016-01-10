@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -------------------------------------

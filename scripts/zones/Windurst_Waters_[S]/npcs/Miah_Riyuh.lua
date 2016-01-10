@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:messageSpecial(text.KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 103 and option == 1) then
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:messageSpecial(text.KEYITEM_OBTAINED, ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 106 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
         if (player:getVar("Campaign_Nation") == 0) then
@@ -106,10 +106,10 @@ function onEventFinish(player,csid,option)
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
                 player:setVar("SEALED_DOORS", 0);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:messageSpecial(text.KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(3);

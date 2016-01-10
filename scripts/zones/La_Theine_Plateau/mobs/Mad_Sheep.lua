@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Mad Sheep
+-- MOB: Mad Sheep
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

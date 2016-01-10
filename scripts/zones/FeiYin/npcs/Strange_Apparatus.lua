@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
--- NPC:  Strange Apparatus
+--  NPC: Strange Apparatus
 -- @pos -94 -15 220 204
 -----------------------------------
 

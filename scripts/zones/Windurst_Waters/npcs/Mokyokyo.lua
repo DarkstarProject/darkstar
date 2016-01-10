@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Mokyoko
---    Starts Windurst Missions
---    @pos -55 -8 227 238
+-- Area: Windurst Waters
+--  NPC: Mokyoko
+-- Starts Windurst Missions
+-- @pos -55 -8 227 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
-                player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
+                player:showText(npc, text.ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,7 +66,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     
     finishMissionTimeline(player,2,csid,option);
@@ -75,7 +75,7 @@ printf("RESULT: %u",option);
         player:addTitle(FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 0x006f and (option == 12 or option == 15)) then
         player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
     end
     
 end;

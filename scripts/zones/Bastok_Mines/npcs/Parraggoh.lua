@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Parraggoh
+--  NPC: Parraggoh
 -- Finishes Quest: Beauty and the Galka
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0007 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
@@ -77,14 +77,11 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(PALBOROUGH_MINES_LOGS);
             player:addFame(BASTOK,BAS_FAME*75); 
             player:addItem(16465);
-            player:messageSpecial(ITEM_OBTAINED,16465);
+            player:messageSpecial(text.ITEM_OBTAINED,16465);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16465);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,16465);
         end
     end
     
 end;
-
-
-
 

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Oldton Movalpolos
---  NPC:  Twinkbrix
---  Type: Warp NPC
---  @pos -292.779 6.999 -263.153 11
+-- Area: Oldton Movalpolos
+--  NPC: Twinkbrix
+-- Type: Warp NPC
+-- @pos -292.779 6.999 -263.153 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
  
  if (csid == 0x0037 and option == 1) then     
        player:addKeyItem(SHAFT_GATE_OPERATING_DIAL);
-       player:messageSpecial(KEYITEM_OBTAINED,SHAFT_GATE_OPERATING_DIAL);
+       player:messageSpecial(text.KEYITEM_OBTAINED,SHAFT_GATE_OPERATING_DIAL);
        player:tradeComplete();
  elseif (csid == 0x0037 and option == 0) then
      player:tradeComplete();

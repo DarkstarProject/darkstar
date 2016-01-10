@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Grauberg
--- NPC: Dominion Sergeant
+--  NPC: Dominion Sergeant
 --
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;

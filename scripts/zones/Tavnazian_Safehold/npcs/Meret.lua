@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Meret
+--  NPC: Meret
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
@@ -131,8 +131,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -140,15 +140,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x024A) then
         if (player:getFreeSlotsCount()==0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option)==true)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,option); 
         else
         player:tradeComplete();
         player:addItem(option);
-        player:messageSpecial(ITEM_OBTAINED,option); -- Item 
+        player:messageSpecial(text.ITEM_OBTAINED,option); -- Item 
         end
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Sugandhi
+--  NPC: Sugandhi
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,SUGANDHI_SHOP_DIALOG);
+    player:showText(npc, text.SUGANDHI_SHOP_DIALOG);
 
-    local stock = {
+    local stock =
+    {
+    
         0x4059,  5589,1,     --Kukri
         0x40A1, 21067,1,     --Broadsword
         0x4081, 11588,1,     --Tuck

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Lombaria
+--  NPC: Lombaria
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
@@ -42,7 +42,4 @@ end;
 function onEventFinish(player,csid,option)
 
 end;
-
-
-
 

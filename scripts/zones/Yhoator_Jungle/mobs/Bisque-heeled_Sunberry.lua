@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  NM:  Bisque-heeled Sunberry
+-- NM:  Bisque-heeled Sunberry
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Yhoator Jungle
---  NPC:  Harvesting Point
+-- Area: Yhoator Jungle
+--  NPC: Harvesting Point
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -------------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(text.HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,6 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

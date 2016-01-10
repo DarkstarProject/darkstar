@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Ambusher
+-- MOB: Goblin Ambusher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

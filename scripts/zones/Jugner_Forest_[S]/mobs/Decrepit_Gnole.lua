@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest (S)
--- NPC:  Decrepit Gnole
+--  NPC: Decrepit Gnole
 -----------------------------------
 -----------------------------------
 -- onMobSpawn Action

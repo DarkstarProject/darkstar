@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Jotunn Gatekeeper
+-- MOB: Jotunn Gatekeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Areebah
+--  NPC: Areebah
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,AREEBAH_SHOP_DIALOG);
+    player:showText(npc, text.AREEBAH_SHOP_DIALOG);
 
-stock = {0x027C,119,    --Chamomile
+    local stock =
+    {
+    0x027C,119,    --Chamomile
     0x03B7,110,    --Wijnruit
     0x03B4,60,    --Carnation
     0x03AD,80,    --Red Rose
@@ -33,7 +35,7 @@ stock = {0x027C,119,    --Chamomile
     0x03BE,120,    --Marguerite
     0x1199,520}    --Flower Seeds
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -41,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,9 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

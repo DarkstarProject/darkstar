@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Temple Opo-opo
+-- MOB: Temple Opo-opo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

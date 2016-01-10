@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: 
--- NPC:  rune of release
+--  NPC: rune of release
 -- @zone illrusi atoll
 -- @pos
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option)
  if (csid == 0x0064 and option==1) then
 
  local point =1000;

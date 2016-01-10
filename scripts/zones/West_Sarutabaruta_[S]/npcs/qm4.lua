@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STIRS)==QUEST_ACCEPTED and player:hasKeyItem(SMALL_STARFRUIT)==false) then
         player:addKeyItem(SMALL_STARFRUIT);
-        player:messageSpecial(KEYITEM_OBTAINED, SMALL_STARFRUIT);
+        player:messageSpecial(text.KEYITEM_OBTAINED, SMALL_STARFRUIT);
     end
 
 end;
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,7 +43,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;

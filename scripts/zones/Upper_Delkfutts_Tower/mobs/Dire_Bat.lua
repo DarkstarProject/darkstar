@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Dire Bat
+-- MOB: Dire Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

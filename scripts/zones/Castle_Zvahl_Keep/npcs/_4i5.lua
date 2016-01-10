@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep
--- NPC:  Ore door
+--  NPC: Ore door
 -- Involved In Quest: Recollections
 -- @pos -14 0 69 162
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,14 +47,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0008) then
         player:tradeComplete();
         player:setVar("recollectionsQuest",3);
         player:addKeyItem(FOE_FINDER_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,FOE_FINDER_MK_I);
+        player:messageSpecial(text.KEYITEM_OBTAINED,FOE_FINDER_MK_I);
     end
     
 end;

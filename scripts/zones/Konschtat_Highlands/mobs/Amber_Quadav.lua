@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Amber Quadav
+-- MOB: Amber Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

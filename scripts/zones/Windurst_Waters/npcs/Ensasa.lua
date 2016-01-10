@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Ensasa
+--  NPC: Ensasa
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -23,9 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ENSASA_SHOP_DIALOG);
+    player:showText(npc, text.ENSASA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x0068,  3881,1,     --Tarutaru Folding Screen
 
         0x43B8,     5,2,     --Crossbow Bolt
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

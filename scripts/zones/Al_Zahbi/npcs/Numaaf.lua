@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:startEvent(0x00DF,8,0,0,0,188,0,8,0);
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, text.IMAGE_SUPPORT_ACTIVE);
             end
         end
     end
@@ -66,10 +66,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x00DE and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,8,1);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,8,1);
         player:addStatusEffect(EFFECT_COOKING_IMAGERY,1,0,120);
     elseif (csid == 0x00DF) then
-        player:messageSpecial(IMAGE_SUPPORT,0,8,0);
+        player:messageSpecial(text.IMAGE_SUPPORT,0,8,0);
         player:addStatusEffect(EFFECT_COOKING_IMAGERY,3,0,480);
     end
 end;

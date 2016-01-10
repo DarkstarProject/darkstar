@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ul'Phuabo
+-- MOB: Ul'Phuabo
 -----------------------------------
 
 require("scripts/globals/missions");

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Lotine
---  Type: Standard Info NPC
---  @zone: 231
---  @pos -137.504 11.999 171.090
+-- Type: Standard Info NPC
+-- @zone: 231
+-- @pos -137.504 11.999 171.090
 --
 -----------------------------------
 

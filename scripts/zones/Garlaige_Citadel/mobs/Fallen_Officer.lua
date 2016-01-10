@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Officer
+-- MOB: Fallen Officer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

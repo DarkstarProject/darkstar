@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Iron Maiden
+-- MOB: Iron Maiden
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

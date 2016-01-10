@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Guinavie
+--  NPC: Guinavie
 -- Chocobo Vendor
 -----------------------------------
 

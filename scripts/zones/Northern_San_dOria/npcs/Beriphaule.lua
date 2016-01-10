@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Beriphaule
+--  NPC: Beriphaule
 -- Type: Allegiance Changer NPC
 -- @pos -247.422 7.000 28.992 231
 -----------------------------------

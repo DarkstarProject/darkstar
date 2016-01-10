@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Misareaux Coast
---  NPC:  Swirling Vortex
---  Entrance to Qufim Island
+-- Area: Misareaux Coast
+--  NPC: Swirling Vortex
+-- Entrance to Qufim Island
 -----------------------------------
 
 require("scripts/globals/teleports");
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x022a and option == 1) then
         toQufimIsland(player);

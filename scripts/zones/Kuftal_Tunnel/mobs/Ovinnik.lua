@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Ovinnik
+-- MOB: Ovinnik
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

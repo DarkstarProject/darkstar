@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Bowshooter
+-- MOB: Orcish Bowshooter
 -----------------------------------
 
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Benaige
+--  NPC: Benaige
 -- Standard Merchant NPC
 -- @zone 230 
 -- @pos-142,-6 47
@@ -25,7 +25,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end; 
@@ -36,9 +36,11 @@ end;
 
 function onTrigger(player,npc)
     
-    player:showText(npc,BENAIGE_SHOP_DIALOG);
+    player:showText(npc, text.BENAIGE_SHOP_DIALOG);
 
-    stock = {0x0274,234,1,    --Cinnamon
+    local stock =
+    {
+    0x0274,234,1,    --Cinnamon
              0x0275,43,1,    --Millioncorn
 
              0x026e,43,2,    --Dried Marjoram
@@ -63,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,6 +74,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

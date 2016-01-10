@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crystal War Areas
---  MOB: Sandworm
+-- MOB: Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 

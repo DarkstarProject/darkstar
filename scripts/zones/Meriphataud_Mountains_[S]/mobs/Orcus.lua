@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Krabkatoa
+-- MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

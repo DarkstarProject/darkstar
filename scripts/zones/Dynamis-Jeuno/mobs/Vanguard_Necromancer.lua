@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Jeuno
--- NPC:  Vanguard Necromancer
+--  NPC: Vanguard Necromancer
 -----------------------------------
 
 -----------------------------------

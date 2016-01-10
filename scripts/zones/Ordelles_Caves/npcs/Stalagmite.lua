@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  Stalagmite
+--  NPC: Stalagmite
 -- Involved In Quest: Sharpening the Sword
 -- @pos -51 0.1 3 193
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         if (PolevikKilled == 1) then
             if ((os.time() - player:getVar("Polevik_Timer") < 30) or (NMDespawned and (os.time() - spawnTime) < 30)) then
                 player:addKeyItem(ORDELLE_WHETSTONE);
-                player:messageSpecial(KEYITEM_OBTAINED,ORDELLE_WHETSTONE);
+                player:messageSpecial(text.KEYITEM_OBTAINED,ORDELLE_WHETSTONE);
                 player:setVar("PolevikKilled",0);
                 player:setVar("Polevik_Spawned",0);
                 player:setVar("Polevik_Timer",0);
@@ -44,16 +44,16 @@ function onTrigger(player,npc)
                 player:setVar("PolevikKilled",0);
                 player:setVar("Polevik_Spawned",os.time()+180);
             else
-                player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+                player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
             end
         elseif (canSpawn) then
             SpawnMob(17568134,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
             player:setVar("Polevik_Spawned",os.time()+180);
         else
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+            player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,6 +72,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Yoskolo
+--  NPC: Yoskolo
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,YOSKOLO_SHOP_DIALOG);
+    player:showText(npc, text.YOSKOLO_SHOP_DIALOG);
 
-stock = {0x119d,10,        -- Distilled Water
+    local stock =
+    {
+    0x119d,10,        -- Distilled Water
      0x1146,184,        -- Orange Juice
      0x1147,276,        -- Apple Juice
      0x1148,1012,        -- Melon Juice
@@ -40,7 +42,7 @@ stock = {0x119d,10,        -- Distilled Water
      0x13bd,8400,        -- Scroll of Dark Carol
      0x13d6,60000}        -- Scroll of Sentinel's Scherzo
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -48,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,9 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

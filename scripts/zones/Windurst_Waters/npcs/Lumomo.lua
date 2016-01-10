@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Windurst Waters
+-- Area: Windurst Waters
 --  NPC: Lumomo
---  Type: Standard NPC
---  @zone: 238
---  @pos -55.770 -5.499 18.914
---  0x027e  0x0332 0x0334    0x0336  0x0337
+-- Type: Standard NPC
+-- @zone: 238
+-- @pos -55.770 -5.499 18.914
+-- 0x027e  0x0332 0x0334    0x0336  0x0337
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -70,15 +70,15 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,ECO_WARRIOR_WIN);
             player:delKeyItem(INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE * 5000);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
-            player:messageSpecial(ITEM_OBTAINED,4198);
+            player:messageSpecial(text.ITEM_OBTAINED,4198);
             player:addTitle(EMERALD_EXTERMINATOR);
             player:addFame(WINDURST,WIN_FAME * 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4198);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4198);
         end
     end
 end;

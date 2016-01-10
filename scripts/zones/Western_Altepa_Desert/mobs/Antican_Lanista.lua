@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Lanista
+-- MOB: Antican Lanista
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

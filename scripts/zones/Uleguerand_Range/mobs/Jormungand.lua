@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Uleguaerand Range
---  HNM: Jormungand
+-- HNM: Jormungand
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Labyrinth of Onzozo
---   NM: Soulstealer Skullnix
+-- NM: Soulstealer Skullnix
 -----------------------------------
 
 -----------------------------------

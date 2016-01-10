@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Stirge
+-- MOB: Stirge
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Stonemason
+-- MOB: Gigas Stonemason
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

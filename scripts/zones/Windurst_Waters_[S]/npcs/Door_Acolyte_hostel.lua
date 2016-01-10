@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Windurst Waters (S)
+-- Area: Windurst Waters (S)
 --  NPC: Door Acolyte hostel
---  @pos 125 -2 216 94
+-- @pos 125 -2 216 94
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -49,10 +49,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0081) then
         player:addItem(4144); -- hi-elixir
-        player:messageSpecial(ITEM_OBTAINED, 4144);
+        player:messageSpecial(text.ITEM_OBTAINED, 4144);
         player:delKeyItem(SMALL_STARFRUIT);
         player:addKeyItem(BRASS_RIBBON_OF_SERVICE);
-        player:messageSpecial(KEYITEM_OBTAINED, BRASS_RIBBON_OF_SERVICE);
+        player:messageSpecial(text.KEYITEM_OBTAINED, BRASS_RIBBON_OF_SERVICE);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS);
     elseif (csid == 0x0097) then
         player:addQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);

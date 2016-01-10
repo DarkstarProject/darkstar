@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Leujaoam Sanctum
---  MOB: Imp
+-- MOB: Imp
 -----------------------------------
 
 require("scripts/globals/status");

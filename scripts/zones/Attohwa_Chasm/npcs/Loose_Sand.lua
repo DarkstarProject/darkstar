@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Attohwa Chasm
---  NPC:  Loose sand
+-- Area: Attohwa Chasm
+--  NPC: Loose sand
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
@@ -30,12 +30,12 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and MEMORIESMAIDENStatus==8 and player:hasKeyItem(MIMEO_JEWEL)==false and(os.time() - player:getVar("LioumereKilled")) < 200) then
         player:setVar("LioumereKilled",0);
         player:addKeyItem(MIMEO_JEWEL);
-        player:messageSpecial(KEYITEM_OBTAINED, MIMEO_JEWEL);
+        player:messageSpecial(text.KEYITEM_OBTAINED, MIMEO_JEWEL);
         player:setPos(322,-25,-12,30); -- tp to the cradle of rebirth (temporary solution, the road to the top of the mountain doesn't work)
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and (MEMORIESMAIDENStatus==7 or MEMORIESMAIDENStatus==8) and player:hasKeyItem(MIMEO_JEWEL)==false) then
         SpawnMob(16806031,180):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         player:setVar("LioumereKilled",0);
     end
 end;
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

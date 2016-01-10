@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
---  MOB: Tzee Xicu the Manifest
+-- MOB: Tzee Xicu the Manifest
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

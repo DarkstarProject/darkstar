@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Numbing Norman
+-- MOB: Numbing Norman
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

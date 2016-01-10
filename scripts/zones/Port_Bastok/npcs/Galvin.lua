@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Galvin
+--  NPC: Galvin
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -21,8 +21,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,GALVIN_SHOP_DIALOG);
-    stock = {
+    player:showText(npc, text.GALVIN_SHOP_DIALOG);
+    local stock =
+    {
+    
         0x1020,  4445,1,     --Ether
 
         0x1037,   736,2,     --Echo Drops
@@ -43,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

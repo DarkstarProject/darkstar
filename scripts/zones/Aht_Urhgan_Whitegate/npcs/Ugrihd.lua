@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Ugrihd
+--  NPC: Ugrihd
 -- Coin Exchange Vendor
 -- @pos -63.079 -6 -28.571 50
 -----------------------------------
@@ -61,40 +61,40 @@ function onEventFinish(player,csid,option,npc)
         if (CoinType == 1) then -- Bronze Pieces
             if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2184);
                 else
                     player:delCurrency("imperial_standing", 20*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINED,2184);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINED,2184);
                     player:addItem(2184);
                 end
             elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2184);
                 else
                     player:delCurrency("imperial_standing", 20*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2184,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2184,Quantity);
                     player:addItem(2184,Quantity);
                 end
             elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2184);
                 else
                     player:delCurrency("imperial_standing", 20*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2184,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2184,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2184,99);
                     end
                 end
             elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2184);
                 else
                     player:delCurrency("imperial_standing", 20*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2184,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2184,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2184,99);
                     end
@@ -104,40 +104,40 @@ function onEventFinish(player,csid,option,npc)
         elseif (CoinType == 2) then -- Silver Pieces
             if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
                 else
                     player:delCurrency("imperial_standing", 100*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINED,2185);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINED,2185);
                     player:addItem(2185);
                 end
             elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
                 else
                     player:delCurrency("imperial_standing", 100*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2185,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2185,Quantity);
                     player:addItem(2185,Quantity);
                 end
             elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
                 else
                     player:delCurrency("imperial_standing", 100*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2185,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2185,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2185,99);
                     end
                 end
             elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2185);
                 else
                     player:delCurrency("imperial_standing", 100*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2185,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2185,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2185,99);
                     end
@@ -147,40 +147,40 @@ function onEventFinish(player,csid,option,npc)
         elseif (CoinType == 3) then -- Mythril Pieces
             if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2186);
                 else
                     player:delCurrency("imperial_standing", 200*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINED,2186);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINED,2186);
                     player:addItem(2186);
                 end
             elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2186);
                 else
                     player:delCurrency("imperial_standing", 200*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2186,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2186,Quantity);
                     player:addItem(2186,Quantity);
                 end
             elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2186);
                 else
                     player:delCurrency("imperial_standing", 200*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2186,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2186,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2186,99);
                     end
                 end
             elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2186);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2186);
                 else
                     player:delCurrency("imperial_standing", 200*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2186,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2186,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2186,99);
                     end
@@ -190,40 +190,40 @@ function onEventFinish(player,csid,option,npc)
         elseif (CoinType == 4) then -- Gold Pieces
             if (Quantity == 1) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2187);
                 else
                     player:delCurrency("imperial_standing", 1000*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINED,2187);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINED,2187);
                     player:addItem(2187);
                 end
             elseif (Quantity <= 99) then
                 if (player:getFreeSlotsCount() == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2187);
                 else
                     player:delCurrency("imperial_standing", 1000*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2187,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2187,Quantity);
                     player:addItem(2187,Quantity);
                 end
             elseif (Quantity > 99 and Remainder == 0) then
                 if (player:getFreeSlotsCount() <= Stacks) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2187);
                 else
                     player:delCurrency("imperial_standing", 1000*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2187,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2187,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2187,99);
                     end
                 end
             elseif (Quantity > 99 and Remainder ~= 0) then
                 if (player:getFreeSlotsCount() <= Stacks+1) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2187);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2187);
                 else
                     player:delCurrency("imperial_standing", 1000*Quantity);
-                    npc:showText(npc, UGRIHD_PURCHASE_DIALOGUE);
-                    player:messageSpecial(ITEM_OBTAINEDX,2187,Quantity);
+                    npc:showText(npc, text.UGRIHD_PURCHASE_DIALOGUE);
+                    player:messageSpecial(text.ITEM_OBTAINEDX,2187,Quantity);
                     for i = 1, Stacks do
                         player:addItem(2187,99);
                     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple Of Uggalepih
---  MOB: Rumble Crawler
+-- MOB: Rumble Crawler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

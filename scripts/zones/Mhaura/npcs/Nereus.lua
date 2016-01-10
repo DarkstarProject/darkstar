@@ -1,15 +1,15 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Nereus
---    Starts and ends repeteable quest A_POTTER_S_PREFERENCE 
+-- Area: Mhaura
+--  NPC: Nereus
+-- Starts and ends repeteable quest A_POTTER_S_PREFERENCE 
 -----------------------------------
 
---     player:startEvent(0x006e); standar dialog
---    player:startEvent(0x0073); -- i have enough for now, come later
---    player:startEvent(0x0072); --  get me x as soon as you can
---    player:startEvent(0x006f); -- start quest A Potter's Preference
---    player:startEvent(0x0071); -- quest done!
---    player:startEvent(0x0070); -- repeat quest
+-- player:startEvent(0x006e); standar dialog
+-- player:startEvent(0x0073); -- i have enough for now, come later
+-- player:startEvent(0x0072); --  get me x as soon as you can
+-- player:startEvent(0x006f); -- start quest A Potter's Preference
+-- player:startEvent(0x0071); -- quest done!
+-- player:startEvent(0x0070); -- repeat quest
 
 -----------------------------------
 -- onTrade Action
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addFame(WINDURST,WIN_FAME*120);
         player:addGil(GIL_RATE*2160);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2160);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2160);
         player:setVar("QuestAPotterPrefeRepeat_var",0);    
         player:setVar("QuestAPotterPrefeCompDay_var",VanadielDayOfTheYear());
         player:setVar("QuestAPotterPrefeCompYear_var",VanadielYear());
@@ -78,6 +78,3 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestAPotterPrefeRepeat_var",1);    
     end;
 end;
-
-
-

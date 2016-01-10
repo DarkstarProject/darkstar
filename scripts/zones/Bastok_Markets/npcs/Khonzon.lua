@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --  NPC: Khonzon
---  Type: Item Deliverer
---  @zone: 235
---  @pos -323.744 -16.001 -88.698
+-- Type: Item Deliverer
+-- @zone: 235
+-- @pos -323.744 -16.001 -88.698
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

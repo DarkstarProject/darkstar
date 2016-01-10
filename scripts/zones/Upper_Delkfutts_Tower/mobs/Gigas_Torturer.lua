@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
---  MOB: Gigas Torturer
+-- MOB: Gigas Torturer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

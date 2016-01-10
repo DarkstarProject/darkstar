@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Edal-Tahdal
+--  NPC: Edal-Tahdal
 -- Starts and Finishes Quest: Trial by Water
 -- @pos -13 1 -20 252
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006d and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WATER) == QUEST_COMPLETED) then
@@ -77,10 +77,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,TRIAL_BY_WATER);
         player:setVar("TrialByWater_date", 0);
         player:addKeyItem(TUNING_FORK_OF_WATER);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
     elseif (csid == 0x00be) then
         player:addKeyItem(TUNING_FORK_OF_WATER);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TUNING_FORK_OF_WATER);
     elseif (csid == 0x0070) then 
         local item = 0;
         if (option == 1) then item = 17439;         -- Leviathan's Rod
@@ -90,17 +90,17 @@ function onEventFinish(player,csid,option)
         end
         
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
         else 
             if (option == 5) then 
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then 
                 player:addSpell(300); -- Avatar
-                player:messageSpecial(AVATAR_UNLOCKED,0,0,2); 
+                player:messageSpecial(text.AVATAR_UNLOCKED,0,0,2); 
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(HEIR_OF_THE_GREAT_WATER);
             player:delKeyItem(WHISPER_OF_TIDES); --Whisper of Tides, as a trade for the above rewards

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Dire Bat
+-- MOB: Dire Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

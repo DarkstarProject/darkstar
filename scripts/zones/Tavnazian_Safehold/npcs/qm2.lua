@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: ???
+--  NPC: ???
 -- Involved in Quest: Unforgiven
 -- @zone 26
 -- @pos 110.714 -40.856 -53.154
@@ -35,7 +35,7 @@ local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
     if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
         player:addKeyItem(609);
-        player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
+        player:messageSpecial(text.KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
 
     end
 end
@@ -44,8 +44,8 @@ end
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,7 +53,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end

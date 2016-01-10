@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Sarutabaruta
--- NPC:  Pore-Ohre
+--  NPC: Pore-Ohre
 -- Involved In Mission: The Heart of the Matter
 -- @pos 261 -17 -458 116
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,13 +48,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x002e) then
         player:setVar("MissionStatus",2);
         player:addKeyItem(SOUTHEASTERN_STAR_CHARM);
-        player:messageSpecial(text.KEYITEM_OBTAINED,SOUTHEASTERN_STAR_CHARM);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,SOUTHEASTERN_STAR_CHARM);
     end
 
 end;

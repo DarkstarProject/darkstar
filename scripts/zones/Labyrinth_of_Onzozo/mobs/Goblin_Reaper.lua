@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
---  MOB: Goblin Reaper
+-- MOB: Goblin Reaper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

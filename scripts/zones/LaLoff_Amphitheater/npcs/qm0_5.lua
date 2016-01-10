@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff_Amphitheater
--- NPC:  qm0 (warp player outside after they win fight)
+--  NPC: qm0 (warp player outside after they win fight)
 -------------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -------------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);    
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);    
     if (csid == 0x0C and option == 1) then
         player:setPos(471.776,-42.088,153.301,163,130);
     end

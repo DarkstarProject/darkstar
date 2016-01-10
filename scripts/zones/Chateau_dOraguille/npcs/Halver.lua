@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Halver
+--  NPC: Halver
 -- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0.1 0.1 233
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
     
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
     
@@ -52,11 +52,11 @@ function onTrigger(player,npc)
     -- San D'Oria Flag check
     elseif (player:getVar("Flagsando") == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,181);
         else
             player:setVar("Flagsando",0);
             player:addItem(181);
-            player:messageSpecial(ITEM_OBTAINED,181);
+            player:messageSpecial(text.ITEM_OBTAINED,181);
         end
     elseif (player:getCurrentMission(TOAU) == CONFESSIONS_OF_ROYALTY) then
         if (player:hasKeyItem(RAILLEFALS_LETTER)) then
@@ -90,9 +90,9 @@ function onTrigger(player,npc)
             player:startEvent(0x0019);
         -- Mission San D'Oria 5-2 The Shadow Lord
         elseif (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
-            player:showText(npc,HALVER_OFFSET+500);
+            player:showText(npc, text.HALVER_OFFSET+500);
         elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
-            player:showText(npc,HALVER_OFFSET+471);
+            player:showText(npc, text.HALVER_OFFSET+471);
         elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 4 and player:hasKeyItem(SHADOW_FRAGMENT)) then
             player:startEvent(0x0224);        
         elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 0) then
@@ -101,7 +101,7 @@ function onTrigger(player,npc)
         elseif (currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 12 and player:hasKeyItem(BURNT_SEAL)) then
             player:startEvent(0x0216);        
         elseif (currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 10) then
-            player:showText(npc,HALVER_OFFSET+334);
+            player:showText(npc, text.HALVER_OFFSET+334);
         elseif (currentMission == THE_RUINS_OF_FEI_YIN and MissionStatus == 9) then
             player:startEvent(0x0215);        
         -- Mission San D'Oria 3-3 Appointment to Jeuno
@@ -123,16 +123,16 @@ function onTrigger(player,npc)
             end
         --Bastok 2-3 San -> Win, report to consulate
         elseif (currentMission == THE_EMISSARY_SANDORIA) then
-            player:showText(npc,HALVER_OFFSET+279);
+            player:showText(npc, text.HALVER_OFFSET+279);
         --Bastok 2-3 Win -> San
         elseif (currentMission == THE_EMISSARY_SANDORIA2) then
             if (MissionStatus == 8) then
                 player:startEvent(0x01f7);
             elseif (MissionStatus <= 10) then
-                player:showText(npc,HALVER_OFFSET+279);
+                player:showText(npc, text.HALVER_OFFSET+279);
             end
         else
-            player:showText(npc,HALVER_OFFSET+1092);
+            player:showText(npc, text.HALVER_OFFSET+1092);
         end
     elseif (pNation == WINDURST) then
         --Windurst 2-3
@@ -144,12 +144,12 @@ function onTrigger(player,npc)
             elseif (MissionStatus == 8) then
                 player:startEvent(0x01F8);
             else
-                player:showText(npc,HALVER_OFFSET+279);
+                player:showText(npc, text.HALVER_OFFSET+279);
             end
         end
 
     else
-        player:showText(npc,HALVER_OFFSET+1092);
+        player:showText(npc, text.HALVER_OFFSET+1092);
     end    
 end;
 
@@ -158,8 +158,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -167,8 +167,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01f5) then
         player:addMission(BASTOK,THE_EMISSARY_SANDORIA);
@@ -180,7 +180,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01f9) then
         player:setVar("MissionStatus",2);
         player:addKeyItem(LETTER_TO_THE_CONSULS_SANDORIA);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 0x01F6) then
         player:setVar("MissionStatus",4);
     elseif (csid == 0x022e) then
@@ -197,16 +197,16 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
     elseif (csid == 0x0009) then 
             if (player:getFreeSlotsCount() == 0) then 
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,181);
                 player:setVar("Flagsando",1);
             else    player:addItem(181);
-                player:messageSpecial(ITEM_OBTAINED,181);
+                player:messageSpecial(text.ITEM_OBTAINED,181);
             end
         player:setVar("MissionStatus",0);
         player:completeMission(SANDORIA,THE_HEIR_TO_THE_LIGHT);
         player:setRank(10);
         player:addGil(100000);
-        player:messageSpecial(GIL_OBTAINED,100000);
+        player:messageSpecial(text.GIL_OBTAINED,100000);
         player:setTitle(295);
         player:setVar("SandoEpilogue",1);
     elseif (csid == 0x003A) then

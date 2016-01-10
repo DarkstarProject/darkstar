@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Ronfaure
---  MOB: Orcish Fodder
+-- MOB: Orcish Fodder
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

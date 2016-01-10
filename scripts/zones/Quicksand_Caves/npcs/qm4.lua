@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  ??? (qm4)
+--  NPC: ??? (qm4)
 -- Involved in Mission: Bastok 8.1 "The Chains That Bind Us"
 -- @pos
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(player:getNation()) == THE_CHAINS_THAT_BIND_US) and (missionStatus == 2) then
         player:startEvent(0x0A)  
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end; 
 

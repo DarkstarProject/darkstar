@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port San d'Oria
---   NPC: Joulet
---  Starts The Competition
+-- Area: Port San d'Oria
+--  NPC: Joulet
+-- Starts The Competition
 -- @zone: 232
---  @pos -18 -2 -45
+-- @pos -18 -2 -45
 
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,SAN_FAME*30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
-            player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
+            player:messageSpecial(text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
             player:startEvent(0x0133);
         elseif (player:getQuestStatus(SANDORIA,THE_COMPETITION) >= QUEST_ACCEPTED) then -- regular turn-ins. Still allowed after completion of the quest.
             player:tradeComplete();
@@ -39,7 +39,7 @@ function onTrade(player,npc,trade)
             totalFish = MoatCarp + ForestCarp + fishCountVar
             player:setVar("theCompetitionFishCountVar",totalFish);
             player:startEvent(0x0131);
-            player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
+            player:messageSpecial(text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
         else
             player:startEvent(0x0132);
         end
@@ -76,14 +76,14 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x0133) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17386);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17386);
         else
             player:tradeComplete();
             player:addItem(17386);
-            player:messageSpecial(ITEM_OBTAINED, 17386);
+            player:messageSpecial(text.ITEM_OBTAINED, 17386);
             player:addTitle(CARP_DIEM);
             player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_COMPETITION);
         end

@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC: Angelica
---    Starts and Finished Quest: A Pose By Any Other Name
---    Working 100%
---  @zone = 238
---  @pos = -70 -10 -6
+-- Area: Windurst Waters
+--  NPC: Angelica
+-- Starts and Finished Quest: A Pose By Any Other Name
+-- Working 100%
+-- @zone = 238
+-- @pos = -70 -10 -6
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,21 +90,21 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x005c) then -------------------------- QUEST START
         player:addQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
         player:setVar("QuestAPoseByOtherName_time",os.time());
     elseif (csid == 0x0060) then  --------------------- QUEST FINFISH
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,206);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,206);
         else
             player:completeQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME)
             player:addTitle(SUPER_MODEL);
             player:addItem(206);
-            player:messageSpecial(ITEM_OBTAINED,206);
+            player:messageSpecial(text.ITEM_OBTAINED,206);
             player:addKeyItem(ANGELICAS_AUTOGRAPH);
-            player:messageSpecial(KEYITEM_OBTAINED,ANGELICAS_AUTOGRAPH);
+            player:messageSpecial(text.KEYITEM_OBTAINED,ANGELICAS_AUTOGRAPH);
             player:addFame(WINDURST,WIN_FAME*75);
             player:setVar("QuestAPoseByOtherName_time",0);
             player:setVar("QuestAPoseByOtherName_equip",0);

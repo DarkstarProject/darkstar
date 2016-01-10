@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Shield
+-- MOB: Animated Shield
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Meww the Turtlerider
+-- MOB: Meww the Turtlerider
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

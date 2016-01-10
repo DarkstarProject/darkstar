@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Heraldic Imp
+-- MOB: Heraldic Imp
 -----------------------------------
 
 require("scripts/globals/status");

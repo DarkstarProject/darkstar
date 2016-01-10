@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis qufim
---  MOB: Goblin_Statue
+-- MOB: Goblin_Statue
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");

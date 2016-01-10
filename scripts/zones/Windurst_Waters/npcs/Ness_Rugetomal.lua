@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Ness Rugetomal
+--  NPC: Ness Rugetomal
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -23,9 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
+    player:showText(npc, text.NESSRUGETOMALL_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x112A,    10,1,     --Ginger Cookie
         0x1137,   727,1,     --Carp Sushi
         0x1149,   323,1,     --Tomato Juice
@@ -49,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,6 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

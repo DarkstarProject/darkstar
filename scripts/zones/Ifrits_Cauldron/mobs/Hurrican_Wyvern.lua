@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Hurricane Wyvern
+-- MOB: Hurricane Wyvern
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

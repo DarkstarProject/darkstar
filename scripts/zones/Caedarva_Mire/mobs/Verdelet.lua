@@ -1,7 +1,7 @@
 -----------------------------------
--- Area:    Caedarva Mire
--- NPC:     Verdelet
--- ID:      17101202
+-- Area: Caedarva Mire
+--  NPC: Verdelet
+-- ID:   17101202
 -- @pos 417 -19.3 -70
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Alchemist
+-- MOB: Goblin Alchemist
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

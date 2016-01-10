@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  ??? COP mission spawn Dalham
+--  NPC: ??? COP mission spawn Dalham
 -- @pos 
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("COP_Dalham_KILL") == 1) then
       player:startEvent(0x0029);
     else
-       player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+       player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x0029) then
       player:setVar("COP_Dalham_KILL",2);
    end

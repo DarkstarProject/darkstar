@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  ??? (qm6)
+--  NPC: ??? (qm6)
 -- Bastok Mission 8.1 "The Chains That Bind Us"
 -- @pos 
 -----------------------------------
@@ -26,12 +26,12 @@ function onTrigger(player,npc)
             SpawnMob(17629187):updateClaim(player); -- Centurio IV-VII
             SpawnMob(17629188):updateClaim(player); -- Triarius IV-XIV
             SpawnMob(17629189):updateClaim(player); -- Princeps IV-XLV
-            player:messageSpecial(SENSE_OF_FOREBODING); 
+            player:messageSpecial(text.SENSE_OF_FOREBODING); 
             npc:setStatus(2); -- Disappear
             SetServerVariable("BastokFight8_1", 3);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end; 
 
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
  
 -----------------------------------

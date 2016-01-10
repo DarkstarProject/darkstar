@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard (S)
---  MOB: Ruly Imp
+-- MOB: Ruly Imp
 -----------------------------------
 
 require("scripts/globals/status");

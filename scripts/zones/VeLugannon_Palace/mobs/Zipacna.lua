@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
--- NPC:  Zipacna
+--  NPC: Zipacna
 -----------------------------------
 local path = {
 -202, 0, 391,

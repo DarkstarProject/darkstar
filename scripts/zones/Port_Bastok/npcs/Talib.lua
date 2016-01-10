@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Talib
+--  NPC: Talib
 -- Starts Quest: Beauty and the Galka
 -- Starts & Finishes Quest: Shady Business
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0002 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0003) then
         player:tradeComplete();
         player:addKeyItem(PALBOROUGH_MINES_LOGS);
-        player:messageSpecial(KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PALBOROUGH_MINES_LOGS);
     elseif (csid == 0x005a) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
         
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         
         player:tradeComplete();
         player:addGil(GIL_RATE*350);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*350);
     end
     
 end;

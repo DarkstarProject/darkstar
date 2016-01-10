@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Periqia
--- NPC:  Excaliace
+--  NPC: Excaliace
 -----------------------------------
 
 require("scripts/zones/Periqia/IDs");

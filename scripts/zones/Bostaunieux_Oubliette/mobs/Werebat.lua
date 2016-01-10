@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Werebat
+-- MOB: Werebat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  MOB: Bloodsucker (NM)
+-- MOB: Bloodsucker (NM)
 -- @pos -21.776 16.983 -231.477 167
 -----------------------------------
 

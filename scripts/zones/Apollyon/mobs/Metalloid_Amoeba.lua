@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Metalloid_Amoeba
+--  NPC: Metalloid_Amoeba
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Rouliette 
+--  NPC: Rouliette 
 -- Starts and Finishes Quest: Candle-making
 -- @zone 244 
 -- @pos -24 -2 11
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,14 +55,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0024 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then 
         player:addQuest(JEUNO,CANDLE_MAKING);
     elseif (csid == 0x0025) then 
         player:addTitle(BELIEVER_OF_ALTANA);
         player:addKeyItem(HOLY_CANDLE);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLY_CANDLE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,HOLY_CANDLE);
         player:addFame(JEUNO, JEUNO_FAME*30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,CANDLE_MAKING);

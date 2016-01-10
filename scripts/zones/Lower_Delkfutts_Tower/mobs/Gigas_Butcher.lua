@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Butcher
+-- MOB: Gigas Butcher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

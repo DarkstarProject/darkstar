@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Caterchipillar
+-- MOB: Caterchipillar
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

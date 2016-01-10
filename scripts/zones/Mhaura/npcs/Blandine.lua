@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Blandine
+--  NPC: Blandine
 -- Start Quest: The Sand Charmz
 -- @pos 23 -7 41 249
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x007d) then
         player:addQuest(OTHER_AREAS,THE_SAND_CHARM);
         player:setVar("theSandCharmVar",1);
@@ -66,6 +66,3 @@ function onEventFinish(player,csid,option)
         player:setVar("SmallDialogByBlandine",0);
     end
 end;
-
-
-

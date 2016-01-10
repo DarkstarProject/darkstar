@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis tavnazia
---  MOB: Effigy_Prototype
+-- MOB: Effigy_Prototype
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");

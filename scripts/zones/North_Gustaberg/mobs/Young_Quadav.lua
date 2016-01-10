@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Young Quadav
+-- MOB: Young Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

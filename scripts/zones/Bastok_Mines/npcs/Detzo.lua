@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Detzo
+--  NPC: Detzo
 -- Starts & Finishes Quest: Rivals
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
                 player:startEvent(0x005e);
             end
         else
-            player:messageSpecial(FULL_INVENTORY_AFTER_TRADE, 13571);
+            player:messageSpecial(text.FULL_INVENTORY_AFTER_TRADE, 13571);
         end
     end
     
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     elseif (Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
         player:startEvent(0x005d);
     elseif (Rivals == QUEST_ACCEPTED) then
-        player:showText(npc,10311);
+        player:showText(npc, text.10311);
     else
         player:startEvent(0x001e);
     end
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -73,15 +73,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x005d) then
         player:addQuest(BASTOK,RIVALS);
     elseif (csid == 0x005e) then
         player:addTitle(CONTEST_RIGGER);        
         player:addItem(13571);
-        player:messageSpecial(ITEM_OBTAINED,13571);
+        player:messageSpecial(text.ITEM_OBTAINED,13571);
         player:addFame(BASTOK,BAS_FAME*30);
         player:completeQuest(BASTOK,RIVALS);
     end

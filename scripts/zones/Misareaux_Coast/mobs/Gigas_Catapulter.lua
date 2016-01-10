@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Gigas Catapulter
+-- MOB: Gigas Catapulter
 -----------------------------------
 
 

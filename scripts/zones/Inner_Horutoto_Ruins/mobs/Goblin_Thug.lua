@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Goblin Thug
+-- MOB: Goblin Thug
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

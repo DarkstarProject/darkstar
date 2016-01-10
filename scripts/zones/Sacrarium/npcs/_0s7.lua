@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Sacrarium
--- NPC:   _0s7 (Wooden Gate)
+--  NPC:  _0s7 (Wooden Gate)
 -- @pos 213.375 -3.500 -20.000 28
 -----------------------------------
 
@@ -20,8 +20,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -29,6 +29,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

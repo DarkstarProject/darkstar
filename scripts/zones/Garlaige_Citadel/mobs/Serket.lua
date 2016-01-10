@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel (200)
---  NM:  Serket
+-- NM:  Serket
 -----------------------------------
 
 require("scripts/globals/titles");

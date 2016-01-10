@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Fisher
+-- MOB: Goblin Fisher
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Sea Serpent Grotto
---   NPC: Bou the Righteous
---  Type: Involved in the "Sahagin Key Quest"
+-- Area: Sea Serpent Grotto
+--  NPC: Bou the Righteous
+-- Type: Involved in the "Sahagin Key Quest"
 -- @zone: 176
---  @pos -125.029 46.568 -334.778
+-- @pos -125.029 46.568 -334.778
 -- 
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;

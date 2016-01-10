@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Carnivorous Crawler
+-- MOB: Carnivorous Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

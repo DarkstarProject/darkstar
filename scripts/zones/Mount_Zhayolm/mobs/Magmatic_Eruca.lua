@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  MOB: Magmatic Eruca
+-- MOB: Magmatic Eruca
 -- Note: Place Holder Energetic Eruca
 -----------------------------------
 

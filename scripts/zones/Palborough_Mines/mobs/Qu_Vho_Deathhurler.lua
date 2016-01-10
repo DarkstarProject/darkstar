@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Palborough Mines
---  NM:  Qu'Vho Deathhurler
+-- NM:  Qu'Vho Deathhurler
 -----------------------------------
 
 

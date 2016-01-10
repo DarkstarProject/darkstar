@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Boggart
+-- MOB: Boggart
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

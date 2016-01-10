@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Gigas Martialist
+-- MOB: Gigas Martialist
 -----------------------------------
 
 

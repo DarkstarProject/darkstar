@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option)
      printf("RESULT: %u",option);
 if (csid ==0x0001) then
     player:addKeyItem(ASTRAL_COMPASS);
-    player:messageSpecial(KEYITEM_OBTAINED,ASTRAL_COMPASS);
+    player:messageSpecial(text.KEYITEM_OBTAINED,ASTRAL_COMPASS);
     player:setVar("TOAUM9",0);
     player:completeMission(TOAU,UNDERSEA_SCOUTING);
     player:addMission(TOAU,ASTRAL_WAVES);

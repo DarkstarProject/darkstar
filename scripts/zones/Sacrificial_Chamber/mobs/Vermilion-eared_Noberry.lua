@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Vermilion-eared_Noberry
+-- MOB: Vermilion-eared_Noberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
---  MOB: Goblin Replica
+-- MOB: Goblin Replica
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;

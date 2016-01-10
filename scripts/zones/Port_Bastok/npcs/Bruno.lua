@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Bruno
+--  NPC: Bruno
 -- Standard Info NPC
 -----------------------------------
 

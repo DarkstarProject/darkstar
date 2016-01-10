@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  NM:  Cerberus
+-- NM:  Cerberus
 -----------------------------------
 
 require("scripts/globals/titles");

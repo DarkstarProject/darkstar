@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
---  MOB: Goobbue Parasite
+-- MOB: Goobbue Parasite
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

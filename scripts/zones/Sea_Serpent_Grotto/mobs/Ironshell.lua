@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Ironshell
+-- MOB: Ironshell
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

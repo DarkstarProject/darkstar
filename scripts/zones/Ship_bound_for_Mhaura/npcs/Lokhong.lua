@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ship bound for Mhaura
--- NPC:  Lokhong
+--  NPC: Lokhong
 -- Type: Guild Merchant: Fishing Guild 
 -- @pos 1.841 -2.101 -9.000 221
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(521,1,23,5)) then
-        player:showText(npc,LOKHONG_SHOP_DIALOG);
+        player:showText(npc, text.LOKHONG_SHOP_DIALOG);
     end
 end; 
 
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,9 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

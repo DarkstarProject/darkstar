@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Acro Bat
+-- MOB: Acro Bat
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

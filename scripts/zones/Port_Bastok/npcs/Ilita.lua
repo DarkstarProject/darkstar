@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ilita
+--  NPC: Ilita
 -- Linkshell merchant
---   @pos -142 -1 -25 236
+-- @pos -142 -1 -25 236
 -- Confirmed shop stock, August 2013
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -23,9 +23,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ILITA_SHOP_DIALOG,513);
+    player:showText(npc, text.ILITA_SHOP_DIALOG,513);
 
-    stock = {
+    local stock =
+    {
+    
         0x0200,  8000,       --Linkshell
         0x3F9D,   375        --Pendant Compass
     }
@@ -38,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +49,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

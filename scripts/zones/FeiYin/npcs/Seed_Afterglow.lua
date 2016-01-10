@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- NPC: Seed Afterglow
+--  NPC: Seed Afterglow
 -- @pos -94.342 -15.656 -85.889 204     Red
 -- @pos -52.019 -16.525 38.848 204      Orange
 -- @pos 36.000 -15.000 -35.000 204      Green
@@ -47,9 +47,9 @@ function onTrigger(player,npc)
     -- Awful lot to keep track of, ain't it?
 
     if (HasMark or HasAzureKey or HasIvoryKey or CurrentDay == LastAzure or CurrentDay == LastIvory or Mission < THOSE_WHO_LURK_IN_SHADOWS_II) then
-        player:messageSpecial(SOFTLY_SHIMMERING_LIGHT);
+        player:messageSpecial(text.SOFTLY_SHIMMERING_LIGHT);
     elseif (NeedToZone == true and player:hasStatusEffect(EFFECT_MARK_OF_SEED) == false) then
-        player:messageSpecial(YOU_REACH_FOR_THE_LIGHT);
+        player:messageSpecial(text.YOU_REACH_FOR_THE_LIGHT);
     elseif (Mission >= THOSE_WHO_LURK_IN_SHADOWS_II) then
         if (Afterglow == First and player:getMaskBit(PROGRESS,0) == false) then -- Red
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",0,true);
@@ -58,13 +58,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,0);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,0);
             end
         elseif (Afterglow == First+1 and player:getMaskBit(PROGRESS,1) == false) then -- Orange
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",1,true);
@@ -73,13 +73,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,1);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,1);
             end
         elseif (Afterglow == First+2 and player:getMaskBit(PROGRESS,2) == false) then -- Yellow
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",2,true);
@@ -88,13 +88,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,2);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,2);
             end
         elseif (Afterglow == First+3 and player:getMaskBit(PROGRESS,3) == false) then -- Green
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",3,true);
@@ -103,13 +103,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,3);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,3);
             end
         elseif (Afterglow == First+4 and player:getMaskBit(PROGRESS,4) == false) then -- Cerulean
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",4,true);
@@ -118,13 +118,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,4);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,4);
             end
         elseif (Afterglow == First+5 and player:getMaskBit(PROGRESS,5) == false) then -- Blue
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",5,true);
@@ -133,13 +133,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,5);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,5);
             end
         elseif (Afterglow == First+6 and player:getMaskBit(PROGRESS,6) == false) then -- Golden
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",6,true);
@@ -148,13 +148,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,6);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,6);
             end
         elseif (Afterglow == First+7 and player:getMaskBit(PROGRESS,7) == false) then -- Silver
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",7,true);
@@ -163,13 +163,13 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,7);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,7);
             end
         elseif (Afterglow == First+8 and player:getMaskBit(PROGRESS,8) == false) then -- White
             player:setMaskBit(PROGRESS,"SEED_AFTERGLOW_MASK",8,true);
@@ -178,17 +178,17 @@ function onTrigger(player,npc)
                 player:startEvent(0x01C);
             elseif (NeedToZone == false and MARK_EFFECT == false) then
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(YOU_REACH_OUT_TO_THE_LIGHT,0);
+                player:messageSpecial(text.YOU_REACH_OUT_TO_THE_LIGHT,0);
                 player:addStatusEffectEx(EFFECT_MARK_OF_SEED, 0, 0, 30, 1800);
                 player:needToZone(true);
-                player:messageSpecial(THE_LIGHT_DWINDLES,0);
+                player:messageSpecial(text.THE_LIGHT_DWINDLES,0);
             else
                 player:setVar("SEED_AFTERGLOW_INTENSITY",INTENSITY);
-                player:messageSpecial(EVEN_GREATER_INTENSITY,8);
+                player:messageSpecial(text.EVEN_GREATER_INTENSITY,8);
             end
         end
     else
-        player:messageSpecial(SOFTLY_SHIMMERING_LIGHT);
+        player:messageSpecial(text.SOFTLY_SHIMMERING_LIGHT);
     end
 end;
 
@@ -210,12 +210,12 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x01C) then
         if ( option == 100) then
-            player:messageSpecial(SCINTILLATING_BURST_OF_LIGHT);
+            player:messageSpecial(text.SCINTILLATING_BURST_OF_LIGHT);
             player:addKeyItem(MARK_OF_SEED);
-            player:messageSpecial(KEYITEM_OBTAINED,MARK_OF_SEED);
+            player:messageSpecial(text.KEYITEM_OBTAINED,MARK_OF_SEED);
         elseif (option == 200) then
             player:addKeyItem(AZURE_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,AZURE_KEY);
+            player:messageSpecial(text.KEYITEM_OBTAINED,AZURE_KEY);
         end
         player:delStatusEffectSilent(EFFECT_MARK_OF_SEED);
     end

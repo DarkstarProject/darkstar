@@ -1,6 +1,6 @@
     -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Gennoue
+--  NPC: Gennoue
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

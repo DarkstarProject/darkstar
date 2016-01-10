@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Corrupted Yorgos
+-- MOB: Corrupted Yorgos
 -----------------------------------
 
 require("scripts/globals/missions");

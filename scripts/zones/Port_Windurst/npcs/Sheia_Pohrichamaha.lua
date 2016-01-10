@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Sheia Pohrichamaha
+--  NPC: Sheia Pohrichamaha
 -- Only sells when Windurst controlls Fauregandi Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -25,9 +25,9 @@ function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(FAUREGANDI);
 
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,SHEIAPOHRICHAMAHA_CLOSED_DIALOG);
+        player:showText(npc, text.SHEIAPOHRICHAMAHA_CLOSED_DIALOG);
     else
-        player:showText(npc,SHEIAPOHRICHAMAHA_OPEN_DIALOG);
+        player:showText(npc, text.SHEIAPOHRICHAMAHA_OPEN_DIALOG);
 
         stock = {
             0x11DB,    90,   --Beaugreens
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

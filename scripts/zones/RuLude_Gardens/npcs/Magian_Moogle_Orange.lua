@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Ru'Lude Gardens
---  NPC:  Magian Moogle (Orange Bobble)
---  Type: Magian Trials NPC (Weapon/Empyrean Armor)
---  @pos -11 2.453 118 64
+-- Area: Ru'Lude Gardens
+--  NPC: Magian Moogle (Orange Bobble)
+-- Type: Magian Trials NPC (Weapon/Empyrean Armor)
+-- @pos -11 2.453 118 64
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
     printf("CSID: %u",csid);
     printf("RESULT: %u",option);
     if (csid == 10122 and option == 1) then
-        player:messageSpecial(KEYITEM_OBTAINED,MAGIAN_TRIAL_LOG);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MAGIAN_TRIAL_LOG);
         player:addKeyItem(MAGIAN_TRIAL_LOG);
     --elseif
         --

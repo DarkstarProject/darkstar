@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Heavens Tower
---  NPC:  Churara
---  Type: Standard NPC
---  @pos 4.119 -26.5 -6.264 242
+-- Area: Heavens Tower
+--  NPC: Churara
+-- Type: Standard NPC
+-- @pos 4.119 -26.5 -6.264 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

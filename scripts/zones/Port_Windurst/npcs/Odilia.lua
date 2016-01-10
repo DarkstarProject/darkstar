@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Port Windurst
---   NPC: Odilia
---  Type: Standard NPC
+-- Area: Port Windurst
+--  NPC: Odilia
+-- Type: Standard NPC
 -- @zone: 240
---  @pos 78.801 -6 118.653
+-- @pos 78.801 -6 118.653
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

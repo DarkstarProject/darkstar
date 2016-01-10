@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valley of Sorrows
---  HNM: Adamantoise
+-- HNM: Adamantoise
 -----------------------------------
 
 require("scripts/globals/settings");

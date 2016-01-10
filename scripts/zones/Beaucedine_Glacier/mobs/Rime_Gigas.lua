@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Rime Gigas
+-- MOB: Rime Gigas
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

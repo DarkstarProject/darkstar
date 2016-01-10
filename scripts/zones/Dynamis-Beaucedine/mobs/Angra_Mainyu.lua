@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
---  MOB: Angra Mainyu
+-- MOB: Angra Mainyu
 -- Mega Boss
 -----------------------------------
 
@@ -87,7 +87,7 @@ function onMobDeath(mob,killer,ally)
     
     if (ally:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
         ally:addKeyItem(HYDRA_CORPS_INSIGNIA);
-        ally:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
+        ally:messageSpecial(text.KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
     end
     
 end;

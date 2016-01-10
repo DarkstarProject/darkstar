@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Rytaal
---  Type: Standard NPC
---  @pos 112.002 -1.338 -45.038 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Rytaal
+-- Type: Standard NPC
+-- @pos 112.002 -1.338 -45.038 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
         player:setVar("TOAUM3",1);
     elseif (csid == 0x010C and option == 1     and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and currenttagnummber > 0) then
         player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(text.KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
         player:setVar("REMAINING_IMPERIAL_ARMY_ID_TAG",currenttagnummber - 1);
     elseif (csid == 0x010C and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)==false and hasAssaultOrders(player) ~= 0) then
         if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
         end
         player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(text.KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
         player:delAssault(CurrentAssault);
     end
     

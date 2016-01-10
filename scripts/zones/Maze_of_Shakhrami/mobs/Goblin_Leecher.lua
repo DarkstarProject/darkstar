@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Leecher
+-- MOB: Goblin Leecher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

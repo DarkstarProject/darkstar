@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Yagudo Initiate
+-- MOB: Yagudo Initiate
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

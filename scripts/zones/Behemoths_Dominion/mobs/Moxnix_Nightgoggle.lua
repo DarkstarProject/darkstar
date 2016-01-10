@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Moxnix Nightgoggle
+-- MOB: Moxnix Nightgoggle
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 

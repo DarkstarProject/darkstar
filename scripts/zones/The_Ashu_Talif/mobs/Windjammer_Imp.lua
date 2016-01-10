@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Ashu Talif
--- NPC: Windjammer Imp
+--  NPC: Windjammer Imp
 -----------------------------------
 
 require("scripts/globals/status");

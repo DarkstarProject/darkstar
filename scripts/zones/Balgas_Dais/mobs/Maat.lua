@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Balga Dais
---  MOB: Maat
+-- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;

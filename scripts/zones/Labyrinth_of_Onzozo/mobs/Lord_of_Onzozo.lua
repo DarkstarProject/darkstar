@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Labyrinth of Onzozo
---   NM: Lord of Onzozo
+-- NM: Lord of Onzozo
 -----------------------------------
 
 

@@ -57,6 +57,6 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0001) then
         player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
         player:addKeyItem(CLUMP_OF_ANIMAL_HAIR);
-        player:messageSpecial(KEYITEM_OBTAINED,CLUMP_OF_ANIMAL_HAIR);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CLUMP_OF_ANIMAL_HAIR);
     end
 end;

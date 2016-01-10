@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Demonic Rose
+-- MOB: Demonic Rose
 -- Note: Placeholder V. Vivian
 -----------------------------------
 

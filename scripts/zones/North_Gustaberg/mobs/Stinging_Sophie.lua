@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: North Gustaberg
---  NM: tinging Sophie
+-- NM: tinging Sophie
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle
---  MOB: Imp
+-- MOB: Imp
 -----------------------------------
 
 require("scripts/globals/status");

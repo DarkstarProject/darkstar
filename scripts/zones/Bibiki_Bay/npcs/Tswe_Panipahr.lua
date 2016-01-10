@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Bibiki Bay
---  NPC:  Tswe Panipahr
---  Type: Manaclipper
---  @pos 484.604 -4.035 729.671 4
+-- Area: Bibiki Bay
+--  NPC: Tswe Panipahr
+-- Type: Manaclipper
+-- @pos 484.604 -4.035 729.671 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
    end
    
   if ( curentticket ~= 0 ) then
-    player:messageSpecial(HAVE_BILLET,curentticket);
+    player:messageSpecial(text.HAVE_BILLET,curentticket);
   else 
   local gils=player:getGil();
     player:startEvent(0x0023,MANACLIPPER_TICKET,MANACLIPPER_MULTITICKET ,80,gils,0,500);
@@ -57,11 +57,11 @@ function onEventFinish(player,csid,option)
        if (option==1) then
        player:delGil(80);
        player:addKeyItem(MANACLIPPER_TICKET);
-       player:messageSpecial(KEYITEM_OBTAINED,MANACLIPPER_TICKET);
+       player:messageSpecial(text.KEYITEM_OBTAINED,MANACLIPPER_TICKET);
        elseif (option==2) then
        player:delGil(500);
        player:addKeyItem(MANACLIPPER_MULTITICKET);
-       player:messageSpecial(KEYITEM_OBTAINED,MANACLIPPER_MULTITICKET);
+       player:messageSpecial(text.KEYITEM_OBTAINED,MANACLIPPER_MULTITICKET);
        player:setVar("Manaclipper_Ticket",10);
        end
      end

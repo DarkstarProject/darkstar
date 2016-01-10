@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Shidzue
+--  NPC: Shidzue
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

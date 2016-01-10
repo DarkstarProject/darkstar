@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos N T    
--- NPC:  Kindred_Warrior
+--  NPC: Kindred_Warrior
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

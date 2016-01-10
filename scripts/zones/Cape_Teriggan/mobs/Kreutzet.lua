@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Cape Teriggan
---  NM:  Kruetzet
+-- NM:  Kruetzet
 -----------------------------------
 
 require("scripts/globals/weather");

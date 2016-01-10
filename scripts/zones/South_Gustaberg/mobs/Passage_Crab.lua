@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Passage Crab
+-- MOB: Passage Crab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

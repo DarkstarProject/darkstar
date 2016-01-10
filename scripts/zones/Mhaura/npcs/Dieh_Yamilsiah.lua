@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Dieh Yamilsiah
+--  NPC: Dieh Yamilsiah
 -- Reports the time remaining before boat arrival.
 -- @pos 7.057 -2.364 2.489 249
 -----------------------------------

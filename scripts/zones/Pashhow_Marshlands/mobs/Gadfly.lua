@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: Gadfly
+-- MOB: Gadfly
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

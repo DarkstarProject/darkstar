@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: 
+--  NPC: 
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,PAWKRIX_SHOP_DIALOG);
+    player:showText(npc, text.PAWKRIX_SHOP_DIALOG);
 
-stock = {0x0277,36,   -- Horo Flour
+    local stock =
+    {
+    0x0277,36,   -- Horo Flour
      0x116A,276,  -- Goblin Bread
      0x11BB,650,  -- Goblin Pie
      0x118F,35,   -- Goblin Chocolate
@@ -31,7 +33,7 @@ stock = {0x0277,36,   -- Horo Flour
      0x03B8,515,  -- Poison Flour
      0x04D7,490}  -- Goblin Doll
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -39,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,9 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

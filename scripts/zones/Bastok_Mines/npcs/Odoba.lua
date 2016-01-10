@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Odoba
+--  NPC: Odoba
 -- Guild Merchant NPC: Alchemy Guild 
 -- @pos 108.473 5.017 1.089 234
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(526,8,23,6)) then
-        player:showText(npc, ODOBA_SHOP_DIALOG);
+        player:showText(npc, text.ODOBA_SHOP_DIALOG);
     end
 end;
 

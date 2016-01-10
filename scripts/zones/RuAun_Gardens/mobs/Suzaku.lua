@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NM:  Suzaku
+-- NM:  Suzaku
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------

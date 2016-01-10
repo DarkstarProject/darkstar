@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goblin Furrier
+-- MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

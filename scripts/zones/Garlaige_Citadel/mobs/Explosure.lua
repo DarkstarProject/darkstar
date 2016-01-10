@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Explosure
+-- MOB: Explosure
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

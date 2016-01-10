@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Antican Essedarius
+-- MOB: Antican Essedarius
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

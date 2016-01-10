@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Verthandi
+-- MOB: Verthandi
 -----------------------------------
 
 require("scripts/globals/titles");

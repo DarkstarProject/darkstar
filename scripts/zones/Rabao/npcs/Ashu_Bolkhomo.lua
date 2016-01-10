@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Ashu Bolkhomo
+--  NPC: Ashu Bolkhomo
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;

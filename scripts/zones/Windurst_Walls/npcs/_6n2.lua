@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0183) then
         player:delKeyItem(JOKER_CARD);
         player:addGil(GIL_RATE*8000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*8000);
     elseif (csid == 0x0151) then
         -- Mark the progress
         player:setVar("MissionStatus",6);
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ClassReunionProgress",1);
         player:addQuest(WINDURST,CLASS_REUNION);
         player:addKeyItem(CARBUNCLES_TEAR);
-        player:messageSpecial(KEYITEM_OBTAINED,CARBUNCLES_TEAR);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CARBUNCLES_TEAR);
     elseif (csid == 0x019f) then
         player:addQuest(WINDURST,CARBUNCLE_DEBACLE);
         player:setVar("CarbuncleDebacleProgress",1);

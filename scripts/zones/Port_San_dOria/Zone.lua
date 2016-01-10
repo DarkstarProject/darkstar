@@ -89,12 +89,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x01F4) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(text.ITEM_OBTAINED,536);
     elseif (csid == 0x02BC) then
         player:setPos(0,0,0,0,223);
     elseif (csid == 0x7534 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(text.HOMEPOINT_SET);
     elseif (csid == 0x0004) then
         player:setVar("COP_Ulmia_s_Path",2);
     end

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Phaviane
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -4.000 0.000 -28.000
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -4.000 0.000 -28.000
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,PHAVIANE_DIALOG);
+    player:showText(npc, text.PHAVIANE_DIALOG);
 end;
 
 -----------------------------------

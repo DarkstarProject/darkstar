@@ -50,11 +50,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         if (player:hasSpell(302) == false) then
             player:addSpell(302); -- Shiva
-            player:messageSpecial(SHIVA_UNLOCKED,0,0,4);
+            player:messageSpecial(text.SHIVA_UNLOCKED,0,0,4);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+            player:messageSpecial(text.ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeIce_date", 0);
         player:addFame(SANDORIA,SAN_FAME*30);

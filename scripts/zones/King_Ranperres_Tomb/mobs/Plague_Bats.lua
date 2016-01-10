@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Plague Bats
+-- MOB: Plague Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

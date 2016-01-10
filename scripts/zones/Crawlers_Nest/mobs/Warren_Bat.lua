@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Warren Bat
+-- MOB: Warren Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

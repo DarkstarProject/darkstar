@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Sturmtiger
+-- MOB: Sturmtiger
 -- Involved in Quest: Chasing Quotas
 -- @pos -715.882,-10.75,65.982 (105)
 -----------------------------------

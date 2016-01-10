@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Helm Beetle
+-- MOB: Helm Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

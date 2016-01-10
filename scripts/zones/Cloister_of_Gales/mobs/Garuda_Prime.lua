@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Gales
---  MOB: Garuda Prime
+-- MOB: Garuda Prime
 -- Involved in Quest: Trial by Wind
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         player:delKeyItem(TUNING_FORK_OF_WIND);
         player:addKeyItem(WHISPER_OF_GALES);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_GALES);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WHISPER_OF_GALES);
     end
 
 end;

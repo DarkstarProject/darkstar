@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Solby-Maholby
+--  NPC: Solby-Maholby
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,SOLBYMAHOLBY_SHOP_DIALOG);
+    player:showText(npc, text.SOLBYMAHOLBY_SHOP_DIALOG);
 
-stock = {0x43F3,9,        -- Lugworm
+    local stock =
+    {
+    0x43F3,9,        -- Lugworm
      0x1323,450,        -- Earth Spirit Pact
      0x1365,79380,        -- Scroll of Aisha: Ichi
      0x1366,93243,        -- Scroll of Myoshu: Ichi
@@ -34,7 +36,7 @@ stock = {0x43F3,9,        -- Lugworm
      0x0b36,9000}        -- Norg Waystone
     
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -42,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,9 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

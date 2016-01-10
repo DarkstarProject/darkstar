@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Celestial Nexus
---  MOB: Exoplates
+-- MOB: Exoplates
 -- Zilart Mission 16 BCNM Fight
 -----------------------------------
 

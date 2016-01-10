@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Heavens Tower
+-- Area: Heavens Tower
 --  NPC: Mashua
---  Type: Standard NPC
---  @pos -7.399 -0.5 4.580 242
+-- Type: Standard NPC
+-- @pos -7.399 -0.5 4.580 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

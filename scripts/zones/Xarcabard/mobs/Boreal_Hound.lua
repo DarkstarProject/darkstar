@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  NM:  Boreal Hound
+-- NM:  Boreal Hound
 -- Involved in Quests: Atop the Highest Mountains
 -- @pos -21 -25 -490 112
 -----------------------------------
@@ -28,7 +28,7 @@ function onMobDeath(mob, killer, ally)
 
     local npc = GetNPCByID(17236306);
     if (ally:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and ally:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
-        ally:messageSpecial(BLOCKS_OF_ICE);
+        ally:messageSpecial(text.BLOCKS_OF_ICE);
     end
     npc:showNPC(FrigiciteDuration);
 

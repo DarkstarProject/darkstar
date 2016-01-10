@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x027E and option == 1) then
-        player:messageSpecial(ALCHEMY_SUPPORT,0,7,2);
+        player:messageSpecial(text.ALCHEMY_SUPPORT,0,7,2);
         player:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,1,0,120);
     end
 end;

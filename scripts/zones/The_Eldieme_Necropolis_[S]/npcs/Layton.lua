@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis (S)
--- NPC:  Layton
+--  NPC: Layton
 -- Type: Standard Merchant NPC
 -- Note: Available during Campaign battles
 -- @pos 382.679 -39.999 3.541 175
@@ -24,9 +24,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,LAYTON_SHOP_DIALOG);
+    player:showText(npc, text.LAYTON_SHOP_DIALOG);
 
-stock = {0x17A1,8060,        -- Firestorm Schema
+    local stock =
+    {
+    0x17A1,8060,        -- Firestorm Schema
          0x17A2,6318,        -- Rainstorm Schema
          0x17A3,9100,        -- Thunderstorm Schema    
          0x17A4,8580,        -- Hailstorm Schema         
@@ -44,7 +46,7 @@ stock = {0x17A1,8060,        -- Firestorm Schema
          0x17A0,8790}        -- Noctohelix Schema
 
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,9 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

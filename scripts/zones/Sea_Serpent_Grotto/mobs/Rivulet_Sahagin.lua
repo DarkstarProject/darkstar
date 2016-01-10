@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Rivulet Sahagin
+-- MOB: Rivulet Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

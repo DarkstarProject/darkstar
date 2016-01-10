@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
---  MOB: Phanduron_the_Condemned
+-- MOB: Phanduron_the_Condemned
 -----------------------------------
 
 -----------------------------------

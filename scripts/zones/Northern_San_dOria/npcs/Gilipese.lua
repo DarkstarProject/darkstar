@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Gilipese
---  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -155.088 0.000 120.300
+-- Type: Standard Dialogue NPC
+-- @zone: 231
+-- @pos -155.088 0.000 120.300
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,GILIPESE_DIALOG);
+    player:showText(npc, text.GILIPESE_DIALOG);
 end;
 
 -----------------------------------

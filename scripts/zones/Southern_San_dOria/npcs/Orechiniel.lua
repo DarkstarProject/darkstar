@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x028A and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(LEATHER_SUPPORT,0,5,0);
+        player:messageSpecial(text.LEATHER_SUPPORT,0,5,0);
         player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,480);
     end
 end;

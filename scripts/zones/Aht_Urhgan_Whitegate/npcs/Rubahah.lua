@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Rubahah
+--  NPC: Rubahah
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         2271, 316 -- Coffee Beans (available only if AC is in the Al Zahbi)
     }
     showShop(player, STATIC, stock);
-    player:showText(npc,RUBAHAH_SHOP_DIALOG);
+    player:showText(npc, text.RUBAHAH_SHOP_DIALOG);
 end;
 
 -----------------------------------

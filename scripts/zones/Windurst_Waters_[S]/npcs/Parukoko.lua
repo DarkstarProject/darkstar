@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Parukoko
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Parukoko
+-- Type: Standard NPC
 -- @zone: 94
---  @pos -32.400 -3.5 -103.666
+-- @pos -32.400 -3.5 -103.666
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

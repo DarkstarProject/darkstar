@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Volcano Wasp
+-- MOB: Volcano Wasp
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

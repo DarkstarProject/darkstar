@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  ??? (Jailer of Faith Spawn)
+--  NPC: ??? (Jailer of Faith Spawn)
 -- Allows players to spawn the Jailer of Faith by trading 1 High-Quality Euvhi Organ to a ???.
 -- @pos ,-260 0 -645 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 end;

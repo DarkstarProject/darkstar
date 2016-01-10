@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Drummer
+-- MOB: Yagudo Drummer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

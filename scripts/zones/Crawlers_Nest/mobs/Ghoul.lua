@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Ghoul
+-- MOB: Ghoul
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

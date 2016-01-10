@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
---  MOB: Titan Prime
+-- MOB: Titan Prime
 -- Involved in Quest: Trial by Earth
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x7d01) then
         player:delKeyItem(TUNING_FORK_OF_EARTH);
         player:addKeyItem(WHISPER_OF_TREMORS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TREMORS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WHISPER_OF_TREMORS);
     end
 
 end;

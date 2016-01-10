@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC: Ambrosius
+--  NPC: Ambrosius
 -- 
 -- Quest NPC for "The Postman Always KOs Twice"
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("Update CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("Update CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -86,8 +86,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("Finish CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("Finish CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0030 and option == 0) then
         player:addQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);
@@ -129,7 +129,4 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,WIN_FAME*50);
     end
 end;
-
-
-
 

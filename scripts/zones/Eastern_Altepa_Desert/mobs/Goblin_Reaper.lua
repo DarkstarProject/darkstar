@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Goblin Reaper
+-- MOB: Goblin Reaper
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

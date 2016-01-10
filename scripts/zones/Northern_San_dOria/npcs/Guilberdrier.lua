@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Guilberdrier
---  Type: Standard Info NPC
---  Involved in Quest: Flyers for Regine, Exit the Gambler
---  @zone: 231
---  @pos -159.082 12.000 253.794
+-- Type: Standard Info NPC
+-- Involved in Quest: Flyers for Regine, Exit the Gambler
+-- @zone: 231
+-- @pos -159.082 12.000 253.794
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -22,10 +22,10 @@ function onTrade(player,npc,trade)
             player:messageSpecial(11936);
             player:setVar("FFR",player:getVar("FFR") - 1);
             player:setVar("tradeGuilberdrier",1);
-            player:messageSpecial(FLYER_ACCEPTED);
+            player:messageSpecial(text.FLYER_ACCEPTED);
             player:tradeComplete();
             elseif (player:getVar("tradeGuilberdrier") ==1) then
-                player:messageSpecial(FLYER_ALREADY);
+                player:messageSpecial(text.FLYER_ALREADY);
             end
         end
     end;

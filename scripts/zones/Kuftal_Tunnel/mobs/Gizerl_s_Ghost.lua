@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Gizerl's Ghost
+-- MOB: Gizerl's Ghost
 -----------------------------------
 
 require("scripts/globals/missions");

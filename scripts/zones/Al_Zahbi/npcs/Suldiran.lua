@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Suldiran
---  Type: NPC Quest 
---  @zone: 48
---  @pos 41.658 -6.999 -42.528
+-- Area: Al Zahbi
+--  NPC: Suldiran
+-- Type: NPC Quest 
+-- @zone: 48
+-- @pos 41.658 -6.999 -42.528
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0010) then            
         player:tradeComplete();
         player:addGil(GIL_RATE*200);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*200);
         player:addTitle(DARK_RESISTANT);
         if (player:getQuestStatus(AHT_URHGAN,FEAR_OF_THE_DARK_II) == QUEST_ACCEPTED) then
            player:completeQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Ogre Bat
+-- MOB: Ogre Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

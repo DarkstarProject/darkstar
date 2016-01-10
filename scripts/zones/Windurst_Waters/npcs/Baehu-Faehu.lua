@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Baehu-Faehu
+--  NPC: Baehu-Faehu
 -- Only sells when Windurst has control of Sarutabaruta
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(SARUTABARUTA);
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
+        player:showText(npc, text.BAEHUFAEHU_CLOSED_DIALOG);
     else
-        player:showText(npc,BAEHUFAEHU_OPEN_DIALOG);
+        player:showText(npc, text.BAEHUFAEHU_OPEN_DIALOG);
 
         stock = {
             0x115C,    22,   --Rarab Tail
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

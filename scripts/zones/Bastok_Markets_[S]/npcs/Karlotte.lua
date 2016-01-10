@@ -1,8 +1,8 @@
 ----------------------------------
---  Area: Bastok Markets [S]
---  NPC:  Karlotte
---  Type: Item Deliverer
---  @pos -191.646 -8 -36.349 87
+-- Area: Bastok Markets [S]
+--  NPC: Karlotte
+-- Type: Item Deliverer
+-- @pos -191.646 -8 -36.349 87
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, KARLOTTE_DELIVERY_DIALOG);
+    player:showText(npc, text.KARLOTTE_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

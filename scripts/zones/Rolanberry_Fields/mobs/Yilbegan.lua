@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

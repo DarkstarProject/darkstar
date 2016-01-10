@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm_Dunes
--- NPC:  Hieroglyphics
+--  NPC: Hieroglyphics
 -- Dynamis Valkurm_Dunes Enter
 -- @pos 117 -10 133 172 103
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         if (checkFirstDyna(player,7)) then 
              player:startEvent(0x0021);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+            player:messageSpecial(text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaValkurm]UniqueID")) then
             
@@ -43,10 +43,10 @@ function onTrigger(player,npc)
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
             printf("dayRemaining : %u",dayRemaining );
             
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,7);
+            player:messageSpecial(text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,7);
         end
     else
-        player:messageSpecial(MYSTERIOUS_VOICE); 
+        player:messageSpecial(text.MYSTERIOUS_VOICE); 
     end
     
 end;
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("finishRESULT: %u",option);
     
     if (csid == 0x0021) then
         if (checkFirstDyna(player,7)) then

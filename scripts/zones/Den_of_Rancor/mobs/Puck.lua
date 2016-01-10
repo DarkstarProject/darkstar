@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Puck
+-- MOB: Puck
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Treasure Coffer
+--  NPC: Treasure Coffer
 -- @zone 130
 -- @pos 
 -----------------------------------
@@ -42,7 +42,7 @@ function onTrade(player,npc,trade)
         local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
         local success = 0;
         if (pack[2] ~= nil) then
-            player:messageSpecial(pack[2]);
+            player:messageSpecial(text.pack[2]);
             success = pack[1];
         else
             success = pack[1];
@@ -53,11 +53,11 @@ function onTrade(player,npc,trade)
             
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(text.CHEST_UNLOCKED);
                 
                 if (questItemNeeded == 1) then
                     player:addKeyItem(MAP_OF_THE_RUAUN_GARDENS);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_RUAUN_GARDENS); -- Map of the Ru'Aun Gardens (KI)
+                    player:messageSpecial(text.KEYITEM_OBTAINED,MAP_OF_THE_RUAUN_GARDENS); -- Map of the Ru'Aun Gardens (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
                     
@@ -68,16 +68,16 @@ function onTrade(player,npc,trade)
                     
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]);
-                        player:messageSpecial(GIL_OBTAINED,loot[2]);
+                        player:messageSpecial(text.GIL_OBTAINED,loot[2]);
                     else
                         -- Item
                         player:addItem(loot[2]);
-                        player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                        player:messageSpecial(text.ITEM_OBTAINED,loot[2]);
                     end
                 end
                 UpdateTreasureSpawnPoint(npc:getID());
             else
-                player:messageSpecial(CHEST_MIMIC);
+                player:messageSpecial(text.CHEST_MIMIC);
                 spawnMimic(zone,npc,player);
                 UpdateTreasureSpawnPoint(npc:getID(), true);
             end
@@ -91,7 +91,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1058);
+    player:messageSpecial(text.CHEST_LOCKED,1058);
 end; 
 
 -----------------------------------
@@ -99,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -108,6 +108,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

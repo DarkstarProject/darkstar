@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Upper Jeuno
---   NPC: Laila
---  Type: Job Quest Giver
+-- Area: Upper Jeuno
+--  NPC: Laila
+-- Type: Job Quest Giver
 -- @zone: 244
---  @pos -54.045 -1 100.996
+-- @pos -54.045 -1 100.996
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x277f and option == 1) then
         player:addQuest(JEUNO,LAKESIDE_MINUET);
     elseif (csid == 0x2786) then
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,LAKESIDE_MINUET);
         player:addTitle(TROUPE_BRILIOTH_DANCER);
         player:unlockJob(19);
-        player:messageSpecial(UNLOCK_DANCER);
+        player:messageSpecial(text.UNLOCK_DANCER);
         player:addFame(JEUNO, JEUNO_FAME*30);
         player:delKeyItem(STARDUST_PEBBLE);
         player:needToZone(true);
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
     elseif (csid==0x2795) then
         player:setVar("QuestStatus_DNC_AF1", 0);
         player:addItem(19203); -- war hoop
-        player:messageSpecial(ITEM_OBTAINED,19203);
+        player:messageSpecial(text.ITEM_OBTAINED,19203);
         player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
     end
 end;

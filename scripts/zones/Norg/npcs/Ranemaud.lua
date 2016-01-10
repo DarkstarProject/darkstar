@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Ranemaud
+--  NPC: Ranemaud
 -- Involved in Quest: Forge Your Destiny, The Sacred Katana
 -- @pos 15 0 23 252
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -85,31 +85,31 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     questItem = player:getVar("ForgeYourDestiny_Event");
 
     if (csid == 0x0028) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1198);
-            player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
+            player:messageSpecial(text.ITEM_OBTAINED, 1198); -- Sacred Sprig
             player:setVar("ForgeYourDestiny_Event",questItem + 0x02);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
+           player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
     elseif (csid == 0x002b) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
             player:addItem(1198);
-            player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
+            player:messageSpecial(text.ITEM_OBTAINED, 1198); -- Sacred Sprig
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
+           player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
         end
     elseif (csid == 0x0091) then
         player:tradeComplete();
         player:addItem(17809);
-        player:messageSpecial(ITEM_OBTAINED,17809); -- Mumeito
+        player:messageSpecial(text.ITEM_OBTAINED,17809); -- Mumeito
     end
     
 end;

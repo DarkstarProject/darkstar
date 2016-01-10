@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Greater Pugil
+-- MOB: Greater Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

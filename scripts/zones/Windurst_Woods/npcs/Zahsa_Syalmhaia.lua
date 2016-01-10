@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Zahsa Syalmhaia
---  Type: Great War Veteran NPC
+-- Area: Windurst Woods
+--  NPC: Zahsa Syalmhaia
+-- Type: Great War Veteran NPC
 -- @zone: 241
---  @pos 13.710 1.422 -83.198
+-- @pos 13.710 1.422 -83.198
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

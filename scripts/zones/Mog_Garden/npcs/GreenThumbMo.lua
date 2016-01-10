@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,9 +42,9 @@ function onEventFinish(player, csid, option)
         local lockerLease = getMogLockerExpiryTimestamp(player);
         if (lockerLease ~= nil) then
             if (lockerLease == -1) then -- Lease expired..
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
+                player:messageSpecial(text.MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
             else
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
+                player:messageSpecial(text.MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
             end
         end
     

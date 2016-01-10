@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Heavens Tower
---  NPC:  Vahn Paineesha
---  Type: Standard NPC
---  @pos -2.502 -47.999 -15.083 242
+-- Area: Heavens Tower
+--  NPC: Vahn Paineesha
+-- Type: Standard NPC
+-- @pos -2.502 -47.999 -15.083 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Fallen Evacuee
+-- MOB: Fallen Evacuee
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

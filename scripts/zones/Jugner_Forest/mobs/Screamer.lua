@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Screamer
+-- MOB: Screamer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

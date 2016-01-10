@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Enu
---  Type: Quest NPC
+-- Area: Bastok Markets
+--  NPC: Enu
+-- Type: Quest NPC
 -- @zone: 235
---  @pos -253.673 -13 -92.326
+-- @pos -253.673 -13 -92.326
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -69,7 +69,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete( );
 
         player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4 
-        player:messageSpecial(ITEM_OBTAINED,1236);
+        player:messageSpecial(text.ITEM_OBTAINED,1236);
 
         player:addFame(BASTOK,BAS_FAME*50);
         player:completeQuest(BASTOK,WISH_UPON_A_STAR);

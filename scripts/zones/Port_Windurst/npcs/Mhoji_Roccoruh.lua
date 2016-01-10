@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Mhoji Roccoruh
+--  NPC: Mhoji Roccoruh
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

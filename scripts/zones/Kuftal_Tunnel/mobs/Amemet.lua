@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Kuftal Tunnel
---   NM: Amemet
+-- NM: Amemet
 -- ToDo: Amemet should walk in a big circle
 -----------------------------------
 

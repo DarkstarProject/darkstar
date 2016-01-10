@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dragons Aery
---  HNM: Nidhogg
+-- HNM: Nidhogg
 -----------------------------------
 
 require("scripts/globals/settings");

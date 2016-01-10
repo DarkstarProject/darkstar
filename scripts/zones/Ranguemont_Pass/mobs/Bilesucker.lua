@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Bilesucker
+-- MOB: Bilesucker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

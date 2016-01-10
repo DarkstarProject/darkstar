@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

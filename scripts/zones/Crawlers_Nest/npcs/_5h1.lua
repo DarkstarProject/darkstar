@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- NPC: Strange Apparatus
+--  NPC: Strange Apparatus
 -- @pos: 214 0 -339 197
 -----------------------------------
 
@@ -33,12 +33,12 @@ function onTrade(player,npc,trade)
 
             spawnElementalNM(player);
             delStrAppDocStatus(player);
-            player:messageSpecial(SYS_OVERLOAD);
-            player:messageSpecial(YOU_LOST_THE, trade);
+            player:messageSpecial(text.SYS_OVERLOAD);
+            player:messageSpecial(text.YOU_LOST_THE, trade);
         end
     else -- Invalid trade, lose doctor status
         delStrAppDocStatus(player);
-        player:messageSpecial(DEVICE_NOT_WORKING);
+        player:messageSpecial(text.DEVICE_NOT_WORKING);
     end
 end; 
 

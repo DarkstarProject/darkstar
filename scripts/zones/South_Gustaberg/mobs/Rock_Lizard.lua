@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Rock Lizard
+-- MOB: Rock Lizard
 -- Note: Place holder Leaping Lizzy
 -----------------------------------
 

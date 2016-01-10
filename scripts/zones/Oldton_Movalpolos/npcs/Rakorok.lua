@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Oldton Movalpolos
---  NPC:  Rakorok
+-- Area: Oldton Movalpolos
+--  NPC: Rakorok
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    npc:showText(npc, RAKOROK_DIALOGUE); 
+    npc:showText(npc, text.RAKOROK_DIALOGUE); 
 end;
 
 -----------------------------------

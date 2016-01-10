@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon CS
---  MOB: Dee_Wapa_the_Desolator
+-- MOB: Dee_Wapa_the_Desolator
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

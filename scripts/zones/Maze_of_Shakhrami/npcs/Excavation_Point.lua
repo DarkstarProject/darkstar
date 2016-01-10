@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- NPC:  Excavation Point
+--  NPC: Excavation Point
 -- Used in Quest: The Holy Crest
 -- @pos 234 0.1 -110 198
 -----------------------------------
@@ -21,9 +21,9 @@ function onTrade(player,npc,trade)
             if (player:getFreeSlotsCount(0) >= 1) then
                 player:tradeComplete();
                 player:addItem(1159);
-                player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg
+                player:messageSpecial(text.ITEM_OBTAINED, 1159); -- Wyvern Egg
             else
-               player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
+               player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
             end
         end
     else
@@ -37,7 +37,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

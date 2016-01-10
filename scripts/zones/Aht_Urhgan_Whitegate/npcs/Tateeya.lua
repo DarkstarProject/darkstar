@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Tateeya
+--  NPC: Tateeya
 -- Automaton Attachment Unlocks
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,16 +65,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x028A) then --unlocking attachments explanation
         player:setVar('TateeyaTradeStatus', 1);
     elseif (csid == 0x028B) then
         local subid = player:getVar('TateeyaUnlock');
-        player:messageSpecial(AUTOMATON_ATTACHMENT_UNLOCK, subid);
+        player:messageSpecial(text.AUTOMATON_ATTACHMENT_UNLOCK, subid);
         player:setVar('TateeyaUnlock',0);
     end
 end;
-
-
-

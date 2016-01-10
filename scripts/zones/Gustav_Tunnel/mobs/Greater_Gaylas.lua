@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Greater Gaylas
+-- MOB: Greater Gaylas
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

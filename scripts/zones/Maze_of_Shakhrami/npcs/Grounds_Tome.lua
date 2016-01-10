@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

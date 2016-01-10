@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Mines
+-- Area: Bastok Mines
 --  NPC: Hemewmew
---  Type: Guildworker's Union Representative
---  @zone: 234
---  @pos 117.970 1.017 -10.438
+-- Type: Guildworker's Union Representative
+-- @zone: 234
+-- @pos 117.970 1.017 -10.438
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -128,6 +128,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 0xce) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
     elseif (csid == 0xcf) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(text.GP_OBTAINED, option);
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Onki
+-- MOB: Onki
 -- a Thief in Norg BCNM Fight
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Abeaule
+--  NPC: Abeaule
 -- Starts and Finishes Quest: The Trader in the Forest, The Medicine Woman
 -- @pos -136 -2 56 231
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,35 +74,35 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "The Trader in the Forest" Quest
     if (csid == 0x020c and option == 0 or csid == 0x0250 and option == 0) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,592);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,592);
         else
             player:addQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
             player:setVar("theTraderInTheForestCS",0);
             player:addItem(592);
-            player:messageSpecial(ITEM_OBTAINED,592); -- Supplies Order
+            player:messageSpecial(text.ITEM_OBTAINED,592); -- Supplies Order
         end
     elseif (csid == 0x0251 and option == 1) then
         local SUPPLIES_ORDER = 592;
         if (player:getFreeSlotsCount() > 0 and player:hasItem(592) == false) then -- Supplies Order
             player:addItem(SUPPLIES_ORDER);
-            player:messageSpecial(ITEM_OBTAINED, SUPPLIES_ORDER);
+            player:messageSpecial(text.ITEM_OBTAINED, SUPPLIES_ORDER);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, SUPPLIES_ORDER);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, SUPPLIES_ORDER);
         end
     elseif (csid == 0x020d) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
         else
             player:tradeComplete();
             player:addTitle(GREEN_GROCER);
             player:addItem(12600);
-            player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
+            player:messageSpecial(text.ITEM_OBTAINED,12600); -- Robe
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
         end
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(TRAVELING_MEDICINE_MAN); 
         player:delKeyItem(COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);    
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100);    
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,THE_MEDICINE_WOMAN);
     end

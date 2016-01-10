@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC: Wachiwi
+--  NPC: Wachiwi
 -- Type: Weather Reporter
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;

@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Fubruhn
+--  NPC: Fubruhn
 -- Mog Locker NPC
 --
 -- Event IDs:
 -- 0x0258 = Not a mercenary + mog locker options
 -- 1st arg = Amount of time left on lease, as seconds past 2001/12/31 15:00:00.
---          If this is 0, it shows the not a mecenary message instead.
---          If this is -1, it shows the lease as expired.
+-- If this is 0, it shows the not a mecenary message instead.
+-- If this is -1, it shows the lease as expired.
 -- 2nd arg = Valid areas, 0=alzahbi only, 1=all areas
 -- 3rd arg = The number of earth days a lease extension is valid for (7)
 -- 4th arg = How big your locker is
@@ -127,8 +127,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -136,8 +136,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("fCSID: %u",csid);
---printf("fRESULT: %u",option);
+    -- printf("fCSID: %u",csid);
+    -- printf("fRESULT: %u",option);
     if (csid == 600 and option == 3) then
         local accessType = player:getVar(MOGLOCKER_PLAYERVAR_ACCESS_TYPE);
         if (accessType == MOGLOCKER_ACCESS_TYPE_ALLAREAS) then
@@ -151,6 +151,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
-

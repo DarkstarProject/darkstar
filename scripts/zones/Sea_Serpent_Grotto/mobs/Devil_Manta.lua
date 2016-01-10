@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
---  MOB: Devil Manta
+-- MOB: Devil Manta
 -- Note: Place holder Charybdis
 -----------------------------------
 

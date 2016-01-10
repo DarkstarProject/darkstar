@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/RaKaznar_Turris/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

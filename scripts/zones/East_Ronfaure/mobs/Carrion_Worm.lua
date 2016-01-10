@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Carrion Worm
+-- MOB: Carrion Worm
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost (140)
---  MOB: Orcish_Grunt
+-- MOB: Orcish_Grunt
 -----------------------------------
 
 require("scripts/zones/Ghelsba_Outpost/MobIDs");

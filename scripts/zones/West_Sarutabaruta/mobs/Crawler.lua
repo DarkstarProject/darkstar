@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Crawler
+-- MOB: Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

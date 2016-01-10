@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
---  MOB: Virid-faced_Shanberry
+-- MOB: Virid-faced_Shanberry
 -- BCNM: Jungle Boogymen
 -----------------------------------
 

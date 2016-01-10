@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Windurst Walls
---  NPC:  Chomomo
---  Type: Standard NPC
---  @pos -1.262 -11 290.224 239
+-- Area: Windurst Walls
+--  NPC: Chomomo
+-- Type: Standard NPC
+-- @pos -1.262 -11 290.224 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
--- NPC:  Evil_Armory
+--  NPC: Evil_Armory
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Old Professor Mariselle
+-- MOB: Old Professor Mariselle
 -----------------------------------
 
 require("scripts/globals/keyitems");

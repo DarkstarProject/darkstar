@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Fly Agaric
+-- MOB: Fly Agaric
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Carpenters' Landing
---  NPC:  Cofisephe
---  Type: Adventurer's Assistant
---  @pos 210.327 -3.885 -532.511 2
+-- Area: Carpenters' Landing
+--  NPC: Cofisephe
+-- Type: Adventurer's Assistant
+-- @pos 210.327 -3.885 -532.511 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

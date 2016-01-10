@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Jaipal
+--  NPC: Jaipal
 -- Standard Info NPC
 -----------------------------------
 

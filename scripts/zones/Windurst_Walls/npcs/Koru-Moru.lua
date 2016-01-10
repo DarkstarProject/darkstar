@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     elseif (trade:hasItemQty(16511,1) and count == 1 and trade:getGil() == 0) then
         if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
@@ -162,18 +162,18 @@ function onEventFinish(player,csid,option)
     if (csid == 0x011d) then  -- Giving him KI from Principle
         player:tradeComplete();
         player:addKeyItem(TATTERED_TEST_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,TATTERED_TEST_SHEET);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TATTERED_TEST_SHEET);
         player:setVar("QuestMakingTheGrade_prog",2);
     elseif (csid == 0x00d3) then
         player:tradeComplete();
         player:addItem(12502);
-        player:messageSpecial(ITEM_OBTAINED,12502);
+        player:messageSpecial(text.ITEM_OBTAINED,12502);
         player:completeQuest(WINDURST,STAR_STRUCK);
         player:needToZone(true);
         player:addFame(WINDURST,WIN_FAME*20);
     elseif (csid == 0x00c7) then
         player:tradeComplete();
-        player:messageSpecial(GIL_OBTAINED,50);
+        player:messageSpecial(text.GIL_OBTAINED,50);
         player:addGil(50);
     elseif (csid == 0x00c5 and option == 0) then
         player:addQuest(WINDURST,STAR_STRUCK);
@@ -184,20 +184,20 @@ function onEventFinish(player,csid,option)
         player:setVar("BlastFromThePast_Prog",0);
         player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
         player:addItem(17030);
-        player:messageSpecial(ITEM_OBTAINED,17030);
+        player:messageSpecial(text.ITEM_OBTAINED,17030);
         player:addTitle(FOSSILIZED_SEA_FARER);
         player:addFame(WINDURST,WIN_FAME*30);
         player:needToZone(true);
     elseif (csid == 0x0194) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(17532);
-            player:messageSpecial(ITEM_OBTAINED,17532);
+            player:messageSpecial(text.ITEM_OBTAINED,17532);
             player:completeQuest(WINDURST,THE_PUPPET_MASTER);
             player:setVar("ThePuppetMasterProgress",0);
             player:needToZone(true);
             player:addFame(WINDURST,WIN_FAME*AF1_FAME);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17532);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17532);
         end;
     elseif (csid == 0x019c) then
         player:delKeyItem(CARBUNCLES_TEAR);
@@ -208,7 +208,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x019a) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(14228);
-            player:messageSpecial(ITEM_OBTAINED,14228);
+            player:messageSpecial(text.ITEM_OBTAINED,14228);
             player:completeQuest(WINDURST,CLASS_REUNION);
             player:setVar("ClassReunionProgress",0);
             player:setVar("ClassReunion_TalkedToFurakku",0);
@@ -216,25 +216,25 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
             player:addFame(WINDURST,WIN_FAME*AF2_FAME);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14228);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14228);
         end;
     elseif (csid == 0x01a0) then
         player:setVar("CarbuncleDebacleProgress",2);
     elseif (csid == 0x01a1) then
         player:setVar("CarbuncleDebacleProgress",5);
         player:addKeyItem(DAZEBREAKER_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,DAZEBREAKER_CHARM);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DAZEBREAKER_CHARM);
     elseif (csid == 0x01a3) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12520); -- Evoker's Horn
-            player:messageSpecial(ITEM_OBTAINED,12520);
+            player:messageSpecial(text.ITEM_OBTAINED,12520);
             player:addTitle(PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
             player:addFame(WINDURST,WIN_FAME*AF3_FAME);
             player:setVar("CarbuncleDebacleProgress",0);
             player:needToZone(true);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12520);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12520);
         end;
     end;
 end;

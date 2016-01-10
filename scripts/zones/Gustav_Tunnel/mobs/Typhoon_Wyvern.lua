@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Typhoon Wyvern
+-- MOB: Typhoon Wyvern
 -- Note: Place holder Ungur
 -----------------------------------
 

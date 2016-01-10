@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Norg
+-- Area: Norg
 --  NPC: Vuliaie
---  Type: Tenshodo Merchant
---  @pos -24.259 0.891 -19.556 252
+-- Type: Tenshodo Merchant
+-- @pos -24.259 0.891 -19.556 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
         if (player:sendGuild(60424,9,23,7)) then
-            player:showText(npc, VULIAIE_SHOP_DIALOG);
+            player:showText(npc, text.VULIAIE_SHOP_DIALOG);
         end
     else
         -- player:startEvent(0x0096);

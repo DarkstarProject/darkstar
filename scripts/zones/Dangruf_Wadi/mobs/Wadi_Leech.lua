@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Leech
+-- MOB: Wadi Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC: Ludwig
+--  NPC: Ludwig
 -- Map Seller NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
@@ -41,7 +41,4 @@ end;
 function onEventFinish(player,csid,option)
 
 end;
-
-
-
 

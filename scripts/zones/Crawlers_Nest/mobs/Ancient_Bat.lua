@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Ancient Bat
+-- MOB: Ancient Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

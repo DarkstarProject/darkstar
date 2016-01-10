@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Runito-Monito
---    Standard Merchant NPC
+-- Area: Mhaura
+--  NPC: Runito-Monito
+-- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,RUNITOMONITO_SHOP_DIALOG);
+    player:showText(npc, text.RUNITOMONITO_SHOP_DIALOG);
 
-stock = {0x4015,106,  --Cat Bagnakhs
+    local stock =
+    {
+    0x4015,106,  --Cat Bagnakhs
          0x4017,1554, --Brass Bagnakhs
          0x4041,855,  --Brass Dagger
          0x42a3,92,   --Bronze Rod
@@ -37,7 +39,7 @@ stock = {0x4015,106,  --Cat Bagnakhs
          0x43a7,4,       --Bone Arrow
          0x43b8,5}       --Crossbow Bolts
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -45,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,9 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

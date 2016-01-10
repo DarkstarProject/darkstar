@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Machairodus
+-- MOB: Machairodus
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

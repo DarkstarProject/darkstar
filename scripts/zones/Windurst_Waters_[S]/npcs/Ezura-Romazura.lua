@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters [S]
--- NPC: Ezura-Romazura
+--  NPC: Ezura-Romazura
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,EZURAROMAZURA_SHOP_DIALOG);
+    player:showText(npc, text.EZURAROMAZURA_SHOP_DIALOG);
 
-stock = {0x12a3,123750,        -- Scroll of Stone V
+    local stock =
+    {
+    0x12a3,123750,        -- Scroll of Stone V
      0x12ad,133110,        -- Scroll of Water V
      0x129e,144875,        -- Scroll of Aero V
      0x1294,162500,        -- Scroll of Fire V
@@ -35,7 +37,7 @@ stock = {0x12a3,123750,        -- Scroll of Stone V
      0x131c,185240,        -- Scroll of Aeroja
      0x12ff,126000}        -- Scroll of Break
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -43,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,9 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Antican Signifer
+-- MOB: Antican Signifer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

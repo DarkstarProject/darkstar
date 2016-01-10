@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Jugner Forest (S)
---  NPC:  ???
---  Type: Quest NPC
---  @pos 68 -0.5 324 82
+-- Area: Jugner Forest (S)
+--  NPC: ???
+-- Type: Quest NPC
+-- @pos 68 -0.5 324 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end
 end;
 
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         SpawnMob(17113462,180):updateClaim(player);
     elseif (csid == 0x00CB) then
         player:addItem(8131,1)
-        player:messageSpecial(ITEM_OBTAINED,813)
+        player:messageSpecial(text.ITEM_OBTAINED,813)
         player:completeQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
         player:setVar("ClawsOfGriffonProg",0);
     end

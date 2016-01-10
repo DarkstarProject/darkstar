@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Metalworks
---   NPC: High Bear
---  Type: Quest Giver
+-- Area: Metalworks
+--  NPC: High Bear
+-- Type: Quest Giver
 -- @zone: 237
---  @pos 25.231 -14.999 4.552
+-- @pos 25.231 -14.999 4.552
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -56,8 +56,8 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,BAS_FAME*30);
             player:delKeyItem(CORRUPTED_DIRT);
             player:addItem(17284,1);
-            player:messageSpecial(QUEST_COMPLETED);
-            player:messageSpecial(ITEM_OBTAINED,17284);
+            player:messageSpecial(text.QUEST_COMPLETED);
+            player:messageSpecial(text.ITEM_OBTAINED,17284);
             player:completeQuest(BASTOK,BEADEAUX_SMOG);
             player:setTitle(BEADEAUX_SURVEYOR);
     end

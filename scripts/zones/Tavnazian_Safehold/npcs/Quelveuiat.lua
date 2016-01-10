@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Quelveuiat
+--  NPC: Quelveuiat
 -- Standard Info NPC
 -- @pos -3.177 -22.750 -25.970 26
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         if (SealionCrestKey and CoralCrestKey and Count == 2) then
             player:addKeyItem(TEMPLE_KNIGHT_KEY);
             player:tradeComplete();
-            player:messageSpecial(KEYITEM_OBTAINED);
+            player:messageSpecial(text.KEYITEM_OBTAINED);
         end
     end
 
@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
         player:setVar("SPLINTERSPINE_GRUKJUK",0);
         player:completeQuest(OTHER_AREAS,A_HARD_DAY_S_KNIGHT);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*2100);
     end
 
 end;

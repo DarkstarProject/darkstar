@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Thunder Elemental
+-- MOB: Thunder Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Paouala
+--  NPC: Paouala
 -- Starts and Finishes Quest: Sleepless Nights
 -- @zone 230
 -- @pos 158 -6 17
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0055 and option == 1) then
         player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);
@@ -70,13 +70,10 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(SHEEPS_MILK_DELIVERER);
         player:addGil(GIL_RATE*5000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*5000);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,SLEEPLESS_NIGHTS);
     end
 
 end;
-
-
-
 

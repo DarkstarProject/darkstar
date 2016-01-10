@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Washu
+--  NPC: Washu
 -- Involved in Quest: Yomi Okuri
 -- Starts and finishes Quest: Stop Your Whining
 -- @pos 49 -6 15 252
@@ -81,19 +81,19 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0096) then
         player:tradeComplete();
         player:addKeyItem(WASHUS_TASTY_WURST);
-        player:messageSpecial(KEYITEM_OBTAINED,WASHUS_TASTY_WURST);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WASHUS_TASTY_WURST);
         player:setVar("yomiOkuriCS",3);
     elseif (csid == 0x0015 and option == 1) then
         player:addKeyItem(EMPTY_BARREL); --Empty Barrel
         player:addQuest(OUTLANDS,STOP_YOUR_WHINING);
-        player:messageSpecial(KEYITEM_OBTAINED,EMPTY_BARREL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,EMPTY_BARREL);
     elseif (csid == 0x0017) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4952); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4952); 
         else
             player:delKeyItem(BARREL_OF_OPOOPO_BREW); --Filled Barrel
             player:addItem(4952); -- Scroll of Hojo: Ichi
-            player:messageSpecial(ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
+            player:messageSpecial(text.ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
             player:addFame(OUTLANDS,NORG_FAME*75);
             player:addTitle(APPRENTICE_SOMMELIER);
             player:completeQuest(OUTLANDS,STOP_YOUR_WHINING);

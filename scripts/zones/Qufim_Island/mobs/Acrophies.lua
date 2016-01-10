@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Acrophies
+-- MOB: Acrophies
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Misareaux Coast
---  NPC:  Spacial Displacement
---  Entrance to Riverne Site #A01 and #B01
+-- Area: Misareaux Coast
+--  NPC: Spacial Displacement
+-- Entrance to Riverne Site #A01 and #B01
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0008) then
         player:setVar("PromathiaStatus",2);

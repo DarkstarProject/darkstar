@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Magic Pot
+-- MOB: Magic Pot
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

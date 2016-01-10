@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelles Caves
---  MOB: Gerwitz's Axe
+-- MOB: Gerwitz's Axe
 -- Involved In Quest: Dark Puppet
 -- @pos -51 0.1 3 193
 -----------------------------------

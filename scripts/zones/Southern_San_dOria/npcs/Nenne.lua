@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Nenne
+--  NPC: Nenne
 -- Starts and Finishes Quest: To Cure a Cough
 -- @zone 230
 -- @pos -114 -6 102
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x021A) then
         player:setVar("toCureaCough",1);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:setVar("DiaryPage",0);
         player:delKeyItem(COUGH_MEDICINE);
         player:addKeyItem(SCROLL_OF_TREASURE);
-        player:messageSpecial(KEYITEM_OBTAINED,SCROLL_OF_TREASURE);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SCROLL_OF_TREASURE);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
     end

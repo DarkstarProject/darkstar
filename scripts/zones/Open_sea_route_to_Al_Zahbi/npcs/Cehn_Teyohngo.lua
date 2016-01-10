@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Open sea route to Al Zahbi
--- NPC:  Cehn Teyohngo
+--  NPC: Cehn Teyohngo
 -- Guild Merchant NPC: Fishing Guild 
 -- @zone 4.986 -2.101 -12.026 46
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(522,1,23,5)) then
-        player:showText(npc,CEHN_TEYOHNGO_SHOP_DIALOG);
+        player:showText(npc, text.CEHN_TEYOHNGO_SHOP_DIALOG);
     end
 end; 
 
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,9 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

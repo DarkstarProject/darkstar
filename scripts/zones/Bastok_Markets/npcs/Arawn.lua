@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Arawn
+--  NPC: Arawn
 -- Starts & Finishes Quest: Stamp Hunt
 -- @pos -121.492 -4.000 -123.923 235
 -----------------------------------
@@ -60,18 +60,18 @@ function onEventFinish(player,csid,option)
     if (csid == 0x00e1 and option == 0) then
         player:addQuest(BASTOK,STAMP_HUNT);
         player:addKeyItem(STAMP_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,STAMP_SHEET);
+        player:messageSpecial(text.KEYITEM_OBTAINED,STAMP_SHEET);
     elseif (csid == 0x00e2) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(STAMPEDER);
             player:addItem(13081);
-            player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
+            player:messageSpecial(text.ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(STAMP_SHEET);
             player:setVar("StampHunt_Mask",0);
             player:addFame(BASTOK,BAS_FAME*50);
             player:completeQuest(BASTOK,STAMP_HUNT);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
+           player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, 13081);
         end
     elseif (csid == 0x01ad) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);

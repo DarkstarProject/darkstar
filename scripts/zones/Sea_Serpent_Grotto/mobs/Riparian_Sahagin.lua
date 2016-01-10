@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Riparian Sahagin
+-- MOB: Riparian Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

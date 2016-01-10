@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Graupel Gigas
+-- MOB: Graupel Gigas
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

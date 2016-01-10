@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Castle Oztroja
---  NPC:  Kaa Toru the Just
---  Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
---  @pos -100.188 -62.125 145.422 151
+-- Area: Castle Oztroja
+--  NPC: Kaa Toru the Just
+-- Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
+-- @pos -100.188 -62.125 145.422 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -50,9 +50,9 @@ function onEventFinish(player,csid,option)
     if (csid == 0x002d) then
         player:delKeyItem(HOLY_ONES_INVITATION);
         player:addKeyItem(HOLY_ONES_OATH);
-        player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_OATH);
+        player:messageSpecial(text.KEYITEM_OBTAINED,HOLY_ONES_OATH);
         player:addItem(13134); -- Ashura Necklace
-        player:messageSpecial(ITEM_OBTAINED,13134);
+        player:messageSpecial(text.ITEM_OBTAINED,13134);
         player:setVar("MissionStatus",3);
     end
 end;

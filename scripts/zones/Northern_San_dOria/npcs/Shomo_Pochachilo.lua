@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Shomo Pochachilo
---  Type: Standard Info NPC
---  @zone: 231
---  @pos 28.369 -0.199 30.061
+-- Type: Standard Info NPC
+-- @zone: 231
+-- @pos 28.369 -0.199 30.061
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

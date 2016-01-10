@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Goblin Bandit
+-- MOB: Goblin Bandit
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Spring Sahagin
+-- MOB: Spring Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

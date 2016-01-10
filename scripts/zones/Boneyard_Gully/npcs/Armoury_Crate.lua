@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Boneyard Gully
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------

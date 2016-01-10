@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: White Lizard
+-- MOB: White Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

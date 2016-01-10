@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
---  MOB: Evil Eye
+-- MOB: Evil Eye
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

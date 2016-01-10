@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Spire of Vahzl
--- NPC:  Web of Recollection
+--  NPC: Web of Recollection
 -----------------------------------
 package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     else
-        player:messageSpecial(FAINT_SCRAPING);
+        player:messageSpecial(text.FAINT_SCRAPING);
         return 1;
     end
     
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (EventFinishBCNM(player,csid,option)) then
         return;

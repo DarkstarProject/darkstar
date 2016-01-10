@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Worker Crawler
+-- MOB: Worker Crawler
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

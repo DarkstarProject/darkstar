@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Selbina
--- NPC:  Vobo
+--  NPC: Vobo
 -- Involved in Quest: Riding on the Clouds
 -- @pos 37 -14 81 248
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SOMBER_STONE);
         end
     end
     
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

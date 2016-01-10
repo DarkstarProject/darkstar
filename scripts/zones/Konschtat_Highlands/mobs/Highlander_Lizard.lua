@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  NM:  Highlander Lizard
+-- NM:  Highlander Lizard
 -----------------------------------
 
 require("scripts/globals/status");

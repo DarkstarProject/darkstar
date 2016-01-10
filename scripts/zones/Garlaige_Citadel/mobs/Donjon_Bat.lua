@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Donjon Bat
+-- MOB: Donjon Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Al Zahbi
+-- Area: Al Zahbi
 --  NPC: Dehbi Moshal
---  Guild Merchant NPC: Woodworking Guild 
---  @pos -71.563 -5.999 -57.544 48
+-- Guild Merchant NPC: Woodworking Guild 
+-- @pos -71.563 -5.999 -57.544 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(60428,6,21,0)) then
-        player:showText(npc,DEHBI_MOSHAL_SHOP_DIALOG);
+        player:showText(npc, text.DEHBI_MOSHAL_SHOP_DIALOG);
     end
 end;
 

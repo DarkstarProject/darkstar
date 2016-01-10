@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
--- NPC:  Particle_Gate
+--  NPC: Particle_Gate
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------

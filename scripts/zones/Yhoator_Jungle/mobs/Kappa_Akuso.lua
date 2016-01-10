@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Kappa Akuso
+-- MOB: Kappa Akuso
 -- Involved in Quest: True will
 -----------------------------------
 

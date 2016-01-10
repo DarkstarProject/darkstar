@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Fomor Red Mage
+-- MOB: Fomor Red Mage
 -----------------------------------
 
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heavens Tower
--- NPC:  Rhy Epocan
+--  NPC: Rhy Epocan
 -- Involved in Mission 3-1
 -- @pos 2 -48 14 242
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The_Garden_of_RuHmet
--- NPC:  ??? (Ix'aern (Dark Knight) Spawn)
+--  NPC: ??? (Ix'aern (Dark Knight) Spawn)
 -- Allows players to spawn the Ix'aern (Dark Knight) by checking ??? only after killing the required mobs in the same room as the ???.
 -- @pos ,-560 5 239
 -----------------------------------
@@ -30,11 +30,11 @@ function onTrigger(player,npc)
     mobb = GetMobByID(16921019);
     mobc = GetMobByID(16921020);
     if (Kills == 0) then 
-        player:messageSpecial(UNKNOWN_PRESENCE);
+        player:messageSpecial(text.UNKNOWN_PRESENCE);
     elseif (Kills == 1) then
-        player:messageSpecial(NONE_HOSTILE);
+        player:messageSpecial(text.NONE_HOSTILE);
     elseif (Kills == 2) then
-        player:messageSpecial(NONE_HOSTILE);--(SHEER_ANIMOSITY);
+        player:messageSpecial(text.NONE_HOSTILE);--(SHEER_ANIMOSITY);
     elseif (Kills == 3) then 
         moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
         SpawnMob(16921018,180):updateClaim(player);
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     end;
 
 -----------------------------------
@@ -66,6 +66,6 @@ function onEventUpdate(player,csid,option)
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Miene
+--  NPC: Miene
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -18,14 +18,14 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
     if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMiene") == 0) then
-        player:messageSpecial(MIENE_DIALOG);
+        player:messageSpecial(text.MIENE_DIALOG);
         player:setVar("FFR",player:getVar("FFR") - 1);
         player:setVar("tradeMiene",1);
-        player:messageSpecial(FLYER_ACCEPTED);
-        player:messageSpecial(FLYERS_HANDED, 17 - player:getVar("FFR"));
+        player:messageSpecial(text.FLYER_ACCEPTED);
+        player:messageSpecial(text.FLYERS_HANDED, 17 - player:getVar("FFR"));
         player:tradeComplete();
     elseif (player:getVar("tradeMiene") == 1) then
-        player:messageSpecial(FLYER_ALREADY);
+        player:messageSpecial(text.FLYER_ALREADY);
     end
 end
 end;
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" Quest, recieving Eagle Button
     if (csid == 0x0225 or csid == 0x0263) then
@@ -82,7 +82,4 @@ function onEventFinish(player,csid,option)
         end;
     end;
 end;
-
-
-
 

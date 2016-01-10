@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Tormentor
+-- MOB: Tormentor
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

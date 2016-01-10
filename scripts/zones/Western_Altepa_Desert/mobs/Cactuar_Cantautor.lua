@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert (125)
---   NM: Cactuar_Cantautor
+-- NM: Cactuar_Cantautor
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC: Edigey
+--  NPC: Edigey
 -- Starts and Ends Quest: Don't Forget the Antidote
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0002 and option == 1) then
         player:addQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:setVar("DontForgetAntidoteVar",1);
@@ -63,17 +63,14 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(262);
         player:addItem(16974); -- Dotanuki
-        player:messageSpecial(ITEM_OBTAINED, 16974); 
+        player:messageSpecial(text.ITEM_OBTAINED, 16974); 
         player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:addFame(OUTLANDS,60);  
     elseif (csid == 0x0004) then --Subsequent completions
         player:tradeComplete();
         player:addGil(GIL_RATE*1800);
-        player:messageSpecial(GIL_OBTAINED, 1800);
+        player:messageSpecial(text.GIL_OBTAINED, 1800);
         player:addFame(OUTLANDS,30); 
     end
 
 end;
-
-
-

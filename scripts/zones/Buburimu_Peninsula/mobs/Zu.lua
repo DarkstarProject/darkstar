@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula (118)
---  MOB: Zu
+-- MOB: Zu
 -----------------------------------
 
 require("scripts/zones/Buburimu_Peninsula/MobIDs");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
---  MOB: Droma
+-- MOB: Droma
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

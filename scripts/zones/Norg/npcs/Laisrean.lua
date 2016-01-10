@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC: Laisrean
+--  NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
 -- @zone: 252
 -- @pos -2.251 -1 21.654
@@ -63,11 +63,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
     elseif (csid == 0x0023) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4946); 
         else
             player:delKeyItem(SEA_SERPENT_STATUE);
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
-            player:messageSpecial(ITEM_OBTAINED, 4946);
+            player:messageSpecial(text.ITEM_OBTAINED, 4946);
             player:addTitle(TREASUREHOUSE_RANSACKER);
             player:addFame(OUTLANDS,NORG_FAME*75);
             player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);

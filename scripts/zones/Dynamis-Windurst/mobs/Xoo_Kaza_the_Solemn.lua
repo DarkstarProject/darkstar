@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Xoo Kaza the Solemn
+--  NPC: Xoo Kaza the Solemn
 -- Boss Trigger for RDM NM
 -----------------------------------
 

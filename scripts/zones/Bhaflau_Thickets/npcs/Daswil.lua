@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Bhaflau Thickets
---  NPC:  Daswil
---  Type: Assault
---  @pos -208.720 -12.889 -779.713 52
+-- Area: Bhaflau Thickets
+--  NPC: Daswil
+-- Type: Assault
+-- @pos -208.720 -12.889 -779.713 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0200 and option == 1) then
        player:delCurrency("imperial_standing", 50);
        player:addKeyItem(ASSAULT_ARMBAND);
-       player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
+       player:messageSpecial(text.KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
     elseif (csid == 0x0005 and option == 1) then
         player:delKeyItem(SUPPLIES_PACKAGE);
         player:setVar("TOAUM2",1);

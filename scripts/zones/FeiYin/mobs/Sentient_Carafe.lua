@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Sentient Carafe
+-- MOB: Sentient Carafe
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Robber Crab
+-- MOB: Robber Crab
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

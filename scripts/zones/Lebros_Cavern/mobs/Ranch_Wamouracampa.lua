@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lebros Cavern (Wamoura Farm Raid)
---  MOB: Ranch Wamouracampa
+-- MOB: Ranch Wamouracampa
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Zircon Quadav
+-- MOB: Zircon Quadav
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

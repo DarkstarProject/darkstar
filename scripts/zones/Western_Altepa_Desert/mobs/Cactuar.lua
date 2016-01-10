@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Altepa Desert
---  MOB: Cactuar
+-- MOB: Cactuar
 -- Note: Place holder for Cactuar_Cantautor
 -----------------------------------
 

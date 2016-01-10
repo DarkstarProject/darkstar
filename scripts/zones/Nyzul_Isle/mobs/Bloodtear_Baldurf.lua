@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Nyzul Isle
---  NM:  Bloodtear_Baldurf
+-- NM:  Bloodtear_Baldurf
 -----------------------------------
 
 require("scripts/globals/titles");

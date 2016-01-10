@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of ZiTah
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Quest: Forge Your Destiny
 -- @pos 639 -1 -151 121
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
             if (trade:hasItemQty(1198,1) and trade:getItemCount() == 1) then 
                 player:tradeComplete();
                 player:addItem(1153);
-                player:messageSpecial(ITEM_OBTAINED, 1153); -- Sacred Branch
+                player:messageSpecial(text.ITEM_OBTAINED, 1153); -- Sacred Branch
                 player:setVar("ForgeYourDestiny_killed",0);
             end
         end
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(STURDY_BRANCH,1021);
+    player:messageSpecial(text.STURDY_BRANCH,1021);
 end; 
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,7 +57,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

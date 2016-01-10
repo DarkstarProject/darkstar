@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
---  MOB: Gavotvut
+-- MOB: Gavotvut
 -- Involved in Quest: The Doorman
 -----------------------------------
 

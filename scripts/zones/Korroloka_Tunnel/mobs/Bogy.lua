@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
---  Mob: Bogy
+-- Mob: Bogy
 -----------------------------------
 
 -- require("scripts/zones/Korroloka_Tunnel/MobIDs");

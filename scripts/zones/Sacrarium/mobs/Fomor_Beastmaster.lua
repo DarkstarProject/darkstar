@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Fomor Beastmaster
+-- MOB: Fomor Beastmaster
 -----------------------------------
 
 

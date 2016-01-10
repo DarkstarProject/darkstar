@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Nightmare Bats
+-- MOB: Nightmare Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

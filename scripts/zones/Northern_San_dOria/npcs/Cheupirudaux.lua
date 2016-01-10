@@ -60,10 +60,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x026d and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4098);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4098);
         else
             player:addItem(4098);
-            player:messageSpecial(ITEM_OBTAINED,4098); -- Wind Crystal
+            player:messageSpecial(text.ITEM_OBTAINED,4098); -- Wind Crystal
             signupGuild(player,512);
         end
     end

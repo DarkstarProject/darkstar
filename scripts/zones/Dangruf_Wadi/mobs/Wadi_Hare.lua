@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Wadi Hare
+-- MOB: Wadi Hare
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

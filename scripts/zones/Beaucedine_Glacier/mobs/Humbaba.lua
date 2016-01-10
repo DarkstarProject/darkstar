@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Humbaba
+-- MOB: Humbaba
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

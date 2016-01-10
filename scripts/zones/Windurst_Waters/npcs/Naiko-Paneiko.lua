@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Naiko-Paneiko
+--  NPC: Naiko-Paneiko
 -- Involved In Quest: Making Headlines, Riding on the Clouds
 -- @zone 238
 -- @pos -246 -5 -308
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
     
@@ -82,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -91,15 +91,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0299) then
         player:addQuest(WINDURST,MAKING_HEADLINES);
     elseif (csid == 0x029e or csid == 0x02a2) then
         player:addTitle(EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);    
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*560);    
         player:delKeyItem(WINDURST_WOODS_SCOOP);
         player:delKeyItem(WINDURST_WALLS_SCOOP);
         player:delKeyItem(WINDURST_WATERS_SCOOP);

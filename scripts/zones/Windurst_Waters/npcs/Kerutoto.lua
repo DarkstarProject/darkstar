@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Kerutoto
+--  NPC: Kerutoto
 -- Starts Quest Food For Thought
 -- Involved in Quest: Riding on the Clouds
 -- @zone 238
@@ -43,7 +43,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:messageSpecial(text.KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
     
@@ -154,8 +154,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -163,8 +163,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x036c) then
         player:setVar("COP_Ulmia_s_Path",4);
     elseif ((csid == 0x0139 and option == 0) or (csid == 0x013a and option == 0)) then
@@ -207,9 +207,9 @@ function onEventFinish(player,csid,option)
             player:setVar("BlueRibbonBluesTimer_Year",0); 
             player:setVar("BlueRibbonBluesTimer_Day",0);    
             player:addItem(13569);
-            player:messageSpecial(ITEM_OBTAINED,13569);
+            player:messageSpecial(text.ITEM_OBTAINED,13569);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13569);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13569);
         end
     elseif (csid == 0x016a) then
         player:completeQuest(WINDURST,BLUE_RIBBON_BLUES);
@@ -219,7 +219,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 0x0396) then    --diablos start
                player:addKeyItem(VIAL_OF_DREAM_INCENSE);
-            player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_DREAM_INCENSE); 
+            player:messageSpecial(text.KEYITEM_OBTAINED,VIAL_OF_DREAM_INCENSE); 
     elseif (csid == 0x0398) then    --diablos reward
     local item = 0;
     local addspell = 0;
@@ -234,14 +234,14 @@ function onEventFinish(player,csid,option)
 
         elseif (option == 5) then 
                 player:addGil(GIL_RATE*15000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
+                player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*15000); -- Gil
                 player:delKeyItem(WHISPER_OF_DREAMS);
                 player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
                 player:completeQuest(WINDURST,WAKING_DREAMS);    
                 
         elseif (option == 6 and player:hasSpell(304)==false) then 
                 player:addSpell(304); -- diabolos Spell
-                player:messageSpecial(DIABOLOS_UNLOCKED,0,0,0);
+                player:messageSpecial(text.DIABOLOS_UNLOCKED,0,0,0);
                 addspell=1;
         end
         if (addspell==1) then
@@ -253,9 +253,9 @@ function onEventFinish(player,csid,option)
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
             player:addItem(item);
-            player:messageSpecial(ITEM_OBTAINED,item); -- Item
+            player:messageSpecial(text.ITEM_OBTAINED,item); -- Item
          elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount()==0) ) ) then        
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
         end
         elseif (csid == 0x02E0) then
             player:setVar("MissionStatus",2);

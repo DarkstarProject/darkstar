@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis San d'Oria
--- NPC:  Wyrmgnasher Bjakdek
+--  NPC: Wyrmgnasher Bjakdek
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
 

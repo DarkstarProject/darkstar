@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoths Dominion
---  MOB: Lost Soul
+-- MOB: Lost Soul
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             if (player:hasKeyItem(ELECTROCELL) or player:hasKeyItem(ELECTROPOT) or player:hasKeyItem(ELECTROLOCOMOTIVE)) == false then
                 player:tradeComplete();
                 player:addKeyItem(keyItems[KI]);
-                player:messageSpecial(KEYITEM_OBTAINED, keyItems[KI]);
+                player:messageSpecial(text.KEYITEM_OBTAINED, keyItems[KI]);
             end
         end
     end
@@ -37,7 +37,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(text.NOTHING_HAPPENS);
 end;
  
 -----------------------------------

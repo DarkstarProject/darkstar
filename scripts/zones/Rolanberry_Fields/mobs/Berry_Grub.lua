@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Berry Grub
+-- MOB: Berry Grub
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

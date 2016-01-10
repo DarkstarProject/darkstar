@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
---  MOB: Ice Elemental
+-- MOB: Ice Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

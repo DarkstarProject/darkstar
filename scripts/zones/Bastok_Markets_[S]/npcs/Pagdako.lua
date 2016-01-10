@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets (S)
--- NPC: Pagdako
+--  NPC: Pagdako
 -- Quest NPC
 -- pos -200 -6 -93
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x007A) then
         player:setVar("FiresOfDiscProg",1);
     end

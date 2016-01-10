@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

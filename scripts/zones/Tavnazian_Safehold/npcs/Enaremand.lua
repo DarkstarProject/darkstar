@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Tavnazian Safehold
---   NPC: Enaremand
---  Type: Standard NPC
+-- Area: Tavnazian Safehold
+--  NPC: Enaremand
+-- Type: Standard NPC
 -- @zone: 26
---  @pos 95.962 -42.003 51.613
+-- @pos 95.962 -42.003 51.613
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

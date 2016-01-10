@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Goblin Leecher
+-- MOB: Goblin Leecher
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

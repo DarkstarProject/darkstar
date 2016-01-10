@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Doom Guard
+-- MOB: Doom Guard
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  MOB: Strolling Sapling
+-- MOB: Strolling Sapling
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

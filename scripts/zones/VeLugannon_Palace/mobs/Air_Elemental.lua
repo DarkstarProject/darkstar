@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
---  MOB: Air Elemental
+-- MOB: Air Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

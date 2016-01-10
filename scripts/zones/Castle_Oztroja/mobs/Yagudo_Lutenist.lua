@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yagudo_Lutenist
+-- MOB: Yagudo_Lutenist
 -----------------------------------
 
 require("scripts/zones/Castle_Oztroja/MobIDs");

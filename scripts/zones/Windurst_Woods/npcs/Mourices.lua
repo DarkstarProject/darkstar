@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Mourices
+--  NPC: Mourices
 -- Involved In Mission: Journey Abroad
 -- @zone 241
 -- @pos -50.646 -0.501 -27.642
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(KINDRED_CREST);
         player:setVar("MissionStatus",11);
         player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,KINDRED_REPORT);
     end
 
 end;

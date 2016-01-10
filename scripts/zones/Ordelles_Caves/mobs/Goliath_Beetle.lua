@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
---  MOB: Goliath Beetle
+-- MOB: Goliath Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

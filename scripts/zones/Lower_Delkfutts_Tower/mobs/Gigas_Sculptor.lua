@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
---  MOB: Gigas Sculptor
+-- MOB: Gigas Sculptor
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

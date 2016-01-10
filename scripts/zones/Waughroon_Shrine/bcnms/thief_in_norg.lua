@@ -59,6 +59,6 @@ function onEventFinish(player,csid,option)
         if (csid == 0x7d01 and player:getVar("aThiefinNorgCS") == 6) then
             player:setVar("aThiefinNorgCS",7);
             player:addKeyItem(CHARRED_HELM);
-            player:messageSpecial(KEYITEM_OBTAINED,CHARRED_HELM);
+            player:messageSpecial(text.KEYITEM_OBTAINED,CHARRED_HELM);
         end
 end;

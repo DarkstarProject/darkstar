@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  SMN Vanguard Undertaker + Vanguard's Avatar
+--  NPC: SMN Vanguard Undertaker + Vanguard's Avatar
 -----------------------------------
 
 -----------------------------------

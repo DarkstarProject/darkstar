@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Love
+-- NM:  Jailer of Love
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC: Ailevia
---    Adventurer's Assistant
---    Only recieving Adv.Coupon and simple talk event are scripted
---    This NPC participates in Quests and Missions
+-- Area: Southern San d'Oria
+--  NPC: Ailevia
+-- Adventurer's Assistant
+-- Only recieving Adv.Coupon and simple talk event are scripted
+-- This NPC participates in Quests and Missions
 -- @zone 230 
 -- @pos -8 1 1
 -------------------------------------
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
     if (MagicFlyer == true and count == 1) then
         FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,15 +57,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x028f) then
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*50);
     end
 end;
-
-
-
 

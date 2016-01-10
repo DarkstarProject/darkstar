@@ -94,7 +94,7 @@ function onRegionEnter(player,region)
         end
 
         if (player:hasStatusEffect(EFFECT_POISON) == false) then
-            player:messageSpecial(GASPONIA_POISON);
+            player:messageSpecial(text.GASPONIA_POISON);
             local duration = math.random(30,60);
             player:addStatusEffect(EFFECT_POISON, 15, 0, duration);
         end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: Jugner Funguar
+-- MOB: Jugner Funguar
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

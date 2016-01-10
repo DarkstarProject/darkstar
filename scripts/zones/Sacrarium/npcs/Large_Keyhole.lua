@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Sacrarium
--- NPC:   Large Keyhole
+--  NPC:  Large Keyhole
 -- Notes: Used to open R. Gate
 -- @pos 100.231 -1.414 51.700 28
 -----------------------------------
@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(TEMPLE_KNIGHT_KEY)) then
         GetNPCByID(DoorID):openDoor(15);
     else
-        player:messageSpecial(LARGE_KEYHOLE);
+        player:messageSpecial(text.LARGE_KEYHOLE);
   end
 end;
 

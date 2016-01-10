@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Pyuu the Spatemaker
+-- MOB: Pyuu the Spatemaker
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

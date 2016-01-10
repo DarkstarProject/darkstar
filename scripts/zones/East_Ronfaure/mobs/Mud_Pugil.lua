@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Mud Pugil
+-- MOB: Mud Pugil
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

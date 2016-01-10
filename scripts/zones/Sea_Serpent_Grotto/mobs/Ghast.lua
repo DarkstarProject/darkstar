@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Ghast
+-- MOB: Ghast
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

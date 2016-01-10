@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Ciqala
---  Type: Merchant
+-- Area: Bastok Markets
+--  NPC: Ciqala
+-- Type: Merchant
 -- @zone: 235
---  @pos -283.147 -11.319 -143.680
+-- @pos -283.147 -11.319 -143.680
 --
 -- Auto-Script: Requires Verification
 --
@@ -27,9 +27,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, CIQALA_SHOP_DIALOG);
+    player:showText(npc, text.CIQALA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x4006,   224,3,     --Bronze Knuckles
         0x4007,   828,3,     --Brass Knuckles
         0x4001,   129,3,     --Cesti

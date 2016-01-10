@@ -59,10 +59,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0272 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,4096);
         else
             player:addItem(4096);
-            player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
+            player:messageSpecial(text.ITEM_OBTAINED,4096); -- Fire Crystal
             signupGuild(player,256);
         end
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Mummy
+-- MOB: Mummy
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

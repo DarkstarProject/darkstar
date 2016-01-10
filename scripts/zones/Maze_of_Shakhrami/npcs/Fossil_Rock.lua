@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- NPC:  Fossil Rock
+--  NPC: Fossil Rock
 -- Used in Mission: Windurst Mission 2-1
 -- @pos 17 18 184 198 + <many pos>
 -----------------------------------
@@ -41,78 +41,78 @@ function onTrigger(player,npc)
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         elseif ((X > 121.608 and X < 133.608) and (Z > -133.815 and Z < -121.815)) then -- 127.608 18.585 -127.815
             if (randfoss == 2) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else 
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         elseif ((X > 127.568 and X < 139.568) and (Z > -73.296 and Z < -61.296)) then -- 133.568 18.164 -67.296
             if (randfoss == 3) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else 
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         elseif ((X > -17.161 and X < -5.161) and (Z > 153.821 and Z < 165.821)) then -- -11.161 19.183 159.821
             if (randfoss == 4) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else 
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         elseif ((X > 11.385 and X < 23.385) and (Z > 178.692 and Z < 190.692)) then -- 17.385 18.344 184.692
             if (randfoss == 5) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         elseif ((X > 43.065 and X < 55.065) and (Z > 146.476 and Z < 158.476)) then -- 49.065 18.860 152.476
             if (randfoss == 6) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
+                    player:messageSpecial(text.KEYITEM_OBTAINED,LAPIS_CORAL);
                 else 
                     -- Already removed the fossil
-                    player:messageSpecial(FOSSIL_EXTRACTED);
+                    player:messageSpecial(text.FOSSIL_EXTRACTED);
                 end
             else
-                player:messageSpecial(NOTHING_FOSSIL);
+                player:messageSpecial(text.NOTHING_FOSSIL);
             end
         end
         
@@ -120,10 +120,10 @@ function onTrigger(player,npc)
         if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
             SpawnMob(17588225);
         else
-            player:messageSpecial(FOSSIL_EXTRACTED + 2); -- NM spawn point message.
+            player:messageSpecial(text.FOSSIL_EXTRACTED + 2); -- NM spawn point message.
         end
     else
-        player:messageSpecial(NOTHING_FOSSIL);
+        player:messageSpecial(text.NOTHING_FOSSIL);
     end
     
 end;
@@ -133,8 +133,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -142,6 +142,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

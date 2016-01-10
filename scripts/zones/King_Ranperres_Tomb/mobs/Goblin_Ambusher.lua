@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Goblin Ambusher
+-- MOB: Goblin Ambusher
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

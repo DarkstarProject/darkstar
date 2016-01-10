@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus
--- NPC:  ???
+--  NPC: ???
 -- Involved In Quest: Dark Legacy
 -- @zone 145
 -- @pos -58 0 -449
@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
     if (darkLegacyCS == 3 or darkLegacyCS == 4) then
         if (trade:hasItemQty(4445,1) and trade:getItemCount() == 1) then -- Trade Yagudo Cherries
             player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
+            player:messageSpecial(text.SENSE_OF_FOREBODING);
             SpawnMob(17371579,180):updateClaim(player);
         end
     end
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
     
     if (player:getVar("darkLegacyCS") == 5 and player:hasKeyItem(DARKSTEEL_FORMULA) == false) then
         player:addKeyItem(DARKSTEEL_FORMULA);
-        player:messageSpecial(KEYITEM_OBTAINED,DARKSTEEL_FORMULA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,DARKSTEEL_FORMULA);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,6 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

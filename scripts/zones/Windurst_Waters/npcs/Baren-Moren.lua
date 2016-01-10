@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Baren-Moren
---    Starts and Finishes Quest: Hat in Hand
---    Working 100%
---  @zone = 238
---  @pos = -66 -3 -148
+-- Area: Windurst Waters
+--  NPC: Baren-Moren
+-- Starts and Finishes Quest: Hat in Hand
+-- Working 100%
+-- @zone = 238
+-- @pos = -66 -3 -148
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -32,8 +32,8 @@ end;
 
 function onTrigger(player,npc)
     
---    player:delQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
---    player:addFame(WINDURST,WIN_FAME*200);   -- ================== FOR TESTING ONLY =====================
+-- player:delQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
+-- player:addFame(WINDURST,WIN_FAME*200);   -- ================== FOR TESTING ONLY =====================
     
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
@@ -43,8 +43,8 @@ function onTrigger(player,npc)
     pfame = player:getFameLevel(WINDURST);
     if (hatstatus == 0) then
         player:startEvent(0x0030); -- Quest Offered
---    elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
---        player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
+-- elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_count") == 0) then
+-- player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
     elseif (hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) then
         --     Variable to track quest progress
         --     1 = Machitata       @pos 163 0 -22
@@ -109,8 +109,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -118,40 +118,40 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     if (csid == 0x0030 and option == 1) then
         player:addQuest(WINDURST,HAT_IN_HAND);
         player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,NEW_MODEL_HAT);
     elseif (csid == 0x0031 and option == 1) then
         player:setVar("QuestHatInHand_var2",1);
         player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,NEW_MODEL_HAT);
     elseif (csid == 0x0034 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
+        player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12543);
     elseif (csid == 0x0034 and option >= 1) then
         if (option == 5) then          --    80 = HAT + FULL REWARD  =  8 NPCS - Option 5
             player:addGil(GIL_RATE*500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*500);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(text.ITEM_OBTAINED,12543);
             end
         elseif (option == 4) then     -- 50 = HAT + GOOD REWARD  >= 6 NPCS - Option 4
             player:addGil(GIL_RATE*400);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*400);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(text.ITEM_OBTAINED,12543);
             end
         elseif (option == 3) then     -- 30 = PARTIAL REWARD -   >= 4 NPCS - Option 3    
             player:addGil(GIL_RATE*300);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*300);
         elseif (option == 2) then     -- 20 = POOR REWARD         >= 2 NPCS - Option 2    
             player:addGil(GIL_RATE*150);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
---        else (option == 1) then     -- 0/nill = NO REWARD      >= 0 NPCS - Option 1
+            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*150);
+-- else (option == 1) then     -- 0/nill = NO REWARD      >= 0 NPCS - Option 1
         end
         if (hatstatus == 1) then
             player:addFame(WINDURST,WIN_FAME*75);    

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Magic Flagon
+-- MOB: Magic Flagon
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner Forest
--- NPC:  Mionie
+--  NPC: Mionie
 -- Type: Outpost Vendor
 -- @pos 54 0 -11 104
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
     
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     if (option == 1) then
         ShowOPVendorShop(player);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Goblin Artificer
+-- MOB: Goblin Artificer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

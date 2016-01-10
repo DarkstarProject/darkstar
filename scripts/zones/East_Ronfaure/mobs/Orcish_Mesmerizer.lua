@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Orcish Mesmerizer
+-- MOB: Orcish Mesmerizer
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

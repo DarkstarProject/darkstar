@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
--- NPC:  ??? (Spawn Big Bomb)
+--  NPC: ??? (Spawn Big Bomb)
 -- @pos -233.830 13.613 286.714 62
 -----------------------------------
 package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(BLUE_FLAMES);
+    player:messageSpecial(text.BLUE_FLAMES);
 end;
 
 -----------------------------------

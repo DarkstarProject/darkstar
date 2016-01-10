@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Used In Quest: Whence Blows the Wind 
 -- @pos -100 -63 58 151
 -----------------------------------
@@ -27,9 +27,9 @@ function onTrigger(player,npc)
     
     if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(YAGUDO_CREST) == false) then
         player:addKeyItem(YAGUDO_CREST);
-        player:messageSpecial(KEYITEM_OBTAINED, YAGUDO_CREST);
+        player:messageSpecial(text.KEYITEM_OBTAINED, YAGUDO_CREST);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

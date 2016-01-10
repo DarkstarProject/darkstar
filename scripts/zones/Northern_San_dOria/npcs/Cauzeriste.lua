@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Cauzeriste
+--  NPC: Cauzeriste
 -- Guild Merchant NPC: Woodworking Guild 
 -- @pos -175.946 3.999 280.301 231
 -----------------------------------
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(513,6,21,0)) then
-        player:showText(npc,CAUZERISTE_SHOP_DIALOG);
+        player:showText(npc, text.CAUZERISTE_SHOP_DIALOG);
     end
 end; 
 
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,10 +43,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

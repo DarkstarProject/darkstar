@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Caedarva Mire
---  NPC:  Nareema
---  Type: Assault
---  @pos 518.387 -24.707 -467.297 79
+-- Area: Caedarva Mire
+--  NPC: Nareema
+-- Type: Assault
+-- @pos 518.387 -24.707 -467.297 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0095 and option == 1) then
        player:delCurrency("imperial_standing", 50);
        player:addKeyItem(ASSAULT_ARMBAND);
-       player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
+       player:messageSpecial(text.KEYITEM_OBTAINED,ASSAULT_ARMBAND);   
     elseif (csid == 0x0005 and option == 1) then
         player:delKeyItem(SUPPLIES_PACKAGE);
         player:setVar("TOAUM2",1);

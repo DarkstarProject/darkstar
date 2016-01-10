@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Qiji
+--  NPC: Qiji
 -- Starts & Ends Quest: Forever to Hold
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x7b) then
         player:addQuest(BASTOK,FOREVER_TO_HOLD);
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x7e) then
         player:addTitle(QIJIS_FRIEND);
         player:addGil(GIL_RATE*300);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*300);
         player:addFame(BASTOK,BAS_FAME*80);
         player:completeQuest(BASTOK,FOREVER_TO_HOLD);
     end

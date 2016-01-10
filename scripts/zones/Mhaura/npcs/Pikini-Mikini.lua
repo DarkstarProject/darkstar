@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Mhaura
---    NPC:  Pikini-Mikini
---    Standard Merchant NPC
---    @pos -48 -4 30 249
+-- Area: Mhaura
+--  NPC: Pikini-Mikini
+-- Standard Merchant NPC
+-- @pos -48 -4 30 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -23,9 +23,11 @@ end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,PIKINIMIKINI_SHOP_DIALOG);
+    player:showText(npc, text.PIKINIMIKINI_SHOP_DIALOG);
 
-stock = {0x1036,2335,  --Eye Drops
+    local stock =
+    {
+    0x1036,2335,  --Eye Drops
          0x1034,284,   --Antidote
          0x1037,720,   --Echo Drops
          0x1010,819,   --Potion
@@ -37,7 +39,7 @@ stock = {0x1036,2335,  --Eye Drops
          0x14b3,133,   --Salsa
          0x0b33,9000}  --Mhaura Waystone
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -45,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

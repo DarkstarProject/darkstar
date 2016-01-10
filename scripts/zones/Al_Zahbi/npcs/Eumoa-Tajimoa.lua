@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Eumoa-Tajimoa
---  Type: Standard NPC
+-- Area: Al Zahbi
+--  NPC: Eumoa-Tajimoa
+-- Type: Standard NPC
 -- @zone: 48
---  @pos 19.275 -1 55.182
+-- @pos 19.275 -1 55.182
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

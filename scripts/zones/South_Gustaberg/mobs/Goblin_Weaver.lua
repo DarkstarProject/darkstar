@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Goblin Weaver
+-- MOB: Goblin Weaver
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

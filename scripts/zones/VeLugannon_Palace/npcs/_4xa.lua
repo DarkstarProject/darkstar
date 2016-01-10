@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: VeLugannon Palace
--- NPC:  Door (Blue)
+--  NPC: Door (Blue)
 -- @pos -340.000 -2.974 240.000 177
 -----------------------------------
 package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,6 +37,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: ???
+--  NPC: ???
 -- Finish Quest: Borghertz's Hands (AF Hands, Many job)
 -- @zone 246
 -- @pos -51 8 -4
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,18 +54,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0014 and option == 1) then 
         player:setVar("BorghertzCS",2);
     elseif (csid == 0x0030) then 
         NumQuest = 43 + player:getVar("BorghertzAlreadyActiveWithJob");
         NumHands = 13960 + player:getVar("BorghertzAlreadyActiveWithJob");
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,NumHands);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,NumHands);
         else 
             player:addItem(NumHands);
-            player:messageSpecial(ITEM_OBTAINED,NumHands);
+            player:messageSpecial(text.ITEM_OBTAINED,NumHands);
             player:delKeyItem(OLD_GAUNTLETS);
             player:delKeyItem(SHADOW_FLAMES);
             player:setVar("BorghertzCS",0);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Greater Pugil
+-- MOB: Greater Pugil
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

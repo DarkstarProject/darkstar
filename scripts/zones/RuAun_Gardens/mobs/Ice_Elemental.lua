@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: RuAun Gardens
---  MOB: Ice Elemental
+-- MOB: Ice Elemental
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

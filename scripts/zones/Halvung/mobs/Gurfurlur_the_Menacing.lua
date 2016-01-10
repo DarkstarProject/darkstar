@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
---  MOB: Gurfurlur the Menacing
+-- MOB: Gurfurlur the Menacing
 -----------------------------------
 
 require("scripts/globals/titles");

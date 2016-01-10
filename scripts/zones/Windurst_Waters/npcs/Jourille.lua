@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Jourille
+--  NPC: Jourille
 -- Only sells when Windurst controlls Ronfaure Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(RONFAURE);
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,JOURILLE_CLOSED_DIALOG);
+        player:showText(npc, text.JOURILLE_CLOSED_DIALOG);
     else
-        player:showText(npc,JOURILLE_OPEN_DIALOG);
+        player:showText(npc, text.JOURILLE_OPEN_DIALOG);
 
         stock = {
             0x027F,   110,   --Chestnut
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

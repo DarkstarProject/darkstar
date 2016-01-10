@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: May Fly
+-- MOB: May Fly
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

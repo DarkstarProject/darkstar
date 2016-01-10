@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Palborough Mines
--- NPC:  Refiner Lever
+--  NPC: Refiner Lever
 -- Involved In Mission: Journey Abroad
 -- @zone 143
 -- @pos 180 -32 167
@@ -28,13 +28,13 @@ function onTrigger(player,npc)
 
     if (refiner_output > 0 and player:getFreeSlotsCount() >= 1) then
         player:setVar("refiner_output",refiner_output - 1)
-        player:messageSpecial(SOMETHING_FALLS_OUT_OF_THE_MACHINE);
+        player:messageSpecial(text.SOMETHING_FALLS_OUT_OF_THE_MACHINE);
         player:addItem(599);
-        player:messageSpecial(ITEM_OBTAINED,599,1); 
+        player:messageSpecial(text.ITEM_OBTAINED,599,1); 
     elseif (refiner_output > 0 and player:getFreeSlotsCount() == 0) then
-        player:messageSpecial(YOU_CANT_CARRY_ANY_MORE_ITEMS);
+        player:messageSpecial(text.YOU_CANT_CARRY_ANY_MORE_ITEMS);
     else
-        player:messageSpecial(THE_MACHINE_SEEMS_TO_BE_WORKING);
+        player:messageSpecial(text.THE_MACHINE_SEEMS_TO_BE_WORKING);
     end
 
 end;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

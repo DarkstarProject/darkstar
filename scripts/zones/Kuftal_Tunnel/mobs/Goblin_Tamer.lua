@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Goblin Tamer
+-- MOB: Goblin Tamer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Mold Bats
+-- MOB: Mold Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

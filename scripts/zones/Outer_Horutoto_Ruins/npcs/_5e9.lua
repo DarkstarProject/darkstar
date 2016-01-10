@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- NPC:  Gate: Magical Gizmo
+--  NPC: Gate: Magical Gizmo
 -- Involved In Mission: The Heart of the Matter
 -- @pos 584 0 -660 194
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
        player:getVar("MissionStatus") == 3 and player:hasKeyItem(SOUTHEASTERN_STAR_CHARM)) then
         player:startEvent(0x002c);
     else
-        player:messageSpecial(DOOR_FIRMLY_SHUT);
+        player:messageSpecial(text.DOOR_FIRMLY_SHUT);
     end
     
     return 1;
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,13 +50,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- If we just finished the cutscene for Windurst Mission 1-2
     if (csid == 0x002c) then
         player:setVar("MissionStatus",4);
-        player:messageSpecial(ALL_G_ORBS_ENERGIZED);
+        player:messageSpecial(text.ALL_G_ORBS_ENERGIZED);
         -- Remove the charm that opens this door
         player:delKeyItem(SOUTHEASTERN_STAR_CHARM);
     end

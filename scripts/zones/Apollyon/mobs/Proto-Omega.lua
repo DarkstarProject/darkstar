@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon (Central)
---  MOB: Proto-Omega
+-- MOB: Proto-Omega
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------

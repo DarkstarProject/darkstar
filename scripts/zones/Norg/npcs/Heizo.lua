@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Heizo
+--  NPC: Heizo
 -- Starts and Ends Quest: Like Shining Leggings
 -- @pos -1 -5 25 252
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,15 +73,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x007f) then
         player:addQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);
     elseif (csid == 0x0081) then
         player:tradeComplete();
         player:addItem(4958); -- Scroll of Dokumori: Ichi
-        player:messageSpecial(ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
+        player:messageSpecial(text.ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
         player:addFame(OUTLANDS,NORG_FAME*100);
         player:addTitle(LOOKS_GOOD_IN_LEGGINGS);
         player:setVar("shiningLeggings_nb",0);

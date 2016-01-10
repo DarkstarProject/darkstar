@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux_Coast
---  MOB: Fomor Monk
+-- MOB: Fomor Monk
 -----------------------------------
 
 

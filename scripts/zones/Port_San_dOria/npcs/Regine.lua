@@ -22,13 +22,13 @@ function onTrade(player,npc,trade)
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(532,1);
             player:tradeComplete();
-            player:messageSpecial(ITEM_OBTAINED,532);
+            player:messageSpecial(text.ITEM_OBTAINED,532);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
         end
     elseif (trade:hasItemQty(532,1) == true and count == 1) then
         if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     elseif (trade:hasItemQty(593,1) == true and count == 1) then
         if (player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM) == QUEST_ACCEPTED) then
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 603) then
         player:completeQuest(SANDORIA,FLYERS_FOR_REGINE);
         player:addGil(GIL_RATE*440)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*440);
         player:addTitle(ADVERTISING_EXECUTIVE);
         player:addFame(SANDORIA,SAN_FAME*30);
         player:setVar("tradeAnswald",0);

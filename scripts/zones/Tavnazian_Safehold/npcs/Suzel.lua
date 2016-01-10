@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Tavnazian Safehold
+-- Area: Tavnazian Safehold
 --  NPC: Suzel
---  Type: Item Deliverer
---  @zone: 26
---  @pos -72.701 -20.25 -64.058
+-- Type: Item Deliverer
+-- @zone: 26
+-- @pos -72.701 -20.25 -64.058
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

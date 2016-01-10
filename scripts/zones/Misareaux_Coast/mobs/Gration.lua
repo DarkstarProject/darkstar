@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Misareaux Coast
---  MOB: Gration
+-- MOB: Gration
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: South Gustaberg
---  MOB: Ornery Sheep
+-- MOB: Ornery Sheep
 -- Note: Place holder Carnero
 -----------------------------------
 

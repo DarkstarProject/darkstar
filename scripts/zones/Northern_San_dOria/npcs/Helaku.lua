@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Helaku
+--  NPC: Helaku
 -- Involved in Missions 2-3
 -- @zone 231
 -- @pos 49 -2 -12
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         elseif (missionStatus == 2) then
             player:startEvent(0x0218);
         elseif (missionStatus == 3) then
-            player:showText(npc,HELAKU_DIALOG);
+            player:showText(npc, text.HELAKU_DIALOG);
         -- Bastok Mission 2-3 Part II - Windurst > San d'Oria
         elseif (missionStatus == 7) then
             player:startEvent(0x0219);
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",11);
         player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:messageSpecial(text.KEYITEM_OBTAINED,KINDRED_REPORT);
         player:delKeyItem(KINDRED_CREST);
     end
 end;

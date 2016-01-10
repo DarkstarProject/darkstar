@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Chaka Skitimah
+--  NPC: Chaka Skitimah
 -- Standard Info NPC
 -----------------------------------
 

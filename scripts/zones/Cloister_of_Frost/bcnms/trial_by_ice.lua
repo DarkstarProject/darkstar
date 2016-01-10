@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(TUNING_FORK_OF_ICE);
         player:addKeyItem(WHISPER_OF_FROST);
         player:addTitle(HEIR_OF_THE_GREAT_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_FROST);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WHISPER_OF_FROST);
     end
     
 end;

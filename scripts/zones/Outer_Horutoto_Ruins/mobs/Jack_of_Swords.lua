@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
---  MOB: Jack of Swords
+-- MOB: Jack of Swords
 -----------------------------------
 
 require("scripts/globals/titles");

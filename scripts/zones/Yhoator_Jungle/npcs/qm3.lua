@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC:  ??? (qm3)
+--  NPC: ??? (qm3)
 -- Involved in Quest: True will
 -- @pos 203 0.1 82 124
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         if (player:getVar("trueWillKilledNM") >= 1) then
             if (GetMobAction(17285544) == 0 and GetMobAction(17285545) == 0 and GetMobAction(17285546) == 0) then
                 player:addKeyItem(OLD_TRICK_BOX);
-                player:messageSpecial(KEYITEM_OBTAINED,OLD_TRICK_BOX);
+                player:messageSpecial(text.KEYITEM_OBTAINED,OLD_TRICK_BOX);
                 player:setVar("trueWillKilledNM",0);
             end
         else
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             SpawnMob(17285546,150):updateClaim(player); -- Kappa Biwa
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

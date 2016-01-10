@@ -1,8 +1,8 @@
 -----------------------------------
---      Area: Bastok Mines
---      NPC:  Emaliveulaux
---      Only sells when Bastok controls the Tavnazian Archipelago
---      Only available to those with CoP Ch. 4.1 or higher
+-- Area: Bastok Mines
+--  NPC: Emaliveulaux
+-- Only sells when Bastok controls the Tavnazian Archipelago
+-- Only available to those with CoP Ch. 4.1 or higher
 -----------------------------------
 
 require("scripts/globals/events/harvest_festivals");
@@ -30,9 +30,9 @@ cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
 if (cop >= 40) then
         if (RegionOwner ~= BASTOK) then
-                player:showText(npc,EMALIVEULAUX_CLOSED_DIALOG);
+                player:showText(npc, text.EMALIVEULAUX_CLOSED_DIALOG);
         else
-                player:showText(npc,EMALIVEULAUX_OPEN_DIALOG);
+                player:showText(npc, text.EMALIVEULAUX_OPEN_DIALOG);
 
                 stock = {0x05f3,290,  --Apple Mint
                                  0x142c,1945, --Ground Wasabi
@@ -42,7 +42,7 @@ if (cop >= 40) then
                 showShop(player,BASTOK,stock);
         end
 else
-        player:showText(npc,EMALIVEULAUX_COP_NOT_COMPLETED);
+        player:showText(npc, text.EMALIVEULAUX_COP_NOT_COMPLETED);
 end
 end;
 
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

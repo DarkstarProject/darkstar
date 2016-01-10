@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
---  MOB: Goblin Pathfinder
+-- MOB: Goblin Pathfinder
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Kuzah Hpirohpon
+--  NPC: Kuzah Hpirohpon
 -- Guild Merchant NPC: Clothcrafting Guild
 -- @pos -80.068 -3.25 -127.686 241
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5152,6,21,0)) then
-        player:showText(npc,text.KUZAH_HPIROHPON_DIALOG);
+        player:showText(npc, text.text.KUZAH_HPIROHPON_DIALOG);
     end
 end;
 

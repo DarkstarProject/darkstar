@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Wind Bats
+-- MOB: Wind Bats
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

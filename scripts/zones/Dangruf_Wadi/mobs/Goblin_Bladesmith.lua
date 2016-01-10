@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Bladesmith
+-- MOB: Goblin Bladesmith
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

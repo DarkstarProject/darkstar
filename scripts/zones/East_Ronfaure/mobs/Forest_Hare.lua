@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Forest Hare
+-- MOB: Forest Hare
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Granite Door
+--  NPC: Granite Door
 -- Leads to painbrush room @ F-7
 -- @pos 60 0.1 8 159
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 function onTrigger(player,npc)
     
     if (player:getZPos() < 11) then
-        player:messageSpecial(THE_DOOR_IS_LOCKED,1136);
+        player:messageSpecial(text.THE_DOOR_IS_LOCKED,1136);
     else
         player:startEvent(0x002F);
     end
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,12 +52,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002E) then
         player:tradeComplete();
-        player:messageSpecial(YOUR_KEY_BREAKS,0000,1136);
+        player:messageSpecial(text.YOUR_KEY_BREAKS,0000,1136);
     end
     
 end;

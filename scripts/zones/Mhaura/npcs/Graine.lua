@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Graine
---    Standard Merchant NPC
+-- Area: Mhaura
+--  NPC: Graine
+-- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -22,9 +22,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,GRAINE_SHOP_DIALOG);
+    player:showText(npc, text.GRAINE_SHOP_DIALOG);
 
-stock = {0x3098,457,  --Leather Bandana
+    local stock =
+    {
+    0x3098,457,  --Leather Bandana
          0x30a0,174,  --Bronze Cap
          0x30a1,1700, --Brass Cap
          0x3118,698,  --Leather Vest
@@ -40,7 +42,7 @@ stock = {0x3098,457,  --Leather Bandana
          0x32a0,117,  --Bronze Leggings
          0x32a1,1140} --Brass Leggings
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -48,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,9 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

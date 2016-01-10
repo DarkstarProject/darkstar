@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Deathwatch Beetle
+-- MOB: Deathwatch Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

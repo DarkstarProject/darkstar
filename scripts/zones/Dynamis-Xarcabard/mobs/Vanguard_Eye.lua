@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Vanguard_Eye
+--  NPC: Vanguard_Eye
 -- Map Position: http://images.wikia.com/ffxi/images/c/cc/Xar.jpg
 -----------------------------------
 

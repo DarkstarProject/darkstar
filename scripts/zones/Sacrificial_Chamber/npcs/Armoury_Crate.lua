@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
--- NPC:  Armoury Crate
+--  NPC: Armoury Crate
 -------------------------------------
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------

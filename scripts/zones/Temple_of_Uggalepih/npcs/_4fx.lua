@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Granite Door
+--  NPC: Granite Door
 -- @pos 340 0.1 329 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
@@ -22,11 +22,11 @@ function onTrade(player,npc,trade)
             
         else
             player:tradeComplete();
-            player:messageSpecial(YOUR_KEY_BREAKS,0,1143);
+            player:messageSpecial(text.YOUR_KEY_BREAKS,0,1143);
             player:startEvent(0x0019);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(text.NOTHING_HAPPENS);
     end    
 end;
 -----------------------------------
@@ -36,7 +36,7 @@ end;
 function onTrigger(player,npc)
 print("hi");
     if (player:getZPos() < 332) then
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(text.DOOR_LOCKED);
     else
         player:startEvent(0x001a);
     end
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -58,14 +58,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0017) then
         player:setPos(340,0,333);
         player:delKeyItem(BLANK_BOOK_OF_THE_GODS);
         player:addKeyItem(BOOK_OF_THE_GODS);
-        player:messageSpecial(KEYITEM_OBTAINED,BOOK_OF_THE_GODS);
+        player:messageSpecial(text.KEYITEM_OBTAINED,BOOK_OF_THE_GODS);
         player:setVar("MissionStatus",5);
     end
     

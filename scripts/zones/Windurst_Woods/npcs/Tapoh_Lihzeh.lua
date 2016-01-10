@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC: Tapoh Lihzeh
---    Starts & Finishes Repeatable Quest: Paying Lip Service
+-- Area: Windurst Woods
+--  NPC: Tapoh Lihzeh
+-- Starts & Finishes Repeatable Quest: Paying Lip Service
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01dd and option == 1) then
         player:addQuest(WINDURST,PAYING_LIP_SERVICE);
@@ -93,10 +93,10 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:addGil(GIL_RATE*150);
-            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*150);
+            player:messageSpecial(text.text.GIL_OBTAINED,GIL_RATE*150);
         else
             player:addGil(GIL_RATE*200);
-            player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*200);
+            player:messageSpecial(text.text.GIL_OBTAINED,GIL_RATE*200);
         end
         player:tradeComplete();
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Lamia No 27
+-- MOB: Lamia No 27
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");

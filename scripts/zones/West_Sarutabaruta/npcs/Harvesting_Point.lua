@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: West Sarutabaruta
---  NPC:  Harvesting Point
+-- Area: West Sarutabaruta
+--  NPC: Harvesting Point
 -------------------------------------
 
 require("scripts/globals/harvesting");
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(text.HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(text.text.HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

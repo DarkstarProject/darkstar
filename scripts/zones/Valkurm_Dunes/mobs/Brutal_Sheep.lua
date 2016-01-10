@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Brutal Sheep
+-- MOB: Brutal Sheep
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

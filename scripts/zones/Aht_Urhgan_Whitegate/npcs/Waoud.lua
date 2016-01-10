@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Waoud
+--  NPC: Waoud
 -- Standard Info NPC
 -- Involved in quest: An Empty Vessel
 -- @pos 65 -6 -78 50

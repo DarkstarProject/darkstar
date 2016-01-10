@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis-Qufim
--- NPC:  Manifest_Icon
+--  NPC: Manifest_Icon
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
 -----------------------------------

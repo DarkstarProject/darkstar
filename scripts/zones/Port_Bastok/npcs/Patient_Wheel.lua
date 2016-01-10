@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Port Bastok
---  NPC:  Patient Wheel
---  Type: Quest NPC
---  @pos -107.988 3.898 52.557 236
+-- Area: Port Bastok
+--  NPC: Patient Wheel
+-- Type: Quest NPC
+-- @pos -107.988 3.898 52.557 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

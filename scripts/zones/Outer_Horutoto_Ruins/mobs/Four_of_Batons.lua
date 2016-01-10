@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Four of Batons
+-- MOB: Four of Batons
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

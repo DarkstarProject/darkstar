@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Tiny Mandragora
+-- MOB: Tiny Mandragora
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

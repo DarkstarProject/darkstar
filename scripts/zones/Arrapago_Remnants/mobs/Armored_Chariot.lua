@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Armored_Chariot
+-- MOB: Armored_Chariot
 -----------------------------------
 
 require("scripts/globals/titles");

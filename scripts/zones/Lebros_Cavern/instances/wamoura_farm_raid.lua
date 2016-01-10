@@ -12,8 +12,8 @@ require("scripts/zones/Lebros_Cavern/IDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(Lebros.text.ASSAULT_27_START, 27);
-    player:messageSpecial(Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(text.Lebros.text.ASSAULT_27_START, 27);
+    player:messageSpecial(text.Lebros.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;    
 
 -----------------------------------
@@ -54,7 +54,7 @@ function onInstanceTimeUpdate(instance, elapsed)
         end
         if (wipe) then
             for i,v in pairs(players) do
-                v:messageSpecial(Lebros.text.PARTY_FALLEN, 3);
+                v:messageSpecial(text.Lebros.text.PARTY_FALLEN, 3);
             end
             instance:setWipeTime(elapsed);
         end
@@ -87,9 +87,9 @@ function onInstanceTimeUpdate(instance, elapsed)
     if (message ~= 0) then
         for i,v in pairs(players) do
             if (timeRemaining >= 60) then
-                v:messageSpecial(Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
+                v:messageSpecial(text.Lebros.text.TIME_REMAINING_MINUTES, timeRemaining / 60);
             else
-                v:messageSpecial(Lebros.text.TIME_REMAINING_SECONDS, timeRemaining);
+                v:messageSpecial(text.Lebros.text.TIME_REMAINING_SECONDS, timeRemaining);
             end
         end
         instance:setLastTimeUpdate(message);
@@ -105,7 +105,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Lebros.text.MISSION_FAILED,10,10);
+        v:messageSpecial(text.Lebros.text.MISSION_FAILED,10,10);
         v:startEvent(0x66);
     end
 end;
@@ -131,7 +131,7 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Lebros.text.RUNE_UNLOCKED, 7, 8);
+        v:messageSpecial(text.Lebros.text.RUNE_UNLOCKED, 7, 8);
     end
     
     local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);

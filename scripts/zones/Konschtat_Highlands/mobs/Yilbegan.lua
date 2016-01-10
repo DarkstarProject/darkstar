@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  VNM: Yilbegan
+-- VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");

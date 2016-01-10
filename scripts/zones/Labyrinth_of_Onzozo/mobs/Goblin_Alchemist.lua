@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Goblin Alchemist
+-- MOB: Goblin Alchemist
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
 

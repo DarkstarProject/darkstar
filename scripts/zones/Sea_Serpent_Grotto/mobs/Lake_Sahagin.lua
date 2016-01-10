@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Lake Sahagin
+-- MOB: Lake Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

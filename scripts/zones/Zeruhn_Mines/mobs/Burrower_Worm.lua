@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Zeruhn Mines (172)
---  Mob: Burrower Worm
+-- Mob: Burrower Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

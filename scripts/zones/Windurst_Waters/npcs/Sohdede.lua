@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters
---   NPC: Sohdede
---  Type: Standard NPC
+-- Area: Windurst Waters
+--  NPC: Sohdede
+-- Type: Standard NPC
 -- @zone: 238
---  @pos -60.601 -7.499 111.639
+-- @pos -60.601 -7.499 111.639
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

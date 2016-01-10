@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Ka
+-- MOB: Ka
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

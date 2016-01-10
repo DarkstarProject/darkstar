@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Shoal Pugil
+-- MOB: Shoal Pugil
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

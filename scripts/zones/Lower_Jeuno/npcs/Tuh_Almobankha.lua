@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Tuh Almobankha
+--  NPC: Tuh Almobankha
 -- Title Change NPC
 -- @pos -14 0 -61 245
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Gekko
+--  NPC: Gekko
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,GEKKO_SHOP_DIALOG);
+    player:showText(npc, text.GEKKO_SHOP_DIALOG);
 
-stock = {0x1036,2387,        -- Eye Drops 
+    local stock =
+    {
+    0x1036,2387,        -- Eye Drops 
      0x1034,290,        -- Antidote      
      0x1037,367,        -- Echo Drops     
      0x1010,837,        -- Potion     
@@ -33,7 +35,7 @@ stock = {0x1036,2387,        -- Eye Drops
      0x00bc,31224,        -- Acolyte's Grief
      0x13dd,50400}        -- Scroll of Regen IV
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -41,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,9 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

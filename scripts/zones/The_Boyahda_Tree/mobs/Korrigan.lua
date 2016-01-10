@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
---  MOB: Korrigan
+-- MOB: Korrigan
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

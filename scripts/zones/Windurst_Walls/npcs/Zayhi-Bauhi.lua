@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Windurst Walls
---  Location: X:-91  Y:-9  Z:109
---    NPC:  Zayhi-Bauhi
---    Working 100%
---  Starts and Finishes Quest: To Bee or Not to Bee?
+-- Area: Windurst Walls
+-- Location: X:-91  Y:-9  Z:109
+--  NPC: Zayhi-Bauhi
+-- Working 100%
+-- Starts and Finishes Quest: To Bee or Not to Bee?
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -63,24 +63,24 @@ function onTrigger(player,npc)
     end
 end;
 
---        Event ID List for NPC
---      player:startEvent(0x012B); -- Normal speach
---      player:startEvent(0x003D); -- Normal speach
---      player:startEvent(0x0040); -- Start quest "Too Bee or Not Too Be" (Speech given with lots of coughing)
---      player:startEvent(0x0045); -- After Honey#1: Clearing throat
---      player:startEvent(0x0046); -- After Honey#2: Tries to speak again... coughs
---      player:startEvent(0x0049); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
---      player:startEvent(0x004A); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
---      player:startEvent(0x004B); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
---      player:startEvent(0x004E); -- ToBee After Quest Finish but before zone (tooth still hurts)
+-- Event ID List for NPC
+-- player:startEvent(0x012B); -- Normal speach
+-- player:startEvent(0x003D); -- Normal speach
+-- player:startEvent(0x0040); -- Start quest "Too Bee or Not Too Be" (Speech given with lots of coughing)
+-- player:startEvent(0x0045); -- After Honey#1: Clearing throat
+-- player:startEvent(0x0046); -- After Honey#2: Tries to speak again... coughs
+-- player:startEvent(0x0049); -- After Honey#3: Tries to speak again... coughs..asked for more Honey
+-- player:startEvent(0x004A); -- After Honey#4: Feels like its getting a lot better but there is still iritaion
+-- player:startEvent(0x004B); -- After Honey#5: ToBee quest Finish (tooth hurts from all the Honey)
+-- player:startEvent(0x004E); -- ToBee After Quest Finish but before zone (tooth still hurts)
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0040) then
         player:setVar("ToBeeOrNot_var",10);
@@ -113,6 +113,3 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     end
 end;
-
-
-

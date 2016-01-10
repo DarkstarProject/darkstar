@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Tower Bats
+-- MOB: Tower Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

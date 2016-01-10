@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Rock Lizard
+-- MOB: Rock Lizard
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

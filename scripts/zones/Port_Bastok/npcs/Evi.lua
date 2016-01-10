@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Evi
+--  NPC: Evi
 -- Starts Quests: Past Perfect (100%)
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0068 and player:getVar("PastPerfectVar") == 0) then
         player:setVar("PastPerfectVar",1);
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(TATTERED_MISSION_ORDERS);
         player:setVar("PastPerfectVar",0);
         player:addItem(12560);
-        player:messageSpecial(ITEM_OBTAINED,12560);
+        player:messageSpecial(text.ITEM_OBTAINED,12560);
         player:addFame(BASTOK,BAS_FAME*110);
         player:completeQuest(BASTOK,PAST_PERFECT);
     end

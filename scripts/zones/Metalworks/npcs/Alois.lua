@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Alois
+--  NPC: Alois
 -- Involved in Missions: Wading Beasts
 -- @pos 96 -20 14 237
 -----------------------------------
@@ -32,15 +32,15 @@ end;
 
 function onTrigger(player,npc)
 if (player:getCurrentMission(BASTOK) == THE_SALT_OF_THE_EARTH and player:getVar("BASTOK91") == 0) then
-player:startEvent(0x0305);
+    player:startEvent(0x0305);
 elseif (player:getVar("BASTOK91") == 1) then
-player:startEvent(0x0306);
+    player:startEvent(0x0306);
 elseif (player:getVar("BASTOK91") == 3) then
-player:startEvent(0x0307);
+    player:startEvent(0x0307);
 elseif (player:getVar("BASTOK91") == 4) then
-player:startEvent(0x0308);
+    player:startEvent(0x0308);
 else    
-player:startEvent(0x0172);
+    player:startEvent(0x0172);
 end    
 end;
 
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0174 or csid == 0x0175) then
         finishMissionTimeline(player,1,csid,option);

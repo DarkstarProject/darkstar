@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Champaign Coeurl
+-- MOB: Champaign Coeurl
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

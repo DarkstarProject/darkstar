@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Retto-Marutto
+--  NPC: Retto-Marutto
 -- Guild Merchant NPC: Bonecrafting Guild
 -- @pos -6.142 -6.55 -132.639 241
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(5142,8,23,3)) then
-        player:showText(npc,text.RETTO_MARUTTO_DIALOG);
+        player:showText(npc, text.text.RETTO_MARUTTO_DIALOG);
     end
 end;
 

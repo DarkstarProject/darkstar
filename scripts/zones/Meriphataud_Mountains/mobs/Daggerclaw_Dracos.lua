@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Daggerclaw Dracos
+-- MOB: Daggerclaw Dracos
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

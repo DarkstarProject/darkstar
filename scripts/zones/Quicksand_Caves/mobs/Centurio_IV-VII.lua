@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Centurio IV-VII
+-- MOB: Centurio IV-VII
 -- Pops in Bastok mission 8-1 "The Chains that Bind Us"
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;

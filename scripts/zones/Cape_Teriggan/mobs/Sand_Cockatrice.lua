@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Sand Cockatrice
+-- MOB: Sand Cockatrice
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

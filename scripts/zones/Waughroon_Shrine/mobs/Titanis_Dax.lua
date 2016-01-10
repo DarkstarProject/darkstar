@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Titanis_Dax
+-- MOB: Titanis_Dax
 -----------------------------------
 
 

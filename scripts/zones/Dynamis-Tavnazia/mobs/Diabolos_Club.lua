@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Diabolos_Club
+-- MOB: Diabolos_Club
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -20,7 +20,7 @@ end;
 function onMobDeath(mob, killer, ally)
     if (ally:hasKeyItem(DYNAMIS_TAVNAZIA_SLIVER ) == false) then
         ally:addKeyItem(DYNAMIS_TAVNAZIA_SLIVER);
-        ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
+        ally:messageSpecial(text.KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
     end
     -- despawn diabolos 's pet
     if (GetMobAction(16949253)~=0) then

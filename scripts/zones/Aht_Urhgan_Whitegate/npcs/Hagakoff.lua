@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Hagakoff
+--  NPC: Hagakoff
 -- Standard Merchant NPC
 -- Partitionally Implemented
 -- Difficult Shop Script needed
@@ -24,9 +24,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,HAGAKOFF_SHOP_DIALOG);
+    player:showText(npc, text.HAGAKOFF_SHOP_DIALOG);
 
-stock = {0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
+    local stock =
+    {
+    0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
      0x4010,67760,        -- Darksteel Katars
      0x4023,45760,        -- Patas (Not available if beastmen have the AC.)
      0x4040,156,        -- Bronze Dagger
@@ -44,7 +46,7 @@ stock = {0x400f,15448,        -- Katars (Not available if beastmen have the AC.)
      0x4281,1740,        -- Chestnut Club (Not available if beastmen have the AC.)
      0x4753,238}        -- Angon
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -52,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,9 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

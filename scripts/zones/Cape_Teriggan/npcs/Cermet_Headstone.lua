@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
--- NPC:  Cermet Headstone
+--  NPC: Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Wind Headstone)
 -- @pos -107 -8 450 113
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
              player:addQuest(OUTLANDS,WANDERING_SOULS);
              player:startEvent(0x00CA,949);
         else
-             player:messageSpecial(NOTHING_HAPPENS);     
+             player:messageSpecial(text.NOTHING_HAPPENS);     
         end     
     end    
 end; 
@@ -46,20 +46,20 @@ function onTrigger(player,npc)
             -- Check and see if all fragments have been found (no need to check wind and dark frag)
             if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
                player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(LIGHTNING_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
-                player:messageSpecial(FOUND_ALL_FRAGS,WIND_FRAGMENT);
+                player:messageSpecial(text.FOUND_ALL_FRAGS,WIND_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,WIND_FRAGMENT);
+                player:messageSpecial(text.KEYITEM_OBTAINED,WIND_FRAGMENT);
             end
         else
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,WIND_FRAGMENT);
+            player:messageSpecial(text.ALREADY_OBTAINED_FRAG,WIND_FRAGMENT);
         end
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
+        player:messageSpecial(text.ZILART_MONUMENT);
     else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
+        player:messageSpecial(text.CANNOT_REMOVE_FRAG);
     end
     
 end; 
@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -78,19 +78,19 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17240414,300):updateClaim(player); -- Axesarion the Wanderer
         SetServerVariable("[ZM4]Wind_Headstone_Active",0);
     elseif (csid == 0x00CA) then
         if (player:getFreeSlotsCount() == 0) then
-             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13248);
+             player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13248);
         else     
             player:tradeComplete();
             player:addItem(13248);        
-            player:messageSpecial(ITEM_OBTAINED,13248);            
+            player:messageSpecial(text.ITEM_OBTAINED,13248);            
             player:completeQuest(OUTLANDS,WANDERING_SOULS);            
             player:addTitle(BEARER_OF_BONDS_BEYOND_TIME);    
         end            

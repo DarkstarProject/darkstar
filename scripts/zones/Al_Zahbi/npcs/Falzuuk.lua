@@ -70,21 +70,21 @@ function onEventFinish(player,csid,option)
             local duration = getSanctionDuration(player);
             local subPower = 0; -- getImperialDefenseStats()
             player:addStatusEffect(EFFECT_SANCTION,option / 16,0,duration,subPower); -- effect size 1 = regen, 2 = refresh, 3 = food.
-            player:messageSpecial(SANCTION);
+            player:messageSpecial(text.SANCTION);
 
         elseif (option % 256 == 17) then -- player bought one of the maps
             id = 1862 + (option - 17) / 256
             player:addKeyItem(id);
-            player:messageSpecial(KEYITEM_OBTAINED,id);
+            player:messageSpecial(text.KEYITEM_OBTAINED,id);
             player:delCurrency("imperial_standing", 1000);
         elseif (option <= 2049) then -- player bought item
             item, price = getISPItem(option)
             if (player:getFreeSlotsCount() > 0) then
                 player:delCurrency("imperial_standing", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item);
+                player:messageSpecial(text.ITEM_OBTAINED,item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+                player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,item);
             end
         end
     end

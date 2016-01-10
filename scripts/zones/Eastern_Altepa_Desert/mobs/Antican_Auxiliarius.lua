@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Auxiliarius
+-- MOB: Antican Auxiliarius
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

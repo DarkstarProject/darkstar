@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Zeid
+-- MOB: Zeid
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
 

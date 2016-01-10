@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Bhoy Yhupplo
---  Type: Assault Mission Giver
---  @pos 127.474 0.161 -30.418 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Bhoy Yhupplo
+-- Type: Assault Mission Giver
+-- @pos 127.474 0.161 -30.418 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(ILRUSI_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,ILRUSI_ASSAULT_ORDERS);
+            player:messageSpecial(text.KEYITEM_OBTAINED,ILRUSI_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
             end
             
             player:addItem(itemID);
-            player:messageSpecial(ITEM_OBTAINED,itemID);
+            player:messageSpecial(text.ITEM_OBTAINED,itemID);
             player:delAssaultPoint(LEBROS_ASSAULT_POINT,price);]]
         end
     end

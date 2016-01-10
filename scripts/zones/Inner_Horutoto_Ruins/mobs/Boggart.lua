@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Boggart
+-- MOB: Boggart
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

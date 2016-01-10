@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10045 and option == -1) then
         player:addKeyItem(LIMIT_BREAKER);
-        player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LIMIT_BREAKER);
     elseif (csid == 10045) then
         if (option == 5) then
             player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
@@ -108,14 +108,14 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(80);
         player:completeQuest(JEUNO,NEW_WORLDS_AWAIT);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_80);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_80);
     elseif (csid == 10136) then
         player:tradeComplete();
         player:setMerits(meritCount - 4);
         player:addFame(JEUNO,50);
         player:levelCap(85);
         player:completeQuest(JEUNO,EXPANDING_HORIZONS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_85);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_85);
     elseif (csid == 10137) then
         player:tradeComplete();
         player:setMerits(meritCount - 5);
@@ -123,15 +123,15 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(90);
         player:completeQuest(JEUNO,BEYOND_THE_STARS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_90);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_90);
     elseif (csid == 10138) then
         player:tradeComplete();
         player:setMerits(meritCount - 10);
         player:addFame(JEUNO,50);
         player:levelCap(95);
         player:completeQuest(JEUNO,DORMANT_POWERS_DISLODGED);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_95);
+        player:messageSpecial(text.YOUR_LEVEL_LIMIT_IS_NOW_95);
         player:addKeyItem(SOUL_GEM);
-        player:messageSpecial(KEYITEM_OBTAINED,SOUL_GEM);
+        player:messageSpecial(text.KEYITEM_OBTAINED,SOUL_GEM);
     end
 end;

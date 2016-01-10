@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Raptor
+-- MOB: Raptor
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

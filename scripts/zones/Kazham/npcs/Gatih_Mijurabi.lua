@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Kazham
---   NPC: Gatih Mijurabi
---  Type: Standard NPC
+-- Area: Kazham
+--  NPC: Gatih Mijurabi
+-- Type: Standard NPC
 -- @zone: 250
---  @pos 58.249 -13.086 -49.084
+-- @pos 58.249 -13.086 -49.084
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00C1) then
         player:completeQuest(OUTLANDS, PERSONAL_HYGIENE);
         player:addItem(13247)   -- Mithran Stone
-        player:messageSpecial(ITEM_OBTAINED,13247);
+        player:messageSpecial(text.ITEM_OBTAINED,13247);
     end
 end;
 

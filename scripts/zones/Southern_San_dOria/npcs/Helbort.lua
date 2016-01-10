@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Southern San d'Oria
+-- Area: Southern San d'Oria
 --  NPC: Helbort
---  Starts and Finished Quest: A purchase of Arms
---  @zone 230
---  @pos  71 -1 65
+-- Starts and Finished Quest: A purchase of Arms
+-- @zone 230
+-- @pos  71 -1 65
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
   
 -----------------------------------
@@ -58,15 +58,15 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0252 and option == 0) then
         player:addQuest(SANDORIA, A_PURCHASE_OF_ARMS);
         player:addKeyItem(WEAPONS_ORDER);
-        player:messageSpecial(KEYITEM_OBTAINED,WEAPONS_ORDER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,WEAPONS_ORDER);
     elseif (csid == 0x025f) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17090); -- Elm Staff
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17090); -- Elm Staff
         else
             player:addTitle(ARMS_TRADER);
             player:delKeyItem(WEAPONS_RECEIPT);
             player:addItem(17090); 
-            player:messageSpecial(ITEM_OBTAINED,17090); -- Elm Staff
+            player:messageSpecial(text.ITEM_OBTAINED,17090); -- Elm Staff
             player:addFame(SANDORIA,SAN_FAME*30);
             player:completeQuest(SANDORIA, A_PURCHASE_OF_ARMS);
         end

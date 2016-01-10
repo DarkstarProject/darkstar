@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  _475 (Brass Door)
+--  NPC: _475 (Brass Door)
 -- Involved in Mission: Magicite
 -- @pos -99 24 -105 151
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(text.ITS_LOCKED);
     end    
     
 end;

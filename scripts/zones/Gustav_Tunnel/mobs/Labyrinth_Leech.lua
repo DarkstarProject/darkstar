@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
---  MOB: Labyrinth Leech
+-- MOB: Labyrinth Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

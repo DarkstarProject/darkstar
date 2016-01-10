@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
---  MOB: Go'Bha Slaughterer
+-- MOB: Go'Bha Slaughterer
 -----------------------------------
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:  Ship_bound_for_Mhaura
--- NPC:   Sahn
+--  NPC:  Sahn
 -- Notes: Tells ship ETA time
 -- @pos 0.278 -14.707 -1.411 221
 -----------------------------------
@@ -67,7 +67,7 @@ function onTrigger(player,npc)
         vHour = 7;
     end
 
-    player:messageSpecial( message, math.floor((2.4 * ((vHour * 60) + 40 - vMin)) / 60), vHour);
+    player:messageSpecial(text.message, math.floor((2.4 * ((vHour * 60) + 40 - vMin)) / 60), vHour);
 end; 
 
 -----------------------------------

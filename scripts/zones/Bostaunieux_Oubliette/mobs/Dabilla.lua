@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Dabilla
+-- MOB: Dabilla
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

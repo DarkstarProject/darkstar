@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Spare Five
---    Working 100%
---  Involved in quest: A Greeting Cardian
+-- Area: Windurst Woods
+--  NPC: Spare Five
+-- Working 100%
+-- Involved in quest: A Greeting Cardian
 -----------------------------------
 package.loaded["scripts/globals/quests"] = nil;
 
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0127) then
         player:setVar("AGreetingCardian_Event",3);
         end

@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Mhaura
---  NPC:  Keshab-Menjab
---  Type: Standard NPC
---  @pos -15.727 -9.032 54.049 249
+-- Area: Mhaura
+--  NPC: Keshab-Menjab
+-- Type: Standard NPC
+-- @pos -15.727 -9.032 54.049 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

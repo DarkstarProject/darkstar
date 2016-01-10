@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Goblin Smithy
+-- MOB: Goblin Smithy
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

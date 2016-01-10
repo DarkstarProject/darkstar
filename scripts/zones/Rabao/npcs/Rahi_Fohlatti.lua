@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Rabao
--- NPC:  Rahi Fohlatti
+--  NPC: Rahi Fohlatti
 -- Starts Quest: Trial Size Trial by Wind
 -- @pos -17 7 -10 247
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,23 +63,23 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006c and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork 
         else
             player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
             player:addItem(1546); 
-            player:messageSpecial(ITEM_OBTAINED,1546); 
+            player:messageSpecial(text.ITEM_OBTAINED,1546); 
         end
     elseif (csid == 0x0070 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork 
         else
             player:addItem(1546); 
-            player:messageSpecial(ITEM_OBTAINED,1546); 
+            player:messageSpecial(text.ITEM_OBTAINED,1546); 
         end
     elseif (csid == 0x006d and option == 1) then
         toCloisterOfGales(player);

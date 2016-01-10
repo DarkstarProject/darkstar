@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Death From Above NM)
+--  NPC: ??? (Death From Above NM)
 -- Involved In Mission: Death From Above
 -- @pos 53 1 -32 159
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NM_OFFSET + 4);
+    player:messageSpecial(text.NM_OFFSET + 4);
 end;

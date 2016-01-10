@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC:  Ostalie
---    Standard Merchant NPC
+-- Area: Southern San d'Oria
+--  NPC: Ostalie
+-- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -35,9 +35,11 @@ end;
 
 function onTrigger(player,npc)
     
-    player:showText(npc,OSTALIE_SHOP_DIALOG);
+    player:showText(npc, text.OSTALIE_SHOP_DIALOG);
 
-    stock = {0x1020,4445,1,    -- Ether
+    local stock =
+    {
+    0x1020,4445,1,    -- Ether
              0x1010,837,1,    -- Potion
 
              0x1037,736,2,    -- Echo Drops
@@ -75,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -84,10 +86,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

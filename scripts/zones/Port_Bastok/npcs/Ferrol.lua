@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Ferrol
+--  NPC: Ferrol
 -- Starts Quest: Trial Size Trial by Earth
 -- @pos 33.708 6.499 -39.425 236
 -----------------------------------
@@ -71,19 +71,19 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x0129 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork 
         else
             player:setVar("TrialSizeEarth_date",0)
             player:addQuest(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
             player:addItem(1547); 
-            player:messageSpecial(ITEM_OBTAINED,1547); 
+            player:messageSpecial(text.ITEM_OBTAINED,1547); 
         end
     elseif (csid == 0x012d and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork 
         else
             player:addItem(1547); 
-            player:messageSpecial(ITEM_OBTAINED,1547); 
+            player:messageSpecial(text.ITEM_OBTAINED,1547); 
         end
     elseif (csid == 0x012a and option == 1) then
         toCloisterOfTremors(player);

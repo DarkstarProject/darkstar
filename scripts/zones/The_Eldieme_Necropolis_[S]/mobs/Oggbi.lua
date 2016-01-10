@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: The Eldieme Necropolis (S) (175)
---   Mob: Oggbi
+-- Area: The Eldieme Necropolis (S) (175)
+-- Mob: Oggbi
 -----------------------------------
 
 -- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");

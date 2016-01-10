@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
---  MOB: Animated Knuckles
+-- MOB: Animated Knuckles
 -----------------------------------
 
 require("scripts/globals/status");

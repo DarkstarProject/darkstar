@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Death Jacket
+-- MOB: Death Jacket
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

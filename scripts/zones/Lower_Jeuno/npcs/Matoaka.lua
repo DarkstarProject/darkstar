@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Matoaka
+--  NPC: Matoaka
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,13 +21,15 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,MATOAKA_SHOP_DIALOG);
+    player:showText(npc, text.MATOAKA_SHOP_DIALOG);
 
-stock = {0x340F,1250, -- Silver Earring
+    local stock =
+    {
+    0x340F,1250, -- Silver Earring
      0x3490,1250, -- Silver Ring
      0x3410,4140} -- Mythril Earring 
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -35,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,9 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

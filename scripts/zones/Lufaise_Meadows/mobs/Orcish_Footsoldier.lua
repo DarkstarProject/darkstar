@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise_Meadows
---  MOB: Orcish Footsoldier
+-- MOB: Orcish Footsoldier
 -----------------------------------
 
 

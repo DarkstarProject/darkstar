@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Exoray
+-- MOB: Exoray
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

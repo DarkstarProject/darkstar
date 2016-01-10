@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Abyss Worm
+-- MOB: Abyss Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

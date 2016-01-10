@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: LaLoff_Amphitheater
--- NPC:  Shimmering Circle (BCNM Entrances)
+--  NPC: Shimmering Circle (BCNM Entrances)
 -------------------------------------
 package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -15,12 +15,12 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 -- Death cutscenes:
 
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,0,0); -- hume
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,1,0); -- taru
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,2,0); -- mithra
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,3,0); -- elvaan
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,4,0); -- galka
---    player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,5,0); -- divine might
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,0,0); -- hume
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,1,0); -- taru
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,2,0); -- mithra
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,3,0); -- elvaan
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,4,0); -- galka
+-- player:startEvent(0x7d01,1,instance:getFastestTime(),1,instance:getTimeInside(),1,5,0); -- divine might
 
 -- param 1: entrance #
 -- param 2: fastest time
@@ -74,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (EventFinishBCNM(player,csid,option)) then
         return;

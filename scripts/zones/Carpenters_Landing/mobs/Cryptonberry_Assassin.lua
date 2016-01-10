@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  MOB: Cryptonberry_Assassin
+-- MOB: Cryptonberry_Assassin
 -----------------------------------
 
 

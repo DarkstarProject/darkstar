@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- NPC:  Grounds Tome
+--  NPC: Grounds Tome
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Goblin Bandit
+-- MOB: Goblin Bandit
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

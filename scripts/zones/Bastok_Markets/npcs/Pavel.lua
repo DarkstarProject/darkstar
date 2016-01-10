@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Pavel
+--  NPC: Pavel
 -- Involved in Quest: Stamp Hunt
 -- @pos -349.798 -10.002 -181.296 235
 -----------------------------------

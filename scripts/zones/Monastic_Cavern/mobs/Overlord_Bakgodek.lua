@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monastic Cavern
---  MOB: Overlord Bakgodek
+-- MOB: Overlord Bakgodek
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

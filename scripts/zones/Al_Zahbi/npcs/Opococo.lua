@@ -1,9 +1,9 @@
 ----------------------------------
---  Area: Al Zahbi
+-- Area: Al Zahbi
 --  NPC: Opococo
---  Type: Item Deliverer
---  @zone: 48
---  @pos -24.702 0 -139.982
+-- Type: Item Deliverer
+-- @zone: 48
+-- @pos -24.702 0 -139.982
 --
 -----------------------------------
 
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

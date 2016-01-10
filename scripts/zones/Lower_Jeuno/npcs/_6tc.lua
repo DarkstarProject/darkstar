@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Door: "Neptune's Spire"
+--  NPC: Door: "Neptune's Spire"
 -- Starts and Finishes Quest: Beat Around the Bushin
 -- @zone 245
 -- @pos 35 0 -15
@@ -49,7 +49,7 @@ function onTrigger(player,npc)
     elseif (player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then 
         player:startEvent(0x0069); -- Open the door
     else
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(text.ITS_LOCKED);
         return 1;
     end
 end;
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0056 ) then 
         player:setVar("PromathiaStatus",1); 
         player:startEvent(0x0009);
@@ -92,11 +92,11 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 0x009f) then 
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13186);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13186);
         else
             player:addTitle(BLACK_BELT);
             player:addItem(13186);
-            player:messageSpecial(ITEM_OBTAINED,13186);
+            player:messageSpecial(text.ITEM_OBTAINED,13186);
             player:setVar("BeatAroundTheBushin",0);
             player:addFame(NORG,NORG_FAME*125);
             player:tradeComplete();

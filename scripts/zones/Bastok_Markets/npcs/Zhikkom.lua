@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Zhikkom
+--  NPC: Zhikkom
 -- Standard Merchant NPC
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
@@ -22,9 +22,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ZHIKKOM_SHOP_DIALOG);
+    player:showText(npc, text.ZHIKKOM_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x4097, 241,3,       --Bronze Sword
         0x4098,7128,3,       --Iron Sword
         0x4085,9201,3,       --Degen
@@ -42,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Thread Leech
+-- MOB: Thread Leech
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

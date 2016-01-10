@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC:  Parih Vashai
+--  NPC: Parih Vashai
 -- Starts and Finishes Quest: The Fanged One
 -- @zone 241
 -- @pos 117 -3 92
@@ -103,8 +103,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -112,8 +112,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x015f) then
         player:addQuest(WINDURST,THE_FANGED_ONE);
@@ -124,26 +124,26 @@ function onEventFinish(player,csid,option)
             player:setVar("TheFangedOne_Died",0);
             player:addTitle(THE_FANGED_ONE);
             player:addItem(13117);
-            player:messageSpecial(text.ITEM_OBTAINED,13117);
+            player:messageSpecial(text.text.ITEM_OBTAINED,13117);
             player:unlockJob(11);
-            player:messageSpecial(text.PERIH_VASHAI_DIALOG);
+            player:messageSpecial(text.text.PERIH_VASHAI_DIALOG);
             player:addFame(WINDURST, WIN_FAME* 30);
             player:completeQuest(WINDURST,THE_FANGED_ONE);
         else
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,13117);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,13117);
             player:setVar("TheFangedOne_Event",1);
         end
     elseif (csid == 0x020b) then    -- start quest RNG AF1
         player:addQuest(WINDURST,SIN_HUNTING);
         player:addKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);
-        player:messageSpecial(text.KEYITEM_OBTAINED,CHIEFTAINNESS_TWINSTONE_EARRING);
+        player:messageSpecial(text.text.KEYITEM_OBTAINED,CHIEFTAINNESS_TWINSTONE_EARRING);
         player:setVar("sinHunting",1);
     elseif (csid == 0x020f) then -- complete quest RNG AF1
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,17188);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,17188);
         else
             player:addItem(17188);
-            player:messageSpecial(text.ITEM_OBTAINED,17188);
+            player:messageSpecial(text.text.ITEM_OBTAINED,17188);
             player:completeQuest(WINDURST,SIN_HUNTING);
             player:delKeyItem(CHIEFTAINNESS_TWINSTONE_EARRING);
             player:delKeyItem(PERCHONDS_ENVELOPE);
@@ -156,11 +156,11 @@ function onEventFinish(player,csid,option)
         player:setVar("fireAndBrimstone",5);
     elseif (csid == 0x0219) then -- complete quest RNG AF2
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12518);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,12518);
         else
             player:tradeComplete();
             player:addItem(12518);
-            player:messageSpecial(text.ITEM_OBTAINED,12518);
+            player:messageSpecial(text.text.ITEM_OBTAINED,12518);
             player:completeQuest(WINDURST,FIRE_AND_BRIMSTONE);
             player:setVar("fireAndBrimstone",0);
         end
@@ -169,10 +169,10 @@ function onEventFinish(player,csid,option)
         player:setVar("unbridledPassion",1);
     elseif (csid == 0x0222) then -- complete quest RNG AF3
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,14099);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,14099);
         else
             player:addItem(14099);
-            player:messageSpecial(text.ITEM_OBTAINED,14099);
+            player:messageSpecial(text.text.ITEM_OBTAINED,14099);
             player:completeQuest(WINDURST,UNBRIDLED_PASSION);
             player:delKeyItem(KOHS_LETTER);
             player:setVar("unbridledPassion",0);

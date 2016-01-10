@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
---  MOB: Spelunking Sabotender
+-- MOB: Spelunking Sabotender
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

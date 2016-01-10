@@ -1,11 +1,11 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Kopuro-Popuro
---  Type: Standard NPC
---  @zone: 241
---  @pos -0.037 -4.749 -22.589
---    Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
---  Involved in quests: Lost Chick
+-- Type: Standard NPC
+-- @zone: 241
+-- @pos -0.037 -4.749 -22.589
+-- Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
+-- Involved in quests: Lost Chick
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -126,8 +126,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -135,8 +135,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- The All New C-2000
     if (csid == 0x011d and option ~= 2) then  -- option 2 is declining the quest for the second question
@@ -155,13 +155,13 @@ function onEventFinish(player,csid,option)
     -- Finish LPB
     elseif (csid == 0x013A) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,12749); -- Scentless Armlets
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,12749); -- Scentless Armlets
         else
         player:tradeComplete();
         player:addFame(WINDURST,WIN_FAME*30);
         player:addGil(GIL_RATE*700);
         player:addItem(12749);
-        player:messageSpecial(text.ITEM_OBTAINED,12749); -- Scentless Armlets
+        player:messageSpecial(text.text.ITEM_OBTAINED,12749); -- Scentless Armlets
         player:completeQuest(WINDURST,LEGENDARY_PLAN_B);
         player:needToZone(true); -- zone before starting The All New C-3000
         end

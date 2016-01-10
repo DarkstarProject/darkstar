@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
---  MOB: Stag Beetle
+-- MOB: Stag Beetle
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

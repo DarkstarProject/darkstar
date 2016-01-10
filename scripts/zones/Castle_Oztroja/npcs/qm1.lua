@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quest: True Strength
 -- @pos -100 -71 -132 151
 -----------------------------------
@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
         if (trade:hasItemQty(4558,1) and trade:getItemCount() == 1) then -- Trade Yagudo Drink
             player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
+            player:messageSpecial(text.SENSE_OF_FOREBODING);
             SpawnMob(17396140,180):updateClaim(player);
         end
     end
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

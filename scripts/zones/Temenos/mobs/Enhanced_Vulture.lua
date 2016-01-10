@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos W T    
--- NPC: Enhanced_Vulture
+--  NPC: Enhanced_Vulture
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

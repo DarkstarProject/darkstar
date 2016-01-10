@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Quest "As Thick As Thieves"
 -- @pos -232.924 99.107 442.990 106
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 
@@ -50,15 +50,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00c8) then
         if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1092);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,1092);
         else 
             player:addItem(1092);
-            player:messageSpecial(ITEM_OBTAINED,1092);
+            player:messageSpecial(text.ITEM_OBTAINED,1092);
             player:setVar("thickAsThievesGamblingCS",7);
         end
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
---  MOB: Toadcushion
+-- MOB: Toadcushion
 -- BCNM30
 -----------------------------------
 

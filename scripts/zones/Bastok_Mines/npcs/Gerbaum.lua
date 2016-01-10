@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Gerbaum
+--  NPC: Gerbaum
 -- Starts & Finishes Repeatable Quest: Minesweeper (100%)
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
@@ -83,11 +83,8 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
             player:addFame(BASTOK,BAS_FAME*8);
         end
         player:addGil(GIL_RATE*150);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*150);
     end
 
 end;
-
-
-
 

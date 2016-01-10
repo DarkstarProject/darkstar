@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  MOB: Ooze
+-- MOB: Ooze
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

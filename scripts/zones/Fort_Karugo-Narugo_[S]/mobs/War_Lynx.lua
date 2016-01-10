@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
---  MOB: War Lynx
+-- MOB: War Lynx
 -- The Tigress Strikes Fight
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- NPC:  ??? divine might mission
+--  NPC: ??? divine might mission
 -- @pos -40 0 -151 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
    elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus == 2 and MoonOre == true) then -- Repeat turn in
       player:startEvent(59);
    else
-      player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- Need some kind of feedback
+      player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY); -- Need some kind of feedback
    end
 
 end;
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 59 and option == 2) then
       player:updateEvent(14739,14740,14741,14742,14743);
    end
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
       if (reward ~= 0) then
          if (player:getFreeSlotsCount() >= 1 and player:hasItem(reward) == false) then
             player:addItem(reward);
-            player:messageSpecial(ITEM_OBTAINED,reward);
+            player:messageSpecial(text.ITEM_OBTAINED,reward);
             if (csid == 55) then
                player:completeQuest(OUTLANDS,DIVINE_MIGHT);
             else
@@ -127,7 +127,7 @@ function onEventFinish(player,csid,option)
             player:setVar("DivineMight",0);
             player:setVar("DM_Earring",reward);
          else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,reward);
          end
       end
    end

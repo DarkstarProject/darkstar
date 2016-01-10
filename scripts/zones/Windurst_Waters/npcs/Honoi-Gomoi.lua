@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Honoi-Gumoi
+--  NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
---  @zone = 238
---  @pos = -195 -11 -120
+-- @zone = 238
+-- @pos = -195 -11 -120
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -91,15 +91,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0306) then
         player:setVar("CryingOverOnions",1);
     elseif (csid == 0x0307) then
         player:tradeComplete();
         player:setVar("CryingOverOnions",2);
         player:addItem(13136);
-        player:messageSpecial(ITEM_OBTAINED,13136);
+        player:messageSpecial(text.ITEM_OBTAINED,13136);
     elseif (csid == 0x0308) then
         player:completeQuest(WINDURST,CRYING_OVER_ONIONS);
         player:addFame(WINDURST,WIN_FAME*120);
@@ -119,10 +119,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x036A)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
         player:addKeyItem(CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
+        player:messageSpecial(text.KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
     end
 end;
-
-
-
 

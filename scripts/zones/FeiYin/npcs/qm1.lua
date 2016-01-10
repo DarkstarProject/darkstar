@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: FeiYin
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Involved In Quest: Pieuje's Decision
 -- @pos -55 -16 69 204
 -----------------------------------
@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:hasItem(13842) == false) then
         if (trade:hasItemQty(1098,1) and trade:getItemCount() == 1) then -- Trade Tavnazia Bell
             player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
+            player:messageSpecial(text.SENSE_OF_FOREBODING);
             SpawnMob(17612836,180):updateClaim(player);
         end
     end
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

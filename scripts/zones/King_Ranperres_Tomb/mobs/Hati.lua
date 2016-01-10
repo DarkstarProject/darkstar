@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
---  MOB: Hati
+-- MOB: Hati
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

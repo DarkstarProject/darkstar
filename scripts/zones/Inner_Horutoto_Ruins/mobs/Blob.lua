@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
---  MOB: Blob
+-- MOB: Blob
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

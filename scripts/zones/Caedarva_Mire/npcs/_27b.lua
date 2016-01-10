@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Engraved Tablet
+--  NPC: Engraved Tablet
 -- @pos -719 -13 765 79
 -----------------------------------
 

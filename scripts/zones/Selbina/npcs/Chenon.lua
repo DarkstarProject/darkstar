@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Selbina
---  NPC:  Chenon
---  Type: Fish Ranking NPC
---  @pos -13.472 -8.287 9.497 248
+-- Area: Selbina
+--  NPC: Chenon
+-- Type: Fish Ranking NPC
+-- @pos -13.472 -8.287 9.497 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

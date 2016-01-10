@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Middle Delkfutt's Tower
---  MOB: Gigas Gatekeeper
+-- MOB: Gigas Gatekeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

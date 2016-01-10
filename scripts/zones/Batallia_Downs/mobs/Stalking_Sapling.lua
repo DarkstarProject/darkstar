@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Stalking Sapling
+-- MOB: Stalking Sapling
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

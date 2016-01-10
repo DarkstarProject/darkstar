@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Nekros Hound
+-- MOB: Nekros Hound
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

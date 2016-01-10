@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Myxomycete
+-- MOB: Myxomycete
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

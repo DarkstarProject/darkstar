@@ -1,6 +1,6 @@
 
 -- Area: Temple of Uggalepih
---  MOB: Cleuvarion M Resoaix
+-- MOB: Cleuvarion M Resoaix
 -- Involved with San d'Oria quest "Knight Stalker"
 -----------------------------------
 

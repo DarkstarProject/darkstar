@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Dragonfly
+-- MOB: Dragonfly
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

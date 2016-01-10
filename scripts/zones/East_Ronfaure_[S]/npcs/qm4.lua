@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
--- NPC:  qm4 "???"
+--  NPC: qm4 "???"
 -- Involved in Quests: Steamed Rams
 -- @pos 541.425 -49.83 178.563
 -----------------------------------
@@ -24,12 +24,12 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER)) then
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+            player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
         else
             player:startEvent(0x0002);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -51,6 +51,6 @@ function onEventFinish(player,csid,option)
     -- print("RESULT:",option);
     if (csid == 0x0002) then
         player:addKeyItem(PIECE_OF_SHATTERED_LUMBER);
-        player:messageSpecial(KEYITEM_OBTAINED,PIECE_OF_SHATTERED_LUMBER);
+        player:messageSpecial(text.KEYITEM_OBTAINED,PIECE_OF_SHATTERED_LUMBER);
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Buburimu Peninsula
---  MOB: Goblin Digger
+-- MOB: Goblin Digger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

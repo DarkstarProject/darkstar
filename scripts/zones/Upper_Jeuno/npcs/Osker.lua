@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Osker
+--  NPC: Osker
 -- Involved in Quest: Chocobo's Wounds
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x0094) then
         player:addKeyItem(217); 
-        player:messageSpecial(KEYITEM_OBTAINED, 217); 
+        player:messageSpecial(text.KEYITEM_OBTAINED, 217); 
         player:setVar("ANewDawn_Event",4);
     end
     

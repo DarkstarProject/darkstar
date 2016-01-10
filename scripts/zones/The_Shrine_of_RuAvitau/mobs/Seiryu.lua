@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  MOB: Seiryu (Pet version)
+-- MOB: Seiryu (Pet version)
 -----------------------------------
 
 require("scripts/globals/status");

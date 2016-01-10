@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  Medicine Axe
+--  NPC: Medicine Axe
 -- Type: Outpost Vendor
 -- @pos 144 -7 104 103
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
     

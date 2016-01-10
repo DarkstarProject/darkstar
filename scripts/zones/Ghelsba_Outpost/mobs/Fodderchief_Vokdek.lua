@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Fodderchief Vokdek
+-- MOB: Fodderchief Vokdek
 -- Involved in Mission: Save the Children
 -----------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC:  Waterfall Base
+--  NPC: Waterfall Base
 -- Involved In Quest: Drachenfall
 -- @pos -217.594 98.644 464.722 106
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
     if (BrassCanteen == true and count == 1) then
         player:tradeComplete();
         player:addItem(492);
-        player:messageSpecial(ITEM_OBTAINED,492);
+        player:messageSpecial(text.ITEM_OBTAINED,492);
     end
 end;
 
@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(REACH_WATER_FROM_HERE);
+    player:messageSpecial(text.REACH_WATER_FROM_HERE);
 end;
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

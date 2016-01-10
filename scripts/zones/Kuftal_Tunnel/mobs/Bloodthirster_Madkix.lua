@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Kuftal Tunnel
---   NM: Bloodthirster Madkix
+-- NM: Bloodthirster Madkix
 -----------------------------------
 
 -----------------------------------

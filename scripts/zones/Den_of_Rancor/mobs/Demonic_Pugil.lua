@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Demonic Pugil
+-- MOB: Demonic Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

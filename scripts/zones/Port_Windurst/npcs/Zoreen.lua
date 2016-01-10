@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Zoreen
+--  NPC: Zoreen
 -- Regional Marchant NPC 
 -- Only sells when Windurst controls Valdeaunia
 -- Confirmed shop stock, August 2013
@@ -25,9 +25,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(VALDEAUNIA);
     if (RegionOwner ~= WINDURST) then 
-        player:showText(npc,ZOREEN_CLOSED_DIALOG);
+        player:showText(npc, text.ZOREEN_CLOSED_DIALOG);
     else
-        player:showText(npc,ZOREEN_OPEN_DIALOG);
+        player:showText(npc, text.ZOREEN_OPEN_DIALOG);
 
         stock = {
             0x111E,    29,   --Frost Turnip
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,6 +51,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

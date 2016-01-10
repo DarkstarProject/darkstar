@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Torama
+-- MOB: Torama
 -- Note: Place holder Ose
 -----------------------------------
 

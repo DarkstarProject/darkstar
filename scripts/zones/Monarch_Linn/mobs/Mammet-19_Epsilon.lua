@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Monarch Linn
---  MOB: Mammet-19 Epsilon
+-- MOB: Mammet-19 Epsilon
 -----------------------------------
 
 require("scripts/globals/status");

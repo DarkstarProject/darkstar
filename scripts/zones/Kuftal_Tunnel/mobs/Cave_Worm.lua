@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Cave Worm
+-- MOB: Cave Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

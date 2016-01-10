@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  NM:  Tawny-fingered Mugberry
+-- NM:  Tawny-fingered Mugberry
 -----------------------------------
 
 -----------------------------------

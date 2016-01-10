@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
---  MOB: Ouryu
+-- MOB: Ouryu
 -----------------------------------
 
 require("scripts/globals/titles");

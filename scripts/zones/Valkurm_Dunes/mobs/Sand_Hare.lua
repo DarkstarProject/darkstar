@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Valkurm Dunes
---  MOB: Sand Hare
+-- MOB: Sand Hare
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

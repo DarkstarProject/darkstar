@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Joachim
+--  NPC: Joachim
 -- @zone 246
 -- @pos -52.844 0.000 -9.978
 -- CS/Event ID's:
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     printf("CSID: %u",csid);
     printf("RESULT: %u",option);
     if (csid == 0x0145) then
-        player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE1);
+        player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE1);
         player:addKeyItem(TRAVERSER_STONE1)
         player:completeQuest(ABYSSEA, A_JOURNEY_BEGINS);
         player:addQuest(ABYSSEA, THE_TRUTH_BECKONS);
@@ -95,22 +95,22 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0148 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE6);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE6);
             player:addKeyItem(TRAVERSER_STONE6)
         elseif (StonesKI == 4) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE5);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE5);
             player:addKeyItem(TRAVERSER_STONE5)
         elseif (StonesKI == 3) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE4)
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE4)
             player:addKeyItem(TRAVERSER_STONE4);
         elseif (StonesKI == 2) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE3);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE3);
             player:addKeyItem(TRAVERSER_STONE3)
         elseif (StonesKI == 1) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE2);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE2);
             player:addKeyItem(TRAVERSER_STONE2)
         elseif (StonesKI == 0) then
-            player:messageSpecial(KEYITEM_OBTAINED,TRAVERSER_STONE1);
+            player:messageSpecial(text.KEYITEM_OBTAINED,TRAVERSER_STONE1);
             player:addKeyItem(TRAVERSER_STONE1)
         end
     end

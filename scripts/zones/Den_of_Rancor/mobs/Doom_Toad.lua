@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Doom Toad
+-- MOB: Doom Toad
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Ominous Cloud
---  Type: Traveling Merchant NPC
+-- Area: Windurst Woods
+--  NPC: Ominous Cloud
+-- Type: Traveling Merchant NPC
 -- @zone: 241
---  @pos -20.632 -3.939 -40.554
+-- @pos -20.632 -3.939 -40.554
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -43,83 +43,83 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             if (uchitake > 0) then
                 player:addItem(5308,uchitake);
-                player:messageSpecial(text.ITEM_OBTAINED,5308);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5308);
             end
             if (tsurara > 0) then
                 player:addItem(5309,tsurara);
-                player:messageSpecial(text.ITEM_OBTAINED,5309);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5309);
             end
             if (kawahori > 0) then
                 player:addItem(5310,kawahori);
-                player:messageSpecial(text.ITEM_OBTAINED,5310);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5310);
             end
             if (makibishi > 0) then
                 player:addItem(5311,makibishi);
-                player:messageSpecial(text.ITEM_OBTAINED,5311);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5311);
             end
             if (hiraishin > 0) then
                 player:addItem(5312,hiraishin);
-                player:messageSpecial(text.ITEM_OBTAINED,5312);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5312);
             end
             if (mizu > 0) then
                 player:addItem(5313,mizu);
-                player:messageSpecial(text.ITEM_OBTAINED,5313);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5313);
             end
             if (shihei > 0) then
                 player:addItem(5314,shihei);
-                player:messageSpecial(text.ITEM_OBTAINED,5314);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5314);
             end
             if (jusatsu > 0) then
                 player:addItem(5315,jusatsu);
-                player:messageSpecial(text.ITEM_OBTAINED,5315);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5315);
             end
             if (kaginawa > 0) then
                 player:addItem(5316,kaginawa);
-                player:messageSpecial(text.ITEM_OBTAINED,5316);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5316);
             end
             if (sairui > 0) then
                 player:addItem(5317,sairui);
-                player:messageSpecial(text.ITEM_OBTAINED,5317);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5317);
             end
             if (kodoku > 0) then
                 player:addItem(5318,kodoku);
-                player:messageSpecial(text.ITEM_OBTAINED,5318);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5318);
             end
             if (shinobi > 0) then
                 player:addItem(5319,shinobi);
-                player:messageSpecial(text.ITEM_OBTAINED,5319);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5319);
             end
             if (sanjaku > 0) then
                 player:addItem(5417,sanjaku);
-                player:messageSpecial(text.ITEM_OBTAINED,5417);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5417);
             end
             if (soushi > 0) then
                 player:addItem(5734,soushi);
-                player:messageSpecial(text.ITEM_OBTAINED,5734);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5734);
             end
             if (kabenro > 0) then
                 player:addItem(5863,kabenro);
-                player:messageSpecial(text.ITEM_OBTAINED,5863);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5863);
             end
             if (jinko > 0) then
                 player:addItem(5864,jinko);
-                player:messageSpecial(text.ITEM_OBTAINED,5864);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5864);
             end
             if (mokujin > 0) then
                 player:addItem(5866,mokujin);
-                player:messageSpecial(text.ITEM_OBTAINED,5866);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5866);
             end
             if (inoshi > 0) then
                 player:addItem(5867,inoshi);
-                player:messageSpecial(text.ITEM_OBTAINED,5867);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5867);
             end
             if (shikan > 0) then
                 player:addItem(5868,shikan);
-                player:messageSpecial(text.ITEM_OBTAINED,5868);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5868);
             end
             if (chono > 0) then
                 player:addItem(5869,chono);
-                player:messageSpecial(text.ITEM_OBTAINED,5869);
+                player:messageSpecial(text.text.ITEM_OBTAINED,5869);
             end
         end
     end

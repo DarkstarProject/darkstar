@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Somn-Paemn
+--  NPC: Somn-Paemn
 -- Only sells when Bastok has control of Sarutabaruta
 --
 -- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
@@ -26,9 +26,9 @@ function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(SARUTABARUTA);
 
     if (RegionOwner ~= BASTOK) then 
-        player:showText(npc,SOMNPAEMN_CLOSED_DIALOG);
+        player:showText(npc, text.SOMNPAEMN_CLOSED_DIALOG);
     else
-        player:showText(npc,SOMNPAEMN_OPEN_DIALOG);
+        player:showText(npc, text.SOMNPAEMN_OPEN_DIALOG);
 
         stock = {
             0x02b1,  33,     --Lauan Log
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

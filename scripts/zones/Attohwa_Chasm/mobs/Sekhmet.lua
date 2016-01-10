@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  NM:  Sekhmet
+-- NM:  Sekhmet
 -----------------------------------
 
 require("scripts/globals/titles");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Throne Room
---  MOB: Zeidpart2
+-- MOB: Zeidpart2
 -- Mission 9-2 BASTOK BCNM Fight
 -----------------------------------
 

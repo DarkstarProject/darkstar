@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dangruf Wadi
---  MOB: Goblin Bushwhacker
+-- MOB: Goblin Bushwhacker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

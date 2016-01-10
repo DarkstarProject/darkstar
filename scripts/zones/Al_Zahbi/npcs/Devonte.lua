@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Al Zahbi
---   NPC: Devonte
---  Type: Standard NPC
+-- Area: Al Zahbi
+--  NPC: Devonte
+-- Type: Standard NPC
 -- @zone: 48
---  @pos 29.449 -1 142.671
+-- @pos 29.449 -1 142.671
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Moo_Ouzi_the_Swiftblade
+-- MOB: Moo_Ouzi_the_Swiftblade
 -----------------------------------
 
 -----------------------------------

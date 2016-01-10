@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: South Gustaberg
---  MOB: Sand Crab
+-- MOB: Sand Crab
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

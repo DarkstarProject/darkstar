@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Ichorous_Ire
+-- MOB: Ichorous_Ire
 -----------------------------------
 
 require("scripts/globals/titles");

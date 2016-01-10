@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Antican Decurio
+-- MOB: Antican Decurio
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

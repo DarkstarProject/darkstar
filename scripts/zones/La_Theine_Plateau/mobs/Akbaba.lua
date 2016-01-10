@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
---  MOB: Akbaba
+-- MOB: Akbaba
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

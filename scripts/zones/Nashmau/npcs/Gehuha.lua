@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Nashmau
---  NPC:  Gehuha
---  Type: Event Scene Replayer
---  @pos -13.414 -1 -50.825 53
+-- Area: Nashmau
+--  NPC: Gehuha
+-- Type: Event Scene Replayer
+-- @pos -13.414 -1 -50.825 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

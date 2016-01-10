@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
---  MOB: Goblin Furrier
+-- MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

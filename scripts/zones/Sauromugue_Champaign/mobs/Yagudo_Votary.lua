@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
---  MOB: Yagudo Votary
+-- MOB: Yagudo Votary
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

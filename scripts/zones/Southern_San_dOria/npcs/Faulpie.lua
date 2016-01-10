@@ -77,10 +77,10 @@ function onEventFinish(player,csid,option)
         local crystal = math.random(4096,4101);
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(text.ITEM_OBTAINED,crystal);
             signupGuild(player, SKILL_LEATHERCRAFT);
         end
     end

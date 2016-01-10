@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Hauh Colphioh
---  Type: Guildworker's Union Representative
---  @zone: 241
---  @pos -38.173 -1.25 -113.679
+-- Type: Guildworker's Union Representative
+-- @zone: 241
+-- @pos -38.173 -1.25 -113.679
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -117,6 +117,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 0x2728) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
     elseif (csid == 0x2729) then
-        player:messageSpecial(text.GP_OBTAINED, option);
+        player:messageSpecial(text.text.GP_OBTAINED, option);
     end
 end;

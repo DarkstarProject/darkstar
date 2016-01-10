@@ -59,10 +59,10 @@ function onEventFinish(player,csid,option)
         local crystal = math.random(4096,4101);
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(text.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(text.ITEM_OBTAINED,crystal);
+            player:messageSpecial(text.text.ITEM_OBTAINED,crystal);
             signupGuild(player,4);
         end
     end

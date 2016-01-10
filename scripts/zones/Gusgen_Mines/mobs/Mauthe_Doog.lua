@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Mauthe Doog
+-- MOB: Mauthe Doog
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

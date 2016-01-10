@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  MOB: Tonberry Creeper
+-- MOB: Tonberry Creeper
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

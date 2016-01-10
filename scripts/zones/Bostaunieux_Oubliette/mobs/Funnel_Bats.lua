@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Funnel Bats
+-- MOB: Funnel Bats
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
---  MOB: Vampire Bat
+-- MOB: Vampire Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

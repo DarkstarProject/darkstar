@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Frost
--- NPC:  Ice Protocrystal
+--  NPC: Ice Protocrystal
 -- Involved in Quests: Trial by Ice, Trial Size Trial by Ice
 -- @pos 558 0 596 203
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);    
+        player:messageSpecial(text.PROTOCRYSTAL);    
     end
     
 end;
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -58,13 +58,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("onFinish CSID: %u",csid);
-    --printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (csid==0x0002) then
         player:delKeyItem(DOMINAS_AZURE_SEAL);
         player:addKeyItem(AZURE_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,AZURE_COUNTERSEAL);
+        player:messageSpecial(text.KEYITEM_OBTAINED,AZURE_COUNTERSEAL);
         player:setVar("ASA4_Azure","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

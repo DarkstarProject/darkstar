@@ -13,7 +13,7 @@ require("scripts/zones/Promyvion-Holla/TextIDs");
 -----------------------------------    
     
 function onTrigger(player,npc)    
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
 end;    
     
 -----------------------------------    
@@ -24,9 +24,9 @@ function onTrade(player,npc,trade)
  if (trade:hasItemQty(1720,1) and trade:getItemCount() == 1 and player:hasKeyItem(436)==false) then
  player:addKeyItem(436); --add map
  player:tradeComplete();
- player:messageSpecial(KEYITEM_OBTAINED,436);
+ player:messageSpecial(text.KEYITEM_OBTAINED,436);
  else
- player:messageSpecial(NOTHING_HAPPENS);
+ player:messageSpecial(text.NOTHING_HAPPENS);
  end
 end;    
     

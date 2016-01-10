@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Helm Beetle
+-- MOB: Helm Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

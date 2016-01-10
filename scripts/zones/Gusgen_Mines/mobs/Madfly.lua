@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
---  MOB: Madfly
+-- MOB: Madfly
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

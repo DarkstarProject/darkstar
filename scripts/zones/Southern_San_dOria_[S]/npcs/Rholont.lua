@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Rholont
+--  NPC: Rholont
 -- @zone 80
 -- @pos -168 -2 56
 -----------------------------------
@@ -69,19 +69,19 @@ function onEventFinish(player,csid,option)
         player:addQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
     elseif (csid == 0x0017) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2528);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,2528);
         else
             player:setVar("GiftsOfGriffonProg",2);
             player:addItem(2528,7); -- Plume d'or
-            player:messageSpecial(ITEM_OBTAINED,2528);
+            player:messageSpecial(text.ITEM_OBTAINED,2528);
         end
     
     elseif (csid == 0x0018) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,812);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,812);
         else
             player:addItem(812,1)
-            player:messageSpecial(ITEM_OBTAINED,812);
+            player:messageSpecial(text.ITEM_OBTAINED,812);
             player:setVar("GiftsOfGriffonProg",0);
             player:setVar("GiftsOfGriffonPlumes",0);
             player:completeQuest(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON);
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
         player:setVar("WrathOfTheGriffon",0);
         player:addKeyItem(MILITARY_SCRIP);
-        player:messageSpecial(KEYITEM_OBTAINED,MILITARY_SCRIP);
+        player:messageSpecial(text.KEYITEM_OBTAINED,MILITARY_SCRIP);
     end
 
 end;

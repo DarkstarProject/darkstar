@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Waters (S)
---   NPC: Koton-Llaton
---  Type: Standard NPC
+-- Area: Windurst Waters (S)
+--  NPC: Koton-Llaton
+-- Type: Standard NPC
 -- @zone: 94
---  @pos 78.220 -3.75 -173.631
+-- @pos 78.220 -3.75 -173.631
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

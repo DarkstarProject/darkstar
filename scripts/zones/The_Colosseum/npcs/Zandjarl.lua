@@ -31,11 +31,11 @@ function onTrade(player,npc,trade)
     if (RESULT ~= nil) then
         if ((RESULT + TOTAL) > MAX) then
             -- player:startEvent(47); ..it no work..
-            npc:showText(npc, EXCEED_THE_LIMIT_OF_JETTONS);
+            npc:showText(npc, text.EXCEED_THE_LIMIT_OF_JETTONS);
         else
             -- packet cap says its a "showText" thing..
-            npc:showText(npc, I_CAN_GIVE_YOU, RESULT);
-            npc:showText(npc, THANKS_FOR_STOPPING_BY);
+            npc:showText(npc, text.I_CAN_GIVE_YOU, RESULT);
+            npc:showText(npc, text.THANKS_FOR_STOPPING_BY);
             player:addCurrency("jetton", RESULT);
             player:tradeComplete();
         end
@@ -84,9 +84,9 @@ function onEventFinish(player,csid,option)
             if (result.itemID ~= nil) then
                 if (player:addItem(result.itemID, result.QTY)) then
                     player:delCurrency("jetton", result.price);
-                    player:messageSpecial(ITEM_OBTAINED,result.itemID);
+                    player:messageSpecial(text.ITEM_OBTAINED,result.itemID);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,result.itemID);
+                    player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED,result.itemID);
                 end
             end
         end

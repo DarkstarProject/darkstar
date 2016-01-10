@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Batallia Downs (105)
+-- Area: Batallia Downs (105)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------

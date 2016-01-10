@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Balthilda
---  Type: Merchant
+-- Area: Bastok Markets
+--  NPC: Balthilda
+-- Type: Merchant
 -- @zone: 235
---  @pos -300 -10 -161
+-- @pos -300 -10 -161
 --
 -- NPC not found in 'npc_list'
 --
@@ -28,9 +28,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc, BALTHILDA_SHOP_DIALOG);
+    player:showText(npc, text.BALTHILDA_SHOP_DIALOG);
 
-    stock = {
+    local stock =
+    {
+    
         0x30B9,  1904,3,     --Poet's Circlet
         0x3140,  1288,3,     --Tunic
         0x3139,  2838,3,     --Linen Robe

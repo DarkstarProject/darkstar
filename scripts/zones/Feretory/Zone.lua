@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Marjami_Ravine/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

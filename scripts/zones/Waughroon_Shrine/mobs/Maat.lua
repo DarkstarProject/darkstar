@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroom Shrine
---  MOB: Maat
+-- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
---  MOB: Celeste-eyed Tozberry
+-- MOB: Celeste-eyed Tozberry
 -----------------------------------
 
 -----------------------------------

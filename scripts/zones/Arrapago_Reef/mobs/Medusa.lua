@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Medusa
+-- MOB: Medusa
 -- @pos -458 -20 458
 -- TODO: resists, attack/def boosts
 -----------------------------------

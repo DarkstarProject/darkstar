@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Millechuca
+--  NPC: Millechuca
 -- Regional Marchant NPC 
 -- Only sells when San d'Oria controls Vollbow.
 -----------------------------------
@@ -25,7 +25,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(text.FLYER_REFUSED);
         end
     end
 end;
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(VOLLBOW);
 
     if (RegionOwner ~= SANDORIA) then 
-        player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
+        player:showText(npc, text.MILLECHUCA_CLOSED_DIALOG);
     else
-        player:showText(npc,MILLECHUCA_OPEN_DIALOG);
+        player:showText(npc, text.MILLECHUCA_OPEN_DIALOG);
 
         stock = {0x27c,119,  -- Chamomile
                  0x360,88,   -- Fish Scales
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,9 +67,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

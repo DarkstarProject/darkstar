@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Komalata
+--  NPC: Komalata
 -- Standard Merchant NPC
 -----------------------------------
 
@@ -21,9 +21,11 @@ end;
 
 function onTrigger(player,npc)
     
-player:showText(npc,KOMALATA_SHOP_DIALOG);
+    player:showText(npc, text.KOMALATA_SHOP_DIALOG);
 
-stock = {0x1118,110,        -- Meat Jerky
+    local stock =
+    {
+    0x1118,110,        -- Meat Jerky
      0x03a8,14,        -- Rock Salt
      0x0263,36,        -- Rye Flour
      0x119d,10,        -- Distilled Water
@@ -34,7 +36,7 @@ stock = {0x1118,110,        -- Meat Jerky
      0x0275,44,        -- Millioncorn        (COP 4+ only)
      0x05f3,290}        -- Apple Mint        (COP 4+ only)
  
-showShop(player, STATIC, stock);
+    showShop(player, STATIC, stock);
 end; 
 
 -----------------------------------
@@ -42,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,9 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

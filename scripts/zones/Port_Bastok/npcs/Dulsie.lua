@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port Bastok
---    NPC: Dulsie
---    Adventurer's Assistant
---    Working 100%
+-- Area: Port Bastok
+--  NPC: Dulsie
+-- Adventurer's Assistant
+-- Working 100%
 -------------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -------------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,13 +44,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0008) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
+        player:messageSpecial(text.GIL_OBTAINED,GIL_RATE*50);
     end
     
 end;

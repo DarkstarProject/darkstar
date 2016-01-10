@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: The Boyahda Tree
---  NPC:  Mandragora Warden
---  Type: Mission NPC
---  @pos 81.981 7.593 139.556 153
+-- Area: The Boyahda Tree
+--  NPC: Mandragora Warden
+-- Type: Mission NPC
+-- @pos 81.981 7.593 139.556 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x000D) then
         player:setVar("MissionStatus",6);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ZONPAZIPPA);
+        player:messageSpecial(text.KEYITEM_OBTAINED,LETTER_FROM_ZONPAZIPPA);
         player:addKeyItem(LETTER_FROM_ZONPAZIPPA);
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mount Zhayolm
---  MOB: Sarameya
+-- MOB: Sarameya
 -- @pos 322 -14 -581 61
 -- Spawned with Buffalo Corpse: @additem 2583
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Sarameya

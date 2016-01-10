@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel (173)
---  Mob: Clipper
+-- Mob: Clipper
 -----------------------------------
 
 -- require("scripts/zones/Korroloka_Tunnel/MobIDs");

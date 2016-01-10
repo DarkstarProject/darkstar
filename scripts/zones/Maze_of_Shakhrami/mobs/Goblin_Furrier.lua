@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
---  MOB: Goblin Furrier
+-- MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
---  MOB: Carrion Crow
+-- MOB: Carrion Crow
 -- Note: PH for Nunyenunc
 -----------------------------------
 

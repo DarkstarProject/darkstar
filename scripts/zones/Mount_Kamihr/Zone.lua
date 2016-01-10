@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/zones/Mount_Kamihr/TextIDs");
 
 -----------------------------------
---  onInitialize
+-- onInitialize
 -----------------------------------
 
 function onInitialize(zone)

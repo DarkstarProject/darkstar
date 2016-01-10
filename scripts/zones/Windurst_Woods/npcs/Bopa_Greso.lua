@@ -1,9 +1,9 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Bopa Greso
---  Type: Standard NPC
+-- Area: Windurst Woods
+--  NPC: Bopa Greso
+-- Type: Standard NPC
 -- @zone: 241
---  @pos 59.773 -6.249 216.766
+-- @pos 59.773 -6.249 216.766
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

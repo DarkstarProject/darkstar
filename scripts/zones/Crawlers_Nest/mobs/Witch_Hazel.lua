@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
---  MOB: Witch Hazel
+-- MOB: Witch Hazel
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

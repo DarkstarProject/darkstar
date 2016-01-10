@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Thorn Bat
+-- MOB: Thorn Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Jugner_Forest_[S]
---  MOB: Krabkatoa
+-- MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");

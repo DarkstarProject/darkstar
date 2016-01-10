@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Leujaoam Sanctum (Leujaoam Cleansing)
---  MOB: Leujaoam Worm
+-- MOB: Leujaoam Worm
 -----------------------------------
 
 -----------------------------------

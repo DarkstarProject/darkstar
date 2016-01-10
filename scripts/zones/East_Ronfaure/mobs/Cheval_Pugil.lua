@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure
---  MOB: Cheval Pugil
+-- MOB: Cheval Pugil
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

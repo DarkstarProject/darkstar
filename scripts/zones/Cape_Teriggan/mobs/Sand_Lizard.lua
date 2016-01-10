@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cape Teriggan
---  MOB: Sand Lizard
+-- MOB: Sand Lizard
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

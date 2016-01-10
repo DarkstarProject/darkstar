@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
---  MOB: Sand Lizard
+-- MOB: Sand Lizard
 -- Note: Place Holder for Amemet
 -----------------------------------
 

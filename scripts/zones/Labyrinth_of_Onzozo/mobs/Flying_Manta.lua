@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
---  MOB: Flying Manta
+-- MOB: Flying Manta
 -- Note: Place holder Lord of Onzozo
 -----------------------------------
 

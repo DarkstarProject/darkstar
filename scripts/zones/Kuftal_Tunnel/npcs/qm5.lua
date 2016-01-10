@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- NPC:  ???
+--  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and missionStatus == 1) then
         player:startEvent(0x00c);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(text.NOTHING_OUT_OF_ORDINARY);
     end
     
 end; 
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
     if (option == 0) then
         if (csid == 0x00c) then
             player:setVar("MissionStatus",2);
-            player:messageSpecial(FELL);
+            player:messageSpecial(text.FELL);
         end    
     end
 end;

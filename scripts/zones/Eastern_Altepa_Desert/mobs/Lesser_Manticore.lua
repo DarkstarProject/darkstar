@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
---  MOB: Lesser Manticore
+-- MOB: Lesser Manticore
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

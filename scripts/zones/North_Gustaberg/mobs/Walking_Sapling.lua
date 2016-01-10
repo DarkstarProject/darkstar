@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: North Gustaberg
---  MOB: Walking Sapling
+-- MOB: Walking Sapling
 -- Note: Place Holder For Maighdean Uaine
 -----------------------------------
 

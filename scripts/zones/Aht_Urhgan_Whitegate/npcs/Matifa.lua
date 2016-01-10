@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Matifa
---  Type: Standard NPC
---  @pos -10.583 -1 -8.820 50
+-- Area: Aht Urhgan Whitegate
+--  NPC: Matifa
+-- Type: Standard NPC
+-- @pos -10.583 -1 -8.820 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Kueh Igunahmori
+--  NPC: Kueh Igunahmori
 -- Guild Merchant NPC: Leathercrafting Guild 
 -- @pos -194.791 -8.800 13.130 230
 -----------------------------------
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:sendGuild(529,3,18,4)) then
-        player:showText(npc,KUEH_IGUNAHMORI_DIALOG);
+        player:showText(npc, text.KUEH_IGUNAHMORI_DIALOG);
     end
 end; 
 
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,10 +43,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
 

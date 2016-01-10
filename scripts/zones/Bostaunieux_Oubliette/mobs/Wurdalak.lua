@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
---  MOB: Wurdalak
+-- MOB: Wurdalak
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

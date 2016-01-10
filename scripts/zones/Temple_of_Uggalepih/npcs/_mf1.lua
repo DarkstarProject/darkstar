@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Granite Door
+--  NPC: Granite Door
 -- Notes: Door blocked by Temple Guardian
 -- @pos -62 0 -99 159
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     local guardian = GetMobByID(17428494);
 
     if ( npc:getAnimation() == 9) then
-        player:messageSpecial(PROTECTED_BY_UNKNOWN_FORCE);
+        player:messageSpecial(text.PROTECTED_BY_UNKNOWN_FORCE);
     end
     
     if (guardian ~= nil and guardian:getHP() > 0 and guardian:getTarget() == nil) then
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

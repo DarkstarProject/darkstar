@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Sagheera
+--  NPC: Sagheera
 -- @pos -3 0.1 -9 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
@@ -155,7 +155,7 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(option1, option2, option3, option4, option5, option6, option7, option8); 
         --   print("artifact");
     end
-    --printf("RESULT: %u",option);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -166,24 +166,24 @@ function onEventFinish(player,csid,option)
     local remainingAB=player:getCurrency("ancient_beastcoin");
     local ugrade_armor_Type = 0 ;
     local ugrade_armor_ID = 0 ;
-    --printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
     --print("event finish");
-    --printf("RESULT: %u",option);
+    -- printf("RESULT: %u",option);
     
     if (csid == 313) then
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true);
     elseif (csid == 0x0136 and option == 3) then --add keyitem for limbus
         player:setVar("Cosmo_Cleanse_TIME", os.time(t));
         player:addKeyItem(COSMOCLEANSE);
-        player:messageSpecial(KEYITEM_OBTAINED, COSMOCLEANSE);
+        player:messageSpecial(text.KEYITEM_OBTAINED, COSMOCLEANSE);
         player:delGil(15000);   
     elseif (csid == 0x0136 and  option >10 and option < 21) then  -- ancient beastcoin reward
         if (player:getFreeSlotsCount() == 0 or player:hasItem(ABreward[option-10])) then  
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
         else
             player:delCurrency("ancient_beastcoin", ABremove[option-10]);
             player:addItem(ABreward[option-10]);
-            player:messageSpecial(ITEM_OBTAINED, ABreward[option-10]);
+            player:messageSpecial(text.ITEM_OBTAINED, ABreward[option-10]);
         end
     elseif (csid == 0x0136 and  option == 100) then  -- upgrade armor reward
         ugrade_armor_Type = player:getVar("AFupgrade");
@@ -202,10 +202,10 @@ function onEventFinish(player,csid,option)
             end
         end
         if (player:getFreeSlotsCount() == 0 and ugrade_armor_ID ~= 0) then  
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ugrade_armor_ID); 
+            player:messageSpecial(text.ITEM_CANNOT_BE_OBTAINED, ugrade_armor_ID); 
         else
             player:addItem(ugrade_armor_ID);
-            player:messageSpecial(ITEM_OBTAINED, ugrade_armor_ID);
+            player:messageSpecial(text.ITEM_OBTAINED, ugrade_armor_ID);
             player:setVar("AFupgrade", 0);
             player:setVar("AFupgradeDay", 0);
         end

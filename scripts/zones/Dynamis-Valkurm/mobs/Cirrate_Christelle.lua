@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
---  MOB: Cirrate_Christelle
+-- MOB: Cirrate_Christelle
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
@@ -112,7 +112,7 @@ end;
 function onMobDeath(mob,killer,ally)
   if (ally:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then
        ally:addKeyItem(DYNAMIS_VALKURM_SLIVER);
-       ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
+       ally:messageSpecial(text.KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
   end
        ally:addTitle(DYNAMISVALKURM_INTERLOPER);
 end;

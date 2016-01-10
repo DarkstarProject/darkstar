@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Sulfur Scorpion
+-- MOB: Sulfur Scorpion
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

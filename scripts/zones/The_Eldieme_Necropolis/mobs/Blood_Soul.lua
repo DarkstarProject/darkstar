@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
---  MOB: Blood Soul
+-- MOB: Blood Soul
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

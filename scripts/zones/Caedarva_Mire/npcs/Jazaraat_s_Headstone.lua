@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Jazaraat's Headstone
+--  NPC: Jazaraat's Headstone
 -- Involved in mission: The Lost Kingdom (TOAUM 13)
 -- @pos  -389 6 -570 79
 -----------------------------------
@@ -31,11 +31,11 @@ function onTrigger(player,npc)
     elseif (player:getVar("TOAUM13") ==3) then
         player:setVar("TOAUM13",0);
         player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
-        player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
+        player:messageSpecial(text.KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
         player:completeMission(TOAU,LOST_KINGDOM);
         player:addMission(TOAU,THE_DOLPHIN_CREST);
     else
-        player:messageSpecial(JAZARAATS_HEADSTONE);
+        player:messageSpecial(text.JAZARAATS_HEADSTONE);
     end
 end;
 

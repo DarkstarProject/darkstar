@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  ??? (Seiryu's Spawn)
+--  NPC: ??? (Seiryu's Spawn)
 -- Allows players to spawn the HNM Seiryu with a Gem of the East and a Springstone.
 -- @pos 569 -70 -80 130
 -----------------------------------
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17309981) == 0 and trade:hasItemQty(1418,1) and trade:hasItemQty(1419,1) and trade:getItemCount() == 2) then
         player:tradeComplete();
         SpawnMob(17309981,300):updateClaim(player); -- Spawn Seiryu
-        player:showText(npc,SKY_GOD_OFFSET + 9);
+        player:showText(npc, text.SKY_GOD_OFFSET + 9);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end; 
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(SKY_GOD_OFFSET + 1);
+    player:messageSpecial(text.SKY_GOD_OFFSET + 1);
 end; 
 
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

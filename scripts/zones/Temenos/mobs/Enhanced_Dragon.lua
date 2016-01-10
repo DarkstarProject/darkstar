@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos Central 1floor    
--- NPC: Enhanced_Dragon
+--  NPC: Enhanced_Dragon
 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

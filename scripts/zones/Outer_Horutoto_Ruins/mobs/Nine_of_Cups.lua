@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
---  MOB: Nine of Cups
+-- MOB: Nine of Cups
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

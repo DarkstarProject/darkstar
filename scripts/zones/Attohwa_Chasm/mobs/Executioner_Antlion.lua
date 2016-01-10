@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Attohwa Chasm
---  MOB: Executioner Antlion
+-- MOB: Executioner Antlion
 -----------------------------------
 
 require("scripts/globals/titles");

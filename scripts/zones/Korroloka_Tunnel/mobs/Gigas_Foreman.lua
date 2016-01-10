@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
---  MOB: Gigas Foreman
+-- MOB: Gigas Foreman
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

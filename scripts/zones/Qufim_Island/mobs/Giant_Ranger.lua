@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qufim Island
---  MOB: Giant Ranger
+-- MOB: Giant Ranger
 -----------------------------------
 
 require("scripts/globals/fieldsofvalor");

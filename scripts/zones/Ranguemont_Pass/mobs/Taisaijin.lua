@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
---  NM:  Taisaijin
+-- NM:  Taisaijin
 -----------------------------------
 
 require("scripts/globals/titles");
