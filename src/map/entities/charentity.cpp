@@ -775,12 +775,12 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 }
                 if (actionTarget.reaction == REACTION_HIT)
                 {
-                    if (getEquip(damslot)->getModifier(MOD_ADDITIONAL_EFFECT))
+                    if (m_Weapons[damslot]->getModifier(MOD_ADDITIONAL_EFFECT))
                     {
                         actionTarget_t dummy;
-                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(damslot)), &dummy, damage);
+                        luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(m_Weapons[damslot]), &dummy, damage);
                     }
-                    else if (damslot == SLOT_RANGED && getEquip(SLOT_AMMO) && getEquip(SLOT_AMMO)->getModifier(MOD_ADDITIONAL_EFFECT))
+                    else if (damslot == SLOT_RANGED && m_Weapons[SLOT_AMMO] && m_Weapons[SLOT_AMMO]->getModifier(MOD_ADDITIONAL_EFFECT))
                     {
                         actionTarget_t dummy;
                         luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(SLOT_AMMO)), &dummy, damage);
