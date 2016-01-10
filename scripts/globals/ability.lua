@@ -426,7 +426,7 @@ function corsairSetup(caster, ability, action, effect, job)
                              job,
                              true);
     caster:setLocalVar("corsairRollTotal", roll);
-    action:speceffect(caster:getID(), total);
+    action:speceffect(caster:getID(), roll);
     if (checkForElevenRoll(caster)) then
         action:recast(action:recast()/2)
     end
