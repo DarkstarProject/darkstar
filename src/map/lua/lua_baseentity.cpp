@@ -4606,6 +4606,29 @@ inline int32 CLuaBaseEntity::getStatusEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getStatusEffects(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    int count = 0;
+    lua_newtable(L);
+    static_cast<CBattleEntity*>(m_PBaseEntity)->StatusEffectContainer->ForEachEffect([&](CStatusEffect* PEffect){
+        lua_getglobal(L, CLuaStatusEffect::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PEffect);
+
+        if (lua_pcall(L, 2, 1, 0))
+        {
+            return;
+        }
+        lua_rawseti(L, -2, ++count);
+    });
+    return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Проверяем наличие статус-эффекта в контейнере                        *
@@ -10339,6 +10362,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addStatusEffectEx),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffects),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffectByFlag),

@@ -313,6 +313,7 @@ public:
     int32 hasBustEffect(lua_State*);          // Checks to see if a character has a specified busted corsair roll
     int32 canGainStatusEffect(lua_State*);    // Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);        //
+    int32 getStatusEffects(lua_State*);       
     int32 delStatusEffect(lua_State*);        // Removes Status Effect
     int32 delStatusEffectsByFlag(lua_State*); // Removes Status Effects by Flag
     int32 delStatusEffectSilent(lua_State*);  // Removes Status Effect, suppresses message

@@ -412,3 +412,33 @@
     ABILITY_CHAOTIC_STRIKE     = 614;
     ABILITY_THUNDERSTORM       = 615;
     ABILITY_JUDGMENT_BOLT      = 616;
+
+function corsairSetup(caster, ability, action, effect)
+    local roll = math.random(1,6);
+    caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(EFFECT_DOUBLE_UP_CHANCE,
+                             EFFECT_DOUBLE_UP_CHANCE, 
+                             roll,
+                             0,
+                             45,
+                             ability:getID(),
+                             effect,
+                             true);
+    caster:setLocalVar("corsairRollTotal", roll);
+    action:speceffect(caster:getID(), total);
+    if (checkForElevenRoll(caster)) then
+        action:recast(action:recast()/2)
+    end
+end
+
+function checkForElevenRoll(caster)
+    local effects = caster:getStatusEffects()
+    for _,effect in ipairs(effects) do
+        if (effect:getType() >= EFFECT_FIGHTERS_ROLL and
+            effect:getType() <= EFFECT_SCHOLARS_ROLL and
+            effect:getSubPower() == 11) then
+            return true
+        end
+    end
+    return false
+end

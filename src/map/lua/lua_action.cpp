@@ -42,6 +42,34 @@ CLuaAction::CLuaAction(action_t* Action)
     m_PLuaAction = Action;
 }
 
+int32 CLuaAction::recast(lua_State* L)
+{
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        m_PLuaAction->recast = lua_tointeger(L, 1);
+        return 0;
+    }
+    else
+    {
+        lua_pushinteger(L, m_PLuaAction->recast);
+        return 1;
+    }
+}
+
+int32 CLuaAction::actionID(lua_State* L)
+{
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        m_PLuaAction->actionid = lua_tointeger(L, 1);
+        return 0;
+    }
+    else
+    {
+        lua_pushinteger(L, m_PLuaAction->actionid);
+        return 1;
+    }
+}
+
 inline int32 CLuaAction::param(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -202,6 +230,8 @@ const int8 CLuaAction::className[] = "CAction";
 
 Lunar<CLuaAction>::Register_t CLuaAction::methods[] =
 {
+    LUNAR_DECLARE_METHOD(CLuaAction, recast),
+    LUNAR_DECLARE_METHOD(CLuaAction, actionID),
     LUNAR_DECLARE_METHOD(CLuaAction, param),
     LUNAR_DECLARE_METHOD(CLuaAction, messageID),
     LUNAR_DECLARE_METHOD(CLuaAction, animation),

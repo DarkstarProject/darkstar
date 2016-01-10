@@ -46,6 +46,8 @@ public:
         return m_PLuaAction;
     }
 
+    int32 recast(lua_State*);
+    int32 actionID(lua_State*);
     int32 param(lua_State*);
     int32 messageID(lua_State*);
     int32 animation(lua_State*);

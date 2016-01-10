@@ -146,7 +146,7 @@ namespace luautils
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
 
-        lua_register(LuaHandle, "getCorsairRollEffect", luautils::getCorsairRollEffect);
+        lua_register(LuaHandle, "getAbility", luautils::getAbility);
         lua_register(LuaHandle, "getSpell", luautils::getSpell);
 
         Lunar<CLuaAbility>::Register(LuaHandle);
@@ -4217,11 +4217,19 @@ namespace luautils
         return 1;
     }
 
-    int32 getCorsairRollEffect(lua_State* L)
+    int32 getAbility(lua_State* L)
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            lua_pushinteger(L, battleutils::getCorsairRollEffect(lua_tointeger(L, 1)));
+            CAbility* PAbility = ability::GetAbility(lua_tointeger(L, 1));
+
+            lua_getglobal(L, CLuaAbility::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, (void*)PAbility);
+            lua_pcall(L, 2, 1, 0);
+
             return 1;
         }
         return 0;
