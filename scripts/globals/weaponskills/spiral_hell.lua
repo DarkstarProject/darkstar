@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.ftp200 = 2.75; params.ftp300 = 4.75;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 end

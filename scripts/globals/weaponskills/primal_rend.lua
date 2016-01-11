@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.dex_wsc = 0.3; params.chr_wsc = 0.6;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params);
 
     if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOB_BST)) then
         if (damage > 0) then

@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.int_wsc = 0.7 + (player:getMerit(MERIT_ENTROPY) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     player:addMP(damage * 0.2);
     return tpHits, extraHits, criticalHit, damage;

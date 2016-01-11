@@ -12,7 +12,6 @@
 -- 100%TP    200%TP    300%TP
 -- 1.0        1.0      1.0
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -35,7 +34,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.atkmulti = 1.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
 
     if damage > 0 and (target:hasStatusEffect(EFFECT_BIND) == false) then
         target:addStatusEffect(EFFECT_BIND, 1, 0, 20);

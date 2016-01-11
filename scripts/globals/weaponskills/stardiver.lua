@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.7 + (player:getMerit(MERIT_STARDIVER) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
 
     if damage > 0 and (target:hasStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN) == false) then
         target:addStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN, 5, 0, 60);

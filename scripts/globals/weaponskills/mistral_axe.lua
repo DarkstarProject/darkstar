@@ -11,7 +11,6 @@
 -- 100%TP    200%TP    300%TP
 -- 2.50      3.00      3.50
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -32,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.ftp100 = 4; params.ftp200 = 10.5; params.ftp300 = 13.625;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
