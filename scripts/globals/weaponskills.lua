@@ -16,7 +16,7 @@ local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502
 local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
 
 --params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
-function doPhysicalWeaponskill(attacker, target, params)
+function doPhysicalWeaponskill(attacker, target, params, wsid)
 
     local criticalHit = false;
     local bonusacc = 0;
@@ -235,6 +235,9 @@ function doPhysicalWeaponskill(attacker, target, params)
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
     
+    if (attacker:getMod(MOD_WEAPONSKILL_BASE + wsID) > 0) then
+        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_BASE + wsID))/100
+    end
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;

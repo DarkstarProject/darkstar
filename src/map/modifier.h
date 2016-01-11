@@ -613,6 +613,11 @@ enum MODIFIER
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
 
+    // Weaponskill %damage modifiers
+    // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
+    // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
+    MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
+
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
@@ -622,8 +627,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 570, // stuff
-    // MOD_SPARE = 571, // stuff
+    // MOD_SPARE = 826, // stuff
+    // MOD_SPARE = 827, // stuff
 
 };
 

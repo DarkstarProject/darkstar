@@ -1288,6 +1288,7 @@ MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, perc
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1301,8 +1302,8 @@ MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. M
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 570, -- stuff
--- MOD_SPARE = 571, -- stuff
+-- MOD_SPARE = 826, -- stuff
+-- MOD_SPARE = 827, -- stuff
 
 ------------------------------------
 -- Merit Definitions
