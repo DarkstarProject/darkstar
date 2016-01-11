@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID)
     -- TODO: needs to give enmity down at varying tp percent's that is treated separately than the gear cap of -50% enmity http://www.bg-wiki.com/bg/Wildfire
     -- TODO: also needs aftermath effects added
 
-    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, params);
+    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 end;

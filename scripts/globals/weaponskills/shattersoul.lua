@@ -36,7 +36,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.int_wsc = 0.7 + (player:getMerit(MERIT_SHATTERSOUL) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
 
     if damage > 0 and (target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
         target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, 120);

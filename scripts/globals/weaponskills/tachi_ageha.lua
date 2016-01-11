@@ -34,7 +34,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.4; params.chr_wsc = 0.6;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
 
     if damage > 0 and (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
         target:addStatusEffect(EFFECT_DEFENSE_DOWN, 25, 0, 180);

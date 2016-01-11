@@ -35,7 +35,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.dex_wsc = 0.7 + (player:getMerit(MERIT_BLADE_SHUN) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 

@@ -13,7 +13,6 @@
 -- 100%TP    200%TP    300%TP
 -- 3.00      3.00      3.00
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
@@ -34,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.int_wsc = 0.8; params.chr_wsc = 0.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
     -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
         local amDuration = 20 * math.floor(player:getTP()/100);

@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.4; params.mnd_wsc = 0.4;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params);
     damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 

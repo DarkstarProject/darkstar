@@ -26,7 +26,7 @@ function onUseWeaponSkill(player, target, wsID)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1.05;
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.dex_wsc = 0.7 + (player:getMerit(MERIT_SHIJIN_SPIRAL) / 100);

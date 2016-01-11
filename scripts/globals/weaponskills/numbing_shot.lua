@@ -30,7 +30,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.agi_wsc = 0.8;
     end
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params);
 
     if damage > 0 then
         local tp = player:getTP();
