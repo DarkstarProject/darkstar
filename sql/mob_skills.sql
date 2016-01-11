@@ -45,21 +45,21 @@ CREATE TABLE IF NOT EXISTS `mob_skills` (
 -- Table contents for `mob_skills`
 --
 
-INSERT INTO `mob_skills` VALUES (241,241,'Netherspikes',4,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (242,242,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (243,243,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (244,244,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (245,245,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (246,246,'Shackled_Fists',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (247,247,'Foxfire',4,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (248,248,'Grim_Halo',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (249,249,'Netherspikes',4,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (250,250,'Carnal_Nightmare',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (251,251,'Aegis_Schism',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (252,252,'Dancing_Chains',1,10.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (253,253,'Barbed_Crescent',0,7.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (254,254,'Vulcan_Shot',0,15.0,2000,0,4,1,0,0);
-INSERT INTO `mob_skills` VALUES (255,190,'Dimensional_Death',0,7.0,2000,0,4,1,0,0);
+INSERT INTO `mob_skills` VALUES (241,241,'Netherspikes',4,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (242,242,'Carnal_Nightmare',1,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (243,243,'Aegis_Schism',0,7.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (244,244,'Dancing_Chains',1,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (245,245,'Barbed_Crescent',0,7.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (246,246,'Shackled_Fists',0,7.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (247,247,'Foxfire',4,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (248,248,'Grim_Halo',1,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (249,249,'Netherspikes',4,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (250,250,'Carnal_Nightmare',1,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (251,251,'Aegis_Schism',0,7.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (252,252,'Dancing_Chains',1,10.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (253,253,'Barbed_Crescent',0,7.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (254,254,'Vulcan_Shot',0,15.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (255,190,'Dimensional_Death',0,7.0,2000,0,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (256,0,'#0',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (257,1,'Foot_Kick',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (258,2,'Dust_Cloud',4,10.0,2000,1500,4,0,0,0);
