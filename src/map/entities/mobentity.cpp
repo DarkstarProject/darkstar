@@ -644,7 +644,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     PSkill->setHPP(GetHPP());
 
     action.id = id;
-    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : ACTION_MOBABILITY_FINISH;
+    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
     action.actionid = PSkill->getID();
 
     uint16 msg = 0;
