@@ -159,7 +159,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
-    if (entity && entity->GetBattleTargetID() && entity->GetBattleTargetID() != targetid)
+    if (entity && entity->PAI->IsEngaged() && entity->GetBattleTargetID() != targetid)
     {
         ChangeTarget(targetid);
         return true;
