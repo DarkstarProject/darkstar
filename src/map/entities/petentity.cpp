@@ -151,3 +151,9 @@ void CPetEntity::Die()
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
 }
+
+void CPetEntity::Spawn()
+{
+    //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
+    CBattleEntity::Spawn();
+}

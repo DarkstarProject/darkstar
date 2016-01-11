@@ -61,6 +61,7 @@ public:
     virtual void UpdateEntity() override;
     virtual void FadeOut() override;
     virtual void Die() override;
+    virtual void Spawn() override;
 
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
