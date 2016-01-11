@@ -817,20 +817,23 @@ namespace battleutils
                 for (auto&& slot : {SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET})
                 {
                     CItemArmor* PItem = PCharDef->getEquip(slot);
-                    uint8 chance;
-
-                    Action->spikesEffect = (SUBEFFECT)0;
-                    auto spikes_type = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_TYPE);
-                    if (spikes_type > 0 && spikes_type < 7)
+                    if (PItem)
                     {
-                        Action->spikesEffect = (SUBEFFECT)spikes_type;
+                        uint8 chance;
+
+                        Action->spikesEffect = (SUBEFFECT)0;
+                        auto spikes_type = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_TYPE);
+                        if (spikes_type > 0 && spikes_type < 7)
+                        {
+                            Action->spikesEffect = (SUBEFFECT)spikes_type;
+                        }
+
+                        Action->spikesParam = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_DMG);
+                        chance = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_CHANCE);
+
+                        if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
+                            return true;
                     }
-
-                    Action->spikesParam = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_DMG);
-                    chance = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_CHANCE);
-
-                    if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
-                        return true;
                 }
             }
         }
@@ -1039,7 +1042,7 @@ namespace battleutils
             }
         }
         //check weapon for additional effects
-        else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, MOD_ADDITIONAL_EFFECT) > 0 && 
+        else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, MOD_ADDITIONAL_EFFECT) > 0 &&
                  luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
@@ -5284,7 +5287,7 @@ namespace battleutils
     {
         //apply TP Bonus
         int16 tp = spentTP + PEntity->getMod(MOD_TP_BONUS);
-        
+
         if (PEntity->objtype == TYPE_PC)
         {
             auto PChar = static_cast<CCharEntity*>(PEntity);
