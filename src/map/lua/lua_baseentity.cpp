@@ -6835,8 +6835,8 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
 
         PChar->pushPacket(new CCharSkillsPacket(PChar));
         PChar->pushPacket(new CCharRecastPacket(PChar));
-        return 0;
     }
+    return 0;
 }
 
 
