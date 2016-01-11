@@ -6816,6 +6816,30 @@ inline int32 CLuaBaseEntity::resetRecast(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::addRecast(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L, 1);
+        uint16 recastID = lua_tointeger(L, 2);
+        uint32 duration = lua_tointeger(L, 3);
+
+        PChar->PRecastContainer->Add(recastContainer, recastID, duration);
+
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
+        return 0;
+    }
+}
+
+
 /***************************************************************
   Attempts to register a BCNM or Dynamis battlefield.
   INPUT: The BCNM ID to register.
@@ -9998,7 +10022,7 @@ inline int32 CLuaBaseEntity::storeWithPorterMoogle(lua_State *L)
                 //auto item = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
                 //if (item->isType(ITEM_ARMOR) && ((CItemArmor*)item)->getTrialNumber() != 0)
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slotId, -1);
-                //else 
+                //else
                 //{
                 //lua_pushinteger(L, 2);
                 //return 1;
@@ -10462,6 +10486,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMeleeHitDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmRegister),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmEnter),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bcnmLeave),

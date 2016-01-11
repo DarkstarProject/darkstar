@@ -313,7 +313,7 @@ public:
     int32 hasBustEffect(lua_State*);          // Checks to see if a character has a specified busted corsair roll
     int32 canGainStatusEffect(lua_State*);    // Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);        //
-    int32 getStatusEffects(lua_State*);       
+    int32 getStatusEffects(lua_State*);
     int32 delStatusEffect(lua_State*);        // Removes Status Effect
     int32 delStatusEffectsByFlag(lua_State*); // Removes Status Effects by Flag
     int32 delStatusEffectSilent(lua_State*);  // Removes Status Effect, suppresses message
@@ -411,6 +411,8 @@ public:
     int32 showNPC(lua_State*);              // Show an NPC
     int32 hideNPC(lua_State*);              // hide an NPC
     int32 updateNPCHideTime(lua_State*);    // Updates the length of time a NPC remains hidden, if shorter than the original hide time.
+
+    int32 addRecast(lua_State*);
     int32 resetRecasts(lua_State*);         // Reset recasts for the caller
     int32 resetRecast(lua_State*);          // Reset one recast ID
 

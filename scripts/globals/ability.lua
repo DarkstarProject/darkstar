@@ -431,6 +431,7 @@ function corsairSetup(caster, ability, action, effect, job)
         action:recast(action:recast()/2)
     end
     checkForJobBonus(caster, job)
+    caster:addRecast(RECAST_ABILITY, 194, 8)
 end
 
 function checkForJobBonus(caster, job)
