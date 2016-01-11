@@ -235,8 +235,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, params)
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
     
-    if (attacker:getMod(MOD_WEAPONSKILL_BASE + wsID) > 0) then
-        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_BASE + wsID))/100
+    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
@@ -298,8 +298,8 @@ function doMagicWeaponskill(attacker, target, wsID, params)
     dmg = target:magicDmgTaken(dmg);
     dmg = adjustForTarget(target,dmg,params.ele);
     
-    if (attacker:getMod(MOD_WEAPONSKILL_BASE + wsID) > 0) then
-        dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_BASE + wsID))/100
+    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     return dmg, false, 1, 0;
 end
@@ -818,8 +818,8 @@ end;
     finaldmg = target:rangedDmgTaken(finaldmg);
     finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
 
-    if (attacker:getMod(MOD_WEAPONSKILL_BASE + wsID) > 0) then
-        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_BASE + wsID))/100
+    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
 
     return finaldmg, tpHitsLanded, extraHitsLanded;
