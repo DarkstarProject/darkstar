@@ -303,7 +303,6 @@ void CAIContainer::Tick(time_point _tick)
 {
     m_PrevTick = m_Tick;
     m_Tick = _tick;
-    CBaseEntity* PreEntity = PEntity;
 
     PEntity->Tick(_tick);
 
@@ -333,11 +332,7 @@ void CAIContainer::Tick(time_point _tick)
         }
     }
 
-    //make sure this AI hasn't been replaced by another
-    if (PreEntity->updatemask && PreEntity->PAI.get() == this)
-    {
-        PreEntity->UpdateEntity();
-    }
+    PEntity->UpdateEntity();
 }
 
 bool CAIContainer::IsStateStackEmpty()

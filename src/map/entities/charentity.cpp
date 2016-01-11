@@ -1472,7 +1472,7 @@ m_ActionList.push_back(Action);
         PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast, chargeTime, maxCharges);
         pushPacket(new CCharRecastPacket(this));
 
-        //#TODO: refactor 
+        //#TODO: refactor
         //if (this->getMijinGakure())
         //{
         //    m_ActionType = ACTION_FALL;
@@ -2029,6 +2029,10 @@ void CCharEntity::Tick(time_point _tick)
 
         pushPacket(new CCharHealthPacket(this));
         m_EquipSwap = false;
+    }
+    if (ReloadParty())
+    {
+        charutils::ReloadParty(this);
     }
     CBattleEntity::Tick(_tick);
 }
