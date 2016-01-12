@@ -1298,21 +1298,21 @@ namespace petutils
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f / 60.0f)));
-            //TODO: Base off the caps + merits depending on jug type
 
-            // get random lvl
-            uint8 highestLvl = PMaster->GetMLevel();
+            //Get the Jug pet cap level
+            uint8 highestLvl = PPetData->maxLevel;
 
-			if (highestLvl > PPetData->maxLevel)
+            // Increase the pet's level cal by the bonus given by BEAST AFFINITY merits.
+            CCharEntity* PChar = (CCharEntity*)PMaster;
+            highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
+
+            // And cap it to the master's level.
+			if (highestLvl > PMaster->GetMLevel())
             {
-				highestLvl = PPetData->maxLevel;
+				highestLvl = PMaster->GetMLevel();
 			}
 
-			// Increase the pet's level by the bonus.
-			CCharEntity* PChar = (CCharEntity*)PMaster;
-			highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
-
-            // 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
+            // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
             highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(MOD_JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
