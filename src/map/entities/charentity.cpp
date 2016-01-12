@@ -771,7 +771,17 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
                 {
-                    battleutils::RemoveAmmo(this);
+                    uint16 recycleChance = getMod(MOD_RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
+
+                    if (StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
+                    {
+                        StatusEffectContainer->DelStatusEffect(EFFECT_UNLIMITED_SHOT);
+                        recycleChance = 100;
+                    }
+                    if (dsprand::GetRandomNumber(100) > recycleChance)
+                    {
+                        battleutils::RemoveAmmo(this);
+                    }
                 }
                 if (actionTarget.reaction == REACTION_HIT)
                 {
@@ -1235,22 +1245,6 @@ m_ActionList.push_back(Action);
 
         // #TODO: delete ammo from script
 
-        //if (PAbility->getID() == ABILITY_CALL_BEAST || PAbility->getID() == ABILITY_REWARD ||
-        //    PAbility->getID() == ABILITY_ANGON || PAbility->getID() == ABILITY_TOMAHAWK || PAbility->getID() == ABILITY_REPAIR)
-        //{
-        //    CItemArmor* PAmmo = getEquip(SLOT_AMMO);
-        //    uint8 slot = equip[SLOT_AMMO];
-        //    uint8 loc = equipLoc[SLOT_AMMO];
-        //    if (PAmmo->getQuantity() == 1)
-        //    {
-        //        charutils::UnequipItem(this, SLOT_AMMO);
-        //        charutils::SaveCharEquip(this);
-        //    }
-        //    charutils::UpdateItem(this, loc, slot, -1);
-
-        //    this->pushPacket(new CInventoryFinishPacket());
-        //}
-
         //if (PAbility->getID() >= ABILITY_FIRE_SHOT && PAbility->getID() <= ABILITY_DARK_SHOT)
         //{
         //    CItemContainer* inventory = getStorage(LOC_INVENTORY);
@@ -1440,23 +1434,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
         if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
         {
-            if ((PAmmo->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+            TrackArrowUsageForScavenge(PAmmo);
+            if (battleutils::RemoveAmmo(this))
             {
-                TrackArrowUsageForScavenge(PAmmo);
-                uint8 slot = equip[SLOT_AMMO];
-                uint8 loc = equipLoc[SLOT_AMMO];
-                charutils::UnequipItem(this, SLOT_AMMO);
-                charutils::SaveCharEquip(this);
-                charutils::UpdateItem(this, loc, slot, -1);
-                i = hitCount; // end loop (if barrage), player is out of ammo
-                PAmmo = nullptr;
+                hitCount = i;
             }
-            else
-            {
-                TrackArrowUsageForScavenge(PAmmo);
-                charutils::UpdateItem(this, this->equipLoc[SLOT_AMMO], this->equip[SLOT_AMMO], -1);
-            }
-            pushPacket(new CInventoryFinishPacket());
         }
         totalDamage += damage;
     }

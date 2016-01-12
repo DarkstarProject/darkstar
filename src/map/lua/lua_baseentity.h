@@ -574,6 +574,8 @@ public:
     int32 addListener(lua_State* L);
     int32 removeListener(lua_State* L);
     int32 triggerListener(lua_State* L);
+
+    int32 removeAmmo(lua_State* L);
 };
 
 #endif
