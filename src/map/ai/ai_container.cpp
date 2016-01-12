@@ -150,7 +150,7 @@ void CAIContainer::UseItem(uint16 targid, uint8 loc, uint8 slotid)
 
 void CAIContainer::Inactive(duration _duration, bool canChangeState)
 {
-    ChangeState<CInactiveState>(PEntity, _duration, canChangeState);
+    ForceChangeState<CInactiveState>(PEntity, _duration, canChangeState);
 }
 
 bool CAIContainer::Internal_Engage(uint16 targetid)
@@ -343,6 +343,15 @@ bool CAIContainer::IsStateStackEmpty()
 void CAIContainer::ClearStateStack()
 {
     while (!m_stateStack.empty())
+    {
+        m_stateStack.top()->Cleanup(server_clock::now());
+        m_stateStack.pop();
+    }
+}
+
+void CAIContainer::InterruptStates()
+{
+    while (!m_stateStack.empty() && m_stateStack.top()->CanInterrupt())
     {
         m_stateStack.top()->Cleanup(server_clock::now());
         m_stateStack.pop();

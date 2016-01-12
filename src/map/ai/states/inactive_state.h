@@ -34,6 +34,7 @@ public:
 protected:
     virtual bool CanChangeState() override { return m_canChangeState; }
     virtual bool CanFollowPath() override { return false; }
+    virtual bool CanInterrupt() override { return false; }
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
 private:

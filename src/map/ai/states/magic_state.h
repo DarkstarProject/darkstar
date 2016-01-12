@@ -43,6 +43,7 @@ public:
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
     virtual bool CanFollowPath() override { return false; }
+    virtual bool CanInterrupt() override { return true; }
 
     CSpell* GetSpell();
     virtual void TryInterrupt(CBattleEntity* PAttacker) override;

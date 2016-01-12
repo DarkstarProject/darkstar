@@ -34,7 +34,7 @@ class CBattleEntity;
 
 class CStateInitException : std::exception
 {
-public: 
+public:
     CStateInitException(std::unique_ptr<CMessageBasicPacket> _msg) : std::exception(),
         packet(std::move(_msg)) {}
     std::unique_ptr<CMessageBasicPacket> packet;
@@ -63,6 +63,8 @@ public:
     //whether the state can be changed by normal means
     virtual bool CanChangeState() = 0;
     virtual bool CanFollowPath() = 0;
+    //whether the state can be interrupted (including by stun/sleep)
+    virtual bool CanInterrupt() = 0;
     bool IsCompleted();
 
 protected:

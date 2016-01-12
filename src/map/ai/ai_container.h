@@ -83,6 +83,7 @@ public:
     CState* GetCurrentState();
     bool IsStateStackEmpty();
     void ClearStateStack();
+    void InterruptStates();
     // Pop the top state if it's the expected state
     template<typename State>
     bool PopState() { if (IsCurrentState<State>()) m_stateStack.pop(); }

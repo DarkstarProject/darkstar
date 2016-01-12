@@ -38,6 +38,7 @@ public:
     //whether the state can be changed by normal means
     virtual bool CanChangeState() override { return true; }
     virtual bool CanFollowPath() override { return true; }
+    virtual bool CanInterrupt() override { return false; }
 
     void ResetAttackTimer();
 
