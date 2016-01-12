@@ -5365,11 +5365,7 @@ namespace battleutils
 
     int32 GetScaledItemModifier(CBattleEntity* PEntity, CItemArmor* PItem, MODIFIER mod)
     {
-        if (PEntity->GetMLevel() > PItem->getReqLvl())
-        {
-            return PItem->getModifier(mod);
-        }
-        else
+        if (PEntity->GetMLevel() < PItem->getReqLvl())
         {
             auto modAmount = PItem->getModifier(mod);
             switch (mod)
@@ -5405,6 +5401,10 @@ namespace battleutils
                     break;
             }
             return modAmount / PItem->getReqLvl();
+        }
+        else
+        {
+            return PItem->getModifier(mod);
         }
     }
 };
