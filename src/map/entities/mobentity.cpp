@@ -620,6 +620,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         findFlags |= FINDFLAGS_PET;
     }
 
+    action.id = id;
+    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
+    action.actionid = PSkill->getID();
+
     if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
     {
         if (PSkill->isAoE())
@@ -636,16 +640,21 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             PAI->TargetFind->findSingleTarget(PTarget, findFlags);
         }
     }
+    else
+    {
+        action.actiontype = ACTION_MOBABILITY_INTERRUPT;
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = id;
+
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+        actionTarget.animation = PSkill->getID();
+    }
 
     uint16 actionsLength = PAI->TargetFind->m_targets.size();
 
     PSkill->setTotalTargets(actionsLength);
     PSkill->setTP(state.GetSpentTP());
     PSkill->setHPP(GetHPP());
-
-    action.id = id;
-    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
-    action.actionid = PSkill->getID();
 
     uint16 msg = 0;
     uint16 defaultMessage = PSkill->getMsg();
