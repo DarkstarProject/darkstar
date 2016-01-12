@@ -234,7 +234,7 @@ namespace battleutils
     uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
     uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
     int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
-    void                RemoveAmmo(CCharEntity*);
+    bool                RemoveAmmo(CCharEntity*);
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 
     int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, MODIFIER);
