@@ -38,237 +38,280 @@ CREATE TABLE `item_mods` (
 
 LOCK TABLES `item_mods` WRITE;
 /*!40000 ALTER TABLE `item_mods` DISABLE KEYS */;
-INSERT INTO `item_mods` VALUES (1850,165,4);
-INSERT INTO `item_mods` VALUES (10251,1,1);
-INSERT INTO `item_mods` VALUES (10252,1,1);
-INSERT INTO `item_mods` VALUES (10253,1,2);
-INSERT INTO `item_mods` VALUES (10254,1,2);
-INSERT INTO `item_mods` VALUES (10255,1,77);
-INSERT INTO `item_mods` VALUES (10255,3,8);
-INSERT INTO `item_mods` VALUES (10255,8,15);
-INSERT INTO `item_mods` VALUES (10255,9,15);
-INSERT INTO `item_mods` VALUES (10255,10,15);
-INSERT INTO `item_mods` VALUES (10255,23,22);
-INSERT INTO `item_mods` VALUES (10255,384,30);
-INSERT INTO `item_mods` VALUES (10256,1,1);
-INSERT INTO `item_mods` VALUES (10257,1,1);
-INSERT INTO `item_mods` VALUES (10258,1,1);
-INSERT INTO `item_mods` VALUES (10259,1,1);
-INSERT INTO `item_mods` VALUES (10260,1,1);
-INSERT INTO `item_mods` VALUES (10261,1,1);
-INSERT INTO `item_mods` VALUES (10262,1,1);
-INSERT INTO `item_mods` VALUES (10263,1,1);
-INSERT INTO `item_mods` VALUES (10264,1,2);
-INSERT INTO `item_mods` VALUES (10265,1,2);
-INSERT INTO `item_mods` VALUES (10266,1,2);
-INSERT INTO `item_mods` VALUES (10267,1,2);
-INSERT INTO `item_mods` VALUES (10268,1,2);
-INSERT INTO `item_mods` VALUES (10269,1,2);
-INSERT INTO `item_mods` VALUES (10270,1,2);
-INSERT INTO `item_mods` VALUES (10271,1,2);
-INSERT INTO `item_mods` VALUES (10272,1,68);
-INSERT INTO `item_mods` VALUES (10272,8,9);
-INSERT INTO `item_mods` VALUES (10272,10,9);
-INSERT INTO `item_mods` VALUES (10272,23,15);
-INSERT INTO `item_mods` VALUES (10272,27,6);
-INSERT INTO `item_mods` VALUES (10272,161,-4);
-INSERT INTO `item_mods` VALUES (10273,1,69);
-INSERT INTO `item_mods` VALUES (10273,8,10);
-INSERT INTO `item_mods` VALUES (10273,10,10);
-INSERT INTO `item_mods` VALUES (10273,23,16);
-INSERT INTO `item_mods` VALUES (10273,27,7);
-INSERT INTO `item_mods` VALUES (10273,161,-5);
-INSERT INTO `item_mods` VALUES (10274,374,5);
-INSERT INTO `item_mods` VALUES (10275,374,6);
-INSERT INTO `item_mods` VALUES (10276,1,75);
-INSERT INTO `item_mods` VALUES (10276,2,45);
-INSERT INTO `item_mods` VALUES (10276,5,45);
-INSERT INTO `item_mods` VALUES (10276,25,23);
-INSERT INTO `item_mods` VALUES (10276,384,30);
-INSERT INTO `item_mods` VALUES (10276,430,2);
-INSERT INTO `item_mods` VALUES (10277,1,63);
-INSERT INTO `item_mods` VALUES (10277,30,5);
-INSERT INTO `item_mods` VALUES (10277,112,13);
-INSERT INTO `item_mods` VALUES (10277,116,13);
-INSERT INTO `item_mods` VALUES (10277,122,13);
-INSERT INTO `item_mods` VALUES (10277,384,40);
-INSERT INTO `item_mods` VALUES (10278,1,75);
-INSERT INTO `item_mods` VALUES (10278,2,53);
-INSERT INTO `item_mods` VALUES (10278,5,53);
-INSERT INTO `item_mods` VALUES (10278,23,15);
-INSERT INTO `item_mods` VALUES (10278,73,6);
-INSERT INTO `item_mods` VALUES (10278,384,40);
-INSERT INTO `item_mods` VALUES (10279,1,63);
-INSERT INTO `item_mods` VALUES (10279,23,10);
-INSERT INTO `item_mods` VALUES (10279,25,10);
-INSERT INTO `item_mods` VALUES (10279,28,5);
-INSERT INTO `item_mods` VALUES (10279,30,5);
-INSERT INTO `item_mods` VALUES (10279,375,3);
-INSERT INTO `item_mods` VALUES (10279,384,40);
-INSERT INTO `item_mods` VALUES (10280,1,80);
-INSERT INTO `item_mods` VALUES (10280,2,100);
-INSERT INTO `item_mods` VALUES (10280,27,9);
-INSERT INTO `item_mods` VALUES (10280,160,-11);
-INSERT INTO `item_mods` VALUES (10280,384,-20);
-INSERT INTO `item_mods` VALUES (10281,369,2);
-INSERT INTO `item_mods` VALUES (10282,369,1);
-INSERT INTO `item_mods` VALUES (10283,1,57);
-INSERT INTO `item_mods` VALUES (10283,2,35);
-INSERT INTO `item_mods` VALUES (10283,8,6);
-INSERT INTO `item_mods` VALUES (10283,9,12);
-INSERT INTO `item_mods` VALUES (10283,10,12);
-INSERT INTO `item_mods` VALUES (10283,11,6);
-INSERT INTO `item_mods` VALUES (10283,12,6);
-INSERT INTO `item_mods` VALUES (10283,13,6);
-INSERT INTO `item_mods` VALUES (10283,14,6);
-INSERT INTO `item_mods` VALUES (10283,23,14);
-INSERT INTO `item_mods` VALUES (10283,24,14);
-INSERT INTO `item_mods` VALUES (10283,73,5);
-INSERT INTO `item_mods` VALUES (10284,1,77);
-INSERT INTO `item_mods` VALUES (10284,8,12);
-INSERT INTO `item_mods` VALUES (10284,9,12);
-INSERT INTO `item_mods` VALUES (10284,23,19);
-INSERT INTO `item_mods` VALUES (10284,165,2);
-INSERT INTO `item_mods` VALUES (10284,384,30);
-INSERT INTO `item_mods` VALUES (10285,1,61);
-INSERT INTO `item_mods` VALUES (10285,25,15);
-INSERT INTO `item_mods` VALUES (10285,73,5);
-INSERT INTO `item_mods` VALUES (10285,289,7);
-INSERT INTO `item_mods` VALUES (10285,384,51);
-INSERT INTO `item_mods` VALUES (10286,1,53);
-INSERT INTO `item_mods` VALUES (10286,28,7);
-INSERT INTO `item_mods` VALUES (10286,30,13);
-INSERT INTO `item_mods` VALUES (10287,1,71);
-INSERT INTO `item_mods` VALUES (10287,2,90);
-INSERT INTO `item_mods` VALUES (10287,8,15);
-INSERT INTO `item_mods` VALUES (10287,23,15);
-INSERT INTO `item_mods` VALUES (10287,54,30);
-INSERT INTO `item_mods` VALUES (10287,162,-5);
-INSERT INTO `item_mods` VALUES (10289,1,60);
-INSERT INTO `item_mods` VALUES (10289,8,14);
-INSERT INTO `item_mods` VALUES (10289,13,14);
-INSERT INTO `item_mods` VALUES (10289,25,13);
-INSERT INTO `item_mods` VALUES (10289,111,10);
-INSERT INTO `item_mods` VALUES (10289,112,10);
-INSERT INTO `item_mods` VALUES (10290,1,78);
-INSERT INTO `item_mods` VALUES (10290,8,16);
-INSERT INTO `item_mods` VALUES (10290,10,10);
-INSERT INTO `item_mods` VALUES (10290,12,10);
-INSERT INTO `item_mods` VALUES (10290,23,30);
-INSERT INTO `item_mods` VALUES (10290,384,30);
-INSERT INTO `item_mods` VALUES (10291,1,61);
-INSERT INTO `item_mods` VALUES (10291,9,61);
-INSERT INTO `item_mods` VALUES (10291,11,61);
-INSERT INTO `item_mods` VALUES (10291,25,61);
-INSERT INTO `item_mods` VALUES (10291,289,61);
-INSERT INTO `item_mods` VALUES (10291,384,40);
-INSERT INTO `item_mods` VALUES (10292,1,75);
-INSERT INTO `item_mods` VALUES (10292,13,16);
-INSERT INTO `item_mods` VALUES (10292,30,10);
-INSERT INTO `item_mods` VALUES (10292,114,18);
-INSERT INTO `item_mods` VALUES (10293,1,2);
-INSERT INTO `item_mods` VALUES (10295,8,4);
-INSERT INTO `item_mods` VALUES (10295,25,4);
-INSERT INTO `item_mods` VALUES (10295,73,1);
-INSERT INTO `item_mods` VALUES (10297,27,-2);
-INSERT INTO `item_mods` VALUES (10297,28,6);
-INSERT INTO `item_mods` VALUES (10298,111,4);
-INSERT INTO `item_mods` VALUES (10298,112,4);
-INSERT INTO `item_mods` VALUES (10300,1,28);
-INSERT INTO `item_mods` VALUES (10300,2,30);
-INSERT INTO `item_mods` VALUES (10300,8,10);
-INSERT INTO `item_mods` VALUES (10300,9,7);
-INSERT INTO `item_mods` VALUES (10300,11,7);
-INSERT INTO `item_mods` VALUES (10300,23,10);
-INSERT INTO `item_mods` VALUES (10300,25,10);
-INSERT INTO `item_mods` VALUES (10301,1,24);
-INSERT INTO `item_mods` VALUES (10301,2,30);
-INSERT INTO `item_mods` VALUES (10301,24,15);
-INSERT INTO `item_mods` VALUES (10301,26,10);
-INSERT INTO `item_mods` VALUES (10302,1,26);
-INSERT INTO `item_mods` VALUES (10302,2,25);
-INSERT INTO `item_mods` VALUES (10302,5,25);
-INSERT INTO `item_mods` VALUES (10302,23,15);
-INSERT INTO `item_mods` VALUES (10302,30,5);
-INSERT INTO `item_mods` VALUES (10313,1,40);
-INSERT INTO `item_mods` VALUES (10313,2,50);
-INSERT INTO `item_mods` VALUES (10313,10,15);
-INSERT INTO `item_mods` VALUES (10313,29,2);
-INSERT INTO `item_mods` VALUES (10313,161,-4);
-INSERT INTO `item_mods` VALUES (10314,1,25);
-INSERT INTO `item_mods` VALUES (10314,14,10);
-INSERT INTO `item_mods` VALUES (10314,27,-5);
-INSERT INTO `item_mods` VALUES (10314,119,11);
-INSERT INTO `item_mods` VALUES (10314,455,5);
-INSERT INTO `item_mods` VALUES (10315,1,37);
-INSERT INTO `item_mods` VALUES (10315,10,7);
-INSERT INTO `item_mods` VALUES (10315,13,7);
-INSERT INTO `item_mods` VALUES (10315,25,8);
-INSERT INTO `item_mods` VALUES (10315,27,5);
-INSERT INTO `item_mods` VALUES (10315,384,40);
-INSERT INTO `item_mods` VALUES (10316,1,32);
-INSERT INTO `item_mods` VALUES (10316,10,4);
-INSERT INTO `item_mods` VALUES (10316,25,10);
-INSERT INTO `item_mods` VALUES (10316,27,4);
-INSERT INTO `item_mods` VALUES (10316,161,-2);
-INSERT INTO `item_mods` VALUES (10317,1,33);
-INSERT INTO `item_mods` VALUES (10317,10,5);
-INSERT INTO `item_mods` VALUES (10317,25,11);
-INSERT INTO `item_mods` VALUES (10317,27,5);
-INSERT INTO `item_mods` VALUES (10317,161,-3);
-INSERT INTO `item_mods` VALUES (10318,1,26);
-INSERT INTO `item_mods` VALUES (10318,5,30);
-INSERT INTO `item_mods` VALUES (10318,8,-5);
-INSERT INTO `item_mods` VALUES (10318,9,-5);
-INSERT INTO `item_mods` VALUES (10318,10,-5);
-INSERT INTO `item_mods` VALUES (10318,11,-5);
-INSERT INTO `item_mods` VALUES (10318,12,5);
-INSERT INTO `item_mods` VALUES (10318,13,5);
-INSERT INTO `item_mods` VALUES (10318,14,5);
-INSERT INTO `item_mods` VALUES (10318,27,-3);
-INSERT INTO `item_mods` VALUES (10318,30,7);
-INSERT INTO `item_mods` VALUES (10319,1,27);
-INSERT INTO `item_mods` VALUES (10319,5,35);
-INSERT INTO `item_mods` VALUES (10319,8,-6);
-INSERT INTO `item_mods` VALUES (10319,9,-6);
-INSERT INTO `item_mods` VALUES (10319,10,-6);
-INSERT INTO `item_mods` VALUES (10319,11,-6);
-INSERT INTO `item_mods` VALUES (10319,12,6);
-INSERT INTO `item_mods` VALUES (10319,13,6);
-INSERT INTO `item_mods` VALUES (10319,14,6);
-INSERT INTO `item_mods` VALUES (10319,27,-4);
-INSERT INTO `item_mods` VALUES (10319,30,8);
-INSERT INTO `item_mods` VALUES (10320,1,30);
-INSERT INTO `item_mods` VALUES (10320,2,33);
-INSERT INTO `item_mods` VALUES (10320,5,33);
-INSERT INTO `item_mods` VALUES (10320,23,5);
-INSERT INTO `item_mods` VALUES (10320,25,5);
-INSERT INTO `item_mods` VALUES (10320,27,7);
-INSERT INTO `item_mods` VALUES (10320,384,40);
-INSERT INTO `item_mods` VALUES (10321,1,28);
-INSERT INTO `item_mods` VALUES (10321,27,-5);
-INSERT INTO `item_mods` VALUES (10321,28,6);
-INSERT INTO `item_mods` VALUES (10321,30,6);
-INSERT INTO `item_mods` VALUES (10321,346,2);
-INSERT INTO `item_mods` VALUES (10321,384,20);
-INSERT INTO `item_mods` VALUES (10322,1,30);
-INSERT INTO `item_mods` VALUES (10322,2,35);
-INSERT INTO `item_mods` VALUES (10322,5,35);
-INSERT INTO `item_mods` VALUES (10322,23,5);
-INSERT INTO `item_mods` VALUES (10322,384,40);
-INSERT INTO `item_mods` VALUES (10323,1,28);
-INSERT INTO `item_mods` VALUES (10323,82,10);
-INSERT INTO `item_mods` VALUES (10323,90,10);
-INSERT INTO `item_mods` VALUES (10323,91,10);
-INSERT INTO `item_mods` VALUES (10323,111,10);
-INSERT INTO `item_mods` VALUES (10323,112,10);
-INSERT INTO `item_mods` VALUES (10323,114,10);
-INSERT INTO `item_mods` VALUES (10324,1,39);
-INSERT INTO `item_mods` VALUES (10324,11,10);
-INSERT INTO `item_mods` VALUES (10324,24,15);
-INSERT INTO `item_mods` VALUES (10324,68,5);
-INSERT INTO `item_mods` VALUES (10324,289,4);
-INSERT INTO `item_mods` VALUES (10325,374,5);
+INSERT INTO `item_mods` VALUES (10250,1,1); -- Moogle Suit - DEF +1
+INSERT INTO `item_mods` VALUES (10251,1,1); -- Decennial Coat - DEF +1
+INSERT INTO `item_mods` VALUES (10252,1,1); -- Decennial Dress - DEF +1
+INSERT INTO `item_mods` VALUES (10253,1,2); -- Decennial Coat +1 - DEf +2
+INSERT INTO `item_mods` VALUES (10254,1,2); -- Decennial Dress +1 - DEf +2
+INSERT INTO `item_mods` VALUES (10255,1,77); -- Matanca Harness - DEF +77
+INSERT INTO `item_mods` VALUES (10255,3,8); -- HP% +8
+INSERT INTO `item_mods` VALUES (10255,8,15); -- STR +15
+INSERT INTO `item_mods` VALUES (10255,9,15); -- DEX +15
+INSERT INTO `item_mods` VALUES (10255,10,15); -- VIT +15
+INSERT INTO `item_mods` VALUES (10255,23,22); -- ATT +22
+INSERT INTO `item_mods` VALUES (10255,384,30); -- Haste +3%
+INSERT INTO `item_mods` VALUES (10256,1,1); -- Marine Gilet - DEF +1
+INSERT INTO `item_mods` VALUES (10257,1,1); -- Marine Top - DEF +1
+INSERT INTO `item_mods` VALUES (10258,1,1); -- Woodsy Gilet - DEF +1
+INSERT INTO `item_mods` VALUES (10259,1,1); -- Woodsy Top - DEF +1
+INSERT INTO `item_mods` VALUES (10260,1,1); -- Creek Maillot - Def +1
+INSERT INTO `item_mods` VALUES (10261,1,1); -- Creek Top - DEF +1
+INSERT INTO `item_mods` VALUES (10262,1,1); -- River Top - DEF +1
+INSERT INTO `item_mods` VALUES (10263,1,1); -- Dune Gilet - DEF +1
+INSERT INTO `item_mods` VALUES (10264,1,2); -- Marine Gilet +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10265,1,2); -- Marine Top +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10266,1,2); -- Woodsy Gilet +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10267,1,2); -- Woodsy Top +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10268,1,2); -- Creek Maillot +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10269,1,2); -- Creek Top +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10270,1,2); -- River Top +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10271,1,2); -- Dune Gilet +1 - DEF +2
+INSERT INTO `item_mods` VALUES (10272,1,68); -- Dux Scale Mail - DEF +68
+INSERT INTO `item_mods` VALUES (10272,8,9); -- STR+9
+INSERT INTO `item_mods` VALUES (10272,10,9); -- VIT +9
+INSERT INTO `item_mods` VALUES (10272,23,15); -- ATT +15
+INSERT INTO `item_mods` VALUES (10272,27,6); -- Enmity +6
+INSERT INTO `item_mods` VALUES (10272,161,-4); -- PDT -4%
+INSERT INTO `item_mods` VALUES (10273,1,69); -- Dux Scale Mail +1 - DEF +69
+INSERT INTO `item_mods` VALUES (10273,8,10); -- STR +10
+INSERT INTO `item_mods` VALUES (10273,10,10); -- VIT +10
+INSERT INTO `item_mods` VALUES (10273,23,16); -- ATT +16
+INSERT INTO `item_mods` VALUES (10273,27,7); -- Enmity +7
+INSERT INTO `item_mods` VALUES (10273,161,-5); -- PDT -5%
+INSERT INTO `item_mods` VALUES (10274,374,5); -- Chelona Blazer - Cure Potency +5%
+INSERT INTO `item_mods` VALUES (10274,1,57); -- DEF +57
+INSERT INTO `item_mods` VALUES (10274,5,50); -- MP +50
+INSERT INTO `item_mods` VALUES (10274,8,-11); -- STR -11
+INSERT INTO `item_mods` VALUES (10274,9,-11); -- DEX -11
+INSERT INTO `item_mods` VALUES (10274,10,-11); -- VIT -11
+INSERT INTO `item_mods` VALUES (10274,11,-11); -- AGI -11
+INSERT INTO `item_mods` VALUES (10274,12,11); -- INT +11
+INSERT INTO `item_mods` VALUES (10274,13,11); -- MND +11
+INSERT INTO `item_mods` VALUES (10274,14,11); -- CHR +11
+INSERT INTO `item_mods` VALUES (10274,71,8); -- MP recovered while resting +8
+INSERT INTO `item_mods` VALUES (10275,374,6); -- Chelona Blazer +1 - Cure Potency +6%
+INSERT INTO `item_mods` VALUES (10275,1,58); -- DEF +57
+INSERT INTO `item_mods` VALUES (10275,5,55); -- MP +55
+INSERT INTO `item_mods` VALUES (10275,8,-12); -- STR -12
+INSERT INTO `item_mods` VALUES (10275,9,-12); -- DEX -12
+INSERT INTO `item_mods` VALUES (10275,10,-12); -- VIT -12
+INSERT INTO `item_mods` VALUES (10275,11,-12); -- AGI -12
+INSERT INTO `item_mods` VALUES (10275,12,12); -- INT +12
+INSERT INTO `item_mods` VALUES (10275,13,12); -- MND +12
+INSERT INTO `item_mods` VALUES (10275,14,12); -- CHR +12
+INSERT INTO `item_mods` VALUES (10275,71,9); -- MP recovered while resting +9
+INSERT INTO `item_mods` VALUES (10276,1,75); -- Enif Corazza - DEF +75
+INSERT INTO `item_mods` VALUES (10276,2,45); -- HP +45
+INSERT INTO `item_mods` VALUES (10276,5,45); -- MP +45
+INSERT INTO `item_mods` VALUES (10276,25,23); -- ACC +23
+INSERT INTO `item_mods` VALUES (10276,384,30); -- Haste +3%
+INSERT INTO `item_mods` VALUES (10276,430,2); -- Quadruple Attack +2%
+INSERT INTO `item_mods` VALUES (10277,1,63); -- Adhara Manteel - DEF +63
+INSERT INTO `item_mods` VALUES (10277,30,5); -- MACC +5
+INSERT INTO `item_mods` VALUES (10277,112,13); -- Healing Magic Skill +13
+INSERT INTO `item_mods` VALUES (10277,116,13); -- Dark Magic Skill +13
+INSERT INTO `item_mods` VALUES (10277,122,13); -- Blue Magic Skill +13
+INSERT INTO `item_mods` VALUES (10277,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10278,1,75); -- Murzim Corazza - DEF +75
+INSERT INTO `item_mods` VALUES (10278,2,53); -- HP +53
+INSERT INTO `item_mods` VALUES (10278,5,53); -- MP +53
+INSERT INTO `item_mods` VALUES (10278,23,15); -- ATT +15
+INSERT INTO `item_mods` VALUES (10278,73,6); -- STP +6
+INSERT INTO `item_mods` VALUES (10278,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10279,1,63); -- Shedir Manteel - DEF +63
+INSERT INTO `item_mods` VALUES (10279,23,10); -- ATT +10
+INSERT INTO `item_mods` VALUES (10279,25,10); -- ACC +10
+INSERT INTO `item_mods` VALUES (10279,28,5); -- MATT +5
+INSERT INTO `item_mods` VALUES (10279,30,5); -- MACC +5
+INSERT INTO `item_mods` VALUES (10279,375,3); -- Cure Potency Received +3%
+INSERT INTO `item_mods` VALUES (10279,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10280,1,80); -- Laeradr Breastplate - DEF +80
+INSERT INTO `item_mods` VALUES (10280,2,100); -- HP +100
+INSERT INTO `item_mods` VALUES (10280,27,9); -- Enmity +9
+INSERT INTO `item_mods` VALUES (10280,160,-11); -- Damage Taken -11%
+INSERT INTO `item_mods` VALUES (10280,384,-20); -- Slow +2% / Haste -2%
+INSERT INTO `item_mods` VALUES (10281,369,2); -- Manasa Chasuble - Auto Refresh +2
+INSERT INTO `item_mods` VALUES (10281,1,45); -- DEF +45
+INSERT INTO `item_mods` VALUES (10281,13,13); -- MND +13
+INSERT INTO `item_mods` VALUES (10281,14,13); -- CHR +13
+INSERT INTO `item_mods` VALUES (10281,30,7); -- MACC +7
+INSERT INTO `item_mods` VALUES (10281,113,12); -- ENH SKILL +12
+INSERT INTO `item_mods` VALUES (10281,114,12); -- ENF SKILL +12
+INSERT INTO `item_mods` VALUES (10282,369,1); -- Krabat Jacket - Auto Refresh +1
+INSERT INTO `item_mods` VALUES (10282,1,45); -- DEF +45
+INSERT INTO `item_mods` VALUES (10282,28,14); -- MATT +14
+INSERT INTO `item_mods` VALUES (10282,562,8); -- MCRIT +8%
+INSERT INTO `item_mods` VALUES (10282,27,3); -- Enmity +3
+INSERT INTO `item_mods` VALUES (10283,1,57); -- Vara Brigandine - DEF +57
+INSERT INTO `item_mods` VALUES (10283,2,35); -- HP +35
+INSERT INTO `item_mods` VALUES (10283,8,6); -- STR +6
+INSERT INTO `item_mods` VALUES (10283,9,12); -- DEX +12
+INSERT INTO `item_mods` VALUES (10283,10,12); -- VIT +12
+INSERT INTO `item_mods` VALUES (10283,11,6); -- AGI +6
+INSERT INTO `item_mods` VALUES (10283,12,6); -- INT +6
+INSERT INTO `item_mods` VALUES (10283,13,6); -- MND +6
+INSERT INTO `item_mods` VALUES (10283,14,6); -- CHR +6
+INSERT INTO `item_mods` VALUES (10283,23,14); -- ATT +14
+INSERT INTO `item_mods` VALUES (10283,24,14); -- RATT +14
+INSERT INTO `item_mods` VALUES (10283,73,5); -- STP +5
+INSERT INTO `item_mods` VALUES (10284,1,77); -- Grandoyne's Mail - DEF +77
+INSERT INTO `item_mods` VALUES (10284,8,12); -- STR +12
+INSERT INTO `item_mods` VALUES (10284,9,12); -- DEX +12
+INSERT INTO `item_mods` VALUES (10284,23,19); -- ATT +19
+INSERT INTO `item_mods` VALUES (10284,165,2); -- CRIT +2%
+INSERT INTO `item_mods` VALUES (10284,384,30); -- Haste +3%
+INSERT INTO `item_mods` VALUES (10285,1,61); -- Beguiler's Jerkin - DEF +61
+INSERT INTO `item_mods` VALUES (10285,25,15); -- ACC +15
+INSERT INTO `item_mods` VALUES (10285,73,5); -- STP +5
+INSERT INTO `item_mods` VALUES (10285,289,7); -- SUBTLE +7
+INSERT INTO `item_mods` VALUES (10285,384,51); -- Haste +5%
+INSERT INTO `item_mods` VALUES (10286,1,53); -- Seidr Cotehardie - DEF +53
+INSERT INTO `item_mods` VALUES (10286,28,7); -- MATT +7
+INSERT INTO `item_mods` VALUES (10286,30,13); -- MACC +13
+INSERT INTO `item_mods` VALUES (10287,1,71); -- Feverish Korazin - DEF +71
+INSERT INTO `item_mods` VALUES (10287,2,90); -- HP +90
+INSERT INTO `item_mods` VALUES (10287,8,15); -- STR +15
+INSERT INTO `item_mods` VALUES (10287,23,15); -- ATT +15
+INSERT INTO `item_mods` VALUES (10287,54,30); -- Fire Resist +30
+INSERT INTO `item_mods` VALUES (10287,162,-5); -- Breath Damage Taken -5%
+INSERT INTO `item_mods` VALUES (10288,1,55); -- Baalmuian Robe - DEF +55
+INSERT INTO `item_mods` VALUES (10288,12,10); -- INT +10
+INSERT INTO `item_mods` VALUES (10288,13,10); -- MND +10
+INSERT INTO `item_mods` VALUES (10288,30,8); -- MACC +8
+INSERT INTO `item_mods` VALUES (10288,28,55); -- MATT +8
+INSERT INTO `item_mods` VALUES (10288,487,5); -- MB Bonus +5?
+INSERT INTO `item_mods` VALUES (10288,369,2); -- Auto Refresh +2
+INSERT INTO `item_mods` VALUES (10289,1,60); -- Sublime Breastplate - DEF +60
+INSERT INTO `item_mods` VALUES (10289,8,14); -- STR +14
+INSERT INTO `item_mods` VALUES (10289,13,14); -- MND +14
+INSERT INTO `item_mods` VALUES (10289,25,13); -- ACC +13
+INSERT INTO `item_mods` VALUES (10289,111,10); -- DIV SKILL +10
+INSERT INTO `item_mods` VALUES (10289,112,10); -- HEAL SKILL +10
+INSERT INTO `item_mods` VALUES (10290,1,78); -- Laudan Cuirass - DEF +78
+INSERT INTO `item_mods` VALUES (10290,8,16); -- STR +16
+INSERT INTO `item_mods` VALUES (10290,10,10); -- VIT +10
+INSERT INTO `item_mods` VALUES (10290,12,10); -- INT +10
+INSERT INTO `item_mods` VALUES (10290,23,30); -- ATT +30
+INSERT INTO `item_mods` VALUES (10290,384,30); -- Haste +3%
+INSERT INTO `item_mods` VALUES (10291,1,61);  -- Febro Kaftan - DEF +61
+INSERT INTO `item_mods` VALUES (10291,9,14); -- DEX +14
+INSERT INTO `item_mods` VALUES (10291,11,14); -- AGI +14
+INSERT INTO `item_mods` VALUES (10291,25,12); -- ACC +12
+INSERT INTO `item_mods` VALUES (10291,289,5); -- Sublte Blow +5
+INSERT INTO `item_mods` VALUES (10291,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10292,1,75); -- Wikyo Cloak - DEF +75
+INSERT INTO `item_mods` VALUES (10292,13,16); -- MND +16
+INSERT INTO `item_mods` VALUES (10292,30,10); -- MACC +10
+INSERT INTO `item_mods` VALUES (10292,114,18); -- ENF SKIL +18
+INSERT INTO `item_mods` VALUES (10292,170,7); -- Fast Cast 7% Supposed to be enfeebing cast time
+INSERT INTO `item_mods` VALUES (10293,1,2); -- Chocobo Shirt - DEF +2
+INSERT INTO `item_mods` VALUES (10295,8,4); -- Kokou's Earring - STR +4
+INSERT INTO `item_mods` VALUES (10295,25,4); -- ACC +4
+INSERT INTO `item_mods` VALUES (10295,73,1); -- STP +1
+INSERT INTO `item_mods` VALUES (10297,27,-2); -- Sortiarius Earring - Enmity -2
+INSERT INTO `item_mods` VALUES (10297,28,6); -- MAB +6
+INSERT INTO `item_mods` VALUES (10298,111,4); -- Beatific Earring - DIV SKILL +4
+INSERT INTO `item_mods` VALUES (10298,112,4); -- HEAL SKILL +4
+INSERT INTO `item_mods` VALUES (10300,1,28); -- Myrmex Mittens -- DEF +28
+INSERT INTO `item_mods` VALUES (10300,2,30); -- HP +30
+INSERT INTO `item_mods` VALUES (10300,8,10); -- STR +10
+INSERT INTO `item_mods` VALUES (10300,9,7); -- DEX +7
+INSERT INTO `item_mods` VALUES (10300,11,7); -- AGI +7
+INSERT INTO `item_mods` VALUES (10300,25,10); -- ACC +10
+INSERT INTO `item_mods` VALUES (10300,23,10); -- ATT +10
+INSERT INTO `item_mods` VALUES (10301,1,24); -- Arciten Gauntlets - DEF +24
+INSERT INTO `item_mods` VALUES (10301,2,30); -- HP +30
+INSERT INTO `item_mods` VALUES (10301,24,15); -- RNG ATT +15
+INSERT INTO `item_mods` VALUES (10301,26,10); -- RNG ACC +10
+INSERT INTO `item_mods` VALUES (10302,1,26); -- Punishing Gloves - DEF +26
+INSERT INTO `item_mods` VALUES (10302,2,25); -- HP +25
+INSERT INTO `item_mods` VALUES (10302,5,25); -- MP +25
+INSERT INTO `item_mods` VALUES (10302,23,15); -- ATT +15
+INSERT INTO `item_mods` VALUES (10302,30,5); -- MACC +5
+INSERT INTO `item_mods` VALUES (10313,1,40); -- Paalaka Goves - DEF +40
+INSERT INTO `item_mods` VALUES (10313,2,50); -- HP +50
+INSERT INTO `item_mods` VALUES (10313,10,15); -- VIT +15
+INSERT INTO `item_mods` VALUES (10313,29,2); -- MDB +4
+INSERT INTO `item_mods` VALUES (10313,161,-4); -- PDT -4%
+INSERT INTO `item_mods` VALUES (10314,1,25); -- Aneirins Gloves - DEF +25
+INSERT INTO `item_mods` VALUES (10314,14,10); -- CHR +10
+INSERT INTO `item_mods` VALUES (10314,27,-5); -- Enmity -5
+INSERT INTO `item_mods` VALUES (10314,119,11); -- SING SKILL +11
+INSERT INTO `item_mods` VALUES (10314,455,5); -- Fast Cast +5%, should be song casting -5%
+INSERT INTO `item_mods` VALUES (10315,1,37); -- Alcedo Gauntlets - DEF + 37
+INSERT INTO `item_mods` VALUES (10315,10,7); -- VIT +7
+INSERT INTO `item_mods` VALUES (10315,13,7); -- MND +7
+INSERT INTO `item_mods` VALUES (10315,25,8); -- ACC +8
+INSERT INTO `item_mods` VALUES (10315,27,5); -- Enmity +5
+INSERT INTO `item_mods` VALUES (10315,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10316,1,32); -- Dux Finger Gauntlets - DEF +32
+INSERT INTO `item_mods` VALUES (10316,10,4); -- VIT +4
+INSERT INTO `item_mods` VALUES (10316,25,10); -- ACC +10
+INSERT INTO `item_mods` VALUES (10316,27,4); -- Enmity +4
+INSERT INTO `item_mods` VALUES (10316,161,-2); -- PDT -2%
+INSERT INTO `item_mods` VALUES (10317,1,33); -- Dux Finger Gauntlets +1 - DEF +33
+INSERT INTO `item_mods` VALUES (10317,10,5); -- VIT +5
+INSERT INTO `item_mods` VALUES (10317,25,11); -- ACC +11
+INSERT INTO `item_mods` VALUES (10317,27,5); -- Enmity +5
+INSERT INTO `item_mods` VALUES (10317,161,-3); -- PDT -3%
+INSERT INTO `item_mods` VALUES (10318,1,26); -- Chelona Gloves - DEF +26
+INSERT INTO `item_mods` VALUES (10318,5,30); -- MP +30
+INSERT INTO `item_mods` VALUES (10318,8,-5); -- STR -5
+INSERT INTO `item_mods` VALUES (10318,9,-5); -- DEX -5
+INSERT INTO `item_mods` VALUES (10318,10,-5); -- VIT -5
+INSERT INTO `item_mods` VALUES (10318,11,-5); -- AGI -5
+INSERT INTO `item_mods` VALUES (10318,12,5); -- INT +5
+INSERT INTO `item_mods` VALUES (10318,13,5); -- MND +5
+INSERT INTO `item_mods` VALUES (10318,14,5); -- CHR +5
+INSERT INTO `item_mods` VALUES (10318,27,-3); -- Enmity -3
+INSERT INTO `item_mods` VALUES (10318,30,7); -- MACC +7
+INSERT INTO `item_mods` VALUES (10319,1,27); -- Chelona Gloves +1 - DEF +27
+INSERT INTO `item_mods` VALUES (10319,5,35); -- MP +35
+INSERT INTO `item_mods` VALUES (10319,8,-6); -- STR -6
+INSERT INTO `item_mods` VALUES (10319,9,-6); -- DEX -6
+INSERT INTO `item_mods` VALUES (10319,10,-6); -- VIT -6
+INSERT INTO `item_mods` VALUES (10319,11,-6);  -- AGI -6
+INSERT INTO `item_mods` VALUES (10319,12,6); -- INT +6
+INSERT INTO `item_mods` VALUES (10319,13,6); -- MND +6
+INSERT INTO `item_mods` VALUES (10319,14,6); -- CHR +6
+INSERT INTO `item_mods` VALUES (10319,27,-4); -- Enmity -4
+INSERT INTO `item_mods` VALUES (10319,30,8); -- MACC +8
+INSERT INTO `item_mods` VALUES (10320,1,30);  -- Enif Manopolas - DEF +30
+INSERT INTO `item_mods` VALUES (10320,2,33); -- HP +33
+INSERT INTO `item_mods` VALUES (10320,5,33); -- MP +33
+INSERT INTO `item_mods` VALUES (10320,25,5); -- ACC +5
+INSERT INTO `item_mods` VALUES (10320,23,5); -- ATT +5
+INSERT INTO `item_mods` VALUES (10320,27,7); -- Enmity +7
+INSERT INTO `item_mods` VALUES (10320,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10321,1,28); -- Adhara Gages - DEF +28
+INSERT INTO `item_mods` VALUES (10321,27,-5); -- Enmity -5
+INSERT INTO `item_mods` VALUES (10321,28,6); -- MAB +6
+INSERT INTO `item_mods` VALUES (10321,30,6); -- MACC +6
+INSERT INTO `item_mods` VALUES (10321,346,2); -- AVATAR PERP -2
+INSERT INTO `item_mods` VALUES (10321,384,20); -- Haste +2%
+INSERT INTO `item_mods` VALUES (10322,1,30); -- Murzim Manopolas - DEF +30
+INSERT INTO `item_mods` VALUES (10322,2,35); -- HP +35
+INSERT INTO `item_mods` VALUES (10322,5,35); -- MP +35
+INSERT INTO `item_mods` VALUES (10322,23,5); -- ATT +5
+INSERT INTO `item_mods` VALUES (10322,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10322,421,2); -- CRIT DMG +2%
+INSERT INTO `item_mods` VALUES (10323,1,28); -- Shedir Gages - DEF +28
+INSERT INTO `item_mods` VALUES (10323,82,10); -- SWORD SKILL +10
+INSERT INTO `item_mods` VALUES (10323,90,10); -- CLUB SKILL +10
+INSERT INTO `item_mods` VALUES (10323,91,10); -- STAFF SKILL +10
+INSERT INTO `item_mods` VALUES (10323,111,10);  -- DIVINE SKILL +10
+INSERT INTO `item_mods` VALUES (10323,112,10); -- HEALING SKILL +10
+INSERT INTO `item_mods` VALUES (10323,114,10); -- ENFEEBLING SKILL +10
+INSERT INTO `item_mods` VALUES (10324,1,39);  -- Leoht Gloves - DEF +39
+INSERT INTO `item_mods` VALUES (10324,11,10); -- AGI +10
+INSERT INTO `item_mods` VALUES (10324,24,15); -- RNG ATT +15
+INSERT INTO `item_mods` VALUES (10324,68,5); -- EVA +5
+INSERT INTO `item_mods` VALUES (10324,289,4); -- Subtle Blow +4
+INSERT INTO `item_mods` VALUES (10325,1,22); -- Hieros Mittens - DEF +22
+INSERT INTO `item_mods` VALUES (10325,5,30); -- MP +30
+INSERT INTO `item_mods` VALUES (10325,374,5); -- Cure Potency +5%
+INSERT INTO `item_mods` VALUES (10325,310,10); -- Cursna Effect +10%
+INSERT INTO `item_mods` VALUES (10325,384,20); -- Haste +2%
 INSERT INTO `item_mods` VALUES (10326,1,49);
 INSERT INTO `item_mods` VALUES (10326,2,40);
 INSERT INTO `item_mods` VALUES (10326,5,40);
@@ -289,16 +332,10 @@ INSERT INTO `item_mods` VALUES (10328,5,36);
 INSERT INTO `item_mods` VALUES (10328,24,7);
 INSERT INTO `item_mods` VALUES (10328,26,16);
 INSERT INTO `item_mods` VALUES (10328,359,5);
-INSERT INTO `item_mods` VALUES (10329,1,40);
-INSERT INTO `item_mods` VALUES (10329,54,15);
-INSERT INTO `item_mods` VALUES (10329,55,15);
-INSERT INTO `item_mods` VALUES (10329,56,15);
-INSERT INTO `item_mods` VALUES (10329,57,15);
-INSERT INTO `item_mods` VALUES (10329,58,15);
-INSERT INTO `item_mods` VALUES (10329,59,15);
-INSERT INTO `item_mods` VALUES (10329,60,15);
-INSERT INTO `item_mods` VALUES (10329,61,15);
-INSERT INTO `item_mods` VALUES (10329,113,15);
+INSERT INTO `item_mods` VALUES (10329,1,40); -- Shedir Seraweels - DEF +40
+INSERT INTO `item_mods` VALUES (10329,539,35); -- Stoneskin +35
+INSERT INTO `item_mods` VALUES (10329,113,15); -- Enhancing Magic Skill +15
+INSERT INTO `item_mods` VALUES (10329,567,15); -- Barspell potency +15
 INSERT INTO `item_mods` VALUES (10330,1,1);
 INSERT INTO `item_mods` VALUES (10331,1,1);
 INSERT INTO `item_mods` VALUES (10332,1,1);
@@ -840,11 +877,11 @@ INSERT INTO `item_mods` VALUES (10493,111,18);
 INSERT INTO `item_mods` VALUES (10493,112,18);
 INSERT INTO `item_mods` VALUES (10493,114,18);
 INSERT INTO `item_mods` VALUES (10493,384,40);
-INSERT INTO `item_mods` VALUES (10500,1,36);
-INSERT INTO `item_mods` VALUES (10500,2,30);
-INSERT INTO `item_mods` VALUES (10500,8,7);
-INSERT INTO `item_mods` VALUES (10500,9,4);
-INSERT INTO `item_mods` VALUES (10500,73,10);
+INSERT INTO `item_mods` VALUES (10500,1,36); -- Ogier's Gauntlets - DEF +36
+INSERT INTO `item_mods` VALUES (10500,2,30); -- HP +30
+INSERT INTO `item_mods` VALUES (10500,8,7); -- STR +7
+INSERT INTO `item_mods` VALUES (10500,9,4); -- DEX +4
+INSERT INTO `item_mods` VALUES (10500,73,10); -- STP +10
 INSERT INTO `item_mods` VALUES (10501,1,30);
 INSERT INTO `item_mods` VALUES (10501,8,7);
 INSERT INTO `item_mods` VALUES (10501,9,7);
@@ -20343,84 +20380,149 @@ INSERT INTO `item_mods` VALUES (18256,119,1);
 INSERT INTO `item_mods` VALUES (18257,10,4);
 INSERT INTO `item_mods` VALUES (18257,59,3);
 INSERT INTO `item_mods` VALUES (18257,228,2);
-INSERT INTO `item_mods` VALUES (18263,356,10);
-INSERT INTO `item_mods` VALUES (18264,23,20);
-INSERT INTO `item_mods` VALUES (18264,291,5);
-INSERT INTO `item_mods` VALUES (18264,355,10);
-INSERT INTO `item_mods` VALUES (18264,506,160);
-INSERT INTO `item_mods` VALUES (18264,507,250);
-INSERT INTO `item_mods` VALUES (18269,356,26);
-INSERT INTO `item_mods` VALUES (18270,23,20);
-INSERT INTO `item_mods` VALUES (18270,355,26);
-INSERT INTO `item_mods` VALUES (18270,431,1);
-INSERT INTO `item_mods` VALUES (18270,506,160);
-INSERT INTO `item_mods` VALUES (18270,507,300);
-INSERT INTO `item_mods` VALUES (18275,356,43);
-INSERT INTO `item_mods` VALUES (18276,23,20);
-INSERT INTO `item_mods` VALUES (18276,355,43);
-INSERT INTO `item_mods` VALUES (18276,431,1);
-INSERT INTO `item_mods` VALUES (18276,506,160);
-INSERT INTO `item_mods` VALUES (18276,507,250);
-INSERT INTO `item_mods` VALUES (18281,356,57);
-INSERT INTO `item_mods` VALUES (18282,25,20);
-INSERT INTO `item_mods` VALUES (18282,165,5);
-INSERT INTO `item_mods` VALUES (18282,355,57);
-INSERT INTO `item_mods` VALUES (18282,506,160);
-INSERT INTO `item_mods` VALUES (18282,507,250);
-INSERT INTO `item_mods` VALUES (18287,356,73);
-INSERT INTO `item_mods` VALUES (18288,23,20);
-INSERT INTO `item_mods` VALUES (18288,355,73);
-INSERT INTO `item_mods` VALUES (18288,431,1);
-INSERT INTO `item_mods` VALUES (18288,506,160);
-INSERT INTO `item_mods` VALUES (18288,507,250);
-INSERT INTO `item_mods` VALUES (18293,356,89);
-INSERT INTO `item_mods` VALUES (18294,25,20);
-INSERT INTO `item_mods` VALUES (18294,355,89);
-INSERT INTO `item_mods` VALUES (18294,431,1);
-INSERT INTO `item_mods` VALUES (18294,506,160);
-INSERT INTO `item_mods` VALUES (18294,507,200);
-INSERT INTO `item_mods` VALUES (18299,356,121);
-INSERT INTO `item_mods` VALUES (18300,25,20);
-INSERT INTO `item_mods` VALUES (18300,355,121);
-INSERT INTO `item_mods` VALUES (18300,431,1);
-INSERT INTO `item_mods` VALUES (18300,506,160);
-INSERT INTO `item_mods` VALUES (18300,507,250);
-INSERT INTO `item_mods` VALUES (18305,356,105);
-INSERT INTO `item_mods` VALUES (18306,25,20);
-INSERT INTO `item_mods` VALUES (18306,355,105);
-INSERT INTO `item_mods` VALUES (18306,431,1);
-INSERT INTO `item_mods` VALUES (18306,506,160);
-INSERT INTO `item_mods` VALUES (18306,507,200);
-INSERT INTO `item_mods` VALUES (18311,356,137);
-INSERT INTO `item_mods` VALUES (18312,23,20);
-INSERT INTO `item_mods` VALUES (18312,355,137);
-INSERT INTO `item_mods` VALUES (18312,431,1);
-INSERT INTO `item_mods` VALUES (18312,506,160);
-INSERT INTO `item_mods` VALUES (18312,507,300);
-INSERT INTO `item_mods` VALUES (18317,356,153);
-INSERT INTO `item_mods` VALUES (18318,25,20);
-INSERT INTO `item_mods` VALUES (18318,355,153);
-INSERT INTO `item_mods` VALUES (18318,431,1);
-INSERT INTO `item_mods` VALUES (18318,506,160);
-INSERT INTO `item_mods` VALUES (18318,507,250);
-INSERT INTO `item_mods` VALUES (18323,356,170);
-INSERT INTO `item_mods` VALUES (18324,23,20);
-INSERT INTO `item_mods` VALUES (18324,355,170);
-INSERT INTO `item_mods` VALUES (18324,431,1);
-INSERT INTO `item_mods` VALUES (18324,506,160);
-INSERT INTO `item_mods` VALUES (18324,507,300);
-INSERT INTO `item_mods` VALUES (18329,356,185);
-INSERT INTO `item_mods` VALUES (18330,25,20);
-INSERT INTO `item_mods` VALUES (18330,355,185);
-INSERT INTO `item_mods` VALUES (18330,431,1);
-INSERT INTO `item_mods` VALUES (18330,506,160);
-INSERT INTO `item_mods` VALUES (18330,507,250);
-INSERT INTO `item_mods` VALUES (18335,356,216);
-INSERT INTO `item_mods` VALUES (18336,24,10);
-INSERT INTO `item_mods` VALUES (18336,26,20);
-INSERT INTO `item_mods` VALUES (18336,355,216);
-INSERT INTO `item_mods` VALUES (18336,506,160);
-INSERT INTO `item_mods` VALUES (18336,507,300);
+INSERT INTO `item_mods` VALUES (18263,356,10); -- Stage 4 Spharai - Final Heaven
+INSERT INTO `item_mods` VALUES (18264,23,20); -- Spharai LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18264,291,5); -- Counter +5
+INSERT INTO `item_mods` VALUES (18264,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (18264,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18264,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18265,23,25); -- Spharai LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18265,291,7); -- Counter +7
+INSERT INTO `item_mods` VALUES (18265,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (18265,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18265,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18269,356,26); -- Stage 4 Mandau - Mercy Stroke
+INSERT INTO `item_mods` VALUES (18270,23,20); -- Mandau LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18270,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (18270,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (18270,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18270,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18271,23,25); -- Mandau LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18271,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (18271,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (18271,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18271,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18275,356,43); -- Stage 4 Excalibur - Knights of the Round
+INSERT INTO `item_mods` VALUES (18276,23,20); -- Excalibur LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18276,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (18276,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (18276,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18276,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18277,23,25); -- Excalibur LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18277,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (18277,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (18277,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18277,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18281,356,57); -- Stage 4 Ragnarok - Scourge
+INSERT INTO `item_mods` VALUES (18282,25,20); -- Ragnarok LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18282,165,5); -- Crit Rate +5%
+INSERT INTO `item_mods` VALUES (18282,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (18282,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18282,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18283,25,25); -- Ragnarok LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18283,165,7); -- Crit Rate +7%
+INSERT INTO `item_mods` VALUES (18283,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (18283,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18283,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18287,356,73); -- Stage 4 Guttler - Onslaught
+INSERT INTO `item_mods` VALUES (18288,23,20); -- Guttler LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18288,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (18288,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (18288,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18288,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18289,23,25); -- Guttler LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18289,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (18289,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (18289,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18289,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18293,356,89); -- Stage 4 Bravura - Metatron Torment
+INSERT INTO `item_mods` VALUES (18294,25,20); -- Bravura LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18294,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18294,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18294,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18294,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18295,25,25); -- Bravura LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18295,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18295,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18295,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18295,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18299,356,121); -- Stage 4 Gugnir - Geirskogul
+INSERT INTO `item_mods` VALUES (18300,25,20); -- Gungnir LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18300,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (18300,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18300,506,50); -- Extra DMG Chance %5
+INSERT INTO `item_mods` VALUES (18300,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18301,25,25); -- Gungnir LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18301,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (18301,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18301,506,50); -- Extra DMG Chance %5
+INSERT INTO `item_mods` VALUES (18301,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18305,356,105); -- Stage 4 Apocalypse - Catastrophe
+INSERT INTO `item_mods` VALUES (18306,25,20); -- Apocalypse LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18306,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (18306,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18306,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18306,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18307,25,25); -- Apocalypse LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18307,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (18307,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18307,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18307,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18311,356,137); -- Stage 4 Kikoku - Blade: Metsu
+INSERT INTO `item_mods` VALUES (18312,23,20); -- Kikoku LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18312,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18312,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18312,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18312,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18313,23,25); -- Kikoku LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18313,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18313,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18313,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18313,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18317,356,153); -- Stage 4 Amanomurakumo - Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18318,25,20); -- Amanomurakumo LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18318,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18318,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18318,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18318,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18319,25,25); -- Amanomurakumo LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18319,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18319,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18319,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18319,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18323,356,170); -- Stage 4 Mjollnir - Randgrith
+INSERT INTO `item_mods` VALUES (18324,23,20); -- Mjollnir LV75 - ATT +20
+INSERT INTO `item_mods` VALUES (18324,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (18324,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18324,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18324,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18325,23,25); -- Mjollnir LV80 - ATT +25
+INSERT INTO `item_mods` VALUES (18325,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (18325,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18325,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18325,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18329,356,185); -- Stage 4 Caustrum - Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18330,25,20); -- Claustrum LV75 - ACC +20
+INSERT INTO `item_mods` VALUES (18330,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18330,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (18330,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18330,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18331,25,25); -- Claustrum LV80 - ACC +25
+INSERT INTO `item_mods` VALUES (18331,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18331,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (18331,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18331,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18335,356,216); -- Stage 4 Annihilator - Coronach
+INSERT INTO `item_mods` VALUES (18336,24,10); -- Annihilator LV75 - RNG ATT +10
+INSERT INTO `item_mods` VALUES (18336,26,20); -- RNG ACC +20
+INSERT INTO `item_mods` VALUES (18336,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (18336,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18336,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18337,24,15); -- Annihilator LV80 - RNG ATT +15
+INSERT INTO `item_mods` VALUES (18337,26,25); -- RNG ACC +25
+INSERT INTO `item_mods` VALUES (18337,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (18337,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18337,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (18342,14,4);
 INSERT INTO `item_mods` VALUES (18342,119,10);
 INSERT INTO `item_mods` VALUES (18342,121,10);
@@ -20428,12 +20530,17 @@ INSERT INTO `item_mods` VALUES (18342,452,2);
 INSERT INTO `item_mods` VALUES (18343,14,3);
 INSERT INTO `item_mods` VALUES (18343,440,3);
 INSERT INTO `item_mods` VALUES (18343,444,3);
-INSERT INTO `item_mods` VALUES (18347,356,200);
-INSERT INTO `item_mods` VALUES (18348,24,10);
-INSERT INTO `item_mods` VALUES (18348,26,20);
-INSERT INTO `item_mods` VALUES (18348,355,200);
-INSERT INTO `item_mods` VALUES (18348,506,160);
-INSERT INTO `item_mods` VALUES (18348,507,300);
+INSERT INTO `item_mods` VALUES (18347,356,200); -- Stage 4 Yoichinoyumi - Namas Arrow
+INSERT INTO `item_mods` VALUES (18348,24,10); -- Yoichinoyumi LV75 - RNG ATT +10
+INSERT INTO `item_mods` VALUES (18348,26,20); -- RNG ACC +20
+INSERT INTO `item_mods` VALUES (18348,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (18348,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18348,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18349,24,15); -- Yoichinoyumi LV80 - RNG ATT +15
+INSERT INTO `item_mods` VALUES (18349,26,25); -- RNG ACC +25
+INSERT INTO `item_mods` VALUES (18349,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (18349,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18349,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (18350,10,3);
 INSERT INTO `item_mods` VALUES (18351,8,3);
 INSERT INTO `item_mods` VALUES (18351,10,4);
@@ -20759,140 +20866,244 @@ INSERT INTO `item_mods` VALUES (18633,543,3);
 INSERT INTO `item_mods` VALUES (18633,552,3);
 INSERT INTO `item_mods` VALUES (18633,561,3);
 INSERT INTO `item_mods` VALUES (18633,566,1);
-INSERT INTO `item_mods` VALUES (18637,23,30);
-INSERT INTO `item_mods` VALUES (18637,291,9);
-INSERT INTO `item_mods` VALUES (18637,355,10);
-INSERT INTO `item_mods` VALUES (18637,506,160);
-INSERT INTO `item_mods` VALUES (18637,507,300);
-INSERT INTO `item_mods` VALUES (18638,23,30);
-INSERT INTO `item_mods` VALUES (18638,355,26);
-INSERT INTO `item_mods` VALUES (18638,431,1);
-INSERT INTO `item_mods` VALUES (18638,506,160);
-INSERT INTO `item_mods` VALUES (18638,507,300);
-INSERT INTO `item_mods` VALUES (18639,23,30);
-INSERT INTO `item_mods` VALUES (18639,355,43);
-INSERT INTO `item_mods` VALUES (18639,431,1);
-INSERT INTO `item_mods` VALUES (18639,506,160);
-INSERT INTO `item_mods` VALUES (18639,507,250);
-INSERT INTO `item_mods` VALUES (18640,25,30);
-INSERT INTO `item_mods` VALUES (18640,165,9);
-INSERT INTO `item_mods` VALUES (18640,355,57);
-INSERT INTO `item_mods` VALUES (18640,506,160);
-INSERT INTO `item_mods` VALUES (18640,507,250);
-INSERT INTO `item_mods` VALUES (18641,23,30);
-INSERT INTO `item_mods` VALUES (18641,355,73);
-INSERT INTO `item_mods` VALUES (18641,431,1);
-INSERT INTO `item_mods` VALUES (18641,506,160);
-INSERT INTO `item_mods` VALUES (18641,507,250);
-INSERT INTO `item_mods` VALUES (18642,25,30);
-INSERT INTO `item_mods` VALUES (18642,355,89);
-INSERT INTO `item_mods` VALUES (18642,431,1);
-INSERT INTO `item_mods` VALUES (18642,506,160);
-INSERT INTO `item_mods` VALUES (18642,507,200);
-INSERT INTO `item_mods` VALUES (18643,25,30);
-INSERT INTO `item_mods` VALUES (18643,355,121);
-INSERT INTO `item_mods` VALUES (18643,431,1);
-INSERT INTO `item_mods` VALUES (18643,506,160);
-INSERT INTO `item_mods` VALUES (18643,507,250);
-INSERT INTO `item_mods` VALUES (18644,25,30);
-INSERT INTO `item_mods` VALUES (18644,355,105);
-INSERT INTO `item_mods` VALUES (18644,431,1);
-INSERT INTO `item_mods` VALUES (18644,506,160);
-INSERT INTO `item_mods` VALUES (18644,507,200);
-INSERT INTO `item_mods` VALUES (18645,23,30);
-INSERT INTO `item_mods` VALUES (18645,355,137);
-INSERT INTO `item_mods` VALUES (18645,506,300);
-INSERT INTO `item_mods` VALUES (18645,507,160);
-INSERT INTO `item_mods` VALUES (18646,25,30);
-INSERT INTO `item_mods` VALUES (18646,355,153);
-INSERT INTO `item_mods` VALUES (18646,431,1);
-INSERT INTO `item_mods` VALUES (18646,506,160);
-INSERT INTO `item_mods` VALUES (18646,507,250);
-INSERT INTO `item_mods` VALUES (18647,23,30);
-INSERT INTO `item_mods` VALUES (18647,355,170);
-INSERT INTO `item_mods` VALUES (18647,506,160);
-INSERT INTO `item_mods` VALUES (18647,507,300);
-INSERT INTO `item_mods` VALUES (18648,25,30);
-INSERT INTO `item_mods` VALUES (18648,355,185);
-INSERT INTO `item_mods` VALUES (18648,506,160);
-INSERT INTO `item_mods` VALUES (18648,507,250);
-INSERT INTO `item_mods` VALUES (18649,24,20);
-INSERT INTO `item_mods` VALUES (18649,26,30);
-INSERT INTO `item_mods` VALUES (18649,355,216);
-INSERT INTO `item_mods` VALUES (18649,506,160);
-INSERT INTO `item_mods` VALUES (18649,507,300);
-INSERT INTO `item_mods` VALUES (18650,24,20);
-INSERT INTO `item_mods` VALUES (18650,26,30);
-INSERT INTO `item_mods` VALUES (18650,355,200);
-INSERT INTO `item_mods` VALUES (18650,506,160);
-INSERT INTO `item_mods` VALUES (18650,507,300);
-INSERT INTO `item_mods` VALUES (18665,23,35);
-INSERT INTO `item_mods` VALUES (18665,291,11);
-INSERT INTO `item_mods` VALUES (18665,355,10);
-INSERT INTO `item_mods` VALUES (18665,506,160);
-INSERT INTO `item_mods` VALUES (18665,507,300);
-INSERT INTO `item_mods` VALUES (18666,23,35);
-INSERT INTO `item_mods` VALUES (18666,355,26);
-INSERT INTO `item_mods` VALUES (18666,431,1);
-INSERT INTO `item_mods` VALUES (18666,506,160);
-INSERT INTO `item_mods` VALUES (18666,507,300);
-INSERT INTO `item_mods` VALUES (18667,23,35);
-INSERT INTO `item_mods` VALUES (18667,355,43);
-INSERT INTO `item_mods` VALUES (18667,431,1);
-INSERT INTO `item_mods` VALUES (18667,506,160);
-INSERT INTO `item_mods` VALUES (18667,507,250);
-INSERT INTO `item_mods` VALUES (18668,25,35);
-INSERT INTO `item_mods` VALUES (18668,165,11);
-INSERT INTO `item_mods` VALUES (18668,355,57);
-INSERT INTO `item_mods` VALUES (18668,506,160);
-INSERT INTO `item_mods` VALUES (18668,507,250);
-INSERT INTO `item_mods` VALUES (18669,23,35);
-INSERT INTO `item_mods` VALUES (18669,355,73);
-INSERT INTO `item_mods` VALUES (18669,431,1);
-INSERT INTO `item_mods` VALUES (18669,506,160);
-INSERT INTO `item_mods` VALUES (18669,507,250);
-INSERT INTO `item_mods` VALUES (18670,25,35);
-INSERT INTO `item_mods` VALUES (18670,355,89);
-INSERT INTO `item_mods` VALUES (18670,431,1);
-INSERT INTO `item_mods` VALUES (18670,506,160);
-INSERT INTO `item_mods` VALUES (18670,507,200);
-INSERT INTO `item_mods` VALUES (18671,25,35);
-INSERT INTO `item_mods` VALUES (18671,355,121);
-INSERT INTO `item_mods` VALUES (18671,431,1);
-INSERT INTO `item_mods` VALUES (18671,506,160);
-INSERT INTO `item_mods` VALUES (18671,507,250);
-INSERT INTO `item_mods` VALUES (18672,25,35);
-INSERT INTO `item_mods` VALUES (18672,355,105);
-INSERT INTO `item_mods` VALUES (18672,431,1);
-INSERT INTO `item_mods` VALUES (18672,506,160);
-INSERT INTO `item_mods` VALUES (18672,507,200);
-INSERT INTO `item_mods` VALUES (18673,23,35);
-INSERT INTO `item_mods` VALUES (18673,355,137);
-INSERT INTO `item_mods` VALUES (18673,506,300);
-INSERT INTO `item_mods` VALUES (18673,507,160);
-INSERT INTO `item_mods` VALUES (18674,25,35);
-INSERT INTO `item_mods` VALUES (18674,355,153);
-INSERT INTO `item_mods` VALUES (18674,431,1);
-INSERT INTO `item_mods` VALUES (18674,506,160);
-INSERT INTO `item_mods` VALUES (18674,507,250);
-INSERT INTO `item_mods` VALUES (18675,23,35);
-INSERT INTO `item_mods` VALUES (18675,355,170);
-INSERT INTO `item_mods` VALUES (18675,506,160);
-INSERT INTO `item_mods` VALUES (18675,507,300);
-INSERT INTO `item_mods` VALUES (18676,25,35);
-INSERT INTO `item_mods` VALUES (18676,355,185);
-INSERT INTO `item_mods` VALUES (18676,506,160);
-INSERT INTO `item_mods` VALUES (18676,507,250);
-INSERT INTO `item_mods` VALUES (18677,24,25);
-INSERT INTO `item_mods` VALUES (18677,26,35);
-INSERT INTO `item_mods` VALUES (18677,355,216);
-INSERT INTO `item_mods` VALUES (18677,506,160);
-INSERT INTO `item_mods` VALUES (18677,507,300);
-INSERT INTO `item_mods` VALUES (18678,24,25);
-INSERT INTO `item_mods` VALUES (18678,26,35);
-INSERT INTO `item_mods` VALUES (18678,355,200);
-INSERT INTO `item_mods` VALUES (18678,506,160);
-INSERT INTO `item_mods` VALUES (18678,507,300);
+INSERT INTO `item_mods` VALUES (18637,23,30); -- Spharai LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18637,291,9); -- Counter +9
+INSERT INTO `item_mods` VALUES (18637,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (18637,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18637,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18638,23,30); -- Mandau LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18638,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (18638,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (18638,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18638,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18639,23,30); -- Excalibur LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18639,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (18639,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (18639,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18639,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18640,25,30); -- Ragnarok LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18640,165,9); -- Crit Rate +9%
+INSERT INTO `item_mods` VALUES (18640,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (18640,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18640,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18641,23,30); -- Guttler LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18641,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (18641,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (18641,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18641,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18642,25,30); -- Bravura LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18642,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18642,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18642,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18642,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18643,25,30); -- Gungnir LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18643,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (18643,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18643,506,50); -- Extra DMG Chance %5
+INSERT INTO `item_mods` VALUES (18643,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18644,25,30); -- Apocalypse LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18644,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (18644,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18644,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18644,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18645,23,30); -- Kikoku LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18645,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18645,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18645,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18645,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18646,25,30); -- Amanomurakumo LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18646,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18646,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18646,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18646,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18647,23,30); -- Mjollnir LV85 - ATT +30
+INSERT INTO `item_mods` VALUES (18647,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (18647,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18647,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18647,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18648,25,30); -- Claustrum LV85 - ACC +30
+INSERT INTO `item_mods` VALUES (18648,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18648,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (18648,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18648,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18649,24,20); -- Annihilator LV85 - RNG ATT +20
+INSERT INTO `item_mods` VALUES (18649,26,30); -- RNG ACC +30
+INSERT INTO `item_mods` VALUES (18649,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (18649,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18649,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18650,24,20); -- Yoichinoyumi LV85 - RNG ATT +20
+INSERT INTO `item_mods` VALUES (18650,26,30); -- RNG ACC +30
+INSERT INTO `item_mods` VALUES (18650,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (18650,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18650,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18651,23,35); -- Spharai LV90 -- ATT +35
+INSERT INTO `item_mods` VALUES (18651,291,11); -- Counter +11 
+INSERT INTO `item_mods` VALUES (18651,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (18651,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18651,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18651,580,25);  -- Final Heaven DMG +25%
+INSERT INTO `item_mods` VALUES (18652,23,35); -- Mandau LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18652,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (18652,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (18652,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18652,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18652,596,25); -- Mercy Stroke DMG +25%
+INSERT INTO `item_mods` VALUES (18653,23,35); -- Excalibur LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18653,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (18653,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (18653,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18653,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18653,613,25); -- Knights of the Round DMG +25%
+INSERT INTO `item_mods` VALUES (18654,25,35); -- Ragnarok LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18654,165,11); -- Crit Rate +11%
+INSERT INTO `item_mods` VALUES (18654,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (18654,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18654,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18654,627,25); -- Scourge DMG +25%
+INSERT INTO `item_mods` VALUES (18655,23,35); -- Guttler LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18655,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (18655,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (18655,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18655,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18655,643,25); -- Onslaught DMG +25%
+INSERT INTO `item_mods` VALUES (18656,25,35); -- Bravura LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18656,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18656,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18656,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18656,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18656,659,25); -- Metatron Torment DMG +25%
+INSERT INTO `item_mods` VALUES (18657,25,35); -- Gungnir LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18657,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (18657,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18657,506,50); -- Extra DMG Chance %5
+INSERT INTO `item_mods` VALUES (18657,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18657,691,25); -- Geirskogul DMG +25%
+INSERT INTO `item_mods` VALUES (18658,25,35); -- Apocalypse LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18658,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (18658,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18658,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18658,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18658,675,25); -- Catastrophe DMG +25%
+INSERT INTO `item_mods` VALUES (18659,23,35); -- Kikoku LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18659,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18659,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18659,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18659,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18659,707,25); -- Blade: Metsu DMG +25%
+INSERT INTO `item_mods` VALUES (18660,25,35); -- Amanomurakumo LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18660,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18660,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18660,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18660,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18660,723,25); -- Tachi: Kaiten DMG +25%
+INSERT INTO `item_mods` VALUES (18661,23,35); -- Mjollnir LV90 - ATT +35
+INSERT INTO `item_mods` VALUES (18661,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (18661,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18661,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18661,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18661,740,25); -- Randgrith DMG +25%
+INSERT INTO `item_mods` VALUES (18662,25,35); -- Claustrum LV90 - ACC +35
+INSERT INTO `item_mods` VALUES (18662,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18662,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (18662,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18662,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18662,755,25); -- Gate of Tartarus DMG +25%
+INSERT INTO `item_mods` VALUES (18663,24,25); -- Annihilator LV90 - RNG ATT +25
+INSERT INTO `item_mods` VALUES (18663,26,35); -- RNG ACC +35
+INSERT INTO `item_mods` VALUES (18663,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (18663,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18663,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18663,786,25); -- Coronach DMG +25%
+INSERT INTO `item_mods` VALUES (18664,24,25); -- Yoichinoyumi LV90 - RNG ATT +25
+INSERT INTO `item_mods` VALUES (18664,26,35); -- RNG ACC +35
+INSERT INTO `item_mods` VALUES (18664,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (18664,506,50); -- Extra DMG Chance 5%
+INSERT INTO `item_mods` VALUES (18664,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18664,770,25); -- Namas Arrow DMG +25%
+INSERT INTO `item_mods` VALUES (18665,23,35); -- Spharai LV95 -- ATT +35
+INSERT INTO `item_mods` VALUES (18665,291,11); -- Counter +11 
+INSERT INTO `item_mods` VALUES (18665,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (18665,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18665,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18665,580,25);  -- Final Heaven DMG +25%
+INSERT INTO `item_mods` VALUES (18666,23,35); -- Mandau LV95 - ATT +35
+INSERT INTO `item_mods` VALUES (18666,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (18666,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (18666,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18666,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18666,596,25); -- Mercy Stroke DMG +25%
+INSERT INTO `item_mods` VALUES (18667,23,35); -- Excalibur LV95 - ATT +35
+INSERT INTO `item_mods` VALUES (18667,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (18667,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (18667,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18667,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18667,613,25); -- Knights of the Round DMG +25%
+INSERT INTO `item_mods` VALUES (18668,25,35); -- Ragnarok LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18668,165,11); -- Crit Rate +11%
+INSERT INTO `item_mods` VALUES (18668,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (18668,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18668,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18668,627,25); -- Scourge DMG +25%
+INSERT INTO `item_mods` VALUES (18669,23,35); -- Guttler LV95 - ATT +35
+INSERT INTO `item_mods` VALUES (18669,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (18669,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (18669,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18669,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18669,643,25); -- Onslaught DMG +25%
+INSERT INTO `item_mods` VALUES (18670,25,35); -- Bravura LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18670,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (18670,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (18670,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18670,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18670,659,25); -- Metatron Torment DMG +25%
+INSERT INTO `item_mods` VALUES (18671,25,35); -- Gungnir LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18671,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (18671,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (18671,506,130); -- Extra DMG Chance %13
+INSERT INTO `item_mods` VALUES (18671,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18671,691,25); -- Geirskogul DMG +25%
+INSERT INTO `item_mods` VALUES (18672,25,35); -- Apocalypse LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18672,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (18672,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (18672,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18672,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (18672,675,25); -- Catastrophe DMG +25%
+INSERT INTO `item_mods` VALUES (18673,23,35); -- Kikoku LV95 - ATT +35
+INSERT INTO `item_mods` VALUES (18673,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (18673,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (18673,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18673,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18673,707,25); -- Blade: Metsu DMG +25%
+INSERT INTO `item_mods` VALUES (18674,25,35); -- Amanomurakumo LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18674,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (18674,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (18674,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18674,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18674,723,25); -- Tachi: Kaiten DMG +25%
+INSERT INTO `item_mods` VALUES (18675,23,35); -- Mjollnir LV95 - ATT +35
+INSERT INTO `item_mods` VALUES (18675,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (18675,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (18675,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18675,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18675,740,25); -- Randgrith DMG +25%
+INSERT INTO `item_mods` VALUES (18676,25,35); -- Claustrum LV95 - ACC +35
+INSERT INTO `item_mods` VALUES (18676,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (18676,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (18676,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18676,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (18676,755,25); -- Gate of Tartarus DMG +25%
+INSERT INTO `item_mods` VALUES (18677,24,25); -- Annihilator LV95 - RNG ATT +25
+INSERT INTO `item_mods` VALUES (18677,26,35); -- RNG ACC +35
+INSERT INTO `item_mods` VALUES (18677,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (18677,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18677,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18677,786,25); -- Coronach DMG +25%
+INSERT INTO `item_mods` VALUES (18678,24,25); -- Yoichinoyumi LV95 - RNG ATT +25
+INSERT INTO `item_mods` VALUES (18678,26,35); -- RNG ACC +35
+INSERT INTO `item_mods` VALUES (18678,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (18678,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (18678,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (18678,770,25); -- Namas Arrow DMG +25%
 INSERT INTO `item_mods` VALUES (18681,26,5);
 INSERT INTO `item_mods` VALUES (18682,5,12);
 INSERT INTO `item_mods` VALUES (18682,26,8);
@@ -21489,7 +21700,8 @@ INSERT INTO `item_mods` VALUES (19194,28,15);
 INSERT INTO `item_mods` VALUES (19195,24,5);
 INSERT INTO `item_mods` VALUES (19196,431,1);
 INSERT INTO `item_mods` VALUES (19199,26,6);
-INSERT INTO `item_mods` VALUES (19202,26,-4);
+INSERT INTO `item_mods` VALUES (19202,26,-4); -- Smart Grenade - RACC -4
+INSERT INTO `item_mods` VALUES (19202,23,4); -- ATT +4
 INSERT INTO `item_mods` VALUES (19203,14,3);
 INSERT INTO `item_mods` VALUES (19206,26,6);
 INSERT INTO `item_mods` VALUES (19207,26,8);
@@ -21759,73 +21971,90 @@ INSERT INTO `item_mods` VALUES (19738,289,8);
 INSERT INTO `item_mods` VALUES (19739,24,12);
 INSERT INTO `item_mods` VALUES (19739,73,4);
 INSERT INTO `item_mods` VALUES (19740,26,7);
-INSERT INTO `item_mods` VALUES (19746,23,40);
-INSERT INTO `item_mods` VALUES (19746,291,13);
-INSERT INTO `item_mods` VALUES (19746,355,10);
-INSERT INTO `item_mods` VALUES (19746,506,160);
-INSERT INTO `item_mods` VALUES (19746,507,300);
-INSERT INTO `item_mods` VALUES (19747,23,40);
-INSERT INTO `item_mods` VALUES (19747,355,26);
-INSERT INTO `item_mods` VALUES (19747,431,1);
-INSERT INTO `item_mods` VALUES (19747,506,160);
-INSERT INTO `item_mods` VALUES (19747,507,300);
-INSERT INTO `item_mods` VALUES (19748,23,40);
-INSERT INTO `item_mods` VALUES (19748,355,43);
-INSERT INTO `item_mods` VALUES (19748,431,1);
-INSERT INTO `item_mods` VALUES (19748,506,160);
-INSERT INTO `item_mods` VALUES (19748,507,250);
-INSERT INTO `item_mods` VALUES (19749,25,40);
-INSERT INTO `item_mods` VALUES (19749,165,13);
-INSERT INTO `item_mods` VALUES (19749,355,57);
-INSERT INTO `item_mods` VALUES (19749,506,160);
-INSERT INTO `item_mods` VALUES (19749,507,250);
-INSERT INTO `item_mods` VALUES (19750,23,40);
-INSERT INTO `item_mods` VALUES (19750,355,73);
-INSERT INTO `item_mods` VALUES (19750,431,1);
-INSERT INTO `item_mods` VALUES (19750,506,160);
-INSERT INTO `item_mods` VALUES (19750,507,250);
-INSERT INTO `item_mods` VALUES (19751,25,40);
-INSERT INTO `item_mods` VALUES (19751,355,89);
-INSERT INTO `item_mods` VALUES (19751,431,1);
-INSERT INTO `item_mods` VALUES (19751,506,160);
-INSERT INTO `item_mods` VALUES (19751,507,200);
-INSERT INTO `item_mods` VALUES (19752,25,40);
-INSERT INTO `item_mods` VALUES (19752,355,121);
-INSERT INTO `item_mods` VALUES (19752,431,1);
-INSERT INTO `item_mods` VALUES (19752,506,160);
-INSERT INTO `item_mods` VALUES (19752,507,250);
-INSERT INTO `item_mods` VALUES (19753,25,40);
-INSERT INTO `item_mods` VALUES (19753,355,105);
-INSERT INTO `item_mods` VALUES (19753,431,1);
-INSERT INTO `item_mods` VALUES (19753,506,160);
-INSERT INTO `item_mods` VALUES (19753,507,200);
-INSERT INTO `item_mods` VALUES (19754,23,40);
-INSERT INTO `item_mods` VALUES (19754,355,137);
-INSERT INTO `item_mods` VALUES (19754,506,300);
-INSERT INTO `item_mods` VALUES (19754,507,160);
-INSERT INTO `item_mods` VALUES (19755,25,40);
-INSERT INTO `item_mods` VALUES (19755,355,153);
-INSERT INTO `item_mods` VALUES (19755,431,1);
-INSERT INTO `item_mods` VALUES (19755,506,160);
-INSERT INTO `item_mods` VALUES (19755,507,250);
-INSERT INTO `item_mods` VALUES (19756,23,40);
-INSERT INTO `item_mods` VALUES (19756,355,170);
-INSERT INTO `item_mods` VALUES (19756,506,160);
-INSERT INTO `item_mods` VALUES (19756,507,300);
-INSERT INTO `item_mods` VALUES (19757,25,40);
-INSERT INTO `item_mods` VALUES (19757,355,185);
-INSERT INTO `item_mods` VALUES (19757,506,160);
-INSERT INTO `item_mods` VALUES (19757,507,250);
-INSERT INTO `item_mods` VALUES (19758,24,30);
-INSERT INTO `item_mods` VALUES (19758,26,40);
-INSERT INTO `item_mods` VALUES (19758,355,216);
-INSERT INTO `item_mods` VALUES (19758,506,160);
-INSERT INTO `item_mods` VALUES (19758,507,300);
-INSERT INTO `item_mods` VALUES (19759,24,30);
-INSERT INTO `item_mods` VALUES (19759,26,40);
-INSERT INTO `item_mods` VALUES (19759,355,200);
-INSERT INTO `item_mods` VALUES (19759,506,160);
-INSERT INTO `item_mods` VALUES (19759,507,300);
+INSERT INTO `item_mods` VALUES (19746,23,40); -- Spharai LV99 -- ATT +40
+INSERT INTO `item_mods` VALUES (19746,291,14); -- Counter +14 
+INSERT INTO `item_mods` VALUES (19746,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (19746,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19746,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19746,580,40);  -- Final Heaven DMG +40%
+INSERT INTO `item_mods` VALUES (19747,23,40); -- Mandau LV99 - ATT +40
+INSERT INTO `item_mods` VALUES (19747,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (19747,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (19747,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19747,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19747,596,40); -- Mercy Stroke DMG +40%
+INSERT INTO `item_mods` VALUES (19748,23,40); -- Excalibur LV99 - ATT +40
+INSERT INTO `item_mods` VALUES (19748,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (19748,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (19748,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19748,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19748,613,40); -- Knights of the Round DMG +40%
+INSERT INTO `item_mods` VALUES (19749,25,40); -- Ragnarok LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19749,165,14); -- Crit Rate +14%
+INSERT INTO `item_mods` VALUES (19749,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (19749,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19749,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19749,627,40); -- Scourge DMG +40%
+INSERT INTO `item_mods` VALUES (19750,23,40); -- Guttler LV99 - ATT +40
+INSERT INTO `item_mods` VALUES (19750,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (19750,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (19750,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19750,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19750,643,40); -- Onslaught DMG +40%
+INSERT INTO `item_mods` VALUES (19751,25,40); -- Bravura LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19751,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (19751,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (19751,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19751,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19751,659,40); -- Metatron Torment DMG +40%
+INSERT INTO `item_mods` VALUES (19752,25,40); -- Gungnir LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19752,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (19752,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (19752,506,130); -- Extra DMG Chance %13
+INSERT INTO `item_mods` VALUES (19752,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19752,691,40); -- Geirskogul DMG +40%
+INSERT INTO `item_mods` VALUES (19753,25,40); -- Apocalypse LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19753,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (19753,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (19753,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19753,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19753,675,40); -- Catastrophe DMG +40%
+INSERT INTO `item_mods` VALUES (19754,23,40); -- Kikoku LV99 - ATT +40
+INSERT INTO `item_mods` VALUES (19754,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (19754,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (19754,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19754,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19754,707,40); -- Blade: Metsu DMG +40%
+INSERT INTO `item_mods` VALUES (19755,25,40); -- Amanomurakumo LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19755,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (19755,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (19755,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19755,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19755,723,40); -- Tachi: Kaiten DMG +40%
+INSERT INTO `item_mods` VALUES (19756,23,40); -- Mjollnir LV99 - ATT +40
+INSERT INTO `item_mods` VALUES (19756,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (19756,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (19756,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19756,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19756,740,40); -- Randgrith DMG +40%
+INSERT INTO `item_mods` VALUES (19757,25,40); -- Claustrum LV99 - ACC +40
+INSERT INTO `item_mods` VALUES (19757,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (19757,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (19757,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19757,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19757,755,40); -- Gate of Tartarus DMG +40%
+INSERT INTO `item_mods` VALUES (19758,24,30); -- Annihilator LV99 - RNG ATT +30
+INSERT INTO `item_mods` VALUES (19758,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (19758,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (19758,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19758,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19758,786,40); -- Coronach DMG +40%
+INSERT INTO `item_mods` VALUES (19759,24,30); -- Yoichinoyumi LV99 - RNG ATT +30
+INSERT INTO `item_mods` VALUES (19759,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (19759,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (19759,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19759,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19759,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (19761,168,10);
 INSERT INTO `item_mods` VALUES (19762,84,2);
 INSERT INTO `item_mods` VALUES (19764,9,4);
@@ -21944,6 +22173,90 @@ INSERT INTO `item_mods` VALUES (19838,28,40);
 INSERT INTO `item_mods` VALUES (19838,30,30);
 INSERT INTO `item_mods` VALUES (19838,288,25);
 INSERT INTO `item_mods` VALUES (19838,302,5);
+INSERT INTO `item_mods` VALUES (19839,23,40); -- Spharai LV99 AG -- ATT +40
+INSERT INTO `item_mods` VALUES (19839,291,14); -- Counter +14 
+INSERT INTO `item_mods` VALUES (19839,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (19839,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19839,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19839,580,40);  -- Final Heaven DMG +40%
+INSERT INTO `item_mods` VALUES (19840,23,40); -- Mandau LV99 AG - ATT +40
+INSERT INTO `item_mods` VALUES (19840,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (19840,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (19840,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19840,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19840,596,40); -- Mercy Stroke DMG +40%
+INSERT INTO `item_mods` VALUES (19841,23,40); -- Excalibur LV99 AG - ATT +40
+INSERT INTO `item_mods` VALUES (19841,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (19841,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (19841,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19841,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19841,613,40); -- Knights of the Round DMG +40%
+INSERT INTO `item_mods` VALUES (19842,25,40); -- Ragnarok LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19842,165,14); -- Crit Rate +14%
+INSERT INTO `item_mods` VALUES (19842,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (19842,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19842,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19842,627,40); -- Scourge DMG +40%
+INSERT INTO `item_mods` VALUES (19843,23,40); -- Guttler LV99 AG - ATT +40
+INSERT INTO `item_mods` VALUES (19843,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (19843,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (19843,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19843,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19843,643,40); -- Onslaught DMG +40%
+INSERT INTO `item_mods` VALUES (19844,25,40); -- Bravura LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19844,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (19844,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (19844,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19844,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19844,659,40); -- Metatron Torment DMG +40%
+INSERT INTO `item_mods` VALUES (19845,25,40); -- Gungnir LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19845,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (19845,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (19845,506,130); -- Extra DMG Chance %13
+INSERT INTO `item_mods` VALUES (19845,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19845,691,40); -- Geirskogul DMG +40%
+INSERT INTO `item_mods` VALUES (19846,25,40); -- Apocalypse LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19846,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (19846,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (19846,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19846,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (19846,675,40); -- Catastrophe DMG +40%
+INSERT INTO `item_mods` VALUES (19847,23,40); -- Kikoku LV99 AG - ATT +40
+INSERT INTO `item_mods` VALUES (19847,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (19847,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (19847,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19847,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19847,707,40); -- Blade: Metsu DMG +40%
+INSERT INTO `item_mods` VALUES (19848,25,40); -- Amanomurakumo LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19848,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (19848,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (19848,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19848,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19848,723,40); -- Tachi: Kaiten DMG +40%
+INSERT INTO `item_mods` VALUES (19849,23,40); -- Mjollnir LV99 AG - ATT +40
+INSERT INTO `item_mods` VALUES (19849,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (19849,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (19849,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19849,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19849,740,40); -- Randgrith DMG +40%
+INSERT INTO `item_mods` VALUES (19850,25,40); -- Claustrum LV99 AG - ACC +40
+INSERT INTO `item_mods` VALUES (19850,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (19850,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (19850,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19850,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (19850,755,40); -- Gate of Tartarus DMG +40%
+INSERT INTO `item_mods` VALUES (19851,24,30); -- Annihilator LV99 AG - RNG ATT +30
+INSERT INTO `item_mods` VALUES (19851,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (19851,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (19851,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19851,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19851,786,40); -- Coronach DMG +40%
+INSERT INTO `item_mods` VALUES (19852,24,30); -- Yoichinoyumi LV99 AG - RNG ATT +30
+INSERT INTO `item_mods` VALUES (19852,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (19852,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (19852,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (19852,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (19852,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (19853,8,20);
 INSERT INTO `item_mods` VALUES (19859,8,13);
 INSERT INTO `item_mods` VALUES (19859,13,13);
@@ -21959,16 +22272,18 @@ INSERT INTO `item_mods` VALUES (19955,355,106);
 INSERT INTO `item_mods` VALUES (19955,521,50);
 INSERT INTO `item_mods` VALUES (19958,365,5);
 INSERT INTO `item_mods` VALUES (19958,450,35);
-INSERT INTO `item_mods` VALUES (20480,23,40);
-INSERT INTO `item_mods` VALUES (20480,291,13);
-INSERT INTO `item_mods` VALUES (20480,355,10);
-INSERT INTO `item_mods` VALUES (20480,506,160);
-INSERT INTO `item_mods` VALUES (20480,507,300);
-INSERT INTO `item_mods` VALUES (20481,23,40);
-INSERT INTO `item_mods` VALUES (20481,291,13);
-INSERT INTO `item_mods` VALUES (20481,355,10);
-INSERT INTO `item_mods` VALUES (20481,506,160);
-INSERT INTO `item_mods` VALUES (20481,507,300);
+INSERT INTO `item_mods` VALUES (20480,23,40); -- Spharai iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (20480,291,14); -- Counter +14
+INSERT INTO `item_mods` VALUES (20480,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (20480,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20480,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20480,580,40);  -- Final Heaven DMG +40%
+INSERT INTO `item_mods` VALUES (20481,23,40); -- Spharai iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (20481,291,14); -- Counter +14
+INSERT INTO `item_mods` VALUES (20481,355,10); -- Final Heaven
+INSERT INTO `item_mods` VALUES (20481,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20481,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20481,580,40);  -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20482,302,15);
 INSERT INTO `item_mods` VALUES (20483,302,15);
 INSERT INTO `item_mods` VALUES (20485,173,20);
@@ -21988,16 +22303,18 @@ INSERT INTO `item_mods` VALUES (20547,68,4);
 INSERT INTO `item_mods` VALUES (20548,23,26);
 INSERT INTO `item_mods` VALUES (20548,68,27);
 INSERT INTO `item_mods` VALUES (20548,161,-3);
-INSERT INTO `item_mods` VALUES (20555,23,40);
-INSERT INTO `item_mods` VALUES (20555,355,26);
-INSERT INTO `item_mods` VALUES (20555,431,1);
-INSERT INTO `item_mods` VALUES (20555,506,160);
-INSERT INTO `item_mods` VALUES (20555,507,300);
-INSERT INTO `item_mods` VALUES (20556,23,40);
-INSERT INTO `item_mods` VALUES (20556,355,26);
-INSERT INTO `item_mods` VALUES (20556,431,1);
-INSERT INTO `item_mods` VALUES (20556,506,160);
-INSERT INTO `item_mods` VALUES (20556,507,300);
+INSERT INTO `item_mods` VALUES (20555,23,40); -- Mandau iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (20555,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (20555,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (20555,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20555,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20555,596,40); -- Mercy Stroke DMG +40%
+INSERT INTO `item_mods` VALUES (20556,23,40); -- Mandau iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (20556,355,26); -- Mercy Stroke
+INSERT INTO `item_mods` VALUES (20556,431,1); -- Additional Effect - scripts\globals\items\mandau.lua
+INSERT INTO `item_mods` VALUES (20556,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20556,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20556,596,40); -- Mercy Stroke DMG +40%
 INSERT INTO `item_mods` VALUES (20558,203,15);
 INSERT INTO `item_mods` VALUES (20558,403,30);
 INSERT INTO `item_mods` VALUES (20558,494,2);
@@ -22052,11 +22369,18 @@ INSERT INTO `item_mods` VALUES (20636,68,22);
 INSERT INTO `item_mods` VALUES (20636,302,2);
 INSERT INTO `item_mods` VALUES (20638,25,10);
 INSERT INTO `item_mods` VALUES (20641,68,15);
-INSERT INTO `item_mods` VALUES (20646,23,40);
-INSERT INTO `item_mods` VALUES (20646,355,43);
-INSERT INTO `item_mods` VALUES (20646,431,1);
-INSERT INTO `item_mods` VALUES (20646,506,160);
-INSERT INTO `item_mods` VALUES (20646,507,250);
+INSERT INTO `item_mods` VALUES (20645,23,40); -- Excalibur iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (20645,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (20645,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (20645,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20645,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20645,613,40); -- Knights of the Round DMG +40%
+INSERT INTO `item_mods` VALUES (20646,23,40); -- Excalibur iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (20646,355,43); -- Knights of the Round
+INSERT INTO `item_mods` VALUES (20646,431,1); -- Additional Effect - scripts\globals\items\excalibur.lua
+INSERT INTO `item_mods` VALUES (20646,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20646,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20646,613,40); -- Knights of the Round DMG +40%
 INSERT INTO `item_mods` VALUES (20647,30,30);
 INSERT INTO `item_mods` VALUES (20647,355,44);
 INSERT INTO `item_mods` VALUES (20647,525,3);
@@ -22120,16 +22444,18 @@ INSERT INTO `item_mods` VALUES (20738,23,10);
 INSERT INTO `item_mods` VALUES (20738,25,10);
 INSERT INTO `item_mods` VALUES (20738,288,3);
 INSERT INTO `item_mods` VALUES (20741,25,10);
-INSERT INTO `item_mods` VALUES (20745,25,40);
-INSERT INTO `item_mods` VALUES (20745,165,13);
-INSERT INTO `item_mods` VALUES (20745,355,57);
-INSERT INTO `item_mods` VALUES (20745,506,160);
-INSERT INTO `item_mods` VALUES (20745,507,250);
-INSERT INTO `item_mods` VALUES (20746,25,40);
-INSERT INTO `item_mods` VALUES (20746,165,13);
-INSERT INTO `item_mods` VALUES (20746,355,57);
-INSERT INTO `item_mods` VALUES (20746,506,160);
-INSERT INTO `item_mods` VALUES (20746,507,250);
+INSERT INTO `item_mods` VALUES (20745,25,40); -- Ragnarok iLvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (20745,165,14); -- Crit Rate +14%
+INSERT INTO `item_mods` VALUES (20745,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (20745,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20745,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20745,627,40); -- Scourge DMG +40%
+INSERT INTO `item_mods` VALUES (20746,25,40); -- Ragnarok iLvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (20746,165,14); -- Crit Rate +14%
+INSERT INTO `item_mods` VALUES (20746,355,57); -- Scourge
+INSERT INTO `item_mods` VALUES (20746,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20746,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20746,627,40); -- Scourge DMG +40%
 INSERT INTO `item_mods` VALUES (20747,10,20);
 INSERT INTO `item_mods` VALUES (20748,10,20);
 INSERT INTO `item_mods` VALUES (20758,8,13);
@@ -22162,11 +22488,18 @@ INSERT INTO `item_mods` VALUES (20783,23,8);
 INSERT INTO `item_mods` VALUES (20783,29,4);
 INSERT INTO `item_mods` VALUES (20784,23,9);
 INSERT INTO `item_mods` VALUES (20784,29,5);
-INSERT INTO `item_mods` VALUES (20791,23,40);
-INSERT INTO `item_mods` VALUES (20791,355,73);
-INSERT INTO `item_mods` VALUES (20791,431,1);
-INSERT INTO `item_mods` VALUES (20791,506,160);
-INSERT INTO `item_mods` VALUES (20791,507,250);
+INSERT INTO `item_mods` VALUES (20790,23,40); -- Guttler iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (20790,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (20790,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (20790,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20790,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20790,643,40); -- Onslaught DMG +40%
+INSERT INTO `item_mods` VALUES (20791,23,40); -- Guttler iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (20791,355,73); -- Onslaught
+INSERT INTO `item_mods` VALUES (20791,431,1); -- Additional Effect - scripts\globals\items\guttler.lua
+INSERT INTO `item_mods` VALUES (20791,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20791,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (20791,643,40); -- Onslaught DMG +40%
 INSERT INTO `item_mods` VALUES (20793,302,15);
 INSERT INTO `item_mods` VALUES (20794,8,13);
 INSERT INTO `item_mods` VALUES (20794,13,13);
@@ -22198,11 +22531,18 @@ INSERT INTO `item_mods` VALUES (20825,25,15);
 INSERT INTO `item_mods` VALUES (20827,23,13);
 INSERT INTO `item_mods` VALUES (20827,25,13);
 INSERT INTO `item_mods` VALUES (20830,25,10);
-INSERT INTO `item_mods` VALUES (20836,25,40);
-INSERT INTO `item_mods` VALUES (20836,355,89);
-INSERT INTO `item_mods` VALUES (20836,431,1);
-INSERT INTO `item_mods` VALUES (20836,506,160);
-INSERT INTO `item_mods` VALUES (20836,507,300);
+INSERT INTO `item_mods` VALUES (20835,25,40); -- Bravura iLvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (20835,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (20835,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (20835,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20835,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20835,659,40); -- Metatron Torment DMG +40%
+INSERT INTO `item_mods` VALUES (20836,25,40); -- Bravura iLvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (20836,355,89); -- Metatron Torment
+INSERT INTO `item_mods` VALUES (20836,431,1); -- Additional Effect - scripts\globals\items\bravura.lua
+INSERT INTO `item_mods` VALUES (20836,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20836,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20836,659,40); -- Metatron Torment DMG +40%
 INSERT INTO `item_mods` VALUES (20837,302,15);
 INSERT INTO `item_mods` VALUES (20838,302,15);
 INSERT INTO `item_mods` VALUES (20839,8,20);
@@ -22236,15 +22576,18 @@ INSERT INTO `item_mods` VALUES (20864,370,3);
 INSERT INTO `item_mods` VALUES (20865,23,10);
 INSERT INTO `item_mods` VALUES (20865,25,15);
 INSERT INTO `item_mods` VALUES (20871,25,15);
-INSERT INTO `item_mods` VALUES (20880,25,40);
-INSERT INTO `item_mods` VALUES (20880,355,105);
-INSERT INTO `item_mods` VALUES (20880,506,160);
-INSERT INTO `item_mods` VALUES (20880,507,200);
-INSERT INTO `item_mods` VALUES (20881,25,40);
-INSERT INTO `item_mods` VALUES (20881,355,105);
-INSERT INTO `item_mods` VALUES (20881,431,1);
-INSERT INTO `item_mods` VALUES (20881,506,160);
-INSERT INTO `item_mods` VALUES (20881,507,200);
+INSERT INTO `item_mods` VALUES (20880,25,40); -- Apocalypse iLvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (20880,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (20880,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (20880,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20880,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20880,675,40); -- Catastrophe DMG +40%
+INSERT INTO `item_mods` VALUES (20881,25,40); -- Apocalypse iLvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (20881,355,105); -- Catastrophe
+INSERT INTO `item_mods` VALUES (20881,431,1); -- Additional Effect - scripts\gobals\items\apocalypse.lua
+INSERT INTO `item_mods` VALUES (20881,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20881,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20881,675,40); -- Catastrophe DMG +40%
 INSERT INTO `item_mods` VALUES (20882,30,35);
 INSERT INTO `item_mods` VALUES (20882,355,106);
 INSERT INTO `item_mods` VALUES (20882,521,50);
@@ -22279,11 +22622,18 @@ INSERT INTO `item_mods` VALUES (20913,302,3);
 INSERT INTO `item_mods` VALUES (20913,369,3);
 INSERT INTO `item_mods` VALUES (20913,370,3);
 INSERT INTO `item_mods` VALUES (20916,25,15);
-INSERT INTO `item_mods` VALUES (20926,25,40);
-INSERT INTO `item_mods` VALUES (20926,355,121);
-INSERT INTO `item_mods` VALUES (20926,431,1);
-INSERT INTO `item_mods` VALUES (20926,506,160);
-INSERT INTO `item_mods` VALUES (20926,507,250);
+INSERT INTO `item_mods` VALUES (20925,25,40); -- Gungnir iLvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (20925,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (20925,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (20925,506,130); -- Extra DMG Chance %13
+INSERT INTO `item_mods` VALUES (20925,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20925,691,40); -- Geirskogul DMG +40%
+INSERT INTO `item_mods` VALUES (20926,25,40); -- Gungnir iLvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (20926,355,121); -- Geirskogul
+INSERT INTO `item_mods` VALUES (20926,431,1); -- Additional Effect - scripts\globals\items\gungnir.lua
+INSERT INTO `item_mods` VALUES (20926,506,130); -- Extra DMG Chance %13
+INSERT INTO `item_mods` VALUES (20926,507,200); -- Extra DMG X2
+INSERT INTO `item_mods` VALUES (20926,691,40); -- Geirskogul DMG +40%
 INSERT INTO `item_mods` VALUES (20928,302,15);
 INSERT INTO `item_mods` VALUES (20928,362,150);
 INSERT INTO `item_mods` VALUES (20929,10,20);
@@ -22301,11 +22651,18 @@ INSERT INTO `item_mods` VALUES (20963,23,10);
 INSERT INTO `item_mods` VALUES (20963,25,20);
 INSERT INTO `item_mods` VALUES (20963,165,2);
 INSERT INTO `item_mods` VALUES (20966,25,10);
-INSERT INTO `item_mods` VALUES (20971,23,40);
-INSERT INTO `item_mods` VALUES (20971,355,137);
-INSERT INTO `item_mods` VALUES (20971,431,1);
-INSERT INTO `item_mods` VALUES (20971,506,160);
-INSERT INTO `item_mods` VALUES (20971,507,300);
+INSERT INTO `item_mods` VALUES (20970,23,40); -- Kikoku iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (20970,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (20970,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (20970,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20970,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20970,707,40); -- Blade: Metsu DMG +40%
+INSERT INTO `item_mods` VALUES (20971,23,40); -- Kikoku iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (20971,355,137); -- Blade: Metsu
+INSERT INTO `item_mods` VALUES (20971,431,1); -- Additional Effect - scripts\globals\items\kikoku.lua
+INSERT INTO `item_mods` VALUES (20971,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (20971,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (20971,707,40); -- Blade: Metsu DMG +40%
 INSERT INTO `item_mods` VALUES (20973,27,30);
 INSERT INTO `item_mods` VALUES (20973,302,15);
 INSERT INTO `item_mods` VALUES (20974,11,20);
@@ -22344,11 +22701,18 @@ INSERT INTO `item_mods` VALUES (20998,23,10);
 INSERT INTO `item_mods` VALUES (20998,25,63);
 INSERT INTO `item_mods` VALUES (20998,68,24);
 INSERT INTO `item_mods` VALUES (21004,68,15);
-INSERT INTO `item_mods` VALUES (21016,25,40);
-INSERT INTO `item_mods` VALUES (21016,355,153);
-INSERT INTO `item_mods` VALUES (21016,431,1);
-INSERT INTO `item_mods` VALUES (21016,506,160);
-INSERT INTO `item_mods` VALUES (21016,507,250);
+INSERT INTO `item_mods` VALUES (21015,25,40); -- Amanomurakumo ILvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (21015,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (21015,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (21015,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21015,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21015,723,40); -- Tachi: Kaiten DMG +40%
+INSERT INTO `item_mods` VALUES (21016,25,40); -- Amanomurakumo ILvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (21016,355,153); -- Tachi: Kaiten
+INSERT INTO `item_mods` VALUES (21016,431,1); -- Additional Effect - scripts\globals\items\amanomurakumo.lua
+INSERT INTO `item_mods` VALUES (21016,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21016,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21016,723,40); -- Tachi: Kaiten DMG +40%
 INSERT INTO `item_mods` VALUES (21017,302,15);
 INSERT INTO `item_mods` VALUES (21018,302,15);
 INSERT INTO `item_mods` VALUES (21019,8,20);
@@ -22370,11 +22734,20 @@ INSERT INTO `item_mods` VALUES (21049,369,3);
 INSERT INTO `item_mods` VALUES (21049,370,3);
 INSERT INTO `item_mods` VALUES (21052,23,10);
 INSERT INTO `item_mods` VALUES (21052,25,15);
-INSERT INTO `item_mods` VALUES (21061,23,40);
-INSERT INTO `item_mods` VALUES (21061,311,155);
-INSERT INTO `item_mods` VALUES (21061,355,170);
-INSERT INTO `item_mods` VALUES (21061,506,160);
-INSERT INTO `item_mods` VALUES (21061,507,300);
+INSERT INTO `item_mods` VALUES (21060,23,40); -- Mjollnir iLvL 119 - ATT +40
+INSERT INTO `item_mods` VALUES (21060,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (21060,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (21060,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21060,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21060,740,40); -- Randgrith DMG +40%
+INSERT INTO `item_mods` VALUES (21060,311,155); -- Magic DMG +155
+INSERT INTO `item_mods` VALUES (21061,23,40); -- Mjollnir iLvL 119 AG - ATT +40
+INSERT INTO `item_mods` VALUES (21061,355,170); -- Randgrith
+INSERT INTO `item_mods` VALUES (21061,431,1); -- Additional Effect - scripts\globals\items\mjollnir.lua
+INSERT INTO `item_mods` VALUES (21061,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21061,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21061,740,40); -- Randgrith DMG +40%
+INSERT INTO `item_mods` VALUES (21061,311,155); -- Magic DMG +155
 INSERT INTO `item_mods` VALUES (21062,302,15);
 INSERT INTO `item_mods` VALUES (21062,311,155);
 INSERT INTO `item_mods` VALUES (21062,524,1);
@@ -22426,11 +22799,20 @@ INSERT INTO `item_mods` VALUES (21131,26,15);
 INSERT INTO `item_mods` VALUES (21132,12,3);
 INSERT INTO `item_mods` VALUES (21132,13,3);
 INSERT INTO `item_mods` VALUES (21132,25,6);
-INSERT INTO `item_mods` VALUES (21136,25,40);
-INSERT INTO `item_mods` VALUES (21136,311,248);
-INSERT INTO `item_mods` VALUES (21136,355,185);
-INSERT INTO `item_mods` VALUES (21136,506,160);
-INSERT INTO `item_mods` VALUES (21136,507,250);
+INSERT INTO `item_mods` VALUES (21135,25,40); -- Claustrum iLvL 119 - ACC +40
+INSERT INTO `item_mods` VALUES (21135,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (21135,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (21135,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21135,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21135,755,40); -- Gate of Tartarus DMG +40%
+INSERT INTO `item_mods` VALUES (21135,311,248); -- Magic DMG +248
+INSERT INTO `item_mods` VALUES (21136,25,40); -- Claustrum iLvL 119 AG - ACC +40
+INSERT INTO `item_mods` VALUES (21136,355,185); -- Gate of Tartarus
+INSERT INTO `item_mods` VALUES (21136,431,1); -- Additional Effect - scripts\globals\items\claustrum.lua
+INSERT INTO `item_mods` VALUES (21136,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21136,507,250); -- Extra DMG X2.5
+INSERT INTO `item_mods` VALUES (21136,755,40); -- Gate of Tartarus DMG +40%
+INSERT INTO `item_mods` VALUES (21136,311,248); -- Magic DMG +248
 INSERT INTO `item_mods` VALUES (21138,25,30);
 INSERT INTO `item_mods` VALUES (21138,28,40);
 INSERT INTO `item_mods` VALUES (21138,311,248);
@@ -22532,11 +22914,18 @@ INSERT INTO `item_mods` VALUES (21208,13,6);
 INSERT INTO `item_mods` VALUES (21208,28,40);
 INSERT INTO `item_mods` VALUES (21208,311,65);
 INSERT INTO `item_mods` VALUES (21209,5,67);
-INSERT INTO `item_mods` VALUES (21211,24,30);
-INSERT INTO `item_mods` VALUES (21211,26,40);
-INSERT INTO `item_mods` VALUES (21211,355,200);
-INSERT INTO `item_mods` VALUES (21211,506,160);
-INSERT INTO `item_mods` VALUES (21211,507,300);
+INSERT INTO `item_mods` VALUES (21210,24,30); -- Yoichinoyumi iLvL 119 - RNG ATT +30
+INSERT INTO `item_mods` VALUES (21210,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (21210,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (21210,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21210,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21210,770,40); -- Namas Arrow DMG +40%
+INSERT INTO `item_mods` VALUES (21211,24,30); -- Yoichinoyumi iLvL 119 AG - RNG ATT +30
+INSERT INTO `item_mods` VALUES (21211,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (21211,355,200); -- Namas Arrow
+INSERT INTO `item_mods` VALUES (21211,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21211,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21211,770,40); -- Namas Arrow DMG +40%
 INSERT INTO `item_mods` VALUES (21212,9,20);
 INSERT INTO `item_mods` VALUES (21213,9,20);
 INSERT INTO `item_mods` VALUES (21220,8,15);
@@ -22568,11 +22957,18 @@ INSERT INTO `item_mods` VALUES (21256,24,5);
 INSERT INTO `item_mods` VALUES (21256,26,15);
 INSERT INTO `item_mods` VALUES (21256,27,-3);
 INSERT INTO `item_mods` VALUES (21256,289,10);
-INSERT INTO `item_mods` VALUES (21261,24,30);
-INSERT INTO `item_mods` VALUES (21261,26,40);
-INSERT INTO `item_mods` VALUES (21261,355,216);
-INSERT INTO `item_mods` VALUES (21261,506,160);
-INSERT INTO `item_mods` VALUES (21261,507,300);
+INSERT INTO `item_mods` VALUES (21260,24,30); -- Annihilator iLvL 119 - RNG ATT +30
+INSERT INTO `item_mods` VALUES (21260,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (21260,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (21260,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21260,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21260,786,40); -- Coronach DMG +40%
+INSERT INTO `item_mods` VALUES (21261,24,30); -- Annihilator iLvL 119 AG - RNG ATT +30
+INSERT INTO `item_mods` VALUES (21261,26,40); -- RNG ACC +40
+INSERT INTO `item_mods` VALUES (21261,355,216); -- Coronach
+INSERT INTO `item_mods` VALUES (21261,506,130); -- Extra DMG Chance 13%
+INSERT INTO `item_mods` VALUES (21261,507,300); -- Extra DMG X3
+INSERT INTO `item_mods` VALUES (21261,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (21263,411,35);
 INSERT INTO `item_mods` VALUES (21264,11,20);
 INSERT INTO `item_mods` VALUES (21265,11,20);
@@ -33951,19 +34347,19 @@ INSERT INTO `item_mods` VALUES (28190,29,2);
 INSERT INTO `item_mods` VALUES (28190,31,62);
 INSERT INTO `item_mods` VALUES (28190,68,9);
 INSERT INTO `item_mods` VALUES (28190,384,30);
-INSERT INTO `item_mods` VALUES (28197,1,114);
-INSERT INTO `item_mods` VALUES (28197,2,47);
-INSERT INTO `item_mods` VALUES (28197,8,29);
-INSERT INTO `item_mods` VALUES (28197,10,16);
-INSERT INTO `item_mods` VALUES (28197,11,25);
-INSERT INTO `item_mods` VALUES (28197,12,30);
-INSERT INTO `item_mods` VALUES (28197,13,17);
-INSERT INTO `item_mods` VALUES (28197,14,11);
-INSERT INTO `item_mods` VALUES (28197,24,30);
-INSERT INTO `item_mods` VALUES (28197,29,5);
-INSERT INTO `item_mods` VALUES (28197,31,69);
-INSERT INTO `item_mods` VALUES (28197,68,33);
-INSERT INTO `item_mods` VALUES (28197,384,72);
+INSERT INTO `item_mods` VALUES (28197,1,114); -- Nahtirah Trousers DEF +114
+INSERT INTO `item_mods` VALUES (28197,2,47); -- HP +47
+INSERT INTO `item_mods` VALUES (28197,8,29); -- STR +29
+INSERT INTO `item_mods` VALUES (28197,10,16); -- VIT +16
+INSERT INTO `item_mods` VALUES (28197,11,25); -- AGI +25
+INSERT INTO `item_mods` VALUES (28197,12,30); -- INT +30
+INSERT INTO `item_mods` VALUES (28197,13,17); -- MND +17
+INSERT INTO `item_mods` VALUES (28197,14,11); -- CHR +11
+INSERT INTO `item_mods` VALUES (28197,24,30); -- Ranged Attack +30
+INSERT INTO `item_mods` VALUES (28197,29,5); -- Magic Defense Bonus +5
+INSERT INTO `item_mods` VALUES (28197,31,69); -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (28197,68,38); -- Evasion +38
+INSERT INTO `item_mods` VALUES (28197,365,90); -- Snapshot +9
 INSERT INTO `item_mods` VALUES (28198,1,89);
 INSERT INTO `item_mods` VALUES (28198,2,27);
 INSERT INTO `item_mods` VALUES (28198,8,14);
@@ -34698,19 +35094,20 @@ INSERT INTO `item_mods` VALUES (28276,68,55);
 INSERT INTO `item_mods` VALUES (28276,169,18);
 INSERT INTO `item_mods` VALUES (28276,249,20);
 INSERT INTO `item_mods` VALUES (28276,384,30);
-INSERT INTO `item_mods` VALUES (28287,1,13);
-INSERT INTO `item_mods` VALUES (28287,8,12);
-INSERT INTO `item_mods` VALUES (28287,9,24);
-INSERT INTO `item_mods` VALUES (28287,10,12);
-INSERT INTO `item_mods` VALUES (28287,11,37);
-INSERT INTO `item_mods` VALUES (28287,13,12);
-INSERT INTO `item_mods` VALUES (28287,14,30);
-INSERT INTO `item_mods` VALUES (28287,25,15);
-INSERT INTO `item_mods` VALUES (28287,27,-5);
-INSERT INTO `item_mods` VALUES (28287,29,5);
-INSERT INTO `item_mods` VALUES (28287,30,69);
-INSERT INTO `item_mods` VALUES (28287,68,72);
-INSERT INTO `item_mods` VALUES (28287,167,40);
+INSERT INTO `item_mods` VALUES (28287,1,70); -- Durgai Leggings - DEF +70
+INSERT INTO `item_mods` VALUES (28287,2,13); -- HP +13
+INSERT INTO `item_mods` VALUES (28287,8,12); -- STR +12
+INSERT INTO `item_mods` VALUES (28287,9,24); -- DEX +24
+INSERT INTO `item_mods` VALUES (28287,10,12); -- VIT +12
+INSERT INTO `item_mods` VALUES (28287,11,37); -- AGI +37
+INSERT INTO `item_mods` VALUES (28287,13,12); -- MND +12
+INSERT INTO `item_mods` VALUES (28287,14,30); -- CHR +30
+INSERT INTO `item_mods` VALUES (28287,25,15); -- ACC +15
+INSERT INTO `item_mods` VALUES (28287,27,-5); -- Enmity -5
+INSERT INTO `item_mods` VALUES (28287,29,5); -- MDEF +5
+INSERT INTO `item_mods` VALUES (28287,31,69); -- MEVA +69
+INSERT INTO `item_mods` VALUES (28287,68,72); -- EVA +72
+INSERT INTO `item_mods` VALUES (28287,384,40); -- Haste +4%
 INSERT INTO `item_mods` VALUES (28289,1,79);
 INSERT INTO `item_mods` VALUES (28289,2,38);
 INSERT INTO `item_mods` VALUES (28289,8,19);
@@ -35483,11 +35880,11 @@ INSERT INTO `item_mods` VALUES (28620,30,10);
 INSERT INTO `item_mods` VALUES (28621,1,13);
 INSERT INTO `item_mods` VALUES (28621,28,6);
 INSERT INTO `item_mods` VALUES (28621,396,6);
-INSERT INTO `item_mods` VALUES (28622,1,16);
-INSERT INTO `item_mods` VALUES (28622,12,6);
-INSERT INTO `item_mods` VALUES (28622,25,10);
-INSERT INTO `item_mods` VALUES (28622,68,15);
-INSERT INTO `item_mods` VALUES (28622,302,2);
+INSERT INTO `item_mods` VALUES (28622,1,16); -- Canny Cape - DEF +16
+INSERT INTO `item_mods` VALUES (28622,11,6); -- AGI +6
+INSERT INTO `item_mods` VALUES (28622,25,10); -- ACC +10
+INSERT INTO `item_mods` VALUES (28622,68,15); -- EVA +15
+INSERT INTO `item_mods` VALUES (28622,302,2); -- TRP ATT +2%
 INSERT INTO `item_mods` VALUES (28623,1,20);
 INSERT INTO `item_mods` VALUES (28623,2,40);
 INSERT INTO `item_mods` VALUES (28623,5,40);
