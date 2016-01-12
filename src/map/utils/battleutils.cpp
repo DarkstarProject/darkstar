@@ -5341,15 +5341,17 @@ namespace battleutils
                 charutils::UnequipItem(PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(PChar);
                 charutils::UpdateItem(PChar, loc, slot, -1);
+                PChar->pushPacket(new CInventoryFinishPacket());
                 return true;
             }
             else
             {
                 charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -1);
+                PChar->pushPacket(new CInventoryFinishPacket());
                 return false;
             }
-            PChar->pushPacket(new CInventoryFinishPacket());
         }
+        return false;
     }
 
     int32 GetMeritValue(CBattleEntity* PEntity, MERIT_TYPE merit)
