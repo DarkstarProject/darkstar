@@ -14,8 +14,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobhp = mob:getHPP();
-    local currentForm = mob:getLocalVar("form")
+    local currentForm = mob:getLocalVar("form");
 
     if (mob:AnimationSub() == 2 and currentForm == 1) then -- proto-omega first bipedform
         return 0;
