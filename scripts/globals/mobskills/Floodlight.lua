@@ -19,7 +19,7 @@ function onMobSkillCheck(target,mob,skill)
     local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
     local mobhp = mob:getHPP();
 
-    if (mobID == 727 and mobhp > 30 and mobhp < 70  ) then -- omega first bipedform
+    if (skillList == 727 and mobhp > 30 and mobhp < 70  ) then -- omega first bipedform
         return 0;
     else
         return 1;
