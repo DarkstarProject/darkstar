@@ -4060,7 +4060,7 @@ namespace battleutils
             {
                 petutils::DespawnPet(PVictim);
             }
-            PCharmer->PPet->PAI->SetController(std::make_unique<CPlayerCharmController>(static_cast<CCharEntity*>(PVictim)));
+            PVictim->PAI->SetController(std::make_unique<CPlayerCharmController>(static_cast<CCharEntity*>(PVictim)));
 
             PVictim->PMaster = PCharmer;
         }
