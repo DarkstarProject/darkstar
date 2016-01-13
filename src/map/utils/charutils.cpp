@@ -2215,7 +2215,8 @@ namespace charutils
 
         bool isInDynamis = PChar->isInDynamis();
 
-        for (auto&& slot : {std::forward_as_tuple(SLOT_MAIN, main_ws, main_ws_dyn), std::forward_as_tuple(SLOT_RANGED, range_ws, range_ws_dyn)})
+        for (auto&& slot : {std::make_tuple(SLOT_MAIN, std::ref(main_ws), std::ref(main_ws_dyn)), 
+            std::make_tuple(SLOT_RANGED, std::ref(range_ws), std::ref(range_ws_dyn))})
         {
             if (PChar->m_Weapons[std::get<0>(slot)])
             {
