@@ -2233,6 +2233,10 @@ namespace battleutils
         {
             ratioCap = 2.25f;
         }
+        if (PAttacker->objtype == TYPE_MOB)
+        {
+            ratioCap = 4.f;
+        }
 
         ratio = dsp_cap(ratio, 0, ratioCap);
         float cRatio = ratio;
@@ -2255,7 +2259,7 @@ namespace battleutils
             cRatio += 1;
         }
 
-        cRatio = dsp_cap(cRatio, 0, 4);
+        cRatio = dsp_cap(cRatio, 0, ratioCap);
 
         if ((0 <= cRatio) && (cRatio < 0.5)) {
             cRatioMax = cRatio + 0.5f;
