@@ -4,10 +4,8 @@
 -- Involved in Quest: The Holy Crest
 -- @pos 641 -15 7 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 -----------------------------------
 -- onTrade Action

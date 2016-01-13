@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -586 39 61 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 
 local region     = GUSTABERG;
 local csid    = 0x7ff4;

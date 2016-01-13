@@ -4,12 +4,10 @@
 -- Involved In Quest: Ghosts of the Past
 -- @pos -174 0 369 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local text = require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Standard Info NPC -- Corsair SideQuests
 -- @pos -14.687 0.000 25.114 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

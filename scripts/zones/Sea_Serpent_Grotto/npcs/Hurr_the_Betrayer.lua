@@ -6,11 +6,9 @@
 -- @pos 305.882 26.768 234.279
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local text = require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 -----------------------------------
 -- onTrade Action

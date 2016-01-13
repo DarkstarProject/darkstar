@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Trial by Wind
 -- @pos -17 7 -10 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

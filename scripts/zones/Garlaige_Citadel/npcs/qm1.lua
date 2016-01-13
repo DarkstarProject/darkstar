@@ -4,13 +4,11 @@
 -- Involved In Quest: Altana's Sorrow
 -- @pos -282.339 0.001 261.707 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

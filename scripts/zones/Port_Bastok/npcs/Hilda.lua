@@ -4,15 +4,13 @@
 -- Involved in Quest: Cid's Secret, Riding on the Clouds
 -- Starts & Finishes: The Usual
 -- @pos -163 -8 13 236
------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action

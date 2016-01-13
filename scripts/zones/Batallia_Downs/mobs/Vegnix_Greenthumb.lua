@@ -2,12 +2,10 @@
 -- Area: Batallia Downs
 -- MOB: Vegnix Greenthumb
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Batallia_Downs/TextIDs");
+local text = require("scripts/zones/Batallia_Downs/TextIDs");
 
 -----------------------------------
 -- onMobDeath

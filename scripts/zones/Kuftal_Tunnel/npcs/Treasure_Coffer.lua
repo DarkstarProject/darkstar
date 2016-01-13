@@ -3,14 +3,12 @@
 --  NPC: Treasure Coffer
 -- @zone 174
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+local text = require("scripts/zones/Kuftal_Tunnel/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

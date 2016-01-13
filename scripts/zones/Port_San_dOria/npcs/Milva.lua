@@ -3,13 +3,11 @@
 --  NPC: Milva
 -- Only sells when San d'Oria has control of Sarutabaruta
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

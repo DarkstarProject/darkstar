@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Rala_Waterways/TextIDs"] = nil;
-require("scripts/zones/Rala_Waterways/TextIDs");
+local text = require("scripts/zones/Rala_Waterways/TextIDs");
 
 -----------------------------------
 -- onInitialize

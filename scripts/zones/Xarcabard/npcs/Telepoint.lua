@@ -3,11 +3,9 @@
 --  NPC: Telepoint
 -- @pos 150.258 -21.047 -37.256 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

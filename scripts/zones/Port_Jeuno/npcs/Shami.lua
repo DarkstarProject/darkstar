@@ -4,12 +4,10 @@
 -- Orb Seller (BCNM)
 -- @pos -14 8 44 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -162,18 +160,18 @@ function onTrigger(player,npc)
     end
 end; 
  
--- 0x0032 : 30 sceau conférie : choix entre clotho et lachésis
--- 0x0018 : Après achat d'un orb (qu'bia, yughott, palborough, giddeus)
--- 0x0008 : Après achat d'un orb (yughott, palborough, giddeus, qu'bia, ghelsba)
--- 0x0004 : Après achat d'un orb (yughott, palborough, giddeus, ghelsba)
--- 0x000a : Après achat d'un orb (yughott, palborough, giddeus)
+-- 0x0032 : 30 sceau confï¿½rie : choix entre clotho et lachï¿½sis
+-- 0x0018 : Aprï¿½s achat d'un orb (qu'bia, yughott, palborough, giddeus)
+-- 0x0008 : Aprï¿½s achat d'un orb (yughott, palborough, giddeus, qu'bia, ghelsba)
+-- 0x0004 : Aprï¿½s achat d'un orb (yughott, palborough, giddeus, ghelsba)
+-- 0x000a : Aprï¿½s achat d'un orb (yughott, palborough, giddeus)
 -- 0x0009 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
 -- 0x0005 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
 -- 0x000b : Trade d'un orb ? (yughott, palborough, giddeus)
 -- 0x001a : Trade d'un orb ? (qu'bia, yughott, palborough, giddeus)
 -- 0x001b : Trade d'un orb ? (qu'bia, chambre des oracles)
--- 0x0016 : Trade d'un orb utilisé (il le recup)
--- 0x0019 : Un seul échange autorisé par semaine
+-- 0x0016 : Trade d'un orb utilisï¿½ (il le recup)
+-- 0x0019 : Un seul ï¿½change autorisï¿½ par semaine
 -- 0x0141 : trade sceau + nombre player:startEvent(0x0141,0,15); 
 -- 0 shbete, 1 s-confrerie, 2 s-demons, 3 s-seigneurdes hombre
 

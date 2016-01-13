@@ -4,12 +4,10 @@
 -- Type: Warp NPC
 -- @pos -292.779 6.999 -263.153 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action

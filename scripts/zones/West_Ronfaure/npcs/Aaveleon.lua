@@ -4,12 +4,10 @@
 -- Involved in Quest: A Sentry's Peril
 -- @pos -431 -45 343 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

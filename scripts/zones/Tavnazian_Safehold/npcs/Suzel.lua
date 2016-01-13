@@ -5,10 +5,7 @@
 -- @zone: 26
 -- @pos -72.701 -20.25 -64.058
 --
------------------------------------
-
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
 -- onTrade Action

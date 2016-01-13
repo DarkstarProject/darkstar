@@ -4,10 +4,7 @@
 -- Guild Merchant NPC: Goldsmithing Guild 
 -- @zone: 235
 -- @pos -205.190 -7.814 -56.507
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

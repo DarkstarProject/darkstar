@@ -4,10 +4,8 @@
 -- Involved in Quests: Breaking Barriers
 -- @pos 179 -33 82 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 

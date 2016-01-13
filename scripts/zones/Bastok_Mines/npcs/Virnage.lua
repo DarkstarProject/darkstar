@@ -5,14 +5,12 @@
 -- @zone 234
 -- @pos 0 0 51
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

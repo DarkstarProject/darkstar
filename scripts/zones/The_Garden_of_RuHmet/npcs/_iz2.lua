@@ -3,10 +3,8 @@
 --  NPC: _iz2 (Ebon_Panel)
 -- @pos 422.351 -5.180 -100.000 35 | Hume Tower
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");

@@ -2,11 +2,7 @@
 -- Area: King_Ranperre's Tomb
 --  NPC: Strange Apparatus
 -- @pos -260 7 -142 190
------------------------------------
-
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
-
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+local text = require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

@@ -3,10 +3,8 @@
 --  NPC: ??? (Sacrificial Goblet NM)
 -- @pos 300 1 255 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

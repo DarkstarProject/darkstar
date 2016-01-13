@@ -3,10 +3,8 @@
 --  NPC: Urubero-Mohbero
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Heavens_Tower/TextIDs");
+local text = require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

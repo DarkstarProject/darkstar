@@ -3,9 +3,8 @@
 --  NPC: Beastmen_s_Banner
 -- @pos 592.850 -16.765 -518.802 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 -----------------------------------
 -- onTrade Action

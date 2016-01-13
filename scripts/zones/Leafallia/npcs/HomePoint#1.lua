@@ -2,12 +2,8 @@
 -- Area: Leafallia
 --  NPC: HomePoint#1
 -- @pos 5.539 -0.434 8.133 281
------------------------------------
-
-package.loaded["scripts/zones/Leafallia/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Leafallia/TextIDs");
+local text = require("scripts/zones/Leafallia/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

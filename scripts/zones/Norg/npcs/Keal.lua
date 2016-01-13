@@ -3,13 +3,11 @@
 --  NPC: Keal
 -- Starts and Ends Quest: It's Not Your Vault
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 local path = {
 -5.453587, 0.151494, -16.361458,

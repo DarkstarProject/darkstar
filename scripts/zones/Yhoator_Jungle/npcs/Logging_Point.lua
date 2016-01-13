@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Yhoator Jungle
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade

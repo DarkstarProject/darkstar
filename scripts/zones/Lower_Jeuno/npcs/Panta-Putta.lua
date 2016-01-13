@@ -5,8 +5,6 @@
 -- Involved in Quests: The Lost Cardian
 -- @zone 245
 -- @pos -61 0 -140
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -15,7 +13,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -58,7 +56,7 @@ function onTrigger(player,npc)
 end;
 
 -- 0x004E oh zut j'ai besoin de cette marmite
--- 0x001E j'ai été trop dur avec two... et percé la marmite
+-- 0x001E j'ai ï¿½tï¿½ trop dur avec two... et percï¿½ la marmite
 -- 0x0028 du moment que j'ai cette boite et la marmite je vais enfin battre ce gars
 
 -----------------------------------

@@ -2,11 +2,7 @@
 -- Area: Port San d'Oria
 --  NPC: Nazar
 -- Type: Standard NPC
------------------------------------
-
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Mamool_Ja_Training_Grounds/TextIDs"] = nil;
-require("scripts/zones/Mamool_Ja_Training_Grounds/TextIDs");
+local text = require("scripts/zones/Mamool_Ja_Training_Grounds/TextIDs");
 
 -----------------------------------
 -- onInitialize

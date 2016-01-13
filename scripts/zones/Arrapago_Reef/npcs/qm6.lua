@@ -3,10 +3,8 @@
 --  NPC: ??? (corsair job flag quest)
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 
 -----------------------------------
 -- onTrade Action

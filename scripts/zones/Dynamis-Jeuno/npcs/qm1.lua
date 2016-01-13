@@ -2,11 +2,9 @@
 -- Area: Dynamis Jeuno
 --  NPC: ??? (Spawn when mega is defeated)
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Dynamis-Jeuno/TextIDs");
+local text = require("scripts/zones/Dynamis-Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade

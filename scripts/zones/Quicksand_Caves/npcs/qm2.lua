@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Tribunus VII-I
 -- @pos -49.944 -0.891 -139.485 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

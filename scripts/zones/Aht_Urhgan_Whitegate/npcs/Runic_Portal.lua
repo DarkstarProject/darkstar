@@ -3,13 +3,11 @@
 --  NPC: Runic Portal
 -- Aht Urhgan Teleporter to Other Areas
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/besieged");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

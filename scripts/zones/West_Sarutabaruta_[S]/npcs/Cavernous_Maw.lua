@@ -4,13 +4,11 @@
 -- @pos 0 0 -165 95
 -- Teleports Players to West Sarutabaruta
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

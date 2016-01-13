@@ -4,11 +4,9 @@
 -- Notes: Opens door to Den of Rancor using Painbrush of Souls
 -- @pos -52.239 -2.089 10.000 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

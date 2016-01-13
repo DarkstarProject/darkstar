@@ -4,11 +4,9 @@
 -- Involved in Quest: Forge Your Destiny
 -- @pos -709 2 102 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local text = require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

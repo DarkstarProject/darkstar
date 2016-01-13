@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Ceizak_Battlegrounds/TextIDs"] = nil;
-require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
+local text = require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
 
 -----------------------------------
 -- onInitialize

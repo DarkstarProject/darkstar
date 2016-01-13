@@ -3,11 +3,9 @@
 -- Zone: Ranguemont_Pass (166)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Ranguemont_Pass/TextIDs");
+local text = require("scripts/zones/Ranguemont_Pass/TextIDs");
 require("scripts/globals/zone");
 
 -----------------------------------
@@ -31,7 +29,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

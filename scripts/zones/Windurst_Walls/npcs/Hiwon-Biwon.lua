@@ -4,13 +4,11 @@
 -- Involved In Quest: Making Headlines, Curses, Foiled...Again!?
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrade Action

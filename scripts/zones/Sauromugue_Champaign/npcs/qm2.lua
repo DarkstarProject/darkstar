@@ -4,14 +4,12 @@
 -- Involved in Quest: THF AF "As Thick As Thieves"
 -- @pos 196.830 31.300 206.078 120
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -7,14 +7,12 @@
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,9 +5,7 @@
 -- @zone 161
 -- @pos 63 -24 21
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

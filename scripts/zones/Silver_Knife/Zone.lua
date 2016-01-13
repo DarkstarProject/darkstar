@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Silver_Knife/TextIDs"] = nil;
-require("scripts/zones/Silver_Knife/TextIDs");
+local text = require("scripts/zones/Silver_Knife/TextIDs");
 
 -----------------------------------
 -- onInitialize

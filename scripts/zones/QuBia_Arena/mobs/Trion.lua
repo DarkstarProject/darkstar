@@ -3,9 +3,7 @@
 -- MOB: Trion
 -- the heir to the light sando 9-2
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/QuBia_Arena/TextIDs");
+local text = require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 

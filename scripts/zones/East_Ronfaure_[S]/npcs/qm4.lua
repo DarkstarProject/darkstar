@@ -4,11 +4,9 @@
 -- Involved in Quests: Steamed Rams
 -- @pos 541.425 -49.83 178.563
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/East_Ronfaure_[S]/TextIDs");
+local text = require("scripts/zones/East_Ronfaure_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

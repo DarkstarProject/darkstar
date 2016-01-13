@@ -2,12 +2,8 @@
 -- Area: The Boyahda Tree
 --  NPC: HomePoint#1
 -- @pos 88 -15 -217 153
------------------------------------
-
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/The_Boyahda_Tree/TextIDs");
+local text = require("scripts/zones/The_Boyahda_Tree/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

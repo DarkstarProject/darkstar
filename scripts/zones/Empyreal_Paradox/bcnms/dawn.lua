@@ -11,14 +11,12 @@
 --16924675', 'Promathia V1', '936', '-519', '120', '-520
 --16924675', 'Promathia V2', '11135', '-519', '120', '-520
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local text = require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

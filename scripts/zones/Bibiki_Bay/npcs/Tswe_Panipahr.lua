@@ -4,10 +4,8 @@
 -- Type: Manaclipper
 -- @pos 484.604 -4.035 729.671 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local text = require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

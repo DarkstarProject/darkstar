@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos -183.734 -12.678 -395.722 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrigger

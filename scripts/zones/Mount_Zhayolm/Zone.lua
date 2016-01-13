@@ -3,11 +3,9 @@
 -- Zone: Mount_Zhayolm (61)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onInitialize

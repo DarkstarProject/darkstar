@@ -5,10 +5,7 @@
 -- @zone: 245
 -- @pos -19.84    -0.101    -38.081
 --
------------------------------------
-
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

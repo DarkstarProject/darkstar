@@ -4,12 +4,10 @@
 -- Type: Goldsmithing Normal/Adv. Image Support
 -- @pos 49.9 0.1 -45.2 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

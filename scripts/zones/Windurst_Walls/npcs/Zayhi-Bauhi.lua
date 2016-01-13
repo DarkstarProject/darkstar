@@ -5,12 +5,10 @@
 -- Working 100%
 -- Starts and Finishes Quest: To Bee or Not to Bee?
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrade Action

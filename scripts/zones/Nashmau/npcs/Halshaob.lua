@@ -4,10 +4,8 @@
 -- Type: Quest NPC
 -- @pos 28.537 -7 -85.250 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

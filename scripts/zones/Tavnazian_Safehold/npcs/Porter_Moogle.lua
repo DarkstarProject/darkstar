@@ -5,10 +5,8 @@
 -- @zone 26
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

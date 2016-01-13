@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos 77.544 -2.746 -184.803 120
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
 -- onTrigger

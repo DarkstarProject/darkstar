@@ -4,12 +4,10 @@
 -- Finishes Quest: The Old Lady
 -- @pos -49 -5 20 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

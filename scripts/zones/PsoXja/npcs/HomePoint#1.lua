@@ -2,12 +2,8 @@
 -- Area: PsoXja
 --  NPC: HomePoint#1
 -- @pos -58 40 14 10
------------------------------------
-
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

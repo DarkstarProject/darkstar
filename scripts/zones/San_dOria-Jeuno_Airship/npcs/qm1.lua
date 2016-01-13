@@ -5,13 +5,11 @@
 -- @zone 223
 -- @pos 77 -9 -5 -13
 -----------------------------------
-package.loaded["scripts/zones/San_dOria-Jeuno_Airship/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/weather");
-require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
+local text = require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
 
 -----------------------------------
 -- onTrade Action

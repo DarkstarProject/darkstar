@@ -4,15 +4,13 @@
 -- Type: Aht Urhgan Quest NPC
 -- Involved in Quests: The Road to Aht Urhgan
 -- @pos 37.985 3.118 -45.208 245
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/teleports");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

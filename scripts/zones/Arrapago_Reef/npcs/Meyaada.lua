@@ -3,12 +3,10 @@
 --  NPC: Meyaada
 -- @pos 22.446 -7.920 573.390 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 
 -----------------------------------
 -- onTrade Action

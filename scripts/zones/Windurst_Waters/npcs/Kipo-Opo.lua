@@ -4,12 +4,10 @@
 -- Type: Cooking Adv. Image Support
 -- @pos -119.750 -5.239 64.500 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

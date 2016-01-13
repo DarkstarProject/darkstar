@@ -4,7 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local text = require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 -----------------------------------
 -- onMobEngaged

@@ -3,10 +3,8 @@
 --  NPC: Auroral Updraft
 -- Type: Standard NPC
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,10 +3,8 @@
 --  NPC: ??? (Tonberry Rattle ITEM)
 -- @pos 269 0 91 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

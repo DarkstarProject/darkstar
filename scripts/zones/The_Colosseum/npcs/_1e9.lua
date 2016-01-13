@@ -3,9 +3,7 @@
 --  NPC: _1e9 (Gate: The Pit)
 -- @pos -604 -1.949 40 71
 -----------------------------------
-package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Colosseum/TextIDs");
+local text = require("scripts/zones/The_Colosseum/TextIDs");
 
 -----------------------------------
 -- onTrade Action

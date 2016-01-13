@@ -2,11 +2,7 @@
 -- Area: Kazham-Jeuno Airship
 --  NPC: Oslam
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Kazham-Jeuno_Airship/TextIDs"] = nil;
-
-require("scripts/zones/Kazham-Jeuno_Airship/TextIDs");
+local text = require("scripts/zones/Kazham-Jeuno_Airship/TextIDs");
 
 -----------------------------------
 -- onTrade Action

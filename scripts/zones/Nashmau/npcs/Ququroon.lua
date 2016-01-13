@@ -4,12 +4,10 @@
 -- Type: Standard NPC
 -- @pos -2.400 -1 66.824 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

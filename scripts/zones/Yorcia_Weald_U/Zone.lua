@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Yorcia_Weald_U/TextIDs"] = nil;
-require("scripts/zones/Yorcia_Weald_U/TextIDs");
+local text = require("scripts/zones/Yorcia_Weald_U/TextIDs");
 
 -----------------------------------
 -- onInitialize

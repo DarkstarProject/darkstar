@@ -2,12 +2,8 @@
 -- Area: Upper Delkfutt's Tower
 --  NPC: HomePoint#1
 -- @pos -365 -176.5 -36 158
------------------------------------
-
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

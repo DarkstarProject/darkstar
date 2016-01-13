@@ -4,13 +4,11 @@
 -- Type: Tenshodo Merchant
 -- @pos 28.149 2.899 -44.780 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,10 +3,8 @@
 --  NPC: ??? - HakuTaku spawn
 -- @pos 24 25 -306 160
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Den_of_Rancor/TextIDs");
+local text = require("scripts/zones/Den_of_Rancor/TextIDs");
 
 -----------------------------------
 -- onTrade Action

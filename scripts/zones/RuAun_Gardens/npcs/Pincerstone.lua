@@ -3,10 +3,8 @@
 --  NPC: Pincerstone
 -- NPCs which activates the blue teleports in sky
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

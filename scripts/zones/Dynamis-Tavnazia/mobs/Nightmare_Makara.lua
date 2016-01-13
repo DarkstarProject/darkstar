@@ -3,11 +3,9 @@
 --  NPC: Nightmare_Makara
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local text = require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

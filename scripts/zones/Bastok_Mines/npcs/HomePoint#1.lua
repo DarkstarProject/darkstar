@@ -2,12 +2,8 @@
 -- Area: Bastok Mines
 --  NPC: HomePoint#1
 -- @pos 39.189 0.001 -42.618 234
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

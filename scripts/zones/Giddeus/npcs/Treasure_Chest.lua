@@ -4,14 +4,12 @@
 -- 
 -- @pos -158.563 0.999 -226.058 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Giddeus/TextIDs");
+local text = require("scripts/zones/Giddeus/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

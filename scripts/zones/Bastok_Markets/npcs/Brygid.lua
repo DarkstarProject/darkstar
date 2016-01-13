@@ -5,8 +5,6 @@
 -- Involved in Quests: Riding on the Clouds
 -- @zone 235
 -- @pos -90 -4 -108
------------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -16,7 +14,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/equipment");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 body_list = {12554,13712,12594,13723,12603,13699,12610,13783,12572,12611,13796,12571,13750,12604,13752,12544,13730,12578,12553,12595}
 legs_list = {12829,12800,12866,12809,12810,12850,12828,12859,12837,14243,12838,12867,12827,12836,12860,12851}

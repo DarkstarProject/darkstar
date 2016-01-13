@@ -3,10 +3,8 @@
 --  NPC: Banishing Gate #1
 -- @pos -201.000 -2.994 220 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

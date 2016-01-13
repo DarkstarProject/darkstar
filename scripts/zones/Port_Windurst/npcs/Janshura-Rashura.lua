@@ -3,8 +3,6 @@
 --  NPC: Janshura Rashura
 -- Starts Windurst Missions
 -- @pos -227 -8 184 240
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

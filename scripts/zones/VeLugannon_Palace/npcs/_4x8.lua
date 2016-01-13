@@ -3,10 +3,8 @@
 --  NPC: Door (Blue)
 -- @pos -80.000, -2.974, 460.000 177
 -----------------------------------
-package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/VeLugannon_Palace/TextIDs");
+local text = require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 -----------------------------------
 -- onTrade Action

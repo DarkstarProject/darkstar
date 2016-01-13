@@ -5,10 +5,8 @@
 -- @pos 
 -- player:startEvent(0x006a); Left over Cutscene
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local text = require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

@@ -3,11 +3,9 @@
 -- Zone: Grauberg_[S] (89)
 --
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local text = require("scripts/zones/Grauberg_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

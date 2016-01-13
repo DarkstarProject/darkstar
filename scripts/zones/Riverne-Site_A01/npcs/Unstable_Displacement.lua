@@ -3,11 +3,9 @@
 --  NPC: Unstable Displacement
 -- ENM Battlefield
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Riverne-Site_A01/TextIDs");
+local text = require("scripts/zones/Riverne-Site_A01/TextIDs");
 
 -----------------------------------
 -- onTrade

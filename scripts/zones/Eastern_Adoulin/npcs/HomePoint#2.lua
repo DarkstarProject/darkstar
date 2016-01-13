@@ -2,12 +2,8 @@
 -- Area: Eastern_Adoulin
 --  NPC: HomePoint#2
 -- @pos
------------------------------------
-
-package.loaded["scripts/zones/Eastern_Adoulin/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Eastern_Adoulin/TextIDs");
+local text = require("scripts/zones/Eastern_Adoulin/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -2,11 +2,9 @@
 -- Area: Meriphataud Mountains [S] 
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

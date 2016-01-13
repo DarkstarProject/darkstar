@@ -3,15 +3,13 @@
 --  NPC: Machielle
 -- Only sells when Bastok controls Norvallen Region
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/globals/conquest");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

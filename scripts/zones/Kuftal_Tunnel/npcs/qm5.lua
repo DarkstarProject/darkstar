@@ -3,12 +3,10 @@
 --  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+local text = require("scripts/zones/Kuftal_Tunnel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,10 +3,8 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -152 -16 20 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Western_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,11 +4,8 @@
 -- @pos 159.943 -72.109 -839.986 15
 -- Teleports Players to Konschatat Highlands
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Konschtat/TextIDs");
 
 -----------------------------------
 -- onTrade Action

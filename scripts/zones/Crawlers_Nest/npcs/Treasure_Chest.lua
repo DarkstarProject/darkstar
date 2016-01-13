@@ -4,13 +4,11 @@
 -- Involved In Quest: Enveloped in Darkness
 -- @pos 41 0.1 -314 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

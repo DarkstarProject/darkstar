@@ -4,14 +4,12 @@
 -- Starts and Ends Quest: Like a Shining Subligar
 -- @pos -1 -5 25 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

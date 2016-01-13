@@ -3,10 +3,8 @@
 --  NPC: _5gd (Lever F)
 -- @pos 44 -20.56 143.802 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local text = require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -6,11 +6,9 @@
 -- Starts and Finishes: Breaking Stones, An Empty Vessel
 -- Only spawns if the weather is SUNNY or CLEAR
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local text = require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

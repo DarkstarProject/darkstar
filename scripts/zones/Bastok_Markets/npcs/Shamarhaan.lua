@@ -8,11 +8,9 @@
 --
 -- Auto-Script: Requires Verification.  Verified standard dialog - thrydwolf 12/8/2011
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

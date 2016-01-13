@@ -2,12 +2,10 @@
 -- Area: The_Shrouded_Maw
 -- Name: darkness_named
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
+local text = require("scripts/zones/The_Shrouded_Maw/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

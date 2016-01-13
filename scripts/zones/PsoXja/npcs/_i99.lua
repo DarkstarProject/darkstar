@@ -2,11 +2,9 @@
 -- Area: Pso'Xja
 --  NPC: Stone Gate
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/PsoXja/TextIDs");
+local text = require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

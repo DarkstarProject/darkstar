@@ -8,7 +8,7 @@
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 
 -----------------------------------
 -- onTrade Action

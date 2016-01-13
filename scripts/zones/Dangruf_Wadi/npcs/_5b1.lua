@@ -2,11 +2,7 @@
 -- Area: Dangruf Wadi
 --  NPC: Strange Apparatus
 -- @pos: -494 -4 -100 191
------------------------------------
-
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
-
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local text = require("scripts/zones/Dangruf_Wadi/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

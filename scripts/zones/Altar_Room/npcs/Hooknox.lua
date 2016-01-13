@@ -7,8 +7,6 @@
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

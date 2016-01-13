@@ -4,13 +4,11 @@
 -- Involved in Quest: In Defiant Challenge
 -- @pos 105.275 -32 92.551 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action

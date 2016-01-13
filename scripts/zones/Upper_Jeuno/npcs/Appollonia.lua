@@ -3,11 +3,9 @@
 --  NPC: Appollonia
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

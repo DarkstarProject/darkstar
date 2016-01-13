@@ -3,11 +3,9 @@
 --  NPC: Jakoh Wahcondalo
 -- @pos 101 -16 -115 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

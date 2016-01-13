@@ -2,10 +2,8 @@
 -- Area: Al Zahbi
 --  NPC: Chocobo
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

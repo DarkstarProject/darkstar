@@ -4,11 +4,9 @@
 -- Used in Quest: The Holy Crest
 -- @pos 234 0.1 -110 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,12 +2,8 @@
 -- Area: Ceizak Battlegrounds
 --  NPC: HomePoint#1
 -- @pos -107 3.2 295 261
------------------------------------
-
-package.loaded["scripts/zones/Ceizak_Battlegrounds/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
+local text = require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

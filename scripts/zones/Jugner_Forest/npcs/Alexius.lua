@@ -4,13 +4,11 @@
 -- Involved in Quest: A purchase of Arms & Sin Hunting
 -- @pos  105 1 382 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local text = require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
 -- onTrade

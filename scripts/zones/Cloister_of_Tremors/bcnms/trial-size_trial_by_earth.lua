@@ -2,13 +2,11 @@
 -- Area: Cloister of Tremors
 -- BCNM: Trial-size Trial by Earth
 -- @pos -539 1 -493 209
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 -----------------------------------
 

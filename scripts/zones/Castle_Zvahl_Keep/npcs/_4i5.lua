@@ -4,11 +4,9 @@
 -- Involved In Quest: Recollections
 -- @pos -14 0 69 162
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
 
 -----------------------------------
 -- onTrade Action

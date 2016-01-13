@@ -4,14 +4,12 @@
 -- @zone 151
 -- @pos 
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

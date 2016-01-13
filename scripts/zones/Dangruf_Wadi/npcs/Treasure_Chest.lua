@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 191
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local text = require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

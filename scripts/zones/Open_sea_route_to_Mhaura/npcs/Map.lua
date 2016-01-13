@@ -3,10 +3,8 @@
 --  NPC: Map
 -- @pos 0.340 -12.232 -4.120 47
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
+local text = require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,9 +3,7 @@
 -- NM:  Yagudo_Avatar
 -- Notes: PH for Tzee Xicu the Manifest
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

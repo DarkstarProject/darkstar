@@ -4,12 +4,9 @@
 -- Type: Quest NPC
 -- Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
 -- @pos 105 -20 140 111
------------------------------------
-
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

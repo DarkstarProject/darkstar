@@ -3,11 +3,9 @@
 -- Zone: Southern_San_dOria_[S] (80)
 --
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 

@@ -4,15 +4,13 @@
 -- Starts and Finishes Quest: Trial by Water
 -- @pos -13 1 -20 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

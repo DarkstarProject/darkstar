@@ -3,11 +3,9 @@
 -- Zone: The_Garden_of_RuHmet (35)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -145,7 +143,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

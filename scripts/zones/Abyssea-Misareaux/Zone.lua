@@ -3,12 +3,10 @@
 -- Zone: Abyssea - Misareaux
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Misareaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Misareaux/TextIDs");
+local text = require("scripts/zones/Abyssea-Misareaux/TextIDs");
 
 -----------------------------------
 -- onInitialize

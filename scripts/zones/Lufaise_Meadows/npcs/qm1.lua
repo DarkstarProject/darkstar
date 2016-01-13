@@ -3,10 +3,8 @@
 --  NPC: ??? - Amaltheia spawn
 -- @pos 347.897 -10.895 264.382 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+local text = require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,11 +4,9 @@
 -- Quest 'Keeping Notes'
 -- @pos 0.1 -1 -76 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,12 +4,10 @@
 -- Type: Fishing Adv. Image Support
 -- @pos -194.499 -3 58.692 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action

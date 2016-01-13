@@ -4,11 +4,9 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos -9 -13 -151 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

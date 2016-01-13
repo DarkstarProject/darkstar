@@ -2,11 +2,7 @@
 -- Area: The Eldieme Necropolis
 --  NPC: Strange Apparatus
 -- @pos: 104 0 -179 195
------------------------------------
-
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
-
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

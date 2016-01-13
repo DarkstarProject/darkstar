@@ -8,7 +8,7 @@
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action

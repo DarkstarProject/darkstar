@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Cloister of Tremors
 -- BCNM: Class Reunion
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local text = require("scripts/zones/Cloister_of_Frost/TextIDs");
 
 -----------------------------------
 

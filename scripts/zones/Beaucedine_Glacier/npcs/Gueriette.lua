@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -24 -59 -120 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 local region     = FAUREGANDI;
 local csid    = 0x7ff4;

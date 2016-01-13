@@ -4,13 +4,11 @@
 -- Used In Quest: Whence Blows the Wind
 -- @pos 181 0.1 -218 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

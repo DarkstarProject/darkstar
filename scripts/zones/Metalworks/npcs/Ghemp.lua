@@ -4,12 +4,10 @@
 -- Type: Smithing Guild Master
 -- @pos -109 2 27 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action

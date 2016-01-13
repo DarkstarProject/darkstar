@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos -300.672 21.620 304.179 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
 -- onTrigger

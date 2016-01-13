@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos 54 0 -11 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local text = require("scripts/zones/Jugner_Forest/TextIDs");
 
 local region     = NORVALLEN;
 local csid    = 0x7ff4;

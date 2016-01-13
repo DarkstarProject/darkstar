@@ -3,11 +3,9 @@
 -- Zone: North_Gustaberg_[S] (88)
 --
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
+local text = require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

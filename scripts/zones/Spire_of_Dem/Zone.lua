@@ -3,11 +3,9 @@
 -- Zone: Spire_of_Dem (19)
 --
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Spire_of_Dem/TextIDs");
+local text = require("scripts/zones/Spire_of_Dem/TextIDs");
 
 -----------------------------------
 -- onInitialize

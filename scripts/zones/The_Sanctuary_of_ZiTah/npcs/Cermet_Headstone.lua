@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Light Headstone)
 -- @pos 235 0 280 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 -----------------------------------
 -- onTrade Action

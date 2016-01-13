@@ -3,11 +3,9 @@
 -- Zone: Dynamis-Bastok
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
+local text = require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -24,7 +22,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

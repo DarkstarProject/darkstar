@@ -4,11 +4,9 @@
 -- Type: Zeni NM pop item and trophy management.
 -- @pos -125.724 0.999 22.136 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/besieged");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

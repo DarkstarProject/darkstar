@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Cloister of Storms
 -- BCNM: Carbuncle Debacle
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local text = require("scripts/zones/Cloister_of_Storms/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

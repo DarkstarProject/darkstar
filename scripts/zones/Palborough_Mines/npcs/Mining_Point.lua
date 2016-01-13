@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Palborough Mines
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local text = require("scripts/zones/Palborough_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade

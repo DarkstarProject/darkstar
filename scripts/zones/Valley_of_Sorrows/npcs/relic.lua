@@ -3,10 +3,8 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -14 -3 56 128
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
+local text = require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Type: Item Deliverer
 -- @pos 5.241    -4.035    93.891 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

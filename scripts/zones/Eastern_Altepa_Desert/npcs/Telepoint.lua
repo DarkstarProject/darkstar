@@ -2,11 +2,9 @@
 -- Area: Eastern Altepa Desert
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action

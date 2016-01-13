@@ -2,12 +2,8 @@
 -- Area: Port Bastok
 --  NPC: HomePoint#1
 -- @pos 58.850 7.499 -27.790 236
------------------------------------
-
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

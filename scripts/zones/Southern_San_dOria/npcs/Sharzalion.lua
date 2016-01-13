@@ -6,15 +6,13 @@
 -- @zone 230
 -- @pos 95 0 111
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

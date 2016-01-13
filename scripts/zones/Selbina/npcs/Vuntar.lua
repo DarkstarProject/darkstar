@@ -4,10 +4,8 @@
 -- Starts and Finishes Quest: Cargo (R)
 -- @pos 7 -2 -15 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 

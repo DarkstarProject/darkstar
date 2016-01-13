@@ -4,14 +4,12 @@
 -- Dynamis Valkurm_Dunes Enter
 -- @pos 117 -10 133 172 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local text = require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
 -- onTrade Action

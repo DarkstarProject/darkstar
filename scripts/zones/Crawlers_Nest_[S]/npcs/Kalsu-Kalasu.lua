@@ -4,12 +4,10 @@
 -- @pos 304.768 -33.519 -19.168 171
 -- Notes: Gives Green Letter required to start "Snake on the plains"
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,11 +4,9 @@
 -- Getting "Old Rusty Key (keyitem)"
 -- @pos 59 0 19 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

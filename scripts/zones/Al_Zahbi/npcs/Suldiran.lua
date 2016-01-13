@@ -6,12 +6,10 @@
 -- @pos 41.658 -6.999 -42.528
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 -----------------------------------
 -----------------------------------
 -- onTrade Action

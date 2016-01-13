@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Moh_Gates/TextIDs"] = nil;
-require("scripts/zones/Moh_Gates/TextIDs");
+local text = require("scripts/zones/Moh_Gates/TextIDs");
 
 -----------------------------------
 -- onInitialize

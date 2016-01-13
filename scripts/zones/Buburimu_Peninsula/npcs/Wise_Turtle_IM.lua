@@ -4,11 +4,9 @@
 -- Border Conquest Guards
 -- @pos -599.903 -41.441 165.776 118
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 local guardnation = BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;      -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ff8;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

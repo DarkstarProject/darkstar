@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Oldton Movalpolos
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade

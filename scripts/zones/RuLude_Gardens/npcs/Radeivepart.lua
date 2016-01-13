@@ -5,8 +5,6 @@
 -- Involved in Quests: Save the Clock Tower
 -- @zone 243
 -- @pos 5 9 -39
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

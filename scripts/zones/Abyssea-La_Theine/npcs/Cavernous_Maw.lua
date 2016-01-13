@@ -4,11 +4,9 @@
 -- @pos -480.009, 0.000, 799.927 132
 -- Teleports Players to La Theine Plateau
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-La_Theine/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-La_Theine/TextIDs");
+local text = require("scripts/zones/Abyssea-La_Theine/TextIDs");
 
 -----------------------------------
 -- onTrade Action

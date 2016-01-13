@@ -4,11 +4,9 @@
 -- Involved in Quest: The Trader in the Forest
 -- @pos -57 -1 -501 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

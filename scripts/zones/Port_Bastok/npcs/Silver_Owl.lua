@@ -4,13 +4,11 @@
 -- Type: Tenshodo Merchant
 -- @pos -99.155 4.649 23.292 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action

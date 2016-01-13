@@ -4,12 +4,10 @@
 -- Involved in Quest: Sin Hunting - RNG AF1
 -- @pos -10.946,-1.000,313.810 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local text = require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
 -- onTrade

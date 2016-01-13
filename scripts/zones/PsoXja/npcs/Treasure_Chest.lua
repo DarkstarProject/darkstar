@@ -3,13 +3,11 @@
 --  NPC: Treasure Chest
 -- @zone 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
-require("scripts/zones/PsoXja/TextIDs");
+local text = require("scripts/zones/PsoXja/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

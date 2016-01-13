@@ -3,10 +3,8 @@
 --  NPC: rock slab (corsair job flag quest)
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Talacca_Cove/TextIDs");
+local text = require("scripts/zones/Talacca_Cove/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

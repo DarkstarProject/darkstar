@@ -3,11 +3,9 @@
 --  NPC: Tcinono
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

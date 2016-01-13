@@ -4,10 +4,8 @@
 -- Type: ENM
 -- @pos -144.711 6.246 -250.309 7
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local text = require("scripts/zones/Attohwa_Chasm/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 

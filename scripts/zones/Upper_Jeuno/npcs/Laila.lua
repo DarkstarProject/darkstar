@@ -6,8 +6,6 @@
 -- @pos -54.045 -1 100.996
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
@@ -15,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

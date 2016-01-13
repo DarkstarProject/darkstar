@@ -2,11 +2,9 @@
 -- Area: Riverne Site #B01
 --  NPC: Unstable Displacement
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
+local text = require("scripts/zones/Riverne-Site_B01/TextIDs");
 
 -----------------------------------
 -- onTrade

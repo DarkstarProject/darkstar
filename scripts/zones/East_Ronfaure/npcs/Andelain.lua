@@ -5,9 +5,7 @@
 -- @pos 664.231 -12.849 -539.413 101
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/East_Ronfaure/TextIDs");
+local text = require("scripts/zones/East_Ronfaure/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------

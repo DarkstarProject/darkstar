@@ -6,11 +6,8 @@
 -- @pos -241.293 -3 63.406
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");

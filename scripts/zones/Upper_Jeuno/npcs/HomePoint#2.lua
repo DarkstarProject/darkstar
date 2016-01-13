@@ -2,12 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: HomePoint#2
 -- @pos 32 -1 -44 244
------------------------------------
-
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

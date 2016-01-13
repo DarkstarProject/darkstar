@@ -3,15 +3,13 @@
 --  NPC: Miah Riyuh
 -- @pos 5.323 -2 37.462 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local text = require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

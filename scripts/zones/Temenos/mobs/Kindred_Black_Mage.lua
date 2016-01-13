@@ -2,10 +2,8 @@
 -- Area: Temenos N T    
 --  NPC: Telchines_Dragoon
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
+local text = require("scripts/zones/Temenos/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

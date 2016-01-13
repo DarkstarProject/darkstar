@@ -5,12 +5,10 @@
 -- Involved in Mission: 2-3 Windurst
 -- @pos -72 -3 34 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

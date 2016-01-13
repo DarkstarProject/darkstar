@@ -4,11 +4,9 @@
 -- Entrance to Riverne Site #B01
 -- @pos -259 -30 276 178
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 
 -----------------------------------
 -- onTrade

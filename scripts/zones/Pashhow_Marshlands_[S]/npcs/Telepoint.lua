@@ -2,11 +2,9 @@
 -- Area: Pashhow Marshlands [S]
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

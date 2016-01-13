@@ -1,14 +1,12 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
 -- Name: Zilart Mission 4
------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local text = require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)

@@ -3,14 +3,12 @@
 -- Zone: Bastok_Markets (235)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/chocobo");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -56,7 +54,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

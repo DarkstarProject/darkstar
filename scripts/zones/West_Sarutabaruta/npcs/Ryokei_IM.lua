@@ -18,7 +18,7 @@ local csid        = 0x7ff9;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

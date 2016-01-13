@@ -2,12 +2,8 @@
 -- Area: Yorcia Weald
 --  NPC: HomePoint#1
 -- @pos -420 0 -62 263
------------------------------------
-
-package.loaded["scripts/zones/Yorcia_Weald/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Yorcia_Weald/TextIDs");
+local text = require("scripts/zones/Yorcia_Weald/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -3,10 +3,8 @@
 --  NPC: Scrawled_Writing
 -- Allows players to spawn NM Goblin Wolfman
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action

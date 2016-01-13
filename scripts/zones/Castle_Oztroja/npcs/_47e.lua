@@ -4,10 +4,8 @@
 -- Notes: Opens _470 (Brass Door) from behind
 -- @pos 22.905 -1.087 -8.003 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

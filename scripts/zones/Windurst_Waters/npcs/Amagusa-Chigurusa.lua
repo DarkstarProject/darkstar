@@ -4,11 +4,9 @@
 -- Type: Standard NPC
 -- @pos -28.746 -4.5 61.954 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

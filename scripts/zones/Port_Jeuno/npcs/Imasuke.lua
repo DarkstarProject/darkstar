@@ -4,8 +4,6 @@
 -- Starts and Finishes Quest: The Antique Collector
 -- @zone 246
 -- @pos -165 11 94
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

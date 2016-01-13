@@ -4,13 +4,11 @@
 -- Involved in Quests: Atop the Highest Mountains (for Boreal Coeurl)
 -- @pos 580 -9 290 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

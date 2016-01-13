@@ -4,12 +4,10 @@
 -- Type: Leathercraft Synthesis Image Support
 -- @pos -190.120 -2.999 2.770 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

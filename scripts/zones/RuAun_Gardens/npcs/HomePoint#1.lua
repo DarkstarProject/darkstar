@@ -2,12 +2,8 @@
 -- Area: RuAun_Gardens
 --  NPC: HomePoint#1
 -- @pos 5 -42 526 130
------------------------------------
-
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

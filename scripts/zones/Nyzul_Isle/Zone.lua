@@ -3,11 +3,9 @@
 -- Zone: Nyzul_Isle
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Nyzul_Isle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Nyzul_Isle/TextIDs");
+local text = require("scripts/zones/Nyzul_Isle/TextIDs");
 
 -----------------------------------
 -- onInitialize

@@ -5,22 +5,21 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     player:showText(npc, text.ALLARD_SHOP_DIALOG);
 
     local stock =
@@ -30,9 +29,9 @@ function onTrigger(player,npc)
     0x31B2,16900,    --Bracers
     0x3232,24500,    --Hose
     0x32B2,16000}    --Socks
- 
+
     showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

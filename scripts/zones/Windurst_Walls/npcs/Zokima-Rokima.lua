@@ -3,8 +3,6 @@
 --  NPC: Zokima-Rokima
 -- Starts Windurst Missions
 -- @pos 0 -16 124 239
------------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

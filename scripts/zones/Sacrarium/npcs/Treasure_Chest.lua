@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 28
 -----------------------------------
-package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Sacrarium/TextIDs");
+local text = require("scripts/zones/Sacrarium/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

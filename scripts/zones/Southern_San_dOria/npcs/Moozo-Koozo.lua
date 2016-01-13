@@ -3,13 +3,11 @@
 --  NPC: Moozo-Koozo
 -- Title Change NPC
 -- @pos 83 0 120 230
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local title2 = { NEW_ADVENTURER , BEAN_CUISINE_SALTER , DAYBREAK_GAMBLER , ENTRANCE_DENIED , RABBITER , ROYAL_GRAVE_KEEPER ,
                 COURIER_EXTRAORDINAIRE , RONFAURIAN_RESCUER , PICKPOCKET_PINCHER , THE_PURE_ONE , LOST_CHILD_OFFICER , SILENCER_OF_THE_LAMBS ,

@@ -3,11 +3,9 @@
 -- Zone: Halvung (62)
 --
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Halvung/TextIDs");
+local text = require("scripts/zones/Halvung/TextIDs");
 
 -----------------------------------
 -- onInitialize

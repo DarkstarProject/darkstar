@@ -2,12 +2,8 @@
 -- Area: Metalworks
 --  NPC: HomePoint#2
 -- @pos: -78  2 2 237
------------------------------------
-
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

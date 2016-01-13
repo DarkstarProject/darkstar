@@ -4,13 +4,11 @@
 -- Involved in Quest: In Defiant Challenge
 -- @pos -83.391 -8.222 79.065 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,13 +4,11 @@
 -- Involed in Quest: The Fanged One.
 -- @pos 666 -8 -379 120
 -------------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,12 +2,8 @@
 -- Area: The_Garden_of_RuHmet
 --  NPC: HomePoint#1
 -- @pos -426 0 368 35
------------------------------------
-
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

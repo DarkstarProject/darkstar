@@ -2,14 +2,12 @@
 -- Area: Stellar Fulcrum
 -- Door: Qe'Lov Gate
 -- @pos -520 -4 17 179
--------------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
+local text = require("scripts/zones/Stellar_Fulcrum/TextIDs");
 
     -- events:
     -- 7D00 : BC menu

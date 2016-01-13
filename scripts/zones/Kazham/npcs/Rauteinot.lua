@@ -5,14 +5,12 @@
 -- @zone 250
 -- @pos -42 -10 -89
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,11 +5,9 @@
 -- Notes: Used to obtain Power Sandals
 -- @pos 183, 0, -190 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

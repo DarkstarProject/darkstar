@@ -4,9 +4,7 @@
 -- @pos 646 -2 -165 121
 -- @pos -18 0 55 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 -----------------------------------
 -- onTrade Action

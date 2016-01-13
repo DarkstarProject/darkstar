@@ -3,10 +3,8 @@
 --  NPC: _5g0 (Door C)
 -- @pos 44 -42.4 -25.5 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local text = require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

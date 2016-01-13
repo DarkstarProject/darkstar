@@ -5,8 +5,6 @@
 -- Involved in Quests: Save the Clock Tower
 -- @zone 244
 -- @pos -75 0 80
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -15,7 +13,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

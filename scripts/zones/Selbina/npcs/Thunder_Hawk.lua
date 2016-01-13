@@ -4,10 +4,8 @@
 -- Starts and Finishes Quest: The Rescue
 -- @pos -58 -10 6 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");

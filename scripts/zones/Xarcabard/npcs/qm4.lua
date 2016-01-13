@@ -4,13 +4,11 @@
 -- Involved in Quests: Atop the Highest Mountains
 -- @pos -21 -25 -490 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

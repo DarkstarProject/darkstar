@@ -4,12 +4,10 @@
 -- Involved in Quest: Forge Your Destiny, The Sacred Katana
 -- @pos 15 0 23 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -7,12 +7,10 @@
 -- @pos 99 -33 98 195 (F-7)
 -- @pos 259 -33 -58 195 (H-9)
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action

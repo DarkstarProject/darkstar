@@ -3,11 +3,9 @@
 --  NPC: Luck Rune
 -- Involved in Quest: Mhaura Fortune
 -- @pos 573.245 24.999 199.560 109
------------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
 -- onTrade

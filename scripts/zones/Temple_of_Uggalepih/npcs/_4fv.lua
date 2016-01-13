@@ -4,10 +4,8 @@
 -- Involved in Missions: San dOria Mission 8-2
 -- @pos -50 -17 -154
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 

@@ -2,13 +2,11 @@
 -- Area: Sauromugue Champaign
 -- MOB: Goblin Gambler
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
 -- onMobDeath

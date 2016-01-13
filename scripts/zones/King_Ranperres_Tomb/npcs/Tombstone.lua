@@ -4,13 +4,11 @@
 -- Involved in Quest: Grave Concerns
 -- @pos 1 0.1 -101 190
 -----------------------------------
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+local text = require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
 -----------------------------------
 -- onTrade Action

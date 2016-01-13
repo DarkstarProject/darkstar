@@ -3,11 +3,9 @@
 -- Zone: RoMaeve (122)
 --
 -----------------------------------
-package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/RoMaeve/TextIDs");
+local text = require("scripts/zones/RoMaeve/TextIDs");
 require("scripts/globals/zone");
 
 -----------------------------------
@@ -28,7 +26,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

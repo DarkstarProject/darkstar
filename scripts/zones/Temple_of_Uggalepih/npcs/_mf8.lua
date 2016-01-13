@@ -4,10 +4,8 @@
 -- Notes: Opens with Prelate Key
 -- @pos -11 -8 -99 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

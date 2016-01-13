@@ -3,17 +3,13 @@
 -- NPC:Justinius
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Abyssea-Altepa/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

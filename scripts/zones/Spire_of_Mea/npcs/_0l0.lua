@@ -2,13 +2,11 @@
 -- Area: Spire of Mea
 --  NPC: Web of Recollection
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Mea/TextIDs");
+local text = require("scripts/zones/Spire_of_Mea/TextIDs");
 
 -----------------------------------
 -- onTrade Action

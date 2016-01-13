@@ -4,13 +4,11 @@
 -- Involved In Quest: Making Headlines
 -- @pos 201.523 -4.785 138.978 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action

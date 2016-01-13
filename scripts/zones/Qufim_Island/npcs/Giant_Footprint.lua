@@ -4,10 +4,8 @@
 -- Involved in quest: Regaining Trust
 -- @pos 501 -11 354 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onTrade Action

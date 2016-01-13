@@ -4,12 +4,10 @@
 -- Involved in Quest: The Crimson Trial
 -- @pos -51 4 -217 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

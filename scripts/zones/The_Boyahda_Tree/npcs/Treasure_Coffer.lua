@@ -3,14 +3,12 @@
 --  NPC: Treasure Coffer
 -- @pos 27 6 144 153
 -----------------------------------
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/The_Boyahda_Tree/TextIDs");
+local text = require("scripts/zones/The_Boyahda_Tree/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

@@ -5,13 +5,11 @@
 -- Involved in quest: No Strings Attached
 -- @pos 101.329 -6.999 -29.042 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action

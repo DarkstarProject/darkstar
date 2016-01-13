@@ -4,12 +4,10 @@
 -- Standard Merchant NPC
 -- @pos -79.928 -4.824 -135.114 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

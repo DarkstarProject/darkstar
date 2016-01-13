@@ -4,11 +4,9 @@
 -- @zone: 191
 -- Involved in quest "As Thick As Thieves"
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local text = require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

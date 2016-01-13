@@ -3,8 +3,6 @@
 -- MOB: Memory Receptacle
 -- Todo: clean up disgustingly bad formatting
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 require( "scripts/zones/Promyvion-Vahzl/TextIDs" );
 require("scripts/globals/status");
 

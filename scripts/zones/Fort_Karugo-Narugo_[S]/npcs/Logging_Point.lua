@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Fort Karugo-Narugo [S]
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local text = require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade

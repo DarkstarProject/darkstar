@@ -4,10 +4,8 @@
 -- Type: Quest NPC
 -- @pos 68 -0.5 324 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local text = require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

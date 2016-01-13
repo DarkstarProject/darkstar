@@ -2,12 +2,8 @@
 -- Area: FeiYin
 --  NPC: HomePoint#2
 -- @pos 102 0 269 204
------------------------------------
-
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

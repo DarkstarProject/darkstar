@@ -3,11 +3,9 @@
 --  NPC: Armoury Crate
 -- Waughroon Shrine Burning Armoury_Crate
 -------------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local text = require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 
 -----------------------------------

@@ -6,13 +6,11 @@
 -- @zone = 238
 -- @pos = 162 -2 159
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrade Action

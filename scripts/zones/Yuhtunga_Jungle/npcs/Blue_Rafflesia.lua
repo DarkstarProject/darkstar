@@ -4,10 +4,8 @@
 -- Used in quest Even More Gullible Travels
 -- @pos -468.876 -1 220.247 123 <many>
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local text = require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

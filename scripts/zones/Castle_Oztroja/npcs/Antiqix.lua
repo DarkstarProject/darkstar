@@ -4,10 +4,8 @@
 -- Type: Dynamis Vendor
 -- @pos -207.835 -0.751 -25.498 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");

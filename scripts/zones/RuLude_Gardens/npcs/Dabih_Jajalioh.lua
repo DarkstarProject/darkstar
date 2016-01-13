@@ -6,11 +6,9 @@
 -- goods needed. 
 -- Partitially implemented.
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

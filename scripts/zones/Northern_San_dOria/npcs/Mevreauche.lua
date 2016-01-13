@@ -4,12 +4,10 @@
 -- Type: Smithing Guild Master
 -- @pos -193.584 10 148.655 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

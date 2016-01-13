@@ -3,11 +3,9 @@
 --  NPC: Excavation Site (Olduum Ring quest)
 -- @pos 390 1 349 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
  
 require("scripts/globals/keyitems");
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+local text = require("scripts/zones/Aydeewa_Subterrane/TextIDs");
  
 -----------------------------------
 -- onTrade Action

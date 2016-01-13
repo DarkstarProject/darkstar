@@ -1,6 +1,5 @@
 
-package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
-require("scripts/zones/Mog_Garden/TextIDs");
+local text = require("scripts/zones/Mog_Garden/TextIDs");
 
 require("scripts/globals/moghouse")
 require("scripts/globals/shop");

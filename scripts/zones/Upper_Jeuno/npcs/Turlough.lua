@@ -3,10 +3,7 @@
 --  NPC: Turlough
 -- Mission NPC
 -- @pos 
------------------------------------
-
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/settings");

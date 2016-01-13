@@ -7,10 +7,8 @@
 -- @pos -60 22 -100    151             (3)
 -- @pos -100 -72 -19 151            (4)
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrade Action

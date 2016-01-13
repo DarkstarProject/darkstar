@@ -3,10 +3,8 @@
 --  NPC: Janken
 -- Plays "Rock,Paper, Scissors"
 -----------------------------------
-package.loaded["scripts/zones/GM_Home/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/GM_Home/TextIDs");
+local text = require("scripts/zones/GM_Home/TextIDs");
 
 -----------------------------------
 -- onTrade Action

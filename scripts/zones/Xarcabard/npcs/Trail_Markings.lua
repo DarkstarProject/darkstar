@@ -4,13 +4,11 @@
 -- Dynamis-Xarcabard Enter
 -- @pos 570 0 -272 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

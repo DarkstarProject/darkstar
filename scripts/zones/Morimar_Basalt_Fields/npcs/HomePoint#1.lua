@@ -2,12 +2,8 @@
 -- Area: Morimar Basalt Fields
 --  NPC: HomePoint#1
 -- @pos -415 -63.2 409 265
------------------------------------
-
-package.loaded["scripts/zones/Morimar_Basalt_Fields/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Morimar_Basalt_Fields/TextIDs");
+local text = require("scripts/zones/Morimar_Basalt_Fields/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

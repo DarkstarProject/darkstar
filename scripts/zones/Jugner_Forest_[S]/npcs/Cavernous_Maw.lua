@@ -4,13 +4,11 @@
 -- @pos -118 -8 -520 82
 -- Teleports Players to Jugner Forest
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local text = require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

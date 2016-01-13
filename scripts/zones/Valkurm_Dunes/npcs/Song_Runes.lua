@@ -3,15 +3,13 @@
 --  NPC: Song Runes
 -- Finishes Quest: Path of the Bard
 -- @pos -721 -7 102 103
------------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local text = require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
 -- onTrade

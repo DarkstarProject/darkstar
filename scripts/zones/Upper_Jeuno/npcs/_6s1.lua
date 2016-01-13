@@ -3,12 +3,10 @@
 --  NPC: Marble Bridge Eatery (Door)
 -- @pos -96.6 -0.2 92.3 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 local RajasRing = 15543;
 local SattvaRing = 15544;

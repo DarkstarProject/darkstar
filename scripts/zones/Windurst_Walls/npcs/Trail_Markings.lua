@@ -4,13 +4,11 @@
 -- Dynamis-Windurst Enter
 -- @pos -216 0 -94 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrade Action

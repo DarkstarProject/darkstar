@@ -3,9 +3,7 @@
 --  NPC: Marble Door
 -- Involved In Windurst Mission 7-1
 -- @pos 132 12 -19 169 169
------------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+local text = require("scripts/zones/Toraimarai_Canal/TextIDs");
 -----------------------------------
 
 require("scripts/globals/settings");

@@ -4,11 +4,9 @@
 -- @pos 676.070, -16.063, 318.999 216
 -- Teleports Players to Valkrum Dunes
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Misareaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Misareaux/TextIDs");
+local text = require("scripts/zones/Abyssea-Misareaux/TextIDs");
 
 -----------------------------------
 -- onTrade Action

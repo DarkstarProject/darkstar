@@ -5,10 +5,8 @@
 -- involved in expertise quest
 -- involved in the basics quest
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 --player:startEvent(0x0064);-- His name is Valgeir quest
 --player:startEvent(0x0065); -- I have nothing to say to you

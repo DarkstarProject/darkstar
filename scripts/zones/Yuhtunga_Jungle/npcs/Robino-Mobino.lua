@@ -3,12 +3,10 @@
 --  NPC: Robino-Mobino
 -- @pos -244 0 -401 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local text = require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 local region     = ELSHIMOLOWLANDS;
 local csid    = 0x7ff4;

@@ -4,12 +4,10 @@
 -- Involved in Quest: Forge Your Destiny
 -- @pos 639 -1 -151 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 -----------------------------------
 -- onTrade Action

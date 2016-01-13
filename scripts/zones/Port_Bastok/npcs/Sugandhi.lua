@@ -2,11 +2,7 @@
 -- Area: Port Bastok
 --  NPC: Sugandhi
 -- Standard Merchant NPC
------------------------------------
-
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------

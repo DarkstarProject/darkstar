@@ -4,10 +4,8 @@
 -- Notes: Open by handle near password 2
 -- @pos -60 24 -77 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

@@ -3,10 +3,8 @@
 --  NPC: Altar of Rancor
 -- @pos -76 16 -1 160
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Den_of_Rancor/TextIDs");
+local text = require("scripts/zones/Den_of_Rancor/TextIDs");
 
 -----------------------------------
 -- onTrade Action

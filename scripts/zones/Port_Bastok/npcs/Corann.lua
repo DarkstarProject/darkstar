@@ -3,12 +3,10 @@
 --  NPC: Corann
 -- Start & Finishes Quest: The Quadav's Curse
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action

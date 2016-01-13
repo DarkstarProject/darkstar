@@ -2,12 +2,8 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: HomePoint#4
 -- @pos  -99 -6 -68 50
------------------------------------
-
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

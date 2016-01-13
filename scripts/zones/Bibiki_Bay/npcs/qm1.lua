@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Shen
 -- @pos -115.108 0.300 -724.664 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local text = require("scripts/zones/Bibiki_Bay/TextIDs");
 
 -----------------------------------
 -- onTrade Action

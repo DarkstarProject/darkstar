@@ -3,11 +3,9 @@
 -- Zone: Batallia_Downs_[S] (84)
 --
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Batallia_Downs_[S]/TextIDs");
+local text = require("scripts/zones/Batallia_Downs_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

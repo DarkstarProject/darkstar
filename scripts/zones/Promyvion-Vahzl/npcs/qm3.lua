@@ -4,10 +4,8 @@
 -- Notes: Spawn Provoker Floor 5
 -- @pos -260.000 -0.003 72.000 22
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
+local text = require("scripts/zones/Promyvion-Vahzl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

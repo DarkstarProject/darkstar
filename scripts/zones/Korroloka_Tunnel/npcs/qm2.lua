@@ -4,13 +4,11 @@
 -- Involved In Quest: Ayame and Kaede
 -- @pos -208 -9 176 173
 -----------------------------------
-package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Korroloka_Tunnel/TextIDs");
+local text = require("scripts/zones/Korroloka_Tunnel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

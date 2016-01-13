@@ -5,12 +5,10 @@
 -- @zone 230
 -- @pos -56 2 -21
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/pathfind");
 
 local path = {

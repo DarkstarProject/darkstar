@@ -4,12 +4,9 @@
 --
 --  DO NOT try to use this anywhere else but Fei'Yin!
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
-require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
 -- onEffectGain Action

@@ -2,12 +2,8 @@
 -- Area: Windurst_Waters_[S]
 --  NPC: HomePoint#1
 -- @pos -32 -5 131 94
------------------------------------
-
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local text = require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

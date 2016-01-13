@@ -4,14 +4,12 @@
 -- Type: Addon Mission Merchant
 -- @pos -100.071 -1 11.869 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

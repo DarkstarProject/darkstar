@@ -3,14 +3,12 @@
 -- Zone: Aydeewa_Subterrane (68)
 --
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+local text = require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 
 -----------------------------------
 -- onInitialize

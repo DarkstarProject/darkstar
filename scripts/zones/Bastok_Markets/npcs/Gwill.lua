@@ -5,8 +5,6 @@
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
 -- @zone 235
 -- @pos 0 0 0
------------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

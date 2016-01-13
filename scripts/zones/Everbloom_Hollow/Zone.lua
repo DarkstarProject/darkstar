@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Everbloom_Hollow/TextIDs"] = nil;
-require("scripts/zones/Everbloom_Hollow/TextIDs");
+local text = require("scripts/zones/Everbloom_Hollow/TextIDs");
 
 -----------------------------------
 -- onInitialize

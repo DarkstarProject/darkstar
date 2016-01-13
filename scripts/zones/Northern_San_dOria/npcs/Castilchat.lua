@@ -4,13 +4,11 @@
 -- Starts Quest: Trial Size Trial by Ice
 -- @pos -186 0 107 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

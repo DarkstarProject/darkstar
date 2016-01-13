@@ -4,10 +4,8 @@
 -- Notes: Spawn Deviator Floor 3
 -- @pos 302.756 -2.244 -179.892 22
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
+local text = require("scripts/zones/Promyvion-Vahzl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

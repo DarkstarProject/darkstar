@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos 520.064 -5.881 -738.356 107
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/South_Gustaberg/TextIDs");
+local text = require("scripts/zones/South_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrigger

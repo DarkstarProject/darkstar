@@ -5,10 +5,7 @@
 -- @zone: 96
 -- @pos -63 -75 4
 --
------------------------------------
-
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local text = require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

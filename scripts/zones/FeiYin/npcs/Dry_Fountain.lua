@@ -4,12 +4,10 @@
 -- Involved In Quest: Peace for the Spirit
 -- @pos -17 -16 71 204
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
 -- onTrade Action

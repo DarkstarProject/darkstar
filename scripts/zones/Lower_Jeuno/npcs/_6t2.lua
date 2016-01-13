@@ -3,15 +3,13 @@
 -- Door: Merchant's House
 -- Starts & Finishes Quest: Save My Son
 -- Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

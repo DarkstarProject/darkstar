@@ -4,12 +4,10 @@
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
 -- @pos -28 0.1 -6 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local text = require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

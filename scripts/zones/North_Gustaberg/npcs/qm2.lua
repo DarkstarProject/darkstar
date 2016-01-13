@@ -4,12 +4,10 @@
 -- Involved in Quest "As Thick As Thieves"
 -- @pos -232.924 99.107 442.990 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

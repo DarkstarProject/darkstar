@@ -4,9 +4,7 @@
 -- Type: Pankration NPC
 -- @pos -599 0 45 71
 -----------------------------------
-package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Colosseum/TextIDs");
+local text = require("scripts/zones/The_Colosseum/TextIDs");
 
 -----------------------------------
 -- onTrade Action

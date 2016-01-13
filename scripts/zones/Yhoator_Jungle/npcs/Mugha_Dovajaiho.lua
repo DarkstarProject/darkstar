@@ -3,12 +3,10 @@
 --  NPC: Mugha Dovajaiho
 -- @pos 202 0 -82 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 local region     = ELSHIMOUPLANDS;
 local csid    = 0x7ff4;

@@ -4,12 +4,10 @@
 -- @zone 240
 -- @pos 218 -5 114
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

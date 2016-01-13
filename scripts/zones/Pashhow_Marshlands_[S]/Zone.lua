@@ -3,11 +3,9 @@
 -- Zone: Pashhow_Marshlands_[S] (90)
 --
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

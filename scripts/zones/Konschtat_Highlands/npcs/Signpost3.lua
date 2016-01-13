@@ -3,10 +3,8 @@
 --  NPC: Signpost
 -- @pos -221 17 139 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local text = require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

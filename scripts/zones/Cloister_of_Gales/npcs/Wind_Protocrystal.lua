@@ -4,12 +4,10 @@
 -- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
 -- @zone -361 1 -381 201
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local text = require("scripts/zones/Cloister_of_Gales/TextIDs");
 
 -----------------------------------
 -- onTrade Action

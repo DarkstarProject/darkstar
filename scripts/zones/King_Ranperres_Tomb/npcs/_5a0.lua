@@ -3,11 +3,9 @@
 -- DOOR: _5a0 (Heavy Stone Door)
 -- @pos -39.000 4.823 20.000 190
 -----------------------------------
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+local text = require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
 -----------------------------------
 -- onTrade Action

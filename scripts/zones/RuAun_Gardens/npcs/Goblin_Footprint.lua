@@ -2,10 +2,8 @@
 -- Area: Ru'Avitau Gate
 --  NPC: Goblin Footprint
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Fishing Guild 
 -- @pos 4.986 -2.101 -12.026 58
 -----------------------------------
-package.loaded["scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
+local text = require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

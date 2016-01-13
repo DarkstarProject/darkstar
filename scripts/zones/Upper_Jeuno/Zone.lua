@@ -3,11 +3,9 @@
 -- Zone: Upper_Jeuno (244)
 --
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -54,7 +52,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

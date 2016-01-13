@@ -5,10 +5,8 @@
 -- @zone 53
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

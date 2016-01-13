@@ -12,12 +12,10 @@
 -- @pos -50.000 0.114 32.000 204        White
 -- Todo: NPC moving. In retail these move around with 3-5+ pos EACH
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,11 +3,9 @@
 -- Zone: Hazhalm_Testing_Grounds (78)
 --
 -----------------------------------
-package.loaded["scripts/zones/Hazhalm_Testing_Grounds/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
+local text = require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
 
 -----------------------------------
 -- onInitialize

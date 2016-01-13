@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -356 14 -102 176
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local text = require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 -----------------------------------
 -- onTrade Action

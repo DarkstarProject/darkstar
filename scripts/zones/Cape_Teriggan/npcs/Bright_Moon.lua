@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -185 7 -63 113
 -----------------------------------
-package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Cape_Teriggan/TextIDs");
+local text = require("scripts/zones/Cape_Teriggan/TextIDs");
 
 local region     = VOLLBOW;
 local csid    = 0x7ff4;

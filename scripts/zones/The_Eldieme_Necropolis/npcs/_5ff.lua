@@ -3,10 +3,8 @@
 --  NPC: Leviathan's Gate
 -- @pos 88 -34 -60 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action

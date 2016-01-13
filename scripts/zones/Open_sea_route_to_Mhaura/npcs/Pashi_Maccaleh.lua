@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Fishing Guild 
 -- @zone 4.986 -2.101 -12.026 47
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
+local text = require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

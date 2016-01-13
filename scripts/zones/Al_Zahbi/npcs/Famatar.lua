@@ -4,12 +4,10 @@
 -- Type: Imperial Gate Guard
 -- @pos -105.538 0.999 75.456 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/besieged");
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

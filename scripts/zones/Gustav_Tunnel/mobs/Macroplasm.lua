@@ -2,9 +2,7 @@
 -- Area: Gustav Tunnel
 -- MOB: macroplasm
 -----------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gustav_Tunnel/TextIDs");
+local text = require("scripts/zones/Gustav_Tunnel/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

@@ -3,11 +3,9 @@
 -- Zone: Fort_Karugo-Narugo_[S] (96)
 --
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local text = require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

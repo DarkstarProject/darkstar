@@ -3,8 +3,6 @@
 --  NPC: Moreno-Toeno
 -- Starts and Finishes Quest: Teacher's Pet
 -- @pos  
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -13,7 +11,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

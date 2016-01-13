@@ -3,11 +3,9 @@
 --  NPC: Elevator
 -- @pos -294 -143 27 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

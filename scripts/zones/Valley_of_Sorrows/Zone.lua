@@ -3,12 +3,10 @@
 -- Zone: Valley_of_Sorrows (128)
 --
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
+local text = require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -31,7 +29,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

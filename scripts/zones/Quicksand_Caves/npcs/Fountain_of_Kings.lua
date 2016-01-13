@@ -3,10 +3,8 @@
 --  NPC: Fountain of Kings
 -- @pos 567 18 -939 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 

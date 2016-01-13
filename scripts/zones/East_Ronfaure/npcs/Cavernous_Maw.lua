@@ -4,14 +4,12 @@
 -- @pos 322 -59 503 101
 -- Teleports Players to East Ronfaure [S]
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local text = require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

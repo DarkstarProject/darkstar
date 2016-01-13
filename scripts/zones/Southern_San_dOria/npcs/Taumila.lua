@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Tiger's Teeth (R)
 -- @pos -140 -5 -8 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

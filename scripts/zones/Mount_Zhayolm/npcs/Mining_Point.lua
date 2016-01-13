@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onTrade

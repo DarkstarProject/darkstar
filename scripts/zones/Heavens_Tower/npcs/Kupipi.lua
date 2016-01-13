@@ -5,13 +5,11 @@
 -- Involved in Quest: Riding on the Clouds
 -- @pos 2 0.1 30 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local text = require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

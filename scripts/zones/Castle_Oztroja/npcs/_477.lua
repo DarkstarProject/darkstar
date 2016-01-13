@@ -4,10 +4,8 @@
 -- Notes: Open by 4 torch stands
 -- @pos -100 -71 -49 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

@@ -2,12 +2,10 @@
 -- Area: Horlais Peak
 -- Name: Saintly Invitation
 -- @pos 299 -123 345 146
------------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Balgas_Dais/TextIDs");
+local text = require("scripts/zones/Balgas_Dais/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

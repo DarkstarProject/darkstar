@@ -3,13 +3,11 @@
 --  NPC: Indescript Markings
 -- @pos -455 24 -364
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

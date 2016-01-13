@@ -4,9 +4,7 @@
 -- Spawns Adamantoise or Aspidochelone
 -- @pos 0 0 -37 59
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
+local text = require("scripts/zones/Valley_of_Sorrows/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

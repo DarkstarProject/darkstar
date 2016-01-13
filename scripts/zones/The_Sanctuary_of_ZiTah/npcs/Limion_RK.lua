@@ -4,12 +4,10 @@
 -- Border Conquest Guards
 -- @pos -252.454 -1.958 624.366 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/conquest");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -21,7 +19,7 @@ local csid        = 0x7ffa;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

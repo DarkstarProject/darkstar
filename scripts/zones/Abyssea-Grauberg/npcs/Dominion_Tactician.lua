@@ -3,12 +3,10 @@
 --  NPC: Dominion Tactician
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
+local text = require("scripts/zones/Abyssea-Grauberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -147,7 +145,7 @@ function onEventFinish(player,csid,option)
  -- Trophy trades for gear
     -- if (option == 65796) then
     --     .
-    -- elseif (option == 
+    -- elseif (option ==
     --     .
     -- end
 

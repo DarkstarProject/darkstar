@@ -2,12 +2,10 @@
 --
 -- Zone: Western_Altepa_Desert (125)
 --
------------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Western_Altepa_Desert/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
@@ -97,7 +95,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

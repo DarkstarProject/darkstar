@@ -3,11 +3,9 @@
 -- Zone: Throne_Room_[S] (156)
 --
 -----------------------------------
-package.loaded["scripts/zones/Throne_Room_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Throne_Room_[S]/TextIDs");
+local text = require("scripts/zones/Throne_Room_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

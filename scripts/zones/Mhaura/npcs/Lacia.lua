@@ -4,14 +4,12 @@
 -- Starts Quest: Trial Size Trial By Lightning
 -- The "TrialSizeLightning_date" still needs to be set at the BCNM/Mob level to reflect defeat by the Avatar
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

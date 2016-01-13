@@ -3,13 +3,11 @@
 -- Zone: Promyvion-Holla (16)
 --
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/missions");
-require("scripts/zones/Promyvion-Holla/TextIDs");
+local text = require("scripts/zones/Promyvion-Holla/TextIDs");
 
 -----------------------------------
 -- onInitialize

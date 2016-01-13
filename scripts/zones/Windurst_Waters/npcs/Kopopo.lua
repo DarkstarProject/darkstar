@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Cooking Guild 
 -- @pos -103.935 -2.875 74.304 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

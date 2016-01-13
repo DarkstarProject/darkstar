@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Velionis(ZNM T1))
 -- @pos 311 -3 27 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

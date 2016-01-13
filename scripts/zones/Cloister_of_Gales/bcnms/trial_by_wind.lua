@@ -2,13 +2,11 @@
 -- Area: Cloister of Gales
 -- BCNM: Trial by Wind
 -- @zone -361 1 -381 201
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local text = require("scripts/zones/Cloister_of_Gales/TextIDs");
 
 -----------------------------------
 

@@ -4,11 +4,9 @@
 -- Involved In Quest: Dark Puppet
 -- @pos -52 27 -85 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local text = require("scripts/zones/Ordelles_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

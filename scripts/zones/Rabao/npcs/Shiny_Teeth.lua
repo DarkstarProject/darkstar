@@ -4,11 +4,9 @@
 -- Standard Merchant NPC
 -- @pos -30 8 99 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

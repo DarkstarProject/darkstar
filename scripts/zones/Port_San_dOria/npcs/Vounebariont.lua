@@ -3,13 +3,11 @@
 --  NPC: Vounebariont
 -- Starts and Finishes Quest: Thick Shells
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

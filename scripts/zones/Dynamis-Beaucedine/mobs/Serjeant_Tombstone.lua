@@ -3,11 +3,9 @@
 -- MOB: Serjeant Tombstone
 -- Map Position: http://images1.wikia.nocookie.net/__cb20090312005233/ffxi/images/thumb/b/b6/Bea.jpg/375px-Bea.jpg
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Beaucedine/TextIDs");
+local text = require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

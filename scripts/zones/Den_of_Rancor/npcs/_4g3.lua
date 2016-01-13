@@ -3,11 +3,9 @@
 --  NPC: Lantern (SW)
 -- @pos -59 45 24 160
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Den_of_Rancor/TextIDs");
+local text = require("scripts/zones/Den_of_Rancor/TextIDs");
 
 -----------------------------------
 -- onTrade Action

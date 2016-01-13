@@ -4,14 +4,12 @@
 -- Dynamis Buburimu_Dunes Enter
 -- @pos 117 -10 133 172 118
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------
 -- onTrade Action

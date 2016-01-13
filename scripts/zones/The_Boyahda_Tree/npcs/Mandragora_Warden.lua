@@ -4,8 +4,6 @@
 -- Type: Mission NPC
 -- @pos 81.981 7.593 139.556 153
 -----------------------------------
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

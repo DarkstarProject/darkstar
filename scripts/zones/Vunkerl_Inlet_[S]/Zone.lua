@@ -3,11 +3,9 @@
 -- Zone: Vunkerl_Inlet_[S] (83)
 --
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+local text = require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

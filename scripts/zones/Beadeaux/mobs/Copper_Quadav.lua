@@ -3,9 +3,7 @@
 -- MOB: Copper Quadav
 -- Involved in Mission 3-1 (Bastok)
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

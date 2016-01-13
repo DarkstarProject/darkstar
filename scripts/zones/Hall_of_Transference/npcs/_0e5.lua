@@ -3,11 +3,9 @@
 --  NPC: Large Apparatus (Left) - Dem
 -- @pos -239 -41 -270 14
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local text = require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
 -- onTrade Action

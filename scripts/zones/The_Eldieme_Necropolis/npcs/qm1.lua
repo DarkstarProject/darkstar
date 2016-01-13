@@ -8,13 +8,11 @@
 -- @pos 
 -- @pos 
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- onTrade Action

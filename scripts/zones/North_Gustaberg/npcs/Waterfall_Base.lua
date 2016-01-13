@@ -4,12 +4,10 @@
 -- Involved In Quest: Drachenfall
 -- @pos -217.594 98.644 464.722 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

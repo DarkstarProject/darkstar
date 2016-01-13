@@ -2,9 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Treasure Coffer
 -- @pos  -52 0 -11 246
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

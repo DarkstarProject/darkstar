@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Giddeus
 --  NPC: Harvesting Point
------------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/Giddeus/TextIDs");
+local text = require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
 -- onTrade

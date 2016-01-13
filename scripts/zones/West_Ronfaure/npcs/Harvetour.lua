@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -448 -19 -214 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 local region    = RONFAURE;
 local csid        = 0x7ff4;

@@ -4,11 +4,9 @@
 -- Notes: Tonberry Priest Room (Offers Tonberry Hate Reset)
 -- @pos 60.001 -1.653 -147.755 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,14 +3,12 @@
 --  NPC: Treasure Chest
 -- @zone 143
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local text = require("scripts/zones/Palborough_Mines/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

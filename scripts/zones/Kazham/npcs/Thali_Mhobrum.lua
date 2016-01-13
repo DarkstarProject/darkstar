@@ -2,10 +2,7 @@
 -- Area: Kazham
 --  NPC: Thali Mhobrum
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 local path = {
 55.816410, -11.000000, -43.992680,

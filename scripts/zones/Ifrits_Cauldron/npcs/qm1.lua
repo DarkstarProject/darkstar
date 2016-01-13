@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Tarasque
 -- @pos 126 18 166 0
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
 -- onTrade Action

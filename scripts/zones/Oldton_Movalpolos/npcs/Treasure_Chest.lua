@@ -3,13 +3,11 @@
 --  NPC: Treasure Chest
 -- @zone 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

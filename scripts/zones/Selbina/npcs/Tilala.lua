@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Clothcrafting Guild 
 -- @pos 14.344 -7.912 10.276 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

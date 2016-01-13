@@ -40,7 +40,7 @@ ELSHIMOLOWLANDS = 14;
   CONQUEST_TALLY_START = 0;
   CONQUEST_TALLY_END = 1;
   CONQUEST_UPDATE = 2;
-  
+
 nationAlly = 3;
 
 -----------------------------------
@@ -141,7 +141,7 @@ tpFees = { 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500,
 -- function tradeConquestGuard()
 -----------------------------------------------------------------
 
-function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
+function tradeConquestGuard(player,npc,trade,guardnation,guardtype, conquest)
 
     -- Nation:    -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno)
     -- Type:     1: city, 2: foreign, 3: outpost, 4: border
@@ -158,10 +158,10 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 
                     if (tcount > 0 and trade:hasItemQty(DonateCrys[Crystal],tcount)) then
                         if (player:getRank() == 1) then
-                            player:showText(npc,CONQUEST - 7);
+                            player:showText(npc,conquest - 7);
                             break;
                         elseif (player:getRankPoints() == 4000) then
-                            player:showText(npc,CONQUEST + 43);
+                            player:showText(npc,conquest + 43);
                             break;
                         elseif (DonateCrys[Crystal] == 4102 or DonateCrys[Crystal] == 4103 or DonateCrys[Crystal] == 4244 or DonateCrys[Crystal] == 4245) then
                             AddPoints = AddPoints + tcount * math.floor(4000 / (player:getRank() * 12 - 16));
@@ -176,11 +176,11 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
                         newpoint = (AddPoints + player:getRankPoints()) - 4000;
                         player:addCP(newpoint);
                         player:setRankPoints(4000);
-                        player:showText(npc,CONQUEST + 44);
+                        player:showText(npc,conquest + 44);
                     else
                         --printf("point: %u",AddPoints);
                         player:addRankPoints(AddPoints);
-                        player:showText(npc,CONQUEST + 45);
+                        player:showText(npc,conquest + 45);
                     end
                     player:tradeComplete();
                 end
@@ -196,14 +196,14 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
                     player:tradeComplete();
                     player:addItem(item);
                     player:setVar("CONQUEST_RING_RECHARGE",getConquestTally());
-                    player:showText(npc,CONQUEST + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
+                    player:showText(npc,conquest + 58,item,XpRing[item - 15760],RingCharg[(item - 15760)]);
                 else
-                    player:showText(npc,CONQUEST + 55,item,XpRing[item - 15760]);
+                    player:showText(npc,conquest + 55,item,XpRing[item - 15760]);
                 end
          else
             -- TODO: Verify that message is retail correct.
             -- This gives feedback on a failure at least, and is grouped with the recharge messages.  Confident enough for a commit.
-            player:showText(npc,CONQUEST+56,item); -- "Please be aware that you can only purchase or recharge <item> once during the period between each conquest results tally.
+            player:showText(npc,conquest+56,item); -- "Please be aware that you can only purchase or recharge <item> once during the period between each conquest results tally.
             end
         end
     end
@@ -873,20 +873,20 @@ switch (region): caseof {
         Jeantelas+7,SANDORIA,        -- Pilcha, R.K.
         Jeantelas+3,SANDORIA,        -- flag
         Jeantelas+11,SANDORIA,        -- flag
-    --    
+    --
         Jeantelas+1,BASTOK,            -- Kaya, I.M.
         Jeantelas+8,BASTOK,            -- Heavy Bear, I.M.
         Jeantelas+4,BASTOK,            -- flag
         Jeantelas+12,BASTOK,        -- flag
-    --    
+    --
         Jeantelas+2,WINDURST,        -- Magumo-Yagimo, W.W.
         Jeantelas+9,WINDURST,        -- Tememe, W.W.
         Jeantelas+5,WINDURST,        -- flag
         Jeantelas+13,WINDURST,        -- flag
-    --    
+    --
         Jeantelas+6,BEASTMEN,        -- flag
         Jeantelas+14,BEASTMEN,        -- flag
-    --    
+    --
         Jeantelas+10,OTHER,            -- Pelogrant
     }
   end,
@@ -935,20 +935,20 @@ switch (region): caseof {
         Credaurion+7,SANDORIA,        -- Limion, R.K.
         Credaurion+3,SANDORIA,        -- flag
         Credaurion+11,SANDORIA,        -- flag
-    --    
+    --
         Credaurion+1,BASTOK,        -- Calliope, I.M.
         Credaurion+8,BASTOK,        -- Dedden, I.M.
         Credaurion+4,BASTOK,        -- flag
         Credaurion+12,BASTOK,        -- flag
-    --    
+    --
         Credaurion+2,WINDURST,        -- Ajimo-Majimo, W.W.
         Credaurion+9,WINDURST,        -- Ochocho, W.W.
         Credaurion+5,WINDURST,        -- flag
         Credaurion+13,WINDURST,        -- flag
-    --    
+    --
         Credaurion+6,BEASTMEN,        -- flag
         Credaurion+14,BEASTMEN,        -- flag
-    --    
+    --
         Credaurion+10,OTHER,        -- Kasim
     }
   end,
@@ -1081,7 +1081,7 @@ switch (region): caseof {
   [TULIA] = function (x) -- RuAun_Gardens (130)
   ---------------------------------
     --print("TULIA");
-    
+
     local RuAun_Banner = 17310076;
 
     npc  = {
@@ -1161,14 +1161,14 @@ function SetRegionalConquestOverseers(region)
 
     for i = 1, table.getn(npclist), 2 do
         local npc = GetNPCByID(npclist[i]);
-        
+
         if (npc ~= nil) then
             if (npclist[i+1] == nation) then
                 npc:setStatus(0);
             else
                 npc:setStatus(2);
             end
-        
+
             if (npclist[i+1] == OTHER) then
                 if (nation ~= BEASTMEN) then
                     npc:setStatus(0);
@@ -1224,7 +1224,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
         else
             player:messageText(player, messageBase+6, 5);
         end
-                
+
         local offset = 0;
         if (bit.band(ranking, 0x03) == 0x01) then
             offset = offset + 7; -- 7
@@ -1262,7 +1262,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
         end
         -- Global balance of power:
         player:messageText(player, messageBase+offset, 5);
-        
+
         if (isConquestAlliance()) then
             -- have formed an alliance.
             if (bit.band(ranking, 0x03) == 0x01) then
@@ -1281,9 +1281,9 @@ function conquestUpdate(zone, player, updateType, messageBase)
         else
             player:messageText(player, messageBase+31, 5);
         end
-        
+
         local influence = GetRegionInfluence(zone:getRegionID());
-        
+
         if (influence >= 64) then
             -- The beastmen are on the rise.
             player:messageText(player, messageBase+37, 5);
@@ -1294,7 +1294,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
             local sandoria = bit.band(influence, 0x03);
             local bastok = bit.rshift(bit.band(influence, 0x0C),2);
             local windurst = bit.rshift(bit.band(influence, 0x30),4);
-            
+
             -- Regional influence: San d'Oria
             player:messageText(player, messageBase+41 - sandoria, 5);
             -- Bastok
@@ -1302,7 +1302,7 @@ function conquestUpdate(zone, player, updateType, messageBase)
             -- Windurst
             player:messageText(player, messageBase+49 - windurst, 5);
         end
-        
+
         if (isConquestAlliance()) then
             --are currently allied.
             if (bit.band(ranking, 0x03) == 0x01) then

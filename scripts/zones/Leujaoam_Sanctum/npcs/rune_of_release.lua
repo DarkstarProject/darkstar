@@ -4,6 +4,7 @@
 
 require("scripts/globals/besieged")
 require("scripts/zones/Leujaoam_Sanctum/IDs");
+local text = require("scripts/zones/Leujaoam_Sanctum/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -17,15 +18,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local instance = npc:getInstance();
 
     if (instance:completed()) then
         player:startEvent(100,0);
     end
-    
+
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -44,19 +45,19 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-    
+
     if (csid == 100 and option == 1) then
         local instance = player:getInstance()
         local chars = instance:getChars();
-        
+
         local id = instance:getID();
         local points = 0;
-        
+
         if (id == 1) then
             points = 1000 - math.max(0, #chars - 3);
         end
         for i,v in pairs(chars) do
-            v:messageSpecial(text.Leujaoam.text.ASSAULT_POINTS_OBTAINED,points);
+            v:messageSpecial(text.ASSAULT_POINTS_OBTAINED,points);
             v:addAssaultPoint(LEUJAOAM_ASSAULT_POINT,points);
             v:setVar("AssaultComplete",1);
             if (v:hasCompletedAssault(v:getCurrentAssault())) then
@@ -64,11 +65,11 @@ function onEventFinish(player,csid,option)
             else
                 v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5);
             end
-            
+
             if (v ~= player) then
                 v:startEvent(102);
             end
         end
     end
-    
+
 end;

@@ -4,15 +4,13 @@
 -- Starts and Finishes Quest: Dark Legacy
 -- Involved in Quest: The Usual, Riding on the Clouds
 -- @pos -27 -10 -1 237
------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,8 +3,6 @@
 --  NPC: Sarcophagus
 -- Involved in Quest: The Requiem (BARD AF2)
 -- @pos -420 8 500 195
------------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 -----------------------------------
 -- sarcophagusNumber

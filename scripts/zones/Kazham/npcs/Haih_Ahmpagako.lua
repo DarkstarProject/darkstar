@@ -2,10 +2,7 @@
 -- Area: Kazham
 --  NPC: Haih Ahmpagako
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,14 +4,12 @@
 -- Involved in Quest: A Knight's Test, Lost Chick
 -- @zone 230
 -- @pos 55.749 -8.601 -29.354
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 

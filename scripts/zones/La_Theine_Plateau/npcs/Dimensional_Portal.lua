@@ -2,12 +2,10 @@
 -- Area: La Theine Plateau
 --  NPC: Dimensional Portal
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

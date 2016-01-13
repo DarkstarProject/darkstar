@@ -4,14 +4,12 @@
 -- @zone 160
 -- @pos 
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Den_of_Rancor/TextIDs");
+local text = require("scripts/zones/Den_of_Rancor/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

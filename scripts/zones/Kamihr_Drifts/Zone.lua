@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Kamihr_Drifts/TextIDs"] = nil;
-require("scripts/zones/Kamihr_Drifts/TextIDs");
+local text = require("scripts/zones/Kamihr_Drifts/TextIDs");
 
 -----------------------------------
 -- onInitialize

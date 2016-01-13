@@ -3,10 +3,8 @@
 --  NPC: ??? - Matron Crawler spawn
 -- @pos -141.158 -33.689 20.944 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
 -- onTrade Action

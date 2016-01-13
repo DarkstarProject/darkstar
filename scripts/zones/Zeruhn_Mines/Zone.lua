@@ -3,12 +3,10 @@
 -- Zone: Zeruhn_Mines (172)
 --
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/zone");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local text = require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -53,7 +51,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

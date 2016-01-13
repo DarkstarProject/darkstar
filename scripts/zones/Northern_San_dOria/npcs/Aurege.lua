@@ -9,8 +9,7 @@
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

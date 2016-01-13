@@ -2,9 +2,7 @@
 -- Area: Apollyon CS
 -- MOB: Carnagechief_Jackbodokk
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Apollyon/TextIDs");
+local text = require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
 
 -----------------------------------

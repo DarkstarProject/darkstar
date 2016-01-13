@@ -4,11 +4,9 @@
 -- Type: Outpost Conquest Guards
 -- @pos 470.843 23.465 415.520 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 local guardnation = BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;      -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ff9;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

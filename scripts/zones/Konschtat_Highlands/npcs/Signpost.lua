@@ -4,12 +4,10 @@
 -- Involved in Quest: The Signpost Marks the Spot
 -- @pos -183 65 599 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local text = require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

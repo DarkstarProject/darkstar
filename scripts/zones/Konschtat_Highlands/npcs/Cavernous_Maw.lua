@@ -4,14 +4,12 @@
 -- @pos 96.344, -69.080, -580.008 108
 -- Teleports Players to Abyssea - Konschtat
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local text = require("scripts/zones/Konschtat_Highlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

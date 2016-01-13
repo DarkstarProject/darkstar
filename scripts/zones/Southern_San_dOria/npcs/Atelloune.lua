@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: Atelloune's Lament
 -- @zone 230
 -- @pos 122 0 82
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 

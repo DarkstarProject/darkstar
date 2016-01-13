@@ -3,10 +3,8 @@
 --  NPC: qm3 (???)
 -- Involved in Mission 9-1 (San dOria)
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Batallia_Downs/TextIDs");
+local text = require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 

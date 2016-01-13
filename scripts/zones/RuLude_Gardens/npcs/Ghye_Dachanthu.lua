@@ -5,10 +5,7 @@
 -- @zone: 243
 -- @pos -62.789    11.999    -25.959
 --
------------------------------------
-
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

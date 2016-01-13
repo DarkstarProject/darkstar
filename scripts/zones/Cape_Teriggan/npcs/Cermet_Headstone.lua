@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Wind Headstone)
 -- @pos -107 -8 450 113
 -----------------------------------
-package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Cape_Teriggan/TextIDs");
+local text = require("scripts/zones/Cape_Teriggan/TextIDs");
 
 -----------------------------------
 -- onTrade Action

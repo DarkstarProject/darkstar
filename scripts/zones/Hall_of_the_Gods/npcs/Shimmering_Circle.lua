@@ -4,12 +4,10 @@
 -- Lifts players up to the sky!
 -- @pos 0 -20 147 251
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_the_Gods/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Hall_of_the_Gods/TextIDs");
+local text = require("scripts/zones/Hall_of_the_Gods/TextIDs");
 
 -----------------------------------
 -- onTrade Action

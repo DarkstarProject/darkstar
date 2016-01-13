@@ -4,13 +4,11 @@
 -- Dynamis-Jeuno Enter
 -- @pos 35 9 -51 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

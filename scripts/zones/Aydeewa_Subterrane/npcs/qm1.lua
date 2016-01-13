@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Nosferatu(ZNM T3))
 -- @pos -199 8 -62 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+local text = require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

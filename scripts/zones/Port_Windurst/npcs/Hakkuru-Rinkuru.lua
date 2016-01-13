@@ -4,8 +4,6 @@
 -- Involved In Quest: Making Amends
 -- Starts and Ends Quest: Wonder Wands
 -- @pos -111 -4 101 240
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action

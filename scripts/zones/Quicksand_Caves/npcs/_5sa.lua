@@ -4,10 +4,8 @@
 -- Door blocked by Weight system
 -- @pos -418 0 790 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

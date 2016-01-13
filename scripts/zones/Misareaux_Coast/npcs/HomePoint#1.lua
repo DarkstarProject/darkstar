@@ -2,12 +2,8 @@
 -- Area: Misareaux Coast
 --  NPC: HomePoint#1
 -- @pos -65 -17.5 563 25
------------------------------------
-
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

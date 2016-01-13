@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Foret_de_Hennetiel/TextIDs"] = nil;
-require("scripts/zones/Foret_de_Hennetiel/TextIDs");
+local text = require("scripts/zones/Foret_de_Hennetiel/TextIDs");
 
 -----------------------------------
 -- onInitialize

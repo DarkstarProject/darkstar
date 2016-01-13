@@ -4,11 +4,9 @@
 -- Involved in Missions
 -- @pos 92.936 -19.532 1.814 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 

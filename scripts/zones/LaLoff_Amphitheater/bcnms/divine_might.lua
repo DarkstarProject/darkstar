@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
 -- Name: Divine Might
------------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local text = require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

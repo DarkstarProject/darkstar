@@ -3,10 +3,8 @@
 -- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Horlais_Peak/TextIDs");
+local text = require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

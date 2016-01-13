@@ -3,11 +3,9 @@
 -- Zone: Crawlers_Nest_[S] (171)
 --
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

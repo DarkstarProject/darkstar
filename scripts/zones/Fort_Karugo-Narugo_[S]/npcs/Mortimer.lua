@@ -5,10 +5,7 @@
 -- @zone: 96
 -- @pos -24.08    -68.508    93.88
 --
------------------------------------
-
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local text = require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

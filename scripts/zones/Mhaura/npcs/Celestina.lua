@@ -5,8 +5,6 @@
 -- Involved in Quest: Riding on the Clouds
 -- Guild Merchant NPC: Goldsmithing Guild 
 -- @pos -37.624 -16.050 75.681 249
------------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

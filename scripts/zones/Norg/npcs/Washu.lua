@@ -5,13 +5,11 @@
 -- Starts and finishes Quest: Stop Your Whining
 -- @pos 49 -6 15 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

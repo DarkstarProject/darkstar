@@ -4,13 +4,11 @@
 -- Involved in Mission 1-3
 -- @pos -139 0 147 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Giddeus/TextIDs");
+local text = require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
 -- onTrade Action

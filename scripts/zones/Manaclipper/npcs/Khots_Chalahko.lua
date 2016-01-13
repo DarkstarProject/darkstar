@@ -4,10 +4,8 @@
 -- Type: NPC
 -- @pos 0.019 -4.674 -18.782 3
 -----------------------------------
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Manaclipper/TextIDs");
+local text = require("scripts/zones/Manaclipper/TextIDs");
 
 -----------------------------------
 -- onTrade Action

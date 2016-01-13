@@ -4,10 +4,8 @@
 -- Involved in Quests: Under the sea
 -- @pos -15 -2 -16 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

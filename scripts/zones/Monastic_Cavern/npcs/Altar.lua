@@ -4,12 +4,10 @@
 -- Involved in Quests: The Circle of Time
 -- @pos 109 -3 -145 150
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+local text = require("scripts/zones/Monastic_Cavern/TextIDs");
 
 -----------------------------------
 -- onTrade Action

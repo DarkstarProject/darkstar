@@ -7,8 +7,6 @@
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier_[S]/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

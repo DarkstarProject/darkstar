@@ -2,10 +2,7 @@
 -- Area: Rabao
 --  NPC: Ashu Bolkhomo
 -- Map Seller NPC
------------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 require("scripts/globals/magic_maps");
 
 -----------------------------------

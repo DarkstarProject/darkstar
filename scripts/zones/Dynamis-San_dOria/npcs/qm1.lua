@@ -3,11 +3,9 @@
 --  NPC:  qm1 (???)
 -- Notes: Spawns when Megaboss is defeated
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Dynamis-San_dOria/TextIDs");
+local text = require("scripts/zones/Dynamis-San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade

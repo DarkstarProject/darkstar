@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- @pos 450 -40 -31 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Horlais_Peak/TextIDs");
+local text = require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- onTrade Action

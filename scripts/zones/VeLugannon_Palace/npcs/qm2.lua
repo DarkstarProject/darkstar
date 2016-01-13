@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Brigandish Blade
 -- @pos 0.1 0.1 -286 177
 -----------------------------------
-package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/VeLugannon_Palace/TextIDs");
+local text = require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 -----------------------------------
 -- onTrade Action

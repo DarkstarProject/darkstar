@@ -3,10 +3,8 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -217 97 461 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

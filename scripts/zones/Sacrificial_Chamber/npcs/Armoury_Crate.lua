@@ -2,11 +2,9 @@
 -- Area: Sacrificial Chamber
 --  NPC: Armoury Crate
 -------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local text = require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- onTrade Action

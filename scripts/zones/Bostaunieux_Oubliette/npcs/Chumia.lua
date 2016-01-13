@@ -4,10 +4,8 @@
 -- Type: Standard NPC
 -- @pos 102.420 -25.001 70.457 167
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+local text = require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 
 -----------------------------------
 -- onTrade Action

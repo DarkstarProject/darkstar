@@ -3,10 +3,8 @@
 --  NPC: ??? (Spawn Big Bomb)
 -- @pos -233.830 13.613 286.714 62
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Halvung/TextIDs");
+local text = require("scripts/zones/Halvung/TextIDs");
 
 -----------------------------------
 -- onTrade Action

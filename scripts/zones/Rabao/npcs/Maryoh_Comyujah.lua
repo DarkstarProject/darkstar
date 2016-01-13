@@ -4,12 +4,10 @@
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
 -- @pos 0 8 73 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

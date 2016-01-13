@@ -2,11 +2,9 @@
 -- Area: Dynamis Buburimu
 -- MOB: Manifest_Idol
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
+local text = require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

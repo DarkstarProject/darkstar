@@ -4,13 +4,11 @@
 -- Involved in Quest: In Defiant Challenge
 -- @pos -50.175 6.264 251.669 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

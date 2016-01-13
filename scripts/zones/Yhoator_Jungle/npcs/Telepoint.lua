@@ -2,11 +2,9 @@
 -- Area: Yhoator Jungle
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

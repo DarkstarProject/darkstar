@@ -2,12 +2,8 @@
 -- Area: Ifrit's Cauldron
 --  NPC: HomePoint#1
 -- @pos -63 50 81 205
------------------------------------
-
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

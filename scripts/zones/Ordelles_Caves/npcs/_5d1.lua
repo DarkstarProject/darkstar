@@ -2,11 +2,7 @@
 -- Area: Ordelle's Caves
 --  NPC: Strange Apparatus
 -- @pos: -294 28 -100 193
------------------------------------
-
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
-
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local text = require("scripts/zones/Ordelles_Caves/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

@@ -4,12 +4,10 @@
 -- Notes: Start & Finishes Quest: Gourmet
 -- @pos -31.687 -6.824 -73.282 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

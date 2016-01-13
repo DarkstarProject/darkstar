@@ -4,11 +4,8 @@
 -- @pos -360.000 -46.750 700.000 217
 -- Notes: Teleports Players to Jugner Forest
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Vunkerl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

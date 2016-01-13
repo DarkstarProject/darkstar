@@ -4,12 +4,10 @@
 -- @pos 369 8 -227 98
 -- Teleports Players to Sauromugue_Champaign
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------

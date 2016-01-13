@@ -2,10 +2,8 @@
 -- Area: Newton Movalpolos
 --  NPC: Furnace_Hatch
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Newton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action

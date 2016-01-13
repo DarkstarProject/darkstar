@@ -2,10 +2,8 @@
 -- Area: Tahrongi Canyon
 --  NPC: Signpost
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade Action

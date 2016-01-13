@@ -7,10 +7,8 @@
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local text = require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

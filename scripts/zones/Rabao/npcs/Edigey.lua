@@ -2,13 +2,10 @@
 -- Area: Rabao
 --  NPC: Edigey
 -- Starts and Ends Quest: Don't Forget the Antidote
------------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

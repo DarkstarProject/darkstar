@@ -4,14 +4,12 @@
 -- @zone 205
 -- @pos 188 0 -28
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

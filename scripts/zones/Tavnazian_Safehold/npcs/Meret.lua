@@ -2,11 +2,9 @@
 -- Area: Tavnazian Safehold
 --  NPC: Meret
 -- Standard Info NPC
------------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 --Meret     24A 586 recompense
 local Sin_of_Indulgence=1915;

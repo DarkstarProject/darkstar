@@ -3,11 +3,9 @@
 --  NPC: Shattered Telepoint
 -- @pos 179 35 255 117
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,13 +2,11 @@
 -- Area: Cloister of Frost
 -- BCNM: Trial-size Trial by Ice
 -- @pos 558 0.1 596 203
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local text = require("scripts/zones/Cloister_of_Frost/TextIDs");
 
 -----------------------------------
 

@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Carpenters Landing
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Carpenters_Landing/TextIDs");
+local text = require("scripts/zones/Carpenters_Landing/TextIDs");
 
 -----------------------------------
 -- onTrade

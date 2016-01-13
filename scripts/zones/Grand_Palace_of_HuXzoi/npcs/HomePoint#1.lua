@@ -2,12 +2,8 @@
 -- Area: Grand Palace of Hu'Xzoi
 --  NPC: HomePoint#3
 -- @pos -12 0.5 -288 34
------------------------------------
-
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
+local text = require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

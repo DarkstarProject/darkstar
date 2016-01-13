@@ -8,13 +8,11 @@
 -- the clue (100%)
 -- the basics (not completed correctly, ferry not implemented)
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 
 -- player:startEvent(0x4a); -- first quest completed ok

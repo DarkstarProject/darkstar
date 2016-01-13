@@ -4,10 +4,8 @@
 -- Allows players to spawn the Jailer of Faith by trading 1 High-Quality Euvhi Organ to a ???.
 -- @pos ,-260 0 -645 
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------

@@ -5,7 +5,7 @@
 -- @pos -200.027 -8.500 80.058 51
 -----------------------------------
 
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
+local text = require("scripts/zones/Wajaom_Woodlands/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 

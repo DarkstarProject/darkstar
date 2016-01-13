@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Halvung
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Halvung/TextIDs");
+local text = require("scripts/zones/Halvung/TextIDs");
 
 -----------------------------------
 -- onTrade

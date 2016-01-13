@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Achamoth(ZNM T3))
 -- @pos -34 10 336 62
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Halvung/TextIDs");
+local text = require("scripts/zones/Halvung/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

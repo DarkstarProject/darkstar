@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
-require("scripts/zones/The_Colosseum/TextIDs");
+local text = require("scripts/zones/The_Colosseum/TextIDs");
 
 -----------------------------------
 -- onInitialize

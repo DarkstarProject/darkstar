@@ -4,11 +4,9 @@
 -- @zone 176
 -- @pos 60 8.55 -80
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local text = require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 
 -----------------------------------
 -- onTrade Action

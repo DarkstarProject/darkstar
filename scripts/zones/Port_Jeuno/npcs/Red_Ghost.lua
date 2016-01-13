@@ -3,10 +3,8 @@
 --  NPC: Red Ghost
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/pathfind");
 

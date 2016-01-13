@@ -2,13 +2,11 @@
 -- Area: Cloister of Flames
 -- BCNM: Trial by Fire
 -- @pos -721 0 -598 207
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+local text = require("scripts/zones/Cloister_of_Flames/TextIDs");
 
 -----------------------------------
 

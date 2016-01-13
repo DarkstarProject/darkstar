@@ -5,8 +5,6 @@
 -- Involved in Quests: Riding on the Clouds
 -- @zone 234
 -- @pos 73 -1 34
------------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

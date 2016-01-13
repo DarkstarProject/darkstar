@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

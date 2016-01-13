@@ -4,14 +4,12 @@
 -- Involved In Quest: The Goblin Tailor
 -- @zone 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

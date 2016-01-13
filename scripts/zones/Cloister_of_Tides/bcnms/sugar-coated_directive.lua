@@ -2,12 +2,10 @@
 -- Area: Cloister of Tides
 -- BCNM: Sugar Coated Directive (ASA-4)
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
-----------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tides/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tides/TextIDs");
 
 ----------------------------------------
 

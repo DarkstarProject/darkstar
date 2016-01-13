@@ -5,10 +5,7 @@
 -- @zone: 247
 -- @pos 140.337    7.999    80.661
 --
------------------------------------
-
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

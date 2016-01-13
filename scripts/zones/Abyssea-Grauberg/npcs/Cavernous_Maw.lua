@@ -4,11 +4,8 @@
 -- @pos -564.000, 30.300, -760.000 254
 -- Teleports Players to North Gustaberg
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

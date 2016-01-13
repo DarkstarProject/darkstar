@@ -3,14 +3,12 @@
 -- Name: Holy Crest - DRG flag quest
 -- @pos -162 -11 78 140
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/pets");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+local text = require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 

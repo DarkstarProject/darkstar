@@ -2,11 +2,9 @@
 -- Area: Promyvion vahzl
 --  NPC: Memory flux (2)
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
+local text = require("scripts/zones/Promyvion-Vahzl/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

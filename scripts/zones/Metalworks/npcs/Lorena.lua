@@ -4,10 +4,7 @@
 -- Type: Blacksmithing Guildworker's Union Representative
 -- @zone: 237
 -- @pos -104.990 1 30.995
------------------------------------
-
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 

@@ -2,14 +2,12 @@
 -- Area: Port Jeuno
 --  NPC: Kochahy-Muwachahy
 -- @pos 40 0 6 246
--------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/conquest");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -19,7 +17,7 @@ local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

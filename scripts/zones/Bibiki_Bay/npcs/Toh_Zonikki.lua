@@ -3,11 +3,7 @@
 --  NPC: Toh Zonikki
 -- Type: Clamming NPC
 -- @pos -371 -1 -421 4
------------------------------------
-
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local text = require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

@@ -3,11 +3,9 @@
 -- Zone: Grand_Palace_of_HuXzoi (34)
 --
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
+local text = require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
 
 -----------------------------------
@@ -39,7 +37,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

@@ -3,10 +3,8 @@
 --  NPC: _5ki (Banishing Gate #3)
 -- @pos -100 -3.008 359 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

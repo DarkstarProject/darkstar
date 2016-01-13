@@ -3,12 +3,10 @@
 --  NPC: Sagheera
 -- @pos -3 0.1 -9 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/armor_upgrade");
 

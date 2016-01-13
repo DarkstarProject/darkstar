@@ -2,9 +2,7 @@
 -- Area: Dynamis Buburimu
 -- MOB: Manifest_Icon
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
+local text = require("scripts/zones/Dynamis-Buburimu/TextIDs");
 require("scripts/globals/dynamis");
 
 -----------------------------------

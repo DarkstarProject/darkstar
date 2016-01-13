@@ -4,12 +4,10 @@
 -- Involved In Mission: Full Moon Fountain
 -- @pos -291 0 -659 194
 -----------------------------------
-package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

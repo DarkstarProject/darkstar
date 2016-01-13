@@ -1,14 +1,11 @@
 -----------------------------------
--- 
+--
 -- Zone: Abyssea - Grauberg
--- 
------------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
+--
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -25,7 +22,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-555,31,-760,0); 
+        player:setPos(-555,31,-760,0);
     end
 
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
@@ -37,7 +34,7 @@ function onZoneIn(player,prevZone)
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)

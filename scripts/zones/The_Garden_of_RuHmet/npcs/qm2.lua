@@ -4,10 +4,8 @@
 -- Allows players to spawn the Ix'aern (Dark Knight) by checking ??? only after killing the required mobs in the same room as the ???.
 -- @pos ,-560 5 239
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------

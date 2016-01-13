@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- @pos 0.1 30 21 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local text = require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -7,8 +7,6 @@
 -- 0x027e  0x0332 0x0334    0x0336  0x0337
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");

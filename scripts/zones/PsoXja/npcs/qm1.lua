@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Golden-Tongued Culberry
 -- @pos -270.063 31.395 256.812 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/PsoXja/TextIDs");
+local text = require("scripts/zones/PsoXja/TextIDs");
 
 -----------------------------------
 -- onTrade Action

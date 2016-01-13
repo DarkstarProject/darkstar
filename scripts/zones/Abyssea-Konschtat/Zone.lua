@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Abyssea - Konschtat
--- 
+--
 -----------------------------------
 -- Research
 -- EventID 0x0400-0x0405 aura of boundless rage
@@ -9,12 +9,10 @@
 -- EventID 0x0884 Teleport?
 -- EventID 0x0885 DEBUG Menu
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Konschtat/TextIDs");
+local text = require("scripts/zones/Abyssea-Konschtat/TextIDs");
 
 -----------------------------------
 -- onInitialize

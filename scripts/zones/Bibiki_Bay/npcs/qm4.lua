@@ -3,10 +3,8 @@
 --  NPC: ??? COP mission spawn Dalham
 -- @pos 
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local text = require("scripts/zones/Bibiki_Bay/TextIDs");
 
 -----------------------------------
 -- onTrade Action

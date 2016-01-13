@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos -499.189 12.600 373.592 117
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrigger

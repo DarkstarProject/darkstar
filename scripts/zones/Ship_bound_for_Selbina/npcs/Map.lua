@@ -3,10 +3,8 @@
 --  NPC: Map
 -- @pos 0.278 -14.707 -1.411 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+local text = require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -6,10 +6,7 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -- Updated for "Smoke on the Mountain" by EccentricAnata 03.22.13
------------------------------------
-
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");

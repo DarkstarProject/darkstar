@@ -2,9 +2,6 @@
 -- Area: Lower Jeuno
 --  NPC: Promurouve
 -- Map Seller NPC
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-
 require("scripts/zones/Lower_Jeuno/TextIDs")
 require("scripts/globals/magic_maps");
 

@@ -4,12 +4,10 @@
 -- @pos 61 -6 137 164
 -- Notes: Gives Red Letter required to start "Steamed Rams"
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

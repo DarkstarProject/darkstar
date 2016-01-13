@@ -5,7 +5,7 @@
 -- @pos 16 .1 -58 205
 -----------------------------------
 
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 

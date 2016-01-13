@@ -4,13 +4,11 @@
 -- Mount Zhayolm Teleporter Back to Aht Urgan Whitegate
 -- @pos 688 -23 349 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/besieged");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onTrade Action

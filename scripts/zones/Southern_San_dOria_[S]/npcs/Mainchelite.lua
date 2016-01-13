@@ -17,15 +17,13 @@
 -- 0x00F = No Red Recommendation Letter and has no nation affiliation
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

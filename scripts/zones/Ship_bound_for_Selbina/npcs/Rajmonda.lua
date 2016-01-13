@@ -4,12 +4,10 @@
 -- Type: Guild Merchant: Fishing Guild 
 -- @pos 1.841 -2.101 -9.000 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+local text = require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

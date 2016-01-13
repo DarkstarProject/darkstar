@@ -4,11 +4,9 @@
 -- Type: NPC
 -- @pos 116.484 -1 91.554 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local GAME_WON = 0;
 local GAME_LOST = 2;

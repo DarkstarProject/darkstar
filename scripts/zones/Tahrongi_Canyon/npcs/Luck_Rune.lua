@@ -3,11 +3,9 @@
 --  NPC: Luck Rune
 -- Involved in Quest: Mhaura Fortune
 -- @pos -54.755 7.647 -379.945 117
------------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade

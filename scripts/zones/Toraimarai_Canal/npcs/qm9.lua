@@ -5,14 +5,12 @@
 -- @zone 169 // not accurate
 -- @pos 220 16 -50 // not accurate
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+local text = require("scripts/zones/Toraimarai_Canal/TextIDs");
 
 
 -----------------------------------

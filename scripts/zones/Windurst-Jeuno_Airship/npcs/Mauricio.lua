@@ -2,11 +2,7 @@
 -- Area: Windurst-Jeuno Airship
 --  NPC: Mauricio
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Windurst-Jeuno_Airship/TextIDs"] = nil;
-
-require("scripts/zones/Windurst-Jeuno_Airship/TextIDs");
+local text = require("scripts/zones/Windurst-Jeuno_Airship/TextIDs");
 
 -----------------------------------
 -- onTrade Action

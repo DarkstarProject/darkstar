@@ -3,12 +3,10 @@
 -- Zone: Abyssea - Tahrongi
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Tahrongi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Tahrongi/TextIDs");
+local text = require("scripts/zones/Abyssea-Tahrongi/TextIDs");
 
 -----------------------------------
 -- onInitialize

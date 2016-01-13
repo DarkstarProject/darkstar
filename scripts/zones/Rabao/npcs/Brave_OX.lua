@@ -3,11 +3,9 @@
 --  NPC: Brave Ox
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

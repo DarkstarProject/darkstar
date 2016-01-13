@@ -4,13 +4,11 @@
 -- Legion NPC
 -- @pos 240 24.399 468
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+local text = require("scripts/zones/Rolanberry_Fields/TextIDs");
 
 -----------------------------------
 -- onTrade Action

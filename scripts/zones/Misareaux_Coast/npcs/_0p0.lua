@@ -3,11 +3,9 @@
 --  NPC: Dilapidated Gate
 -- @pos 260 9 -435 25
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 
 -----------------------------------
 -- onTrade

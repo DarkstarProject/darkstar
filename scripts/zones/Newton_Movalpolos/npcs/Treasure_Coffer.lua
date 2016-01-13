@@ -3,14 +3,12 @@
 --  NPC: Treasure Coffer
 -- @zone 12
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Newton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

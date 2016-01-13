@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: West Sarutabaruta [S]
 --  NPC: Harvesting Point
------------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade

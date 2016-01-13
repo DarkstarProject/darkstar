@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/East_Ronfaure_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/East_Ronfaure_[S]/TextIDs");
+local text = require("scripts/zones/East_Ronfaure_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade

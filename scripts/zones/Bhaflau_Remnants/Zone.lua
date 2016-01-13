@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Bhaflau_Remnants/TextIDs"] = nil;
-require("scripts/zones/Bhaflau_Remnants/TextIDs");
+local text = require("scripts/zones/Bhaflau_Remnants/TextIDs");
 
 -----------------------------------
 -- onInitialize

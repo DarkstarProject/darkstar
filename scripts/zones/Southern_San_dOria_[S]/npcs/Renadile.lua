@@ -3,12 +3,10 @@
 --  NPC: Renadile
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 
 Deposit = 0x0272;
 Withdrawl = 0x0273;

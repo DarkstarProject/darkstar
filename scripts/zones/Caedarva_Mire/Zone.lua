@@ -3,12 +3,10 @@
 -- Zone: Caedarva_Mire (79)
 --
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onInitialize

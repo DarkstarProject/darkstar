@@ -3,10 +3,8 @@
 --  NPC: Crystalline Field
 -- @pos .1 -10 -464 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

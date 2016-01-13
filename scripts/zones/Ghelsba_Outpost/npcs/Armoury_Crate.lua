@@ -2,13 +2,11 @@
 -- Area: Ghelsba_Outpost
 --  NPC: Armoury Crate
 -- Ghelsba_Outpost Armoury_Crate
--------------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+local text = require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 
 -----------------------------------

@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Zeruhn Mines
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local text = require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade

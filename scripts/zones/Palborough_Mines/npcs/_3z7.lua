@@ -2,12 +2,10 @@
 -- Elevator in Palborough
 -- Notes: Used to operate Elevator @3z0
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local text = require("scripts/zones/Palborough_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

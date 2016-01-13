@@ -3,11 +3,9 @@
 --  NPC: Pelftrix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local text = require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

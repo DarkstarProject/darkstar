@@ -4,10 +4,8 @@
 --  NPC: Iron Door (Spawn Lost Soul)
 -- @pos 247.735 18.499 -142.267 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");

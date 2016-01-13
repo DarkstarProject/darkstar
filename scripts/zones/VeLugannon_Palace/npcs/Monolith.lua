@@ -3,10 +3,8 @@
 --  NPC: Monolith
 -- @pos <many>
 -----------------------------------
-package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/VeLugannon_Palace/TextIDs");
+local text = require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 -----------------------------------
 -- onTrade Action

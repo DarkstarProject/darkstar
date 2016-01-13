@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Tyger(ZNM T4))
 -- @pos -766 -12 632 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

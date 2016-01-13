@@ -2,12 +2,8 @@
 -- Area: AlTaieu
 --  NPC: HomePoint#1
 -- @pos 7 0 709 33
------------------------------------
-
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

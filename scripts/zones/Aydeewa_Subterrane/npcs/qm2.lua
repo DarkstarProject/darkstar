@@ -3,10 +3,8 @@
 --  NPC: ??? (Spawn Pandemonium Warden)
 -- @pos 200 33 -140 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+local text = require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 
 -----------------------------------
 -- onTrade Action

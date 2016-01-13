@@ -4,14 +4,12 @@
 -- @pos -28.597, 46.056, -685.754 117
 -- Teleports Players to Abyssea - Tahrongi
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade Action

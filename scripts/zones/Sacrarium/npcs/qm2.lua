@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Old Prof. Mariselle
 -- @pos 102.669 -3.111 127.279 28
 -----------------------------------
-package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Sacrarium/TextIDs");
+local text = require("scripts/zones/Sacrarium/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

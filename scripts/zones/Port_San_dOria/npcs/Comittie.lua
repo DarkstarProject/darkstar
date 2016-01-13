@@ -6,9 +6,7 @@
 -- @pos -6.570 -9.8 -147.952
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 -----------------------------------
 
 -----------------------------------

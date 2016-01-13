@@ -6,10 +6,7 @@
 -- @pos 100.528    -32.272    -58.739
 
 --
------------------------------------
-
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

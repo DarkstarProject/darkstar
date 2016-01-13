@@ -4,14 +4,12 @@
 -- Starts Quest: Trial Size Trial By Fire
 -- @pos 102.647 -14.999 -97.664 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

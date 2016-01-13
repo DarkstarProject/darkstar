@@ -3,11 +3,9 @@
 -- Name: head_wind
 -- BCNM: 672 
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Boneyard_Gully/TextIDs");
+local text = require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
  

@@ -3,11 +3,10 @@
 --  NPC: Sowande
 -- @pos -257 8 -249 114
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
+
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 local region     = KUZOTZ;
 local csid    = 0x7ff4;

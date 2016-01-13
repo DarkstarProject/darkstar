@@ -4,10 +4,8 @@
 -- Type: spawns Chocoboleech
 -- @pos  -430 4 115 191
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local text = require("scripts/zones/Dangruf_Wadi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

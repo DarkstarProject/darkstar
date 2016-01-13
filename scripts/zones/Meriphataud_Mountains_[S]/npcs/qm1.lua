@@ -3,11 +3,9 @@
 --  NPC: ???
 -- @pos 757 -16 -446
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,12 +4,10 @@
 -- Involved In Quest: Blade of Evil
 -- @pos 84 -79 77 157
 -----------------------------------
-package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

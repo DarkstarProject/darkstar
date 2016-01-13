@@ -5,12 +5,10 @@
 -- Involved in Quest: Gates of Paradise
 -- @pos 484 24 -89 102
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

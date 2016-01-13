@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local text = require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade

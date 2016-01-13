@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- @pos -133.627 -61.999 272.373 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

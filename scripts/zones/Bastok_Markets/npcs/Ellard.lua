@@ -4,12 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- @zone: 235
 -- @pos -214.355 -7.814 -63.809
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 local keyitems = {
     [0] = {

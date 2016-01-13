@@ -4,12 +4,10 @@
 -- Involved In Mission: The Heart of the Matter
 -- @pos 584 0 -660 194
 -----------------------------------
-package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

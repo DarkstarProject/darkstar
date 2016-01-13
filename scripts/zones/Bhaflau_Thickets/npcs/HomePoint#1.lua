@@ -2,12 +2,8 @@
 -- Area: Bhaflau Thickets
 --  NPC: HomePoint#1
 -- @pos  -98 -10 -493 52
------------------------------------
-
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local text = require("scripts/zones/Bhaflau_Thickets/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

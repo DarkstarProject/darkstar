@@ -4,11 +4,9 @@
 -- Involved in Mission: Bastok 6-2
 -- @pos 171 0 -25 205
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
 -- onTrade Action

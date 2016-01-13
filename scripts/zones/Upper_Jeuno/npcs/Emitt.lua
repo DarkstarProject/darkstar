@@ -2,14 +2,12 @@
 -- Area: Upper Jeuno
 --  NPC: Emitt
 -- @pos -95 0 160 244
--------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/conquest");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -19,7 +17,7 @@ local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

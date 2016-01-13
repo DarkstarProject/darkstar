@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Armed Gears(ZNM T3))
 -- @pos -42 -4 -169 72
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local text = require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

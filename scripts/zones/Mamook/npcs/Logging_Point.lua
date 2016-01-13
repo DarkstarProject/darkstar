@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Mamook
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Mamook/TextIDs");
+local text = require("scripts/zones/Mamook/TextIDs");
 
 -----------------------------------
 -- onTrade

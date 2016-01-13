@@ -3,11 +3,9 @@
 --  NPC: Starway Stairway
 -- @pos -10 0.1 30 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local text = require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

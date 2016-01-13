@@ -3,13 +3,11 @@
 --  NPC: Burning Circle
 -- @pos -221 -24 19 206
 -------------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/QuBia_Arena/TextIDs");
+local text = require("scripts/zones/QuBia_Arena/TextIDs");
 
 -------------------------------------
 

@@ -4,13 +4,11 @@
 -- Type: Dynamis NPC
 -- @pos -255.847 0.595 106.485 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
 -- onTrade Action

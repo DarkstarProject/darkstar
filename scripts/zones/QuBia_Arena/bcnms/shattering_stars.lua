@@ -3,10 +3,8 @@
 -- Name: Shattering stars - Maat Fight
 -- @pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/QuBia_Arena/TextIDs");
+local text = require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
 

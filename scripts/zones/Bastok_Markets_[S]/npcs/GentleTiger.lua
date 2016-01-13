@@ -4,10 +4,8 @@
 -- Type: Quest
 -- @pos -203  -10  1
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local text = require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

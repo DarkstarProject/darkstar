@@ -3,12 +3,10 @@
 -- Name: Mission Rank 2
 -- @pos -509 158 -211 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local text = require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- Maat Battle in Horlais Peak

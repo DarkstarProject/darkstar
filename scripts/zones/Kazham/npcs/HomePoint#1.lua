@@ -2,12 +2,8 @@
 -- Area: Kazham
 --  NPC: HomePoint#1
 -- @pos 77.654 -13.000 -94.457 250
------------------------------------
-
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

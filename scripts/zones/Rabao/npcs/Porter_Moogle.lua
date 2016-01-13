@@ -5,10 +5,8 @@
 -- @zone 247
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

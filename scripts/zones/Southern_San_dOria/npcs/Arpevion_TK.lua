@@ -9,11 +9,9 @@
 -- X Start Supply Run Missions and offers a list of already-delivered supplies.
 -- Start an Expeditionary Force by giving an E.F. region insignia to you.
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -25,7 +23,7 @@ local inventory   = SandInv;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

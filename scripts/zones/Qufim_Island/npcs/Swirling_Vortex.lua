@@ -4,12 +4,10 @@
 -- Entrance to Qufim Island
 -- @pos -436.000 -13.499 340.117 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onTrade

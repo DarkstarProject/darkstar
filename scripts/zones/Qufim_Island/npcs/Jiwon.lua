@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -249 -19 300 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 local region     = QUFIMISLAND;
 local csid    = 0x7ff4;

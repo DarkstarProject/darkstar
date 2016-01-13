@@ -4,15 +4,13 @@
 -- Type: Warp NPC
 -- @pos 116.080 7.372 -31.820 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 --[[
 Bitmask Designations:

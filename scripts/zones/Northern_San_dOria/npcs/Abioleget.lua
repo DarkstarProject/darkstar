@@ -5,10 +5,7 @@
 -- @zone: 231
 -- @pos 128.771 0.000 118.538
 --
------------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");

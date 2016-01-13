@@ -3,13 +3,11 @@
 --  NPC: Gumbah
 -- Finishes Quest: Blade of Darkness
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

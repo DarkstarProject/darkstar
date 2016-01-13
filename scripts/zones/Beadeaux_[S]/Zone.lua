@@ -3,11 +3,9 @@
 -- Zone: Beadeaux_[S] (92)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Beadeaux_[S]/TextIDs");
+local text = require("scripts/zones/Beadeaux_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

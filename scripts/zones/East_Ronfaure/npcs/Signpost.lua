@@ -4,12 +4,10 @@
 -- Involved in Quest: To Cure a Cough
 -- @pos 257 -45 212 101
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local text = require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

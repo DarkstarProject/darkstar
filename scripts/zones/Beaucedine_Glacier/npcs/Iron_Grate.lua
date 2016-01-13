@@ -9,11 +9,9 @@
 -- @pos -20.000 -55.000 -41.000 111   : H-8
 -- @pos -340.000 -95.000 159.000 111  : F-7
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------
 -- onTrade Action

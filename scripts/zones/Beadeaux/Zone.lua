@@ -3,13 +3,11 @@
 -- Zone: Beadeaux (147)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -62,7 +60,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

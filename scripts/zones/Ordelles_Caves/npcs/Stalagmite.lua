@@ -4,13 +4,11 @@
 -- Involved In Quest: Sharpening the Sword
 -- @pos -51 0.1 3 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local text = require("scripts/zones/Ordelles_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

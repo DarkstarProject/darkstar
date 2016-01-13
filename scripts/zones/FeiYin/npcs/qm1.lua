@@ -4,13 +4,11 @@
 -- Involved In Quest: Pieuje's Decision
 -- @pos -55 -16 69 204
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
 -- onTrade Action

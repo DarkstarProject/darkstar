@@ -1,13 +1,11 @@
 -----------------------------------
 -- Area: Temenos
 --  NPC: Armoury Crate
------------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Temenos/TextIDs");
+local text = require("scripts/zones/Temenos/TextIDs");
 require("scripts/globals/limbus");
 
 -----------------------------------

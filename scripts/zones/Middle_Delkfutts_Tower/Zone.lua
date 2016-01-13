@@ -3,14 +3,12 @@
 -- Zone: Middle_Delkfutts_Tower
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -46,7 +44,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

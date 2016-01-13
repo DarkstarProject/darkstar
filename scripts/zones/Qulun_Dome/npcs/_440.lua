@@ -4,11 +4,9 @@
 -- Involved in Mission: Magicite
 -- @pos 60 24 -2 148
 -----------------------------------
-package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Qulun_Dome/TextIDs");
+local text = require("scripts/zones/Qulun_Dome/TextIDs");
 
 -----------------------------------
 -- onTrade Action

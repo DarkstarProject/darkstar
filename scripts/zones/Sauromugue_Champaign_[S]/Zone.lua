@@ -3,11 +3,9 @@
 -- Zone: Sauromugue_Champaign_[S] (98)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

@@ -2,13 +2,11 @@
 -- Area: Rulude Gardens
 --  NPC: Morlepiche
 -- @pos -95 0 160 243
--------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -18,7 +16,7 @@ local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

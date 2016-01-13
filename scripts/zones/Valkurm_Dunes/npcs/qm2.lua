@@ -4,12 +4,10 @@
 -- Involved In Quest: Messenger from Beyond
 -- @pos -716 -10 66 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local text = require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
 -- onTrade Action

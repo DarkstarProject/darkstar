@@ -3,9 +3,7 @@
 --  NPC: Maruna-Karina
 -- @zone 80
 -- @pos 166 -7 42
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 
 
 -----------------------------------

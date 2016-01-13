@@ -4,14 +4,12 @@
 -- Involved In Quest: Wings of Gold
 -- @pos -380 -143 23 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

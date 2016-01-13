@@ -5,12 +5,10 @@
 -- @pos 206.500 -1.220 33.500 72
 -- @pos 206.500 -1.220 6.500 72
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/besieged");
 require("scripts/globals/teleports");
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local text = require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

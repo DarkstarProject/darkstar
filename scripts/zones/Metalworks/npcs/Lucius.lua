@@ -5,13 +5,11 @@
 -- Involved in Quest: Riding on the Clouds
 -- @pos 59.959 -17.39 -42.321 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action

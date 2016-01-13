@@ -3,12 +3,10 @@
 --  NPC: ??? - spawns Splinterspine Grukjuk for quest "A Hard Day's Knight"
 -- @pos -38.605 -9.022 -290.700 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+local text = require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 -----------------------------------
 -- onTrade Action

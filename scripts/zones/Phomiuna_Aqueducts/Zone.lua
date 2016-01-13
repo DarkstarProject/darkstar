@@ -3,12 +3,10 @@
 -- Zone: Phomiuna_Aqueducts (27)
 --
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/settings");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local text = require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -25,7 +23,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

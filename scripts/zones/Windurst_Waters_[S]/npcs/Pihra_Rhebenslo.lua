@@ -3,12 +3,10 @@
 --  NPC: Pihra_Rhebenslo
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local text = require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 
 Deposit = 0x01ba;
 Withdrawl = 0x01bb;

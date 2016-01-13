@@ -2,12 +2,8 @@
 -- Area: Port Windurst
 --  NPC: HomePoint#3
 -- @pos 180 -12 226 240
------------------------------------
-
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

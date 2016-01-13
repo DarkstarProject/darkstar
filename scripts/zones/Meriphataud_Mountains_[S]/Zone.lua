@@ -3,11 +3,9 @@
 -- Zone: Meriphataud_Mountains_[S] (97)
 --
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

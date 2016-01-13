@@ -2,13 +2,11 @@
 -- Area: Bearclaw Pinnacle
 --  NPC: Wind Pillar
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
+local text = require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,11 +3,9 @@
 --  NPC: _5cp (Magical Gizmo) #1 
 -- Involved In Mission: The Horutoto Ruins Experiment
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

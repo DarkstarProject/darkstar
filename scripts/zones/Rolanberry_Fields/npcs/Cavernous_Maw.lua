@@ -4,15 +4,13 @@
 -- @pos -198 8 361 110
 -- Teleports Players to Rolanberry Fields [S]
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/campaign");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+local text = require("scripts/zones/Rolanberry_Fields/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------

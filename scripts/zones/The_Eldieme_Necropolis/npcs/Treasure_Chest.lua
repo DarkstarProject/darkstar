@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

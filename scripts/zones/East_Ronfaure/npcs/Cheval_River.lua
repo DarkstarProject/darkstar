@@ -4,12 +4,10 @@
 -- @pos 223 -58 426 101
 -- Involved in Quest: Waters of Cheval
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local text = require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

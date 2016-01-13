@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 141
 -----------------------------------
-package.loaded["scripts/zones/Fort_Ghelsba/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Fort_Ghelsba/TextIDs");
+local text = require("scripts/zones/Fort_Ghelsba/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

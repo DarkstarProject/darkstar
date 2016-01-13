@@ -4,11 +4,9 @@
 -- Border Conquest Guards
 -- @pos 226.493 -12.231 260.194 114
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ff6;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

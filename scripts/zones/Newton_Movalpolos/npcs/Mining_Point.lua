@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Newton Movalpolos
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Newton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Newton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade

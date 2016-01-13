@@ -4,11 +4,9 @@
 -- Involved in Quest: Yomi Okuri
 -- @pos -176 10 -60 213
 -----------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
+local text = require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 
 -----------------------------------
 -- onTrade Action

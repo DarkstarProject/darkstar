@@ -4,14 +4,12 @@
 -- @pos -334 -24 52
 -- Teleports Players to Abyssea - Attohwa
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------
 -- onTrade Action

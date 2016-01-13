@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -290 16 415 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 local region     = ARAGONEU;
 local csid    = 0x7ff4;

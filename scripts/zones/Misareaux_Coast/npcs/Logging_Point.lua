@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Misareaux Coast
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 
 -----------------------------------
 -- onTrade

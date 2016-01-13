@@ -5,14 +5,12 @@
 -- Involved in Quests: Cook's Pride
 -- @zone 238
 -- @pos -105 -2 69
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

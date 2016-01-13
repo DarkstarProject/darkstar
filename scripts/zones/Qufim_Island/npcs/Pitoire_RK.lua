@@ -4,11 +4,9 @@
 -- Type: Outpost Conquest Guards
 -- @pos -245.366 -20.344 299.502 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ffb;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

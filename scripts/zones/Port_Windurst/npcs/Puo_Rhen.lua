@@ -6,8 +6,6 @@
 -- @pos -227.964 -9 187.087
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
------------------------------------ 
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
 -----------------------------------

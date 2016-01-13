@@ -3,14 +3,12 @@
 --  NPC: Treasure Chest
 -- @zone 204
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

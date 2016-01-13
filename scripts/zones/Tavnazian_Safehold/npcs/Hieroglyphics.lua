@@ -4,14 +4,12 @@
 -- Notes: Dynamis Tavnazia Enter
 -- @pos 3.674 -7.278 -27.856 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
 -- onTrade Action

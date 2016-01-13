@@ -4,11 +4,9 @@
 -- Type: Border Conquest Guards
 -- @pos -133.678 -22.517 112.224 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ffa;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------
@@ -91,4 +89,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

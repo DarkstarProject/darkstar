@@ -3,12 +3,10 @@
 --  NPC: Bernal
 -- @pos 177 -3 -127 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

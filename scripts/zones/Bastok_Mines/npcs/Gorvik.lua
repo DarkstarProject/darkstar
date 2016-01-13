@@ -6,10 +6,7 @@
 -- @pos 21.033 -1 -98.486
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

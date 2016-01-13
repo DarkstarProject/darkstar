@@ -4,14 +4,12 @@
 -- Dynamis Qufim Entrance
 -- @pos 117 -10 133 172 118
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,10 +2,8 @@
 -- Area: Oldton Movalpolos
 --  NPC: Rakorok
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local text = require("scripts/zones/Oldton_Movalpolos/TextIDs");
 
 -----------------------------------
 -- onTrade Action

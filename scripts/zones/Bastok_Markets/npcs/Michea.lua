@@ -5,12 +5,10 @@
 -- Starts: Father Figure (100%) | The Elvaan Goldsmith (100%)
 -- Involed in: Fetichism | Where Two Paths Converge
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,14 +4,12 @@
 -- @pos 246.318, -0.709, 5.706 104
 -- Teleports Players to Abyssea - Vunkerl
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local text = require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
 -- onTrade Action

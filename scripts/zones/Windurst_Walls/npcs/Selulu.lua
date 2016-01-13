@@ -5,10 +5,7 @@
 -- @zone: 239
 -- @pos 58.027 -2.5 -60.548
 --
------------------------------------
-
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 -----------------------------------
 -- onTrade Action

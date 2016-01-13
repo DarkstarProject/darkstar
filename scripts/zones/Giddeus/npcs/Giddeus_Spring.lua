@@ -5,11 +5,9 @@
 -- @pos -258 -2 -249 
 -- @zone 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Giddeus/TextIDs");
+local text = require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,9 +5,7 @@
 -- Quests: Black Market
 -- @pos 16.678, -2.044, -14.600 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 

@@ -5,11 +5,9 @@
 -- Notes: Used to obtain a Tremor Stone
 -- @pos -545.184,1.855,-495.693 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 -----------------------------------
 -- onTrade Action

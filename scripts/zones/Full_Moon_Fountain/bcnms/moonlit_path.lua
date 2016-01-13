@@ -2,12 +2,10 @@
 -- Area: Full Moon Fountain
 -- Name: The Moonlit Path
 -----------------------------------
-package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Full_Moon_Fountain/TextIDs");
+local text = require("scripts/zones/Full_Moon_Fountain/TextIDs");
 
 -----------------------------------
 

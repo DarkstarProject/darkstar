@@ -3,11 +3,9 @@
 --  NPC: Kamih Mapokhalam
 -- 20 -30 597 z 52 
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local text = require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,13 +3,11 @@
 --  NPC: Leadavox
 -- Involved in Quests
 -- @pos 206 -32 316
------------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+local text = require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

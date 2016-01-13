@@ -4,13 +4,10 @@
 -- @pos 486 -23 -500 79
 -----------------------------------
 
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,11 +2,9 @@
 -- Area: Spire_of_vahlz
 --  NPC: web of regret
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Spire_of_Vahzl/TextIDs");
+local text = require("scripts/zones/Spire_of_Vahzl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

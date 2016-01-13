@@ -3,11 +3,8 @@
 -- Zone: Abdhaljs_Isle-Purgonorgo
 --
 -----------------------------------
-package.loaded["scripts/zones/Abdhaljs_Isle-Purgonorgo/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Abdhaljs_Isle-Purgonorgo/TextIDs");
 
 -----------------------------------
 -- onInitialize

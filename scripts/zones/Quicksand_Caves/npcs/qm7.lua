@@ -4,12 +4,10 @@
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
 -- @pos -504 20 -419 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

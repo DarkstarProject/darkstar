@@ -3,8 +3,6 @@
 --  NPC: Karl
 -- Starts and Finishes Quest: Child's Play
 -- @pos -60 0.1 -8 246
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -13,7 +11,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

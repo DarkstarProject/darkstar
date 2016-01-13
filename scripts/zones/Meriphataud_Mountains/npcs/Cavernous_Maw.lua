@@ -4,14 +4,12 @@
 -- @pos 597 -32 279 119
 -- Teleports Players to Meriphataud Mountains [S]
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 -----------------------------------
 -- onTrade Action

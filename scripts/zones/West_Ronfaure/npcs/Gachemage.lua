@@ -4,11 +4,9 @@
 -- Type: Gate Guard
 -- @pos -176.000 -61.999 382.425 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

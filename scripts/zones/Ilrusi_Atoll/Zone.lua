@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
-require("scripts/zones/Ilrusi_Atoll/TextIDs");
+local text = require("scripts/zones/Ilrusi_Atoll/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 -- onInitialize

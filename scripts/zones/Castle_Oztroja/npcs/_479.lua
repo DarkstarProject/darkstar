@@ -4,8 +4,6 @@
 -- Involved in Mission "Saintly Invitation"
 -- @pos -99 -59 84 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
 require("scripts/zones/Castle_Oztroja/TextIDs")
 require("scripts/globals/settings");

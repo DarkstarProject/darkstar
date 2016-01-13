@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Fishing Guild 
 -- @zone 4.986 -2.101 -12.026 46
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

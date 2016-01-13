@@ -2,9 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Guide Stone
 -- @pos -149 -3 0 246
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

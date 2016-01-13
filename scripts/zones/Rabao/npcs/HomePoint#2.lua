@@ -2,12 +2,8 @@
 -- Area: Rabao
 --  NPC: HomePoint#2
 -- @pos -21 8.13 110 247
------------------------------------
-
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
-require("scripts/zones/Western_Adoulin/TextIDs");
+local text = require("scripts/zones/Western_Adoulin/TextIDs");
 
 -----------------------------------
 -- onInitialize

@@ -3,9 +3,8 @@
 --  NPC: Beastmen_s_Banner
 -- @pos 153.000 -36.444 23.500 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Xarcabard/TextIDs");
+
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

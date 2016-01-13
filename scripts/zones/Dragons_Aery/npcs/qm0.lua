@@ -4,9 +4,7 @@
 -- Spawns Fafnir or Nidhogg
 -- @pos -81 32 2 178
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dragons_Aery/TextIDs");
+local text = require("scripts/zones/Dragons_Aery/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

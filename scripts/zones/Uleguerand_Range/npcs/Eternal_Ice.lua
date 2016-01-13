@@ -6,11 +6,9 @@
 -- @pos 455 -82 421 5
 -- @pos -95 -146 378 5
 -----------------------------------
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Uleguerand_Range/TextIDs");
+local text = require("scripts/zones/Uleguerand_Range/TextIDs");
 
 -----------------------------------
 -- onTrade Action

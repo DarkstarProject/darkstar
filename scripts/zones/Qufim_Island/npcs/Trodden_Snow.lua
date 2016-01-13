@@ -5,11 +5,9 @@
 -- Mission: ASA - SUGAR_COATED_DIRECTIVE
 -- @zone 126
 -- @pos -19 -17 104
------------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");

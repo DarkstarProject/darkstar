@@ -3,11 +3,9 @@
 --  NPC: Spacial Displacement
 -- Entrance to Riverne Site #A01 and #B01
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 
 -----------------------------------
 -- onTrade

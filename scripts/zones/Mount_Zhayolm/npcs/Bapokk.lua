@@ -4,10 +4,8 @@
 -- Handles access to Alzadaal Ruins
 -- @pos -20 -6 276 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onTrade Action

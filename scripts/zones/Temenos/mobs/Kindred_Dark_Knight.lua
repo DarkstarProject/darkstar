@@ -3,10 +3,8 @@
 --  NPC: Kindred_Dark_Knight
 
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
+local text = require("scripts/zones/Temenos/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

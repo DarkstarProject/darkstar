@@ -5,13 +5,11 @@
 -- Windurst Mission 3.3 "A New Journey"
 -- @pos 636 16 59 184
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

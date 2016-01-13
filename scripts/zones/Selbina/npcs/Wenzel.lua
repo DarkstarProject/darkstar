@@ -4,10 +4,8 @@
 -- Type: Item Deliverer
 -- @pos 31.961 -14.661 57.997 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -5,15 +5,13 @@
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- @pos 70 -24 21 167
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+local text = require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
 require("scripts/globals/pathfind");
 
 local path = {

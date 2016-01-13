@@ -2,11 +2,7 @@
 -- Area: Bastok-Jeuno Airship
 --  NPC: Michele
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Bastok-Jeuno_Airship/TextIDs"] = nil;
-
-require("scripts/zones/Bastok-Jeuno_Airship/TextIDs");
+local text = require("scripts/zones/Bastok-Jeuno_Airship/TextIDs");
 
 -----------------------------------
 -- onTrade Action

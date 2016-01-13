@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Fire Fragment)
 -- @pos 491 20 301 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local text = require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

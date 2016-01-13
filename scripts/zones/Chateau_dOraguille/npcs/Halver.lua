@@ -5,14 +5,12 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0.1 0.1 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local text = require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

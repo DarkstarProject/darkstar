@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Cloister of Gales
 -- BCNM: Carbuncle Debacle
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local text = require("scripts/zones/Cloister_of_Gales/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 

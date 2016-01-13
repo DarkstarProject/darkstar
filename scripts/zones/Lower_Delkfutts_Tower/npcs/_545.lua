@@ -3,12 +3,10 @@
 --  NPC:  Cermet Door
 -- Notes: Involved in Missions: THREE_PATHS
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

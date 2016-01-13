@@ -2,9 +2,7 @@
 -- Area: Monastic Cavern
 -- MOB: Overlord Bakgodek
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Monastic_Cavern/TextIDs");
+local text = require("scripts/zones/Monastic_Cavern/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------

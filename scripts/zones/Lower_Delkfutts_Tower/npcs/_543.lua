@@ -2,10 +2,8 @@
 -- Area: Lower Delkfutt's Tower
 --  NPC: Cermet Door
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local text = require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

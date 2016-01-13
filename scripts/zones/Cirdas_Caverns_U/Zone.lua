@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Cirdas_Caverns_U/TextIDs"] = nil;
-require("scripts/zones/Cirdas_Caverns_U/TextIDs");
+local text = require("scripts/zones/Cirdas_Caverns_U/TextIDs");
 
 -----------------------------------
 -- onInitialize

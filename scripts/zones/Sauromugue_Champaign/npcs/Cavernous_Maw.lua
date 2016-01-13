@@ -4,15 +4,13 @@
 -- Teleports Players to Sauromugue_Champaign_S
 -- @pos 369 8 -227 120
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/campaign");
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local text = require("scripts/zones/Sauromugue_Champaign/TextIDs");
 
 -----------------------------------
 -- onTrade Action

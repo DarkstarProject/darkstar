@@ -2,12 +2,8 @@
 -- Area: Port Jeuno
 --  NPC: HomePoint#2
 -- @pos -155 -1 -4 246
------------------------------------
-
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Gusgen Mines
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local text = require("scripts/zones/Gusgen_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade

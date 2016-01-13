@@ -6,10 +6,8 @@
 -- @pos 257.650 -5.180 -699.999 35 | Tarutaru Tower
 -- @pos 577.648 -5.180 -700.000 35 | Galka Tower
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");

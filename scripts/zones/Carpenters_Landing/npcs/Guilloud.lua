@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- @pos -123.770 -6.654 -469.062 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Involved in Quest: Riding on the Clouds
 -- @pos -17 -7 11 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 

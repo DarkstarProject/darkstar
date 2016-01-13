@@ -2,12 +2,10 @@
 -- Area: Waughroon_Shrine
 -- Name: Operation desert swarm
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local text = require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

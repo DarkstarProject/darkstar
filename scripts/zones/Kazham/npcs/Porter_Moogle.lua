@@ -5,10 +5,8 @@
 -- @zone 250
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

@@ -2,12 +2,8 @@
 -- Area: Norg
 --  NPC: HomePoint#1
 -- @pos -26.910 0.296 -47.164 252
------------------------------------
-
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -3,9 +3,8 @@
 --  NPC: Beastmen_s_Banner
 -- @pos -172.764 25.119 93.640 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

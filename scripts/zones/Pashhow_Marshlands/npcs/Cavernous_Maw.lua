@@ -4,14 +4,12 @@
 -- @pos 418 25 27 109
 -- Teleports Players to Pashhow Marshlands [S]
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Allows players to spawn the HNM Seiryu with a Gem of the East and a Springstone.
 -- @pos 569 -70 -80 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

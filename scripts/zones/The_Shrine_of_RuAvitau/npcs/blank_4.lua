@@ -3,10 +3,8 @@
 --  NPC: ??? divine might mission
 -- @pos -40 0 -151 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local text = require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

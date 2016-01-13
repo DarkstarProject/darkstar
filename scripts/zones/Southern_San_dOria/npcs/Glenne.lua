@@ -4,15 +4,13 @@
 -- Starts and Finishes Quest: A Sentry's Peril
 -- @zone 230
 -- @pos -122 -2 15
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 require("scripts/globals/pathfind");
 

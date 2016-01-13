@@ -4,11 +4,9 @@
 -- Involved In Quest: The Talekeeper's Gift
 -- @pos 211 4 -79 127
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Behemoths_Dominion/TextIDs");
+local text = require("scripts/zones/Behemoths_Dominion/TextIDs");
 
 -----------------------------------
 -- onTrade Action

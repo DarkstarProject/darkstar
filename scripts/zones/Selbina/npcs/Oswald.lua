@@ -4,10 +4,8 @@
 -- Starts and Finishes Quest: Under the sea (finish), The gift, The real gift
 -- @pos 48 -15 9 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");

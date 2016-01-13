@@ -4,10 +4,8 @@
 -- Involved in quest: Chocobo on the Loose!
 -- @pos -556 0 523 102
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

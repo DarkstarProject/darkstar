@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Grauberg [S]
 --  NPC: Harvesting Point
------------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local text = require("scripts/zones/Grauberg_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade

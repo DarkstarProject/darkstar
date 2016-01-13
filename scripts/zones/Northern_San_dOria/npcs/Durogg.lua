@@ -4,11 +4,7 @@
 -- Type: Past Event Watcher
 -- @zone: 231
 -- @pos: 15 0 -18
------------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

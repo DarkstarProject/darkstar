@@ -3,11 +3,9 @@
 -- Name: Storms of Fate
 -- @pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
+local text = require("scripts/zones/Riverne-Site_B01/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/bcnm");

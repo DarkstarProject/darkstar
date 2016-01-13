@@ -4,11 +4,9 @@
 -- Involved In Quest: Yomi Okuri
 -- @pos -767 -4 192 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local text = require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
 -- onTrade Action

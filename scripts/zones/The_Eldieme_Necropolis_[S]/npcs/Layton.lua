@@ -5,11 +5,9 @@
 -- Note: Available during Campaign battles
 -- @pos 382.679 -39.999 3.541 175
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
-require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

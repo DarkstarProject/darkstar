@@ -3,11 +3,9 @@
 --  NPC: _ir9 (Iron Gate)
 -- @pos 70 -1.5 140 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local text = require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action

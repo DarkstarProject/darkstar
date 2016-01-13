@@ -5,10 +5,7 @@
 -- @zone: 48
 -- @pos -24.702 0 -139.982
 --
------------------------------------
-
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
-require("scripts/zones/Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,12 +4,10 @@
 -- Type: Magian Trials NPC (Job Emotes)
 -- @pos -4.558 2.451 111.305 64
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/magiantrials");
 
 -----------------------------------

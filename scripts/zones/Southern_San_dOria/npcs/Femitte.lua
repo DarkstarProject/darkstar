@@ -3,13 +3,11 @@
 --  NPC: Femitte
 -- Involved in Quest: Lure of the Wildcat (San d'Oria), Distant Loyalties
 -- @pos -17 2 10 230
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 

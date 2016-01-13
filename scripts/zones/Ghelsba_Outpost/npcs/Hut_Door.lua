@@ -2,8 +2,6 @@
 -- Area: Ghelsba_Outpost
 --  NPC: Hut Door
 -- @pos -165.357 -11.672 77.771 140
--------------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+local text = require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
     ---- 0: 
     ---- 1: 

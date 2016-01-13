@@ -3,12 +3,10 @@
 --  NPC: Hajawaa
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 Deposit = 0x02bf;
 Withdrawl = 0x02c0;

@@ -2,12 +2,10 @@
 -- Area: Grauberg [S]
 --  NPC: ???
 -- Quest - DNC AF1
------------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local text = require("scripts/zones/Grauberg_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade

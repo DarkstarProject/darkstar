@@ -3,13 +3,11 @@
 --  NPC: Spatial Displacement
 -- @pos -35 -1 -539 31
 -----------------------------------
-package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Monarch_Linn/TextIDs");
+local text = require("scripts/zones/Monarch_Linn/TextIDs");
 
 -----------------------------------
 -- onTrade

@@ -5,8 +5,6 @@
 -- Starts and Finishes Quest: Tenshodo Membership
 -- @zone 245
 -- @pos 16 0 -5
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -15,7 +13,7 @@ require("scripts/globals/shop");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

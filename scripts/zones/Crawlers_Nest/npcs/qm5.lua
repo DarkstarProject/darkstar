@@ -3,10 +3,8 @@
 --  NPC: ??? - Queen Crawler spawn
 -- @pos -337.156 -3.607 -253.294 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,12 +4,10 @@
 -- Map Position: http://www.dynamislounge.com/html/zone/frame_bas1.htm
 -- Map Position: http://www.dynamislounge.com/html/zone/frame_bas2.htm
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
+local text = require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

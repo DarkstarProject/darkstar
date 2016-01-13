@@ -4,10 +4,8 @@
 -- Notes: Opened by Torch Stands near Password #3
 -- @pos -43.455 -20.161 20.014 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

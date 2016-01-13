@@ -2,8 +2,6 @@
 --
 -- Zone: South_Gustaberg (107)
 --
------------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/icanheararainbow");
-require("scripts/zones/South_Gustaberg/TextIDs");
+local text = require("scripts/zones/South_Gustaberg/TextIDs");
 require("scripts/globals/chocobo_digging");
 
 -----------------------------------
@@ -91,7 +89,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

@@ -2,11 +2,9 @@
 -- Area: Jugner Forest [S]
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local text = require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

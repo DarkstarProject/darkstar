@@ -4,10 +4,8 @@
 -- Allows players to spawn the Jailer of Fortitude by trading 12 Ghrah M Chips to a ???.
 -- @pos random ,-420 0 755, -43,0.00,460, -260,0.00,44.821, -580,0.00,43, -796,0.00,460
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local text = require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 
 -----------------------------------

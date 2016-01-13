@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Zareehkl the Jubilant(ZNM T2))
 -- @pos 176 -4 182 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

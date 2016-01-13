@@ -3,12 +3,10 @@
 --  NPC: Chegourt, R.K.
 -- Type: Outpost Conquest Guards
 -- @pos -295 16 418 119
--------------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 --------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ffb;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

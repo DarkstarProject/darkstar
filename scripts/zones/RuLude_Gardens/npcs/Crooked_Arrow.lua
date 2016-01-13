@@ -3,10 +3,8 @@
 --  NPC: Crooked Arrow
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

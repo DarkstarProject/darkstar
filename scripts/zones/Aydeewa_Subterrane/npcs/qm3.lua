@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Chigre(ZNM T1))
 -- @pos -217 35 12 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
+local text = require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

@@ -4,15 +4,13 @@
 -- Involved in Quests: Save the Clock Tower, Community Service
 -- @zone 245
 -- @pos -3 0 11
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

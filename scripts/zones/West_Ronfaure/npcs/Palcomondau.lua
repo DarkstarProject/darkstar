@@ -4,8 +4,6 @@
 -- Type: Patrol
 -- @pos -349.796 -45.345 344.733 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/pathfind");
 

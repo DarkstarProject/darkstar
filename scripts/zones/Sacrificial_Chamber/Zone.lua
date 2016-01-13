@@ -3,13 +3,11 @@
 -- Zone: Sacrificial_Chamber (163)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local text = require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -26,7 +24,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

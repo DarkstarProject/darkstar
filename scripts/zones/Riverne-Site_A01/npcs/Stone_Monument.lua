@@ -2,10 +2,8 @@
 -- Area: Riverne Site #A01
 --  NPC: Stone Monument
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Riverne-Site_A01/TextIDs");
+local text = require("scripts/zones/Riverne-Site_A01/TextIDs");
 
 -----------------------------------
 -- onTrade

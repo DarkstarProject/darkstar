@@ -2,11 +2,9 @@
 -- Area: Attohwa Chasm
 --  NPC: ??? (qm1)
 -- @pos -402.574 3.999 -202.750 7
------------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local text = require("scripts/zones/Attohwa_Chasm/TextIDs");
 
 -----------------------------------
 -- onTrade

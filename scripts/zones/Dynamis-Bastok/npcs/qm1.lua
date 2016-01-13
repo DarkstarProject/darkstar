@@ -3,11 +3,9 @@
 --  NPC:  qm1 (???)
 -- Notes: Spawns when Megaboss is defeated
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
+local text = require("scripts/zones/Dynamis-Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade

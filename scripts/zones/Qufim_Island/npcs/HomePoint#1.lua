@@ -2,12 +2,8 @@
 -- Area: Qufim Island
 --  NPC: HomePoint#1
 -- @pos -212 -21 93 126
------------------------------------
-
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

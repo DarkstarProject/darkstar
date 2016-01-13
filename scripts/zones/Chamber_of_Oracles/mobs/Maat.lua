@@ -3,10 +3,8 @@
 -- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
+local text = require("scripts/zones/Chamber_of_Oracles/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

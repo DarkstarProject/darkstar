@@ -2,12 +2,8 @@
 -- Area: Palborough_Mines
 --  NPC: HomePoint#1
 -- @pos 109 -38.5 -147 143
------------------------------------
-
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local text = require("scripts/zones/Palborough_Mines/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

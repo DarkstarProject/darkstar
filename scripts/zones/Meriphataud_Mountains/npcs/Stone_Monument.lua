@@ -4,10 +4,8 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- @pos 450.741 2.110 -290.736 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 -----------------------------------
 -- onTrigger

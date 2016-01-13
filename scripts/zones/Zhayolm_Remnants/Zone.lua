@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Zhayolm_Remnants/TextIDs"] = nil;
-require("scripts/zones/Zhayolm_Remnants/TextIDs");
+local text = require("scripts/zones/Zhayolm_Remnants/TextIDs");
 
 -----------------------------------
 -- onInitialize

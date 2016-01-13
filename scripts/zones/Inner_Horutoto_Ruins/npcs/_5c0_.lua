@@ -5,11 +5,9 @@
 -- Working 100%
 -- Unable to find EventID for Making Headlines quest. Used dialog ID instead.
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

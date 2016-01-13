@@ -2,12 +2,10 @@
 --
 -- Zone: North_Gustaberg (106)
 --
------------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 require("scripts/globals/zone");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/conquest");
@@ -90,7 +88,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

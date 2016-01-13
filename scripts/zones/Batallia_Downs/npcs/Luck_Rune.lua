@@ -3,11 +3,9 @@
 --  NPC: Luck Rune
 -- Involved in Quest: Mhaura Fortune
 -- @pos -362.167 -12.199 157.158 105
------------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Batallia_Downs/TextIDs");
+local text = require("scripts/zones/Batallia_Downs/TextIDs");
 
 -----------------------------------
 -- onTrade

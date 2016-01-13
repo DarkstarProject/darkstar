@@ -2,12 +2,8 @@
 -- Area: Quicksand_Caves
 --  NPC: HomePoint#2
 -- @pos  573 9 -500 208
------------------------------------
-
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

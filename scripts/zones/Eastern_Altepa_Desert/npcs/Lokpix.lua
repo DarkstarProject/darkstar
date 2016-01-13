@@ -3,9 +3,8 @@
 --  NPC: Lokpix
 -- Starts Quest "Open Sesame"
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+
+local text = require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 

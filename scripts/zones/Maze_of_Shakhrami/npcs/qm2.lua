@@ -4,10 +4,8 @@
 -- Type: Quest NPC
 -- @pos 143 9 -219 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 

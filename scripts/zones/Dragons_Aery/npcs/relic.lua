@@ -3,10 +3,8 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -20 -2 61 154
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Dragons_Aery/TextIDs");
+local text = require("scripts/zones/Dragons_Aery/TextIDs");
 
 -----------------------------------
 -- onTrade Action

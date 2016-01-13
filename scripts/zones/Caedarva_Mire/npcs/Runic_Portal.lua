@@ -5,13 +5,11 @@
 -- @pos -264 -6 -28 79 (Dvucca)
 -- @pos 524 -28 -503 79 (Azouph)
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/besieged");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action

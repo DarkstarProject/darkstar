@@ -4,13 +4,11 @@
 -- Dynamis-Beaucedine Enter
 -- @pos -284 -39 -422 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------
 -- onTrade Action

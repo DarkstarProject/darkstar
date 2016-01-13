@@ -3,10 +3,8 @@
 --  NPC: Rubious Crystal (East Tower)
 -- @pos 683.718 -6.250 -222.167 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/zones/AlTaieu/mobIDs");
 require("scripts/globals/missions");
 

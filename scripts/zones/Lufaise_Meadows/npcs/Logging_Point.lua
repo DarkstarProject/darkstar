@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Lufaise Meadows
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+local text = require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 -----------------------------------
 -- onTrade

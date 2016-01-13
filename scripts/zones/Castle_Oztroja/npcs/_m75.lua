@@ -4,10 +4,8 @@
 -- Notes: Opens door _477 when _m72 to _m75 are lit
 -- @pos -139.643 -72.113 -62.682 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

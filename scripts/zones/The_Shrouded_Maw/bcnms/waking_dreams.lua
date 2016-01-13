@@ -2,13 +2,11 @@
 -- Area: The_Shrouded_Maw
 -- Name: waking_dreams
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
+local text = require("scripts/zones/The_Shrouded_Maw/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

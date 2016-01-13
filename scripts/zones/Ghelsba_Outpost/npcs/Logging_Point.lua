@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+local text = require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 -- onTrade

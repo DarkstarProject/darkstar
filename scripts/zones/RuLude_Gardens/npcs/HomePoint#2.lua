@@ -2,12 +2,8 @@
 -- Area: RuLude_Gardens
 --  NPC: HomePoint#2
 -- @pos 53 9 -57 243
------------------------------------
-
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

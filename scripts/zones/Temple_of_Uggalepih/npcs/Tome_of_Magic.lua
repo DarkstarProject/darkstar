@@ -4,10 +4,8 @@
 -- Involved In Windurst Mission 7-2 (Optional Dialogue)
 -- @pos 346 0 343 159 <many>
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 
 -----------------------------------
 

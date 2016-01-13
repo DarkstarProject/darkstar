@@ -3,8 +3,6 @@
 --  NPC: ancient lockbox
 -- @zone illrusi atoll
 -- @pos
------------------------------------
-package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/bcnm");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Ilrusi_Atoll/TextIDs");
+local text = require("scripts/zones/Ilrusi_Atoll/TextIDs");
 
 
 -----------------------------------

@@ -4,13 +4,10 @@
 -- @pos 703 -18 382 61
 -----------------------------------
 
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 -----------------------------------
 -- onTrade Action

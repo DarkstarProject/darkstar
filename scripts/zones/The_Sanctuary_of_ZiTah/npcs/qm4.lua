@@ -4,14 +4,12 @@
 -- Finishes Quest: Lovers in the Dusk
 -- @zone 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/weather");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 -----------------------------------
 -- onTrade Action

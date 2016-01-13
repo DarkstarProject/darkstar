@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Earth Fragment)
 -- @pos -108 10 -216 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Western_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action

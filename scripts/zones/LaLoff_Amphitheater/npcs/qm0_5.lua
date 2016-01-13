@@ -2,10 +2,8 @@
 -- Area: LaLoff_Amphitheater
 --  NPC: qm0 (warp player outside after they win fight)
 -------------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
--------------------------------------
 
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local text = require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 
 -----------------------------------

@@ -3,11 +3,9 @@
 -- MOB: Adamantking_Effigy
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
+local text = require("scripts/zones/Dynamis-Buburimu/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

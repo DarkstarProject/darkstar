@@ -2,11 +2,7 @@
 -- Area: Crawlers' Nest
 --  NPC: Strange Apparatus
 -- @pos: 214 0 -339 197
------------------------------------
-
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
-
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

@@ -4,11 +4,9 @@
 -- Bastok Mission 8.1 "The Chains That Bind Us"
 -- @pos 
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local text = require("scripts/zones/Quicksand_Caves/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

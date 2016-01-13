@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Yahse_Hunting_Grounds/TextIDs"] = nil;
-require("scripts/zones/Yahse_Hunting_Grounds/TextIDs");
+local text = require("scripts/zones/Yahse_Hunting_Grounds/TextIDs");
 
 -----------------------------------
 -- onInitialize

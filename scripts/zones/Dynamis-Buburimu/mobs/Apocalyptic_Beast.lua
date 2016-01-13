@@ -3,11 +3,9 @@
 -- MOB: Apocalyptic_Beast
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
+local text = require("scripts/zones/Dynamis-Buburimu/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 -----------------------------------

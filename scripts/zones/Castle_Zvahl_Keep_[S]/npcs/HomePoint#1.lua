@@ -2,12 +2,8 @@
 -- Area: Castle Zvahl Keep [S]
 --  NPC: HomePoint#1
 -- @pos -554 -70 66 155
------------------------------------
-
-package.loaded["scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

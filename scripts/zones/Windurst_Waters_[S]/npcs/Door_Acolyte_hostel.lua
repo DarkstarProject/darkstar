@@ -3,8 +3,6 @@
 --  NPC: Door Acolyte hostel
 -- @pos 125 -2 216 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 

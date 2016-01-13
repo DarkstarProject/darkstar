@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Nuhn(ZNM T3))
 -- @pos -451 -7 389 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

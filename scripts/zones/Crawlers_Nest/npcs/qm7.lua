@@ -3,10 +3,8 @@
 --  NPC: ??? - Awd Goggie spawn
 -- @pos -253.026 -1.867 253.055 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
 -- onTrade Action

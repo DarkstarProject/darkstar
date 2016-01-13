@@ -2,11 +2,9 @@
 -- Area: Empyreal_Paradox
 --  NPC: Transcendental
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local text = require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");

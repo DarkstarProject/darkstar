@@ -3,9 +3,8 @@
 --  NPC: Beastmen_s_Banner
 -- @pos 0.348 -20.126 73.479 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs");
+
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 
 -----------------------------------
 -- onTrade Action

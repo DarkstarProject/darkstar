@@ -3,12 +3,10 @@
 --  NPC: Eaulevisat, R.K.
 -- Outpost Conquest Guards
 -- @pos -257 8 -249 114
-------------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 --------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ffb;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

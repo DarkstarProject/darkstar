@@ -4,10 +4,8 @@
 -- Notes: Used to spawn Bomb Queen
 -- @pos 18 20 -104 205
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
 -- onTrade Action

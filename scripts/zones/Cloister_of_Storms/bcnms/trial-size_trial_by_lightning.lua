@@ -2,12 +2,10 @@
 -- Area: Cloister of Storms
 -- BCNM: Trial by Lightning
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local text = require("scripts/zones/Cloister_of_Storms/TextIDs");
 
 -----------------------------------
 

@@ -4,13 +4,11 @@
 -- Type: Tenshodo Merchant
 -- @pos 1.300 0.000 19.259 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
-require("scripts/zones/Norg/TextIDs");
+local text = require("scripts/zones/Norg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

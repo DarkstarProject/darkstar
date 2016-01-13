@@ -3,11 +3,9 @@
 -- Zone: The_Eldieme_Necropolis_[S] (175)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
+local text = require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

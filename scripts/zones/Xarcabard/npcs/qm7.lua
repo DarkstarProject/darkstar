@@ -4,12 +4,10 @@
 -- Involved in Quests: RNG AF3 quest - Unbridled Passion
 -- @pos -295.065 -25.054 151.250 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade Action

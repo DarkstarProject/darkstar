@@ -4,13 +4,11 @@
 -- Involved in Quest: The Dismayed Customer
 -- @pos -399 -10 -438 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local text = require("scripts/zones/West_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,11 +3,9 @@
 --  NPC: Luck Rune
 -- Involved in Quest: Mhaura Fortune
 -- @pos 70.736 -37.778 149.624 111
------------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------
 -- onTrade

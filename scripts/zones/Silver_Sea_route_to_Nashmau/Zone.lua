@@ -3,10 +3,8 @@
 -- Zone: Silver_Sea_route_to_Nashmau
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
+local text = require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

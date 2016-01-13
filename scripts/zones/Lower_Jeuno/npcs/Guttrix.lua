@@ -5,12 +5,10 @@
 -- @zone: 245
 -- @pos -36.010 4.499 -139.714
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 --[[-----------------------------------------------
 Description:

@@ -3,10 +3,8 @@
 --  NPC: Mahogany Door
 -- @pos -331 0.1 -300 163
 -------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local text = require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 -- onTrade Action

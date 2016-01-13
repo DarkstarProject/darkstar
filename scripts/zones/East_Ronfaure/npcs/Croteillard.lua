@@ -4,10 +4,8 @@
 -- Type: Gate Guard
 -- @pos 87.426 -62.999 266.709 101
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/East_Ronfaure/TextIDs");
+local text = require("scripts/zones/East_Ronfaure/TextIDs");
 
 -----------------------------------
 -- onTrade Action

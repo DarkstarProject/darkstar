@@ -3,9 +3,7 @@
 --  NPC: Switchstix
 -- Type: Standard NPC
 -- @pos 386.091 -13 -17.399 161
------------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 -----------------------------------

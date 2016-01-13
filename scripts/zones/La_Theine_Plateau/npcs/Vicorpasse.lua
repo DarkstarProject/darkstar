@@ -4,12 +4,10 @@
 -- Involved in Mission: The Rescue Drill
 -- @pos -344 37 266 102
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

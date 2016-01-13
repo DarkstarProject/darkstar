@@ -4,10 +4,8 @@
 -- Involved In Quest: The Tenshodo Showdown
 -- @pos 61 -15 10 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

@@ -3,12 +3,10 @@
 --  NPC: ??? Used for Norg quest "Stop Your Whining"
 -- @pos -94.073 -0.999 22.295 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

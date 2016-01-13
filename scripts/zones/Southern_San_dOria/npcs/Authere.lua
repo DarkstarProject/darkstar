@@ -3,12 +3,10 @@
 --  NPC: Authere
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 33 1 -31 230
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 

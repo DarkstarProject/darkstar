@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Ghoyus_Reverie/TextIDs"] = nil;
-require("scripts/zones/Ghoyus_Reverie/TextIDs");
+local text = require("scripts/zones/Ghoyus_Reverie/TextIDs");
 
 -----------------------------------
 -- onInitialize

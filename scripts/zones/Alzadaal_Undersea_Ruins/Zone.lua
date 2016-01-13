@@ -3,11 +3,9 @@
 -- Zone: Alzadaal_Undersea_Ruins (72)
 --
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local text = require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 -----------------------------------
 -- onInitialize

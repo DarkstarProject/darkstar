@@ -6,7 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

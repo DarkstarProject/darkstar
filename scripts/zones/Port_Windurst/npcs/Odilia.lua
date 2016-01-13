@@ -7,8 +7,6 @@
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

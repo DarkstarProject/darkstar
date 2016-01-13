@@ -4,13 +4,11 @@
 -- Involved In Mission: The Zeruhn Report
 -- @pos -58 8 -333 172
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local text = require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

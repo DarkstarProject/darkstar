@@ -4,11 +4,9 @@
 -- Outpost Conquest Guards
 -- @pos 200.254 -1 -80.324 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -20,7 +18,7 @@ local csid        = 0x7ff7;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

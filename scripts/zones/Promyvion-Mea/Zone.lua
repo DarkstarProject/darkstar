@@ -2,14 +2,12 @@
 --
 -- Zone: Promyvion-Mea (20)
 --
------------------------------------
- package.loaded["scripts/zones/Promyvion-Mea/TextIDs"] = nil;
 ----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/missions");
-require("scripts/zones/Promyvion-Mea/TextIDs");
+local text = require("scripts/zones/Promyvion-Mea/TextIDs");
 
 -----------------------------------
 -- onInitialize

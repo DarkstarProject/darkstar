@@ -2,13 +2,11 @@
 -- Area: Mine_Shaft_2716
 --  NPC: Shaft entrance
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
+local text = require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 -----------------------------------
 -- onTrade Action

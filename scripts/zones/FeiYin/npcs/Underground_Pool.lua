@@ -6,13 +6,11 @@
 -- @pos 7 0 247 204 (H-5)
 -- @pos -168 0 247 204 (F-5)
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/FeiYin/TextIDs");
+local text = require("scripts/zones/FeiYin/TextIDs");
 
 -----------------------------------
 -- onTrade Action

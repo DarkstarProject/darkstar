@@ -4,14 +4,12 @@
 -- Involved In Quest: Signed In Blood and The Goblin Tailor
 -- @zone 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local text = require("scripts/zones/Ordelles_Caves/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

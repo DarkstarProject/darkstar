@@ -6,7 +6,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local text = require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- onMobInitialize Action

@@ -4,13 +4,11 @@
 -- Mini Quest used in : Whence Blows the Wind
 -- @pos 185 -3 -116 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

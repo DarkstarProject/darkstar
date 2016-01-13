@@ -4,14 +4,12 @@
 -- @pos -78 -0.5 600 106
 -- Teleports Players to Abyssea - Grauberg
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/abyssea");
-require("scripts/zones/North_Gustaberg/TextIDs");
+local text = require("scripts/zones/North_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

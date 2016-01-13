@@ -4,14 +4,12 @@
 -- @zone 161
 -- @pos -75 0 19
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

@@ -3,10 +3,8 @@
 --  NPC: Chutarmire
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------

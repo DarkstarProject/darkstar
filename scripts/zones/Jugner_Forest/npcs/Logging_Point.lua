@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Jugner Forest
 --  NPC: Logging Point
------------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/logging");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local text = require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
 -- onTrade

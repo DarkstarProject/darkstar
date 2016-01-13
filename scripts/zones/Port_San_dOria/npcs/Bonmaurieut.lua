@@ -3,13 +3,11 @@
 --  NPC: Bonmaurieut
 -- Only sells when San d'Oria controlls Elshimo Uplands
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

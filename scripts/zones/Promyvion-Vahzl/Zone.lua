@@ -3,13 +3,11 @@
 -- Zone: Promyvion-Vahzl (22)
 --
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 require("scripts/globals/settings");
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
+local text = require("scripts/zones/Promyvion-Vahzl/TextIDs");
 
 -----------------------------------
 -- onInitialize

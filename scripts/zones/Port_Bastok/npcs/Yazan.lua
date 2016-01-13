@@ -2,14 +2,12 @@
 -- Area: Port Bastok
 --  NPC: Yazan
 -- Starts Quests: Bite the Dust (100%)
------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 ------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action

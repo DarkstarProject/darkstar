@@ -4,10 +4,8 @@
 -- Notes: Tells ship ETA time
 -- @pos 0.340 -12.232 -4.120 46
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,11 +4,9 @@
 -- Involved in Mission: The Rescue Drill
 -- @pos -70 1 607 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local text = require("scripts/zones/Ordelles_Caves/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,13 +2,11 @@
 -- Area: Balgas Dais
 --  NPC: Armoury Crate
 -- Balgas Dais Burning Cicrcle Armoury Crate
------------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Balgas_Dais/TextIDs");
+local text = require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 

@@ -5,13 +5,11 @@
 -- @pos 293 3 -213 149 (WAR)(K-9) 
 -- @pos -124 3 -43 149 (MNK)(F-7)
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

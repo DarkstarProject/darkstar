@@ -8,7 +8,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local text = require("scripts/zones/Port_Bastok/TextIDs");
 
 
 -----------------------------------

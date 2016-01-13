@@ -3,11 +3,9 @@
 -- Zone: Castle_Oztroja_[S] (99)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Castle_Oztroja_[S]/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

@@ -2,14 +2,10 @@
 -- Area: Kazham
 --  NPC: Hari Pakhroib
 -- Starts and Finishes Quest: Greetings to the Guardian
------------------------------------
-
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Kazham/TextIDs");
+local text = require("scripts/zones/Kazham/TextIDs");
 
 -----------------------------------
 -- onTrade Action

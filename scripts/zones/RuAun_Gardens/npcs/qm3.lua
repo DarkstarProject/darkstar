@@ -4,10 +4,8 @@
 -- Allows players to spawn the HNM Byakko with a Gem of the West and an Autumnstone.
 -- @pos -410 -70 394 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Notes: Opens south door at J-9 from inside.
 -- @pos 103.703 -26.180 83.000 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local text = require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action

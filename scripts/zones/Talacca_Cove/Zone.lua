@@ -3,11 +3,9 @@
 -- Zone: Talacca_Cove (57)
 --
 -----------------------------------
-package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Talacca_Cove/TextIDs");
+local text = require("scripts/zones/Talacca_Cove/TextIDs");
 
 -----------------------------------
 -- onInitialize

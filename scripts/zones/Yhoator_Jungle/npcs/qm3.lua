@@ -4,12 +4,10 @@
 -- Involved in Quest: True will
 -- @pos 203 0.1 82 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade Action

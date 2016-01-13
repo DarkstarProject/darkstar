@@ -2,10 +2,8 @@
 -- Area: Mhaura
 --  NPC: Hyria
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

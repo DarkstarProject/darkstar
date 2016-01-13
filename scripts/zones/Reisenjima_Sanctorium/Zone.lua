@@ -3,10 +3,8 @@
 -- Zone: Reisenjima Sanctorium (293)
 --
 -----------------------------------
-package.loaded["scripts/zones/Reisenjima_Sanctorium/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Reisenjima_Sanctorium/TextIDs");
+local text = require("scripts/zones/Reisenjima_Sanctorium/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 

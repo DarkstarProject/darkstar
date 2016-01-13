@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Ice Fragment)
 -- @pos 566 0 606 203
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local text = require("scripts/zones/Cloister_of_Frost/TextIDs");
 
 -----------------------------------
 -- onTrade Action

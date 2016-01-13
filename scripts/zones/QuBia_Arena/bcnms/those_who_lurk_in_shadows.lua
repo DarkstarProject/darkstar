@@ -3,12 +3,10 @@
 --  NPC: Those Who Lurk in Shadows
 -- @pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/QuBia_Arena/TextIDs");
+local text = require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
 

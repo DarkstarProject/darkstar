@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/events/harvest_festivals");
 
 -----------------------------------

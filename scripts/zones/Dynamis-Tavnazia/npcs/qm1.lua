@@ -2,11 +2,9 @@
 -- Area: Dynamis-Tavnazia
 --  NPC: ???
 -- @pos 
------------------------------------
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local text = require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------

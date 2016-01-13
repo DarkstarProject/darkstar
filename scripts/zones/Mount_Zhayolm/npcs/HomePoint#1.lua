@@ -2,12 +2,8 @@
 -- Area: Mount Zhayolm
 --  NPC: HomePoint#1
 -- @pos -540.844 -4.000 70.809 61
------------------------------------
-
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

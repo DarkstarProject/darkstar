@@ -5,8 +5,6 @@
 -- Start & Finishes Quests: Her Majesty's Garden
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos -105 0.1 72 233
------------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local text = require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

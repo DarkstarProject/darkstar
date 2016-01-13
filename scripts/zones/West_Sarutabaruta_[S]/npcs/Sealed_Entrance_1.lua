@@ -2,13 +2,11 @@
 -- Area: West Sarutabaruta [S]
 --  NPC: Sealed Entrance (Sealed_Entrance_1)
 -- @pos -245.000 -18.100 660.000 95
------------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 
 -----------------------------------
 -- onTrigger

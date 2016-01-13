@@ -4,10 +4,8 @@
 -- Type: Armor Storer
 -- @pos -6.782 -18.428 208.185 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local text = require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 -----------------------------------
 -- onTrade Action

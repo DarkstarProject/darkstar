@@ -2,11 +2,9 @@
 -- Area: Qu'Bia Arena
 -- Name: Shattering stars - Maat Fight
 -- @pos -221 -24 19 206
------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local text = require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 -----------------------------------
 

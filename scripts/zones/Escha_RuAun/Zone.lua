@@ -3,10 +3,8 @@
 -- Zone: Escha_RuAun (289)
 --
 -----------------------------------
-package.loaded["scripts/zones/Escha_RuAun/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Escha_RuAun/TextIDs");
+local text = require("scripts/zones/Escha_RuAun/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 

@@ -4,10 +4,8 @@
 -- Notes: Mechanism for Altepa Gate
 -- @pos -499 10 224 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Western_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action

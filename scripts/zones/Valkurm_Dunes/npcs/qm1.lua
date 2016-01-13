@@ -4,10 +4,8 @@
 -- Involved In Quest: An Empty Vessel
 -- @pos 238.524 2.661 -148.784 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local text = require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------
 -- onTrade Action

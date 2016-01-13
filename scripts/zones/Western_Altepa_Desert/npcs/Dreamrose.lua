@@ -3,13 +3,11 @@
 --  NPC: Dreamrose
 -- Involved in Mission: San D'Oria 6-1
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local text = require("scripts/zones/Western_Altepa_Desert/TextIDs");
 
 -----------------------------------
 -- onTrade Action

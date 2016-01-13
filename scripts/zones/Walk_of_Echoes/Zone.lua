@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Walk_of_Echoes/TextIDs"] = nil;
-require("scripts/zones/Walk_of_Echoes/TextIDs");
+local text = require("scripts/zones/Walk_of_Echoes/TextIDs");
 
 -----------------------------------
 -- onInitialize

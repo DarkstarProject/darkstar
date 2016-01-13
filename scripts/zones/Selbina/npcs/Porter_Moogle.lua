@@ -5,10 +5,8 @@
 -- @zone 248
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

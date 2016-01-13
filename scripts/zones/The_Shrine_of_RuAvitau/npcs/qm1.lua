@@ -3,10 +3,8 @@
 --  NPC: ??? (Spawn Olla Pequena)
 -- @pos 851 0.1 92 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local text = require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

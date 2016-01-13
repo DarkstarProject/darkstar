@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local text = require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -23,7 +22,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

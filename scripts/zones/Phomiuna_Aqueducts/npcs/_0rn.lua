@@ -3,11 +3,9 @@
 --  NPC:  _0rn (Oil lamp)
 -- @pos -60 -23 60 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local text = require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 -----------------------------------
 -- onTrade Action

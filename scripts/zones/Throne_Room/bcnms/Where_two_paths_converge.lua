@@ -2,13 +2,11 @@
 -- Area: Throne Room
 -- Name: Mission 9-2
 -- @pos -111 -6 0 165
------------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Throne_Room/TextIDs");
+local text = require("scripts/zones/Throne_Room/TextIDs");
 
 -----------------------------------
 

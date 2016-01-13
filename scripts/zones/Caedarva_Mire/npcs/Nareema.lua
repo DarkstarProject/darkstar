@@ -4,12 +4,10 @@
 -- Type: Assault
 -- @pos 518.387 -24.707 -467.297 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action

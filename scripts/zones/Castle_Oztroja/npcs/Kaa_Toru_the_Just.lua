@@ -4,10 +4,8 @@
 -- Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
 -- @pos -100.188 -62.125 145.422 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local text = require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

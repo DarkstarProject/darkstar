@@ -4,12 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- @zone: 240
 -- @pos -177.811 -2.835 65.639
------------------------------------
-
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 local keyitems = {
     [0] = {

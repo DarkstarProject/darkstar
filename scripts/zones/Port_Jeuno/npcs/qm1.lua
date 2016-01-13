@@ -4,8 +4,6 @@
 -- Finish Quest: Borghertz's Hands (AF Hands, Many job)
 -- @zone 246
 -- @pos -51 8 -4
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -13,7 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

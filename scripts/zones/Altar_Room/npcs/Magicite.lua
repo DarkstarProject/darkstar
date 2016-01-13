@@ -5,11 +5,9 @@
 -- @zone 152
 -- @pos -344 25 43
 -----------------------------------
-package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Altar_Room/TextIDs");
+local text = require("scripts/zones/Altar_Room/TextIDs");
 
 -----------------------------------
 -- onTrade Action

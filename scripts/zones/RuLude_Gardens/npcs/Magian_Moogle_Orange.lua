@@ -4,12 +4,10 @@
 -- Type: Magian Trials NPC (Weapon/Empyrean Armor)
 -- @pos -11 2.453 118 64
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/magiantrials");
 
 -----------------------------------

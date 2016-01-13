@@ -6,10 +6,7 @@
 -- @pos 24.046 -17 32.751
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-require("scripts/zones/Metalworks/TextIDs");
+local text = require("scripts/zones/Metalworks/TextIDs");
 
 -----------------------------------
 -- onTrade Action

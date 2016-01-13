@@ -4,14 +4,12 @@
 -- Involved In Quest: The Goblin Tailor
 -- @zone 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local text = require("scripts/zones/Gusgen_Mines/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

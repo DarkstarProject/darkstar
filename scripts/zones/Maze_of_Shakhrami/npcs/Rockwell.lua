@@ -3,13 +3,11 @@
 -- Quest: Your Crystal Ball
 -- @pos -18 -13 181 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
 -- onTrade Action

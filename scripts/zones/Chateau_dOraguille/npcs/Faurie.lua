@@ -2,9 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- Faurie
 -- Chat Text and Zone Exit Menu
------------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local text = require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

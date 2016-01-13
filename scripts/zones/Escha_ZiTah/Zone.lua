@@ -3,10 +3,8 @@
 -- Zone: Escha - Zi'Tah (288)
 --
 -----------------------------------
-package.loaded["scripts/zones/Escha_ZiTah/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Escha_ZiTah/TextIDs");
+local text = require("scripts/zones/Escha_ZiTah/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 

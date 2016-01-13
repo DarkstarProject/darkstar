@@ -3,11 +3,9 @@
 -- Name: one_to_be_feared
 -- bcnmID : 992
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
+local text = require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
 --instance 1   @pos -780 -103 -90

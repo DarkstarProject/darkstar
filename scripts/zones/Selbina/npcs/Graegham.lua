@@ -4,12 +4,10 @@
 -- Guild Merchant NPC: Fishing Guild 
 -- @pos -12.423 -7.287 8.665 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

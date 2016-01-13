@@ -4,13 +4,11 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Lightning Headstone)
 -- @pos -74 -4 -87 127
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Behemoths_Dominion/TextIDs");
+local text = require("scripts/zones/Behemoths_Dominion/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,14 +3,12 @@
 -- Door: Great Hall
 -- Involved in Missions: 3-3, 5-2, 6-1, 8-2, 9-1
 -- @pos 0 -1 13 233
------------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local text = require("scripts/zones/Chateau_dOraguille/TextIDs");
 
 -----------------------------------
 -- onTrade Action

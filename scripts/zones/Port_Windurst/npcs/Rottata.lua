@@ -4,11 +4,9 @@
 -- Outpost Teleporter NPC
 -- @pos 193.111 -12.999 215.638 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Port_Windurst/TextIDs");
+local text = require("scripts/zones/Port_Windurst/TextIDs");
 
 guardnation = WINDURST;
 csid         = 0x0228;

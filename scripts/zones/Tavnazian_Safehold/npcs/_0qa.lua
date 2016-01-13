@@ -4,12 +4,10 @@
 -- Involved in mission 2-4
 -- @pos 111 -41 41 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
 -- onTrade Action

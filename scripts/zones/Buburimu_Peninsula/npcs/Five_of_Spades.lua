@@ -3,10 +3,8 @@
 --  NPC: Five of Spades
 -- Invloved in quests: A Greeting Cardian
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

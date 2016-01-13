@@ -3,13 +3,11 @@
 -- Zone: Promyvion-Dem (18)
 --
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/missions");
-require("scripts/zones/Promyvion-Dem/TextIDs");
+local text = require("scripts/zones/Promyvion-Dem/TextIDs");
 
 -----------------------------------
 -- onInitialize

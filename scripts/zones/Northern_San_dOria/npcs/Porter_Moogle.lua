@@ -5,10 +5,8 @@
 -- @zone 231
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

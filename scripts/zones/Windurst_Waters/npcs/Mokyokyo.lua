@@ -3,8 +3,6 @@
 --  NPC: Mokyoko
 -- Starts Windurst Missions
 -- @pos -55 -8 227 238
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

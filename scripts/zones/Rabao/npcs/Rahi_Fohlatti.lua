@@ -4,13 +4,11 @@
 -- Starts Quest: Trial Size Trial by Wind
 -- @pos -17 7 -10 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

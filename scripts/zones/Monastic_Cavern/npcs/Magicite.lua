@@ -4,11 +4,9 @@
 -- Involved in Mission: Magicite
 -- @pos -22 1 -66 150
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+local text = require("scripts/zones/Monastic_Cavern/TextIDs");
 
 -----------------------------------
 -- onTrade Action

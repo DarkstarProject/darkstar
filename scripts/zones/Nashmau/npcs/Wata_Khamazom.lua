@@ -3,10 +3,8 @@
 --  NPC: Wata Khamazom
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/shop");
 
 -----------------------------------

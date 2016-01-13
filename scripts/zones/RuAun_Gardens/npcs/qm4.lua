@@ -4,10 +4,8 @@
 -- Allows players to spawn the HNM Suzaku with a Gem of the South and a Summerstone.
 -- @pos -514 -70 -264 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local text = require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

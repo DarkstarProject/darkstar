@@ -6,8 +6,7 @@
 -------------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 

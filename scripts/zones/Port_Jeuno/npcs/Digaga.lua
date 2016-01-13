@@ -5,10 +5,7 @@
 -- @zone: 246
 -- @pos -52.865    7.999    1.134
 --
------------------------------------
-
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

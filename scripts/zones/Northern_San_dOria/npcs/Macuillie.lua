@@ -4,12 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- @zone: 231
 -- @pos -191.738 11.001 138.656
------------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {

@@ -4,10 +4,8 @@
 -- Involved in Quest: Knight Stalker
 -- @pos 58 1 -70 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local text = require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/globals/pets");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");

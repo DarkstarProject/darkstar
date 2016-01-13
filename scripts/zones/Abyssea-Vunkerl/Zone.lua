@@ -1,14 +1,11 @@
 -----------------------------------
--- 
+--
 -- Zone: Abyssea - Vunkerl
--- 
------------------------------------
-package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
+--
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Vunkerl/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -37,7 +34,7 @@ function onZoneIn(player,prevZone)
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)

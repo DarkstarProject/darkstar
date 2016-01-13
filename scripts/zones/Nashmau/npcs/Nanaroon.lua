@@ -4,10 +4,8 @@
 -- Type: Item Deliverer
 -- @pos -2.404    -6    37.141 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Nashmau/TextIDs");
+local text = require("scripts/zones/Nashmau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

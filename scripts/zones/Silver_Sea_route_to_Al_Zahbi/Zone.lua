@@ -3,10 +3,8 @@
 -- Zone: Silver_Sea_route_to_Al_Zahbi
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
+local text = require("scripts/zones/Silver_Sea_route_to_Al_Zahbi/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

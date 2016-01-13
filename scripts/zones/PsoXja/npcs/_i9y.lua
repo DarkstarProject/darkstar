@@ -3,10 +3,8 @@
 --  NPC: _i9y (Crystal Receptor)
 -- @pos -389.980 -3.198 -203.595 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/PsoXja/TextIDs");
+local text = require("scripts/zones/PsoXja/TextIDs");
 
 -----------------------------------
 -- onTrade

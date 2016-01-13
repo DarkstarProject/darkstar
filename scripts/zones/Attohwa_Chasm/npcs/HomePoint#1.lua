@@ -2,12 +2,8 @@
 -- Area: Attohwa Chasm
 --  NPC: HomePoint#2
 -- @pos  
------------------------------------
-
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local text = require("scripts/zones/Attohwa_Chasm/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -4,10 +4,8 @@
 -- Note: Used to spawn Phantom Worm
 -- @pos 75.943 29.916 118.854 174
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+local text = require("scripts/zones/Kuftal_Tunnel/TextIDs");
 
 -----------------------------------
 -- onSpawn Action

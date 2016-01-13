@@ -4,10 +4,8 @@
 -- @pos 460 0 540
 -- ID: 16916819
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
+local text = require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

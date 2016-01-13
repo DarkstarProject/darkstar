@@ -4,11 +4,9 @@
 -- Mission: ACP - The Echo Awakens
 -- @zone 126
 -- @pos -120.342 -19.471 306.661
------------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Qufim_Island/TextIDs");
+local text = require("scripts/zones/Qufim_Island/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");

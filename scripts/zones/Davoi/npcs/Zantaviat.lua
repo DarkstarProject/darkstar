@@ -4,12 +4,10 @@
 -- Involved in Mission: The Davoi Report
 -- @pos 215 0.1 -10 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 
 -----------------------------------
 -- onTrade Action

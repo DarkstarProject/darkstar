@@ -3,10 +3,8 @@
 --  NPC: cermet portal
 -- @pos 440 0 401 34
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
+local text = require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

@@ -2,12 +2,8 @@
 -- Area: Riverne-Site B01
 --  NPC: HomePoint#1
 -- @pos 
------------------------------------
-
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
+local text = require("scripts/zones/Riverne-Site_B01/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

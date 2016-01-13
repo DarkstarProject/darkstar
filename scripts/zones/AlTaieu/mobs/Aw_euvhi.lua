@@ -2,10 +2,8 @@
 -- Area: AlTaieu
 -- MOB: Aw_euvhi
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

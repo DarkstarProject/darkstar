@@ -2,12 +2,8 @@
 -- Area: Caedarva Mire
 --  NPC: HomePoint#1
 -- @pos -449 13.399 -497 79
------------------------------------
-
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

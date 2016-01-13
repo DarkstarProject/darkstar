@@ -3,15 +3,13 @@
 --  NPC: Lightning Protocrystal
 -- Involved in Quests: Trial by Lightning
 -- @pos 534.5 -13 492 202
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local text = require("scripts/zones/Cloister_of_Storms/TextIDs");
 
 -----------------------------------
 -- onTrade Action

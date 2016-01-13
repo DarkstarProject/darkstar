@@ -3,10 +3,8 @@
 --  NPC: qm2 (???)
 -- Pop for the quest "Chasing Quotas"
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Batallia_Downs/TextIDs");
+local text = require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

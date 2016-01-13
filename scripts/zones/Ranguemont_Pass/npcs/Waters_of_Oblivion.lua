@@ -3,15 +3,13 @@
 --  NPC: Waters of Oblivion
 -- Finish Quest: Painful Memory (BARD AF1)
 -- @pos -284 -45 210 166
------------------------------------
-package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Ranguemont_Pass/TextIDs");
+local text = require("scripts/zones/Ranguemont_Pass/TextIDs");
 
 -----------------------------------
 -- onTrade Action

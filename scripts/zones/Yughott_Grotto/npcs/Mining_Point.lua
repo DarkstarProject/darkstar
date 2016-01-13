@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Yughott Grotto
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Yughott_Grotto/TextIDs");
+local text = require("scripts/zones/Yughott_Grotto/TextIDs");
 
 -----------------------------------
 -- onTrade

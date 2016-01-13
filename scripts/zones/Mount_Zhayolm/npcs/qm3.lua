@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Anantaboga(ZNM T2))
 -- @pos -368 -13 366 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local text = require("scripts/zones/Mount_Zhayolm/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

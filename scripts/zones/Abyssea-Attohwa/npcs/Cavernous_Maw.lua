@@ -4,12 +4,8 @@
 -- @pos -133.197 20.242 -181.658 215
 -- Notes: Teleports Players to Buburimu Peninsula
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Attohwa/TextIDs");
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------

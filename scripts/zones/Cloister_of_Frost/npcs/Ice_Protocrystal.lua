@@ -3,13 +3,11 @@
 --  NPC: Ice Protocrystal
 -- Involved in Quests: Trial by Ice, Trial Size Trial by Ice
 -- @pos 558 0 596 203
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local text = require("scripts/zones/Cloister_of_Frost/TextIDs");
 
 -----------------------------------
 -- onTrade Action

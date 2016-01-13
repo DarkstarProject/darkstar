@@ -3,10 +3,8 @@
 -- Name: Mission Rank 2
 -- @pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local text = require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
 

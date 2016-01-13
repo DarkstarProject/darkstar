@@ -4,10 +4,8 @@
 -- Involved in Quest: Dark Legacy
 -- @pos -159 16 181 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Giddeus/TextIDs");
+local text = require("scripts/zones/Giddeus/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- @pos 2.321 -26.5 4.641 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

@@ -2,10 +2,8 @@
 -- Area: AlTaieu
 --  NPC: Dimensional Portal
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 
 -----------------------------------
 -- onTrade Action

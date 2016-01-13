@@ -3,12 +3,10 @@
 --  NPC: Jagaris
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local text = require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 Deposit = 0x0148;
 Withdrawl = 0x0149;

@@ -4,7 +4,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local text = require("scripts/zones/Empyreal_Paradox/TextIDs");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     if (target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then

@@ -4,12 +4,10 @@
 -- Type: Assault
 -- @pos -208.720 -12.889 -779.713 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local text = require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

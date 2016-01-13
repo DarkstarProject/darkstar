@@ -3,9 +3,8 @@
 --  NPC: Beastmen_s_Banner
 -- @pos 20.169 -80.078 180.063 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------
 -- onTrade Action

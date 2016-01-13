@@ -3,13 +3,11 @@
 --  NPC: Vestal Chamber (chamber of the Star Sibyl)
 -- @pos 0.1 -49 37 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local text = require("scripts/zones/Heavens_Tower/TextIDs");
 
 -----------------------------------
 -- onTrade Action

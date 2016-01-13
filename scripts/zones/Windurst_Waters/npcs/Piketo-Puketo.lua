@@ -4,12 +4,10 @@
 -- Type: Cooking Guild Master
 -- @pos -124.012 -2.999 59.998 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 
 -----------------------------------

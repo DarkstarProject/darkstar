@@ -3,12 +3,10 @@
 -- Zone: Ship_bound_for_Selbina (220)
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+local text = require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------
 -- onInitialize

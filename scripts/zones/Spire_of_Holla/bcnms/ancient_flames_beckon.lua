@@ -3,14 +3,12 @@
 -- Name: ancient_flames_backon
 -- KSNM30
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Holla/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
-require("scripts/zones/Spire_of_Holla/TextIDs");
+local text = require("scripts/zones/Spire_of_Holla/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

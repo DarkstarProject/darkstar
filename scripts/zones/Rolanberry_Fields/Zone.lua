@@ -3,10 +3,8 @@
 -- Zone: Rolanberry_Fields (110)
 --
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+local text = require("scripts/zones/Rolanberry_Fields/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/zone");
 require("scripts/globals/chocobo_digging");
@@ -97,7 +95,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

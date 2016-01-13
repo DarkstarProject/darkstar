@@ -2,12 +2,10 @@
 --
 -- Zone: The_Sanctuary_of_ZiTah (121)
 --
------------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/zone");
 require("scripts/globals/conquest");
@@ -77,7 +75,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

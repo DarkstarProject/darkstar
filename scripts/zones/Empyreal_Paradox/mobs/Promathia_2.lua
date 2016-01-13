@@ -2,9 +2,7 @@
 -- Area: Empyreal Paradox
 -- MOB: Promathia (phase 2)
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local text = require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 

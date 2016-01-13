@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

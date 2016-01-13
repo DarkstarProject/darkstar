@@ -3,14 +3,12 @@
 --  NPC: Treasure Coffer
 -- @zone 150
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+local text = require("scripts/zones/Monastic_Cavern/TextIDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;

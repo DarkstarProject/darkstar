@@ -3,10 +3,8 @@
 --  NPC: <this space intentionally left blank>
 -- @pos -89 0 -374 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
+local text = require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
 -----------------------------------
 -- onTrade Action

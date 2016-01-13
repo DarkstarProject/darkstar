@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Ifrits Cauldron
 --  NPC: Mining Point
------------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/mining");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local text = require("scripts/zones/Ifrits_Cauldron/TextIDs");
 
 -----------------------------------
 -- onTrade

@@ -4,13 +4,10 @@
 -- @pos 125 -2 20 72
 -----------------------------------
 
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local text = require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

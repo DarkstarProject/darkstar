@@ -24,7 +24,7 @@ local inventory = WindInv;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+   tradeConquestGuard(player,npc,trade,guardnation,guardtype,text.CONQUEST);
 end;
 
 -----------------------------------

@@ -4,12 +4,10 @@
 -- Involved in Quest: Trial by Earth
 -- @pos -539 1 -493 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 -----------------------------------
 -- onTrade Action

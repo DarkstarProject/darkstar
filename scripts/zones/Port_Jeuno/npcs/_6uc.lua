@@ -2,10 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Door: Arrivals (from Bastok)
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Port_Jeuno/TextIDs");
+local text = require("scripts/zones/Port_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

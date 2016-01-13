@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos -548.706 -7.197 -53.897 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+local text = require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 local region     = TAVNAZIANARCH;
 local csid    = 0x7ff4;

@@ -4,12 +4,10 @@
 -- Standard Merchant NPC
 -- @pos -1.139 -2.101 -9.000 221
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
+local text = require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
 
 -----------------------------------
 -- onTrade Action

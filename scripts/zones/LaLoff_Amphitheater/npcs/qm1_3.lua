@@ -1,8 +1,6 @@
 -----------------------------------
 -- Area: LaLoff_Amphitheater
 --  NPC: Shimmering Circle (BCNM Entrances)
--------------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
@@ -11,7 +9,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local text = require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 -- Death cutscenes:
 

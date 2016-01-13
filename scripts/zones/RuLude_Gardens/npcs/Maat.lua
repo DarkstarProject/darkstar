@@ -5,8 +5,6 @@
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 243
 -- @pos 8 3 118
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

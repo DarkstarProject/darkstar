@@ -3,10 +3,8 @@
 -- Zone: Provenance (222)
 --
 -----------------------------------
-package.loaded["scripts/zones/Provenance/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Provenance/TextIDs");
+local text = require("scripts/zones/Provenance/TextIDs");
 
 -----------------------------------
 -- onInitialize

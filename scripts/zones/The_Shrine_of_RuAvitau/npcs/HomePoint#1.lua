@@ -2,12 +2,8 @@
 -- Area: The Shrine of Ru'Avitau
 --  NPC: HomePoint#1
 -- @pos -13 48 61 178
------------------------------------
-
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local text = require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

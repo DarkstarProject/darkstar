@@ -2,13 +2,10 @@
 -- Area: Rabao
 --  NPC: Irmilant
 -- Starts and Ends Quests: The Immortal Lu Shang and Indomitable Spirit
------------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Rabao/TextIDs");
+local text = require("scripts/zones/Rabao/TextIDs");
 
 -----------------------------------
 -- onTrade Action

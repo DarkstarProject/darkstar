@@ -9,7 +9,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/zones/Throne_Room/TextIDs");
+local text = require("scripts/zones/Throne_Room/TextIDs");
 
 ---------------------------------------------
 

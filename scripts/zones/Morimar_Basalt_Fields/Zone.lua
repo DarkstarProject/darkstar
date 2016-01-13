@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Morimar_Basalt_Fields/TextIDs"] = nil;
-require("scripts/zones/Morimar_Basalt_Fields/TextIDs");
+local text = require("scripts/zones/Morimar_Basalt_Fields/TextIDs");
 
 -----------------------------------
 -- onInitialize

@@ -4,13 +4,11 @@
 -- Involved In Quest: RYCHARDE_THE_CHEF
 -- Starts and finishes quest: Expertice
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 
 -- player:startEvent(0x3b); -- standar dialog
 -- player:startEvent(0x3c); -- tell to look for ricarde

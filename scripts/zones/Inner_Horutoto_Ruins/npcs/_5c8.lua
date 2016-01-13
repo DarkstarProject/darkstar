@@ -6,12 +6,10 @@
 -- Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
 -- @pos -259 -1 -20 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

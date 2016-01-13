@@ -4,12 +4,10 @@
 -- Involved in Mission: Infiltrate Davoi
 -- @pos 23 0.1 -23 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local text = require("scripts/zones/Davoi/TextIDs");
 require("scripts/globals/pathfind");
 
 local path = {

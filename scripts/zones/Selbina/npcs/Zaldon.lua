@@ -5,13 +5,11 @@
 -- Starts and Finishes: Inside the Belly
 -- @pos -13 -7 -5 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

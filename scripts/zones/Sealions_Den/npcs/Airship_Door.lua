@@ -2,12 +2,10 @@
 -- Area: 
 --  NPC: Airship_Door 
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
+local text = require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -3,11 +3,9 @@
 -- Zone: Castle_Zvahl_Keep (162)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
+local text = require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -33,7 +31,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

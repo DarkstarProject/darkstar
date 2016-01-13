@@ -3,11 +3,9 @@
 -- MOB: Antaeus
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Qufim/TextIDs");
+local text = require("scripts/zones/Dynamis-Qufim/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 -----------------------------------

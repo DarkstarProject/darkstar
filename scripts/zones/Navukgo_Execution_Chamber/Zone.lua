@@ -3,11 +3,9 @@
 -- Zone: Navukgo_Execution_Chamber (64)
 --
 -----------------------------------
-package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
+local text = require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
 
 -----------------------------------
 -- onInitialize

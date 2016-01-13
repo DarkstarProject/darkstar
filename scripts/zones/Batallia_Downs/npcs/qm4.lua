@@ -3,10 +3,8 @@
 --  NPC: qm4 (???)
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Batallia_Downs/TextIDs");
+local text = require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------

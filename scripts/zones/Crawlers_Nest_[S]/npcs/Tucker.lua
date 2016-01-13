@@ -1,10 +1,7 @@
 ----------------------------------
 -- Area: Crawlers' Nest [S]
 --  NPC: Tucker
------------------------------------
-
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
+local text = require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

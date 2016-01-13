@@ -2,13 +2,11 @@
 -- Area: Boneyard_Gully
 --  NPC: _081 (Dark Miasma)
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Boneyard_Gully/TextIDs");
+local text = require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
 -- onTrade Action

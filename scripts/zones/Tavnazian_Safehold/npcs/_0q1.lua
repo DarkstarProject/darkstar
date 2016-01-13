@@ -3,12 +3,10 @@
 --  NPC: Sewer Entrance
 -- @pos 28 -12 44 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 -----------------------------------
 -- onTrade Action

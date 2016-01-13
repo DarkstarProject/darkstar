@@ -6,7 +6,7 @@
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/missions");
-require("scripts/zones/QuBia_Arena/TextIDs");
+local text = require("scripts/zones/QuBia_Arena/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

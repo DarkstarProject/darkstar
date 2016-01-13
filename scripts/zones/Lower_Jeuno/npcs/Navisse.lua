@@ -2,10 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Navisse
 -- Standard Info NPC
------------------------------------
-
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/pathfind");
 
 local path = {

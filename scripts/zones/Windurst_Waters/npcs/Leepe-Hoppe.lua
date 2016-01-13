@@ -4,13 +4,11 @@
 -- Involved in Mission 1-3, Mission 7-2
 -- @pos 13 -9 -197 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

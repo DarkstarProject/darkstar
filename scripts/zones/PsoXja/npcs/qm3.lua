@@ -3,10 +3,8 @@
 --  NPC:  ??? (qm3)
 -- @pos -329.980 28.300 -163.000 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/PsoXja/TextIDs");
+local text = require("scripts/zones/PsoXja/TextIDs");
 
 -----------------------------------
 -- onTrade Action

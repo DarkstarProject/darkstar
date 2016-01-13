@@ -3,12 +3,9 @@
 -- Zone: Abyssea - Altepa
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Altepa/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Altepa/TextIDs");
 
 -----------------------------------
 -- onInitialize

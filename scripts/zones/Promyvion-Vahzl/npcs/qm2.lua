@@ -4,10 +4,8 @@
 -- Notes: Spawn Wailer Floor 4
 -- @pos 339.000 -1.883 144.000 22
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
+local text = require("scripts/zones/Promyvion-Vahzl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,15 +2,13 @@
 -- Area: Lower Jeuno
 --  NPC: Caruvinda
 -- Armor Storage NPC
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/armorstorage"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/armorstorage");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 
 Deposit = 0x273e;
 Withdrawl = 0x273d;

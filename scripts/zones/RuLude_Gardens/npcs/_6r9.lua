@@ -4,14 +4,12 @@
 -- Involved in Mission: Magicite
 -- @pos 0 -5 66 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local text = require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action

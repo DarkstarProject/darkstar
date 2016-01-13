@@ -3,8 +3,6 @@
 --  NPC: Ilumida
 -- Starts and Finishes Quest: A Candlelight Vigil
 -- @pos -75 -1 58 244
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -13,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

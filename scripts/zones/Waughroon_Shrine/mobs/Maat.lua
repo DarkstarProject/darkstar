@@ -3,10 +3,8 @@
 -- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local text = require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

@@ -5,10 +5,8 @@
 -- @zone 245
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 

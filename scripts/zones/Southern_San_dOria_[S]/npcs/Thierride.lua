@@ -5,7 +5,7 @@
 -- @pos -124 -2 14
 -----------------------------------
 
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 
 -----------------------------------

@@ -2,12 +2,8 @@
 -- Area: Mhaura
 --  NPC: HomePoint#1
 -- @pos -12.750 -15.791 87.286 249
------------------------------------
-
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

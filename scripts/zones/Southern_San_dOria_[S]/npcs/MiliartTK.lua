@@ -4,12 +4,10 @@
 -- Type: Sigil NPC
 -- @pos 107 1 -31 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/campaign");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local text = require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

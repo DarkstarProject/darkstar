@@ -3,11 +3,9 @@
 -- Zone: Jugner_Forest_[S] (82)
 --
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local text = require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 
 -----------------------------------
 -- onInitialize

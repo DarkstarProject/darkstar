@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos 210 -22 -201 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Xarcabard/TextIDs");
+local text = require("scripts/zones/Xarcabard/TextIDs");
 
 local region     = VALDEAUNIA;
 local csid    = 0x7ff4;

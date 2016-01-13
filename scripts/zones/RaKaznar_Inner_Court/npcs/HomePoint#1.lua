@@ -2,12 +2,8 @@
 -- Area: RaKaznar_Inner_Court
 --  NPC: HomePoint#1
 -- @pos 
------------------------------------
-
-package.loaded["scripts/zones/RaKaznar_Inner_Court/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/RaKaznar_Inner_Court/TextIDs");
+local text = require("scripts/zones/RaKaznar_Inner_Court/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

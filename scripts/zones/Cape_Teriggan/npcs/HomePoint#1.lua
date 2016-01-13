@@ -2,12 +2,8 @@
 -- Area: Cape Teriggan
 --  NPC: HomePoint#1
 -- @pos  -303 -8 526 113
------------------------------------
-
-package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Cape_Teriggan/TextIDs");
+local text = require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

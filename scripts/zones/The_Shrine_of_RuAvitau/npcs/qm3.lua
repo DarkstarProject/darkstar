@@ -3,10 +3,8 @@
 --  NPC: ??? (Spawn Ullikummi)
 -- @pos 739 -99 -581 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local text = require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,11 +4,9 @@
 -- Outpost Teleporter NPC
 -- @pos 94.457 -0.375 -66.161 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 guardnation = BASTOK;
 csid         = 0x0245;

@@ -3,11 +3,9 @@
 -- Zone: Mamook (65)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Mamook/TextIDs");
+local text = require("scripts/zones/Mamook/TextIDs");
 
 -----------------------------------
 -- onInitialize

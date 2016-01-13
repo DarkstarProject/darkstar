@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Verdelet(ZNM T2))
 -- @pos 417 -19 -69 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

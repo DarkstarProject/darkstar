@@ -2,10 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Elesca
 -- Map Seller NPC
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/magic_maps");
 
 -----------------------------------

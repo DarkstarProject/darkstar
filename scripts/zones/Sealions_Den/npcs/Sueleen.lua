@@ -3,11 +3,9 @@
 --  NPC: Sueleen
 -- @pos 612 132 774 32
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
+local text = require("scripts/zones/Sealions_Den/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 

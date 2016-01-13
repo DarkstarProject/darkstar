@@ -3,11 +3,9 @@
 -- WOGT Quest
 -- @pos 150 -39 331 95
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local text = require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

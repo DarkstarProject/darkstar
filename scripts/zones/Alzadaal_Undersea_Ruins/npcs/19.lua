@@ -2,10 +2,8 @@
 -- Area: Alzadaal Undersea Ruins
 --  NPC: 19 (no name)
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local text = require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
 
 -----------------------------------
 -- onTrade Action

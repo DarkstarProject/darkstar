@@ -4,10 +4,8 @@
 -- Type: Standard NPC
 -- @zone 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/limbus");
 
 -----------------------------------

@@ -4,11 +4,9 @@
 -- Type: Standard NPC
 -- @pos 22.700 -8.804 -45.591 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 

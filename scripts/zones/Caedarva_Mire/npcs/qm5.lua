@@ -3,10 +3,7 @@
 --  NPC: qm5
 -- Involved in quest: Get the Picture
 -- @pos  -389 6 -597 79
------------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
-
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local text = require("scripts/zones/Caedarva_Mire/TextIDs");
 
 -----------------------------------
 -- onTrade Action

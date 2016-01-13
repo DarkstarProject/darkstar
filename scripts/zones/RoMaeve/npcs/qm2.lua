@@ -4,12 +4,10 @@
 -- Involved in Mission: Bastok 7-1
 -- @pos 102 -4 -114 122 and <many pos>
 -----------------------------------
-package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RoMaeve/TextIDs");
+local text = require("scripts/zones/RoMaeve/TextIDs");
 
 -----------------------------------
 -- onTrade Action

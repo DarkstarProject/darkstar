@@ -4,8 +4,6 @@
 -- Involved in Missions: Calm Before the Storm (CoP 7-4)
 -- @pos 120.615 -5.457 -390.133 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

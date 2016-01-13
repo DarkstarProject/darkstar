@@ -3,12 +3,10 @@
 -- Name: Shattering stars - Maat Fight
 -- @pos -509 158 -211 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local text = require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- Maat Battle in Horlais Peak

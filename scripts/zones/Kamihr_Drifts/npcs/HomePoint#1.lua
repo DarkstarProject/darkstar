@@ -2,12 +2,8 @@
 -- Area: Kamihr Drifts
 --  NPC: HomePoint#1
 -- @pos 210 20.299 315 267
------------------------------------
-
-package.loaded["scripts/zones/Kamihr_Drifts/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Kamihr_Drifts/TextIDs");
+local text = require("scripts/zones/Kamihr_Drifts/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

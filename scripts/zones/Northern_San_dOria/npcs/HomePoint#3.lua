@@ -2,12 +2,8 @@
 -- Area: Northern San dOria
 --  NPC: HomePoint#3
 -- @pos 70 -0.2 10 231
------------------------------------
-
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

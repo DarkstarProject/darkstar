@@ -4,12 +4,10 @@
 -- @pos -48 0 435 84
 -- Teleports Players to Batallia Downs
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Batallia_Downs_[S]/TextIDs");
+local text = require("scripts/zones/Batallia_Downs_[S]/TextIDs");
 require("scripts/globals/titles");
 
 -----------------------------------

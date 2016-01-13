@@ -2,13 +2,11 @@
 -- Area: Spire of Vahzl
 --  NPC: Web of Recollection
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Vahzl/TextIDs");
+local text = require("scripts/zones/Spire_of_Vahzl/TextIDs");
 
 -----------------------------------
 -- onTrade Action

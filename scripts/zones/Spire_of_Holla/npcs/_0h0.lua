@@ -2,13 +2,11 @@
 -- Area: Spire of Holla
 --  NPC: Web of Recollection
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Holla/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Holla/TextIDs");
+local text = require("scripts/zones/Spire_of_Holla/TextIDs");
 
 -----------------------------------
 -- onTrade Action

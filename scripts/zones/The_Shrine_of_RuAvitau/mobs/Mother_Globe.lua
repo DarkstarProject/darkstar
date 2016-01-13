@@ -2,8 +2,6 @@
 -- Area: The Shrine of Ru'Avitau
 --  NPC: Mother Globe
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/status");
 require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );

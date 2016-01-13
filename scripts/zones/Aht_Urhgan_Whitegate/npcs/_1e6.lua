@@ -3,17 +3,13 @@
 -- Door: Kokba Hostel
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -21,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x0046);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

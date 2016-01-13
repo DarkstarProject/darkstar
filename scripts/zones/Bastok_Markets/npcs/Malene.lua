@@ -4,14 +4,10 @@
 -- Type: Quest NPC
 -- @zone: 235
 -- @pos -173 -4 64
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

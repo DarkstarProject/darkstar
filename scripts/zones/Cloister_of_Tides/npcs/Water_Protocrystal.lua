@@ -3,13 +3,11 @@
 --  NPC: Water Protocrystal
 -- Involved in Quests: Trial by Water, Trial Size Trial by Water
 -- @pos 560 36 560 211
------------------------------------
-package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Cloister_of_Tides/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tides/TextIDs");
 
 -----------------------------------
 -- onTrade Action

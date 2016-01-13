@@ -5,11 +5,9 @@
 -- @zone 143
 -- @pos 15 -31 -94
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local text = require("scripts/zones/Palborough_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action

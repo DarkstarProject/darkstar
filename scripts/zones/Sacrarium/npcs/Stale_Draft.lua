@@ -3,10 +3,8 @@
 -- Area:  Sacrarium
 -- Notes: Used to spawn Swift Belt NM's
 -----------------------------------
-package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Sacrarium/TextIDs");
+local text = require("scripts/zones/Sacrarium/TextIDs");
     
 -----------------------------------    
 -- onTrigger Action    

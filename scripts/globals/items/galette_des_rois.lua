@@ -9,7 +9,7 @@
 -----------------------------------------
 
 require("scripts/globals/status");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local text = require("scripts/zones/Bastok_Mines/TextIDs");
 
 -----------------------------------------
 -- OnItemCheck

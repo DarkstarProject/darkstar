@@ -3,12 +3,10 @@
 --  NPC: Kasim
 -- @pos -46 0 -148 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local text = require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
 local region     = LITELOR;
 local csid    = 0x7ff4;

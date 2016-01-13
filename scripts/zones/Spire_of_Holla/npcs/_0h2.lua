@@ -2,11 +2,9 @@
 -- Area: Spire_of_Holla
 --  NPC: web of regret
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Holla/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Spire_of_Holla/TextIDs");
+local text = require("scripts/zones/Spire_of_Holla/TextIDs");
 
 -----------------------------------
 -- onTrade Action

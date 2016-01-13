@@ -4,11 +4,9 @@
 -- @zone 4
 -- @pos -345.236 -3.188 -976.563 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local text = require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/missions");
 
 -----------------------------------

@@ -2,11 +2,7 @@
 -- Area: Outer Horutoto Ruins
 --  NPC: Strange Apparatus
 -- @pos: -574 0 739 194
------------------------------------
-
-package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
-
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
+local text = require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
 require("scripts/globals/strangeapparatus");
 
 -----------------------------------

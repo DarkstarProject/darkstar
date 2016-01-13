@@ -3,11 +3,9 @@
 --  NPC: Shattered Telepoint
 -- @pos 334 19 -60 102
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -6,10 +6,7 @@
 -- @pos -323.673 -16.001 -49.930
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

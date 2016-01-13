@@ -4,10 +4,8 @@
 -- Involved in Quest: The Cold Light of Day
 -- @pos  744 0 -671 107
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/South_Gustaberg/TextIDs");
+local text = require("scripts/zones/South_Gustaberg/TextIDs");
 
 -----------------------------------
 -- onTrade Action

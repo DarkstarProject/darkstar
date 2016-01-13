@@ -2,10 +2,8 @@
 -- Area: Buburimu Peninsula
 --  NPC: Signpost
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------
 -- onTrade Action

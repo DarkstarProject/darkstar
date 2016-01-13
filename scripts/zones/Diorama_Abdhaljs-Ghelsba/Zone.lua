@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs"] = nil;
-require("scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs");
+local text = require("scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs");
 
 -----------------------------------
 -- onInitialize

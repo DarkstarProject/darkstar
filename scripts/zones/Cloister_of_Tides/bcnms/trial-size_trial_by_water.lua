@@ -2,13 +2,11 @@
 -- Area: Cloister of Tides
 -- BCNM: Trial by Water
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tides/TextIDs");
+local text = require("scripts/zones/Cloister_of_Tides/TextIDs");
 
 -----------------------------------
 

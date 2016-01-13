@@ -3,12 +3,10 @@
 --  NPC: Lobho Ukipturi
 -- @pos -485 -31 50 118
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 local region     = KOLSHUSHU;
 local csid    = 0x7ff4;

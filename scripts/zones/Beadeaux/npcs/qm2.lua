@@ -4,10 +4,8 @@
 -- Type: Quest NPC
 -- @pos -79 1 -99 147
 --------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
---------------------------
 
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/weather");
 

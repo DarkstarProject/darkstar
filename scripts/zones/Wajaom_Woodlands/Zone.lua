@@ -2,14 +2,12 @@
 --
 -- Zone: Wajaom_Woodlands (51)
 --
------------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
 package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
+local text = require("scripts/zones/Wajaom_Woodlands/TextIDs");
 require("scripts/globals/chocobo_digging");
 
 -----------------------------------

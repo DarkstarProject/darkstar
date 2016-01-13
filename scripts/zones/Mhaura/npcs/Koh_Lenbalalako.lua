@@ -4,10 +4,8 @@
 -- Type: Standard NPC
 -- @pos -64.412 -17 29.213 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 

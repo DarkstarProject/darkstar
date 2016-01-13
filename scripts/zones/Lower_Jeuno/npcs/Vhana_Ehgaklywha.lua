@@ -3,10 +3,7 @@
 --  NPC: Vhana Ehgaklywha
 -- Standard Info NPC
 -- @pos -122.853 0.000 -195.605
------------------------------------
-
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local text = require("scripts/zones/Lower_Jeuno/TextIDs");
 package.loaded["scripts/globals/pathfind"] = nil;
 require("scripts/globals/pathfind");
 

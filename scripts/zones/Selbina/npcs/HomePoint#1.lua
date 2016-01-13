@@ -2,12 +2,8 @@
 -- Area: Selbina
 --  NPC: HomePoint#1
 -- @pos 36.117 -10.729 34.635 248
------------------------------------
-
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

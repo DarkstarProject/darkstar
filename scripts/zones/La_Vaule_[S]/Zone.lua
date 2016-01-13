@@ -3,11 +3,9 @@
 -- Zone: La_Vaule_[S] (85)
 --
 -----------------------------------
-package.loaded["scripts/zones/La_Vaule_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/La_Vaule_[S]/TextIDs");
+local text = require("scripts/zones/La_Vaule_[S]/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 -----------------------------------

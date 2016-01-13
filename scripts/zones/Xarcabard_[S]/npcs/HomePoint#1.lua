@@ -2,12 +2,8 @@
 -- Area: Xarcabard [S]
 --  NPC: HomePoint#1
 -- @pos  223 -13 -254 137
------------------------------------
-
-package.loaded["scripts/zones/Xarcabard_[S]/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Xarcabard_[S]/TextIDs");
+local text = require("scripts/zones/Xarcabard_[S]/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -3,14 +3,12 @@
 --  NPC: Treasure Chest
 -- @zone 213
 -----------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
+local text = require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

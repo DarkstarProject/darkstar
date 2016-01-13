@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Chocobo_Circuit/TextIDs"] = nil;
-require("scripts/zones/Chocobo_Circuit/TextIDs");
+local text = require("scripts/zones/Chocobo_Circuit/TextIDs");
 
 -----------------------------------
 -- onInitialize

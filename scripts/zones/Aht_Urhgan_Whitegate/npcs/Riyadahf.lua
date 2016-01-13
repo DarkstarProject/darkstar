@@ -2,10 +2,7 @@
 -- Area: Aht'Urhgan Whitegate
 --  NPC: Riyadahf
 -- Map Seller NPC
------------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local text = require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/magic_maps");
 
 -----------------------------------

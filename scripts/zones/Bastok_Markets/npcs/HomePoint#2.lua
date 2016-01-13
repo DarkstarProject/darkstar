@@ -2,12 +2,8 @@
 -- Area: Bastok Markets
 --  NPC: HomePoint#2
 -- @pos -328 -12 -33 235
------------------------------------
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

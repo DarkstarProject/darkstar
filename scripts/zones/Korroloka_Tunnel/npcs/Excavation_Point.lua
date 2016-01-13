@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
 --  NPC: Excavation Point
------------------------------------
-package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Korroloka_Tunnel/TextIDs");
+local text = require("scripts/zones/Korroloka_Tunnel/TextIDs");
 
 -----------------------------------
 -- onTrade

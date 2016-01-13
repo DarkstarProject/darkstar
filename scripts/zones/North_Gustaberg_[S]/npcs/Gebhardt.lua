@@ -2,13 +2,11 @@
 -- Area: North Gustaberg (S) (I-6)
 --  NPC: Gebhardt
 -- Involved in Quests: The Fighting Fourth
------------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
+local text = require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

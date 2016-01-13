@@ -3,12 +3,9 @@
 -- Zone: Abyssea - Empyreal_Paradox
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Empyreal_Paradox/TextIDs");
 
 -----------------------------------
 -- onInitialize

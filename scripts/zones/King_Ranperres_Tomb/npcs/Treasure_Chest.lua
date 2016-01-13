@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 190
 -----------------------------------
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+local text = require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;

@@ -4,10 +4,8 @@
 -- @zone 147
 -- @pos <many>
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 

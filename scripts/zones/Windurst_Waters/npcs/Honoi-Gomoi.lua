@@ -5,12 +5,10 @@
 -- @zone = 238
 -- @pos = -195 -11 -120
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- onTrade Action

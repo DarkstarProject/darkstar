@@ -2,11 +2,7 @@
 -- Area: Bastok Markets
 --  NPC: Red Canyon
 -- Standard NPC
------------------------------------
-
-
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-require("scripts/zones/Bastok_Markets/TextIDs");
+local text = require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,10 +4,8 @@
 -- Reports the time remaining before boat arrival.
 -- @pos 17.979 -2.39 -58.800 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Selbina/TextIDs");
+local text = require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

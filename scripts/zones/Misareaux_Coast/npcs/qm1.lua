@@ -3,10 +3,8 @@
 --  NPC: ??? (Spawn Gration)
 -- @pos 113.563 -16.302 38.912 25
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local text = require("scripts/zones/Misareaux_Coast/TextIDs");
 
 -----------------------------------
 -- onTrade Action

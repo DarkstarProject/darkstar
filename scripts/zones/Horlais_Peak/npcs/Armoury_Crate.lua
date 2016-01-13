@@ -2,11 +2,9 @@
 -- Area: Horlais Peak
 --  NPC: Armoury Crate
 -------------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local text = require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- @pos 6.612 -3.5 278.553 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 
 -----------------------------------
 -- onTrade Action

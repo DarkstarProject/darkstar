@@ -5,8 +5,6 @@
 -- Involved in Quest: Riding on the Clouds
 -- @zone 238
 -- @pos 13 -5 -157
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

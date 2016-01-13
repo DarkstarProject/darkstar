@@ -3,10 +3,8 @@
 -- Area: Sacrarium
 -- @pos 99.772 -1.614 51.545 28
 -----------------------------------
-package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Sacrarium/TextIDs");
+local text = require("scripts/zones/Sacrarium/TextIDs");
 
 -----------------------------------
 -- onTrigger Action

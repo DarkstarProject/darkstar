@@ -2,12 +2,8 @@
 -- Area: Windurst Walls
 --  NPC: HomePoint#2
 -- @pos -212 0.001 -99 239
------------------------------------
-
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -3,13 +3,11 @@
 --  NPC: Web of Recollections
 -- @pos 0.000 -2.0 247.992 19
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Dem/TextIDs");
+local text = require("scripts/zones/Spire_of_Dem/TextIDs");
 
 -----------------------------------
 -- onTrade Action

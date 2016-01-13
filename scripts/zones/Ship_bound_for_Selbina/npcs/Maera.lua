@@ -4,12 +4,10 @@
 -- Type: Standard Merchant NPC
 -- @pos -1.139 -2.101 -9.000 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+local text = require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -1,12 +1,10 @@
 -----------------------------------    
 -- Area: Promyvion holla
 -- ??? map acquisition
------------------------------------    
-package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Promyvion-Holla/TextIDs");
+local text = require("scripts/zones/Promyvion-Holla/TextIDs");
     
 -----------------------------------    
 -- onTrigger Action    

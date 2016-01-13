@@ -3,11 +3,9 @@
 -- Zone: Leafallia
 --
 -----------------------------------
-package.loaded["scripts/zones/Leafallia/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Leafallia/TextIDs");
+local text = require("scripts/zones/Leafallia/TextIDs");
 
 -----------------------------------
 -- onInitialize

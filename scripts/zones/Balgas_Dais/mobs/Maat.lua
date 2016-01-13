@@ -3,10 +3,8 @@
 -- MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Balgas_Dais/TextIDs");
+local text = require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

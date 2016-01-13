@@ -4,13 +4,11 @@
 -- Used In Quest: Whence Blows the Wind 
 -- @pos 168 -1 -22 150
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Monastic_Cavern/TextIDs");
+local text = require("scripts/zones/Monastic_Cavern/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -8,7 +8,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local text = require("scripts/zones/Windurst_Walls/TextIDs");
 
 
 -----------------------------------

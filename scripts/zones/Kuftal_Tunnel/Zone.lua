@@ -3,12 +3,10 @@
 -- Zone: Kuftal_Tunnel (174)
 --
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
+local text = require("scripts/zones/Kuftal_Tunnel/TextIDs");
 require("scripts/globals/weather");
 
 -----------------------------------
@@ -36,7 +34,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

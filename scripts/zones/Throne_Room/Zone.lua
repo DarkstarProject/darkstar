@@ -3,11 +3,9 @@
 -- Zone: Throne_Room (165)
 --
 -----------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Throne_Room/TextIDs");
+local text = require("scripts/zones/Throne_Room/TextIDs");
 
 -----------------------------------
 -- onInitialize
@@ -24,7 +22,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

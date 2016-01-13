@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 142
 -----------------------------------
-package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Yughott_Grotto/TextIDs");
+local text = require("scripts/zones/Yughott_Grotto/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

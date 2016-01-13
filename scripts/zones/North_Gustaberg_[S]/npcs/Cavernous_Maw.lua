@@ -4,13 +4,11 @@
 -- @pos 466 0 479 88
 -- Teleports Players to North Gustaberg
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
+local text = require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action

@@ -2,10 +2,8 @@
 -- Area: Mhaura
 --  NPC: Zhon Kihshimo
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Mhaura/TextIDs");
+local text = require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/settings");
 
 -----------------------------------

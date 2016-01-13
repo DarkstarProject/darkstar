@@ -3,14 +3,12 @@
 --  NPC: Papal Chambers
 -- Finish Mission: The Davoi Report
 -- @pos 131 -11 122 231
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

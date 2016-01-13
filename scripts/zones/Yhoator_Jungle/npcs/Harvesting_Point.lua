@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Yhoator Jungle
 --  NPC: Harvesting Point
------------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/Yhoator_Jungle/TextIDs");
+local text = require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 -----------------------------------
 -- onTrade

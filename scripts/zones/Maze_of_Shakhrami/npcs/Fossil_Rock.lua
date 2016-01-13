@@ -4,13 +4,11 @@
 -- Used in Mission: Windurst Mission 2-1
 -- @pos 17 18 184 198 + <many pos>
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local text = require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 
 -----------------------------------
 -- onTrade Action

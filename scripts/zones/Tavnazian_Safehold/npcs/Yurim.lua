@@ -2,11 +2,9 @@
 -- Area: Tavnazian Safehold
 --  NPC: Yurim
 -- Standard Info NPC
------------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local text = require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
                      --reward              tradebase   tradeChip                     tradeOrgane1          tradeOrgane2            tradeOrgane3        tradeOrgane4
 --Relaxing Earring     14792; Silver Earring 13327;  Black Chip  481; Luminian Tissue x5 1783; Euvhi Organ x5  1818; 

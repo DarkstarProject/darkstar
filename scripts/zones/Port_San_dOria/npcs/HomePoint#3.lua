@@ -2,12 +2,8 @@
 -- Area: Port San dOria
 --  NPC: HomePoint#3
 -- @pos -6 -13 -150 232
------------------------------------
-
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local text = require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------

@@ -5,10 +5,8 @@
 -- Allows players to spawn Absolute Virtue by killing Jailer of Love.
 -- @pos , 431 -0 -603 
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/AlTaieu/TextIDs");
+local text = require("scripts/zones/AlTaieu/TextIDs");
 
 
 -----------------------------------

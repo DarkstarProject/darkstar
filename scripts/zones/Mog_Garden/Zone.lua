@@ -3,11 +3,9 @@
 -- Zone: Mog Garden (280)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/Mog_Garden/TextIDs");
+local text = require("scripts/zones/Mog_Garden/TextIDs");
 
 -----------------------------------
 -- onInitialize

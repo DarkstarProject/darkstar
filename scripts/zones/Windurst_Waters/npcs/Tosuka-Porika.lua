@@ -5,8 +5,6 @@
 -- Involved in Quests: Hat in Hand, Past Reflections, Blessed Radiance
 -- Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
 -- @pos -26 -6 103 238
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 
@@ -14,7 +12,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
 
 -----------------------------------

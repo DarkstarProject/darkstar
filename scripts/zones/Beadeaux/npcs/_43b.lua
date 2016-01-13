@@ -4,13 +4,11 @@
 -- Involved in Quests: The Rescue
 -- @pos 56 0.1 -23 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Beadeaux/TextIDs");
+local text = require("scripts/zones/Beadeaux/TextIDs");
 
 -----------------------------------
 -- onTrade Action

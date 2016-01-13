@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 --  NPC: Harvesting Point
------------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/harvesting");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local text = require("scripts/zones/Bhaflau_Thickets/TextIDs");
 
 -----------------------------------
 -- onTrade

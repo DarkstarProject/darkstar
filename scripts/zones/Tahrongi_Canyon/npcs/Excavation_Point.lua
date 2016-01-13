@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Tahrongi Canyon
 --  NPC: Excavation Point
------------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local text = require("scripts/zones/Tahrongi_Canyon/TextIDs");
 
 -----------------------------------
 -- onTrade

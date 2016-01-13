@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Attohwa Chasm
 --  NPC: Cradle_of_Rebirth
------------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
 
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local text = require("scripts/zones/Attohwa_Chasm/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 

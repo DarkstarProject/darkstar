@@ -3,10 +3,8 @@
 --  NPC: ??? - Kurrea spawn
 -- @pos -249.320 -16.189 41.497 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Lufaise_Meadows/TextIDs");
+local text = require("scripts/zones/Lufaise_Meadows/TextIDs");
 
 -----------------------------------
 -- onTrade Action

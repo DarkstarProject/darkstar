@@ -5,12 +5,10 @@
 -- @zone 212
 -- @pos -130 1.256 252.696
 -----------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Gustav_Tunnel/TextIDs");
+local text = require("scripts/zones/Gustav_Tunnel/TextIDs");
 
 -----------------------------------
 -- onTrade Action

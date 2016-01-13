@@ -2,12 +2,10 @@
 -- Area: Dynamis Xarcabard
 --  NPC: ??? (Spawn when mega is defeated)
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local text = require("scripts/zones/Dynamis-Xarcabard/TextIDs");
 
 -----------------------------------
 -- onTrade

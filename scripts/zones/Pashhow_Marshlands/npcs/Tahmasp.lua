@@ -4,12 +4,10 @@
 -- Type: Outpost Vendor
 -- @pos 464 24 416 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
+local text = require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 local region     = DERFLAND;
 local csid    = 0x7ff4;

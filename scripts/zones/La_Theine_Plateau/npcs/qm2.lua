@@ -3,13 +3,11 @@
 --  NPC: ??? (qm2)
 -- Involved in Quest: HITTING_THE_MARQUISATE (THF AF3)
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local text = require("scripts/zones/La_Theine_Plateau/TextIDs");
 
 -----------------------------------
 -- onTrade

@@ -6,7 +6,7 @@
 package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Cape_Teriggan/TextIDs");
+local text = require("scripts/zones/Cape_Teriggan/TextIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
@@ -35,7 +35,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, text.CONQUEST_BASE);
     end
 end;
 

@@ -2,15 +2,13 @@
 -- Area: Buburimu Peninsula
 --  NPC: Song Runes
 -- Finishes Quest: The Old Monument
------------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local text = require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------
 -- onTrade Action

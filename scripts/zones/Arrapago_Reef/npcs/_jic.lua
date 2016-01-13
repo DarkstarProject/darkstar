@@ -4,13 +4,10 @@
 -- @pos 36 -10 620 54
 -----------------------------------
 
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local text = require("scripts/zones/Arrapago_Reef/TextIDs");
 
 -----------------------------------
 -- onTrade Action

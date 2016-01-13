@@ -3,10 +3,8 @@
 --  NPC: Large Apparatus (Right) - Holla
 -- @pos -242.301 -1.849 269.867 14
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local text = require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
 -- onTrade Action

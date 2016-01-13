@@ -4,14 +4,12 @@
 -- @pos 340 -0.5 -680
 -- Teleports Players to Abyssea - Altepa
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/South_Gustaberg/TextIDs");
+local text = require("scripts/zones/South_Gustaberg/TextIDs");
 
 -----------------------------------
 

@@ -4,9 +4,7 @@
 -- Type: Cruor NPC
 -- @pos ? ? ? 254 (missing from DSP database)
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");

@@ -3,17 +3,12 @@
 --  NPC: Ohbiru-Dohbiru
 -- Involved in quest: Food For Thought, Say It with Flowers
 -- Starts and finishes quest: Toraimarai Turmoil
------------------------------------
-
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-
-
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local text = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action

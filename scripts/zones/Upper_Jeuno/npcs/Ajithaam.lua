@@ -2,8 +2,6 @@
 -- Area: Upper Jeuno
 --  NPC: Ajithaam
 -- @pos -82 0.1 160 244
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -12,7 +10,7 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 --[[
 Bitmask Designations:

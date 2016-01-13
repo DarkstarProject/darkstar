@@ -4,11 +4,9 @@
 -- Outpost Teleporter NPC
 -- @pos 45.559 -0.199 26.300 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/conquest");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local text = require("scripts/zones/Northern_San_dOria/TextIDs");
 
 guardnation = SANDORIA;
 csid         = 0x02cc;

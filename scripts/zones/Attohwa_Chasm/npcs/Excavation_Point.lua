@@ -1,12 +1,10 @@
 -----------------------------------
 -- Area: Attohwa Chasm
 --  NPC: Excavation Point
------------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
 
 require("scripts/globals/excavation");
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local text = require("scripts/zones/Attohwa_Chasm/TextIDs");
 
 -----------------------------------
 -- onTrade

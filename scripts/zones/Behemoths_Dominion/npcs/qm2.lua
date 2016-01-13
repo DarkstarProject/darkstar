@@ -4,9 +4,7 @@
 -- Spawns Behemoth or King Behemoth
 -- @pos -267 -19 74 127
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Behemoths_Dominion/TextIDs");
+local text = require("scripts/zones/Behemoths_Dominion/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 

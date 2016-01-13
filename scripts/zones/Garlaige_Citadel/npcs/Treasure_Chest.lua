@@ -3,12 +3,10 @@
 --  NPC: Treasure Chest
 -- @zone 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local text = require("scripts/zones/Garlaige_Citadel/TextIDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 53;

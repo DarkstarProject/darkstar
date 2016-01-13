@@ -5,8 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Arrapago_Remnants/TextIDs"] = nil;
-require("scripts/zones/Arrapago_Remnants/TextIDs");
+local text = require("scripts/zones/Arrapago_Remnants/TextIDs");
 
 -----------------------------------
 -- onInitialize

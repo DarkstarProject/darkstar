@@ -4,8 +4,6 @@
 -- Starts and Finishes Quest: The Lost Cardian (finish), The kind cardian (start)
 -- Involved in Quests: Save the Clock Tower
 -- @pos -43 0 -1 244
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 
@@ -15,7 +13,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local text = require("scripts/zones/Upper_Jeuno/TextIDs");
 
 -----------------------------------
 -- onTrade Action

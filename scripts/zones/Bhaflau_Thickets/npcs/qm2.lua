@@ -3,9 +3,7 @@
 --  NPC: ??? (Spawn Dea(ZNM T3))
 -- @pos -34 -32 481 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local text = require("scripts/zones/Bhaflau_Thickets/TextIDs");
 require("scripts/globals/status");
 
 -----------------------------------

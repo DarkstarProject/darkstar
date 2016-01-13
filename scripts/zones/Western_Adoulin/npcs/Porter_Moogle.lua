@@ -5,10 +5,8 @@
 -- @zone 256
 -- @pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Western_Adoulin/TextIDs");
+local text = require("scripts/zones/Western_Adoulin/TextIDs");
 require("scripts/globals/porter_moogle_util");
 
 local e = 
