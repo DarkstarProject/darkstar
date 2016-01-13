@@ -10,10 +10,13 @@ require("scripts/globals/status");
 function onMobSpawn(mob)
     local master = mob:getMaster();
     master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, skillid)
-        print(player:getID());
+    end);
+
+    master:addListener("MAGIC_USE", "PET_WYVERN_WS", function(player, skillid)
     end);
 
     master:addListener("ATTACK", "PET_WYVERN_ENGAGE", function(player, target, action)
+        local mob = player:getPet()
         if (mob:getTarget() == nil or target:getID() ~= mob:getTarget():getID()) then
             player:petAttack(target);
         end
