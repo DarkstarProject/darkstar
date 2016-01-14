@@ -72,7 +72,8 @@ bool CAIController::TryDeaggro()
     if (!PTarget || PTarget->isDead() ||
         PTarget->animation == ANIMATION_CHOCOBO ||
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
-        PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+        PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
+        PMob->allegiance == PTarget->allegiance)
     {
         PMob->PEnmityContainer->Clear(PTarget->id);
         PTarget = PMob->PEnmityContainer->GetHighestEnmity();
@@ -96,7 +97,7 @@ bool CAIController::TryDeaggro()
 
     //Hide allows you to lose aggro on certain types of enemies.
     //Generally works on monsters that don't track by scent, regardless of detection method.
-    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.) 
+    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.)
     if (tryTimeDeaggro && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
     {
         return true;
@@ -496,7 +497,7 @@ void CAIController::DoCombatTick(time_point tick)
     {
         PMob->PAI->PathFind->LookAt(PTarget->loc.p);
     }
-
+    luautils::OnMobFight(PMob, PTarget);
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
     if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
         (m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL))) && TrySpecialSkill())

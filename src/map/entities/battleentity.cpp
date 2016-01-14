@@ -1256,7 +1256,7 @@ void CBattleEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGB
         action.actiontype = ACTION_MAGIC_INTERRUPT;
         action.actionid = PSpell->getID();
         action.spellgroup = PSpell->getSpellGroup();
-        
+
         actionList_t& actionList = action.getNewActionList();
         actionList.ActionTargetID = id;
 
@@ -1492,7 +1492,7 @@ void CBattleEntity::SetBattleStartTime(time_point time)
 
 duration CBattleEntity::GetBattleTime()
 {
-    return m_battleStartTime - server_clock::now();
+    return server_clock::now() - m_battleStartTime;
 }
 
 void CBattleEntity::Tick(time_point)

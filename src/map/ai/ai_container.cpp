@@ -169,6 +169,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     {
         //#TODO: remove m_battleTarget if possible (need to check disengage)
         entity->SetBattleTargetID(targetid);
+        entity->SetBattleStartTime(server_clock::now());
         if (CanChangeState() || (GetCurrentState() && GetCurrentState()->IsCompleted()))
         {
             ForceChangeState<CAttackState>(entity, targetid);
