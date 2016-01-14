@@ -9317,7 +9317,6 @@ inline int32 CLuaBaseEntity::entityAnimationPacket(lua_State* L)
     return 0;
 }
 
-
 /************************************************************************
 *                                                                       *
 *  Returns name of the players party leader (if in a party)             *
@@ -9335,12 +9334,13 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L) // Todo: also add abil
         CBattleEntity* PLeader = PChar->PParty->GetLeader();
         if (PLeader != nullptr)
         {
-            const int8* PLeaderName = PLeader->GetName();
-            if (PLeaderName != nullptr)
-            {
-                lua_pushstring(L, PLeaderName);
-                return 1;
-            }
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, (void*)PLeader);
+            lua_pcall(L, 2, 1, 0);
+            return 1;
         }
     }
 
