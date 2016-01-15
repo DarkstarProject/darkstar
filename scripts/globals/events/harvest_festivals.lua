@@ -77,9 +77,7 @@ end;
 
 function onHalloweenTrade(player,trade,npc)
     local zone = player:getZoneName();
-    local TextIDs = "scripts/zones/" .. zone .. "/TextIDs";
-    package.loaded[TextIDs] = nil;
-    require(TextIDs);
+    local TextIDs = require("scripts/zones/" .. player:getZoneName() .. "/TextIDs");
     
     local contentEnabled = isHalloweenEnabled();
     local item = trade:getItem();

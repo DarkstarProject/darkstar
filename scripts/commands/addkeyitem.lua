@@ -13,8 +13,8 @@ cmdprops =
 
 function onTrigger(player, keyId, target)
     if (keyId == nil or tonumber(keyId) == nil or tonumber(keyId) == 0 or keyId == 0) then
-        player:PrintToPlayer( "You must enter a valid KeyItem ID." );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+        player:PrintToPlayer("You must enter a valid KeyItem ID.");
+        player:PrintToPlayer("@addkeyitem <ID> <player>");
         return;
     end
 
@@ -24,14 +24,12 @@ function onTrigger(player, keyId, target)
 
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
-        local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-        package.loaded[TextIDs] = nil;
-        require(TextIDs);
-        targ:addKeyItem( keyId );
-        targ:messageSpecial( KEYITEM_OBTAINED, keyId );
-        player:PrintToPlayer( string.format( "Keyitem ID '%u' added to player!", keyId ) );
+        local TextIDs = require("scripts/zones/" .. player:getZoneName() .. "/TextIDs");
+        targ:addKeyItem(keyId);
+        targ:messageSpecial(KEYITEM_OBTAINED, keyId);
+        player:PrintToPlayer(string.format("Keyitem ID '%u' added to player!", keyId));
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+        player:PrintToPlayer(string.format("Player named '%s' not found!", target));
+        player:PrintToPlayer("@addkeyitem <ID> <player>");
     end
 end;

@@ -15,24 +15,22 @@ function onTrigger(player, target, itemId, amount, aug0, aug0val, aug1, aug1val,
         return;
     end
 
-    local targ = GetPlayerByName( target );
+    local targ = GetPlayerByName(target);
     if (targ == nil) then
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+        player:PrintToPlayer(string.format("Player named '%s' not found!", target));
         return;
     end
 
     -- Load needed text ids for players current zone..
-    local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-    package.loaded[TextIDs] = nil;
-    require(TextIDs);
+    local TextIDs = require("scripts/zones/" .. player:getZoneName() .. "/TextIDs");
 
     -- Attempt to give the target the item..
     if (targ:getFreeSlotsCount() == 0) then
-        targ:messageSpecial( ITEM_CANNOT_BE_OBTAINED, itemId );
-        player:PrintToPlayer( string.format( "Player '%s' does not have free space for that item!", target ) );
+        targ:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemId);
+        player:PrintToPlayer(string.format("Player '%s' does not have free space for that item!", target));
     else
-        targ:addItem( itemId, amount, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val );
-        targ:messageSpecial( ITEM_OBTAINED, itemId );
-        player:PrintToPlayer( string.format( "Gave player Item with ID of '%u' ", itemId ) );
+        targ:addItem(itemId, amount, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val);
+        targ:messageSpecial(ITEM_OBTAINED, itemId);
+        player:PrintToPlayer(string.format("Gave player Item with ID of '%u' ", itemId));
     end
 end;
