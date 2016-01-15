@@ -44,12 +44,16 @@ CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
 
 bool CDeathState::Update(time_point tick)
 {
-    if (tick > GetEntryTime() + m_deathTime && !IsCompleted())
+    if (IsCompleted() || m_PEntity->health.hp > 0)
+    {
+        return true;
+    }
+    else if (tick > GetEntryTime() + m_deathTime && !IsCompleted())
     {
         Complete();
         m_PEntity->OnDeathTimer();
     }
-    else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() && 
+    else if (m_PEntity->objtype == TYPE_PC && tick > GetEntryTime() + 8s && !IsCompleted() &&
         !m_raiseSent && m_PEntity->isDead())
     {
         auto PChar = static_cast<CCharEntity*>(m_PEntity);
@@ -58,10 +62,6 @@ bool CDeathState::Update(time_point tick)
             PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_RAISE));
             m_raiseSent = true;
         }
-    }
-    else if (IsCompleted() || !m_PEntity->isDead())
-    {
-        return true;
     }
     return false;
 }
