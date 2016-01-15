@@ -442,9 +442,16 @@ bool CCharEntity::ReloadParty()
 
 void CCharEntity::UpdateEntity()
 {
-    if (loc.zone && updatemask && !m_isGMHidden)
+    if (updatemask)
     {
-        loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        if (loc.zone && !m_isGMHidden)
+        {
+            loc.zone->PushPacket(this, CHAR_INRANGE, new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        }
+        if (isCharmed)
+        {
+            pushPacket(new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        }
         pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
@@ -1558,7 +1565,7 @@ bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
 
 void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 {
-    if (msg)
+    if (msg && !isCharmed)
         pushPacket(msg.release());
 }
 

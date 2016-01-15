@@ -32,6 +32,7 @@ class CPlayerController : public CController
 {
 public:
     CPlayerController(CCharEntity*);
+    virtual ~CPlayerController() {}
 
     virtual void Tick(time_point) override;
 

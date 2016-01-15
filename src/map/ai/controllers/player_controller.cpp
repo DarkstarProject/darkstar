@@ -89,7 +89,7 @@ bool CPlayerController::Engage(uint16 targid)
     }
     if (errMsg)
     {
-        PChar->pushPacket(std::move(errMsg));
+        PChar->HandleErrorMessage(errMsg);
     }
     return false;
 }

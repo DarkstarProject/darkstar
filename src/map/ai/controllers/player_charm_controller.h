@@ -32,6 +32,7 @@ class CPlayerCharmController : public CPlayerController
 {
 public:
     CPlayerCharmController(CCharEntity*);
+    virtual ~CPlayerCharmController();
 
     virtual void Tick(time_point) override;
 
@@ -41,6 +42,11 @@ public:
 
     virtual void Ability(uint16 targid, uint16 abilityid) {}
     virtual void RangedAttack(uint16 targid) {}
+
+private:
+    static constexpr float RoamDistance {2.1f};
+    void DoCombatTick(time_point tick);
+    void DoRoamTick(time_point tick);
 };
 
 #endif // _PLAYERCONTROLLER

@@ -4053,7 +4053,6 @@ namespace battleutils
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
             ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
             ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
-            PVictim->allegiance = ALLEGIANCE_PLAYER;
             ((CMobEntity*)PVictim)->m_OwnerID.clean();
             PVictim->updatemask |= UPDATE_STATUS;
         }
@@ -4067,7 +4066,9 @@ namespace battleutils
             PVictim->PAI->SetController(std::make_unique<CPlayerCharmController>(static_cast<CCharEntity*>(PVictim)));
 
             PVictim->PMaster = PCharmer;
+            PVictim->updatemask |= UPDATE_ALL_CHAR;
         }
+        PVictim->allegiance = PCharmer->allegiance;
         PVictim->updatemask |= UPDATE_HP;
     }
 
@@ -4077,16 +4078,18 @@ namespace battleutils
         {
             PEntity->isCharmed = false;
             PEntity->PAI->SetController(std::make_unique<CPlayerController>(static_cast<CCharEntity*>(PEntity)));
-            PEntity->animation = ANIMATION_NONE;
 
             PEntity->PMaster = nullptr;
-
+            if (PEntity->PAI->IsEngaged())
+            {
+                PEntity->PAI->Disengage();
+            }
             if (PEntity->isDead())
             {
                 PEntity->Die();
             }
+            PEntity->updatemask |= UPDATE_ALL_CHAR;
         }
-        PEntity->updatemask |= UPDATE_HP;
     }
 
     /************************************************************************

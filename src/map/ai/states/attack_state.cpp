@@ -90,12 +90,16 @@ void CAttackState::ResetAttackTimer()
 void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();
-    auto newTargid = m_PEntity->GetBattleTargetID();
-    auto PNewTarget = m_PEntity->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
-    if (!PNewTarget)
+    auto newTargid {m_PEntity->GetBattleTargetID()};
+    CBattleEntity* PNewTarget {nullptr};
+    if (newTargid != 0)
     {
-        m_PEntity->PAI->ChangeTarget(0);
-        newTargid = 0;
+        PNewTarget = m_PEntity->IsValidTarget(newTargid, TARGET_ENEMY, m_errorMsg);
+        if (!PNewTarget)
+        {
+            m_PEntity->PAI->ChangeTarget(0);
+            newTargid = 0;
+        }
     }
     if (targid != newTargid)
     {

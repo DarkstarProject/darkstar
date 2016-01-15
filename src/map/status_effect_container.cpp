@@ -1154,7 +1154,7 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
         if (effect == EFFECT_SLEEP || effect == EFFECT_SLEEP_II ||
             effect == EFFECT_STUN || effect == EFFECT_PETRIFICATION ||
             effect == EFFECT_TERROR || effect == EFFECT_LULLABY ||
-            effect == EFFECT_CHARM || effect == EFFECT_CHARM_II || effect == EFFECT_PENALTY)
+            effect == EFFECT_PENALTY)
         {
 
             // change icon of sleep II and lullaby. Apparently they don't stop player movement.
