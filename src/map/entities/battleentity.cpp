@@ -35,6 +35,7 @@
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
 #include "../ai/states/death_state.h"
+#include "../ai/states/raise_state.h"
 #include "../ai/states/inactive_state.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../attackround.h"
@@ -1497,7 +1498,7 @@ duration CBattleEntity::GetBattleTime()
 
 void CBattleEntity::Tick(time_point)
 {
-    if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>())
+    if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>() && !PAI->IsCurrentState<CRaiseState>())
     {
         Die();
     }

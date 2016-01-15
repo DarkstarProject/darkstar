@@ -478,7 +478,7 @@ void CalculateStats(CMobEntity * PMob)
     {
         uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
-            {
+        {
             PMob->WorkingSkills.skill[i] = maxSkill;
         }
         else //if the mob is WAR/BLM and can cast spell
@@ -490,6 +490,14 @@ void CalculateStats(CMobEntity * PMob)
             {
                 PMob->WorkingSkills.skill[i] = maxSubSkill;
             }
+        }
+    }
+    for (int i=SKILL_H2H; i <=SKILL_STF; i++)
+    {
+        uint16 maxSkill = battleutils::GetMaxSkill(3, mLvl > 99 ? 99 : mLvl);
+        if (maxSkill != 0)
+        {
+            PMob->WorkingSkills.skill[i] = maxSkill;
         }
     }
 
@@ -1237,7 +1245,7 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 
     PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
 
-    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll 
+    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)

@@ -35,7 +35,7 @@
 *  Constructor.															*
 *																		*
 ************************************************************************/
-CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type, 
+CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type,
                  PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound)
 {
 	m_attacker = attacker;
@@ -156,7 +156,6 @@ void CAttack::SetEvaded(bool value)
 ************************************************************************/
 bool CAttack::IsBlocked()
 {
-	m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);
 	return m_isBlocked;
 }
 
@@ -310,8 +309,8 @@ void CAttack::ProcessDamage()
 	}
 
 	// Trick attack.
-	if (m_attacker->GetMJob() == JOB_THF && 
-		m_isFirstSwing && 
+	if (m_attacker->GetMJob() == JOB_THF &&
+		m_isFirstSwing &&
 		m_attackRound->GetTAEntity() != nullptr)
 	{
 		m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI)/100);
@@ -327,7 +326,7 @@ void CAttack::ProcessDamage()
 		{
             m_baseDamage = m_attacker->getMod(MOD_KICK_DMG);
         }
-		m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage + 
+		m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
 			battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
 	}
 	// Not H2H.
@@ -335,12 +334,12 @@ void CAttack::ProcessDamage()
 	{
 		if (GetWeaponSlot() == SLOT_MAIN)
 		{
-			m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage + 
+			m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
 				battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-		} 
+		}
 		else if (GetWeaponSlot() == SLOT_SUB)
 		{
-			m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage + 
+			m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
 				battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
 		}
 	}
@@ -362,7 +361,7 @@ void CAttack::ProcessDamage()
 
 	// Get critical bonus mods.
 	if (m_isCritical)
-	{	
+	{
 		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
 	}
 
@@ -383,4 +382,5 @@ void CAttack::ProcessDamage()
 	{
 		charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
 	}
+	m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);
 }
