@@ -74,7 +74,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
     actionTarget_t& actionTarget = actionList.getNewActionTarget();
     actionTarget.animation = ANIMATION_RANGED;
 
-    m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, &action); 
+    m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, &action);
 
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
@@ -106,7 +106,7 @@ bool CRangeState::Update(time_point tick)
             action.actiontype = ACTION_RANGED_INTERRUPT;
 
             actionList_t& actionList = action.getNewActionList();
-            actionList.ActionTargetID = PTarget->id;
+            actionList.ActionTargetID = PTarget ? PTarget->id : m_PEntity->id;
 
             actionTarget_t& actionTarget = actionList.getNewActionTarget();
             actionTarget.animation = ANIMATION_RANGED;
