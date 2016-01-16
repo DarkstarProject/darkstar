@@ -54,7 +54,7 @@ enum SPECIALFLAG
 enum ROAMFLAG : uint16
 {
     ROAMFLAG_NONE    = 0x00,
-    ROAMFLAG_NONE0   = 0x01,  // 
+    ROAMFLAG_NONE0   = 0x01,  //
     ROAMFLAG_NONE1   = 0x02,  //
     ROAMFLAG_NONE2   = 0x04,  //
     ROAMFLAG_NONE3   = 0x08,  //
@@ -138,12 +138,12 @@ public:
     bool      CanLink(position_t* pos, int16 superLink = 0);
 
     bool      CanDropGil();                            // mob has gil to drop
-    bool      CanStealGil();                            // can steal gil from mob 
+    bool      CanStealGil();                            // can steal gil from mob
     void      ResetGilPurse();                          // reset total gil held
 
     void      setMobMod(uint16 type, int16 value);
     int16     getMobMod(uint16 type);
-    void      addMobMod(uint16 type, int16 value);     // add 
+    void      addMobMod(uint16 type, int16 value);     // add
     void      defaultMobMod(uint16 type, int16 value); // set value if value has not been already set
     void      resetMobMod(uint16 type);                // resets mob mod to original value
     int32     getBigMobMod(uint16 type);               // multiplies mod by 1000
@@ -169,6 +169,7 @@ public:
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
+    virtual void OnEngage(CAttackState&) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;
 

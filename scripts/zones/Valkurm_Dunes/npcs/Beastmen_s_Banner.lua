@@ -4,7 +4,7 @@
 -- @pos -116.204 4.000 -113.608 104
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
 -----------------------------------

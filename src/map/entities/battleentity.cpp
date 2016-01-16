@@ -1480,6 +1480,13 @@ CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint8 validTargetFlag
     return PTarget;
 }
 
+void CBattleEntity::OnEngage(CAttackState& state)
+{
+    animation = ANIMATION_ATTACK;
+    updatemask |= UPDATE_HP;
+    PAI->EventHandler.triggerListener("ENGAGE", this, state.GetTarget());
+}
+
 void CBattleEntity::TryHitInterrupt(CBattleEntity* PAttacker)
 {
     if (PAI->GetCurrentState())

@@ -32,6 +32,7 @@
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
+#include "../utils/petutils.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -146,6 +147,10 @@ void CPetEntity::FadeOut()
 
 void CPetEntity::Die()
 {
+    if (PMaster && PMaster->PPet == this)
+    {
+        petutils::DetachPet(PMaster);
+    }
     PAI->ClearStateStack();
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);

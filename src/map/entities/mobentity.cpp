@@ -30,6 +30,7 @@
 #include "../ai/controllers/ai_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
+#include "../ai/states/attack_state.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../entities/charentity.h"
@@ -40,6 +41,7 @@
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
 #include "../utils/mobutils.h"
+#include "../utils/petutils.h"
 #include "../status_effect_container.h"
 #include "../enmity_container.h"
 #include "../mob_spell_container.h"
@@ -884,6 +886,12 @@ void CMobEntity::DropItems()
     }
 }
 
+void CMobEntity::OnEngage(CAttackState& state)
+{
+    CBattleEntity::OnEngage(state);
+    luautils::OnMobEngaged(this, state.GetTarget());
+}
+
 void CMobEntity::FadeOut()
 {
     CBaseEntity::FadeOut();
@@ -903,6 +911,10 @@ void CMobEntity::Die()
     if (PPet != nullptr && PPet->isAlive() && GetMJob() == JOB_SMN)
     {
         PPet->Die();
+    }
+    if (PMaster && PMaster->PPet == this)
+    {
+        petutils::DetachPet(PMaster);
     }
     PAI->Internal_Die(15s);
     CBattleEntity::Die();
