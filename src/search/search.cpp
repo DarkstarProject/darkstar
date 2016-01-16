@@ -153,13 +153,12 @@ int32 main(int32 argc, int8 **argv)
 
     std::string logFile;
 
-#ifdef DEBUGLOGSEARCH
 #ifdef WIN32
     logFile = "log\\search-server.log";
 #else
     logFile = "log/search-server.log";
 #endif
-#endif
+
 
     for (int i = 0; i < argc; i++)
     {
@@ -899,7 +898,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
             printf("SEARCH::Comment Entry found. (%8X).\n", comment);
             break;
         }
-        //the following 4 Entries were generated with /sea (ballista|friend|linkshell|away|inv) 
+        //the following 4 Entries were generated with /sea (ballista|friend|linkshell|away|inv)
         //so they may be off
         case SEARCH_LINKSHELL: // 4 Byte
         {
@@ -914,7 +913,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
             printf("SEARCH::Friend Entry found.\n");
             break;
         }
-        case SEARCH_FLAGS1: // Flag Entry #1, 2 byte, 
+        case SEARCH_FLAGS1: // Flag Entry #1, 2 byte,
         {
             if (isPresent == 0x1)
             {
