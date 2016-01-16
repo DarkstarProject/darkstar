@@ -30,6 +30,7 @@
 #include "../ai/controllers/ai_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
+#include "../ai/states/attack_state.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../entities/charentity.h"
@@ -883,6 +884,12 @@ void CMobEntity::DropItems()
     {
         luautils::OnMobDeath(this, nullptr);
     }
+}
+
+void CMobEntity::OnEngage(CAttackState& state)
+{
+    CBattleEntity::OnEngage(state);
+    luautils::OnMobEngaged(this, state.GetTarget());
 }
 
 void CMobEntity::FadeOut()

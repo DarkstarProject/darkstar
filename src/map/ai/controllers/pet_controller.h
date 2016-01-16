@@ -26,12 +26,6 @@ This file is part of DarkStar-server source code.
 
 #include "ai_controller.h"
 
-// mobs will deaggro if player is out of range for this long
-#define MOB_DEAGGRO_TIME 25000
-
-// time a mob is neutral after disengaging
-#define MOB_NEUTRAL_TIME 10000
-
 class CPetEntity;
 class CPetController : public CAIController
 {
