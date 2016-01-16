@@ -40,6 +40,7 @@
 #include "../utils/charutils.h"
 #include "../utils/itemutils.h"
 #include "../utils/mobutils.h"
+#include "../utils/petutils.h"
 #include "../status_effect_container.h"
 #include "../enmity_container.h"
 #include "../mob_spell_container.h"
@@ -903,6 +904,10 @@ void CMobEntity::Die()
     if (PPet != nullptr && PPet->isAlive() && GetMJob() == JOB_SMN)
     {
         PPet->Die();
+    }
+    if (PMaster && PMaster->PPet == this)
+    {
+        petutils::DetachPet(PMaster);
     }
     PAI->Internal_Die(15s);
     CBattleEntity::Die();
