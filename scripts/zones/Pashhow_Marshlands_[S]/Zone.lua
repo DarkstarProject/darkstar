@@ -6,8 +6,10 @@
 package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/weather");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onInitialize
@@ -33,6 +35,31 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+end;
+
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
+
+function onZoneWeatherChange(weather)
+
+    local npc = GetNPCByID(17146623); -- Indescript Markings (BOOTS)
+    if (npc ~= nil) then
+        if (weather == WEATHER_RAIN or weather == WEATHER_THUNDER) then
+            npc:setStatus(STATUS_DISAPPEAR);
+        else
+            npc:setStatus(STATUS_NORMAL);
+        end
+    end
+    
+    npc = GetNPCByID(17146624); -- Indescript Markings (BODY)
+    if (npc ~= nil) then
+        if (weather == WEATHER_RAIN) then
+            npc:setStatus(STATUS_DISAPPEAR);
+        else
+            npc:setStatus(STATUS_NORMAL);
+        end
+    end
 end;
 
 -----------------------------------

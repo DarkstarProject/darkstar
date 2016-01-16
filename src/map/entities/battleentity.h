@@ -287,6 +287,7 @@ enum SUBEFFECT
     SUBEFFECT_MP_DRAIN = 22, // This is retail correct animation
     SUBEFFECT_TP_DRAIN = 22, // Pretty sure this is correct, but might use same animation as HP drain.
     SUBEFFECT_HASTE = 23,
+    SUBEFFECT_CHOKE = 24,
 
     // SPIKES
     SUBEFFECT_BLAZE_SPIKES = 1,  // 01-1000    6
