@@ -18,7 +18,7 @@
 018 - Unable to cast spells at this time.
 019 - The <player> calls for help!
 020 - <target> falls to the ground.
-021 - No experience points gained. 
+021 - No experience points gained.
 020 - <target> falls to the ground.
 022 - You cannot call for help at this time.
 023 - The <player> learns a new spell!
@@ -44,7 +44,7 @@
 043 - The <player> readies Final Heaven.
 044 - <target>'s spikes deal <number> points of damage to the <player>.
 045 - The <player> learns <spell>!
-046 - Debug Message: Current POP number: 
+046 - Debug Message: Current POP number:
 047 - The <player> cannot cast <spell>.
 048 - <spell> cannot be cast on <target>.
 049 - The <player> is unable to cast spells.
@@ -96,7 +96,7 @@
 096 - You already know <spell>.
 097 - <target> was defeated by the <player>.
 098 - You obtain <item> from <target>.
-099 - <player>><target>: 
+099 - <player>><target>:
 100 - The <player> uses ..
 101 - The <player> uses ..
 102 - The <player> uses .. <target> recovers .. HP.
@@ -167,7 +167,7 @@
 167 - Additional effect: The <player> recovers 0 HP.
 168 - Additional effect: <target>'s KO effect disappears!
 169 - Additional effect: Warp!
-170 - <target> seems .. . It seems to have high evasion and defense. 
+170 - <target> seems .. . It seems to have high evasion and defense.
 171 - <target> seems .. . It seems to have high evasion.
 172 - <target> seems .. . It seems to have high evasion but low defense.
 173 - <target> seems .. . It seems to have high defense.
@@ -224,7 +224,7 @@
 224 - The <player> uses .. <target> recovers .. MP.
 225 - The <player> uses .. .. MP drained from <target>.
 226 - The <player> uses .. .. TP drained from <target>.
-227 - The <player> casts (NULL). .. HP drained from <target>. 
+227 - The <player> casts (NULL). .. HP drained from <target>.
 228 - The <player> casts (NULL). .. MP drained from <target>.
 229 - Additional effect: <target> takes 0 additional points of damage.
 230 - The <player> casts (NULL). <target> gains the effect of stun.
@@ -236,7 +236,7 @@
 236 - The <player> casts (NULL). <target> is stunned.
 237 - The <player> casts (NULL). <target> receives the effect of stun.
 238 - The <player> uses .. <target> recovers .. HP.
-239 - Size: 
+239 - Size:
 240 - The <player> tries to hide, but is spotted by <target>.
 241 - The <player> hides!
 242 - The <player> uses .. <target> is stunned.
@@ -251,13 +251,13 @@
 251 - The effect of KO is about to wear off.
 252 - The <player> casts (NULL). Magic Burst! <target> takes .. points of damage.
 253 - EXP chain #..! The <player> gains 0 experience points.
-254 - Current enmity: 
+254 - Current enmity:
 255 - DEBUG: <target>>0% chance of success.
-256 - In this flower pot:  Seeds sown: 
+256 - In this flower pot:  Seeds sown:
 257 - Crystal used: ..
 258 - Crystal used: ..
 259 - First crystal used: .. Second crystal used: ..
-260 - First crystal used: .. Second crystal used: .. 
+260 - First crystal used: .. Second crystal used: ..
 261 - First crystal used: .. Second crystal used: ..
 262 - First crystal used: .. Second crystal used: ..
 263 - <target> recovers .. HP.
@@ -375,7 +375,7 @@
 378 - The <player> uses .. <target>'s stun effect disappears! -- Probably item related)
 379 - The <player> uses .. Magic Burst! <target> takes .. points of damage.
 382 - The <player>'s ranged attack hits <target>. <target> recovers .. hit points!
-383 - <target>'s spikes restore 0 HP to the <player>. 
+383 - <target>'s spikes restore 0 HP to the <player>.
 384 - Additional effect: <target> recovers 0 HP.
 385 - Skillchain: Light. <target> recovers 0 hit points!
 386 - Skillchain: Darkness. <target> recovers 0 hit points!
@@ -388,12 +388,12 @@
 393 - Skillchain: Induration. <target> recovers 0 hit points!
 394 - Skillchain: Reverberation. <target> recovers 0 hit points!
 395 - Skillchain: Transfixion. <target> recovers 0 hit points!
-396 - Skillchain: Scission. <target> recovers 0 hit points! 
+396 - Skillchain: Scission. <target> recovers 0 hit points!
 397 - Skillchain: Detonation. <target> recovers 0 hit points!
 398 - Skillchain: Impaction. <target> recovers 0 hit points!
 399 - The <player> uses .. All of <target>'s Petras vanish!
 400 - The <player> uses .. .. of <target>'s status ailments disappear!
-401 - The <player> uses .. .. of <target>'s effects disappear! -- Item related. 
+401 - The <player> uses .. .. of <target>'s effects disappear! -- Item related.
 402 - The <player> uses .. <target>'s magic defense is enhanced.
 403 - .. of <target>'s attributes are drained.
 404 - .. status effects are drained from <target>.
@@ -447,9 +447,9 @@
 452 - The <player> uses .. <target> regains .. TP.
 453 - The <player> uses .. The <player> steals the effect of stun from <target>.
 454 - The <player> casts (NULL). .. TP drained from <target>.
-455 - Debug : Fishing skill check:  : 
-456 - Debug : Level Restriction on. PetType 0/ID 
-457 - Debug : Level restriction off. PetType 0/ID 
+455 - Debug : Fishing skill check:  :
+456 - Debug : Level Restriction on. PetType 0/ID
+457 - Debug : Level restriction off. PetType 0/ID
 458 - Debug : Dif - Now > 0  RATE ../1000
 459 - Self-destruct check: skipping calculation of <target>'s self-destruct process md_no0/cmd_arg10
 460 - EXP Check: <player> > <target> XP:0/LvUp..
@@ -484,26 +484,26 @@
 489 - Spell: Number of Attacks (0)  Misses (..)
 490 - Number of Targets (0)  Damage(..)
 491 - AA: Number of Attacks (0)  Misses (..)
-492 - Time: 
+492 - Time:
 493 - <player>'s log
-494 - 
-495 - 
-496 - 
-497 - 
-498 - 
+494 -
+495 -
+496 -
+497 -
+498 -
 499 - Hate : <player>><target> 0/..
-500 - 
-501 - 
+500 -
+501 -
 502 - StatusGet(<target>:0/..) StatusSet(<target>:0/..)
 503 - <target>: Skillchain Element 0(..)
-504 - 
-505 - 
-506 - 
-507 - 
-508 - 
+504 -
+505 -
+506 -
+507 -
+508 -
 509 - <target>:< 0/.. >
 510 - DEBUG:<target>>great katana = 0%
-511 - 
+511 -
 512 - You must have a two-handed weapon equipped in the main weapon slot in order to equip a grip.
 513 - This grip is not compatible with the two-handed weapon you currently have equipped.
 514 - You do not have the proper items equipped to use the ..
@@ -577,29 +577,29 @@
 582 - <player> obtains .. gil.
 583 - Trial ..: .. objectives remain.
 584 - You have completed Trial ... Report your success to a Magian Moogle.
-585 - 
-586 - 
-587 - 
-588 - 
-589 - 
-590 - 
-591 - 
-592 - 
-593 - 
-594 - 
-595 - 
-596 - 
-597 - 
-598 - 
-599 - 
-600 - 
+585 -
+586 -
+587 -
+588 -
+589 -
+590 -
+591 -
+592 -
+593 -
+594 -
+595 -
+596 -
+597 -
+598 -
+599 -
+600 -
 601 - Objective fufilled! ... Please report to a Dominion Sergeant to collect your reward.
-602 - 
+602 -
 603 - Additional Effect: Treasure hunter effectiveness against <param1> increases to <param2>.
-604 - 
-605 - 
-606 - 
-607 - 
+604 -
+605 -
+606 -
+607 -
 608 - <player> uses <ability> ... Treasure Hunter effectiveness against <param1> increases to <param2>.
 609 - Prowess attained: increased treasure casket discovery.
 610 - Prowess attained: increased combat and magic skill gain.
@@ -628,13 +628,13 @@
 636 - Prowess boosted: "Killer" effects bonus.
 
 673 - <player> obtains <param> corpuscles of mweya plasm.
-674 - 
-675 - 
-676 - 
+674 -
+675 -
+676 -
 677 - You are now able to posess a new monster!
 678 - You have learned a new instinct!
-679 - 
-680 - 
+679 -
+680 -
 
 690 - You have completed the following record of Eminence objective: <param>
 691 - This objective may be repeated, and can be canceled from the menu.
