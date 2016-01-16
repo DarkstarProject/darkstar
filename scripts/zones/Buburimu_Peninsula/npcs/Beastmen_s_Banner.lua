@@ -4,7 +4,7 @@
 -- @pos -132.589 19.999 -314.261 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
 -----------------------------------

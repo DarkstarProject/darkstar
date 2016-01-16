@@ -10,7 +10,7 @@
 --   Start an Expeditionary Force by giving an E.F. region insignia to you.
 -------------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
--------------------------------------
+-------------------------------------
 require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Windurst_Waters/TextIDs");
