@@ -912,15 +912,15 @@ void CMobEntity::Die()
     {
         PPet->Die();
     }
-    if (PMaster && PMaster->PPet == this)
-    {
-        petutils::DetachPet(PMaster);
-    }
     PAI->Internal_Die(15s);
     CBattleEntity::Die();
     PAI->QueueAction(queueAction_t(std::chrono::milliseconds(m_DropItemTime), false, [this](CBaseEntity* PEntity) {
         DropItems();
     }));
+    if (PMaster && PMaster->PPet == this)
+    {
+        petutils::DetachPet(PMaster);
+    }
 }
 
 void CMobEntity::OnDisengage(CAttackState& state)

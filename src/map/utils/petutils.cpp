@@ -880,14 +880,13 @@ namespace petutils
 
             PMob->PAI->SetController(std::make_unique<CAIController>(PMob));
 
-            if (PMob->isDead())
-                PMob->Die();
-            else
+            if (!PMob->isDead())
                 PMob->PAI->Disengage();
 
         }
         else if (PPet->objtype == TYPE_PET){
-            PPet->Die();
+            if (!PPet->isDead())
+                PPet->Die();
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
 
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
@@ -1201,7 +1200,7 @@ namespace petutils
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
-		else 
+		else
 			PPet = new CPetEntity(petType);
 
         PPet->loc = PMaster->loc;
@@ -1284,7 +1283,7 @@ namespace petutils
                 }
             }
 
-            
+
             if (PMaster->objtype == TYPE_PC)
             {
                 CCharEntity* PChar = (CCharEntity*)PMaster;

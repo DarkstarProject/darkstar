@@ -147,14 +147,14 @@ void CPetEntity::FadeOut()
 
 void CPetEntity::Die()
 {
-    if (PMaster && PMaster->PPet == this)
-    {
-        petutils::DetachPet(PMaster);
-    }
     PAI->ClearStateStack();
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
+    if (PMaster && PMaster->PPet == this)
+    {
+        petutils::DetachPet(PMaster);
+    }
 }
 
 void CPetEntity::Spawn()
