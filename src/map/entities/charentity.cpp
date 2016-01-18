@@ -1004,7 +1004,7 @@ m_ActionList.push_back(Action);
         // #TODO: get rid of this to script, too
         if (PAbility->isAvatarAbility())
         {
-            if (this->PPet != nullptr) //is a bp - dont display msg and notify pet
+            if (PPet) //is a bp - dont display msg and notify pet
             {
                 actionList_t& actionList = action.getNewActionList();
                 actionList.ActionTargetID = PTarget->id;
@@ -1024,6 +1024,7 @@ m_ActionList.push_back(Action);
                     addMP(-PAbility->getAnimationID()); // TODO: ...
                 }
                 //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
+                if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
                 PPet->PAI->MobSkill(PTarget->targid, PAbility->getMobSkillID());
 
                 charutils::UpdateHealth(this);
