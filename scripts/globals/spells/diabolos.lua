@@ -14,6 +14,8 @@ require("scripts/globals/bcnm");
 function onMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
         return MSGBASIC_CANT_BE_USED_IN_AREA;
+    elseif (caster:hasPet()) then
+        return MSGBASIC_ALREADY_HAS_A_PET;
     elseif (caster:getObjType() == TYPE_PC) then
         return avatarMiniFightCheck(caster);
     end

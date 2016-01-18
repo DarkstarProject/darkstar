@@ -63,7 +63,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
     auto errorMsg = luautils::OnMagicCastingCheck(m_PEntity, PTarget, GetSpell());
     if (errorMsg)
     {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg));
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg == 1 ? MSGBASIC_CANNOT_CAST_SPELL : errorMsg));
     }
 
     m_flags = flags;
@@ -203,7 +203,7 @@ bool CMagicState::HasCost()
         }
     }
     // check has mp available
-    else if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) && 
+    else if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MANAFONT) &&
         !(m_flags & MAGICFLAGS_IGNORE_MP) && battleutils::CalculateSpellCost(m_PEntity, GetSpell()) > m_PEntity->health.mp)
     {
         if (m_PEntity->objtype == TYPE_MOB && m_PEntity->health.maxmp == 0)
