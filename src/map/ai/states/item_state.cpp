@@ -75,7 +75,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     if (!m_PItem)
     {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, PItem->getID(), 0, 56));
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, 56));
     }
 
     auto PTarget = m_PEntity->IsValidTarget(targid, m_PItem->getValidTarget(), m_errorMsg);
