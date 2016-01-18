@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.ftp100 = 4; params.ftp200 = 4.25; params.ftp300 = 4.75;
@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.agi_wsc = 1.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params);
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
 
     if ((player:getEquipID(SLOT_RANGED) == 19007) and (player:getMainJob() == JOB_COR)) then
         if (damage > 0) then
@@ -89,7 +89,6 @@ function onUseWeaponSkill(player, target, wsID)
             end
         end
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

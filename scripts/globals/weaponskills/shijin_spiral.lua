@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 5;
@@ -26,20 +26,19 @@ function onUseWeaponSkill(player, target, wsID)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1.05;
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.dex_wsc = 0.7 + (player:getMerit(MERIT_SHIJIN_SPIRAL) / 100);
     end
 
-    if damage > 0 then
+    if (damage > 0) then
         local tp = player:getTP();
         local duration = (tp/100) + 4;
         if (target:hasStatusEffect(EFFECT_PLAGUE) == false) then
             target:addStatusEffect(EFFECT_PLAGUE, 5, 0, duration);
         end
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

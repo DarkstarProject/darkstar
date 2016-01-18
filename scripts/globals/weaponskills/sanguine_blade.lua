@@ -19,7 +19,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
     local tp = player:getTP();
     local drain = 0;
 
@@ -38,8 +38,7 @@ function onUseWeaponSkill(player, target, wsID)
     params.skill = SKILL_SWD;
     params.includemab = true;
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params);
-    damage = damage * WEAPON_SKILL_POWER
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
 
     if (target:isUndead() == false) then
         player:addHP((damage/100) * drain);
