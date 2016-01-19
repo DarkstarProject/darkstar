@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -33,8 +33,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.atkmulti = 2;
     end
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params);
-    damage = damage * WEAPON_SKILL_POWER
+    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     return tpHits, extraHits, criticalHit, damage;
 
 end

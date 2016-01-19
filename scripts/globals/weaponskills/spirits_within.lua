@@ -17,7 +17,7 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/utils");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
     local HP = player:getHP();
     local TP = player:getTP();
     local WSC = 0;
