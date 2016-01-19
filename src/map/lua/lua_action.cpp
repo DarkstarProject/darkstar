@@ -158,6 +158,28 @@ int32 CLuaAction::speceffect(lua_State* L)
     return 0;
 }
 
+int32 CLuaAction::reaction(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].reaction = static_cast<REACTION>(lua_tointeger(L, 2));
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].reaction);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
 inline int32 CLuaAction::additionalEffect(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
@@ -236,6 +258,7 @@ Lunar<CLuaAction>::Register_t CLuaAction::methods[] =
     LUNAR_DECLARE_METHOD(CLuaAction, messageID),
     LUNAR_DECLARE_METHOD(CLuaAction, animation),
     LUNAR_DECLARE_METHOD(CLuaAction, speceffect),
+    LUNAR_DECLARE_METHOD(CLuaAction, reaction),
     LUNAR_DECLARE_METHOD(CLuaAction, additionalEffect),
     LUNAR_DECLARE_METHOD(CLuaAction, addEffectParam),
     LUNAR_DECLARE_METHOD(CLuaAction, addEffectMessage),

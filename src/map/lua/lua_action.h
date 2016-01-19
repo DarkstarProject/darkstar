@@ -52,6 +52,7 @@ public:
     int32 messageID(lua_State*);
     int32 animation(lua_State*);
     int32 speceffect(lua_State*);
+    int32 reaction(lua_State*);
     int32 addEffectParam(lua_State*);
     int32 addEffectMessage(lua_State*);
     int32 additionalEffect(lua_State*);
