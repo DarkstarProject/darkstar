@@ -2007,7 +2007,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    int32 TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar)
+    int32 TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, uint16 tpMultiplier, uint16 bonusTP, CBattleEntity* taChar)
     {
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
 
@@ -2051,6 +2051,11 @@ namespace battleutils
                     if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
                         ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
 
+                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PChar->GetMLevel())
+                    {
+                        ((CMobEntity*)PDefender)->m_HiPCLvl = PChar->GetMLevel();
+                    }
+
                     break;
 
                 case TYPE_PET:
@@ -2089,7 +2094,7 @@ namespace battleutils
 
 
             // add tp to attacker
-            PChar->addTP(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PChar->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PChar))))));
+            PChar->addTP(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PChar)))));
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
             float sBlowMult = ((100.0f - dsp_cap((float)PChar->getMod(MOD_SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);

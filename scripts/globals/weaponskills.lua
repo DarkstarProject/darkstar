@@ -21,6 +21,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     local criticalHit = false;
     local bonusacc = 0;
     local bonusfTP = 0;
+    local bonusTP = params.bonusTP or 0
 
     if (attacker:getObjType() == TYPE_PC) then
         local neck = attacker:getEquipID(SLOT_NECK);
@@ -70,15 +71,16 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
          attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
 
     -- Applying fTP multiplier
-    local tp = attacker:getTP();
-    if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
-        tp = 100;
-    end
     local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
-        ignoredDef = calculatedIgnoredDef(attacker:getTP(), target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+        ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+    end
+
+    local taChar = nil
+    if (primary and attacker:hasStatusEffect(EFFECT_TRICK_ATTACK)) then
+        taChar = attacker:getTrickAttackChar(target)
     end
 
     -- get cratio min and max
@@ -92,8 +94,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     end
     attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
-    local isTrickValid = attacker:hasStatusEffect(EFFECT_TRICK_ATTACK);
-    if (isTrickValid and not attacker:isTrickAttackAvailable(target)) then
+    local isTrickValid = taChar == nil
+    if (isTrickValid) then
         isTrickValid = false;
     end
 
@@ -106,7 +108,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     local nativecrit = 0;
     
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
-        critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
+        critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
         if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
@@ -135,7 +137,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
+        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -240,6 +242,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     end
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
+    finaldmg = finaldmg * WEAPON_SKILL_POWER
+    if tpHitsLanded + extraHitsLanded > 0 then
+        finaldmg = target:takeWeaponskillDamage(attacker, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+    end
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
@@ -250,6 +256,7 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
 
     local bonusacc = 0;
     local bonusfTP = 0;
+    local bonusTP = params.bonusTP or 0
 
     if (attacker:getObjType() == TYPE_PC) then
         local neck = attacker:getEquipID(SLOT_NECK);
@@ -285,10 +292,6 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
          attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
     
     -- Applying fTP multiplier
-    local tp = attacker:getTP();
-    if attacker:hasStatusEffect(EFFECT_SEKKANOKI) then
-        tp = 100;
-    end
     local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
     
     dmg = dmg * ftp;
@@ -301,6 +304,8 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
     if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
         dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
+    dmg = dmg * WEAPON_SKILL_POWER
+    dmg = target:takeWeaponskillDamage(attacker, dmg, SLOT_MAIN, 1, bonusTP, nil)
     return dmg, false, 1, 0;
 end
 
@@ -429,6 +434,7 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
+    if tp < 100 then tp = 100
     if (tp>=100 and tp<200) then
         return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
     elseif (tp>=200 and tp<=300) then
@@ -686,6 +692,7 @@ end;
 
     local bonusacc = 0;
     local bonusfTP = 0;
+    local bonusTP = params.bonusTP or 0
 
     if (attacker:getObjType() == TYPE_PC) then
         local neck = attacker:getEquipID(SLOT_NECK);
@@ -725,11 +732,11 @@ end;
          attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
 
     -- Applying fTP multiplier
-    local ftp = fTP(attacker:getTP(),params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
-        ignoredDef = calculatedIgnoredDef(attacker:getTP(), target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+        ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
     end
 
     -- get cratio min and max
@@ -739,7 +746,7 @@ end;
     local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
     local critrate = 0;
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
-        critrate = fTP(attacker:getTP(),params.crit100,params.crit200,params.crit300);
+        critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
         if (nativecrit > 0.2) then -- caps!
@@ -763,7 +770,7 @@ end;
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getRangedHitRate(attacker,target,false,bonusacc),attacker:getRACC(),attacker:getTP(),params.acc100,params.acc200,params.acc300);
+        hr = accVariesWithTP(getRangedHitRate(attacker,target,false,bonusacc),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -822,6 +829,10 @@ end;
         finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
 
+    finaldmg = finaldmg * WEAPON_SKILL_POWER
+    if tpHitsLanded + extraHitsLanded > 0 then
+        finaldmg = target:takeWeaponskillDamage(attacker, finaldmg, SLOT_RANGE, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+    end
     return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
 

@@ -402,7 +402,7 @@ public:
     int32 isBehind(lua_State*);               // true if you're behind the input target
     int32 isFacing(lua_State*);               // true if you are facing the target
     int32 getAngle(lua_State* L);             // return angle (rot) between two points (vector from a to b)
-    int32 isTrickAttackAvailable(lua_State*); //true if TA target is available
+    int32 getTrickAttackChar(lua_State*); //true if TA target is available
     int32 getStealItem(lua_State*);           // gets ItemID of droplist steal item from mob
     int32 itemStolen(lua_State*);             // sets mob's ItemStolen var = true
 
@@ -576,6 +576,7 @@ public:
     int32 triggerListener(lua_State* L);
 
     int32 removeAmmo(lua_State* L);
+    int32 takeWeaponskillDamage(lua_State* L);
 };
 
 #endif

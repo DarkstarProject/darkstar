@@ -82,7 +82,7 @@ inline int32 CLuaAction::param(lua_State* L)
                 actionList.actionTargets[0].param = lua_tointeger(L, 2);
                 return 0;
             }
-            else 
+            else
             {
                 lua_pushinteger(L, actionList.actionTargets[0].param);
                 return 1;

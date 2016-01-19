@@ -17,9 +17,8 @@ require("scripts/globals/weaponskills");
 require("scripts/globals/utils");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, TP, primary)
     local HP = player:getHP();
-    local TP = player:getTP();
     local WSC = 0;
     if (TP == 300) then
         WSC = HP * 0.46875;
@@ -42,6 +41,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local damage = target:breathDmgTaken(WSC);
     damage = damage * WEAPON_SKILL_POWER
+    damage = defender:takeWeaponskillDamage(attacker, damage, SLOT_MAIN, 1, 0, nil)
     return 1, 0, false, damage;
 
 end

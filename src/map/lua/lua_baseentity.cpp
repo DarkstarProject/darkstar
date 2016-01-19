@@ -8345,7 +8345,7 @@ inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::isTrickAttackAvailable(lua_State *L)
+inline int32 CLuaBaseEntity::getTrickAttackChar(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -8357,7 +8357,13 @@ inline int32 CLuaBaseEntity::isTrickAttackAvailable(lua_State *L)
     if (PMob != nullptr)
     {
         CBattleEntity* taTarget = battleutils::getAvailableTrickAttackChar((CBattleEntity*)m_PBaseEntity, PMob);
-        lua_pushboolean(L, (taTarget != nullptr ? true : false));
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, taTarget);
+        lua_pcall(L, 2, 1, 0);
+        return 1;
         return 1;
     }
     return 0;
@@ -10223,6 +10229,31 @@ int32 CLuaBaseEntity::removeAmmo(lua_State* L)
     battleutils::RemoveAmmo(static_cast<CCharEntity*>(m_PBaseEntity));
     return 0;
 }
+
+int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
+
+    auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
+    auto damage = lua_tointeger(L, 2);
+    auto slot = lua_tointeger(L, 3);
+    auto tpMultiplier = lua_tointeger(L, 4);
+    auto bonusTP = lua_tointeger(L, 5);
+    CBattleEntity* taChar = nullptr;
+    if (!lua_isnil(L, 6) && lua_islightuserdata(L, 6))
+    {
+        taChar = static_cast<CBattleEntity*>(Lunar<CLuaBaseEntity>::check(L, 6)->m_PBaseEntity);
+    }
+
+    lua_pushinteger(L, battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, tpMultiplier, bonusTP, taChar));
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10564,7 +10595,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isTrickAttackAvailable),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDelay),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
@@ -10670,5 +10701,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
     {nullptr,nullptr}
 };

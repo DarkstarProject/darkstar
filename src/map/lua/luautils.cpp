@@ -2958,7 +2958,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill)
+    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CCharEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary)
     {
         lua_prepscript("scripts/globals/weaponskills/%s.lua", wskill->getName());
 
@@ -2974,8 +2974,10 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
 
         lua_pushinteger(LuaHandle, wskill->getID());
+        lua_pushnumber(LuaHandle, tp/10);
+        lua_pushboolean(LuaHandle, primary);
 
-        if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 5, LUA_MULTRET, 0))
         {
             ShowError("luautils::onUseWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);

@@ -678,10 +678,6 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     SLOTTYPE damslot = SLOT_MAIN;
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize < PWeaponSkill->getRange())
     {
-        //WS scripts currently rely on user:getTP() to get the tp
-        int16 prevTP = health.tp;
-        health.tp = tp;
-
         if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 221)
         {
             damslot = SLOT_RANGED;
@@ -700,6 +696,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
         for (auto&& PTarget : PAI->TargetFind->m_targets)
         {
+            bool primary = PTarget == PBattleTarget;
             actionList_t& actionList = action.getNewActionList();
             actionList.ActionTargetID = PTarget->id;
 
@@ -708,35 +705,17 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             uint16 tpHitsLanded;
             uint16 extraHitsLanded;
             int32 damage;
-            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill);
+            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary);
 
             actionTarget.reaction = REACTION_NONE;
             actionTarget.speceffect = SPECEFFECT_NONE;
             actionTarget.animation = PWeaponSkill->getAnimationId();
             actionTarget.messageID = 0;
 
-            bool primary = PTarget == PBattleTarget;
-
-            CBattleEntity* taChar = nullptr;
-
-            if (primary)
-            {
-                if (this->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
-                    taChar = battleutils::getAvailableTrickAttackChar(this, PBattleTarget);
-            }
-
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                health.tp = prevTP;
                 actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                if (!primary) {
-                    tpHitsLanded = 0; extraHitsLanded = 0;
-                }
-                damage = battleutils::TakeWeaponskillDamage(this, PTarget, damage, damslot, tpHitsLanded, taChar);
                 actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
-                addTP(extraHitsLanded * 10);
-                prevTP = health.tp;
-                health.tp = tp;
 
                 if (actionTarget.reaction == REACTION_EVADE)
                     actionTarget.messageID = primary ? 188 : 282; //but misses
@@ -753,16 +732,6 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     if (primary && PBattleTarget->objtype == TYPE_MOB)
                     {
                         luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
-                    }
-                }
-
-                if (PTarget->objtype == TYPE_MOB)
-                {
-                    CMobEntity* Monster = (CMobEntity*)PTarget;
-
-                    if (Monster->m_HiPCLvl < GetMLevel())
-                    {
-                        Monster->m_HiPCLvl = GetMLevel();
                     }
                 }
             }
@@ -833,7 +802,6 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 }
             }
         }
-        health.tp = prevTP;
     }
     else
     {
