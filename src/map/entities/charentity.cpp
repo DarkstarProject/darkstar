@@ -999,7 +999,8 @@ m_ActionList.push_back(Action);
 
         action.id = this->id;
         action.actiontype = PAbility->getActionType();
-        action.actionid = PAbility->getID();
+        //#TODO: unoffset this
+        action.actionid = PAbility->getID() + 16;
 
         // #TODO: get rid of this to script, too
         if (PAbility->isAvatarAbility())
