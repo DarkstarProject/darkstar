@@ -151,7 +151,7 @@ void CPetEntity::Die()
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
-    if (PMaster && PMaster->PPet == this)
+    if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
     {
         petutils::DetachPet(PMaster);
     }
