@@ -434,7 +434,7 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-    if tp < 100 then tp = 100
+    if tp < 100 then tp = 100 end
     if (tp>=100 and tp<200) then
         return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
     elseif (tp>=200 and tp<=300) then
