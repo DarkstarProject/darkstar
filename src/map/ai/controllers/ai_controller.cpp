@@ -550,7 +550,7 @@ void CAIController::DoCombatTick(time_point tick)
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (((!distance(PMob->loc.p, PTarget->loc.p) > PMob->m_ModelSize) || move) && PMob->PAI->CanFollowPath())
+    else if (((distance(PMob->loc.p, PTarget->loc.p) > PMob->m_ModelSize) || move) && PMob->PAI->CanFollowPath())
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
