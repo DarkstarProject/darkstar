@@ -24,3 +24,6 @@ end;
 -- onUseAbility
 -----------------------------------
 
+function onUseAbility(player,target,ability)
+    player:addStatusEffect(EFFECT_THIRD_EYE,0,0,30); --power keeps track of procs
+end;
