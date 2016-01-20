@@ -29,6 +29,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
+    params.overrideCE = 80;
+    params.overrideVE = 240;
 
     local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
