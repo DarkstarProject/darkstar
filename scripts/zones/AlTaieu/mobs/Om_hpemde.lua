@@ -4,7 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/missions");
-
+require("scripts/globals/status");
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -23,6 +23,7 @@ function onMobSpawn(mob)
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
     mob:setMod(MOD_REGEN, 10);
+    mob:wait(2000);
 end;
 
 -----------------------------------
@@ -34,7 +35,21 @@ function onMobEngaged(mob, killer)
     mob:untargetable(false);
     if (mob:AnimationSub() == 5) then
         mob:AnimationSub(6);
+        mob:wait(2000);
     end
+end;
+
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
+function onMobDisengage(mob)
+    mob:hideName(true);
+    mob:untargetable(true);
+    mob:AnimationSub(5);
+    mob:SetAutoAttackEnabled(false);
+    mob:SetMobAbilityEnabled(false);
+    mob:setMod(MOD_REGEN, 10);
 end;
 
 -----------------------------------
@@ -66,6 +81,7 @@ function onMobFight(mob, target)
 
         if (mob:AnimationSub() == 6 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(3); -- Mouth Open
+            mob:wait(2000);
             mob:addMod(MOD_ATTP, 100);
             mob:addMod(MOD_DEFP, -50);
             mob:addMod(MOD_DMGMAGIC, -50);
@@ -73,6 +89,7 @@ function onMobFight(mob, target)
 
         elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(6); -- Mouth Closed
+            mob:wait(2000);
             mob:addMod(MOD_ATTP, -100);
             mob:addMod(MOD_DEFP, 50);
             mob:addMod(MOD_DMGMAGIC, 50);
