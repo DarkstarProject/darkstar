@@ -285,47 +285,47 @@ function onTrigger(player, p1, zoneId)
     local word  = "";
     local i     = 0;
     local zone  = zoneId;
-	local targ1 = GetPlayerByName(p1);
-	
-	
-	-- Not enough info.. 
-	if (p1 == nil and zone == nil) then
-		player:PrintToPlayer( string.format("Must specify 2 players or zone: @zoneplayer <player to be sent> (<player to arrive at> or zone) ") );
-		return;
-	end
-	
-	-- Ensure we have a correct combination of values.. 
-	if (p1 ~= nil) then
-		if (targ1 == nil) then
-			player:PrintToPlayer( string.format( "Player named '%s' not found!", p1 ) );
-			return;
-		end
-		if (zone == nil) then 
-			player:PrintToPlayer( string.format("Must specify player to arrive at or zone.") );
-			return;
-		end
-		-- Was the zone auto-translated..
-		if (string.sub(zoneId, 1, 2) == '\253\02' and string.byte(zoneId, 5) ~= nil and string.byte(zoneId, 6) == 0xFD) then
-			-- Pull the group and message id from the translated string..
-			local groupId = string.byte(zoneId, 4);
-			local messageId = string.byte(zoneId, 5);
-		
-			-- Attempt to lookup this zone..
-			for k, v in pairs(zone_list) do
-				if (v[1] == groupId and v[2] == messageId) then
-					-- Teleports player 1 to given zone.
-					targ1:setPos(0, 0, 0, 0, v[3], targ1);
-					return;
-				end
-			end
-		else
-			if (zoneId ~= nil) then
-				local p2 = zoneId;
-				local targ2 = GetPlayerByName(p2);
-					-- Teleports Player 1 to Player 2 coordinates and zone.
-					targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
-			end
-		end
-	end	
+    local targ1 = GetPlayerByName(p1);
+    
+    
+    -- Not enough info.. 
+    if (p1 == nil and zone == nil) then
+        player:PrintToPlayer( string.format("Must specify 2 players or zone: @zoneplayer <player to be sent> (<player to arrive at> or zone) ") );
+        return;
+    end
+    
+    -- Ensure we have a correct combination of values.. 
+    if (p1 ~= nil) then
+        if (targ1 == nil) then
+            player:PrintToPlayer( string.format( "Player named '%s' not found!", p1 ) );
+            return;
+        end
+        if (zone == nil) then 
+            player:PrintToPlayer( string.format("Must specify player to arrive at or zone.") );
+            return;
+        end
+        -- Was the zone auto-translated..
+        if (string.sub(zoneId, 1, 2) == '\253\02' and string.byte(zoneId, 5) ~= nil and string.byte(zoneId, 6) == 0xFD) then
+            -- Pull the group and message id from the translated string..
+            local groupId = string.byte(zoneId, 4);
+            local messageId = string.byte(zoneId, 5);
+        
+            -- Attempt to lookup this zone..
+            for k, v in pairs(zone_list) do
+                if (v[1] == groupId and v[2] == messageId) then
+                    -- Teleports player 1 to given zone.
+                    targ1:setPos(0, 0, 0, 0, v[3], targ1);
+                    return;
+                end
+            end
+        else
+            if (zoneId ~= nil) then
+                local p2 = zoneId;
+                local targ2 = GetPlayerByName(p2);
+                    -- Teleports Player 1 to Player 2 coordinates and zone.
+                    targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
+            end
+        end
+    end    
 end
-	
+    

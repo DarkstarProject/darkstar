@@ -67,12 +67,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -128,7 +128,7 @@ function onTrigger(player,npc)
         elseif (progress >= 2 or failed >= 3) then
             player:startEvent(0x00F3); -- happy with workbench
         end
-	else
+    else
         player:startEvent(0x00C6);
         npc:wait(-1);
     end

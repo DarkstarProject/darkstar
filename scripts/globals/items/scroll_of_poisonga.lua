@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4833
---	Scroll of Poisonga
---	Teaches the black magic Poisonga
+--    ID: 4833
+--    Scroll of Poisonga
+--    Teaches the black magic Poisonga
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(225);
+    return target:canLearnSpell(225);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(225);
+    target:addSpell(225);
 end;

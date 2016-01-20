@@ -21,11 +21,11 @@ end;
 
 function onTrigger(player,npc)
 
-	if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED) then
-		player:startEvent(0x0065);
-	else
-		player:startEvent(0x0068);
-	end
+    if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED) then
+        player:startEvent(0x0065);
+    else
+        player:startEvent(0x0068);
+    end
 end; 
 
 -----------------------------------

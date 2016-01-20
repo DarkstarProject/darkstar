@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC: Yabby Tanmikey
+--    Area: Mhaura
+--    NPC: Yabby Tanmikey
 --  Guild Merchant NPC: Goldsmithing Guild 
 --  @pos -36.459 -16.000 76.840 249
 -----------------------------------
@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(528,8,23,4)) then
-		player:showText(npc,GOLDSMITHING_GUILD);
-	end
+    if (player:sendGuild(528,8,23,4)) then
+        player:showText(npc,GOLDSMITHING_GUILD);
+    end
 end;
 
 -----------------------------------

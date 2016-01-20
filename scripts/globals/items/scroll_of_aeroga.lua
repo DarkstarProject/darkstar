@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4792
---	Scroll of Aeroga
---	Teaches the black magic Aeroga
+--    ID: 4792
+--    Scroll of Aeroga
+--    Teaches the black magic Aeroga
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(184);
+    return target:canLearnSpell(184);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(184);
+    target:addSpell(184);
 end;

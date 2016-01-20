@@ -19,12 +19,13 @@
 -- 9           |9HP/Tick            |13HP/Tick
 -- 10          |10HP/Tick           |14HP/Tick
 -- 11          |16HP/Tick           |20HP/Tick
--- 12+         |-4hp(regen)/Tick	|-4hp(regen)/Tick
+-- 12+         |-4hp(regen)/Tick    |-4hp(regen)/Tick
 -- A bust will cause a regen effect on you to be reduced by 4, it will not drain HP from you if no regen effect is active.
 -----------------------------------
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/ability");
 
 -----------------------------------
 -- onAbilityCheck
@@ -36,43 +37,38 @@ function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
     else
-        player:setLocalVar("DNC_roll_bonus", 0);
         return 0,0;
     end
 end;
 
 -----------------------------------
--- onUseAbilityRoll
+-- onUseAbility
 -----------------------------------
 
-function onUseAbilityRoll(caster,target,ability,total)
+function onUseAbility(caster,target,ability,action)
+    if (caster:getID() == target:getID()) then
+        corsairSetup(caster, ability, action, EFFECT_DANCERS_ROLL, JOB_DNC);
+    end
+    local total = caster:getLocalVar("corsairRollTotal")
+    return applyRoll(caster,target,ability,action,total)
+end;
+
+function applyRoll(caster,target,ability,action,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
     local effectpowers = {3, 4, 12, 5, 6, 7, 1, 8, 9, 10, 16, 4};
-    local effectpower = effectpowers[total]
-    local jobBonus = caster:getLocalVar("DNC_roll_bonus");
-
-    if (total < 12) then -- see chaos_roll.lua for comments
-        if (jobBonus == 0) then
-            if (caster:hasPartyJob(JOB_DNC) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
-                jobBonus = 1;
-            else
-                jobBonus = 2;
-            end
-        end
-        if (jobBonus == 1) then
-            effectpower = effectpower + 4;
-        end
-        if (target:getID() == caster:getID()) then
-            caster:setLocalVar("DNC_roll_bonus", jobBonus);
-        end
+    local effectpower = effectpowers[total];
+    if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
+        effectpower = effectpower + 4
     end
-
     if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_DANCERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_REGEN) == false) then
-        ability:setMsg(423);
+        ability:setMsg(422);
+    elseif total > 11 then
+        ability:setMsg(426);
     end
-end;
+    return total;
+end

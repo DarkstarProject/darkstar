@@ -13,7 +13,7 @@ require("scripts/zones/Attohwa_Chasm/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startExcavation(player,player:getZoneID(),npc,trade,0x000A);
+    startExcavation(player,player:getZoneID(),npc,trade,0x000A);
 end;
 
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4892
---	Scroll of Aeroja
---	Teaches the black magic Aeroja
+--    ID: 4892
+--    Scroll of Aeroja
+--    Teaches the black magic Aeroja
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(498);
+    return target:canLearnSpell(498);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(498);
+    target:addSpell(498);
 end;

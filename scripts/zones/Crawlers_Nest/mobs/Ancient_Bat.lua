@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Ancient Bat
+--  MOB: Ancient Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,698,2);
-   checkGoVregime(killer,mob,699,2);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,698,2);
+    checkGoVregime(ally,mob,699,2);
 end;

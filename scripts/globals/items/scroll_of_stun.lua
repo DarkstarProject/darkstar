@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4860
---	Scroll of Stun
---	Teaches the black magic Stun
+--    ID: 4860
+--    Scroll of Stun
+--    Teaches the black magic Stun
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(252);
+    return target:canLearnSpell(252);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(252);
+    target:addSpell(252);
 end;

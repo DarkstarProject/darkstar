@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Cloister of Tremors
--- NPC:  Galgalim
+--  MOB: Galgalim
 -- Involved in Quest: The Puppet Master
 -----------------------------------
 
@@ -11,19 +11,19 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onMobSpawn(mob)
-end; 
+end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 
-	killer:setVar("BCNM_Killed",1);
-	record = 300;
-	partyMembers = 6;
-	pZone = killer:getZoneID();
+    ally:setVar("BCNM_Killed",1);
+    record = 300;
+    partyMembers = 6;
+    pZone = ally:getZoneID();
 
-	killer:startEvent(0x7d01,0,record,0,(os.time() - killer:getVar("BCNM_Timer")),partyMembers,0,0);
+    ally:startEvent(0x7d01,0,record,0,(os.time() - ally:getVar("BCNM_Timer")),partyMembers,0,0);
 
 end;
 
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,6 +41,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 end;

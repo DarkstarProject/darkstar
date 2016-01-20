@@ -22,15 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
-		SpawnMob(17629185,180);
-		SpawnMob(17629186,180);
-	elseif (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 3) then
-		player:addKeyItem(DROPS_OF_AMNIO);
-		player:messageSpecial(KEYITEM_OBTAINED,DROPS_OF_AMNIO);
-	else
-		player:messageSpecial(POOL_OF_WATER);
-	end
+    if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
+        SpawnMob(17629185,180);
+        SpawnMob(17629186,180);
+    elseif (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 3) then
+        player:addKeyItem(DROPS_OF_AMNIO);
+        player:messageSpecial(KEYITEM_OBTAINED,DROPS_OF_AMNIO);
+    else
+        player:messageSpecial(POOL_OF_WATER);
+    end
 end; 
 
 -----------------------------------

@@ -22,12 +22,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -45,9 +45,9 @@ function onTrigger(player,npc)
     if (player:getVar("BathedInScent") == 1) then
         player:startEvent(0x00A3); -- scent from Blue Rafflesias
         npc:wait(-1);
-	else
-	player:startEvent(0x00BE);
-	npc:wait(-1);
+    else
+    player:startEvent(0x00BE);
+    npc:wait(-1);
     end
 end;
 -----------------------------------

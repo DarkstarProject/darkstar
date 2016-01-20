@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Hyria
+--    Area: Mhaura
+--    NPC:  Hyria
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x14);
+    player:startEvent(0x14);
 end;
 
 -----------------------------------

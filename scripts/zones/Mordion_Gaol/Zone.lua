@@ -15,9 +15,9 @@ require("scripts/zones/Mordion_Gaol/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------        
+-- onConquestUpdate        
+-----------------------------------        
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();

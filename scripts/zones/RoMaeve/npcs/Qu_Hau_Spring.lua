@@ -22,10 +22,10 @@ function onTrade(player,npc,trade)
         if (DMfirst == QUEST_ACCEPTED or DMRepeat == QUEST_ACCEPTED) then -- allow for Ark Pentasphere on both first and repeat quests
             if (trade:hasItemQty(1408,1) and trade:hasItemQty(917,1) and trade:getItemCount() == 2) then
                 player:startEvent(7,917,1408); -- Ark Pentasphere Trade
+            elseif (DMRepeat == QUEST_ACCEPTED and trade:hasItemQty(1261,1) and trade:getItemCount() == 1 and player:hasKeyItem(MOONLIGHT_ORE) == false) then
+                player:startEvent(8); -- Moonlight Ore trade
             end
-        elseif (DMRepeat == QUEST_ACCEPTED and trade:hasItemQty(1261,1) and trade:getItemCount() == 1 and player:hasKeyItem(MOONLIGHT_ORE) == false) then
-            player:startEvent(8); -- Moonlight Ore trade
-       end
+        end
     end
 end;
 

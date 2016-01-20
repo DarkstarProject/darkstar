@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4701
---	Scroll of Cura
---	Teaches the white magic Cura
+--    ID: 4701
+--    Scroll of Cura
+--    Teaches the white magic Cura
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(93);
+    return target:canLearnSpell(93);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(93);
+    target:addSpell(93);
 end;

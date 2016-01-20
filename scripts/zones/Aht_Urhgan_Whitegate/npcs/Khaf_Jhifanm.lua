@@ -21,15 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,KHAFJHIFANM_SHOP_DIALOG);
 
-stock = {0x15BF,200,		-- Dried Date
-	 0x15C8,800,		-- Ayran
-	 0x15D6,3750,		-- balik Sandvici
-	 0x08BB,320,		-- Wildgrass Seeds
-	 0x13D3,4400,		-- Scroll of Raptor Mazurka
-	 0x0b38,10000}		-- Empire Waystone
+stock = {0x15BF,200,        -- Dried Date
+     0x15C8,800,        -- Ayran
+     0x15D6,3750,        -- balik Sandvici
+     0x08BB,320,        -- Wildgrass Seeds
+     0x13D3,4400,        -- Scroll of Raptor Mazurka
+     0x0b38,10000}        -- Empire Waystone
 
  
 showShop(player, STATIC, stock);

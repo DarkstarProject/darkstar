@@ -1273,7 +1273,12 @@ MOD_FORCE_DARK_DWBONUS        = 538 -- Set to 1 to force dark day/weather spell 
 MOD_STONESKIN_BONUS_HP        = 539 -- Bonus "HP" granted to Stoneskin spell.
 MOD_ENHANCES_ELEMENTAL_SIPHON = 540 -- Bonus Base MP added to Elemental Siphon skill.
 MOD_BP_DELAY_II               = 541 -- Blood Pact Delay Reduction II
-MOD_JOB_BONUS_CHANCE          = 542 --  Chance to apply job bonus to COR roll without having the job in the party.
+MOD_JOB_BONUS_CHANCE          = 542 -- Chance to apply job bonus to COR roll without having the job in the party.
+MOD_DAY_NUKE_BONUS            = 565 -- Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
+MOD_IRIDESCENCE               = 566 -- Iridesecnce trait (additional weather damage/penalty)
+MOD_BARSPELL_AMOUNT           = 567 -- Additional elemental resistance granted by bar- spells
+MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
+MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1283,6 +1288,7 @@ MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, perc
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1296,8 +1302,8 @@ MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. M
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 565, -- stuff
--- MOD_SPARE = 566, -- stuff
+-- MOD_SPARE = 826, -- stuff
+-- MOD_SPARE = 827, -- stuff
 
 ------------------------------------
 -- Merit Definitions

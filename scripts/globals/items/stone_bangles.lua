@@ -1,6 +1,6 @@
 -----------------------------------------
---	ID: 14988
---	Stone Bangles
+--    ID: 14988
+--    Stone Bangles
 --  Enchantment: "Enstone"
 -----------------------------------------
 
@@ -9,13 +9,13 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
 
 function onItemUse(target)
-	local effect = EFFECT_ENSTONE;
-	doEnspell(target,target,nil,effect);
+    local effect = EFFECT_ENSTONE;
+    doEnspell(target,target,nil,effect);
 end;

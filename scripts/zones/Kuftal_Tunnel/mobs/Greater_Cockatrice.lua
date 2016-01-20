@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
--- MOB:  Greater Cockatrice
+--  MOB: Greater Cockatrice
 -- Note: Place Holder for Pelican
 -----------------------------------
 
@@ -10,9 +10,9 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-    checkGoVregime(killer,mob,741,2);
+    checkGoVregime(ally,mob,741,2);
 
     local mob = mob:getID();
     if (Pelican_PH[mob] ~= nil) then

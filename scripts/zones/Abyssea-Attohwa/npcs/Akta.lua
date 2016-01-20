@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea-Attohwa
---	NPC: Akta
---	Standard Info NPC
+--    Area: Abyssea-Attohwa
+--    NPC: Akta
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0188);
+    player:startEvent(0x0188);
 end;
 
 -----------------------------------

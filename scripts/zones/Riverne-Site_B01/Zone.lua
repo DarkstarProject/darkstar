@@ -17,9 +17,9 @@ require("scripts/globals/settings");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------        
+-- onConquestUpdate        
+-----------------------------------        
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -35,14 +35,14 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	local cs = -1;
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(729.749,-20.319,407.153,90); -- {R}
-	end
-	-- ZONE LEVEL RESTRICTION
-	if (ENABLE_COP_ZONE_CAP == 1) then
-		player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
-	end	
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+        player:setPos(729.749,-20.319,407.153,90); -- {R}
+    end
+    -- ZONE LEVEL RESTRICTION
+    if (ENABLE_COP_ZONE_CAP == 1) then
+        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
+    end    
 return cs;
 end;
 

@@ -14,32 +14,32 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local minCure = 60;
+    local minCure = 60;
 
-	local divisor = 1;
-	local constant = 40;
-	local power = getCurePowerOld(caster);
-	if (power > 99) then
-		divisor = 57;
-		constant = 79.125;
-	elseif (power > 59) then
-		divisor =  2;
-		constant = 55;
-	end
+    local divisor = 1;
+    local constant = 40;
+    local power = getCurePowerOld(caster);
+    if (power > 99) then
+        divisor = 57;
+        constant = 79.125;
+    elseif (power > 59) then
+        divisor =  2;
+        constant = 55;
+    end
 
-	local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
+    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
-	final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
-	local diff = (target:getMaxHP() - target:getHP());
-	if (final > diff) then
-		final = diff;
-	end
-	caster:eraseStatusEffect();
-	target:addHP(final);
-	caster:updateEnmityFromCure(target,final);
-	return final;
+    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+    local diff = (target:getMaxHP() - target:getHP());
+    if (final > diff) then
+        final = diff;
+    end
+    caster:eraseStatusEffect();
+    target:addHP(final);
+    caster:updateEnmityFromCure(target,final);
+    return final;
 end;

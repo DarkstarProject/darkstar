@@ -46,7 +46,7 @@ function onAdditionalEffect(mob,target,damage)
         dmg = addBonusesAbility(mob, ELE_WATER, target, dmg, params);
         dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WATER,0);
         dmg = adjustForTarget(target,dmg,ELE_WATER);
-        
+
         dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
         return SUBEFFECT_WATER_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
@@ -58,7 +58,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     -- UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((7200),(7800))); -- 120 to 130 min
 end;

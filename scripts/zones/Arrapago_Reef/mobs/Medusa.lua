@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
--- NPC:  Medusa
+--  MOB: Medusa
 -- @pos -458 -20 458
 -- TODO: resists, attack/def boosts
 -----------------------------------
@@ -37,7 +37,7 @@ function onMobFight(mob, target)
     local HPP = mob:getHPP();
     if (mob:getLocalVar("usedees") == 0) then
         if (HPP <= mob:getLocalVar("eeshpp")) then
-            mob:useMobAbility(1675); -- Eagle Eye Shot
+            mob:useMobAbility(1931); -- Eagle Eye Shot
             mob:setLocalVar("usedees", 1);
         end
     end
@@ -47,7 +47,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:showText(mob, MEDUSA_DEATH);
-	killer:addTitle(GORGONSTONE_SUNDERER);
+function onMobDeath(mob, killer, ally)
+    ally:showText(mob, MEDUSA_DEATH);
+    ally:addTitle(GORGONSTONE_SUNDERER);
 end;

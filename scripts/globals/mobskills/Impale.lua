@@ -18,32 +18,32 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local isNM = mob:isMobType(MOBTYPE_NOTORIOUS);
+    local isNM = mob:isMobType(MOBTYPE_NOTORIOUS);
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 2.3;
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 2.3;
 
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
 
-	local shadows = info.hitslanded;
+    local shadows = info.hitslanded;
 
-	if (isNM) then
-		shadows = MOBPARAM_IGNORE_SHADOWS;
-	end
+    if (isNM) then
+        shadows = MOBPARAM_IGNORE_SHADOWS;
+    end
 
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,shadows);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,shadows);
 
-	local typeEffect = EFFECT_PARALYSIS;
-	local power = 20;
+    local typeEffect = EFFECT_PARALYSIS;
+    local power = 20;
 
-	if (isNM) then
-		typeEffect = EFFECT_POISON;
-	end
+    if (isNM) then
+        typeEffect = EFFECT_POISON;
+    end
 
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, 120);
 
-	target:delHP(dmg);
-	return dmg;
+    target:delHP(dmg);
+    return dmg;
 end;

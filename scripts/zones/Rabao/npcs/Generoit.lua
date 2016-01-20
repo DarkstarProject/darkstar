@@ -20,18 +20,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,GENEROIT_SHOP_DIALOG);
 
-stock = {0x11C1,61,	-- Gysahl Greens
-	 0x0348,7,	-- Chocobo Feather
-	 0x4278,10,	-- Pet Food Alpha Biscuit
-	 0x4279,81,	-- Pet Food Beta Biscuit
-	 0x45C4,81,	-- Carrot Broth
-	 0x45C6,687,	-- Bug Broth
-	 0x45C8,125,	-- Herbal Broth
-	 0x45CA,687,	-- Carrion Broth
-	 0x13D1,50784}	-- Scroll of Chocobo Mazurka
+stock = {0x11C1,61,    -- Gysahl Greens
+     0x0348,7,    -- Chocobo Feather
+     0x4278,10,    -- Pet Food Alpha Biscuit
+     0x4279,81,    -- Pet Food Beta Biscuit
+     0x45C4,81,    -- Carrot Broth
+     0x45C6,687,    -- Bug Broth
+     0x45C8,125,    -- Herbal Broth
+     0x45CA,687,    -- Carrion Broth
+     0x13D1,50784}    -- Scroll of Chocobo Mazurka
  
 showShop(player, STATIC, stock);
 end; 

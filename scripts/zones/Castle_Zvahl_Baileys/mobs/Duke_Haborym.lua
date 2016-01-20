@@ -1,13 +1,13 @@
 -----------------------------------
---  Area: Castle Zvahl Baileys (161)
---    NM: Duke_Haborym
+-- Area: Castle Zvahl Baileys (161)
+--   NM: Duke_Haborym
 -----------------------------------
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDeath(mob,killer,ally)
 
     -- Set Duke_Haborym's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

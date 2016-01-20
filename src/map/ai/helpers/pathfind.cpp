@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #include "../../zone.h"
 #include "../../entities/baseentity.h"
 #include "../../entities/mobentity.h"
+#include "../../../common/utils.h"
 
 CPathFind::CPathFind(CBaseEntity* PTarget)
 {
@@ -265,6 +266,7 @@ void CPathFind::FollowPath()
         }
 
         m_onPoint = true;
+        //#event onPoint event
     }
 }
 
@@ -330,7 +332,7 @@ bool CPathFind::FindPath(position_t* start, position_t* end)
 
     if (m_pathLength <= 0)
     {
-        ShowError("CPathFind::FindPath Entity (%d) could not find path", m_PTarget->id);
+        ShowError("CPathFind::FindPath Entity (%d) could not find path\n", m_PTarget->id);
         return false;
     }
 

@@ -24,12 +24,12 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc)
-	if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
-		player:startEvent(0x027a);
-	else
-		player:showText(npc, 7817)-- nothing to report
-	end
-	
+    if (player:hasKeyItem(BOOK_OF_TASKS) and player:hasKeyItem(BOOK_OF_THE_WEST) == false) then
+        player:startEvent(0x027a);
+    else
+        player:showText(npc, 7817)-- nothing to report
+    end
+    
 end; 
 
 -----------------------------------
@@ -49,9 +49,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x027a) then
-		player:addKeyItem(BOOK_OF_THE_WEST);
-		player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_WEST);
-	end
-	
+    if (csid == 0x027a) then
+        player:addKeyItem(BOOK_OF_THE_WEST);
+        player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_THE_WEST);
+    end
+    
 end;

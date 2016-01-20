@@ -40,25 +40,25 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	
-	if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,4);
-	elseif (leavecode == 4) then
-		player:startEvent(0x7d02);
-	end
-	
+    
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,4);
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-		if (csid == 0x7d01 and player:getVar("aThiefinNorgCS") == 6) then
-			player:setVar("aThiefinNorgCS",7);
-			player:addKeyItem(CHARRED_HELM);
-			player:messageSpecial(KEYITEM_OBTAINED,CHARRED_HELM);
-		end
+        if (csid == 0x7d01 and player:getVar("aThiefinNorgCS") == 6) then
+            player:setVar("aThiefinNorgCS",7);
+            player:addKeyItem(CHARRED_HELM);
+            player:messageSpecial(KEYITEM_OBTAINED,CHARRED_HELM);
+        end
 end;

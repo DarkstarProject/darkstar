@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	local duration = 3600;
-		target:delStatusEffect(EFFECT_RERAISE);
-		target:addStatusEffect(EFFECT_RERAISE,3,0,duration);
+    local duration = 3600;
+        target:delStatusEffect(EFFECT_RERAISE);
+        target:addStatusEffect(EFFECT_RERAISE,3,0,duration);
 end;

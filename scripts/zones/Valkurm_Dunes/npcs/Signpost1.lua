@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(SIGNPOST1); 
+    player:messageSpecial(SIGNPOST1); 
 end;
 
 -----------------------------------

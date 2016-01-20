@@ -40,14 +40,13 @@ function onSpikesDamage(mob,target,damage)
     end    
 
     return SUBEFFECT_SHOCK_SPIKES,44,dmg;
-
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     -- UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((7200),(10800))); -- 2 to 3 hrs
+    mob:setRespawnTime(math.random(7200,10800)); -- 2 to 3 hrs
 end;

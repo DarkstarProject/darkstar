@@ -24,14 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	SahaginStash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
-	
-	if (SahaginStash == QUEST_ACCEPTED and player:hasKeyItem(296) == false) then
-		player:startEvent(0x0001);
-	end
+    
+    SahaginStash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
+    
+    if (SahaginStash == QUEST_ACCEPTED and player:hasKeyItem(296) == false) then
+        player:startEvent(0x0001);
+    end
 end; 
-		
+        
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-		if (csid == 0x0001) then
-			player:addKeyItem(296);
-			player:messageSpecial(KEYITEM_OBTAINED,296);
-		end
+        if (csid == 0x0001) then
+            player:addKeyItem(296);
+            player:messageSpecial(KEYITEM_OBTAINED,296);
+        end
 end;

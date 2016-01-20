@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
 BareBones = player:getQuestStatus(BASTOK,THE_BARE_BONES);
 
-	if (BareBones == QUEST_ACCEPTED) then
-		player:startEvent(0x0101);
-	else
-		player:startEvent(0x007e); 
-	end
+    if (BareBones == QUEST_ACCEPTED) then
+        player:startEvent(0x0101);
+    else
+        player:startEvent(0x007e); 
+    end
 end; 
 
 

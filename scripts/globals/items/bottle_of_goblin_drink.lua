@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 4423
--- Item: Apple Juice
--- Item Effect: Restores 1 MP / 3 tick 180 mins.
+-- ID: 4541
+-- Item: Goblin Drink
+-- Item Effect: Restores 1 MP while healing / 3 tick 180 mins.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -19,10 +19,23 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
-        target:addStatusEffect(EFFECT_REFRESH,1,3,10800);
+    if (target:hasStatusEffect(EFFECT_FOOD) == false) then
+        target:addStatusEffect(EFFECT_FOOD, 1, 3, 10800, 4541);
     else
         target:messageBasic(423);
     end
 end;
 
+function onEffectGain(target, effect)
+
+end;
+
+function onEffectTick(target, effect)
+    if target:hasStatusEffect(EFFECT_HEALING) then
+        target:addMP(effect:getPower());
+     end;
+end;
+
+function onEffectLose(target, effect)
+
+end;

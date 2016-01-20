@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea-Attohwa
---	NPC: Gabriele
---	Standard Info NPC
+--    Area: Abyssea-Attohwa
+--    NPC: Gabriele
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x018A);
+    player:startEvent(0x018A);
 end;
 
 -----------------------------------

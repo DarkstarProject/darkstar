@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos	
+-- Area: Temenos    
 -- NPC: 
 
 -----------------------------------
@@ -26,7 +26,7 @@ function onMobEngaged(mob,target)
        mob:setMod(MOD_SLASHRES,1400);
        mob:setMod(MOD_PIERCERES,1400);
        mob:setMod(MOD_IMPACTRES,1400);
-       mob:setMod(MOD_HTHRES,1400);	   
+       mob:setMod(MOD_HTHRES,1400);       
   else
       mob:setMod(MOD_SLASHRES,300);
       mob:setMod(MOD_PIERCERES,300);
@@ -41,10 +41,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
           if (IsMobDead(16929005)==true and IsMobDead(16929006)==true and IsMobDead(16929007)==true) then
-        	GetNPCByID(16928768+78):setPos(-280,-161,-440);
-	        GetNPCByID(16928768+78):setStatus(STATUS_NORMAL);
-	        GetNPCByID(16928768+473):setStatus(STATUS_NORMAL);		
+            GetNPCByID(16928768+78):setPos(-280,-161,-440);
+            GetNPCByID(16928768+78):setStatus(STATUS_NORMAL);
+            GetNPCByID(16928768+473):setStatus(STATUS_NORMAL);        
           end
 end;

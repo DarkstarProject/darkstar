@@ -33,12 +33,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -66,24 +66,24 @@ end;
 
 function onTrigger(player,npc)
 
-	aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
+    aSentrysPeril = player:getQuestStatus(SANDORIA,A_SENTRY_S_PERIL);
 
-	npc:wait(-1);
+    npc:wait(-1);
 
-	if (aSentrysPeril == QUEST_AVAILABLE) then
-		player:startEvent(0x01fe);
-	elseif (aSentrysPeril == QUEST_ACCEPTED) then
-		if (player:hasItem(600) == true or player:hasItem(601) == true) then
-			player:startEvent(0x0208);
-		else
-			player:startEvent(0x0284);
-		end	
-	elseif (aSentrysPeril == QUEST_COMPLETED) then
-		player:startEvent(0x0209);
-	else
-		npc:wait(0);
-	end
-	
+    if (aSentrysPeril == QUEST_AVAILABLE) then
+        player:startEvent(0x01fe);
+    elseif (aSentrysPeril == QUEST_ACCEPTED) then
+        if (player:hasItem(600) == true or player:hasItem(601) == true) then
+            player:startEvent(0x0208);
+        else
+            player:startEvent(0x0284);
+        end    
+    elseif (aSentrysPeril == QUEST_COMPLETED) then
+        player:startEvent(0x0209);
+    else
+        npc:wait(0);
+    end
+    
 end; 
 
 -----------------------------------
@@ -103,34 +103,34 @@ function onEventFinish(player,csid,option,npc)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	npc:wait(5000);
-	
-	if (csid == 0x01fe and option == 0) then
-		if (player:getFreeSlotsCount() > 0) then
-			player:addQuest(SANDORIA,A_SENTRY_S_PERIL);
-			player:addItem(600);
-			player:messageSpecial(ITEM_OBTAINED,600);
-		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
-		end 	
-	elseif (csid == 0x0284) then
-		if (player:getFreeSlotsCount() > 0) then
-			player:addItem(600);
-			player:messageSpecial(ITEM_OBTAINED,600);
-		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
-		end
-	elseif (csid == 0x0201) then
-		if (player:getFreeSlotsCount() == 0) then 
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
-		else
-			player:tradeComplete();
-			player:addTitle(RONFAURIAN_RESCUER);
-			player:addItem(12832);
-			player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
-			player:addFame(SANDORIA,SAN_FAME*30);
-			player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
-		end
-	end
-	
+    npc:wait(5000);
+    
+    if (csid == 0x01fe and option == 0) then
+        if (player:getFreeSlotsCount() > 0) then
+            player:addQuest(SANDORIA,A_SENTRY_S_PERIL);
+            player:addItem(600);
+            player:messageSpecial(ITEM_OBTAINED,600);
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+        end     
+    elseif (csid == 0x0284) then
+        if (player:getFreeSlotsCount() > 0) then
+            player:addItem(600);
+            player:messageSpecial(ITEM_OBTAINED,600);
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,600); -- Dose of ointment
+        end
+    elseif (csid == 0x0201) then
+        if (player:getFreeSlotsCount() == 0) then 
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
+        else
+            player:tradeComplete();
+            player:addTitle(RONFAURIAN_RESCUER);
+            player:addItem(12832);
+            player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
+            player:addFame(SANDORIA,SAN_FAME*30);
+            player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
+        end
+    end
+    
 end;

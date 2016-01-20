@@ -24,6 +24,7 @@
 #include "../../common/showmsg.h"
 
 #include "lua_mobskill.h"
+#include "../mobskill.h"
 
 
 /************************************************************************

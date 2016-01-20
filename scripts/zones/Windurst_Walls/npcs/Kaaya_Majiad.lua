@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Kaaya Majiad
---	Working 100%
+--    Area: Windurst Walls
+--    NPC:  Kaaya Majiad
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x143);
+    player:startEvent(0x143);
 end;
 
 -----------------------------------

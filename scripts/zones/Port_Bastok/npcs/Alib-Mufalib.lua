@@ -46,10 +46,10 @@ Bastok Mines (Clockwise, starting at Ore Street, upper floor to lower floor)
 ]]--
 
 function onTrade(player,npc,trade)
-	if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
-		-- Needs a check for at least traded an invitation card to Naja Salaheem
-		player:startEvent(0x017b);
-	end
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then 
+        -- Needs a check for at least traded an invitation card to Naja Salaheem
+        player:startEvent(0x017b);
+    end
 end; 
 
 -----------------------------------
@@ -57,25 +57,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local LureBastok = player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
-	local WildcatBastok = player:getVar("WildcatBastok");
-	if (LureBastok ~= 2 and ENABLE_TOAU == 1) then
-		if (LureBastok == 0) then
-			player:startEvent(0x0165);
-		else
-			if (WildcatBastok == 0) then
-				player:startEvent(0x0166);
-			elseif (player:isMaskFull(WildcatBastok,20) == true) then
-				player:startEvent(0x0168);
-			else
-				player:startEvent(0x0167);
-			end
-		end
-	elseif (player:getCurrentMission(TOAU) >= 2) then
-		player:startEvent(0x017a);
-	else
-		player:startEvent(0x0169);
-	end
+    local LureBastok = player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+    local WildcatBastok = player:getVar("WildcatBastok");
+    if (LureBastok ~= 2 and ENABLE_TOAU == 1) then
+        if (LureBastok == 0) then
+            player:startEvent(0x0165);
+        else
+            if (WildcatBastok == 0) then
+                player:startEvent(0x0166);
+            elseif (player:isMaskFull(WildcatBastok,20) == true) then
+                player:startEvent(0x0168);
+            else
+                player:startEvent(0x0167);
+            end
+        end
+    elseif (player:getCurrentMission(TOAU) >= 2) then
+        player:startEvent(0x017a);
+    else
+        player:startEvent(0x0169);
+    end
 end;
 
 -----------------------------------
@@ -85,22 +85,22 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0165) then
-		player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
-		player:setVar("WildcatBastok",0);
-		player:addKeyItem(BLUE_SENTINEL_BADGE);
-		player:messageSpecial(KEYITEM_OBTAINED,BLUE_SENTINEL_BADGE);
-	elseif (csid == 0x0168) then
-		player:completeQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
-		player:addFame(BASTOK,150);
-		player:setVar("WildcatBastok",0);
-		player:delKeyItem(BLUE_SENTINEL_BADGE);
-		player:addKeyItem(BLUE_INVITATION_CARD);
-		player:messageSpecial(KEYITEM_LOST,BLUE_SENTINEL_BADGE);
-		player:messageSpecial(KEYITEM_OBTAINED,BLUE_INVITATION_CARD);
-	elseif (csid == 0x017b) then
-		player:tradeComplete();
-		toAhtUrhganWhitegate(player);
-	end
+    if (csid == 0x0165) then
+        player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+        player:setVar("WildcatBastok",0);
+        player:addKeyItem(BLUE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,BLUE_SENTINEL_BADGE);
+    elseif (csid == 0x0168) then
+        player:completeQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
+        player:addFame(BASTOK,150);
+        player:setVar("WildcatBastok",0);
+        player:delKeyItem(BLUE_SENTINEL_BADGE);
+        player:addKeyItem(BLUE_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,BLUE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,BLUE_INVITATION_CARD);
+    elseif (csid == 0x017b) then
+        player:tradeComplete();
+        toAhtUrhganWhitegate(player);
+    end
 end;
 

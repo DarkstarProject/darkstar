@@ -24,9 +24,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(513,6,21,0)) then
-		player:showText(npc,CAUZERISTE_SHOP_DIALOG);
-	end
+    if (player:sendGuild(513,6,21,0)) then
+        player:showText(npc,CAUZERISTE_SHOP_DIALOG);
+    end
 end; 
 
 -----------------------------------

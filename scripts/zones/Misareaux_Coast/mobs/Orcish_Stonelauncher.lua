@@ -1,7 +1,8 @@
 -----------------------------------
--- mob : Orcish Stonelauncher
--- zone : Misareaux_Coast
+-- Area: Misareaux_Coast
+--  MOB: Orcish Stonelauncher
 -----------------------------------
+
 
 -----------------------------------
 -- onMobSpawn Action
@@ -14,10 +15,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
+    local kills = ally:getVar("FOMOR_HATE");
 
-	local kills = killer:getVar("FOMOR_HATE");
-	if (kills > 0) then
-		killer:setVar("FOMOR_HATE",kills -1);
-	end
+    if (kills > 0) then
+        ally:setVar("FOMOR_HATE",kills -1);
+    end
 end;

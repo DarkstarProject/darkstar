@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4804
---	Scroll of Thundaga III
---	Teaches the black magic Thundaga III
+--    ID: 4804
+--    Scroll of Thundaga III
+--    Teaches the black magic Thundaga III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(196);
+    return target:canLearnSpell(196);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(196);
+    target:addSpell(196);
 end;

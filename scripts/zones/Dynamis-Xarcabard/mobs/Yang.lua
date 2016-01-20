@@ -29,7 +29,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     local YingID = 17330183;
     -- localVars clear on death, so setting it on its partner
     GetMobByID(YingID):setLocalVar("YangToD", os.time());

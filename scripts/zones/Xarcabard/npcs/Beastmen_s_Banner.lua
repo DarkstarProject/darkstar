@@ -4,7 +4,7 @@
 -- @pos 153.000 -36.444 23.500 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

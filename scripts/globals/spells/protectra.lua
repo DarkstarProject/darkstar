@@ -10,12 +10,12 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local power = 15;
-	local duration = 1800;
+    local power = 15;
+    local duration = 1800;
 
     duration = calculateDurationForLvl(duration, 7, target:getMainLvl());
 

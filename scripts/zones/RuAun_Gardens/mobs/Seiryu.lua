@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NPC: Seiryu
+--  NM:  Seiryu
 -----------------------------------
-
+package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/RuAun_Gardens/TextIDs");
 require("scripts/globals/status");
 
@@ -52,7 +53,7 @@ function onAdditionalEffect(mob, target, damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    
+
     dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
     dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WIND,0);
     dmg = adjustForTarget(target,dmg,ELE_WIND);
@@ -65,8 +66,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:showText(mob,SKY_GOD_OFFSET + 10);
+function onMobDeath(mob, killer, ally)
+    ally:showText(mob,SKY_GOD_OFFSET + 10);
 end;
 
 -----------------------------------

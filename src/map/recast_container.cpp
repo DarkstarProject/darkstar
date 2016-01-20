@@ -29,6 +29,7 @@
 
 #include "entities/charentity.h"
 #include "recast_container.h"
+#include "item_container.h"
 
 /************************************************************************
 *                                                                       *

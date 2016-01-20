@@ -89,8 +89,10 @@ enum MOBMODIFIER : int
     MOBMOD_MAGIC_DELAY        = 57, // Amount of seconds mob waits before casting first spell
     MOBMOD_SPECIAL_DELAY      = 58, // Amount of seconds mob waits before using first special
     MOBMOD_WEAPON_BONUS       = 59, // Add a bonus percentage to mob weapon damage ( bonus / 100 )
-    MOBMOD_SPAWN_ANIMATIONSUB = 60,  // reset animationsub to this on spawn
-    MOBMOD_HP_SCALE           = 61  // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
+    MOBMOD_SPAWN_ANIMATIONSUB = 60, // reset animationsub to this on spawn
+    MOBMOD_HP_SCALE           = 61, // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
+    MOBMOD_NO_STANDBACK       = 62, // Mob will never standback
+    MOBMOD_ATTACK_SKILL_LIST  = 63  // skill list to use in place of regular attacks
 };
 
 #endif

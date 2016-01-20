@@ -22,13 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(CREST_OF_DAVOI_KI)) then
-		player:startEvent(0x0036);
-	else
-		player:startEvent(0x0037);
-	end
-	
+    
+    if (player:hasKeyItem(CREST_OF_DAVOI_KI)) then
+        player:startEvent(0x0036);
+    else
+        player:startEvent(0x0037);
+    end
+    
 end;
 
 -----------------------------------
@@ -46,5 +46,5 @@ end;
 
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);	
+-- printf("RESULT: %u",option);    
 end;

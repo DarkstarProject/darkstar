@@ -13,16 +13,16 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	respawn = GetServerVariable("[POP]Beryl-footed_Molberry");
-	
-	-- Trade Tonberry Rattle
-	if (trade:hasItemQty(1266,1) and trade:getItemCount() == 1 and respawn <= os.time(t)) then 
-		player:tradeComplete();
-		SpawnMob(17428809,300):updateClaim(player);
-	else
-		player:messageSpecial(NOTHING_HAPPENS);
-	end
+    
+    respawn = GetServerVariable("[POP]Beryl-footed_Molberry");
+    
+    -- Trade Tonberry Rattle
+    if (trade:hasItemQty(1266,1) and trade:getItemCount() == 1 and respawn <= os.time(t)) then 
+        player:tradeComplete();
+        SpawnMob(17428809,300):updateClaim(player);
+    else
+        player:messageSpecial(NOTHING_HAPPENS);
+    end
 
 end;
 
@@ -31,5 +31,5 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(NM_OFFSET);
+    player:messageSpecial(NM_OFFSET);
 end;

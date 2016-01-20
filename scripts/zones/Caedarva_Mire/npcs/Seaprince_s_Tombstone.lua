@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(SEAPRINCES_TOMBSTONE);
+    player:messageSpecial(SEAPRINCES_TOMBSTONE);
 end;
 
 -----------------------------------

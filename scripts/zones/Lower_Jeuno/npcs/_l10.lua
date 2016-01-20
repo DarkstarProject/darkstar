@@ -30,17 +30,17 @@ local hour = VanadielHour();
 if (hour >= 18 and hour < 21) then
 if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_ACCEPTED) then
 if (player:getVar("cService") == 1) then
-	player:setVar("cService",2);
-			end
-		
+    player:setVar("cService",2);
+            end
+        
 elseif (hour >= 18 and hour < 21) then
 if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) then
 if (player:getVar("cService") == 14) then
-	player:setVar("cService",15);
-				end
-			end
-		end
-	end
+    player:setVar("cService",15);
+                end
+            end
+        end
+    end
 end;
 
 -----------------------------------
@@ -58,5 +58,5 @@ end;
 
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
---printf("RESULT: %u",option);	
+--printf("RESULT: %u",option);    
 end;

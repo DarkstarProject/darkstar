@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep (S)
--- NPC: Keep Imp
+--  MOB: Keep Imp
 -----------------------------------
 
 require("scripts/globals/status");
@@ -41,5 +41,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

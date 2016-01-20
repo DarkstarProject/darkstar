@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_FOCUS
--- 	
+--     EFFECT_FOCUS
+--     
 -----------------------------------
 
 require("scripts/globals/status");

@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Al'Taieu
--- NPC:  Ul'Hpemde
+--  MOB: Ul'Hpemde
 -----------------------------------
-
+require("scripts/globals/status");
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -21,6 +21,7 @@ function onMobSpawn(mob)
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
     mob:setMod(MOD_REGEN, 10);
+    mob:wait(2000);
 end;
 
 -----------------------------------
@@ -32,15 +33,29 @@ function onMobEngaged(mob, killer)
     mob:untargetable(false);
     if (mob:AnimationSub() == 5) then
         mob:AnimationSub(6);
+        mob:wait(2000);
     end
+end;
+
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
+function onMobDisengage(mob)
+    mob:hideName(true);
+    mob:untargetable(true);
+    mob:AnimationSub(5);
+    mob:SetAutoAttackEnabled(false);
+    mob:SetMobAbilityEnabled(false);
+    mob:setMod(MOD_REGEN, 10);
 end;
 
 -----------------------------------
 -- onMobRoam Action
 -----------------------------------
 
-function onMobRoam(mob)    
-    if (mob:getHPP() == 100) then 
+function onMobRoam(mob)
+    if (mob:getHPP() == 100) then
         mob:setLocalVar("damaged", 0);
         mob:SetAutoAttackEnabled(false);
         mob:SetMobAbilityEnabled(false);
@@ -59,18 +74,20 @@ function onMobFight(mob, target)
             mob:SetMobAbilityEnabled(true);
             mob:setLocalVar("damaged", 1);
         end
-        
+
         local changeTime = mob:getLocalVar("changeTime");
-        
+
         if (mob:AnimationSub() == 6 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(3); -- Mouth Open
+            mob:wait(2000);
             mob:addMod(MOD_ATTP, 100);
             mob:addMod(MOD_DEFP, -50);
             mob:addMod(MOD_DMGMAGIC, -50);
             mob:setLocalVar("changeTime", mob:getBattleTime());
-        
+
         elseif (mob:AnimationSub() == 3 and mob:getBattleTime() - changeTime > 30) then
             mob:AnimationSub(6); -- Mouth Closed
+            mob:wait(2000);
             mob:addMod(MOD_ATTP, -100);
             mob:addMod(MOD_DEFP, 50);
             mob:addMod(MOD_DMGMAGIC, 50);
@@ -83,5 +100,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

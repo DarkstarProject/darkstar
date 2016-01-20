@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Aw_aern PH (Ix'Aern DRK and DRG)
+--  MOB: Aw_aern PH (Ix'Aern DRK and DRG)
 -----------------------------------
 
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
@@ -28,12 +28,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
     local currentMobID = mob:getID();
-    
+
     -- Ix'Aern (DRG) Placeholder mobs
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH.
-    
+
     -- If the mob killed was the randomized PH, then Ix'Aern (DRG) in the specific spot, unclaimed and not aggroed.
     if (IxAernDRG_PH == currentMobID) then
         -- Select spawn location based on ID
@@ -44,7 +44,7 @@ function onMobDeath(mob, killer)
         elseif (currentMobID >= 16920785 and currentMobID < 16920789) then
             GetMobByID(IxAernDRG):setSpawn(-319, 5, -359, 95); -- Top Right
         elseif (currentMobID >= 16920789 and currentMobID < 16920783) then
-            GetMobByID(IxAernDRG):setSpawn(-319, 5, -520, 156); -- Bottom Right    
+            GetMobByID(IxAernDRG):setSpawn(-319, 5, -520, 156); -- Bottom Right
         end;
         SpawnMob(IxAernDRG);
         SetServerVariable("[SEA]IxAernDRG_PH", 0); -- Clear the variable because it is spawned!

@@ -27,9 +27,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../status_effect.h"
-
-
+class CStatusEffect;
 class CLuaStatusEffect
 {
     CStatusEffect *m_PLuaStatusEffect;

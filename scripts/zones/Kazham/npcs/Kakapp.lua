@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         elseif (progress >= 8 or failed >= 9) then
             player:startEvent(0x00F9); -- happy with wyvern skull
         end
-	else
+    else
         player:startEvent(0x00CC);
     end
 end;

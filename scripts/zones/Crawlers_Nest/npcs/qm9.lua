@@ -22,25 +22,25 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local DreadbugTimer = player:getVar("DreadbugNM_Timer");
-	local DreadbugDay = player:getVar("DreadbugNM_Day");
-	local MyDay = VanadielDayOfTheYear();
-	local aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
-	
-	if (MyDay ~= DreadbugDay and aBoysDream == QUEST_ACCEPTED) then
-		local canSpawn = (os.time() - DreadbugTimer) > 30;
-		
-		if (canSpawn) then
-			SpawnMob(17584425,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
-			player:setVar("DreadbugNM_Timer",os.time()+180);
-			player:setVar("DreadbugNM_Day",VanadielDayOfTheYear());
-			player:messageSpecial(SENSE_OF_FOREBODING);
-		else
-			player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
-		end
-	else
-		player:messageSpecial(NOTHING_WILL_HAPPEN_YET);
-	end
+    local DreadbugTimer = player:getVar("DreadbugNM_Timer");
+    local DreadbugDay = player:getVar("DreadbugNM_Day");
+    local MyDay = VanadielDayOfTheYear();
+    local aBoysDream = player:getQuestStatus(SANDORIA, A_BOY_S_DREAM);
+    
+    if (MyDay ~= DreadbugDay and aBoysDream == QUEST_ACCEPTED) then
+        local canSpawn = (os.time() - DreadbugTimer) > 30;
+        
+        if (canSpawn) then
+            SpawnMob(17584425,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+            player:setVar("DreadbugNM_Timer",os.time()+180);
+            player:setVar("DreadbugNM_Day",VanadielDayOfTheYear());
+            player:messageSpecial(SENSE_OF_FOREBODING);
+        else
+            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
+        end
+    else
+        player:messageSpecial(NOTHING_WILL_HAPPEN_YET);
+    end
 end;
 
 -----------------------------------

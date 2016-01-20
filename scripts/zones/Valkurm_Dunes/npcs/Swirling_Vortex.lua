@@ -2,7 +2,7 @@
 --  Area: Valkurm Dunes
 --  NPC:  Swirling Vortex
 --  Entrance to Lufaise Meadows
---	@pos 420.057 0.000 -199.905 103 
+--    @pos 420.057 0.000 -199.905 103 
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -23,13 +23,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
-		player:startEvent(0x000c);
-	else
-		player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
-	end
-	
+    
+    if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
+        player:startEvent(0x000c);
+    else
+        player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
+    end
+    
 end;
 
 -----------------------------------
@@ -48,9 +48,9 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x000c and option == 1) then
-		toLufaiseMeadows(player);
-	end
-	
+    
+    if (csid == 0x000c and option == 1) then
+        toLufaiseMeadows(player);
+    end
+    
 end;

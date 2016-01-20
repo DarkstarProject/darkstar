@@ -21,16 +21,16 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	local cs = -1;
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-		player:setPos(337.901,38.091,20.087,129);
-	end
-	return cs;
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        player:setPos(337.901,38.091,20.087,129);
+    end
+    return cs;
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------        
+-- onConquestUpdate        
+-----------------------------------        
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +61,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
 end;

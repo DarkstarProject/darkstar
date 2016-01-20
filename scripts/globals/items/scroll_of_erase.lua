@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4751
---	Scroll of Erase
---	Teaches the white magic Erase
+--    ID: 4751
+--    Scroll of Erase
+--    Teaches the white magic Erase
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(143);
+    return target:canLearnSpell(143);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(143);
+    target:addSpell(143);
 end;

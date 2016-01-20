@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Apollyon NE	
+-- Area: Apollyon NE    
 -- NPC:  Thiazi
 
 -----------------------------------
@@ -26,16 +26,16 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
- local mobID = mob:getID();	
+function onMobDeath(mob,killer,ally)
+ local mobID = mob:getID();    
  -- print(mobID);
-  	local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+      local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
  
 
    if (mobID ==16933063) then -- item
-   	GetNPCByID(16932864+126):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16932864+126):setStatus(STATUS_NORMAL);
+       GetNPCByID(16932864+126):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16932864+126):setStatus(STATUS_NORMAL);
  end
 end;

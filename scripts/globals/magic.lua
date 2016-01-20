@@ -213,26 +213,18 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     local rapture = 1;
     if (isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
         if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
-            local equippedHead = caster:getEquipID(SLOT_HEAD);
-            if (equippedHead == 11183) then
-                rapture = 1.55; --savant's bonnet +1
-            elseif (equippedHead == 11083) then
-                rapture = 1.6; --savant's bonnet +2
-            else
-                rapture = 1.5;
-            end
+            rapture = 1.5 + caster:getMod(MOD_RAPTURE_AMOUNT)/100;
             caster:delStatusEffectSilent(EFFECT_RAPTURE);
         end
     end
+
     local dayWeatherBonus = 1;
     local ele = spell:getElement();
 
     local castersWeather = caster:getWeather();
-    local equippedMain = caster:getEquipID(SLOT_MAIN);
-    local equippedWaist = caster:getEquipID(SLOT_WAIST);
 
     if (castersWeather == singleWeatherStrong[ele]) then
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -245,7 +237,7 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (castersWeather == doubleWeatherStrong[ele]) then
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -270,8 +262,8 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
         end
     end
 
-    if (dayWeatherBonus > 1.35) then
-        dayWeatherBonus = 1.35;
+    if (dayWeatherBonus > 1.4) then
+        dayWeatherBonus = 1.4;
     end
 
     local final = math.floor(math.floor(math.floor(math.floor(basecure) * potency) * dayWeatherBonus) * rapture) * dSeal;
@@ -736,13 +728,10 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     dmg = math.floor(dmg * magicDefense);
 
     local dayWeatherBonus = 1.00;
-    local equippedMain = caster:getEquipID(SLOT_MAIN);
-    local equippedWaist = caster:getEquipID(SLOT_WAIST);
     local weather = caster:getWeather();
 
     if (weather == singleWeatherStrong[ele]) then
-        -- Iridescence
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -755,8 +744,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (weather == doubleWeatherStrong[ele]) then
-        -- Iridescence
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -772,10 +760,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     local dayElement = VanadielDayElement();
     if (dayElement == dayStrong[ele]) then
-        local equippedLegs = caster:getEquipID(SLOT_LEGS);
-        if (equippedLegs == 15120 or equippedLegs == 15583) then
-            dayWeatherBonus = dayWeatherBonus + 0.05;
-        end
+        dayWeatherBonus = dayWeatherBonus + caster:getMod(MOD_DAY_NUKE_BONUS)/100; -- sorc. tonban(+1)/zodiac ring
         if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
@@ -785,8 +770,8 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         end
     end
 
-    if dayWeatherBonus > 1.35 then
-        dayWeatherBonus = 1.35;
+    if dayWeatherBonus > 1.4 then
+        dayWeatherBonus = 1.4;
     end
 
     dmg = math.floor(dmg * dayWeatherBonus);
@@ -802,7 +787,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     if (spell:getID() >= 245 and spell:getID() <= 248) then -- Drain/Aspir (II)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
-		-- print(mabbonus);
+        -- print(mabbonus);
     else
         local mab = caster:getMod(MOD_MATT) + bonusmab;
 
@@ -824,14 +809,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     dmg = math.floor(dmg * mabbonus);
 
     if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
-        local equippedHead = caster:getEquipID(SLOT_HEAD);
-        if (equippedHead == 11183) then
-            dmg = dmg * 1.25; --savant's bonnet +1
-        elseif (equippedHead == 11083) then
-            dmg = dmg * 1.3; --savant's bonnet +2
-        else
-            dmg = dmg * 1.2;
-        end
+        dmg = dmg * 1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100;
         caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
     end
 
@@ -856,13 +834,10 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     dmg = math.floor(dmg * magicDefense);
 
     local dayWeatherBonus = 1.00;
-    local equippedMain = caster:getEquipID(SLOT_MAIN);
-    local equippedWaist = caster:getEquipID(SLOT_WAIST);
     local weather = caster:getWeather();
 
     if (weather == singleWeatherStrong[ele]) then
-        -- Iridescence
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -875,8 +850,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     elseif (weather == doubleWeatherStrong[ele]) then
-        -- Iridescence
-        if (equippedMain == 18632 or equippedMain == 18633) then
+        if (caster:getMod(MOD_IRIDESCENCE) >= 1) then
             if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
@@ -892,10 +866,7 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 
     local dayElement = VanadielDayElement();
     if (dayElement == dayStrong[ele]) then
-        local equippedLegs = caster:getEquipID(SLOT_LEGS);
-        if (equippedLegs == 15120 or equippedLegs == 15583) then
-            dayWeatherBonus = dayWeatherBonus + 0.05;
-        end
+        dayWeatherBonus = dayWeatherBonus + caster:getMod(MOD_DAY_NUKE_BONUS)/100; -- sorc. tonban(+1)/zodiac ring
         if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
@@ -905,8 +876,8 @@ function addBonusesAbility(caster, ele, target, dmg, params)
         end
     end
 
-    if dayWeatherBonus > 1.35 then
-        dayWeatherBonus = 1.35;
+    if dayWeatherBonus > 1.4 then
+        dayWeatherBonus = 1.4;
     end
 
     dmg = math.floor(dmg * dayWeatherBonus);
@@ -1196,22 +1167,14 @@ end
 
 function calculateBarspellPower(caster,enhanceSkill)
     local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);
+    local equipBonus = caster:getMod(MOD_BARSPELL_AMOUNT);
     --printf("Barspell: Merit Bonus +%d", meritBonus);
 
     if (enhanceSkill == nil or enhanceSkill < 0) then
         enhanceSkill = 0;
     end
 
-    local power = 40 + 0.2 * enhanceSkill + meritBonus;
-
-    local equippedLegs = caster:getEquipID(SLOT_LEGS);
-    if (equippedLegs == 15119) then
-        power = power + 20;
-    elseif (equippedLegs == 15582) then
-        power = power + 22;
-    elseif (equippedLegs == 10712) then
-        power = power + 25;
-    end
+    local power = 40 + 0.2 * enhanceSkill + meritBonus + equipBonus;
 
     return power;
 end

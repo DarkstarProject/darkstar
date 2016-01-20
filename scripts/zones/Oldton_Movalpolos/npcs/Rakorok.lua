@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	npc:showText(npc, RAKOROK_DIALOGUE); 
+    npc:showText(npc, RAKOROK_DIALOGUE); 
 end;
 
 -----------------------------------

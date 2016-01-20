@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea-Attohwa
---	NPC: Rainhard
---	Standard Info NPC
+--    Area: Abyssea-Attohwa
+--    NPC: Rainhard
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0189);
+    player:startEvent(0x0189);
 end;
 
 -----------------------------------

@@ -26,19 +26,19 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-		if (player:sendGuild(60419, 1, 23, 4)) then 
-			player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
-		end
-	elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
-		if (player:hasKeyItem(TENSHODO_APPLICATION_FORM)) then
-			player:startEvent(0x0098);
-		else
-			player:startEvent(0x0097);
-		end
-	else
-		player:startEvent(0x0096);
-	end
+    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
+        if (player:sendGuild(60419, 1, 23, 4)) then 
+            player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
+        end
+    elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
+        if (player:hasKeyItem(TENSHODO_APPLICATION_FORM)) then
+            player:startEvent(0x0098);
+        else
+            player:startEvent(0x0097);
+        end
+    else
+        player:startEvent(0x0096);
+    end
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	if (csid == 0x0097) then
-		player:addKeyItem(TENSHODO_APPLICATION_FORM);
-		player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_APPLICATION_FORM);
-	end
+    if (csid == 0x0097) then
+        player:addKeyItem(TENSHODO_APPLICATION_FORM);
+        player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_APPLICATION_FORM);
+    end
 end;

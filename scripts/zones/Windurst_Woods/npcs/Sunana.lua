@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Sunana
+--    Area: Windurst Woods
+--    NPC:  Sunana
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -17,7 +17,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x199,0,17088);
+    player:startEvent(0x199,0,17088);
 end;
 
 -----------------------------------

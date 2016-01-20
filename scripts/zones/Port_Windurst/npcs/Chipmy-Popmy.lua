@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC: Chipmy-Popmy
---	Working 100%
+--    Area: Port Windurst
+--    NPC: Chipmy-Popmy
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -22,8 +22,8 @@ local currentday = tonumber(os.date("%j"));
    if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day") ~= currentday and player:getVar("COP_3-taru_story")== 0 ) then
     player:startEvent(0x026B);
    else
-	player:startEvent(0xca);
-	end
+    player:startEvent(0xca);
+    end
 end;
 
 -----------------------------------

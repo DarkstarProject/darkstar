@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis San d'Oria
--- NPC:  Voidstreaker Butchnotch
+--  MOB: Voidstreaker Butchnotch
 -----------------------------------
 
 require("scripts/globals/dynamis");
@@ -23,15 +23,15 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	if (alreadyReceived(killer,7) == false) then
-		killer:addTimeToDynamis(30);
-		addDynamisList(killer,64);
-		SpawnMob(17535385); -- 145
-		SpawnMob(17535386); -- 146
-		SpawnMob(17535387); -- 147
-		SpawnMob(17535389); -- 149
-	end
+    if (alreadyReceived(killer,7) == false) then
+        ally:addTimeToDynamis(30);
+        addDynamisList(killer,64);
+        SpawnMob(17535385); -- 145
+        SpawnMob(17535386); -- 146
+        SpawnMob(17535387); -- 147
+        SpawnMob(17535389); -- 149
+    end
 
 end;

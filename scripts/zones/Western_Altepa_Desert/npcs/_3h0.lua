@@ -21,13 +21,13 @@ end;
 
 function onTrigger(player,npc)
 
-	if (npc:getAnimation() == 9) then
-		if (player:getZPos() > 137) then
-			npc:openDoor(3.2);
-		else
-			player:messageSpecial(THE_DOOR_IS_LOCKED);
-		end
-	end	
+    if (npc:getAnimation() == 9) then
+        if (player:getZPos() > 137) then
+            npc:openDoor(3.2);
+        else
+            player:messageSpecial(THE_DOOR_IS_LOCKED);
+        end
+    end    
 end;
 
 -----------------------------------

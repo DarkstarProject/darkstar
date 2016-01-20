@@ -1,6 +1,6 @@
 -----------------------------------
 --
---	EFFECT_MADRIGAL
+--    EFFECT_MADRIGAL
 -- getPower returns the TIER (e.g. 1,2,3,4)
 -----------------------------------
 require("scripts/globals/status");
@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_ACC, effect:getPower());
+    target:addMod(MOD_ACC, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_ACC, effect:getPower());
+    target:delMod(MOD_ACC, effect:getPower());
 end;

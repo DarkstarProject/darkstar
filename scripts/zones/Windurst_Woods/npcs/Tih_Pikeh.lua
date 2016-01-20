@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Tih Pikeh
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Tih Pikeh
+--    Working 100%
 -----------------------------------
 
 package.loaded["scripts/globals/settings"] = nil;
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 end;
 
 -----------------------------------

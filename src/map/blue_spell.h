@@ -31,6 +31,7 @@ class CBlueSpell : public CSpell
 public:
 
     CBlueSpell(uint16 id);
+    virtual std::unique_ptr<CSpell> clone() override;
 
     uint16		getMonsterSkillId();
     uint8       getSetPoints();

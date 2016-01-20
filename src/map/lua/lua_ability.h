@@ -27,8 +27,7 @@
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../ability.h"
-
+class CAbility;
 
 class CLuaAbility
 {
@@ -50,6 +49,8 @@ public:
     int32 getID(lua_State*);
     int32 getRecast(lua_State*);
     int32 getRange(lua_State*);
+    int32 getName(lua_State*);
+    int32 getAnimation(lua_State*);
     int32 setMsg(lua_State*);
     int32 setAnimation(lua_State*);
     int32 setRecast(lua_State*);

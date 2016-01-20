@@ -14,7 +14,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrigger(player,npc)
-	npc:openDoor(6);
+    npc:openDoor(6);
 end;
 
 -----------------------------------

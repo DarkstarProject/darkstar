@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Khimaira
+--  MOB: Khimaira
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(KHIMAIRA_CARVER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(KHIMAIRA_CARVER);
 end;

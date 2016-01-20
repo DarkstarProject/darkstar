@@ -23,10 +23,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getQuestStatus(BASTOK,THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0) then 
-		player:setVar("cCollectCurse",1);
-	end
+    
+    if (player:getQuestStatus(BASTOK,THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0) then 
+        player:setVar("cCollectCurse",1);
+    end
 
 end;
 -----------------------------------

@@ -22,6 +22,7 @@
 */
 
 #include "lua_ability.h"
+#include "../ability.h"
 
 
 /************************************************************************
@@ -75,6 +76,22 @@ inline int32 CLuaAbility::getRange(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
 
     lua_pushinteger(L, m_PLuaAbility->getRange());
+    return 1;
+}
+
+inline int32 CLuaAbility::getName(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+
+    lua_pushstring(L, m_PLuaAbility->getName());
+    return 1;
+}
+
+int32 CLuaAbility::getAnimation(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaAbility == nullptr);
+
+    lua_pushinteger(L, m_PLuaAbility->getAnimationID());
     return 1;
 }
 
@@ -145,6 +162,8 @@ Lunar<CLuaAbility>::Register_t CLuaAbility::methods[] =
     LUNAR_DECLARE_METHOD(CLuaAbility,getID),
     LUNAR_DECLARE_METHOD(CLuaAbility,getRecast),
     LUNAR_DECLARE_METHOD(CLuaAbility,getRange),
+    LUNAR_DECLARE_METHOD(CLuaAbility,getName),
+    LUNAR_DECLARE_METHOD(CLuaAbility,getAnimation),
     LUNAR_DECLARE_METHOD(CLuaAbility,setMsg),
     LUNAR_DECLARE_METHOD(CLuaAbility,setAnimation),
     LUNAR_DECLARE_METHOD(CLuaAbility,setRecast),

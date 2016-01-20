@@ -13,13 +13,13 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_POISON;
-		local power = math.random(23,24);
+    local typeEffect = EFFECT_POISON;
+        local power = math.random(23,24);
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, 60));
 
-	return typeEffect;
+    return typeEffect;
 end;

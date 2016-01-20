@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onTransportEvent(player,transport)
-	player:startEvent(0x0401);
+    player:startEvent(0x0401);
 end;
 
 -----------------------------------

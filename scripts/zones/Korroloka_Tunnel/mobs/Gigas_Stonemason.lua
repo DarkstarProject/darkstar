@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- MOB:  Gigas Stonemason
+--  MOB: Gigas Stonemason
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,733,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,733,1);
 end;

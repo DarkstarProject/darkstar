@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -32,23 +32,16 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.4; params.agi_wsc = 0.0; params.int_wsc = 0.4;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-    damage = damage * WEAPON_SKILL_POWER
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
+    if (damage > 0) then
+        local amDuration = 20 * math.floor(player:getTP()/100);
+        player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, amDuration, 0, 6);
+    end
+
     if (target:isUndead() == false) then
         local drain = (damage * 0.4);
         player:addHP(drain);
-    end
-    
-    if ((player:getEquipID(SLOT_MAIN) == 18306) and (player:getMainJob() == JOB_DRK)) then
-        if (damage > 0) then
-            if (player:getTP() >= 100 and player:getTP() <200) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 20, 0, 6);
-            elseif (player:getTP() >= 200 and player:getTP() <300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 40, 0, 6);
-            elseif (player:getTP() == 300) then
-                player:addStatusEffect(EFFECT_AFTERMATH, 100, 0, 60, 0, 6);
-            end
-        end
     end
     return tpHits, extraHits, criticalHit, damage;
 end

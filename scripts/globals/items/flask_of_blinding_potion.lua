@@ -19,10 +19,10 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
-		target:addStatusEffect(EFFECT_BLINDNESS,25,0,180);
-	else
-		target:messageBasic(423);
-	end
+    if (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
+        target:addStatusEffect(EFFECT_BLINDNESS,25,0,180);
+    else
+        target:messageBasic(423);
+    end
 end;
 

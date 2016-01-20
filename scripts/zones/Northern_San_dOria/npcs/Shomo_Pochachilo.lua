@@ -25,14 +25,14 @@ end;
 
 function onTrigger(player,npc)
 
-	quest_FatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
-	
-	if (quest_FatherAndSon == QUEST_COMPLETED) then 
-		player:startEvent(0x02b8);
-	else
-		player:startEvent(0x02a3);
-	end
-	
+    quest_FatherAndSon = player:getQuestStatus(SANDORIA,FATHER_AND_SON);
+    
+    if (quest_FatherAndSon == QUEST_COMPLETED) then 
+        player:startEvent(0x02b8);
+    else
+        player:startEvent(0x02a3);
+    end
+    
 end;
 
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,7 +49,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

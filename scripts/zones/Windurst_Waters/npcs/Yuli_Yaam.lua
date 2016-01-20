@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Yuli Yaam
---	Involved In Quest: Wondering Minstrel
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Yuli Yaam
+--    Involved In Quest: Wondering Minstrel
+--    Working 100%
 --  @zone = 238
 --  @pos = -61 -4 23
 -----------------------------------
@@ -12,7 +12,7 @@ package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/globals/keyitems");	
+require("scripts/globals/keyitems");    
 require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
@@ -27,20 +27,20 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
-	fame = player:getFameLevel(WINDURST)
-	if (wonderingstatus <= 1 and fame >= 5) then 
-		player:startEvent(0x027d);						-- WONDERING_MINSTREL: Quest Available / Quest Accepted
-	elseif (wonderingstatus == QUEST_COMPLETED and player:needToZone()) then
-		player:startEvent(0x0281);  					-- WONDERING_MINSTREL: Quest After
-	else
-		rand = math.random(2);
-		if (rand == 1) then
-			player:startEvent(0x0264);  				-- Standard Conversation 1
-		else
-			player:startEvent(0x0265); 					-- Standard Conversation 2	
-		end
-	end	
+    wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
+    fame = player:getFameLevel(WINDURST)
+    if (wonderingstatus <= 1 and fame >= 5) then 
+        player:startEvent(0x027d);                        -- WONDERING_MINSTREL: Quest Available / Quest Accepted
+    elseif (wonderingstatus == QUEST_COMPLETED and player:needToZone()) then
+        player:startEvent(0x0281);                      -- WONDERING_MINSTREL: Quest After
+    else
+        rand = math.random(2);
+        if (rand == 1) then
+            player:startEvent(0x0264);                  -- Standard Conversation 1
+        else
+            player:startEvent(0x0265);                     -- Standard Conversation 2    
+        end
+    end    
 end; 
 
 -----------------------------------

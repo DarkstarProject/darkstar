@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pso'xja
--- NPC:  Nunyunuwi
+--  MOB: Nunyunuwi
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -16,8 +16,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	if (killer:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and killer:getVar("PromathiaStatus")==3) then
-		killer:setVar("PromathiaStatus",4);
-	end
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and ally:getVar("PromathiaStatus")==3) then
+        ally:setVar("PromathiaStatus",4);
+    end
 end;

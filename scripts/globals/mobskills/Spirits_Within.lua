@@ -15,7 +15,7 @@ require("scripts/zones/Throne_Room/TextIDs");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
 if (mob:getFamily() == 482) then
-	target:showText(mob,YOUR_ANSWER);
+    target:showText(mob,YOUR_ANSWER);
     return 0;
 else
     return 0;
@@ -23,9 +23,9 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 if (mob:getFamily() == 482) then
-	target:showText(mob,RETURN_TO_THE_DARKNESS);
+    target:showText(mob,RETURN_TO_THE_DARKNESS);
 else
-	mob:messageBasic(43, 0, 686+256);
+    mob:messageBasic(43, 0, 686+256);
 end
    local tp = skill:getTP();
    local hp = mob:getHP();
@@ -51,7 +51,7 @@ end
         return 0;
     end
 
-	dmg = utils.stoneskin(target, dmg);
+    dmg = utils.stoneskin(target, dmg);
 
     if (dmg > 0) then
         target:wakeUp();
@@ -59,6 +59,6 @@ end
     end
 
    target:delHP(dmg);
-	return dmg;
-	end
+    return dmg;
+    end
 end;

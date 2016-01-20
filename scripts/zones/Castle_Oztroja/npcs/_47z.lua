@@ -16,16 +16,16 @@ require("scripts/globals/settings");
 
 function onTrigger(player,npc)
 
-	DoorID = npc:getID() - 4;
-	local DoorA = GetNPCByID(DoorID):getAnimation();
-	local TorchStandA = npc:getAnimation();
-	Torch1 = npc:getID();	
-	Torch2 = npc:getID() - 1;	
-	
-	if (DoorA == 9 and TorchStandA == 9) then
-		player:startEvent(0x000a);	
-	end	
-	
+    DoorID = npc:getID() - 4;
+    local DoorA = GetNPCByID(DoorID):getAnimation();
+    local TorchStandA = npc:getAnimation();
+    Torch1 = npc:getID();    
+    Torch2 = npc:getID() - 1;    
+    
+    if (DoorA == 9 and TorchStandA == 9) then
+        player:startEvent(0x000a);    
+    end    
+    
 end;
 
 -----------------------------------
@@ -43,11 +43,11 @@ end;
 
 function onEventFinish(player,csid,option)
 
-	if (option == 1) then
-		GetNPCByID(Torch1):openDoor(10); -- Torch Lighting
-		GetNPCByID(Torch2):openDoor(10); -- Torch Lighting
-		GetNPCByID(DoorID):openDoor(6); 		
-	end	
+    if (option == 1) then
+        GetNPCByID(Torch1):openDoor(10); -- Torch Lighting
+        GetNPCByID(Torch2):openDoor(10); -- Torch Lighting
+        GetNPCByID(DoorID):openDoor(6);         
+    end    
 
 end;
 

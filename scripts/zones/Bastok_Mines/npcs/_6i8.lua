@@ -22,10 +22,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getVar("aThiefinNorgCS") == 3) then
-		player:startEvent(0x00ba);
-		return -1;
-	end
+    if (player:getQuestStatus(OUTLANDS,A_THIEF_IN_NORG) == QUEST_ACCEPTED and player:getVar("aThiefinNorgCS") == 3) then
+        player:startEvent(0x00ba);
+        return -1;
+    end
 end;
 
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x00ba) then
-		player:setVar("aThiefinNorgCS",4);
-	end
+    
+    if (csid == 0x00ba) then
+        player:setVar("aThiefinNorgCS",4);
+    end
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4777
---	Scroll of Water
---	Teaches the black magic Water
+--    ID: 4777
+--    Scroll of Water
+--    Teaches the black magic Water
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(169);
+    return target:canLearnSpell(169);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(169);
+    target:addSpell(169);
 end;

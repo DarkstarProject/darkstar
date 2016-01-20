@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Newton Movalpolos
--- NPC:   Moblin Showman
+--  MOB: Moblin Showman
 -----------------------------------
 
 -----------------------------------
@@ -14,7 +14,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 end;
 
 -----------------------------------

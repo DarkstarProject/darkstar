@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Mhaura
---	NPC:  Mauh Halaapah
+--    Area: Mhaura
+--    NPC:  Mauh Halaapah
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x28);
+    player:startEvent(0x28);
 end;
 
 -----------------------------------

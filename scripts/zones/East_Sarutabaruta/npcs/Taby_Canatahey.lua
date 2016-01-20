@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: East Sarutabaruta
--- 	NPC:  Taby Canatahey
+--    Area: East Sarutabaruta
+--     NPC:  Taby Canatahey
 --  @pos -119.119 -4.106 -524.347 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,TABY_CANATAHEY_DIALOG);
+    player:showText(npc,TABY_CANATAHEY_DIALOG);
 end; 
  
 -----------------------------------

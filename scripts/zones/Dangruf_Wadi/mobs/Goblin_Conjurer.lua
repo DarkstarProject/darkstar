@@ -1,14 +1,14 @@
------------------------------------   
--- Area: Dangruf Wadi   
--- MOB:  Goblin Conjurer
------------------------------------   
+-----------------------------------
+-- Area: Dangruf Wadi
+--  MOB: Goblin Conjurer
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");   
+require("scripts/globals/groundsofvalor");
 
------------------------------------   
--- onMobDeath   
------------------------------------   
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)   
-   checkGoVregime(killer,mob,645,1);
-end;   
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,645,1);
+end;

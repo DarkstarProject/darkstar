@@ -11,12 +11,12 @@ require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_DEFENSE_BOOST;
+    local typeEffect = EFFECT_DEFENSE_BOOST;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 100, 0, 60));
-	return typeEffect;
+    return typeEffect;
 end;

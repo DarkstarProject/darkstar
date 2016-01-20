@@ -239,12 +239,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -300,7 +300,7 @@ function onTrigger(player,npc)
         elseif (progress >= 7 or failed >= 8) then
             player:startEvent(0x00F8); -- happy with blackened toad
         end
-	else
+    else
         player:startEvent(0x00CB);
         npc:wait(-1);
     end

@@ -15,11 +15,11 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (trade:hasItemQty(1136,1) and trade:getItemCount() == 1 and player:getZPos() < 11) then -- trade Uggalepih key
-		player:startEvent(0x002E);
-	end
-	
+    
+    if (trade:hasItemQty(1136,1) and trade:getItemCount() == 1 and player:getZPos() < 11) then -- trade Uggalepih key
+        player:startEvent(0x002E);
+    end
+    
 end; 
 
 -----------------------------------
@@ -27,15 +27,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getZPos() < 11) then
-		player:messageSpecial(THE_DOOR_IS_LOCKED,1136);
-	else
-		player:startEvent(0x002F);
-	end
-	
-	return 0;
-	
+    
+    if (player:getZPos() < 11) then
+        player:messageSpecial(THE_DOOR_IS_LOCKED,1136);
+    else
+        player:startEvent(0x002F);
+    end
+    
+    return 0;
+    
 end; 
 
 -----------------------------------
@@ -54,10 +54,10 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x002E) then
-		player:tradeComplete();
-		player:messageSpecial(YOUR_KEY_BREAKS,0000,1136);
-	end
-	
+    
+    if (csid == 0x002E) then
+        player:tradeComplete();
+        player:messageSpecial(YOUR_KEY_BREAKS,0000,1136);
+    end
+    
 end;

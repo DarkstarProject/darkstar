@@ -11,16 +11,16 @@ require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = EFFECT_BLINDNESS;
     MobStatusEffectMove(mob, target, typeEffect, 15, 0, 180);
 
-	local dmgmod = MobBreathMove(mob, target, 0.1, 1.5, ELE_WIND, 400);
+    local dmgmod = MobBreathMove(mob, target, 0.1, 1.5, ELE_WIND, 400);
 
-	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

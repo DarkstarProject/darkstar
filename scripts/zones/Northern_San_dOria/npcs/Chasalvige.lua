@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,14 +46,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if (csid == 0x0026) then
-	  player:setVar("EMERALD_WATERS_Status",4);
-	elseif (csid == 0x02F9) then
-	  player:setVar("COP_optional_CS_chasalvigne",1);
-	elseif (csid == 0x02FA) then
-	  player:setVar("COP_Ulmia_s_Path",3);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x0026) then
+      player:setVar("EMERALD_WATERS_Status",4);
+    elseif (csid == 0x02F9) then
+      player:setVar("COP_optional_CS_chasalvigne",1);
+    elseif (csid == 0x02FA) then
+      player:setVar("COP_Ulmia_s_Path",3);
+    end
 end;
 

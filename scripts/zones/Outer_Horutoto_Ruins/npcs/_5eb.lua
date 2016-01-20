@@ -24,25 +24,25 @@ end;
 
 function onTrigger(player,npc)
 
-	local CurrentMission = player:getCurrentMission(WINDURST);
-	local MissionStatus = player:getVar("MissionStatus");
-	
-	if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1 and player:hasKeyItem(SOUTHWESTERN_STAR_CHARM)) then
-		SpawnMob(17572197) -- Jack of Cups
-		SpawnMob(17572198) -- Jack of Batons
-		SpawnMob(17572199) -- Jack of Swords
-		SpawnMob(17572200) -- Jack of Coins
-		
-	elseif (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 2) then
-		player:startEvent(0x0044)
-	else
-		player:messageSpecial(DOOR_FIRMLY_SHUT);
-	end
-	
-	return 1;
-	
+    local CurrentMission = player:getCurrentMission(WINDURST);
+    local MissionStatus = player:getVar("MissionStatus");
+    
+    if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1 and player:hasKeyItem(SOUTHWESTERN_STAR_CHARM)) then
+        SpawnMob(17572197) -- Jack of Cups
+        SpawnMob(17572198) -- Jack of Batons
+        SpawnMob(17572199) -- Jack of Swords
+        SpawnMob(17572200) -- Jack of Coins
+        
+    elseif (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 2) then
+        player:startEvent(0x0044)
+    else
+        player:messageSpecial(DOOR_FIRMLY_SHUT);
+    end
+    
+    return 1;
+    
 end; 
-		
+        
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -60,9 +60,9 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x0044) then
-		player:setVar("MissionStatus",3);
-		player:delKeyItem(SOUTHWESTERN_STAR_CHARM);
-	end
-	
+    if (csid == 0x0044) then
+        player:setVar("MissionStatus",3);
+        player:delKeyItem(SOUTHWESTERN_STAR_CHARM);
+    end
+    
 end;

@@ -53,5 +53,5 @@ function onEffectLose(target,effect)
         -- put Double Attack trait back on.
         target:addMod(MOD_DOUBLE_ATTACK, 10);
     end
-	target:delMod(MOD_DOUBLE_ATTACK,effect:getPower());
+    target:delMod(MOD_DOUBLE_ATTACK,effect:getPower());
 end;

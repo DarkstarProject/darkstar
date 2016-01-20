@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Qufimu
--- NPC:  Manifest_Idol
+--  MOB: Manifest_Idol
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
@@ -25,16 +25,16 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-		local mobID = mob:getID();
-	
+function onMobDeath(mob,killer,ally)
+    
+        local mobID = mob:getID();
+    
     if (mobID == 16945243 and mob:isInBattlefieldList() == false) then
-		killer:addTimeToDynamis(10);
-		--print("addtime 10min");
-		mob:addInBattlefieldList();
-	end
-	
-	
-	
+        ally:addTimeToDynamis(10);
+        --print("addtime 10min");
+        mob:addInBattlefieldList();
+    end
+    
+    
+    
 end;

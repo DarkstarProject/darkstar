@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4733
---	Scroll of Protectra
---	Teaches the white magic Protectra
+--    ID: 4733
+--    Scroll of Protectra
+--    Teaches the white magic Protectra
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(125);
+    return target:canLearnSpell(125);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(125);
+    target:addSpell(125);
 end;

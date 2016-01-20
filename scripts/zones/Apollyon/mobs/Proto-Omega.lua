@@ -1,7 +1,6 @@
 -----------------------------------
--- Area: Apollyon Centrale
--- NPC:  Proto-Omega
-
+-- Area: Apollyon (Central)
+--  MOB: Proto-Omega
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
@@ -13,85 +12,94 @@ require("scripts/globals/magic");
 
 
 -----------------------------------
+-- onMobInitialize Action
+-----------------------------------
+
+function onMobInitialize(mob)
+    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+end;
+
+-----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMod(MOD_UDMGPHYS, -75);
+    mob:setMod(MOD_UDMGRANGE, -75);
+    mob:setMod(MOD_UDMGMAGIC, 0);
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
---print("Proto-omega_engaged");
-mob:setMod(MOD_SLASHRES,300);
-mob:setMod(MOD_PIERCERES,300);
-mob:setMod(MOD_IMPACTRES,300);
-mob:setMod(MOD_HTHRES,300);
-	  for n =1,table.getn (resistMod),1 do
-	     mob:setMod(resistMod[n],-50); 
-	  end
-	  for n =1,table.getn (defenseMod),1 do
-	     mob:setMod(defenseMod[n],-50);
-	  end 
-end;
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
 
 function onMobFight(mob,target)
-local mobID = mob:getID();
-local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
-   if (lifepourcent > 70 or lifepourcent <30) then
-	   mob:AnimationSub(1);	     
-   elseif (lifepourcent > 30 and lifepourcent < 70) then
-       mob:AnimationSub(2);	
-   end
-   
-   if (lifepourcent > 30 and lifepourcent < 70 and mob:getLocalVar("form") == 8) then   -- bipede
-       mob:setMod(MOD_SLASHRES,1400);
-       mob:setMod(MOD_PIERCERES,1400);
-       mob:setMod(MOD_IMPACTRES,1400);
-       mob:setMod(MOD_HTHRES,1400);
-	  for n =1,table.getn (resistMod),1 do
-	     mob:setMod(resistMod[n],100); 
-	  end
-	  for n =1,table.getn (defenseMod),1 do
-	     mob:setMod(defenseMod[n],100);
-	  end  
-	   SpawnMob(16933125):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());-- spawn gunpod
-	   mob:setLocalVar("form", 9)	   
-	  -- print("bipede");   
-   elseif (lifepourcent < 30 and mob:getLocalVar("form") == 9  ) then	                 -- quadripede 
-       mob:setMod(MOD_SLASHRES,1450);
-       mob:setMod(MOD_PIERCERES,1450);
-       mob:setMod(MOD_IMPACTRES,1450);
-       mob:setMod(MOD_HTHRES,1450);
- 	   for n =1,table.getn (resistMod),1 do
-	     mob:setMod(resistMod[n],-50); 
-	   end
-	   for n =1,table.getn (defenseMod),1 do
-	     mob:setMod(defenseMod[n],-50);
-	   end   
-	   mob:addStatusEffect(EFFECT_REGAIN,7,3,0); -- The final form has Regain,
-	   SpawnMob(16933125):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());-- spawn gunpod  
-	   mob:setLocalVar("form", 8);
-   end
-	
+    local mobID = mob:getID();
+    local formTime = mob:getLocalVar("formWait")
+    local lifePercent = mob:getHPP();
+    local currentForm = mob:getLocalVar("form")
 
+    if (lifePercent < 70 and currentForm < 1) then
+        currentForm = 1;
+        mob:setLocalVar("form", currentForm)
+        mob:AnimationSub(2);
+        formTime = os.time() + 60;
+        mob:setMod(MOD_UDMGPHYS, 0);
+        mob:setMod(MOD_UDMGRANGE, 0);
+        mob:setMod(MOD_UDMGMAGIC, -75);
+    end
+
+    if (currentForm == 1) then
+        if (formTime < os.time()) then
+            if (mob:AnimationSub() == 1) then
+                mob:AnimationSub(2);
+            else
+                mob:AnimationSub(1);
+            end
+            mob:setLocalVar("formWait", os.time() + 60);
+        end
+
+        if (lifePercent < 30) then
+            mob:AnimationSub(2);
+            mob:setMod(MOD_UDMGPHYS, -50);
+            mob:setMod(MOD_UDMGRANGE, -50);
+            mob:setMod(MOD_UDMGMAGIC, -50);
+            mob:addStatusEffect(EFFECT_REGAIN,7,3,0); -- The final form has Regain,
+            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
+            currentForm = 2;
+            mob:setLocalVar("form", currentForm)
+        end
+    end
 end;
+
+-----------------------------------
+-- onAdditionalEffect
+-----------------------------------
+
+function onAdditionalEffect(mob, player)
+    local chance = 20; -- wiki lists ~20% stun chance
+    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,EFFECT_STUN);
+    if (math.random(0,99) >= chance or resist <= 0.5) then
+        return 0,0,0;
+    else
+        local duration = 5 * resist;
+        if (player:hasStatusEffect(EFFECT_STUN) == false) then
+            player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
+        end
+        return SUBEFFECT_STUN, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_STUN;
+    end
+end;
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-  killer:addTitle(APOLLYON_RAVAGER);
+function onMobDeath(mob,killer,ally)
+    ally:addTitle(APOLLYON_RAVAGER);
     local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
     GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
 end;
-

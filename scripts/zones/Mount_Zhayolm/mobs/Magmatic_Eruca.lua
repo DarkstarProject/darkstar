@@ -1,23 +1,23 @@
 -----------------------------------
 -- Area: Mount Zhayolm
--- NPC:  Magmatic Eruca
+--  MOB: Magmatic Eruca
 -- Note: Place Holder Energetic Eruca
 -----------------------------------
 
 require("scripts/zones/Mount_Zhayolm/MobIDs");
 
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
 
     -- Get Magmatic Eruca ID and check if it is a PH of EE
-    mob = mob:getID();
+    local mobID = mob:getID();
 
     -- Check if Magmatic Eruca is within the Magmatic_Eruca_PH table
-    if (Energetic_Eruca_PH[mob] ~= nil) then
-        -- printf("%u is a PH",mob);
+    if (Energetic_Eruca_PH[mobID] ~= nil) then
+        -- printf("%u is a PH",mobID);
         -- Get EnE's previous ToD
         EnE_ToD = GetServerVariable("[POP]Energetic_Eruca");
 
@@ -29,11 +29,11 @@ function onMobDeath(mob,killer)
             if (math.random(1,10) == 5) then
                 -- printf("EnE will pop");
                 UpdateNMSpawnPoint(Energetic_Eruca);
-                GetMobByID(Energetic_Eruca):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Energetic_Eruca", mob);
-                DeterMob(mob, true);
+                GetMobByID(Energetic_Eruca):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Energetic_Eruca", mobID);
+                DeterMob(mobID, true);
             end
         end
     end
 
-end;	
+end;

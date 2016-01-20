@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Konschtat
--- NPC: Bakka
+--  MOB: Bakka
 -- ID: 16839045
 -----------------------------------
 
@@ -42,5 +42,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

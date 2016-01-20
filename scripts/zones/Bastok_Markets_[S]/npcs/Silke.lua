@@ -21,12 +21,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,SILKE_SHOP_DIALOG);
 
-stock = {0x17ab,29925,		-- Animus Augeo Schema
-	 0x17ac,29925,		-- Animus Minuo Schema
-	 0x17ad,36300}		-- Adloquim Schema
+stock = {0x17ab,29925,        -- Animus Augeo Schema
+     0x17ac,29925,        -- Animus Minuo Schema
+     0x17ad,36300}        -- Adloquim Schema
  
 showShop(player, STATIC, stock);
 end; 

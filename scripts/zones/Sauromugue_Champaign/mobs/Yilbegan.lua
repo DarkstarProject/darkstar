@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
--- NM:   Yilbegan
+--  VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(YILBEGAN_HIDEFLAYER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(YILBEGAN_HIDEFLAYER);
 end;

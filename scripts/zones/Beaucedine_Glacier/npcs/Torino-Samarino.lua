@@ -2,7 +2,7 @@
 --  Area: Beaucedine Glacier
 --  NPC:  Torino-Samarino
 --  Type: Quest NPC
--- 	Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
+--     Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
 --  @pos 105 -20 140 111
 -----------------------------------
 

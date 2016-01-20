@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: East Sarutabaruta
--- 	NPC:  Heih Porhiaap
---	@pos -118.876 -4.088 -515.731 116
+--    Area: East Sarutabaruta
+--     NPC:  Heih Porhiaap
+--    @pos -118.876 -4.088 -515.731 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc,HEIH_PORHIAAP_DIALOG);
+    player:showText(npc,HEIH_PORHIAAP_DIALOG);
 end; 
  
 -----------------------------------

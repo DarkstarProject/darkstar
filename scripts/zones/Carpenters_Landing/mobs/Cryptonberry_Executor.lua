@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
--- NPC:  Cryptonberry_Executor
+--  MOB: Cryptonberry_Executor
 -----------------------------------
 
 -----------------------------------
@@ -21,8 +21,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	if (killer:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and killer:getVar("Cryptonberry_Executor_KILL") == 0) then
-		killer:setVar("Cryptonberry_Executor_KILL",1);
-	end
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and ally:getVar("Cryptonberry_Executor_KILL") == 0) then
+        ally:setVar("Cryptonberry_Executor_KILL",1);
+    end
 end;

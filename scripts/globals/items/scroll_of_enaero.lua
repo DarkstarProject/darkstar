@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4710
---	Scroll of Enaero
---	Teaches the white magic Enaero
+--    ID: 4710
+--    Scroll of Enaero
+--    Teaches the white magic Enaero
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(102);
+    return target:canLearnSpell(102);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(102);
+    target:addSpell(102);
 end;

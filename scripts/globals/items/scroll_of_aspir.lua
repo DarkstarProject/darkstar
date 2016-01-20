@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4855
---	Scroll of Aspir
---	Teaches the black magic Aspir
+--    ID: 4855
+--    Scroll of Aspir
+--    Teaches the black magic Aspir
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(247);
+    return target:canLearnSpell(247);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(247);
+    target:addSpell(247);
 end;

@@ -28,25 +28,12 @@ This file is part of DarkStar-server source code.
 #include "../../common/mmo.h"
 
 #include <map>
-#include <list>
 #include <deque>
 #include <mutex>
 #include <bitset>
 
 #include "battleentity.h"
-#include "../item_container.h"
-#include "../linkshell.h"
 #include "petentity.h"
-#include "automatonentity.h"
-
-#include "../recast_container.h"
-#include "../latent_effect_container.h"
-#include "../trade_container.h"
-#include "../treasure_pool.h"
-#include "../merit.h"
-#include "../instance.h"
-#include "../universal_container.h"
-#include "../utils/itemutils.h"
 
 // Quest Areas
 
@@ -170,6 +157,19 @@ struct GearSetMod_t
 ************************************************************************/
 
 class CBasicPacket;
+class CLinkshell;
+class CMeritPoints;
+class CRecastContainer;
+class CLatentEffectContainer;
+class CTradeContainer;
+class CItemContainer;
+class CUContainer;
+class CItemArmor;
+class CAutomatonEntity;
+class CAbilityState;
+class CRangeState;
+class CItemState;
+class CItemUsable;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
@@ -207,7 +207,6 @@ public:
     missionlog_t			m_missionLog[MAX_MISSIONAREA];	// список миссий
     assaultlog_t			m_assaultLog;					// список assault миссий
     campaignlog_t			m_campaignLog;					// список campaing миссий
-    uint32					m_rangedDelay;					// ranged attack delay (with timestamp for repeat attacks, hence 32bit)for items, abilities and magic
     uint32					m_lastBcnmTimePrompt;			// the last message prompt in seconds
     PetInfo_t				petZoningInfo;					// used to repawn dragoons pets ect on zone
     void					resetPetZoningInfo();			// reset pet zoning info (when changing job ect)
@@ -234,11 +233,13 @@ public:
 
     void              clearPacketList();            // отчистка PacketList
     void              pushPacket(CBasicPacket*);    // добавление копии пакета в PacketList
+    void              pushPacket(std::unique_ptr<CBasicPacket>);    // push packet to packet list
     bool			  isPacketListEmpty();          // проверка размера PacketList
     CBasicPacket*	  popPacket();                  // получение первого пакета из PacketList
     PacketList_t      getPacketList();              // returns a COPY of packet list
     size_t            getPacketCount();
     void              erasePackets(uint8 num);      // erase num elements from front of packet list
+    virtual void      HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override;
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2
@@ -306,7 +307,6 @@ public:
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
 
-    bool			  isRapidShot;										// Flag to track rapid shot
     bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
 
     int16 addTP(int16 tp) override;
@@ -330,8 +330,38 @@ public:
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
 
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+    virtual bool CanUseSpell(CSpell*) override;
+
+    virtual void Die() override;
+    void Die(duration);
+    void Raise();
+
+    /* State callbacks */
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual bool OnAttack(CAttackState&, action_t&) override;
+    virtual bool OnAttackError(CAttackState&) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
+    virtual void OnDisengage(CAttackState&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
+    virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
+    virtual void OnAbility(CAbilityState&, action_t&);
+    virtual void OnRangedAttack(CRangeState&, action_t&);
+    virtual void OnDeathTimer() override;
+    virtual void OnRaise() override;
+    virtual void OnItemFinish(CItemState&, action_t&);
+
+    virtual void Tick(time_point) override;
+
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор
+
+protected:
+    bool IsMobOwner(CBattleEntity* PTarget);
+    void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
+
 
 private:
 

@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Wajoam Woodlands
--- NPC: Tinnin
--- ID:  16986431
+--  MOB: Tinnin
 -- @pos 276 0 -694
 -- Spawned with Monkey Wine: @additem 2573
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Tinnin
@@ -9,17 +8,19 @@
 
 require("scripts/globals/magic");
 require("scripts/globals/status");
-    
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
-function onMobInitialize(mob)    
+function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
     mob:setMobMod(MOBMOD_GIL_MIN, 12000);
     mob:setMobMod(MOBMOD_GIL_MAX, 30000);
     mob:setMobMod(MOBMOD_MUG_GIL, 8000);
-    
+    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMod(MOD_UDMGBREATH, 0); -- immune to breath damage
+
 end;
 
 -----------------------------------
@@ -29,13 +30,11 @@ end;
 function onMobSpawn(mob)
     mob:setHP(mob:getMaxHP()/2);
     mob:setUnkillable(true);
-    mob:setMod(MOD_REGAIN, 50);
-    mob:setMod(MOD_REGEN, 90);
-    mob:AnimationSub(2);
-    
+    mob:setMod(MOD_REGEN, 50);
+
     -- Regen Head every 1.5-4 minutes 90-240
     mob:setLocalVar("headTimer", os.time() + math.random(60,190));
-    
+
     -- Number of crits to lose a head
     mob:setLocalVar("CritToTheFace", math.random(10,30));
     mob:setLocalVar("crits", 0);
@@ -51,24 +50,23 @@ function onMobRoam(mob)
     if (mob:AnimationSub() == 2 and os.time() > headTimer) then
         mob:AnimationSub(1);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
-        
+
         -- First time it regens second head, 25%. Reduced afterwards.
         if (mob:getLocalVar("secondHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
-            mob:setMod(MOD_REGEN, 60);
             mob:setLocalVar("secondHead", 1);
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        
+
     elseif (mob:AnimationSub() == 1 and os.time() > headTimer) then
         mob:AnimationSub(0);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
-        
+
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
-            mob:setMod(MOD_REGEN, 30);
+            mob:setMod(MOD_REGEN, 10);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
@@ -85,35 +83,40 @@ function onMobFight(mob, target)
     local headTimer = mob:getLocalVar("headTimer");
     if (mob:AnimationSub() == 2 and os.time() > headTimer) then
         mob:AnimationSub(1);
-        mob:setMod(MOD_REGEN, 60);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
-        
+
         -- First time it regens second head, 25%. Reduced afterwards.
         if (mob:getLocalVar("secondHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
             mob:setLocalVar("secondHead", 1);
         else
             mob:addHP(mob:getMaxHP() * .05);
-        end        
-        mob:useMobAbility(1576); -- Barofield
-        mob:useMobAbility(1572); -- Pyric Blast
-        
+        end
+        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        end
+        mob:useMobAbility(1832); -- Barofield
+        mob:useMobAbility(1830); -- Polar Blast
+
     elseif (mob:AnimationSub() == 1 and os.time() > headTimer) then
         mob:AnimationSub(0);
-        mob:setMod(MOD_REGEN, 30);
         mob:setLocalVar("headTimer", os.time() + math.random(60,190));
-        
+
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
+            mob:setMod(MOD_REGEN, 10);
             mob:addHP(mob:getMaxHP() * .25);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        mob:useMobAbility(1576); -- Barofield
-        mob:useMobAbility(1574); -- Polar Blast
-        
+        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        end
+        mob:useMobAbility(1832); -- Barofield
+        mob:useMobAbility(1830); -- Polar Blast
+        mob:useMobAbility(1828); -- Pyric Blast
     end
 end;
 
@@ -123,23 +126,21 @@ end;
 
 function onCriticalHit(mob)
     local critNum = mob:getLocalVar("crits");
-    
+
     if ((critNum+1) > mob:getLocalVar("CritToTheFace")) then  -- Lose a head
         if (mob:AnimationSub() == 0) then
             mob:AnimationSub(1);
-            mob:setMod(MOD_REGEN, 60);
             mob:setLocalVar("headTimer", os.time() + math.random(60,190));
         elseif (mob:AnimationSub() == 1) then
             mob:AnimationSub(2);
-            mob:setMod(MOD_REGEN, 90);
             mob:setLocalVar("headTimer", os.time() + math.random(60,190));
         else
             -- Meh
         end
-        
+
         -- Number of crits to lose a head, re-randoming
         mob:setLocalVar("CritToTheFace", math.random(10,30));
-        
+
         critNum = 0; -- reset the crits on the NM
     else
         critNum = critNum + 1;
@@ -148,15 +149,16 @@ function onCriticalHit(mob)
 end;
 
 -----------------------------------
--- onMagicHit
+-- onMobDrawIn
 -----------------------------------
 
-function onMagicHit(caster, mob, spell)
+function onMobDrawIn(mob, target)
+    mob:addTP(300); -- Uses a mobskill upon drawing in a player. Not necessarily on the person drawn in.
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

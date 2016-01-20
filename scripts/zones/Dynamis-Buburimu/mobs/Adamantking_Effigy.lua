@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Buburimu
--- NPC:  Adamantking_Effigy
+--  MOB: Adamantking_Effigy
 
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Buburimu/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -29,12 +29,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	local mobID = mob:getID();
-	
+function onMobDeath(mob,killer,ally)
+    
+    local mobID = mob:getID();
+    
     if (mobID ==16941457) then --mp
-		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
-		killer:restoreMP(3000);		
-	end
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+        ally:restoreMP(3000);        
+    end
 end;

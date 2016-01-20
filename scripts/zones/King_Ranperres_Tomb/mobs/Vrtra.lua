@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
--- NPC:  Vrtra
+--  MOB: Vrtra
 -----------------------------------
 
 require("scripts/globals/status");
@@ -15,9 +15,17 @@ local offsets = {1, 3, 5, 2, 4, 6};
 function onMobInitialize(mob)
 end;
 
+-----------------------------------
+-- onMobEngaged
+-----------------------------------
+
 function onMobEngaged(mob)
     mob:resetLocalVars();
 end
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
 function onMobFight(mob, target)
 
@@ -35,7 +43,7 @@ function onMobFight(mob, target)
     end
     
     if (mob:getBattleTime()/15 > twohourTime) then
-        mob:useMobAbility(454);
+        mob:useMobAbility(710);
         mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
     elseif (mob:getBattleTime()/15 > spawnTime) then
         for i, offset in ipairs(offsets) do
@@ -51,6 +59,10 @@ function onMobFight(mob, target)
     end
 end
 
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
 function onMobDisengage(mob, weather)
     for i, offset in ipairs(offsets) do
         DespawnMob(mob:getID()+offset);
@@ -61,11 +73,11 @@ end
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-    killer:addTitle(VRTRA_VANQUISHER);
+function onMobDeath(mob, killer, ally)
+    ally:addTitle(VRTRA_VANQUISHER);
     
     -- Set Vrtra's spawnpoint and respawn time (3-5 days)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((259200),(432000)));
+    mob:setRespawnTime(math.random(259200,432000));
     
 end;

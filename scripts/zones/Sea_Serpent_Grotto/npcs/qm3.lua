@@ -24,15 +24,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
-	
-	if (Vault == QUEST_ACCEPTED and player:hasKeyItem(295) == false) then
-		player:addKeyItem(295);
-		player:messageSpecial(KEYITEM_OBTAINED,295);
-	end
+    
+    Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
+    
+    if (Vault == QUEST_ACCEPTED and player:hasKeyItem(295) == false) then
+        player:addKeyItem(295);
+        player:messageSpecial(KEYITEM_OBTAINED,295);
+    end
 end; 
-		
+        
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

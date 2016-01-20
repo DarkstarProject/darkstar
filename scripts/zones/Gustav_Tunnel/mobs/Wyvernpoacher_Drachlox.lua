@@ -1,16 +1,16 @@
-----------------------------------	
+----------------------------------
 -- Area: Gustav Tunnel
--- NM:   Wyvernpoacher Drachlox
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+--  NM:  Wyvernpoacher Drachlox
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
     -- Set Wyvernpoacher Drachlox's Window Open Time
-    local wait = math.random((7200),(28800));  -- 2-8 hours
+    local wait = math.random(720,28800);  -- 2-8 hours
     SetServerVariable("[POP]Wyvernpoacher_Drachlox", os.time(t) + wait);
     DeterMob(mob:getID(), true);
 

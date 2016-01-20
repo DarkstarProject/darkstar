@@ -17,15 +17,15 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 local result = 0;
-	if (target:getRace() ~= 7) then
-		result = 247;
-	end
-	if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
-		result = 0;
-	end
-	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-		result = 246;
-	end
+    if (target:getRace() ~= 7) then
+        result = 247;
+    end
+    if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
+        result = 0;
+    end
+    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+        result = 246;
+    end
 return result;
 end;
 
@@ -34,7 +34,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,300,4290);
+    target:addStatusEffect(EFFECT_FOOD,0,0,300,4290);
 end;
 
 -----------------------------------------
@@ -42,10 +42,10 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_DEX, 2);
-	target:addMod(MOD_AGI, 2);
-	target:addMod(MOD_MND, -4);
-	target:addMod(MOD_EVA, 5);
+    target:addMod(MOD_DEX, 2);
+    target:addMod(MOD_AGI, 2);
+    target:addMod(MOD_MND, -4);
+    target:addMod(MOD_EVA, 5);
 end;
 
 -----------------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_DEX, 2);
-	target:delMod(MOD_AGI, 2);
-	target:delMod(MOD_MND, -4);
-	target:delMod(MOD_EVA, 5);
+    target:delMod(MOD_DEX, 2);
+    target:delMod(MOD_AGI, 2);
+    target:delMod(MOD_MND, -4);
+    target:delMod(MOD_EVA, 5);
 end;

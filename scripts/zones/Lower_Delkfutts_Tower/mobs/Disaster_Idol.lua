@@ -11,7 +11,7 @@ require("scripts/globals/missions");
 
 function onMobEngaged(mob,target)
     local DayofWeek = VanadielDayElement();
-    
+
     mob:setSpellList(118 + DayofWeek);
     mob:setLocalVar("Element", DayofWeek+1);
 
@@ -22,11 +22,11 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
---TODO: Has level mimic of person who spawned it. Minimum level 65. HP should scale accordingly. 
+    -- TODO: Has level mimic of person who spawned it. Minimum level 65. HP should scale accordingly.
 
     local DayofWeek = VanadielDayElement();
     local Element = mob:getLocalVar("Element");
-    
+
     if (DayofWeek + 1 ~= Element) then
         mob:setSpellList(118 + DayofWeek);
         mob:setLocalVar("Element", DayofWeek+1);
@@ -37,8 +37,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-   if (killer:getCurrentMission(COP) == THREE_PATHS and killer:getVar("COP_Tenzen_s_Path") == 6) then 
-      killer:setVar("COP_Tenzen_s_Path",7);
-   end  
+function onMobDeath(mob, killer, ally)
+    if (ally:getCurrentMission(COP) == THREE_PATHS and ally:getVar("COP_Tenzen_s_Path") == 6) then
+        ally:setVar("COP_Tenzen_s_Path",7);
+    end
 end;

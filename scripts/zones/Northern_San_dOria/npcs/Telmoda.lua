@@ -18,13 +18,13 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+    if (FlyerForRegine == 1) then
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
+        if (MagicFlyer == true and count == 1) then
+            player:messageSpecial(FLYER_REFUSED);
+        end
+    end
 end;
 
 -----------------------------------
@@ -32,14 +32,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	Telmoda_Madaline = player:getVar("Telmoda_Madaline_Event");
-	
-	if (Telmoda_Madaline ~= 1) then
-		player:setVar(player,"Telmoda_Madaline_Event",1);
-		player:startEvent(0x0213);
-	else
-		player:startEvent(0x0268);
-	end
+    Telmoda_Madaline = player:getVar("Telmoda_Madaline_Event");
+    
+    if (Telmoda_Madaline ~= 1) then
+        player:setVar(player,"Telmoda_Madaline_Event",1);
+        player:startEvent(0x0213);
+    else
+        player:startEvent(0x0268);
+    end
 end; 
 
 -----------------------------------

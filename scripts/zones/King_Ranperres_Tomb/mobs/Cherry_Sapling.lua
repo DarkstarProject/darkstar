@@ -10,7 +10,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobSpawn(mob)
-	SetServerVariable("[POP]Cemetery Cherry",0);
+    SetServerVariable("[POP]Cemetery Cherry",0);
 end;
 
 -----------------------------------
@@ -19,12 +19,12 @@ end;
 
 function onMobDeath(mob)
 
-	SetServerVariable("[POP]Cemetery Cherry",GetServerVariable("[POP]Cemetery Cherry") + 1);
+    SetServerVariable("[POP]Cemetery Cherry",GetServerVariable("[POP]Cemetery Cherry") + 1);
 
-	if (GetServerVariable("[POP]Cemetery Cherry") == 8) then
-		SetServerVariable("[POP]Cemetery Cherry",0);
-		SpawnMob(17555863,600); -- Pop Cemetery Cherry !
+    if (GetServerVariable("[POP]Cemetery Cherry") == 8) then
+        SetServerVariable("[POP]Cemetery Cherry",0);
+        SpawnMob(17555863,600); -- Pop Cemetery Cherry !
 
-	end
+    end
 
 end;

@@ -12,11 +12,11 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_AMNESIA;
-	local power = 30;
-	local duration = 75;
+    local typeEffect = EFFECT_AMNESIA;
+    local power = 30;
+    local duration = 75;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
 
-	return typeEffect;
+    return typeEffect;
 end;

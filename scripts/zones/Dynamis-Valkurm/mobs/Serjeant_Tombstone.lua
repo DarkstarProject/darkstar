@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 
 
                      
-					
+                    
 
 
 
@@ -35,8 +35,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
---	local mobID = mob:getID();
-	
+function onMobDeath(mob,killer,ally)
+    
+--    local mobID = mob:getID();
+    
 end;

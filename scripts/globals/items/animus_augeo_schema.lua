@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6059
---	Item: Animus Augeo Schema
---	Teaches the white magic Animus Augeo
+--    ID: 6059
+--    Item: Animus Augeo Schema
+--    Teaches the white magic Animus Augeo
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(308);
+    return target:canLearnSpell(308);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(308);
+    target:addSpell(308);
 end;

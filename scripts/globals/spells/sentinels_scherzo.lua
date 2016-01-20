@@ -10,21 +10,21 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
 
-	local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
+    local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
     local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
 
-	local power = math.floor((sLvl+iLvl-350) / 10);
+    local power = math.floor((sLvl+iLvl-350) / 10);
     
-	if (power >= 45) then
-		power = 45;
-	end
+    if (power >= 45) then
+        power = 45;
+    end
     
-	local iBoost = caster:getMod(MOD_SCHERZO_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(MOD_SCHERZO_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     power = power + iBoost;
     
     local duration = 120;
@@ -42,9 +42,9 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
     
-	if not (target:addBardSong(caster,EFFECT_SCHERZO,power,0,duration,caster:getID(), 0, 1)) then
+    if not (target:addBardSong(caster,EFFECT_SCHERZO,power,0,duration,caster:getID(), 0, 1)) then
         spell:setMsg(75);
     end
 
-	return EFFECT_SCHERZO;
+    return EFFECT_SCHERZO;
 end;

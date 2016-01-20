@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4770
---	Scroll of Stone IV
---	Teaches the black magic Stone IV
+--    ID: 4770
+--    Scroll of Stone IV
+--    Teaches the black magic Stone IV
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(162);
+    return target:canLearnSpell(162);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(162);
+    target:addSpell(162);
 end;

@@ -23,14 +23,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then 
-		player:startEvent(0x00b5,0,8,0,0,0,0,0,200);
-	else
-		player:startEvent(0x00b7,0,8);
-	end
-	return 1;
-	
+    
+    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then 
+        player:startEvent(0x00b5,0,8,0,0,0,0,0,200);
+    else
+        player:startEvent(0x00b7,0,8);
+    end
+    return 1;
+    
 end;
 
 -----------------------------------
@@ -49,15 +49,15 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x00b5) then 
-		X = player:getXPos();
-		
-		if (X >= 221 and X <= 225) then
-			player:delGil(200);
-		end
-	end
-	
+    
+    if (csid == 0x00b5) then 
+        X = player:getXPos();
+        
+        if (X >= 221 and X <= 225) then
+            player:delGil(200);
+        end
+    end
+    
 end;
 
 

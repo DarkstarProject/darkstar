@@ -22,13 +22,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getVar("BorghertzHandsFirstTime") == 2) then
-		player:startEvent(0x00dc);
-	else
-		player:startEvent(0x00d1);
-	end
-	
+    
+    if (player:getVar("BorghertzHandsFirstTime") == 2) then
+        player:startEvent(0x00dc);
+    else
+        player:startEvent(0x00d1);
+    end
+    
 end; 
 
 -----------------------------------
@@ -48,10 +48,10 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x00dc and option == 0 and player:delGil(1000)) then
-		player:startEvent(0x00dd);
-		player:setVar("BorghertzHandsFirstTime",0);
-		player:setVar("BorghertzCS",1);
-	end
+    if (csid == 0x00dc and option == 0 and player:delGil(1000)) then
+        player:startEvent(0x00dd);
+        player:setVar("BorghertzHandsFirstTime",0);
+        player:setVar("BorghertzCS",1);
+    end
 
 end;

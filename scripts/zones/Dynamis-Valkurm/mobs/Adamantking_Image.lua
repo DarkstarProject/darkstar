@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
--- NPC:  Adamantking_Image
+--  MOB: Adamantking_Image
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");
@@ -17,13 +17,13 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 local mobID = mob:getID();
-	if (mobID == 16937239 and mob:isInBattlefieldList() == false) then
-		killer:addTimeToDynamis(10);
-		mob:addInBattlefieldList();
-	elseif (mobID == 16937237 and  mob:isInBattlefieldList() == false) then
-	    killer:addTimeToDynamis(20);
-		mob:addInBattlefieldList();
-	end
+    if (mobID == 16937239 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(10);
+        mob:addInBattlefieldList();
+    elseif (mobID == 16937237 and  mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(20);
+        mob:addInBattlefieldList();
+    end
 end;

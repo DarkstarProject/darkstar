@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -24,8 +24,8 @@ function onSpellCast(caster,target,spell)
 
     --Calculates Resist Chance
     if (resist >= 0.125) then
-    	local duration = 120 * resist;
-    	
+        local duration = 120 * resist;
+        
         if (duration >= 50) then
             -- Erases a weaker attack down and applies the stronger one
             local attackdown = target:getStatusEffect(effect);

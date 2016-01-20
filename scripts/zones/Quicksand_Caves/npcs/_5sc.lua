@@ -22,14 +22,14 @@ end;
 
 function onTrigger(player,npc)
     local difX = player:getXPos()-(-410);
-	local difZ = player:getZPos()-(654);
-	local Distance = math.sqrt( math.pow(difX,2) + math.pow(difZ,2) );
-	if (Distance < 3) then
-		return -1;
-	end
-	
-	player:messageSpecial(DOOR_FIRMLY_SHUT);
-	return 1;
+    local difZ = player:getZPos()-(654);
+    local Distance = math.sqrt( math.pow(difX,2) + math.pow(difZ,2) );
+    if (Distance < 3) then
+        return -1;
+    end
+    
+    player:messageSpecial(DOOR_FIRMLY_SHUT);
+    return 1;
 end; 
 
 -----------------------------------

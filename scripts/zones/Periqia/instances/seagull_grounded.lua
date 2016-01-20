@@ -14,7 +14,7 @@ function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Periqia.text.ASSAULT_31_START, 1);
     player:messageSpecial(Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-end;	
+end;    
 
 -----------------------------------
 -- onInstanceCreated

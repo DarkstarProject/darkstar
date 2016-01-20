@@ -24,16 +24,16 @@ end;
 
 function onTrigger(player,npc)
 
-	local SignPost = player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
-	local Painting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
+    local SignPost = player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
+    local Painting = player:hasKeyItem(PAINTING_OF_A_WINDMILL);
 
-	if (SignPost == 1 and Painting == false) then
+    if (SignPost == 1 and Painting == false) then
         player:messageSpecial(SIGNPOST_DIALOG_2);
-		player:addKeyItem(PAINTING_OF_A_WINDMILL);
-		player:messageSpecial(KEYITEM_OBTAINED,PAINTING_OF_A_WINDMILL);
+        player:addKeyItem(PAINTING_OF_A_WINDMILL);
+        player:messageSpecial(KEYITEM_OBTAINED,PAINTING_OF_A_WINDMILL);
     else
         player:messageSpecial(SIGNPOST_DIALOG_1);
-	end
+    end
 end;
 
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia Downs
--- NPC:  Sturmtiger
+--  MOB: Sturmtiger
 -- Involved in Quest: Chasing Quotas
 -- @pos -715.882,-10.75,65.982 (105)
 -----------------------------------
@@ -16,12 +16,12 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	local kills = killer:getVar("Mission9-1Kills");
+    local kills = ally:getVar("Mission9-1Kills");
 
-	if (killer:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and killer:getVar("MissionStatus") == 3 and kills < 2) then
-		killer:setVar("Mission9-1Kills",kills + 1);
-	end
+    if (ally:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and ally:getVar("MissionStatus") == 3 and kills < 2) then
+        ally:setVar("Mission9-1Kills",kills + 1);
+    end
 
 end;

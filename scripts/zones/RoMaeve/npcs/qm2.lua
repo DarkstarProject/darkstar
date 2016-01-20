@@ -23,30 +23,30 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
-		if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
-			if (player:getVar("Mission7-1MobKilled") >= 1) then
-				player:addKeyItem(REINFORCED_CERMET);
-				player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
-				player:setVar("Mission7-1MobKilled",0);
-				player:setVar("MissionStatus",2);
-			else
-				-- Position of npc can change
-				local x = npc:getXPos();
-				local y = npc:getYPos();
-				local z = npc:getZPos();
-				
-				SpawnMob(17276929):setPos(x+1,y,z+1);
-				GetMobByID(17276929):updateClaim(player);
-				SpawnMob(17276930):setPos(x-1,y,z-1);
-				GetMobByID(17276930):updateClaim(player);
-			end
-		end
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
-	
+    
+    if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
+        if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
+            if (player:getVar("Mission7-1MobKilled") >= 1) then
+                player:addKeyItem(REINFORCED_CERMET);
+                player:messageSpecial(KEYITEM_OBTAINED,REINFORCED_CERMET);
+                player:setVar("Mission7-1MobKilled",0);
+                player:setVar("MissionStatus",2);
+            else
+                -- Position of npc can change
+                local x = npc:getXPos();
+                local y = npc:getYPos();
+                local z = npc:getZPos();
+                
+                SpawnMob(17276929):setPos(x+1,y,z+1);
+                GetMobByID(17276929):updateClaim(player);
+                SpawnMob(17276930):setPos(x-1,y,z-1);
+                GetMobByID(17276930):updateClaim(player);
+            end
+        end
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
+    
 end; 
 
 -----------------------------------

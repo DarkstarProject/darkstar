@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(5182,3,18,5)) then
-		player:showText(npc,FISHING_SHOP_DIALOG);
-	end
+    if (player:sendGuild(5182,3,18,5)) then
+        player:showText(npc,FISHING_SHOP_DIALOG);
+    end
 end; 
 
 -----------------------------------

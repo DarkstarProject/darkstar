@@ -80,7 +80,7 @@ struct SearchCommInfo
 
 void TaskManagerThread();
 
-int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask);
+int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask);
 
 
 const int8* SEARCH_CONF_FILENAME = "./conf/search_server.conf";
@@ -153,13 +153,12 @@ int32 main(int32 argc, int8 **argv)
 
     std::string logFile;
 
-#ifdef DEBUGLOGSEARCH
 #ifdef WIN32
     logFile = "log\\search-server.log";
 #else
     logFile = "log/search-server.log";
 #endif
-#endif
+
 
     for (int i = 0; i < argc; i++)
     {
@@ -264,7 +263,7 @@ int32 main(int32 argc, int8 **argv)
     ShowMessage(CL_WHITE"========================================================\n\n" CL_RESET);
     if (search_config.expire_auctions == 1) {
         ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
-        CTaskMgr::getInstance()->AddTask("ah_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, ah_cleanup, search_config.expire_interval * 1000);
+        CTaskMgr::getInstance()->AddTask("ah_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, ah_cleanup, std::chrono::seconds(search_config.expire_interval));
     }
     //	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
 
@@ -899,7 +898,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
             printf("SEARCH::Comment Entry found. (%8X).\n", comment);
             break;
         }
-        //the following 4 Entries were generated with /sea (ballista|friend|linkshell|away|inv) 
+        //the following 4 Entries were generated with /sea (ballista|friend|linkshell|away|inv)
         //so they may be off
         case SEARCH_LINKSHELL: // 4 Byte
         {
@@ -914,7 +913,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
             printf("SEARCH::Friend Entry found.\n");
             break;
         }
-        case SEARCH_FLAGS1: // Flag Entry #1, 2 byte, 
+        case SEARCH_FLAGS1: // Flag Entry #1, 2 byte,
         {
             if (isPresent == 0x1)
             {
@@ -985,11 +984,11 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
 
 void TaskManagerThread()
 {
-    int next;
+    duration next;
     while (true)
     {
-        next = CTaskMgr::getInstance()->DoTimer(gettick_nocache());
-        std::this_thread::sleep_for(std::chrono::milliseconds(next / 1000));
+        next = CTaskMgr::getInstance()->DoTimer(server_clock::now());
+        std::this_thread::sleep_for(next);
     }
 }
 
@@ -999,7 +998,7 @@ void TaskManagerThread()
 *                                                                       *
 ************************************************************************/
 
-int32 ah_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
+int32 ah_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     //ShowMessage(CL_YELLOW"[TASK] ah_cleanup tick..\n" CL_RESET);
 

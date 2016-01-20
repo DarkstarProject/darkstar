@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Caterchipillar
+--  MOB: Caterchipillar
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,698,1);
+function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,698,1);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5096
---	Scroll of Boost-VIT
---	Teaches the white magic Boost-VIT
+--    ID: 5096
+--    Scroll of Boost-VIT
+--    Teaches the white magic Boost-VIT
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(481);
+    return target:canLearnSpell(481);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(481);
+    target:addSpell(481);
 end;

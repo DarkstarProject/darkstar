@@ -8,24 +8,24 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local duration = 30;
-	local pCHR = caster:getStat(MOD_CHR);
-	local mCHR = target:getStat(MOD_CHR);
-	local dCHR = (pCHR - mCHR);
-	local resm = applyResistanceEffect(caster,spell,target,dCHR,SKILL_SNG,0,EFFECT_LULLABY);
-	if (resm < 0.5) then
-		spell:setMsg(85);--resist message
-		return EFFECT_LULLABY;
-	end
+    local duration = 30;
+    local pCHR = caster:getStat(MOD_CHR);
+    local mCHR = target:getStat(MOD_CHR);
+    local dCHR = (pCHR - mCHR);
+    local resm = applyResistanceEffect(caster,spell,target,dCHR,SKILL_SNG,0,EFFECT_LULLABY);
+    if (resm < 0.5) then
+        spell:setMsg(85);--resist message
+        return EFFECT_LULLABY;
+    end
 
-	if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
-		--No effect
-		spell:setMsg(75);
-	else
+    if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
+        --No effect
+        spell:setMsg(75);
+    else
     
         local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
 
@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
         else
             spell:setMsg(75);
         end
-	end
+    end
 
-	return EFFECT_LULLABY;
+    return EFFECT_LULLABY;
 end;

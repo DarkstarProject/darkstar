@@ -32,6 +32,11 @@ CBlueSpell::CBlueSpell(uint16 id) : CSpell(id)
     m_traitWeight    = 0;
 }
 
+  std::unique_ptr<CSpell> CBlueSpell::clone()
+  {
+      return std::unique_ptr<CBlueSpell>(new CBlueSpell(*this));
+  }
+
 uint16 CBlueSpell::getMonsterSkillId()
 {
 	return m_monsterSkillId;

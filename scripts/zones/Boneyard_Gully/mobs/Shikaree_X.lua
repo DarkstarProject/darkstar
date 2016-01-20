@@ -19,15 +19,15 @@ end;
 
 function onMobEngaged(mob,target)
 
-	local MobID = mob:getID();
-	
-	if (MobID == 16809987) then
-		SpawnMob(MobID+2);	 
-	elseif (MobID == 16809992) then
-		SpawnMob(MobID+2);
-	elseif (MobID == 16809997) then
-		SpawnMob(MobID+2);
-	end
+    local MobID = mob:getID();
+
+    if (MobID == 16809987) then
+        SpawnMob(MobID+2);
+    elseif (MobID == 16809992) then
+        SpawnMob(MobID+2);
+    elseif (MobID == 16809997) then
+        SpawnMob(MobID+2);
+    end
 end;
 
 -----------------------------------
@@ -41,5 +41,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

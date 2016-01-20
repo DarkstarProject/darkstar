@@ -22,15 +22,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:hasKeyItem(YAGUDO_TORCH)) then
-		player:startEvent(0x000b);
-	else
-		player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
-	end
-	
-	return 1;
-	
+    
+    if (player:hasKeyItem(YAGUDO_TORCH)) then
+        player:startEvent(0x000b);
+    else
+        player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
+    end
+    
+    return 1;
+    
 end;
 
 -----------------------------------
@@ -48,5 +48,5 @@ end;
 
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);		
+-- printf("RESULT: %u",option);        
 end;

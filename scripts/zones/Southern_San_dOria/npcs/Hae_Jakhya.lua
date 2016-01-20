@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Hae Jakhya
+--    Area: Southern San d'Oria
+--    NPC: Hae Jakhya
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -18,13 +18,13 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+    if (FlyerForRegine == 1) then
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
+        if (MagicFlyer == true and count == 1) then
+            player:messageSpecial(FLYER_REFUSED);
+        end
+    end
 end;
 
 -----------------------------------
@@ -32,17 +32,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-	
-	if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(126) == false) then
-	    player:startEvent(0x0263); -- Neeed CS here
-	elseif (player:hasKeyItem(126) == true) then
-		player:startEvent(0x0264,0,126);
-	else
-		player:startEvent(0x262);
-	end	
-		
+    
+    chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+    
+    if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(126) == false) then
+        player:startEvent(0x0263); -- Neeed CS here
+    elseif (player:hasKeyItem(126) == true) then
+        player:startEvent(0x0264,0,126);
+    else
+        player:startEvent(0x262);
+    end    
+        
 end;
 
 -----------------------------------
@@ -63,6 +63,6 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     if (csid == 0x0263) then
         player:addKeyItem(126);
-	player:messageSpecial(KEYITEM_OBTAINED,126);
-    end		
+    player:messageSpecial(KEYITEM_OBTAINED,126);
+    end        
 end;

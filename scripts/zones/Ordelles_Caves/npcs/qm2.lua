@@ -25,13 +25,13 @@ end;
  
 function onTrigger(player,npc) 
 
-	if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED and player:hasKeyItem(STALACTITE_DEW) == false and player:getVar("SquiresTestII") == 0) then
-		player:setVar("SquiresTestII",os.time());
-		player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_I);
-	else
-		player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-	end
-	
+    if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED and player:hasKeyItem(STALACTITE_DEW) == false and player:getVar("SquiresTestII") == 0) then
+        player:setVar("SquiresTestII",os.time());
+        player:messageSpecial(A_SQUIRE_S_TEST_II_DIALOG_I);
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    end
+    
 end; 
 
 -----------------------------------

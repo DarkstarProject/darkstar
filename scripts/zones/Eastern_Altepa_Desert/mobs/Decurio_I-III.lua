@@ -18,8 +18,8 @@ end;
 
 function onMobDeath(mob, player)
 
-	if (player:getVar("aCraftsmanWork") == 1) then
-		player:setVar("Decurio_I_IIIKilled",1);
-	end
+    if (player:getVar("aCraftsmanWork") == 1) then
+        player:setVar("Decurio_I_IIIKilled",1);
+    end
 
 end;

@@ -28,7 +28,7 @@ function onPetAbility(target, pet, skill, master)
 
    local dmgmod = MobBreathMove(pet, target, 0.185, pet:getMainLvl()*15, ELE_LIGHTNING); -- Works out to (hp/6) + 15, as desired
    dmgmod = (dmgmod * (1+gear))*deep;
-	local dmg = MobFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmg = MobFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end

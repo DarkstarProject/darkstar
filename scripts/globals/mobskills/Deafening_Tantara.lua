@@ -21,8 +21,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_SILENCE;
+    local typeEffect = EFFECT_SILENCE;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30));
-	return typeEffect;
+    return typeEffect;
 end;

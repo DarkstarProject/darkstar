@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4709
---	Scroll of Enblizzard
---	Teaches the white magic Enblizzard
+--    ID: 4709
+--    Scroll of Enblizzard
+--    Teaches the white magic Enblizzard
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(101);
+    return target:canLearnSpell(101);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(101);
+    target:addSpell(101);
 end;

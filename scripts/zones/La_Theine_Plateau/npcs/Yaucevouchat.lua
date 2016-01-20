@@ -22,23 +22,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
-		local MissionStatus = player:getVar("MissionStatus");
-		
-		if (MissionStatus >= 5 and MissionStatus <= 7) then
-			player:startEvent(0x0068);
-		elseif (MissionStatus == 8) then
-			player:showText(npc, RESCUE_DRILL + 21);
-		elseif (MissionStatus >= 9) then
-			player:showText(npc, RESCUE_DRILL + 26);
-		else
-			player:showText(npc, RESCUE_DRILL);
-		end
-	else
-		player:showText(npc, RESCUE_DRILL);
-	end
-	
+    
+    if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
+        local MissionStatus = player:getVar("MissionStatus");
+        
+        if (MissionStatus >= 5 and MissionStatus <= 7) then
+            player:startEvent(0x0068);
+        elseif (MissionStatus == 8) then
+            player:showText(npc, RESCUE_DRILL + 21);
+        elseif (MissionStatus >= 9) then
+            player:showText(npc, RESCUE_DRILL + 26);
+        else
+            player:showText(npc, RESCUE_DRILL);
+        end
+    else
+        player:showText(npc, RESCUE_DRILL);
+    end
+    
 end;
 
 -----------------------------------

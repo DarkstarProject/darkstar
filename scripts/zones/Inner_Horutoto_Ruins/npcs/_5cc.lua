@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Inner Horutoto Ruins
---	NPC:  _5cc (Gate of Ice)
+--    Area: Inner Horutoto Ruins
+--    NPC:  _5cc (Gate of Ice)
 --  @pos -228 0 99 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	player:messageSpecial(DOOR_FIRMLY_CLOSED);
-	return 1;
-	
+    
+    player:messageSpecial(DOOR_FIRMLY_CLOSED);
+    return 1;
+    
 end; 
-		
+        
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

@@ -9,13 +9,13 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (trade:hasItemQty(13121,1) and trade:getItemCount() == 1) then -- Trade Beast collar
-		player:tradeComplete();
-		-- Tebhi disappears for 15min -------------- NOT IMPLEMENTED
-		player:setVar("scatIntoShadowCS",2);
-	end
-	
+    
+    if (trade:hasItemQty(13121,1) and trade:getItemCount() == 1) then -- Trade Beast collar
+        player:tradeComplete();
+        -- Tebhi disappears for 15min -------------- NOT IMPLEMENTED
+        player:setVar("scatIntoShadowCS",2);
+    end
+    
 end;
 
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_BIO
--- 	
+--     EFFECT_BIO
+--     
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,10 +11,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	local power = effect:getPower();
-	local subpower = effect:getSubPower();
-	target:addMod(MOD_ATTP,-subpower);
-	target:addMod(MOD_REGEN_DOWN, power);
+    local power = effect:getPower();
+    local subpower = effect:getSubPower();
+    target:addMod(MOD_ATTP,-subpower);
+    target:addMod(MOD_REGEN_DOWN, power);
 end;
 
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	local power = effect:getPower();
-	local subpower = effect:getSubPower();
-	target:delMod(MOD_ATTP,-subpower);
-	target:delMod(MOD_REGEN_DOWN, power);
+    local power = effect:getPower();
+    local subpower = effect:getSubPower();
+    target:delMod(MOD_ATTP,-subpower);
+    target:delMod(MOD_REGEN_DOWN, power);
 end;

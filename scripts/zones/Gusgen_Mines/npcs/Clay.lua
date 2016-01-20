@@ -25,8 +25,8 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:addItem(569,1); --569 - dish_of_gusgen_clay
-	player:messageSpecial(ITEM_OBTAINED,569); -- dish_of_gusgen_clay
+    player:addItem(569,1); --569 - dish_of_gusgen_clay
+    player:messageSpecial(ITEM_OBTAINED,569); -- dish_of_gusgen_clay
 end;
 
 -----------------------------------

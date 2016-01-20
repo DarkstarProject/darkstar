@@ -21,15 +21,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,MALFUD_SHOP_DIALOG);
 
-stock = {0x03A8,16, 		-- Rock Salt
-	 0x0272,255,		-- Black Pepper
-	 0x0279,16,		-- Olive Oil
-	 0x1124,44,		-- Eggplant
-	 0x1126,40,		-- Mithran Tomato
-	 0x08A5,12}		-- Pine Nuts
+stock = {0x03A8,16,         -- Rock Salt
+     0x0272,255,        -- Black Pepper
+     0x0279,16,        -- Olive Oil
+     0x1124,44,        -- Eggplant
+     0x1126,40,        -- Mithran Tomato
+     0x08A5,12}        -- Pine Nuts
  
 showShop(player, STATIC, stock);
 end; 

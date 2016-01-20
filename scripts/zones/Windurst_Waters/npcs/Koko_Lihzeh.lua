@@ -19,16 +19,16 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 1) then
-		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-			player:setVar("ridingOnTheClouds_4",0);
-			player:tradeComplete();
-			player:addKeyItem(SPIRITED_STONE);
-			player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
-		end
-	end
-	
+    
+    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 1) then
+        if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+            player:setVar("ridingOnTheClouds_4",0);
+            player:tradeComplete();
+            player:addKeyItem(SPIRITED_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+        end
+    end
+    
 end;
 
 -----------------------------------
@@ -36,11 +36,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-		player:startEvent(0x01c3); -- During Making the GRADE
-	else
-		player:startEvent(0x01ac); -- Standard conversation
-	end
+    if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+        player:startEvent(0x01c3); -- During Making the GRADE
+    else
+        player:startEvent(0x01ac); -- Standard conversation
+    end
 end; 
 
 -----------------------------------

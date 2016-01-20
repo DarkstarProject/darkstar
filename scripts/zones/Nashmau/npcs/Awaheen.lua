@@ -13,10 +13,10 @@ require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-   -- Trade:                          	Receive:
-   -- 1 x Imperial Gold Piece (2187)	   5 x Imperial Mythril Piece(2186)
-   -- 1 x Imperial Mythril Piece(2186) 	   2 x Imperial Silver Piece(2185)
-   -- 1 x Imperial Silver Piece (2185)	   5 x Imperial Bronze Piece(2184)
+   -- Trade:                              Receive:
+   -- 1 x Imperial Gold Piece (2187)       5 x Imperial Mythril Piece(2186)
+   -- 1 x Imperial Mythril Piece(2186)        2 x Imperial Silver Piece(2185)
+   -- 1 x Imperial Silver Piece (2185)       5 x Imperial Bronze Piece(2184)
 local nbr = 0;
 local reward = 0;
     if (trade:getItemCount() == 1) then
@@ -26,15 +26,15 @@ local reward = 0;
         end
      end 
      if (reward > 0) then
-	 local boucle;
+     local boucle;
          if (player:getFreeSlotsCount() >= 1) then
-		 player:tradeComplete();
+         player:tradeComplete();
          player:addItem(reward,nbr);
-		     for boucle=1,nbr,1 do player:messageSpecial(ITEM_OBTAINED,reward);
-	         end
-	     else
-	     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
-	     end
+             for boucle=1,nbr,1 do player:messageSpecial(ITEM_OBTAINED,reward);
+             end
+         else
+         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+         end
      end   
 end; 
 

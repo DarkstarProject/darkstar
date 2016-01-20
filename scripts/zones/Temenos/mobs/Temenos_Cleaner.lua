@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos Central 1floor	
+-- Area: Temenos Central 1floor    
 -- NPC: Temenos_Cleaner
 
 -----------------------------------
@@ -21,8 +21,8 @@ end;
 
 function onMobEngaged(mob,target)
  if (IsMobDead(16929046)==true) then
-	 mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
-	 mob:addStatusEffect(EFFECT_REGEN,50,3,0);
+     mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
+     mob:addStatusEffect(EFFECT_REGEN,50,3,0);
   end
 end;
 
@@ -30,13 +30,13 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
   if (IsMobDead(16929046)==true and IsMobDead(16929047)==true and IsMobDead(16929048)==true and IsMobDead(16929049)==true and IsMobDead(16929050)==true and IsMobDead(16929051)==true) then
-   	GetNPCByID(16928768+71):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16928768+71):setStatus(STATUS_NORMAL);
-	GetNPCByID(16928770+471):setStatus(STATUS_NORMAL);
+       GetNPCByID(16928768+71):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16928768+71):setStatus(STATUS_NORMAL);
+    GetNPCByID(16928770+471):setStatus(STATUS_NORMAL);
   end
 end;

@@ -49,8 +49,8 @@ function onTrade(player,npc,trade)
     end
     
   if (trade:hasItemQty(1875, count) and AvailableCombinationDetected == 0) then  --- AB storage
-		local total = player:getCurrency("ancient_beastcoin") + count;
-		player:startEvent(0x0137, count, 0, 0, 0, 0, 0, 0, total);
+        local total = player:getCurrency("ancient_beastcoin") + count;
+        player:startEvent(0x0137, count, 0, 0, 0, 0, 0, 0, total);
         if (total < 9999) then  -- store max 9999 Ancien beastcoin
             player:addCurrency("ancient_beastcoin", count);
             player:tradeComplete();

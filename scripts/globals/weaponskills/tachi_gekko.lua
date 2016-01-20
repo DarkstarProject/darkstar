@@ -18,27 +18,26 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
-	local params = {};
-	params.numHits = 1;
-	params.ftp100 = 1.5625; params.ftp200 = 1.88; params.ftp300 = 2.5;
-	params.str_wsc = 0.75; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
-	params.canCrit = false;
-	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 2;
+    local params = {};
+    params.numHits = 1;
+    params.ftp100 = 1.5625; params.ftp200 = 1.88; params.ftp300 = 2.5;
+    params.str_wsc = 0.75; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+    params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+    params.canCrit = false;
+    params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+    params.atkmulti = 2;
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.ftp100 = 1.5625; params.ftp200 = 2.6875; params.ftp300 = 4.125;
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.ftp100 = 1.5625; params.ftp200 = 2.6875; params.ftp300 = 4.125;
+    end
 
-	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	-- Silence duration changed from 60 to 45 as per bg-wiki: http://www.bg-wiki.com/bg/Tachi:_Gekko
-	if damage > 0 and (target:hasStatusEffect(EFFECT_SILENCE) == false) then
-		target:addStatusEffect(EFFECT_SILENCE, 1, 0, 45);
-	end
-	damage = damage * WEAPON_SKILL_POWER
-	return tpHits, extraHits, criticalHit, damage;
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    -- Silence duration changed from 60 to 45 as per bg-wiki: http://www.bg-wiki.com/bg/Tachi:_Gekko
+    if (damage > 0 and target:hasStatusEffect(EFFECT_SILENCE) == false) then
+        target:addStatusEffect(EFFECT_SILENCE, 1, 0, 45);
+    end
+    return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -25,13 +25,13 @@ end;
 
 function onTrigger(player,npc)
    
-  	local SinHunting = player:getVar("sinHunting");	-- RNG AF1 
+      local SinHunting = player:getVar("sinHunting");    -- RNG AF1 
    
-	if (player:hasKeyItem(WEAPONS_ORDER) == true) then
-		player:startEvent(0x0005);
-	elseif (SinHunting == 3) then
-		player:startEvent(0x000a);		
-	end
+    if (player:hasKeyItem(WEAPONS_ORDER) == true) then
+        player:startEvent(0x0005);
+    elseif (SinHunting == 3) then
+        player:startEvent(0x000a);        
+    end
 end;
 
 -----------------------------------
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(WEAPONS_ORDER);
         player:addKeyItem(WEAPONS_RECEIPT);
         player:messageSpecial(KEYITEM_OBTAINED,WEAPONS_RECEIPT);
-	elseif (csid == 0x000a) then
-		player:setVar("sinHunting",4);
+    elseif (csid == 0x000a) then
+        player:setVar("sinHunting",4);
     end
 end;

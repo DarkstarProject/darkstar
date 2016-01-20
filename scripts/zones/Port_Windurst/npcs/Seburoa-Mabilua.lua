@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Seburoa-Mabilua
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Seburoa-Mabilua
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0xc2);
+    player:startEvent(0xc2);
 end;
 
 -----------------------------------

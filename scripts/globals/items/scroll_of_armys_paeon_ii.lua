@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4987
---	Scroll of Armys Paeton II
---	Teaches the song Armys Paeton II
+--    ID: 4987
+--    Scroll of Armys Paeton II
+--    Teaches the song Armys Paeton II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(379);
+    return target:canLearnSpell(379);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(379);
+    target:addSpell(379);
 end;

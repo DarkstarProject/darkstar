@@ -20,8 +20,8 @@ end;
 
 function onItemUse(target)
 
-	if (target:hasStatusEffect(EFFECT_BLINDNESS) == true) then
-		target:delStatusEffect(EFFECT_BLINDNESS);
-	end
+    if (target:hasStatusEffect(EFFECT_BLINDNESS) == true) then
+        target:delStatusEffect(EFFECT_BLINDNESS);
+    end
 end;
 

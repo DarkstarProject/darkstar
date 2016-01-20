@@ -126,7 +126,7 @@ end
 
 -- Gets the expiry time for your locker. A return value of -1 is expired. A return value of nil means mog locker hasn't been unlocked.
 function getMogLockerExpiryTimestamp(player)
-	local expiryTime = player:getVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP);
+    local expiryTime = player:getVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP);
     
     if (expiryTime == 0) then
         return nil;

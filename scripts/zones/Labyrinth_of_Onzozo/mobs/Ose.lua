@@ -1,14 +1,14 @@
-----------------------------------	
+----------------------------------
 -- Area: Labyrinth of Onzozo
 --   NM: Ose
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
     -- Set Ose's Window Open Time
     SetServerVariable("[POP]Ose", os.time(t) + 3600); -- 1 hour
     DeterMob(mob:getID(), true);
@@ -18,5 +18,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Ose", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

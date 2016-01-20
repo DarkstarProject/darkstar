@@ -151,12 +151,12 @@ local path = {
 
 function onSpawn(npc)
     npc:initNpcAi();
-	npc:setPos(pathfind.first(path));
-	onPath(npc);
+    npc:setPos(pathfind.first(path));
+    onPath(npc);
 end;
 
 function onPath(npc)
-	pathfind.patrol(npc, path);
+    pathfind.patrol(npc, path);
 end;
 
 -----------------------------------
@@ -212,7 +212,7 @@ function onTrigger(player,npc)
         elseif (progress >= 4 or failed >= 5) then
             player:startEvent(0x00F5); -- happy with sands of silence
         end
-	else
+    else
         player:startEvent(0x00C8);
         npc:wait(-1);
     end

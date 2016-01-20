@@ -1,6 +1,6 @@
 -----------------------------------
---  Area: Korroloka Tunnel
---  Mob:  Korroloka Leech
+-- Area: Korroloka Tunnel
+--  MOB: Korroloka Leech
 --  Involved in Quest: Ayame and Kaede
 -----------------------------------
 
@@ -13,14 +13,18 @@ require("scripts/globals/settings");
 function onMobSpawn(mob)
 end;
 
-function onMobDeath(mob, killer)
+-----------------------------------
+-- onMobDeath Action
+-----------------------------------
 
-	if (killer:getVar("AyameAndKaede_Event") == 2) then
-		leeches = killer:getVar("KorrolokaLeeches");
+function onMobDeath(mob, killer, ally)
 
-		killer:setVar("KorrolokaLeeches",leeches+1);
-		killer:setVar("KorrolokaLeeches_Timer",os.time());
-	end
+    if (ally:getVar("AyameAndKaede_Event") == 2) then
+        local leeches = ally:getVar("KorrolokaLeeches");
+
+        ally:setVar("KorrolokaLeeches",leeches+1);
+        ally:setVar("KorrolokaLeeches_Timer",os.time());
+    end
 
 end;
 

@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -19,6 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addMP(20*ITEM_POWER);
-	target:messageBasic(25,0,20);
+    target:addMP(20*ITEM_POWER);
+    target:messageBasic(25,0,20);
 end;

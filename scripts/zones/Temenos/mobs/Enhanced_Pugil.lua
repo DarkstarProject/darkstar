@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos W T	
+-- Area: Temenos W T    
 -- NPC: Enhanced_Pugil
 
 -----------------------------------
@@ -27,14 +27,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 local cofferID=Randomcoffer(6,GetInstanceRegion(1298));
     local mobX = mob:getXPos();
-	local mobY = mob:getYPos();
-	local mobZ = mob:getZPos();
-	GetNPCByID(16929240):setStatus(STATUS_NORMAL);
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
+    GetNPCByID(16929240):setStatus(STATUS_NORMAL);
   if (cofferID~=0) then
-   	GetNPCByID(16928768+cofferID):setPos(mobX,mobY,mobZ);
-	GetNPCByID(16928768+cofferID):setStatus(STATUS_NORMAL);
+       GetNPCByID(16928768+cofferID):setPos(mobX,mobY,mobZ);
+    GetNPCByID(16928768+cofferID):setStatus(STATUS_NORMAL);
   end
 end;

@@ -20,6 +20,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(LANTERN_OFFSET); -- The grating will not budge.
-	return 1;
+    player:messageSpecial(LANTERN_OFFSET); -- The grating will not budge.
+    return 1;
 end;

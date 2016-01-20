@@ -24,22 +24,22 @@ function onMobSkillCheck(target,mob,skill)
         return 1;
     end
   end
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 3.2;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,3 * info.hitslanded);
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 3.2;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,3 * info.hitslanded);
 
-	local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = EFFECT_PETRIFICATION;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 
-	target:delHP(dmg);
+    target:delHP(dmg);
 
-	return dmg;
+    return dmg;
 end;

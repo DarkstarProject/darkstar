@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4738
---	Scroll of Shellra
---	Teaches the white magic Shellra
+--    ID: 4738
+--    Scroll of Shellra
+--    Teaches the white magic Shellra
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(130);
+    return target:canLearnSpell(130);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(130);
+    target:addSpell(130);
 end;

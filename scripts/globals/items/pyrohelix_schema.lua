@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6041
---	Pyrohelix Schema
---	Teaches the black magic Pyrohelix
+--    ID: 6041
+--    Pyrohelix Schema
+--    Teaches the black magic Pyrohelix
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(281);
+    return target:canLearnSpell(281);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(281);
+    target:addSpell(281);
 end;

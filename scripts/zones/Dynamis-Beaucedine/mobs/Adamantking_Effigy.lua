@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Beaucedine
--- NPC:  Adamantking Effigy
+--  MOB: Adamantking Effigy
 -- Map Position: http://images1.wikia.nocookie.net/__cb20090312005233/ffxi/images/thumb/b/b6/Bea.jpg/375px-Bea.jpg
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Beaucedine/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-	mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------
@@ -29,23 +29,23 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
     local mobID = mob:getID();
-	-- Time Bonus: 063 066
-	if (mobID == 17326892 and mob:isInBattlefieldList() == false) then
-		killer:addTimeToDynamis(15);
-		mob:addInBattlefieldList();
-	elseif (mobID == 17326895 and mob:isInBattlefieldList() == false) then
-		killer:addTimeToDynamis(15);
-		mob:addInBattlefieldList();
-	-- HP Bonus: 056 059 065 070 074 103
-	elseif (mobID == 17326885 or mobID == 17326888 or mobID == 17326894 or mobID == 17326899 or mobID == 17326903 or mobID == 17326932) then 
-		killer:restoreHP(2000);
-		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
-	-- MP Bonus: 057 061 067 072 076
-	elseif (mobID == 17326886 or mobID == 17326890 or mobID == 17326896 or mobID == 17326901 or mobID == 17326905) then 
-		killer:restoreMP(2000);
-		killer:messageBasic(025,(killer:getMaxMP()-killer:getMP()));
-	end
-	
+    -- Time Bonus: 063 066
+    if (mobID == 17326892 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(15);
+        mob:addInBattlefieldList();
+    elseif (mobID == 17326895 and mob:isInBattlefieldList() == false) then
+        ally:addTimeToDynamis(15);
+        mob:addInBattlefieldList();
+    -- HP Bonus: 056 059 065 070 074 103
+    elseif (mobID == 17326885 or mobID == 17326888 or mobID == 17326894 or mobID == 17326899 or mobID == 17326903 or mobID == 17326932) then 
+        ally:restoreHP(2000);
+        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+    -- MP Bonus: 057 061 067 072 076
+    elseif (mobID == 17326886 or mobID == 17326890 or mobID == 17326896 or mobID == 17326901 or mobID == 17326905) then 
+        ally:restoreMP(2000);
+        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+    end
+    
 end;

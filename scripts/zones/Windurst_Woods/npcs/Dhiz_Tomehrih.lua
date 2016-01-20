@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Dhiz Tomehrih
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Dhiz Tomehrih
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x105);
+    player:startEvent(0x105);
 end;
 
 -----------------------------------

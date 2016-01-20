@@ -1,6 +1,6 @@
 -----------------------------------
---	
---	EFFECT_MAMBO
+--    
+--    EFFECT_MAMBO
 --
 -----------------------------------
 require("scripts/globals/status");

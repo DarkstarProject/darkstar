@@ -16,27 +16,26 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
-	local params = {};
-	params.numHits = 1;
-	params.ftp100 = 1.75; params.ftp200 = 1.75; params.ftp300 = 1.75;
-	params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
-	params.canCrit = false;
-	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 1;
-	--Defense ignored is 50%, 75%, 100% (50% at 100 TP is accurate, other values are guesses)
-	params.ignoresDef = true;
-	params.ignored100 = 0.5;
-	params.ignored200 = 0.75;
-	params.ignored300 = 1;
+    local params = {};
+    params.numHits = 1;
+    params.ftp100 = 1.75; params.ftp200 = 1.75; params.ftp300 = 1.75;
+    params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+    params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+    params.canCrit = false;
+    params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+    params.atkmulti = 1;
+    -- Defense ignored is 50%, 75%, 100% (50% at 100 TP is accurate, other values are guesses)
+    params.ignoresDef = true;
+    params.ignored100 = 0.5;
+    params.ignored200 = 0.75;
+    params.ignored300 = 1;
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.str_wsc = 0.8;
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.str_wsc = 0.8;
+    end
 
-	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
-	damage = damage * WEAPON_SKILL_POWER
-	return tpHits, extraHits, criticalHit, damage;
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    return tpHits, extraHits, criticalHit, damage;
 end

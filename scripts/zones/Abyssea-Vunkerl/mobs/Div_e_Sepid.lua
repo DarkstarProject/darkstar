@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Vunkerl
--- NPC: Div-e Sepid
+--  MOB: Div-e Sepid
 -- ID: 17666515
 -- Note: No position data in the database (won't spawn)
 -----------------------------------
@@ -43,5 +43,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, killer, ally)
 end;

@@ -13,7 +13,7 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	startMining(player,player:getZoneID(),npc,trade,0x000B);
+    startMining(player,player:getZoneID(),npc,trade,0x000B);
 end;
 
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
 end;
 
 -----------------------------------

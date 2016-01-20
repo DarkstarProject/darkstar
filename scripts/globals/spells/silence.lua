@@ -8,7 +8,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -19,20 +19,20 @@ function onSpellCast(caster,target,spell)
         return effectType;
     end
 
-	--Pull base stats.
-	local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    --Pull base stats.
+    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
-	--Duration, including resistance.  May need more research.
-	local duration = 180;
-	
-	    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    --Duration, including resistance.  May need more research.
+    local duration = 180;
+    
+        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
 
-	--Resist
-	local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
-		
+    --Resist
+    local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
+        
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then
             spell:setMsg(236);

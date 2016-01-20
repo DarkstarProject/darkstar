@@ -19,10 +19,10 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:hasStatusEffect(EFFECT_REGEN) == false) then
-		target:addStatusEffect(EFFECT_REGEN,2,3,120);
-	else
-		target:messageBasic(423);
-	end
+    if (target:hasStatusEffect(EFFECT_REGEN) == false) then
+        target:addStatusEffect(EFFECT_REGEN,2,3,120);
+    else
+        target:messageBasic(423);
+    end
 end;
 

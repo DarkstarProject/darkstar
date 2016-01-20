@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea-Attohwa
---	NPC: Soni-Muni
---	Standard Info NPC
+--    Area: Abyssea-Attohwa
+--    NPC: Soni-Muni
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-AttohwaTextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x044C);
+    player:startEvent(0x044C);
 end;
 
 -----------------------------------

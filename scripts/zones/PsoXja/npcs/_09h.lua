@@ -22,11 +22,11 @@ end;
 
 function onTrigger(player,npc) 
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 9) then
-		player:startEvent(0x0005);
-	else
-		player:messageSpecial(DOOR_LOCKED);
-	end
-	return 1;
+        player:startEvent(0x0005);
+    else
+        player:messageSpecial(DOOR_LOCKED);
+    end
+    return 1;
 end;
 
 -----------------------------------

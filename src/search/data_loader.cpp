@@ -467,7 +467,7 @@ void CDataLoader::ExpireAHItems()
 		search_config.mysql_port,
 		search_config.mysql_database);
 
-	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize,T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
+	std::string qStr = "SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON \
 					   		T0.itemid = T1.itemid WHERE datediff(now(),from_unixtime(date)) >=%u AND buyer_name IS NULL;";
 	int32 ret = Sql_Query(SqlHandle, qStr.c_str(), search_config.expire_days);
 	int64 expiredAuctions = Sql_NumRows(SqlHandle);
@@ -479,10 +479,11 @@ void CDataLoader::ExpireAHItems()
 			// iterate through the expired auctions and return them to the seller
 			uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
 			uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);
-			uint8  stack = (uint8)Sql_GetUIntData(SqlHandle, 2);
-			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 3);
+			uint8  itemStack = (uint8)Sql_GetUIntData(SqlHandle, 2);
+			uint8 ahStack = (uint8)Sql_GetUIntData(SqlHandle, 3);
+			uint32 seller = (uint32)Sql_GetUIntData(SqlHandle, 4);
 			ret = Sql_Query(sqlH2, "INSERT INTO delivery_box (charid, charname, box, itemid, itemsubid, quantity, senderid, sender) VALUES "
-				"(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, stack);
+				"(%u, (select charname from chars where charid=%u), 1, %u, 0, %u, 0, 'AH-Jeuno');", seller, seller, itemID, ahStack == 1 ? itemStack : 1 );
 			//		ShowMessage(cC2, seller, seller, itemID);
 			if (ret != SQL_ERROR &&	Sql_NumRows(SqlHandle) != 0)
 			{

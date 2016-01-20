@@ -14,12 +14,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob,killer,ally)
 
-	local mobPet = mob:getID() + 1;
+    local mobPet = mob:getID() + 1;
 
-	if (GetMobAction(mobPet) ~= 0) then
-		GetMobByID(mobPet):setHP(0);
-	end
+    if (GetMobAction(mobPet) ~= 0) then
+        GetMobByID(mobPet):setHP(0);
+    end
 
 end;

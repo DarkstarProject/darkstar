@@ -1,16 +1,16 @@
-----------------------------------	
+----------------------------------
 -- Area: Gustav Tunnel
 --   NM: Baobhan Sith
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
     -- Set Baobhan Sith's Window Open Time
-    local wait = math.random((4),(8)) * 3600
+    local wait = math.random(4,8) * 3600;
     SetServerVariable("[POP]Baobhan_Sith", os.time(t) + wait); -- 4-8 hours
     DeterMob(mob:getID(), true);
 
@@ -19,5 +19,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Baobhan_Sith", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

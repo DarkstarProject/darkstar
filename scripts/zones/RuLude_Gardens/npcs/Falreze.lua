@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Ru'Lud Gardens
---	NPC:  Falreze
---	Standard Info NPC
+--    Area: Ru'Lud Gardens
+--    NPC:  Falreze
+--    Standard Info NPC
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x0079);
+    player:startEvent(0x0079);
 end;
 
 -----------------------------------

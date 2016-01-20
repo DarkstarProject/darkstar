@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(522,1,23,5)) then
-		player:showText(npc,CEHN_TEYOHNGO_SHOP_DIALOG);
-	end
+    if (player:sendGuild(522,1,23,5)) then
+        player:showText(npc,CEHN_TEYOHNGO_SHOP_DIALOG);
+    end
 end; 
 
 -----------------------------------

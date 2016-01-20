@@ -14,18 +14,18 @@ require("scripts/globals/missions");
 
 function onTrigger(player,npc)
 
-	if (player:getXPos() > 45) then
-		if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2) then
-			player:startEvent(0x0006,0,582);
-		elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY)==true) then 
-			player:startEvent(0x0005);
-		elseif (player:hasKeyItem(RELIQUIARIUM_KEY)==true) then
-			player:startEvent(0x006E);
-		end
-	else
-		player:messageSpecial(CANNOT_OPEN_SIDE);
-	end	
-	return 1;
+    if (player:getXPos() > 45) then
+        if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2) then
+            player:startEvent(0x0006,0,582);
+        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY)==true) then 
+            player:startEvent(0x0005);
+        elseif (player:hasKeyItem(RELIQUIARIUM_KEY)==true) then
+            player:startEvent(0x006E);
+        end
+    else
+        player:messageSpecial(CANNOT_OPEN_SIDE);
+    end    
+    return 1;
 end;
 
 -----------------------------------
@@ -49,11 +49,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	if (csid == 0x0006) then
-		player:setVar("PromathiaStatus",3);
-	elseif (csid == 0x0005) then
-		player:setVar("PromathiaStatus",0);
-		player:completeMission(COP,THE_SECRETS_OF_WORSHIP);
-		player:addMission(COP,SLANDEROUS_UTTERINGS); 
-	end
+    if (csid == 0x0006) then
+        player:setVar("PromathiaStatus",3);
+    elseif (csid == 0x0005) then
+        player:setVar("PromathiaStatus",0);
+        player:completeMission(COP,THE_SECRETS_OF_WORSHIP);
+        player:addMission(COP,SLANDEROUS_UTTERINGS); 
+    end
 end;

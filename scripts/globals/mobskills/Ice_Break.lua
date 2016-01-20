@@ -14,13 +14,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BIND;
+    local typeEffect = EFFECT_BIND;
 
-	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
+    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
 
-	local dmgmod = 1;
-	local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_ICE,dmgmod,TP_MAB_BONUS,1);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_WIPE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmgmod = 1;
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_ICE,dmgmod,TP_MAB_BONUS,1);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_WIPE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

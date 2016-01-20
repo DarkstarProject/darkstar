@@ -17,6 +17,6 @@ end;
 
 function onSpellCast(caster,target,spell)
     local effect = EFFECT_AUSPICE;
-        doEnspell(caster,target,spell,effect);	 
+        doEnspell(caster,target,spell,effect);     
     return effect;
 end;

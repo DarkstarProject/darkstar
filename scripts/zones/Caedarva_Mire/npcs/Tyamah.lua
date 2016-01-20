@@ -15,12 +15,12 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	
-	if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
-		player:tradeComplete();
-		player:startEvent(0x00a3);
-	end
-	
+    
+    if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
+        player:tradeComplete();
+        player:startEvent(0x00a3);
+    end
+    
 end;
 
 -----------------------------------
@@ -28,13 +28,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	if (player:getXPos() > 320) then
-		player:startEvent(0x00a4);
-	else
-		player:startEvent(0x00a2);
-	end
-	
+    
+    if (player:getXPos() > 320) then
+        player:startEvent(0x00a4);
+    else
+        player:startEvent(0x00a2);
+    end
+    
 end;
 
 -----------------------------------
@@ -53,9 +53,9 @@ end;
 function onEventFinish(player,csid,option)
 -- printf("CSID: %u",csid);
 -- printf("RESULT: %u",option);
-	
-	if (csid == 0x00a3) then
-		player:setPos(-20,-4,835,64,72);
-	end
-	
+    
+    if (csid == 0x00a3) then
+        player:setPos(-20,-4,835,64,72);
+    end
+    
 end;

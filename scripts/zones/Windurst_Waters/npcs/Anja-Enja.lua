@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC: Anja-Enja
---	Adventurer's Assistant
---	Working 100%
+--    Area: Windurst Waters
+--    NPC: Anja-Enja
+--    Adventurer's Assistant
+--    Working 100%
 -------------------------------------
 
 require("scripts/globals/settings");
@@ -21,7 +21,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x0116);
+    player:startEvent(0x0116);
 end; 
 
 -----------------------------------

@@ -1,18 +1,18 @@
------------------------------------	
--- Area: Eastern Altepa Desert	
--- MOB:  Giant Spider	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");
-require("scripts/zones/Eastern_Altepa_Desert/MobIDs");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
+-----------------------------------
+-- Area: Eastern Altepa Desert
+--  MOB: Giant Spider
+-----------------------------------
 
-    checkRegime(killer,mob,109,1);
+require("scripts/globals/fieldsofvalor");
+require("scripts/zones/Eastern_Altepa_Desert/MobIDs");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob,killer,ally)
+
+    checkRegime(ally,mob,109,1);
 
     mob = mob:getID();
     if (Dune_Widow_PH[mob] ~= nil) then
@@ -27,5 +27,5 @@ function onMobDeath(mob,killer)
             end
         end
     end
-  
-end;	
+
+end;

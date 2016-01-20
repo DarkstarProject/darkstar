@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Uleguerand
---	NPC: Dheo Nbolo
---	Standard Info NPC
+--    Area: Abyssea_Uleguerand
+--    NPC: Dheo Nbolo
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Uleguerand/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x015A);
+    player:startEvent(0x015A);
 end;
 
 -----------------------------------

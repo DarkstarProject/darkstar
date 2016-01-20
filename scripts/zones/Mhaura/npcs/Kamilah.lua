@@ -23,9 +23,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:sendGuild(532,8,23,2)) then
-		player:showText(npc,SMITHING_GUILD);
-	end
+    if (player:sendGuild(532,8,23,2)) then
+        player:showText(npc,SMITHING_GUILD);
+    end
 end;
 
 -----------------------------------
@@ -44,5 +44,5 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
+    
 end;

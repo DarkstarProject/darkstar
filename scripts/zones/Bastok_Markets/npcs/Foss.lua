@@ -19,15 +19,15 @@ function onTrade(player,npc,trade)
 
 BucketsOfGold = player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD);
 
-	if (BucketsOfGold >= QUEST_ACCEPTED) then
-		count = trade:getItemCount();
-		RustyBucket = trade:hasItemQty(90,5);
+    if (BucketsOfGold >= QUEST_ACCEPTED) then
+        count = trade:getItemCount();
+        RustyBucket = trade:hasItemQty(90,5);
 
-		if (RustyBucket == true and count == 5) then
-			player:startEvent(0x0110);
-		end
-	end
-	
+        if (RustyBucket == true and count == 5) then
+            player:startEvent(0x0110);
+        end
+    end
+    
 end; 
 
 -----------------------------------
@@ -38,12 +38,12 @@ function onTrigger(player,npc)
 
 BucketsOfGold = player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD);
 
-	if (BucketsOfGold == QUEST_AVAILABLE) then
-		player:startEvent(0x010f);
-	else
-		player:startEvent(0x010e);
-	end
-	
+    if (BucketsOfGold == QUEST_AVAILABLE) then
+        player:startEvent(0x010f);
+    else
+        player:startEvent(0x010e);
+    end
+    
 end;
 
 -----------------------------------
@@ -64,23 +64,23 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	if (csid == 0x010f and option == 0) then
-		player:addQuest(BASTOK,BUCKETS_OF_GOLD);			
-	elseif (csid == 0x0110) then
-		BucketsOfGold = player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD);
-		
-		if (BucketsOfGold == QUEST_ACCEPTED) then
-			player:completeQuest(BASTOK,BUCKETS_OF_GOLD);
-			player:addFame(BASTOK,BAS_FAME*75);
-			player:addTitle(BUCKET_FISHER);
-		else
-			player:addFame(BASTOK,BAS_FAME*8);
-		end
-		
-		player:tradeComplete();
-		player:addGil(GIL_RATE*300);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
-	end
+    if (csid == 0x010f and option == 0) then
+        player:addQuest(BASTOK,BUCKETS_OF_GOLD);            
+    elseif (csid == 0x0110) then
+        BucketsOfGold = player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD);
+        
+        if (BucketsOfGold == QUEST_ACCEPTED) then
+            player:completeQuest(BASTOK,BUCKETS_OF_GOLD);
+            player:addFame(BASTOK,BAS_FAME*75);
+            player:addTitle(BUCKET_FISHER);
+        else
+            player:addFame(BASTOK,BAS_FAME*8);
+        end
+        
+        player:tradeComplete();
+        player:addGil(GIL_RATE*300);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+    end
 
 end;
 

@@ -33,11 +33,11 @@ function onTrigger(player,npc)
 
 local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
-	if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
-		player:addKeyItem(609);
-		player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
+    if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
+        player:addKeyItem(609);
+        player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
 
-	end
+    end
 end
 -----------------------------------
 -- onEventUpdate

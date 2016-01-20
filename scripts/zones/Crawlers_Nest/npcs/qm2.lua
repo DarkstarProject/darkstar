@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
             SpawnMob(17584130,120):updateClaim(player); -- Guardian Crawler
             npc:setStatus(STATUS_DISAPPEAR) -- hide ???
         else 
-            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);				
+            player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                
         end
     end
 end; 

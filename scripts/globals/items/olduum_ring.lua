@@ -11,12 +11,12 @@ require("scripts/globals/status");
 -----------------------------------------
  
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 -----------------------------------------
 -- OnItemUse
 -----------------------------------------
  
 function onItemUse(target)
-	target:setPos(-199, -10, 80, 94, 51);
+    target:setPos(-199, -10, 80, 94, 51);
 end;

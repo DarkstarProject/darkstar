@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Gottah Maporushanoh
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Gottah Maporushanoh
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -21,14 +21,14 @@ function onTrigger(player,npc)
 
 AmazinScorpio = player:getQuestStatus(WINDURST,THE_AMAZIN_SCORPIO);
 
-	if (AmazinScorpio == QUEST_COMPLETED) then
-		player:startEvent(0x01e6);
-	elseif (AmazinScorpio == QUEST_ACCEPTED) then
-		player:startEvent(0x01e3);
-	else
-		player:startEvent(0x1a4);
-	end
-	
+    if (AmazinScorpio == QUEST_COMPLETED) then
+        player:startEvent(0x01e6);
+    elseif (AmazinScorpio == QUEST_ACCEPTED) then
+        player:startEvent(0x01e3);
+    else
+        player:startEvent(0x1a4);
+    end
+    
 end;
 
 -----------------------------------

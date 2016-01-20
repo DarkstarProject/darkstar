@@ -21,35 +21,32 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _CAICHARCHARM_H
-#define _CAICHARCHARM_H
+#include "player_controller.h"
 
-#include "../../common/cbasetypes.h"
-#include "ai_char_normal.h"
+#ifndef _PLAYERCHARMCONTROLLER_H
+#define _PLAYERCHARMCONTROLLER_H
 
 class CCharEntity;
 
-class CAICharCharm : public CAICharNormal
+class CPlayerCharmController : public CPlayerController
 {
 public:
-    virtual void CheckCurrentAction(uint32 tick);
+    CPlayerCharmController(CCharEntity*);
+    virtual ~CPlayerCharmController();
 
-    CAICharCharm(CCharEntity* PChar);
-    virtual ~CAICharCharm();
+    virtual void Tick(time_point) override;
+
+    virtual void Cast(uint16 targid, uint16 spellid) override {}
+    virtual void ChangeTarget(uint16 targid) override {}
+    virtual void WeaponSkill(uint16 targid, uint16 wsid) override {}
+
+    virtual void Ability(uint16 targid, uint16 abilityid) {}
+    virtual void RangedAttack(uint16 targid) {}
 
 private:
-    uint8 m_previousallegiance;
-
-protected:
-
-    void ActionRoaming();
-    void ActionEngage();
-    void ActionDisengage();
-    void ActionFall();
-    void ActionAttack();
-
-    virtual void TransitionBack(bool skipWait = false) override;
-
+    static constexpr float RoamDistance {2.1f};
+    void DoCombatTick(time_point tick);
+    void DoRoamTick(time_point tick);
 };
 
-#endif
+#endif // _PLAYERCONTROLLER

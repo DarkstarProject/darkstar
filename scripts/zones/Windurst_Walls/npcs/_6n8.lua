@@ -20,18 +20,18 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	X = player:getXPos();
-	Z = player:getZPos();
-	
-	if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then 
-		if player:hasKeyItem(267) then
-			player:startEvent(0x0191);
-		else player:startEvent (0x0108);
-		end
-	else
-		player:startEvent (0x018b);
-	end
-	return 1
+    X = player:getXPos();
+    Z = player:getZPos();
+    
+    if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then 
+        if player:hasKeyItem(267) then
+            player:startEvent(0x0191);
+        else player:startEvent (0x0108);
+        end
+    else
+        player:startEvent (0x018b);
+    end
+    return 1
 end;
 
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,7 +48,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

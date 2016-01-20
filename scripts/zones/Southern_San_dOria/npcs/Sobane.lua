@@ -51,24 +51,24 @@ end
 -----------------------------------
  
 function onTrigger(player,npc) 
-	local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
-	local bloodProg = player:getVar("SIGNED_IN_BLOOD_Prog");
+    local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
+    local bloodProg = player:getVar("SIGNED_IN_BLOOD_Prog");
         if (player:getVar("sharpeningTheSwordCS") >= 2) then
-		player:startEvent(0x0034);
+        player:startEvent(0x0034);
 
         elseif (blood == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3) then
-		player:startEvent(0x02dc,0,1662); -- Start Quest
-	
-	elseif (blood == QUEST_ACCEPTED and bloodProg < 1) then
-		player:startEvent(0x02dd,0,1662); -- after
-	
-	elseif (bloodProg == 3 and blood == QUEST_ACCEPTED) then
-		player:startEvent(0x02E0); -- complete
-	
-	elseif (bloodProg >= 1 and blood == QUEST_ACCEPTED) then
-		player:startEvent(0x02df);
-	end
-	
+        player:startEvent(0x02dc,0,1662); -- Start Quest
+    
+    elseif (blood == QUEST_ACCEPTED and bloodProg < 1) then
+        player:startEvent(0x02dd,0,1662); -- after
+    
+    elseif (bloodProg == 3 and blood == QUEST_ACCEPTED) then
+        player:startEvent(0x02E0); -- complete
+    
+    elseif (bloodProg >= 1 and blood == QUEST_ACCEPTED) then
+        player:startEvent(0x02df);
+    end
+    
 end;
 -----------------------------------
 -- onEventUpdate
@@ -86,30 +86,30 @@ end;
 function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
-	
-	if (csid == 0x02dc and option == 1) then
-		player:addQuest(SANDORIA,SIGNED_IN_BLOOD);
-	
-	elseif (csid == 0x02E0) then
-		if (player:getFreeSlotsCount() >= 1) then
-			player:delKeyItem(TORN_OUT_PAGES);
-			player:addItem(14760,1);
-			player:messageSpecial(ITEM_OBTAINED,14760);
-			player:addFame(SANDORIA,SAN_FAME*30);
-			player:completeQuest(SANDORIA,SIGNED_IN_BLOOD);
-			player:setVar("SIGNED_IN_BLOOD_Prog",0);
-			player:addGil(GIL_RATE*3500);
-			player:tradeComplete();
-		else
-			player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14760);
-		end
-	elseif (csid == 0x0034) then
-		player:setVar("sharpeningTheSwordCS",3);
-		
-	elseif (csid == 0x02DE) then
-		player:setVar("SIGNED_IN_BLOOD_Prog",1);
-	end
-	
+    
+    if (csid == 0x02dc and option == 1) then
+        player:addQuest(SANDORIA,SIGNED_IN_BLOOD);
+    
+    elseif (csid == 0x02E0) then
+        if (player:getFreeSlotsCount() >= 1) then
+            player:delKeyItem(TORN_OUT_PAGES);
+            player:addItem(14760,1);
+            player:messageSpecial(ITEM_OBTAINED,14760);
+            player:addFame(SANDORIA,SAN_FAME*30);
+            player:completeQuest(SANDORIA,SIGNED_IN_BLOOD);
+            player:setVar("SIGNED_IN_BLOOD_Prog",0);
+            player:addGil(GIL_RATE*3500);
+            player:tradeComplete();
+        else
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14760);
+        end
+    elseif (csid == 0x0034) then
+        player:setVar("sharpeningTheSwordCS",3);
+        
+    elseif (csid == 0x02DE) then
+        player:setVar("SIGNED_IN_BLOOD_Prog",1);
+    end
+    
 
-	
+    
 end;

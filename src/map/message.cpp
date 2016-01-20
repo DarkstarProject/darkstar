@@ -28,6 +28,8 @@ This file is part of DarkStar-server source code.
 
 #include "party.h"
 #include "alliance.h"
+#include "linkshell.h"
+#include "status_effect_container.h"
 
 #include "entities/charentity.h"
 
@@ -35,9 +37,9 @@ This file is part of DarkStar-server source code.
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
-#include "utils/charutils.h"
 #include "utils/zoneutils.h"
 #include "utils/jailutils.h"
+#include "items/item_linkshell.h"
 
 namespace message
 {

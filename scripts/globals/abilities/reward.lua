@@ -166,6 +166,7 @@ function onUseAbility(player,target,ability)
 
     pet:delStatusEffect(EFFECT_REGEN);
     pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
+    player:removeAmmo();
     
     return totalHealing;
 end;

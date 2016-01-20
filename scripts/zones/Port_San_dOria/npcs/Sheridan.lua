@@ -18,21 +18,21 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-		if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
-	
-	if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 5) then
-		if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-			player:setVar("ridingOnTheClouds_1",0);
-			player:tradeComplete();
-			player:addKeyItem(SCOWLING_STONE);
-			player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
-		end
-	end
-	
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
+            player:messageSpecial(FLYER_REFUSED);
+        end
+    end
+    
+    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 5) then
+        if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
+            player:setVar("ridingOnTheClouds_1",0);
+            player:tradeComplete();
+            player:addKeyItem(SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+        end
+    end
+    
 end; 
 
 -----------------------------------
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x23c);
+    player:startEvent(0x23c);
 end;
 
 -----------------------------------

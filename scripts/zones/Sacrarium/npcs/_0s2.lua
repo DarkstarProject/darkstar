@@ -10,9 +10,9 @@
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (npc:getAnimation() == 9) then
-		npc:openDoor();	
-	end		
+    if (npc:getAnimation() == 9) then
+        npc:openDoor();    
+    end        
 end;
 
 -----------------------------------

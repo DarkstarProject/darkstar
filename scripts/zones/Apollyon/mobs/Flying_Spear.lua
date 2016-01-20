@@ -26,8 +26,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
- local mobID = mob:GetID();	
+function onMobDeath(mob,killer,ally)
+ local mobID = mob:GetID();    
  if (mobID ==16933034) then -- time
  
  elseif (mobID ==16933037) then -- recover
