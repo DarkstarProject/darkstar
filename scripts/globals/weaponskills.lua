@@ -244,7 +244,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = target:takeWeaponskillDamage(attacker, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     end
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
@@ -305,7 +305,7 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
         dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     dmg = dmg * WEAPON_SKILL_POWER
-    dmg = target:takeWeaponskillDamage(attacker, dmg, SLOT_MAIN, 1, bonusTP, nil)
+    dmg = takeWeaponskillDamage(target, attacker, params, dmg, SLOT_MAIN, 1, bonusTP, nil)
     return dmg, false, 1, 0;
 end
 
@@ -831,7 +831,7 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = target:takeWeaponskillDamage(attacker, finaldmg, SLOT_RANGE, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_RANGE, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
     return finaldmg, tpHitsLanded, extraHitsLanded;
 end;
@@ -937,4 +937,17 @@ function getFlourishAnimation(skill)
     else
         return 0;
     end    
+end
+
+function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+    local enmityEntity = taChar or attacker;
+    if (params.overrideCE and params.overrideVE) then
+        target:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
+    else
+        local enmityMult = params.enmityMult or 1
+        target:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
+    end
+
+    return finaldmg;
 end

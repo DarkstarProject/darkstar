@@ -10244,13 +10244,8 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     auto slot = lua_tointeger(L, 3);
     auto tpMultiplier = lua_tointeger(L, 4);
     auto bonusTP = lua_tointeger(L, 5);
-    CBattleEntity* taChar = nullptr;
-    if (!lua_isnil(L, 6) && lua_islightuserdata(L, 6))
-    {
-        taChar = static_cast<CBattleEntity*>(Lunar<CLuaBaseEntity>::check(L, 6)->m_PBaseEntity);
-    }
 
-    lua_pushinteger(L, battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, tpMultiplier, bonusTP, taChar));
+    lua_pushinteger(L, battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, tpMultiplier, bonusTP));
     return 1;
 }
 
