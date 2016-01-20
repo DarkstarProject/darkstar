@@ -848,18 +848,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             pushPacket(new CMessageBasicPacket(this, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
             return;
         }
-        // #TODO: needed??
-        //if (PAbility->getValidTarget() == TARGET_ENEMY)
-        //{
-        //    if (!IsMobOwner(PTarget))
-        //    {
-        //        this->pushPacket(new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_ALREADY_CLAIMED));
-
-        //        TransitionBack();
-        //        PAbility = nullptr;
-        //        return;
-        //    }
-        //}
 
         if (battleutils::IsParalyzed(this)) {
             // display paralyzed
@@ -1049,6 +1037,7 @@ m_ActionList.push_back(Action);
 
             int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
             if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
+            if (actionTarget.messageID == 0) actionTarget.messageID = MSGBASIC_USES_JA;
             actionTarget.param = value;
 
             if (value < 0)
@@ -1088,36 +1077,6 @@ m_ActionList.push_back(Action);
             //    {
             //        // Shadowbind failed!
             //        this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 11, 283));
-            //    }
-            //}
-
-            //// Jump
-            //if (PAbility->getID() == ABILITY_JUMP)
-            //{
-            //    action.param = battleutils::jumpAbility(this, PTarget, 1);
-            //    if (action.param == 0)
-            //    {
-            //        action.messageID = 0;
-            //        this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_BUT_MISSES));
-            //    }
-            //    else if (action.param >= PTarget->health.hp)
-            //    {
-            //        this->setWeaponSkillKill(true);
-            //    }
-            //}
-
-            //// High Jump
-            //else if (PAbility->getID() == ABILITY_HIGH_JUMP)
-            //{
-            //    action.param = battleutils::jumpAbility(this, PTarget, 2);
-            //    if (action.param == 0)
-            //    {
-            //        action.messageID = 0;
-            //        this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_BUT_MISSES));
-            //    }
-            //    else if (action.param >= PTarget->health.hp)
-            //    {
-            //        this->setWeaponSkillKill(true);
             //    }
             //}
 

@@ -85,7 +85,7 @@ CActionPacket::CActionPacket(action_t& action)
     case ACTION_DANCE:
     case ACTION_JOBABILITY_FINISH:
     {
-        packBitsBE(data, action.actionid + 16, 86, 10);
+        packBitsBE(data, action.actionid, 86, 10);
         packBitsBE(data, action.recast, 118, 10);
     }
     break;
