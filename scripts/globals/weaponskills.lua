@@ -940,13 +940,14 @@ function getFlourishAnimation(skill)
 end
 
 function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+    local targetTPMult = params.targetTPMult or 1
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
     if (params.overrideCE and params.overrideVE) then
         target:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
     else
         local enmityMult = params.enmityMult or 1
-        target:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
+        defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
     end
 
     return finaldmg;
