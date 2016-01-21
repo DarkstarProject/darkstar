@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         params.dex_wsc = 0.8;
     end
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     return tpHits, extraHits, criticalHit, damage;
 
 end;

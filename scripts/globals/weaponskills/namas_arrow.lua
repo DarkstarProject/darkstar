@@ -30,7 +30,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.overrideCE = 160;
     params.overrideVE = 480;
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
     if (damage > 0) then
         local amDuration = 20 * math.floor(player:getTP()/100);
