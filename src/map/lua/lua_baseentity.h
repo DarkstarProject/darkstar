@@ -119,6 +119,7 @@ public:
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
 
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
+    int32 delItem(lua_State*);              // Delete item from Entity inventory (delItem(loc, slot, quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
     int32 getFreeSlotsCount(lua_State*);    // Gets value of free slots in Entity inventory
@@ -268,6 +269,7 @@ public:
     int32 setGil(lua_State*);               // sets gil to value
 
     int32 equipItem(lua_State*);
+    int32 unequipItem(lua_State*);
     int32 getEquipID(lua_State*);           // Gets the Item Id of the item in specified slot
     int32 getShieldSize(lua_State*);        // Gets shield size of character
     int32 lockEquipSlot(lua_State*);        // блокируем ячейку экипировки
@@ -577,6 +579,8 @@ public:
 
     int32 removeAmmo(lua_State* L);
     int32 takeWeaponskillDamage(lua_State* L);
+
+    int32 trackArrowUsageForScavenge(lua_State*);
 };
 
 #endif

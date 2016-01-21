@@ -831,6 +831,24 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     lua_pushboolean(L, (SlotID != ERROR_SLOTID));
     return 1;
 }
+
+inline int32 CLuaBaseEntity::delItem(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    uint8 loc = lua_tointeger(L, 1);
+    uint8 slotid = lua_tointeger(L, 2);
+    uint8 quantity = (!lua_isnil(L, 3) && lua_isnumber(L, 3)) ? lua_tointeger(L, 3) : 0;
+
+    charutils::UpdateItem(PChar, loc, slotid, quantity);
+
+    return 0;
+}
 //==========================================================//
 
 inline int32 CLuaBaseEntity::addTempItem(lua_State *L)
@@ -5713,6 +5731,21 @@ inline int32 CLuaBaseEntity::equipItem(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::unequipItem(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    uint8 equipSlotID = lua_tointeger(L, 1);
+
+    charutils::UnequipItem(PChar, equipSlotID);
+    charutils::SaveCharEquip(PChar);
+    return 0;
+}
+
 /************************************************************************
 *                                                                       *
 *  блокируем ячейку экипировки                                          *
@@ -10251,6 +10284,16 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::trackArrowUsageForScavenge(lua_State *)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->objtype != TYPE_PC);
+
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+
+    PChar->TrackArrowUsageForScavenge(static_cast<CItemWeapon*>(PChar->getEquip(SLOT_AMMO)));
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10284,6 +10327,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasItem),
@@ -10465,6 +10509,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockEquipSlot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canEquipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,equipItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetElement),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPet),
@@ -10699,5 +10744,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,trackArrowUsageForScavenge),
     {nullptr,nullptr}
 };

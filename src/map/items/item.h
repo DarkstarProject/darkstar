@@ -31,26 +31,26 @@
 
 enum ITEM_TYPE
 {
-	ITEM_BASIC				= 0x00,
-	ITEM_GENERAL			= 0x01,
-	ITEM_USABLE				= 0x02,
-	ITEM_PUPPET				= 0x04,
-	ITEM_ARMOR				= 0x08,
-	ITEM_WEAPON				= 0x10,
-	ITEM_CURRENCY			= 0x20,
-	ITEM_FURNISHING			= 0x40,
-	ITEM_LINKSHELL			= 0x80
+    ITEM_BASIC      = 0x00,
+    ITEM_GENERAL    = 0x01,
+    ITEM_USABLE     = 0x02,
+    ITEM_PUPPET     = 0x04,
+    ITEM_ARMOR      = 0x08,
+    ITEM_WEAPON     = 0x10,
+    ITEM_CURRENCY   = 0x20,
+    ITEM_FURNISHING = 0x40,
+    ITEM_LINKSHELL  = 0x80
 };
 
 // дополнительный тип предмета m_subtype
 
 enum ITEM_SUBTYPE
 {
-	ITEM_NORMAL				= 0x00,
-	ITEM_LOCKED				= 0x01,
-	ITEM_CHARGED			= 0x02,
-	ITEM_AUGMENTED			= 0x04,
-	ITEM_UNLOCKED			= 0xFE
+    ITEM_NORMAL    = 0x00,
+    ITEM_LOCKED    = 0x01,
+    ITEM_CHARGED   = 0x02,
+    ITEM_AUGMENTED = 0x04,
+    ITEM_UNLOCKED  = 0xFE
 };
 
 // флаги предметов
@@ -77,50 +77,50 @@ class CItem
 {
 public:
 
-	CItem(uint16 id);
+    CItem(uint16 id);
     virtual ~CItem();
 
-	uint16		getID();
-	uint16		getSubID();
-	uint16		getFlag();
-	uint8		getAHCat();
+    uint16		getID();
+    uint16		getSubID();
+    uint16		getFlag();
+    uint8		getAHCat();
     uint32      getReserve();
-	uint32		getQuantity();
-	uint32		getStackSize();
-	uint32		getBasePrice();
-	uint32		getCharPrice();
-	uint8		getLocationID();
-	uint8		getSlotID();
+    uint32		getQuantity();
+    uint32		getStackSize();
+    uint32		getBasePrice();
+    uint32		getCharPrice();
+    uint8		getLocationID();
+    uint8		getSlotID();
 
     bool        isSent();
     bool        isType(ITEM_TYPE);
     bool        isSubType(ITEM_SUBTYPE);
 
-	void		setID(uint16 );
-	void		setSubID(uint16);
-	void		setSubType(uint8);
-	void		setFlag(uint16);
-	void		setAHCat(uint8);
+    void		setID(uint16);
+    void		setSubID(uint16);
+    void		setSubType(uint8);
+    void		setFlag(uint16);
+    void		setAHCat(uint8);
     void        setReserve(uint32);
-	void		setQuantity(uint32);
-	void		setStackSize(uint32);
-	void		setBasePrice(uint32);
-	void		setCharPrice(uint32);
-	void		setLocationID(uint8 LocationID);
-	void		setSlotID(uint8 SlotID);
+    void		setQuantity(uint32);
+    void		setStackSize(uint32);
+    void		setBasePrice(uint32);
+    void		setCharPrice(uint32);
+    void		setLocationID(uint8 LocationID);
+    void		setSlotID(uint8 SlotID);
     void        setSent(bool sent);
 
-	const int8* getName();
-	void		setName(int8* name);
+    const int8* getName();
+    void		setName(int8* name);
 
     const int8* getSender();
-	void		setSender(int8* sender);
+    void		setSender(int8* sender);
 
     const int8* getReceiver();
     void        setReceiver(int8* receiver);
 
-	virtual const int8* getSignature();
-	virtual void setSignature(int8* signature);
+    virtual const int8* getSignature();
+    virtual void setSignature(int8* signature);
 
     uint8		m_extra[0x18];	// any extra data pertaining to item (augments, furniture location, etc)
 
@@ -130,24 +130,24 @@ protected:
 
 private:
 
-	uint16		m_id;
-	uint16		m_subid;
-	uint8		m_type;
-	uint8		m_subtype;
-	uint32		m_quantity;     // текущее количество предметов
+    uint16      m_id;
+    uint16      m_subid;
+    uint8       m_type;
+    uint8       m_subtype;
+    uint32      m_quantity;     // текущее количество предметов
     uint32      m_reserve;      // зарезервированное количество предметов
-	uint32		m_stackSize;    // максимальное количество предметов
-	uint32		m_BasePrice;    
-	uint32		m_CharPrice;    // стоимость предмета в bazaar
-	uint8		m_ahCat;        // категоряи предмета на укционе
-	uint16		m_flag;
+    uint32      m_stackSize;    // максимальное количество предметов
+    uint32      m_BasePrice;
+    uint32      m_CharPrice;    // стоимость предмета в bazaar
+    uint8       m_ahCat;        // категоряи предмета на укционе
+    uint16      m_flag;
 
-	uint8		m_slotID;       // ячейка предмета в хранилище
-	uint8		m_locationID;   // номер хранилища предмета
+    uint8       m_slotID;       // ячейка предмета в хранилище
+    uint8       m_locationID;   // номер хранилища предмета
 
     bool        m_sent;
 
-	string_t	m_name;
+    string_t	m_name;
     string_t	m_send;
     string_t    m_recv;
 };
