@@ -328,8 +328,9 @@ void CAIContainer::Tick(time_point _tick)
     {
         if (top == GetCurrentState())
         {
-            m_stateStack.top()->Cleanup(_tick);
+            auto state = std::move(m_stateStack.top());
             m_stateStack.pop();
+            state->Cleanup(_tick);
         }
     }
 
