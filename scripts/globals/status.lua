@@ -1259,6 +1259,7 @@ MOD_ENH_DRAIN_ASPIR           = 315 -- % damage boost to Drain and Aspir
 MOD_TRICK_ATK_AGI             = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
 MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
 MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_AMMO_SWING_TYPE           = 826 -- For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
 MOD_ROLL_RANGE                = 528 -- Additional range for COR roll abilities.
 MOD_ENHANCES_REFRESH          = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 MOD_NO_SPELL_MP_DEPLETION     = 530 -- % to not deplete MP on spellcast.
@@ -1302,8 +1303,8 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 826, -- stuff
 -- MOD_SPARE = 827, -- stuff
+-- MOD_SPARE = 828, -- stuff
 
 ------------------------------------
 -- Merit Definitions

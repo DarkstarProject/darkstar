@@ -247,21 +247,47 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
         CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
+        CItemArmor* PMain = PChar->getEquip(SLOT_MAIN);
+        CItemArmor* PSub = PChar->getEquip(SLOT_SUB);
         uint8 slot = PChar->equip[SLOT_AMMO];
         uint8 loc = PChar->equipLoc[SLOT_AMMO];
-        if (dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING))
+        uint8 ammoCount = 0;
+
+        // Handedness check, checking mod of the weapon for the purposes of level scaling
+        if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 && 
+            dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
-            // Add swing, then subtract an ammo item, unequip if there's one left.
             AddAttackSwing(ATTACK_NORMAL, direction, 1);
-            if (PAmmo->getQuantity() == 1)
+            ammoCount += 1;
+        }
+        else
+        {
+            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 && 
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            {
+                AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
+                ammoCount += 1;
+            }
+            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 && 
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            {
+                AddAttackSwing(ATTACK_NORMAL, LEFTATTACK, 1);
+                ammoCount += 1;
+            }
+        }
+
+        if (PAmmo != nullptr)
+        {
+            if (PAmmo->getQuantity() == ammoCount)
             {
                 charutils::UnequipItem(PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(PChar);
             }
-            charutils::UpdateItem(PChar, loc, slot, -1);
+            charutils::UpdateItem(PChar, loc, slot, -ammoCount);
             PChar->pushPacket(new CInventoryFinishPacket());
         }
     }
+
 
     // TODO: Possible Lua function for the nitty gritty stuff below.
 
