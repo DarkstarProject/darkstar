@@ -692,34 +692,37 @@ end;
 
     local bonusacc = 0;
     local bonusfTP = 0;
-    local bonusTP = params.bonusTP or 0
-
-    if (attacker:getObjType() == TYPE_PC) then
-        local neck = attacker:getEquipID(SLOT_NECK);
-        local belt = attacker:getEquipID(SLOT_WAIST);
-        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
-
-        for i,v in ipairs(elementalGorget) do
-            if (neck == v) then
-                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
-                    bonusacc = bonusacc + 10;
-                    bonusfTP = bonusfTP + 0.1;
+    local bonusTP = params.bonusTP or 0;
+    local ignoreGear = params.ignoreElementalGear or false;
+    
+    if not ignoreGear then
+        if (attacker:getObjType() == TYPE_PC) then
+            local neck = attacker:getEquipID(SLOT_NECK);
+            local belt = attacker:getEquipID(SLOT_WAIST);
+            local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
+    
+            for i,v in ipairs(elementalGorget) do
+                if (neck == v) then
+                    if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                        bonusacc = bonusacc + 10;
+                        bonusfTP = bonusfTP + 0.1;
+                    end
+                    break;
                 end
-                break;
             end
-        end
-
-        for i,v in ipairs(elementalBelt) do
-            if (belt == v) then
-                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
-                    bonusacc = bonusacc + 10;
-                    bonusfTP = bonusfTP + 0.1;
+    
+            for i,v in ipairs(elementalBelt) do
+                if (belt == v) then
+                    if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
+                        bonusacc = bonusacc + 10;
+                        bonusfTP = bonusfTP + 0.1;
+                    end
+                    break;
                 end
-                break;
             end
+            -- printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
         end
-        -- printf("bonusacc = %u bonusfTP = %f", bonusacc, bonusfTP);
-    end
+    end;
 
     -- get fstr
     local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmgForRank());
@@ -954,4 +957,4 @@ function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHit
 require("scripts/globals/weaponskills");
 
     return finaldmg;
-end
+end;
