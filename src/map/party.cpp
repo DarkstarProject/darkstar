@@ -81,7 +81,7 @@ CParty::CParty(CBattleEntity* PEntity)
     m_PSyncTarget = nullptr;
     m_PQuaterMaster = nullptr;
 
-
+    m_EffectsChanged = false;
     AddMember(PEntity);
     SetLeader((int8*)PEntity->name.c_str());
 }
@@ -503,7 +503,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
         }
         PChar->PTreasurePool->UpdatePool(PChar);
 
-        //Apply level sync if the party is level synced 
+        //Apply level sync if the party is level synced
         if (m_PSyncTarget != nullptr)
         {
             if (PChar->getZone() == m_PSyncTarget->getZone())
@@ -1041,13 +1041,13 @@ void CParty::PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet)
     delete packet;
 }
 
-void CParty::PushEffectsPacket(CCharEntity* PChar)
+void CParty::PushEffectsPacket()
 {
-    auto info = GetPartyInfo();
-
-    for (auto& PMember : members)
+    if (m_EffectsChanged)
     {
-        if (PMember->getZone() == PChar->getZone())
+        auto info = GetPartyInfo();
+
+        for (auto& PMember : members)
         {
             auto PMemberChar = static_cast<CCharEntity*>(PMember);
             auto effects = std::make_unique<CPartyEffectsPacket>();
@@ -1064,7 +1064,13 @@ void CParty::PushEffectsPacket(CCharEntity* PChar)
             }
             PMemberChar->pushPacket(effects.release());
         }
+        m_EffectsChanged = false;
     }
+}
+
+void CParty::EffectsChanged()
+{
+    m_EffectsChanged = true;
 }
 
 void CParty::DisableSync()

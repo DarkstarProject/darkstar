@@ -68,6 +68,8 @@
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
 #include "../weapon_skill.h"
+#include "../packets/char_job_extra.h"
+#include "../packets/status_effects.h"
 
 
 CCharEntity::CCharEntity()
@@ -440,8 +442,33 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
-void CCharEntity::UpdateEntity()
+void CCharEntity::PostTick()
 {
+    CBattleEntity::PostTick();
+    if (m_EquipSwap)
+    {
+        pushPacket(new CCharAppearancePacket(this));
+        pushPacket(new CCharUpdatePacket(this));
+
+        pushPacket(new CCharHealthPacket(this));
+        m_EquipSwap = false;
+    }
+    if (ReloadParty())
+    {
+        charutils::ReloadParty(this);
+    }
+    if (m_EffectsChanged)
+    {
+        pushPacket(new CCharUpdatePacket(this));
+        pushPacket(new CCharJobExtraPacket(this, true));
+        pushPacket(new CCharJobExtraPacket(this, false));
+        pushPacket(new CStatusEffectPacket(this));
+        if (PParty)
+        {
+            PParty->PushEffectsPacket();
+        }
+        m_EffectsChanged = false;
+    }
     if (updatemask)
     {
         if (loc.zone && !m_isGMHidden)
@@ -572,18 +599,6 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
                         controller->ChangeTarget(PPotentialTarget.second->targid);
                     }
                 }
-            }
-        }
-    }
-    if (ret)
-    {
-        if (PTarget->objtype == TYPE_MOB)
-        {
-            CMobEntity* Monster = (CMobEntity*)PTarget;
-
-            if (Monster->m_HiPCLvl < GetMLevel())
-            {
-                Monster->m_HiPCLvl = GetMLevel();
             }
         }
     }
@@ -1425,19 +1440,6 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     if (actionTarget.speceffect == SPECEFFECT_HIT && actionTarget.param > 0)
         actionTarget.speceffect = SPECEFFECT_RECOIL;
 
-    // TODO: что это ? ....
-    // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
-
-    if (PTarget->objtype == TYPE_MOB)
-    {
-        CMobEntity* Monster = (CMobEntity*)PTarget;
-
-        if (Monster->m_HiPCLvl < GetMLevel())
-        {
-            Monster->m_HiPCLvl = GetMLevel();
-        }
-    }
-
     // remove barrage effect if present
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0)) {
         StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE, 0);
@@ -1744,23 +1746,6 @@ void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
             this->SetLocalVar("ArrowsUsed", PAmmo->getID() * 10000 + 1);
         }
     }
-}
-
-void CCharEntity::Tick(time_point _tick)
-{
-    if (m_EquipSwap)
-    {
-        pushPacket(new CCharAppearancePacket(this));
-        pushPacket(new CCharUpdatePacket(this));
-
-        pushPacket(new CCharHealthPacket(this));
-        m_EquipSwap = false;
-    }
-    if (ReloadParty())
-    {
-        charutils::ReloadParty(this);
-    }
-    CBattleEntity::Tick(_tick);
 }
 
 bool CCharEntity::OnAttackError(CAttackState& state)

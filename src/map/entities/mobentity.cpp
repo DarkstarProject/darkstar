@@ -478,8 +478,9 @@ bool CMobEntity::IsUntargetable()
     return (m_flags & 0x800) == 0x800;
 }
 
-void CMobEntity::UpdateEntity()
+void CMobEntity::PostTick()
 {
+    CBattleEntity::PostTick();
     if (loc.zone && updatemask)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));

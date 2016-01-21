@@ -804,6 +804,10 @@ namespace battleutils
             {
                 charutils::UpdateHealth((CCharEntity*)PAttacker);
             }
+            if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+            {
+                ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+            }
             return true;
         }
 
@@ -831,6 +835,10 @@ namespace battleutils
                         Action->spikesParam = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_DMG);
                         chance = battleutils::GetScaledItemModifier(PDefender, PItem, MOD_ITEM_SPIKES_CHANCE);
 
+                        if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+                        {
+                            ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+                        }
                         if (Action->spikesEffect && HandleSpikesEquip(PAttacker, PDefender, Action, Action->spikesParam, Action->spikesEffect, chance))
                             return true;
                     }
@@ -1913,6 +1921,11 @@ namespace battleutils
                         ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
                     else
                         ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+
+                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+                    {
+                        ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+                    }
 
                     //if the mob is charmed by player
                     if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)

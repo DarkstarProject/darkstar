@@ -190,7 +190,6 @@ public:
     bazaar_t				bazaar;							// все данные, необходимые для таботы bazaar
     uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
-    bool					m_EquipSwap;					// true if equipment was recently changed
     uint8					equip[18];						//      SlotID where equipment is
     uint8					equipLoc[18];					// ContainerID where equipment is
     uint16                  styleItems[16];                 // Item IDs for items that are style locked.
@@ -307,7 +306,8 @@ public:
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
 
-    bool			  secondDoubleShotTaken;							// Flag to track number of double shots taken
+    bool              m_EquipSwap;					// true if equipment was recently changed
+    bool              m_EffectsChanged;
 
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;
@@ -325,7 +325,7 @@ public:
     void        ReloadPartyDec();
     bool        ReloadParty();
 
-    void        UpdateEntity() override;
+    void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
@@ -352,8 +352,6 @@ public:
     virtual void OnDeathTimer() override;
     virtual void OnRaise() override;
     virtual void OnItemFinish(CItemState&, action_t&);
-
-    virtual void Tick(time_point) override;
 
     CCharEntity();									// конструктор
     ~CCharEntity();									// деструктор

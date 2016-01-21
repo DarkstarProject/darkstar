@@ -58,7 +58,7 @@ public:
     std::string GetScriptName();
 
     WYVERNTYPE getWyvernType();
-    virtual void UpdateEntity() override;
+    virtual void PostTick() override;
     virtual void FadeOut() override;
     virtual void Die() override;
     virtual void Spawn() override;

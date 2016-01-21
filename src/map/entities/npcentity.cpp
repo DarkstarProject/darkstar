@@ -106,7 +106,7 @@ CNpcEntity::CNpcEntity()
 
 CNpcEntity::~CNpcEntity()
 {
-  
+
 }
 
 void CNpcEntity::HideHP(bool hide)
@@ -143,7 +143,7 @@ bool CNpcEntity::IsUntargetable()
     return (m_flags & 0x800) == 0x800;
 }
 
-void CNpcEntity::UpdateEntity()
+void CNpcEntity::PostTick()
 {
     if (loc.zone && updatemask)
     {

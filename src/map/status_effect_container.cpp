@@ -1094,13 +1094,11 @@ void CStatusEffectContainer::UpdateStatusIcons()
             if (++count == 32) break;
         }
     }
-    PChar->pushPacket(new CCharUpdatePacket(PChar));
-    PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-    PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-    PChar->pushPacket(new CStatusEffectPacket(PChar));
+    PChar->m_EffectsChanged = true;
+
     if (PChar->PParty)
     {
-        PChar->PParty->PushEffectsPacket(PChar);
+        PChar->PParty->EffectsChanged();
     }
 }
 

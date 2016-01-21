@@ -598,6 +598,7 @@ public:
     duration GetBattleTime();
 
     virtual void Tick(time_point) override;
+    virtual void PostTick() override;
 
     health_t	    health;						// hp,mp,tp
     stats_t		    stats;						// атрибуты STR,DEX,VIT,AGI,INT,MND,CHR

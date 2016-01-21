@@ -733,6 +733,7 @@ end;
 
     -- Applying fTP multiplier
     local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    local crit = false
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
@@ -779,6 +780,7 @@ end;
         if (params.canCrit) then
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
+                crit = true
                 local cpdif = generatePdif (ccritratio[1], ccritratio[2], false);
                 finaldmg = dmg * cpdif;
             else
@@ -831,9 +833,9 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_RANGE, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
-    return finaldmg, tpHitsLanded, extraHitsLanded;
+    return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
 
 function getMultiAttacks(attacker, numHits)
@@ -949,6 +951,7 @@ function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHit
         local enmityMult = params.enmityMult or 1
         defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
     end
+require("scripts/globals/weaponskills");
 
     return finaldmg;
 end
