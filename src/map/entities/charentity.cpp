@@ -602,18 +602,6 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
             }
         }
     }
-    if (ret)
-    {
-        if (PTarget->objtype == TYPE_MOB)
-        {
-            CMobEntity* Monster = (CMobEntity*)PTarget;
-
-            if (Monster->m_HiPCLvl < GetMLevel())
-            {
-                Monster->m_HiPCLvl = GetMLevel();
-            }
-        }
-    }
     return ret;
 }
 
@@ -1451,19 +1439,6 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
     if (actionTarget.speceffect == SPECEFFECT_HIT && actionTarget.param > 0)
         actionTarget.speceffect = SPECEFFECT_RECOIL;
-
-    // TODO: что это ? ....
-    // если не ошибаюсь, то TREASURE_HUNTER работает лишь при последнем ударе
-
-    if (PTarget->objtype == TYPE_MOB)
-    {
-        CMobEntity* Monster = (CMobEntity*)PTarget;
-
-        if (Monster->m_HiPCLvl < GetMLevel())
-        {
-            Monster->m_HiPCLvl = GetMLevel();
-        }
-    }
 
     // remove barrage effect if present
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_BARRAGE, 0)) {
