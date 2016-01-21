@@ -2400,7 +2400,7 @@ INSERT INTO `mob_droplist` VALUES (405,0,1542,40);
 INSERT INTO `mob_droplist` VALUES (405,0,1664,110);
 INSERT INTO `mob_droplist` VALUES (405,4,4514,0);
 INSERT INTO `mob_droplist` VALUES (405,0,4579,160);
-INSERT INTO `mob_droplist` VALUES (405,0,4599,40);
+INSERT INTO `mob_droplist` VALUES (405,0,4599,45);
 INSERT INTO `mob_droplist` VALUES (406,0,3294,100);
 INSERT INTO `mob_droplist` VALUES (406,0,3294,50);
 INSERT INTO `mob_droplist` VALUES (406,0,11699,100);
@@ -17898,6 +17898,7 @@ INSERT INTO `mob_droplist` VALUES (3039,0,4400,100);
 INSERT INTO `mob_droplist` VALUES (3040,0,640,10);
 INSERT INTO `mob_droplist` VALUES (3040,0,642,10);
 INSERT INTO `mob_droplist` VALUES (3040,0,768,10);
+INSERT INTO `mob_droplist` VALUES (3040,0,1147,69);
 INSERT INTO `mob_droplist` VALUES (3041,0,640,100);
 INSERT INTO `mob_droplist` VALUES (3041,0,642,50);
 INSERT INTO `mob_droplist` VALUES (3041,0,643,20);
@@ -20580,6 +20581,7 @@ INSERT INTO `mob_droplist` VALUES (3559,0,17303,20);
 INSERT INTO `mob_droplist` VALUES (3560,2,749,0);
 INSERT INTO `mob_droplist` VALUES (3560,0,1543,40);
 INSERT INTO `mob_droplist` VALUES (3560,0,4171,160);
+INSERT INTO `mob_droplist` VALUES (3560,0,904,50);
 INSERT INTO `mob_droplist` VALUES (3561,2,748,0);
 INSERT INTO `mob_droplist` VALUES (3561,0,1119,30);
 INSERT INTO `mob_droplist` VALUES (3561,0,1162,10);
@@ -32369,7 +32371,7 @@ INSERT INTO `mob_droplist` VALUES (4522,0,16374,140); -- Sekhmet
 INSERT INTO `mob_droplist` VALUES (4523,0,19160,384); -- Ghillie Dhu
 INSERT INTO `mob_droplist` VALUES (4524,0,2834,129); -- Highlander Lizard
 INSERT INTO `mob_droplist` VALUES (4525,0,6012,45); -- Ceizak battleground 4525 - 4541
-INSERT INTO `mob_droplist` VALUES (4525,0,4368,57);  
+INSERT INTO `mob_droplist` VALUES (4525,0,4368,57);
 INSERT INTO `mob_droplist` VALUES (4526,0,4358,508);
 INSERT INTO `mob_droplist` VALUES (4526,0,856,213);
 INSERT INTO `mob_droplist` VALUES (4526,0,3011,33);
@@ -32395,11 +32397,11 @@ INSERT INTO `mob_droplist` VALUES (4535,0,896,203);
 INSERT INTO `mob_droplist` VALUES (4536,0,912,503);
 INSERT INTO `mob_droplist` VALUES (4536,0,4370,188);
 INSERT INTO `mob_droplist` VALUES (4536,0,846,104);
-INSERT INTO `mob_droplist` VALUES (4536,0,925,1); 
+INSERT INTO `mob_droplist` VALUES (4536,0,925,1);
 INSERT INTO `mob_droplist` VALUES (4537,0,923,494);
 INSERT INTO `mob_droplist` VALUES (4537,0,918,203);
 INSERT INTO `mob_droplist` VALUES (4537,0,4448,104);
-INSERT INTO `mob_droplist` VALUES (4537,0,701,1); 
+INSERT INTO `mob_droplist` VALUES (4537,0,701,1);
 INSERT INTO `mob_droplist` VALUES (4538,0,838,214);
 INSERT INTO `mob_droplist` VALUES (4538,0,614,78);
 INSERT INTO `mob_droplist` VALUES (4539,0,846,503);
@@ -32432,6 +32434,8 @@ INSERT INTO `mob_droplist` VALUES (4556,0,2522,488);
 INSERT INTO `mob_droplist` VALUES (4556,0,6019,34); -- end of foret mobs
 INSERT INTO `mob_droplist` VALUES (4557,0,18767,97);
 INSERT INTO `mob_droplist` VALUES (4558,0,15942,128);
+INSERT INTO `mob_droplist` VALUES (4559,0,16185,220);
+
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
