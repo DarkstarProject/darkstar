@@ -159,7 +159,7 @@ public:
     void      Untargetable(bool untargetable);
     bool      IsUntargetable();
 
-    void      UpdateEntity() override;
+    void      PostTick() override;
     float     GetRoamDistance();
     float     GetRoamRate();
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;

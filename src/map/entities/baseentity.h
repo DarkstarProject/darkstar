@@ -159,13 +159,15 @@ public:
     uint32          GetLocalVar(const char* var);
     void            SetLocalVar(const char* var, uint32 val);
 
-    virtual void    UpdateEntity() = 0;
+    //pre-tick update
+    virtual void    Tick(time_point) = 0;
+    //post-tick update
+    virtual void    PostTick() = 0;
 
     void            SetModelId(uint16 modelId);     // Set new modelid
     uint16          GetModelId();                   // Get the modelid
 
     virtual void    HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) {};
-    virtual void    Tick(time_point) = 0;
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне

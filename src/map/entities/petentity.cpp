@@ -126,8 +126,9 @@ WYVERNTYPE CPetEntity::getWyvernType()
   };
 }
 
-void CPetEntity::UpdateEntity()
+void CPetEntity::PostTick()
 {
+    CBattleEntity::PostTick();
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         if (PMaster && PMaster->PPet == this)

@@ -56,12 +56,12 @@ enum PARTYFLAG
 *																		*
 ************************************************************************/
 
-class CParty 
+class CParty
 {
 public:
     CParty(CBattleEntity* PEntity);
 	CParty(uint32 id);
-	
+
     uint32 GetPartyID();                                // узнаем уникальный ID группы
     uint16 GetMemberFlags(CBattleEntity* PEntity);      // получаем список флагов персонажа
     uint8  MemberCount(uint16 ZoneID);                   // узнаем количество участников группы в указанной зоне
@@ -90,8 +90,8 @@ public:
     void SetPartyNumber(uint8 number);
 
     void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet);		// отправляем пакет всем членам группы, за исключением PPartyMember
-    void PushEffectsPacket(CCharEntity* PChar);
-	
+    void PushEffectsPacket();
+    void EffectsChanged();
 	CAlliance* m_PAlliance;
 
     // ВНИМАНИЕ: НЕ ИЗМЕНЯТЬ ЗНАЧЕНИЯ СПИСКА ВНЕ КЛАССА ГРУППЫ
@@ -104,11 +104,12 @@ private:
     uint32    m_PartyID;                                // уникальный ID группы
     PARTYTYPE m_PartyType;                              // тип существ, составляющих группу
     uint8     m_PartyNumber;                            // party number in alliance
-	
+
 	CBattleEntity* m_PLeader;                           // лидер группы
 	CBattleEntity* m_PSyncTarget;                       // цель синхронизации уровней
 	CBattleEntity* m_PQuaterMaster;                     // владелец сокровищ
 
+    bool m_EffectsChanged;
 
 	void SetLeader(const char* MemberName);                   // устанавливаем лидера группы
     void SetQuarterMaster(const char* MemberName);            // устанавливаем владельца сокровищ

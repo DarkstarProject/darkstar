@@ -1505,6 +1505,10 @@ duration CBattleEntity::GetBattleTime()
 
 void CBattleEntity::Tick(time_point)
 {
+}
+
+void CBattleEntity::PostTick()
+{
     if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>() && !PAI->IsCurrentState<CRaiseState>())
     {
         Die();

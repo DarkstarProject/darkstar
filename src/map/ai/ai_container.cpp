@@ -334,7 +334,7 @@ void CAIContainer::Tick(time_point _tick)
         }
     }
 
-    PEntity->UpdateEntity();
+    PEntity->PostTick();
 }
 
 bool CAIContainer::IsStateStackEmpty()

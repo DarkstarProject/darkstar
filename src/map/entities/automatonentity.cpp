@@ -124,20 +124,15 @@ uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
     return 0;
 }
 
-void CAutomatonEntity::UpdateEntity()
+void CAutomatonEntity::PostTick()
 {
-    if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
+    auto pre_mask = updatemask;
+    CPetEntity::PostTick();
+    if (pre_mask && status != STATUS_DISAPPEAR)
     {
-        if (PMaster && PMaster->PPet == this)
-        {
-            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
-        }
-        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-        updatemask = 0;
         if (PMaster && PMaster->objtype == TYPE_PC)
         {
             ((CCharEntity*)PMaster)->pushPacket(new CCharJobExtraPacket((CCharEntity*)PMaster, PMaster->GetMJob() == JOB_PUP));
         }
-        updatemask = 0;
     }
 }

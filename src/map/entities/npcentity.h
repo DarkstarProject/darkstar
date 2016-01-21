@@ -43,7 +43,7 @@ public:
     bool        IsHPHidden();
     void        Untargetable(bool untargetable);
     bool        IsUntargetable();
-    virtual void UpdateEntity() override;
+    virtual void PostTick() override;
     virtual void Tick(time_point) override {}
 
 	 CNpcEntity();				// конструктор
