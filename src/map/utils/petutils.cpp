@@ -741,32 +741,38 @@ namespace petutils
         LoadPet(PMaster, PetID, spawningFromZone);
 
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
-
-        PPet->allegiance = PMaster->allegiance;
-        PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
-
-        PMaster->PPet = PPet;
-        PPet->PMaster = PMaster;
-
-        PMaster->loc.zone->InsertPET(PPet);
-        PPet->Spawn();
-        if (PMaster->objtype == TYPE_PC)
+        if (PPet)
         {
-            charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
-            ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
-            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+            PPet->allegiance = PMaster->allegiance;
+            PMaster->StatusEffectContainer->CopyConfrontationEffect(PPet);
 
-            // check latents affected by pets
-            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(PetID);
+            PMaster->PPet = PPet;
+            PPet->PMaster = PMaster;
+
+            PMaster->loc.zone->InsertPET(PPet);
+            PPet->Spawn();
+            if (PMaster->objtype == TYPE_PC)
+            {
+                charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
+                ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
+                ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+
+                // check latents affected by pets
+                ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(PetID);
                 PMaster->ForParty([](CBattleEntity* PMember) {
-                ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
-            });
+                    ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
+                });
+            }
+            // apply stats from previous zone if this pet is being transfered
+            if (spawningFromZone == true)
+            {
+                PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
+                PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
+            }
         }
-        // apply stats from previous zone if this pet is being transfered
-        if (spawningFromZone == true)
+        else if (PMaster->objtype == TYPE_PC)
         {
-            PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
-            PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
+            static_cast<CCharEntity*>(PMaster)->resetPetZoningInfo();
         }
     }
 
