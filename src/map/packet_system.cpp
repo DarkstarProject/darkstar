@@ -1164,7 +1164,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
-			
+
             PItem->setReserve(quantity);
             // If item count is zero.. remove from container..
 			if (quantity > 0)
@@ -1562,7 +1562,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 {
                     if (!(PItem->getFlag() & ITEM_FLAG_DELIVERYINNER))
                         return;
-                    
+
                     uint32 accid = Sql_GetUIntData(SqlHandle, 1);
                     int32 ret = Sql_Query(SqlHandle, "SELECT COUNT(*) FROM chars WHERE charid = '%u' AND accid = '%u' LIMIT 1;", PChar->id, accid);
                     if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS || Sql_GetUIntData(SqlHandle, 0) == 0)
@@ -2405,21 +2405,21 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 count = RBUFB(data, (0x04));
     uint8 type = RBUFB(data, (0x05));
 
-    if (type == 0 && PChar->getStyleLocked()) 
+    if (type == 0 && PChar->getStyleLocked())
     {
         charutils::SetStyleLock(PChar, false);
         charutils::SaveCharLook(PChar);
     }
-    else if (type == 1) 
+    else if (type == 1)
     {
-        // The client sends this when logging in and zoning. 
+        // The client sends this when logging in and zoning.
         PChar->setStyleLocked(true);
     }
-    else if (type == 2) 
+    else if (type == 2)
     {
         PChar->pushPacket(new CMessageStandardPacket(PChar->getStyleLocked() ? 0x10D : 0x10E));
     }
-    else if (type == 3) 
+    else if (type == 3)
     {
         charutils::SetStyleLock(PChar, true);
 
@@ -2455,13 +2455,13 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         charutils::SaveCharLook(PChar);
     }
-    else if (type == 4) 
+    else if (type == 4)
     {
         charutils::SetStyleLock(PChar, true);
         charutils::SaveCharLook(PChar);
     }
 
-    if (type != 1 && type != 2) 
+    if (type != 1 && type != 2)
     {
         PChar->pushPacket(new CCharAppearancePacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -2677,6 +2677,10 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (zone == 127)
                 {
                     prevzone = 280;
+                }
+                else if (zone == 125)
+                {
+                    prevzone = PChar->loc.prevzone;
                 }
             }
             PChar->m_moghouseID = 0;
@@ -3340,7 +3344,7 @@ void SmallPacket0x077(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 5: //alliance
     {
         if (PChar->PParty && PChar->PParty->m_PAlliance &&
-            PChar->PParty->GetLeader() == PChar && 
+            PChar->PParty->GetLeader() == PChar &&
             PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
         {
 			ShowDebug(CL_CYAN"(Alliance)Changing leader to %s\n" CL_RESET, data[0x04]);
@@ -5035,7 +5039,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
         }
-        
+
         charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
 
