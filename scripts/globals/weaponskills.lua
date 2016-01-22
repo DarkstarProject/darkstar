@@ -951,7 +951,6 @@ function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHit
         local enmityMult = params.enmityMult or 1
         defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
     end
-require("scripts/globals/weaponskills");
 
     return finaldmg;
 end
