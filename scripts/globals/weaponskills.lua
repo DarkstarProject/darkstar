@@ -22,6 +22,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     local bonusacc = 0;
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
+    local multiHitfTP = params.multiHitfTP or false
 
     if (attacker:getObjType() == TYPE_PC) then
         local neck = attacker:getEquipID(SLOT_NECK);
@@ -171,6 +172,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
         tpHitsLanded = 1;
     end
 
+    if not multiHitfTP then dmg = base end
+    
     if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
 
         local chance = math.random();
@@ -182,12 +185,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
                 if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
                     criticalHit = true;
                     cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
-                    finaldmg = finaldmg + base * cpdif;
+                    finaldmg = finaldmg + dmg * cpdif;
                 else
-                    finaldmg = finaldmg + base * pdif;
+                    finaldmg = finaldmg + dmg * pdif;
                 end
             else
-                finaldmg = finaldmg + base * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+                finaldmg = finaldmg + dmg * pdif;
             end
             tpHitsLanded = tpHitsLanded + 1;
         end
@@ -210,12 +213,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
                     if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
                         criticalHit = true;
                         cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
-                        finaldmg = finaldmg + base * cpdif;
+                        finaldmg = finaldmg + dmg * cpdif;
                     else
-                        finaldmg = finaldmg + base * pdif;
+                        finaldmg = finaldmg + dmg * pdif;
                     end
                 else
-                    finaldmg = finaldmg + base * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+                    finaldmg = finaldmg + dmg * pdif;
                 end
                 extraHitsLanded = extraHitsLanded + 1;
             end
@@ -693,6 +696,7 @@ end;
     local bonusacc = 0;
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
+    local multiHitfTP = params.multiHitfTP or false
 
     if (attacker:getObjType() == TYPE_PC) then
         local neck = attacker:getEquipID(SLOT_NECK);
@@ -794,6 +798,7 @@ end;
 
     local numHits = params.numHits;
 
+    if not multiHitfTP then dmg = base end
     local extraHitsLanded = 0;
     if (numHits>1) then
         if (params.acc100==0) then
@@ -810,12 +815,12 @@ end;
                     critchance = math.random();
                     if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
                         cpdif = generatePdif (ccritratio[1], ccritratio[2], false);
-                        finaldmg = finaldmg + base * cpdif;
+                        finaldmg = finaldmg + dmg * cpdif;
                     else
-                        finaldmg = finaldmg + base * pdif;
+                        finaldmg = finaldmg + dmg * pdif;
                     end
                 else
-                    finaldmg = finaldmg + base * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+                    finaldmg = finaldmg + dmg * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
                 end
                 extraHitsLanded = extraHitsLanded + 1;
             end
