@@ -475,6 +475,10 @@ int32 CBattleEntity::addMP(int32 mp)
     int32 cap = dsp_cap(health.mp + mp, 0, GetMaxMP());
     mp = health.mp - cap;
     health.mp = cap;
+    if (mp != 0)
+    {
+        updatemask |= UPDATE_HP;
+    }
     return abs(mp);
 }
 
