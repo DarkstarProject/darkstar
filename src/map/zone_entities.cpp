@@ -31,6 +31,7 @@ This file is part of DarkStar-server source code.
 #include "treasure_pool.h"
 #include "mob_modifier.h"
 #include "enmity_container.h"
+#include "trade_container.h"
 
 #include "ai/ai_container.h"
 #include "ai/controllers/ai_controller.h"
@@ -50,6 +51,7 @@ This file is part of DarkStar-server source code.
 #include "utils/charutils.h"
 #include "utils/petutils.h"
 #include "utils/zoneutils.h"
+#include "utils/synthutils.h"
 
 CZoneEntities::CZoneEntities(CZone* zone)
 {
@@ -350,6 +352,12 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
             PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
         }
+    }
+
+    if (PChar->animation == ANIMATION_SYNTH)
+    {
+        PChar->CraftContainer->setQuantity(0, synthutils::SYNTHESIS_FAIL);
+        synthutils::sendSynthDone(PChar);
     }
 
     // TODO: могут возникать проблемы с переходом между одной и той же зоной (zone == prevzone)
