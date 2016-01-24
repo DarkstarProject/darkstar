@@ -224,9 +224,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = dsp_cap(quadAttack,0,100);
-    doubleAttack = dsp_cap(doubleAttack,0,100);
-    tripleAttack = dsp_cap(tripleAttack,0,100);
+    quadAttack = dsp_cap(quadAttack, 0, 100);
+    doubleAttack = dsp_cap(doubleAttack, 0, 100);
+    tripleAttack = dsp_cap(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())

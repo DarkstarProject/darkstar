@@ -36,7 +36,7 @@
 *																		*
 ************************************************************************/
 CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type,
-                 PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound) :
+    PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound) :
     m_attacker(attacker),
     m_victim(defender),
     m_attackRound(attackRound),
@@ -52,7 +52,7 @@ CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTA
 ************************************************************************/
 PHYSICAL_ATTACK_DIRECTION CAttack::GetAttackDirection()
 {
-	return m_attackDirection;
+    return m_attackDirection;
 }
 
 /************************************************************************
@@ -62,7 +62,7 @@ PHYSICAL_ATTACK_DIRECTION CAttack::GetAttackDirection()
 ************************************************************************/
 PHYSICAL_ATTACK_TYPE CAttack::GetAttackType()
 {
-	return m_attackType;
+    return m_attackType;
 }
 
 /************************************************************************
@@ -72,7 +72,7 @@ PHYSICAL_ATTACK_TYPE CAttack::GetAttackType()
 ************************************************************************/
 void CAttack::SetAttackType(PHYSICAL_ATTACK_TYPE type)
 {
-	m_attackType = type;
+    m_attackType = type;
 }
 
 /************************************************************************
@@ -82,7 +82,7 @@ void CAttack::SetAttackType(PHYSICAL_ATTACK_TYPE type)
 ************************************************************************/
 bool CAttack::IsCritical()
 {
-	return m_isCritical;
+    return m_isCritical;
 }
 
 /************************************************************************
@@ -92,8 +92,8 @@ bool CAttack::IsCritical()
 ************************************************************************/
 void CAttack::SetCritical(bool value)
 {
-	m_isCritical = value;
-	m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
+    m_isCritical = value;
+    m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
 }
 
 /************************************************************************
@@ -103,19 +103,19 @@ void CAttack::SetCritical(bool value)
 ************************************************************************/
 bool CAttack::IsGuarded()
 {
-	m_isGuarded = attackutils::IsGuarded(m_attacker, m_victim);
-	if (m_isGuarded)
-	{
-		if (m_damageRatio > 1.0f)
-		{
-			m_damageRatio -= 1.0f;
-		}
-		else
-		{
-			m_damageRatio = 0;
-		}
-	}
-	return m_isGuarded;
+    m_isGuarded = attackutils::IsGuarded(m_attacker, m_victim);
+    if (m_isGuarded)
+    {
+        if (m_damageRatio > 1.0f)
+        {
+            m_damageRatio -= 1.0f;
+        }
+        else
+        {
+            m_damageRatio = 0;
+        }
+    }
+    return m_isGuarded;
 }
 
 /************************************************************************
@@ -125,7 +125,7 @@ bool CAttack::IsGuarded()
 ************************************************************************/
 bool CAttack::IsEvaded()
 {
-	return m_isEvaded;
+    return m_isEvaded;
 }
 
 /************************************************************************
@@ -135,7 +135,7 @@ bool CAttack::IsEvaded()
 ************************************************************************/
 void CAttack::SetEvaded(bool value)
 {
-	m_isEvaded = value;
+    m_isEvaded = value;
 }
 
 /************************************************************************
@@ -145,7 +145,7 @@ void CAttack::SetEvaded(bool value)
 ************************************************************************/
 bool CAttack::IsBlocked()
 {
-	return m_isBlocked;
+    return m_isBlocked;
 }
 
 bool CAttack::IsParried()
@@ -165,7 +165,7 @@ bool CAttack::IsAnticipated()
 ************************************************************************/
 bool CAttack::IsFirstSwing()
 {
-	return m_isFirstSwing;
+    return m_isFirstSwing;
 }
 
 /************************************************************************
@@ -175,7 +175,7 @@ bool CAttack::IsFirstSwing()
 ************************************************************************/
 void CAttack::SetAsFirstSwing(bool isFirst)
 {
-	m_isFirstSwing = isFirst;
+    m_isFirstSwing = isFirst;
 }
 
 /************************************************************************
@@ -185,7 +185,7 @@ void CAttack::SetAsFirstSwing(bool isFirst)
 ************************************************************************/
 float CAttack::GetDamageRatio()
 {
-	return m_damageRatio;
+    return m_damageRatio;
 }
 
 /************************************************************************
@@ -195,11 +195,11 @@ float CAttack::GetDamageRatio()
 ************************************************************************/
 uint8 CAttack::GetWeaponSlot()
 {
-	if (m_attackRound->IsH2H())
-	{
-		return SLOT_MAIN;
-	}
-	return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
+    if (m_attackRound->IsH2H())
+    {
+        return SLOT_MAIN;
+    }
+    return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
 }
 
 /************************************************************************
@@ -209,20 +209,20 @@ uint8 CAttack::GetWeaponSlot()
 ************************************************************************/
 uint8 CAttack::GetAnimationID()
 {
-	// Footwork
-	if (m_attacker->GetMJob() == JOB_MNK && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-	{
-		return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
-	}
+    // Footwork
+    if (m_attacker->GetMJob() == JOB_MNK && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
+    {
+        return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
+    }
 
-	// Try normal kick attacks (without footwork)
-	if (this->m_attackType == KICK_ATTACK)
-	{
-		return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
-	}
+    // Try normal kick attacks (without footwork)
+    if (this->m_attackType == KICK_ATTACK)
+    {
+        return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
+    }
 
-	// Normal attack
-	return this->m_attackDirection == RIGHTATTACK ? 0 : 1;
+    // Normal attack
+    return this->m_attackDirection == RIGHTATTACK ? 0 : 1;
 }
 
 /************************************************************************
@@ -232,42 +232,42 @@ uint8 CAttack::GetAnimationID()
 ************************************************************************/
 uint8 CAttack::GetHitRate()
 {
-	// Right hand hitrate
-	if (m_attackDirection == RIGHTATTACK && m_attackType != KICK_ATTACK)
-	{
-		if (m_attackType == ZANSHIN_ATTACK)
-		{
-			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (uint8)35);
-		}
-		else
-		{
-			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0);
-		}
+    // Right hand hitrate
+    if (m_attackDirection == RIGHTATTACK && m_attackType != KICK_ATTACK)
+    {
+        if (m_attackType == ZANSHIN_ATTACK)
+        {
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (uint8)35);
+        }
+        else
+        {
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0);
+        }
 
         // Deciding this here because SA/TA wears on attack, before the 2nd+ hits go off.
         if (m_hitRate == 100)
         {
             m_attackRound->SetSATA(true);
         }
-	}
-	// Left hand hitrate
-	else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
-	{
-		if (m_attackType == ZANSHIN_ATTACK)
-		{
-			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (uint8)35);
-		}
-		else
-		{
-			m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
-		}
-	}
-	// Kick hit rate
-	else if (m_attackType == KICK_ATTACK)
-	{
-		m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 2);
-	}
-	return m_hitRate;
+    }
+    // Left hand hitrate
+    else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
+    {
+        if (m_attackType == ZANSHIN_ATTACK)
+        {
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (uint8)35);
+        }
+        else
+        {
+            m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
+        }
+    }
+    // Kick hit rate
+    else if (m_attackType == KICK_ATTACK)
+    {
+        m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 2);
+    }
+    return m_hitRate;
 }
 
 /************************************************************************
@@ -277,7 +277,7 @@ uint8 CAttack::GetHitRate()
 ************************************************************************/
 int32 CAttack::GetDamage()
 {
-	return m_damage;
+    return m_damage;
 }
 
 /************************************************************************
@@ -287,7 +287,7 @@ int32 CAttack::GetDamage()
 ************************************************************************/
 void CAttack::SetDamage(int32 value)
 {
-	m_damage = value;
+    m_damage = value;
 }
 
 bool CAttack::CheckAnticipated()
@@ -391,89 +391,89 @@ bool CAttack::CheckCounter()
 ************************************************************************/
 void CAttack::ProcessDamage()
 {
-	// Sneak attack.
-	if (m_attacker->GetMJob() == JOB_THF &&
-		m_isFirstSwing &&
-		m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
-		((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
-        m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
-	{
-		m_trickAttackDamage = m_attacker->DEX();
-	}
+    // Sneak attack.
+    if (m_attacker->GetMJob() == JOB_THF &&
+        m_isFirstSwing &&
+        m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
+        ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
+            m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
+    {
+        m_trickAttackDamage = m_attacker->DEX();
+    }
 
-	// Trick attack.
-	if (m_attacker->GetMJob() == JOB_THF &&
-		m_isFirstSwing &&
-		m_attackRound->GetTAEntity() != nullptr)
-	{
-		m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI)/100);
-	}
+    // Trick attack.
+    if (m_attacker->GetMJob() == JOB_THF &&
+        m_isFirstSwing &&
+        m_attackRound->GetTAEntity() != nullptr)
+    {
+        m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI) / 100);
+    }
 
-	// H2H.
-	if (m_attackRound->IsH2H())
-	{
-		// FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
-		m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f)+3;
-        m_baseDamage = m_attacker->GetMainWeaponDmg()-3;
+    // H2H.
+    if (m_attackRound->IsH2H())
+    {
+        // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
+        m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f) + 3;
+        m_baseDamage = m_attacker->GetMainWeaponDmg() - 3;
         if (m_attackType == KICK_ATTACK)
-		{
+        {
             m_baseDamage = m_attacker->getMod(MOD_KICK_DMG);
         }
-		m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
-			battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-	}
-	// Not H2H.
-	else
-	{
-		if (GetWeaponSlot() == SLOT_MAIN)
-		{
-			m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
-				battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-		}
-		else if (GetWeaponSlot() == SLOT_SUB)
-		{
-			m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
-				battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-		}
-	}
+        m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
+            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+    }
+    // Not H2H.
+    else
+    {
+        if (GetWeaponSlot() == SLOT_MAIN)
+        {
+            m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
+                battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+        }
+        else if (GetWeaponSlot() == SLOT_SUB)
+        {
+            m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
+                battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+        }
+    }
 
-	// Soul eater.
-	if (m_attacker->objtype == TYPE_PC)
-	{
-		m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
-	}
+    // Soul eater.
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        m_damage = battleutils::doSoulEaterEffect((CCharEntity*)m_attacker, m_damage);
+    }
 
-	// Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
-	if (m_attackType == ATTACK_NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
-	{
-		SetAttackType(SAMBA_ATTACK);
-	}
+    // Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
+    if (m_attackType == ATTACK_NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
+    {
+        SetAttackType(SAMBA_ATTACK);
+    }
 
-	// Get damage multipliers.
-	m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType);
+    // Get damage multipliers.
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType);
 
-	// Get critical bonus mods.
-	if (m_isCritical)
-	{
-		m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
-	}
+    // Get critical bonus mods.
+    if (m_isCritical)
+    {
+        m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
+    }
 
     // Apply Sneak Attack Augment Mod
     if (m_attacker->getMod(MOD_AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
     {
-        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_SA)))/100));
+        m_damage += (m_damage * ((100 + (m_attacker->getMod(MOD_AUGMENTS_SA))) / 100));
     }
 
     // Apply Trick Attack Augment Mod
     if (m_attacker->getMod(MOD_AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
-        m_damage += (m_damage * ((100+(m_attacker->getMod(MOD_AUGMENTS_TA)))/100));
+        m_damage += (m_damage * ((100 + (m_attacker->getMod(MOD_AUGMENTS_TA))) / 100));
     }
 
-	// Try skill up.
-	if (m_damage > 0)
-	{
-		charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
-	}
-	m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);
+    // Try skill up.
+    if (m_damage > 0)
+    {
+        charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
+    }
+    m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);
 }
