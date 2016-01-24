@@ -720,17 +720,17 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             uint16 tpHitsLanded;
             uint16 extraHitsLanded;
             int32 damage;
-            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary);
 
             actionTarget.reaction = REACTION_NONE;
             actionTarget.speceffect = SPECEFFECT_NONE;
             actionTarget.animation = PWeaponSkill->getAnimationId();
             actionTarget.messageID = 0;
+            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary, action);
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
                 actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                actionTarget.speceffect = (damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE);
+                actionTarget.speceffect = (SPECEFFECT)((damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE) | actionTarget.speceffect);
 
                 if (actionTarget.reaction == REACTION_EVADE)
                     actionTarget.messageID = primary ? 188 : 282; //but misses
