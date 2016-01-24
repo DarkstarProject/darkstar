@@ -34,7 +34,6 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     m_PEntity(PEntity)
 {
     UpdateTarget();
-    PEntity->OnEngage(*this);
 }
 
 bool CAttackState::Update(time_point tick)

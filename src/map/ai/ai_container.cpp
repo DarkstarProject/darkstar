@@ -173,6 +173,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
         if (CanChangeState() || (GetCurrentState() && GetCurrentState()->IsCompleted()))
         {
             ForceChangeState<CAttackState>(entity, targetid);
+            entity->OnEngage(*static_cast<CAttackState*>(m_stateStack.top().get()));
         }
         return true;
     }
