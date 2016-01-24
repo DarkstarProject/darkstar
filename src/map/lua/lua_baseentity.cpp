@@ -7447,6 +7447,8 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
 
     uint16 action = (uint16)lua_tointeger(L, 1);
     uint16 anim = (uint16)lua_tointeger(L, 2);
+    SPECEFFECT speceffect = (SPECEFFECT)lua_tointeger(L, 3);
+    REACTION reaction = (REACTION)lua_tointeger(L, 4);
 
     ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
     switch (action)
@@ -7499,6 +7501,8 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     target.animation = anim;
     target.param = 10;
     target.messageID = 185;
+    target.speceffect = speceffect;
+    target.reaction = reaction;
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(Action));
 
