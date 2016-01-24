@@ -52,7 +52,6 @@ CActionPacket::CActionPacket(action_t& action)
     this->size = 0x12;
 
     ref<uint32>(0x05) = action.id;
-    ref<uint8>(0x09) = action.actionLists.size();
 
     ACTIONTYPE ActionType = action.actiontype;
 
@@ -289,10 +288,15 @@ CActionPacket::CActionPacket(action_t& action)
     }
 
     uint32 bitOffset = packBitsBE(data, ActionType, 82, 4);
+    auto targets = 0;
+    auto actions = 0;
+
     bitOffset += 64;
 
     for (auto&& list : action.actionLists)
     {
+        if (actions >= 8)
+            break;
         bitOffset = packBitsBE(data, list.ActionTargetID, bitOffset, 32);
         bitOffset = packBitsBE(data, list.actionTargets.size(), bitOffset, 4);
 
@@ -329,8 +333,12 @@ CActionPacket::CActionPacket(action_t& action)
             {
                 bitOffset += 1;
             }
+            if (++actions >= 8)
+                break;
         }
+        ++targets;
     }
+    ref<uint8>(0x09) = targets;
     uint8 WorkSize = ((bitOffset >> 3) + (bitOffset % 8 != 0));
 
     this->size = ((((WorkSize + 7) >> 1) + 1) & -2);
