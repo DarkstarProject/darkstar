@@ -26,6 +26,7 @@
 #include "items/item_weapon.h"
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
+#include "mob_modifier.h"
 
 /************************************************************************
 *																		*
@@ -52,10 +53,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
-    if ((m_subWeaponType > 0 && m_subWeaponType < 4))
-    {
-        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
-    }
+
 
     if (IsH2H())
     {
@@ -64,6 +62,11 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
 
         // Build kick attacks.
         CreateKickAttacks();
+    }
+    else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
+        attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD))
+    {
+        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
 
     // Set the first attack flag
@@ -123,7 +126,7 @@ CAttack CAttackRound::GetCurrentAttack()
 ************************************************************************/
 void CAttackRound::SetSATA(bool value)
 {
-    m_sataOccured = value; 
+    m_sataOccured = value;
 }
 
 /************************************************************************
@@ -133,7 +136,7 @@ void CAttackRound::SetSATA(bool value)
 ************************************************************************/
 bool CAttackRound::GetSATAOccured()
 {
-    return m_sataOccured; 
+    return m_sataOccured;
 }
 
 /************************************************************************
@@ -234,10 +237,10 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     }
     else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
         AddAttackSwing(QUAD_ATTACK, direction, 3);
-    
+
     else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
         AddAttackSwing(TRIPLE_ATTACK, direction, 2);
-    
+
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(DOUBLE_ATTACK, direction, 1);
 
@@ -254,7 +257,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         uint8 ammoCount = 0;
 
         // Handedness check, checking mod of the weapon for the purposes of level scaling
-        if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 && 
+        if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 &&
             dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
             AddAttackSwing(ATTACK_NORMAL, direction, 1);
@@ -262,13 +265,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         }
         else
         {
-            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 && 
+            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 &&
                 dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
                 ammoCount += 1;
             }
-            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 && 
+            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 &&
                 dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(ATTACK_NORMAL, LEFTATTACK, 1);
@@ -307,7 +310,7 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
+        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {

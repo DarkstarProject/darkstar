@@ -36,24 +36,13 @@
 *																		*
 ************************************************************************/
 CAttack::CAttack(CBattleEntity* attacker, CBattleEntity* defender, PHYSICAL_ATTACK_TYPE type,
-                 PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound)
+                 PHYSICAL_ATTACK_DIRECTION direction, CAttackRound* attackRound) :
+    m_attacker(attacker),
+    m_victim(defender),
+    m_attackRound(attackRound),
+    m_attackType(type),
+    m_attackDirection(direction)
 {
-	m_attacker = attacker;
-    m_victim = defender;
-	m_attackRound = attackRound;
-	m_attackType = type;
-	m_attackDirection = direction;
-	m_hitRate = 0;
-	m_isCritical = false;
-	m_isGuarded = false;
-	m_isBlocked = false;
-	m_isEvaded = false;
-	m_isFirstSwing = false;
-	m_damageRatio = 0;
-	m_damage = 0;
-	m_trickAttackDamage = 0;
-	m_naturalH2hDamage = 0;
-	m_baseDamage = 0;
 }
 
 /************************************************************************
@@ -157,6 +146,16 @@ void CAttack::SetEvaded(bool value)
 bool CAttack::IsBlocked()
 {
 	return m_isBlocked;
+}
+
+bool CAttack::IsParried()
+{
+    return attackutils::IsParried(m_attacker, m_victim);
+}
+
+bool CAttack::IsAnticipated()
+{
+    return m_anticipated;
 }
 
 /************************************************************************
@@ -289,6 +288,100 @@ int32 CAttack::GetDamage()
 void CAttack::SetDamage(int32 value)
 {
 	m_damage = value;
+}
+
+bool CAttack::CheckAnticipated()
+{
+    CStatusEffect* effect = m_victim->StatusEffectContainer->GetStatusEffect(EFFECT_THIRD_EYE, 0);
+    if (effect == nullptr)
+    {
+        return false;
+    }
+
+    //power stores how many times this effect has anticipated
+    uint8 pastAnticipations = effect->GetPower();
+
+    if (pastAnticipations > 7)
+    {
+        //max 7 anticipates!
+        m_victim->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+        return false;
+    }
+
+    bool hasSeigan = m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN, 0);
+
+    if (!hasSeigan && pastAnticipations == 0)
+    {
+        m_victim->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+        m_anticipated = true;
+        return true;
+    }
+    else if (!hasSeigan)
+    {
+        m_victim->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+        return false;
+    }
+    else
+    { //do have seigan, decay anticipations correctly (guesstimated)
+        //5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
+        if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15)))
+        {
+            //increment power and don't remove
+            effect->SetPower(effect->GetPower() + 1);
+            //chance to counter - 25% base
+            if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(MOD_AUGMENTS_THIRD_EYE))
+            {
+                m_isCountered = true;
+                m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+            }
+            m_anticipated = true;
+            return true;
+        }
+        m_victim->StatusEffectContainer->DelStatusEffect(EFFECT_THIRD_EYE);
+        return false;
+    }
+
+    return false;
+}
+
+bool CAttack::IsCountered()
+{
+    return m_isCountered;
+}
+
+bool CAttack::CheckCounter()
+{
+    uint8 meritCounter = 0;
+    if (m_victim->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)m_victim, TRAIT_COUNTER))
+    {
+        if (m_victim->GetMJob() == JOB_MNK || m_victim->GetMJob() == JOB_PUP)
+        {
+            meritCounter = ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_COUNTER_RATE, (CCharEntity*)m_victim);
+        }
+    }
+
+    //counter check (rate AND your hit rate makes it land, else its just a regular hit)
+    //having seigan active gives chance to counter at 25% of the zanshin proc rate
+    uint16 seiganChance = 0;
+    if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
+    {
+        seiganChance = m_victim->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
+        seiganChance = dsp_cap(seiganChance, 0, 100);
+        seiganChance /= 4;
+    }
+    if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(MOD_COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
+        isFaceing(m_victim->loc.p, m_attacker->loc.p, 40) && dsprand::GetRandomNumber(100) < battleutils::GetHitRate(m_victim, m_attacker))
+    {
+        m_isCountered = true;
+        m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
+    }
+    else if (m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_COUNTER))
+    { //Perfect Counter only counters hits that normal counter misses, always critical, can counter 1-3 times before wearing
+        m_isCountered = true;
+        m_isCritical = true;
+        m_victim->StatusEffectContainer->DelStatusEffect(EFFECT_PERFECT_COUNTER);
+    }
+    return m_isCountered;
 }
 
 /************************************************************************

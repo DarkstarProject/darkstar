@@ -80,6 +80,11 @@ public:
 	bool						IsEvaded();				// Gets the evaded flag.
 	void						SetEvaded(bool value);	// Sets the evaded flag.
 	bool						IsBlocked();			// Returns the blocked flag.
+    bool                        IsParried();
+    bool                        IsAnticipated();
+    bool                        CheckAnticipated();
+    bool                        IsCountered();
+    bool                        CheckCounter();
 	void						ProcessDamage();		// Processes the damage for this swing.
 
 	void						SetAttackType(PHYSICAL_ATTACK_TYPE type); // Sets the attack type.
@@ -90,18 +95,19 @@ private:
 	CAttackRound*				m_attackRound;			// Reference to the parent attack round.
 	PHYSICAL_ATTACK_TYPE		m_attackType;			// The attack type (Double, Triple, Zanshin ect).
 	PHYSICAL_ATTACK_DIRECTION	m_attackDirection;		// The attack direction (Left, Right).
-	uint8						m_hitRate;				// This attack's hitrate.
-	bool						m_isCritical;			// Flag: Is this attack a critical attack?
-	bool						m_isGuarded;			// Flag: Is this attack guarded by the victim?
-	bool						m_isBlocked;			// Flag: Is this attack blocked by the victim?
-	bool						m_isEvaded;				// Flag: Is this attack evaded by the victim?
-	bool						m_isFirstSwing;			// Flag: Is this attack the first swing?
-	float						m_damageRatio;			// The damage ratio.
-	int32						m_damage;				// The damage for this attack.
-	int32						m_trickAttackDamage;	// The damage from trick attack.
-	int32						m_naturalH2hDamage;		// The damage from natural H2H.
-	int32						m_baseDamage;			// The base damage.
-
+    uint8						m_hitRate {0};				// This attack's hitrate.
+    bool						m_isCritical {false};			// Flag: Is this attack a critical attack?
+    bool						m_isGuarded {false};			// Flag: Is this attack guarded by the victim?
+	bool						m_isBlocked {false};			// Flag: Is this attack blocked by the victim?
+	bool						m_isEvaded {false};				// Flag: Is this attack evaded by the victim?
+    bool                        m_isCountered {false};
+    bool                        m_anticipated {false};
+	bool						m_isFirstSwing {false};			// Flag: Is this attack the first swing?
+	float						m_damageRatio {false};			// The damage ratio.
+	int32						m_damage {0};				// The damage for this attack.
+	int32						m_trickAttackDamage {0};	// The damage from trick attack.
+	int32						m_naturalH2hDamage {0};		// The damage from natural H2H.
+    int32						m_baseDamage {0};			// The base damage.
 };
 
 #endif

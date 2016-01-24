@@ -1364,6 +1364,55 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 attack.SetEvaded(true);
                 PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, PTarget, 0, 1, 31));
             }
+            else if (attack.IsParried())
+            {
+                actionTarget.messageID = 70;
+                actionTarget.reaction = REACTION_PARRY;
+                actionTarget.speceffect = SPECEFFECT_NONE;
+
+                battleutils::HandleTacticalParry(PTarget);
+                battleutils::HandleIssekiganEnmityBonus(PTarget, this);
+            }
+            else if (attack.CheckAnticipated() || attack.CheckCounter())
+            {
+                if (attack.IsAnticipated())
+                {
+                    actionTarget.messageID = 30;
+                    actionTarget.reaction = REACTION_EVADE;
+                    actionTarget.speceffect = SPECEFFECT_NONE;
+                }
+                if (attack.IsCountered())
+                {
+                    actionTarget.reaction = REACTION_EVADE;
+                    actionTarget.speceffect = SPECEFFECT_NONE;
+                    actionTarget.param = 0;
+                    actionTarget.messageID = 0;
+                    actionTarget.spikesEffect = SUBEFFECT_COUNTER;
+                    if (battleutils::IsAbsorbByShadow(this))
+                    {
+                        actionTarget.spikesParam = 0;
+                        actionTarget.spikesMessage = 14;
+                    }
+                    else
+                    {
+                        int16 naturalh2hDMG = 0;
+                        if (PTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H || (PTarget->objtype == TYPE_MOB && PTarget->GetMJob() == JOB_MNK))
+                        {
+                            naturalh2hDMG = (float)(PTarget->GetSkill(SKILL_H2H) * 0.11f) + 3;
+                        }
+
+                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
+                        auto damage = ((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
+                        actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
+                        actionTarget.spikesMessage = 33;
+                        if (PTarget->objtype == TYPE_PC)
+                        {
+                            uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                            charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
+                        }
+                    }
+                }
+            }
             else
             {
                 // Set this attack's critical flag.
@@ -1411,10 +1460,41 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     actionTarget.messageID = 373;
                 }
             }
+
+            if (PTarget->objtype == TYPE_PC)
+            {
+                if (attack.IsGuarded() || ((map_config.newstyle_skillups & NEWSTYLE_GUARD) > 0))
+                {
+                    if (battleutils::GetGuardRate(this, PTarget) > 0)
+                    {
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_GRD, GetMLevel());
+                    }
+                }
+
+                if (attack.IsBlocked() || ((map_config.newstyle_skillups & NEWSTYLE_BLOCK) > 0))
+                {
+                    if (battleutils::GetBlockRate(this, PTarget) > 0)
+                    {
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_SHL, GetMLevel());
+                    }
+                }
+
+                if (attack.IsParried() || ((map_config.newstyle_skillups & NEWSTYLE_PARRY) > 0))
+                {
+                    if (battleutils::GetParryRate(this, PTarget) > 0)
+                    {
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_PAR, GetMLevel());
+                    }
+                }
+                if (!attack.IsCountered() && !attack.IsParried())
+                {
+                    charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_EVA, GetMLevel());
+                }
+            }
         }
         else
         {
-            // Player misses the target
+            // misses the target
             actionTarget.reaction = REACTION_EVADE;
             actionTarget.speceffect = SPECEFFECT_NONE;
             actionTarget.messageID = 15;
