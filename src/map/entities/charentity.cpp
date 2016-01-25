@@ -1194,26 +1194,6 @@ m_ActionList.push_back(Action);
             state.ApplyEnmity();
         }
 
-        // #TODO: delete ammo from script
-
-        //if (PAbility->getID() >= ABILITY_FIRE_SHOT && PAbility->getID() <= ABILITY_DARK_SHOT)
-        //{
-        //    CItemContainer* inventory = getStorage(LOC_INVENTORY);
-        //    uint8 slotID = inventory->SearchItem(2176 + PAbility->getID() - ABILITY_FIRE_SHOT); //Elemental Card
-
-        //    if (slotID != ERROR_SLOTID)
-        //    {
-        //        charutils::UpdateItem(this, LOC_INVENTORY, slotID, -1);
-        //    }
-        //    else
-        //    {
-        //        slotID = inventory->SearchItem(2974); //Trump Card
-        //        DSP_DEBUG_BREAK_IF(slotID == ERROR_SLOTID);
-        //        charutils::UpdateItem(this, LOC_INVENTORY, slotID, -1);
-        //    }
-        //    this->pushPacket(new CInventoryFinishPacket());
-        //}
-
         uint32 chargeTime = 0;
         uint8 maxCharges = 0;
         Charge_t* charge = ability::GetCharge(this, PAbility->getRecastId());
