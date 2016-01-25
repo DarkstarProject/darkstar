@@ -50,24 +50,21 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
 
     //m_castTime = std::chrono::milliseconds(m_PSkill->getActivationTime());
 
-    if (m_castTime > 0s)
-    {
-        action_t action;
-        action.id = m_PEntity->id;
-        action.actiontype = ACTION_WEAPONSKILL_START;
+    action_t action;
+    action.id = m_PEntity->id;
+    action.actiontype = ACTION_WEAPONSKILL_START;
 
-        actionList_t& actionList = action.getNewActionList();
-        actionList.ActionTargetID = PTarget->id;
+    actionList_t& actionList = action.getNewActionList();
+    actionList.ActionTargetID = PTarget->id;
 
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+    actionTarget_t& actionTarget = actionList.getNewActionTarget();
 
-        actionTarget.reaction = REACTION_NONE;
-        actionTarget.speceffect = SPECEFFECT_NONE;
-        actionTarget.animation = 0;
-        actionTarget.param = m_PSkill->getID();
-        actionTarget.messageID = 43;
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE, new CActionPacket(action));
-    }
+    actionTarget.reaction = REACTION_NONE;
+    actionTarget.speceffect = SPECEFFECT_NONE;
+    actionTarget.animation = 0;
+    actionTarget.param = m_PSkill->getID();
+    actionTarget.messageID = 43;
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
 }
 
 CWeaponSkill* CWeaponSkillState::GetSkill()

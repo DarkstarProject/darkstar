@@ -66,11 +66,6 @@ CActionPacket::CActionPacket(action_t& action)
         ref<uint8>(0x0E) = 0x0C;
     }
     break;
-    case ACTION_WEAPONSKILL_START:
-    {
-        packBitsBE(data, action.actionid, 86, 10);
-    }
-    break;
     case ACTION_WEAPONSKILL_FINISH:
     {
         packBitsBE(data, action.actionid, 86, 10);
@@ -88,6 +83,7 @@ CActionPacket::CActionPacket(action_t& action)
         packBitsBE(data, action.recast, 118, 10);
     }
     break;
+    case ACTION_WEAPONSKILL_START:
     case ACTION_MOBABILITY_START:
     {
         ref<uint8>(0x0A) = 0xDC;
