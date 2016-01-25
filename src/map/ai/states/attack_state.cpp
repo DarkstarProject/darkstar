@@ -33,7 +33,14 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid) :
     CState(PEntity, targid),
     m_PEntity(PEntity)
 {
+    PEntity->SetBattleTargetID(targid);
+    PEntity->SetBattleStartTime(server_clock::now());
     UpdateTarget();
+    if (!GetTarget() || m_errorMsg)
+    {
+        PEntity->SetBattleTargetID(0);
+        throw CStateInitException(std::move(m_errorMsg));
+    }
 }
 
 bool CAttackState::Update(time_point tick)

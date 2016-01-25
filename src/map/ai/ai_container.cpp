@@ -156,7 +156,6 @@ void CAIContainer::Inactive(duration _duration, bool canChangeState)
 bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
-    auto PTarget {dynamic_cast<CBattleEntity*>(PEntity->GetEntity(targetid))};
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
 
     if (entity && entity->PAI->IsEngaged() && entity->GetBattleTargetID() != targetid)
@@ -165,15 +164,15 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
         return true;
     }
     //#TODO: use valid target stuff from spell
-    if (entity && PTarget && !PTarget->isDead())
+    if (entity)
     {
         //#TODO: remove m_battleTarget if possible (need to check disengage)
-        entity->SetBattleTargetID(targetid);
-        entity->SetBattleStartTime(server_clock::now());
         if (CanChangeState() || (GetCurrentState() && GetCurrentState()->IsCompleted()))
         {
-            ForceChangeState<CAttackState>(entity, targetid);
-            entity->OnEngage(*static_cast<CAttackState*>(m_stateStack.top().get()));
+            if (ForceChangeState<CAttackState>(entity, targetid))
+            {
+                entity->OnEngage(*static_cast<CAttackState*>(m_stateStack.top().get()));
+            }
         }
         return true;
     }

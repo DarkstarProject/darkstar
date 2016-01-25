@@ -145,18 +145,20 @@ protected:
         return false;
     }
     template<typename T, typename... Args>
-    void ForceChangeState(Args&&... args)
+    bool ForceChangeState(Args&&... args)
     {
         DSP_DEBUG_BREAK_IF(m_stateStack.size() > 10);
         try
         {
             CheckCompletedStates();
             m_stateStack.emplace(std::make_unique<T>(std::forward<Args>(args)...));
+            return true;
         }
         catch (CStateInitException& e)
         {
             PEntity->HandleErrorMessage(e.packet);
         }
+        return false;
     }
 
 private:
