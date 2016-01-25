@@ -869,6 +869,31 @@ inline int32 CLuaBaseEntity::addTempItem(lua_State *L)
     return 1;
 }
 
+
+int32 CLuaBaseEntity::delItem(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    auto quantity = 0;
+
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+        quantity = (uint32)lua_tointeger(L, 2);
+
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(lua_tointeger(L, 1));
+    if (SlotID != ERROR_SLOTID)
+    {
+        charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -quantity);
+        lua_pushboolean(L, true);
+        PChar->pushPacket(new CInventoryFinishPacket());
+        return 1;
+    }
+    lua_pushboolean(L, false);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
@@ -10289,6 +10314,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFreeSlotsCount),

@@ -77,6 +77,8 @@ function onUseAbility(player,target,ability)
         newEffect:setStartTime(startTime);
     end
 
+    local del = player:delItem(2177, 1) or player:delItem(2974, 1)
+
     target:updateClaim(player);
     return dmg;
 end;

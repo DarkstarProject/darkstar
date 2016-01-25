@@ -79,6 +79,7 @@ function onUseAbility(player,target,ability)
         ability:setMsg(323);
     end
 
+    local del = player:delItem(2183, 1) or player:delItem(2974, 1)
     target:updateClaim(player);
     return dispelledEffect;
 end;
