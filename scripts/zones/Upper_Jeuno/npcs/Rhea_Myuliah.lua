@@ -71,8 +71,6 @@ function onEventFinish(player,csid,option)
 	-- printf("RESULT: %u",option);
     if (csid==0x2793) then
         player:setVar("QuestStatus_DNC_AF1", 2);
-    elseif(csid == 0x27A5) then
-        player:startEvent(0x27A6);
     end;
 end;
 

@@ -27,6 +27,8 @@ function onTrigger(player,npc)
         player:startEvent(0x27B7);
     elseif(player:getVar("comebackQueenCS") == 1) then
         player:startEvent(0x27A2);
+	elseif(player:getVar("comebackQueenCS") == 3) then
+        player:startEvent(0x27A6);
     elseif(player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
         player:startEvent(0x27AC);
     else

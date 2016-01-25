@@ -13,34 +13,46 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 -- onTrade Action
 -----------------------------------
-
+    --local variables for item IDs to make things clearer;
+	local imperialSilk = 2340;
+    local wolfFelt = 2010;
+    local silverBrocade = 1991;
+	
+    local karakulCloth = 2288;
+    local rainbowCloth = 830;
+    local rainbowVelvet = 1996;
+	
+    local wamouraCloth = 2289;
+    local moblinWeave = 1636;
+	local goldBrocade = 1999;
+	
 function onTrade(player,npc,trade)
 
-    if (player:getVar("dancerTailorCS") == 4) then --and player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_COMPLETE
+    if (player:getVar("dancerTailorCS") == 4) then
         local playersAFChoice = player:getVar("dancerAFChoice");
 		
-            if(playersAFChoice == 1 and --imperial silk: 2340, wolf felt: 2010, silver brocade: 1991
-                trade:hasItemQty(2340, 1) == true and
-                trade:hasItemQty(2010, 1) == true and
-                trade:hasItemQty(1991, 1) == true and
+            if(playersAFChoice == 1 and
+                trade:hasItemQty(imperialSilk, 1) == true and
+                trade:hasItemQty(wolfFelt, 1) == true and
+                trade:hasItemQty(silverBrocade, 1) == true and
                 trade:getItemCount() == 3 and
                 trade:getGil() == 0) then
 				
                 rewardThePlayer(player);
 				
-             elseif(playersAFChoice == 2 and --karakul cloth: 2288, rainbow cloth: 830, rainbow velvet: 1996
-                trade:hasItemQty(2288, 1) == true and
-                trade:hasItemQty(830, 1) == true and
-                trade:hasItemQty(1996, 1) == true and
+             elseif(playersAFChoice == 2 and 
+                trade:hasItemQty(karakulCloth, 1) == true and
+                trade:hasItemQty(rainbowCloth, 1) == true and
+                trade:hasItemQty(rainbowVelvet, 1) == true and
                 trade:getItemCount() == 3 and
                 trade:getGil() == 0) then
 				
                 rewardThePlayer(player);
 				
-             elseif(playersAFChoice == 3 and --wamoura cloth: 2289, moblinweave: 1636, rainbow velvet: 1999
-                trade:hasItemQty(2289, 1) == true and
-                trade:hasItemQty(1636, 1) == true and
-                trade:hasItemQty(1999, 1) == true and
+             elseif(playersAFChoice == 3 and
+                trade:hasItemQty(wamouraCloth, 1) == true and
+                trade:hasItemQty(moblinWeave, 1) == true and
+                trade:hasItemQty(goldBrocade, 1) == true and
                 trade:getItemCount() == 3 and
                 trade:getGil() == 0) then
 				
@@ -61,6 +73,10 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
+---local variables for item IDs to make things clearer
+    local dancersTiara = 16139;
+    local dancersBangles = 15003;
+    local dancersToeshoes = 15747;
 
 function onTrigger(player,npc)
 	
@@ -104,28 +120,21 @@ function onTrigger(player,npc)
 	
         local currentVanaDay = VanadielDayOfTheYear();
 		
-        if(player:getFreeSlotsCount() == 0) then
-		
-            player:PrintToPlayer( "Not enough free inventory space." );
+        if(currentVanaDay > tailorStartedWorkDay) then
 			
-        elseif(currentVanaDay > tailorStartedWorkDay ) then
+            local dancerAFID = 1; -- variable used to convert player's choice into an Item ID. 
+			local playerGender = player:getGender(); --gender is actually important here because it displays the item on screen for you.
 			
-            local dancerAFID = 1; -- variable used to convert player's choice into an Item ID. gender is actually important here because it displays the item on screen for you
-            local playerGender = player:getGender();
+            if(playersAFChoice == 1) then
+                dancerAFID = dancersTiara - playerGender;
+            elseif(playersAFChoice == 2) then
+                dancerAFID = dancersBangles - playerGender;
+			elseif(playersAFChoice == 3) then
+                dancerAFID = dancersToeshoes - playerGender;
+			end;
 			
-            switch (playersAFChoice) : caseof{
-                [1] = function(x)
-                    dancerAFID = 16139 - playerGender; --tiara
-                    end,
-                [2] = function(x)
-                    dancerAFID =  15003 - playerGender;--bangles
-                    end,
-                [3] = function(x)
-                    dancerAFID = 15747 - playerGender; --toe shoes
-                    end,
-                }
+			player:startEvent(0x01F1, dancerAFID);
 			
-            player:startEvent(0x01F1, dancerAFID);
         else
             player:startEvent(0x01F0); -- not enough time has passed
         end;
@@ -135,8 +144,6 @@ function onTrigger(player,npc)
         player:startEvent(0x01F3);
     end;
 end; 
-
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -183,25 +190,25 @@ function onEventFinish(player,csid,option)
 		
 	elseif(csid == 0x01F1) then -- reward player the appropriate AF
 	
-		local dancerAFID = 1; -- variable used to convert player's choice into an Item ID.	
-		local playerGender = player:getGender();
-		local playersAFChoice = player:getVar("dancerAFChoice");
+        local dancerAFID = 1; -- variable used to convert player's choice into an Item ID.
+        local playersAFChoice = player:getVar("dancerAFChoice");
 		
-		switch (playersAFChoice) : caseof{
-			[1] = function(x)
-				dancerAFID = 16139; --tiara
-				end,
-			[2] = function(x)
-				dancerAFID =  15003;--bangles
-				end,
-			[3] = function(x)
-				dancerAFID = 15747; --toe shoes
-				end,
-		}
+        if(playersAFChoice == 1) then
+            dancerAFID = dancersTiara;
+        elseif(playersAFChoice == 2) then
+            dancerAFID = dancersBangles;
+        elseif(playersAFChoice == 3) then
+            dancerAFID = dancersToeshoes;
+        end;
+		
+        if(player:getFreeSlotsCount() == 0) then --check to see if the player has enough inventory space before rewarding them.
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, dancerAFID);
+        else
+            local playerGender = player:getGender();
+			player:addItem(dancerAFID - playerGender);
+            player:messageSpecial(ITEM_OBTAINED, dancerAFID);
+        end;
 
-		player:addItem(dancerAFID - playerGender);
-		player:messageSpecial(ITEM_OBTAINED, dancerAFID);
-		
 		local allPiecesCompleted = 7;
 		if(bit.band(completedPieces, allPiecesCompleted) == allPiecesCompleted) then
 			player:setVar("dancerTailorCS",6); -- final cs flag
