@@ -959,6 +959,11 @@ void CZoneEntities::ZoneServer(time_point tick)
         PPet->StatusEffectContainer->CheckRegen(tick);
         if (PPet->status == STATUS_DISAPPEAR)
         {
+            for (auto PMobIt : m_mobList)
+            {
+                CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
+                PCurrentMob->PEnmityContainer->Clear(PPet->id);
+            }
             if (PPet->getPetType() != PETTYPE_AUTOMATON)
             {
                 delete pit->second;
