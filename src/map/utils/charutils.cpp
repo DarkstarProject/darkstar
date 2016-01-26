@@ -2215,7 +2215,7 @@ namespace charutils
 
         bool isInDynamis = PChar->isInDynamis();
 
-        for (auto&& slot : {std::make_tuple(SLOT_MAIN, std::ref(main_ws), std::ref(main_ws_dyn)), 
+        for (auto&& slot : {std::make_tuple(SLOT_MAIN, std::ref(main_ws), std::ref(main_ws_dyn)),
             std::make_tuple(SLOT_RANGED, std::ref(range_ws), std::ref(range_ws_dyn))})
         {
             if (PChar->m_Weapons[std::get<0>(slot)])
@@ -3070,7 +3070,7 @@ namespace charutils
         PChar->ForAlliance([&pcinzone, &PMob, &minlevel, &maxlevel](CBattleEntity* PMember) {
             if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
             {
-                if (PMember->PPet != nullptr && PMember->PPet->GetMLevel() > maxlevel && PMember->PPet->objtype != TYPE_PET) 
+                if (PMember->PPet != nullptr && PMember->PPet->GetMLevel() > maxlevel && PMember->PPet->objtype != TYPE_PET)
                 {
                     maxlevel = PMember->PPet->GetMLevel();
                 }
@@ -3515,6 +3515,8 @@ namespace charutils
             }
         }
 
+        PChar->PAI->EventHandler.triggerListener("EXPERIENCE_POINTS", PChar, exp);
+
         // Player levels up
         if ((currentExp + exp) >= GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) && onLimitMode == false)
         {
@@ -3599,6 +3601,7 @@ namespace charutils
         {
             PChar->pushPacket(new CMenuMeritPacket(PChar));
         }
+
     }
 
     /************************************************************************
