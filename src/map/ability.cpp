@@ -29,7 +29,7 @@ CAbility::CAbility(uint16 id)
 	m_ID = id;
 }
 
-bool CAbility::isAvatarAbility()
+bool CAbility::isPetAbility()
 {
   return getID() >= ABILITY_HEALING_RUBY;
 }
@@ -332,7 +332,7 @@ namespace ability
             "FROM abilities LEFT JOIN (SELECT mob_skill_name, MIN(mob_skill_id) AS min_id "
             "FROM mob_skills GROUP BY mob_skill_name) mob_skills_1 ON "
             "abilities.name = mob_skills_1.mob_skill_name "
-            "WHERE job > 0 AND job < %u AND abilityId < %u "
+            "WHERE job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
 
 	    int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);

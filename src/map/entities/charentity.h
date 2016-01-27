@@ -347,7 +347,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
-    virtual void OnAbility(CAbilityState&, action_t&);
+    virtual void OnAbility(CAbilityState&, action_t&) override;
     virtual void OnRangedAttack(CRangeState&, action_t&);
     virtual void OnDeathTimer() override;
     virtual void OnRaise() override;

@@ -974,7 +974,7 @@ m_ActionList.push_back(Action);
         action.actionid = PAbility->getID() + 16;
 
         // #TODO: get rid of this to script, too
-        if (PAbility->isAvatarAbility())
+        if (PAbility->isPetAbility())
         {
             if (PPet) //is a bp - dont display msg and notify pet
             {

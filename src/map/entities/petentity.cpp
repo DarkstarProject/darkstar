@@ -32,7 +32,10 @@
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
+#include "../ai/states/ability_state.h"
+#include "../utils/battleutils.h"
 #include "../utils/petutils.h"
+#include "../../common/utils.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -163,4 +166,54 @@ void CPetEntity::Spawn()
     //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
     CBattleEntity::Spawn();
     luautils::OnMobSpawn(this);
+}
+
+void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
+{
+    auto PAbility = state.GetAbility();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    std::unique_ptr<CMessageBasicPacket> errMsg;
+    if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
+    {
+        if (this != PTarget && distance(this->loc.p, PTarget->loc.p) > PAbility->getRange())
+        {
+            return;
+        }
+        CBaseEntity* PMsgTarget = this;
+        int32 errNo = luautils::OnAbilityCheck(this, PTarget, PAbility, &PMsgTarget);
+        if (errNo != 0)
+        {
+            return;
+        }
+        if (battleutils::IsParalyzed(this)) {
+            // display paralyzed
+            loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+            return;
+        }
+
+        action.id = this->id;
+        action.actiontype = PAbility->getActionType();
+        //#TODO: unoffset this
+        action.actionid = PAbility->getID() + 16;
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = PTarget->id;
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+        actionTarget.reaction = REACTION_NONE;
+        actionTarget.speceffect = SPECEFFECT_RECOIL;
+        actionTarget.animation = PAbility->getAnimationID();
+        actionTarget.param = 0;
+        auto prevMsg = actionTarget.messageID;
+
+        int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
+        if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
+        if (actionTarget.messageID == 0) actionTarget.messageID = MSGBASIC_USES_JA;
+        actionTarget.param = value;
+
+        if (value < 0)
+        {
+            actionTarget.messageID = ability::GetAbsorbMessage(actionTarget.messageID);
+            actionTarget.param = -value;
+        }
+    }
 }

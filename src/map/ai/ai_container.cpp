@@ -111,10 +111,9 @@ void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 
 void CAIContainer::Ability(uint16 targid, uint16 abilityid)
 {
-    auto PlayerController = dynamic_cast<CPlayerController*>(Controller.get());
-    if (PlayerController)
+    if (Controller)
     {
-        PlayerController->Ability(targid, abilityid);
+        Controller->Ability(targid, abilityid);
     }
 }
 
@@ -224,7 +223,7 @@ bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 
 bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
-    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
+    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)
         return ChangeState<CAbilityState>(entity, targetid, abilityid);
     return false;

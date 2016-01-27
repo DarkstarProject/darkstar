@@ -3231,7 +3231,7 @@ namespace luautils
 
         char filePath[40] = "scripts/globals/abilities/%s.lua";
 
-        if (PAbility->isAvatarAbility())
+        if (PAbility->isPetAbility())
         {
             memcpy(filePath, "scripts/globals/abilities/pets/%s.lua", 38);
         }
@@ -3333,7 +3333,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnUseAbility(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
+    int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
     {
         lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
 
@@ -3342,7 +3342,7 @@ namespace luautils
             return 0;
         }
 
-        CLuaBaseEntity LuaBaseEntity(PChar);
+        CLuaBaseEntity LuaBaseEntity(PUser);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
 
         CLuaBaseEntity LuaMobEntity(PTarget);
@@ -3382,41 +3382,6 @@ namespace luautils
     *                                                                       *
     *                                                                       *
     ************************************************************************/
-
-    int32 OnUseAbilityRoll(CCharEntity* PChar, CBattleEntity* PTarget, CAbility* PAbility, uint8 total)
-    {
-        lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
-
-        if (prepFile(File, "onUseAbilityRoll"))
-        {
-            return 0;
-        }
-
-        CLuaBaseEntity LuaBaseEntity(PChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
-
-        CLuaBaseEntity LuaMobEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-
-        CLuaAbility LuaAbility(PAbility);
-        Lunar<CLuaAbility>::push(LuaHandle, &LuaAbility);
-
-        lua_pushinteger(LuaHandle, total);
-
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
-        {
-            ShowError("luautils::onUseAbilityRoll: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return 0;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onUseAbilityRoll (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
-        }
-        return 0;
-    }
 
     int32 OnInstanceZoneIn(CCharEntity* PChar, CInstance* PInstance)
     {

@@ -7504,21 +7504,15 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
             ShowError("Cannot use MOBABILITY_FINISH on a nullptr battle target! Target a mob! \n");
             return 0;
         }
-        else if (PTarget->objtype != TYPE_MOB)
-        {
-            ShowError("Battle target must be a monster for MOBABILITY_FINISH \n");
-            return 0;
-        }
-        CMobEntity* PMob = (CMobEntity*)PTarget;
-
+        Action.id = PTarget->id;
         Action.actiontype = actiontype;
         actionList_t& list = Action.getNewActionList();
-        list.ActionTargetID = PTarget->id;
+        list.ActionTargetID = PChar->id;
         actionTarget_t& target = list.getNewActionTarget();
         target.animation = anim;
         target.param = 10;
         target.messageID = 185;
-        PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CActionPacket(Action));
+        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(Action));
         return 0;
     }
 
@@ -8465,9 +8459,9 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
         auto skillid {lua_tointeger(L, 1)};
         CBattleEntity* PTarget {nullptr};
 
-        if (!lua_isnil(L, 1) && lua_isuserdata(L, 1))
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
-            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
             PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
@@ -8485,6 +8479,32 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
                 static_cast<CAIController*>(PEntity->PAI->GetController())->MobSkill();
         }));
     };
+
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::useJobAbility(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (lua_isnumber(L, 1))
+    {
+        auto skillid {lua_tointeger(L, 1)};
+        CBattleEntity* PTarget {nullptr};
+
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+            PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
+        }
+
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid](auto PEntity) {
+            if (PTarget)
+                PEntity->PAI->Ability(PTarget->targid, skillid);
+            else if (dynamic_cast<CMobEntity*>(PEntity))
+                PEntity->PAI->Ability(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+        }));
+    }
 
     return 0;
 }
@@ -10630,6 +10650,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,castSpell),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,useMobAbility),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,useJobAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueEmpty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,actionQueueAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,SetAutoAttackEnabled),

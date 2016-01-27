@@ -32,7 +32,7 @@ class CCharEntity;
 class CAbilityState : public CState
 {
 public:
-    CAbilityState(CCharEntity* PEntity, uint16 targid, uint16 abilityid);
+    CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abilityid);
 
     CAbility* GetAbility();
 
@@ -48,7 +48,7 @@ protected:
     bool CanUseAbility();
 
 private:
-    CCharEntity* const m_PEntity;
+    CBattleEntity* const m_PEntity;
     std::unique_ptr<CAbility> m_PAbility;
 };
 

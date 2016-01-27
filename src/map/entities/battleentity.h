@@ -439,6 +439,7 @@ class CStatusEffectContainer;
 class CPetEntity;
 class CSpell;
 class CItemWeapon;
+class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
@@ -590,6 +591,7 @@ public:
     virtual void OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action);
     virtual void OnChangeTarget(CBattleEntity* PTarget);
 
+    virtual void OnAbility(CAbilityState&, action_t&) {}
     virtual void OnDeathTimer();
     virtual void OnRaise() {}
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);

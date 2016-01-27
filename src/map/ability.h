@@ -627,7 +627,7 @@ enum ABILITY
 
 #define MAX_ABILITY_ID  752
 
-struct Charge_t 
+struct Charge_t
 {
     uint16     ID;          //recastId
     JOBTYPE    job;         //job
@@ -648,7 +648,7 @@ public:
 
     CAbility(uint16 id);
 
-    bool        isAvatarAbility();
+    bool        isPetAbility();
     bool        isAoE();
     bool        isConal();
 

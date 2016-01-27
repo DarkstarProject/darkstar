@@ -41,6 +41,7 @@ public:
     virtual void ChangeTarget(uint16 targid);
     virtual void Disengage();
     virtual void WeaponSkill(uint16 targid, uint16 wsid);
+    virtual void Ability(uint16 targid, uint16 abilityid) {}
 
     bool IsAutoAttackEnabled();
     void SetAutoAttackEnabled(bool);

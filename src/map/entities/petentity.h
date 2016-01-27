@@ -62,6 +62,7 @@ public:
     virtual void FadeOut() override;
     virtual void Die() override;
     virtual void Spawn() override;
+    virtual void OnAbility(CAbilityState&, action_t&) override;
 
 private:
 	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
