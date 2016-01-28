@@ -11,8 +11,7 @@ function onAbilityCheck(player, target, ability)
     return 0,0;
 end;
 
-function onPetAbility(target, pet, skill, master, action)
-    action:actionID(645)
+function onUseAbility(pet, target, skill, action)
     if (target:delStatusEffect(EFFECT_PARALYSIS)) then
         skill:setMsg(123);
     else

@@ -1,5 +1,5 @@
 ---------------------------------------------------
--- Remove Poison
+-- Remove Curse
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -12,10 +12,16 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onUseAbility(pet, target, skill, action)
-    if (target:delStatusEffect(EFFECT_POISON)) then
+    local effect
+    if (target:delStatusEffect(EFFECT_CURSE)) then
         skill:setMsg(123);
+        effect = EFFECT_CURSE
+    elseif (target:delStatusEffect(EFFECT_DOOM)) then
+        skill:setMsg(123);
+        effect = EFFECT_DOOM
     else
         skill:setMsg(156);
     end
-    return EFFECT_POISON;
+
+    return effect;
 end

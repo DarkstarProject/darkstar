@@ -3338,7 +3338,9 @@ namespace luautils
 
     int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
     {
-        lua_prepscript("scripts/globals/abilities/%s.lua", PAbility->getName());
+        std::string path = "scripts/globals/abilities/%s.lua";
+        if (PUser->objtype == TYPE_PET) path = "scripts/globals/abilities/pets/%s.lua";
+        lua_prepscript(path.c_str(), PAbility->getName());
 
         if (prepFile(File, "onUseAbility"))
         {

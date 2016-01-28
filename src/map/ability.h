@@ -658,6 +658,7 @@ public:
     uint8       getLevel();
     uint16      getAnimationID();
     duration    getAnimationTime();
+    duration    getCastTime();
     float       getRange();
     uint8       getAOE();
     uint8       getValidTarget();
@@ -677,6 +678,7 @@ public:
     void        setLevel(uint8 level);
     void        setAnimationID(uint16 animationID);
     void        setAnimationTime(duration time);
+    void        setCastTime(duration time);
     void        setRange(float range);
     void        setAOE(uint8 aoe);
     void        setValidTarget(uint8 validTarget);
@@ -699,6 +701,7 @@ private:
     uint8       m_level;
     uint16      m_animationID;
     duration    m_animationTime;
+    duration    m_castTime;
     uint8       m_range;
     uint8       m_aoe;
     uint8       m_validTarget;

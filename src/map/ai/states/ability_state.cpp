@@ -50,6 +50,19 @@ CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abili
         throw CStateInitException(std::move(m_errorMsg));
     }
     m_PAbility = std::make_unique<CAbility>(*PAbility);
+    m_castTime = PAbility->getCastTime();
+    if (m_castTime > 0s)
+    {
+        action_t action;
+        action.id = PEntity->id;
+        action.actiontype = ACTION_WEAPONSKILL_START;
+        auto& list = action.getNewActionList();
+        list.ActionTargetID = PTarget->id;
+        auto& actionTarget = list.getNewActionTarget();
+        actionTarget.messageID = 326;
+        actionTarget.param = PAbility->getID() + 16;
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
+    }
     m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
 }
 
@@ -87,7 +100,7 @@ bool CAbilityState::CanChangeState()
 
 bool CAbilityState::Update(time_point tick)
 {
-    if (!IsCompleted())
+    if (!IsCompleted() && tick > GetEntryTime() + m_castTime)
     {
         if (CanUseAbility())
         {
@@ -99,7 +112,7 @@ bool CAbilityState::Update(time_point tick)
         Complete();
     }
 
-    if (IsCompleted() && tick > GetEntryTime() + m_PAbility->getAnimationTime())
+    if (IsCompleted() && tick > GetEntryTime() + m_castTime + m_PAbility->getAnimationTime())
     {
         m_PEntity->PAI->EventHandler.triggerListener("ABILITY_STATE_EXIT", m_PEntity, m_PAbility.get());
         return true;

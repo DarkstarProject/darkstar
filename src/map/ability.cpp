@@ -125,6 +125,12 @@ void CAbility::setAnimationTime(duration time)
     m_animationTime = time;
 }
 
+
+void CAbility::setCastTime(duration time)
+{
+    m_castTime = time;
+}
+
 uint16 CAbility::getAnimationID()
 {
 	return m_animationID;
@@ -133,6 +139,12 @@ uint16 CAbility::getAnimationID()
 duration CAbility::getAnimationTime()
 {
     return m_animationTime;
+}
+
+
+duration CAbility::getCastTime()
+{
+    return m_castTime;
 }
 
 void CAbility::setRecastTime(uint16 recastTime)
@@ -320,6 +332,7 @@ namespace ability
               "message2, "
               "animation,"
               "animationTime,"
+              "castTime,"
               "actionType,"
               "`range`,"
               "isAOE,"
@@ -360,14 +373,15 @@ namespace ability
               //PAbility->setMessage(Sql_GetIntData(SqlHandle,8));
 			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,9));
 			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,10)));
-                PAbility->setActionType(static_cast<ACTIONTYPE>(Sql_GetUIntData(SqlHandle, 11)));
-			    PAbility->setRange(Sql_GetFloatData(SqlHandle,12));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,13));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,14));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,15));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,16));
-			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,17));
-				PAbility->setAddType(Sql_GetUIntData(SqlHandle,18));
+			    PAbility->setCastTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,11)));
+                PAbility->setActionType(static_cast<ACTIONTYPE>(Sql_GetUIntData(SqlHandle, 12)));
+			    PAbility->setRange(Sql_GetFloatData(SqlHandle,13));
+			    PAbility->setAOE(Sql_GetIntData(SqlHandle,14));
+			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,15));
+			    PAbility->setCE(Sql_GetIntData(SqlHandle,16));
+			    PAbility->setVE(Sql_GetIntData(SqlHandle,17));
+			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,18));
+				PAbility->setAddType(Sql_GetUIntData(SqlHandle,19));
 
 			    PAbilityList[PAbility->getID()] = PAbility;
 			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);

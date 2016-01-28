@@ -48,6 +48,7 @@ protected:
     bool CanUseAbility();
 
 private:
+    duration m_castTime {0s};
     CBattleEntity* const m_PEntity;
     std::unique_ptr<CAbility> m_PAbility;
 };

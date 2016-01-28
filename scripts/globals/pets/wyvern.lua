@@ -44,13 +44,19 @@ function onMobSpawn(mob)
             local party = player:getParty()
             for _,member in ipairs(party) do
                 if member:hasStatusEffect(EFFECT_POISON) then
-                    player:getPet():useMobAbility(897, member)
+                    player:getPet():useJobAbility(627, member)
                     break
                 elseif member:hasStatusEffect(EFFECT_BLINDNESS) and player:getPet():getMainLvl() > 20 then
-                    player:getPet():useMobAbility(898, member)
+                    player:getPet():useJobAbility(628, member)
                     break
                 elseif member:hasStatusEffect(EFFECT_PARALYSIS) and player:getPet():getMainLvl() > 40 then
-                    player:getPet():useMobAbility(899, member)
+                    player:getPet():useJobAbility(629, member)
+                    break
+                elseif (member:hasStatusEffect(EFFECT_CURSE) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
+                    player:getPet():useJobAbility(637, member)
+                    break
+                elseif (member:hasStatusEffect(EFFECT_DISEASE) or member:hasStatusEffect(EFFECT_PLAGUE)) and player:getPet():getMainLvl() > 80 then
+                    player:getPet():useJobAbility(638, member)
                     break
                 end
             end
