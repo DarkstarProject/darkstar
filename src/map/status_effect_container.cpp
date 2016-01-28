@@ -40,6 +40,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 #include "lua/luautils.h"
 
 #include "ai/ai_container.h"
+#include "ai/states/inactive_state.h"
 
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
@@ -1160,8 +1161,10 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
             {
                 StatusEffect->SetIcon(EFFECT_SLEEP);
             }
-
-            m_POwner->PAI->Inactive(0ms, false);
+            if (!m_POwner->PAI->IsCurrentState<CInactiveState>())
+            {
+                m_POwner->PAI->Inactive(0ms, false);
+            }
         }
     }
 }
