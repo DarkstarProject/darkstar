@@ -26,28 +26,28 @@
 
 CAbility::CAbility(uint16 id)
 {
-	m_ID = id;
+    m_ID = id;
 }
 
 bool CAbility::isPetAbility()
 {
-  return getID() >= ABILITY_HEALING_RUBY;
+    return getID() >= ABILITY_HEALING_RUBY;
 }
 
 bool CAbility::isAoE()
 {
-  return m_aoe == 1;
+    return m_aoe == 1;
 }
 
 bool CAbility::isConal()
 {
-  // no abilities are conal?
-  return false;
+    // no abilities are conal?
+    return false;
 }
 
 void CAbility::setID(uint16 id)
 {
-	m_ID = id;
+    m_ID = id;
 }
 
 void CAbility::setMobSkillID(uint16 id)
@@ -57,7 +57,7 @@ void CAbility::setMobSkillID(uint16 id)
 
 uint16 CAbility::getID()
 {
-	return m_ID;
+    return m_ID;
 }
 
 uint16 CAbility::getMobSkillID()
@@ -67,12 +67,12 @@ uint16 CAbility::getMobSkillID()
 
 void CAbility::setJob(JOBTYPE Job)
 {
-	m_Job = Job;
+    m_Job = Job;
 }
 
 void CAbility::setMeritModID(uint16 value)
 {
-	m_meritModID = value;
+    m_meritModID = value;
 }
 
 void CAbility::setActionType(ACTIONTYPE type)
@@ -82,42 +82,42 @@ void CAbility::setActionType(ACTIONTYPE type)
 
 JOBTYPE	CAbility::getJob()
 {
-	return m_Job;
+    return m_Job;
 }
 
 void CAbility::setLevel(uint8 level)
 {
-	m_level = level;
+    m_level = level;
 }
 
 uint8 CAbility::getLevel()
 {
-	return m_level;
+    return m_level;
 }
 
 void CAbility::setRange(float range)
 {
-	m_range = range;
+    m_range = range;
 }
 
 float CAbility::getRange()
 {
-	return m_range;
+    return m_range;
 }
 
 void CAbility::setAOE(uint8 aoe)
 {
-	m_aoe = aoe;
+    m_aoe = aoe;
 }
 
 uint8 CAbility::getAOE()
 {
-	return m_aoe;
+    return m_aoe;
 }
 
 void CAbility::setAnimationID(uint16 animationID)
 {
-	m_animationID = animationID;
+    m_animationID = animationID;
 }
 
 void CAbility::setAnimationTime(duration time)
@@ -133,7 +133,7 @@ void CAbility::setCastTime(duration time)
 
 uint16 CAbility::getAnimationID()
 {
-	return m_animationID;
+    return m_animationID;
 }
 
 duration CAbility::getAnimationTime()
@@ -149,17 +149,17 @@ duration CAbility::getCastTime()
 
 void CAbility::setRecastTime(uint16 recastTime)
 {
-	m_recastTime =  recastTime;
+    m_recastTime = recastTime;
 }
 
 uint16 CAbility::getRecastTime()
 {
-	return m_recastTime;
+    return m_recastTime;
 }
 
 uint16 CAbility::getMeritModID()
 {
-	return m_meritModID;
+    return m_meritModID;
 }
 
 ACTIONTYPE CAbility::getActionType()
@@ -169,12 +169,12 @@ ACTIONTYPE CAbility::getActionType()
 
 void CAbility::setValidTarget(uint8 validTarget)
 {
-	m_validTarget = validTarget;
+    m_validTarget = validTarget;
 }
 
 uint8 CAbility::getValidTarget()
 {
-	return m_validTarget;
+    return m_validTarget;
 }
 
 uint8 CAbility::getAddType()
@@ -189,43 +189,43 @@ void CAbility::setAddType(uint8 addType)
 
 const int8* CAbility::getName()
 {
-	return m_name.c_str();
+    return m_name.c_str();
 }
 
 void CAbility::setName(int8* name)
 {
-	m_name.clear();
-	m_name.insert(0,name);
+    m_name.clear();
+    m_name.insert(0, name);
 }
 
 uint16 CAbility::getRecastId()
 {
-	return m_recastId;
+    return m_recastId;
 }
 
 void CAbility::setRecastId(uint16 recastId)
 {
-	m_recastId = recastId;
+    m_recastId = recastId;
 }
 
 void CAbility::setCE(uint16 CE)
 {
-	m_CE = CE;
+    m_CE = CE;
 }
 
 uint16 CAbility::getCE()
 {
-	return m_CE;
+    return m_CE;
 }
 
 void CAbility::setVE(uint16 VE)
 {
-	m_VE = VE;
+    m_VE = VE;
 }
 
 uint16 CAbility::getVE()
 {
-	return m_VE;
+    return m_VE;
 }
 
 /************************************************************************
@@ -246,7 +246,7 @@ void CAbility::setMessage(uint16 message)
 
 uint16 CAbility::getAoEMsg()
 {
-  switch(m_message){
+    switch (m_message) {
         case 185:
             return 264;
         case 186:
@@ -280,7 +280,7 @@ uint16 CAbility::getAoEMsg()
         case 378:
             return 343;
         case 224: //recovers mp
-          return 276;
+            return 276;
         case 420:
         case 424:
             return 421;
@@ -317,76 +317,76 @@ namespace ability
     {
         // TODO: добавить поле message в таблицу
 
-	    memset(PAbilityList,0,sizeof(PAbilityList));
+        memset(PAbilityList, 0, sizeof(PAbilityList));
 
-	    const int8* Query =
+        const int8* Query =
             "SELECT "
-              "abilityId,"
-              "IFNULL(min_id,0),"
-              "name,"
-              "job,"
-              "level,"
-              "validTarget,"
-              "recastTime,"
-              "message1, "
-              "message2, "
-              "animation,"
-              "animationTime,"
-              "castTime,"
-              "actionType,"
-              "`range`,"
-              "isAOE,"
-              "recastId,"
-              "CE,"
-              "VE, "
-              "meritModID, "
-			  "addType, "
-			  "required_expansion "
+            "abilityId,"
+            "IFNULL(min_id,0),"
+            "name,"
+            "job,"
+            "level,"
+            "validTarget,"
+            "recastTime,"
+            "message1, "
+            "message2, "
+            "animation,"
+            "animationTime,"
+            "castTime,"
+            "actionType,"
+            "`range`,"
+            "isAOE,"
+            "recastId,"
+            "CE,"
+            "VE, "
+            "meritModID, "
+            "addType, "
+            "required_expansion "
             "FROM abilities LEFT JOIN (SELECT mob_skill_name, MIN(mob_skill_id) AS min_id "
             "FROM mob_skills GROUP BY mob_skill_name) mob_skills_1 ON "
             "abilities.name = mob_skills_1.mob_skill_name "
             "WHERE job < %u AND abilityId < %u "
             "ORDER BY job, level ASC";
 
-	    int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
+        int32 ret = Sql_Query(SqlHandle, Query, MAX_JOBTYPE, MAX_ABILITY_ID);
 
-	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-				int8* expansionCode;
-				Sql_GetData(SqlHandle, 19, &expansionCode, nullptr);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                int8* expansionCode;
+                Sql_GetData(SqlHandle, 19, &expansionCode, nullptr);
 
-				if (luautils::IsExpansionEnabled(expansionCode) == false){
-					continue;
-				}
+                if (luautils::IsExpansionEnabled(expansionCode) == false) {
+                    continue;
+                }
 
-			    CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle,0));
+                CAbility* PAbility = new CAbility(Sql_GetIntData(SqlHandle, 0));
 
                 PAbility->setMobSkillID(Sql_GetIntData(SqlHandle, 1));
-			    PAbility->setName(Sql_GetData(SqlHandle,2));
-			    PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle,3));
-			    PAbility->setLevel(Sql_GetIntData(SqlHandle,4));
-			    PAbility->setValidTarget(Sql_GetIntData(SqlHandle,5));
-			    PAbility->setRecastTime(Sql_GetIntData(SqlHandle,6));
-                PAbility->setMessage(Sql_GetIntData(SqlHandle,7));
-              //PAbility->setMessage(Sql_GetIntData(SqlHandle,8));
-			    PAbility->setAnimationID(Sql_GetIntData(SqlHandle,9));
-			    PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,10)));
-			    PAbility->setCastTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle,11)));
+                PAbility->setName(Sql_GetData(SqlHandle, 2));
+                PAbility->setJob((JOBTYPE)Sql_GetIntData(SqlHandle, 3));
+                PAbility->setLevel(Sql_GetIntData(SqlHandle, 4));
+                PAbility->setValidTarget(Sql_GetIntData(SqlHandle, 5));
+                PAbility->setRecastTime(Sql_GetIntData(SqlHandle, 6));
+                PAbility->setMessage(Sql_GetIntData(SqlHandle, 7));
+                //PAbility->setMessage(Sql_GetIntData(SqlHandle,8));
+                PAbility->setAnimationID(Sql_GetIntData(SqlHandle, 9));
+                PAbility->setAnimationTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle, 10)));
+                PAbility->setCastTime(std::chrono::milliseconds(Sql_GetIntData(SqlHandle, 11)));
                 PAbility->setActionType(static_cast<ACTIONTYPE>(Sql_GetUIntData(SqlHandle, 12)));
-			    PAbility->setRange(Sql_GetFloatData(SqlHandle,13));
-			    PAbility->setAOE(Sql_GetIntData(SqlHandle,14));
-			    PAbility->setRecastId(Sql_GetIntData(SqlHandle,15));
-			    PAbility->setCE(Sql_GetIntData(SqlHandle,16));
-			    PAbility->setVE(Sql_GetIntData(SqlHandle,17));
-			    PAbility->setMeritModID(Sql_GetIntData(SqlHandle,18));
-				PAbility->setAddType(Sql_GetUIntData(SqlHandle,19));
+                PAbility->setRange(Sql_GetFloatData(SqlHandle, 13));
+                PAbility->setAOE(Sql_GetIntData(SqlHandle, 14));
+                PAbility->setRecastId(Sql_GetIntData(SqlHandle, 15));
+                PAbility->setCE(Sql_GetIntData(SqlHandle, 16));
+                PAbility->setVE(Sql_GetIntData(SqlHandle, 17));
+                PAbility->setMeritModID(Sql_GetIntData(SqlHandle, 18));
+                PAbility->setAddType(Sql_GetUIntData(SqlHandle, 19));
 
-			    PAbilityList[PAbility->getID()] = PAbility;
-			    PAbilitiesList[PAbility->getJob()].push_back(PAbility);
-		    }
-	    }
+                PAbilityList[PAbility->getID()] = PAbility;
+                PAbilitiesList[PAbility->getJob()].push_back(PAbility);
+            }
+        }
 
         const int8* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime FROM abilities_charges ORDER BY job, level ASC;";
 
@@ -394,14 +394,14 @@ namespace ability
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
                 Charge_t* PCharge = new Charge_t;
-                PCharge->ID = Sql_GetUIntData(SqlHandle,0);
-                PCharge->job = (JOBTYPE)Sql_GetUIntData(SqlHandle,1);
-                PCharge->level = Sql_GetUIntData(SqlHandle,2);
-                PCharge->maxCharges = Sql_GetUIntData(SqlHandle,3);
-                PCharge->chargeTime = Sql_GetUIntData(SqlHandle,4);
+                PCharge->ID = Sql_GetUIntData(SqlHandle, 0);
+                PCharge->job = (JOBTYPE)Sql_GetUIntData(SqlHandle, 1);
+                PCharge->level = Sql_GetUIntData(SqlHandle, 2);
+                PCharge->maxCharges = Sql_GetUIntData(SqlHandle, 3);
+                PCharge->chargeTime = Sql_GetUIntData(SqlHandle, 4);
 
                 PChargesList.push_back(PCharge);
             }
@@ -416,12 +416,12 @@ namespace ability
 
     CAbility* GetAbility(uint16 AbilityID)
     {
-	    if (AbilityID < MAX_ABILITY_ID)
-	    {
-		    return PAbilityList[AbilityID];
-	    }
-	    ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
-	    return nullptr;
+        if (AbilityID < MAX_ABILITY_ID)
+        {
+            return PAbilityList[AbilityID];
+        }
+        ShowFatalError(CL_RED"AbilityID <%u> is out of range\n" CL_RESET, AbilityID);
+        return nullptr;
     }
 
     /************************************************************************
@@ -434,7 +434,7 @@ namespace ability
     {
         DSP_DEBUG_BREAK_IF(JobID < JOB_WAR || JobID >= MAX_JOBTYPE);
 
-        switch(JobID)
+        switch (JobID)
         {
             case JOB_WAR: return PAbilityList[ABILITY_MIGHTY_STRIKES]; break;
             case JOB_MNK: return PAbilityList[ABILITY_HUNDRED_FISTS]; break;
@@ -462,18 +462,18 @@ namespace ability
         return nullptr;
     }
 
-	bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
-	{
-	    if (GetAbility(AbilityID) != nullptr)
-	    {
-		    uint8 Job = PAbilityList[AbilityID]->getJob();
-		    uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
+    bool CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID)
+    {
+        if (GetAbility(AbilityID) != nullptr)
+        {
+            uint8 Job = PAbilityList[AbilityID]->getJob();
+            uint8 JobLvl = PAbilityList[AbilityID]->getLevel();
 
-			return ((PUser->GetMJob() == Job && PUser->GetMLevel() >= JobLvl) ||
-				(PUser->GetSJob() == Job && PUser->GetSLevel() >= JobLvl));
-	    }
-	    return false;
-	}
+            return ((PUser->GetMJob() == Job && PUser->GetMLevel() >= JobLvl) ||
+                (PUser->GetSJob() == Job && PUser->GetSLevel() >= JobLvl));
+        }
+        return false;
+    }
 
     /************************************************************************
     *                                                                       *
@@ -483,13 +483,13 @@ namespace ability
 
     std::vector<CAbility*> GetAbilities(JOBTYPE JobID)
     {
-	    return PAbilitiesList[JobID];
+        return PAbilitiesList[JobID];
     }
 
     Charge_t* GetCharge(CBattleEntity* PUser, uint16 chargeID)
     {
         Charge_t* charge = nullptr;
-        for (std::vector<Charge_t*>::iterator it = PChargesList.begin() ; it != PChargesList.end(); ++it)
+        for (std::vector<Charge_t*>::iterator it = PChargesList.begin(); it != PChargesList.end(); ++it)
         {
             Charge_t* PCharge = *it;
             if (PCharge->ID == chargeID)
