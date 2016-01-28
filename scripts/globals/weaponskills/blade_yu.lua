@@ -39,6 +39,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
             target:addStatusEffect(EFFECT_POISON, 10, 0, duration);
         end
     end
-    return tpHits, extraHits, damage;
+    return tpHits, extraHits, criticalHit, damage;
 
 end
