@@ -512,7 +512,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
         return true;
     }
     if ((targetFlags & TARGET_PLAYER_PARTY) &&
-        (PParty && PInitiator->PParty == PParty))
+        ((PParty && PInitiator->PParty == PParty) ||
+        PInitiator->PMaster && PInitiator->PMaster->PParty == PParty))
     {
         return true;
     }

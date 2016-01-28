@@ -684,7 +684,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         if (objtype == TYPE_PET)
         {
             target.animation = PSkill->getPetAnimationID();
-            target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster);
+            target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
         }
         else
         {

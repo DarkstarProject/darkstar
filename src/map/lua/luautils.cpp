@@ -3284,7 +3284,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster)
+    int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, action_t* action)
     {
         lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
 
@@ -3305,7 +3305,10 @@ namespace luautils
         CLuaBaseEntity LuaMasterEntity(PMobMaster);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMasterEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        CLuaAction LuaAction(action);
+        Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
+
+        if (lua_pcall(LuaHandle, 5, LUA_MULTRET, 0))
         {
             ShowError("luautils::onPetAbility: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
