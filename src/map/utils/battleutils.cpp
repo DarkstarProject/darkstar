@@ -5284,25 +5284,25 @@ namespace battleutils
         return tp;
     }
 
-    bool RemoveAmmo(CCharEntity* PChar)
+    bool RemoveAmmo(CCharEntity* PChar, int quantity)
     {
         CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
         if (PItem)
         {
-            if ((PItem->getQuantity() - 1) < 1) // ammo will run out after this shot, make sure we remove it from equip
+            if ((PItem->getQuantity() - quantity) < 1)
             {
                 uint8 slot = PChar->equip[SLOT_AMMO];
                 uint8 loc = PChar->equipLoc[SLOT_AMMO];
                 charutils::UnequipItem(PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(PChar);
-                charutils::UpdateItem(PChar, loc, slot, -1);
+                charutils::UpdateItem(PChar, loc, slot, -quantity);
                 PChar->pushPacket(new CInventoryFinishPacket());
                 return true;
             }
             else
             {
-                charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -1);
+                charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -quantity);
                 PChar->pushPacket(new CInventoryFinishPacket());
                 return false;
             }

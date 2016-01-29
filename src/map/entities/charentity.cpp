@@ -1273,14 +1273,14 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     }
 
     // loop for barrage hits, if a miss occurs, the loop will end
-    for (uint8 i = 0; i < hitCount; ++i)
+    for (uint8 i = 1; i <= hitCount; ++i)
     {
         if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
         {
             actionTarget.messageID = 32;
             actionTarget.reaction = REACTION_EVADE;
             actionTarget.speceffect = SPECEFFECT_NONE;
-            i = hitCount; // end barrage, shot missed
+            break; // end barrage, shot missed
         }
         else if (dsprand::GetRandomNumber(100) < battleutils::GetRangedHitRate(this, PTarget, isBarrage)) // hit!
         {
@@ -1347,7 +1347,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
 
             battleutils::ClaimMob(PTarget, this);
 
-            i = hitCount; // end barrage, shot missed
+            break; // end barrage, shot missed
         }
 
         // check for recycle chance
@@ -1367,9 +1367,9 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         if (PAmmo != nullptr && dsprand::GetRandomNumber(100) > recycleChance)
         {
             TrackArrowUsageForScavenge(PAmmo);
-            if (battleutils::RemoveAmmo(this))
+            if (PAmmo->getQuantity() == i)
             {
-                hitCount = i;
+                break;
             }
         }
         totalDamage += damage;
@@ -1435,6 +1435,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         StatusEffectContainer->DelStatusEffect(EFFECT_SANGE);
     }
 
+    battleutils::RemoveAmmo(this);
     // only remove detectables
     StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
