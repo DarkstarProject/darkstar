@@ -39,6 +39,10 @@ local wyvernTypes = {
 function onMobSpawn(mob)
     local master = mob:getMaster()
     local wyvernType = wyvernTypes[master:getSubJob()]
+    local healingbreath = 624
+    if mob:getMainLvl() > 80 then healingbreath = 623
+    elseif mob:getMainLvl() > 40 then healingbreath = 626
+    elseif mob:getMainLvl() > 20 then healingbreath = 625 end
     if wyvernType == WYVERN_DEFENSIVE then
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, skillid)
             local party = player:getParty()
@@ -61,17 +65,27 @@ function onMobSpawn(mob)
                 end
             end
         end);
-        master:addListener("MAGIC_USE", "PET_WYVERN_HEAL", function(player, spell, action)
-
-        end);
+        if (master:getSubJob() ~= JOB_SMN) then
+            master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, spell, action)
+                -- check master first!
+                local threshold = 33;
+                local head = player:getEquipID(SLOT_HEAD)
+                if head == 12519 or head == 15238 or head == 27676 or head == 27697 then threshold = 50 end
+                doHealingBreath(player, threshold, healingbreath)
+            end);
+        end
     elseif wyvernType == WYVERN_OFFENSIVE or wyvernType == WYVERN_MULTI then
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, skillid)
             -- do elemental breath
         end);
     end
     if wyvernType == WYVERN_MULTI then
-        master:addListener("MAGIC_USE", "PET_WYVERN_HEAL", function(player, spell, action)
-
+        master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, spell, action)
+            -- check master first!
+            local threshold = 25;
+            local head = player:getEquipID(SLOT_HEAD)
+            if head == 12519 or head == 15238 or head == 27676 or head == 27697 then threshold = 33 end
+            doHealingBreath(player, threshold, healingbreath)
         end);
     end
 
@@ -96,7 +110,6 @@ function onMobSpawn(mob)
                 pet:addMod(MOD_ACC,2*diff)
                 pet:addMod(MOD_HPP,5*diff)
                 pet:addMod(MOD_ATTP,5*diff)
-                pet:addMod(MOD_CURE_POTENCY,6*diff)
                 pet:setHP(pet:getMaxHP())
                 player:messageBasic(562, 0, 0, pet)
             end
@@ -112,8 +125,23 @@ end;
 function onMobDeath(mob)
     local master = mob:getMaster();
     master:removeListener("PET_WYVERN_WS");
-    master:removeListener("PET_WYVERN_HEAL");
+    master:removeListener("PET_WYVERN_MAGIC");
     master:removeListener("PET_WYVERN_ENGAGE");
     master:removeListener("PET_WYVERN_DISENGAGE");
     master:removeListener("PET_WYVERN_EXP");
+end;
+
+
+function doHealingBreath(player, threshold, breath)
+    if player:getHPP() < threshold then
+        player:getPet():useJobAbility(breath, player)
+    else
+        local party = player:getParty()
+        for _,member in ipairs(party) do
+            if member:getHPP() < threshold then
+                player:getPet():useJobAbility(breath, member)
+                break
+            end
+        end
+    end
 end;

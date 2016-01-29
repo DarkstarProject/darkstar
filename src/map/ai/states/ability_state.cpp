@@ -59,6 +59,8 @@ CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abili
         auto& list = action.getNewActionList();
         list.ActionTargetID = PTarget->id;
         auto& actionTarget = list.getNewActionTarget();
+        actionTarget.reaction = (REACTION)24;
+        actionTarget.animation = 121;
         actionTarget.messageID = 326;
         actionTarget.param = PAbility->getID() + 16;
         PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));

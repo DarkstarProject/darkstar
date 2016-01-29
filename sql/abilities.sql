@@ -382,8 +382,8 @@ INSERT INTO `abilities` VALUES ('615', 'thunderstorm', '15', '75', '4', '60', '1
 INSERT INTO `abilities` VALUES ('616', 'judgment_bolt', '15', '1', '4', '60', '173', '0', '0', '0', '2000', '0', '6', '18.0', '0', '1', '60', '0', '2',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('623', 'healing_breath_iv', '0', '80', '2', '0', '0', '0', '0', '156', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('624', 'healing_breath', '0', '1', '2', '0', '0', '0', '0', '128', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
-INSERT INTO `abilities` VALUES ('625', 'healing_breath_ii', '0', '20', '2', '0', '0', '0', '129', '140', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
-INSERT INTO `abilities` VALUES ('626', 'healing_breath_iii', '0', '40', '2', '0', '0', '0', '130', '140', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('625', 'healing_breath_ii', '0', '20', '2', '0', '0', '0', '0', '129', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
+INSERT INTO `abilities` VALUES ('626', 'healing_breath_iii', '0', '40', '2', '0', '0', '0', '0', '130', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('627', 'remove_poison', '0', '1', '2', '0', '0', '0', '0', '131', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('628', 'remove_blindness', '0', '20', '2', '0', '0', '0', '0', '132', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('629', 'remove_paralysis', '0', '40', '2', '0', '0', '0', '0', '133', '2000', '1500', '13', '13.0', '0', '0', '0', '0', '0',null); -- ROTZ
