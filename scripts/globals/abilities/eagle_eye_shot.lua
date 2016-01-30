@@ -15,7 +15,19 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
+    local ranged = player:getStorageItem(0, 0, SLOT_RANGED);
+    local ammo = player:getStorageItem(0, 0, SLOT_AMMO);
+    
+    if ranged and ranged:isType(ITEM_WEAPON) then
+        local skilltype = ranged:getSkillType();
+        if skilltype == SKILL_ARC or skilltype == SKILL_MRK or skilltype == SKILL_THR then
+            if (ammo and ammo:isType(ITEM_WEAPON)) or skilltype == SKILL_THR then
+                return 0, 0;
+            end;
+        end;
+    end;
+    
+    return MSGBASIC_NO_RANGED_WEAPON, 0;
 end;
 
 -----------------------------------
