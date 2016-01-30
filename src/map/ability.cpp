@@ -355,7 +355,7 @@ namespace ability
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 int8* expansionCode;
-                Sql_GetData(SqlHandle, 19, &expansionCode, nullptr);
+                Sql_GetData(SqlHandle, 20, &expansionCode, nullptr);
 
                 if (luautils::IsExpansionEnabled(expansionCode) == false) {
                     continue;
