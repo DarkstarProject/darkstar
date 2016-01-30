@@ -21,7 +21,7 @@ function onAbilityCheck(player,target,ability)
     if ranged and ranged:isType(ITEM_WEAPON) then
         local skilltype = ranged:getSkillType();
         if skilltype == SKILL_ARC or skilltype == SKILL_MRK or skilltype == SKILL_THR then
-            if (ammo and ammo:isType(ITEM_WEAPON)) or skilltype == SKILL_THR then
+            if ammo and (ammo:isType(ITEM_WEAPON) or skilltype == SKILL_THR) then
                 return 0, 0;
             end;
         end;
