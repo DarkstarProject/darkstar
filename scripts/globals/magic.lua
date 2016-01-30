@@ -1119,6 +1119,18 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
     --get the resisted damage
     dmg = dmg*resist;
     if (skill == NINJUTSU_SKILL) then
+        if (caster:getMainJob() == JOB_NIN) then -- NIN main gets a bonus to their ninjutsu nukes
+            local ninSkillBonus = 100;
+            if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
+            elseif (spell:getID() % 3 == 0) then -- ni nuke spell ids are 1 more than their corresponding ichi spell
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 125)/2);
+            else -- san nuke spell, also has ids 1 more than their corresponding ni spell
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 275)/2);
+            end
+            ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200); -- bonus caps at +100%, and does not go negative
+            dmg = dmg * ninSkillBonus/100;
+        end
         -- boost with Futae
         if (caster:hasStatusEffect(EFFECT_FUTAE)) then
             dmg = math.floor(dmg * 1.50);

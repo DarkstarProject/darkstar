@@ -2131,3 +2131,17 @@ ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
 ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
 ELEVATOR_DAVOI_LIFT                = 3;
 ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
+
+
+------------------------------------
+ -- Item Type
+ -----------------------------------
+ ITEM_BASIC       = 0x00;
+ ITEM_GENERAL     = 0x01;
+ ITEM_USABLE      = 0x02;
+ ITEM_PUPPET      = 0x04;
+ ITEM_ARMOR       = 0x08;
+ ITEM_WEAPON      = 0x10;
+ ITEM_CURRENCY    = 0x20;
+ ITEM_FURNISHING  = 0x40;
+ ITEM_LINKSHELL   = 0x80;

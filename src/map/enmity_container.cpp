@@ -124,6 +124,10 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         VE = 0;
     }
 
+    auto PMob = dynamic_cast<CMobEntity*>(m_EnmityHolder);
+    if (PMob && PMob->m_HiPCLvl < PEntity->GetMLevel())
+        PMob->m_HiPCLvl = PEntity->GetMLevel();
+
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(PEntity->id);
 
     // current highest enmity before this update
