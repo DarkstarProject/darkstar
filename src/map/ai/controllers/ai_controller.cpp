@@ -291,7 +291,7 @@ bool CAIController::MobSkill(int wsList)
         {
             if (currentDistance <= PMobSkill->getDistance())
             {
-                MobSkill(PTarget->targid, PMobSkill->getID());
+                MobSkill(PActionTarget->targid, PMobSkill->getID());
                 break;
             }
         }
