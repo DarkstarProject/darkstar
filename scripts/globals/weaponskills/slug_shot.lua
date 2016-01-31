@@ -7,7 +7,7 @@
 -- Aligned with the Aqua Gorget, Light Gorget & Breeze Gorget.
 -- Aligned with the Aqua Belt, Light Belt & Breeze Belt.
 -- Element: None
--- Modifiers: AGI:70%
+-- Modifiers: AGI:30%
 -- 100%TP    200%TP    300%TP
 -- 5.00      5.00      5.00
 -----------------------------------
