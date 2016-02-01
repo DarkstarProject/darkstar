@@ -1550,6 +1550,7 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
+                    PChar->m_Weapons[SLOT_AMMO] = nullptr;
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
                 }
                 break;
@@ -1559,6 +1560,7 @@ namespace charutils
                     {
                         PChar->look.ranged = 0;
                     }
+                    PChar->m_Weapons[SLOT_RANGED] = nullptr;
                     PChar->health.tp = 0;
                     BuildingCharWeaponSkills(PChar);
                     UpdateWeaponStyle(PChar, equipSlotID, nullptr);
