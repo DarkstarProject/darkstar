@@ -38,22 +38,13 @@ enum RECASTTYPE
 };
 #define MAX_RECASTTPE_SIZE   4
 
-struct Recast_t 
+struct Recast_t
 {
     uint16     ID;
-    uint32     TimeStamp;
+    time_t     TimeStamp;
     uint32     RecastTime;
     uint32     chargeTime;
     uint8      maxCharges;
-
-    Recast_t()
-    {
-        ID = 0;
-        TimeStamp = 0;
-        RecastTime = 0;
-        chargeTime = 0;
-        maxCharges = 0;
-    }
 };
 
 /************************************************************************
@@ -64,7 +55,7 @@ struct Recast_t
 
 class CCharEntity;
 
-typedef std::vector<Recast_t*> RecastList_t;
+typedef std::vector<Recast_t> RecastList_t;
 
 class CRecastContainer
 {

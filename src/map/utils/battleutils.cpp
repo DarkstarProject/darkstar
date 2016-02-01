@@ -4731,7 +4731,7 @@ namespace battleutils
                 // Restores some Job Abilities (does not restore One Hour Abilities)
                 for (uint8 i = RecastsToDelete; i > 0; --i)
                 {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
                     {
                         PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
                     }
@@ -4747,7 +4747,7 @@ namespace battleutils
                 // Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore
                 for (uint8 i = RecastsToDelete; i > 0; --i)
                 {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
                     {
                         PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
                     }
@@ -4765,7 +4765,7 @@ namespace battleutils
                 // Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore
                 for (uint8 i = RecastsToDelete; i > 0; --i)
                 {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1)->ID != 0)
+                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
                     {
                         PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
                     }

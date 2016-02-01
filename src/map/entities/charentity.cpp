@@ -1197,16 +1197,7 @@ m_ActionList.push_back(Action);
 
             state.ApplyEnmity();
         }
-
-        uint32 chargeTime = 0;
-        uint8 maxCharges = 0;
-        Charge_t* charge = ability::GetCharge(this, PAbility->getRecastId());
-        if (charge != nullptr)
-        {
-            chargeTime = charge->chargeTime;
-            maxCharges = charge->maxCharges;
-        }
-        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast, chargeTime, maxCharges);
+        PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast);
         pushPacket(new CCharRecastPacket(this));
 
         //#TODO: refactor
