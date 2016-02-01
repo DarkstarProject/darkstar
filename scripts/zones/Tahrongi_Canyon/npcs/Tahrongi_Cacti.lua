@@ -17,7 +17,7 @@ require("scripts/zones/Tahrongi_Canyon/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_ACCEPTED) and player:getVar("FLOWER_PROGRESS") == 1) and player:hasItem(950) == false) then
+    if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_ACCEPTED and player:getVar("FLOWER_PROGRESS") == 1 and player:hasItem(950) == false) then
         --Meets conditions to receive a Tahrongi Cactus flower
         if (player:getFreeSlotsCount() > 0) then
             --Meets inventory space requirements, throws item receipt message in game
