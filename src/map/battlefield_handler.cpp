@@ -526,8 +526,6 @@ int playermaxHP = 0;
 
            PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharSkillsPacket(PBattlefield->m_PlayerList.at(i)));
            PBattlefield->m_PlayerList.at(i)->pushPacket(new CCharRecastPacket(PBattlefield->m_PlayerList.at(i)));
-		   charutils::UpdateHealth(PBattlefield->m_PlayerList.at(i));
-
 
             //361 - All of <target>'s abilities are recharged.
 		    PBattlefield->m_PlayerList.at(i)->pushPacket(new CMessageBasicPacket(PBattlefield->m_PlayerList.at(i)  ,PBattlefield->m_PlayerList.at(i) ,0,0,361));

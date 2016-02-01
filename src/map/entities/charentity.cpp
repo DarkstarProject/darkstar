@@ -448,9 +448,8 @@ void CCharEntity::PostTick()
     if (m_EquipSwap)
     {
         pushPacket(new CCharAppearancePacket(this));
-        pushPacket(new CCharUpdatePacket(this));
 
-        pushPacket(new CCharHealthPacket(this));
+        updatemask |= UPDATE_HP;
         m_EquipSwap = false;
     }
     if (ReloadParty())
@@ -478,6 +477,13 @@ void CCharEntity::PostTick()
         if (isCharmed)
         {
             pushPacket(new CCharPacket(this, ENTITY_UPDATE, updatemask));
+        }
+        if (updatemask & UPDATE_HP)
+        {
+            ForAlliance([&](auto PEntity)
+            {
+                static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
+            });
         }
         pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
@@ -824,7 +830,6 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
     PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PWeaponSkill->getID());
-    charutils::UpdateHealth(this);
 }
 
 void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
@@ -999,8 +1004,6 @@ m_ActionList.push_back(Action);
                 //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
                 if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
                 PPet->PAI->MobSkill(PTarget->targid, PAbility->getMobSkillID());
-
-                charutils::UpdateHealth(this);
             }
         }
         //#TODO: make this generic enough to not require an if
@@ -1541,8 +1544,6 @@ void CCharEntity::OnRaise()
         actionTarget.speceffect = SPECEFFECT_RAISE;
 
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(action));
-
-        charutils::UpdateHealth(this);
 
         uint8 mLevel = (m_LevelRestriction != 0 && m_LevelRestriction < GetMLevel()) ? m_LevelRestriction : GetMLevel();
         uint16 expLost = mLevel <= 67 ? (charutils::GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;

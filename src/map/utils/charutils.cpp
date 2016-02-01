@@ -1257,7 +1257,7 @@ namespace charutils
         charutils::SaveCharStats(PChar);
         charutils::SaveCharJob(PChar, PChar->GetMJob());
         charutils::SaveCharExp(PChar, PChar->GetMJob());
-        charutils::UpdateHealth(PChar);
+        PChar->updatemask |= UPDATE_HP;
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -2881,36 +2881,6 @@ namespace charutils
     }
 
     /************************************************************************
-    *                                                                       *
-    *  Обновляем MP, HP и TP персонажа                                      *
-    *                                                                       *
-    ************************************************************************/
-
-    void UpdateHealth(CCharEntity* PChar)
-    {
-        DSP_DEBUG_BREAK_IF(PChar->objtype != TYPE_PC);
-
-        PChar->updatemask |= UPDATE_HP;
-
-        if (PChar->PParty != nullptr)
-        {
-            if (PChar->PParty->m_PAlliance == nullptr)
-            {
-                PChar->PParty->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
-            }
-            else if (PChar->PParty->m_PAlliance != nullptr)
-            {
-                for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-                {
-                    ((CParty*)PChar->PParty->m_PAlliance->partyList.at(i))->PushPacket(PChar->id, PChar->getZone(), new CCharHealthPacket(PChar));
-                }
-            }
-        }
-
-        PChar->pushPacket(new CCharHealthPacket(PChar));
-    }
-
-    /************************************************************************
     *																		*
     *  Инициализируем таблицу опыта											*
     *																		*
@@ -3389,7 +3359,7 @@ namespace charutils
 
             PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
             luautils::OnPlayerLevelDown(PChar);
-            charutils::UpdateHealth(PChar);
+            PChar->updatemask |= UPDATE_HP;
         }
         else
         {
@@ -3587,7 +3557,7 @@ namespace charutils
                 PChar->pushPacket(new CCharStatsPacket(PChar));
 
                 luautils::OnPlayerLevelUp(PChar);
-                charutils::UpdateHealth(PChar);
+                PChar->updatemask |= UPDATE_HP;
                 return;
             }
         }

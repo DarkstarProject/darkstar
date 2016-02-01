@@ -394,8 +394,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
                 PChar->PLatentEffectContainer->CheckLatentsRollSong(PStatusEffect->GetFlag() & (EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
                 PChar->UpdateHealth();
-
-                PChar->pushPacket(new CCharHealthPacket(PChar));
             }
             PChar->pushPacket(new CCharSyncPacket(PChar));
         }
@@ -449,7 +447,6 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
         PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
         PChar->UpdateHealth();
 
-        PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharSyncPacket(PChar));
     }
     else
@@ -1353,9 +1350,7 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
         int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
         int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
         int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
-        bool update = false;
-        if (m_POwner->addHP(regen))
-            update = true;
+        m_POwner->addHP(regen);
 
         if (poison)
         {
@@ -1366,7 +1361,6 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
                 DelStatusEffectSilent(EFFECT_HEALING);
                 m_POwner->addHP(-damage);
                 WakeUp();
-                update = true;
             }
         }
 
@@ -1401,8 +1395,7 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
                 }
             }
 
-            if (m_POwner->addMP(refresh - perpetuation))
-                update = true;
+            m_POwner->addMP(refresh - perpetuation);
 
             if (m_POwner->health.mp == 0 && m_POwner->PPet != nullptr && m_POwner->PPet->objtype == TYPE_PET)
             {
@@ -1414,21 +1407,14 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
         }
         else
         {
-            if (m_POwner->addMP(refresh))
-                update = true;
+            m_POwner->addMP(refresh);
         }
 
-        if (m_POwner->addTP(regain))
-            update = true;
+        m_POwner->addTP(regain);
 
         if (m_POwner->PPet && ((CPetEntity*)(m_POwner->PPet))->getPetType() == PETTYPE_AUTOMATON)
         {
             ((CAutomatonEntity*)(m_POwner->PPet))->burdenTick();
-        }
-
-        if (m_POwner->status != STATUS_DISAPPEAR && (m_POwner->objtype == TYPE_PC) && update)
-        {
-            charutils::UpdateHealth((CCharEntity*)m_POwner);
         }
     }
 }

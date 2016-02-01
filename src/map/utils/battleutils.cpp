@@ -800,10 +800,6 @@ namespace battleutils
                     break;
             }
 
-            if (PAttacker->objtype == TYPE_PC)
-            {
-                charutils::UpdateHealth((CCharEntity*)PAttacker);
-            }
             if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
             {
                 ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
@@ -1032,7 +1028,7 @@ namespace battleutils
                 Action->addEffectParam = PAttacker->addHP(Action->param);
 
                 if (PChar != nullptr) {
-                    charutils::UpdateHealth(PChar);
+                    PChar->updatemask |= UPDATE_HP;
                 }
             }
             else if (enspell == ENSPELL_AUSPICE && isFirstSwing) {
@@ -1148,7 +1144,7 @@ namespace battleutils
 
                     PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
                     if (PChar != nullptr) {
-                        charutils::UpdateHealth(PChar);
+                        PChar->updatemask |= UPDATE_HP;
                     }
                 }
                 else if (daze == EFFECT_ASPIR_DAZE)
@@ -1171,7 +1167,7 @@ namespace battleutils
                     Action->addEffectParam = mpDrained;
 
                     if (PChar != nullptr) {
-                        charutils::UpdateHealth(PChar);
+                        PChar->updatemask |= UPDATE_HP;
                     }
                 }
                 else if (daze == EFFECT_HASTE_DAZE)
@@ -1224,7 +1220,7 @@ namespace battleutils
                     Action->addEffectParam = (float)(Action->param * 0.3f);
                     PAttacker->addHP(Action->addEffectParam);
 
-                    charutils::UpdateHealth(PChar);
+                    PChar->updatemask |= UPDATE_HP;
                     return;
 
 
@@ -1986,8 +1982,6 @@ namespace battleutils
             if (giveTPtoAttacker)
             {
                 PAttacker->addTP(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))))));
-                if (PAttacker->objtype == TYPE_PC)
-                    charutils::UpdateHealth((CCharEntity*)PAttacker);
             }
 
             if (giveTPtoVictim)
@@ -1999,7 +1993,6 @@ namespace battleutils
                 if (PDefender->objtype == TYPE_PC)
                 {
                     PDefender->addTP(tpMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker)))))); //yup store tp counts on hits taken too!
-                    charutils::UpdateHealth((CCharEntity*)PDefender);
                 }
                 else
                     PDefender->addTP(tpMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(MOD_STORETP)))); //subtle blow also reduces the "+30" on mob tp gain
@@ -2115,10 +2108,6 @@ namespace battleutils
         }
         else if (PDefender->objtype == TYPE_MOB)
             ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PChar, 0);
-
-
-        if (PDefender->objtype == TYPE_PC)
-            charutils::UpdateHealth((CCharEntity*)PDefender);
 
         if (!isRanged)
             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
@@ -3190,8 +3179,6 @@ namespace battleutils
                     PDefender->animation = ANIMATION_NONE;
                     PDefender->updatemask |= UPDATE_HP;
                 }
-
-                charutils::UpdateHealth((CCharEntity*)PDefender);
             }
             break;
 

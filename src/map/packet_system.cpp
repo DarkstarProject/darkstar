@@ -3925,7 +3925,6 @@ void SmallPacket0x0BE(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->addHP(PChar->GetMaxHP());
                 PChar->addMP(PChar->GetMaxMP());
                 PChar->pushPacket(new CCharUpdatePacket(PChar));
-                PChar->pushPacket(new CCharHealthPacket(PChar));
                 PChar->pushPacket(new CCharStatsPacket(PChar));
                 PChar->pushPacket(new CCharSkillsPacket(PChar));
                 PChar->pushPacket(new CCharRecastPacket(PChar));
@@ -5063,12 +5062,12 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();
+        PChar->updatemask |= UPDATE_HP;
 
         charutils::SaveCharStats(PChar);
 
         PChar->pushPacket(new CCharJobsPacket(PChar));
         PChar->pushPacket(new CCharUpdatePacket(PChar));
-        PChar->pushPacket(new CCharHealthPacket(PChar));
         PChar->pushPacket(new CCharStatsPacket(PChar));
         PChar->pushPacket(new CCharSkillsPacket(PChar));
         PChar->pushPacket(new CCharRecastPacket(PChar));
@@ -5118,7 +5117,6 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
             PChar->pushPacket(new CCharStatsPacket(PChar));
             PChar->UpdateHealth();
-            PChar->pushPacket(new CCharHealthPacket(PChar));
         }
         else {
             // loop all 20 slots and find which index they are playing with
@@ -5141,7 +5139,6 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
                     PChar->pushPacket(new CCharStatsPacket(PChar));
                     PChar->UpdateHealth();
-                    PChar->pushPacket(new CCharHealthPacket(PChar));
                 }
                 else {
                     ShowDebug("Cannot resolve spell id \n");

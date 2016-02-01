@@ -243,10 +243,6 @@ inline int32 CLuaBaseEntity::addHP(lua_State *L)
     PBattle->StatusEffectContainer->DelStatusEffect(EFFECT_SLEEP_II);
     PBattle->StatusEffectContainer->DelStatusEffect(EFFECT_LULLABY);
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     lua_pushinteger(L, result);
     return 1;
 }
@@ -264,10 +260,6 @@ inline int32 CLuaBaseEntity::restoreHP(lua_State *L)
     {
         int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(lua_tointeger(L, 1));
 
-        if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-        {
-            charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-        }
         lua_pushinteger(L, result);
         return 1;
     }
@@ -286,10 +278,6 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(-lua_tointeger(L, 1));
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -307,10 +295,6 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addHP(value);
     m_PBaseEntity->updatemask |= UPDATE_HP;
 
-    if (m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -402,10 +386,6 @@ inline int32 CLuaBaseEntity::addMP(lua_State *L)
 
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L, 1));
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     lua_pushinteger(L, result);
     return 1;
 }
@@ -423,10 +403,6 @@ inline int32 CLuaBaseEntity::restoreMP(lua_State *L)
     {
         int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(lua_tointeger(L, 1));
 
-        if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-        {
-            charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-        }
         lua_pushinteger(L, result);
         return 1;
     }
@@ -445,10 +421,6 @@ inline int32 CLuaBaseEntity::delMP(lua_State *L)
 
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(-lua_tointeger(L, 1));
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -465,10 +437,6 @@ inline int32 CLuaBaseEntity::setMP(lua_State *L)
     int32 value = lua_tointeger(L, 1) - ((CBattleEntity*)m_PBaseEntity)->health.mp;
     int32 result = ((CBattleEntity*)m_PBaseEntity)->addMP(value);
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -494,10 +462,6 @@ inline int32 CLuaBaseEntity::addTP(lua_State *L)
 
     uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(lua_tointeger(L, 1) * 10);
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -512,10 +476,6 @@ inline int32 CLuaBaseEntity::delTP(lua_State *L)
 
     uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(-lua_tointeger(L, 1) * 10);
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -531,10 +491,6 @@ inline int32 CLuaBaseEntity::setTP(lua_State *L)
     int16 value = (lua_tointeger(L, 1) * 10) - ((CBattleEntity*)m_PBaseEntity)->health.tp;
     uint16 result = ((CBattleEntity*)m_PBaseEntity)->addTP(value);
 
-    if (result != 0 && m_PBaseEntity->objtype == TYPE_PC && m_PBaseEntity->status != STATUS_DISAPPEAR)
-    {
-        charutils::UpdateHealth((CCharEntity*)m_PBaseEntity);
-    }
     return 0;
 }
 
@@ -2474,7 +2430,7 @@ inline int32 CLuaBaseEntity::levelRestriction(lua_State* L)
                 charutils::BuildingCharAbilityTable(PChar);
                 charutils::CheckValidEquipment(PChar);
                 PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-                charutils::UpdateHealth(PChar);
+                PChar->updatemask |= UPDATE_HP;
             }
 
             if (PChar->PPet)
@@ -5338,7 +5294,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::UpdateHealth(PChar);
+    PChar->updatemask |= UPDATE_HP;
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
@@ -5466,7 +5422,7 @@ inline int32 CLuaBaseEntity::setLevel(lua_State *L)
     charutils::SaveCharStats(PChar);
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::UpdateHealth(PChar);
+    PChar->updatemask |= UPDATE_HP;
 
     PChar->pushPacket(new CCharJobsPacket(PChar));
     PChar->pushPacket(new CCharStatsPacket(PChar));
