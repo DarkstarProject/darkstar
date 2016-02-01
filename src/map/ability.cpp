@@ -388,7 +388,7 @@ namespace ability
             }
         }
 
-        const int8* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime FROM abilities_charges ORDER BY job, level ASC;";
+        const int8* Query2 = "SELECT recastId, job, level, maxCharges, chargeTime, meritModId FROM abilities_charges ORDER BY job, level ASC;";
 
         ret = Sql_Query(SqlHandle, Query2);
 
@@ -402,6 +402,7 @@ namespace ability
                 PCharge->level = Sql_GetUIntData(SqlHandle, 2);
                 PCharge->maxCharges = Sql_GetUIntData(SqlHandle, 3);
                 PCharge->chargeTime = Sql_GetUIntData(SqlHandle, 4);
+                PCharge->merit = Sql_GetUIntData(SqlHandle, 5);
 
                 PChargesList.push_back(PCharge);
             }

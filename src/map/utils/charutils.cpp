@@ -2343,9 +2343,16 @@ namespace charutils
                 {
                     addAbility(PChar, PAbility->getID());
                     Charge_t* charge = ability::GetCharge(PChar, PAbility->getRecastId());
+                    auto chargeTime = 0;
+                    auto maxCharges = 0;
+                    if (charge)
+                    {
+                        chargeTime = charge->chargeTime - PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)charge->merit, PChar);
+                        maxCharges = charge->maxCharges;
+                    }
                     if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
                     {
-                        PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0, charge ? charge->chargeTime : 0, charge ? charge->maxCharges : 0);
+                        PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0, chargeTime, maxCharges);
                     }
                 }
             }
@@ -2377,9 +2384,16 @@ namespace charutils
                     {
                         addAbility(PChar, PAbility->getID());
                         Charge_t* charge = ability::GetCharge(PChar, PAbility->getRecastId());
+                        auto chargeTime = 0;
+                        auto maxCharges = 0;
+                        if (charge)
+                        {
+                            chargeTime = charge->chargeTime - PChar->PMeritPoints->GetMeritValue((MERIT_TYPE)charge->merit, PChar);
+                            maxCharges = charge->maxCharges;
+                        }
                         if (!PChar->PRecastContainer->Has(RECAST_ABILITY, PAbility->getRecastId()))
                         {
-                            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0, charge ? charge->chargeTime : 0, charge ? charge->maxCharges : 0);
+                            PChar->PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), 0, chargeTime, maxCharges);
                         }
                     }
                 }

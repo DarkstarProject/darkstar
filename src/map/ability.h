@@ -634,6 +634,7 @@ struct Charge_t
     uint8      level;       //level
     uint8      maxCharges;  //maximum number of stored charges
     uint32     chargeTime;  //time required to restore one charge
+    uint16     merit;
 };
 
 /************************************************************************
