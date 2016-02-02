@@ -63,7 +63,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED 
         and player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_AVAILABLE 
         and player:getMainJob()==JOB_DNC) then
-		
+
         player:startEvent(0x2798); -- CSID 10136
     elseif(player:getVar("roadToDivadomCS") == 1) then
         player:startEvent(0x2799); --  quest chat line after the quest has been accepted
@@ -71,12 +71,12 @@ function onTrigger(player,npc)
         player:startEvent(0x279B); --CSID 10139
     elseif(player:getVar("roadToDivadomCS") == 5) then
         player:startEvent(0x27BA); --CSID 10170. This should only occur if the player's inventory was full during the chain of events that start in the elseif above.
-		
+
     --Dancer AF: Comeback Queen--
     elseif (player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_COMPLETED 
         and player:getQuestStatus(JEUNO, COMEBACK_QUEEN) == QUEST_AVAILABLE 
         and player:getMainJob()==JOB_DNC) then
-		
+
         player:startEvent(0x279F);
     elseif(player:getVar("comebackQueenCS") == 1) then
         player:startEvent(0x27A0); -- quest chat line after quest accepted; Rhea and Olgald have a line as well.
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
             else
                 player:startEvent(0x279C);
             end;
-	
+
     elseif(player:getVar("comebackQueenCS") == 4 or 
         player:getVar("comebackQueenCS") == 5) then
         player:startEvent(0x27AA); --This occurs if the player's inventory was full during the final chain of events or if the player speaks with laila afterwards.
@@ -104,16 +104,16 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	 --printf("CSID: %u",csid);
-	 --printf("RESULT: %u",option);
+     --printf("CSID: %u",csid);
+     --printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
     if (csid == 0x277f and option == 1) then
         player:addQuest(JEUNO,LAKESIDE_MINUET);
     elseif (csid == 0x2786) then
@@ -138,7 +138,7 @@ function onEventFinish(player,csid,option)
         player:addItem(19203); -- war hoop
         player:messageSpecial(ITEM_OBTAINED,19203);
         player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
-		
+
     --Dancer AF: The Road to Divadom--
     elseif(csid == 0x2798) then -- Road To Divadom pt 1
         player:setVar("roadToDivadomCS", 1);
@@ -151,15 +151,15 @@ function onEventFinish(player,csid,option)
         player:setVar("roadToDivadomCS", 5);
         player:startEvent(0x27BA);
     elseif(csid == 0x27BA) then 
-		
+
         if (player:getFreeSlotsCount() == 0) then
-		    --do nothing. player doesn't have room to receive the reward item.
+            --do nothing. player doesn't have room to receive the reward item.
             player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 15660); -- the names of the gender specific items are the same
         else
             player:completeQuest(JEUNO, THE_ROAD_TO_DIVADOM);
             player:setVar("roadToDivadomCS", 0);
             player:setVar("dancerTailorCS", 1); -- allows player to start dancer version of Coffer AF. check Olgald and Matthias(@Bastok Markets) for the rest of the quest line
-		    --determine what gender the player is so we can give the correct item
+            --determine what gender the player is so we can give the correct item
             local playerGender = player:getGender();
             local dancersTights = 15660 - playerGender;
 
@@ -167,7 +167,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, dancersTights);
             player:completeQuest(JEUNO, THE_ROAD_TO_DIVADOM);
             end;
-	
+
     --Dancer AF: Comeback Queen --
     elseif (csid == 0x279F) then
         player:setVar("comebackQueenCS", 1);
@@ -194,7 +194,7 @@ function onEventFinish(player,csid,option)
         player:setVar("comebackQueenCS", 4);
         player:startEvent(0x27E3);
     elseif(csid == 0x27E3) then --finally reward the player
-		
+
         if (player:getFreeSlotsCount() == 0) then
             --do nothing. player doesn't have room to receive the reward item.
             player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
@@ -204,14 +204,14 @@ function onEventFinish(player,csid,option)
             --determine what gender the player is so we can give the correct item
             local playerGender = player:getGender();
             local dancersCasaque = 14579 - playerGender;
-			
+
             player:addItem(dancersCasaque);
             player:messageSpecial(ITEM_OBTAINED, dancersCasaque);
             player:completeQuest(JEUNO, COMEBACK_QUEEN);
         end;
-		
+
     elseif(csid == 0x27AA) then
-		
+
         if(player:getVar("comebackQueenCS") == 4) then -- player's inventory was full at the end of the final cutscene
             if (player:getFreeSlotsCount() == 0) then
                 --do nothing. player doesn't have room to receive the reward item.
@@ -222,7 +222,7 @@ function onEventFinish(player,csid,option)
                 --determine what gender the player is so we can give the correct item
                 local playerGender = player:getGender();
                 local dancersCasaque = 14579 - playerGender;
-				
+
                 player:addItem(dancersCasaque);
                 player:messageSpecial(ITEM_OBTAINED, dancersCasaque);
                 player:completeQuest(JEUNO, COMEBACK_QUEEN);

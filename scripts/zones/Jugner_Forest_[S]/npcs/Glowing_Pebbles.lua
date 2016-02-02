@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
     if(trade:hasItemQty(yagudoGlue,1)) then
 
         local nextRoadToDivadomCS = 0x006B; -- CSID 107
-	
+
         if(player:getVar("roadToDivadomCS") == 3) then
             player:tradeComplete();
             player:startEvent(nextRoadToDivadomCS);
@@ -36,7 +36,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+
     if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(STARDUST_PEBBLE) == false) then
         player:startEvent(0x0064);
         player:addKeyItem(STARDUST_PEBBLE);
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,7 +62,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

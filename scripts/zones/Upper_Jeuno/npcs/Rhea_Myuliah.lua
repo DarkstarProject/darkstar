@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         player:startEvent (0x279A);
     --Dancer AF: Comeback Queen
     elseif(player:getVar("comebackQueenCS") == 1) then
-        player:startEvent(0x27A1); 
+        player:startEvent(0x27A1);
     elseif(player:getVar("comebackQueenCS") == 3) then 
         player:startEvent(0x27A5); -- dance practice. unsure if this should only occur once or  as many times as the player wants before continuing to the next CS
     elseif(player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid==0x2793) then
         player:setVar("QuestStatus_DNC_AF1", 2);
     end;
