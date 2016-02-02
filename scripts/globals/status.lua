@@ -80,6 +80,7 @@ SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
 SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
+SUBEFFECT_CHOKE             = 24;
 -- Below are almost certain to be wrong: 
 -- Someone needs to go on retail and verify the SubEffect IDs
 SUBEFFECT_AMNESIA           = 11; --
