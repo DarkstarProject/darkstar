@@ -5278,7 +5278,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
-    PChar->PRecastContainer->ResetAbilities();
+    PChar->PRecastContainer->ChangeJob();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
 

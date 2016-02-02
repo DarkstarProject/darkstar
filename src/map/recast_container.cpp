@@ -182,7 +182,7 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
         PRecastList->erase(std::remove_if(PRecastList->begin(), PRecastList->end(), [&id](auto recast)
         {
             return recast.ID == id;
-        }));
+        }), PRecastList->end());
     }
 }
 
@@ -295,7 +295,7 @@ void CRecastContainer::Check()
 
 /************************************************************************
 *                                                                       *
-*  Resets all job abilities except two-hour (change jobs)               *
+*  Resets all job abilities except two-hour                             *
 *                                                                       *
 ************************************************************************/
 
@@ -313,6 +313,24 @@ void CRecastContainer::ResetAbilities()
             Load(RECAST_ABILITY, recast.ID, 0);
         }
     }
+
+    Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id != 0;", m_PChar->id);
+}
+
+/************************************************************************
+*                                                                       *
+*  Resets all job abilities except two-hour (change jobs)               *
+*                                                                       *
+************************************************************************/
+
+void CRecastContainer::ChangeJob()
+{
+    RecastList_t* PRecastList = GetRecastList(RECAST_ABILITY);
+
+    PRecastList->erase(std::remove_if(PRecastList->begin(), PRecastList->end(), [](auto recast)
+    {
+        return recast.ID != 0;
+    }), PRecastList->end());
 
     Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id != 0;", m_PChar->id);
 }
