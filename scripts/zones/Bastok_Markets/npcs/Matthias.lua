@@ -203,7 +203,6 @@ function onEventFinish(player,csid,option)
 
         if(player:getFreeSlotsCount() == 0) then --check to see if the player has enough inventory space before rewarding them.
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, dancerAFID);
-            return;
         else
             local playerGender = player:getGender();
             player:addItem(dancerAFID - playerGender);
