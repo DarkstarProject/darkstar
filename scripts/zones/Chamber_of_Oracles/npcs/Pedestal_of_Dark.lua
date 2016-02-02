@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x0001) then
         player:addTitle(LIGHTWEAVER);
-        player:setVar("ZilartStatus",2);
+        player:setVar("ZilartStatus",0);
         player:addKeyItem(PRISMATIC_FRAGMENT);
         player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_FRAGMENT);
         player:completeMission(ZILART,THE_CHAMBER_OF_ORACLES);
