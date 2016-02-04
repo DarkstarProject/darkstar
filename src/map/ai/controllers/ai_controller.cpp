@@ -77,6 +77,7 @@ bool CAIController::TryDeaggro()
     {
         PMob->PEnmityContainer->Clear(PTarget->id);
         PTarget = PMob->PEnmityContainer->GetHighestEnmity();
+        PMob->SetBattleTargetID(PTarget->targid);
         return TryDeaggro();
     }
 
