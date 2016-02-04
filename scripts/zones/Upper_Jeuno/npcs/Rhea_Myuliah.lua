@@ -39,14 +39,14 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==1) then
     player:startEvent(0x2793);
     --Dancer AF: Road to Divadom
-    elseif(player:getQuestStatus(JEUNO, THE_ROAD_TO_DIVADOM) == QUEST_ACCEPTED)  then
+    elseif (player:getQuestStatus(JEUNO, THE_ROAD_TO_DIVADOM) == QUEST_ACCEPTED)  then
         player:startEvent (0x279A);
     --Dancer AF: Comeback Queen
-    elseif(player:getVar("comebackQueenCS") == 1) then
+    elseif (player:getVar("comebackQueenCS") == 1) then
         player:startEvent(0x27A1);
-    elseif(player:getVar("comebackQueenCS") == 3) then 
-        player:startEvent(0x27A5); -- dance practice. unsure if this should only occur once or  as many times as the player wants before continuing to the next CS
-    elseif(player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
+    elseif (player:getVar("comebackQueenCS") == 3) then 
+        player:startEvent(0x27A5); -- dance practice
+    elseif (player:getVar("comebackQueenCS") == 5) then --player cleared Laila's story
         player:startEvent(0x27AB);
     else
         player:startEvent(0x2789);

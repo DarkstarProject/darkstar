@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,10) == false) then
         player:startEvent(0x01ae);
-    elseif(player:getVar("comebackQueenCS") == 1) then
+    elseif (player:getVar("comebackQueenCS") == 1) then
         player:startEvent(0x01EA);
     else
 
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
         }
         showNationShop(player, BASTOK, stock);
 
-    end
+    end;
 end; 
 
 -----------------------------------
@@ -74,9 +74,9 @@ function onEventFinish(player,csid,option)
     if (csid == 0x01ae) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",10,true);
 
-    elseif(csid == 0x01EA) then
+    elseif (csid == 0x01EA) then
         player:startEvent(0x01EB);
-    elseif(csid == 0x01EB) then
+    elseif (csid == 0x01EB) then
         player:setVar("comebackQueenCS", 2);
     end;
 end;

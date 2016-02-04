@@ -19,11 +19,11 @@ function onTrade(player,npc,trade)
 
     local yagudoGlue = 2558;
 
-    if(trade:hasItemQty(yagudoGlue,1)) then
+    if (trade:hasItemQty(yagudoGlue,1)) then
 
         local nextRoadToDivadomCS = 0x006B; -- CSID 107
 
-        if(player:getVar("roadToDivadomCS") == 3) then
+        if (player:getVar("roadToDivadomCS") == 3) then
             player:tradeComplete();
             player:startEvent(nextRoadToDivadomCS);
             player:setVar("roadToDivadomCS",4);
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0064);
         player:addKeyItem(STARDUST_PEBBLE);
         player:messageSpecial(KEYITEM_OBTAINED,STARDUST_PEBBLE);
-    elseif(player:getVar("roadToDivadomCS") == 2) then
+    elseif (player:getVar("roadToDivadomCS") == 2) then
         local nextRoadToDivadomCS = 0x006A; -- CSID 106
         player:startEvent(nextRoadToDivadomCS);
         player:setVar("roadToDivadomCS", 3);
