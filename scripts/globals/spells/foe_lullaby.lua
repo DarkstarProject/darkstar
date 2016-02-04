@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
         return EFFECT_LULLABY;
     end
 
-    if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_SLEEPRES)) then
+    if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_LULLABYRES)) then
         --No effect
         spell:setMsg(75);
     else
