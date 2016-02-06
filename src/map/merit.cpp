@@ -372,7 +372,6 @@ const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 	return  &merits[index];
 }
 
-
 /************************************************************************
 *                                                                       *
 *  Получаем указатель на искомый merit                                  *
@@ -381,9 +380,11 @@ const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 
 Merit_t* CMeritPoints::GetMeritPointer(MERIT_TYPE merit)
 {
-    DSP_DEBUG_BREAK_IF(!IsMeritExist(merit));
-
-    return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+    if (IsMeritExist(merit))
+    {
+        return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+    }
+    return nullptr;
 }
 
 /************************************************************************
