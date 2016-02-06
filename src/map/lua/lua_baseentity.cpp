@@ -6203,14 +6203,14 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
     if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)
     {
-        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        if (PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
             ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
         }
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
-        if (PEntity != nullptr && damage > 0 &&
+        if (PEntity->GetBaseEntity() && damage > 0 &&
             PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
             ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
