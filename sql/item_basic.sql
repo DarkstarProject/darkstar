@@ -6483,10 +6483,14 @@ INSERT INTO `item_basic` VALUES (10944,0,'portus_collar','portus_collar',1,63568
 INSERT INTO `item_basic` VALUES (10945,0,'waylayers_scarf','waylayers_scarf',1,34816,22,0,0);
 INSERT INTO `item_basic` VALUES (10946,0,'coatl_gorget','coatl_gorget',1,34816,22,0,0);
 INSERT INTO `item_basic` VALUES (10947,0,'saevus_pendant','saevus_pendant',1,34816,22,0,0);
+INSERT INTO `item_basic` VALUES (10948,0,'carvers_torque','carvers_torque',1,63568,99,0,0);
 INSERT INTO `item_basic` VALUES (10949,0,'smithys_torque','smithys_torque',1,63568,99,0,0);
+INSERT INTO `item_basic` VALUES (10950,0,'goldsmiths_torque','goldsm._torque',1,63568,99,0,0);
+INSERT INTO `item_basic` VALUES (10951,0,'weavers_torque','weavers_torque',1,63568,99,0,0);
 INSERT INTO `item_basic` VALUES (10952,0,'tanners_torque','tanners_torque',1,63568,99,0,0);
 INSERT INTO `item_basic` VALUES (10953,0,'boneworkers_torque','boneworkers_torque',1,63568,99,0,0);
-INSERT INTO `item_basic` VALUES (10954,0,'alchemists_torque','alchemst_torque',1,63568,99,0,0);
+INSERT INTO `item_basic` VALUES (10954,0,'alchemists_torque','alchemst._torque',1,63568,99,0,0);
+INSERT INTO `item_basic` VALUES (10955,0,'culinarians_torque','culin._torque',1,63568,99,0,0);
 INSERT INTO `item_basic` VALUES (10957,0,'stoicheion_medal','stoicheion_medal',1,34880,22,0,0);
 INSERT INTO `item_basic` VALUES (10958,0,'nefarious_collar','nefarious_collar',1,34816,22,0,0);
 INSERT INTO `item_basic` VALUES (10959,0,'inquisitors_chain','inquisitors_chain',1,34816,99,0,0);
