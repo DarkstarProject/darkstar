@@ -709,10 +709,14 @@ INSERT INTO `item_armor` VALUES (10944,'portus_collar',94,0,2473969,0,0,0,512,0)
 INSERT INTO `item_armor` VALUES (10945,'waylayers_scarf',93,0,66592,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10946,'coatl_gorget',93,0,192,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10947,'saevus_pendant',93,0,1720332,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (10948,'carvers_torque',70,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10949,'smithys_torque',70,0,4194303,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (10950,'goldsmiths_torque',70,0,4194303,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (10951,'weavers_torque',70,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10952,'tanners_torque',70,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10953,'boneworkers_torque',70,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10954,'alchemists_torque',70,0,4194303,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (10955,'culinarians_torque',70,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10957,'stoicheion_medal',97,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10958,'nefarious_collar',99,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (10959,'inquisitors_chain',96,0,4194303,0,0,0,512,0);
