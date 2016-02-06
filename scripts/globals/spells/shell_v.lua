@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local power = 62;
+    local power = 24;
     local duration = 1800;
 
     local typeEffect = EFFECT_SHELL;
