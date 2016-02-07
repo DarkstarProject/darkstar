@@ -8339,16 +8339,19 @@ inline int32 CLuaBaseEntity::getTrickAttackChar(lua_State *L)
     if (PMob != nullptr)
     {
         CBattleEntity* taTarget = battleutils::getAvailableTrickAttackChar((CBattleEntity*)m_PBaseEntity, PMob);
-        lua_getglobal(L, CLuaBaseEntity::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, taTarget);
-        lua_pcall(L, 2, 1, 0);
-        return 1;
-        return 1;
+        if (taTarget)
+        {
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, taTarget);
+            lua_pcall(L, 2, 1, 0);
+            return 1;
+        }
     }
-    return 0;
+    lua_pushnil(L);
+    return 1;
 }
 
 
