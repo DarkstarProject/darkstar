@@ -56,7 +56,7 @@ function onMobSpawn(mob)
                 elseif member:hasStatusEffect(EFFECT_PARALYSIS) and player:getPet():getMainLvl() > 40 then
                     player:getPet():useJobAbility(629, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_CURSE) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
+                elseif (member:hasStatusEffect(EFFECT_CURSE_I) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
                     player:getPet():useJobAbility(637, member)
                     break
                 elseif (member:hasStatusEffect(EFFECT_DISEASE) or member:hasStatusEffect(EFFECT_PLAGUE)) and player:getPet():getMainLvl() > 80 then
