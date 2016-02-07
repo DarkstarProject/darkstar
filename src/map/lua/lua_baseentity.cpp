@@ -8607,7 +8607,7 @@ inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
 inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
@@ -8619,7 +8619,7 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET);
 
     lua_pushboolean(L, ((CMobEntity*)m_PBaseEntity)->SpellContainer->HasSpells());
 
