@@ -59,6 +59,7 @@ require("scripts/globals/utils")
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
     blmAMIIMerit = {MERIT_FLARE_II, MERIT_QUAKE_II, MERIT_FLOOD_II, MERIT_TORNADO_II, MERIT_FREEZE_II, MERIT_BURST_II};
+    barSpells = {EFFECT_BARFIRE, EFFECT_BARSTONE, EFFECT_BARWATER, EFFECT_BARAERO, EFFECT_BARBLIZZARD, EFFECT_BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -796,10 +797,14 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
            mab = mab + ( 10 + caster:getMod(MOD_MAGIC_CRIT_DMG_INCREASE ) );
         end
 
-        if (spell:getElement() > 0 and spell:getElement() <= 6 ) then
-            mab = mab + caster:getMerit(blmMerit[spell:getElement()]);
+        local mdefBarBonus = 0;
+        if (ele > 0 and ele <= 6) then
+            mab = mab + caster:getMerit(blmMerit[ele]);
+            if (target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
+                mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+            end
         end
-        mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF));
+        mabbonus = (100 + mab) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
     end
 
     if (mabbonus < 0) then
@@ -883,10 +888,15 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     dmg = math.floor(dmg * dayWeatherBonus);
 
     local mab = 1;
+    local mdefBarBonus = 0;
+    if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+    end
+
     if (params ~= nil and params.bonusmab ~= nil and params.includemab == true) then
-        mab = (100 + caster:getMod(MOD_MATT) + params.bonusmab) / (100 + target:getMod(MOD_MDEF));
+        mab = (100 + caster:getMod(MOD_MATT) + params.bonusmab) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
     elseif (params == nil or (params ~= nil and params.includemab == true)) then
-        mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF));
+        mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
     end
 
     if (mab < 0) then

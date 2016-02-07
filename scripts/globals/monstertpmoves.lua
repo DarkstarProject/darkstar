@@ -287,8 +287,12 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     --get all the stuff we need
     local resist = 1;
 
+    local mdefBarBonus = 0;
+    if (element > 0 and element <= 6 and target:hasStatusEffect(barSpells[element])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(barSpells[element]):getSubPower();
+    end
     -- plus 100 forces it to be a number
-    mab = (100+mob:getMod(MOD_MATT)) / (100+target:getMod(MOD_MDEF));
+    mab = (100 + mob:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
     
     if (mab > 1.3) then
         mab = 1.3;
@@ -396,7 +400,11 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
     dmg = math.floor(dmg * burst);
 
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF)) ;
+    local mdefBarBonus = 0;
+    if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+    end
+    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus) ;
 
     dmg = math.floor(dmg * mab);
 
