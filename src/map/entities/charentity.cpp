@@ -929,51 +929,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             }
         }
 
-        /*else if (PAbility->getID() == ABILITY_WILD_CARD)
-        {
-            uint8 roll = dsprand::GetRandomNumber(1, 7);
-            uint16 AnimationId = 132 + (roll - 1);
-
-            CAbility* rollAbility = ability::GetAbility(ABILITY_WILD_CARD);
-            action.animation = AnimationId;
-            action.reaction = REACTION_NONE;
-            action.speceffect = (SPECEFFECT)roll;
-            action.param = roll;
-            action.knockback = 0;
-
-            if (this->PParty != nullptr)
-            {
-                for (uint8 i = 0; i < this->PParty->members.size(); i++)
-                {
-                    CCharEntity* PTarget = (CCharEntity*)this->PParty->members[i];
-
-                    if (!PTarget->isDead() &&
-                        PTarget->getZone() == getZone() &&
-                        distance(this->loc.p, PTarget->loc.p) <= PAbility->getRange())
-                    {
-                        action.ActionTarget = PTarget;
-                        battleutils::DoWildCardToEntity(this, PTarget, roll);
-                        PTarget->pushPacket(new CCharSkillsPacket(PTarget));
-                        PTarget->pushPacket(new CCharRecastPacket(PTarget));
-                        PTarget->pushPacket(new CCharHealthPacket(PTarget));
-                        action.messageID = PAbility->getMessage();
-m_ActionList.push_back(Action);
-                    }
-                }
-            }
-            else
-            {
-                battleutils::DoWildCardToEntity(this, this, roll);
-                action.ActionTarget = PTarget;
-pushPacket(new CCharSkillsPacket(this));
-pushPacket(new CCharRecastPacket(this));
-pushPacket(new CCharHealthPacket(this));
-                action.messageID = PAbility->getMessage();
-m_ActionList.push_back(Action);
-            }
-            luautils::OnUseAbilityRoll(this, action.ActionTarget, rollAbility, roll);
-        }*/
-
         action.id = this->id;
         action.actiontype = PAbility->getActionType();
         //#TODO: unoffset this

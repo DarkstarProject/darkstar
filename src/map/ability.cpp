@@ -289,6 +289,11 @@ uint16 CAbility::getAoEMsg()
             return 423;
         case 426:
             return 427;
+        case 435:
+        case 437:
+        case 439:
+            return m_message + 1;
+
 
         default:
             return m_message;

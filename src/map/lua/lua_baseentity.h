@@ -333,6 +333,7 @@ public:
     int32 removePartyEffect(lua_State*);      // Removes Effect from all party members
     int32 hasPartyEffect(lua_State*);         // Has Effect from all party members
     int32 addCorsairRoll(lua_State*);         // Adds corsair roll effect
+    int32 doWildCard(lua_State*);
     int32 addBardSong(lua_State*);            // Adds bard song effect
     int32 hasPartyJob(lua_State*);
     int32 fold(lua_State*);
