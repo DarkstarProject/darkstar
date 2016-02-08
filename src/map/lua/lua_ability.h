@@ -47,6 +47,7 @@ public:
     }
 
     int32 getID(lua_State*);
+    int32 getMsg(lua_State*);
     int32 getRecast(lua_State*);
     int32 getRange(lua_State*);
     int32 getName(lua_State*);

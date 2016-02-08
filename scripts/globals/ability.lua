@@ -453,3 +453,71 @@ function checkForElevenRoll(caster)
     end
     return false
 end
+
+function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+    -- physical attack missed, skip rest
+    local msg = skill:getMsg()
+    if (msg == 158 or msg == 188 or msg == 31 or msg == 30) then
+        return 0;
+    end
+
+    --handle pd
+    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+            and skilltype==MOBSKILL_PHYSICAL) then
+        skill:setMsg(MSGBASIC_USES_BUT_MISSES);
+        return 0;
+    end
+
+    -- set message to damage
+    -- this is for AoE because its only set once
+    skill:setMsg(MSGBASIC_USES_JA_TAKE_DAMAGE);
+
+    --Handle shadows depending on shadow behaviour / skilltype
+    if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
+
+        dmg = utils.takeShadows(target, dmg, shadowbehav);
+
+        -- dealt zero damage, so shadows took hit
+        if (dmg == 0) then
+            skill:setMsg(MSG_SHADOW);
+            return shadowbehav;
+        end
+
+    elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
+        target:delStatusEffect(EFFECT_COPY_IMAGE);
+        target:delStatusEffect(EFFECT_BLINK);
+        target:delStatusEffect(EFFECT_THIRD_EYE);
+    end
+
+    --handle Third Eye using shadowbehav as a guide
+    if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+        skill:setMsg(MSG_ANTICIPATE);
+        return 0;
+    end
+
+    if (skilltype == MOBSKILL_PHYSICAL) then
+        dmg = target:physicalDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_MAGICAL) then
+        dmg = target:magicDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_BREATH) then
+        dmg = target:breathDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_RANGED) then
+        dmg = target:rangedDmgTaken(dmg);
+    end
+
+    --handling phalanx
+    dmg = dmg - target:getMod(MOD_PHALANX);
+
+    if (dmg < 0) then
+        return 0;
+    end
+
+    dmg = utils.stoneskin(target, dmg);
+
+    if (dmg > 0) then
+        target:wakeUp();
+        target:updateEnmityFromDamage(mob,dmg);
+    end
+
+    return dmg;
+end
