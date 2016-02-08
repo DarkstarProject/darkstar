@@ -37,6 +37,7 @@ public:
 protected:
     bool PetIsHealing();
 
+    virtual void Tick(time_point tick) override;
     virtual void HandleEnmity() override {}
     virtual bool TryDeaggro() override;
     virtual void TryLink() override {}
