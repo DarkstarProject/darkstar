@@ -38,9 +38,10 @@ CPetController::CPetController(CPetEntity* _PPet) :
 
 void CPetController::Tick(time_point tick)
 {
-    if (PPet->isCharmed && PPet->charmTime > tick)
+    if (PPet->isCharmed && tick > PPet->charmTime)
     {
         petutils::DespawnPet(PPet->PMaster);
+        return;
     }
     CAIController::Tick(tick);
 }
