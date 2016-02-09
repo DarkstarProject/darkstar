@@ -268,13 +268,13 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- values taken from Shell scripts by Tenjou.
             local def = 0;
             if (player:getMainLvl() < 37) then -- before shell 2, give shell 1
-                def = 24;
+                def = 9;
             elseif (player:getMainLvl() < 57) then -- after s2, before s3
-                def = 36;
+                def = 14;
             elseif (player:getMainLvl() < 68) then -- after s3, before s4
-                def = 48;
+                def = 19;
             else -- after s4
-                def = 56;
+                def = 22;
             end
             -- Add shell
             player:addStatusEffect(EFFECT_SHELL, def, 0, 1800);
