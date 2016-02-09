@@ -1062,51 +1062,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //    this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_JA));
             //}
 
-            // Handle Accomplice / Collabrator..
-            if (PAbility->getID() == ABILITY_ACCOMPLICE || PAbility->getID() == ABILITY_COLLABORATOR)
-            {
-                // Find all mobs within 8.5 radius of the target..
-                //#TODO: use spawned mob list to avoid iterating 400 mobs
-                //for (uint32 x = 0; x < 0x400; x++)
-                //{
-                //    CBaseEntity* PTarget = PTarget->GetEntity(x, TYPE_MOB);
-                //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
-                //    {
-                //        if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, 8.5f))
-                //        {
-                //            CMobEntity* PTargetMob = (CMobEntity*)PTarget;
-                //            if (PTargetMob->PEnmityContainer->HasTargetID(PTarget->id))
-                //                battleutils::TransferEnmity(this, PTarget, PTargetMob, (PAbility->getID() == ABILITY_ACCOMPLICE) ? 50 : 25);
-                //        }
-                //    }
-                //}
-            }
-
             //#TODO: move these 3 BST abilities to scripts
-            //if (PAbility->getID() == ABILITY_SNARL)
-            //{
-            //    //Snarl
-            //    CBattleEntity* PTarget = (CBattleEntity*)PTarget->PBattleAI->GetBattleTarget();
-
-            //    if (PTarget != nullptr)
-            //    {
-            //        switch (PTarget->objtype)
-            //        {
-            //            case TYPE_MOB:
-            //                ((CMobEntity*)PTarget)->PEnmityContainer->LowerEnmityByPercent(this, 100, PTarget);
-            //                this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, 528));  //528 - The <player> uses .. Enmity is transferred to the <player>'s pet.
-            //                break;
-
-            //            case TYPE_PET:
-            //                // pets have no emnity container
-            //                break;
-
-            //            case TYPE_PC:
-            //                PTarget->PBattleAI->SetBattleTarget(PTarget); //Change target. in prevision of future PvP
-            //                break;
-            //        }
-            //    }
-            //}
             //if (PAbility->getID() == ABILITY_GAUGE) {
             //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB) {
             //        if (((CMobEntity*)PTarget)->m_Type & MOBTYPE_NOTORIOUS ||
