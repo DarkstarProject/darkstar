@@ -1222,10 +1222,9 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
             {
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
+                // Check for bind breaking
+                battleutils::BindBreakCheck(this, PTarget);
             }
-
-            // Check for bind breaking
-            battleutils::BindBreakCheck(this, PTarget);
 
             if (msg == 0)
             {

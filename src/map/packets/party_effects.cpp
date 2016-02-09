@@ -35,8 +35,6 @@ CPartyEffectsPacket::CPartyEffectsPacket()
 void CPartyEffectsPacket::AddMemberEffects(CBattleEntity* PMember)
 {
     DSP_DEBUG_BREAK_IF(members == 5);
-    //TODO: figure out why 5 members crashes client
-    if (members == 4) return;
     ref<uint32>(members * 0x30 + 0x04) = PMember->id;
     ref<uint16>(members * 0x30 + 0x08) = PMember->targid;
     ref<uint64>(members * 0x30 + 0x0C) = PMember->StatusEffectContainer->m_Flags;

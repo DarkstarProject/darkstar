@@ -19,7 +19,7 @@ function onMobSpawn(mob)
     mob:addStatusEffect(EFFECT_PHALANX,35,0,180);
     mob:addStatusEffect(EFFECT_STONESKIN,350,0,300);
     mob:addStatusEffect(EFFECT_PROTECT,175,0,1800);
-    mob:addStatusEffect(EFFECT_SHELL,62,0,1800);
+    mob:addStatusEffect(EFFECT_SHELL,24,0,1800);
 end;
 
 -----------------------------------

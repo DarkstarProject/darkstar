@@ -372,7 +372,6 @@ const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 	return  &merits[index];
 }
 
-
 /************************************************************************
 *                                                                       *
 *  Получаем указатель на искомый merit                                  *
@@ -381,9 +380,11 @@ const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 
 Merit_t* CMeritPoints::GetMeritPointer(MERIT_TYPE merit)
 {
-    DSP_DEBUG_BREAK_IF(!IsMeritExist(merit));
-
-    return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+    if (IsMeritExist(merit))
+    {
+        return &Categories[GetMeritCategory(merit)][GetMeritID(merit)];
+    }
+    return nullptr;
 }
 
 /************************************************************************
@@ -459,13 +460,16 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
     Merit_t* PMerit = GetMeritPointer(merit);
 	uint8 meritValue = 0;
 
-    if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
-        meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
+    if (PMerit)
+    {
+        if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
+            meritValue = dsp_min(PMerit->count, cap[PChar->GetMLevel()]);
 
-    if (PMerit->catid == 8 && PChar->GetMLevel() < 96)
-        meritValue = 0;
+        if (PMerit->catid == 8 && PChar->GetMLevel() < 96)
+            meritValue = 0;
 
-	meritValue *= PMerit->value;
+        meritValue *= PMerit->value;
+    }
 
 	return meritValue;
 }

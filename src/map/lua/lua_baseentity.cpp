@@ -4892,6 +4892,20 @@ inline int32 CLuaBaseEntity::addCorsairRoll(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::doWildCard(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    battleutils::DoWildCardToEntity(static_cast<CCharEntity*>(m_PBaseEntity), static_cast<CCharEntity*>(PEntity->m_PBaseEntity), lua_tointeger(L, 2));
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::hasPartyJob(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -5278,7 +5292,7 @@ inline int32 CLuaBaseEntity::changeJob(lua_State *L)
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);
     charutils::CheckValidEquipment(PChar);
-    PChar->PRecastContainer->ResetAbilities();
+    PChar->PRecastContainer->ChangeJob();
     charutils::BuildingCharAbilityTable(PChar);
     charutils::BuildingCharTraitsTable(PChar);
 
@@ -6176,10 +6190,26 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
     uint32 amount = lua_tointeger(L, 2);
 
-    if (PEntity != nullptr &&
-        m_PBaseEntity->objtype == TYPE_PC)
+    auto PCurer = [&]() -> CCharEntity*
     {
-        battleutils::GenerateCureEnmity((CCharEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
+        if (m_PBaseEntity->objtype == TYPE_PC)
+        {
+            return static_cast<CCharEntity*>(m_PBaseEntity);
+        }
+        else if (m_PBaseEntity->objtype == TYPE_PET)
+        {
+            auto PMaster = static_cast<CPetEntity*>(m_PBaseEntity)->PMaster;
+            if (PMaster->objtype == TYPE_PC)
+            {
+                return static_cast<CCharEntity*>(PMaster);
+            }
+        }
+        return nullptr;
+    }();
+
+    if (PEntity != nullptr && PCurer)
+    {
+        battleutils::GenerateCureEnmity(PCurer, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
     }
 
     return 0;
@@ -6203,14 +6233,14 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
     if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)
     {
-        if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
+        if (PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
             ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
         }
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
-        if (PEntity != nullptr && damage > 0 &&
+        if (PEntity->GetBaseEntity() && damage > 0 &&
             PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
             ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
@@ -8339,16 +8369,19 @@ inline int32 CLuaBaseEntity::getTrickAttackChar(lua_State *L)
     if (PMob != nullptr)
     {
         CBattleEntity* taTarget = battleutils::getAvailableTrickAttackChar((CBattleEntity*)m_PBaseEntity, PMob);
-        lua_getglobal(L, CLuaBaseEntity::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, taTarget);
-        lua_pcall(L, 2, 1, 0);
-        return 1;
-        return 1;
+        if (taTarget)
+        {
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, taTarget);
+            lua_pcall(L, 2, 1, 0);
+            return 1;
+        }
     }
-    return 0;
+    lua_pushnil(L);
+    return 1;
 }
 
 
@@ -8590,7 +8623,7 @@ inline int32 CLuaBaseEntity::resetLocalVars(lua_State* L)
 inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
@@ -8602,7 +8635,7 @@ inline int32 CLuaBaseEntity::setSpellList(lua_State* L)
 inline int32 CLuaBaseEntity::hasSpellList(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET);
 
     lua_pushboolean(L, ((CMobEntity*)m_PBaseEntity)->SpellContainer->HasSpells());
 
@@ -8745,6 +8778,17 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
         lua_pushboolean(L, false);
     }
 
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getGender(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    lua_pushnumber(L, PChar->GetGender());
     return 1;
 }
 
@@ -10274,6 +10318,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGender),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
@@ -10449,6 +10494,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,stealStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addBardSong),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCorsairRoll),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,doWildCard),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCorsairEffect),

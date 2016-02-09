@@ -44,7 +44,7 @@ function onMobSpawn(mob)
     elseif mob:getMainLvl() > 40 then healingbreath = 626
     elseif mob:getMainLvl() > 20 then healingbreath = 625 end
     if wyvernType == WYVERN_DEFENSIVE then
-        master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, skillid)
+        master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local party = player:getParty()
             for _,member in ipairs(party) do
                 if member:hasStatusEffect(EFFECT_POISON) then
@@ -56,7 +56,7 @@ function onMobSpawn(mob)
                 elseif member:hasStatusEffect(EFFECT_PARALYSIS) and player:getPet():getMainLvl() > 40 then
                     player:getPet():useJobAbility(629, member)
                     break
-                elseif (member:hasStatusEffect(EFFECT_CURSE) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
+                elseif (member:hasStatusEffect(EFFECT_CURSE_I) or member:hasStatusEffect(EFFECT_DOOM)) and player:getPet():getMainLvl() > 60 then
                     player:getPet():useJobAbility(637, member)
                     break
                 elseif (member:hasStatusEffect(EFFECT_DISEASE) or member:hasStatusEffect(EFFECT_PLAGUE)) and player:getPet():getMainLvl() > 80 then
@@ -66,7 +66,7 @@ function onMobSpawn(mob)
             end
         end);
         if (master:getSubJob() ~= JOB_SMN) then
-            master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, spell, action)
+            master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
                 -- check master first!
                 local threshold = 33;
                 local head = player:getEquipID(SLOT_HEAD)
@@ -75,12 +75,29 @@ function onMobSpawn(mob)
             end);
         end
     elseif wyvernType == WYVERN_OFFENSIVE or wyvernType == WYVERN_MULTI then
-        master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, skillid)
-            -- do elemental breath
+        master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
+            local weaknessTargetChance = 75
+            local head = player:getEquipID(SLOT_HEAD)
+            local breaths = {};
+            if head == 12519 or head == 15238 or head == 27676 or head == 27697 then weaknessTargetChance = 100 end
+            if math.random(100) <= weaknessTargetChance then
+                local weakness = 0
+                for mod = 0, 5 do
+                    if target:getMod(MOD_FIREDEF + mod) < target:getMod(MOD_FIREDEF + weakness) then
+                        breaths = {}
+                        table.insert(breaths, 630 + mod)
+                    elseif target:getMod(MOD_FIREDEF + mod) == target:getMod(MOD_FIREDEF + weakness) then
+                        table.insert(breaths, 630 + mod)
+                    end
+                end
+            else
+                breaths = {630, 631, 632, 633, 634, 635}
+            end
+            player:getPet():useJobAbility(breaths[math.random(#breaths)], target)
         end);
     end
     if wyvernType == WYVERN_MULTI then
-        master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, spell, action)
+        master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
             -- check master first!
             local threshold = 25;
             local head = player:getEquipID(SLOT_HEAD)
