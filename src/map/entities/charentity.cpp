@@ -1137,18 +1137,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //        }
             //    }
             //}
-            //if (PAbility->getID() == ABILITY_REWARD)
-            //{
-            //    this->PPet->UpdateHealth();
-            //    this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, value, MSGBASIC_USES_RECOVERS_HP));
-
-            //    //Reward gives enmity to the pet and not the Beastmaster.
-            //    CBattleEntity* PTarget = PPet->PBattleAI->GetBattleTarget();
-            //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
-            //    {
-            //        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromCure(this->PPet, this->PPet->GetMLevel(), value, false);
-            //    }
-            //}
 
             state.ApplyEnmity();
         }

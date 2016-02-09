@@ -6190,10 +6190,26 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
     uint32 amount = lua_tointeger(L, 2);
 
-    if (PEntity != nullptr &&
-        m_PBaseEntity->objtype == TYPE_PC)
+    auto PCurer = [&]() -> CCharEntity*
     {
-        battleutils::GenerateCureEnmity((CCharEntity*)m_PBaseEntity, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
+        if (m_PBaseEntity->objtype == TYPE_PC)
+        {
+            return static_cast<CCharEntity*>(m_PBaseEntity);
+        }
+        else if (m_PBaseEntity->objtype == TYPE_PET)
+        {
+            auto PMaster = static_cast<CPetEntity*>(m_PBaseEntity)->PMaster;
+            if (PMaster->objtype == TYPE_PC)
+            {
+                return static_cast<CCharEntity*>(PMaster);
+            }
+        }
+        return nullptr;
+    }();
+
+    if (PEntity != nullptr && PCurer)
+    {
+        battleutils::GenerateCureEnmity(PCurer, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
     }
 
     return 0;
