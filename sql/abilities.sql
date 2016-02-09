@@ -24,7 +24,7 @@ CREATE TABLE `abilities` (
   `name` tinytext,
   `job` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `validTarget` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `validTarget` smallint(3) unsigned NOT NULL DEFAULT '0',
   `recastTime` smallint(5) unsigned NOT NULL DEFAULT '0',
   `recastId` smallint(5) unsigned NOT NULL DEFAULT '0',
   `message1` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -112,7 +112,7 @@ INSERT INTO `abilities` VALUES ('58', 'divine_seal', '3', '15', '1', '600', '26'
 INSERT INTO `abilities` VALUES ('59', 'elemental_seal', '4', '15', '1', '600', '38', '0', '0', '80', '2000', '0', '6', '20.0', '0', '1', '80', '576', '0',null);
 INSERT INTO `abilities` VALUES ('60', 'trick_attack', '6', '30', '1', '60', '66', '0', '0', '82', '2000', '0', '6', '20.0', '0', '0', '0', '710', '0',null);
 INSERT INTO `abilities` VALUES ('61', 'weapon_bash', '8', '20', '4', '180', '88', '0', '0', '201', '2000', '0', '3', '4.4', '0', '1', '900', '0', '0',null);
-INSERT INTO `abilities` VALUES ('62', 'reward', '9', '12', '1', '90', '103', '102', '0', '84', '2000', '0', '6', '18.0', '0', '0', '0', '898', '0',null);
+INSERT INTO `abilities` VALUES ('62', 'reward', '9', '12', '257', '90', '103', '102', '0', '84', '2000', '0', '6', '18.0', '0', '0', '0', '898', '0',null);
 INSERT INTO `abilities` VALUES ('63', 'cover', '7', '35', '2', '180', '76', '0', '0', '86', '2000', '0', '6', '20.0', '0', '0', '35', '0', '0',null);
 INSERT INTO `abilities` VALUES ('64', 'spirit_link', '14', '25', '1', '90', '162', '0', '0', '94', '2000', '0', '6', '20.0', '0', '0', '0', '1224', '4',null); -- ROTZ
 INSERT INTO `abilities` VALUES ('66', 'chi_blast', '2', '41', '4', '180', '18', '110', '0', '92', '2000', '0', '6', '20.0', '0', '0', '0', '0', '0',null);
@@ -164,7 +164,7 @@ INSERT INTO `abilities` VALUES ('116', 'dark_shot', '17', '40', '4', '60', '195'
 INSERT INTO `abilities` VALUES ('117', 'random_deal', '17', '50', '1', '1200', '196', '0', '0', '131', '2000', '0', '6', '20.0', '1', '1', '300', '1414', '0','TOAU');
 INSERT INTO `abilities` VALUES ('119', 'overdrive', '18', '0', '1', '3600', '0', '0', '0', '143', '2000', '0', '6', '20.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('120', 'activate', '18', '1', '1', '1200', '205', '0', '0', '83', '2000', '0', '6', '20.0', '0', '1', '80', '1478', '0','TOAU');
-INSERT INTO `abilities` VALUES ('121', 'repair', '18', '15', '1', '180', '206', '0', '0', '83', '2000', '0', '6', '18.0', '0', '0', '0', '1480', '0','TOAU');
+INSERT INTO `abilities` VALUES ('121', 'repair', '18', '15', '257', '180', '206', '0', '0', '83', '2000', '0', '6', '18.0', '0', '0', '0', '1480', '0','TOAU');
 INSERT INTO `abilities` VALUES ('122', 'deploy', '18', '1', '4', '10', '207', '0', '0', '83', '2000', '0', '6', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('123', 'deactivate', '18', '1', '1', '60', '208', '0', '0', '83', '2000', '0', '6', '18.0', '0', '0', '0', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('124', 'retrieve', '18', '10', '1', '10', '209', '0', '0', '83', '2000', '0', '6', '18.0', '0', '0', '0', '0', '0','TOAU');
@@ -252,7 +252,7 @@ INSERT INTO `abilities` VALUES ('205', 'ebullience', '20', '55', '1', '0', '231'
 INSERT INTO `abilities` VALUES ('206', 'manifestation', '20', '40', '1', '0', '231', '0', '0', '180', '2000', '0', '6', '20.0', '0', '1', '80', '0', '32','WOTG');
 INSERT INTO `abilities` VALUES ('207', 'stratagems', '20', '10', '1', '0', '233', '0', '0', '0', '2000', '0', '6', '20.0', '0', '1111', '1111', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('208', 'velocity_shot', '11', '45', '1', '300', '129', '0', '0', '186', '2000', '0', '6', '20.0', '0', '1', '300', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('209', 'snarl', '9', '45', '1', '30', '107', '0', '0', '87', '2000', '0', '6', '20.0', '0', '0', '0', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('209', 'snarl', '9', '45', '257', '30', '107', '0', '0', '87', '2000', '0', '6', '20.0', '0', '0', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('210', 'retaliation', '1', '60', '1', '180', '8', '0', '0', '185', '2000', '0', '6', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('211', 'footwork', '2', '65', '1', '300', '21', '0', '0', '197', '2000', '0', '6', '20.0', '0', '1', '80', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('213', 'pianissimo', '10', '20', '1', '15', '112', '0', '0', '194', '2000', '0', '6', '20.0', '0', '1', '80', '0', '0','WOTG');

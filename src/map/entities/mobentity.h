@@ -162,7 +162,7 @@ public:
     void      PostTick() override;
     float     GetRoamDistance();
     float     GetRoamRate();
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
     virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override {}
     virtual void Die() override;

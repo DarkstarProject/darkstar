@@ -498,7 +498,7 @@ float CMobEntity::GetRoamRate()
     return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }
 
-bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {

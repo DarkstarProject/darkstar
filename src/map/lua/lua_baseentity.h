@@ -299,6 +299,7 @@ public:
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
     int32 resetEnmity(lua_State*);          //resets enmity to player for specificed mob
     int32 lowerEnmity(lua_State*);          //lower enmity to player for specificed mob
+    int32 transferEnmity(lua_State*);
 
     int32 hasImmunity(lua_State*);          // Check if the mob has immunity for a type of spell (list at mobentity.h)
     int32 getBattleTime(lua_State*);        // Get the time in second of the battle

@@ -35,8 +35,6 @@ function onUseAbility(player,target,ability,action)
 
     -- 1st need to get the pet food is equipped in the range slot.
     local rangeObj = player:getEquipID(SLOT_AMMO);
-    target = player:getPet()
-    action:ID(player:getID(), target:getID())
     
     local minimumHealing = 0;
     local totalHealing = 0;

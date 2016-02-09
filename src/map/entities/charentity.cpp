@@ -502,7 +502,7 @@ void CCharEntity::delTrait(CTrait* PTrait)
     charutils::delTrait(this, PTrait->getID());
 }
 
-bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -1571,7 +1571,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)

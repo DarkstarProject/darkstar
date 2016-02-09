@@ -113,7 +113,7 @@ public:
     bool isWithinCone(position_t* pos);
     bool isWithinRange(position_t* pos, float range);
 
-    CBattleEntity* getValidTarget(uint16 actionTargetID, uint8 validTargetFlags);
+    CBattleEntity* getValidTarget(uint16 actionTargetID, uint16 validTargetFlags);
 
     std::vector<CBattleEntity*> m_targets; // contains all found entities
 

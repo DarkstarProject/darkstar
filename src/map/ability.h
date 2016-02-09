@@ -662,7 +662,7 @@ public:
     duration    getCastTime();
     float       getRange();
     uint8       getAOE();
-    uint8       getValidTarget();
+    uint16      getValidTarget();
     uint8       getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
@@ -682,7 +682,7 @@ public:
     void        setCastTime(duration time);
     void        setRange(float range);
     void        setAOE(uint8 aoe);
-    void        setValidTarget(uint8 validTarget);
+    void        setValidTarget(uint16 validTarget);
     void        setAddType(uint8 addtype);
     void        setMessage(uint16 message);
     void        setRecastTime(uint16 recastTime);
@@ -705,7 +705,7 @@ private:
     duration    m_castTime;
     uint8       m_range;
     uint8       m_aoe;
-    uint8       m_validTarget;
+    uint16      m_validTarget;
     uint8       m_addType;
     uint16      m_message;
     uint16      m_recastTime;

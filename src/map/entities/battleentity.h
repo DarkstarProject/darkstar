@@ -337,7 +337,8 @@ enum TARGETTYPE
     TARGET_PLAYER = 0x10,
     TARGET_PLAYER_DEAD = 0x20,
     TARGET_NPC = 0x40,		// скорее всего подразумевается mob, выглядящий как npc и воюющий на стороне персонажа
-    TARGET_PLAYER_PARTY_PIANISSIMO = 0x80
+    TARGET_PLAYER_PARTY_PIANISSIMO = 0x80,
+    TARGET_PET = 0x100
 };
 
 enum SKILLCHAIN_ELEMENT
@@ -566,7 +567,7 @@ public:
     virtual void    addTrait(CTrait*);
     virtual void    delTrait(CTrait*);
 
-    virtual bool    ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags);
+    virtual bool    ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags);
     virtual bool    CanUseSpell(CSpell*);
 
     virtual void    Spawn() override;
@@ -581,7 +582,7 @@ public:
     virtual bool OnAttackError(CAttackState&) { return false; }
     /* Returns whether to call Attack or not (which includes error messages) */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
     virtual void OnEngage(CAttackState&);
     virtual void OnDisengage(CAttackState&);
     /* Casting */

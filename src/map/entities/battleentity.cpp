@@ -1073,7 +1073,7 @@ void CBattleEntity::delTrait(CTrait* PTrait)
     std::remove(TraitList.begin(), TraitList.end(), PTrait);
 }
 
-bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (targetFlags & TARGET_ENEMY)
     {
@@ -1560,7 +1560,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 }
 
 
-CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
     auto PTarget = PAI->TargetFind->getValidTarget(targid, validTargetFlags);
 
