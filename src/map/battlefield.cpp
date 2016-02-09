@@ -36,7 +36,6 @@
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
 #include "enmity_container.h"
-#include "ai/states/despawn_state.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type){
 	m_Type = type;
@@ -343,7 +342,7 @@ void CBattlefield::addNpc(CBaseEntity* PNpc){
 bool CBattlefield::allEnemiesDefeated(){
 	bool allDefeated = true;
 	for(auto&& Condition : m_EnemyVictoryList){
-		if (Condition.MobEntity->PAI->IsCurrentState<CDespawnState>() && Condition.spawned) {
+		if (Condition.MobEntity->isDead() && Condition.spawned) {
 			Condition.killed = true;
 		} else if (Condition.MobEntity->PAI->IsSpawned()){
 			Condition.spawned = true;
