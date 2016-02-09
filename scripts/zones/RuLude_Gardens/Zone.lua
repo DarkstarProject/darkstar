@@ -134,8 +134,6 @@ function onEventFinish(player,csid,option)
         if (option ==1) then
             if (player:getFreeSlotsCount() == 0) then 
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
-                player:completeMission(TOAU,EASTERLY_WINDS);
-                player:addMission(TOAU,WESTERLY_WINDS);
             else
                 player:addItem(2184,10);
                 player:messageSpecial(ITEM_OBTAINED,2184);
