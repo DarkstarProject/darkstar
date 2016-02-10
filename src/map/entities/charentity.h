@@ -301,8 +301,6 @@ public:
 
     bool			  getWeaponSkillKill();
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
-    bool			  getMijinGakure();
-    void			  setMijinGakure(bool isMijinGakure);
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
 
@@ -375,7 +373,6 @@ private:
     CItemContainer*   m_Mogsafe2;
 
     bool			m_isWeaponSkillKill;
-    bool			m_isMijinGakure;
     bool            m_isStyleLocked;
     bool			m_reloadParty;
 

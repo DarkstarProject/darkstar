@@ -160,7 +160,6 @@ CCharEntity::CCharEntity()
     MeritMode = false;
 
     m_isWeaponSkillKill = false;
-    m_isMijinGakure = false;
     m_isStyleLocked = false;
 
     BazaarID.clean();
@@ -373,16 +372,6 @@ bool CCharEntity::getWeaponSkillKill()
 void CCharEntity::setWeaponSkillKill(bool isWeaponSkillKill)
 {
     m_isWeaponSkillKill = isWeaponSkillKill;
-}
-
-bool CCharEntity::getMijinGakure()
-{
-    return m_isMijinGakure;
-}
-
-void CCharEntity::setMijinGakure(bool isMijinGakure)
-{
-    m_isMijinGakure = isMijinGakure;
 }
 
 bool CCharEntity::getStyleLocked()
@@ -1020,19 +1009,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.param = -value;
             }
 
-            //#TODO: set the HP from script
-            //if (PAbility->getID() == ABILITY_MIJIN_GAKURE)
-            //{
-            //    this->setMijinGakure(true);
-            //    this->health.hp = 0;
-            //    charutils::UpdateHealth(this);
-            //    this->loc.zone->PushPacket(this, CHAR_INRANGE, new CActionPacket(this));
-            //}
-
-            /* TODO: Handle post-Lv. 75 genkai job abilities from support jobs that
-            * deal damage points and defeats a monster while Blade of Darkness and/or
-            * Blade of Death quests are active.
-            */
 
             //#TODO: move all of these to script!
             // Shadow Bind
@@ -1395,7 +1371,7 @@ void CCharEntity::OnRaise()
         }
 
         //add weakness effect (75% reduction in HP/MP)
-        if (!getMijinGakure())
+        if (GetLocalVar("MijinGakure") == 0)
         {
             CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS, EFFECT_WEAKNESS, weaknessLvl, 0, 300);
             StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
@@ -1414,13 +1390,13 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (getMijinGakure()) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
+            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (getMijinGakure()) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
+            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
@@ -1449,12 +1425,12 @@ void CCharEntity::OnRaise()
 
         uint16 xpReturned = ceil(expLost * ratioReturned);
 
-        if (!getMijinGakure() && GetMLevel() >= map_config.exp_loss_level)
+        if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {
             charutils::AddExperiencePoints(true, this, this, xpReturned);
         }
 
-        setMijinGakure(false);
+        SetLocalVar("MijinGakure", 0);
 
         m_hasRaise = 0;
     }
@@ -1567,7 +1543,7 @@ void CCharEntity::Die()
     //influence for conquest system
     conquest::LoseInfluencePoints(this);
 
-    if (!this->getMijinGakure())
+    if (GetLocalVar("MijinGakure") == 0)
         charutils::DelExperiencePoints(this, map_config.exp_retain);
 }
 
