@@ -71,8 +71,11 @@ function onMobFight(mob,target)
         end
     else
         -- second phase AI: Implode every 9 seconds
-        if (mob:getBattleTime() % 9 == 0) then
+        local lastImplodeTime = mob:getLocalVar("lastImplodeTime");
+        -- second phase AI: Implode every 9 seconds
+        if (mob:getBattleTime() - lastImplodeTime > 9) then
             mob:useMobAbility(669);
+            mob:setLocalVar("lastImplodeTime", mob:getBattleTime());
         end
     end
 end;
