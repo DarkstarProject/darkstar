@@ -951,7 +951,7 @@ function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHit
     finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
     if (params.overrideCE and params.overrideVE) then
-        target:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
+        defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
     else
         local enmityMult = params.enmityMult or 1
         defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
