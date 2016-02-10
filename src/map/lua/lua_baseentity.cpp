@@ -8203,18 +8203,16 @@ inline int32 CLuaBaseEntity::checkDistance(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::checkBaseExp(lua_State *L)
+inline int32 CLuaBaseEntity::getBaseExp(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
 
-    bool isbaseexp = false;
     uint32 baseexp = charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel());
-    if (baseexp != 0) isbaseexp = true;
 
-    lua_pushboolean(L, isbaseexp);
+    lua_pushinteger(L, baseexp);
     return 1;
 }
 
@@ -10683,7 +10681,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToSpecialBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToSpecialBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkBaseExp),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
