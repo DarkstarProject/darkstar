@@ -471,6 +471,11 @@ int32 CBattleEntity::addHP(int32 hp)
         updatemask |= UPDATE_HP;
     }
 
+    if (health.hp == 0 && m_unkillable)
+    {
+        health.hp = 1;
+    }
+
     return abs(hp);
 }
 
