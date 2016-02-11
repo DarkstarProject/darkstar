@@ -4127,7 +4127,7 @@ namespace battleutils
                 }
                 else
                 {
-                    ShowError("battleutils::ClaimMob Mob being claimed by non-player\n");
+                    DSP_DEBUG_BREAK_IF(true);
                 }
             }
 
