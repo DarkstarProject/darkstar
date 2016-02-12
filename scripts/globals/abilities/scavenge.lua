@@ -68,7 +68,7 @@ function onUseAbility(player, target, ability, action)
                 action:additionalEffect(playerID, 1);
                 action:addEffectParam(playerID, arrowsToReturn);
             end;
-         player:setLocalVar("ArrowsUsed", 0);
+        player:setLocalVar("ArrowsUsed", 0);
         return arrowID;
         end;
     end;
