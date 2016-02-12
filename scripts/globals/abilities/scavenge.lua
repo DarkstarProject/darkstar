@@ -56,23 +56,20 @@ function onUseAbility(player, target, ability, action)
         else
             if (arrowsToReturn > 99) then
                 arrowsToReturn = 99;
-            end
+            end;
 
             local arrowID = math.floor(player:getLocalVar("ArrowsUsed") / 10000);
             player:addItem(arrowID, arrowsToReturn);
             
             if (arrowsToReturn == 1) then
                 action:messageID(playerID,140);
-                action:param(playerID, arrowID);
             else
                 action:messageID(playerID, 674);
                 action:additionalEffect(playerID, 1);
                 action:addEffectParam(playerID, arrowsToReturn);
-                action:param(playerID, arrowID);
             end;
+         player:setLocalVar("ArrowsUsed", 0);
+        return arrowID;
         end;
-        
-        -- Reset use count
-        player:setLocalVar("ArrowsUsed", 0);
-    end
+    end;
 end;
