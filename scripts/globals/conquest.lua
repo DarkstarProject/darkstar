@@ -989,7 +989,7 @@ switch (region): caseof {
   ---------------------------------
     --print("VOLLBOW");
 
-    local Salimardi = 17240469;
+    local Salimardi = 17240472;
 
     npc  = {
     --
