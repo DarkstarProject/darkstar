@@ -36,6 +36,7 @@
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
 #include "enmity_container.h"
+#include "ai/states/death_state.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type){
 	m_Type = type;
@@ -89,6 +90,10 @@ uint16 CBattlefield::getLootId(){
 
 time_point CBattlefield::getStartTime(){
 	return m_StartTime;
+}
+
+time_point CBattlefield::getWinTime(){
+	return m_WinTime;
 }
 
 time_point CBattlefield::getDeadTime(){
@@ -324,7 +329,7 @@ void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition){
 	PMob->PBCNM = this;
 	if (condition & CONDITION_WIN_REQUIREMENT)
 	{
-		MobVictoryCondition_t mobCondition = {PMob, false, false};
+		MobVictoryCondition_t mobCondition = {PMob, false};
 		m_EnemyVictoryList.push_back(mobCondition);
 	}
     // TODO: move dynamis/limbus shit to a subclass (this is just ridiculous)
@@ -342,10 +347,8 @@ void CBattlefield::addNpc(CBaseEntity* PNpc){
 bool CBattlefield::allEnemiesDefeated(){
 	bool allDefeated = true;
 	for(auto&& Condition : m_EnemyVictoryList){
-		if (Condition.MobEntity->isDead() && Condition.spawned) {
+		if (Condition.MobEntity->PAI->IsCurrentState<CDeathState>()) {
 			Condition.killed = true;
-		} else if (Condition.MobEntity->PAI->IsSpawned()){
-			Condition.spawned = true;
 		}
 
 		if(Condition.killed == false){

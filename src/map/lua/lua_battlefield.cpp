@@ -92,7 +92,7 @@ inline int32 CLuaBattlefield::getBcnmID(lua_State* L)
 
 inline int32 CLuaBattlefield::getTimeInside(lua_State* L) {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-    uint32 duration = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->lastTick - m_PLuaBattlefield->getStartTime()).count();
+    uint32 duration = std::chrono::duration_cast<std::chrono::seconds>(m_PLuaBattlefield->getWinTime() - m_PLuaBattlefield->getStartTime()).count();
     lua_pushinteger(L, duration);
     return 1;
 }
