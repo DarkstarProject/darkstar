@@ -873,7 +873,16 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             meritRecastReduction = PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), this);
         }
 
-        action.recast = (PAbility->getRecastTime() - meritRecastReduction);
+        auto charge = ability::GetCharge(this, PAbility->getRecastId());
+        if (charge)
+        {
+            action.recast = charge->chargeTime;
+        }
+        else
+        {
+            action.recast = PAbility->getRecastTime();
+        }
+        action.recast -= meritRecastReduction;
 
         if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
         {
