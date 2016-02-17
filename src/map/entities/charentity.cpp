@@ -897,7 +897,10 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
         {
-            if (this->getMod(MOD_BP_DELAY) > 15) {
+            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+                action.recast = 0;
+            }
+            else if (this->getMod(MOD_BP_DELAY) > 15) {
                 action.recast -= 15;
             }
             else {
@@ -952,7 +955,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                     }
                 }
                 else {
-                    addMP(-PAbility->getAnimationID()); // TODO: ...
+                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+                        addMP(-PAbility->getAnimationID() * 1.5);
+                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    }
+                    else {
+                        addMP(-PAbility->getAnimationID()); // TODO: ...
+                    }
                 }
                 //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
                 if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
