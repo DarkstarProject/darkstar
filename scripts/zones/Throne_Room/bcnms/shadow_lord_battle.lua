@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
             player:setVar("MissionStatus",4);
         end
         if (option == 1) then
-            player:startEvent(0x06);
+            player:startEvent(0x07);
         else
             -- You will be transported back to the entrance of Castle Zvahl Baileys
             player:setPos(378.222,-12,-20.299,125,0xA1);
