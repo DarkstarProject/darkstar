@@ -25,8 +25,9 @@ function onSpellCast(caster,target,spell)
     local regen = math.floor(skill / 7) + 1;
     local refresh = math.floor(skill / 100) + 1;
     local haste = math.floor(skill/(500/256));
+    local duration = 90;
     
-    target:addStatusEffect(EFFECT_EMBRAVA,regen,0,180,0,refresh,haste);
+    target:addStatusEffect(EFFECT_EMBRAVA,regen,0,duration,0,refresh,haste);
         
     return EFFECT_EMBRAVA;
 end;
