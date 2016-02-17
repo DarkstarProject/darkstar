@@ -130,7 +130,7 @@ Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, ui
             {
                 recast->TimeStamp = time(nullptr);
             }
-            recast->RecastTime += recast->chargeTime;
+            recast->RecastTime += duration;
         }
         return recast;
     }

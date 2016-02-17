@@ -46,6 +46,7 @@ public:
         return m_PLuaAction;
     }
 
+    int32 ID(lua_State*);
     int32 recast(lua_State*);
     int32 actionID(lua_State*);
     int32 param(lua_State*);

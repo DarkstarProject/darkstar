@@ -167,12 +167,12 @@ ACTIONTYPE CAbility::getActionType()
     return m_actionType;
 }
 
-void CAbility::setValidTarget(uint8 validTarget)
+void CAbility::setValidTarget(uint16 validTarget)
 {
     m_validTarget = validTarget;
 }
 
-uint8 CAbility::getValidTarget()
+uint16 CAbility::getValidTarget()
 {
     return m_validTarget;
 }

@@ -160,7 +160,6 @@ CCharEntity::CCharEntity()
     MeritMode = false;
 
     m_isWeaponSkillKill = false;
-    m_isMijinGakure = false;
     m_isStyleLocked = false;
 
     BazaarID.clean();
@@ -375,16 +374,6 @@ void CCharEntity::setWeaponSkillKill(bool isWeaponSkillKill)
     m_isWeaponSkillKill = isWeaponSkillKill;
 }
 
-bool CCharEntity::getMijinGakure()
-{
-    return m_isMijinGakure;
-}
-
-void CCharEntity::setMijinGakure(bool isMijinGakure)
-{
-    m_isMijinGakure = isMijinGakure;
-}
-
 bool CCharEntity::getStyleLocked()
 {
     return m_isStyleLocked;
@@ -502,7 +491,7 @@ void CCharEntity::delTrait(CTrait* PTrait)
     charutils::delTrait(this, PTrait->getID());
 }
 
-bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -829,7 +818,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     {
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
-    PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PWeaponSkill->getID());
+    PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PBattleTarget, PWeaponSkill->getID());
 }
 
 void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
@@ -884,7 +873,16 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             meritRecastReduction = PMeritPoints->GetMeritValue((MERIT_TYPE)PAbility->getMeritModID(), this);
         }
 
-        action.recast = (PAbility->getRecastTime() - meritRecastReduction);
+        auto charge = ability::GetCharge(this, PAbility->getRecastId());
+        if (charge)
+        {
+            action.recast = charge->chargeTime;
+        }
+        else
+        {
+            action.recast = PAbility->getRecastTime();
+        }
+        action.recast -= meritRecastReduction;
 
         if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
         {
@@ -899,7 +897,10 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
         {
-            if (this->getMod(MOD_BP_DELAY) > 15) {
+            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+                action.recast = 0;
+            }
+            else if (this->getMod(MOD_BP_DELAY) > 15) {
                 action.recast -= 15;
             }
             else {
@@ -954,7 +955,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                     }
                 }
                 else {
-                    addMP(-PAbility->getAnimationID()); // TODO: ...
+                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+                        addMP(-PAbility->getAnimationID() * 1.5);
+                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    }
+                    else {
+                        addMP(-PAbility->getAnimationID()); // TODO: ...
+                    }
                 }
                 //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
                 if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
@@ -1020,19 +1027,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.param = -value;
             }
 
-            //#TODO: set the HP from script
-            //if (PAbility->getID() == ABILITY_MIJIN_GAKURE)
-            //{
-            //    this->setMijinGakure(true);
-            //    this->health.hp = 0;
-            //    charutils::UpdateHealth(this);
-            //    this->loc.zone->PushPacket(this, CHAR_INRANGE, new CActionPacket(this));
-            //}
-
-            /* TODO: Handle post-Lv. 75 genkai job abilities from support jobs that
-            * deal damage points and defeats a monster while Blade of Darkness and/or
-            * Blade of Death quests are active.
-            */
 
             //#TODO: move all of these to script!
             // Shadow Bind
@@ -1062,51 +1056,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //    this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, MSGBASIC_USES_JA));
             //}
 
-            // Handle Accomplice / Collabrator..
-            if (PAbility->getID() == ABILITY_ACCOMPLICE || PAbility->getID() == ABILITY_COLLABORATOR)
-            {
-                // Find all mobs within 8.5 radius of the target..
-                //#TODO: use spawned mob list to avoid iterating 400 mobs
-                //for (uint32 x = 0; x < 0x400; x++)
-                //{
-                //    CBaseEntity* PTarget = PTarget->GetEntity(x, TYPE_MOB);
-                //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
-                //    {
-                //        if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, 8.5f))
-                //        {
-                //            CMobEntity* PTargetMob = (CMobEntity*)PTarget;
-                //            if (PTargetMob->PEnmityContainer->HasTargetID(PTarget->id))
-                //                battleutils::TransferEnmity(this, PTarget, PTargetMob, (PAbility->getID() == ABILITY_ACCOMPLICE) ? 50 : 25);
-                //        }
-                //    }
-                //}
-            }
-
             //#TODO: move these 3 BST abilities to scripts
-            //if (PAbility->getID() == ABILITY_SNARL)
-            //{
-            //    //Snarl
-            //    CBattleEntity* PTarget = (CBattleEntity*)PTarget->PBattleAI->GetBattleTarget();
-
-            //    if (PTarget != nullptr)
-            //    {
-            //        switch (PTarget->objtype)
-            //        {
-            //            case TYPE_MOB:
-            //                ((CMobEntity*)PTarget)->PEnmityContainer->LowerEnmityByPercent(this, 100, PTarget);
-            //                this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 0, 528));  //528 - The <player> uses .. Enmity is transferred to the <player>'s pet.
-            //                break;
-
-            //            case TYPE_PET:
-            //                // pets have no emnity container
-            //                break;
-
-            //            case TYPE_PC:
-            //                PTarget->PBattleAI->SetBattleTarget(PTarget); //Change target. in prevision of future PvP
-            //                break;
-            //        }
-            //    }
-            //}
             //if (PAbility->getID() == ABILITY_GAUGE) {
             //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB) {
             //        if (((CMobEntity*)PTarget)->m_Type & MOBTYPE_NOTORIOUS ||
@@ -1135,18 +1085,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             //                this->pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_SHOULD_BE_ABLE_CHARM));
             //            }
             //        }
-            //    }
-            //}
-            //if (PAbility->getID() == ABILITY_REWARD)
-            //{
-            //    this->PPet->UpdateHealth();
-            //    this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, value, MSGBASIC_USES_RECOVERS_HP));
-
-            //    //Reward gives enmity to the pet and not the Beastmaster.
-            //    CBattleEntity* PTarget = PPet->PBattleAI->GetBattleTarget();
-            //    if (PTarget != nullptr && PTarget->objtype == TYPE_MOB)
-            //    {
-            //        ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmityFromCure(this->PPet, this->PPet->GetMLevel(), value, false);
             //    }
             //}
 
@@ -1451,7 +1389,7 @@ void CCharEntity::OnRaise()
         }
 
         //add weakness effect (75% reduction in HP/MP)
-        if (!getMijinGakure())
+        if (GetLocalVar("MijinGakure") == 0)
         {
             CStatusEffect* PWeaknessEffect = new CStatusEffect(EFFECT_WEAKNESS, EFFECT_WEAKNESS, weaknessLvl, 0, 300);
             StatusEffectContainer->AddStatusEffect(PWeaknessEffect);
@@ -1470,13 +1408,13 @@ void CCharEntity::OnRaise()
         if (m_hasRaise == 1)
         {
             actionTarget.animation = 511;
-            hpReturned = (getMijinGakure()) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
+            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.1;
             ratioReturned = 0.50f * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 2)
         {
             actionTarget.animation = 512;
-            hpReturned = (getMijinGakure()) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
+            hpReturned = (GetLocalVar("MijinGakure") != 0) ? GetMaxHP()*0.5 : GetMaxHP()*0.25;
             ratioReturned = ((GetMLevel() <= 50) ? 0.50f : 0.75f) * (1 - map_config.exp_retain);
         }
         else if (m_hasRaise == 3)
@@ -1505,12 +1443,12 @@ void CCharEntity::OnRaise()
 
         uint16 xpReturned = ceil(expLost * ratioReturned);
 
-        if (!getMijinGakure() && GetMLevel() >= map_config.exp_loss_level)
+        if (GetLocalVar("MijinGakure") == 0 && GetMLevel() >= map_config.exp_loss_level)
         {
             charutils::AddExperiencePoints(true, this, this, xpReturned);
         }
 
-        setMijinGakure(false);
+        SetLocalVar("MijinGakure", 0);
 
         m_hasRaise = 0;
     }
@@ -1583,7 +1521,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)
@@ -1623,7 +1561,7 @@ void CCharEntity::Die()
     //influence for conquest system
     conquest::LoseInfluencePoints(this);
 
-    if (!this->getMijinGakure())
+    if (GetLocalVar("MijinGakure") == 0)
         charutils::DelExperiencePoints(this, map_config.exp_retain);
 }
 

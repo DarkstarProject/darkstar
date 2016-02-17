@@ -3551,7 +3551,7 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGiver, CMobEntity* PMob, uint8 percentToTransfer)
+    void TransferEnmity(CBattleEntity* PHateReceiver, CBattleEntity* PHateGiver, CMobEntity* PMob, uint8 percentToTransfer)
     {
         // Ensure the players have a battle target..
         if (PMob == nullptr || ((CMobEntity*)PMob)->PEnmityContainer == nullptr)
@@ -3559,7 +3559,7 @@ namespace battleutils
 
         //CBaseEntity* PMob = CharHateGiver->GetEntity(mobID, TYPE_MOB);
 
-        ((CMobEntity*)PMob)->PEnmityContainer->LowerEnmityByPercent(CharHateGiver, percentToTransfer, CharHateReceiver);
+        ((CMobEntity*)PMob)->PEnmityContainer->LowerEnmityByPercent(PHateGiver, percentToTransfer, PHateReceiver);
     }
 
 
@@ -4127,7 +4127,7 @@ namespace battleutils
                 }
                 else
                 {
-                    ShowError("battleutils::ClaimMob Mob being claimed by non-player\n");
+                    DSP_DEBUG_BREAK_IF(true);
                 }
             }
 

@@ -57,6 +57,7 @@ class CBattlefieldHandler;
 typedef struct
 {
 	CMobEntity* MobEntity;	// BCNM Target
+	bool spawned;			// whether it has spawned or not
 	bool killed;			// whether it has died or not
 } MobVictoryCondition_t;
 

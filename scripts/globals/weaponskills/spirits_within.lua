@@ -41,7 +41,7 @@ function onUseWeaponSkill(player, target, wsID, TP, primary)
 
     local damage = target:breathDmgTaken(WSC);
     damage = damage * WEAPON_SKILL_POWER
-    damage = defender:takeWeaponskillDamage(attacker, damage, SLOT_MAIN, 1, 0, nil)
+    damage = target:takeWeaponskillDamage(attacker, damage, SLOT_MAIN, 1, 0, nil)
     return 1, 0, false, damage;
 
 end

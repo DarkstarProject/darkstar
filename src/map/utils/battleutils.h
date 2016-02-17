@@ -187,7 +187,7 @@ namespace battleutils
     uint16				getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage);
     uint16				jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 
-    void				TransferEnmity(CBattleEntity* CharHateReceiver, CBattleEntity* CharHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
+    void				TransferEnmity(CBattleEntity* PHateReceiver, CBattleEntity* PHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
     uint8				getBarrageShotCount(CCharEntity* PChar);
     uint8				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
@@ -233,7 +233,7 @@ namespace battleutils
     uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
     uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
     int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
-    bool                RemoveAmmo(CCharEntity*, int quantity = 0);
+    bool                RemoveAmmo(CCharEntity*, int quantity = 1);
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 
     int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, MODIFIER);

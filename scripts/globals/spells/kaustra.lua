@@ -27,12 +27,16 @@ function onSpellCast(caster,target,spell)
     if (skill > 500) then
         skill = 500;
     end
+    if (dINT > 300) then
+        dINT = 300;
+    end
 
     local duration = 3 * (1 + (skill / 11));
     local base = math.floor((math.floor(0.67 * caster:getMainLvl())/10)*(37 + math.floor(0.67*dINT)))
     local resist = applyResistance(caster,spell,target,dINT,DARK_MAGIC_SKILL,0);
     local dmg = base * resist;
     duration = duration * resist;
+    dmg = addBonuses(caster, spell, target, dmg);
     dmg = adjustForTarget(target,dmg,spell:getElement());
     dmg = finalMagicAdjustments(caster,target,spell,dmg);
 

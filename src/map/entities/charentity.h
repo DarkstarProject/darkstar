@@ -301,8 +301,6 @@ public:
 
     bool			  getWeaponSkillKill();
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
-    bool			  getMijinGakure();
-    void			  setMijinGakure(bool isMijinGakure);
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
 
@@ -330,7 +328,7 @@ public:
     virtual void addTrait(CTrait*) override;
     virtual void delTrait(CTrait*) override;
 
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags) override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
     virtual bool CanUseSpell(CSpell*) override;
 
     virtual void Die() override;
@@ -341,7 +339,7 @@ public:
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool OnAttackError(CAttackState&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint8 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
@@ -375,7 +373,6 @@ private:
     CItemContainer*   m_Mogsafe2;
 
     bool			m_isWeaponSkillKill;
-    bool			m_isMijinGakure;
     bool            m_isStyleLocked;
     bool			m_reloadParty;
 

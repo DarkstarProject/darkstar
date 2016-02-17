@@ -20,7 +20,6 @@ function onAbilityCheck(player,target,ability)
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 18731 and id <= 18733 or id == 19185) then
-            player:setBattleSubTarget(player:getPet());
             return 0,0;
         else
             return MSGBASIC_UNABLE_TO_USE_JA,0;

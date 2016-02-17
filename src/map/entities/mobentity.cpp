@@ -498,7 +498,7 @@ float CMobEntity::GetRoamRate()
     return (float)getMobMod(MOBMOD_ROAM_RATE) / 10.0f;
 }
 
-bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint8 targetFlags)
+bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 {
     if (StatusEffectContainer->GetConfrontationEffect() != PInitiator->StatusEffectContainer->GetConfrontationEffect())
     {
@@ -603,7 +603,6 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     auto PSkill = state.GetSkill();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
 
     // store the skill used
     m_UsedSkillIds[PSkill->getID()] = GetMLevel();
@@ -627,7 +626,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
     action.actionid = PSkill->getID();
 
-    if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
+    if (PTarget && PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
     {
         if (PSkill->isAoE())
         {
@@ -651,6 +650,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
         actionTarget_t& actionTarget = actionList.getNewActionTarget();
         actionTarget.animation = PSkill->getID();
+        return;
     }
 
     uint16 actionsLength = PAI->TargetFind->m_targets.size();
@@ -743,6 +743,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                 first = false;
             }
         }
+        PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     }
 }
 

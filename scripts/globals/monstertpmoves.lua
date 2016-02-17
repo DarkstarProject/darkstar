@@ -307,7 +307,14 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     finaldmg = damage * mab * dmgmod;
 
     -- get resistence
-    resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
+    local avatarAccBonus = 0;
+    if (mob:isPet() and mob:getMaster() ~= nil) then
+        local master = mob:getMaster();
+        if (master:getPetID() >= 0 and master:getPetID() <= 20) then -- check to ensure pet is avatar
+            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), JOB_SMN, SUMMONING_SKILL), 0, 200);
+        end
+    end
+    resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),avatarAccBonus,element);
 
     local magicDefense = getElementalDamageReduction(target, element);
 
