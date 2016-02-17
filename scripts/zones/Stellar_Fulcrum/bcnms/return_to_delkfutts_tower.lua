@@ -56,6 +56,10 @@ function onEventFinish(player,csid,option)
             player:addMission(ZILART,ROMAEVE);
             player:setVar("ZilartStatus",0);
         end
+        -- Play last CS if not skipped.
+        if (option == 1) then
+            player:startEvent(17);
+        end
     end
     
 end;
