@@ -1078,8 +1078,8 @@ namespace petutils
 
         // boost stats by 10%
         PPet->addModifier(MOD_ATTP, rate * 100.0f);
-        PPet->addModifier(MOD_ACCP, rate * 100.0f);
-        PPet->addModifier(MOD_EVAP, rate * 100.0f);
+        PPet->addModifier(MOD_ACC, rate * 100.0f);
+        PPet->addModifier(MOD_EVA, rate * 100.0f);
         PPet->addModifier(MOD_DEFP, rate * 100.0f);
 
     }

@@ -6740,8 +6740,7 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
     if (skill > 200) { acc = 200 + (skill - 200)*0.9; }
     acc += PChar->getMod(MOD_RACC);
     acc += PChar->AGI() / 2;
-    acc = ((100 + PChar->getMod(MOD_RACCP)) * acc) / 100 +
-        dsp_min(((100 + PChar->getMod(MOD_FOOD_RACCP)) * acc) / 100, PChar->getMod(MOD_FOOD_RACC_CAP));
+    acc = acc + dsp_min(((100 + PChar->getMod(MOD_FOOD_RACCP)) * acc) / 100, PChar->getMod(MOD_FOOD_RACC_CAP));
 
     lua_pushinteger(L, acc);
     return 1;

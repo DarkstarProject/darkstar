@@ -21,8 +21,6 @@ function onEffectGain(target,effect)
 
     if (effect:getPower() == 2) then
         -- handle double weakness
-        target:addMod(MOD_RATTP,-100);
-        target:addMod(MOD_RACCP,-100);
         target:addMod(MOD_MATT,-999);
     end
 end;
@@ -46,8 +44,6 @@ function onEffectLose(target,effect)
 
     if (effect:getPower() == 2) then
         -- handle double weakness
-        target:delMod(MOD_RATTP,-100);
-        target:delMod(MOD_RACCP,-100);
         target:delMod(MOD_MATT,-999);
     end
 end;

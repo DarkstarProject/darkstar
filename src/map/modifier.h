@@ -113,10 +113,7 @@ enum MODIFIER
 
     MOD_ATTP                      = 62, // % Attack
     MOD_DEFP                      = 63, // % Defense
-    MOD_ACCP                      = 64, // % Accuracy
-    MOD_EVAP                      = 65, // % Evasion
     MOD_RATTP                     = 66, // % Ranged Attack
-    MOD_RACCP                     = 67, // % Ranged Attack Accuracy
 
     MOD_EVA                       = 68, // Evasion
     MOD_RDEF                      = 69, // Ranged Defense
@@ -619,6 +616,9 @@ enum MODIFIER
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
 
+    // MOD_SPARE = 64, // stuff
+    // MOD_SPARE = 65, // stuff
+    // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
