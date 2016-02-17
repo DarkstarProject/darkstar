@@ -155,9 +155,9 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 					}
 				}
 				//handle time remaining prompts (since its useful!) Prompts every minute
-                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
+                auto Tremaining = (tick - PBattlefield->getStartTime());
 				if(Tremaining % 60 == 0s){
-					PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-Tremaining).count()/60);
+					PBattlefield->pushMessageToAllInBcnm(202,std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->getTimeLimit()-Tremaining).count()/60);
 				}
 
 				//handle win conditions
@@ -174,8 +174,24 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 						}
 					}
 					else{
-						ShowDebug("BCNM %i battlefield %i : Winning conditions met. Exiting battlefield.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
-						PBattlefield->winBcnm();
+						// BCNMs that ends before killing mobs exits immediately.
+						if(!PBattlefield->allEnemiesDefeated()){
+							ShowDebug("BCNM %i battlefield %i : Winning conditions met.\n",
+									  PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
+							PBattlefield->winBcnm();
+						}
+						// BCNMs with no treasure chest ends around 7 seconds after winning.
+						else if (!PBattlefield->won()){
+							ShowDebug("BCNM %i battlefield %i : Winning conditions met. Waiting 7 seconds before exiting battlefield.\n",
+									PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
+							PBattlefield->win();
+						} else {
+							if ((tick - PBattlefield->getWinTime()) > 6s){
+								ShowDebug("BCNM %i battlefield %i : Exiting battlefield.\n",
+										  PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
+								PBattlefield->winBcnm();
+							}
+						}
 					}
 				}
 				//handle lose conditions
