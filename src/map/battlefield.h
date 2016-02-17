@@ -57,7 +57,6 @@ class CBattlefieldHandler;
 typedef struct
 {
 	CMobEntity* MobEntity;	// BCNM Target
-	bool spawned;			// whether it has spawned or not
 	bool killed;			// whether it has died or not
 } MobVictoryCondition_t;
 
@@ -80,6 +79,7 @@ public:
 	uint8		getLevelCap();
 	uint16		getLootId();
     time_point		getStartTime();
+	time_point		getWinTime();
     time_point		getDeadTime();
 	uint8		getEntrance();
 
@@ -168,6 +168,7 @@ private:
 	BATTLEFIELDTYPE m_Type;
 	uint8			m_BattlefieldNumber;
 	time_point			m_StartTime;
+	time_point 			m_WinTime;
     time_point			m_AllDeadTime;											// time when every pt member has fallen
 	duration			m_TimeLimit;
 	uint32			m_LootId;
