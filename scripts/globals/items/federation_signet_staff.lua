@@ -19,6 +19,12 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:delStatusEffect(EFFECT_SIGNET);
-    target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
+    if (player:getNation() == WINDURST)
+        if (target:getNation() == WINDURST)
+        target:delStatusEffect(EFFECT_SIGIL);
+        target:delStatusEffect(EFFECT_SANCTION);
+        target:delStatusEffect(EFFECT_SIGNET);
+        target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
+        end;
+    end;
 end;
