@@ -19,12 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if (player:getNation() == SANDORIA)
-        if (target:getNation() == SANDORIA)
-        target:delStatusEffect(EFFECT_SIGIL);
-        target:delStatusEffect(EFFECT_SANCTION);
-        target:delStatusEffect(EFFECT_SIGNET);
-        target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
-        end;
-    end;
+    target:delStatusEffect(EFFECT_SIGIL);
+    target:delStatusEffect(EFFECT_SANCTION);
+    target:delStatusEffect(EFFECT_SIGNET);
+    target:addStatusEffect(EFFECT_SIGNET,0,0,18000);
 end;
