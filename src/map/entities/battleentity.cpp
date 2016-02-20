@@ -563,7 +563,7 @@ uint16 CBattleEntity::ATT()
 uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
 {
     auto PWeakness = StatusEffectContainer->GetStatusEffect(EFFECT_WEAKNESS);
-    if (PWeakness->GetPower() >= 2)
+    if (PWeakness && PWeakness->GetPower() >= 2)
     {
         return 0;
     }
@@ -582,7 +582,7 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
 uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
 {
     auto PWeakness = StatusEffectContainer->GetStatusEffect(EFFECT_WEAKNESS);
-    if (PWeakness->GetPower() >= 2)
+    if (PWeakness && PWeakness->GetPower() >= 2)
     {
         return 0;
     }
