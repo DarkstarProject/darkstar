@@ -15,6 +15,30 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+
+    if ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == 6) then
+
+        local Z=player:getZPos();
+    
+        if (npc:getAnimation() == 9) then    
+            if (Z >= -101) then
+                if (GetMobAction(16814085) == 0) then
+                    local Rand = math.random(1,2); -- estimated 50% success as per the wiki
+                    if (Rand == 1) then -- Spawn Gargoyle
+                        player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); 
+                        SpawnMob(16814085,120):updateClaim(player); -- Gargoyle
+                    else
+                        player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
+                        npc:openDoor(30);
+                    end
+                    player:tradeComplete();
+                else
+                    player:messageSpecial(DOOR_LOCKED);
+                end
+            end
+        end
+    end
+
 end;
 
 -----------------------------------
@@ -30,10 +54,10 @@ function onTrigger(player,npc)
             if (GetMobAction(16814085) == 0) then
                 local Rand = math.random(1,10);
                 if (Rand <=9) then -- Spawn Gargoyle
-                    player:messageSpecial(TRAP_ACTIVATED); 
+                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
                     SpawnMob(16814085,120):updateClaim(player); -- Gargoyle
                 else
-                    player:messageSpecial(TRAP_FAILS);
+                    player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);
                 end    
             else

@@ -39,8 +39,8 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 6);
     target:addMod(MOD_VIT, 5);
-    target:addMod(MOD_ACCP, 16);
-    target:addMod(MOD_RACCP, 16);
+    target:addMod(MOD_FOOD_ACCP, 16);
+    target:addMod(MOD_FOOD_RACCP, 16);
     target:addMod(MOD_SLEEPRES, 5);
 end;
 
@@ -51,7 +51,7 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 6);
     target:delMod(MOD_VIT, 5);
-    target:delMod(MOD_ACCP, 16);
-    target:delMod(MOD_RACCP, 16);
+    target:delMod(MOD_FOOD_ACCP, 16);
+    target:delMod(MOD_FOOD_RACCP, 16);
     target:delMod(MOD_SLEEPRES, 5);
 end;

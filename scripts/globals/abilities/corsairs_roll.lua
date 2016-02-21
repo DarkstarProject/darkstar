@@ -28,13 +28,14 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/ability");
 
 -----------------------------------
 -- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = getCorsairRollEffect(ability:getID());
+    local effectID = EFFECT_CORSAIRS_ROLL;
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
@@ -47,7 +48,16 @@ end;
 -- onUseAbilityRoll
 -----------------------------------
 
-function onUseAbilityRoll(caster,target,ability,total)
+function onUseAbility(caster,target,ability,action)
+    if (caster:getID() == target:getID()) then
+        corsairSetup(caster, ability, action, EFFECT_CORSAIRS_ROLL, JOB_COR);
+    end
+    local total = caster:getLocalVar("corsairRollTotal")
+    return applyRoll(caster,target,ability,action,total)
+end;
+
+
+function applyRoll(caster,target,ability,action,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
     local effectpowers = {10, 11, 11, 12, 20, 13, 15, 16, 8, 17, 24, 6};
     local effectpower = effectpowers[total];
@@ -57,6 +67,9 @@ function onUseAbilityRoll(caster,target,ability,total)
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_CORSAIRS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_EXP_BONUS) == false) then
-        ability:setMsg(423);
+        ability:setMsg(422);
+    elseif total > 11 then
+        ability:setMsg(426);
     end
-end;
+    return total;
+end

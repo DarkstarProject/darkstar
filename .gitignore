@@ -50,6 +50,9 @@ ipch/
 *.vsp
 *.vspx
 
+# Visual Studio Analyzer
+*.lastcodeanalysis*
+
 # Guidance Automation Toolkit
 *.gpState
 

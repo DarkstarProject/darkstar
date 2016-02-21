@@ -36,6 +36,7 @@
 #include "charutils.h"
 #include "../grades.h"
 #include "blueutils.h"
+#include "../party.h"
 #include "../merit.h"
 #include "../modifier.h"
 #include "../spell.h"
@@ -51,7 +52,7 @@ void SetBlueSpell(CCharEntity* PChar, CBlueSpell* PSpell, uint8 slotIndex, bool 
 	if (slotIndex < 20) {
 		if (PSpell != nullptr && PSpell->getID() > 0x200)
         {
-			if (addingSpell) 
+            if (addingSpell)
             {
                 if (!IsSpellSet(PChar, PSpell) && HasEnoughSetPoints(PChar, PSpell, slotIndex))
                 {
@@ -185,8 +186,8 @@ void UnequipAllBlueSpells(CCharEntity* PChar)
 	PChar->pushPacket(new CCharStatsPacket(PChar));
 	charutils::CalculateStats(PChar);
 	PChar->UpdateHealth();
-	PChar->pushPacket(new CCharHealthPacket(PChar));
     SaveSetSpells(PChar);
+    PChar->updatemask |= UPDATE_HP;
 }
 
 bool IsSpellSet(CCharEntity* PChar, CBlueSpell* PSpell)

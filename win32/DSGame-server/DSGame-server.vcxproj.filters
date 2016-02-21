@@ -81,6 +81,12 @@
     <Filter Include="Header Files\common\marshal">
       <UniqueIdentifier>{e12005cb-3c26-42a1-9752-8898f7492816}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ai\controllers">
+      <UniqueIdentifier>{dadf369a-26a2-4af4-9a1e-d99d2739b7d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ai\controllers">
+      <UniqueIdentifier>{f581ed5f-506f-47f2-8ef0-4bc43b6467e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\map\ability.h">
@@ -142,21 +148,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\zone.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_char_gm.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_char_normal.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_general.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_mob_dummy.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_pet_dummy.h">
-      <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\blowfish.h">
       <Filter>Header Files\common</Filter>
@@ -563,9 +554,6 @@
     <ClInclude Include="..\..\src\map\lua\lua_mobskill.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_char_prisoner.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\lua\lua_ability.h">
       <Filter>Header Files\lua</Filter>
     </ClInclude>
@@ -634,9 +622,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\navmesh.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_npc_dummy.h">
-      <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\blue_spell.h">
       <Filter>Header Files</Filter>
@@ -755,9 +740,6 @@
     <ClInclude Include="..\..\src\map\packets\blacklist.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_ultimate_summon.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\dsprand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -806,9 +788,6 @@
     <ClInclude Include="..\..\src\map\packets\macroequipset.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_char_charm.h">
-      <Filter>Header Files\ai</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\map\message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -820,9 +799,6 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\currency2.h">
       <Filter>Header Files\packets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\map\ai\ai_automaton_dummy.h">
-      <Filter>Header Files\ai</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\char_recast.h">
       <Filter>Header Files\packets</Filter>
@@ -838,6 +814,45 @@
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\party_effects.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\helpers\event_handler.h">
+      <Filter>Header Files\ai\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\helpers\action_queue.h">
+      <Filter>Header Files\ai\helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\trigger_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\player_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\ai_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\despawn_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\death_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\raise_state.h">
+      <Filter>Header Files\ai\states</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\pet_controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\ai_container.h">
+      <Filter>Header Files\ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\player_charm_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\states\inactive_state.h">
+      <Filter>Header Files\ai\states</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -897,18 +912,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\zone.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_char_gm.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_general.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_mob_dummy.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_pet_dummy.cpp">
-      <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\common\blowfish.cpp">
       <Filter>Source Files\common</Filter>
@@ -1243,9 +1246,6 @@
     <ClCompile Include="..\..\src\map\packets\auction_house.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_char_normal.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\mobskill.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1284,9 +1284,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_mobskill.cpp">
       <Filter>Source Files\lua</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_char_prisoner.cpp">
-      <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\lua\lua_ability.cpp">
       <Filter>Source Files\lua</Filter>
@@ -1341,9 +1338,6 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\navmesh.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_npc_dummy.cpp">
-      <Filter>Source Files\ai</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\blue_spell.cpp">
       <Filter>Source Files</Filter>
@@ -1411,9 +1405,6 @@
     <ClCompile Include="..\..\src\map\ai\states\magic_state.cpp">
       <Filter>Source Files\ai\states</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\states\state.cpp">
-      <Filter>Source Files\ai\states</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\blue_trait.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1462,9 +1453,6 @@
     <ClCompile Include="..\..\src\map\packets\blacklist.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_ultimate_summon.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1510,9 +1498,6 @@
     <ClCompile Include="..\..\src\map\packets\macroequipset.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_char_charm.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\message.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1525,9 +1510,6 @@
     <ClCompile Include="..\..\src\map\packets\currency2.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\ai\ai_automaton_dummy.cpp">
-      <Filter>Source Files\ai</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\map\packets\char_recast.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
@@ -1539,6 +1521,48 @@
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\party_effects.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\helpers\event_handler.cpp">
+      <Filter>Source Files\ai\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\helpers\action_queue.cpp">
+      <Filter>Source Files\ai\helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\trigger_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\ai_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\player_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\despawn_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\death_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\raise_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\pet_controller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\ai_container.cpp">
+      <Filter>Source Files\ai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\player_charm_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\states\inactive_state.cpp">
+      <Filter>Source Files\ai\states</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

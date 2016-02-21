@@ -65,7 +65,7 @@ function onMobFight(mob, target)
     end;
 
     if (useChainspell == true) then
-        mob:useMobAbility(436); -- Chainspell
+        mob:useMobAbility(692); -- Chainspell
         mob:setMobMod(MOBMOD_GA_CHANCE, 100);
 
     end

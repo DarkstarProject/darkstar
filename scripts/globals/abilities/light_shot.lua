@@ -78,6 +78,7 @@ function onUseAbility(player,target,ability)
         ability:setMsg(323);
     end
 
+    local del = player:delItem(2182, 1) or player:delItem(2974, 1)
     target:updateClaim(player);
     return EFFECT_SLEEP_I;
 end;

@@ -4,7 +4,7 @@
 -- @pos 162.059 -0.859 250.538 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
 -----------------------------------

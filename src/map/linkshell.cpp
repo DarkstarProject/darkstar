@@ -41,6 +41,7 @@
 #include "items/item_linkshell.h"
 #include "utils/jailutils.h"
 #include "map.h"
+#include "item_container.h"
 #include "packets/linkshell_message.h"
 
 /************************************************************************

@@ -5,6 +5,7 @@
 --  Type: Magical
 --
 ---------------------------------------------------
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
@@ -12,18 +13,12 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    -- skillList  54 = Omega
-    -- skillList 727 = Proto-Omega
-    -- skillList 728 = Ultima
-    -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
-    local mobhp = mob:getHPP();
+    local currentForm = mob:getLocalVar("form"); -- Proto-Omega's script sets this.
 
-    if (mobID == 727 and mobhp > 30 and mobhp < 70  ) then -- omega first bipedform
+    if (mob:AnimationSub() == 2 and currentForm == 1) then -- omega first bipedform
         return 0;
-    else
-        return 1;
     end
+    return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)

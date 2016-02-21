@@ -8,12 +8,14 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
     DEVICE_IN_OPERATION = 7226; -- The device appears to be in operation...
             DOOR_LOCKED = 7229; -- The door is locked.
-     ARCH_GLOW_BLUE = 7230; -- The arch above the door is glowing blue...
-    ARCH_GLOW_GREEN = 7231; -- The arch above the door is glowing green...
+         ARCH_GLOW_BLUE = 7230; -- The arch above the door is glowing blue...
+        ARCH_GLOW_GREEN = 7231; -- The arch above the door is glowing green...
        CANNOT_OPEN_SIDE = 7234; -- The door cannot be opened from this side.
          TRAP_ACTIVATED = 7236; -- A trap connected to it has been activated!
              TRAP_FAILS = 7237; -- The trap connected to it fails to activate.
-            HOMEPOINT_SET = 7471; -- Home point set!
+   DISCOVER_DISARM_FAIL = 7238; -- discovers a trap connected to the door, but fails to disarm it!
+DISCOVER_DISARM_SUCCESS = 7239; -- discovers a trap connected to the door and succeeds in disarming it!
+          HOMEPOINT_SET = 7471; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
 CHEST_UNLOCKED = 7458; -- You unlock the chest!

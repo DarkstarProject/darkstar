@@ -268,13 +268,13 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- values taken from Shell scripts by Tenjou.
             local def = 0;
             if (player:getMainLvl() < 37) then -- before shell 2, give shell 1
-                def = 24;
+                def = 9;
             elseif (player:getMainLvl() < 57) then -- after s2, before s3
-                def = 36;
+                def = 14;
             elseif (player:getMainLvl() < 68) then -- after s3, before s4
-                def = 48;
+                def = 19;
             else -- after s4
-                def = 56;
+                def = 22;
             end
             -- Add shell
             player:addStatusEffect(EFFECT_SHELL, def, 0, 1800);
@@ -434,7 +434,7 @@ function checkRegime(player, mob, rid, index)
         return;
     end
 
-    partyType = player:checkSoloPartyAlliance();
+    local partyType = player:checkSoloPartyAlliance();
 
     if (player:checkFovAllianceAllowed() == 1) then
         partyType = 1;
@@ -444,7 +444,7 @@ function checkRegime(player, mob, rid, index)
         -- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
         local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
         
-        if ((partyType < 2 and mob:checkBaseExp() and player:checkDistance(mob) < 100 and difference <= 15) or player:checkFovDistancePenalty() == 0) then
+        if (partyType < 2 and (mob:getBaseExp() > 0 or LOW_LEVEL_REGIME == 1) and difference <= 15 and (player:checkDistance(mob) < 100 or player:checkFovDistancePenalty() == 0)) then
             -- get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);

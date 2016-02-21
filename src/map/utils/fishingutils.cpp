@@ -25,6 +25,9 @@
 
 #include <string.h> 
 
+#include "../universal_container.h"
+#include "../item_container.h"
+
 #include "../lua/luautils.h"
 
 #include "../packets/caught_fish.h"

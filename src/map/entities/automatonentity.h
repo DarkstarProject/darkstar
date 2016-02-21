@@ -58,7 +58,7 @@ class CAutomatonEntity : public CPetEntity
 {
 public:
 	 CAutomatonEntity();
-	~CAutomatonEntity();        	                
+	~CAutomatonEntity();
 
     automaton_equip_t m_Equip;
     std::array<uint8, 8> m_ElementMax;
@@ -82,7 +82,7 @@ public:
     void burdenTick();
     uint8 addBurden(uint8 element, uint8 burden);
 
-    void UpdateEntity() override;
+    void PostTick() override;
 
 private:
     std::array<uint8, 8> m_Burden;

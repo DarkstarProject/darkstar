@@ -113,10 +113,7 @@ enum MODIFIER
 
     MOD_ATTP                      = 62, // % Attack
     MOD_DEFP                      = 63, // % Defense
-    MOD_ACCP                      = 64, // % Accuracy
-    MOD_EVAP                      = 65, // % Evasion
     MOD_RATTP                     = 66, // % Ranged Attack
-    MOD_RACCP                     = 67, // % Ranged Attack Accuracy
 
     MOD_EVA                       = 68, // Evasion
     MOD_RDEF                      = 69, // Ranged Defense
@@ -593,6 +590,7 @@ enum MODIFIER
     MOD_ENH_DRAIN_ASPIR           = 315, // % damage boost to Drain and Aspir
     MOD_AUGMENTS_ABSORB           = 521, // Direct Absorb spell increase while Liberator is equipped (percentage based)
     MOD_AMMO_SWING                = 523, // Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+    MOD_AMMO_SWING_TYPE           = 826, // For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
     MOD_AUGMENTS_CONVERT          = 525, // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
     MOD_AUGMENTS_SA               = 526, // Adds Critical Attack Bonus to Sneak Attack, percentage based.
     MOD_AUGMENTS_TA               = 527, // Adds Critical Attack Bonus to Trick Attack, percentage based.
@@ -613,6 +611,14 @@ enum MODIFIER
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
 
+    // Weaponskill %damage modifiers
+    // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
+    // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
+    MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
+
+    // MOD_SPARE = 64, // stuff
+    // MOD_SPARE = 65, // stuff
+    // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 92, // stuff
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
@@ -622,8 +628,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 570, // stuff
-    // MOD_SPARE = 571, // stuff
+    // MOD_SPARE = 827, // stuff
+    // MOD_SPARE = 828, // stuff
 
 };
 

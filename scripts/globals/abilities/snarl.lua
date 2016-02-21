@@ -19,7 +19,6 @@ function onAbilityCheck(player,target,ability)
         return MSGBASIC_REQUIRES_A_PET,0;
     else
         if ((player:getPet():getTarget() ~= nil) and (player:isJugPet())) then
-            player:setBattleSubTarget(player:getPet());
             return 0,0;
         else
             return MSGBASIC_PET_CANNOT_DO_ACTION,0;
@@ -32,5 +31,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    return 0,0;
+    player:transferEnmity(player:getPet(), 99, 11.5)
 end;

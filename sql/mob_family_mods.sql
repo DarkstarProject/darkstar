@@ -128,26 +128,26 @@ INSERT INTO `mob_family_mods` VALUES (194,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (271,3,50,1);
 INSERT INTO `mob_family_mods` VALUES (135,4,4,1);
 INSERT INTO `mob_family_mods` VALUES (373,16,1,1);
-INSERT INTO `mob_family_mods` VALUES (394,41,732,1);
-INSERT INTO `mob_family_mods` VALUES (394,42,733,1);
+INSERT INTO `mob_family_mods` VALUES (394,41,988,1);
+INSERT INTO `mob_family_mods` VALUES (394,42,989,1);
 INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (236,4,30,1);
 
 -- Adjust magic damage taken
-INSERT INTO `mob_family_mods` VALUES (4,389,-64,0);
-INSERT INTO `mob_family_mods` VALUES (112,389,64,0);
-INSERT INTO `mob_family_mods` VALUES (61,389,-64,0);
-INSERT INTO `mob_family_mods` VALUES (74,389,-64,0);
-INSERT INTO `mob_family_mods` VALUES (358,389,-64,0);
-INSERT INTO `mob_family_mods` VALUES (169,389,-64,0);
-INSERT INTO `mob_family_mods` VALUES (110,389,-32,0);
-INSERT INTO `mob_family_mods` VALUES (122,389,-32,0);
-INSERT INTO `mob_family_mods` VALUES (123,389,-32,0);
-INSERT INTO `mob_family_mods` VALUES (124,389,-32,0);
-INSERT INTO `mob_family_mods` VALUES (175,389,-128,0);
-INSERT INTO `mob_family_mods` VALUES (171,389,-32,0);
+INSERT INTO `mob_family_mods` VALUES (4,389,-25,0);
+INSERT INTO `mob_family_mods` VALUES (112,389,25,0);
+INSERT INTO `mob_family_mods` VALUES (61,389,-25,0);
+INSERT INTO `mob_family_mods` VALUES (74,389,-25,0);
+INSERT INTO `mob_family_mods` VALUES (358,389,-25,0);
+INSERT INTO `mob_family_mods` VALUES (169,389,-25,0);
+INSERT INTO `mob_family_mods` VALUES (110,389,-13,0);
+INSERT INTO `mob_family_mods` VALUES (122,389,-13,0);
+INSERT INTO `mob_family_mods` VALUES (123,389,-13,0);
+INSERT INTO `mob_family_mods` VALUES (124,389,-13,0);
+INSERT INTO `mob_family_mods` VALUES (175,389,-50,0);
+INSERT INTO `mob_family_mods` VALUES (171,389,-13,0);
 
 -- Demons and fomors are somewhat resistant to lullaby
 INSERT INTO `mob_family_mods` VALUES (358,254,25,0);

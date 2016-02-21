@@ -25,7 +25,7 @@ function onMobFight(mob,target)
     if (mob:getLocalVar("2HOUR") == 0) then
         if (mob:getHPP() < mob:getLocalVar("2HGO")) then
             mob:setLocalVar("2HOUR",1);
-            mob:useMobAbility(479);
+            mob:useMobAbility(735);
         end
     end
 end;

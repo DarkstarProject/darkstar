@@ -24,7 +24,7 @@ function onMobFight(mob, target)
         or (astralFlows == 3 and mob:getHPP() <= 20)
         or (astralFlows == 4 and mob:getHPP() <= 1)) then
             mob:setLocalVar("astralflows",astralFlows + 1);
-            mob:useMobAbility(637);
+            mob:useMobAbility(893);
             if (astralFlows >= 5) then
                 mob:setUnkillable(false);
             end

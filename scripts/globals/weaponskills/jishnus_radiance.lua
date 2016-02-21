@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action)
 
     local params = {};
     params.numHits = 3;
@@ -28,13 +28,14 @@ function onUseWeaponSkill(player, target, wsID)
     params.canCrit = true;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
+    params.multiHitfTP = true
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.dex_wsc = 0.8;
     end
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-    damage = damage * WEAPON_SKILL_POWER
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
+    action:speceffect(target:getID(), 8)
     return tpHits, extraHits, criticalHit, damage;
 
 end;

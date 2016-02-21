@@ -126,6 +126,10 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
         skill:setMsg(MSG_MISS);
     end
 
+    if finaldmg > 0 then
+        target:wakeUp()
+    end
+
     returninfo.dmg = finaldmg;
     returninfo.hitslanded = hitslanded;
 

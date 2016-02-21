@@ -866,10 +866,7 @@ MOD_LIGHTRES          = 60
 MOD_DARKRES           = 61
 MOD_ATTP              = 62
 MOD_DEFP              = 63
-MOD_ACCP              = 64
-MOD_EVAP              = 65
 MOD_RATTP             = 66
-MOD_RACCP             = 67
 MOD_EVA               = 68
 MOD_RDEF              = 69
 MOD_REVA              = 70
@@ -1259,6 +1256,7 @@ MOD_ENH_DRAIN_ASPIR           = 315 -- % damage boost to Drain and Aspir
 MOD_TRICK_ATK_AGI             = 520 -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
 MOD_NIN_NUKE_BONUS            = 522 -- magic attack bonus for NIN nukes
 MOD_AMMO_SWING                = 523 -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
+MOD_AMMO_SWING_TYPE           = 826 -- For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
 MOD_ROLL_RANGE                = 528 -- Additional range for COR roll abilities.
 MOD_ENHANCES_REFRESH          = 529 -- "Enhances Refresh" adds +1 per modifier to spell's tick result.
 MOD_NO_SPELL_MP_DEPLETION     = 530 -- % to not deplete MP on spellcast.
@@ -1288,6 +1286,7 @@ MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, perc
 MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
@@ -1301,8 +1300,8 @@ MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. M
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 570, -- stuff
--- MOD_SPARE = 571, -- stuff
+-- MOD_SPARE = 827, -- stuff
+-- MOD_SPARE = 828, -- stuff
 
 ------------------------------------
 -- Merit Definitions
@@ -2129,3 +2128,17 @@ ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
 ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
 ELEVATOR_DAVOI_LIFT                = 3;
 ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
+
+
+------------------------------------
+ -- Item Type
+ -----------------------------------
+ ITEM_BASIC       = 0x00;
+ ITEM_GENERAL     = 0x01;
+ ITEM_USABLE      = 0x02;
+ ITEM_PUPPET      = 0x04;
+ ITEM_ARMOR       = 0x08;
+ ITEM_WEAPON      = 0x10;
+ ITEM_CURRENCY    = 0x20;
+ ITEM_FURNISHING  = 0x40;
+ ITEM_LINKSHELL   = 0x80;

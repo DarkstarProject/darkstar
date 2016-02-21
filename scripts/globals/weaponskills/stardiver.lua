@@ -14,7 +14,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 4;
@@ -29,12 +29,11 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.7 + (player:getMerit(MERIT_STARDIVER) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
-    if damage > 0 and (target:hasStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN) == false) then
+    if (damage > 0 and target:hasStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN) == false) then
         target:addStatusEffect(EFFECT_CRIT_HIT_EVASION_DOWN, 5, 0, 60);
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

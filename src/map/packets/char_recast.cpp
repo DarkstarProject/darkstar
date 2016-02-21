@@ -29,6 +29,7 @@ This file is part of DarkStar-server source code.
 #include "../entities/charentity.h"
 
 #include "char_recast.h"
+#include "../recast_container.h"
 
 
 CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
@@ -40,16 +41,14 @@ CCharRecastPacket::CCharRecastPacket(CCharEntity* PChar)
 
     RecastList_t* RecastList = PChar->PRecastContainer->GetRecastList(RECAST_ABILITY);
 
-    for (uint16 i = 0; i < RecastList->size(); ++i)
+    for (auto&& recast : *RecastList)
     {
-        Recast_t* recast = RecastList->at(i);
+        uint32 recasttime = (recast.RecastTime == 0 ? 0 : ((recast.RecastTime - (time(nullptr) - recast.TimeStamp))));
 
-        uint32 recasttime = (recast->RecastTime == 0 ? 0 : ((recast->RecastTime - (time(nullptr) - recast->TimeStamp))));
-
-        if (recast->ID != 0)
+        if (recast.ID != 0)
         {
             WBUFL(data, (0x0C + count * 8) ) = recasttime;
-            WBUFB(data, (0x0F + count * 8) ) = recast->ID;
+            WBUFB(data, (0x0F + count * 8) ) = recast.ID;
             count++;
         }
         else

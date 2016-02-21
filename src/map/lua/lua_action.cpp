@@ -22,13 +22,14 @@
 */
 
 #include "lua_action.h"
+#include "../packets/action.h"
 
 CLuaAction::CLuaAction(lua_State *L)
 {
-    if (!lua_isnil(L, -1))
+    if (!lua_isnil(L, -1) && !lua_isnil(L, -2))
     {
-        m_PLuaAction = (apAction_t*)(lua_touserdata(L, -1));
-        lua_pop(L, 1);
+        m_PLuaAction = (action_t*)(lua_touserdata(L, 1));
+        lua_pop(L, 2);
     }
     else
     {
@@ -36,50 +37,249 @@ CLuaAction::CLuaAction(lua_State *L)
     }
 }
 
-CLuaAction::CLuaAction(apAction_t* Action)
+CLuaAction::CLuaAction(action_t* Action)
 {
     m_PLuaAction = Action;
 }
 
-inline int32 CLuaAction::setParam(lua_State* L)
+
+int32 CLuaAction::ID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAction == nullptr);
-    m_PLuaAction->param = lua_tointeger(L, -1);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.ActionTargetID = lua_tointeger(L, 2);
+                return 0;
+            }
+        }
+    }
     return 0;
 }
 
-inline int32 CLuaAction::setMessageID(lua_State* L)
+int32 CLuaAction::recast(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAction == nullptr);
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        m_PLuaAction->recast = lua_tointeger(L, 1);
+        return 0;
+    }
+    else
+    {
+        lua_pushinteger(L, m_PLuaAction->recast);
+        return 1;
+    }
+}
 
-    m_PLuaAction->messageID = lua_tointeger(L, -1);
+int32 CLuaAction::actionID(lua_State* L)
+{
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        m_PLuaAction->actionid = lua_tointeger(L, 1);
+        return 0;
+    }
+    else
+    {
+        lua_pushinteger(L, m_PLuaAction->actionid);
+        return 1;
+    }
+}
+
+inline int32 CLuaAction::param(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].param = lua_tointeger(L, 2);
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].param);
+                return 1;
+            }
+        }
+    }
     return 0;
 }
 
-inline int32 CLuaAction::setAdditionalEffect(lua_State* L)
+inline int32 CLuaAction::messageID(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAction == nullptr);
-
-    m_PLuaAction->additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, -1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].messageID = lua_tointeger(L, 2);
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].messageID);
+                return 1;
+            }
+        }
+    }
     return 0;
 }
 
-inline int32 CLuaAction::setAddEffectParam(lua_State* L)
+int32 CLuaAction::animation(lua_State* L)
 {
-    DSP_DEBUG_BREAK_IF(m_PLuaAction == nullptr);
-    m_PLuaAction->addEffectParam = lua_tointeger(L, -1);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].animation = lua_tointeger(L, 2);
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].animation);
+                return 1;
+            }
+        }
+    }
     return 0;
 }
 
+int32 CLuaAction::speceffect(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].speceffect = static_cast<SPECEFFECT>(lua_tointeger(L, 2));
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].speceffect);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int32 CLuaAction::reaction(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].reaction = static_cast<REACTION>(lua_tointeger(L, 2));
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].reaction);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+inline int32 CLuaAction::additionalEffect(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(lua_tointeger(L, 2));
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].additionalEffect);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+inline int32 CLuaAction::addEffectParam(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].addEffectParam = lua_tointeger(L, 2);
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].addEffectParam);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+
+int32 CLuaAction::addEffectMessage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    for (auto&& actionList : m_PLuaAction->actionLists)
+    {
+        if (actionList.ActionTargetID == lua_tointeger(L, 1))
+        {
+            if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+            {
+                actionList.actionTargets[0].addEffectMessage = lua_tointeger(L, 2);
+                return 0;
+            }
+            else
+            {
+                lua_pushinteger(L, actionList.actionTargets[0].addEffectMessage);
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
 
 // Initialize Lua Methods
 const int8 CLuaAction::className[] = "CAction";
 
 Lunar<CLuaAction>::Register_t CLuaAction::methods[] =
 {
-    LUNAR_DECLARE_METHOD(CLuaAction, setParam),
-    LUNAR_DECLARE_METHOD(CLuaAction, setMessageID),
-    LUNAR_DECLARE_METHOD(CLuaAction, setAddEffectParam),
-    LUNAR_DECLARE_METHOD(CLuaAction, setAdditionalEffect),
+    LUNAR_DECLARE_METHOD(CLuaAction, ID),
+    LUNAR_DECLARE_METHOD(CLuaAction, recast),
+    LUNAR_DECLARE_METHOD(CLuaAction, actionID),
+    LUNAR_DECLARE_METHOD(CLuaAction, param),
+    LUNAR_DECLARE_METHOD(CLuaAction, messageID),
+    LUNAR_DECLARE_METHOD(CLuaAction, animation),
+    LUNAR_DECLARE_METHOD(CLuaAction, speceffect),
+    LUNAR_DECLARE_METHOD(CLuaAction, reaction),
+    LUNAR_DECLARE_METHOD(CLuaAction, additionalEffect),
+    LUNAR_DECLARE_METHOD(CLuaAction, addEffectParam),
+    LUNAR_DECLARE_METHOD(CLuaAction, addEffectMessage),
     {nullptr,nullptr}
 };

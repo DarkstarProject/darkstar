@@ -23,14 +23,16 @@ This file is part of DarkStar-server source code.
 
 #include "targetfind.h"
 
+#include <math.h>
 #include "../../entities/charentity.h"
 #include "../../entities/mobentity.h"
 #include "../../packets/action.h"
 #include "../../alliance.h"
-#include <math.h>
 #include "../../../common/mmo.h"
+#include "../../../common/utils.h"
 #include "../../utils/zoneutils.h"
 #include "../../enmity_container.h"
+#include "../../status_effect_container.h"
 
 #include "../../packets/action.h"
 
@@ -447,11 +449,8 @@ bool CTargetFind::isWithinRange(position_t* pos, float range)
     return distance(m_PBattleEntity->loc.p, *pos) <= range;
 }
 
-CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTargetFlags)
+CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint16 validTargetFlags)
 {
-
-    DSP_DEBUG_BREAK_IF(actionTargetID == 0);
-
     CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);
 
     if (PTarget == nullptr)
@@ -459,64 +458,14 @@ CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint8 validTar
         return nullptr;
     }
 
-    if (m_PBattleEntity->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect())
+    if (validTargetFlags & TARGET_PET)
     {
-        return nullptr;
+        return m_PBattleEntity->PPet;
     }
 
-    if (PTarget->objtype == TYPE_PC)
+    if (PTarget->ValidTarget(m_PBattleEntity, validTargetFlags))
     {
-        if ((validTargetFlags & TARGET_SELF) && PTarget->targid == m_PBattleEntity->targid)
-        {
-            return PTarget;
-        }
-        if (validTargetFlags & TARGET_PLAYER)
-        {
-            return PTarget;
-        }
-        if ((validTargetFlags & TARGET_PLAYER_PARTY) && (m_PBattleEntity->PParty != nullptr && m_PBattleEntity->PParty == PTarget->PParty))
-        {
-            return PTarget;
-        }
-        if ((validTargetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) && (m_PBattleEntity->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO)) &&
-            (m_PBattleEntity->PParty != nullptr && m_PBattleEntity->PParty == PTarget->PParty))
-        {
-            return PTarget;
-        }
-        if ((validTargetFlags & TARGET_PLAYER_DEAD) && PTarget->isDead())
-        {
-            return PTarget;
-        }
-        return nullptr;
-    }
-
-	if (PTarget->objtype == TYPE_MOB)
-	{
-		if (validTargetFlags & TARGET_PLAYER_DEAD && ((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_RAISABLE
-			&& PTarget->isDead())
-		{
-			return PTarget;
-		}
-
-        if (validTargetFlags & TARGET_NPC)
-        {
-            if (PTarget->allegiance == m_PBattleEntity->allegiance && (PTarget == m_PBattleEntity ||
-                !(((CMobEntity*)PTarget)->m_Behaviour & BEHAVIOUR_NOHELP)))
-            {
-                return PTarget;
-            }
-        }
-	}
-
-    if (validTargetFlags & TARGET_ENEMY)
-    {
-        if (!PTarget->isDead())
-        {
-            if (PTarget->allegiance == (m_PBattleEntity->allegiance % 2 == 0 ? m_PBattleEntity->allegiance + 1 : m_PBattleEntity->allegiance - 1))
-            {
-                return PTarget;
-            }
-        }
+        return PTarget;
     }
 
     return nullptr;

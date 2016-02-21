@@ -25,7 +25,7 @@
 #include "../../common/timer.h"
 
 #include "lua_statuseffect.h"
-
+#include "../status_effect.h"
 
 //======================================================//
 
@@ -111,7 +111,9 @@ inline int32 CLuaStatusEffect::getStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    lua_pushinteger(L, m_PLuaStatusEffect->GetStartTime());
+    auto time = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetStartTime() - get_server_start_time()).count();
+
+    lua_pushinteger(L, time);
     return 1;
 }
 
@@ -127,13 +129,16 @@ inline int32 CLuaStatusEffect::getLastTick(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    uint32 count = 0;
+    long long total = 0;
 
     if (m_PLuaStatusEffect->GetTickTime() != 0)
     {
-        count = m_PLuaStatusEffect->GetDuration() / m_PLuaStatusEffect->GetTickTime() - (m_PLuaStatusEffect->GetLastTick() - m_PLuaStatusEffect->GetStartTime()) / m_PLuaStatusEffect->GetTickTime();
+        auto total_ticks = m_PLuaStatusEffect->GetDuration() / m_PLuaStatusEffect->GetTickTime();
+        auto elapsed_ticks = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetLastTick() - 
+            m_PLuaStatusEffect->GetStartTime()).count() / m_PLuaStatusEffect->GetTickTime();
+        total = total_ticks - elapsed_ticks;
     }
-    lua_pushinteger(L, count);
+    lua_pushinteger(L, total);
     return 1;
 }
 
@@ -148,9 +153,10 @@ inline int32 CLuaStatusEffect::getTimeRemaining(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
     uint32 remaining = 0;
-    if (m_PLuaStatusEffect->GetStartTime() > 0)
+    if (m_PLuaStatusEffect->GetDuration() > 0)
     {
-        remaining = dsp_max(m_PLuaStatusEffect->GetDuration() - (gettick() - m_PLuaStatusEffect->GetStartTime()), 0);
+        remaining = dsp_max(m_PLuaStatusEffect->GetDuration() - 
+            std::chrono::duration_cast<std::chrono::milliseconds>(server_clock::now() - m_PLuaStatusEffect->GetStartTime()).count(), 0);
     }
 
     lua_pushinteger(L, remaining);
@@ -167,11 +173,12 @@ inline int32 CLuaStatusEffect::getTickCount(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    uint32 count = 0;
+    long long count = 0;
 
     if (m_PLuaStatusEffect->GetTickTime() != 0)
     {
-        count = (m_PLuaStatusEffect->GetLastTick() - m_PLuaStatusEffect->GetStartTime()) / m_PLuaStatusEffect->GetTickTime();
+        count = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaStatusEffect->GetLastTick() - 
+            m_PLuaStatusEffect->GetStartTime()).count() / m_PLuaStatusEffect->GetTickTime();
     }
     lua_pushinteger(L, count);
     return 1;
@@ -261,7 +268,7 @@ inline int32 CLuaStatusEffect::resetStartTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    m_PLuaStatusEffect->SetStartTime(gettick());
+    m_PLuaStatusEffect->SetStartTime(server_clock::now());
     return 0;
 }
 
@@ -271,7 +278,8 @@ inline int32 CLuaStatusEffect::setStartTime(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaStatusEffect->SetStartTime(lua_tointeger(L, 1));
+
+    m_PLuaStatusEffect->SetStartTime(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
     return 0;
 }
 

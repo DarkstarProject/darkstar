@@ -11,10 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    if (effect:getPower()>100) then
-        effect:setPower(50);
-    end
-    target:addMod(MOD_ACCP,effect:getPower());
+    target:addMod(MOD_ACC,effect:getPower());
 end;
 
 -----------------------------------
@@ -37,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostACC_effect_size = effect:getPower();
     if (boostACC_effect_size > 0) then
-        target:delMod(MOD_ACCP,effect:getPower());
+        target:delMod(MOD_ACC,effect:getPower());
     end
 end;

@@ -38,7 +38,7 @@ function onMobWeaponSkill(target, mob, skill)
     mob:lowerEnmity(target, 70);
     
     if (mob:getName() == "Jormungand" and mob:getHPP() <= 30 and mob:actionQueueAbility() == false) then
-        mob:useMobAbility(1040);
+        mob:useMobAbility(1296);
     end
     
     return dispel;

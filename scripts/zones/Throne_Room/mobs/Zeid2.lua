@@ -34,13 +34,13 @@ function onMobFight(mob, target)
 
     if (mob:getHPP() <= mob:getLocalVar("2hourtime")) then
         if (mob:getLocalVar("2hour") == 0) then
-            mob:useMobAbility(439);
+            mob:useMobAbility(695);
             mob:setLocalVar("2hour",1);
         end
     elseif (mob:getHPP() <= 77) then
         if (mob:getTP() >= 100) then
             if ((GetMobAction(shadow1) and GetMobAction(shadow2)) == 0) then
-                mob:useMobAbility(728);
+                mob:useMobAbility(984);
             end
         end
     end

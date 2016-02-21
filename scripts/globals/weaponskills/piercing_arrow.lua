@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -27,7 +27,7 @@ function onUseWeaponSkill(player, target, wsID)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
-    --Defense ignored is 0%, 35%, 50% as per wiki.bluegartr.com
+    -- Defense ignored is 0%, 35%, 50% as per wiki.bluegartr.com
     params.ignoresDef = true;
     params.ignored100 = 0;
     params.ignored200 = 0.35;
@@ -37,8 +37,7 @@ function onUseWeaponSkill(player, target, wsID)
         params.str_wsc = 0.2; params.agi_wsc = 0.5;
     end
 
-    local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-    damage = damage * WEAPON_SKILL_POWER
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     return tpHits, extraHits, criticalHit, damage;
 
 end

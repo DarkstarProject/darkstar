@@ -8,17 +8,16 @@
 -- Not natively available to RNG
 -- Aligned with the ?? Gorget.
 -- Element: Ice
--- Modifiers: DEX 60%  --http://wiki.bluegartr.com/bg/Bora_Axe
+-- Modifiers: DEX 60%  -- http://wiki.bluegartr.com/bg/Bora_Axe
 -- 100%TP    200%TP    300%TP
 -- 1.0        1.0      1.0
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -35,12 +34,11 @@ function onUseWeaponSkill(player, target, wsID)
         params.atkmulti = 1.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
-    if damage > 0 and (target:hasStatusEffect(EFFECT_BIND) == false) then
+    if (damage > 0 and target:hasStatusEffect(EFFECT_BIND) == false) then
         target:addStatusEffect(EFFECT_BIND, 1, 0, 20);
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

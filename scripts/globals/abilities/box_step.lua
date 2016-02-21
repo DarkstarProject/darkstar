@@ -33,7 +33,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
         player:delTP(10);
@@ -180,6 +180,8 @@ function onUseAbility(player,target,ability)
         ability:setMsg(158);
     end
     
-    return effect, getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)), hit;
+    action:animation(target:getID(), getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+    action:speceffect(target:getID(), hit)
+    return effect
     
 end;

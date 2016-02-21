@@ -23,7 +23,7 @@ function onMobFight(mob,target)
     local phase = mob:getLocalVar("battlePhase");
     if (mob:actionQueueEmpty() == true) then
         if (mob:getHPP() < (80 - (phase * 20))) then
-            mob:useMobAbility(1268); -- use Dissipation on phase change
+            mob:useMobAbility(1524); -- use Dissipation on phase change
             phase = phase + 1;
             if (phase == 2) then -- enable Holy II
                 mob:SetMagicCastingEnabled(true);

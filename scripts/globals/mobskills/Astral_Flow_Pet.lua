@@ -50,31 +50,31 @@ function onMobWeaponSkill(target, mob, skill)
 
     if(petFamily == 34 or petFamily == 379) then
         -- carbuncle
-        skillId = 663;
+        skillId = 919;
     elseif(petFamily == 36 or petFamily == 381) then
         -- fenrir
-        skillId = 583;
+        skillId = 839;
     elseif(petFamily == 37 or petFamily == 382) then
         -- garuda
-        skillId = 660;
+        skillId = 916;
     elseif(petFamily == 38 or petFamily == 383) then
         -- ifrit
-        skillId = 657;
+        skillId = 913;
     elseif(petFamily == 40 or petFamily == 384) then
         -- levi
-        skillId = 659;
+        skillId = 915;
     elseif(petFamily == 43 or petFamily == 386) then
         -- ramuh
-        skillId = 662;
+        skillId = 918;
     elseif(petFamily == 44 or petFamily == 387) then
         -- shiva
-        skillId = 661;
+        skillId = 917;
     elseif(petFamily == 45 or petFamily == 388) then
         -- titan
-        skillId = 658;
+        skillId = 914;
     else
         printf("Astral_Flow_Pet couldn't find astral skill for (%d) family", petFamily);
-        skillId = 663;
+        skillId = 919;
     end
 
     -- Astral flow has no effect if pet is inactive

@@ -28,6 +28,10 @@ This file is part of DarkStar-server source code.
 #include "entities/battleentity.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
+#include "modifier.h"
+#include "items/item_weapon.h"
+#include "status_effect_container.h"
+#include "ai/ai_container.h"
 
 #include "time_server.h"
 
@@ -292,6 +296,16 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
                m_LatentEffectList.at(i)->Deactivate();
             }
             break;
+        case LATENT_WEAPON_DRAWN_MP_OVER:
+            if (mp > m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK)
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+            break;
             //case LATENT_MP_UNDER_VISIBLE_GEAR:
             //    {
             //    //TODO: figure out if this is actually right
@@ -402,6 +416,16 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 break;
             case LATENT_MP_OVER:
                 if (m_POwner->health.mp >= m_LatentEffectList.at(i)->GetConditionsValue())
+                {
+                    m_LatentEffectList.at(i)->Activate();
+                }
+                else
+                {
+                    m_LatentEffectList.at(i)->Deactivate();
+                }
+                break;
+            case LATENT_WEAPON_DRAWN_MP_OVER:
+                if (m_POwner->health.mp > m_LatentEffectList.at(i)->GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK)
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }
@@ -1437,7 +1461,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                         CPetEntity* PPet = (CPetEntity*)PMember->PPet;
 
                         if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
-                            PPet->PBattleAI->GetCurrentAction() != ACTION_DESPAWN)
+                            PPet->PAI->IsSpawned())
                         {
                             ActivateLatent = true;
                             break;
@@ -1450,7 +1474,7 @@ void CLatentEffectContainer::CheckLatentsPartyAvatar()
                 CPetEntity* PPet = (CPetEntity*)m_POwner->PPet;
 
                 if (PPet->m_PetID == m_LatentEffectList.at(i)->GetConditionsValue() &&
-                    PPet->PBattleAI->GetCurrentAction() != ACTION_FALL)
+                    !PPet->isDead())
                 {
                     ActivateLatent = true;
                 }

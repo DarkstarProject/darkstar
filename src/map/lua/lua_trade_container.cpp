@@ -25,7 +25,7 @@
 #include "../items/item.h"
 
 #include "lua_trade_container.h"
-
+#include "../trade_container.h"
 
 //======================================================//
 

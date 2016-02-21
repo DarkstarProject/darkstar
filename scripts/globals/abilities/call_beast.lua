@@ -36,4 +36,5 @@ function onUseAbility(player,target,ability)
     end
 
     player:spawnPet(id);
+    player:removeAmmo();
 end;

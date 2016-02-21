@@ -26,8 +26,7 @@
 #include <string.h>
 #include "../../common/timer.h"
 
-#include "../ai/ai_mob_dummy.h"
-#include "../ai/ai_npc_dummy.h"
+#include "../ai/ai_container.h"
 
 #include "../lua/luautils.h"
 
@@ -37,9 +36,11 @@
 #include "../entities/npcentity.h"
 #include "zoneutils.h"
 #include "mobutils.h"
+#include "../items/item_weapon.h"
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../zone_instance.h"
+#include "../mob_modifier.h"
 
 
 std::map<uint16, CZone*> g_PZoneList;   // глобальный массив указателей на игровые зоны
@@ -85,7 +86,7 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
             PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
             PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
             // ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(respawnTime), PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
         }
         else
         {
@@ -481,13 +482,6 @@ void LoadMOBList()
                 PMob->HPscale = Sql_GetFloatData(SqlHandle, 53);
                 PMob->MPscale = Sql_GetFloatData(SqlHandle, 54);
 
-                PMob->PBattleAI = new CAIMobDummy(PMob);
-
-                if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-                {
-                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                }
-
                 // Check if we should be looking up scripts for this mob
                 PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 55);
 
@@ -518,6 +512,15 @@ void LoadMOBList()
             luautils::OnMobInitialize(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
+
+            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+            {
+                PMob->Spawn();
+            }
+            else
+            {
+                PMob->PAI->Despawn();
+            }
         });
     });
 
@@ -560,8 +563,7 @@ void LoadMOBList()
                 // pet is always spawned by master
                 PPet->m_AllowRespawn = false;
                 PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
-                PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-                PPet->SetDespawnTimer(0);
+                PPet->SetDespawnTime(0s);
 
                 PMaster->PPet = PPet;
                 PPet->PMaster = PMaster;
@@ -645,8 +647,6 @@ void LoadZoneList()
 
     for (auto PZone : g_PZoneList)
     {
-        PZone.second->ZoneServer(-1);
-
         if (PZone.second->GetIP() != 0)
             luautils::OnZoneInitialise(PZone.second->GetID());
     }

@@ -23,16 +23,20 @@
 
 #include "attackround.h"
 #include "packets/inventory_finish.h"
-
+#include "items/item_weapon.h"
+#include "status_effect_container.h"
+#include "ai/ai_container.h"
+#include "mob_modifier.h"
 
 /************************************************************************
 *																		*
 *  Constructor.															*
 *																		*
 ************************************************************************/
-CAttackRound::CAttackRound(CBattleEntity* attacker)
+CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
 {
     m_attacker = attacker;
+    m_defender = defender;
     m_kickAttackOccured = false;
     m_sataOccured = false;
     m_subWeaponType = 0;
@@ -43,16 +47,13 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
     }
 
     // Grab a trick attack assistant.
-    m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->PBattleAI->GetBattleTarget());
+    m_taEntity = battleutils::getAvailableTrickAttackChar(attacker, attacker->GetBattleTarget());
 
     // Build main weapon attacks.
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
-    if ((m_subWeaponType > 0 && m_subWeaponType < 4))
-    {
-        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
-    }
+
 
     if (IsH2H())
     {
@@ -61,6 +62,11 @@ CAttackRound::CAttackRound(CBattleEntity* attacker)
 
         // Build kick attacks.
         CreateKickAttacks();
+    }
+    else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
+        attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD))
+    {
+        CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
 
     // Set the first attack flag
@@ -120,7 +126,7 @@ CAttack CAttackRound::GetCurrentAttack()
 ************************************************************************/
 void CAttackRound::SetSATA(bool value)
 {
-    m_sataOccured = value; 
+    m_sataOccured = value;
 }
 
 /************************************************************************
@@ -130,7 +136,7 @@ void CAttackRound::SetSATA(bool value)
 ************************************************************************/
 bool CAttackRound::GetSATAOccured()
 {
-    return m_sataOccured; 
+    return m_sataOccured;
 }
 
 /************************************************************************
@@ -164,7 +170,7 @@ void CAttackRound::AddAttackSwing(PHYSICAL_ATTACK_TYPE type, PHYSICAL_ATTACK_DIR
     {
         for (uint8 i = 0; i < count; ++i)
         {
-            CAttack attack(m_attacker, type, direction, this);
+            CAttack attack(m_attacker, m_defender, type, direction, this);
             m_attackSwings.push_back(attack);
 
             if (m_attackSwings.size() == MAX_ATTACKS)
@@ -218,9 +224,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // TODO: Quadruple attack merits when SE release them.
     }
 
-    quadAttack = dsp_cap(quadAttack,0,100);
-    doubleAttack = dsp_cap(doubleAttack,0,100);
-    tripleAttack = dsp_cap(tripleAttack,0,100);
+    quadAttack = dsp_cap(quadAttack, 0, 100);
+    doubleAttack = dsp_cap(doubleAttack, 0, 100);
+    tripleAttack = dsp_cap(tripleAttack, 0, 100);
 
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
@@ -231,10 +237,10 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     }
     else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
         AddAttackSwing(QUAD_ATTACK, direction, 3);
-    
+
     else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
         AddAttackSwing(TRIPLE_ATTACK, direction, 2);
-    
+
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(DOUBLE_ATTACK, direction, 1);
 
@@ -244,21 +250,47 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
         CItemArmor* PAmmo = PChar->getEquip(SLOT_AMMO);
+        CItemArmor* PMain = PChar->getEquip(SLOT_MAIN);
+        CItemArmor* PSub = PChar->getEquip(SLOT_SUB);
         uint8 slot = PChar->equip[SLOT_AMMO];
         uint8 loc = PChar->equipLoc[SLOT_AMMO];
-        if (dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING))
+        uint8 ammoCount = 0;
+
+        // Handedness check, checking mod of the weapon for the purposes of level scaling
+        if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 &&
+            dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
-            // Add swing, then subtract an ammo item, unequip if there's one left.
             AddAttackSwing(ATTACK_NORMAL, direction, 1);
-            if (PAmmo->getQuantity() == 1)
+            ammoCount += 1;
+        }
+        else
+        {
+            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 &&
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            {
+                AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
+                ammoCount += 1;
+            }
+            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 &&
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            {
+                AddAttackSwing(ATTACK_NORMAL, LEFTATTACK, 1);
+                ammoCount += 1;
+            }
+        }
+
+        if (PAmmo != nullptr)
+        {
+            if (PAmmo->getQuantity() == ammoCount)
             {
                 charutils::UnequipItem(PChar, SLOT_AMMO);
                 charutils::SaveCharEquip(PChar);
             }
-            charutils::UpdateItem(PChar, loc, slot, -1);
+            charutils::UpdateItem(PChar, loc, slot, -ammoCount);
             PChar->pushPacket(new CInventoryFinishPacket());
         }
     }
+
 
     // TODO: Possible Lua function for the nitty gritty stuff below.
 
@@ -278,7 +310,7 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK); 
+        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {

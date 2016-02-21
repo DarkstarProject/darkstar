@@ -19,7 +19,7 @@ function onMobSkillCheck(target,mob,skill)
     local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
     local mobhp = mob:getHPP();
 
-    if ((mobID == 54 and mobhp < 26or (mobID == 727 and mob:AnimationSub() == 1)) then
+    if ((skillList == 54 and mobhp < 26) or (skillList == 727 and mob:AnimationSub() == 1)) then
         return 0;
     else
         return 1;

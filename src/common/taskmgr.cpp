@@ -37,7 +37,7 @@ CTaskMgr* CTaskMgr::getInstance()
 	return _instance;
 }
 
-CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, size_t InitTick, void *InitData,TASKTYPE InitType,TaskFunc_t InitFunc,size_t InitInterval)
+CTaskMgr::CTask *CTaskMgr::AddTask(std::string InitName, time_point InitTick, void *InitData,TASKTYPE InitType,TaskFunc_t InitFunc,duration InitInterval)
 {
 	return AddTask( new CTask(InitName,InitTick,InitData,InitType,InitFunc,InitInterval) );
 }
@@ -53,29 +53,29 @@ void CTaskMgr::RemoveTask(std::string TaskName)
 	//empty method
 }
 
-uint32 CTaskMgr::DoTimer(uint32 tick)
+duration CTaskMgr::DoTimer(time_point tick)
 {
-	int32 diff = 1000; 
+	duration diff = 1s; 
 
 	while( !m_TaskList.empty() )
 	{
 		CTask * PTask = m_TaskList.top();
 		diff = PTask->m_tick - tick;
 
-		if( diff > 0 ) break; // no more expired timers to process
+		if( diff > 0s ) break; // no more expired timers to process
 
 		m_TaskList.pop();
 
 		if( PTask->m_func )
 		{
-			PTask->m_func(( diff < -1000 ? tick : PTask->m_tick),PTask);
+			PTask->m_func(( diff < -1s ? tick : PTask->m_tick),PTask);
 		}
 
 		switch( PTask->m_type )
 		{
 			case TASK_INTERVAL:
 			{
-				PTask->m_tick = PTask->m_interval + (diff < - 1000 ? tick : PTask->m_tick);
+				PTask->m_tick = PTask->m_interval + (diff < - 1s ? tick : PTask->m_tick);
 				m_TaskList.push(PTask);
 			}
 				break;
@@ -87,7 +87,7 @@ uint32 CTaskMgr::DoTimer(uint32 tick)
 			}
 				break;
 		}
-		diff = dsp_cap(diff, 50, 1000);
+		diff = dsp_cap(diff, 50ms, 1000ms);
 	}
 	return diff;
 }

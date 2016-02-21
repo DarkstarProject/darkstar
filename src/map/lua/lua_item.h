@@ -27,9 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../../common/cbasetypes.h"
 #include "../../common/lua/lunar.h"
 
-#include "../items/item.h"
-
-
+class CItem;
 class CLuaItem
 {
     CItem* m_PLuaItem;
@@ -70,6 +68,8 @@ public:
 
     int32 getAugment(lua_State*);           // get the augment id and power in slot
     //int32 setAugment(lua_State*);           // set the augment id and power in slot
+
+    int32 getSkillType(lua_State*);         // get skill type
 };
 
 #endif

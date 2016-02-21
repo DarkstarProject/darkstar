@@ -214,21 +214,7 @@ uint16 CMobSkill::getMsg()
 
 uint16 CMobSkill::getMsgForAction()
 {
-  uint16 id = getID();
-    uint16 messageid = 256 + id;
-    uint8 flag = getFlag();
-    if (flag == SKILLFLAG_WS)
-    {
-        // Fomor weaponskills
-        // the actual message is a player ability
-        // messageid for 3825 should be 241
-        // so 3825 - 3584 = 241, etc
-        if (id >= 3825)
-            messageid = id - 3584;
-        else
-            messageid = id;
-    }
-    return messageid;
+    return getID();
 }
 
 uint16 CMobSkill::getAoEMsg()

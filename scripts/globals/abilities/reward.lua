@@ -20,7 +20,6 @@ function onAbilityCheck(player,target,ability)
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 17016 and id <= 17023) then
-            player:setBattleSubTarget(player:getPet());
             return 0,0;
         else
             return MSGBASIC_MUST_HAVE_FOOD,0;
@@ -32,7 +31,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
 
     -- 1st need to get the pet food is equipped in the range slot.
     local rangeObj = player:getEquipID(SLOT_AMMO);
@@ -166,6 +165,9 @@ function onUseAbility(player,target,ability)
 
     pet:delStatusEffect(EFFECT_REGEN);
     pet:addStatusEffect(EFFECT_REGEN,regenAmount,3,regenTime); -- 3 = tick, each 3 seconds.
+    player:removeAmmo();
+
+    pet:updateEnmityFromCure(pet, totalHealing);
     
     return totalHealing;
 end;

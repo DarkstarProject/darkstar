@@ -25,7 +25,7 @@
 
 #include "shop_menu.h"
 #include "../entities/charentity.h"
-
+#include "../trade_container.h"
 
 CShopMenuPacket::CShopMenuPacket(CCharEntity * PChar) 
 {

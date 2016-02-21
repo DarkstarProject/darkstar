@@ -29,5 +29,5 @@ function onMobWeaponSkill(target, mob, skill)
     end;
 
     skill:setMsg(MSG_SELF_HEAL);
-    return MobHealMove(mob, (statusHeal * (effectCount) + baseHeal);
+    return MobHealMove(mob, statusHeal * effectCount + baseHeal);
 end;

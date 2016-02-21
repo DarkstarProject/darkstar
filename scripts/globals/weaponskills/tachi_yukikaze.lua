@@ -18,7 +18,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -34,12 +34,11 @@ function onUseWeaponSkill(player, target, wsID)
         params.atkmulti = 1.5;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
-    if damage > 0 and (target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
+    if (damage > 0 and target:hasStatusEffect(EFFECT_BLINDNESS) == false) then
         target:addStatusEffect(EFFECT_BLINDNESS, 25, 0, 60);
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

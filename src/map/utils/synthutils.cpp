@@ -38,36 +38,17 @@
 #include "../packets/synth_message.h"
 #include "../packets/synth_result.h"
 
+#include "../item_container.h"
+#include "../map.h"
+#include "../trade_container.h"
+#include "../vana_time.h"
+
 #include "charutils.h"
 #include "itemutils.h"
-#include "../map.h"
 #include "synthutils.h"
-#include "../vana_time.h"
 #include "zoneutils.h"
 
 //#define _DSP_SYNTH_DEBUG_MESSAGES_ // включаем отладочные сообщения
-
-enum SYNTHESIS_ELEMENT
-{
-	ELEMENT_FIRE		= 0,
-	ELEMENT_EARTH		= 1,
-	ELEMENT_WATER		= 2,
-	ELEMENT_WIND		= 3,
-	ELEMENT_ICE			= 4,
-	ELEMENT_LIGHTNING	= 5,
-	ELEMENT_LIGHT		= 6,
-	ELEMENT_DARK		= 7
-};
-
-enum SYNTHESIS_RESULT
-{
-	SYNTHESIS_FAIL		= 0,
-	SYNTHESIS_SUCCESS	= 1,
-	SYNTHESIS_HQ		= 2,
-	SYNTHESIS_HQ2		= 3,
-	SYNTHESIS_HQ3		= 4
-};
-
 
 namespace synthutils
 {
@@ -391,12 +372,12 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				{
 					if(mainID != skillID)
 					    break;
-					
+
                     random = dsprand::GetRandomNumber(1.);
-					
+
 					switch(hqtier)
 					{
-						//case 5:  chance = 0.700; break; 
+						//case 5:  chance = 0.700; break;
 						//Removed - HQ rate caps at 50%
 						case 4:  chance = 0.500; break;
 						case 3:  chance = 0.300; break;
@@ -404,7 +385,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 						case 1:  chance = 0.015; break;
 						default: chance = 0.000; break;
 					}
-					
+
 					if(chance > 0)
 					{
 						chance *= 1.0 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
@@ -419,14 +400,14 @@ uint8 calcSynthResult(CCharEntity* PChar)
 						else if (WeekDay == DARKSDAY)
 							chance *= 1.0 + ((double)1/3);
 					}
-					
+
 					if(chance > 0.500)
 					    chance = 0.500;
-					
+
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
 					#endif
-					
+
 					if(chance < random)
 						break;
 					result += 1;
@@ -512,7 +493,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		{
 			continue;
 		}
-		
+
 		uint16 ModID = 0;
 		switch (skillID)
 		{
@@ -736,7 +717,7 @@ int32 doSynthFail(CCharEntity* PChar)
 
     if(PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
 		PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_FAIL));
-	
+
     PChar->pushPacket(new CSynthMessagePacket(PChar, SYNTH_FAIL, 29695));
 
 

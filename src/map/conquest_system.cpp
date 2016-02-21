@@ -30,6 +30,7 @@
 #include "packets/conquest_map.h"
 
 #include "lua/luautils.h"
+#include "latent_effect_container.h"
 
 /************************************************************************
 *                                                                       *
@@ -85,6 +86,9 @@ namespace conquest
             Sql_GetIntData(SqlHandle, 3),
         };
 
+        if (influences[nation] == 5000)
+            return;
+
         auto lost = 0;
         for (auto i = 0; i < 4; ++i)
         {
@@ -93,7 +97,7 @@ namespace conquest
                 continue;
             }
 
-            auto loss = std::min<int>(points * influences[i] / static_cast<float>(5000 - influences[nation]), influences[i]);
+            auto loss = std::min<int>(points * influences[i] / 5000 - influences[nation], influences[i]);
             influences[i] -= loss;
             lost += loss;
         }
@@ -444,7 +448,7 @@ namespace conquest
 
     uint8 GetAlliance(uint8 sandoria, uint8 bastok, uint8 windurst)
     {
-        if ((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9|| 
+        if ((sandoria > (bastok + windurst) && sandoria > bastok && sandoria > windurst) && sandoria > 9||
             (bastok > (sandoria + windurst) && bastok > sandoria && bastok > windurst) && bastok > 9||
             (windurst > (sandoria + bastok) && windurst > bastok && windurst > sandoria) && windurst > 9)
         {

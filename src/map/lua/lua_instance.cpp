@@ -22,12 +22,13 @@ This file is part of DarkStar-server source code.
 */
 
 #include "../../common/showmsg.h"
+#include "../../common/timer.h"
 
 #include "lua_instance.h"
 
 #include "lua_baseentity.h"
 #include "luautils.h"
-
+#include "../instance.h"
 #include "../utils/mobutils.h"
 
 
@@ -161,8 +162,10 @@ inline int32 CLuaInstance::getPets(lua_State* L)
 inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+    
+    auto limit = std::chrono::duration_cast<std::chrono::seconds>( m_PLuaInstance->GetTimeLimit()).count();
 
-    lua_pushinteger(L, m_PLuaInstance->GetTimeLimit());
+    lua_pushinteger(L, limit);
 
     return 1;
 }
@@ -193,7 +196,9 @@ inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
-    lua_pushinteger(L, m_PLuaInstance->GetLastTimeUpdate());
+    auto count = std::chrono::duration_cast<std::chrono::milliseconds>(get_server_start_time() - m_PLuaInstance->GetLastTimeUpdate()).count();
+
+    lua_pushinteger(L, count);
 
     return 1;
 }
@@ -211,7 +216,9 @@ inline int32 CLuaInstance::getWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
-    lua_pushinteger(L, m_PLuaInstance->GetWipeTime());
+    auto count = std::chrono::duration_cast<std::chrono::milliseconds>(get_server_start_time() - m_PLuaInstance->GetWipeTime()).count();
+
+    lua_pushinteger(L, count);
 
     return 1;
 }
@@ -271,7 +278,7 @@ inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetLastTimeUpdate(lua_tointeger(L, 1));
+    m_PLuaInstance->SetLastTimeUpdate(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
 
     return 0;
 }
@@ -291,7 +298,7 @@ inline int32 CLuaInstance::setWipeTime(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetWipeTime(lua_tointeger(L, 1));
+    m_PLuaInstance->SetWipeTime(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
 
     return 0;
 }

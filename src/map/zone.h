@@ -496,9 +496,9 @@ class CZoneEntities;
 typedef std::list<CRegion*> regionList_t;
 typedef std::list<zoneLine_t*> zoneLineList_t;
 
-typedef std::map<uint16,zoneWeather_t> weatherVector_t;
+typedef std::map<uint16, zoneWeather_t> weatherVector_t;
 
-typedef std::map<uint16,CBaseEntity*> EntityList_t;
+typedef std::map<uint16, CBaseEntity*> EntityList_t;
 
 int32 zone_update_weather(uint32 tick, CTaskMgr::CTask *PTask);
 
@@ -557,11 +557,11 @@ public:
     virtual void    TOTDChange(TIMETYPE TOTD);                                      // обработка реакции мира на смену времени суток
     virtual void    PushPacket(CBaseEntity*, GLOBAL_MESSAGE_TYPE, CBasicPacket*);   // отправляем глобальный пакет в пределах зоны
 
-    uint32          m_RegionCheckTime;                                              // время последней проверки регионов
+    time_point      m_RegionCheckTime;                                              // время последней проверки регионов
     weatherVector_t m_WeatherVector;                                                // вероятность появления каждого типа погоды
 
-    virtual void    ZoneServer(uint32 tick);
-    virtual void    ZoneServerRegion(uint32 tick);
+    virtual void    ZoneServer(time_point tick);
+    virtual void    ZoneServerRegion(time_point tick);
     void            CheckRegions(CCharEntity* PChar);
 
     virtual void    ForEachChar(std::function<void(CCharEntity*)> func);

@@ -31,5 +31,7 @@ function onUseAbility(player,target,ability)
 
     target:delHP(dmg);
 
+    player:setLocalVar("MijinGakure", 1)
+    player:setHP(0)
     return dmg;
 end;

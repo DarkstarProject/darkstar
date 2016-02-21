@@ -15,7 +15,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local params = {};
     params.numHits = 1;
@@ -31,14 +31,13 @@ function onUseWeaponSkill(player, target, wsID)
         params.dex_wsc = 0.8;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
     -- EFFECT_WEIGHT power value is equal to lead breath as per bg-wiki: http://www.bg-wiki.com/bg/Rudra%27s_Storm
 
-    if damage > 0 and (target:hasStatusEffect(EFFECT_WEIGHT) == false) then
+    if (damage > 0 and target:hasStatusEffect(EFFECT_WEIGHT) == false) then
         target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
     end
-    damage = damage * WEAPON_SKILL_POWER
     return tpHits, extraHits, criticalHit, damage;
 
 end

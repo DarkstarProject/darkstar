@@ -37,5 +37,6 @@ function onUseAbility(player,target,ability)
     end
 
     target:updateClaim(player);
+    player:removeAmmo();
     return typeEffect;
 end;

@@ -40,7 +40,7 @@ TELEPORT_LUFAISE       = 29;
 -- Teleports
 -----------------------------------
 function toLeader(player) -- No logical order in this file, so tossing my entry at top! SO THERE!
-    local leader = GetPlayerByName(player:getPartyLeader());
+    local leader = player:getPartyLeader();
     local X = leader:getXPos();
     local Y = leader:getYPos();
     local Z = leader:getZPos();

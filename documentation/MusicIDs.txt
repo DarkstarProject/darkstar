@@ -102,7 +102,7 @@
   99    Unused ID                   Unused ID
  100    Unused ID                   Unused ID
  101    Battle Theme                Battle (solo, outdoor, )
- 102    Battle in the Dungeon #2    Battle (party, dungeon, original zones) 
+ 102    Battle in the Dungeon #2    Battle (party, dungeon, original zones)
  103    Battle Theme #2             Battle (party, outdoor, )
  104    A Road Once Travelled       CS
  105    Mhaura                      Mhaura
