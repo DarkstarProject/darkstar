@@ -629,16 +629,15 @@ void CAIController::DoRoamTick(time_point tick)
         return;
     }
 
-    // wait my time
+    if (PMob->m_roamFlags & ROAMFLAG_IGNORE)
+    {
+        // don't claim me if I ignore
+        PMob->m_OwnerID.clean();
+    }
+
+    //skip roaming if waiting
     if (m_Tick >= m_WaitTime)
     {
-
-        if (PMob->m_roamFlags & ROAMFLAG_IGNORE)
-        {
-            // don't claim me if I ignore
-            PMob->m_OwnerID.clean();
-        }
-
         // don't aggro a little bit after I just disengaged
         PMob->m_neutral = PMob->CanBeNeutral() && m_Tick <= m_NeutralTime + std::chrono::milliseconds(MOB_NEUTRAL_TIME);
 
@@ -837,14 +836,7 @@ void CAIController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
-        if (POwner->look.size == MODEL_EQUIPED)
-        {
-            POwner->PAI->Internal_WeaponSkill(targid, wsid);
-        }
-        else
-        {
-            POwner->PAI->Internal_MobSkill(targid, wsid);
-        }
+        POwner->PAI->Internal_MobSkill(targid, wsid);
     }
 }
 
