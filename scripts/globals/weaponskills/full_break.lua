@@ -33,7 +33,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
     if (damage > 0) then
-        local tp = player:getTP();
         local duration = (tp/100 * 30) + 60;
         if (target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
             target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12.5, 0, duration);
