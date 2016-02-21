@@ -78,7 +78,7 @@ private:
     time_point m_WaitTime;
 
     bool m_firstSpell{ true };
-
+    time_point m_LastRoamScript {time_point::min()};
 };
 
 #endif // _AI_CONTROLLER_H
