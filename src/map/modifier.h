@@ -373,6 +373,8 @@ enum MODIFIER
     MOD_JUMP_TP_BONUS             = 361, // bonus tp player receives when using jump (must be divided by 10)
     MOD_JUMP_ATT_BONUS            = 362, // ATT% bonus for jump + high jump
     MOD_HIGH_JUMP_ENMITY_REDUCTION = 363, // for gear that reduces more enmity from high jump
+    MOD_FORCE_JUMP_CRIT           = 828, // Critical hit rate bonus for jump and high jump
+    MOD_WYVERN_EFFECTIVE_BREATH   = 829, // Increases the threshold for triggering healing breath/offensive breath more inclined to pick elemental weakness
 
     // Summoner
     MOD_AVATAR_PERPETUATION       = 371, // stores base cost of current avatar
@@ -629,8 +631,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 828, // stuff
-    // MOD_SPARE = 829, // stuff
+    // MOD_SPARE = 830, // stuff
+    // MOD_SPARE = 831, // stuff
 
 };
 
