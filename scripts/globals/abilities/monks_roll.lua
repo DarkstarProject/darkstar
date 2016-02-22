@@ -31,7 +31,7 @@ require("scripts/globals/ability");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = getCorsairRollEffect(ability:getID());
+    local effectID = EFFECT_MONKS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;

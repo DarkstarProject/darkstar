@@ -191,7 +191,6 @@ namespace battleutils
     uint8				getBarrageShotCount(CCharEntity* PChar);
     uint8				getStoreTPbonusFromMerit(CBattleEntity* PEntity);
 
-    EFFECT				getCorsairRollEffect(uint16 id);
     void                ClaimMob(CBattleEntity* PDefender, CBattleEntity* PAttacker);
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);

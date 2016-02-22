@@ -58,12 +58,14 @@ function onUseAbility(caster,target,ability,action)
     local prev_ability = getAbility(caster:getLocalVar("corsairActiveRoll"));
     if (prev_ability) then
         action:animation(target:getID(),prev_ability:getAnimation());
-        action:actionID(prev_ability:getID())
+        action:actionID(prev_ability:getID()+16)
         dofile("scripts/globals/abilities/"..prev_ability:getName()..".lua");
         local total = applyRoll(caster,target,ability,action,total)
-        local msg = action:messageID(target:getID())
-        if (msg == 422) then
-            action:messageID(target:getID(),425)
+        local msg = ability:getMsg()
+        if msg == 420 then
+            ability:setMsg(424)
+        elseif msg == 422 then
+            ability:setMsg(425)
         end
         return total;
     end
