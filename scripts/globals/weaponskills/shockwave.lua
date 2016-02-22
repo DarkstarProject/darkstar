@@ -28,7 +28,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
     if (damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
-        local tp = player:getTP();
         local duration = (tp/100 * 60);
         target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
     end
