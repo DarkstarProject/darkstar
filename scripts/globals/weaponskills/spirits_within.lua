@@ -47,7 +47,8 @@ function onUseWeaponSkill(player, target, wsID, TP, primary)
         damage = damage * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
 
-    damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, 1, 0, 1)
+    damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, 1, 0, 1);
+    target:updateEnmityFromDamage(player, damage);
     return 1, 0, false, damage;
 
 end
