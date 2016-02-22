@@ -24,10 +24,10 @@ end;
 
 function onTrigger(player,npc)
    
-      local SinHunting = player:getVar("sinHunting");    -- RNG AF1 
-   
+      local SinHunting = player:getVar("sinHunting");-- RNG AF1 
+
     if (SinHunting == 4) then
-        player:startEvent(0x000d, 0, 1107);        
+        player:startEvent(0x000d, 0, 1107);
     end
 end;
 
