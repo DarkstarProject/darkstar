@@ -1275,6 +1275,7 @@ MOD_JOB_BONUS_CHANCE          = 542 -- Chance to apply job bonus to COR roll wit
 MOD_DAY_NUKE_BONUS            = 565 -- Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
 MOD_IRIDESCENCE               = 566 -- Iridesecnce trait (additional weather damage/penalty)
 MOD_BARSPELL_AMOUNT           = 567 -- Additional elemental resistance granted by bar- spells
+MOD_BARSPELL_MDEF_BONUS       = 827 -- Extra magic defense bonus granted to the bar- spell effect
 MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
 MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 
@@ -1300,8 +1301,8 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 827, -- stuff
 -- MOD_SPARE = 828, -- stuff
+-- MOD_SPARE = 829, -- stuff
 
 ------------------------------------
 -- Merit Definitions
