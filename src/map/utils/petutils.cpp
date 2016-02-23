@@ -45,7 +45,7 @@ This file is part of DarkStar-server source code.
 #include "../items/item_weapon.h"
 
 #include "../ai/ai_container.h"
-#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/mob_controller.h"
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/states/ability_state.h"
 
@@ -884,7 +884,7 @@ namespace petutils
             PMob->charmTime = time_point::min();
             PMob->PMaster = nullptr;
 
-            PMob->PAI->SetController(std::make_unique<CAIController>(PMob));
+            PMob->PAI->SetController(std::make_unique<CMobController>(PMob));
 
             if (!PMob->isDead())
                 PMob->PAI->Disengage();

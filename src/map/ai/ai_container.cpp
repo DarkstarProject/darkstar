@@ -36,7 +36,7 @@ This file is part of DarkStar-server source code.
 #include "states/weaponskill_state.h"
 #include "states/range_state.h"
 #include "controllers/player_controller.h"
-#include "controllers/ai_controller.h"
+#include "controllers/mob_controller.h"
 #include "../entities/baseentity.h"
 #include "../entities/battleentity.h"
 #include "../entities/charentity.h"
@@ -102,7 +102,7 @@ void CAIContainer::WeaponSkill(uint16 targid, uint16 wsid)
 
 void CAIContainer::MobSkill(uint16 targid, uint16 wsid)
 {
-    auto AIController = dynamic_cast<CAIController*>(Controller.get());
+    auto AIController = dynamic_cast<CMobController*>(Controller.get());
     if (AIController)
     {
         AIController->MobSkill(targid, wsid);

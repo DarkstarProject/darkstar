@@ -30,7 +30,7 @@ This file is part of DarkStar-server source code.
 #include "../../../common/utils.h"
 
 CPetController::CPetController(CPetEntity* _PPet) :
-    CAIController(_PPet), PPet(_PPet)
+    CMobController(_PPet), PPet(_PPet)
 {
     //#TODO: this probably will have to depend on pet type (automaton does WS on its own..)
     SetWeaponSkillEnabled(false);
@@ -43,7 +43,7 @@ void CPetController::Tick(time_point tick)
         petutils::DespawnPet(PPet->PMaster);
         return;
     }
-    CAIController::Tick(tick);
+    CMobController::Tick(tick);
 }
 
 void CPetController::DoRoamTick(time_point tick)

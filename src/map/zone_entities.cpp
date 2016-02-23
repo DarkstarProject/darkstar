@@ -34,7 +34,7 @@ This file is part of DarkStar-server source code.
 #include "trade_container.h"
 
 #include "ai/ai_container.h"
-#include "ai/controllers/ai_controller.h"
+#include "ai/controllers/mob_controller.h"
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
@@ -427,7 +427,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
             uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
 
-            CAIController* PController = static_cast<CAIController*>(PCurrentMob->PAI->GetController());
+            CMobController* PController = static_cast<CMobController*>(PCurrentMob->PAI->GetController());
 
             bool validAggro = expGain > 50 || PChar->animation == ANIMATION_HEALING || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
 

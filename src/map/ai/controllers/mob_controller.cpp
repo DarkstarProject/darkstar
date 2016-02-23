@@ -21,7 +21,7 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "ai_controller.h"
+#include "mob_controller.h"
 #include "../ai_container.h"
 #include "../helpers/targetfind.h"
 #include "../states/ability_state.h"
@@ -39,12 +39,12 @@ This file is part of DarkStar-server source code.
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
 
-CAIController::CAIController(CMobEntity* PEntity) :
+CMobController::CMobController(CMobEntity* PEntity) :
     CController(PEntity),
     PMob(PEntity)
 {}
 
-void CAIController::Tick(time_point tick)
+void CMobController::Tick(time_point tick)
 {
     m_Tick = tick;
 
@@ -61,7 +61,7 @@ void CAIController::Tick(time_point tick)
     }
 }
 
-bool CAIController::TryDeaggro()
+bool CMobController::TryDeaggro()
 {
     if (PTarget == nullptr && (PMob->PEnmityContainer != nullptr && PMob->PEnmityContainer->GetHighestEnmity() == nullptr))
     {
@@ -113,7 +113,7 @@ bool CAIController::TryDeaggro()
     return false;
 }
 
-void CAIController::TryLink()
+void CMobController::TryLink()
 {
     if (PTarget == nullptr)
     {
@@ -173,7 +173,7 @@ void CAIController::TryLink()
 * Checks if the mob can detect the target using it's detection (sight, sound, etc)
 * This is used to aggro and deaggro (Mobs start to deaggro after failing to detect target).
 **/
-bool CAIController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
+bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
 {
     if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO) return false;
 
@@ -244,7 +244,7 @@ bool CAIController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
     return false;
 }
 
-bool CAIController::CanSeePoint(position_t pos)
+bool CMobController::CanSeePoint(position_t pos)
 {
     if (PMob->PAI->PathFind)
     {
@@ -254,7 +254,7 @@ bool CAIController::CanSeePoint(position_t pos)
     return true;
 }
 
-bool CAIController::MobSkill(int wsList)
+bool CMobController::MobSkill(int wsList)
 {
     /* #TODO: mob 2 hours, etc */
     if (!wsList) wsList = PMob->getMobMod(MOBMOD_SKILL_LIST);
@@ -301,7 +301,7 @@ bool CAIController::MobSkill(int wsList)
     return false;
 }
 
-bool CAIController::TrySpecialSkill()
+bool CMobController::TrySpecialSkill()
 {
     // get my special skill
     CMobSkill* PSpecialSkill = battleutils::GetMobSkill(PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
@@ -354,7 +354,7 @@ bool CAIController::TrySpecialSkill()
     return false;
 }
 
-bool CAIController::TryCastSpell()
+bool CMobController::TryCastSpell()
 {
     if (!CanCastSpells())
     {
@@ -399,7 +399,7 @@ bool CAIController::TryCastSpell()
     return false;
 }
 
-bool CAIController::CanCastSpells()
+bool CMobController::CanCastSpells()
 {
 
     if (!PMob->SpellContainer->HasSpells())
@@ -427,7 +427,7 @@ bool CAIController::CanCastSpells()
     return IsMagicCastingEnabled();
 }
 
-void CAIController::CastSpell(uint16 spellid)
+void CMobController::CastSpell(uint16 spellid)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
     if (PSpell == nullptr)
@@ -479,7 +479,7 @@ void CAIController::CastSpell(uint16 spellid)
     }
 }
 
-void CAIController::DoCombatTick(time_point tick)
+void CMobController::DoCombatTick(time_point tick)
 {
     HandleEnmity();
     PTarget = static_cast<CBattleEntity*>(PMob->loc.zone->GetEntity(PMob->GetBattleTargetID()));
@@ -583,7 +583,7 @@ void CAIController::DoCombatTick(time_point tick)
     }
 }
 
-void CAIController::HandleEnmity()
+void CMobController::HandleEnmity()
 {
     if (PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && PMob->loc.zone->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
     {
@@ -604,7 +604,7 @@ void CAIController::HandleEnmity()
 
 }
 
-void CAIController::DoRoamTick(time_point tick)
+void CMobController::DoRoamTick(time_point tick)
 {
     // If there's someone on our enmity list, go from roaming -> engaging
     if (PMob->PEnmityContainer->GetHighestEnmity() != nullptr && !(PMob->m_roamFlags & ROAMFLAG_IGNORE))
@@ -768,7 +768,7 @@ void CAIController::DoRoamTick(time_point tick)
     }
 }
 
-void CAIController::Wait(duration _duration)
+void CMobController::Wait(duration _duration)
 {
     if (m_Tick > m_WaitTime)
     {
@@ -780,7 +780,7 @@ void CAIController::Wait(duration _duration)
     }
 }
 
-void CAIController::FollowRoamPath()
+void CMobController::FollowRoamPath()
 {
     if (PMob->PAI->CanFollowPath())
     {
@@ -824,7 +824,7 @@ void CAIController::FollowRoamPath()
     }
 }
 
-void CAIController::Despawn()
+void CMobController::Despawn()
 {
     if (PMob)
     {
@@ -832,7 +832,7 @@ void CAIController::Despawn()
     }
 }
 
-void CAIController::MobSkill(uint16 targid, uint16 wsid)
+void CMobController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
@@ -840,7 +840,7 @@ void CAIController::MobSkill(uint16 targid, uint16 wsid)
     }
 }
 
-void CAIController::Disengage()
+void CMobController::Disengage()
 {
     // this will let me decide to walk home or despawn
     m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME);
@@ -866,7 +866,7 @@ void CAIController::Disengage()
 
 
 
-bool CAIController::CanAggroTarget(CBattleEntity* PTarget)
+bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 {
     // don't aggro i'm neutral
     if (PMob->m_neutral || PMob->isDead())

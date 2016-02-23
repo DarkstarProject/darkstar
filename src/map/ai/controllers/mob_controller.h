@@ -21,8 +21,8 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#ifndef _AI_CONTROLLER_H
-#define _AI_CONTROLLER_H
+#ifndef _MOB_CONTROLLER_H
+#define _MOB_CONTROLLER_H
 
 #include "controller.h"
 #include "../../entities/mobentity.h"
@@ -33,10 +33,10 @@ This file is part of DarkStar-server source code.
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
 
-class CAIController : public CController
+class CMobController : public CController
 {
 public:
-    CAIController(CMobEntity* PMob);
+    CMobController(CMobEntity* PMob);
 
     virtual void Tick(time_point tick) override;
     virtual void Disengage() override;
