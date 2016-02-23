@@ -99,8 +99,9 @@ bool CMagicState::Update(time_point tick)
         MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
         action_t action;
+        auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
 
-        if (HasMoved() || !CanCastSpell(PTarget))
+        if (!PTarget || m_errorMsg || HasMoved() || !CanCastSpell(PTarget))
         {
             m_interrupted = true;
         }
