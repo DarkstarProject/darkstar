@@ -68,6 +68,10 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 			CBattlefield* PBattlefield = m_Battlefields[i];
 			int instzone = PBattlefield->getZoneId();
 
+            //handle time remaining prompts (since its useful!) Prompts every minute
+            auto time_elapsed = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
+            auto time_remaining = std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->getTimeLimit() - time_elapsed).count();
+
 			//Dynamis zone (need to add COP Dyna)
 			if(instzone > 184 && instzone < 189 || instzone > 133 && instzone < 136 || instzone > 38  && instzone < 43){
 				//handle death time
@@ -84,16 +88,14 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 					}
 				}
 
-				//handle time remaining prompts (since its useful!) Prompts every minute
-                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
 
 				//New message (in yellow) at the end of dynamis (5min before the end)
-				if((Tremaining % 60) == 0s && (PBattlefield->getTimeLimit() - Tremaining) <= 5min){
-					PBattlefield->pushMessageToAllInBcnm(449,((PBattlefield->getTimeLimit()-Tremaining).count()/60));
+				if((time_elapsed % 60) == 0s && (PBattlefield->getTimeLimit() - time_elapsed) <= 5min){
+                    PBattlefield->pushMessageToAllInBcnm(449, (time_remaining) / 60);
 				}
 				else{
-					if(Tremaining % 60 == 0s){
-						PBattlefield->pushMessageToAllInBcnm(202,(PBattlefield->getTimeLimit()-Tremaining).count());
+					if(time_elapsed % 60 == 0s){
+                        PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
 					}
 				}
 
@@ -118,11 +120,9 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 						     ShowDebug("Limbus %i battlefield %i : Death counter reset as a player is now alive.\n",PBattlefield->getID(),PBattlefield->getBattlefieldNumber());
 					       }
 				      }
-					  //handle time remaining prompts (since its useful!) Prompts every minute
-                auto Tremaining = std::chrono::duration_cast<std::chrono::seconds>(tick - PBattlefield->getStartTime());
 
-				if(Tremaining % 60 == 0s){
-						PBattlefield->pushMessageToAllInBcnm(202,((PBattlefield->getTimeLimit()-Tremaining).count()/60));
+				if(time_elapsed % 60 == 0s){
+                    PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
 				}
 
 				//if the time is finished, exiting Limbus
@@ -155,9 +155,8 @@ void CBattlefieldHandler::handleBattlefields(time_point tick){
 					}
 				}
 				//handle time remaining prompts (since its useful!) Prompts every minute
-                auto Tremaining = (tick - PBattlefield->getStartTime());
-				if(Tremaining % 60 == 0s){
-					PBattlefield->pushMessageToAllInBcnm(202,std::chrono::duration_cast<std::chrono::seconds>(PBattlefield->getTimeLimit()-Tremaining).count()/60);
+				if(time_elapsed % 60 == 0s){
+                    PBattlefield->pushMessageToAllInBcnm(202, time_remaining);
 				}
 
 				//handle win conditions
