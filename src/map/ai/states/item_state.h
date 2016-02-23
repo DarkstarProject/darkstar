@@ -54,6 +54,8 @@ protected:
 
     CCharEntity* m_PEntity;
     CItemUsable* m_PItem;
+    uint8 m_location;
+    uint8 m_slot;
     duration m_castTime;
     duration m_animationTime;
     position_t m_startPos;

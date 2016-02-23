@@ -38,51 +38,51 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         if (damage > 0) then
 
             -- AFTERMATH LV1
-            if ((player:getTP() >= 100) and (player:getTP() <= 110)) then
+            if ((tp >= 100) and (tp <= 110)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 10, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 111) and (player:getTP() <= 120)) then
+            elseif ((tp >= 111) and (tp <= 120)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 11, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 121) and (player:getTP() <= 130)) then
+            elseif ((tp >= 121) and (tp <= 130)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 12, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 131) and (player:getTP() <= 140)) then
+            elseif ((tp >= 131) and (tp <= 140)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 13, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 141) and (player:getTP() <= 150)) then
+            elseif ((tp >= 141) and (tp <= 150)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 14, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 151) and (player:getTP() <= 160)) then
+            elseif ((tp >= 151) and (tp <= 160)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 15, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 161) and (player:getTP() <= 170)) then
+            elseif ((tp >= 161) and (tp <= 170)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 16, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 171) and (player:getTP() <= 180)) then
+            elseif ((tp >= 171) and (tp <= 180)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 17, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 181) and (player:getTP() <= 190)) then
+            elseif ((tp >= 181) and (tp <= 190)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 18, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 191) and (player:getTP() <= 199)) then
+            elseif ((tp >= 191) and (tp <= 199)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV1, 19, 0, 180, 0, 1);
 
             -- AFTERMATH LV2
-            elseif ((player:getTP() >= 200) and (player:getTP() <= 210)) then
+            elseif ((tp >= 200) and (tp <= 210)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 24, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 211) and (player:getTP() <= 219)) then
+            elseif ((tp >= 211) and (tp <= 219)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 28, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 221) and (player:getTP() <= 229)) then
+            elseif ((tp >= 221) and (tp <= 229)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 32, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 231) and (player:getTP() <= 239)) then
+            elseif ((tp >= 231) and (tp <= 239)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 36, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 241) and (player:getTP() <= 249)) then
+            elseif ((tp >= 241) and (tp <= 249)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 40, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 251) and (player:getTP() <= 259)) then
+            elseif ((tp >= 251) and (tp <= 259)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 44, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 261) and (player:getTP() <= 269)) then
+            elseif ((tp >= 261) and (tp <= 269)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 48, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 271) and (player:getTP() <= 279)) then
+            elseif ((tp >= 271) and (tp <= 279)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 52, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 281) and (player:getTP() <= 289)) then
+            elseif ((tp >= 281) and (tp <= 289)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 56, 0, 180, 0, 1);
-            elseif ((player:getTP() >= 291) and (player:getTP() <= 299)) then
+            elseif ((tp >= 291) and (tp <= 299)) then
                     player:addStatusEffect(EFFECT_AFTERMATH_LV2, 59, 0, 180, 0, 1);
 
             -- AFTERMATH LV3
-            elseif ((player:getTP() == 300)) then
+            elseif ((tp == 300)) then
                 player:addStatusEffect(EFFECT_AFTERMATH_LV3, 45, 0, 120, 0, 1);
             end
         end

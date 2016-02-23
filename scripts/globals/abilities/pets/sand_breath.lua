@@ -30,6 +30,7 @@ function onUseAbility(pet, target, skill, action)
 
     local dmgmod = MobBreathMove(pet, target, 0.185, pet:getMainLvl()*15, ELE_EARTH);  -- Works out to (hp/6) + 15, as desired
     dmgmod = (dmgmod * (1+gear))*deep;
+    pet:setTP(0)
 
     local dmg = AbilityFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

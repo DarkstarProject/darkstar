@@ -20,7 +20,7 @@ require("scripts/globals/weaponskills");
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary)
-    local tp = player:getTP();
+
     local drain = 0;
 
     if (tp >= 100 and tp <=199) then

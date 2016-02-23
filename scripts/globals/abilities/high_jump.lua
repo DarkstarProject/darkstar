@@ -23,22 +23,28 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
+
     local params = {};
     params.numHits = 1;
     local ftp = 1
     params.ftp100 = ftp; params.ftp200 = ftp; params.ftp300 = ftp;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-    --ryunohige jump augment (guaranteed crit) can probably just set these to 1.0
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+    if (player:getMod(MOD_FORCE_JUMP_CRIT) > 0) then
+        params.crit100 = 1.0; params.crit200 = 1.0; params.crit300 = 1.0;
+    end
     params.canCrit = true;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-    params.atkmulti = (player:getMod(MOD_JUMP_ATT_BONUS) + 100) / 100
+    params.atkmulti = 1;
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
     params.targetTPMult = 0
-    if player:getMainJob() == JOB_DRG then 
-        params.enmityMult = 0.5
-    else
-        params.enmityMult = 0.7
+
+    if (target:isMob()) then
+        local enmityShed = 50;
+        if player:getMainJob() ~= JOB_DRG then 
+            enmityShed = 30;
+        end
+        target:lowerEnmity(player, enmityShed + player:getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION)); -- reduce total accumulated enmity
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, params, 0, true)

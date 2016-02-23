@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 
     local power = 1 + 0.02 * enhanceSkill + meritBonus;
 
-    if (enhanceSkill >180) then
+    if (enhanceSkill > 180) then
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARBLIND,power,0,duration,0,1);
+    target:addStatusEffect(EFFECT_BARBLIND,power,0,duration);
 
     return EFFECT_BARBLIND;
 end;
