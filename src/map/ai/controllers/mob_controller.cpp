@@ -292,8 +292,7 @@ bool CMobController::MobSkill(int wsList)
         {
             if (currentDistance <= PMobSkill->getDistance())
             {
-                MobSkill(PActionTarget->targid, PMobSkill->getID());
-                break;
+                return MobSkill(PActionTarget->targid, PMobSkill->getID());
             }
         }
     }
@@ -312,7 +311,7 @@ bool CMobController::TrySpecialSkill()
         return false;
     }
 
-    if (IsWeaponSkillEnabled())
+    if (!IsWeaponSkillEnabled())
     {
         return false;
     }
@@ -342,13 +341,13 @@ bool CMobController::TrySpecialSkill()
     }
     else
     {
+        ShowError("MobController::TrySpecialSkill Can't target self and has no target (%d)\n", PSpecialSkill->getID());
         return false;
     }
 
     if (luautils::OnMobSkillCheck(PAbilityTarget, PMob, PSpecialSkill) == 0)
     {
-        MobSkill(PAbilityTarget->targid, PSpecialSkill->getID());
-        return true;
+        return MobSkill(PAbilityTarget->targid, PSpecialSkill->getID());
     }
 
     return false;
@@ -832,12 +831,14 @@ void CMobController::Despawn()
     }
 }
 
-void CMobController::MobSkill(uint16 targid, uint16 wsid)
+bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
-        POwner->PAI->Internal_MobSkill(targid, wsid);
+        return POwner->PAI->Internal_MobSkill(targid, wsid);
     }
+
+    return false;
 }
 
 void CMobController::Disengage()
