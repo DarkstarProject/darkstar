@@ -41,7 +41,7 @@ public:
     virtual void Tick(time_point tick) override;
     virtual void Disengage() override;
     virtual void Despawn() override;
-    virtual void MobSkill(uint16 targid, uint16 wsid);
+    virtual bool MobSkill(uint16 targid, uint16 wsid);
     virtual void Ability(uint16 targid, uint16 abilityid) override {}
     bool MobSkill(int list = 0);
     bool TryCastSpell();
