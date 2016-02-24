@@ -40,7 +40,7 @@ public:
     virtual void Cleanup(time_point tick) override;
     virtual bool CanChangeState() override;
     virtual bool CanFollowPath() override { return false; }
-    virtual bool CanInterrupt() override { return true; }
+    virtual bool CanInterrupt() override { return m_interruptable; }
 
     virtual void TryInterrupt(CBattleEntity* PAttacker) override;
 
@@ -60,6 +60,7 @@ protected:
     duration m_animationTime;
     position_t m_startPos;
     bool m_interrupted {false};
+    bool m_interruptable {true};
 };
 
 #endif

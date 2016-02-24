@@ -134,6 +134,7 @@ bool CItemState::Update(time_point tick)
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted = false;
+        m_interruptable = false;
         auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg);
 
         action_t action;
