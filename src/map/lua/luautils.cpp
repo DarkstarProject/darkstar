@@ -2362,6 +2362,8 @@ namespace luautils
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "mixins");
+        lua_pushnil(LuaHandle);
+        lua_setglobal(LuaHandle, "mixinOptions");
 
         //remove any previous definition of the global "mixins"
 
