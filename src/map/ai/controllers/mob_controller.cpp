@@ -341,7 +341,6 @@ bool CMobController::TrySpecialSkill()
     }
     else
     {
-        ShowError("MobController::TrySpecialSkill Can't target self and has no target (%d)\n", PSpecialSkill->getID());
         return false;
     }
 
