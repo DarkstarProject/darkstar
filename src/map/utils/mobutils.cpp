@@ -1374,6 +1374,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			zoneutils::GetZone(zoneID)->InsertPET(PMob);
 
 			luautils::OnMobInitialize(PMob);
+            luautils::ApplyMixins(PMob);
 
 			PMob->saveModifiers();
 			PMob->saveMobModifiers();

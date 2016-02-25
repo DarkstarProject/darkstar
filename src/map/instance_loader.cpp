@@ -81,6 +81,7 @@ bool CInstanceLoader::Check()
                 for (auto PMob : instance->m_mobList)
                 {
                     luautils::OnMobInitialize(PMob.second);
+                    luautils::ApplyMixins(PMob.second);
                     ((CMobEntity*)PMob.second)->saveModifiers();
                     ((CMobEntity*)PMob.second)->saveMobModifiers();
                 }
@@ -243,7 +244,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 				CNpcEntity* PNpc = new CNpcEntity;
 				PNpc->id = (uint16)Sql_GetUIntData(SqlHandle, 0);
 				PNpc->targid = PNpc->id & 0xFFF;
-				
+
 				PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
 
 				PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
