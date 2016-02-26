@@ -38,6 +38,7 @@
 CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, uint8 flags) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
+    m_flags(flags),
     m_PSpell(nullptr)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
@@ -66,7 +67,6 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, errorMsg == 1 ? MSGBASIC_CANNOT_CAST_SPELL : errorMsg));
     }
 
-    m_flags = flags;
     m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
     m_startPos = m_PEntity->loc.p;
 
@@ -122,8 +122,8 @@ bool CMagicState::Update(time_point tick)
         else
         {
             m_PEntity->OnCastFinished(*this,action);
+            m_PEntity->PAI->EventHandler.triggerListener("MAGIC_USE", m_PEntity, PTarget, m_PSpell.get(), &action);
         }
-        m_PEntity->PAI->EventHandler.triggerListener("MAGIC_USE", m_PEntity, PTarget, m_PSpell.get(), &action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
         Complete();
     }
