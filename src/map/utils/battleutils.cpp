@@ -4088,10 +4088,6 @@ namespace battleutils
                     // claim by master
                     PAttacker = PAttacker->PMaster;
                 }
-                else
-                {
-                    DSP_DEBUG_BREAK_IF(true);
-                }
             }
 
             if (mob->m_HiPCLvl < PAttacker->GetMLevel())

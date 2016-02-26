@@ -395,6 +395,7 @@ void CBattlefield::cleanup() {
 
     for (auto PAlly : m_AllyList)
     {
+        PAlly->PAI->Despawn();
         zoneutils::GetZone(getZoneId())->DeletePET(PAlly);
         delete PAlly;
     }
