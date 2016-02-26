@@ -40,9 +40,9 @@ function onMobSpawn(mob)
     local master = mob:getMaster()
     local wyvernType = wyvernTypes[master:getSubJob()]
     local healingbreath = 624
-    if mob:getMainLvl() > 80 then healingbreath = 623
-    elseif mob:getMainLvl() > 40 then healingbreath = 626
-    elseif mob:getMainLvl() > 20 then healingbreath = 625 end
+    if mob:getMainLvl() >= 80 then healingbreath = 623
+    elseif mob:getMainLvl() >= 40 then healingbreath = 626
+    elseif mob:getMainLvl() >= 20 then healingbreath = 625 end
     if wyvernType == WYVERN_DEFENSIVE then
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local party = player:getParty()
