@@ -851,13 +851,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 return;
             }
         }
-        CBaseEntity* PMsgTarget = this;
-        int32 errNo = luautils::OnAbilityCheck(this, PTarget, PAbility, &PMsgTarget);
-        if (errNo != 0)
-        {
-            pushPacket(new CMessageBasicPacket(this, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
-            return;
-        }
 
         if (battleutils::IsParalyzed(this)) {
             // display paralyzed
