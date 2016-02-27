@@ -5,6 +5,7 @@
 
 require("scripts/globals/missions");
 require("scripts/globals/status");
+mixins = {require("scripts/mixins/families/phuabo")}
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -17,10 +18,6 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:hideName(true);
-    mob:untargetable(true);
-    mob:AnimationSub(5);
-    mob:wait(2000);
 end;
 
 -----------------------------------
@@ -28,10 +25,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, killer)
-    mob:hideName(false);
-    mob:untargetable(false);
-    mob:AnimationSub(6);
-    mob:wait(2000);
 end;
 
 -----------------------------------
@@ -39,9 +32,6 @@ end;
 -----------------------------------
 
 function onMobDisengage(mob)
-	mob:hideName(true);
-	mob:untargetable(true);
-	mob:AnimationSub(5);
 end;
 
 -----------------------------------

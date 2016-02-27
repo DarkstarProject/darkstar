@@ -38,7 +38,11 @@ enum ADDTYPE
     ADDTYPE_MAIN_ONLY   = 4,
     ADDTYPE_LEARNED     = 8,
     ADDTYPE_LIGHT_ARTS  = 16,
-    ADDTYPE_DARK_ARTS   = 32
+    ADDTYPE_DARK_ARTS   = 32,
+    ADDTYPE_JUGPET      = 64,
+    ADDTYPE_CHARMPET    = 128,
+    ADDTYPE_AVATAR      = 256,
+    ADDTYPE_AUTOMATON   = 512,
 };
 
 enum ABILITY
@@ -663,7 +667,7 @@ public:
     float       getRange();
     uint8       getAOE();
     uint16      getValidTarget();
-    uint8       getAddType();
+    uint16      getAddType();
     uint16      getMessage();
     uint16      getAoEMsg();
     uint16      getRecastTime();
@@ -683,7 +687,7 @@ public:
     void        setRange(float range);
     void        setAOE(uint8 aoe);
     void        setValidTarget(uint16 validTarget);
-    void        setAddType(uint8 addtype);
+    void        setAddType(uint16 addtype);
     void        setMessage(uint16 message);
     void        setRecastTime(uint16 recastTime);
     void        setRecastId(uint16 recastId);
@@ -706,7 +710,7 @@ private:
     uint8       m_range;
     uint8       m_aoe;
     uint16      m_validTarget;
-    uint8       m_addType;
+    uint16      m_addType;
     uint16      m_message;
     uint16      m_recastTime;
     uint16      m_recastId;

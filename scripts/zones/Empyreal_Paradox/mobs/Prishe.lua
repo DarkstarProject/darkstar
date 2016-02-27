@@ -44,7 +44,6 @@ function onMobRoam(mob)
         mob:setLocalVar("wait", 0);
     elseif (ready > 0) then
         mob:addEnmity(GetMobByID(ready),0,1);
-        mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
     else
         mob:setLocalVar("wait", wait+3);
     end
@@ -56,6 +55,7 @@ end;
 
 function onMobEngaged(mob, target)
     mob:useMobAbility(1487);
+    mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
 end;
 
 -----------------------------------

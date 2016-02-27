@@ -117,7 +117,7 @@
 #include "../mob_spell_container.h"
 
 #include "../ai/ai_container.h"
-#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/mob_controller.h"
 #include "../ai/states/weaponskill_state.h"
 #include "../ai/states/despawn_state.h"
 #include "../ai/states/inactive_state.h"
@@ -7220,7 +7220,7 @@ inline int32 CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), std::chrono::seconds(lua_tointeger(L, 2)));
+    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), std::chrono::minutes(lua_tointeger(L, 2)));
 
     return 1;
 }
@@ -8488,7 +8488,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
     {
         m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
             if (dynamic_cast<CMobEntity*>(PEntity))
-                static_cast<CAIController*>(PEntity->PAI->GetController())->TryCastSpell();
+                static_cast<CMobController*>(PEntity->PAI->GetController())->TryCastSpell();
         }));
     }
     return 0;
@@ -8520,7 +8520,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
     {
         m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [](auto PEntity) {
             if (dynamic_cast<CMobEntity*>(PEntity))
-                static_cast<CAIController*>(PEntity->PAI->GetController())->MobSkill();
+                static_cast<CMobController*>(PEntity->PAI->GetController())->MobSkill();
         }));
     };
 

@@ -27,7 +27,7 @@
 #include "../../common/timer.h"
 #include "../../common/utils.h"
 #include "../ai/ai_container.h"
-#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/mob_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
 #include "../ai/states/attack_state.h"
@@ -119,7 +119,7 @@ CMobEntity::CMobEntity()
     // For Dyna Stats
     m_StatPoppedMobs = false;
 
-    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this),
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CMobController>(this),
         std::make_unique<CTargetFind>(this));
 }
 
@@ -348,7 +348,7 @@ uint8 CMobEntity::TPUseChance()
 {
     auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
-    if (health.tp < 1000 || MobSkillList.empty() == true || !static_cast<CAIController*>(PAI->GetController())->IsWeaponSkillEnabled())
+    if (health.tp < 1000 || MobSkillList.empty() == true || !static_cast<CMobController*>(PAI->GetController())->IsWeaponSkillEnabled())
     {
         return 0;
     }
