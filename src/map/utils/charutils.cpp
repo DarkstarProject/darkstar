@@ -4374,14 +4374,14 @@ namespace charutils
                 return false;
             }
         }
-        if (PAbility->getAddType() & ADDTYPE_JUGPET)
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_JUGPET)
         {
             if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_JUG_PET)
             {
                 return false;
             }
         }
-        if (PAbility->getAddType() & ADDTYPE_CHARMPET)
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_CHARMPET)
         {
             if (!PChar->PPet || PChar->PPet->objtype != TYPE_MOB)
             {
