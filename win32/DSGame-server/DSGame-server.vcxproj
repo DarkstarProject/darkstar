@@ -98,6 +98,7 @@
       <WarningLevel>Level1</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <ExceptionHandling>Async</ExceptionHandling>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libmariadb.lib;lua51.lib;libzmq-d.lib;WS2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
