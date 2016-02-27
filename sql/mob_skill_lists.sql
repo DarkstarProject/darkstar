@@ -2440,3 +2440,4 @@ INSERT INTO `mob_skill_lists` VALUES ('Proto-Ultima',729,1524);
 INSERT INTO `mob_skill_lists` VALUES ('Tiamat-Flying-Attack',730,1278);
 INSERT INTO `mob_skill_lists` VALUES ('Ouryu-Flying-Attack',731,1298);
 INSERT INTO `mob_skill_lists` VALUES ('Jormungand-Flying-Attack',732,1288);
+INSERT INTO `mob_skill_lists` VALUES ('Lamina',733,2210); 
