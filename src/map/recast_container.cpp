@@ -228,7 +228,7 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
+bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -244,8 +244,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
             {
                 int charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
-                //TODO: multiple charges (BST Ready)
-                if (charges < 1)
+                if (charges < recast)
                 {
                     return true;
                 }

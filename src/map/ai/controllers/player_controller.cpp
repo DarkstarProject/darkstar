@@ -47,7 +47,7 @@ void CPlayerController::Tick(time_point)
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
+    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid, 0))
     {
         CController::Cast(targid, spellid);
     }

@@ -623,7 +623,12 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
+        action.actiontype = ACTION_PET_MOBABILITY_FINISH;
+    else if (PSkill->getID() < 256)
+        action.actiontype = ACTION_WEAPONSKILL_FINISH;
+    else
+        action.actiontype = ACTION_MOBABILITY_FINISH;
     action.actionid = PSkill->getID();
 
     if (PTarget && PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
@@ -681,7 +686,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         // reset the skill's message back to default
         PSkill->setMsg(defaultMessage);
 
-        if (objtype == TYPE_PET)
+        if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
             target.animation = PSkill->getPetAnimationID();
             target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);

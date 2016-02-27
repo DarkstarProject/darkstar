@@ -3294,8 +3294,37 @@ namespace luautils
 
         lua_prepscript(filePath, PAbility->getName());
 
-        if (prepFile(File, "onAbilityCheck"))
+        lua_pushnil(LuaHandle);
+        lua_setglobal(LuaHandle, "onAbilityCheck");
+
+        auto ret = luaL_loadfile(LuaHandle, File);
+        if (ret)
         {
+            if (ret != LUA_ERRFILE)
+            {
+                lua_pop(LuaHandle, 1);
+                ShowError("luautils::%s: %s\n", "onAbilityCheck", lua_tostring(LuaHandle, -1));
+                return 87;
+            }
+            else
+            {
+                lua_pop(LuaHandle, 1);
+                return 0;
+            }
+        }
+
+        ret = lua_pcall(LuaHandle, 0, 0, 0);
+        if (ret)
+        {
+            ShowError("luautils::%s: %s\n", "onAbilityCheck", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return 87;
+        }
+
+        lua_getglobal(LuaHandle, "onAbilityCheck");
+        if (lua_isnil(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 1);
             return 87;
         }
 
