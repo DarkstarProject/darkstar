@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/weaponskills");
 
 -----------------------------------
 -- onAbilityCheck
@@ -36,10 +37,8 @@ function onUseAbility(player,target,ability)
     dmg  = addBonusesAbility(player, ELE_FIRE, target, dmg, params);
     dmg = dmg * applyResistanceAbility(player,target,ELE_FIRE,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_FIRE);
-    
-    dmg = utils.stoneskin(target, dmg);
         
-    target:delHP(dmg);
+    target:takeWeaponskillDamage(player, dmg, SLOT_RANGED, 1, 0, 0); -- targetTPMult is 0 because Quick Draw gives no TP to the mob
     target:updateEnmityFromDamage(player,dmg);
     
     local effects = {};

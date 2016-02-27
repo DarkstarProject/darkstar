@@ -7220,7 +7220,7 @@ inline int32 CLuaBaseEntity::addTimeToSpecialBattlefield(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), std::chrono::seconds(lua_tointeger(L, 2)));
+    PZone->m_BattlefieldHandler->GiveTimeToBattlefield(lua_tointeger(L, 1), std::chrono::minutes(lua_tointeger(L, 2)));
 
     return 1;
 }
