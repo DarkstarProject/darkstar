@@ -2265,7 +2265,7 @@ namespace charutils
 
         memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
 
-        if (PetID == 0) {//technically Fire Spirit but we're using this to nullptr the abilities shown
+        if (PetID == 0) {//technically Fire Spirit but we're using this to null the abilities shown
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             return;
         }
@@ -2309,6 +2309,14 @@ namespace charutils
                         }
                     }
                 }
+            }
+        }
+        if (PPet->getPetType() == PETTYPE_JUG_PET)
+        {
+            auto skillList {battleutils::GetMobSkillList(PPet->m_MobSkillList)};
+            for (auto&& abilityid : skillList)
+            {
+                addPetAbility(PChar, abilityid - 496);
             }
         }
         PChar->pushPacket(new CCharAbilitiesPacket(PChar));
@@ -4355,6 +4363,41 @@ namespace charutils
         if (PAbility->getAddType() & ADDTYPE_DARK_ARTS)
         {
             if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+            {
+                return false;
+            }
+        }
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == (ADDTYPE_JUGPET | ADDTYPE_CHARMPET))
+        {
+            if (!PChar->PPet || !(PChar->PPet->objtype == TYPE_MOB || (PChar->PPet->objtype == TYPE_PET && static_cast<CPetEntity*>(PChar->PPet)->getPetType() == PETTYPE_JUG_PET)))
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_JUGPET)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_JUG_PET)
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_CHARMPET)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_MOB)
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_AVATAR)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_AVATAR)
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_AUTOMATON)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_AUTOMATON)
             {
                 return false;
             }

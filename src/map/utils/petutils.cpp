@@ -753,6 +753,7 @@ namespace petutils
             PPet->Spawn();
             if (PMaster->objtype == TYPE_PC)
             {
+                charutils::BuildingCharAbilityTable((CCharEntity*)PMaster);
                 charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
                 ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
                 ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));

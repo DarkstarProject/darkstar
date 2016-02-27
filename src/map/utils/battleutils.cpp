@@ -232,16 +232,7 @@ namespace battleutils
 
                 uint16 skillId = Sql_GetIntData(SqlHandle, 1);
 
-                // ensure mobskill actually exists
-                if (!battleutils::GetMobSkill(skillId))
-                {
-                    ShowError("battleutils::LoadMobSkillsList Mob skill (%d) does not exist but was added to list (%d)\n", skillId, skillListId);
-                }
-                else
-                {
-                    g_PMobSkillLists[skillListId].push_back(skillId);
-                }
-
+                g_PMobSkillLists[skillListId].push_back(skillId);
             }
         }
     }
@@ -3985,6 +3976,7 @@ namespace battleutils
             PCharmer->PPet->animation = ANIMATION_NONE;
             PCharmer->updatemask |= UPDATE_HP;
 
+            charutils::BuildingCharAbilityTable((CCharEntity*)PCharmer);
             charutils::BuildingCharPetAbilityTable((CCharEntity*)PCharmer, (CPetEntity*)PVictim, PVictim->id);
             ((CCharEntity*)PCharmer)->pushPacket(new CCharUpdatePacket((CCharEntity*)PCharmer));
             ((CCharEntity*)PCharmer)->pushPacket(new CPetSyncPacket((CCharEntity*)PCharmer));
