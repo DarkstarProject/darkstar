@@ -449,6 +449,16 @@ bool CTargetFind::isWithinRange(position_t* pos, float range)
     return distance(m_PBattleEntity->loc.p, *pos) <= range;
 }
 
+
+bool CTargetFind::canSee(position_t* point)
+{
+    if (m_PBattleEntity->loc.zone && m_PBattleEntity->loc.zone->m_navMesh)
+    {
+        return m_PBattleEntity->loc.zone->m_navMesh->raycast(m_PBattleEntity->loc.p, *point);
+    }
+    return true;
+}
+
 CBattleEntity* CTargetFind::getValidTarget(uint16 actionTargetID, uint16 validTargetFlags)
 {
     CBattleEntity* PTarget = (CBattleEntity*)m_PBattleEntity->GetEntity(actionTargetID, TYPE_MOB | TYPE_PC | TYPE_PET);

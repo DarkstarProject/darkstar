@@ -110,7 +110,7 @@ class CPathFind
 
     // checks if raycast was broken between current point and given
     // returns true if raycast didn't hit any walls
-    bool CanSeePoint(position_t point);
+    bool CanSeePoint(position_t& point);
 
   private:
 

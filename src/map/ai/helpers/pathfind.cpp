@@ -449,7 +449,7 @@ bool CPathFind::InWater()
     return false;
 }
 
-bool CPathFind::CanSeePoint(position_t point)
+bool CPathFind::CanSeePoint(position_t& point)
 {
     if (isNavMeshEnabled())
     {

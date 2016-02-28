@@ -413,7 +413,7 @@ bool CNavMesh::validPosition(position_t position)
   return m_navMesh->isValidPolyRef(startRef);
 }
 
-bool CNavMesh::raycast(position_t start, position_t end)
+bool CNavMesh::raycast(position_t& start, position_t& end)
 {
   dtStatus status;
 

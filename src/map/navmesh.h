@@ -77,7 +77,7 @@ class CNavMesh
     bool inWater(position_t point);
 
     // returns true if no wall was hit
-    bool raycast(position_t start, position_t end);
+    bool raycast(position_t& start, position_t& end);
 
     bool validPosition(position_t position);
 

@@ -54,6 +54,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
 	MSGBASIC_USES_JA_TAKE_DAMAGE	= 317, /* The <player> uses .. <target> takes .. points of damage. */
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
+	MSGBASIC_CANNOT_PERFORM_ACTION	= 71, /* You cannot perform that action on the specified target. */
 	MSGBASIC_CANNOT_ON_THAT_TARG	= 155, /* You cannot perform that action on the specified target. */
 	MSGBASIC_OUT_OF_RANGE_UNABLE_CAST	= 313, /* Out of range unable to cast */
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */

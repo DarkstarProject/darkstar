@@ -148,6 +148,11 @@ bool CAbilityState::CanUseAbility()
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
                 return false;
             }
+            if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
+            {
+                m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, PAbility->getID(), 0, MSGBASIC_CANNOT_PERFORM_ACTION);
+                return false;
+            }
             if (PAbility->getID() >= ABILITY_HEALING_RUBY)
             {
                 // Blood pact MP costs are stored under animation ID
