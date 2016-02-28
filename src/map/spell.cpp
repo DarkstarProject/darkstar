@@ -189,11 +189,6 @@ bool CSpell::dealsDamage()
     return m_message == 2 || m_message == 227 || m_message == 252 || m_message == 274;
 }
 
-float CSpell::getMaxRange()
-{
-    return 0;//TODO
-}
-
 float CSpell::getRadius()
 {
     return m_radius;
@@ -406,12 +401,22 @@ int8* CSpell::getExpansionCode()
     return m_expansionCode;
 }
 
+float CSpell::getRange()
+{
+    return m_range;
+}
+
 void CSpell::setExpansionCode(int8* expansionCode)
 {
     m_expansionCode = expansionCode;
 }
 
-//Implement namespace to work with spells       
+void CSpell::setRange(float range)
+{
+    m_range = range;
+}
+
+//Implement namespace to work with spells
 namespace spell
 {
     std::array<CSpell*, 1024> PSpellList; // spell list
@@ -421,7 +426,7 @@ namespace spell
     void LoadSpellList()
     {
         const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion \
+                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion, spell_range \
                              FROM spell_list;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
@@ -466,6 +471,8 @@ namespace spell
 
                 Sql_GetData(SqlHandle, 21, &expansionCode, nullptr);
                 PSpell->setExpansionCode(expansionCode);
+
+                PSpell->setRange(static_cast<float>(Sql_GetIntData(SqlHandle, 22)) / 10);
 
                 if(PSpell->getAOE())
                 {
@@ -703,7 +710,7 @@ namespace spell
         // brd gets bonus radius from string skill
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
             if(entity->objtype == TYPE_MOB || (entity->GetMJob() == JOB_BRD &&
-                entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) && 
+                entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) &&
                 ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STR)){
                 total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
             }
