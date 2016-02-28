@@ -275,7 +275,10 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     // link only if I see him
     if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)) {
 
-        if (!isFaceing(loc.p, *pos, 40)) return false;
+        if (!isFaceing(loc.p, *pos, 40) || !PAI->PathFind->CanSeePoint(*pos))
+        {
+            return false;
+        }
     }
 
     // link if close enough
