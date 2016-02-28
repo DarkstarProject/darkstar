@@ -1263,6 +1263,14 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         }
     }
 
+    if (this != PActionTarget && PActionTarget->objtype == TYPE_PC 
+        && !PSpell->isBuff() && !PSpell->isHeal() && !PSpell->isNa())
+    {
+        // Should not be removed by AoE effects that don't target the player or
+        // buffs cast by other players or mobs.
+        PActionTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    }
+
     this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
@@ -1328,6 +1336,12 @@ CBattleEntity* CBattleEntity::GetBattleTarget()
 bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 {
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    if (PTarget->objtype == TYPE_PC) 
+    {
+        // TODO: Should not be removed by AoE effects that don't target the player.
+        PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    }
 
     if (battleutils::IsParalyzed(this))
     {
