@@ -182,35 +182,35 @@ uint32 CMobEntity::GetRandomGil()
 
     float gil = pow(GetMLevel(), 1.05f);
 
-if (gil < 1) {
-    gil = 1;
-}
+    if (gil < 1) {
+        gil = 1;
+    }
 
-uint16 highGil = (float)(gil) / 3 + 4;
+    uint16 highGil = (float)(gil) / 3 + 4;
 
-if (max)
-{
-    highGil = max;
-}
+    if (max)
+    {
+        highGil = max;
+    }
 
-if (highGil < 2) {
-    highGil = 2;
-}
+    if (highGil < 2) {
+        highGil = 2;
+    }
 
-// randomize it
-gil += dsprand::GetRandomNumber(highGil);
+    // randomize it
+    gil += dsprand::GetRandomNumber(highGil);
 
-if (min && gil < min)
-{
-    gil = min;
-}
+    if (min && gil < min)
+    {
+        gil = min;
+    }
 
-if (getMobMod(MOBMOD_GIL_BONUS) != 0)
-{
-    gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
-}
+    if (getMobMod(MOBMOD_GIL_BONUS) != 0)
+    {
+        gil = (float)gil * (getMobMod(MOBMOD_GIL_BONUS) / 100.0f);
+    }
 
-return gil;
+    return gil;
 }
 
 bool CMobEntity::CanDropGil()
