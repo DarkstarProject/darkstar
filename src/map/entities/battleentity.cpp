@@ -1263,8 +1263,8 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         }
     }
 
-    if (this != PActionTarget && PActionTarget->objtype == TYPE_PC 
-        && !PSpell->isBuff() && !PSpell->isHeal() && !PSpell->isNa())
+    // TODO: Pixies will probably break here, once they're added.
+    if (this->allegiance != PActionTarget->allegiance)
     {
         // Should not be removed by AoE effects that don't target the player or
         // buffs cast by other players or mobs.
