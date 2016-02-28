@@ -64,6 +64,7 @@
 #include "../items/item_puppet.h"
 #include "../entities/automatonentity.h"
 #include "../utils/itemutils.h"
+#include "../utils/charutils.h"
 #include "../conquest_system.h"
 #include "../weapon_skill.h"
 #include "../status_effect_container.h"
@@ -145,6 +146,7 @@ namespace luautils
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
+        lua_register(LuaHandle, "terminate", luautils::terminate);
 
         lua_register(LuaHandle, "getAbility", luautils::getAbility);
         lua_register(LuaHandle, "getSpell", luautils::getSpell);
@@ -3465,6 +3467,21 @@ namespace luautils
         Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '%s';", varname);
 
         return 0;
+    }
+
+    int32 terminate(lua_State*)
+    {
+        zoneutils::ForEachZone([](CZone* PZone)
+        {
+            PZone->ForEachChar([](CCharEntity* PChar)
+            {
+                charutils::SaveCharPosition(PChar);
+                charutils::SaveCharStats(PChar);
+                charutils::SaveCharExp(PChar, PChar->GetMJob());
+                charutils::SaveCharPoints(PChar);
+            });
+        });
+        exit(0);
     }
 
     /************************************************************************
