@@ -1459,6 +1459,11 @@ INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 357, 1, 255);  -- Slowga
 -- Duke Decapod
 INSERT INTO `mob_spell_lists` VALUES ('Duke_Decapod', 146, 169, 1, 10);  -- Water
 
+-- Ankou
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 230, 1, 255); -- Bio
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 247, 1, 255); -- Aspir
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
