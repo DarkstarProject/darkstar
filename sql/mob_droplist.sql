@@ -32767,6 +32767,12 @@ INSERT INTO `mob_droplist` VALUES (4556,0,6019,34); -- end of foret mobs
 INSERT INTO `mob_droplist` VALUES (4557,0,18767,97);
 INSERT INTO `mob_droplist` VALUES (4558,0,15942,128);
 INSERT INTO `mob_droplist` VALUES (4559,0,16185,220);
+INSERT INTO `mob_droplist` VALUES (4563,0,18604,426);
+INSERT INTO `mob_droplist` VALUES (4564,0,15850,5);
+INSERT INTO `mob_droplist` VALUES (4565,0,15851,5);
+INSERT INTO `mob_droplist` VALUES (4566,0,15941,384);
+
+
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
