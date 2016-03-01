@@ -1366,9 +1366,9 @@ INSERT INTO `mob_groups` VALUES (1317,2868,41,0,128,2453,5000,0,78,80,0); -- Nig
 INSERT INTO `mob_groups` VALUES (1318,2869,41,0,128,2454,5000,0,78,80,0); -- Nightmare_Stirge
 INSERT INTO `mob_groups` VALUES (1319,2871,41,0,128,2455,5000,0,78,80,0); -- Nightmare_Tiger
 INSERT INTO `mob_groups` VALUES (1320,2874,41,0,128,2459,5000,0,78,80,0); -- Nightmare_Weapon
-INSERT INTO `mob_groups` VALUES (1321,3502,41,0,128,0,20000,0,82,82,0); -- Scolopendra
-INSERT INTO `mob_groups` VALUES (1322,3791,41,0,128,0,20000,0,82,82,0); -- Stringes
-INSERT INTO `mob_groups` VALUES (1323,3814,41,0,128,0,20000,0,82,82,0); -- Suttung
+INSERT INTO `mob_groups` VALUES (1321,3502,41,0,128,4560,20000,0,82,82,0); -- Scolopendra
+INSERT INTO `mob_groups` VALUES (1322,3791,41,0,128,4562,20000,0,82,82,0); -- Stringes
+INSERT INTO `mob_groups` VALUES (1323,3814,41,0,128,4561,20000,0,82,82,0); -- Suttung
 INSERT INTO `mob_groups` VALUES (1324,3912,41,0,128,0,6000,1000,78,80,0); -- Thunder_Elemental
 INSERT INTO `mob_groups` VALUES (1325,4133,41,0,128,3689,4000,0,77,79,0); -- Vanguard_Alchemist
 INSERT INTO `mob_groups` VALUES (1326,4134,41,0,128,3694,4000,0,77,79,0); -- Vanguard_Ambusher
