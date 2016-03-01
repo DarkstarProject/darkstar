@@ -32767,7 +32767,125 @@ INSERT INTO `mob_droplist` VALUES (4556,0,6019,34); -- end of foret mobs
 INSERT INTO `mob_droplist` VALUES (4557,0,18767,97);
 INSERT INTO `mob_droplist` VALUES (4558,0,15942,128);
 INSERT INTO `mob_droplist` VALUES (4559,0,16185,220);
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f24896f... NMs
+INSERT INTO `mob_droplist` VALUES (4560,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4560,0,3496,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,1449,300);
+INSERT INTO `mob_droplist` VALUES (4560,0,1452,300);
+INSERT INTO `mob_droplist` VALUES (4560,0,1455,300);
+INSERT INTO `mob_droplist` VALUES (4560,0,1450,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,1453,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,1456,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4560,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4560,0,2072,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2727,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2062,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2082,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2047,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2671,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2057,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2722,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2097,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2042,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2666,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2077,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2676,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2092,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2087,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2052,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2107,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2067,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2037,20);
+INSERT INTO `mob_droplist` VALUES (4560,0,2102,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,5905,996);
+INSERT INTO `mob_droplist` VALUES (4561,0,3496,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,1449,300);
+INSERT INTO `mob_droplist` VALUES (4561,0,1452,300);
+INSERT INTO `mob_droplist` VALUES (4561,0,1455,300);
+INSERT INTO `mob_droplist` VALUES (4561,0,1450,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,1453,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,1456,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4561,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4561,0,2072,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2727,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2062,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2082,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2047,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2671,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2057,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2722,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2097,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2042,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2666,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2077,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2676,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2092,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2087,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2052,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2107,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2067,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2037,20);
+INSERT INTO `mob_droplist` VALUES (4561,0,2102,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,5904,818);
+INSERT INTO `mob_droplist` VALUES (4562,0,3496,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,1449,300);
+INSERT INTO `mob_droplist` VALUES (4562,0,1452,300);
+INSERT INTO `mob_droplist` VALUES (4562,0,1455,300);
+INSERT INTO `mob_droplist` VALUES (4562,0,1450,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,1453,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,1456,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4562,0,5903,926);
+INSERT INTO `mob_droplist` VALUES (4562,0,2072,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2727,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2062,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2082,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2047,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2671,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2057,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2722,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2097,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2042,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2666,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2077,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2676,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2092,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2087,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2052,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2107,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2067,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2037,20);
+INSERT INTO `mob_droplist` VALUES (4562,0,2102,20);
+<<<<<<< HEAD
+INSERT INTO `mob_droplist` VALUES (4563,0,18604,426);
+INSERT INTO `mob_droplist` VALUES (4564,0,15850,5);
+INSERT INTO `mob_droplist` VALUES (4565,0,15851,5);
+INSERT INTO `mob_droplist` VALUES (4566,0,15941,384);
 
+=======
+INSERT INTO `mob_droplist` VALUES (4561,0,15851,5);
+INSERT INTO `mob_droplist` VALUES (4562,0,15850,5);
+>>>>>>> ecc4ef8... Adding Hyakinthos NM
+=======
+=======
+>>>>>>> f24896f... NMs
+INSERT INTO `mob_droplist` VALUES (4563,0,18604,426);
+INSERT INTO `mob_droplist` VALUES (4564,0,15850,5);
+INSERT INTO `mob_droplist` VALUES (4565,0,15851,5);
+INSERT INTO `mob_droplist` VALUES (4566,0,15941,384);
+
+
+<<<<<<< HEAD
+>>>>>>> e1abade... fixing dropIds to not conflict
+
+=======
+>>>>>>> f24896f... NMs
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
