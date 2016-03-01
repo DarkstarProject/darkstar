@@ -32770,8 +32770,11 @@ INSERT INTO `mob_droplist` VALUES (4559,0,16185,220);
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> f24896f... NMs
+=======
+>>>>>>> be131d36fc90c0792ae7092b3422ee9f30278b0d
 INSERT INTO `mob_droplist` VALUES (4560,0,5903,926);
 INSERT INTO `mob_droplist` VALUES (4560,0,3496,20);
 INSERT INTO `mob_droplist` VALUES (4560,0,1449,300);
@@ -32862,30 +32865,19 @@ INSERT INTO `mob_droplist` VALUES (4562,0,2107,20);
 INSERT INTO `mob_droplist` VALUES (4562,0,2067,20);
 INSERT INTO `mob_droplist` VALUES (4562,0,2037,20);
 INSERT INTO `mob_droplist` VALUES (4562,0,2102,20);
-<<<<<<< HEAD
 INSERT INTO `mob_droplist` VALUES (4563,0,18604,426);
 INSERT INTO `mob_droplist` VALUES (4564,0,15850,5);
 INSERT INTO `mob_droplist` VALUES (4565,0,15851,5);
 INSERT INTO `mob_droplist` VALUES (4566,0,15941,384);
-
-=======
 INSERT INTO `mob_droplist` VALUES (4561,0,15851,5);
 INSERT INTO `mob_droplist` VALUES (4562,0,15850,5);
->>>>>>> ecc4ef8... Adding Hyakinthos NM
-=======
-=======
->>>>>>> f24896f... NMs
 INSERT INTO `mob_droplist` VALUES (4563,0,18604,426);
 INSERT INTO `mob_droplist` VALUES (4564,0,15850,5);
 INSERT INTO `mob_droplist` VALUES (4565,0,15851,5);
 INSERT INTO `mob_droplist` VALUES (4566,0,15941,384);
 
 
-<<<<<<< HEAD
->>>>>>> e1abade... fixing dropIds to not conflict
 
-=======
->>>>>>> f24896f... NMs
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

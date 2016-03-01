@@ -12115,9 +12115,6 @@ INSERT INTO `mob_groups` VALUES (14340,3415,159,1056,128,3015,0,0,53,56,0);
 -- Duke Decapod
 INSERT INTO `mob_groups` VALUES (14341,4529,116,0,128,4559,0,0,8,8,0);
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 -- Ankou
 INSERT INTO `mob_groups` VALUES (14342,5552,190,3600,0,4560,650,650,25,25,0);
 
@@ -12127,23 +12124,6 @@ INSERT INTO `mob_groups` VALUES (14343,5553,98,7200,0,4562,6200,0,58,59,0);
 -- Chonchon
 INSERT INTO `mob_groups` VALUES (14344,5554,119,5400,0,4566,3154,0,60,60,0);
 
-<<<<<<< HEAD
-=======
-=======
-+-- Ankou
- +INSERT INTO `mob_groups` VALUES (14342,5552,190,3600,0,4560,650,650,25,25,0);
-=======
--- Ankou
-INSERT INTO `mob_groups` VALUES (14342,5552,190,3600,0,4560,650,650,25,25,0);
->>>>>>> 4dc54d0... fixed stuff
-
->>>>>>> 3a290a8... Messed up repo so I commited/pushed everything on to this PR instead
--- Hyakinthos
-INSERT INTO `mob_groups` VALUES (14343,5553,98,7200,0,4562,6200,0,58,59,0);
-
->>>>>>> ecc4ef8... Adding Hyakinthos NM
-=======
->>>>>>> 937fff2... added Chonchon NM
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
