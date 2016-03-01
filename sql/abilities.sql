@@ -231,11 +231,11 @@ INSERT INTO `abilities` VALUES ('184', 'flourishes_i', '19', '20', '1', '0', '0'
 INSERT INTO `abilities` VALUES ('185', 'quickstep', '19', '20', '4', '15', '220', '519', '0', '14', '2000', '0', '14', '4.5', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('186', 'box_step', '19', '30', '4', '15', '220', '520', '0', '14', '2000', '0', '14', '4.5', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('187', 'stutter_step', '19', '40', '4', '15', '220', '521', '0', '14', '2000', '0', '14', '4.5', '0', '1', '0', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('188', 'animated_flourish', '19', '20', '4', '30', '221', '119', '0', '181', '2000', '0', '14', '17.6', '0', '1', '1000', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('188', 'animated_flourish', '19', '20', '4', '30', '221', '119', '0', '181', '2000', '0', '6', '17.6', '0', '1', '1000', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('189', 'desperate_flourish', '19', '30', '4', '20', '221', '127', '0', '24', '2000', '0', '14', '4.4', '0', '1', '0', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('190', 'reverse_flourish', '19', '40', '1', '30', '222', '452', '0', '182', '2000', '0', '14', '20.0', '0', '1', '0', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('190', 'reverse_flourish', '19', '40', '1', '30', '222', '452', '0', '182', '2000', '0', '6', '20.0', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('191', 'violent_flourish', '19', '45', '4', '20', '221', '522', '0', '24', '2000', '0', '14', '4.4', '0', '1', '0', '0', '0','WOTG');
-INSERT INTO `abilities` VALUES ('192', 'building_flourish', '19', '50', '1', '10', '222', '0', '0', '220', '2000', '0', '14', '20.0', '0', '1', '0', '0', '0','WOTG');
+INSERT INTO `abilities` VALUES ('192', 'building_flourish', '19', '50', '1', '10', '222', '0', '0', '220', '2000', '0', '6', '20.0', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('193', 'wild_flourish', '19', '60', '4', '30', '222', '529', '0', '24', '2000', '0', '14', '4.4', '0', '1', '0', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('194', 'tabula_rasa', '20', '0', '1', '3600', '0', '0', '0', '190', '2000', '0', '6', '20.0', '0', '1', '300', '0', '0','WOTG');
 INSERT INTO `abilities` VALUES ('195', 'light_arts', '20', '10', '1', '60', '228', '0', '0', '171', '2000', '0', '6', '20.0', '0', '1', '80', '1600', '0','WOTG');
