@@ -225,7 +225,7 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) { //includes wa
         if (m_Battlefields[i] != nullptr) {
             if (m_Battlefields[i] == PChar->PBCNM) {
                 luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_WARPDC);
-                m_Battlefields->delPlayerFromBcnm(PChar);
+                m_Battlefields[i]->delPlayerFromBcnm(PChar);
                 return true;
             }
         }
