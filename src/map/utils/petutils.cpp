@@ -262,6 +262,8 @@ namespace petutils
 
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
+	        if (PPet->StatusEffectContainer->GetStatusEffect(EFFECT_HEALING))
+	            PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
             PPet->PAI->Engage(PTarget->targid);
         }
     }
@@ -274,6 +276,8 @@ namespace petutils
         if (!PPet->StatusEffectContainer->HasPreventActionEffect())
         {
             PPet->PAI->Disengage();
+	        if (PPet->StatusEffectContainer->GetStatusEffect(EFFECT_HEALING))
+	            PPet->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
         }
     }
 
@@ -936,8 +940,8 @@ namespace petutils
 
         if (PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
         {
-            //#TODO: just disable pathfind?
-            //PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
+	        PPet->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HEALING, 0, 0, 10, 0));
+	        PPet->animation = ANIMATION_HEALING;
         }
     }
 
