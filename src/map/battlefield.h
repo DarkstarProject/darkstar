@@ -151,8 +151,9 @@ public:
 
     bool		lost();
     bool		won();
-    void		win();
     void		lose();
+    void		win(time_point tick);
+    bool        cleared();
 
     std::vector<CCharEntity*> m_PlayerList;
     std::vector<CBaseEntity*> m_NpcList;
@@ -179,6 +180,7 @@ private:
     CCharEntity*	m_CurrentBattlefieldLeader;
     bool			m_lost;
     bool			m_won;
+    bool            m_cleared {false}; // set when the BCNM has ended and the players have started the end cutscene
     std::vector<MobVictoryCondition_t> m_EnemyVictoryList;
 };
 
