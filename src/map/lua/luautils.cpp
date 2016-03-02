@@ -1645,7 +1645,7 @@ namespace luautils
         }
         if (returns > 0)
         {
-            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", File, returns);
+            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", PChar->m_event.Script.c_str(), returns);
             lua_pop(LuaHandle, returns);
         }
         return 0;
