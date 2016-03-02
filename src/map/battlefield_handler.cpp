@@ -223,12 +223,9 @@ hence it doesn't check if you're "in" the BCNM, it just tries to remove you from
 bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) { //includes warping
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr) {
-            if (m_Battlefields[i]->delPlayerFromBcnm(PChar)) {
+            if (m_Battlefields[i] == PChar->PBCNM) {
                 luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_WARPDC);
-                if (!m_Battlefields[i]->isReserved()) {//no more players in BCNM
-                    ShowDebug("Detected no more players in BCNM Battlefield %i. Cleaning up. \n",
-                        m_Battlefields[i]->getBattlefieldNumber());
-                    m_Battlefields[i]->loseBcnm();
+                m_Battlefields->delPlayerFromBcnm(PChar);
                 }
                 return true;
             }
