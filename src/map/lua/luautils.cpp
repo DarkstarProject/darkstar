@@ -64,6 +64,7 @@
 #include "../items/item_puppet.h"
 #include "../entities/automatonentity.h"
 #include "../utils/itemutils.h"
+#include "../utils/charutils.h"
 #include "../conquest_system.h"
 #include "../weapon_skill.h"
 #include "../status_effect_container.h"
@@ -145,6 +146,7 @@ namespace luautils
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
+        lua_register(LuaHandle, "terminate", luautils::terminate);
 
         lua_register(LuaHandle, "getAbility", luautils::getAbility);
         lua_register(LuaHandle, "getSpell", luautils::getSpell);
@@ -1587,6 +1589,11 @@ namespace luautils
 
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
+        //#TODO: move this to BCNM stuff when it's rewritten
+        if (PChar->PBCNM && PChar->PBCNM->won())
+        {
+            PChar->PBCNM->delPlayerFromBcnm(PChar);
+        }
         int32 oldtop = lua_gettop(LuaHandle);
 
         lua_pushnil(LuaHandle);
@@ -1638,7 +1645,7 @@ namespace luautils
         }
         if (returns > 0)
         {
-            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", File, returns);
+            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", PChar->m_event.Script.c_str(), returns);
             lua_pop(LuaHandle, returns);
         }
         return 0;
@@ -3465,6 +3472,21 @@ namespace luautils
         Sql_Query(SqlHandle, "DELETE FROM char_vars WHERE varname = '%s';", varname);
 
         return 0;
+    }
+
+    int32 terminate(lua_State*)
+    {
+        zoneutils::ForEachZone([](CZone* PZone)
+        {
+            PZone->ForEachChar([](CCharEntity* PChar)
+            {
+                charutils::SaveCharPosition(PChar);
+                charutils::SaveCharStats(PChar);
+                charutils::SaveCharExp(PChar, PChar->GetMJob());
+                charutils::SaveCharPoints(PChar);
+            });
+        });
+        exit(1);
     }
 
     /************************************************************************

@@ -196,7 +196,7 @@ inline int32 CLuaBattlefield::win(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    m_PLuaBattlefield->win();
+    m_PLuaBattlefield->win(server_clock::now());
 
     return 0;
 }

@@ -454,7 +454,9 @@ bool CTargetFind::canSee(position_t* point)
 {
     if (m_PBattleEntity->loc.zone && m_PBattleEntity->loc.zone->m_navMesh)
     {
-        return m_PBattleEntity->loc.zone->m_navMesh->raycast(m_PBattleEntity->loc.p, *point);
+        position_t pA {0, m_PBattleEntity->loc.p.x, m_PBattleEntity->loc.p.y - 1, m_PBattleEntity->loc.p.z};
+        position_t pB {0, point->x, point->y - 1, point->z};
+        return m_PBattleEntity->loc.zone->m_navMesh->raycast(pA, pB);
     }
     return true;
 }

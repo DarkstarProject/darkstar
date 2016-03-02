@@ -183,10 +183,10 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                             else if (!PBattlefield->won()) {
                                 ShowDebug("BCNM %i battlefield %i : Winning conditions met. Waiting 7 seconds before exiting battlefield.\n",
                                     PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
-                                PBattlefield->win();
+                                PBattlefield->win(tick);
                             }
                             else {
-                                if ((tick - PBattlefield->getWinTime()) > 6s) {
+                                if (!PBattlefield->cleared() && (tick - PBattlefield->getWinTime()) > 6s) {
                                     ShowDebug("BCNM %i battlefield %i : Exiting battlefield.\n",
                                         PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                                     PBattlefield->winBcnm();
@@ -223,13 +223,9 @@ hence it doesn't check if you're "in" the BCNM, it just tries to remove you from
 bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) { //includes warping
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr) {
-            if (m_Battlefields[i]->delPlayerFromBcnm(PChar)) {
+            if (m_Battlefields[i] == PChar->PBCNM) {
                 luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_WARPDC);
-                if (!m_Battlefields[i]->isReserved()) {//no more players in BCNM
-                    ShowDebug("Detected no more players in BCNM Battlefield %i. Cleaning up. \n",
-                        m_Battlefields[i]->getBattlefieldNumber());
-                    m_Battlefields[i]->loseBcnm();
-                }
+                m_Battlefields[i]->delPlayerFromBcnm(PChar);
                 return true;
             }
         }
@@ -241,13 +237,8 @@ bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
             if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
-                if (m_Battlefields[i]->delPlayerFromBcnm(PChar)) {
+                if (m_Battlefields[i] == PChar->PBCNM) {
                     luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_EXIT);
-                    if (!m_Battlefields[i]->isReserved()) {//no more players in BCNM
-                        ShowDebug("Detected no more players in BCNM Battlefield %i. Cleaning up. \n",
-                            m_Battlefields[i]->getBattlefieldNumber());
-                        m_Battlefields[i]->loseBcnm();
-                    }
                     return true;
                 }
             }

@@ -952,7 +952,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                     else {
                         addMP(-PAbility->getAnimationID()); // TODO: ...
                     }
-                    if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
+                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
                 }
                 else
                 {

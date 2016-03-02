@@ -262,9 +262,11 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar) {
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-            PChar->PAI->Disengage();
-            clearPlayerEnmity(PChar);
             m_PlayerList.erase(m_PlayerList.begin() + i);
+            if (m_PlayerList.empty())
+            {
+                cleanup();
+            }
             return true;
         }
     }
@@ -414,19 +416,23 @@ void CBattlefield::cleanup() {
 }
 
 void CBattlefield::beforeCleanup() {
+    m_cleared = true;
     if (!(m_RuleMask & RULES_ALLOW_SUBJOBS)) {
         // enable subjob
         enableSubJob();
     }
+    if (m_PlayerList.empty())
+        cleanup();
 }
 
 bool CBattlefield::winBcnm() {
     beforeCleanup();
-    for (int i = 0; i < m_PlayerList.size(); i++) {
-        luautils::OnBcnmLeave(m_PlayerList.at(i), this, LEAVE_WIN);
-        if (this->delPlayerFromBcnm(m_PlayerList.at(i))) { i--; }
+    for (auto&& PChar : m_PlayerList)
+    {
+        luautils::OnBcnmLeave(PChar, this, LEAVE_WIN);
+        PChar->PAI->Disengage();
+        clearPlayerEnmity(PChar);
     }
-    cleanup();
     return true;
 }
 
@@ -441,12 +447,12 @@ void CBattlefield::OpenChestinBcnm() {
 
 bool CBattlefield::loseBcnm() {
     beforeCleanup();
-    for (int i = 0; i < m_PlayerList.size(); i++) {
-        luautils::OnBcnmLeave(m_PlayerList.at(i), this, LEAVE_LOSE);
-        if (this->delPlayerFromBcnm(m_PlayerList.at(i))) { i--; }
+    for (auto&& PChar : m_PlayerList)
+    {
+        luautils::OnBcnmLeave(PChar, this, LEAVE_LOSE);
+        PChar->PAI->Disengage();
+        clearPlayerEnmity(PChar);
     }
-
-    cleanup();
     return true;
 }
 
@@ -597,7 +603,13 @@ void CBattlefield::lose()
     m_lost = true;
 }
 
-void CBattlefield::win()
+void CBattlefield::win(time_point tick)
 {
+    m_WinTime = tick;
     m_won = true;
+}
+
+bool CBattlefield::cleared()
+{
+    return m_cleared;
 }
