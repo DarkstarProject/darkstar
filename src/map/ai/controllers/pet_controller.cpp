@@ -59,6 +59,9 @@ void CPetController::DoRoamTick(time_point tick)
             return;
         }
     }
+    else if (PPet->isBstPet() && PPet->StatusEffectContainer->GetStatusEffect(EFFECT_HEALING)) {
+        return;
+    }
 
     float currentDistance = distance(PPet->loc.p, PPet->PMaster->loc.p);
 
