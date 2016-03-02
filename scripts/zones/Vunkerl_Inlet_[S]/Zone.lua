@@ -6,8 +6,10 @@
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/weather");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onInitialize
@@ -27,6 +29,39 @@ function onZoneIn(player,prevZone)
     end    
     return cs;    
 end;        
+
+-----------------------------------        
+-- onZoneWeatherChange        
+-----------------------------------
+
+function onZoneWeatherChange(weather)
+
+    local npc = GetNPCByID(17118004); -- Indescript Markings
+    if (npc ~= nil) then
+        if (weather == WEATHER_FOG or weather == WEATHER_THUNDER) then
+            npc:setStatus(STATUS_DISAPPEAR);
+        elseif (VanadielHour() >= 16 or VanadielHour() <= 6) then
+            npc:setStatus(STATUS_NORMAL);
+        end
+    end
+end;
+
+-----------------------------------
+-- onGameHour
+-----------------------------------
+
+function onGameHour()
+
+    local npc = GetNPCByID(17118004); -- Indescript Markings
+    if (npc ~= nil) then
+        if (VanadielHour() == 16) then
+            npc:setStatus(STATUS_DISAPPEAR);
+        end
+        if (VanadielHour() == 6) then
+            npc:setStatus(STATUS_NORMAL);
+        end
+    end
+end;
 
 -----------------------------------        
 -- onRegionEnter        

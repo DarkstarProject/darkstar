@@ -4,6 +4,31 @@ package.loaded["scripts/globals/settings"] = nil;
 -- Provides helper methods for npcs
 npcUtil = {};
 
+-- Picks a new position for an NPC and excluding the current position.
+-- INPUT: npc = npcID, position = 2D table with coords: index, {x, y, z}
+-- RETURN: table index
+function npcUtil.pickNewPosition(npc, positionTable)
+
+    local npc = GetNPCByID(npc)
+    local positionIndex = 1 -- Default to position one in the table if it can't be found.
+    local tableSize = 0
+    for i, v in ipairs(positionTable) do   -- Looking for the current position
+
+        -- Finding by comparing the NPC's coords
+        if (math.floor(v[1]) == math.floor(npc:getXPos()) and math.floor(v[2]) == math.floor(npc:getYPos()) and math.floor(v[3]) == math.floor(npc:getZPos())) then
+            positionIndex = i; -- Found where the NPC is!
+        end
+        tableSize = tableSize + 1; -- Counting the array size
+    end
+
+    -- Pick a new pos that isn't the current
+    local newPosition = positionIndex
+    repeat
+        newPosition = math.random(1, tableSize)
+    until (newPosition ~= positionIndex)
+    return newPosition
+end
+
 -- give gil to player with message and multiplied gil
 -- npcUtil.giveGil(player, 200)
 -- npcUtil.giveGil(player, 1000, {rate=false})
