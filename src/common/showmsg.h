@@ -104,6 +104,7 @@ enum MSGTYPE
     MSG_FATALERROR      = 0x0080,
     MSG_SQL             = 0x0100,
     MSG_LUASCRIPT       = 0x0200,
+    MSG_NAVMESH         = 0x0400,
 };
 
 extern void ClearScreen(void);
@@ -119,5 +120,6 @@ extern int32 ShowDebug(const int8 *, ...);
 extern int32 ShowError(const int8 *, ...);
 extern int32 ShowFatalError(const int8 *, ...);
 extern int32 ShowScript(const int8 *, ...);
+extern int32 ShowNavError(const int8 *, ...);
 
 #endif /* _SHOWMSG_H_ */
