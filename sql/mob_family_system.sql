@@ -117,7 +117,7 @@ INSERT INTO `mob_family_system` VALUES (49,'Beetle',20,'Vermin',1,40,117,110,1,3
 INSERT INTO `mob_family_system` VALUES (50,'NotUsed',20,'Vermin',1,40,117,110,1,3,2,4,5,5,6,3,2,3,3,0.5,0.5,0.5,0.5,1,1.25,1,1,1,1,1.25,1,4);
 INSERT INTO `mob_family_system` VALUES (51,'Behemoth',6,'Beast',4,40,110,90,1,3,4,3,6,6,5,3,3,2,3,1,1,1,1,1,1,1,1,1,1,1,1,6);
 INSERT INTO `mob_family_system` VALUES (52,'Bhoot',19,'Undead',1,40,70,140,6,3,6,3,1,5,4,3,3,3,3,0.75,0.75,0.5,0.5,1.25,0.5,1,1,1,1,1.25,0.5,2);
-INSERT INTO `mob_family_system` VALUES (53,'NotUsed',18,'Unclassified',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
+INSERT INTO `mob_family_system` VALUES (53,'Grimoire',3,'Arcana',1,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (54,'Biotechnological',18,'Unclassified',2,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (55,'Bird',8,'Bird',0,40,106,120,1,3,5,3,3,3,5,3,3,3,3,1,1.25,1,1,1,1.25,0.875,1,1,1,1,1,1);
 INSERT INTO `mob_family_system` VALUES (56,'Bomb',3,'Arcana',0,40,97,140,6,3,6,3,1,5,4,3,3,3,3,1,1,1,1,1.25,0.5,0.5,0.5,0.5,0.5,0.5,0.5,1);
@@ -534,6 +534,8 @@ INSERT INTO `mob_family_system` VALUES (494,'Sekhmet',6,'Beast',1,60,94,90,1,1,4
 INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0);
 INSERT INTO `mob_family_system` VALUES (496,'ChanequeMandragora',17,'Plantoid',0,40,107,120,3,3,4,5,4,4,2,3,3,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4); -- for chaneque unique TP move
 INSERT INTO `mob_family_system` VALUES (497,'Cloud_of_Darkness',18,'Unclassified',3,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,0);
+
+
 
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
