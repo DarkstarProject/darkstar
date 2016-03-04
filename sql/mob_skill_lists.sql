@@ -27,7 +27,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 DROP TABLE IF EXISTS `mob_skill_lists`;
 CREATE TABLE IF NOT EXISTS `mob_skill_lists` (
-  `skill_list_name` char(20) DEFAULT NULL,
+  `skill_list_name` varchar(40) DEFAULT NULL,
   `skill_list_id` smallint(5) unsigned NOT NULL,
   `mob_skill_id` smallint(3) unsigned NOT NULL,
   PRIMARY KEY (`skill_list_id`,`mob_skill_id`)
