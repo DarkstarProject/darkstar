@@ -25,7 +25,6 @@
 #include "../../common/timer.h"
 #include "../../common/utils.h"
 #include "../../common/kernel.h"
-
 #include <math.h>
 
 #include "lua_baseentity.h"
@@ -3903,7 +3902,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 
     uint8  fameArea = (uint8)lua_tointeger(L, 1);
     uint16 fame = 0;
-
+    float fameMultiplier = map_config.fame_multiplier;
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     switch (fameArea)
@@ -3911,16 +3910,16 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
         case 0: // San d'Oria
         case 1: // Bastok
         case 2: // Windurst
-            fame = PChar->profile.fame[fameArea];
+            fame = PChar->profile.fame[fameArea]*fameMultiplier;
             break;
         case 3: // Jeuno
-            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) / 3);
+            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) * fameMultiplier / 3);
             break;
         case 4: // Selbina / Rabao
-            fame = (PChar->profile.fame[0] + PChar->profile.fame[1]) / 2;
+            fame = (PChar->profile.fame[0] + PChar->profile.fame[1])*fameMultiplier / 2;
             break;
         case 5: // Norg
-            fame = PChar->profile.fame[3];
+            fame = PChar->profile.fame[3]*fameMultiplier;
             break;
     }
     lua_pushinteger(L, fame);
@@ -3943,21 +3942,21 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
     uint16 fame = (uint16)lua_tointeger(L, -1);
     uint8  fameLevel = 1;
 
-    if (fame >= 2450)
+    if (fame >= 613)
         fameLevel = 9;
-    else if (fame >= 2200)
+    else if (fame >= 550)
         fameLevel = 8;
-    else if (fame >= 1950)
+    else if (fame >= 488)
         fameLevel = 7;
-    else if (fame >= 1700)
+    else if (fame >= 425)
         fameLevel = 6;
-    else if (fame >= 1300)
+    else if (fame >= 325)
         fameLevel = 5;
-    else if (fame >= 900)
+    else if (fame >= 225)
         fameLevel = 4;
-    else if (fame >= 500)
+    else if (fame >= 125)
         fameLevel = 3;
-    else if (fame >= 200)
+    else if (fame >= 50)
         fameLevel = 2;
 
     lua_pushinteger(L, fameLevel);

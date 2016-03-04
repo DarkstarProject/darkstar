@@ -1047,6 +1047,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.vanadiel_time_offset = atoi(w2);
         }
+        else if (strcmp(w1, "fame_multiplier") == 0)
+        {
+            map_config.fame_multiplier = atof(w2);
+        }
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
             map_config.lightluggage_block = atoi(w2);
