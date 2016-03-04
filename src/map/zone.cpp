@@ -95,7 +95,7 @@ int32 zone_server_region(time_point tick, CTaskMgr::CTask* PTask)
 {
     CZone* PZone = (CZone*)PTask->m_data;
 
-    if ((tick - PZone->m_RegionCheckTime) < 1s)
+    if ((tick - PZone->m_RegionCheckTime) < 800ms)
     {
         PZone->ZoneServer(tick);
     }
@@ -846,7 +846,7 @@ void CZone::createZoneTimer()
         this,
         CTaskMgr::TASK_INTERVAL,
         m_regionList.empty() ? zone_server : zone_server_region,
-        500ms);
+        400ms);
 }
 
 void CZone::CharZoneIn(CCharEntity* PChar)
