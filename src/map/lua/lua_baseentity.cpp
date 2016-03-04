@@ -8684,7 +8684,7 @@ inline int32 CLuaBaseEntity::hasPreventActionEffect(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    lua_pushboolean(L, (static_cast<CMobEntity *>(m_PBaseEntity))->StatusEffectContainer->HasPreventActionEffect());
+    lua_pushboolean(L, (static_cast<CBattleEntity *>(m_PBaseEntity))->StatusEffectContainer->HasPreventActionEffect());
 
     return 1;
 }
