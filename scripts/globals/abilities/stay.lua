@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability,action)
-    pet = player:getPet();
+    local pet = player:getPet();
     
     if (pet == nil or pet == '') then
         return
@@ -36,14 +36,14 @@ function onUseAbility(player,target,ability,action)
       -- reduce tick speed based on level. but never less than 5 and never
       -- more than 10.  This seems to mimic retail.  There is no formula
       -- that I can find, but this seems close.
-        level = 0
+        local level = 0
         if (player:getMainJob() == JOB_BST) then
             level = player:getMainLvl()
         elseif (player:getSubJob() == JOB_BST) then
             level = player:getSubLvl()
         end
         
-        tick = 10 - math.ceil(math.max(0, level / 20))
+        local tick = 10 - math.ceil(math.max(0, level / 20))
         --printf('tick: %d', tick)
         pet:addStatusEffectEx(EFFECT_HEALING, 0, 0, tick, 0)
         -- I'm not sure how to set the pet animation to NONE or HEALING
