@@ -305,6 +305,7 @@ bool CMobController::TrySpecialSkill()
     // get my special skill
     CMobSkill* PSpecialSkill = battleutils::GetMobSkill(PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
     CBattleEntity* PAbilityTarget = nullptr;
+    m_LastSpecialTime = m_Tick;
 
     if (PSpecialSkill == nullptr) {
         ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
