@@ -193,7 +193,7 @@ void CNavMesh::outputError(uint32 status)
 
 void CNavMesh::unload()
 {
-    ShowWarning("CNavMesh::unload not implemented\n");
+    m_navMesh.reset();
 }
 
 std::vector<position_t> CNavMesh::findPath(const position_t& start, const position_t& end)
