@@ -482,14 +482,11 @@ void CPathFind::AddPoints(std::vector<position_t>& points, bool reverse)
         ShowWarning("CPathFind::AddPoints Given too many points (%d). Limiting to max (%d)\n", points.size(), MAX_PATH_POINTS);
         points.resize(MAX_PATH_POINTS);
     }
-    m_pathLength = points.size();
-    m_currentPoint = 0;
+    uint8 index {0};
 
-    uint8 index;
-
-    auto copyPoints = [this, &index](auto start, auto end)
+    auto copyPoints = [this, &index](auto&& start, auto&& end)
     {
-        m_points[index] = {0, start->x, start->y, start->z, 0};
+        m_points[index++] = {0, start->x, start->y, start->z, 0};
     };
 
     if (reverse)
