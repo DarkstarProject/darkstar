@@ -69,6 +69,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
 
     m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
     m_startPos = m_PEntity->loc.p;
+    m_interrupted = false;
 
     action_t action;
     action.id = m_PEntity->id;
@@ -94,7 +95,6 @@ bool CMagicState::Update(time_point tick)
 {
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
-        m_interrupted = false;
         auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
         MSGBASIC_ID msg = MSGBASIC_IS_INTERRUPTED;
 
