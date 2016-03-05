@@ -1574,7 +1574,6 @@ void CCharEntity::Die(duration _duration)
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
     pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
-    StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
     // reraise modifiers
     if (this->getMod(MOD_RERAISE_I) > 0)
