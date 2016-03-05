@@ -15,7 +15,7 @@ require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
 function onTrade(player,npc,trade)
     
-    if (player:getXPos() >= 70 and npc:getAnimation() == 9) then -- only if they're on the locked side and gate is closed.
+    if (player:getXPos() >= -70 and npc:getAnimation() == 9) then -- only if they're on the locked side and gate is closed.
         if (trade:hasItemQty(1660,1) and trade:getItemCount() == 1) then -- Bronze Key
             player:tradeComplete();
             npc:openDoor(15);
