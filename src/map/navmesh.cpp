@@ -99,8 +99,6 @@ CNavMesh::~CNavMesh()
 
 bool CNavMesh::load(const std::string& filename)
 {
-    this->unload();
-
     std::ifstream file(filename.c_str(), std::ios_base::in | std::ios_base::binary);
 
     if (!file.good())
@@ -195,6 +193,7 @@ void CNavMesh::outputError(uint32 status)
 
 void CNavMesh::unload()
 {
+    ShowWarning("CNavMesh::unload not implemented\n");
 }
 
 std::vector<position_t> CNavMesh::findPath(const position_t& start, const position_t& end)
@@ -334,7 +333,7 @@ std::pair<int16, position_t> CNavMesh::findRandomPosition(const position_t& star
         return std::make_pair(ERROR_NEARESTPOLY, position_t{});
     }
 
-    status = m_navMeshQuery.findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(2.f); }, &randomRef, randomPt);
+    status = m_navMeshQuery.findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(1.f); }, &randomRef, randomPt);
 
     if (dtStatusFailed(status))
     {

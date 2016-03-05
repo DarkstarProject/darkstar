@@ -61,10 +61,10 @@ bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTu
     }
     else
     {
-        Clear();
         // no point worm roaming cause it'll move one inch
         if (m_roamFlags & ROAMFLAG_WORM)
         {
+            Clear();
             return false;
         }
 
@@ -110,7 +110,7 @@ bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
     }
     else
     {
-        if (!clear)
+        if (clear)
             Clear();
 
         m_points.push_back(point);
@@ -346,6 +346,7 @@ bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 m
         if (status.first != 0) {
             return false;
         }
+
         m_turnPoints.push_back(status.second);
         startPosition = m_turnPoints[i];
     }
