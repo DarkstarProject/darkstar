@@ -733,6 +733,7 @@ int32 doSynthFail(CCharEntity* PChar)
 
 int32 startSynth(CCharEntity* PChar)
 {
+    PChar->m_LastSynthTime = server_clock::now();
 	uint16 effect  = 0;
 	uint8  element = 0;
 

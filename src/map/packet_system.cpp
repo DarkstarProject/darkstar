@@ -3494,8 +3494,7 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    // Prevent crafting exploit if we are already crafting..
-    if (PChar->animation == ANIMATION_SYNTH)
+    if (PChar->m_LastSynthTime + 10s > server_clock::now())
     {
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 94));
         return;
