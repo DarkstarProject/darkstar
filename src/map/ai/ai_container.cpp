@@ -408,7 +408,10 @@ bool CAIContainer::QueueEmpty()
 
 void CAIContainer::Internal_Despawn(duration spawnTime)
 {
-    ForceChangeState<CDespawnState>(PEntity, spawnTime);
+    if (IsSpawned())
+    {
+        ForceChangeState<CDespawnState>(PEntity, spawnTime);
+    }
 }
 
 void CAIContainer::CheckCompletedStates()
