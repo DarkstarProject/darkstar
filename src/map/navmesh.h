@@ -33,6 +33,9 @@ The NavMesh class will load and find paths given a start point and end point.
 #include "../common/showmsg.h"
 #include "../common/mmo.h"
 
+#include <vector>
+#include <memory>
+
 #define MAX_NAV_POLYS 256
 
 static const int NAVMESHSET_MAGIC = 'M' << 24 | 'S' << 16 | 'E' << 8 | 'T'; //'MSET';
@@ -67,11 +70,11 @@ public:
     CNavMesh(uint16 zoneID);
     ~CNavMesh();
 
-    bool load(char* path);
+    bool load(const std::string& path);
     void unload();
 
-    int16 findPath(const position_t& start, const position_t& end, position_t* path, uint16 pathSize);
-    int16 findRandomPosition(position_t start, float maxRadius, position_t* randomPosition);
+    std::vector<position_t> findPath(const position_t& start, const position_t& end);
+    std::pair<int16, position_t> findRandomPosition(const position_t& start, float maxRadius);
 
     // returns true if the point is in water
     bool inWater(const position_t& point);
@@ -87,9 +90,8 @@ private:
     uint16 m_zoneID;
     dtRaycastHit m_hit;
     dtPolyRef m_hitPath[20];
-    dtNavMesh* m_navMesh;
-    dtNavMeshQuery* m_navMeshQuery;
-    char* path;
+    std::unique_ptr<dtNavMesh> m_navMesh;
+    dtNavMeshQuery m_navMeshQuery;
 };
 
 #endif

@@ -25,6 +25,8 @@
 #include "../common/detour/DetourNavMeshQuery.h"
 #include <float.h>
 #include <string.h>
+#include <iostream>
+#include <fstream>
 #include "../common/utils.h"
 #include "../common/dsprand.h"
 
@@ -93,50 +95,42 @@ CNavMesh::CNavMesh(uint16 zoneID)
 
 CNavMesh::~CNavMesh()
 {
-    delete m_navMesh;
 }
 
-bool CNavMesh::load(char* path)
+bool CNavMesh::load(const std::string& filename)
 {
-    this->path = path;
     this->unload();
 
-    m_navMesh = new dtNavMesh();
+    std::ifstream file(filename.c_str(), std::ios_base::in | std::ios_base::binary);
 
-    FILE* fp = fopen(path, "rb");
-
-    if (!fp)
+    if (!file.good())
     {
         return false;
     }
 
     // Read header.
     NavMeshSetHeader header;
-    fread(&header, sizeof(NavMeshSetHeader), 1, fp);
+    file.read(reinterpret_cast<char*>(&header), sizeof(header));
     if (header.magic != NAVMESHSET_MAGIC)
     {
-        fclose(fp);
         return false;
     }
     if (header.version != NAVMESHSET_VERSION)
     {
-        fclose(fp);
         return false;
     }
 
-    m_navMesh = dtAllocNavMesh();
+    m_navMesh.reset(dtAllocNavMesh());
     if (!m_navMesh)
     {
-        fclose(fp);
         return false;
     }
 
     dtStatus status = m_navMesh->init(&header.params);
     if (dtStatusFailed(status))
     {
-        ShowNavError("CNavMesh::load Could not initialize detour for (%s)", path);
+        ShowNavError("CNavMesh::load Could not initialize detour for (%s)", filename);
         outputError(status);
-        fclose(fp);
         return false;
     }
 
@@ -144,29 +138,25 @@ bool CNavMesh::load(char* path)
     for (int i = 0; i < header.numTiles; ++i)
     {
         NavMeshTileHeader tileHeader;
-        fread(&tileHeader, sizeof(tileHeader), 1, fp);
+        file.read(reinterpret_cast<char*>(&tileHeader), sizeof(tileHeader));
         if (!tileHeader.tileRef || !tileHeader.dataSize)
             break;
 
         unsigned char* data = (unsigned char*)dtAlloc(tileHeader.dataSize, DT_ALLOC_PERM);
         if (!data) break;
         memset(data, 0, tileHeader.dataSize);
-        fread(data, tileHeader.dataSize, 1, fp);
+        file.read(reinterpret_cast<char*>(data), tileHeader.dataSize);
 
         m_navMesh->addTile(data, tileHeader.dataSize, DT_TILE_FREE_DATA, tileHeader.tileRef, 0);
 
     }
 
-    fclose(fp);
-
-    m_navMeshQuery = new dtNavMeshQuery();
-
     // init detour nav mesh path finder
-    status = m_navMeshQuery->init(m_navMesh, MAX_NAV_POLYS);
+    status = m_navMeshQuery.init(m_navMesh.get(), MAX_NAV_POLYS);
 
     if (dtStatusFailed(status))
     {
-        ShowNavError("CNavMesh::load Error loading navmeshquery (%s)\n", path);
+        ShowNavError("CNavMesh::load Error loading navmeshquery (%s)\n", filename.c_str());
         outputError(status);
         return false;
     }
@@ -205,14 +195,11 @@ void CNavMesh::outputError(uint32 status)
 
 void CNavMesh::unload()
 {
-    if (m_navMesh != nullptr) {
-        delete m_navMesh;
-    }
 }
 
-int16 CNavMesh::findPath(const position_t& start, const position_t& end, position_t* path, uint16 pathSize)
+std::vector<position_t> CNavMesh::findPath(const position_t& start, const position_t& end)
 {
-
+    std::vector<position_t> ret;
     dtStatus status;
 
     float spos[3];
@@ -238,28 +225,28 @@ int16 CNavMesh::findPath(const position_t& start, const position_t& end, positio
     float enearest[3];
     float snearest[3];
 
-    status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+    status = m_navMeshQuery.findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
 
     if (dtStatusFailed(status))
     {
         ShowNavError("CNavMesh::findPath start point invalid (%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], m_zoneID);
         outputError(status);
-        return ERROR_NEARESTPOLY;
+        return ret;
     }
 
-    status = m_navMeshQuery->findNearestPoly(epos, polyPickExt, &filter, &endRef, enearest);
+    status = m_navMeshQuery.findNearestPoly(epos, polyPickExt, &filter, &endRef, enearest);
 
     if (dtStatusFailed(status))
     {
         ShowNavError("CNavMesh::findPath end point invalid (%f, %f, %f) (%u)\n", epos[0], epos[1], epos[2], m_zoneID);
         outputError(status);
-        return ERROR_NEARESTPOLY;
+        return ret;
     }
 
     if (!m_navMesh->isValidPolyRef(startRef) || !m_navMesh->isValidPolyRef(endRef))
     {
         ShowNavError("CNavMesh::findPath Couldn't find path (%f, %f, %f)->(%f, %f, %f) (%u) \n", start.x, start.y, start.z, end.x, end.y, end.z, m_zoneID);
-        return ERROR_NEARESTPOLY;
+        return ret;
     }
 
     dtPolyRef m_polys[MAX_NAV_POLYS];
@@ -268,32 +255,29 @@ int16 CNavMesh::findPath(const position_t& start, const position_t& end, positio
     dtPolyRef straightPathPolys[MAX_NAV_POLYS];
     int nstraightPath = 0;
 
-    int16 pos = 0;
-
     // not sure what this is for?
     int32 pathCount = 0;
 
-    status = m_navMeshQuery->findPath(startRef, endRef, snearest, enearest, &filter, m_polys, &pathCount, MAX_NAV_POLYS);
+    status = m_navMeshQuery.findPath(startRef, endRef, snearest, enearest, &filter, m_polys, &pathCount, MAX_NAV_POLYS);
 
     if (dtStatusFailed(status))
     {
         ShowNavError("CNavMesh::findPath findPath error (%u)\n", m_zoneID);
         outputError(status);
-        return -1;
+        return ret;
     }
 
     if (pathCount > 0)
     {
-
         int32 straightPathCount = MAX_NAV_POLYS * 3;
 
-        status = m_navMeshQuery->findStraightPath(snearest, enearest, m_polys, pathCount, straightPath, straightPathFlags, straightPathPolys, &straightPathCount, MAX_NAV_POLYS);
+        status = m_navMeshQuery.findStraightPath(snearest, enearest, m_polys, pathCount, straightPath, straightPathFlags, straightPathPolys, &straightPathCount, MAX_NAV_POLYS);
 
         if (dtStatusFailed(status))
         {
             ShowNavError("CNavMesh::findPath findStraightPath error (%u)\n", m_zoneID);
             outputError(status);
-            return -1;
+            return ret;
         }
 
         // i starts at 3 so the start position is ignored
@@ -306,28 +290,16 @@ int16 CNavMesh::findPath(const position_t& start, const position_t& end, positio
 
             CNavMesh::ToFFXIPos(pathPos);
 
-            path[pos].x = pathPos[0];
-            path[pos].y = pathPos[1];
-            path[pos].z = pathPos[2];
-            pos++;
-
-            if (pos == pathSize)
-            {
-                ShowNavError("CNavMesh::findPath Path is too long to hold in array!\n");
-                break;
-            }
+            ret.push_back({0, pathPos[0], pathPos[1], pathPos[2], 0});
         }
-
     }
 
-    return pos;
+    return ret;
 }
 
-int16 CNavMesh::findRandomPosition(position_t start, float maxRadius, position_t* randomPosition)
+std::pair<int16, position_t> CNavMesh::findRandomPosition(const position_t& start, float maxRadius)
 {
-
     dtStatus status;
-    int16 length = 0;
 
     float spos[3];
     CNavMesh::ToDetourPos(&start, spos);
@@ -347,36 +319,33 @@ int16 CNavMesh::findRandomPosition(position_t start, float maxRadius, position_t
     dtPolyRef startRef;
     dtPolyRef randomRef;
 
-    status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+    status = m_navMeshQuery.findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
 
     if (dtStatusFailed(status))
     {
         ShowNavError("CNavMesh::findRandomPath start point invalid (%f, %f, %f) (%u)\n", spos[0], spos[1], spos[2], m_zoneID);
         outputError(status);
-        return ERROR_NEARESTPOLY;
+        return std::make_pair(ERROR_NEARESTPOLY, position_t{});
     }
 
     if (!m_navMesh->isValidPolyRef(startRef))
     {
         ShowNavError("CNavMesh::findRandomPath startRef is invalid (%f, %f, %f) (%u)\n", start.x, start.y, start.z, m_zoneID);
-        return ERROR_NEARESTPOLY;
+        return std::make_pair(ERROR_NEARESTPOLY, position_t{});
     }
 
-    status = m_navMeshQuery->findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(1.f); }, &randomRef, randomPt);
+    status = m_navMeshQuery.findRandomPointAroundCircle(startRef, spos, maxRadius, &filter, []() -> float { return dsprand::GetRandomNumber(2.f); }, &randomRef, randomPt);
 
     if (dtStatusFailed(status))
     {
         ShowNavError("CNavMesh::findRandomPath Error (%u)\n", m_zoneID);
         outputError(status);
-        return ERROR_NEARESTPOLY;
+        return std::make_pair(ERROR_NEARESTPOLY, position_t{});
     }
 
     CNavMesh::ToFFXIPos(randomPt);
-    randomPosition->x = randomPt[0];
-    randomPosition->y = randomPt[1];
-    randomPosition->z = randomPt[2];
 
-    return 0;
+    return std::make_pair(0, position_t{0, randomPt[0], randomPt[1], randomPt[2], 0});
 }
 
 bool CNavMesh::inWater(const position_t& point)
@@ -403,7 +372,7 @@ bool CNavMesh::validPosition(const position_t& position)
 
     dtPolyRef startRef;
 
-    dtStatus status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+    dtStatus status = m_navMeshQuery.findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
 
     if (dtStatusFailed(status))
     {
@@ -438,7 +407,7 @@ bool CNavMesh::raycast(const position_t& start, const position_t& end)
 
     dtPolyRef startRef;
 
-    status = m_navMeshQuery->findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
+    status = m_navMeshQuery.findNearestPoly(spos, polyPickExt, &filter, &startRef, snearest);
 
     if (dtStatusFailed(status))
     {
@@ -453,7 +422,7 @@ bool CNavMesh::raycast(const position_t& start, const position_t& end)
         return true;
     }
 
-    status = m_navMeshQuery->raycast(startRef, spos, epos, &filter, 0, &m_hit);
+    status = m_navMeshQuery.raycast(startRef, spos, epos, &filter, 0, &m_hit);
 
     if (dtStatusFailed(status))
     {

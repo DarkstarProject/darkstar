@@ -64,7 +64,7 @@ class CPathFind
     bool PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags = 0);
 
     // walk through the given points. No new points made.
-    bool PathThrough(std::vector<position_t>& points, uint8 pathFlags = 0);
+    bool PathThrough(std::vector<position_t>&& points, uint8 pathFlags = 0);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
@@ -126,13 +126,13 @@ class CPathFind
     // finds a random path around the given point
     bool FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
 
-    void AddPoints(std::vector<position_t>& points, bool reverse = false);
+    void AddPoints(std::vector<position_t>&& points, bool reverse = false);
 
     void FinishedPath();
 
     CBaseEntity* m_PTarget;
-    position_t m_points[MAX_PATH_POINTS];
-    position_t m_turnPoints[MAX_TURN_POINTS];
+    std::vector<position_t> m_points;
+    std::vector<position_t> m_turnPoints;
     position_t m_originalPoint;
     float m_distanceFromPoint;
 
@@ -140,10 +140,8 @@ class CPathFind
     uint16 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
-    int16 m_pathLength;
 
     uint8 m_currentTurn;
-    uint8 m_turnLength;
 
     float m_distanceMoved;
     float m_maxDistance;

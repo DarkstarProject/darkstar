@@ -61,20 +61,14 @@ bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTu
     }
     else
     {
-
+        Clear();
         // no point worm roaming cause it'll move one inch
         if (m_roamFlags & ROAMFLAG_WORM)
         {
-            Clear();
             return false;
         }
 
-        // ew, we gotta use the old way
-        m_pathLength = 1;
-
-        m_points[0].x = point.x - 1 + rand() % 2;
-        m_points[0].y = point.y;
-        m_points[0].z = point.z - 1 + rand() % 2;
+        m_points.push_back({0, point.x - 1 + rand() % 2, point.y, point.z - 1 + rand() % 2, 0});
 
     }
 
@@ -116,11 +110,10 @@ bool CPathFind::PathTo(const position_t& point, uint8 pathFlags, bool clear)
     }
     else
     {
-        m_pathLength = 1;
+        if (!clear)
+            Clear();
 
-        m_points[0].x = point.x;
-        m_points[0].y = point.y;
-        m_points[0].z = point.z;
+        m_points.push_back(point);
     }
 
     return true;
@@ -145,13 +138,13 @@ bool CPathFind::PathAround(const position_t& point, float distanceFromPoint, uin
     return PathTo(point, pathFlags, false);
 }
 
-bool CPathFind::PathThrough(std::vector<position_t>& points, uint8 pathFlags)
+bool CPathFind::PathThrough(std::vector<position_t>&& points, uint8 pathFlags)
 {
     Clear();
 
     m_pathFlags = pathFlags;
 
-    AddPoints(points, m_pathFlags & PATHFLAG_REVERSE);
+    AddPoints(std::move(points), m_pathFlags & PATHFLAG_REVERSE);
 
     return true;
 }
@@ -200,39 +193,39 @@ void CPathFind::StopWithin(float within)
     if (!IsFollowingPath()) return;
     // TODO: cut up path
 
-    position_t* lastPoint = &m_points[m_pathLength - 1];
+    position_t& lastPoint = m_points.back();
     position_t* secondLastPoint = nullptr;
 
-    if (m_pathLength == 1)
+    if (m_points.size() == 1)
     {
         secondLastPoint = &m_PTarget->loc.p;
     }
     else
     {
-        secondLastPoint = &m_points[m_pathLength - 2];
+        secondLastPoint = &m_points[m_points.size() - 2];
     }
 
-    float distanceTo = distance(*lastPoint, *secondLastPoint);
+    float distanceTo = distance(lastPoint, *secondLastPoint);
 
     if (distanceTo > within)
     {
         // reduce last point to stop within the given number
-        float radians = atanf((secondLastPoint->z - lastPoint->z) / (secondLastPoint->x - lastPoint->x)) * (M_PI / 180.0f);
+        float radians = atanf((secondLastPoint->z - lastPoint.z) / (secondLastPoint->x - lastPoint.x)) * (M_PI / 180.0f);
 
-        lastPoint->x -= cosf(radians) * within;
-        lastPoint->z -= sinf(radians) * within;
+        lastPoint.x -= cosf(radians) * within;
+        lastPoint.z -= sinf(radians) * within;
     }
     else
     {
         // i'm already there, stop moving
-        if (m_pathLength == 1)
+        if (m_points.size() == 1)
         {
             Clear();
         }
         else
         {
             // remove last point, it'll make me too close
-            m_pathLength--;
+            m_points.pop_back();
         }
     }
 }
@@ -259,7 +252,7 @@ void CPathFind::FollowPath()
     {
         m_currentPoint++;
 
-        if (m_currentPoint >= m_pathLength)
+        if (m_currentPoint >= m_points.size())
         {
             FinishedPath();
         }
@@ -326,10 +319,10 @@ void CPathFind::StepTo(const position_t& pos, bool run)
 bool CPathFind::FindPath(const position_t& start, const position_t& end)
 {
 
-    m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, end, m_points, MAX_PATH_POINTS);
+    m_points = m_PTarget->loc.zone->m_navMesh->findPath(start, end);
     m_currentPoint = 0;
 
-    if (m_pathLength <= 0)
+    if (m_points.size() <= 0)
     {
         ShowError("CPathFind::FindPath Entity (%d) could not find path\n", m_PTarget->id);
         return false;
@@ -340,27 +333,26 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
 
 bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint8 roamFlags)
 {
-    m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
+    auto m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
 
     position_t startPosition = start;
 
     // find end points for turns
     for (int8 i = 0; i < m_turnLength; i++) {
         // look for new point centered around the last point
-        int16 status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius, &m_turnPoints[i]);
+        auto status = m_PTarget->loc.zone->m_navMesh->findRandomPosition(startPosition, maxRadius);
 
         // couldn't find one point so just break out
-        if (status != 0) {
+        if (status.first != 0) {
             return false;
         }
-
+        m_turnPoints.push_back(status.second);
         startPosition = m_turnPoints[i];
     }
-
-    m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, m_turnPoints[0], m_points, MAX_PATH_POINTS);
+    m_points = m_PTarget->loc.zone->m_navMesh->findPath(start, m_turnPoints[0]);
     m_currentPoint = 0;
 
-    if (m_pathLength <= 0)
+    if (m_points.empty())
     {
         return false;
     }
@@ -370,18 +362,13 @@ bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 m
 
 bool CPathFind::FindClosestPath(const position_t& start, const position_t& end)
 {
-
-    m_pathLength = m_PTarget->loc.zone->m_navMesh->findPath(start, end, m_points, MAX_PATH_POINTS);
+    m_points = m_PTarget->loc.zone->m_navMesh->findPath(start, end);
     m_currentPoint = 0;
 
-    if (m_pathLength <= 0)
+    if (m_points.empty())
     {
         // this is a trick to make mobs go up / down impassible terrain
-        m_pathLength = 1;
-
-        m_points[0].x = end.x;
-        m_points[0].y = end.y;
-        m_points[0].z = end.z;
+        m_points.push_back(end);
     }
 
     return true;
@@ -425,12 +412,12 @@ float CPathFind::GetRealSpeed()
 
 bool CPathFind::IsFollowingPath()
 {
-    return m_pathLength > 0;
+    return !m_points.empty();
 }
 
 bool CPathFind::IsFollowingScriptedPath()
 {
-    return m_pathLength > 0 && m_pathFlags & PATHFLAG_SCRIPT;
+    return IsFollowingPath() && m_pathFlags & PATHFLAG_SCRIPT;
 }
 
 bool CPathFind::AtPoint(const position_t& pos)
@@ -463,8 +450,8 @@ void CPathFind::Clear()
     m_distanceFromPoint = 0;
     m_pathFlags = 0;
     m_roamFlags = 0;
+    m_points.clear();
 
-    m_pathLength = 0;
     m_currentPoint = 0;
     m_maxDistance = 0;
     m_distanceMoved = 0;
@@ -472,27 +459,21 @@ void CPathFind::Clear()
     m_onPoint = true;
 
     m_currentTurn = 0;
-    m_turnLength = 0;
+    m_turnPoints.clear();
 }
 
-void CPathFind::AddPoints(std::vector<position_t>& points, bool reverse)
+void CPathFind::AddPoints(std::vector<position_t>&& points, bool reverse)
 {
     if (points.size() > MAX_PATH_POINTS)
     {
         ShowWarning("CPathFind::AddPoints Given too many points (%d). Limiting to max (%d)\n", points.size(), MAX_PATH_POINTS);
         points.resize(MAX_PATH_POINTS);
     }
-    uint8 index {0};
 
-    auto copyPoints = [this, &index](auto&& start, auto&& end)
-    {
-        m_points[index++] = {0, start->x, start->y, start->z, 0};
-    };
+    m_points = std::move(points);
 
     if (reverse)
-        copyPoints(points.crbegin(), points.crend());
-    else
-        copyPoints(points.cbegin(), points.cend());
+        std::reverse(m_points.begin(), m_points.end());
 }
 
 void CPathFind::FinishedPath()
@@ -500,7 +481,7 @@ void CPathFind::FinishedPath()
     m_currentTurn++;
 
     // turning is only available to navmeshed maps
-    if (m_currentTurn < m_turnLength && isNavMeshEnabled())
+    if (m_currentTurn < m_turnPoints.size() && isNavMeshEnabled())
     {
         // move on to next turn
         position_t& nextTurn = m_turnPoints[m_currentTurn];
