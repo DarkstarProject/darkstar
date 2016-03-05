@@ -497,7 +497,9 @@ void CMobController::DoCombatTick(time_point tick)
     {
         PMob->PAI->PathFind->LookAt(PTarget->loc.p);
     }
+
     luautils::OnMobFight(PMob, PTarget);
+
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
     if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
         (m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL))) && TrySpecialSkill())
