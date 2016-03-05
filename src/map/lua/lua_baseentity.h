@@ -366,7 +366,6 @@ public:
     int32 despawnPet(lua_State*);            // Despawns Pet
     int32 petAttack(lua_State*);             // Despawns Pet
     int32 petRetreat(lua_State*);
-    int32 petStay(lua_State*);
     int32 petAbility(lua_State*);
     int32 hasPet(lua_State*);                // returns true if the player has a pet
     int32 getPet(lua_State*);                // Creates an LUA reference to a pet entity
@@ -478,6 +477,7 @@ public:
 
     int32 setSpellList(lua_State*);
     int32 hasSpellList(lua_State*);
+    int32 hasPreventActionEffect(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);

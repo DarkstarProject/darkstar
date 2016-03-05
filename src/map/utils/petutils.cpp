@@ -930,17 +930,6 @@ namespace petutils
         petutils::DetachPet(PMaster);
     }
 
-    void MakePetStay(CBattleEntity* PMaster)
-    {
-        CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
-
-        if (PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
-        {
-            //#TODO: just disable pathfind?
-            //PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-        }
-    }
-
     int16 PerpetuationCost(uint32 id, uint8 level)
     {
         int16 cost = 0;
