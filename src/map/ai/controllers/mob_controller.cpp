@@ -791,7 +791,7 @@ void CMobController::FollowRoamPath()
             // pet should follow me if roaming
             position_t targetPoint = nearPosition(PMob->loc.p, 2.1f, M_PI);
 
-            PPet->PAI->PathFind->StepTo(&targetPoint);
+            PPet->PAI->PathFind->StepTo(targetPoint);
         }
 
         // if I just finished reset my last action time

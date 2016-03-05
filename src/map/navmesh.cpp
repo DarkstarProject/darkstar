@@ -28,7 +28,7 @@
 #include "../common/utils.h"
 #include "../common/dsprand.h"
 
-void CNavMesh::ToFFXIPos(position_t* pos, float* out) {
+void CNavMesh::ToFFXIPos(const position_t* pos, float* out) {
     float y = pos->y;
     float z = pos->z;
 
@@ -73,7 +73,7 @@ void CNavMesh::ToDetourPos(position_t* out) {
 
 }
 
-void CNavMesh::ToDetourPos(position_t* pos, float* out) {
+void CNavMesh::ToDetourPos(const position_t* pos, float* out) {
     float y = pos->y;
     float z = pos->z;
 
@@ -210,7 +210,7 @@ void CNavMesh::unload()
     }
 }
 
-int16 CNavMesh::findPath(position_t start, position_t end, position_t* path, uint16 pathSize)
+int16 CNavMesh::findPath(const position_t& start, const position_t& end, position_t* path, uint16 pathSize)
 {
 
     dtStatus status;
@@ -379,13 +379,13 @@ int16 CNavMesh::findRandomPosition(position_t start, float maxRadius, position_t
     return 0;
 }
 
-bool CNavMesh::inWater(position_t point)
+bool CNavMesh::inWater(const position_t& point)
 {
     // TODO:
     return false;
 }
 
-bool CNavMesh::validPosition(position_t position)
+bool CNavMesh::validPosition(const position_t& position)
 {
     float spos[3];
     CNavMesh::ToDetourPos(&position, spos);
@@ -413,7 +413,7 @@ bool CNavMesh::validPosition(position_t position)
     return m_navMesh->isValidPolyRef(startRef);
 }
 
-bool CNavMesh::raycast(position_t& start, position_t& end)
+bool CNavMesh::raycast(const position_t& start, const position_t& end)
 {
     if (start.x == end.x && start.y == end.y && start.z == end.z)
         return true;

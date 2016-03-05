@@ -8960,29 +8960,20 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    position_t points[50];
-
     uint8 length = lua_objlen(L, 1);
-    uint8 pos = 0;
 
-    DSP_DEBUG_BREAK_IF(length > 50 * 3);
+    std::vector<position_t> points;
 
     // Grab points from array and store in points array
     for (uint8 i = 1; i < length; i += 3)
     {
         lua_rawgeti(L, 1, i);
-        points[pos].x = lua_tonumber(L, -1);
-        lua_pop(L, 1);
-
         lua_rawgeti(L, 1, i + 1);
-        points[pos].y = lua_tonumber(L, -1);
-        lua_pop(L, 1);
-
         lua_rawgeti(L, 1, i + 2);
-        points[pos].z = lua_tonumber(L, -1);
-        lua_pop(L, 1);
 
-        pos++;
+        points.push_back({0, (float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0});
+
+        lua_pop(L, 3);
     }
 
     uint8 flags = 0;
@@ -8994,7 +8985,7 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
 
     CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
 
-    if (PBattle->PAI->PathFind->PathThrough(points, pos, flags))
+    if (PBattle->PAI->PathFind->PathThrough(points, flags))
     {
         lua_pushboolean(L, true);
     }

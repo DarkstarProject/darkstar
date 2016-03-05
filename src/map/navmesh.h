@@ -56,10 +56,10 @@ class CNavMesh
 {
 public:
     static const int8 ERROR_NEARESTPOLY = -2;
-    static void ToFFXIPos(position_t* pos, float* out);
+    static void ToFFXIPos(const position_t* pos, float* out);
     static void ToFFXIPos(float* out);
     static void ToFFXIPos(position_t* out);
-    static void ToDetourPos(position_t* pos, float* out);
+    static void ToDetourPos(const position_t* pos, float* out);
     static void ToDetourPos(float* out);
     static void ToDetourPos(position_t* out);
 
@@ -70,16 +70,16 @@ public:
     bool load(char* path);
     void unload();
 
-    int16 findPath(position_t start, position_t end, position_t* path, uint16 pathSize);
+    int16 findPath(const position_t& start, const position_t& end, position_t* path, uint16 pathSize);
     int16 findRandomPosition(position_t start, float maxRadius, position_t* randomPosition);
 
     // returns true if the point is in water
-    bool inWater(position_t point);
+    bool inWater(const position_t& point);
 
     // returns true if no wall was hit
-    bool raycast(position_t& start, position_t& end);
+    bool raycast(const position_t& start, const position_t& end);
 
-    bool validPosition(position_t position);
+    bool validPosition(const position_t& position);
 
 private:
     void outputError(uint32 status);
