@@ -561,6 +561,17 @@ void CalculateStats(CMobEntity * PMob)
     {
         PMob->ResetGilPurse();
     }
+
+    // Check for possible miss-setups
+    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && PMob->getMobMod(MOBMOD_SPECIAL_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with special skill but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
+
+    if (PMob->SpellContainer->HasSpells() && PMob->getMobMod(MOBMOD_MAGIC_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with magic but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -596,16 +607,24 @@ void SetupJob(CMobEntity* PMob)
             if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
             {
                 // only used while at range
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
+            }
+            else if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else
             {
                 // all other rangers
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
                 PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
@@ -613,10 +632,19 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_NIN:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+
+            if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+            }
+            else
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+            }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;

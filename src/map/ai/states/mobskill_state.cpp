@@ -77,8 +77,11 @@ CMobSkill* CMobSkillState::GetSkill()
 
 void CMobSkillState::SpendCost()
 {
-    m_spentTP = m_PEntity->health.tp;
-    m_PEntity->health.tp = 0;
+    if (m_PSkill->isTpSkill())
+    {
+        m_spentTP = m_PEntity->health.tp;
+        m_PEntity->health.tp = 0;
+    }
 }
 
 bool CMobSkillState::Update(time_point tick)

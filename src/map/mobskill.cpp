@@ -67,6 +67,17 @@ bool CMobSkill::isTwoHour()
   return m_Flag & SKILLFLAG_TWO_HOUR;
 }
 
+bool CMobSkill::isTpSkill()
+{
+    return !isSpecial();
+}
+
+bool CMobSkill::isSpecial()
+{
+  // means it is a ranged attack or call beast, etc..
+  return m_Flag & SKILLFLAG_SPECIAL;
+}
+
 void CMobSkill::setID(uint16 id)
 {
 	m_ID = id;
