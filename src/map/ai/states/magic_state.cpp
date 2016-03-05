@@ -69,7 +69,6 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, uint16 spellid, 
 
     m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
     m_startPos = m_PEntity->loc.p;
-    m_interrupted = false;
 
     action_t action;
     action.id = m_PEntity->id;

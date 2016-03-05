@@ -63,8 +63,8 @@ protected:
     std::unique_ptr<CSpell> m_PSpell;
     duration m_castTime;
     position_t m_startPos;
-    bool m_interrupted;
-    uint8 m_flags;
+    bool m_interrupted {false};
+    uint8 m_flags {0};
 };
 
 #endif
