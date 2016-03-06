@@ -152,7 +152,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
             return;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
             return;

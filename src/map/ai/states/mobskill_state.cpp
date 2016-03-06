@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
 #include "../../mobskill.h"
+#include "../../status_effect_container.h"
 
 CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) :
     CState(PEntity, targid),
@@ -34,6 +35,11 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
 {
     auto skill = battleutils::GetMobSkill(wsid);
     if (!skill)
+    {
+        throw CStateInitException(nullptr);
+    }
+
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT))
     {
         throw CStateInitException(nullptr);
     }
