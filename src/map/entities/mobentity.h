@@ -78,18 +78,18 @@ enum MOBTYPE
     MOBTYPE_EVENT       = 0x20
 };
 
-enum AGGRO : uint16
+enum DETECT : uint16
 {
-    AGGRO_NONE               = 0x00,
-    AGGRO_DETECT_SIGHT       = 0x01,
-    AGGRO_DETECT_HEARING     = 0x02,
-    AGGRO_DETECT_LOWHP       = 0x04,
-    AGGRO_DETECT_TRUEHEARING = 0x08,
-    AGGRO_DETECT_TRUESIGHT   = 0x10,
-    AGGRO_DETECT_MAGIC       = 0x20,
-    AGGRO_DETECT_WEAPONSKILL = 0x40,
-    AGGRO_DETECT_JOBABILITY  = 0x80,
-    AGGRO_SCENT              = 0x100
+    DETECT_NONE        = 0x00,
+    DETECT_SIGHT       = 0x01,
+    DETECT_HEARING     = 0x02,
+    DETECT_LOWHP       = 0x04,
+    DETECT_NONE1       = 0x08,
+    DETECT_NONE2       = 0x10,
+    DETECT_MAGIC       = 0x20,
+    DETECT_WEAPONSKILL = 0x40,
+    DETECT_JOBABILITY  = 0x80,
+    DETECT_SCENT       = 0x100
 };
 
 enum BEHAVIOUR : uint16
@@ -214,7 +214,9 @@ public:
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
     uint8     m_Type;                     // mob type
-    uint16	  m_Aggro;					  // mob aggro type
+    bool	  m_Aggro;
+    bool	  m_TrueDetection;   // Has true sight or sound
+    uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn

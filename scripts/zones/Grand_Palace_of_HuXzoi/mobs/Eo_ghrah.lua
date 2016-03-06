@@ -11,7 +11,7 @@ require("scripts/globals/status");
 
 function onMobSpawn(mob)
     mob:AnimationSub(0);
-    mob:unsetAggroFlag(8);
+    mob:setTrueDetection(0);
     mob:setLocalVar("roamTime", os.time());
     mob:setLocalVar("form2",math.random(2,3));
     local skin = math.random(1161,1168);
@@ -55,10 +55,10 @@ function onMobRoam(mob)
     if (mob:AnimationSub() == 0 and os.time() - roamTime > 60) then
         mob:AnimationSub(mob:getLocalVar("form2"));
         mob:setLocalVar("roamTime", os.time());
-        mob:setAggroFlag(8);
+        mob:setTrueDetection(1);
     elseif (mob:AnimationSub() == mob:getLocalVar("form2") and os.time() - roamTime > 60) then
         mob:AnimationSub(0);
-        mob:unsetAggroFlag(8);
+        mob:setTrueDetection(0);
         mob:setLocalVar("roamTime", os.time());
     end
 end;

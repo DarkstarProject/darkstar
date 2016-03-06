@@ -9931,24 +9931,13 @@ inline int32 CLuaBaseEntity::getModelId(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::setAggroFlag(lua_State* L)
+inline int32 CLuaBaseEntity::setTrueDetection(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CMobEntity*)m_PBaseEntity)->m_Aggro |= lua_tointeger(L, -1);
-
-    return 0;
-}
-
-inline int32 CLuaBaseEntity::unsetAggroFlag(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    ((CMobEntity*)m_PBaseEntity)->m_Aggro &= ~lua_tointeger(L, -1);
+    ((CMobEntity*)m_PBaseEntity)->m_TrueDetection = lua_tointeger(L, -1);
 
     return 0;
 }
@@ -10770,8 +10759,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,reloadParty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelId),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setModelId),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAggroFlag),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,unsetAggroFlag),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTrueDetection),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instantiateMob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),

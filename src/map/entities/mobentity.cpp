@@ -101,7 +101,9 @@ CMobEntity::CMobEntity()
 
     m_giveExp = false;
     m_neutral = false;
-    m_Aggro = AGGRO_NONE;
+    m_Aggro = false;
+    m_TrueDetection = false;
+    m_Detects = DETECT_NONE;
     m_Link = 0;
 
     m_battlefieldID = 0;
@@ -273,7 +275,7 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     }
 
     // link only if I see him
-    if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)) {
+    if (m_Detects & DETECT_SIGHT) {
 
         if (!isFaceing(loc.p, *pos, 40))
         {

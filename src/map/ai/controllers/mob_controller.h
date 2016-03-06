@@ -27,9 +27,6 @@ This file is part of DarkStar-server source code.
 #include "controller.h"
 #include "../../entities/mobentity.h"
 
-// mobs will deaggro if player is out of range for this long
-#define MOB_DEAGGRO_TIME 25000
-
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
 

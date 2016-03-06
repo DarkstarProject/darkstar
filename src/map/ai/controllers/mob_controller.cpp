@@ -81,11 +81,9 @@ bool CMobController::TryDeaggro()
         return TryDeaggro();
     }
 
-    // TODO: This must be kept false until someone decouples detection from m_Aggro
-    // Most mobs don't have any detection and so will deaggro instantly
-    bool attempDeaggro = false;
+    bool attempDeaggro = true;
 
-    if (PMob->m_Aggro & AGGRO_SCENT)
+    if (PMob->m_Detects & DETECT_SCENT)
     {
         // if mob is in water it will instant deaggro if target cannot be detected
         if (!PMob->PAI->PathFind->InWater() && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
@@ -184,32 +182,31 @@ bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return false;
     }
 
-    uint16 aggro = PMob->m_Aggro;
+    uint16 detects = PMob->m_Detects;
     float currentDistance = distance(PTarget->loc.p, PMob->loc.p) + PTarget->getMod(MOD_STEALTH);
 
-    bool detectSight = (aggro & AGGRO_DETECT_SIGHT) || forceSight;
+    bool detectSight = (detects & DETECT_SIGHT) || forceSight;
+    bool hasInvisible = false;
+    bool hasSneak = false;
 
-    if (detectSight && !PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE) && currentDistance < PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(PMob->loc.p, PTarget->loc.p, 40))
+    if (!PMob->m_TrueDetection)
+    {
+        hasInvisible = PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE);
+        hasSneak = PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK);
+    }
+
+
+    if (detectSight && !hasInvisible && currentDistance < PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(PMob->loc.p, PTarget->loc.p, 40))
     {
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_TRUESIGHT) && currentDistance < PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(PMob->loc.p, PTarget->loc.p, 40))
-    {
-        return CanSeePoint(PTarget->loc.p);
-    }
-
-    if ((aggro & AGGRO_DETECT_TRUEHEARING) && currentDistance < PMob->getMobMod(MOBMOD_SOUND_RANGE))
-    {
-        return CanSeePoint(PTarget->loc.p);
-    }
-
-    if ((PMob->m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    if ((PMob->m_Behaviour & BEHAVIOUR_AGGRO_AMBUSH) && currentDistance < 3 && !hasSneak)
     {
         return true;
     }
 
-    if ((aggro & AGGRO_DETECT_HEARING) && currentDistance < PMob->getMobMod(MOBMOD_SOUND_RANGE) && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK))
+    if ((detects & DETECT_HEARING) && currentDistance < PMob->getMobMod(MOBMOD_SOUND_RANGE) && !hasSneak)
     {
         return CanSeePoint(PTarget->loc.p);
     }
@@ -220,23 +217,23 @@ bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return false;
     }
 
-    if ((aggro & AGGRO_DETECT_LOWHP) && PTarget->GetHPP() < 75)
+    if ((detects & DETECT_LOWHP) && PTarget->GetHPP() < 75)
     {
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() &&
+    if ((detects & DETECT_MAGIC) && PTarget->PAI->IsCurrentState<CMagicState>() &&
         static_cast<CMagicState*>(PTarget->PAI->GetCurrentState())->GetSpell()->hasMPCost())
     {
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_WEAPONSKILL) && PTarget->PAI->IsCurrentState<CWeaponSkillState>())
+    if ((detects & DETECT_WEAPONSKILL) && PTarget->PAI->IsCurrentState<CWeaponSkillState>())
     {
         return CanSeePoint(PTarget->loc.p);
     }
 
-    if ((aggro & AGGRO_DETECT_JOBABILITY) && PTarget->PAI->IsCurrentState<CAbilityState>())
+    if ((detects & DETECT_JOBABILITY) && PTarget->PAI->IsCurrentState<CAbilityState>())
     {
         return CanSeePoint(PTarget->loc.p);
     }
@@ -845,7 +842,6 @@ void CMobController::Disengage()
     // this will let me decide to walk home or despawn
     m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME);
     PMob->m_neutral = true;
-    //m_checkDespawn = true;
     m_NeutralTime = m_Tick;
 
     PMob->PAI->PathFind->Clear();
