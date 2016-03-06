@@ -1,6 +1,14 @@
 #ifndef _CBASETYPES_H_
 #define _CBASETYPES_H_
 
+#ifdef RUN_TESTS
+  // Allow methods to be mocked for tests
+  // but skipped in "production"
+  #define MOCKABLE virtual
+#else
+  #define MOCKABLE
+#endif
+
 #include <stdint.h>
 
 /*              +--------+-----------+--------+---------+

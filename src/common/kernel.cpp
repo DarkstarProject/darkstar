@@ -38,9 +38,11 @@
 	#include <unistd.h>
 #endif
 
-#define CATCH_CONFIG_RUNNER
-#include "../../tests/catch.hpp"
-#include "../../tests/fakeit.hpp"
+#ifdef RUN_TESTS
+  #define CATCH_CONFIG_RUNNER
+  #include "../../tests/catch.hpp"
+  #include "../../tests/fakeit.hpp"
+#endif
 
 int runflag = 1;
 int arg_c = 0;
@@ -235,13 +237,15 @@ int main (int argc, char **argv)
 		arg_v = argv;
 	}
 
+#ifdef RUN_TESTS
         // Run tests before booting
-        int result = Catch::Session().run(argc, argv);
+        int result = Catch::Session().run(0, nullptr);
 
         if (result != 0)
         {
             return result;
         }
+#endif
 
     log_init(argc, argv);
 	malloc_init();
