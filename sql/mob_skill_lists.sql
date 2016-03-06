@@ -2589,3 +2589,5 @@ INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 659);
 INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 661);
 INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 662);
 INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 663);
+
+INSERT INTO `mob_skill_lists` VALUES ('Lamina-Hyakinthos', 767, 2210);
