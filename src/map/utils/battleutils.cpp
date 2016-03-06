@@ -3500,7 +3500,7 @@ namespace battleutils
         {
             CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-            if (PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id))
+            if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasTargetID(PTarget->id))
             {
                 PCurrentMob->PEnmityContainer->UpdateEnmityFromCure(PSource, PTarget->GetMLevel(), amount, (amount == 65535)); //true for "cure v"
             }
@@ -3533,7 +3533,7 @@ namespace battleutils
             {
                 CMobEntity* PCurrentMob = (CMobEntity*)it->second;
 
-                if (PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
+                if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasTargetID(PSource->id))
                 {
                     PCurrentMob->PEnmityContainer->UpdateEnmity(PSource, CE, VE);
                 }
