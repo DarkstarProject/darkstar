@@ -156,6 +156,7 @@ CCharEntity::CCharEntity()
 
     m_EquipFlag = 0;
     m_EquipBlock = 0;
+    m_StatsDebilitation = 0;
     m_EquipSwap = false;
 
     MeritMode = false;
