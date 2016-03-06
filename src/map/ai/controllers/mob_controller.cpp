@@ -866,7 +866,8 @@ void CMobController::Disengage()
 
 bool CMobController::Engage(uint16 targid)
 {
-    if (CController::Engage(targid))
+    auto ret = CController::Engage(targid));
+    if (ret)
     {
         m_firstSpell = true;
 
@@ -881,6 +882,7 @@ bool CMobController::Engage(uint16 targid)
             m_LastSpecialTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY)));
         }
     }
+    return ret;
 }
 
 bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
