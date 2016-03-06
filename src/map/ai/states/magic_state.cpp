@@ -164,7 +164,8 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
         return ret;
     }
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
-        m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+        m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE) ||
+        m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_OMERTA))
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, m_PSpell->getID(), 0, MSGBASIC_UNABLE_TO_CAST_SPELLS);
         return false;
