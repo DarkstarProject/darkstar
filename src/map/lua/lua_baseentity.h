@@ -586,6 +586,7 @@ public:
     int32 setStatDebilitation(lua_State* L);
     int32 unequipItem(lua_State* L);
     int32 recalculateStats(lua_State* L);
+    int32 checkImbuedItems(lua_State* L);
 };
 
 #endif

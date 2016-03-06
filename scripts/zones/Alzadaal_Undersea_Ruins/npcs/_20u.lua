@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option,target)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     -- 9 = arrapago, 54 = base salvage number
     local instanceid = bit.rshift(option, 19) + 64
     
@@ -52,13 +52,16 @@ function onEventUpdate(player,csid,option,target)
     
     if (party ~= nil) then
         for i,v in ipairs(party) do
-            -- TODO: check if they have any restriction removing items (MEMBER_IMBUED_ITEM)
             if (not v:hasKeyItem(REMNANTS_PERMIT)) then
                 player:messageText(target,MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
             elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
                 player:messageText(target,MEMBER_TOO_FAR, false);
+                player:instanceEntry(target,1);
+                return;
+            elseif (v:checkImbuedItems()) then
+                player:messageText(target,MEMBER_IMBUED_ITEM, false);
                 player:instanceEntry(target,1);
                 return;
             end
@@ -74,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-     printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
+     -- printf("CSID: %u",csid);
+     -- printf("RESULT: %u",option);
  
     if ((csid == 408 and option == 4) or csid == 0x74) then
         player:setPos(0,0,0,0,74);

@@ -75,8 +75,20 @@ public:
     uint32  SortingPacket;                          // количество запросов на сортировку за такт
     uint32  LastSortingTime;                        // время последней сортировки контейнера
 
-	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка. 
+	CItem*	GetItem(uint8 slotID);					// получаем указатель на предмет, находящийся в указанной ячейка.
 	void	Clear();								// Remove all items from container
+
+    template<typename F, typename... Args>
+    void ForEachItem(F func, Args&&... args)
+    {
+        for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
+        {
+            if (m_ItemList[SlotID])
+            {
+                func(m_ItemList[SlotID], std::forward<Args>(args)...);
+            }
+        }
+    }
 
 private:
 

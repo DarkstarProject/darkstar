@@ -10395,6 +10395,34 @@ int32 CLuaBaseEntity::recalculateStats(lua_State* L)
     }
     return 0;
 }
+
+int32 CLuaBaseEntity::checkImbuedItems(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+
+    for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
+    {
+        bool found = false;
+        PChar->getStorage(LocID)->ForEachItem([&found](CItem* PItem)
+        {
+            if (PItem->getID() >= 5365 && PItem->getID() <= 5384)
+            {
+                found = true;
+            }
+        });
+        if (found)
+        {
+            lua_pushboolean(L, true);
+            return 1;
+        }
+    }
+    lua_pushboolean(L, false);
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10851,5 +10879,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatDebilitation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
     {nullptr,nullptr}
 };
