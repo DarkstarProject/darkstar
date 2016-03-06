@@ -703,6 +703,7 @@ JOBTYPE CBattleEntity::GetSJob()
 
 uint8 CBattleEntity::GetSLevel()
 {
+    if (StatusEffectContainer->HasStatusEffect(EFFECT_OBLIVISCENCE)) { return 0; }
     return m_slvl;
 }
 
