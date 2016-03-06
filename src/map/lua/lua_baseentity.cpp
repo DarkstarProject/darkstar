@@ -10339,6 +10339,7 @@ int32 CLuaBaseEntity::setEquipBlock(lua_State* L)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
         PChar->m_EquipBlock = lua_tointeger(L, 1);
+        PChar->pushPacket(new CCharJobsPacket(PChar));
     }
     return 0;
 }
@@ -10351,6 +10352,7 @@ int32 CLuaBaseEntity::setStatDebilitation(lua_State* L)
     {
         auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
         PChar->m_StatsDebilitation = lua_tointeger(L, 1);
+        PChar->pushPacket(new CCharJobsPacket(PChar));
     }
     return 0;
 }

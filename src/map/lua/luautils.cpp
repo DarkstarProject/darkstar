@@ -1986,7 +1986,7 @@ namespace luautils
 
         if (prepFile(File, "onItemCheck"))
         {
-            return -1;
+            return 56;
         }
 
         CLuaBaseEntity LuaBaseEntity(PTarget);
@@ -1994,35 +1994,16 @@ namespace luautils
 
         lua_pushinteger(LuaHandle, param);
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 1, 0))
         {
             ShowError("luautils::onItemCheck: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 56;
         }
 
-        int32 retNumber = lua_gettop(LuaHandle) - oldtop;
-        if (retNumber > 1)
-        {
-            uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-            lua_pop(LuaHandle, 1);
-            if (retNumber > 1)
-            {
-                ShowError("luautils::onItemCheck (%s): 1 return expected, got %d\n", File, retNumber);
-                lua_pop(LuaHandle, retNumber - 1);
-            }
-            return retVal;
-        }
-        else if (retNumber == 1)
-        {
-            uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-            lua_pop(LuaHandle, 1);
-            return retVal;
-        }
-        else
-        {
-            return 0;
-        }
+        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+        lua_pop(LuaHandle, 1);
+        return retVal;
     }
 
     /************************************************************************
