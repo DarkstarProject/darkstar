@@ -170,6 +170,10 @@ public:
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
     virtual void OnEngage(CAttackState&) override;
+
+    virtual bool OnAttack(CAttackState&, action_t&);
+    virtual void OnCastFinished(CMagicState&, action_t&);
+
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;
 

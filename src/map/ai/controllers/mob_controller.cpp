@@ -82,8 +82,16 @@ bool CMobController::TryDeaggro()
         return TryDeaggro();
     }
 
+    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+    {
+        // bind prevents deaggro
+        m_DeaggroTime = m_Tick;
+    }
+
+    bool tryTimeDeaggro = m_Tick >= m_DeaggroTime + std::chrono::milliseconds(MOB_DEAGGRO_TIME);
+
     // I will now deaggro if I cannot detect my target
-    if (!CanPursueTarget(PTarget) && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
+    if (tryTimeDeaggro && !CanPursueTarget(PTarget) && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
     {
         return true;
     }
@@ -902,6 +910,11 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
     }
 
     return false;
+}
+
+void CMobController::TapDeaggroTime()
+{
+    m_DeaggroTime = m_Tick;
 }
 
 bool CMobController::CanMoveForward(float currentDistance)

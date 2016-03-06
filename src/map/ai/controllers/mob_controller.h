@@ -27,6 +27,9 @@ This file is part of DarkStar-server source code.
 #include "controller.h"
 #include "../../entities/mobentity.h"
 
+// time it takes for a mob to deaggro after last hit / spell
+#define MOB_DEAGGRO_TIME 25000
+
 // time a mob is neutral after disengaging
 #define MOB_NEUTRAL_TIME 10000
 
@@ -46,6 +49,7 @@ public:
     bool TrySpecialSkill();
 
     bool CanAggroTarget(CBattleEntity*);
+    void TapDeaggroTime();
 
 protected:
     virtual bool TryDeaggro();
@@ -79,6 +83,7 @@ private:
     time_point m_LastMagicTime;
     time_point m_LastMobSkillTime;
     time_point m_LastSpecialTime;
+    time_point m_DeaggroTime;
     time_point m_NeutralTime;
     time_point m_WaitTime;
 

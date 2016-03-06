@@ -604,15 +604,18 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
     auto PSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
     PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PSkill->getID());
-    //#TODO
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
 
 void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 {
+
     auto PSkill = state.GetSkill();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 
     // store the skill used
     m_UsedSkillIds[PSkill->getID()] = GetMLevel();
@@ -907,6 +910,8 @@ void CMobEntity::OnEngage(CAttackState& state)
 {
     CBattleEntity::OnEngage(state);
     luautils::OnMobEngaged(this, state.GetTarget());
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
 void CMobEntity::FadeOut()
@@ -958,4 +963,18 @@ void CMobEntity::OnDisengage(CAttackState& state)
     CBattleEntity::OnDisengage(state);
 
     luautils::OnMobDisengage(this);
+}
+
+void CMobEntity::OnCastFinished(CMagicState& state, action_t& action)
+{
+    CBattleEntity::OnCastFinished(state, action);
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
+}
+
+bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
+{
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
+
+    return CBattleEntity::OnAttack(state, action);
 }
