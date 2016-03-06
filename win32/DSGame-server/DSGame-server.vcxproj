@@ -434,6 +434,8 @@
     <ClInclude Include="..\..\src\map\attackround.h" />
     <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
+    <ClInclude Include="..\..\tests\catch.hpp" />
+    <ClInclude Include="..\..\tests\fakeit.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -673,6 +675,8 @@
     <ClCompile Include="..\..\src\map\attackround.cpp" />
     <ClCompile Include="..\..\src\map\zone_entities.cpp" />
     <ClCompile Include="..\..\src\map\zone_instance.cpp" />
+    <ClCompile Include="..\..\tests\map\utils\battleutils_test.cpp" />
+    <ClCompile Include="..\..\tests\map\support\factories.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\documentation\message.log" />

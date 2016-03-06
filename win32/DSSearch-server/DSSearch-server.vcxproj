@@ -60,6 +60,8 @@
     <ClInclude Include="..\..\src\search\packets\search_list.h" />
     <ClInclude Include="..\..\src\search\search.h" />
     <ClInclude Include="..\..\src\search\tcp_request.h" />
+    <ClInclude Include="..\..\tests\catch.hpp" />
+    <ClInclude Include="..\..\tests\fakeit.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
