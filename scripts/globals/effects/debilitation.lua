@@ -4,7 +4,7 @@
 --
 -----------------------------------
 
-local stats_bits = {MOD_STR, MOD_DEX, MOD_AGI, MOD_VIT, MOD_INT, MOD_MND, MOD_CHR, MOD_HPP, MOD_MPP}
+local stats_bits = {MOD_STR, MOD_DEX, MOD_VIT, MOD_AGI, MOD_INT, MOD_MND, MOD_CHR, MOD_HPP, MOD_MPP}
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
