@@ -49,8 +49,12 @@ public:
 
 protected:
     virtual bool TryDeaggro();
+
+
     virtual void TryLink();
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
+    bool CanPursueTarget(CBattleEntity* PTarget);
+    bool CheckHide(CBattleEntity* PTarget);
     bool CanSeePoint(position_t pos);
     bool CanCastSpells();
     void CastSpell(uint16 spellid);

@@ -428,6 +428,10 @@ bool CPathFind::AtPoint(const position_t& pos)
 
 bool CPathFind::InWater()
 {
+    if (m_PTarget->loc.zone->GetWeather() == WEATHER_SQUALL)
+    {
+        return true;
+    }
     if (isNavMeshEnabled())
     {
         return m_PTarget->loc.zone->m_navMesh->inWater(m_PTarget->loc.p);

@@ -73,7 +73,8 @@ bool CMobController::TryDeaggro()
         PTarget->animation == ANIMATION_CHOCOBO ||
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
         PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
-        PMob->allegiance == PTarget->allegiance)
+        PMob->allegiance == PTarget->allegiance ||
+        CheckHide(PTarget))
     {
         PMob->PEnmityContainer->Clear(PTarget->id);
         PTarget = PMob->PEnmityContainer->GetHighestEnmity();
@@ -81,33 +82,35 @@ bool CMobController::TryDeaggro()
         return TryDeaggro();
     }
 
-    bool attempDeaggro = true;
+    // I will now deaggro if I cannot detect my target
+    if (!CanPursueTarget(PTarget) && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
+    {
+        return true;
+    }
 
+    return false;
+}
+
+bool CMobController::CanPursueTarget(CBattleEntity* PTarget)
+{
     if (PMob->m_Detects & DETECT_SCENT)
     {
         // if mob is in water it will instant deaggro if target cannot be detected
         if (!PMob->PAI->PathFind->InWater() && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
         {
             // certain weather / deodorize will turn on time deaggro
-            attempDeaggro = PMob->m_disableScent;
+            return PMob->m_disableScent;
         }
-
     }
+    return false;
+}
 
-    //Hide allows you to lose aggro on certain types of enemies.
-    //Generally works on monsters that don't track by scent, regardless of detection method.
-    //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.)
-    if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+bool CMobController::CheckHide(CBattleEntity* PTarget)
+{
+    if (PTarget->GetMJob() == JOB_THF && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
     {
-        return true;
+        return !CanPursueTarget(PTarget) && !PMob->m_TrueDetection;
     }
-
-    // I will now deaggro if I cannot detect my target
-    if (attempDeaggro && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
-    {
-        return true;
-    }
-
     return false;
 }
 
@@ -182,8 +185,8 @@ bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         return false;
     }
 
-    uint16 detects = PMob->m_Detects;
-    float currentDistance = distance(PTarget->loc.p, PMob->loc.p) + PTarget->getMod(MOD_STEALTH);
+    auto detects = PMob->m_Detects;
+    auto currentDistance = distance(PTarget->loc.p, PMob->loc.p) + PTarget->getMod(MOD_STEALTH);
 
     bool detectSight = (detects & DETECT_SIGHT) || forceSight;
     bool hasInvisible = false;
@@ -194,7 +197,6 @@ bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
         hasInvisible = PTarget->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE);
         hasSneak = PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK);
     }
-
 
     if (detectSight && !hasInvisible && currentDistance < PMob->getMobMod(MOBMOD_SIGHT_RANGE) && isFaceing(PMob->loc.p, PTarget->loc.p, 40))
     {
