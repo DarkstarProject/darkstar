@@ -32,10 +32,9 @@ This file is part of DarkStar-server source code.
 #include "../common/timer.h"
 
 
-CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone)
+CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone),
+    m_instanceid(instanceid)
 {
-    memset(&m_entryloc, 0, sizeof m_entryloc);
-
     LoadInstance();
 
     m_startTime = server_clock::now();
@@ -60,11 +59,6 @@ CInstance::~CInstance()
 uint8 CInstance::GetID()
 {
     return m_instanceid;
-}
-
-CZone* CInstance::GetZone()
-{
-    return m_zone;
 }
 
 uint32 CInstance::GetProgress()
@@ -212,7 +206,7 @@ void CInstance::CheckTime(time_point tick)
 {
     if (m_lastTimeCheck + 1s <= tick && !Failed())
     {
-        luautils::OnInstanceTimeUpdate(m_zone, this, GetElapsedTime(tick).count());
+        luautils::OnInstanceTimeUpdate(GetZone(), this, std::chrono::duration_cast<std::chrono::milliseconds>(GetElapsedTime(tick)).count());
         m_lastTimeCheck = tick;
     }
 }
@@ -256,4 +250,10 @@ bool CInstance::Completed()
 void CInstance::Cancel()
 {
     m_status = INSTANCE_FAILED;
+}
+
+bool CInstance::CheckFirstEntry(uint32 id)
+{
+    //insert returns a pair (iterator,inserted)
+    return m_enteredChars.insert(id).second;
 }

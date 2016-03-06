@@ -162,8 +162,8 @@ inline int32 CLuaInstance::getPets(lua_State* L)
 inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
-    
-    auto limit = std::chrono::duration_cast<std::chrono::seconds>( m_PLuaInstance->GetTimeLimit()).count();
+
+    auto limit = std::chrono::duration_cast<std::chrono::minutes>( m_PLuaInstance->GetTimeLimit()).count();
 
     lua_pushinteger(L, limit);
 

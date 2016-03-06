@@ -65,6 +65,8 @@ public:
     void			ZoneServer(time_point tick);
     void			ZoneServerRegion(time_point tick);
 
+    CZone*          GetZone();
+
     EntityList_t	GetCharList();
     bool			CharListEmpty();
     uint16			GetNewTargID();

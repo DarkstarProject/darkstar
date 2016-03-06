@@ -1024,6 +1024,12 @@ void CZoneEntities::ZoneServerRegion(time_point tick)
     }
 }
 
+
+CZone* CZoneEntities::GetZone()
+{
+    return m_zone;
+}
+
 EntityList_t CZoneEntities::GetCharList()
 {
     return m_charList;

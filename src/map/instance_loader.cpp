@@ -119,7 +119,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
 	int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
 
-	if (!instance->Failed() && ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
+	if (!instance->Failed() && ret != SQL_ERROR /*&& Sql_NumRows(SqlInstanceHandle) != 0*/)
 	{
 		while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
 		{

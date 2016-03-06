@@ -26,6 +26,8 @@ This file is part of DarkStar-server source code.
 
 #include "zone_entities.h"
 
+#include <set>
+
 enum INSTANCE_STATUS
 {
     INSTANCE_NORMAL,
@@ -45,7 +47,6 @@ public:
     position_t GetEntryLoc();								// Get entry location
     duration GetTimeLimit();								// Get instance time limit
     time_point GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
-    CZone* GetZone();										// Return parent CZone
     uint32 GetProgress();									// Tracks the progress through the current stage
     uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
     time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
@@ -65,6 +66,7 @@ public:
     void Complete();										// Completes the instance (onInstanceComplete)
     bool Completed();										// Checks if instance is completed
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
+    bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
 
     CInstance(CZone*, uint8 instanceid);
     ~CInstance();
@@ -72,7 +74,6 @@ public:
 private:
     void LoadInstance();
 
-    CZone* m_zone {nullptr};
     uint8 m_instanceid {0};
     uint16 m_entrance {0};
     string_t m_instanceName;
@@ -85,9 +86,10 @@ private:
     time_point m_wipeTimer;
     uint32 m_progress {0};
     uint32 m_stage {0};
-    position_t m_entryloc;
+    position_t m_entryloc {};
     INSTANCE_STATUS m_status {INSTANCE_NORMAL};
     std::vector<uint32> m_registeredChars;
+    std::set<uint32> m_enteredChars;
 };
 
 #endif
