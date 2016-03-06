@@ -40,6 +40,8 @@
     <ClInclude Include="..\..\src\login\login.h" />
     <ClInclude Include="..\..\src\login\login_auth.h" />
     <ClInclude Include="..\..\src\login\login_session.h" />
+    <ClInclude Include="..\..\tests\catch.hpp" />
+    <ClInclude Include="..\..\tests\fakeit.hpp" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

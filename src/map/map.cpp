@@ -67,6 +67,8 @@ This file is part of DarkStar-server source code.
 #include "packets/char_update.h"
 #include "message.h"
 
+#include "../../tests/map/support/factories.cpp"
+#include "../../tests/map/utils/battleutils_test.cpp"
 
 const int8* MAP_CONF_FILENAME = nullptr;
 
