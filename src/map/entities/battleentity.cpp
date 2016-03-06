@@ -1101,6 +1101,10 @@ bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     {
         return true;
     }
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
+    {
+        return true;
+    }
     return false;
 }
 
@@ -1337,7 +1341,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 {
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    if (PTarget->objtype == TYPE_PC) 
+    if (PTarget->objtype == TYPE_PC)
     {
         // TODO: Should not be removed by AoE effects that don't target the player.
         PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
