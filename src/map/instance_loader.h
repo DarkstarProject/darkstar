@@ -37,18 +37,18 @@ class CZone;
 class CInstanceLoader
 {
 public:
-	CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester);
-	~CInstanceLoader();
+    CInstanceLoader(uint8 instanceid, CZone* PZone, CCharEntity* PRequester);
+    ~CInstanceLoader();
 
-	CInstance* GetInstance();
-	bool Check();
+    CInstance* GetInstance();
+    bool Check();
 private:
-	CZone* zone;
-	CCharEntity* requester;
-	Sql_t* SqlInstanceHandle;
-	std::future<CInstance*> task;
+    CZone* zone;
+    CCharEntity* requester;
+    Sql_t* SqlInstanceHandle;
+    std::future<CInstance*> task;
 
-	CInstance* LoadInstance(CInstance* instance);
+    CInstance* LoadInstance(CInstance* instance);
 
 };
 
