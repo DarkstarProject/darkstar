@@ -40,6 +40,7 @@ public:
 
     virtual void Tick(time_point tick) override;
     virtual void Disengage() override;
+    virtual bool Engage(uint16 targid) override;
     virtual void Despawn() override;
     virtual bool MobSkill(uint16 targid, uint16 wsid);
     virtual void Ability(uint16 targid, uint16 abilityid) override {}
@@ -65,6 +66,8 @@ protected:
     void Wait(duration _duration);
     void FollowRoamPath();
     bool CanMoveForward(float currentDistance);
+    bool IsSpecialSkillReady(float currentDistance);
+    bool IsSpellReady(float currentDistance);
 
     CBattleEntity* PTarget {nullptr};
 private:

@@ -609,21 +609,21 @@ void SetupJob(CMobEntity* PMob)
                 // only used while at range
                 // catapult
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else if (PMob->m_Family == 3)
             {
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else
             {
                 // all other rangers
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
                 PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
 
@@ -657,11 +657,10 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
-            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 16);
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 12);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;

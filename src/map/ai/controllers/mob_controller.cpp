@@ -81,31 +81,31 @@ bool CMobController::TryDeaggro()
         return TryDeaggro();
     }
 
-    bool tryDetectDeaggro = false;
-    bool tryTimeDeaggro = true;
+    // TODO: This must be kept false until someone decouples detection from m_Aggro
+    // Most mobs don't have any detection and so will deaggro instantly
+    bool attempDeaggro = false;
 
     if (PMob->m_Aggro & AGGRO_SCENT)
     {
         // if mob is in water it will instant deaggro if target cannot be detected
-        if (PMob->PAI->PathFind->InWater() || PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
+        if (!PMob->PAI->PathFind->InWater() && !PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DEODORIZE))
         {
-            tryDetectDeaggro = true;
+            // certain weather / deodorize will turn on time deaggro
+            attempDeaggro = PMob->m_disableScent;
         }
 
-        // certain weather / deodorize will turn on time deaggro
-        tryTimeDeaggro = PMob->m_disableScent;
     }
 
     //Hide allows you to lose aggro on certain types of enemies.
     //Generally works on monsters that don't track by scent, regardless of detection method.
     //Can work on monsters that track by scent if the proper conditions are met (double rain weather, crossing over water, etc.)
-    if (tryTimeDeaggro && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
+    if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
     {
         return true;
     }
 
     // I will now deaggro if I cannot detect my target
-    if (tryDetectDeaggro && !CanDetectTarget(PTarget))
+    if (attempDeaggro && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
     {
         return true;
     }
@@ -361,7 +361,7 @@ bool CMobController::TryCastSpell()
     }
 
     int chosenSpellId = -1;
-    m_LastMagicTime = m_Tick;
+    m_LastMagicTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_MAGIC_COOL) / 2));
 
     if (PMob->m_HasSpellScript)
     {
@@ -501,12 +501,11 @@ void CMobController::DoCombatTick(time_point tick)
     luautils::OnMobFight(PMob, PTarget);
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
-    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && !PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
-        (m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL))) && TrySpecialSkill())
+    if (IsSpecialSkillReady(currentDistance) && TrySpecialSkill())
     {
         return;
     }
-    else if ((m_Tick >= m_LastMagicTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_MAGIC_COOL))) && TryCastSpell())
+    else if (IsSpellReady(currentDistance) && TryCastSpell())
     {
         return;
     }
@@ -865,7 +864,24 @@ void CMobController::Disengage()
     CController::Disengage();
 }
 
+bool CMobController::Engage(uint16 targid)
+{
+    if (CController::Engage(targid))
+    {
+        m_firstSpell = true;
 
+        // Don't cast magic or use special ability right away
+        if(PMob->getBigMobMod(MOBMOD_MAGIC_DELAY) != 0)
+        {
+            m_LastMagicTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_MAGIC_COOL) + dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_MAGIC_DELAY)));
+        }
+
+        if(PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY) != 0)
+        {
+            m_LastSpecialTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) + dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_SPECIAL_DELAY)));
+        }
+    }
+}
 
 bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 {
@@ -912,4 +928,39 @@ bool CMobController::CanMoveForward(float currentDistance)
     }
 
     return true;
+}
+
+bool CMobController::IsSpecialSkillReady(float currentDistance)
+{
+
+    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) == 0) return false;
+
+    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL)) return false;
+
+    int32 bonusTime = 0;
+    if (currentDistance > 5)
+    {
+        // Mobs use ranged attacks quicker when standing back
+        bonusTime = PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
+    }
+
+    if(m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL) - bonusTime))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool CMobController::IsSpellReady(float currentDistance)
+{
+
+    int32 bonusTime = 0;
+    if (currentDistance > 5)
+    {
+        // Mobs use ranged attacks quicker when standing back
+        bonusTime = PMob->getBigMobMod(MOBMOD_STANDBACK_COOL);
+    }
+
+    return (m_Tick >= m_LastMagicTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_MAGIC_COOL) - bonusTime));
 }
