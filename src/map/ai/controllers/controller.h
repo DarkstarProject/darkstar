@@ -36,6 +36,7 @@ public:
     virtual ~CController() {}
     virtual void Tick(time_point tick) = 0;
     virtual void Despawn();
+    virtual void Reset();
     virtual void Cast(uint16 targid, uint16 spellid);
     virtual bool Engage(uint16 targid);
     virtual void ChangeTarget(uint16 targid);

@@ -837,6 +837,15 @@ void CMobController::Despawn()
     }
 }
 
+void CMobController::Reset()
+{
+    // Wait a little before roaming / casting spell / spawning pet
+    m_LastActionTime = m_Tick - std::chrono::milliseconds(dsprand::GetRandomNumber(PMob->getBigMobMod(MOBMOD_ROAM_COOL)));
+
+    // Don't attack player right off of spawn
+    m_NeutralTime = m_Tick;
+}
+
 bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
