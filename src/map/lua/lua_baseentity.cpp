@@ -10369,6 +10369,32 @@ int32 CLuaBaseEntity::unequipItem(lua_State* L)
     return 0;
 }
 
+int32 CLuaBaseEntity::recalculateStats(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        charutils::BuildingCharSkillsTable(PChar);
+        charutils::CalculateStats(PChar);
+        charutils::CheckValidEquipment(PChar);
+        charutils::BuildingCharAbilityTable(PChar);
+        charutils::BuildingCharTraitsTable(PChar);
+
+        PChar->UpdateHealth();
+
+        PChar->pushPacket(new CCharJobsPacket(PChar));
+        PChar->pushPacket(new CCharStatsPacket(PChar));
+        PChar->pushPacket(new CCharSkillsPacket(PChar));
+        PChar->pushPacket(new CCharRecastPacket(PChar));
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+        PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->pushPacket(new CMenuMeritPacket(PChar));
+        PChar->pushPacket(new CCharSyncPacket(PChar));
+    }
+    return 0;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10824,5 +10850,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setEquipBlock),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatDebilitation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     {nullptr,nullptr}
 };

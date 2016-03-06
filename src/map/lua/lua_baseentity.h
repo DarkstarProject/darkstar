@@ -585,6 +585,7 @@ public:
     int32 setEquipBlock(lua_State* L);
     int32 setStatDebilitation(lua_State* L);
     int32 unequipItem(lua_State* L);
+    int32 recalculateStats(lua_State* L);
 };
 
 #endif
