@@ -866,7 +866,7 @@ void CMobController::Disengage()
 
 bool CMobController::Engage(uint16 targid)
 {
-    auto ret = CController::Engage(targid));
+    auto ret = CController::Engage(targid);
     if (ret)
     {
         m_firstSpell = true;
