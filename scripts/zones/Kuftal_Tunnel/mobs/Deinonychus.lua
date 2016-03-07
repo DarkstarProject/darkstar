@@ -4,6 +4,7 @@
 -- Note: Place Holder for Yowie
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Kuftal_Tunnel/MobIDs");
 
 -----------------------------------

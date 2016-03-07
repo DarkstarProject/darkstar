@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Maze of Shakhrami
---  MOB: Stink Bats
+-- Area: Toraimorai Canal
+--  MOB: Sodden Bones
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -10,5 +10,5 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,695,2);
+    checkGoVregime(ally,mob,623,2);
 end;

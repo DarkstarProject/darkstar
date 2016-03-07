@@ -3,6 +3,8 @@
 --  MOB: Tonberry Slasher
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

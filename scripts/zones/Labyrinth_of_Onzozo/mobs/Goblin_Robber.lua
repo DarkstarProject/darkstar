@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobDeath

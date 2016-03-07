@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Gusgen Mines
---  MOB: Bandersnatch
+-- Area: Seas Serpent Grotto
+--   NM: Ghast
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -10,5 +10,5 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,681,2);
+    checkGoVregime(ally,mob,805,2);
 end;

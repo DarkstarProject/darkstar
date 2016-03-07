@@ -4,6 +4,7 @@
 -- Note: Place holder Charybdis
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Sea_Serpent_Grotto/MobIDs");
 
 -----------------------------------

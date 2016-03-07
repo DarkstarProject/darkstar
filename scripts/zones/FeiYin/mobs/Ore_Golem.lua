@@ -3,6 +3,7 @@
 --  MOB: Ore Golem
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/globals/keyitems");
 
 -----------------------------------

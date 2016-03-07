@@ -3,7 +3,7 @@
 --  Mob: Bogy
 -----------------------------------
 
--- require("scripts/zones/Korroloka_Tunnel/MobIDs");
+require("scripts/zones/Korroloka_Tunnel/MobIDs");
 
 -----------------------------------
 -- onMobDeath

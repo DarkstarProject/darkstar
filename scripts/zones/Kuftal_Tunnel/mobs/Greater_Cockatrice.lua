@@ -4,6 +4,7 @@
 -- Note: Place Holder for Pelican
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Kuftal_Tunnel/MobIDs");
 
 -----------------------------------
