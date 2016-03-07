@@ -105,7 +105,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (61,'waking_the_colossus',72,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (62,'zhayolm_remnants',72,100,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (64,'zhayolm_remnants_ii',72,100,0.000,0.000,0.000,0);
--- INSERT INTO `instance_list` VALUES (65,'arrapago_remnants',72,100,339.000,0.000,-248.000,64);
+-- INSERT INTO `instance_list` VALUES (65,'arrapago_remnants',72,100,340.000,0.000,-246.000,63);
 -- INSERT INTO `instance_list` VALUES (67,'arrapago_remnants_ii',72,100,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (68,'bhaflau_remnants',72,100,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (70,'bhaflau_remnants_ii',72,100,0.000,0.000,0.000,0);

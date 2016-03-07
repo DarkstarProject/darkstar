@@ -147,7 +147,7 @@ duration CInstance::GetTimeLimit()
     return m_timeLimit;
 }
 
-time_point CInstance::GetLastTimeUpdate()
+duration CInstance::GetLastTimeUpdate()
 {
     return m_lastTimeUpdate;
 }
@@ -175,7 +175,7 @@ void CInstance::SetEntryLoc(float x, float y, float z, float rot)
     m_entryloc.rotation = rot;
 }
 
-void CInstance::SetLastTimeUpdate(time_point lastTime)
+void CInstance::SetLastTimeUpdate(duration lastTime)
 {
     m_lastTimeUpdate = lastTime;
 }

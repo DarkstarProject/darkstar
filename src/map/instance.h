@@ -46,7 +46,7 @@ public:
     const int8* GetName();
     position_t GetEntryLoc();								// Get entry location
     duration GetTimeLimit();								// Get instance time limit
-    time_point GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
+    duration GetLastTimeUpdate();							// Get last time a "Time Remaining:" message was displayed
     uint32 GetProgress();									// Tracks the progress through the current stage
     uint32 GetStage();										// Tracks the progress through the instance (eg. floor #)
     time_point GetWipeTime();									// Stores elapsed time when a wipe is detected
@@ -54,7 +54,7 @@ public:
 
     void SetLevelCap(uint8 cap);
     void SetEntryLoc(float x, float y, float z, float rot); // Set entry location
-    void SetLastTimeUpdate(time_point time);				// Set last time a "Time Remaining:" message was displayed
+    void SetLastTimeUpdate(duration time);				// Set last time a "Time Remaining:" message was displayed
     void SetProgress(uint32 progress);						// Set progress through current stage
     void SetStage(uint32 stage);							// Set current stage (eg. floor #)
     void SetWipeTime(time_point time);							// Set elapsed time when a wipe is detected
@@ -79,9 +79,9 @@ private:
     string_t m_instanceName;
     uint32 m_commander {0};
     uint8 m_levelcap {0};
-    duration m_timeLimit {0};
+    duration m_timeLimit {duration::zero()};
     time_point m_startTime;
-    time_point m_lastTimeUpdate;
+    duration m_lastTimeUpdate {duration::zero()};
     time_point m_lastTimeCheck;
     time_point m_wipeTimer;
     uint32 m_progress {0};
