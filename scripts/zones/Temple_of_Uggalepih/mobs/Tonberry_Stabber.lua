@@ -3,6 +3,8 @@
 --  MOB: Tonberry Stabber
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

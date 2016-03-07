@@ -3,6 +3,8 @@
 --  MOB: Tonberry Beleaguerer
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

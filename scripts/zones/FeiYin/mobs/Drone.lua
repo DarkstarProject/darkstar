@@ -3,6 +3,7 @@
 --  MOB: Drone
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/globals/keyitems");
 
 -----------------------------------

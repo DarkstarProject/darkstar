@@ -3,6 +3,8 @@
 --  MOB: Tonberry Trailer
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

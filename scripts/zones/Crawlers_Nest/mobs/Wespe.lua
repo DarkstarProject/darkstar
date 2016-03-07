@@ -3,6 +3,7 @@
 --   Mob: Wespe
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Crawlers_Nest/MobIDs");
 
 -----------------------------------

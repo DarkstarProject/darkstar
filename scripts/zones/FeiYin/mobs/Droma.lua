@@ -3,6 +3,7 @@
 --  MOB: Droma
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/globals/keyitems");
 
 -----------------------------------

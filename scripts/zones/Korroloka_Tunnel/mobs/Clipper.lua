@@ -3,7 +3,8 @@
 --  Mob: Clipper
 -----------------------------------
 
--- require("scripts/zones/Korroloka_Tunnel/MobIDs");
+require("scripts/zones/Korroloka_Tunnel/MobIDs");
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobDeath

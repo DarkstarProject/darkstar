@@ -4,6 +4,7 @@
 -- Note: Place holder Ungur
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------

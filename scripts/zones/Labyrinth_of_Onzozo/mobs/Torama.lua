@@ -4,6 +4,7 @@
 -- Note: Place holder Ose
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 
 -----------------------------------
@@ -19,7 +20,7 @@ function onMobDeath(mob,killer,ally)
 
         local ToD = GetServerVariable("[POP]Ose");
         if (ToD <= os.time(t) and GetMobAction(Ose) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Ose);
                 GetMobByID(Ose):setRespawnTime(GetMobRespawnTime(mob));
                 SetServerVariable("[PH]Ose", mob);
