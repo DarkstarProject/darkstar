@@ -67,7 +67,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_update.h"
 #include "message.h"
 
-#ifdef RUN_TESTS
+#ifdef ENABLE_TESTS
   #include "../../tests/map/utils/battleutils_test.cpp"
 #endif
 

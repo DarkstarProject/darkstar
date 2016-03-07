@@ -100,6 +100,23 @@ AC_ARG_ENABLE(
    [enable_debug="no"]
 )
 
+## Run tests
+AC_ARG_ENABLE(
+   [tests],
+   AC_HELP_STRING(
+        [--enable-tests],
+        [
+                Run tests before booting program (disabled by default)
+                Enable it for development
+        ]
+  ),
+  [
+     enable_tests=1
+  ],
+  [enable_tests=0]
+)
+
+
 ### Use RDTSC as Tick Source
 AC_ARG_ENABLE(
    [rdtsc],
@@ -211,6 +228,17 @@ case $enable_rdtsc in
            ;;
         1)
            DARKSTAR_CXXFLAGS="$DARKSTAR_CXXFLAGS -DENABLE_RDTSC"
+           ;;
+esac
+
+### Enable tests
+case $enable_tests in
+        0)
+           #default value
+           ;;
+        1)
+           DARKSTAR_TESTS="-DENABLE_TESTS"
+           AC_SUBST(DARKSTAR_TESTS)
            ;;
 esac
 

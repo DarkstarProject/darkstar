@@ -7,7 +7,7 @@ include sources.am
 ## Set up all of our dependency flags
 SRC_ALL                 = $(SRC_DARKSTAR)
 CFLAGS_ALL              = $(DARKSTAR_CFLAGS)
-CPPFLAGS_ALL            = $(DARKSTAR_CPPFLAGS)
+CPPFLAGS_ALL            = $(DARKSTAR_CPPFLAGS) @DARKSTAR_TESTS@
 CXXFLAGS_ALL            = $(DARKSTAR_CXXFLAGS)
 LIBS_ALL                = $(DARKSTAR_LIBS)
 LDFLAGS_ALL             = $(DARKSTAR_LDFLAGS)

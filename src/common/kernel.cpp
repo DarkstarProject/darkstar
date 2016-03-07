@@ -38,7 +38,7 @@
 	#include <unistd.h>
 #endif
 
-#ifdef RUN_TESTS
+#ifdef ENABLE_TESTS
   #define CATCH_CONFIG_RUNNER
   #include "../../tests/catch.hpp"
   #include "../../tests/fakeit.hpp"
@@ -237,9 +237,9 @@ int main (int argc, char **argv)
 		arg_v = argv;
 	}
 
-#ifdef RUN_TESTS
+#ifdef ENABLE_TESTS
         // Run tests before booting
-        int result = Catch::Session().run(0, nullptr);
+        int result = Catch::Session().run(argc, argv);
 
         if (result != 0)
         {
