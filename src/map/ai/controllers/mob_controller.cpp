@@ -74,26 +74,13 @@ bool CMobController::TryDeaggro()
         PTarget->loc.zone->GetID() != PMob->loc.zone->GetID() ||
         PMob->StatusEffectContainer->GetConfrontationEffect() != PTarget->StatusEffectContainer->GetConfrontationEffect() ||
         PMob->allegiance == PTarget->allegiance ||
+        CheckDetection(PTarget) ||
         CheckHide(PTarget))
     {
         PMob->PEnmityContainer->Clear(PTarget->id);
         PTarget = PMob->PEnmityContainer->GetHighestEnmity();
         PMob->SetBattleTargetID(PTarget ? PTarget->targid : 0);
         return TryDeaggro();
-    }
-
-    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
-    {
-        // bind prevents deaggro
-        m_DeaggroTime = m_Tick;
-    }
-
-    bool tryTimeDeaggro = m_Tick >= m_DeaggroTime + std::chrono::milliseconds(MOB_DEAGGRO_TIME);
-
-    // I will now deaggro if I cannot detect my target
-    if (tryTimeDeaggro && !CanPursueTarget(PTarget) && PMob->CanDeaggro() && !CanDetectTarget(PTarget))
-    {
-        return true;
     }
 
     return false;
@@ -118,6 +105,20 @@ bool CMobController::CheckHide(CBattleEntity* PTarget)
     if (PTarget->GetMJob() == JOB_THF && PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE))
     {
         return !CanPursueTarget(PTarget) && !PMob->m_TrueDetection;
+    }
+    return false;
+}
+
+bool CMobController::CheckDetection(CBattleEntity* PTarget)
+{
+    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+    {
+        TapDeaggroTime();
+    }
+
+    if (m_Tick >= m_DeaggroTime + 25s)
+    {
+        return true;
     }
     return false;
 }
@@ -644,7 +645,7 @@ void CMobController::DoRoamTick(time_point tick)
     if (m_Tick >= m_WaitTime)
     {
         // don't aggro a little bit after I just disengaged
-        PMob->m_neutral = PMob->CanBeNeutral() && m_Tick <= m_NeutralTime + std::chrono::milliseconds(MOB_NEUTRAL_TIME);
+        PMob->m_neutral = PMob->CanBeNeutral() && m_Tick <= m_NeutralTime + 10s;
 
         if (PMob->PAI->PathFind->IsFollowingPath())
         {
@@ -690,7 +691,7 @@ void CMobController::DoRoamTick(time_point tick)
                     FollowRoamPath();
 
                     // move back every 5 seconds
-                    m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME);
+                    m_LastActionTime = m_Tick - (std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10s);
                 }
                 else if (!PMob->getMobMod(MOBMOD_NO_DESPAWN) != 0 &&
                     !map_config.mob_no_despawn)
@@ -850,7 +851,7 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 void CMobController::Disengage()
 {
     // this will let me decide to walk home or despawn
-    m_LastActionTime = m_Tick - std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL) + MOB_NEUTRAL_TIME);
+    m_LastActionTime = m_Tick - (std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10s);
     PMob->m_neutral = true;
     m_NeutralTime = m_Tick;
 

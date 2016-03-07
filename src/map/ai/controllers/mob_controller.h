@@ -27,12 +27,6 @@ This file is part of DarkStar-server source code.
 #include "controller.h"
 #include "../../entities/mobentity.h"
 
-// time it takes for a mob to deaggro after last hit / spell
-#define MOB_DEAGGRO_TIME 25000
-
-// time a mob is neutral after disengaging
-#define MOB_NEUTRAL_TIME 10000
-
 class CMobController : public CController
 {
 public:
@@ -59,6 +53,7 @@ protected:
     bool CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
     bool CanPursueTarget(CBattleEntity* PTarget);
     bool CheckHide(CBattleEntity* PTarget);
+    bool CheckDetection(CBattleEntity* PTarget);
     bool CanSeePoint(position_t pos);
     bool CanCastSpells();
     void CastSpell(uint16 spellid);
