@@ -36,6 +36,8 @@ public:
     virtual void Disengage() override;
     virtual bool Engage(uint16 targid) override;
     virtual void Despawn() override;
+    virtual void Reset() override;
+
     virtual bool MobSkill(uint16 targid, uint16 wsid);
     virtual void Ability(uint16 targid, uint16 abilityid) override {}
     bool MobSkill(int list = 0);

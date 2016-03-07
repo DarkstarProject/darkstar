@@ -27,7 +27,8 @@ This file is part of DarkStar-server source code.
 #include "../../entities/battleentity.h"
 
 CController::CController(CBattleEntity* _POwner) :
-    POwner(_POwner)
+    POwner(_POwner),
+    m_Tick(server_clock::now())
 {}
 
 void CController::Despawn()
@@ -36,6 +37,10 @@ void CController::Despawn()
     {
         POwner->PAI->Internal_Despawn(0s);
     }
+}
+
+void CController::Reset()
+{
 }
 
 void CController::Cast(uint16 targid, uint16 spellid)
