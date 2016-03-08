@@ -3,6 +3,8 @@
 -- Mob: Robber Crab
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- OnMobSpawn Action
 -----------------------------------

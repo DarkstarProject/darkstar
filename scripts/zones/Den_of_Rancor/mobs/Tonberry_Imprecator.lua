@@ -3,6 +3,8 @@
 --  MOB: Tonberry Imprecator
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

@@ -10,5 +10,6 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
+    checkGoVregime(ally,mob,743,1);
     checkGoVregime(ally,mob,744,1);
 end;

@@ -4,6 +4,7 @@
 -- Note: Place Holder for Arachne
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Kuftal_Tunnel/MobIDs");
 
 -----------------------------------

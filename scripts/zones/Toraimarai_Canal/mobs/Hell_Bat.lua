@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Maze of Shakhrami
---  MOB: Maze Maker
+-- Area: Toraimorai Canal
+--  MOB: Hell Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -10,5 +10,5 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,696,1);
+    checkGoVregime(ally,mob,618,1);
 end;

@@ -3,6 +3,8 @@
 --  MOB: Tonberry Stalker
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

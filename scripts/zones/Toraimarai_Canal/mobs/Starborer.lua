@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Maze of Shakhrami
---  MOB: Combat
+-- Area: Toraimorai Canal
+--  MOB: Starborer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -10,5 +10,5 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,696,2);
+    checkGoVregime(ally,mob,622,1);
 end;

@@ -3,6 +3,8 @@
 --  MOB: Defender
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------

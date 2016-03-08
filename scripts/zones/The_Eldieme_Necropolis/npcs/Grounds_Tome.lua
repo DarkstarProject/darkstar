@@ -28,7 +28,7 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    updateGov(player,csid,option,671,672,673,674,675,676,678,679,0,0);
+    updateGov(player,csid,option,671,672,673,674,675,676,677,678,0,0);
 end;
 
 -----------------------------------
