@@ -922,7 +922,8 @@ void CMobEntity::FadeOut()
 
 void CMobEntity::OnDeathTimer()
 {
-    PAI->Despawn();
+    if (!(m_Behaviour & BEHAVIOUR_RAISABLE))
+        PAI->Despawn();
 }
 
 void CMobEntity::Die()
