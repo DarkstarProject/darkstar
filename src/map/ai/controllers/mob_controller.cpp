@@ -774,7 +774,7 @@ void CMobController::DoRoamTick(time_point tick)
             }
         }
     }
-    if (m_LastRoamScript + 3s >= m_Tick)
+    if (m_Tick >= m_LastRoamScript + 3s)
     {
         luautils::OnMobRoam(PMob);
         m_LastRoamScript = m_Tick;
