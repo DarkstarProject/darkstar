@@ -14,7 +14,7 @@ end;
 
 function onPetAbility(target, pet, skill)
     local dint = pet:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local dmg = 500 + dint*1.5 + skill:getTP()/2;
+    local dmg = 500 + dint*1.5 + skill:getTP()/20;
     target:updateEnmityFromDamage(pet,dmg);
     target:delHP(dmg);
     return dmg;

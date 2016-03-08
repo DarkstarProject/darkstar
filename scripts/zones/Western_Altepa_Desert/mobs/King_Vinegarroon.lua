@@ -20,7 +20,7 @@ end;
 
 function onMobDrawIn(mob, target)
     -- todo make him use AoE tp move
-    mob:addTP(300);
+    mob:addTP(3000);
 end;
 
 -----------------------------------

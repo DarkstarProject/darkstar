@@ -26,8 +26,8 @@ function onMobFight(mob, target)
 
     -- This will serve as a ghetto Regain (not damage dependent) based on kjlotus's testing. Caps at 100
 
-     if (mob:getTP() < 90) then
-             mob:addTP(10);
+     if (mob:getTP() < 900) then
+             mob:addTP(100);
      end
 
      if (Mem_Recep == 16867382 or Mem_Recep == 16867387) then -- Floor 1

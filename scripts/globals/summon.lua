@@ -306,14 +306,14 @@ function AvatarPhysicalHit(skill, dmg)
 end;
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)
-    if (tp<100) then
-        tp=100;
+    if (tp<1000) then
+        tp=1000;
     end
-    if (tp>=100 and tp<200) then
-        return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
-    elseif (tp>=200 and tp<=300) then
+    if (tp>=1000 and tp<2000) then
+        return ftp1 + ( ((ftp2-ftp1)/100) * (tp-1000));
+    elseif (tp>=2000 and tp<=3000) then
         --generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-200));
+        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-2000));
     end
     return 1; --no ftp mod
 end;

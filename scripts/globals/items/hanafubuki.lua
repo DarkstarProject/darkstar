@@ -22,5 +22,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(10);
+    target:addTP(100);
 end;

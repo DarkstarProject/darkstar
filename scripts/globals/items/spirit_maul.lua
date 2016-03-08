@@ -53,5 +53,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(10); -- Core currently makes this *10 stated value, so its 100...
+    target:addTP(100);
 end;
