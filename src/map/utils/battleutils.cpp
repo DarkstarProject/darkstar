@@ -4085,17 +4085,24 @@ namespace battleutils
                     // claim by master
                     PAttacker = PAttacker->PMaster;
                 }
+                else
+                {
+                    PAttacker = nullptr;
+                }
             }
 
-            if (mob->m_HiPCLvl < PAttacker->GetMLevel())
+            if (PAttacker)
             {
-                mob->m_HiPCLvl = PAttacker->GetMLevel();
-            }
+                if (mob->m_HiPCLvl < PAttacker->GetMLevel())
+                {
+                    mob->m_HiPCLvl = PAttacker->GetMLevel();
+                }
 
-            mob->PEnmityContainer->AddBaseEnmity(PAttacker);
-            mob->m_OwnerID.id = PAttacker->id;
-            mob->m_OwnerID.targid = PAttacker->targid;
-            mob->updatemask |= UPDATE_STATUS;
+                mob->PEnmityContainer->AddBaseEnmity(PAttacker);
+                mob->m_OwnerID.id = PAttacker->id;
+                mob->m_OwnerID.targid = PAttacker->targid;
+                mob->updatemask |= UPDATE_STATUS;
+            }
         }
     }
 
