@@ -976,5 +976,12 @@ bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
 {
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 
-    return CBattleEntity::OnAttack(state, action);
+    if (getMobMod(MOBMOD_ATTACK_SKILL_LIST))
+    {
+        return static_cast<CMobController*>(PAI->GetController())->MobSkill(getMobMod(MOBMOD_ATTACK_SKILL_LIST));
+    }
+    else
+    {
+        return CBattleEntity::OnAttack(state, action);
+    }
 }

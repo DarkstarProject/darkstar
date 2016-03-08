@@ -537,20 +537,26 @@ void CMobController::DoCombatTick(time_point tick)
 
             if (teleportBegin)
             {
+                m_LastSpecialTime = m_Tick;
                 MobSkill(PMob->targid, teleportBegin->getID());
             }
         }
     }
 
     bool move = PMob->PAI->PathFind->IsFollowingPath();
+    float attack_range = PMob->m_ModelSize;
 
-    //If using mobskills instead of attacks, calculate distance to move and ability to use here
-    if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))
+    if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST) > 0)
     {
-        auto WeaponDelay = std::chrono::milliseconds(PMob->GetWeaponDelay(false));
-        if (IsAutoAttackEnabled() && m_Tick > m_LastActionTime + WeaponDelay)
+        auto skillList {battleutils::GetMobSkillList(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))};
+
+        if (!skillList.empty())
         {
-            MobSkill(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST));
+            auto skill {battleutils::GetMobSkill(skillList.front())};
+            if (skill)
+            {
+                attack_range = skill->getDistance();
+            }
         }
     }
 
@@ -559,7 +565,7 @@ void CMobController::DoCombatTick(time_point tick)
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (((distance(PMob->loc.p, PTarget->loc.p) > PMob->m_ModelSize) || move) && PMob->PAI->CanFollowPath())
+    else if (((distance(PMob->loc.p, PTarget->loc.p) > attack_range) || move) && PMob->PAI->CanFollowPath())
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
@@ -577,6 +583,7 @@ void CMobController::DoCombatTick(time_point tick)
                 if (teleportBegin && currentDistance <= teleportBegin->getDistance())
                 {
                     MobSkill(PMob->targid, teleportBegin->getID());
+                    m_LastSpecialTime = m_Tick;
                     return;
                 }
             }
