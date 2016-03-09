@@ -1314,6 +1314,11 @@ INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1923);
 INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1924);
 -- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1925);
 -- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1926);
+INSERT INTO `mob_skill_lists` VALUES ('Dea',306,2099);
+INSERT INTO `mob_skill_lists` VALUES ('Dea',306,2100);
+INSERT INTO `mob_skill_lists` VALUES ('Dea',306,2101);
+INSERT INTO `mob_skill_lists` VALUES ('Dea',306,2102);
+INSERT INTO `mob_skill_lists` VALUES ('Dea',306,2103);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1743);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1744);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1745);
@@ -2591,3 +2596,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 662);
 INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 663);
 
 INSERT INTO `mob_skill_lists` VALUES ('Lamina-Hyakinthos', 767, 2210);
+
+
+
