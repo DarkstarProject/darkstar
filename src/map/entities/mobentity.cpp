@@ -906,6 +906,34 @@ void CMobEntity::DropItems()
     }
 }
 
+
+bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    auto skill_list_id {getMobMod(MOBMOD_ATTACK_SKILL_LIST)};
+    if (skill_list_id)
+    {
+        auto attack_range {m_ModelSize};
+        auto skillList {battleutils::GetMobSkillList(skill_list_id)};
+        if (!skillList.empty())
+        {
+            auto skill {battleutils::GetMobSkill(skillList.front())};
+            if (skill)
+            {
+                attack_range = skill->getDistance();
+            }
+        }
+        if (distance(loc.p, PTarget->loc.p) > attack_range || !PAI->GetController()->IsAutoAttackEnabled())
+        {
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        return CBattleEntity::CanAttack(PTarget, errMsg);
+    }
+}
+
 void CMobEntity::OnEngage(CAttackState& state)
 {
     CBattleEntity::OnEngage(state);

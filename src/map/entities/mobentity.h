@@ -172,6 +172,7 @@ public:
     virtual void OnEngage(CAttackState&) override;
 
     virtual bool OnAttack(CAttackState&, action_t&);
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
     virtual void OnCastFinished(CMagicState&, action_t&);
 
     virtual void OnDisengage(CAttackState&) override;
@@ -257,6 +258,7 @@ public:
 protected:
 
     void DropItems();
+
 
 private:
 
