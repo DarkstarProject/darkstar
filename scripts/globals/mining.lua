@@ -5,167 +5,160 @@
 ------------------------------------------------------------------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/utils");
 
 -- Note: All drops are weights, these are /not/ percentages.
--- To add drops for new zones:
---
---  [ZONE_ID] = {
---      [WEIGHT] = {ITEM},
---      [WEIGHT] = {ITEM},
---      [WEIGHT] = {ITEM}
---- },
---
+
 local extracted = {
     [11] = { -- Oldton
-        [1150] = {0x0676}, -- 11.50% Igneous Rock
-        [1130] = {0x0282}, -- 11.30% Zinc Ore
-        [1100] = {0x0280}, -- 11.00% Copper Ore
-        [1080] = {0x0281}, -- 10.80% Tin Ore
-        [1050] = {0x02E0}, -- 10.50% Silver Ore
-        [0970] = {0x0283}, -- 9.70% Iron Ore
-        [0680] = {0x0660}, -- 6.80% Moblin Mail
-        [0630] = {0x0659}, -- 6.30% Moblin Helm
-        [0600] = {0x0666}, -- 6.00% Moblin Mask
-        [0570] = {0x0238}, -- 5.70% Goblin Die
-        [0570] = {0x065F}, -- 5.70% Moblin Armor
-        [0080] = {0x0285}, -- 0.80% Darksteel Ore
-        [0080] = {0x0284}, -- 0.80% Mythril Ore
-        [0070] = {0x02E1}, -- 0.70% Gold Ore
-        [0070] = {0x02E2} -- 0.70% Platium Ore
+        {1150,0x0676}, -- 11.50% Igneous Rock
+        {1130,0x0282}, -- 11.30% Zinc Ore
+        {1100,0x0280}, -- 11.00% Copper Ore
+        {1080,0x0281}, -- 10.80% Tin Ore
+        {1050,0x02E0}, -- 10.50% Silver Ore
+        {0970,0x0283}, -- 9.70% Iron Ore
+        {0680,0x0660}, -- 6.80% Moblin Mail
+        {0630,0x0659}, -- 6.30% Moblin Helm
+        {0600,0x0666}, -- 6.00% Moblin Mask
+        {0570,0x0238}, -- 5.70% Goblin Die
+        {0571,0x065F}, -- 5.70% Moblin Armor
+        {0080,0x0285}, -- 0.80% Darksteel Ore
+        {0081,0x0284}, -- 0.80% Mythril Ore
+        {0070,0x02E1}, -- 0.70% Gold Ore
+        {0071,0x02E2} -- 0.70% Platium Ore
 
     },
     [12] = {  -- Newton
-        [2200] = {0x0280}, -- 22.00% Copper Ore
-        [1670] = {0x0281}, -- 16.70% Tin Ore
-        [1110] = {0x0282}, -- 11.10% Zinc Ore
-        [1670] = {0x0676}, -- 16.70% Igneous Rock
-        [0560] = {0x02E0}, -- 5.60% Silver Ore
---      [0000] = {0x02A6}, -- 0.00% Aluminum Ore
-        [2220] = {0x0283}, -- 22.20% Iron Ore
-        [0080] = {0x0285}, -- 0.80% Darksteel Ore
-        [0080] = {0x0284}, -- 0.80% Mythril Ore
-        [0560] = {0x02E1}, -- 5.60% Gold Ore
-        [0070] = {0x02E2} -- 0.70% Platium Ore
+        {2200,0x0280}, -- 22.00% Copper Ore
+        {1670,0x0281}, -- 16.70% Tin Ore
+        {1110,0x0282}, -- 11.10% Zinc Ore
+        {1670,0x0676}, -- 16.70% Igneous Rock
+        {0560,0x02E0}, -- 5.60% Silver Ore
+--      {0000,0x02A6}, -- 0.00% Aluminum Ore
+        {2220,0x0283}, -- 22.20% Iron Ore
+        {0080,0x0285}, -- 0.80% Darksteel Ore
+        {0080,0x0284}, -- 0.80% Mythril Ore
+        {0560,0x02E1}, -- 5.60% Gold Ore
+        {0070,0x02E2} -- 0.70% Platium Ore
 
     },
     [61] = { -- Mount Zhayolm
-        [2250] = {0x0454}, -- 22.50% Pinch of Sulfur
-        [2990] = {0x0283}, -- 29.90% Iron Ore
-        [1590] = {0x0483}, -- 15.90% Iron Sand
-        [1540] = {0x0300}, -- 15.40% Flint Stone
-        [1340] = {0x03A0}, -- 13.40% Bomb Ash
-        [0960] = {0x0660}, -- 9.60% Moblin Mail
-        [1150] = {0x0659}, -- 11.50% Moblin Helm
-        [0450] = {0x065F}, -- 4.50% Moblin Armor
-        [0380] = {0x0870}, -- 3.80% Troll Pauldron
-        [0450] = {0x0871}, -- 4.50% Troll Vambrace
-        [0430] = {0x0666}, -- 4.30% Moblin Mask
-        [0210] = {0x0386}, -- 2.10% Demon Horn
-        [0140] = {0x0286}, -- 1.40% Adaman Ore
-        [0030] = {0x02AD} -- 0.30% Khroma Ore
---      [1560] = {0x0B2C} -- 15.60% Slab of Plumbago quest item 
+        {2250,0x0454}, -- 22.50% Pinch of Sulfur
+        {2990,0x0283}, -- 29.90% Iron Ore
+        {1590,0x0483}, -- 15.90% Iron Sand
+        {1540,0x0300}, -- 15.40% Flint Stone
+        {1340,0x03A0}, -- 13.40% Bomb Ash
+        {0960,0x0660}, -- 9.60% Moblin Mail
+        {1150,0x0659}, -- 11.50% Moblin Helm
+        {0450,0x065F}, -- 4.50% Moblin Armor
+        {0380,0x0870}, -- 3.80% Troll Pauldron
+        {0450,0x0871}, -- 4.50% Troll Vambrace
+        {0430,0x0666}, -- 4.30% Moblin Mask
+        {0210,0x0386}, -- 2.10% Demon Horn
+        {0140,0x0286}, -- 1.40% Adaman Ore
+        {0030,0x02AD} -- 0.30% Khroma Ore
+--      {1560,0x0B2C} -- 15.60% Slab of Plumbago quest item 
     
     },
     [62] = { -- Halvung
-        [2010] = {0x0971}, -- 20.10% Aht Urhgan Brass
-        [1000] = {0x03A0}, -- 10.0% Bomb Ash
-        [1720] = {0x0300}, -- 17.20% Flint Stone
-        [0290] = {0x02E1}, -- 2.90% Gold Ore
-        [1440] = {0x0483}, -- 14.40% Iron Sand
-        [0050] = {0x08B4}, -- 0.50% Luminium Ore
-        [0430] = {0x065F}, -- 4.30% Moblin Armor
-        [0480] = {0x0659}, -- 4.80% Moblin Helm
-        [0480] = {0x0660}, -- 4.80% Moblin Mail
-        [0290] = {0x0666}, -- 2.90% Moblin Mask
-        [0100] = {0x02E3}, -- 1.0% Orichalcum Ore
-        [1200] = {0x0454}, -- 12.00% Pinch of Sulfur
-        [0480] = {0x0870}, -- 4.80% Troll Pauldron
-        [0330] = {0x0871} -- 3.30% Troll Vambrace
+        {2010,0x0971}, -- 20.10% Aht Urhgan Brass
+        {1000,0x03A0}, -- 10.0% Bomb Ash
+        {1720,0x0300}, -- 17.20% Flint Stone
+        {0290,0x02E1}, -- 2.90% Gold Ore
+        {1440,0x0483}, -- 14.40% Iron Sand
+        {0050,0x08B4}, -- 0.50% Luminium Ore
+        {0430,0x065F}, -- 4.30% Moblin Armor
+        {0480,0x0659}, -- 4.80% Moblin Helm
+        {0480,0x0660}, -- 4.80% Moblin Mail
+        {0290,0x0666}, -- 2.90% Moblin Mask
+        {0100,0x02E3}, -- 1.0% Orichalcum Ore
+        {1200,0x0454}, -- 12.00% Pinch of Sulfur
+        {0480,0x0870}, -- 4.80% Troll Pauldron
+        {0330,0x0871} -- 3.30% Troll Vambrace
 
     },
     [88] = { -- North Gustaberg [S]
-        [1870] = {0x0280}, -- 18.70% Copper Ore
-        [1930] = {0x0282}, -- 19.30% Zinc Ore
-        [1500] = {0x0281}, -- 15.00% Tin Ore
-        [1340] = {0x4390}, -- 13.40% Pebble
-        [0860] = {0x02E0},-- 8.6% Silver Ore
-        [1180] = {0x0283}, -- 11.80% Iron Ore
-        [0750] = {0x0284}, -- 7.50% Mythril Ore
-        [0050] = {0x065F}, -- 0.50% Moblin Armor
-        [0110] = {0x0659}, -- 1.10% Moblin Helm
-        [0110] = {0x0660}, -- 1.10% Moblin Mail
-        [0210] = {0x0666}, -- 2.10% Moblin Mask
-        [0160] = {0x02E2}, -- 1.60% Platium Ore
+        {1870,0x0280}, -- 18.70% Copper Ore
+        {1930,0x0282}, -- 19.30% Zinc Ore
+        {1500,0x0281}, -- 15.00% Tin Ore
+        {1340,0x4390}, -- 13.40% Pebble
+        {0860,0x02E0},-- 8.6% Silver Ore
+        {1180,0x0283}, -- 11.80% Iron Ore
+        {0750,0x0284}, -- 7.50% Mythril Ore
+        {0050,0x065F}, -- 0.50% Moblin Armor
+        {0110,0x0659}, -- 1.10% Moblin Helm
+        {0110,0x0660}, -- 1.10% Moblin Mail
+        {0210,0x0666}, -- 2.10% Moblin Mask
+        {0160,0x02E2}, -- 1.60% Platium Ore
 
     },
     [142] = {  -- Yughott Grotto
-        [1460] = {0x0280}, -- 14.60% Copper Ore
-        [1650] = {0x0283}, -- 16.50% Iron Ore
-        [1300] = {0x0281}, -- 13.00% Tin Ore
-        [1140] = {0x4390}, -- 11.40% Pebble
-        [1320] = {0x0282}, -- 13.20% Zinc Ore
-        [0840] = {0x0300}, -- 8.40% Flint Stone
-        [0360] = {0x02E0}, -- 3.6% Silver Ore
-        [0200] = {0x0301}, -- 1.7% Red Rock
-        [0300] = {0x0285}, -- 1.5% Darksteel Ore
-        [0210] = {0x02E1} -- 1.1% Gold Ore
+        {1460,0x0280}, -- 14.60% Copper Ore
+        {1650,0x0283}, -- 16.50% Iron Ore
+        {1300,0x0281}, -- 13.00% Tin Ore
+        {1140,0x4390}, -- 11.40% Pebble
+        {1320,0x0282}, -- 13.20% Zinc Ore
+        {0840,0x0300}, -- 8.40% Flint Stone
+        {0360,0x02E0}, -- 3.6% Silver Ore
+        {0301,0x0301}, -- 1.7% Red Rock
+        {0300,0x0285}, -- 1.5% Darksteel Ore
+        {0110,0x02E1} -- 1.1% Gold Ore
 
     },
     [143] = { -- Palborough Mines
-        [1130] = {0x0282}, -- 11.30% Zinc Ore
-        [0940] = {0x0283}, -- 9.40% Iron Ore
-        [1040] = {0x4390}, -- 10.40% Pebble
-        [0970] = {0x0281}, -- 9.70% Tin Ore
-        [0900] = {0x0284}, -- 9.00% Mythril Ore
-        [0900] = {0x02E0}, -- 9.00% Silver Ore
-        [0800] = {0x0280}, -- 8.00% Copper Ore
-        [1200] = {0x02E2} --  1.00% Platium Ore
---      [0000] = {0x0000} -- Sturdy metal strip 16.7% for a quest
+        {1130,0x0282}, -- 11.30% Zinc Ore
+        {0940,0x0283}, -- 9.40% Iron Ore
+        {1040,0x4390}, -- 10.40% Pebble
+        {0970,0x0281}, -- 9.70% Tin Ore
+        {0900,0x0284}, -- 9.00% Mythril Ore
+        {0900,0x02E0}, -- 9.00% Silver Ore
+        {0800,0x0280}, -- 8.00% Copper Ore
+        {1200,0x02E2} --  1.00% Platium Ore
+--      {0000,0x0000} -- Sturdy metal strip 16.7% for a quest
 
     },
     [172] = { -- Zeruhn Mines
-        [1450] = {0x0283}, -- 24.50% Iron Ore
-        [1200] = {0x4390}, -- 18.00% Pebble
-        [1860] = {0x0280}, -- 18.60% Copper Ore
-        [1310] = {0x0282}, -- 13.10% Zinc Ore
-        [1120] = {0x0281}, -- 11.20% Tin Ore
-        [0550] = {0x07C0}, -- 5.5% Snapping Mole
-        [0190] = {0x02E0}, -- 1.9% Silver Ore
-        [0180] = {0x0285} -- 0.4% Darksteel Ore
---      [0000] = {0x0000} -- Sturdy metal strip 16.7% for a quest
+        {1450,0x0283}, -- 24.50% Iron Ore
+        {1200,0x4390}, -- 18.00% Pebble
+        {1860,0x0280}, -- 18.60% Copper Ore
+        {1310,0x0282}, -- 13.10% Zinc Ore
+        {1120,0x0281}, -- 11.20% Tin Ore
+        {0550,0x07C0}, -- 5.5% Snapping Mole
+        {0190,0x02E0}, -- 1.9% Silver Ore
+        {0180,0x0285} -- 0.4% Darksteel Ore
+--      {0000,0x0000} -- Sturdy metal strip 16.7% for a quest
     
     },
     [196] = { -- Gusgen Mines
-        [1890] = {0x4390}, -- 18.90% Pebble
-        [1670] = {0x0282}, -- 16.70% Zinc Ore
-        [0510] = {0x0280}, -- 15.10% Copper Ore
-        [0470] = {0x0281}, -- 14.70% Tin Ore
-        [0450] = {0x0283}, -- 14.50% Iron Ore
-        [0810] = {0x02E0}, -- 8.10% Silver Ore
-        [0600] = {0x0285}, -- 5.9% Darksteel Ore
-        [0400] = {0x0301}, -- 4% Red Rock
-        [1280] = {0x02E1}, -- 1.8% Gold Ore
-        [1280] = {0x0284} -- 0.80% Mythril Ore
---      [0000] = {0x0000} -- Sturdy metal strip 16.7% for a quest
+        {1890,0x4390}, -- 18.90% Pebble
+        {1670,0x0282}, -- 16.70% Zinc Ore
+        {0510,0x0280}, -- 15.10% Copper Ore
+        {0470,0x0281}, -- 14.70% Tin Ore
+        {0450,0x0283}, -- 14.50% Iron Ore
+        {0810,0x02E0}, -- 8.10% Silver Ore
+        {0600,0x0285}, -- 5.9% Darksteel Ore
+        {0400,0x0301}, -- 4% Red Rock
+        {1280,0x02E1}, -- 1.8% Gold Ore
+        {1280,0x0284} -- 0.80% Mythril Ore
+--      {0000,0x0000} -- Sturdy metal strip 16.7% for a quest
     
     },
     [205] = { -- Ifrit's Cauldron
-        [0020] = {1255},
-        [0840] = {0x0300}, -- 8.40% Flint Stone
-        [0950] = {0x0283}, -- 14.50% Iron Ore
-        [0980] = {0x0454}, -- 9.80% Pinch of Sulfur
-        [0700] = {0x43A4}, -- 7.0% Bomb Arm
-        [0500] = {0x03A0}, -- 5.0% Bomb Ash
-        [0600] = {0x0483}, -- 6.0% Iron Sand
-        [0250] = {0x0286}, -- 2.5% Adaman Ore
-        [0690] = {0x0285}, -- 6.9% Darksteel Ore
-        [0000] = {0x084E}, -- 0.0% Orpiment
-        [0250] = {0x02E3}, -- 0.0% Orichalcum Ore
-        [0400] = {0x0301} -- 4% Red Rock
---      [0000] = {0x0000} -- Sturdy metal strip 16.7% for a quest
+        {0020,1255},
+        {0840,0x0300}, -- 8.40% Flint Stone
+        {0950,0x0283}, -- 14.50% Iron Ore
+        {0980,0x0454}, -- 9.80% Pinch of Sulfur
+        {0700,0x43A4}, -- 7.0% Bomb Arm
+        {0500,0x03A0}, -- 5.0% Bomb Ash
+        {0600,0x0483}, -- 6.0% Iron Sand
+        {0250,0x0286}, -- 2.5% Adaman Ore
+        {0690,0x0285}, -- 6.9% Darksteel Ore
+        {0000,0x084E}, -- 0.0% Orpiment
+        {0250,0x02E3}, -- 0.0% Orichalcum Ore
+        {0400,0x0301} -- 4% Red Rock
+--      {0000,0x0000} -- Sturdy metal strip 16.7% for a quest
     }
 }
-
 local coordinates = {
     [62] = { -- Halvung
         {681.975,-28.781,215.563},
@@ -402,23 +395,28 @@ function getMiningItem(player,zone)
     local drops = extracted[zone];
 
     -- Get the total of all drop weights
+    -- {rate,item}
     local total = 0;
-    for rate,item in pairs(drops) do
-        total = total+rate;
+    for i=1,#drops do
+        total = total+drops[i][1] -- [1] = rate, [2] = item
     end;
+
+    --printf("Total: %s",total);
 
     -- Get a random number that will determine the drop from the array.
     local tickerStop = math.random(1,total);
 
     local countPosition = 0;
     -- find out the winning item from the drops array.
-    for rate, drop in pairs(drops) do
-        countPosition = countPosition+rate;
-        if (countPosition >= tickerStop) then
-            item = drop[1];
+    for i=1,#drops do
+        countPosition = countPosition+drops[i][1]; -- [1] = rate, [2] = item
+        if (countPosition >= tickerStop) then 
+            item = drops[i][2]; -- [1] = rate, [2] = item
             break;
         end;
     end;
+
+    --printf("Item: %s",item);
 
     -- if the item was a coloured rock, turn it into the appropriate element
     local day = VanadielDayElement();
@@ -435,7 +433,7 @@ end;
 
 function moveMiningPoint(player,npc,zone)
 
-    local positions = shuffleTable(coordinates[zone]);
+    local positions = utils.shuffle(coordinates[zone]);
     local points = miningpoints[zone];
     local newIndex = -1;
 
@@ -451,10 +449,7 @@ function moveMiningPoint(player,npc,zone)
                 end
             end
         end
-
-        if (#positions > 0) then
-            newIndex = math.random(1,#positions)
-        end
+        newIndex = math.random(1,#positions)
     end
 
     if (newIndex == -1) then
@@ -468,23 +463,6 @@ function moveMiningPoint(player,npc,zone)
         npc:queue(3000,doMove(npc, position[1], position[2], position[3]));
     end
 end;
-
--------------------------------------------------
--- Shuffles a tables elements and returns a copy.
--------------------------------------------------
-
-function shuffleTable(tab)
-    local copy = {}
-    for k, v in pairs(tab) do
-        copy[k] = v
-    end
-
-    local res = {}
-    while next(copy) do
-        res[#res + 1] = table.remove(copy, math.random(#copy))
-    end
-    return res
-end
 
 -------------------------------------------------
 -- Perform node move after queue timer depletes.
