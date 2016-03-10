@@ -307,12 +307,14 @@ void CAIContainer::Tick(time_point _tick)
     m_PrevTick = m_Tick;
     m_Tick = _tick;
 
+    //#TODO: timestamp in the event?
+    EventHandler.triggerListener("TICK", PEntity);
     PEntity->Tick(_tick);
 
-    //#TODO: check this in the controller instead maybe? (might not want to check every tick) - same for pathfind
+    //#TODO: check this in the controller instead maybe? (might not want to check every tick)
     ActionQueue.checkAction(_tick);
 
-    // check pathfinding
+    // check pathfinding only if there is no controller to do it
     if (!Controller && CanFollowPath())
     {
         PathFind->FollowPath();
