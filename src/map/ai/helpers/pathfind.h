@@ -59,6 +59,8 @@ class CPathFind
 
     // find and walk to the given point
     bool PathTo(const position_t& point, uint8 pathFlags = 0, bool clear = true);
+    // walk to the given point until in range
+    bool PathInRange(const position_t& point, float range, uint8 pathFlags = 0, bool clear = true);
 
     // move some where around the point
     bool PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags = 0);

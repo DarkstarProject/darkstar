@@ -50,6 +50,7 @@ public:
     template<class... Args>
     void triggerListener(std::string eventname, Args&&... args)
     {
+        if (eventListeners.empty()) { return; }
         try
         {
             for (auto&& event : eventListeners.at(eventname))

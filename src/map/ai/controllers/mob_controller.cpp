@@ -565,7 +565,7 @@ void CMobController::DoCombatTick(time_point tick)
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (((distance(PMob->loc.p, PTarget->loc.p) > attack_range) || move) && PMob->PAI->CanFollowPath())
+    else if (((distance(PMob->loc.p, PTarget->loc.p) > attack_range - 0.2f) || move) && PMob->PAI->CanFollowPath())
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
@@ -589,8 +589,33 @@ void CMobController::DoCombatTick(time_point tick)
             }
             else if (CanMoveForward(currentDistance))
             {
-                PMob->PAI->PathFind->PathAround(PTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                if (!PMob->PAI->PathFind->IsFollowingPath())
+                {
+                    //path to the target if we don't have a path already
+                    PMob->PAI->PathFind->PathInRange(PTarget->loc.p, attack_range - 0.2f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                }
                 PMob->PAI->PathFind->FollowPath();
+                if (!PMob->PAI->PathFind->IsFollowingPath())
+                {
+                    //arrived at target - move if there is another mob under me
+                    if (PTarget->objtype == TYPE_PC)
+                    {
+                        for (auto PSpawnedMob : static_cast<CCharEntity*>(PTarget)->SpawnMOBList)
+                        {
+                            if (PSpawnedMob.second != PMob && !PSpawnedMob.second->PAI->PathFind->IsFollowingPath() && distance(PSpawnedMob.second->loc.p, PMob->loc.p) < 1.f)
+                            {
+                                auto angle = getangle(PMob->loc.p, PTarget->loc.p) + 64;
+                                position_t new_pos {0, PMob->loc.p.x - (cosf(rotationToRadian(angle)) * 1.5f),
+                                    PTarget->loc.p.y, PMob->loc.p.z + (sinf(rotationToRadian(angle)) * 2.5f), 0};
+                                if (PMob->PAI->PathFind->ValidPosition(new_pos))
+                                {
+                                    PMob->PAI->PathFind->PathTo(new_pos, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
     }
