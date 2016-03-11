@@ -88,21 +88,21 @@ function BluePhysicalSpell(caster, target, spell, params)
         D = params.duppercap;
     end
 
-    --print("D val is ".. D);
+    -- print("D val is ".. D);
 
     local fStr = BluefSTR(caster:getStat(MOD_STR) - target:getStat(MOD_VIT));
     if (fStr > 22) then
         fStr = 22; -- TODO: Smite of Rage doesn't have this cap applied.
     end
 
-    --print("fStr val is ".. fStr);
+    -- print("fStr val is ".. fStr);
 
     local WSC = BlueGetWsc(caster, params);
 
-    --print("wsc val is ".. WSC);
+    -- print("wsc val is ".. WSC);
 
     local multiplier = params.multiplier;
-    
+
     -- If under CA, replace multiplier with fTP(multiplier, tp150, tp300)
     local chainAffinity = caster:getStatusEffect(EFFECT_CHAIN_AFFINITY);
     if chainAffinity ~= nil then
@@ -111,14 +111,14 @@ function BluePhysicalSpell(caster, target, spell, params)
         if tp > 300 then
             tp = 300;
         end;
-        
+
         multiplier = BluefTP(tp, multiplier, params.tp150, params.tp300);
     end;
-    
+
     -- TODO: Modify multiplier to account for family bonus/penalty
     local finalD = math.floor(D + fStr + WSC) * multiplier;
 
-    --print("Final D is ".. finalD);
+    -- print("Final D is ".. finalD);
 
     ----------------------------------------------
     -- Get the possible pDIF range and hit rate --
@@ -130,8 +130,8 @@ function BluePhysicalSpell(caster, target, spell, params)
     local cratio = BluecRatio(params.offcratiomod / target:getStat(MOD_DEF), caster:getMainLvl(), target:getMainLvl());
     local hitrate = BlueGetHitRate(caster,target,true);
 
-    --print("Hit rate "..hitrate);
-    --print("pdifmin "..cratio[1].." pdifmax "..cratio[2]);
+    -- print("Hit rate "..hitrate);
+    -- print("pdifmin "..cratio[1].." pdifmax "..cratio[2]);
 
     -------------------------
     -- Perform the attacks --
@@ -165,7 +165,7 @@ function BluePhysicalSpell(caster, target, spell, params)
         hitsdone = hitsdone + 1;
     end
 
-    --print("Hits landed "..hitslanded.."/"..hitsdone.." for total damage: "..finaldmg);
+    -- print("Hits landed "..hitslanded.."/"..hitsdone.." for total damage: "..finaldmg);
 
     return finaldmg;
 end;
@@ -239,7 +239,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
         dmg = 0;
     end
 
-    --handling stoneskin
+    -- handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
     target:delHP(dmg);
@@ -260,23 +260,23 @@ function BlueGetWsc(attacker, params)
     return wsc;
 end;
 
---Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
+-- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function BluecRatio(ratio,atk_lvl,def_lvl)
-    --Level penalty...
+    -- Level penalty...
     local levelcor = 0;
     if (atk_lvl < def_lvl) then
         levelcor = 0.05 * (def_lvl - atk_lvl);
     end
     ratio = ratio - levelcor;
 
-    --apply caps
+    -- apply caps
     if (ratio<0) then
         ratio = 0;
     elseif (ratio>2) then
         ratio = 2;
     end
 
-    --Obtaining cRatio_MIN
+    -- Obtaining cRatio_MIN
     local cratiomin = 0;
     if (ratio<1.25) then
         cratiomin = 1.2 * ratio - 0.5;
@@ -286,7 +286,7 @@ function BluecRatio(ratio,atk_lvl,def_lvl)
         cratiomin = 1.2 * ratio - 0.8;
     end
 
-    --Obtaining cRatio_MAX
+    -- Obtaining cRatio_MAX
     local cratiomax = 0;
     if (ratio<0.5) then
         cratiomax = 0.4 + 1.2 * ratio;
@@ -313,15 +313,16 @@ function BluefTP(tp,ftp1,ftp2,ftp3)
     if (tp>=0 and tp<150) then
         return ftp1 + ( ((ftp2-ftp1)/100) * tp);
     elseif (tp>=150 and tp<=300) then
-        --generate a straight line between ftp2 and ftp3 and find point @ tp
+        -- generate a straight line between ftp2 and ftp3 and find point @ tp
         return ftp2 + ( ((ftp3-ftp2)/100) * (tp-150));
     else
         print("blue fTP error: TP value is not between 0-300!");
     end
-    return 1; --no ftp mod
+    return 1; -- no ftp mod
 end;
 
 function BluefSTR(dSTR)
+    local fSTR2 = nil;
     if (dSTR >= 12) then
         fSTR2 = ((dSTR+4)/2);
     elseif (dSTR >= 6) then
@@ -347,9 +348,9 @@ function BlueGetHitRate(attacker,target,capHitRate)
     local acc = attacker:getACC();
     local eva = target:getEVA();
 
-    if (attacker:getMainLvl() > target:getMainLvl()) then --acc bonus!
+    if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
-    elseif (attacker:getMainLvl() < target:getMainLvl()) then --acc penalty :(
+    elseif (attacker:getMainLvl() < target:getMainLvl()) then -- acc penalty :(
         acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
     end
 
@@ -366,8 +367,8 @@ function BlueGetHitRate(attacker,target,capHitRate)
     hitrate = hitrate/100;
 
 
-    --Applying hitrate caps
-    if (capHitRate) then --this isn't capped for when acc varies with tp, as more penalties are due
+    -- Applying hitrate caps
+    if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
         if (hitrate>0.95) then
             hitrate = 0.95;
         end
@@ -379,9 +380,7 @@ function BlueGetHitRate(attacker,target,capHitRate)
 end;
 
 -- Function to stagger duration of effects by using the resistance to change the value
-
 function getBlueEffectDuration(caster,resist,effect)
-
     local duration = 0;
 
     if (resist == 0.125) then
@@ -398,56 +397,57 @@ function getBlueEffectDuration(caster,resist,effect)
         duration = math.random(0,5) + resist * 5;
     elseif (effect == EFFECT_STUN) then
         duration = math.random(2,3) + resist;
+        -- printf("Duration of stun is %i",duration);
     elseif (effect == EFFECT_WEIGHT) then
         duration = math.random(20,24) + resist * 9; -- 30-60
     elseif (effect == EFFECT_PARALYSIS) then
-        duration = math.random(50,60) + resist * 15; --60- 120
+        duration = math.random(50,60) + resist * 15; -- 60- 120
     end
-    printf("Duration of stun is %i",duration);
+
     return duration;
 end;
 
---obtains alpha, used for working out WSC
+-- obtains alpha, used for working out WSC
 function BlueGetAlpha(level)
-alpha = 1.00;
-if (level <= 5) then
-    alpha = 1.00;
-elseif (level <= 11) then
-    alpha = 0.99;
-elseif (level <= 17) then
-    alpha = 0.98;
-elseif (level <= 23) then
-    alpha = 0.97;
-elseif (level <= 29) then
-    alpha = 0.96;
-elseif (level <= 35) then
-    alpha = 0.95;
-elseif (level <= 41) then
-    alpha = 0.94;
-elseif (level <= 47) then
-    alpha = 0.93;
-elseif (level <= 53) then
-    alpha = 0.92;
-elseif (level <= 59) then
-    alpha = 0.91;
-elseif (level <= 61) then
-    alpha = 0.90;
-elseif (level <= 63) then
-    alpha = 0.89;
-elseif (level <= 65) then
-    alpha = 0.88;
-elseif (level <= 67) then
-    alpha = 0.87;
-elseif (level <= 69) then
-    alpha = 0.86;
-elseif (level <= 71) then
-    alpha = 0.85;
-elseif (level <= 73) then
-    alpha = 0.84;
-elseif (level <= 75) then
-    alpha = 0.83;
-elseif (level <= 99) then
-    alpha = 0.85;
-end
-return alpha;
- end;
+    local alpha = 1.00;
+    if (level <= 5) then
+        alpha = 1.00;
+    elseif (level <= 11) then
+        alpha = 0.99;
+    elseif (level <= 17) then
+        alpha = 0.98;
+    elseif (level <= 23) then
+        alpha = 0.97;
+    elseif (level <= 29) then
+        alpha = 0.96;
+    elseif (level <= 35) then
+        alpha = 0.95;
+    elseif (level <= 41) then
+        alpha = 0.94;
+    elseif (level <= 47) then
+        alpha = 0.93;
+    elseif (level <= 53) then
+        alpha = 0.92;
+    elseif (level <= 59) then
+        alpha = 0.91;
+    elseif (level <= 61) then
+        alpha = 0.90;
+    elseif (level <= 63) then
+        alpha = 0.89;
+    elseif (level <= 65) then
+        alpha = 0.88;
+    elseif (level <= 67) then
+        alpha = 0.87;
+    elseif (level <= 69) then
+        alpha = 0.86;
+    elseif (level <= 71) then
+        alpha = 0.85;
+    elseif (level <= 73) then
+        alpha = 0.84;
+    elseif (level <= 75) then
+        alpha = 0.83;
+    elseif (level <= 99) then
+        alpha = 0.85;
+    end
+    return alpha;
+end;
