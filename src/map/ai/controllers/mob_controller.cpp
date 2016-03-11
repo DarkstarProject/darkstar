@@ -606,7 +606,7 @@ void CMobController::DoCombatTick(time_point tick)
                             {
                                 auto angle = getangle(PMob->loc.p, PTarget->loc.p) + 64;
                                 position_t new_pos {0, PMob->loc.p.x - (cosf(rotationToRadian(angle)) * 1.5f),
-                                    PTarget->loc.p.y, PMob->loc.p.z + (sinf(rotationToRadian(angle)) * 2.5f), 0};
+                                    PTarget->loc.p.y, PMob->loc.p.z + (sinf(rotationToRadian(angle)) * 1.5f), 0};
                                 if (PMob->PAI->PathFind->ValidPosition(new_pos))
                                 {
                                     PMob->PAI->PathFind->PathTo(new_pos, PATHFLAG_WALLHACK | PATHFLAG_RUN);
