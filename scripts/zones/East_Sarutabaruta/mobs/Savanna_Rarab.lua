@@ -14,16 +14,15 @@ require("scripts/zones/East_Sarutabaruta/MobIDs");
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,91,1);
 
-    mob = mob:getID();
-    if (Sharp_Eared_Ropipi_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Sharp_Eared_Ropipi");
+    local mobID = mob:getID();
+    if (Sharp_Eared_Ropipi_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Sharp_Eared_Ropipi");
         if (ToD <= os.time(t) and GetMobAction(Sharp_Eared_Ropipi) == 0) then
-            if (math.random((1),(5)) == 3) then
+            if (math.random(1,5) == 3) then
                 UpdateNMSpawnPoint(Sharp_Eared_Ropipi);
                 GetMobByID(Sharp_Eared_Ropipi):setRespawnTime(mob);
-                SetServerVariable("[PH]Sharp_Eared_Ropipi", mob);
-                DeterMob(mob, true);
+                SetServerVariable("[PH]Sharp_Eared_Ropipi", mobID);
+                DeterMob(mobID, true);
             end
         end
     end
