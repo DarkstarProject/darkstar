@@ -931,6 +931,7 @@ MOD_DMG               = 160
 MOD_DMGPHYS           = 161
 MOD_DMGBREATH         = 162
 MOD_DMGMAGIC          = 163
+MOD_DMGMAGIC_II       = 831 -- Magic Damage Taken II % (Aegis)
 MOD_DMGRANGE          = 164
 MOD_UDMGPHYS          = 387
 MOD_UDMGBREATH        = 388

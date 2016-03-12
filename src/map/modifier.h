@@ -190,7 +190,8 @@ enum MODIFIER
     MOD_DMG                       = 160, // Damage Taken %
     MOD_DMGPHYS                   = 161, // Physical Damage Taken %
     MOD_DMGBREATH                 = 162, // Breath Damage Taken %
-    MOD_DMGMAGIC                  = 163, // Magic Damage Taken % - 256 base! (value of -24 means -24/256 magic damage taken)
+    MOD_DMGMAGIC                  = 163, // Magic Damage Taken %
+    MOD_DMGMAGIC_II               = 831, // Magic Damage Taken II % (Aegis)
     MOD_DMGRANGE                  = 164, // Range Damage Taken %
 
     MOD_UDMGPHYS                  = 387, // Uncapped Damage Multipliers
@@ -631,8 +632,8 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 830, // stuff
     // MOD_SPARE = 831, // stuff
+    // MOD_SPARE = 832, // stuff
 
 };
 

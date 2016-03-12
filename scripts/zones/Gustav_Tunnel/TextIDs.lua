@@ -9,5 +9,5 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 
 -- conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...
- 
+
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here
