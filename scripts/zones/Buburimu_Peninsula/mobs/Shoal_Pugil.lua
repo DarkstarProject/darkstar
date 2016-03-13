@@ -13,16 +13,15 @@ require("scripts/zones/Buburimu_Peninsula/MobIDs");
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,62,1);
 
-    local mob = mob:getID();
-    if (Buburimboo_PH[mob] ~= nil) then
-
+    local mobID = mob:getID();
+    if (Buburimboo_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Buburimboo");
         if (ToD <= os.time(t) and GetMobAction(Buburimboo) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Buburimboo);
-                GetMobByID(Buburimboo):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Buburimboo", mob);
-                DeterMob(mob, true);
+                GetMobByID(Buburimboo):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Buburimboo", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

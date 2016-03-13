@@ -15,13 +15,13 @@ function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,80,1);
 
     -- Get Rock Lizard ID and check if it is a PH of LL
-    mob = mob:getID();
+    local mobID = mob:getID();
 
     -- Check if Rock Lizard is within the Leaping_Lizzy_PH table
-    if (Leaping_Lizzy_PH[mob] ~= nil) then
+    if (Leaping_Lizzy_PH[mobID] ~= nil) then
         -- printf("%u is a PH",mob);
         -- Get LL's previous ToD
-        LL_ToD = GetServerVariable("[POP]Leaping_Lizzy");
+        local LL_ToD = GetServerVariable("[POP]Leaping_Lizzy");
 
         -- Check if LL window is open, and there is not an LL popped already(ACTION_NONE = 0)
         if (LL_ToD <= os.time(t) and GetMobAction(Leaping_Lizzy) == 0) then
@@ -31,9 +31,9 @@ function onMobDeath(mob,killer,ally)
             if (math.random(1,20) == 5) then
                 -- printf("LL will pop");
                 UpdateNMSpawnPoint(Leaping_Lizzy);
-                GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Leaping_Lizzy", mob);
-                DeterMob(mob, true);
+                GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Leaping_Lizzy", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

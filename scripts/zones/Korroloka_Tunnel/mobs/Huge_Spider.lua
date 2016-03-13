@@ -13,16 +13,15 @@ function onMobDeath(mob,killer,ally)
 
     checkGoVregime(ally,mob,279,1);
 
-    mob = mob:getID();
-    if (Falcatus_Aranei_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Falcatus_Aranei");
+    local mobID = mob:getID();
+    if (Falcatus_Aranei_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Falcatus_Aranei");
         if (ToD <= os.time(t) and GetMobAction(Falcatus_Aranei) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Falcatus_Aranei);
-                GetMobByID(Falcatus_Aranei):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Falcatus_Aranei", mob);
-                DeterMob(mob, true);
+                GetMobByID(Falcatus_Aranei):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Falcatus_Aranei", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

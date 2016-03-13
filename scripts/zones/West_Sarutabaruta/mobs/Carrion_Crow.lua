@@ -14,16 +14,15 @@ require("scripts/zones/West_Sarutabaruta/MobIDs");
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,28,2);
 
-    mob = mob:getID();
-    if (Nunyenunc_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Nunyenunc");
+    local mobID = mob:getID();
+    if (Nunyenunc_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Nunyenunc");
         if (ToD <= os.time(t) and GetMobAction(Nunyenunc) == 0) then
-            if (math.random((1),(10)) == 5) then
+            if (math.random(1,10) == 5) then
                 UpdateNMSpawnPoint(Nunyenunc);
-                GetMobByID(Nunyenunc):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Nunyenunc", mob);
-                DeterMob(mob, true);
+                GetMobByID(Nunyenunc):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Nunyenunc", mobID);
+                DeterMob(mobID, true);
             end
         end
     end
