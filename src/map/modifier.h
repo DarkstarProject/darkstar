@@ -411,7 +411,8 @@ enum MODIFIER
     MOD_ROLL_DANCERS              = 330, // Tracks totals
     MOD_ROLL_SCHOLARS             = 331, // Tracks totals
     MOD_BUST                      = 332, // # of busts
-    MOD_QUICK_DRAW_DMG            = 411, //
+    MOD_QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
+    MOD_QUICK_DRAW_DMG_PERCENT    = 831, // Percentage increase to QD damage
 
     // Puppetmaster
     MOD_MANEUVER_BONUS            = 504, // Maneuver Stat Bonus
