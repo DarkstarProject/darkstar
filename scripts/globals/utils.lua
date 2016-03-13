@@ -2,6 +2,20 @@ require("scripts/globals/status")
 
 utils = {};
 
+-- Shuffles a table and returns a copy of it, not the original.
+function utils.shuffle(tab)
+    local copy = {}
+    for k, v in pairs(tab) do
+        copy[k] = v
+    end
+
+    local res = {}
+    while next(copy) do
+        res[#res + 1] = table.remove(copy, math.random(#copy))
+    end
+    return res
+end
+
 function utils.clamp(input, min_val, max_val)
     if input < min_val then
         input = min_val;
