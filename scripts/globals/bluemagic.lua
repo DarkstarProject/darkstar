@@ -108,8 +108,8 @@ function BluePhysicalSpell(caster, target, spell, params)
     if chainAffinity ~= nil then
         -- Calculate the total TP available for the fTP multiplier.
         local tp = caster:getTP() + caster:getMerit(MERIT_ENCHAINMENT);
-        if tp > 300 then
-            tp = 300;
+        if tp > 3000 then
+            tp = 3000;
         end;
 
         multiplier = BluefTP(tp, multiplier, params.tp150, params.tp300);
@@ -158,8 +158,8 @@ function BluePhysicalSpell(caster, target, spell, params)
 
             hitslanded = hitslanded + 1;
 
-            -- increment target's TP (10TP per hit landed)
-            target:addTP(10);
+            -- increment target's TP (100TP per hit landed)
+            target:addTP(100);
         end
 
         hitsdone = hitsdone + 1;
@@ -310,13 +310,13 @@ end;
 -- ftp2 - The TP 150% value
 -- ftp3 - The TP 300% value
 function BluefTP(tp,ftp1,ftp2,ftp3)
-    if (tp>=0 and tp<150) then
-        return ftp1 + ( ((ftp2-ftp1)/100) * tp);
-    elseif (tp>=150 and tp<=300) then
+    if (tp>=0 and tp<1500) then
+        return ftp1 + ( ((ftp2-ftp1)/100) * (tp / 10));
+    elseif (tp>=1500 and tp<=3000) then
         -- generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-150));
+        return ftp2 + ( ((ftp3-ftp2)/100) * ((tp-1500) / 10));
     else
-        print("blue fTP error: TP value is not between 0-300!");
+        print("blue fTP error: TP value is not between 0-3000!");
     end
     return 1; -- no ftp mod
 end;
@@ -451,3 +451,4 @@ function BlueGetAlpha(level)
     end
     return alpha;
 end;
+

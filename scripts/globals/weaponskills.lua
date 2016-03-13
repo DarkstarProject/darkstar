@@ -437,12 +437,12 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-    if tp < 100 then tp = 100 end
-    if (tp>=100 and tp<200) then
-        return ftp1 + ( ((ftp2-ftp1)/100) * (tp-100));
-    elseif (tp>=200 and tp<=300) then
+    if tp < 1000 then tp = 1000 end
+    if (tp>=1000 and tp<2000) then
+        return ftp1 + ( ((ftp2-ftp1)/100) * (tp-1000));
+    elseif (tp>=2000 and tp<=3000) then
         -- generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-200));
+        return ftp2 + ( ((ftp3-ftp2)/100) * (tp-2000));
     else
         print("fTP error: TP value is not between 100-300!");
     end
@@ -450,10 +450,10 @@ function fTP(tp,ftp1,ftp2,ftp3)
 end;
 
 function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
-    if (tp>=100 and tp <200) then
-        return (ignore1 + ( ((ignore2-ignore1)/100) * (tp-100)))*def;
-    elseif (tp>=200 and tp<=300) then
-        return (ignore2 + ( ((ignore3-ignore2)/100) * (tp-200)))*def;
+    if (tp>=1000 and tp <2000) then
+        return (ignore1 + ( ((ignore2-ignore1)/100) * (tp-1000)))*def;
+    elseif (tp>=2000 and tp<=3000) then
+        return (ignore2 + ( ((ignore3-ignore2)/100) * (tp-2000)))*def;
     end
     return 1; -- no def ignore mod
 end
@@ -959,3 +959,62 @@ function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHit
 
     return finaldmg;
 end
+
+-- Params should have the following members:
+-- params.power.lv1: Base value for AM power @ level 1
+-- params.power.lv2: Base value for AM power @ level 2
+-- params.power.lv3: Base value for AM power @ level 3
+
+-- params.power.lv1_inc: How much to increment at each power level
+-- params.power.lv2_inc: How much to increment at each power level
+
+-- params.subpower.lv1: Subpower for level 1
+-- params.subpower.lv2: Subpower for level 2
+-- params.subpower.lv3: Subpower for level 3
+
+-- params.duration.lv1: Duration for AM level 1
+-- params.duration.lv2: Duration for AM level 2
+-- params.duration.lv3: Duration for AM level 3
+function applyAftermathEffect(player, tp, params)
+    if (params == nil) then
+        params = initAftermathParams()
+    end
+
+    local apply_power = 0
+    if (tp == 3000) then
+        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0, 
+            params.duration.lv3, 0, params.subpower.lv3)
+    elseif (tp >= 2000) then
+        apply_power = params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc))
+        player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
+            params.duration.lv2, 0, params.subpower.lv2);
+    elseif (tp >= 1000) then
+        apply_power = params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc))
+        player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
+            params.duration.lv1, 0, params.subpower.lv1);
+    end
+end;
+
+function initAftermathParams()
+    local params = {}
+    params.power = {}
+    params.subpower = {}
+    params.duration = {}
+
+    params.power.lv1 = 10
+    params.power.lv2 = 20
+    params.power.lv3 = 45
+
+    params.power.lv1_inc = 1
+    params.power.lv2_inc = 4
+
+    params.subpower.lv1 = 1
+    params.subpower.lv2 = 1
+    params.subpower.lv3 = 1
+
+    params.duration.lv1 = 180
+    params.duration.lv2 = 180
+    params.duration.lv3 = 120
+
+    return params
+end;

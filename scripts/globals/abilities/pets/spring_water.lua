@@ -15,10 +15,10 @@ end;
 function onPetAbility(target, pet, skill)
     local base = 47 + pet:getMainLvl()*3;
     local tp = skill:getTP();
-    if tp < 100 then
-        tp = 100;
+    if tp < 1000 then
+        tp = 1000;
     end
-    base = base * tp / 100;
+    base = base * tp / 1000;
 
     if (target:getHP()+base > target:getMaxHP()) then
         base = target:getMaxHP() - target:getHP(); --cap it

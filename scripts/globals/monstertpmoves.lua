@@ -161,7 +161,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     hitdamage = hitdamage * dmgmod;
 
     if (tpeffect == TP_DMG_VARIES) then
-        hitdamage = hitdamage * MobTPMod(skill:getTP());
+        hitdamage = hitdamage * MobTPMod(skill:getTP() / 10);
     end
 
     --work out min and max cRatio
@@ -303,7 +303,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     end
 
     if (tpeffect==TP_DMG_BONUS) then
-        damage = damage * ((skill:getTP()*tpvalue)/100);
+        damage = damage * (((skill:getTP() / 10)*tpvalue)/100);
     end
 
     -- printf("power: %f, bonus: %f", damage, mab);
@@ -607,7 +607,6 @@ function MobDrainMove(mob, target, drainType, drain)
 
             return MSG_DRAIN_MP;
         elseif (drainType == MOBDRAIN_TP) then
-
             -- can't go over limited tp
             if (target:getTP() < drain) then
                 drain = target:getTP();
@@ -781,23 +780,23 @@ end;
 
 function MobTPMod(tp)
     -- increase damage based on tp
-    if (tp >= 300) then
+    if (tp >= 3000) then
         return 2;
-    elseif (tp >= 200) then
+    elseif (tp >= 2000) then
         return 1.5;
     end
     return 1;
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-    if (tp<100) then
-        tp=100;
+    if (tp<1000) then
+        tp=1000;
     end
-    if (tp>=100 and tp<150) then
-        return ftp1 + ( ((ftp2-ftp1)/50) * (tp-100));
+    if (tp>=1000 and tp<1500) then
+        return ftp1 + ( ((ftp2-ftp1)/50) * (tp-1000));
     elseif (tp>=150 and tp<=300) then
         --generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/150) * (tp-150));
+        return ftp2 + ( ((ftp3-ftp2)/150) * (tp-1500));
     end
     return 1; --no ftp mod
 end;

@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     local typeEffectTwo = EFFECT_BIND;
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
     local duration = 30 * resist;
-    local power = 10 * resist;
+    local power = 100 * resist;
     local returnEffect = typeEffectOne;
 
     if (resist >= 0.5) then

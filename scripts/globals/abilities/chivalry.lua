@@ -23,8 +23,9 @@ end;
 
 function onUseAbility(player,target,ability)
     local merits = player:getMerit(MERIT_CHIVALRY);
+    local tp = target:getTP()
 --(TP * .5) + ((0.015 * TP) * MND) = MP Gained
-    local amount = ((target:getTP()*(0.5)) + ((0.015*target:getTP()) * target:getStat(MOD_MND))) * ((100 + merits - 5) / 100)
+    local amount = ((tp*(0.05)) + ((0.0015*tp) * target:getStat(MOD_MND))) * ((100 + merits - 5) / 100)
     target:setTP(0);
     return target:addMP(amount);
 end;

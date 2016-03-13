@@ -23,6 +23,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(100);
+    target:addTP(1000);
     target:addStatusEffect(EFFECT_MEDICINE,0,0,7200);
 end;

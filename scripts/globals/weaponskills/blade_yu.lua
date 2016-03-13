@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
 
     if (damage > 0) then
-        local duration = (tp/100 * 15) + 75;
+        local duration = (tp/1000 * 15) + 75;
         if (target:hasStatusEffect(EFFECT_POISON) == false) then
             target:addStatusEffect(EFFECT_POISON, 10, 0, duration);
         end

@@ -29,10 +29,10 @@ function onPetAbility(target, pet, skill)
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
     damage.dmg = mobAddBonuses(pet,spell,target,damage.dmg,1);
     local tp = skill:getTP();
-    if tp < 100 then
-        tp = 100;
+    if tp < 1000 then
+        tp = 1000;
     end
-    damage.dmg = damage.dmg * tp / 100;
+    damage.dmg = damage.dmg * tp / 1000;
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits);
     target:addStatusEffect(EFFECT_PARALYSIS, 15, 0, 60);
     target:delHP(totaldamage);

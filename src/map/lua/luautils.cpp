@@ -3018,7 +3018,7 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
 
         lua_pushinteger(LuaHandle, wskill->getID());
-        lua_pushnumber(LuaHandle, tp/10);
+        lua_pushnumber(LuaHandle, tp);
         lua_pushboolean(LuaHandle, primary);
 
         CLuaAction LuaAction(&action);

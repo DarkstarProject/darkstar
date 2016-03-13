@@ -38,7 +38,7 @@ function onMobFight(mob, target)
             mob:setLocalVar("2hour",1);
         end
     elseif (mob:getHPP() <= 77) then
-        if (mob:getTP() >= 100) then
+        if (mob:getTP() >= 1000) then
             if ((GetMobAction(shadow1) and GetMobAction(shadow2)) == 0) then
                 mob:useMobAbility(984);
             end

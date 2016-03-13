@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.atkmulti = 1;
 
     if (damage > 0) then
-        local duration = (tp/50);
+        local duration = (tp/500);
         if (target:hasStatusEffect(EFFECT_STUN) == false) then
             target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
         end
