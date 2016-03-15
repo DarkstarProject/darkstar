@@ -237,38 +237,38 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
         uint32 zoneMax = zoneMin + 1024;
 
-        ret = Sql_Query(SqlHandle, Query, instance->GetID(), zoneMin, zoneMax);
+        ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID(), zoneMin, zoneMax);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        if (ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
             {
                 CNpcEntity* PNpc = new CNpcEntity;
-                PNpc->id = (uint16)Sql_GetUIntData(SqlHandle, 0);
+                PNpc->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 0);
                 PNpc->targid = PNpc->id & 0xFFF;
 
-                PNpc->name.insert(0, Sql_GetData(SqlHandle, 1));
+                PNpc->name.insert(0, Sql_GetData(SqlInstanceHandle, 1));
 
-                PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 2);
-                PNpc->loc.p.x = Sql_GetFloatData(SqlHandle, 3);
-                PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 4);
-                PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 5);
-                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlHandle, 6);
+                PNpc->loc.p.rotation = (uint8)Sql_GetIntData(SqlInstanceHandle, 2);
+                PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);
+                PNpc->loc.p.y = Sql_GetFloatData(SqlInstanceHandle, 4);
+                PNpc->loc.p.z = Sql_GetFloatData(SqlInstanceHandle, 5);
+                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
 
-                PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlHandle, 6) >> 16; // вполне вероятно
+                PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
 
-                PNpc->speed = (uint8)Sql_GetIntData(SqlHandle, 7);
-                PNpc->speedsub = (uint8)Sql_GetIntData(SqlHandle, 8);
-                PNpc->animation = (uint8)Sql_GetIntData(SqlHandle, 9);
-                PNpc->animationsub = (uint8)Sql_GetIntData(SqlHandle, 10);
+                PNpc->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 7);
+                PNpc->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 8);
+                PNpc->animation = (uint8)Sql_GetIntData(SqlInstanceHandle, 9);
+                PNpc->animationsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 10);
 
-                PNpc->namevis = (uint8)Sql_GetIntData(SqlHandle, 11);
-                PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlHandle, 12);
-                PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
+                PNpc->namevis = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
+                PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlInstanceHandle, 12);
+                PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
 
-                PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
+                PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
 
-                memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
+                memcpy(&PNpc->look, Sql_GetData(SqlInstanceHandle, 14), 20);
 
                 PNpc->PInstance = instance;
 
