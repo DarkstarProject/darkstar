@@ -37,7 +37,6 @@ This file is part of DarkStar-server source code.
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     : CZone(ZoneID, RegionID, ContinentID)
 {
-    createZoneTimer();
 }
 
 CZoneInstance::~CZoneInstance()
@@ -183,6 +182,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
     if (PChar->PInstance)
     {
+        if (!ZoneTimer)
+        {
+            createZoneTimer();
+        }
         PChar->targid = PChar->PInstance->GetNewTargID();
 
         if (PChar->targid >= 0x700)
