@@ -10,11 +10,13 @@ cmdprops =
 };
 
 function onTrigger(player, x, y, z, zone, target)
+    local targ;
     if (target == nil) then
-        target = player:getName();
+        targ = player
+    else
+        targ = GetPlayerByName( target );
     end
 
-    local targ = GetPlayerByName( target );
     if (targ == nil) then
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
         return
