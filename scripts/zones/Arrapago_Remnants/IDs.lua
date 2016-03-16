@@ -28,6 +28,25 @@ Arrapago = {
                 rampart = 17080321,
                 sabotender = 17080322,
             }
+        },
+        [2] = {
+            [1] = {
+                mobs_start = 17080421,
+                mobs_end = 17080430,
+            },
+            [2] = {
+                mobs_start = 17080413,
+                mobs_end = 17080420,
+            },
+            [3] = {
+                mobs_start = 17080404,
+                mobs_end = 17080412,
+            },
+            [4] = {
+                mobs_start = 17080396,
+                mobs_end = 17080403,
+            },
+            astrologer = 17080431,
         }
     },
     

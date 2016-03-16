@@ -71,6 +71,8 @@ function onInstanceProgressUpdate(instance, progress)
 
     if instance:getStage() == 1 and progress == 10 then
         SpawnMob(Arrapago.mobs[1][2].rampart, instance)
+    elseif instance:getStage() == 3 and progress == 0 then
+        SpawnMob(Arrapago.mobs[2].astrologer, instance)
     end
     
 end;
@@ -80,16 +82,42 @@ end;
 -----------------------------------
 
 function onInstanceComplete(instance)
-
-    local chars = instance:getChars();
-
-    for i,v in pairs(chars) do
-    end
-    
 end;
 
 function onRegionEnter(player,region)
     if region:GetRegionID() <= 10 then
         player:startEvent(199 + region:GetRegionID())
+    end
+end
+
+function onEventUpdate(entity, eventid, result)
+    if (eventid >= 200 and eventid <= 203) then
+        local instance = entity:getInstance()
+        if instance:getProgress() == 0 then
+            for id = Arrapago.mobs[2][eventid-199].mobs_start, Arrapago.mobs[2][eventid-199].mobs_end do
+                SpawnMob(id, instance)
+            end
+            instance:setProgress(eventid-199)
+        end
+    elseif eventid == 204 then
+        -- spawn floor 3
+    end
+end
+
+function onEventFinish(entity, eventid, result)
+    local instance = entity:getInstance()
+    if (eventid >= 200 and eventid <= 203) then
+        for id = Arrapago.mobs[1][2].mobs_start, Arrapago.mobs[1][2].mobs_end do
+            DespawnMob(id, instance)
+        end
+        DespawnMob(Arrapago.mobs[1][2].rampart, instance)
+        DespawnMob(Arrapago.mobs[1][2].sabotender, instance)
+    elseif eventid == 204 then
+        for _,v in ipairs(Arrapago.mobs[2]) do
+            for id = v.mobs_start, v.mobs_end do
+                DespawnMob(id, instance)
+            end
+        end
+        DespawnMob(Arrapago.mobs[2].astrologer, instance)
     end
 end

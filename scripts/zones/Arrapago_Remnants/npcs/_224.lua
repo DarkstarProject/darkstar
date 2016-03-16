@@ -11,7 +11,9 @@ end
 
 function onEventFinish(entity, eventid, result, door)
     if (eventid == 300 and result == 1) then
-        door:getInstance():setStage(2)
+        local instance = door:getInstance()
+        instance:setStage(2)
+        instance:setProgress(0)
         door:setAnimation(8)
         door:untargetable(true)
     end
