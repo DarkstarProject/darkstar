@@ -886,8 +886,17 @@ namespace luautils
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 mobid = (uint32)lua_tointeger(L, 1);
+            CMobEntity* PMob = nullptr;
 
-            CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+            if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+            {
+                CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+                PMob = (CMobEntity*)PLuaInstance->GetInstance()->GetEntity(mobid & 0xFFF, TYPE_MOB);
+            }
+            else
+            {
+                PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+            }
             if (PMob != nullptr)
             {
                 if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
