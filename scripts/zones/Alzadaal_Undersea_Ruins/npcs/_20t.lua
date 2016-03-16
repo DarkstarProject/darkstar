@@ -26,14 +26,13 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(REMNANTS_PERMIT)) then
         local mask = -2
-        -- salvage2 NYI
-        --[[if player:getMainLvl() >= 96 then
+        if player:getMainLvl() >= 96 then
             mask = -14
-        else]]if player:getMainLvl() >= 65 then
+        elseif player:getMainLvl() >= 65 then
             mask = -6
         end
 
-        player:startEvent(408, 0, mask, 0, 0, 8)
+        player:startEvent(410, 0, mask, 0, 0, 10)
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -44,10 +43,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    -- 9 = arrapago, 54 = base salvage number
-    local instanceid = bit.rshift(option, 19) + 64
+     printf("CSID: %u",csid);
+     printf("RESULT: %u",option);
+    local instanceid = bit.rshift(option, 19) + 70
     
     local party = player:getParty();
     
@@ -69,7 +67,7 @@ function onEventUpdate(player,csid,option,target)
         end
     end
     
-    player:createInstance(instanceid, 74);
+    player:createInstance(instanceid, 76);
     
 end;
 
@@ -78,11 +76,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,target)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
+      printf("CSID: %u",csid);
+      printf("RESULT: %u",option);
  
-    if ((csid == 408 and option == 4) or csid == 0x74) then
-        player:setPos(0,0,0,0,74);
+    if ((csid == 410 and option == 4) or csid == 0x74) then
+        player:setPos(0,0,0,0,76);
     end
 end;
 
@@ -99,7 +97,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x74, 8);
+                    v:startEvent(0x74, 2);
                     v:delKeyItem(REMNANTS_PERMIT);
                 end
             end
