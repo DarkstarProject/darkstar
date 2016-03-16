@@ -7,7 +7,10 @@ Arrapago = {
         GIL_OBTAINED = 6385, -- Obtained <number> gil
         KEYITEM_OBTAINED = 6387, -- Obtained key item: <keyitem>
 
-        -- Assault Texts
+        DOOR_IS_SEALED = 7457,
+        DOOR_IS_SEALED_MYSTERIOUS = 7460,
+
+        -- Salvage Texts
         SALVAGE_START = 7231,
         TIME_TO_COMPLETE = 7438,
         MISSION_FAILED = 7439,
@@ -18,11 +21,25 @@ Arrapago = {
     
     mobs = {
         -- Arrapago Remnants
-        [65] = {
+        [1] = {
+            [2] = {
+                mobs_start = 17080323,
+                mobs_end = 17080395,
+                rampart = 17080321,
+                sabotender = 17080322,
+            }
         }
     },
     
     npcs = {
+        [1] = {
+            [1] = {
+                DOOR1 = 17080970,
+            },
+            [2] = {
+                ARMORY_CRATE = 17080598,
+            }
+        }
     }
 }
 

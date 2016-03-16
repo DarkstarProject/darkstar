@@ -39,9 +39,7 @@ function updateInstanceTime(instance, elapsed, texttable)
         end
     end
 
-    print("lastTimeUpdate"..lastTimeUpdate)
-    
-    if (lastTimeUpdate == 0 and elapsed > 20 * 60000) then
+    if (lastTimeUpdate == 0 and remainingTimeLimit < 600) then
         message = 600;
     elseif (lastTimeUpdate == 600 and remainingTimeLimit < 300) then
         message = 300;

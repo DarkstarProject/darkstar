@@ -1,10 +1,12 @@
 -----------------------------------
 -- 
--- Assault: Arrapago Cleansing
+-- Salvage: Arrapago Remnants
 -- 
 -----------------------------------
 
 require("scripts/globals/instance")
+
+package.loaded["scripts/zones/Arrapago_Remnants/IDs"] = nil;
 local Arrapago = require("scripts/zones/Arrapago_Remnants/IDs");
 
 -----------------------------------
@@ -31,9 +33,11 @@ end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Arrapago.mobs[65]) do
-        SpawnMob(v, instance);
+    for i,v in pairs(Arrapago.npcs[1][1]) do
+        local npc = instance:getEntity(bit.band(v, 0xFFF), TYPE_NPC);
+        npc:setStatus(STATUS_NORMAL)
     end
+    instance:setStage(1)
     
 end;
 
@@ -42,7 +46,6 @@ end;
 -----------------------------------
 
 function onInstanceTimeUpdate(instance, elapsed)
-    print("elapsed.."..elapsed)
     updateInstanceTime(instance, elapsed, Arrapago.text)
 end;
 
@@ -66,8 +69,8 @@ end;
 
 function onInstanceProgressUpdate(instance, progress)
 
-    if (progress >= 15) then
-        instance:complete();
+    if instance:getStage() == 1 and progress == 10 then
+        SpawnMob(Arrapago.mobs[1][2].rampart, instance)
     end
     
 end;
@@ -84,3 +87,9 @@ function onInstanceComplete(instance)
     end
     
 end;
+
+function onRegionEnter(player,region)
+    if region:GetRegionID() <= 10 then
+        player:startEvent(199 + region:GetRegionID())
+    end
+end
