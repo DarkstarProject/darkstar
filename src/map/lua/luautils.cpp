@@ -886,8 +886,17 @@ namespace luautils
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 mobid = (uint32)lua_tointeger(L, 1);
+            CMobEntity* PMob = nullptr;
 
-            CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+            if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+            {
+                CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+                PMob = (CMobEntity*)PLuaInstance->GetInstance()->GetEntity(mobid & 0xFFF, TYPE_MOB);
+            }
+            else
+            {
+                PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+            }
             if (PMob != nullptr)
             {
                 if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
@@ -1314,14 +1323,22 @@ namespace luautils
 
     int32 OnRegionEnter(CCharEntity* PChar, CRegion* PRegion)
     {
-        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        std::string filename;
+        if (PChar->PInstance)
+        {
+            filename = std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName() + ".lua";
+        }
+        else
+        {
+            filename = std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua";
+        }
 
         //player may be entering because of an earlier event (event that changes position)
         // these should probably not call another event from onRegionEnter (use onEventFinish instead)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, File);
+            PChar->m_event.Script.insert(0, filename.c_str());
 
-        if (prepFile(File, "onRegionEnter"))
+        if (prepFile((int8*)filename.c_str(), "onRegionEnter"))
         {
             return -1;
         }
@@ -1331,17 +1348,11 @@ namespace luautils
         CLuaRegion LuaRegion(PRegion);
         Lunar<CLuaRegion>::push(LuaHandle, &LuaRegion);
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onRegionEnter: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onRegionEnter (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -1354,13 +1365,21 @@ namespace luautils
 
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* PRegion)
     {
-        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        std::string filename;
+        if (PChar->PInstance)
+        {
+            filename = std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName() + ".lua";
+        }
+        else
+        {
+            filename = std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua";
+        }
 
         //player may be leaving because of an earlier event (event that changes position)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, File);
+            PChar->m_event.Script.insert(0, filename.c_str());
 
-        if (prepFile(File, "onRegionLeave"))
+        if (prepFile((int8*)filename.c_str(), "onRegionLeave"))
         {
             return -1;
         }
@@ -1370,17 +1389,11 @@ namespace luautils
         CLuaRegion LuaRegion(PRegion);
         Lunar<CLuaRegion>::push(LuaHandle, &LuaRegion);
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onRegionLeave: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onRegionLeave (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }

@@ -26,9 +26,10 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(REMNANTS_PERMIT)) then
         local mask = -2
-        if player:getMainLvl() >= 96 then
+        -- salvage2 NYI
+        --[[if player:getMainLvl() >= 96 then
             mask = -14
-        elseif player:getMainLvl() >= 65 then
+        else]]if player:getMainLvl() >= 65 then
             mask = -6
         end
 
@@ -98,7 +99,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
                     v:setInstance(instance);
-                    v:startEvent(0x74, 2);
+                    v:startEvent(0x74, 8);
                     v:delKeyItem(REMNANTS_PERMIT);
                 end
             end

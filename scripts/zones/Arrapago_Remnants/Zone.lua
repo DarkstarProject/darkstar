@@ -12,6 +12,11 @@ require("scripts/zones/Arrapago_Remnants/IDs");
 -----------------------------------
 
 function onInitialize(zone)
+    zone:registerRegion(1, 420, 5, -339, 0, 0, 0)
+    zone:registerRegion(2, 420, 5, -499, 0, 0, 0)
+    zone:registerRegion(3, 259, 5, -499, 0, 0, 0)
+    zone:registerRegion(4, 259, 5, -339, 0, 0, 0)
+    zone:registerRegion(5, 340, 5, 100, 0, 0, 0)
 end;
 
 -----------------------------------
