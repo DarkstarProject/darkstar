@@ -6447,7 +6447,7 @@ inline int32 CLuaBaseEntity::getCursorTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    auto PTarget = PChar->loc.zone->GetEntity(PChar->m_TargID);
+    auto PTarget = PChar->GetEntity(PChar->m_TargID);
 
     if (PTarget == NULL)
     {
@@ -7541,7 +7541,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     // If you use ACTION_MOBABILITY_FINISH, the first param = anim, the second param = skill id.
     if (actiontype == ACTION_MOBABILITY_FINISH || actiontype == ACTION_PET_MOBABILITY_FINISH)
     {
-        CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
+        CBattleEntity* PTarget = (CBattleEntity*)PChar->GetEntity(PChar->m_TargID);
         if (PTarget == nullptr)
         {
             ShowError("Cannot use MOBABILITY_FINISH on a nullptr battle target! Target a mob! \n");
@@ -7612,7 +7612,7 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
     else
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-        CBattleEntity* PTarget = (CBattleEntity*)PChar->loc.zone->GetEntity(PChar->m_TargID);
+        CBattleEntity* PTarget = (CBattleEntity*)PChar->GetEntity(PChar->m_TargID);
 
         if (PTarget == nullptr)
         {
