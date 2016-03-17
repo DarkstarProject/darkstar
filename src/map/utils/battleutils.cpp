@@ -4060,7 +4060,9 @@ namespace battleutils
         check *= chrRatio;
 
         float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
-        check *= ((float)((100.0f - charmChanceMods) / 100.0f));
+        // NQ elemental staves have 2 affinity, HQ have 3 affinity. Boost is 10/15% respectively so multiply by 5.
+        float charmAffintyMods = 5 * (PCharmer->getMod(MOD_LIGHT_AFFINITY_ACC));
+        check *= ((float)((100.0f - charmChanceMods - charmAffintyMods) / 100.0f));
 
 
         //cap chance at 95%

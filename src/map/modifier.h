@@ -467,7 +467,6 @@ enum MODIFIER
     MOD_WIND_AFFINITY_DMG         = 352, // DMG, ACC, and PERP, while the wiki lists it as having 1 in each.
     MOD_LIGHT_AFFINITY_DMG        = 353,
     MOD_DARK_AFFINITY_DMG         = 354,
-    MOD_ALL_AFFINITY_DMG          = 543,
     MOD_FIRE_AFFINITY_ACC         = 544,
     MOD_EARTH_AFFINITY_ACC        = 545,
     MOD_WATER_AFFINITY_ACC        = 546,
@@ -476,7 +475,6 @@ enum MODIFIER
     MOD_WIND_AFFINITY_ACC         = 549,
     MOD_LIGHT_AFFINITY_ACC        = 550,
     MOD_DARK_AFFINITY_ACC         = 551,
-    MOD_ALL_AFFINITY_ACC          = 552,
     MOD_FIRE_AFFINITY_PERP        = 553,
     MOD_EARTH_AFFINITY_PERP       = 554,
     MOD_WATER_AFFINITY_PERP       = 555,
@@ -485,7 +483,6 @@ enum MODIFIER
     MOD_WIND_AFFINITY_PERP        = 558,
     MOD_LIGHT_AFFINITY_PERP       = 559,
     MOD_DARK_AFFINITY_PERP        = 560,
-    MOD_ALL_AFFINITY_PERP         = 561,
 
     // Special Modifier+
     MOD_ADDS_WEAPONSKILL          = 355, //
@@ -633,6 +630,9 @@ enum MODIFIER
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
+    // MOD_SPARE = 543, // stuff
+    // MOD_SPARE = 552, // stuff
+    // MOD_SPARE = 561, // stuff
     // MOD_SPARE = 831, // stuff
     // MOD_SPARE = 832, // stuff
 
