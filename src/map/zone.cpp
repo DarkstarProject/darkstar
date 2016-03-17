@@ -846,7 +846,7 @@ void CZone::createZoneTimer()
         this,
         CTaskMgr::TASK_INTERVAL,
         m_regionList.empty() ? zone_server : zone_server_region,
-        400ms);
+        std::chrono::milliseconds((int)(1000 / server_tick_rate)));
 }
 
 void CZone::CharZoneIn(CCharEntity* PChar)

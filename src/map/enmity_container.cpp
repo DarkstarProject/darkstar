@@ -418,9 +418,9 @@ void CEnmityContainer::DecayEnmity()
     for (EnmityList_t::iterator it = m_EnmityList.begin(); it != m_EnmityList.end(); ++it)
     {
         EnmityObject_t* PEnmityObject = it->second;
+        constexpr auto decay_amount = 60 / server_tick_rate;
 
-        //Should lose 60/sec, and this is called twice a sec, hence 30.
-        PEnmityObject->VE -= PEnmityObject->VE > 30 ? 30 : PEnmityObject->VE;
+        PEnmityObject->VE -= PEnmityObject->VE > decay_amount ? decay_amount : PEnmityObject->VE;
         // ShowDebug("CE: %d VE: %d\n", PEnmityObject->CE, PEnmityObject->VE);
     }
 }
