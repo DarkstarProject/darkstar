@@ -154,6 +154,8 @@ extern map_config_t map_config;
 extern uint32 map_amntplayers;
 extern int32 map_fd;
 
+static constexpr float server_tick_rate = 2.5f;
+
 extern thread_local Sql_t* SqlHandle;
 
 extern CCommandHandler CmdHandler;

@@ -623,6 +623,7 @@ void CMobController::DoCombatTick(time_point tick)
 
 void CMobController::HandleEnmity()
 {
+    PMob->PEnmityContainer->DecayEnmity();
     if (PMob->getMobMod(MOBMOD_SHARE_TARGET) > 0 && PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))
     {
         ChangeTarget(static_cast<CMobEntity*>(PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_TARGET), TYPE_MOB))->GetBattleTargetID());
@@ -638,8 +639,6 @@ void CMobController::HandleEnmity()
         auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
         ChangeTarget(PTarget ? PTarget->targid : 0);
     }
-
-
 }
 
 void CMobController::DoRoamTick(time_point tick)
