@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Nereus
---    Starts and ends repeteable quest A_POTTER_S_PREFERENCE 
+-- Area: Mhaura
+--  NPC: Nereus
+-- Starts and ends repeteable quest A_POTTER_S_PREFERENCE 
 -----------------------------------
 
 --     player:startEvent(0x006e); standar dialog
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS,A_POTTER_S_PREFERENCE);    
     elseif (csid == 0x0071) then --quest completed
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addGil(GIL_RATE*2160);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2160);
         player:setVar("QuestAPotterPrefeRepeat_var",0);    

@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -78,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -87,8 +86,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0037 and option == 1) then 
         player:addQuest(SANDORIA,THE_GENERAL_S_SECRET)
@@ -101,7 +100,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(CURILLAS_BOTTLE_FULL);
             player:addItem(16409);
             player:messageSpecial(ITEM_OBTAINED,16409); -- Lynx Baghnakhs
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,THE_GENERAL_S_SECRET);
         end
     elseif (csid == 0x005E and option == 1) then

@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -46,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x021A) then
         player:setVar("toCureaCough",1);
@@ -67,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(COUGH_MEDICINE);
         player:addKeyItem(SCROLL_OF_TREASURE);
         player:messageSpecial(KEYITEM_OBTAINED,SCROLL_OF_TREASURE);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
     end
     

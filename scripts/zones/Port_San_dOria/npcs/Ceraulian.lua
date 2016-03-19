@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -88,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -97,8 +96,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0018) then
         player:setVar("TheHolyCrest_Event",1);
@@ -126,7 +125,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(RANCHURIOMES_LEGACY);
             player:addItem(14227);
             player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
-            player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
+            player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,CHASING_QUOTAS);
             player:setVar("ChasingQuotas_Progress",0);
         end

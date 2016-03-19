@@ -6,9 +6,7 @@
 -- @pos -13 -6 -42 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -110,7 +108,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x00c8) then
         player:addTitle(CARD_COLLECTOR);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);
     elseif (csid == 0x00c7 and option == 0) then
@@ -131,7 +129,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13083);
             player:messageSpecial(ITEM_OBTAINED,13083);
             player:setVar("RubbishDayVar",0);
-            player:addFame(JEUNO, JEUNO_FAME*30);
+            player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,RUBBISH_DAY);
         end
     end

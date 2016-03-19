@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -57,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,15 +65,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00ae) then
         player:addQuest(BASTOK,THE_WISDOM_OF_ELDERS);
         player:setVar("TheWisdomVar",1);
     elseif (csid == 0x00b0) then
         player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
-        player:addFame(BASTOK,BAS_FAME*120);
+        player:addFame(BASTOK,120);
         player:addItem(12500);
         player:messageSpecial(ITEM_OBTAINED,12500);
     end

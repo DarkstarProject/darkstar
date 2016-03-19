@@ -7,9 +7,7 @@
 -- @pos 73 -1 34
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -61,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x002d) then
 
@@ -72,7 +70,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(PURSUER_OF_THE_TRUTH);
             player:addItem(16629);
             player:messageSpecial(ITEM_OBTAINED,16629);
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_ELEVENTH_S_HOUR);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16629);

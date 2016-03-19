@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 
@@ -82,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0006) then
         player:setVar("SirensTear",1);
@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(SORROW_DROWNER);
             player:addItem(17356);
             player:messageSpecial(ITEM_OBTAINED,17356); -- Lamia Harp
-            player:addFame(BASTOK,BAS_FAME*120);
+            player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,LOVE_AND_ICE);
         end
     elseif (csid == 0x010e) then
@@ -113,7 +113,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0112) then
         player:setVar("ATestOfTrueLoveProgress",0);
         player:needToZone(true);
-        player:addFame(BASTOK,BAS_FAME*120);
+        player:addFame(BASTOK,120);
         player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
     elseif (csid == 0x0113) then
         player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);

@@ -7,9 +7,7 @@
 -- @pos 43 3 -45
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -55,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00D8 and option == 1) then
         player:addQuest(JEUNO,FISTFUL_OF_FURY);
     elseif (csid == 0x00D5) then
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(BROWN_BELT);
             player:addItem(13202);
             player:messageSpecial(ITEM_OBTAINED,13202);
-            player:addFame(NORG,NORG_FAME*125);
+            player:addFame(NORG,125);
             player:tradeComplete();
             player:completeQuest(JEUNO,FISTFUL_OF_FURY);
         end        

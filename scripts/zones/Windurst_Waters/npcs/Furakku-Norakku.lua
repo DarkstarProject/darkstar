@@ -1,17 +1,16 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Furakku-Norakku
---  Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
+-- Area: Windurst Waters
+--  NPC: Furakku-Norakku
+-- Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
 --    @pos -19 -5 101 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -68,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0185) then
         player:addKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
@@ -89,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 0x0194) then
         player:addKeyItem(OVERDUE_BOOK_NOTIFICATION);
@@ -102,7 +101,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(OVERDUE_BOOK_NOTIFICATION);
         player:delKeyItem(A_SONG_OF_LOVE);
         player:setVar("CHASING_TALES_TRACK_BOOK",0);
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,CHASING_TALES);
     elseif (csid == 0x0330) then
         player:setVar("ClassReunion_TalkedToFurakku",1);

@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -65,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "The Trader in the Forest" Quest
     if (csid == 0x020c and option == 0 or csid == 0x0250 and option == 0) then
@@ -103,7 +102,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(GREEN_GROCER);
             player:addItem(12600);
             player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,THE_TRADER_IN_THE_FOREST);
         end
     -- "The Medicine Woman" Quest
@@ -114,7 +113,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);    
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_MEDICINE_WOMAN);
     end
     

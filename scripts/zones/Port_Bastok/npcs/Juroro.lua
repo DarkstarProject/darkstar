@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -64,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0100) then
         if (player:getFreeSlotsCount() ~= 0) then
@@ -128,7 +127,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(HEIR_OF_THE_GREAT_EARTH);
             player:delKeyItem(WHISPER_OF_TREMORS); --Whisper of Tremors, as a trade for the above rewards
             player:setVar("TrialByEarth_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,TRIAL_BY_EARTH);
         end
     end

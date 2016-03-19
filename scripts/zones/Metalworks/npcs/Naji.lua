@@ -6,9 +6,7 @@
 -- @pos 64 -14 -4 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -89,16 +87,16 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x02ee) then
         if (player:getFreeSlotsCount(0) >= 1) then
@@ -106,7 +104,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
             player:delKeyItem(YASINS_SWORD);
             player:setVar("theDoormanCS",0);
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_DOORMAN);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe

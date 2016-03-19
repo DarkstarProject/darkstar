@@ -29,7 +29,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Norg/TextIDs");
@@ -170,8 +169,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -179,8 +178,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00BF) then
         player:addQuest(OUTLANDS,MAMA_MIA);
@@ -198,7 +197,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(14625); -- Evokers Ring
             player:messageSpecial(ITEM_OBTAINED,14625); -- Evokers Ring
-            player:addFame(OUTLANDS,NORG_FAME*30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
+            player:addFame(OUTLANDS,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
             player:completeQuest(OUTLANDS,MAMA_MIA);
             player:setVar("tradesMamaMia",0)
         end

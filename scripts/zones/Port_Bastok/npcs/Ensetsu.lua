@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -67,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00f2) then
         player:setVar("AyameAndKaede_Event", 2);
@@ -89,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(13);
         player:messageSpecial(UNLOCK_NINJA); -- You can now become a Ninja
         player:setVar("AyameAndKaede_Event", 0);
-        player:addFame(BASTOK, BAS_FAME*30);
+        player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,AYAME_AND_KAEDE);
     elseif (csid == 0x0106) then
         player:setVar("twentyInPirateYearsCS",3);

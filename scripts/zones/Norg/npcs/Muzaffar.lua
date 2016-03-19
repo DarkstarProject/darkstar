@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end
-        player:addFame(NORG,40*NORG_FAME);
+        player:addFame(NORG,40);
         player:addTitle(BLACK_MARKETEER);
         player:startEvent(0x0014);
     elseif (csid == 0x0012) then
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end
-        player:addFame(NORG,50*NORG_FAME);
+        player:addFame(NORG,50);
         player:addTitle(BLACK_MARKETEER);
         player:startEvent(0x0014);
     elseif (csid == 0x0013) then
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end
-        player:addFame(NORG,80*NORG_FAME);
+        player:addFame(NORG,80);
         player:addTitle(BLACK_MARKETEER);
         player:startEvent(0x0014);
     end

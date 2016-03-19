@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -56,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0052) then
         player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
@@ -80,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:setVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ITEM_OBTAINED,12501);
-            player:addFame(BASTOK,BAS_FAME*120);
+            player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,OUT_OF_ONE_S_SHELL);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12501);

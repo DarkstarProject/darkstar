@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -68,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13081); -- Leather Gorget
             player:delKeyItem(STAMP_SHEET);
             player:setVar("StampHunt_Mask",0);
-            player:addFame(BASTOK,BAS_FAME*50);
+            player:addFame(BASTOK,50);
             player:completeQuest(BASTOK,STAMP_HUNT);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);

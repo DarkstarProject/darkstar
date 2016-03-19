@@ -7,7 +7,6 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -73,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -82,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 0x0214) then
@@ -103,10 +102,10 @@ function onEventFinish(player,csid,option)
         player:addTitle(APIARIST);
         player:addGil(GIL_RATE*400);
         if (player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA, THE_SWEETEST_THINGS);
         else
-            player:addFame(SANDORIA, SAN_FAME*5);
+            player:addFame(SANDORIA, 5);
         end
     end
     

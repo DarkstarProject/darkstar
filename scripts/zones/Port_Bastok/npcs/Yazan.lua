@@ -58,18 +58,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00bf) then
         player:addQuest(BASTOK,BITE_THE_DUST);
     elseif (csid == 0x00c1) then
         if (player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
             player:addTitle(SAND_BLASTER)
-            player:addFame(BASTOK,BAS_FAME*120);
+            player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,BITE_THE_DUST);
         else
-            player:addFame(BASTOK,BAS_FAME*80);
+            player:addFame(BASTOK,80);
         end
         
         player:addGil(GIL_RATE*350);

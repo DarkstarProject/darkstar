@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeIce_date", 0);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE);
     end
     

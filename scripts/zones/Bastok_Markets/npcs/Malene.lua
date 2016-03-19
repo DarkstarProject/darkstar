@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --   NPC: Malene
 --  Type: Quest NPC
 -- @zone: 235
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0066) then -- Quest: The Cold Light of Day
         if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) == QUEST_AVAILABLE) then
@@ -67,10 +67,10 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*500);    
         
         if (TheColdLightofDay == QUEST_ACCEPTED) then 
-            player:addFame(BASTOK, BAS_FAME * 50);
+            player:addFame(BASTOK, 50);
             player:completeQuest(BASTOK, THE_COLD_LIGHT_OF_DAY);
         else
-            player:addFame(BASTOK, BAS_FAME * 8);
+            player:addFame(BASTOK, 8);
         end
     elseif (csid == 0x014A) then  -- Quest: Wish Upon a Star
         player:setVar("WishUponAStar_Status", 2);

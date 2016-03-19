@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -58,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(14);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_HOLY_CREST);
     player:setPetName(PETTYPE_WYVERN,option);
     end

@@ -182,7 +182,7 @@ function onEventFinish(player,csid,option)
             player:setVar("scatIntoShadowCS",0);
             player:addItem(14097);
             player:messageSpecial(ITEM_OBTAINED,14097); -- Beast Gaiters
-            player:addFame(JEUNO,JEUNO_FAME*AF2_FAME);
+            player:addFame(JEUNO,AF2_FAME);
             player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW);
         end
     end

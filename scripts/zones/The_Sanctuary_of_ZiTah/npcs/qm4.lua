@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -40,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00cc) then
         if (player:getFreeSlotsCount() == 0) then 
@@ -58,7 +57,7 @@ function onEventFinish(player,csid,option)
         else 
             player:addItem(17346);
             player:messageSpecial(ITEM_OBTAINED,17346); -- Siren Flute
-            player:addFame(BASTOK,BAS_FAME*120);
+            player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
         end
     end

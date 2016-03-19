@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
@@ -56,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x80) then
         player:addQuest(BASTOK,TILL_DEATH_DO_US_PART);
@@ -74,7 +73,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(QIJIS_RIVAL);
         player:addGil(GIL_RATE*2000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
-        player:addFame(BASTOK,BAS_FAME*160);
+        player:addFame(BASTOK,160);
         player:completeQuest(BASTOK,TILL_DEATH_DO_US_PART);
     end
             

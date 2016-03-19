@@ -82,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -91,8 +91,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0299) then
         player:addQuest(WINDURST,MAKING_HEADLINES);
@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(WINDURST_WATERS_SCOOP);
         player:delKeyItem(PORT_WINDURST_SCOOP);
         player:setVar("QuestMakingHeadlines_var",0);
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:completeQuest(WINDURST,MAKING_HEADLINES);
     end
     

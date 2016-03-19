@@ -1,12 +1,11 @@
 -----------------------------------
---    Area: Mhaura
---    NPC:  Take
---  Involved In Quest: RYCHARDE_THE_CHEF
+-- Area: Mhaura
+--  NPC: Take
+-- Involved In Quest: RYCHARDE_THE_CHEF
 --  Starts and finishes quest: Expertice
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -76,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -85,14 +84,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x3c) then  
         player:setVar("QuestRychardetheChef_var",2); -- second stage on quest
     elseif (csid == 0x3d) then  -- accept quest EXPERTICE
         player:addQuest(OTHER_AREAS,EXPERTISE);    
     elseif (csid == 0x3e) then   -- end quest expertice
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,132);
         else

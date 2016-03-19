@@ -1,12 +1,11 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Shantotto
+-- Area: Windurst Walls
+--  NPC: Shantotto
 --    @pos 122 -2 112 239
 --  CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -119,8 +118,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -129,8 +128,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0xad) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081); 
@@ -138,7 +137,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear());
             player:setVar("CursesFoiledAgainYear",VanadielYear());
-            player:addFame(WINDURST,WIN_FAME*80);
+            player:addFame(WINDURST,80);
             player:addItem(17081);
             player:messageSpecial(ITEM_OBTAINED,17081);
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_1);
@@ -170,7 +169,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,17116);
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2);
             player:needToZone(true);
-            player:addFame(WINDURST,WIN_FAME*90);
+            player:addFame(WINDURST,90);
         end
         
     elseif (csid == 0x0154) then
@@ -189,7 +188,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4870);
             player:messageSpecial(ITEM_OBTAINED,4870);
             player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
-            player:addFame(WINDURST,WIN_FAME*120);
+            player:addFame(WINDURST,120);
         end
     elseif (csid == 0x0199) then
         player:setVar("ClassReunionProgress",4);

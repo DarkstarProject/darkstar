@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -94,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(BARREL_OF_OPOOPO_BREW); --Filled Barrel
             player:addItem(4952); -- Scroll of Hojo: Ichi
             player:messageSpecial(ITEM_OBTAINED,4952); -- Scroll of Hojo: Ichi
-            player:addFame(OUTLANDS,NORG_FAME*75);
+            player:addFame(OUTLANDS,75);
             player:addTitle(APPRENTICE_SOMMELIER);
             player:completeQuest(OUTLANDS,STOP_YOUR_WHINING);
         end

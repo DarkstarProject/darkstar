@@ -5,9 +5,7 @@
 -- @pos -420 8 500 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -101,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -110,8 +108,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002e) then 
         player:setVar("TheRequiemCS",0);
@@ -127,7 +125,7 @@ function onEventFinish(player,csid,option)
         player:addItem(14222,1); 
         player:messageSpecial(ITEM_OBTAINED,14222);
         player:completeQuest(JEUNO,A_NEW_DAWN);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
     end
     
 end;

@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -68,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x005a) then
         player:setVar("illTakeTheBigBoxCS",2);
@@ -102,7 +101,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13782);
             player:messageSpecial(ITEM_OBTAINED,13782); -- Ninja Chainmail
             player:setVar("trueWillCS",0);
-            player:addFame(OUTLANDS,NORG_FAME*30);
+            player:addFame(OUTLANDS,30);
             player:completeQuest(OUTLANDS,TRUE_WILL);
         end
     end
