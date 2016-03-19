@@ -95,7 +95,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_SLOWRES, 40);
     elseif (pwr == 24) then -- ATMA_OF_THE_COSMOS
         target:addMod(MOD_DARKATT, 40);
-        -- not implemented yet target:addMod(MOD_AMNESIARES, 40);
+        target:addMod(MOD_AMNESIARES, 40);
         target:addMod(MOD_SILENCERES, 40);
     elseif (pwr == 25) then -- ATMA_OF_THE_SIREN_SHADOW
         target:addMod(MOD_ATT, 40);
@@ -234,7 +234,7 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 63) then -- ATMA_OF_THE_EARTH_WYRM
         target:addMod(MOD_EARTHRES, 100);
         target:addMod(MOD_DMG, -20);
-        -- not implemented: Gain full benefit of Earthsday/earth weather bonuses
+        target:addMod(MOD_FORCE_EARTH_DWBONUS, 1);
     elseif (pwr == 64) then -- ATMA_OF_THE_ASCENDING_ONE
         target:addMod(MOD_WINDRES, 100);
         target:addMod(MOD_HASTE_GEAR, 5);
@@ -249,9 +249,8 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_DEX, 10);
     elseif (pwr == 67) then -- ATMA_OF_THE_BURNING_EFFIGY
         target:addMod(MOD_STR, 20);
-        target:addMod(MOD_FIRE_AFFINITY, 3);
-        target:addMod(MOD_FIREATT, 1);
-        target:addMod(MOD_FIREACC, 1);
+        -- fire based ws + 0.2 fTP
+        target:addMod(MOD_FORCE_FIRE_DWBONUS, 1);
     elseif (pwr == 68) then -- ATMA_OF_THE_SMITING_BLOW
         target:addMod(MOD_TP_BONUS, 50);
         target:addMod(MOD_WSACC, 50);
@@ -263,7 +262,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_ENMITY, -20);
     elseif (pwr == 71) then -- ATMA_OF_THE_SCARLET_WING
         target:addMod(MOD_ELEM, 10);
-        target:addMod(MOD_WIND_AFFINITY, 5);
+        target:addMod(MOD_FORCE_WIND_DWBONUS, 1);
     elseif (pwr == 72) then -- ATMA_OF_THE_RAISED_TAIL
         target:addMod(MOD_ATT, 40);
         target:addMod(MOD_EVA, 40);
@@ -277,11 +276,11 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 75) then -- ATMA_OF_THE_WAR_LION
         target:addMod(MOD_DEX, 20);
         target:addMod(MOD_THUNDERRES, 100);
-        target:addMod(MOD_THUNDER_AFFINITY, 10);
+        target:addMod(MOD_FORCE_LIGHTNING_DWBONUS, 1);
     elseif (pwr == 76) then -- ATMA_OF_THE_FROZEN_FETTERS
         target:addMod(MOD_INT, 20);
         target:addMod(MOD_ICERES, 100);
-        target:addMod(MOD_ICE_AFFINITY, 10);
+        target:addMod(MOD_FORCE_ICE_DWBONUS, 1);
     elseif (pwr == 77) then -- ATMA_OF_THE_PLAGUEBRINGER
         target:addMod(MOD_REGEN, 10);
         target:addMod(MOD_STORETP, 20);
@@ -293,11 +292,11 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 79) then -- ATMA_OF_THE_HOLY_MOUNTAIN
         target:addMod(MOD_LIGHTRES, 100);
         target:addMod(MOD_LIGHTACC, 50);
-        target:addMod(MOD_LIGHT_AFFINITY, 10);
+        target:addMod(MOD_FORCE_LIGHT_DWBONUS, 1);
     elseif (pwr == 80) then -- ATMA_OF_THE_LAKE_LURKER
         target:addMod(MOD_MND, 20);
         target:addMod(MOD_WATERRES, 100);
-        target:addMod(MOD_WATER_AFFINITY, 10);
+        target:addMod(MOD_FORCE_WATER_DWBONUS, 1);
     elseif (pwr == 81) then -- ATMA_OF_THE_CRUSHING_CUDGEL
         target:addMod(MOD_ACC, 20);
         target:addMod(MOD_SKILLCHAINDMG, 5);
@@ -343,7 +342,7 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 93) then -- ATMA_OF_THE_ENDLESS_NIGHTMARE
         target:addMod(MOD_MND, 20);
         target:addMod(MOD_DARKRES, 100);
-        target:addMod(MOD_DARK_AFFINITY, 10);
+        target:addMod(MOD_FORCE_DARK_DWBONUS, 1);
     elseif (pwr == 94) then -- ATMA_OF_THE_SUNDERING_SLASH
         target:addMod(MOD_ATT, 20);
         target:addMod(MOD_REGAIN, 3);
@@ -364,7 +363,7 @@ function atmaEffectGain(target, effect)
         target:addMod(MOD_RATT, 40);
     elseif (pwr == 100) then -- ATMA_OF_THE_APOCALYPSE
         target:addMod(MOD_TRIPLE_ATTACK, 15);
-        target:addMod(MOD_GRIMOIRE_INSTANT_CAST, 10); -- Wrong modifier, correct one not yet implimented.
+        -- target:addMod(MOD_GRIMOIRE_INSTANT_CAST, 10); -- Wrong modifier, correct one not yet implimented.
         target:addMod(MOD_RERAISE_III, 1);
     elseif (pwr == 101) then -- ATMA_OF_THE_HEIR                         KI ID = 1655;
     elseif (pwr == 102) then -- ATMA_OF_THE_HERO                         KI ID = 1656;
@@ -500,7 +499,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_SLOWRES, 40);
     elseif (pwr == 24) then -- ATMA_OF_THE_COSMOS
         target:delMod(MOD_DARKATT, 40);
-        -- target:delMod(MOD_AMNESIARES, 40);
+        target:delMod(MOD_AMNESIARES, 40);
         target:delMod(MOD_SILENCERES, 40);
     elseif (pwr == 25) then -- ATMA_OF_THE_SIREN_SHADOW
         target:delMod(MOD_ATT, 40);
@@ -627,14 +626,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_STUNRES, 30);
     elseif (pwr == 60) then -- ATMA_OF_THE_AVARICIOUS_APE
         target:delMod(MOD_HASTE_GEAR, 5);
-        target:delMod(MOD_FIREACC, 5);
-        target:delMod(MOD_ICEACC, 5);
-        target:delMod(MOD_WINDACC, 5);
-        target:delMod(MOD_EARTHACC, 5);
-        target:delMod(MOD_THUNDERACC, 5);
-        target:delMod(MOD_WATERACC, 5);
-        target:delMod(MOD_LIGHTACC, 5);
-        target:delMod(MOD_DARKACC, 5);
+        -- not implemented: Monster Correlation
     elseif (pwr == 61) then -- ATMA_OF_THE_MERCILESS_MATRIARCH
         target:delMod(MOD_MACC, 50);
         target:delMod(MOD_FASTCAST, 20);
@@ -646,14 +638,7 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 63) then -- ATMA_OF_THE_EARTH_WYRM
         target:delMod(MOD_EARTHRES, 100);
         target:delMod(MOD_DMG, -20);
-        target:delMod(MOD_FIRE_AFFINITY, 1);
-        target:delMod(MOD_EARTH_AFFINITY, 1);
-        target:delMod(MOD_WATER_AFFINITY, 1);
-        target:delMod(MOD_ICE_AFFINITY, 1);
-        target:delMod(MOD_THUNDER_AFFINITY, 1);
-        target:delMod(MOD_WIND_AFFINITY, 1);
-        target:delMod(MOD_LIGHT_AFFINITY, 1);
-        target:delMod(MOD_DARK_AFFINITY, 1);
+        target:delMod(MOD_FORCE_EARTH_DWBONUS, 1);
     elseif (pwr == 64) then -- ATMA_OF_THE_ASCENDING_ONE
         target:delMod(MOD_WINDRES, 100);
         target:delMod(MOD_HASTE_GEAR, 5);
@@ -668,9 +653,8 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_DEX, 10);
     elseif (pwr == 67) then -- ATMA_OF_THE_BURNING_EFFIGY
         target:delMod(MOD_STR, 20);
-        target:delMod(MOD_FIRE_AFFINITY, 3);
-        target:delMod(MOD_FIREATT, 1);
-        target:delMod(MOD_FIREACC, 1);
+        -- fire based ws + 0.2 fTP
+        target:delMod(MOD_FORCE_FIRE_DWBONUS, 1);
     elseif (pwr == 68) then -- ATMA_OF_THE_SMITING_BLOW
         target:delMod(MOD_TP_BONUS, 50);
         target:delMod(MOD_WSACC, 50);
@@ -682,7 +666,7 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_ENMITY, -20);
     elseif (pwr == 71) then -- ATMA_OF_THE_SCARLET_WING
         target:delMod(MOD_ELEM, 10);
-        target:delMod(MOD_WIND_AFFINITY, 5);
+        target:delMod(MOD_FORCE_WIND_DWBONUS, 1);
     elseif (pwr == 72) then -- ATMA_OF_THE_RAISED_TAIL
         target:delMod(MOD_ATT, 40);
         target:delMod(MOD_EVA, 40);
@@ -696,11 +680,11 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 75) then -- ATMA_OF_THE_WAR_LION
         target:delMod(MOD_DEX, 20);
         target:delMod(MOD_THUNDERRES, 100);
-        target:delMod(MOD_THUNDER_AFFINITY, 10);
+        target:delMod(MOD_FORCE_LIGHTNING_DWBONUS, 1);
     elseif (pwr == 76) then -- ATMA_OF_THE_FROZEN_FETTERS
         target:delMod(MOD_INT, 20);
         target:delMod(MOD_ICERES, 100);
-        target:delMod(MOD_ICE_AFFINITY, 10);
+        target:delMod(MOD_FORCE_ICE_DWBONUS, 1);
     elseif (pwr == 77) then -- ATMA_OF_THE_PLAGUEBRINGER
         target:delMod(MOD_REGEN, 10);
         target:delMod(MOD_STORETP, 20);
@@ -712,11 +696,11 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 79) then -- ATMA_OF_THE_HOLY_MOUNTAIN
         target:delMod(MOD_LIGHTRES, 100);
         target:delMod(MOD_LIGHTACC, 50);
-        target:delMod(MOD_LIGHT_AFFINITY, 10);
+        target:delMod(MOD_FORCE_LIGHT_DWBONUS, 1);
     elseif (pwr == 80) then -- ATMA_OF_THE_LAKE_LURKER
         target:delMod(MOD_MND, 20);
         target:delMod(MOD_WATERRES, 100);
-        target:delMod(MOD_WATER_AFFINITY, 10);
+        target:delMod(MOD_FORCE_WATER_DWBONUS, 1);
     elseif (pwr == 81) then -- ATMA_OF_THE_CRUSHING_CUDGEL
         target:delMod(MOD_ACC, 20);
         target:delMod(MOD_SKILLCHAINDMG, 5);
@@ -762,7 +746,7 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 93) then -- ATMA_OF_THE_ENDLESS_NIGHTMARE
         target:delMod(MOD_MND, 20);
         target:delMod(MOD_DARKRES, 100);
-        target:delMod(MOD_DARK_AFFINITY, 10);
+        target:delMod(MOD_FORCE_DARK_DWBONUS, 1);
     elseif (pwr == 94) then -- ATMA_OF_THE_SUNDERING_SLASH
         target:delMod(MOD_ATT, 20);
         target:delMod(MOD_REGAIN, 3);
@@ -783,52 +767,52 @@ function atmaEffectLose(target, effect)
         target:delMod(MOD_RATT, 40);
     elseif (pwr == 100) then -- ATMA_OF_THE_APOCALYPSE
         target:delMod(MOD_TRIPLE_ATTACK, 15);
-        target:delMod(MOD_GRIMOIRE_INSTANT_CAST, 10);
+        -- target:delMod(MOD_GRIMOIRE_INSTANT_CAST, 10); -- Wrong modifier, correct one not yet implimented.
         target:delMod(MOD_RERAISE_III, 1);
-    elseif (pwr == 101) then -- ATMA_OF_THE_HEIR                         = 1655;
-    elseif (pwr == 102) then -- ATMA_OF_THE_HERO                         = 1656;
-    elseif (pwr == 103) then -- ATMA_OF_THE_FULL_MOON                    = 1657;
-    elseif (pwr == 104) then -- ATMA_OF_ILLUSIONS                        = 1658;
-    elseif (pwr == 105) then -- ATMA_OF_THE_BANISHER                     = 1659;
-    elseif (pwr == 106) then -- ATMA_OF_THE_SELLSWORD                    = 1660;
-    elseif (pwr == 107) then -- ATMA_OF_A_FUTURE_FABULOUS                = 1661;
-    elseif (pwr == 108) then -- ATMA_OF_CAMARADERIE                      = 1662;
-    elseif (pwr == 109) then -- ATMA_OF_THE_TRUTHSEEKER                  = 1663;
-    elseif (pwr == 110) then -- ATMA_OF_THE_AZURE_SKY                    = 1664;
-    elseif (pwr == 111) then -- ATMA_OF_ECHOES                           = 1665;
-    elseif (pwr == 112) then -- ATMA_OF_DREAD                            = 1666;
-    elseif (pwr == 113) then -- ATMA_OF_AMBITION                         = 1667;
-    elseif (pwr == 114) then -- ATMA_OF_THE_BEAST_KING                   = 1668;
-    elseif (pwr == 115) then -- ATMA_OF_THE_KIRIN                        = 1669;
-    elseif (pwr == 116) then -- ATMA_OF_HELLS_GUARDIAN                   = 1670;
-    elseif (pwr == 117) then -- ATMA_OF_LUMINOUS_WINGS                   = 1671;
-    elseif (pwr == 118) then -- ATMA_OF_THE_DRAGON_RIDER                 = 1672;
-    elseif (pwr == 119) then -- ATMA_OF_THE_IMPENETRABLE                 = 1673;
-    elseif (pwr == 120) then -- ATMA_OF_ALPHA_AND_OMEGA                  = 1674;
-    elseif (pwr == 121) then -- ATMA_OF_THE_ULTIMATE                     = 1675;
-    elseif (pwr == 122) then -- ATMA_OF_THE_HYBRID_BEAST                 = 1676;
-    elseif (pwr == 123) then -- ATMA_OF_THE_DARK_DEPTHS                  = 1677;
-    elseif (pwr == 124) then -- ATMA_OF_THE_ZENITH                       = 1678;
-    elseif (pwr == 125) then -- ATMA_OF_PERFECT_ATTENDANCE               = 1679;
-    elseif (pwr == 126) then -- ATMA_OF_THE_RESCUER                      = 1680;
-    elseif (pwr == 127) then -- ATMA_OF_NIGHTMARES                       = 1681;
-    elseif (pwr == 128) then -- ATMA_OF_THE_EINHERJAR                    = 1682;
-    elseif (pwr == 129) then -- ATMA_OF_THE_ILLUMINATOR                  = 1683;
-    elseif (pwr == 130) then -- ATMA_OF_THE_BUSHIN                       = 1684;
-    elseif (pwr == 131) then -- ATMA_OF_THE_ACE_ANGLER                   = 1685;
-    elseif (pwr == 132) then -- ATMA_OF_THE_MASTER_CRAFTER               = 1686;
-    elseif (pwr == 133) then -- ATMA_OF_INGENUITY                        = 1687;
-    elseif (pwr == 134) then -- ATMA_OF_THE_GRIFFONS_CLAW                = 1688;
-    elseif (pwr == 135) then -- ATMA_OF_THE_FETCHING_FOOTPAD             = 1689;
-    elseif (pwr == 136) then -- ATMA_OF_UNDYING_LOYALTY                  = 1690;
-    elseif (pwr == 137) then -- ATMA_OF_THE_ROYAL_LINEAGE                = 1691;
-    elseif (pwr == 138) then -- ATMA_OF_THE_SHATTERING_STAR              = 1692;
-    elseif (pwr == 139) then -- ATMA_OF_THE_COBRA_COMMANDER              = 1693;
-    elseif (pwr == 140) then -- ATMA_OF_ROARING_LAUGHTER                 = 1694;
-    elseif (pwr == 141) then -- ATMA_OF_THE_DARK_BLADE                   = 1695;
-    elseif (pwr == 142) then -- ATMA_OF_THE_DUCAL_GUARD                  = 1696;
-    elseif (pwr == 143) then -- ATMA_OF_HARMONY                          = 1697;
-    elseif (pwr == 144) then -- ATMA_OF_REVELATIONS                      = 1698;
-    elseif (pwr == 145) then -- ATMA_OF_THE_SAVIOR                       = 1699;
+    elseif (pwr == 101) then -- ATMA_OF_THE_HEIR                         KI ID = 1655;
+    elseif (pwr == 102) then -- ATMA_OF_THE_HERO                         KI ID = 1656;
+    elseif (pwr == 103) then -- ATMA_OF_THE_FULL_MOON                    KI ID = 1657;
+    elseif (pwr == 104) then -- ATMA_OF_ILLUSIONS                        KI ID = 1658;
+    elseif (pwr == 105) then -- ATMA_OF_THE_BANISHER                     KI ID = 1659;
+    elseif (pwr == 106) then -- ATMA_OF_THE_SELLSWORD                    KI ID = 1660;
+    elseif (pwr == 107) then -- ATMA_OF_A_FUTURE_FABULOUS                KI ID = 1661;
+    elseif (pwr == 108) then -- ATMA_OF_CAMARADERIE                      KI ID = 1662;
+    elseif (pwr == 109) then -- ATMA_OF_THE_TRUTHSEEKER                  KI ID = 1663;
+    elseif (pwr == 110) then -- ATMA_OF_THE_AZURE_SKY                    KI ID = 1664;
+    elseif (pwr == 111) then -- ATMA_OF_ECHOES                           KI ID = 1665;
+    elseif (pwr == 112) then -- ATMA_OF_DREAD                            KI ID = 1666;
+    elseif (pwr == 113) then -- ATMA_OF_AMBITION                         KI ID = 1667;
+    elseif (pwr == 114) then -- ATMA_OF_THE_BEAST_KING                   KI ID = 1668;
+    elseif (pwr == 115) then -- ATMA_OF_THE_KIRIN                        KI ID = 1669;
+    elseif (pwr == 116) then -- ATMA_OF_HELLS_GUARDIAN                   KI ID = 1670;
+    elseif (pwr == 117) then -- ATMA_OF_LUMINOUS_WINGS                   KI ID = 1671;
+    elseif (pwr == 118) then -- ATMA_OF_THE_DRAGON_RIDER                 KI ID = 1672;
+    elseif (pwr == 119) then -- ATMA_OF_THE_IMPENETRABLE                 KI ID = 1673;
+    elseif (pwr == 120) then -- ATMA_OF_ALPHA_AND_OMEGA                  KI ID = 1674;
+    elseif (pwr == 121) then -- ATMA_OF_THE_ULTIMATE                     KI ID = 1675;
+    elseif (pwr == 122) then -- ATMA_OF_THE_HYBRID_BEAST                 KI ID = 1676;
+    elseif (pwr == 123) then -- ATMA_OF_THE_DARK_DEPTHS                  KI ID = 1677;
+    elseif (pwr == 124) then -- ATMA_OF_THE_ZENITH                       KI ID = 1678;
+    elseif (pwr == 125) then -- ATMA_OF_PERFECT_ATTENDANCE               KI ID = 1679;
+    elseif (pwr == 126) then -- ATMA_OF_THE_RESCUER                      KI ID = 1680;
+    elseif (pwr == 127) then -- ATMA_OF_NIGHTMARES                       KI ID = 1681;
+    elseif (pwr == 128) then -- ATMA_OF_THE_EINHERJAR                    KI ID = 1682;
+    elseif (pwr == 129) then -- ATMA_OF_THE_ILLUMINATOR                  KI ID = 1683;
+    elseif (pwr == 130) then -- ATMA_OF_THE_BUSHIN                       KI ID = 1684;
+    elseif (pwr == 131) then -- ATMA_OF_THE_ACE_ANGLER                   KI ID = 1685;
+    elseif (pwr == 132) then -- ATMA_OF_THE_MASTER_CRAFTER               KI ID = 1686;
+    elseif (pwr == 133) then -- ATMA_OF_INGENUITY                        KI ID = 1687;
+    elseif (pwr == 134) then -- ATMA_OF_THE_GRIFFONS_CLAW                KI ID = 1688;
+    elseif (pwr == 135) then -- ATMA_OF_THE_FETCHING_FOOTPAD             KI ID = 1689;
+    elseif (pwr == 136) then -- ATMA_OF_UNDYING_LOYALTY                  KI ID = 1690;
+    elseif (pwr == 137) then -- ATMA_OF_THE_ROYAL_LINEAGE                KI ID = 1691;
+    elseif (pwr == 138) then -- ATMA_OF_THE_SHATTERING_STAR              KI ID = 1692;
+    elseif (pwr == 139) then -- ATMA_OF_THE_COBRA_COMMANDER              KI ID = 1693;
+    elseif (pwr == 140) then -- ATMA_OF_ROARING_LAUGHTER                 KI ID = 1694;
+    elseif (pwr == 141) then -- ATMA_OF_THE_DARK_BLADE                   KI ID = 1695;
+    elseif (pwr == 142) then -- ATMA_OF_THE_DUCAL_GUARD                  KI ID = 1696;
+    elseif (pwr == 143) then -- ATMA_OF_HARMONY                          KI ID = 1697;
+    elseif (pwr == 144) then -- ATMA_OF_REVELATIONS                      KI ID = 1698;
+    elseif (pwr == 145) then -- ATMA_OF_THE_SAVIOR                       KI ID = 1699;
     end
 end;
