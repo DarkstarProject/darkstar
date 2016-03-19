@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/Port_San_dOria/TextIDs");
@@ -31,7 +30,7 @@ FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         LufetSalt = trade:hasItemQty(1019,3);
         if (LufetSalt == true and count == 3) then
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:addGil(GIL_RATE*600);
             player:addTitle(BEAN_CUISINE_SALTER);
             player:completeQuest(SANDORIA,LUFET_S_LAKE_SALT);
@@ -63,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x000c and option == 1) then
         player:addQuest(SANDORIA,LUFET_S_LAKE_SALT);

@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Metalworks/TextIDs");
@@ -69,14 +68,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x022c) then
         player:addQuest(BASTOK,MEAN_MACHINE);            
     elseif (csid == 0x022d) then
         player:completeQuest(BASTOK,MEAN_MACHINE);
-        player:addFame(BASTOK,BAS_FAME*120);
+        player:addFame(BASTOK,120);
         player:tradeComplete();
         player:addItem(4869);
         player:messageSpecial(ITEM_OBTAINED,4869);

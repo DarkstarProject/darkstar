@@ -4,11 +4,13 @@
 -- Starts and Finishes Quest: Flower Child
 -- @zone 239
 -- @pos -209 0 -134
------------------------------------
 
+-----------------------------------
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
 
 
 -----------------------------------
@@ -85,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 
@@ -95,13 +97,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x2710 and option == 3002) then
         player:tradeComplete();
         player:completeQuest(WINDURST,FLOWER_CHILD);
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:moghouseFlag(4);
         player:messageSpecial(MOGHOUSE_EXIT);
     elseif (csid == 0x2710 and option == 1) then

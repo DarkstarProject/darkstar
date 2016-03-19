@@ -7,9 +7,7 @@
 -- @pos -105 0.1 72 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -86,8 +84,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x022c or csid == 0x006f) then
         finishMissionTimeline(player,3,csid,option);
@@ -99,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
         player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
     elseif (csid == 0x0063) then
         if (option == 1) then

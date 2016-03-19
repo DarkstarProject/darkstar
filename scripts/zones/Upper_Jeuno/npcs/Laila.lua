@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Upper Jeuno
+-- Area: Upper Jeuno
 --   NPC: Laila
 --  Type: Job Quest Giver
 -- @zone: 244
@@ -13,7 +13,6 @@
 --TODO--
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -21,6 +20,7 @@ require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/zones/Upper_Jeuno/TextIDs");
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -104,16 +104,16 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-     --printf("CSID: %u",csid);
-     --printf("RESULT: %u",option);
+     -- printf("CSID: %u",csid);
+     -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x277f and option == 1) then
         player:addQuest(JEUNO,LAKESIDE_MINUET);
     elseif (csid == 0x2786) then
@@ -122,7 +122,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(TROUPE_BRILIOTH_DANCER);
         player:unlockJob(19);
         player:messageSpecial(UNLOCK_DANCER);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
         player:delKeyItem(STARDUST_PEBBLE);
         player:needToZone(true);
     elseif (csid==0x2791) then

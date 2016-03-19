@@ -100,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -109,8 +109,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x005a) then
         player:setVar("MissionStatus",1);
@@ -134,7 +134,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0115) then
             player:addGil(GIL_RATE*1500);
             player:completeQuest(WINDURST,MAKING_AMENDS);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
             player:addTitle(QUICK_FIXER);
             player:needToZone(true);
             player:tradeComplete();
@@ -162,7 +162,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED, 4800);
             player:addItem(12750); -- New Moon Armlets
             player:messageSpecial(ITEM_OBTAINED, 12750); -- New Moon Armlets
-            player:addFame(WINDURST,WIN_FAME*150);
+            player:addFame(WINDURST,150);
             player:addTitle(DOCTOR_SHANTOTTOS_GUINEA_PIG);
             player:completeQuest(WINDURST,WONDER_WANDS);
         end

@@ -1,19 +1,18 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Baren-Moren
---    Starts and Finishes Quest: Hat in Hand
+-- Area: Windurst Waters
+--  NPC: Baren-Moren
+-- Starts and Finishes Quest: Hat in Hand
 --    Working 100%
 --  @zone = 238
 --  @pos = -66 -3 -148
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -33,7 +32,7 @@ end;
 function onTrigger(player,npc)
     
 --    player:delQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);  -- ================== FOR TESTING ONLY =====================
---    player:addFame(WINDURST,WIN_FAME*200);   -- ================== FOR TESTING ONLY =====================
+--    player:addFame(WINDURST,200);   -- ================== FOR TESTING ONLY =====================
     
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
@@ -109,8 +108,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -118,7 +117,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     if (csid == 0x0030 and option == 1) then
         player:addQuest(WINDURST,HAT_IN_HAND);
@@ -154,9 +153,9 @@ printf("RESULT: %u",option);
 --        else (option == 1) then     -- 0/nill = NO REWARD      >= 0 NPCS - Option 1
         end
         if (hatstatus == 1) then
-            player:addFame(WINDURST,WIN_FAME*75);    
+            player:addFame(WINDURST,75);    
         else
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
         end
         player:completeQuest(WINDURST,HAT_IN_HAND);
         player:setVar("QuestHatInHand_count",0);
@@ -175,9 +174,9 @@ printf("RESULT: %u",option);
     elseif (csid == 0x004f) then
         if (player:getQuestStatus(WINDURST,A_FEATHER_IN_ONE_S_CAP) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,A_FEATHER_IN_ONE_S_CAP);    
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
         else
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
             player:setVar("QuestFeatherInOnesCap_var",0);
         end
         player:addGil(GIL_RATE*1500);

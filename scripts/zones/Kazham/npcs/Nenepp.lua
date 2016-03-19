@@ -87,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -96,14 +96,14 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00F1) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();
         if (FreeSlots >= 4) then
             player:tradeComplete();
-            player:addFame(KAZHAM, WIN_FAME*75);
+            player:addFame(KAZHAM, 75);
             player:completeQuest(OUTLANDS, THE_OPO_OPO_AND_I);
             player:addItem(13870);   -- opo opo crown
             player:messageSpecial(ITEM_OBTAINED,13870);

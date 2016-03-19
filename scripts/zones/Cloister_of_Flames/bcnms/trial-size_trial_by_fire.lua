@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeFire_date", 0);
-        player:addFame(KAZHAM,WIN_FAME*30);
+        player:addFame(KAZHAM,30);
         player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
     end
     

@@ -6,7 +6,6 @@
 -- @pos -3 0 11
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -105,8 +104,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -114,8 +113,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 -- ClockTower Quest --    
     if (csid == 0x0032) then 
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
@@ -130,14 +129,14 @@ function onEventFinish(player,csid,option)
         
     elseif (csid == 0x0075) then -- Quest Finish
         player:completeQuest(JEUNO,COMMUNITY_SERVICE);
-        player:addFame(JEUNO,JEUNO_FAME*30);
+        player:addFame(JEUNO,30);
         player:setVar("cService",13)
         player:addTitle(TORCHBEARER);
     
     elseif (csid == 0x0071) then -- Quest Finish (Repeat)
         player:addKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD); -- Lamp Lighter's Membership Card
         player:messageSpecial(KEYITEM_OBTAINED,LAMP_LIGHTERS_MEMBERSHIP_CARD);
-        player:addFame(JEUNO, JEUNO_FAME*15);
+        player:addFame(JEUNO, 15);
         player:setVar("cService",0);
     end
     

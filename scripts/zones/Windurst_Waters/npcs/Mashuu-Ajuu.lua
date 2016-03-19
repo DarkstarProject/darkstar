@@ -1,9 +1,9 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Mashuu-Ajuu
---    Starts and Finished Quest: Reap What You Sow
---  Involved in Quest: Making the Grade
---    Working 100% 
+-- Area: Windurst Waters
+--  NPC: Mashuu-Ajuu
+-- Starts and Finished Quest: Reap What You Sow
+-- Involved in Quest: Making the Grade
+-- Working 100% 
 --  @zone = 238
 --  @pos = 129 -6 167
 -----------------------------------
@@ -21,7 +21,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
+    local reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
     if (reapstatus >= 1 and trade:getItemCount() == 1 and trade:getGil() == 0) then
         if (trade:hasItemQty(4565,1) == true) then
             player:startEvent(0x01db,500,131);                     -- REAP WHAT YOU SOW + GIL: Quest Turn In: Sobbing Fungus turned in
@@ -36,7 +36,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
+    local reapstatus = player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW);
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         player:startEvent(0x01c0); -- During Making the GRADE
     elseif (reapstatus == QUEST_AVAILABLE) then 
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +88,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (((csid == 0x01cf and option == 3) or (csid == 0x01df and option == 3)) and player:getFreeSlotsCount() == 0) then  -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED - INVENTORY FULL
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,572);
     elseif (csid == 0x01cf and option == 3) then                      -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
@@ -104,11 +104,11 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         if (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,REAP_WHAT_YOU_SOW);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
             player:addItem(131);
             player:messageSpecial(ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
             player:setVar("QuestReapSow_var",0);
         end
     elseif (csid == 0x01dd) then                                -- REAP WHAT YOU SOW + GIL + Stationary Set: Quest Turn In: Deathball turned in
@@ -117,11 +117,11 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         if (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,REAP_WHAT_YOU_SOW);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
             player:addItem(131);
             player:messageSpecial(ITEM_OBTAINED,131);
         elseif (player:getQuestStatus(WINDURST,REAP_WHAT_YOU_SOW) == QUEST_COMPLETED) then
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
             player:setVar("QuestReapSow_var",0);
         end
     elseif (csid == 0x01df and option == 3) then                 -- REAP WHAT YOU SOW + HERB SEEDS: REPEATABLE QUEST START - ACCEPTED

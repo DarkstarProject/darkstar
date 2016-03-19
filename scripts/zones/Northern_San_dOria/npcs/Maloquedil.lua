@@ -5,9 +5,7 @@
 -- @pos 35 0.1 60 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -71,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -80,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0018 and option == 1) then
         player:addQuest(SANDORIA,WARDING_VAMPIRES);
@@ -91,10 +89,10 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
         if (player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) == QUEST_ACCEPTED) then
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,WARDING_VAMPIRES);
         else
-            player:addFame(SANDORIA,SAN_FAME*5);
+            player:addFame(SANDORIA,5);
         end
     elseif (csid == 0x0327) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",7,true);

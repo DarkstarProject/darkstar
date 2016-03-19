@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -65,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x005f) then
         player:addKeyItem(SEALED_DAGGER);
@@ -96,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 17772); -- Zushio
             player:needToZone();
             player:setVar("twentyInPirateYearsCS",0);
-            player:addFame(OUTLANDS,NORG_FAME*30);
+            player:addFame(OUTLANDS,30);
             player:completeQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS);
         end
     elseif (csid == 0x0087) then

@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -112,8 +111,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -121,8 +120,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- "Father and Son"
     if (csid == 0x01fc) then 
@@ -135,7 +134,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 17391); -- Willow Fishing Rod
             player:addTitle(LOST_CHILD_OFFICER);
             player:setVar("QuestfatherAndSonVar",0);
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,FATHER_AND_SON);
         end
     elseif (csid == 0x003d) then
@@ -157,7 +156,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17643);
             player:messageSpecial(ITEM_OBTAINED, 17643); -- Honor Sword
             player:setVar("sharpeningTheSwordCS",0);
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SHARPENING_THE_SWORD);
         end
     -- "A Boy's Dream"

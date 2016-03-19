@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Windurst Walls
+-- Area: Windurst Walls
 --   NPC: Yoran-Oran
 --  Type: Standard NPC
 -- @zone: 239
@@ -9,7 +9,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
@@ -25,35 +24,35 @@ local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
             -- Cornette
             if (trade:hasItemQty(17344,1)) then
                 player:tradeComplete();
-                player:addFame(WINDURST,WIN_FAME*10);
+                player:addFame(WINDURST,10);
                 player:addGil(GIL_RATE*200);
                 player:startEvent(0x00fb,GIL_RATE*200);
                 player:completeQuest(WINDURST,MANDRAGORA_MAD);
             -- Sulfur
             elseif (trade:hasItemQty(934,1)) then
                 player:tradeComplete();
-                player:addFame(WINDURST,WIN_FAME*25);
+                player:addFame(WINDURST,25);
                 player:addGil(GIL_RATE*250);
                 player:startEvent(0x00fc,GIL_RATE*250);
                 player:completeQuest(WINDURST,MANDRAGORA_MAD);
             -- ThreeLeafBud
             elseif (trade:hasItemQty(1154,1)) then
                 player:tradeComplete();
-                player:addFame(WINDURST,WIN_FAME*50);
+                player:addFame(WINDURST,50);
                 player:addGil(GIL_RATE*1200);
                 player:startEvent(0x00fd,GIL_RATE*1200);
                 player:completeQuest(WINDURST,MANDRAGORA_MAD);
             -- FourLeafBud
             elseif (trade:hasItemQty(4369,1)) then
                 player:tradeComplete();
-                player:addFame(WINDURST,WIN_FAME*10);
+                player:addFame(WINDURST,10);
                 player:addGil(GIL_RATE*120);
                 player:startEvent(0x00fe,GIL_RATE*120);
                 player:completeQuest(WINDURST,MANDRAGORA_MAD);
             -- Letter
             elseif (trade:hasItemQty(1150,1)) then
                 player:tradeComplete();
-                player:addFame(WINDURST,WIN_FAME*100);
+                player:addFame(WINDURST,100);
                 player:addGil(GIL_RATE*5500);
                 player:startEvent(0x00ff,GIL_RATE*5500);
                 player:completeQuest(WINDURST,MANDRAGORA_MAD);

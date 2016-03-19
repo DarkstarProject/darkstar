@@ -1,16 +1,15 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Ohruru
---    Starts & Finishes Repeatable Quest: Catch me if you can
+-- Area: Windurst Waters
+--  NPC: Ohruru
+-- Starts & Finishes Repeatable Quest: Catch me if you can
 --    Working 90%
---  Involved in Quest: Wonder Wands
+-- Involved in Quest: Wonder Wands
 --  Note: Animation for his "Cure" is not functioning. Unable to capture option 1, so if the user says no, he heals them anyways.
 --  @zone = 240
 --  @pos = -108 -5 94
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -82,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -91,8 +90,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00e7) then
         player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
     elseif (csid == 0x00f6 and option == 0) then
@@ -115,9 +114,9 @@ function onEventFinish(player,csid,option)
         
         if (player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
         else
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
         end    
     end
 end;

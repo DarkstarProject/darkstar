@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -41,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,13 +49,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0002) then
         player:tradeComplete();
         player:addItem(4949); -- Scroll of Jubaku: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4949); 
-        player:addFame(OUTLANDS,NORG_FAME*75);
+        player:addFame(OUTLANDS,75);
         player:addTitle(CRACKER_OF_THE_SECRET_CODE);
         player:completeQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
     end

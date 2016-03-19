@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Windurst Waters
+-- Area: Windurst Waters
 --  NPC:  Ohbiru-Dohbiru
---  Involved in quest: Food For Thought, Say It with Flowers
+-- Involved in quest: Food For Thought, Say It with Flowers
 --  Starts and finishes quest: Toraimarai Turmoil
 -----------------------------------
 
@@ -137,8 +137,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -146,8 +146,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     -- Check Missions first (priority?)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
     if (csid == 0x8f) then
@@ -161,7 +161,7 @@ function onEventFinish(player,csid,option)
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-            player:addFame(WINDURST,WIN_FAME*100);
+            player:addFame(WINDURST,100);
             player:needToZone(true);
         else
             player:tradeComplete();
@@ -178,7 +178,7 @@ function onEventFinish(player,csid,option)
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-            player:addFame(WINDURST,WIN_FAME*100);
+            player:addFame(WINDURST,100);
             player:needToZone(true);
         else
             player:tradeComplete();
@@ -194,13 +194,13 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*4500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
         player:completeQuest(WINDURST,TORAIMARAI_TURMOIL);
-        player:addFame(WINDURST,WIN_FAME*100);
+        player:addFame(WINDURST,100);
         player:addTitle(CERTIFIED_RHINOSTERY_VENTURER);
         player:tradeComplete();
     elseif (csid == 0x0317 and turmoil == 2) then -- Completes Toraimarai turmoil - repeats
         player:addGil(GIL_RATE*4500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
-        player:addFame(WINDURST,WIN_FAME*50);
+        player:addFame(WINDURST,50);
         player:tradeComplete();
     elseif (csid == 0x0160 and option == 0 or csid == 0x0162) then
         if (player:getFreeSlotsCount() >= 1) then
@@ -215,7 +215,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0163) then
         player:addGil(GIL_RATE*900);
         player:completeQuest(WINDURST,WATER_WAY_TO_GO);
-        player:addFame(WINDURST,WIN_FAME*40);
+        player:addFame(WINDURST,40);
         player:tradeComplete();        
         player:needToZone(true);
     elseif (csid == 0x0368) then    

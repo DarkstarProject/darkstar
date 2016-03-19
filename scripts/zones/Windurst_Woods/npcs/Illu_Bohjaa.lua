@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Illu Bohjaa
---    Starts the repeatable quest "Creepy Crawlies"
---    Working 100% 
+-- Area: Windurst Woods
+--  NPC: Illu Bohjaa
+-- Starts the repeatable quest "Creepy Crawlies"
+-- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -27,9 +27,9 @@ CrepyCrawlies = player:getQuestStatus(WINDURST,CREEPY_CRAWLIES);
 
         if ((SilkThread == true or CrawlerCalculus == true) and count == 3) then
             if (SilkThread == true) then
-                player:addFame(WINDURST,WIN_FAME*15);
+                player:addFame(WINDURST,15);
             elseif (CrawlerCalculus == true) then
-                player:addFame(WINDURST,WIN_FAME*30);
+                player:addFame(WINDURST,30);
             end
 
             player:tradeComplete();
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x014d and option == 1) then
         player:addQuest(WINDURST,CREEPY_CRAWLIES);
     end

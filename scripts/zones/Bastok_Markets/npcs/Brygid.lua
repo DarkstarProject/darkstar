@@ -7,9 +7,7 @@
 -- @pos -90 -4 -108
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
@@ -113,8 +111,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 382) then
         local canEquip = 0; 
         local hasBody = 0;
@@ -129,8 +127,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local wantsSubligar = player:getVar("BrygidWantsSubligar");
     
     if (csid == 0x0136 and player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST) == QUEST_AVAILABLE) then
@@ -142,7 +140,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(BRYGIDAPPROVED);
             player:addItem(12720);
             player:messageSpecial(ITEM_OBTAINED,12720);
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,BRYGID_THE_STYLIST);
         end
     elseif (csid == 380) then
@@ -157,7 +155,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
         player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
-        player:addFame(BASTOK,BAS_FAME*30);
+        player:addFame(BASTOK,30);
         player:completeQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
     end    
 end;

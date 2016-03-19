@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Abioleget
 --  Type: Quest Giver (Her Memories: The Faux Pas and The Vicasque's Sermon) / Merchant
 --  @zone: 231
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0258) then
         player:addItem(13465);
         player:messageSpecial(6567, 13465);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:addTitle(THE_BENEVOLENT_ONE);
         player:setVar("sermonQuestVar",0);
         player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );

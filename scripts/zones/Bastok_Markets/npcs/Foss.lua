@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -61,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x010f and option == 0) then
         player:addQuest(BASTOK,BUCKETS_OF_GOLD);            
@@ -71,10 +70,10 @@ function onEventFinish(player,csid,option)
         
         if (BucketsOfGold == QUEST_ACCEPTED) then
             player:completeQuest(BASTOK,BUCKETS_OF_GOLD);
-            player:addFame(BASTOK,BAS_FAME*75);
+            player:addFame(BASTOK,75);
             player:addTitle(BUCKET_FISHER);
         else
-            player:addFame(BASTOK,BAS_FAME*8);
+            player:addFame(BASTOK,8);
         end
         
         player:tradeComplete();

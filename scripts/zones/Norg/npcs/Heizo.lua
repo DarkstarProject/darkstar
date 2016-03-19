@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -64,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x007f) then
         player:addQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);
@@ -82,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addItem(4958); -- Scroll of Dokumori: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
-        player:addFame(OUTLANDS,NORG_FAME*100);
+        player:addFame(OUTLANDS,100);
         player:addTitle(LOOKS_GOOD_IN_LEGGINGS);
         player:setVar("shiningLeggings_nb",0);
         player:completeQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);

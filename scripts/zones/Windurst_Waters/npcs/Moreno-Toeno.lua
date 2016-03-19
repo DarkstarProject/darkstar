@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Moreno-Toeno
---    Starts and Finishes Quest: Teacher's Pet
+-- Area: Windurst Waters
+--  NPC: Moreno-Toeno
+-- Starts and Finishes Quest: Teacher's Pet
 --  @pos  
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -128,8 +128,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -137,8 +137,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01b6 and option == 0) then
         player:addQuest(WINDURST,TEACHER_S_PET);
@@ -150,9 +150,9 @@ function onEventFinish(player,csid,option)
         player:tradeComplete(trade);
         if (player:getQuestStatus(WINDURST,TEACHER_S_PET) == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,TEACHER_S_PET);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
         else
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
         end
     elseif (csid == 0x00B6 or csid == 0x02AF) and option ~= 1 then -- start
         player:addKeyItem(CREATURE_COUNTER_MAGIC_DOLL);

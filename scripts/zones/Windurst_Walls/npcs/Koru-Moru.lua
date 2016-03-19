@@ -6,9 +6,7 @@
 -- @pos -120 -6 124 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -170,7 +168,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,12502);
         player:completeQuest(WINDURST,STAR_STRUCK);
         player:needToZone(true);
-        player:addFame(WINDURST,WIN_FAME*20);
+        player:addFame(WINDURST,20);
     elseif (csid == 0x00c7) then
         player:tradeComplete();
         player:messageSpecial(GIL_OBTAINED,50);
@@ -186,7 +184,7 @@ function onEventFinish(player,csid,option)
         player:addItem(17030);
         player:messageSpecial(ITEM_OBTAINED,17030);
         player:addTitle(FOSSILIZED_SEA_FARER);
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:needToZone(true);
     elseif (csid == 0x0194) then
         if (player:getFreeSlotsCount() ~= 0) then
@@ -195,7 +193,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,THE_PUPPET_MASTER);
             player:setVar("ThePuppetMasterProgress",0);
             player:needToZone(true);
-            player:addFame(WINDURST,WIN_FAME*AF1_FAME);
+            player:addFame(WINDURST,AF1_FAME);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17532);
         end;
@@ -214,7 +212,7 @@ function onEventFinish(player,csid,option)
             player:setVar("ClassReunion_TalkedToFurakku",0);
             player:setVar("ClassReunion_TalkedToFupepe",0);
             player:needToZone(true);
-            player:addFame(WINDURST,WIN_FAME*AF2_FAME);
+            player:addFame(WINDURST,AF2_FAME);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14228);
         end;
@@ -230,7 +228,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,12520);
             player:addTitle(PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
-            player:addFame(WINDURST,WIN_FAME*AF3_FAME);
+            player:addFame(WINDURST,AF3_FAME);
             player:setVar("CarbuncleDebacleProgress",0);
             player:needToZone(true);
         else

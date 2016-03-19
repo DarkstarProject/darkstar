@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --   NPC: Vamorcote
---    Starts and Finishes Quest: The Setting Sun
+-- Starts and Finishes Quest: The Setting Sun
 -- @zone: 231
 --  @pos -137.070 10.999 161.855
 -- 
@@ -9,7 +9,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Northern_San_dOria/TextIDs");
@@ -72,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(GIL_RATE*10000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_SETTING_SUN);
     end;
 end;

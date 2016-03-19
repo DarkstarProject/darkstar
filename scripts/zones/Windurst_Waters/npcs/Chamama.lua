@@ -6,12 +6,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -135,8 +134,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0228) then
         player:tradeComplete();
@@ -158,14 +157,14 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,12505);
         player:addGil(GIL_RATE*200);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
-        player:addFame(WINDURST,WIN_FAME*75);
+        player:addFame(WINDURST,75);
     elseif (csid == 0x0295 and option == 1) then 
         player:setVar("QuestInAPickle_var",1)
     elseif (csid == 0x0296) then  -- IN A PICKLE + 200 GIL: Repeatable Quest Turn In
         player:tradeComplete(trade);
         player:needToZone(true);
         player:addGil(GIL_RATE*200);
-        player:addFame(WINDURST,WIN_FAME*8);
+        player:addFame(WINDURST,8);
         player:setVar("QuestInAPickle_var",0)
     end
 end;

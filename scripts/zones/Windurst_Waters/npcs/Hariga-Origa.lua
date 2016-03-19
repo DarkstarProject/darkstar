@@ -1,17 +1,16 @@
 -----------------------------------
---  Area: Windurst Waters
+-- Area: Windurst Waters
 --  NPC:  Hariga-Origa
 --  Starts & Finishes Quest: Glyph Hanger
---  Involved in Mission 2-1
+-- Involved in Mission 2-1
 --  @pos -62 -6 105 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
@@ -89,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(MAP_OF_THE_HORUTOTO_RUINS);
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_HORUTOTO_RUINS);
         end
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,GLYPH_HANGER);
     elseif (csid == 0x019d and option == 0) then
         player:addQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);
@@ -101,7 +100,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(MAP_OF_FEIYIN);
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_FEIYIN);
         end
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,A_SMUDGE_ON_ONE_S_RECORD);    
     end
     

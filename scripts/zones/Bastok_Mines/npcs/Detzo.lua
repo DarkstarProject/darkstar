@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -73,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x005d) then
         player:addQuest(BASTOK,RIVALS);
@@ -82,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(CONTEST_RIGGER);        
         player:addItem(13571);
         player:messageSpecial(ITEM_OBTAINED,13571);
-        player:addFame(BASTOK,BAS_FAME*30);
+        player:addFame(BASTOK,30);
         player:completeQuest(BASTOK,RIVALS);
     end
     

@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -69,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -78,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0229) then
         player:setVar("MissionStatus",2);
@@ -98,7 +97,7 @@ function onEventFinish(player,csid,option)
             player:addItem(14095);
             player:messageSpecial(ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
-            player:addFame(SANDORIA,AF2_FAME*SAN_FAME);
+            player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,A_BOY_S_DREAM);
         end
     elseif (csid == 0x005A and option ==1) then
@@ -111,7 +110,7 @@ function onEventFinish(player,csid,option)
             player:addItem(12644);
             player:messageSpecial(ITEM_OBTAINED,12644); -- Gallant Surcoat
             player:setVar("UnderOathCS",9);
-            player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
+            player:addFame(SANDORIA,AF3_FAME);
             player:setTitle(PARAGON_OF_PALADIN_EXCELLENCE);
             player:completeQuest(SANDORIA,UNDER_OATH);
         end

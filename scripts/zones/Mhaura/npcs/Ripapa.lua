@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -68,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -115,7 +114,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
             player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(OTHER_AREAS,WIN_FAME*30);
+            player:addFame(OTHER_AREAS,30);
             player:completeQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
         end
     elseif (csid == 0x2726 or csid == 0x2727) then

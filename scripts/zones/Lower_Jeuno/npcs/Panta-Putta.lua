@@ -7,9 +7,7 @@
 -- @pos -61 0 -140
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -66,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x004D and option == 1) then 
         player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
     elseif (csid == 0x0021) then 
@@ -87,7 +85,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(WONDER_MAGIC_SET);
             player:addItem(13328);
             player:messageSpecial(ITEM_OBTAINED,13328);
-            player:addFame(JEUNO, JEUNO_FAME*30);
+            player:addFame(JEUNO, 30);
             player:needToZone(true);
             player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
         end
@@ -102,7 +100,7 @@ function onEventFinish(player,csid,option)
             player:setVar("theKindCardianVar",0);
             player:addItem(13596);
             player:messageSpecial(ITEM_OBTAINED,13596); -- Green Cape
-            player:addFame(JEUNO, JEUNO_FAME*30);
+            player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,THE_KIND_CARDIAN);
         end
     end

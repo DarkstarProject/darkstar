@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -114,7 +113,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(HEIR_OF_THE_GREAT_ICE);
             player:delKeyItem(WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
             player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TRIAL_BY_ICE);
         end
     elseif (csid == 0x02c9 or csid == 0x02c8) then

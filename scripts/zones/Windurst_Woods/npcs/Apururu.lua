@@ -125,8 +125,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -134,8 +134,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- Windurst mission 1-2 start
     if (csid == 0x0089) then 
@@ -186,7 +186,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x018d) then 
         player:delKeyItem(TWO_OF_SWORDS);
         player:setVar("theKindCardianVar",2);
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:tradeComplete();
         
     -- Windurst 8-2

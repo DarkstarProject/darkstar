@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Rycharde 
+-- Area: Mhaura
+--  NPC: Rycharde 
 --    Standard Info NPC
 --  Starts & Finishes non Repeatable Quest: Rycharde the Chef,
 --  WAY_OF_THE_COOK, UNENDING_CHASE
@@ -10,7 +10,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -202,8 +201,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -222,7 +221,7 @@ function onEventFinish(player,csid,option)
         end    
     elseif (csid == 0x4a) then   -- end quest 1 RYCHARDE_THE_CHEF
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
@@ -238,7 +237,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x50) then  --end quest 2 WAY_OF_THE_COOK
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(ONESTAR_PURVEYOR);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
@@ -251,7 +250,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(OTHER_AREAS,WAY_OF_THE_COOK);    
     elseif (csid == 0x51) then  --end quest 2 WAY_OF_THE_COOK
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
@@ -273,7 +272,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x53) then  -- end quest 3 UNENDING_CHASE
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(TWOSTAR_PURVEYOR);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
@@ -291,7 +290,7 @@ function onEventFinish(player,csid,option)
             player:addQuest(OTHER_AREAS,HIS_NAME_IS_VALGEIR);    
         end
     elseif (csid == 0x58) then  -- end quest 4 his name is Valgeir
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addKeyItem(MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal 
         player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_TORAIMARAI_CANAL);
         player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
@@ -306,7 +305,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x5c) then   -- end quest THE CLUE
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(FOURSTAR_PURVEYOR);
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
@@ -325,7 +324,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x60) then   -- end quest the basics
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*120);
+        player:addFame(WINDURST,120);
         player:addTitle(FIVESTAR_PURVEYOR);
         if (player:getFreeSlotsCount() <= 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,133);

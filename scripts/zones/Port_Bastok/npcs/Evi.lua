@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -52,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0068 and player:getVar("PastPerfectVar") == 0) then
         player:setVar("PastPerfectVar",1);
@@ -64,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PastPerfectVar",0);
         player:addItem(12560);
         player:messageSpecial(ITEM_OBTAINED,12560);
-        player:addFame(BASTOK,BAS_FAME*110);
+        player:addFame(BASTOK,110);
         player:completeQuest(BASTOK,PAST_PERFECT);
     end
     

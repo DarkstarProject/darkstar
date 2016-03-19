@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Mines/TextIDs");
@@ -65,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x006e) then
         Groceries = player:getQuestStatus(BASTOK,GROCERIES);
@@ -78,7 +77,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,0x98);
         player:setVar("Groceries",1);
     elseif (csid == 0x0070) then
-        player:addFame(BASTOK,BAS_FAME*8);
+        player:addFame(BASTOK,8);
         player:setVar("Groceries",0);
         player:addGil(GIL_RATE*10);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*10);
@@ -90,7 +89,7 @@ function onEventFinish(player,csid,option)
             player:setVar("Groceries",0);
             player:setVar("GroceriesViewedNote",0);
             player:completeQuest(BASTOK,GROCERIES);
-            player:addFame(BASTOK,BAS_FAME*75); 
+            player:addFame(BASTOK,75); 
             player:addItem(13594);
             player:messageSpecial(ITEM_OBTAINED,13594);
         else

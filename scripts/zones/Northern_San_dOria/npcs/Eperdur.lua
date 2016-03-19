@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -69,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02a7) then
         if (player:getFreeSlotsCount() == 0) then 
@@ -80,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(LETTER_FROM_VIRNAGE);
             player:addItem(4731);
             player:messageSpecial(ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,ALTANA_S_SORROW);
         end
     elseif (csid == 0x02a8) then
@@ -91,7 +90,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(GANTINEUXS_LETTER);
             player:addItem(4732);
             player:messageSpecial(ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
-            player:addFame(WINDURST,WIN_FAME*30);
+            player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,ACTING_IN_GOOD_FAITH);
         end
     elseif (csid == 0x02a9 and option == 0) then
@@ -106,7 +105,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4730);
             player:messageSpecial(ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
             player:needToZone(true);
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,HEALING_THE_LAND);
         end
     elseif (csid == 0x02ad and option == 0) then
@@ -118,7 +117,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(FEIYIN_MAGIC_TOME);
             player:addItem(4747);
             player:messageSpecial(ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SORCERY_OF_THE_NORTH);
         end
     end

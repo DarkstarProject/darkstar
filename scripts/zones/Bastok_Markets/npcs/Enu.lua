@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --   NPC: Enu
 --  Type: Quest NPC
 -- @zone: 235
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4 
         player:messageSpecial(ITEM_OBTAINED,1236);
 
-        player:addFame(BASTOK,BAS_FAME*50);
+        player:addFame(BASTOK,50);
         player:completeQuest(BASTOK,WISH_UPON_A_STAR);
         player:setVar("WishUponAStar_Status",0);
     end

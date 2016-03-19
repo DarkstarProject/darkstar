@@ -4,9 +4,7 @@
 -- @pos -82 0.1 160 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -87,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -96,8 +94,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 10088) then
         player:addQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
         player:setVar("WildcatJeuno",0);
@@ -105,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,WHITE_SENTINEL_BADGE);
     elseif (csid == 10091) then
         player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
-        player:addFame(JEUNO, JEUNO_FAME*150);
+        player:addFame(JEUNO, 150);
         player:setVar("WildcatJeuno",0);
         player:delKeyItem(WHITE_SENTINEL_BADGE);
         player:addKeyItem(WHITE_INVITATION_CARD);

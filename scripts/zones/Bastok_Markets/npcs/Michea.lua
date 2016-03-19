@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Markets/TextIDs");
@@ -29,7 +28,7 @@ MythrilIngot = trade:hasItemQty(653,1);
             player:tradeComplete();
             player:addGil(GIL_RATE*180);
             player:completeQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
-            player:addFame(BASTOK,BAS_FAME*100);
+            player:addFame(BASTOK,100);
             player:startEvent(0x00d8);
         end
     elseif ((SilverIngot == true) and count == 1) then
@@ -38,7 +37,7 @@ MythrilIngot = trade:hasItemQty(653,1);
             player:tradeComplete();
             player:addGil(GIL_RATE*2200);
             player:completeQuest(BASTOK,FATHER_FIGURE);
-            player:addFame(BASTOK,BAS_FAME*120);
+            player:addFame(BASTOK,120);
             player:startEvent(0x00f1);
         end;
     elseif ((MythrilIngot == true) and count == 1) then
@@ -90,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -99,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00d7) then
         player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);

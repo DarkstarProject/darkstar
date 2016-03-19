@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
         end
         player:setVar("TrialSizeEarth_date", 0);
-        player:addFame(BASTOK,BAS_FAME*30);
+        player:addFame(BASTOK,30);
         player:completeQuest(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
     end
     
