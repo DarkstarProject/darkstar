@@ -60,6 +60,8 @@ function onInitialize(zone)
     local manuals = {17253061,17253062,17253063};
 
     SetFieldManual(manuals);
+
+    SetRespawnTime(17252725, 3600, 4200);
 end;
 
 -----------------------------------

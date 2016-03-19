@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Den of Rancor
---  MOB: Mousseaw
+-- Area: Toraimorai Canal
+--  MOB: Blackwater Pugil
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -10,5 +10,5 @@ require("scripts/globals/groundsofvalor");
 -----------------------------------
 
 function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,797,2);
+    checkGoVregime(ally,mob,624,1);
 end;

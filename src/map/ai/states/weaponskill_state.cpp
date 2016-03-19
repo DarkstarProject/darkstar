@@ -46,6 +46,10 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
     {
         throw CStateInitException(std::move(m_errorMsg));
     }
+    if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, 0, 0, MSGBASIC_CANNOT_PERFORM_ACTION));
+    }
     m_PSkill = std::make_unique<CWeaponSkill>(*skill);
 
     //m_castTime = std::chrono::milliseconds(m_PSkill->getActivationTime());

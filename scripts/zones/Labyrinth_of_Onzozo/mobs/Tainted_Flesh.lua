@@ -12,9 +12,8 @@ require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 
 function onMobDeath(mob,killer,ally)
 
-    local mob = mob:getID();
+    local mobID = mob:getID();
     if (Hellion_PH[mobID] ~= nil) then
-
         local ToD = GetServerVariable("[POP]Hellion");
         if (ToD <= os.time(t) and GetMobAction(Hellion) == 0) then
             if (math.random(1,20) == 5) then

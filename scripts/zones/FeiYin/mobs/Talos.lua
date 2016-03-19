@@ -3,6 +3,7 @@
 --  MOB: Talos
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/globals/keyitems");
 
 -----------------------------------

@@ -30,6 +30,8 @@ The PathFind class provides an interface for getting an entity to a destination.
 #include "../../../common/showmsg.h"
 #include "../../../common/mmo.h"
 
+#include <vector>
+
 class CBaseEntity;
 
 // no path can be longer than this
@@ -53,20 +55,22 @@ class CPathFind
     ~CPathFind();
 
     // move to a random point around given point
-    bool RoamAround(position_t point, float maxRadius, uint8 maxTurns, uint8 roamFlags = 0);
+    bool RoamAround(const position_t& point, float maxRadius, uint8 maxTurns, uint8 roamFlags = 0);
 
     // find and walk to the given point
-    bool PathTo(position_t point, uint8 pathFlags = 0, bool clear = true);
+    bool PathTo(const position_t& point, uint8 pathFlags = 0, bool clear = true);
+    // walk to the given point until in range
+    bool PathInRange(const position_t& point, float range, uint8 pathFlags = 0, bool clear = true);
 
     // move some where around the point
-    bool PathAround(position_t point, float distanceFromPoint, uint8 pathFlags = 0);
+    bool PathAround(const position_t& point, float distanceFromPoint, uint8 pathFlags = 0);
 
     // walk through the given points. No new points made.
-    bool PathThrough(position_t* points, uint8 totalPoints, uint8 pathFlags = 0);
+    bool PathThrough(std::vector<position_t>&& points, uint8 pathFlags = 0);
 
     // instantly moves an entity to the point
     // this will make sure you're not in a wall
-    bool WarpTo(position_t point, float maxDistance = 2.0f);
+    bool WarpTo(const position_t& point, float maxDistance = 2.0f);
 
     // moves mob to next point
     void FollowPath();
@@ -84,7 +88,7 @@ class CPathFind
     void StopWithin(float within);
 
     // tells entity to take one step towards position
-    void StepTo(position_t* pos, bool run = false);
+    void StepTo(const position_t& pos, bool run = false);
 
     // checks if mob is currently following a path
     bool IsFollowingPath();
@@ -94,43 +98,43 @@ class CPathFind
     float GetRealSpeed();
 
     // look at the given point
-    void LookAt(position_t point);
+    void LookAt(const position_t& point);
 
     // clear current path
     void Clear();
     bool isNavMeshEnabled();
 
-    bool ValidPosition(position_t* pos);
+    bool ValidPosition(const position_t& pos);
 
     // checks if mob is at given point
-    bool AtPoint(position_t* pos);
+    bool AtPoint(const position_t& pos);
 
     // returns true if i'm in water
     bool InWater();
 
     // checks if raycast was broken between current point and given
     // returns true if raycast didn't hit any walls
-    bool CanSeePoint(position_t point);
+    bool CanSeePoint(const position_t& point);
 
   private:
 
     // find a valid path using polys
-    bool FindPath(position_t* start, position_t* end);
+    bool FindPath(const position_t& start, const position_t& end);
 
     // cut some corners and find the fastest path
     // this will make the mob run down cliffs
-    bool FindClosestPath(position_t* start, position_t* end);
+    bool FindClosestPath(const position_t& start, const position_t& end);
 
     // finds a random path around the given point
-    bool FindRandomPath(position_t* start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
+    bool FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint8 roamFlags);
 
-    void AddPoints(position_t* points, uint8 totalPoints, bool reverse = false);
+    void AddPoints(std::vector<position_t>&& points, bool reverse = false);
 
     void FinishedPath();
 
     CBaseEntity* m_PTarget;
-    position_t m_points[MAX_PATH_POINTS];
-    position_t m_turnPoints[MAX_TURN_POINTS];
+    std::vector<position_t> m_points;
+    std::vector<position_t> m_turnPoints;
     position_t m_originalPoint;
     float m_distanceFromPoint;
 
@@ -138,10 +142,8 @@ class CPathFind
     uint16 m_roamFlags;
     bool m_onPoint;
     int16 m_currentPoint;
-    int16 m_pathLength;
 
     uint8 m_currentTurn;
-    uint8 m_turnLength;
 
     float m_distanceMoved;
     float m_maxDistance;

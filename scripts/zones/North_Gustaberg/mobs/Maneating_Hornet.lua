@@ -13,16 +13,16 @@ require("scripts/globals/fieldsofvalor");
 
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,17,1);
-    mob = mob:getID();
-    if (Stinging_Sophie_PH[mob] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Stinging_Sophie");
+    local mobID = mob:getID();
+    if (Stinging_Sophie_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Stinging_Sophie");
         if (ToD <= os.time(t) and GetMobAction(Stinging_Sophie) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Stinging_Sophie);
-                GetMobByID(Stinging_Sophie):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Stinging_Sophie", mob);
-                DeterMob(mob, true);
+                GetMobByID(Stinging_Sophie):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Stinging_Sophie", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

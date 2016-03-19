@@ -15,16 +15,15 @@ function onMobDeath(mob,killer,ally)
 
     checkRegime(ally,mob,26,1);
 
-    mob = mob:getID();
-    if (Tom_Tit_Tat_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Tom_Tit_Tat");
+    local mobID = mob:getID();
+    if (Tom_Tit_Tat_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Tom_Tit_Tat");
         if (ToD <= os.time(t) and GetMobAction(Tom_Tit_Tat) == 0) then
-            if (math.random((1),(15)) == 5) then
+            if (math.random(1,15) == 5) then
                 UpdateNMSpawnPoint(Tom_Tit_Tat);
-                GetMobByID(Tom_Tit_Tat):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Tom_Tit_Tat", mob);
-                DeterMob(mob, true);
+                GetMobByID(Tom_Tit_Tat):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Tom_Tit_Tat", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

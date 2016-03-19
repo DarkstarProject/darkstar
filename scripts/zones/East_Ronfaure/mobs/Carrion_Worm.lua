@@ -13,16 +13,15 @@ require("scripts/zones/East_Ronfaure/MobIDs");
 function onMobDeath(mob,killer,ally)
     checkRegime(ally,mob,65,1);
 
-    mob = mob:getID();
-    if (Bigmouth_Billy_PH[mob] ~= nil) then
-
-        ToD = GetServerVariable("[POP]Bigmouth_Billy");
+    local mobID = mob:getID();
+    if (Bigmouth_Billy_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Bigmouth_Billy");
         if (ToD <= os.time(t) and GetMobAction(Bigmouth_Billy) == 0) then
-            if (math.random((1),(15)) == 5) then
+            if (math.random(1,15) == 5) then
                 UpdateNMSpawnPoint(Bigmouth_Billy);
-                GetMobByID(Bigmouth_Billy):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Bigmouth_Billy", mob);
-                DeterMob(mob, true);
+                GetMobByID(Bigmouth_Billy):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Bigmouth_Billy", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

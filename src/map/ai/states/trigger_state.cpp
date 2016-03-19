@@ -47,13 +47,21 @@ bool CTriggerState::Update(time_point tick)
         }
         Complete();
     }
-    else if (tick > GetEntryTime() + 7s)
+    else if (close)
     {
-        if (close)
+        if (tick > GetEntryTime() + 7s)
         {
             m_PEntity->animation = ANIMATION_CLOSE_DOOR;
             m_PEntity->updatemask |= UPDATE_HP;
+            return true;
         }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
         return true;
     }
     return false;

@@ -20,7 +20,7 @@ function onAbilityCheck(player,target,ability)
         return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
         return 0,0;
-    elseif (player:getTP() < 80) then
+    elseif (player:getTP() < 800) then
         return MSGBASIC_NOT_ENOUGH_TP,0;
     else
         -- Apply waltz recast modifiers
@@ -41,7 +41,7 @@ end;
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance, and only deduct once instead of for each target.
     if (player:getID() == target:getID() and player:hasStatusEffect(EFFECT_TRANCE) == false) then
-        player:delTP(80);
+        player:delTP(800);
     end;
 
     -- Grabbing variables.

@@ -524,6 +524,7 @@ public:
 
     virtual CCharEntity*    GetCharByName(int8* name);                              // finds the player if exists in zone
     virtual CCharEntity*    GetCharByID(uint32 id);
+    // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
     virtual CBaseEntity*    GetEntity(uint16 targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
@@ -605,12 +606,12 @@ private:
     void    LoadZoneSettings();             // настройки зоны
     void    LoadNavMesh();                  // Load the zones navmesh. Must exist in scripts/zones/:zone/NavMesh.nav
 
-    CTaskMgr::CTask* ZoneTimer;             // указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
 
     CTreasurePool*  m_TreasurePool;         // глобальный TreasuerPool
 
 protected:
 
+    CTaskMgr::CTask* ZoneTimer;             // указатель на созданный таймер - ZoneServer. необходим для возможности его остановки
     void createZoneTimer();
     void CharZoneIn(CCharEntity* PChar);
     void CharZoneOut(CCharEntity* PChar);

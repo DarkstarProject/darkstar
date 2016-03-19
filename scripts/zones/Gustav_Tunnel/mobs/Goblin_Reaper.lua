@@ -4,6 +4,7 @@
 -- Note: Place holder Goblinsavior Heronox
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------
@@ -15,16 +16,15 @@ function onMobDeath(mob,killer,ally)
     checkGoVregime(ally,mob,764,3);
     checkGoVregime(ally,mob,765,3);
 
-    local mob = mob:getID();
-    if (Goblinsavior_Heronox_PH[mob] ~= nil) then
-
+    local mobID = mob:getID();
+    if (Goblinsavior_Heronox_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Goblinsavior_Heronox");
         if (ToD <= os.time(t) and GetMobAction(Goblinsavior_Heronox) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Goblinsavior_Heronox);
-                GetMobByID(Goblinsavior_Heronox):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Goblinsavior_Heronox", mob);
-                DeterMob(mob, true);
+                GetMobByID(Goblinsavior_Heronox):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Goblinsavior_Heronox", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

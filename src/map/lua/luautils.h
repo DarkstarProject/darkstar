@@ -162,6 +162,7 @@ namespace luautils
     int32 GetServerVariable(lua_State*);
     int32 SetServerVariable(lua_State *);
     int32 clearVarFromAll(lua_State *);											// Deletes a specific player variable from all players
+    int32 terminate(lua_State*);                                                // Logs off all characters and terminates the server
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
     uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
@@ -208,6 +209,7 @@ namespace luautils
     int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
     int32 OnMobInitialize(CBaseEntity* PMob);                                     // Used for passive trait
+    int32 ApplyMixins(CBaseEntity* PMob);
     int32 OnMobSpawn(CBaseEntity* PMob);                                          // triggers on mob spawn
     int32 OnMobRoamAction(CBaseEntity* PMob);                                     // triggers when event mob is ready for a custom roam action
     int32 OnMobRoam(CBaseEntity* PMob);

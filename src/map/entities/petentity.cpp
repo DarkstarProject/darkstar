@@ -180,12 +180,6 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
         {
             return;
         }
-        CBaseEntity* PMsgTarget = this;
-        int32 errNo = luautils::OnAbilityCheck(this, PTarget, PAbility, &PMsgTarget);
-        if (errNo != 0)
-        {
-            return;
-        }
         if (battleutils::IsParalyzed(this)) {
             // display paralyzed
             loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_IS_PARALYZED));
@@ -216,4 +210,13 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
             actionTarget.param = -value;
         }
     }
+}
+
+bool CPetEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+{
+    if (targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance)
+    {
+        return false;
+    }
+    return CMobEntity::ValidTarget(PInitiator, targetFlags);
 }

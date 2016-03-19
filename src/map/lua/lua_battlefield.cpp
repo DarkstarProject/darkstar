@@ -28,6 +28,7 @@
 #include "../battlefield.h"
 #include "../utils/mobutils.h"
 #include "../utils/zoneutils.h"
+#include "../status_effect_container.h"
 
 
 /************************************************************************
@@ -144,6 +145,7 @@ inline int32 CLuaBattlefield::insertAlly(lua_State* L)
     {
         m_PLuaBattlefield->m_AllyList.push_back(PAlly);
         PAlly->PBCNM = m_PLuaBattlefield;
+        PAlly->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD, EFFECT_BATTLEFIELD, m_PLuaBattlefield->getID(), 0, 0), true);
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
@@ -194,7 +196,7 @@ inline int32 CLuaBattlefield::win(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
-    m_PLuaBattlefield->win();
+    m_PLuaBattlefield->win(server_clock::now());
 
     return 0;
 }

@@ -162,8 +162,8 @@ inline int32 CLuaInstance::getPets(lua_State* L)
 inline int32 CLuaInstance::getTimeLimit(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
-    
-    auto limit = std::chrono::duration_cast<std::chrono::seconds>( m_PLuaInstance->GetTimeLimit()).count();
+
+    auto limit = std::chrono::duration_cast<std::chrono::minutes>( m_PLuaInstance->GetTimeLimit()).count();
 
     lua_pushinteger(L, limit);
 
@@ -196,7 +196,7 @@ inline int32 CLuaInstance::getLastTimeUpdate(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
-    auto count = std::chrono::duration_cast<std::chrono::milliseconds>(get_server_start_time() - m_PLuaInstance->GetLastTimeUpdate()).count();
+    auto count = std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaInstance->GetLastTimeUpdate()).count();
 
     lua_pushinteger(L, count);
 
@@ -278,7 +278,7 @@ inline int32 CLuaInstance::setLastTimeUpdate(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetLastTimeUpdate(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
+    m_PLuaInstance->SetLastTimeUpdate(std::chrono::milliseconds(lua_tointeger(L, 1)));
 
     return 0;
 }

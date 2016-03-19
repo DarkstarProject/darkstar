@@ -177,12 +177,12 @@ uint16 CAbility::getValidTarget()
     return m_validTarget;
 }
 
-uint8 CAbility::getAddType()
+uint16 CAbility::getAddType()
 {
     return m_addType;
 }
 
-void CAbility::setAddType(uint8 addType)
+void CAbility::setAddType(uint16 addType)
 {
     m_addType = addType;
 }

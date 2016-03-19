@@ -366,7 +366,6 @@ public:
     int32 despawnPet(lua_State*);            // Despawns Pet
     int32 petAttack(lua_State*);             // Despawns Pet
     int32 petRetreat(lua_State*);
-    int32 petStay(lua_State*);
     int32 petAbility(lua_State*);
     int32 hasPet(lua_State*);                // returns true if the player has a pet
     int32 getPet(lua_State*);                // Creates an LUA reference to a pet entity
@@ -478,6 +477,7 @@ public:
 
     int32 setSpellList(lua_State*);
     int32 hasSpellList(lua_State*);
+    int32 hasPreventActionEffect(lua_State*);
 
     int32 hasValidJugPetItem(lua_State*);
     int32 getTarget(lua_State*);
@@ -553,8 +553,7 @@ public:
     int32 reloadParty(lua_State* L);
     int32 getModelId(lua_State* L);
     int32 setModelId(lua_State* L);
-    int32 setAggroFlag(lua_State* L);
-    int32 unsetAggroFlag(lua_State* L);
+    int32 setTrueDetection(lua_State* L);
     int32 instantiateMob(lua_State* L);
 
     int32 getActiveManeuvers(lua_State*);
@@ -582,6 +581,12 @@ public:
 
     int32 removeAmmo(lua_State* L);
     int32 takeWeaponskillDamage(lua_State* L);
+
+    int32 setEquipBlock(lua_State* L);
+    int32 setStatDebilitation(lua_State* L);
+    int32 unequipItem(lua_State* L);
+    int32 recalculateStats(lua_State* L);
+    int32 checkImbuedItems(lua_State* L);
 };
 
 #endif

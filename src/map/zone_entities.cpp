@@ -34,7 +34,7 @@ This file is part of DarkStar-server source code.
 #include "trade_container.h"
 
 #include "ai/ai_container.h"
-#include "ai/controllers/ai_controller.h"
+#include "ai/controllers/mob_controller.h"
 
 #include "entities/mobentity.h"
 #include "entities/npcentity.h"
@@ -214,7 +214,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
 
         PCurrentMob->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PCurrentMob, static_cast<int>(weather), element);
         // can't detect by scent in this weather
-        if (PCurrentMob->m_Aggro & AGGRO_SCENT)
+        if (PCurrentMob->m_Detects & DETECT_SCENT)
         {
             PCurrentMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
         }
@@ -427,7 +427,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
             uint16 expGain = (uint16)charutils::GetRealExp(PChar->GetMLevel(), PCurrentMob->GetMLevel());
 
-            CAIController* PController = static_cast<CAIController*>(PCurrentMob->PAI->GetController());
+            CMobController* PController = static_cast<CMobController*>(PCurrentMob->PAI->GetController());
 
             bool validAggro = expGain > 50 || PChar->animation == ANIMATION_HEALING || PCurrentMob->getMobMod(MOBMOD_ALWAYS_AGGRO);
 
@@ -1022,6 +1022,12 @@ void CZoneEntities::ZoneServerRegion(time_point tick)
             m_zone->CheckRegions(PChar);
         }
     }
+}
+
+
+CZone* CZoneEntities::GetZone()
+{
+    return m_zone;
 }
 
 EntityList_t CZoneEntities::GetCharList()

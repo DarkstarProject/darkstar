@@ -70,6 +70,7 @@
 #include "../weapon_skill.h"
 #include "../packets/char_job_extra.h"
 #include "../packets/status_effects.h"
+#include "../mobskill.h"
 
 
 CCharEntity::CCharEntity()
@@ -155,6 +156,7 @@ CCharEntity::CCharEntity()
 
     m_EquipFlag = 0;
     m_EquipBlock = 0;
+    m_StatsDebilitation = 0;
     m_EquipSwap = false;
 
     MeritMode = false;
@@ -497,22 +499,26 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     {
         return false;
     }
+    if (isDead())
+    {
+        if (targetFlags & TARGET_PLAYER_DEAD)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     if (CBattleEntity::ValidTarget(PInitiator, targetFlags))
     {
         return true;
     }
 
-    if (targetFlags & TARGET_PLAYER)
-    {
-        return true;
-    }
-    if ((targetFlags & TARGET_PLAYER_PARTY) &&
+    if (((targetFlags & TARGET_PLAYER_PARTY) || ((targetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) &&
+        PInitiator->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))) &&
         ((PParty && PInitiator->PParty == PParty) ||
         PInitiator->PMaster && PInitiator->PMaster->PParty == PParty))
-    {
-        return true;
-    }
-    if ((targetFlags & TARGET_PLAYER_DEAD) && isDead())
     {
         return true;
     }
@@ -824,7 +830,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
 {
     auto PAbility = state.GetAbility();
-    if (this->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId()))
+    if (this->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId(), PAbility->getRecastTime()))
     {
         pushPacket(new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_WAIT_LONGER));
         return;
@@ -842,7 +848,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY));
             return;
         }
-        if (PAbility->getID() >= ABILITY_HEALING_RUBY)
+        if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
         {
             // Blood pact MP costs are stored under animation ID
             if (this->health.mp < PAbility->getAnimationID())
@@ -850,13 +856,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 pushPacket(new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA));
                 return;
             }
-        }
-        CBaseEntity* PMsgTarget = this;
-        int32 errNo = luautils::OnAbilityCheck(this, PTarget, PAbility, &PMsgTarget);
-        if (errNo != 0)
-        {
-            pushPacket(new CMessageBasicPacket(this, PMsgTarget, PAbility->getID() + 16, PAbility->getID(), errNo));
-            return;
         }
 
         if (battleutils::IsParalyzed(this)) {
@@ -874,15 +873,14 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
 
         auto charge = ability::GetCharge(this, PAbility->getRecastId());
-        if (charge)
+        if (charge && PAbility->getID() != ABILITY_SIC)
         {
-            action.recast = charge->chargeTime;
+            action.recast = charge->chargeTime * PAbility->getRecastTime();
         }
         else
         {
-            action.recast = PAbility->getRecastTime();
+            action.recast = PAbility->getRecastTime() - meritRecastReduction;
         }
-        action.recast -= meritRecastReduction;
 
         if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == 231) //stratagems
         {
@@ -895,7 +893,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             if (PAbility)
                 PRecastContainer->Del(RECAST_ABILITY, PAbility->getRecastId());
         }
-        else if (PAbility->getID() >= ABILITY_HEALING_RUBY)
+        else if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
         {
             if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
                 action.recast = 0;
@@ -949,12 +947,9 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.param = 0;
                 actionTarget.messageID = 0;
 
-                if (PAbility->getID() == ABILITY_SEARING_LIGHT || PAbility->getID() == ABILITY_AERIAL_BLAST || PAbility->getID() == ABILITY_EARTHEN_FURY) {
-                    if (this->health.mp >= GetMLevel() * 2) {
-                        addMP(-this->GetMLevel() * 2);
-                    }
-                }
-                else {
+                auto PPetTarget = PTarget->targid;
+                if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
+                {
                     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
                         addMP(-PAbility->getAnimationID() * 1.5);
                         this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
@@ -962,10 +957,24 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                     else {
                         addMP(-PAbility->getAnimationID()); // TODO: ...
                     }
+                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
                 }
-                //#TODO: probably needs to be in a script, since the pet abilities actually have their own IDs
-                if (PAbility->getValidTarget() == TARGET_SELF) { PTarget = PPet; }
-                PPet->PAI->MobSkill(PTarget->targid, PAbility->getMobSkillID());
+                else
+                {
+                    auto PMobSkill = battleutils::GetMobSkill(PAbility->getMobSkillID());
+                    if (PMobSkill)
+                    {
+                        if (PMobSkill->getValidTargets() & TARGET_ENEMY)
+                        {
+                            PPetTarget = PPet->GetBattleTargetID();
+                        }
+                        else
+                        {
+                            PPetTarget = PPet->targid;
+                        }
+                    }
+                }
+                PPet->PAI->MobSkill(PPetTarget, PAbility->getMobSkillID());
             }
         }
         //#TODO: make this generic enough to not require an if
@@ -1570,7 +1579,6 @@ void CCharEntity::Die(duration _duration)
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
     pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
-    StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
 
     // reraise modifiers
     if (this->getMod(MOD_RERAISE_I) > 0)

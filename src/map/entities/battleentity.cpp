@@ -703,6 +703,7 @@ JOBTYPE CBattleEntity::GetSJob()
 
 uint8 CBattleEntity::GetSLevel()
 {
+    if (StatusEffectContainer->HasStatusEffect(EFFECT_OBLIVISCENCE)) { return 0; }
     return m_slvl;
 }
 
@@ -1101,6 +1102,10 @@ bool CBattleEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     {
         return true;
     }
+    if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
+    {
+        return true;
+    }
     return false;
 }
 
@@ -1263,6 +1268,14 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         }
     }
 
+    // TODO: Pixies will probably break here, once they're added.
+    if (this->allegiance != PActionTarget->allegiance)
+    {
+        // Should not be removed by AoE effects that don't target the player or
+        // buffs cast by other players or mobs.
+        PActionTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    }
+
     this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_MAGIC_END);
 }
 
@@ -1328,6 +1341,12 @@ CBattleEntity* CBattleEntity::GetBattleTarget()
 bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 {
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    if (PTarget->objtype == TYPE_PC)
+    {
+        // TODO: Should not be removed by AoE effects that don't target the player.
+        PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    }
 
     if (battleutils::IsParalyzed(this))
     {

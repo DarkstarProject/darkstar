@@ -3,6 +3,8 @@
 --  MOB: Tonberry Dismayer
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

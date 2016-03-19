@@ -4,6 +4,7 @@
 -- Note: Place holder Amikiri
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------
@@ -14,16 +15,15 @@ function onMobDeath(mob,killer,ally)
 
     checkGoVregime(ally,mob,768,2);
 
-    local mob = mob:getID();
-    if (Amikiri_PH[mob] ~= nil) then
-
+    local mobID = mob:getID();
+    if (Amikiri_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Amikiri");
         if (ToD <= os.time(t) and GetMobAction(Amikiri) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Amikiri);
-                GetMobByID(Amikiri):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Amikiri", mob);
-                DeterMob(mob, true);
+                GetMobByID(Amikiri):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Amikiri", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

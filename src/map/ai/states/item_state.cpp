@@ -45,11 +45,13 @@ This file is part of DarkStar-server source code.
 CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
     CState(PEntity, targid),
     m_PEntity(PEntity),
+    m_location(loc),
+    m_slot(slotid),
     m_PItem(nullptr)
 {
     auto PItem = dynamic_cast<CItemUsable*>(m_PEntity->getStorage(loc)->GetItem(slotid));
     m_PItem = PItem;
-    
+
     if (m_PItem && m_PItem->isType(ITEM_USABLE))
     {
         if (m_PItem->isType(ITEM_ARMOR))
@@ -90,7 +92,14 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     {
         auto param = m_PItem->getFlag() & ITEM_FLAG_SCROLL ? m_PItem->getSubID() : m_PItem->getID();
 
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 56 : error));
+        if (error == -1)
+        {
+            throw CStateInitException(nullptr);
+        }
+        else
+        {
+            throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, param, 0, error == -1 ? 0 : error));
+        }
     }
 
     m_PEntity->UContainer->SetType(UCONTAINER_USEITEM);
@@ -132,6 +141,7 @@ bool CItemState::Update(time_point tick)
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted = false;
+        m_interruptable = false;
         auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg);
 
         action_t action;
@@ -162,8 +172,14 @@ void CItemState::Cleanup(time_point tick)
     if (m_interrupted && !m_PItem->isType(ITEM_ARMOR))
         m_PItem->setSubType(ITEM_UNLOCKED);
 
-    m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
-    m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_PItem->getLocationID(), m_PItem->getSlotID()));
+    auto PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);
+
+    if (PItem && PItem == m_PItem)
+        m_PEntity->pushPacket(new CInventoryAssignPacket(m_PItem, INV_NORMAL));
+    else
+        m_PItem = nullptr;
+
+    m_PEntity->pushPacket(new CInventoryItemPacket(m_PItem, m_location, m_slot));
     m_PEntity->pushPacket(new CInventoryFinishPacket());
 }
 

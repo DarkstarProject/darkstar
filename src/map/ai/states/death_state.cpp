@@ -27,6 +27,8 @@ This file is part of DarkStar-server source code.
 #include "../../entities/charentity.h"
 #include "../../packets/menu_raisetractor.h"
 #include "../ai_container.h"
+#include "../../status_effect.h"
+#include "../../status_effect_container.h"
 
 CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     CState(PEntity, PEntity->targid),
@@ -34,12 +36,15 @@ CDeathState::CDeathState(CBattleEntity* PEntity, duration death_time) :
     m_deathTime(death_time),
     m_raiseTime(GetEntryTime())
 {
+    m_PEntity->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
+
     m_PEntity->animation = ANIMATION_DEATH;
     m_PEntity->updatemask |= UPDATE_HP;
     if (m_PEntity->PAI->PathFind)
     {
         m_PEntity->PAI->PathFind->Clear();
     }
+
 }
 
 bool CDeathState::Update(time_point tick)

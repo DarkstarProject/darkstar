@@ -360,7 +360,7 @@ void LoadMOBList()
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
             mob_pools.familyid, name_prefix, flags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-            allegiance, namevis, aggro, roamflag, mob_pools.skill_list_id \
+            allegiance, namevis, aggro, roamflag, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects \
             FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
             INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
             INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -474,10 +474,10 @@ void LoadMOBList()
                 // yovra 1: en hauteur, 2: en bas, 3: en haut
                 // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
                 PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 52);
-                
-                if (PMob->animationsub != 0) 
+
+                if (PMob->animationsub != 0)
                     PMob->setMobMod(MOBMOD_SPAWN_ANIMATIONSUB, PMob->animationsub);
-                
+
                 // Setup HP / MP Stat Percentage Boost
                 PMob->HPscale = Sql_GetFloatData(SqlHandle, 53);
                 PMob->MPscale = Sql_GetFloatData(SqlHandle, 54);
@@ -496,6 +496,9 @@ void LoadMOBList()
                 PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
                 PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 64);
 
+                PMob->m_TrueDetection = Sql_GetUIntData(SqlHandle, 65);
+                PMob->m_Detects = Sql_GetUIntData(SqlHandle, 66);
+
                 // must be here first to define mobmods
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
 
@@ -510,6 +513,7 @@ void LoadMOBList()
         PZone->ForEachMob([](CMobEntity* PMob)
         {
             luautils::OnMobInitialize(PMob);
+            luautils::ApplyMixins(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
 

@@ -33,7 +33,7 @@ require("scripts/globals/ability");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = EFFECT_WIZARD_ROLL
+    local effectID = EFFECT_WIZARDS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
@@ -48,7 +48,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT_WIZARD_ROLL, JOB_BLM)
+        corsairSetup(caster, ability, action, EFFECT_WIZARDS_ROLL, JOB_BLM)
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)

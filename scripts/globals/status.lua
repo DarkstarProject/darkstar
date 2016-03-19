@@ -80,6 +80,7 @@ SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
 SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
+SUBEFFECT_CHOKE             = 24;
 -- Below are almost certain to be wrong: 
 -- Someone needs to go on retail and verify the SubEffect IDs
 SUBEFFECT_AMNESIA           = 11; --
@@ -930,6 +931,7 @@ MOD_DMG               = 160
 MOD_DMGPHYS           = 161
 MOD_DMGBREATH         = 162
 MOD_DMGMAGIC          = 163
+MOD_DMGMAGIC_II       = 831 -- Magic Damage Taken II % (Aegis)
 MOD_DMGRANGE          = 164
 MOD_UDMGPHYS          = 387
 MOD_UDMGBREATH        = 388
@@ -1062,7 +1064,6 @@ MOD_THUNDER_AFFINITY_DMG  = 351
 MOD_WIND_AFFINITY_DMG     = 352
 MOD_LIGHT_AFFINITY_DMG    = 353
 MOD_DARK_AFFINITY_DMG     = 354
-MOD_ALL_AFFINITY_DMG      = 543
 MOD_FIRE_AFFINITY_ACC     = 544
 MOD_EARTH_AFFINITY_ACC    = 545
 MOD_WATER_AFFINITY_ACC    = 546
@@ -1071,7 +1072,6 @@ MOD_THUNDER_AFFINITY_ACC  = 548
 MOD_WIND_AFFINITY_ACC     = 549
 MOD_LIGHT_AFFINITY_ACC    = 550
 MOD_DARK_AFFINITY_ACC     = 551
-MOD_ALL_AFFINITY_ACC      = 552
 MOD_FIRE_AFFINITY_PERP    = 553
 MOD_EARTH_AFFINITY_PERP   = 554
 MOD_WATER_AFFINITY_PERP   = 555
@@ -1080,7 +1080,6 @@ MOD_THUNDER_AFFINITY_PERP = 557
 MOD_WIND_AFFINITY_PERP    = 558
 MOD_LIGHT_AFFINITY_PERP   = 559
 MOD_DARK_AFFINITY_PERP    = 560
-MOD_ALL_AFFINITY_PERP     = 561
 MOD_ADDS_WEAPONSKILL = 355
 MOD_ADDS_WEAPONSKILL_DYN = 356
 MOD_BP_DELAY       = 357
@@ -1275,16 +1274,20 @@ MOD_JOB_BONUS_CHANCE          = 542 -- Chance to apply job bonus to COR roll wit
 MOD_DAY_NUKE_BONUS            = 565 -- Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
 MOD_IRIDESCENCE               = 566 -- Iridesecnce trait (additional weather damage/penalty)
 MOD_BARSPELL_AMOUNT           = 567 -- Additional elemental resistance granted by bar- spells
+MOD_BARSPELL_MDEF_BONUS       = 827 -- Extra magic defense bonus granted to the bar- spell effect
 MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
 MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
+MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering healing breath
 
 -- Mythic Weapon Mods
-MOD_AUGMENTS_ABSORB    = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
-MOD_AOE_NA             = 524 -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil
-MOD_AUGMENTS_CONVERT   = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
-MOD_AUGMENTS_SA        = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
-MOD_AUGMENTS_TA        = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
-MOD_JUG_LEVEL_RANGE    = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
+MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
+MOD_AOE_NA                    = 524 -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil
+MOD_AUGMENTS_CONVERT          = 525 -- Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
+MOD_AUGMENTS_SA               = 526 -- Adds Critical Attack Bonus to Sneak Attack, percentage based.
+MOD_AUGMENTS_TA               = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
+MOD_JUG_LEVEL_RANGE           = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
+MOD_FORCE_JUMP_CRIT           = 828 -- Critical hit rate bonus for jump and high jump
+MOD_QUICK_DRAW_DMG_PERCENT    = 831 -- Percentage increase to QD damage
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
@@ -1300,8 +1303,8 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 827, -- stuff
--- MOD_SPARE = 828, -- stuff
+-- MOD_SPARE = 829, -- stuff
+-- MOD_SPARE = 830, -- stuff
 
 ------------------------------------
 -- Merit Definitions

@@ -3,7 +3,7 @@
 --  MOB: Wind Bats
 -----------------------------------
 
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobDeath

@@ -27,7 +27,7 @@
 #include "../../common/timer.h"
 #include "../../common/utils.h"
 #include "../ai/ai_container.h"
-#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/mob_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
 #include "../ai/states/attack_state.h"
@@ -101,7 +101,9 @@ CMobEntity::CMobEntity()
 
     m_giveExp = false;
     m_neutral = false;
-    m_Aggro = AGGRO_NONE;
+    m_Aggro = false;
+    m_TrueDetection = false;
+    m_Detects = DETECT_NONE;
     m_Link = 0;
 
     m_battlefieldID = 0;
@@ -119,7 +121,7 @@ CMobEntity::CMobEntity()
     // For Dyna Stats
     m_StatPoppedMobs = false;
 
-    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CAIController>(this),
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CMobController>(this),
         std::make_unique<CTargetFind>(this));
 }
 
@@ -273,9 +275,17 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     }
 
     // link only if I see him
-    if ((m_Aggro & AGGRO_DETECT_SIGHT) || (m_Aggro & AGGRO_DETECT_TRUESIGHT)) {
+    if (m_Detects & DETECT_SIGHT) {
 
-        if (!isFaceing(loc.p, *pos, 40)) return false;
+        if (!isFaceing(loc.p, *pos, 40))
+        {
+            return false;
+        }
+    }
+
+    if (!PAI->PathFind->CanSeePoint(*pos))
+    {
+        return false;
     }
 
     // link if close enough
@@ -348,7 +358,7 @@ uint8 CMobEntity::TPUseChance()
 {
     auto& MobSkillList = battleutils::GetMobSkillList(getMobMod(MOBMOD_SKILL_LIST));
 
-    if (health.tp < 1000 || MobSkillList.empty() == true || !static_cast<CAIController*>(PAI->GetController())->IsWeaponSkillEnabled())
+    if (health.tp < 1000 || MobSkillList.empty() == true || !static_cast<CMobController*>(PAI->GetController())->IsWeaponSkillEnabled())
     {
         return 0;
     }
@@ -594,15 +604,18 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
     auto PSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
     PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PSkill->getID());
-    //#TODO
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
 
 void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 {
+
     auto PSkill = state.GetSkill();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 
     // store the skill used
     m_UsedSkillIds[PSkill->getID()] = GetMLevel();
@@ -623,7 +636,12 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    action.actiontype = objtype == TYPE_PET ? ACTION_PET_MOBABILITY_FINISH : PSkill->getID() < 256 ? ACTION_WEAPONSKILL_FINISH : ACTION_MOBABILITY_FINISH;
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
+        action.actiontype = ACTION_PET_MOBABILITY_FINISH;
+    else if (PSkill->getID() < 256)
+        action.actiontype = ACTION_WEAPONSKILL_FINISH;
+    else
+        action.actiontype = ACTION_MOBABILITY_FINISH;
     action.actionid = PSkill->getID();
 
     if (PTarget && PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
@@ -681,7 +699,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         // reset the skill's message back to default
         PSkill->setMsg(defaultMessage);
 
-        if (objtype == TYPE_PET)
+        if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
             target.animation = PSkill->getPetAnimationID();
             target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
@@ -888,10 +906,40 @@ void CMobEntity::DropItems()
     }
 }
 
+
+bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+{
+    auto skill_list_id {getMobMod(MOBMOD_ATTACK_SKILL_LIST)};
+    if (skill_list_id)
+    {
+        auto attack_range {m_ModelSize};
+        auto skillList {battleutils::GetMobSkillList(skill_list_id)};
+        if (!skillList.empty())
+        {
+            auto skill {battleutils::GetMobSkill(skillList.front())};
+            if (skill)
+            {
+                attack_range = skill->getDistance();
+            }
+        }
+        if (distance(loc.p, PTarget->loc.p) > attack_range || !PAI->GetController()->IsAutoAttackEnabled())
+        {
+            return false;
+        }
+        return true;
+    }
+    else
+    {
+        return CBattleEntity::CanAttack(PTarget, errMsg);
+    }
+}
+
 void CMobEntity::OnEngage(CAttackState& state)
 {
     CBattleEntity::OnEngage(state);
     luautils::OnMobEngaged(this, state.GetTarget());
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
 
 void CMobEntity::FadeOut()
@@ -902,7 +950,8 @@ void CMobEntity::FadeOut()
 
 void CMobEntity::OnDeathTimer()
 {
-    PAI->Despawn();
+    if (!(m_Behaviour & BEHAVIOUR_RAISABLE))
+        PAI->Despawn();
 }
 
 void CMobEntity::Die()
@@ -943,4 +992,25 @@ void CMobEntity::OnDisengage(CAttackState& state)
     CBattleEntity::OnDisengage(state);
 
     luautils::OnMobDisengage(this);
+}
+
+void CMobEntity::OnCastFinished(CMagicState& state, action_t& action)
+{
+    CBattleEntity::OnCastFinished(state, action);
+
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
+}
+
+bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
+{
+    static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
+
+    if (getMobMod(MOBMOD_ATTACK_SKILL_LIST))
+    {
+        return static_cast<CMobController*>(PAI->GetController())->MobSkill(getMobMod(MOBMOD_ATTACK_SKILL_LIST));
+    }
+    else
+    {
+        return CBattleEntity::OnAttack(state, action);
+    }
 }

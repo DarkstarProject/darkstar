@@ -36,7 +36,7 @@ function onUseAbility(pet, target, skill, action)
 
    local gear = master:getMod(MOD_WYVERN_BREATH); -- Master gear that enhances breath
 
-   local tp = math.floor(pet:getTP()/20)/1.165; -- HP only increases for every 20% TP
+   local tp = math.floor(pet:getTP()/200)/1.165; -- HP only increases for every 20% TP
    pet:setTP(0)
 
    local base = math.floor(((53+tp+gear+deep)/256)*(pet:getMaxHP())+42);

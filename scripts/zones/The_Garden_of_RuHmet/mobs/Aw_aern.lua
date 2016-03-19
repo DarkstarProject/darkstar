@@ -43,7 +43,7 @@ function onMobDeath(mob, killer, ally)
             GetMobByID(IxAernDRG):setSpawn(-520, 5, -359, 30); -- Top Left
         elseif (currentMobID >= 16920785 and currentMobID < 16920789) then
             GetMobByID(IxAernDRG):setSpawn(-319, 5, -359, 95); -- Top Right
-        elseif (currentMobID >= 16920789 and currentMobID < 16920783) then
+        elseif (currentMobID >= 16920789 and currentMobID < 16920793) then
             GetMobByID(IxAernDRG):setSpawn(-319, 5, -520, 156); -- Bottom Right
         end;
         SpawnMob(IxAernDRG);

@@ -4,6 +4,7 @@
 -- Note: Place Holder for Bloodthirster Madkix
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Kuftal_Tunnel/MobIDs");
 
 -----------------------------------
@@ -14,16 +15,15 @@ function onMobDeath(mob,killer,ally)
 
     checkGoVregime(ally,mob,740,2);
 
-    local mob = mob:getID();
-    if (Bloodthirster_Madkix_PH[mob] ~= nil) then
-
+    local mobID = mob:getID();
+    if (Bloodthirster_Madkix_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Bloodthirster_Madkix");
         if (ToD <= os.time(t) and GetMobAction(Bloodthirster_Madkix) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Bloodthirster_Madkix);
-                GetMobByID(Bloodthirster_Madkix):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Bloodthirster_Madkix", mob);
-                DeterMob(mob, true);
+                GetMobByID(Bloodthirster_Madkix):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Bloodthirster_Madkix", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

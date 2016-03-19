@@ -23,5 +23,5 @@ end;
 
 function onUseAbility(player,target,ability)
     player:addStatusEffect(EFFECT_MEIKYO_SHISUI,1,0,30);
-    player:addTP(300);
+    player:addTP(3000);
 end;

@@ -2265,7 +2265,7 @@ namespace charutils
 
         memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
 
-        if (PetID == 0) {//technically Fire Spirit but we're using this to nullptr the abilities shown
+        if (PetID == 0) {//technically Fire Spirit but we're using this to null the abilities shown
             PChar->pushPacket(new CCharAbilitiesPacket(PChar));
             return;
         }
@@ -2309,6 +2309,14 @@ namespace charutils
                         }
                     }
                 }
+            }
+        }
+        if (PPet->getPetType() == PETTYPE_JUG_PET)
+        {
+            auto skillList {battleutils::GetMobSkillList(PPet->m_MobSkillList)};
+            for (auto&& abilityid : skillList)
+            {
+                addPetAbility(PChar, abilityid - 496);
             }
         }
         PChar->pushPacket(new CCharAbilitiesPacket(PChar));
@@ -4225,16 +4233,6 @@ namespace charutils
             MOD_LIGHT_AFFINITY_PERP,
             MOD_DARK_AFFINITY_PERP};
 
-        static const MODIFIER weak[8] = {
-            MOD_WATER_AFFINITY_PERP,
-            MOD_WIND_AFFINITY_PERP,
-            MOD_THUNDER_AFFINITY_PERP,
-            MOD_ICE_AFFINITY_PERP,
-            MOD_FIRE_AFFINITY_PERP,
-            MOD_EARTH_AFFINITY_PERP,
-            MOD_DARK_AFFINITY_PERP,
-            MOD_LIGHT_AFFINITY_PERP};
-
         static const WEATHER weatherStrong[8] = {
             WEATHER_HOT_SPELL,
             WEATHER_DUST_STORM,
@@ -4249,15 +4247,19 @@ namespace charutils
 
         DSP_DEBUG_BREAK_IF(element > 7);
 
-        reduction = reduction + PChar->getMod(strong[element]) - PChar->getMod(weak[element]) + PChar->getMod(MOD_ALL_AFFINITY_PERP);
+        reduction = reduction + PChar->getMod(strong[element]);
 
         if (CVanaTime::getInstance()->getWeekday() == element)
+        {
             reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
+        }
 
         WEATHER weather = battleutils::GetWeather(PChar, false);
 
         if (weather == weatherStrong[element] || weather == weatherStrong[element] + 1)
+        {
             reduction = reduction + PChar->getMod(MOD_WEATHER_REDUCTION);
+        }
 
         return reduction;
     }
@@ -4355,6 +4357,41 @@ namespace charutils
         if (PAbility->getAddType() & ADDTYPE_DARK_ARTS)
         {
             if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DARK_ARTS) && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ADDENDUM_BLACK))
+            {
+                return false;
+            }
+        }
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == (ADDTYPE_JUGPET | ADDTYPE_CHARMPET))
+        {
+            if (!PChar->PPet || !(PChar->PPet->objtype == TYPE_MOB || (PChar->PPet->objtype == TYPE_PET && static_cast<CPetEntity*>(PChar->PPet)->getPetType() == PETTYPE_JUG_PET)))
+            {
+                return false;
+            }
+        }
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_JUGPET)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_JUG_PET)
+            {
+                return false;
+            }
+        }
+        if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_CHARMPET)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_MOB)
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_AVATAR)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_AVATAR)
+            {
+                return false;
+            }
+        }
+        if (PAbility->getAddType() & ADDTYPE_AUTOMATON)
+        {
+            if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PETTYPE_AUTOMATON)
             {
                 return false;
             }

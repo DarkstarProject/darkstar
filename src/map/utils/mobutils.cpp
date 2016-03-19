@@ -561,6 +561,28 @@ void CalculateStats(CMobEntity * PMob)
     {
         PMob->ResetGilPurse();
     }
+
+    // Check for possible miss-setups
+    if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 && PMob->getMobMod(MOBMOD_SPECIAL_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with special skill but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
+
+    if (PMob->SpellContainer->HasSpells() && PMob->getMobMod(MOBMOD_MAGIC_COOL) == 0)
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d) with magic but no cool down set!\n", PMob->GetName(), PMob->id);
+    }
+
+    if (!(PMob->m_Detects & DETECT_SIGHT) && !(PMob->m_Detects & DETECT_HEARING) &&
+            !(PMob->m_Detects & DETECT_SCENT))
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
+    }
+
+    if (PMob->m_EcoSystem == SYSTEM_BEASTMEN && !(PMob->m_Detects & DETECT_SCENT))
+    {
+        ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) beastman does not detect by scent!\n", PMob->GetName(), PMob->id, PMob->m_Family);
+    }
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -596,16 +618,24 @@ void SetupJob(CMobEntity* PMob)
             if(PMob->m_Family >= 126 && PMob->m_Family <= 130 || PMob->m_Family == 328)
             {
                 // only used while at range
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 // catapult
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
+            }
+            else if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
             else
             {
                 // all other rangers
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 8);
+                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
             }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
@@ -613,10 +643,19 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_NIN:
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
+
+            if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+            }
+            else
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+            }
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;
@@ -629,11 +668,10 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
             break;
         case JOB_BLM:
-            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 16);
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 12);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-
 
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;
@@ -751,15 +789,7 @@ void SetupDynamisMob(CMobEntity* PMob)
     PMob->m_StatPoppedMobs = false;
 
     // dynamis mobs have true sight
-    if(PMob->m_Aggro & AGGRO_DETECT_SIGHT)
-    {
-        PMob->m_Aggro |= AGGRO_DETECT_TRUESIGHT;
-    }
-
-    if(PMob->m_Aggro & AGGRO_DETECT_HEARING)
-    {
-        PMob->m_Aggro |= AGGRO_DETECT_TRUEHEARING;
-    }
+    PMob->m_TrueDetection = true;
 
     // Hydra's and beastmen can 2 hour
     if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
@@ -1260,7 +1290,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
 		mob_pools.familyid, name_prefix, flags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id \
+		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1367,6 +1397,8 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->namevis = Sql_GetUIntData(SqlHandle, 56);
 			PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 57);
 			PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 58);
+			PMob->m_TrueDetection = Sql_GetUIntData(SqlHandle, 59);
+			PMob->m_Detects = Sql_GetUIntData(SqlHandle, 60);
 
 			// must be here first to define mobmods
 			mobutils::InitializeMob(PMob, zoneutils::GetZone(zoneID));
@@ -1374,6 +1406,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			zoneutils::GetZone(zoneID)->InsertPET(PMob);
 
 			luautils::OnMobInitialize(PMob);
+            luautils::ApplyMixins(PMob);
 
 			PMob->saveModifiers();
 			PMob->saveMobModifiers();

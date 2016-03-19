@@ -47,7 +47,7 @@ void CPlayerController::Tick(time_point)
 void CPlayerController::Cast(uint16 targid, uint16 spellid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid))
+    if (!PChar->PRecastContainer->HasRecast(RECAST_MAGIC, spellid, 0))
     {
         CController::Cast(targid, spellid);
     }
@@ -152,7 +152,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_WS));
             return;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_ANY_WS));
             return;

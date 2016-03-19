@@ -190,6 +190,7 @@ public:
     bazaar_t				bazaar;							// все данные, необходимые для таботы bazaar
     uint16					m_EquipFlag;					// текущие события, обрабатываемые экипировкой (потом упакую в структуру, вместе с equip[])
     uint16					m_EquipBlock;					// заблокированные ячейки экипировки
+    uint16                  m_StatsDebilitation;            // Debilitation arrows
     uint8					equip[18];						//      SlotID where equipment is
     uint8					equipLoc[18];					// ContainerID where equipment is
     uint16                  styleItems[16];                 // Item IDs for items that are style locked.
@@ -306,6 +307,7 @@ public:
 
     bool              m_EquipSwap;					// true if equipment was recently changed
     bool              m_EffectsChanged;
+    time_point        m_LastSynthTime;
 
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;

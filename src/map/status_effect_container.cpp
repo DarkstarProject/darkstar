@@ -809,45 +809,49 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
 
     uint8 numOfEffects = 0;
     CStatusEffect* oldestRoll = nullptr;
-    for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
+    for (auto&& PEffect : m_StatusEffectList)
     {
-        if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
-            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
+        if ((PEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            PEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            PEffect->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
-            if (m_StatusEffectList.at(i)->GetStatusID() == PStatusEffect->GetStatusID() &&
-                m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID() &&
-                m_StatusEffectList.at(i)->GetSubPower() < PStatusEffect->GetSubPower()) {//same type, double up
+            if (PEffect->GetStatusID() == PStatusEffect->GetStatusID() &&
+                PEffect->GetSubID() == PStatusEffect->GetSubID() &&
+                PEffect->GetSubPower() < PStatusEffect->GetSubPower()) {//same type, double up
                 if (PStatusEffect->GetSubPower() < 12)
                 {
-                    PStatusEffect->SetDuration(m_StatusEffectList.at(i)->GetDuration());
+                    PStatusEffect->SetDuration(PEffect->GetDuration());
                     DelStatusEffectSilent(PStatusEffect->GetStatusID());
                     AddStatusEffect(PStatusEffect, true);
                     return true;
                 }
-                else {
-                    if (!CheckForElevenRoll())
+                else
+                {
+                    if (PEffect->GetSubID() == m_POwner->id)
                     {
-                        uint16 duration = 300;
-                        duration -= bustDuration;
-                        CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
-                            0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
-                        AddStatusEffect(bustEffect, true);
+                        if (!CheckForElevenRoll())
+                        {
+                            uint16 duration = 300;
+                            duration -= bustDuration;
+                            CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
+                                0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
+                            AddStatusEffect(bustEffect, true);
+                        }
                     }
                     DelStatusEffectSilent(PStatusEffect->GetStatusID());
 
                     return true;
                 }
             }
-            if (m_StatusEffectList.at(i)->GetSubID() == PStatusEffect->GetSubID() ||
-                m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST) {//YOUR cor effect
+            if (PEffect->GetSubID() == PStatusEffect->GetSubID() ||
+                PEffect->GetStatusID() == EFFECT_BUST) {//YOUR cor effect
                 numOfEffects++;
                 if (oldestRoll == nullptr) {
-                    oldestRoll = m_StatusEffectList.at(i);
+                    oldestRoll = PEffect;
                 }
-                else if (std::chrono::milliseconds(m_StatusEffectList.at(i)->GetDuration()) + m_StatusEffectList.at(i)->GetStartTime() <
+                else if (std::chrono::milliseconds(PEffect->GetDuration()) + PEffect->GetStartTime() <
                     std::chrono::milliseconds(oldestRoll->GetDuration()) + oldestRoll->GetStartTime()) {
-                    oldestRoll = m_StatusEffectList.at(i);
+                    oldestRoll = PEffect;
                 }
             }
         }

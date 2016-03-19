@@ -3,6 +3,8 @@
 --  MOB: Tonberry Pursuer
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

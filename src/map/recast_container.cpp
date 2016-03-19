@@ -96,7 +96,7 @@ void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 c
 
     if (type == RECAST_ABILITY)
     {
-        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %u, %u);", m_PChar->id, recast->ID, recast->TimeStamp, recast->RecastTime);
+        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %llu, %u);", m_PChar->id, recast->ID, recast->TimeStamp, recast->RecastTime);
     }
 }
 
@@ -228,7 +228,7 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
+bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -244,8 +244,7 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id)
             {
                 int charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
-                //TODO: multiple charges (BST Ready)
-                if (charges < 1)
+                if (charges < recast)
                 {
                     return true;
                 }

@@ -14,16 +14,15 @@ function onMobDeath(mob,killer,ally)
 
     checkGoVregime(ally,mob,612,1);
 
-    local mob = mob:getID();
-    if (Shii_PH[mob] ~= nil) then
-
+    local mobID = mob:getID();
+    if (Shii_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Shii");
         if (ToD <= os.time(t) and GetMobAction(Shii) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Shii);
-                GetMobByID(Shii):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Shii", mob);
-                DeterMob(mob, true);
+                GetMobByID(Shii):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Shii", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

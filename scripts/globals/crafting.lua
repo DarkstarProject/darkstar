@@ -156,6 +156,7 @@ end;
 
 function tradeTestItem(player,npc,trade,craftID)
 
+    local guildID = craftID - 48;
     local skillLvL = player:getSkillLevel(craftID)
     local myTI = getTestItem(player,npc,craftID);
     local newRank = 0;
@@ -165,7 +166,9 @@ function tradeTestItem(player,npc,trade,craftID)
         trade:getItemCount() == 1) then
         newRank = player:getSkillRank(craftID) + 1;
         player:tradeComplete();
-        player:setVar('[GUILD]daily_points',-1);
+        if player:getVar('[GUILD]currentGuild') == guildID + 1 then
+            player:setVar('[GUILD]daily_points',-1);
+        end
     end
 
     return newRank;

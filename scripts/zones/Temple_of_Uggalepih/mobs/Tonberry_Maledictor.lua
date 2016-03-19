@@ -3,6 +3,8 @@
 --  MOB: Tonberry Maledictor
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------

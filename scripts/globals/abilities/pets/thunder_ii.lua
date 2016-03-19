@@ -17,7 +17,7 @@ function onPetAbility(target, pet, skill)
     local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
     local tp = skill:getTP();
 
-    local damage = math.floor(45 + 0.25*(tp));
+    local damage = math.floor(45 + 0.025*(tp));
     damage = damage + (dINT * 1.5);
     damage = MobMagicalMove(pet,target,skill,damage,ELE_LIGHTNING,1,TP_NO_EFFECT,0);
     damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_LIGHTNING);

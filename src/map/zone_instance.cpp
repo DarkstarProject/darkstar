@@ -37,7 +37,6 @@ This file is part of DarkStar-server source code.
 CZoneInstance::CZoneInstance(ZONEID ZoneID, REGIONTYPE RegionID, CONTINENTTYPE ContinentID)
     : CZone(ZoneID, RegionID, ContinentID)
 {
-    createZoneTimer();
 }
 
 CZoneInstance::~CZoneInstance()
@@ -183,6 +182,10 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
 
     if (PChar->PInstance)
     {
+        if (!ZoneTimer)
+        {
+            createZoneTimer();
+        }
         PChar->targid = PChar->PInstance->GetNewTargID();
 
         if (PChar->targid >= 0x700)
@@ -208,9 +211,8 @@ void CZoneInstance::IncreaseZoneCounter(CCharEntity* PChar)
             );
         }*/
 
-        if (!PChar->PInstance->CharRegistered(PChar))
+        if (PChar->PInstance->CheckFirstEntry(PChar->id))
         {
-            PChar->PInstance->RegisterChar(PChar);
             PChar->loc.p = PChar->PInstance->GetEntryLoc();
             CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("afterInstanceRegister", server_clock::now() + 500ms, PChar, CTaskMgr::TASK_ONCE, luautils::AfterInstanceRegister));
         }
@@ -307,8 +309,6 @@ void CZoneInstance::WideScan(CCharEntity* PChar, uint16 radius)
         PChar->PInstance->WideScan(PChar, radius);
     }
 }
-
-
 
 void CZoneInstance::ZoneServer(time_point tick)
 {

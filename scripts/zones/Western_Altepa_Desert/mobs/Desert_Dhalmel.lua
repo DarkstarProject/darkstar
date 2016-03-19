@@ -15,15 +15,15 @@ function onMobDeath(mob,killer,ally)
 
     checkRegime(ally,mob,135,1);
 
-    mob = mob:getID();
-    if (Celphie_PH[mob] ~= nil) then
-        ToD = GetServerVariable("[POP]Celphie");
+    local mobID = mob:getID();
+    if (Celphie_PH[mobID] ~= nil) then
+        local ToD = GetServerVariable("[POP]Celphie");
         if (ToD <= os.time(t) and GetMobAction(Celphie) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Celphie);
-                GetMobByID(Celphie):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Celphie", mob);
-                DeterMob(mob, true);
+                GetMobByID(Celphie):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Celphie", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

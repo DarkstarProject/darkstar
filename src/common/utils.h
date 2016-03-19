@@ -32,14 +32,14 @@
 
 int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 
-float distance(position_t A, position_t B);						// расстояние между двумя точками
+float distance(const position_t& A, const position_t& B);						// расстояние между двумя точками
 int32 intpow32(int32 base, int32 exponent);						// Exponential power of integers
 void getMSB(uint32* result,uint32 value);						// fast Most Significant Byte search under GCC or MSVC. Fallback included.
 float rotationToRadian(uint8 rotation);
 uint8 radianToRotation(float radian);
-uint8 getangle(position_t A, position_t B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
-bool  isFaceing(position_t A, position_t B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
-position_t nearPosition(position_t A, float offset, float radian); // Returns a position near the given position
+uint8 getangle(const position_t& A, const position_t& B);						// А - основная сущность, B - цель сущности (проекция вектора на OX)
+bool  isFaceing(const position_t& A, const position_t& B, uint8 coneAngle);	// А - основная сущность, B - цель сущности
+position_t nearPosition(const position_t& A, float offset, float radian); // Returns a position near the given position
 
 int32 hasBit(uint16 value, uint8* BitArray, uint32 size);		// проверяем наличие бита в массиве
 int32 addBit(uint16 value, uint8* BitArray, uint32 size);		// добавляем бит в массив

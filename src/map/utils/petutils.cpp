@@ -45,7 +45,7 @@ This file is part of DarkStar-server source code.
 #include "../items/item_weapon.h"
 
 #include "../ai/ai_container.h"
-#include "../ai/controllers/ai_controller.h"
+#include "../ai/controllers/mob_controller.h"
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/states/ability_state.h"
 
@@ -753,6 +753,7 @@ namespace petutils
             PPet->Spawn();
             if (PMaster->objtype == TYPE_PC)
             {
+                charutils::BuildingCharAbilityTable((CCharEntity*)PMaster);
                 charutils::BuildingCharPetAbilityTable((CCharEntity*)PMaster, PPet, PetID);
                 ((CCharEntity*)PMaster)->pushPacket(new CCharUpdatePacket((CCharEntity*)PMaster));
                 ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
@@ -884,7 +885,7 @@ namespace petutils
             PMob->charmTime = time_point::min();
             PMob->PMaster = nullptr;
 
-            PMob->PAI->SetController(std::make_unique<CAIController>(PMob));
+            PMob->PAI->SetController(std::make_unique<CMobController>(PMob));
 
             if (!PMob->isDead())
                 PMob->PAI->Disengage();
@@ -927,17 +928,6 @@ namespace petutils
         CBattleEntity* PPet = PMaster->PPet;
 
         petutils::DetachPet(PMaster);
-    }
-
-    void MakePetStay(CBattleEntity* PMaster)
-    {
-        CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
-
-        if (PPet != nullptr && !PPet->StatusEffectContainer->HasPreventActionEffect())
-        {
-            //#TODO: just disable pathfind?
-            //PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-        }
     }
 
     int16 PerpetuationCost(uint32 id, uint8 level)

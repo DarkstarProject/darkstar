@@ -75,7 +75,6 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 //{
                 //	WBUFB(data,(0x22)) = 0x20;
                 //}
-                WBUFB(data, 0x22) = 0x02;
 
                 if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
                 {
