@@ -3710,7 +3710,7 @@ INSERT INTO `item_basic` VALUES (4016,0,'tulfaire_feather','tulfaire_feather',12
 INSERT INTO `item_basic` VALUES (4017,0,'mandragora_sprout','mand_sprout',12,0,44,0,79);
 INSERT INTO `item_basic` VALUES (4018,0,'guatambu_log','guatambu_log',1,0,43,0,79);
 INSERT INTO `item_basic` VALUES (4019,0,'piece_of_guatambu_lumber','gua_lumber',12,0,43,0,79);
-INSERT INTO `item_basic` VALUES (4020,0,'chunk_of_titanium_ore','titanium_ore',1,0,38,0,79);
+INSERT INTO `item_basic` VALUES (4020,0,'chunk_of_titanium_ore','titanium_ore',12,0,38,0,79);
 INSERT INTO `item_basic` VALUES (4021,0,'titanium_ingot','titanium_ingot',12,0,38,0,79);
 INSERT INTO `item_basic` VALUES (4022,0,'titanium_sheet','titanium_sheet',12,0,38,0,79);
 INSERT INTO `item_basic` VALUES (4023,0,'chunk_of_snowsteel_ore','snowsteel_ore',12,0,38,0,79);
