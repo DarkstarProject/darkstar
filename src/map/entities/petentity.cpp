@@ -211,3 +211,12 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
         }
     }
 }
+
+bool CPetEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+{
+    if (targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance)
+    {
+        return false;
+    }
+    return CMobEntity::ValidTarget(PInitiator, targetFlags);
+}
