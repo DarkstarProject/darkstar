@@ -1130,10 +1130,10 @@ INSERT INTO `mob_skills` VALUES (1319,1063,'Epoxy_Spread',1,10,2000,1500,4,0,0,0
 -- INSERT INTO `mob_skills` VALUES (1323,1067,'WZ_BEES_04',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1324,1068,'Debilitating_Drone',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1325,1069,'WZ_TRSAP_03',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1326,1070,'Final_Retribution',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1326,988,'Final_Retribution',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1327,1071,'Eagle_Eye_Shot',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1328,1072,'Ink_Jet',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1329,1073,'Gala_Macabre',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1329,990,'Gala_Macabre',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1330,1074,'Hoof_Volley',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1331,1075,'Counterstance',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1332,1076,'Extremely_Bad_Breath',0,7.0,2000,1500,4,0,0,0);
