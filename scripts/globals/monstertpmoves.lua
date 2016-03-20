@@ -793,10 +793,10 @@ function fTP(tp,ftp1,ftp2,ftp3)
         tp=1000;
     end
     if (tp>=1000 and tp<1500) then
-        return ftp1 + ( ((ftp2-ftp1)/50) * (tp-1000));
-    elseif (tp>=150 and tp<=300) then
+        return ftp1 + ( ((ftp2-ftp1)/500) * (tp-1000));
+    elseif (tp>=1500 and tp<=3000) then
         --generate a straight line between ftp2 and ftp3 and find point @ tp
-        return ftp2 + ( ((ftp3-ftp2)/150) * (tp-1500));
+        return ftp2 + ( ((ftp3-ftp2)/1500) * (tp-1500));
     end
     return 1; --no ftp mod
 end;
