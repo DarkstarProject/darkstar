@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -64,8 +63,8 @@ end;
 -----------------------------------    
 
 function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;            
 
 -----------------------------------            
@@ -73,8 +72,8 @@ end;
 -----------------------------------            
 
 function onEventFinish(player,csid,option)            
-    --printf("CSID: %u",csid);        
-    --printf("RESULT: %u",option);        
+    -- printf("CSID: %u",csid);        
+    -- printf("RESULT: %u",option);        
     if (csid == 0x0064) then        
         if (player:getFreeSlotsCount() == 0) then    
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica

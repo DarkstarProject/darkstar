@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/globals/pets");
 require("scripts/globals/keyitems");
@@ -44,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,15 +52,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 67) then
         if (player:getFreeSlotsCount() < 1) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12519);
         else
             player:addItem(12519);
             player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
-            player:addFame(SANDORIA,AF3_FAME*SAN_FAME);
+            player:addFame(SANDORIA,AF3_FAME);
             player:addTitle(PARAGON_OF_DRAGOON_EXCELLENCE);
             player:delKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS);
             player:setVar("KnightStalker_Option1",1); -- Optional post-quest cutscenes.

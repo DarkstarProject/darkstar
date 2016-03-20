@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Bastok_Markets/TextIDs");
@@ -67,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00d9) then
         player:addQuest(BASTOK, A_FLASH_IN_THE_PAN);        
@@ -78,9 +77,9 @@ function onEventFinish(player,csid,option)
         
         if (FlashInThePan == QUEST_ACCEPTED) then
             player:completeQuest(BASTOK, A_FLASH_IN_THE_PAN);
-            player:addFame(BASTOK,BAS_FAME*75);
+            player:addFame(BASTOK,75);
         else
-            player:addFame(BASTOK,BAS_FAME*8);
+            player:addFame(BASTOK,8);
         end
         
         player:tradeComplete();

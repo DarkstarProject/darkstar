@@ -7,14 +7,13 @@
 -- @pos 13 -5 -157
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -154,8 +153,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -163,8 +162,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x036c) then
         player:setVar("COP_Ulmia_s_Path",4);
     elseif ((csid == 0x0139 and option == 0) or (csid == 0x013a and option == 0)) then
@@ -177,7 +176,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*440);
             player:tradeComplete();
             player:addTitle(FAST_FOOD_DELIVERER);
-            player:addFame(WINDURST,WIN_FAME*100);
+            player:addFame(WINDURST,100);
             player:needToZone(true);
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
@@ -214,7 +213,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x016a) then
         player:completeQuest(WINDURST,BLUE_RIBBON_BLUES);
         player:setVar("BlueRibbonBluesProg",0);
-        player:addFame(WINDURST,WIN_FAME*140);
+        player:addFame(WINDURST,140);
         player:addTitle(GHOSTIE_BUSTER);
         player:needToZone(true);
     elseif (csid == 0x0396) then    --diablos start

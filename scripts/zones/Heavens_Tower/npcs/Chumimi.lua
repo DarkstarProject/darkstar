@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -79,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0104) then
         -- option 3: Koru-Moru -- option 2: Shantotto -- option 1: Yoran-Oran
@@ -114,7 +113,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
             player:setVar("theThreeMagiSupport",0);
-            player:addFame(WINDURST,WIN_FAME*AF1_FAME);
+            player:addFame(WINDURST,AF1_FAME);
             player:completeQuest(WINDURST,THE_THREE_MAGI);
         end
     elseif (csid == 0x010E) then
@@ -130,7 +129,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(FOE_FINDER_MK_I);
             player:addItem(14092);
             player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
-            player:addFame(WINDURST,WIN_FAME*AF2_FAME);
+            player:addFame(WINDURST,AF2_FAME);
             player:completeQuest(WINDURST,RECOLLECTIONS);
         end
     elseif (csid == 0x0114) then

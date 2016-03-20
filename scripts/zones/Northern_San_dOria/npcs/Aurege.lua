@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Aurege
 --  Type: Quest Giver NPC
 --  Starts Quest: Exit the Gambler
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_KING_RANPERRES_TOMB);
            player:addKeyItem(MAP_OF_KING_RANPERRES_TOMB);
        player:addTitle(DAYBREAK_GAMBLER);
-           player:addFame(SANDORIA,SAN_FAME*30);
+           player:addFame(SANDORIA,30);
     end
 end;
 

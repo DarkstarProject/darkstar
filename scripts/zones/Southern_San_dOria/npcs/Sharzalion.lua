@@ -8,7 +8,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -66,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0046 or csid == 0x0047) then
         if (csid == 0x0046 and option == 0) then
@@ -92,7 +91,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(ORCISH_DRIED_FOOD);
             player:addItem(16829);
             player:messageSpecial(ITEM_OBTAINED, 16829); -- Fencing Degen
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
         end
     elseif (csid == 0x0040) then

@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -54,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006e) then
         player:addQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
@@ -64,7 +63,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
             player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
         end
-        player:addFame(BASTOK,BAS_FAME*60);
+        player:addFame(BASTOK,60);
         player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
     end
     

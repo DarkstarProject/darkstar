@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -71,7 +70,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
             player:delKeyItem(PAINTING_OF_A_WINDMILL);
             player:addTitle(TREASURE_SCAVENGER);
-            player:addFame(BASTOK,BAS_FAME*50);
+            player:addFame(BASTOK,50);
             player:addItem(12601);
             player:messageSpecial(ITEM_OBTAINED,12601); -- Linen Robe
         else

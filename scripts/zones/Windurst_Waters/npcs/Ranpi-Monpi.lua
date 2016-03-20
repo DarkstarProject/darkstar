@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Ranpi-Monpi
---    Starts and Finishes Quest: A Crisis in the Making
---  Involved in quest: In a Stew, For Want of a Pot, The Dawn of Delectability
+-- Area: Windurst Waters
+--  NPC: Ranpi-Monpi
+-- Starts and Finishes Quest: A Crisis in the Making
+-- Involved in quest: In a Stew, For Want of a Pot, The Dawn of Delectability
 --  @zone = 238
 --  @pos = -116 -3 52  (outside the shop he is in)
 -----------------------------------
@@ -87,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -96,8 +96,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- A Crisis in the Making
     if (csid == 0x0102 and option == 1) then  -- A Crisis in the Making + ITEM: Quest Offer - ACCEPTED
@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);        
         player:setVar("QuestCrisisMaking_var",0);
         player:delKeyItem(OFF_OFFERING);    
-        player:addFame(WINDURST,WIN_FAME*75);
+        player:addFame(WINDURST,75);
         player:completeQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
         player:needToZone(true);        
     elseif (csid == 0x010c) then -- A Crisis in the Making: Repeatable Quest Finish
@@ -124,7 +124,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);        
         player:setVar("QuestCrisisMaking_var",0);
         player:delKeyItem(OFF_OFFERING);
-        player:addFame(WINDURST,WIN_FAME*8);
+        player:addFame(WINDURST,8);
         player:needToZone(true);
     
     -- In a Stew

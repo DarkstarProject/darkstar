@@ -5,9 +5,7 @@
 -- @pos -56 0.1 -138 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -64,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if ((csid == 0x00BD or csid == 0x00BC) and option == 0) then 
         player:addQuest(JEUNO,COOK_S_PRIDE);
     elseif (csid == 0x00BD and option == 1) then 
@@ -90,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(13446);
             player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
-            player:addFame(JEUNO, JEUNO_FAME*30);
+            player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,COOK_S_PRIDE);
         end
     elseif (csid == 10053) then

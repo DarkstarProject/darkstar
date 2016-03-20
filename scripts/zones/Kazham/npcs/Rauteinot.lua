@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -53,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0089 and option == 1) then
         player:addQuest(OUTLANDS,MISSIONARY_MAN);
         player:setVar("MissionaryManVar",1);
@@ -80,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(SUBLIME_STATUE_OF_THE_GODDESS);
             player:addItem(4728);
             player:messageSpecial(ITEM_OBTAINED,4728);
-            player:addFame(WINDURST,WIN_FAME*30);
+            player:addFame(WINDURST,30);
             player:completeQuest(OUTLANDS,MISSIONARY_MAN);
         end
     end

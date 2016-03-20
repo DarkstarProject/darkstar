@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Port San d'Oria
+-- Area: Port San d'Oria
 --   NPC: Gallijaux
 --  Starts The Rivalry
 -- @zone: 232
@@ -8,7 +8,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -28,13 +27,13 @@ function onTrade(player,npc,trade)
     if (MoatCarp + ForestCarp > 0 and MoatCarp + ForestCarp == count) then
         if (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED and fishCountVar >= 10000) then -- ultimate reward
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
             player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
             player:startEvent(0x012f);
         elseif (player:getQuestStatus(SANDORIA,THE_RIVALRY) >= QUEST_ACCEPTED) then -- regular turn-ins. Still allowed after completion of the quest.
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
             totalFish = MoatCarp + ForestCarp + fishCountVar
             player:setVar("theCompetitionFishCountVar",totalFish);

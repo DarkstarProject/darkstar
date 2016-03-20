@@ -7,7 +7,6 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -92,8 +91,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -101,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0268) then
         if (option == 0) then
@@ -119,7 +118,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(KNIGHT_IN_TRAINING);
             player:addItem(16565);
             player:messageSpecial(ITEM_OBTAINED, 16565); -- Spatha
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,A_SQUIRE_S_TEST);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565); -- Spatha
@@ -132,7 +131,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(STALACTITE_DEW);
         player:addKeyItem(SQUIRE_CERTIFICATE);
         player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
     elseif (csid == 0x0273) then
         if (option == 0) then
@@ -158,7 +157,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 12306); -- Kite Shield
             player:unlockJob(7); --Paladin
             player:messageSpecial(UNLOCK_PALADIN);
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);
         else
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306); -- Kite Shield

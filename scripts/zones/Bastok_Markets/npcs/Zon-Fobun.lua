@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --   NPC: Zon-Fobun
 --  Type: Quest Giver
 -- @zone: 235
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(CURSEPAPER);
             player:setVar("cCollectSilence",0);
             player:setVar("cCollectCurse",0);
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_CURSE_COLLECTOR);
             player:messageSpecial(ITEM_OBTAINED,16387); -- Poison Cesti
             player:addItem(16387,1);

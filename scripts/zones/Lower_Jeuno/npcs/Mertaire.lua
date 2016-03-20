@@ -5,9 +5,7 @@
 -- @pos -17 0 -61 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -66,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0066 and option == 0) then
         player:setVar("TheOldMonument_Event",1);
@@ -85,7 +83,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
         player:tradeComplete();
         player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR);        
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
     elseif (csid == 0x008a and option == 1 or csid == 0x0089 and option == 1) then
         player:addQuest(JEUNO,PAINFUL_MEMORY);
         player:setVar("PainfulMemoryCS",0);

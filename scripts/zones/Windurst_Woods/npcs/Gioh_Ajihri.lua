@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC: Gioh Ajihri
---    Starts & Finishes Repeatable Quest: Twinstone Bonding
+-- Area: Windurst Woods
+--  NPC: Gioh Ajihri
+-- Starts & Finishes Repeatable Quest: Twinstone Bonding
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01e7) then
         player:addQuest(WINDURST,TWINSTONE_BONDING);
@@ -84,12 +84,12 @@ function onEventFinish(player,csid,option)
         
         if (TwinstoneBonding == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,TWINSTONE_BONDING);
-            player:addFame(WINDURST,WIN_FAME*80);
+            player:addFame(WINDURST,80);
             player:addItem(17154);
             player:messageSpecial(ITEM_OBTAINED,17154);
             player:addTitle(BOND_FIXER);
         else
-            player:addFame(WINDURST,WIN_FAME*10);
+            player:addFame(WINDURST,10);
             player:addGil(GIL_RATE*900);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
         end

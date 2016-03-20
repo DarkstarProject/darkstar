@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -142,8 +141,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -154,8 +153,8 @@ function onEventFinish(player,csid,option)
 -- local currentday = tonumber(os.date("%j"));  
 
 
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0381) then
             player:setVar("COP_tenzen_story",1);   
     elseif (csid == 0x037C) then
@@ -232,7 +231,7 @@ function onEventFinish(player,csid,option)
                 player:setVar("CidsSecret_Event",0);
                 player:addItem(13570);
                 player:messageSpecial(ITEM_OBTAINED,13570); -- Ram Mantle
-                player:addFame(BASTOK,BAS_FAME*30);
+                player:addFame(BASTOK,30);
                 player:completeQuest(BASTOK,CID_S_SECRET);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570);

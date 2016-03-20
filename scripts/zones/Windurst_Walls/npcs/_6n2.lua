@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -89,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:setVar("KnowOnesOnions",2);
     elseif (csid == 0x0121) then
         player:completeQuest(WINDURST,ONION_RINGS);
-        player:addFame(WINDURST,WIN_FAME*100);
+        player:addFame(WINDURST,100);
         player:addTitle(STAR_ONION_BRIGADIER);
         player:delKeyItem(OLD_RING);
         player:setVar("OnionRingsTime",0);

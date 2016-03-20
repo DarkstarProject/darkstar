@@ -49,12 +49,6 @@ SHOP_PRICE = 1.000; -- Multiplies prices in NPC shops.
 GIL_RATE   = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
 EXP_RATE   = 1.000; -- Multiplies exp earned from fov.
 TABS_RATE  = 1.000; -- Multiplies tabs earned from fov.
-SAN_FAME   = 1.000; -- Multiplies fame earned from San d'Oria quests.
-BAS_FAME   = 1.000; -- Multiplies fame earned from Bastok quests.
-WIN_FAME   = 1.000; -- Multiplies fame earned from Windurst quests.
-NORG_FAME  = 1.000; -- Multiplies fame earned from Norg and Tenshodo quests.
-JEUNO_FAME = 1.000; -- Multiplies fame earned from Jeuno quests.
-
 CURE_POWER  = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
 SPELL_POWER = 1.000; -- Multiplies damage dealt by Elemental and Divine Magic.
 BLUE_POWER  = 1.000; -- Multiplies damage dealt by most Blue Magic.

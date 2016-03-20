@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --   NPC: Varun
 --  Type: Standard NPC
 -- @zone: 241
@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:setVar("rockracketeer_sold",5);
     elseif (csid == 0x0066) then
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:addGil(GIL_RATE*2100);
         player:completeQuest(WINDURST,ROCK_RACKETTER);
         player:setVar("rockracketeer_sold",0); -- finish cleanup of vars

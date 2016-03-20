@@ -107,8 +107,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -116,8 +116,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x015f) then
         player:addQuest(WINDURST,THE_FANGED_ONE);
@@ -132,7 +132,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13117);
             player:unlockJob(11);
             player:messageSpecial(PERIH_VASHAI_DIALOG);
-            player:addFame(WINDURST, WIN_FAME* 30);
+            player:addFame(WINDURST,  30);
             player:completeQuest(WINDURST,THE_FANGED_ONE);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13117);

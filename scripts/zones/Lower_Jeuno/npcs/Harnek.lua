@@ -6,9 +6,7 @@
 -- @pos 44 0 -19
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -45,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x2725) then
         player:setVar("theTenshodoShowdownCS",2);
@@ -70,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(16764);
             player:messageSpecial(ITEM_OBTAINED, 16764); -- Marauder's Knife
             player:setVar("theTenshodoShowdownCS",0);
-            player:addFame(WINDURST,WIN_FAME*30);
+            player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
         end
     end

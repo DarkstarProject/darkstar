@@ -1,14 +1,13 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC: Angelica
---    Starts and Finished Quest: A Pose By Any Other Name
+-- Area: Windurst Waters
+--  NPC: Angelica
+-- Starts and Finished Quest: A Pose By Any Other Name
 --    Working 100%
 --  @zone = 238
 --  @pos = -70 -10 -6
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -81,8 +80,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x005c) then -------------------------- QUEST START
         player:addQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
         player:setVar("QuestAPoseByOtherName_time",os.time());
@@ -105,7 +104,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,206);
             player:addKeyItem(ANGELICAS_AUTOGRAPH);
             player:messageSpecial(KEYITEM_OBTAINED,ANGELICAS_AUTOGRAPH);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
             player:setVar("QuestAPoseByOtherName_time",0);
             player:setVar("QuestAPoseByOtherName_equip",0);
             player:setVar("QuestAPoseByOtherName_prog",0);
