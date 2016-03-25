@@ -3553,6 +3553,8 @@ INSERT INTO `item_weapon` VALUES (20482,'glanzfaust',1,0,4,3,576,118,0);
 INSERT INTO `item_weapon` VALUES (20483,'glanzfaust',1,0,4,3,576,118,0);
 INSERT INTO `item_weapon` VALUES (20486,'verethragna',1,0,4,1,531,99,0);
 INSERT INTO `item_weapon` VALUES (20487,'verethragna',1,0,4,1,531,99,0);
+INSERT INTO `item_weapon` VALUES (20532,'worm_feelers',1,0,0,0,0,4,1,576,4,0);
+INSERT INTO `item_weapon` VALUES (20533,'worm_feelers_+1',1,0,0,0,0,4,1,571,5,0);
 INSERT INTO `item_weapon` VALUES (20546,'ninza_+1',1,0,4,1,531,79,0);
 INSERT INTO `item_weapon` VALUES (20547,'forefront_cesti',1,0,4,1,60,59,0);
 INSERT INTO `item_weapon` VALUES (20548,'oatixur',1,0,4,1,576,129,0);
