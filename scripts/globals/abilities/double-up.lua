@@ -38,7 +38,6 @@ function onUseAbility(caster,target,ability,action)
         if (snake_eye) then
             if (prev_roll:getPower() > 5 and math.random(100) < snake_eye:getPower()) then
                 roll = 11
-                caster:resetRecast(RECAST_ABILITY, 193)
             else
                 roll = roll + 1
             end
@@ -49,6 +48,9 @@ function onUseAbility(caster,target,ability,action)
                 roll = 12
                 caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE)
             end
+        end
+        if (roll == 11) then
+            caster:resetRecast(RECAST_ABILITY, 193)
         end
         caster:setLocalVar("corsairRollTotal", roll)
         action:speceffect(caster:getID(),roll-prev_roll:getSubPower())
