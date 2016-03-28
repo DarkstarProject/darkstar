@@ -48,6 +48,11 @@ function onUseAbility(player,target,ability)
         effects[counter] = bio;
         counter = counter + 1;
     end
+    local blind = target:getStatusEffect(EFFECT_BLIND);
+    if (blind ~= nil) then
+        effects[counter] = blind;
+        counter = counter + 1;
+    end
     local threnody = target:getStatusEffect(EFFECT_THRENODY);
     if (threnody ~= nil and threnody:getSubPower() == MOD_LIGHTRES) then
         effects[counter] = threnody;
