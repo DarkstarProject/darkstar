@@ -26,7 +26,7 @@ Stinging_Sophie_PH={
 }; 
 
 -- Maighdean Uaine
-Maighdean_Uaine=17211714;
+Maighdean_Uaine=17211702;
 Maighdean_Uaine_PH={ 
   [17211698] = '1', -- 121.242, -0.500, 654.504
   [17211701] = '1', -- 176.458, -0.347, 722.666
