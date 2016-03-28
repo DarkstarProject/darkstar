@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
+﻿-- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
@@ -646,16 +646,16 @@ INSERT INTO `item_basic` VALUES (729,0,'bloodwood_log','bloodwood_log',12,0,43,0
 INSERT INTO `item_basic` VALUES (730,0,'piece_of_bloodwood_lumber','bldwd_lumber',12,0,43,0,1387);
 INSERT INTO `item_basic` VALUES (731,0,'aquilaria_log','aquilaria_log',12,0,43,0,0);
 INSERT INTO `item_basic` VALUES (732,0,'kapor_log','kapor_log',12,0,43,0,0);
-INSERT INTO `item_basic` VALUES (733,0,'piece_of_kapor_lumber','kapor_lumber',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (734,0,'chunk_of_thokcha_ore','thokcha_ore',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (735,0,'thokcha_ingot','thokcha_ingot',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (733,0,'piece_of_kapor_lumber','kapor_lumber',12,0,43,1,0);
+INSERT INTO `item_basic` VALUES (734,0,'chunk_of_thokcha_ore','thokcha_ore',12,0,99,1,0);
+INSERT INTO `item_basic` VALUES (735,0,'thokcha_ingot','thokcha_ingot',12,0,38,0,0);
 INSERT INTO `item_basic` VALUES (736,0,'chunk_of_silver_ore','silver_ore',12,0,39,0,67);
 INSERT INTO `item_basic` VALUES (737,0,'chunk_of_gold_ore','gold_ore',12,0,39,0,407);
 INSERT INTO `item_basic` VALUES (738,0,'chunk_of_platinum_ore','platinum_ore',12,0,39,0,795);
 INSERT INTO `item_basic` VALUES (739,0,'chunk_of_orichalcum_ore','orichalcum_ore',12,0,39,0,850);
 INSERT INTO `item_basic` VALUES (740,0,'chunk_of_phrygian_ore','phrygian_ore',12,0,39,0,0);
-INSERT INTO `item_basic` VALUES (741,0,'chunk_of_palladian_brass_ore','p._brass_ore',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (742,0,'palladian_brass_ingot','p._brass_ingot',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (741,0,'chunk_of_palladian_brass_ore','p._brass_ore',12,0,39,1,0);
+INSERT INTO `item_basic` VALUES (742,0,'palladian_brass_ingot','p._brass_ingot',12,0,39,1,0);
 INSERT INTO `item_basic` VALUES (743,0,'ingot_of_phrygian_gold','ph_gold_ingot',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (744,0,'silver_ingot','silver_ingot',12,0,39,0,342);
 INSERT INTO `item_basic` VALUES (745,0,'gold_ingot','gold_ingot',12,0,39,0,2100);
@@ -668,7 +668,7 @@ INSERT INTO `item_basic` VALUES (751,0,'platinum_beastcoin','plt_beastcoin',12,0
 INSERT INTO `item_basic` VALUES (752,0,'gold_sheet','gold_sheet',12,0,39,0,2065);
 INSERT INTO `item_basic` VALUES (753,0,'sheet_of_phrygian_gold','ph_gold_sheet',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (754,0,'platinum_sheet','platinum_sheet',12,0,39,0,1052);
-INSERT INTO `item_basic` VALUES (755,0,'palladian_brass_sheet','p._brass_sheet',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (755,0,'palladian_brass_sheet','p._brass_sheet',12,0,39,1,0);
 INSERT INTO `item_basic` VALUES (756,0,'chunk_of_durium_ore','durium_ore',12,0,38,0,0);
 INSERT INTO `item_basic` VALUES (757,0,'durium_ingot','durium_ingot',12,0,38,0,0);
 INSERT INTO `item_basic` VALUES (758,0,'durium_sheet','durium_sheet',12,0,38,0,0);
@@ -678,7 +678,7 @@ INSERT INTO `item_basic` VALUES (761,0,'gold_chain','gold_chain',12,0,39,0,904);
 INSERT INTO `item_basic` VALUES (762,0,'platinum_chain','platinum_chain',12,0,39,0,1068);
 INSERT INTO `item_basic` VALUES (763,0,'orichalcum_chain','ocl_chain',12,0,39,0,1496);
 INSERT INTO `item_basic` VALUES (764,0,'brass_chain','brass_chain',12,0,39,0,55);
-INSERT INTO `item_basic` VALUES (765,0,'palladian_brass_chain','p._brass_chain',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (765,0,'palladian_brass_chain','p._brass_chain',12,0,39,1,0);
 INSERT INTO `item_basic` VALUES (766,0,'ormolu_ingot','ormolu_ingot',12,0,0,1,0);
 INSERT INTO `item_basic` VALUES (767,0,'carnelian','carnelian',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (768,0,'flint_stone','flint_stone',12,0,39,0,4);
@@ -3420,12 +3420,12 @@ INSERT INTO `item_basic` VALUES (3543,0,'fossilized_fang','fossilized_fang',1,45
 INSERT INTO `item_basic` VALUES (3544,0,'square_of_penelopes_cloth','penelopes_cloth',12,0,0,1,0);
 INSERT INTO `item_basic` VALUES (3545,0,'square_of_serica_cloth','serica_cloth',12,0,0,1,0);
 INSERT INTO `item_basic` VALUES (3546,0,'piece_of_staghorn_coral','staghorn_coral',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3547,0,'sealord_skin','sealord_skin',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3548,0,'square_of_sealord_leather','sealord_leather',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (3547,0,'sealord_skin','sealord_skin',12,0,41,1,0);
+INSERT INTO `item_basic` VALUES (3548,0,'square_of_sealord_leather','sealord_leather',12,0,41,1,0);
 INSERT INTO `item_basic` VALUES (3549,0,'vial_of_belladonna_sap','belladonna_sap',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3551,0,'square_of_wyrdweave','wyrdweave',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,0,0,1,0);
+INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,0,41,1,0);
+INSERT INTO `item_basic` VALUES (3551,0,'square_of_wyrdweave','wyrdweave',12,0,41,1,0);
+INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,0,41,1,0);
 INSERT INTO `item_basic` VALUES (3553,0,'banquet_table_blueprint','b._table_blueprint',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3554,0,'set_of_banquet_table_fabric','b._table_fabric',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3555,0,'set_of_banquet_table_wood','b._table_wood',1,28752,0,1,0);
@@ -3744,6 +3744,7 @@ INSERT INTO `item_basic` VALUES (4050,0,'fat_burrow_worm','fat_burrow_worm',12,2
 INSERT INTO `item_basic` VALUES (4054,0,'beetle_spirit','beetle_spirit',99,2837,0,1,0);
 INSERT INTO `item_basic` VALUES (4055,0,'antlion_spirit','antlion_spirit',99,2837,0,1,0);
 INSERT INTO `item_basic` VALUES (4056,0,'pachypodium_spirit','pachypodium_spirit',99,2837,0,1,0);
+INSERT INTO `item_basic` VALUES (4095,0,'bismuth_sheet','bismuth_sheet',12,0,99,1,0);
 INSERT INTO `item_basic` VALUES (4096,0,'fire_crystal','fire_crystal',12,512,35,0,13);
 INSERT INTO `item_basic` VALUES (4097,0,'ice_crystal','ice_crystal',12,512,35,0,30);
 INSERT INTO `item_basic` VALUES (4098,0,'wind_crystal','wind_crystal',12,512,35,0,14);
