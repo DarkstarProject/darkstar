@@ -1,16 +1,16 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
--- NPC:  Runic Portal
+--  NPC: Runic Portal
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
 -- @pos -211 -11 -818 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/besieged");
+require("scripts/zones/Bhaflau_Thickets/TextIDs");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+require("scripts/globals/besieged");
+
 
 -----------------------------------
 -- onTrade Action
@@ -24,18 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    if (player:getCurrentMission(TOAU)== IMMORTAL_SENTRIES) then
-        if (player:getVar("TOAUM2") == 1) then
-            player:startEvent(0x006F);
-        else
-            player:startEvent(0x006D);
-        end
+
+    if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
+        player:startEvent(111);
     elseif (player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
         if (hasRunicPortal(player,3) == 1) then
-            player:startEvent(0x006D);
+            player:startEvent(109);
         else
-            player:startEvent(0x006F);
+            player:startEvent(111);
         end
     else
         player:messageSpecial(RESPONSE);
@@ -47,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,16 +52,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
-    if (csid == 0x006F and option == 1) then
-        if (player:getVar("TOAUM2") == 1) then
-            player:setVar("TOAUM2",2);
-        end
+    if (csid == 111 and option == 1) then
         player:addNationTeleport(AHTURHGAN,8);
         toChamberOfPassage(player);
-    elseif (csid == 0x006D and option == 1) then
+    elseif (csid == 109 and option == 1) then
         toChamberOfPassage(player);
     end
     
