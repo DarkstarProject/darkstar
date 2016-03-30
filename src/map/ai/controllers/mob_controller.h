@@ -59,6 +59,7 @@ protected:
     bool CanSeePoint(position_t pos);
     bool CanCastSpells();
     void CastSpell(uint16 spellid);
+    void Move();
 
     virtual void DoCombatTick(time_point tick);
 

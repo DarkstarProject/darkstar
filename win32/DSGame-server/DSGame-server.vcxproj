@@ -216,6 +216,7 @@
     <ClInclude Include="..\..\src\common\zlib.h" />
     <ClInclude Include="..\..\src\map\ability.h" />
     <ClInclude Include="..\..\src\map\ai\ai_container.h" />
+    <ClInclude Include="..\..\src\map\ai\controllers\automaton_controller.h" />
     <ClInclude Include="..\..\src\map\ai\controllers\mob_controller.h" />
     <ClInclude Include="..\..\src\map\ai\controllers\controller.h" />
     <ClInclude Include="..\..\src\map\ai\controllers\pet_controller.h" />
@@ -457,6 +458,7 @@
     <ClCompile Include="..\..\src\common\zlib.cpp" />
     <ClCompile Include="..\..\src\map\ability.cpp" />
     <ClCompile Include="..\..\src\map\ai\ai_container.cpp" />
+    <ClCompile Include="..\..\src\map\ai\controllers\automaton_controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\controllers\mob_controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\controllers\controller.cpp" />
     <ClCompile Include="..\..\src\map\ai\controllers\pet_controller.cpp" />

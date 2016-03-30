@@ -48,6 +48,11 @@ function onUseAbility(player,target,ability)
         effects[counter] = drown;
         counter = counter + 1;
     end
+    local poison = target:getStatusEffect(EFFECT_POISON);
+    if (poison ~= nil) then
+        effects[counter] = poison;
+        counter = counter + 1;
+    end
     local threnody = target:getStatusEffect(EFFECT_THRENODY);
     if (threnody ~= nil and threnody:getSubPower() == MOD_FIRERES) then
         effects[counter] = threnody;

@@ -19,7 +19,7 @@ local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762
 function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
 
     local criticalHit = false;
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
@@ -257,7 +257,7 @@ end;
 
 function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
 
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
 
@@ -300,7 +300,7 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
     dmg = dmg * ftp;
     
     dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
+    dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, bonusacc);
     dmg = target:magicDmgTaken(dmg);
     dmg = adjustForTarget(target,dmg,params.ele);
     
@@ -693,7 +693,7 @@ end;
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, wsID, params, tp, primary)
 
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false

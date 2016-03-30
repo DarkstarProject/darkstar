@@ -18,6 +18,9 @@ DEATH - Entity, Killer
 ENGAGE - Entity, Target
 DISENGAGE - Entity
 
+ATTACK - Attacker, defender, action
+ATTACKED - Defender, attacker, action
+
 ITEM_START - Entity, Item, action
 ITEM_USE - Entity, Item, action
 ITEM_STATE_EXIT - Entity, Item
