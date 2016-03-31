@@ -283,13 +283,15 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
         }
     }
 
-    if (!PAI->PathFind->CanSeePoint(*pos))
+    if (distance(loc.p, *pos) > getMobMod(MOBMOD_LINK_RADIUS))
     {
         return false;
     }
 
-    // link if close enough
-    return distance(loc.p, *pos) <= getMobMod(MOBMOD_LINK_RADIUS);
+    if (!PAI->PathFind->CanSeePoint(*pos))
+    {
+        return false;
+    }
 }
 
 /************************************************************************
