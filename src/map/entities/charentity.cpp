@@ -875,7 +875,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         auto charge = ability::GetCharge(this, PAbility->getRecastId());
         if (charge && PAbility->getID() != ABILITY_SIC)
         {
-            action.recast = charge->chargeTime * PAbility->getRecastTime();
+            action.recast = charge->chargeTime * PAbility->getRecastTime() - meritRecastReduction;
         }
         else
         {

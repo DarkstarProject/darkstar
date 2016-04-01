@@ -1,21 +1,21 @@
 -----------------------------------
---  Areas ID
+-- Areas  ID     mission step var
 -----------------------------------
 
-SANDORIA = 0;
-BASTOK   = 1;
-WINDURST = 2;
-ZILART   = 3;
-TOAU     = 4;
-WOTG     = 5;
-COP      = 6;
-ASSAULT  = 7;
-CAMPAIGN = 8;
-ACP      = 9;
-AMK      = 10;
-ASA      = 11;
-SOA      = 12;
-ROV      = 13;
+SANDORIA = 0;  -- MissionStatus
+BASTOK   = 1;  -- MissionStatus
+WINDURST = 2;  -- MissionStatus
+ZILART   = 3;  -- ZilartStatus
+TOAU     = 4;  -- AhtUrganStatus
+WOTG     = 5;  -- AltanaStatus
+COP      = 6;  -- PromathiaStatus
+ASSAULT  = 7;  -- n/a
+CAMPAIGN = 8;  -- n/a
+ACP      = 9;  -- n/a
+AMK      = 10; -- n/a
+ASA      = 11; -- n/a
+SOA      = 12; -- AdoulinStatus
+ROV      = 13; -- RhapsodiesStatus
 
 -----------------------------------
 --  San d'Oria (0)
