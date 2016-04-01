@@ -1303,6 +1303,7 @@ void CStatusEffectContainer::CheckEffects(time_point tick)
             return;
         }
 
+        m_POwner->PAI->EventHandler.triggerListener("EFFECT_TICK", m_POwner);
         m_EffectCheckTime = tick;
 
         for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
