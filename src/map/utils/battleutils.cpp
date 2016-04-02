@@ -1562,6 +1562,13 @@ namespace battleutils
             return false;
         }
 
+        // Songs cannot be interrupted by physical attacks.
+        if ((SKILLTYPE)PSpell->getSkillType() == SKILL_SNG)
+        {
+            // ShowDebug("Is song, interrupt prevented.\n");
+            return false;
+        }
+
         //Reasonable assumption for the time being.
         int base = 40;
 
@@ -1588,7 +1595,7 @@ namespace battleutils
             if (cap == 0)
             {
                 cap = GetMaxSkill((SKILLTYPE)PSpell->getSkillType(), PChar->GetSJob(),
-                    PChar->GetSLevel()); // << this might be GetMLevel, however this leaves no chance of avoiding interuption
+                    PChar->GetMLevel()); // This may need to be re-investigated in the future...
             }
 
             if (skill > cap)
@@ -1604,8 +1611,8 @@ namespace battleutils
             meritReduction = ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_SPELL_INTERUPTION_RATE, (CCharEntity*)PDefender);
         }
 
-        float aquaveil = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT))) / 100.0f));
-        check *= aquaveil;
+        float interruptRate = ((float)((100.0f - (meritReduction + (float)PDefender->getMod(MOD_SPELLINTERRUPT))) / 100.0f));
+        check *= interruptRate;
         uint8 chance = dsprand::GetRandomNumber(100);
 
         // caps, always give a 1% chance of interrupt
@@ -1615,7 +1622,22 @@ namespace battleutils
 
         if (chance < check)
         {
-            //Interrupt the spell cast.
+            // Prevent interrupt if Aquaveil is active, if it were to interrupt.
+            if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AQUAVEIL))
+            {
+                auto aquaCount = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_AQUAVEIL)->GetPower();
+                // ShowDebug("Aquaveil counter: %u\n", aquaCount);
+                if (aquaCount - 1 == 0) // removes the status, but still prevents the interrupt
+                {
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_AQUAVEIL);
+                }
+                else
+                {
+                    PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_AQUAVEIL)->SetPower(aquaCount - 1);
+                }
+                return false;
+            }
+            //Otherwise interrupt the spell cast.
             return true;
         }
 
