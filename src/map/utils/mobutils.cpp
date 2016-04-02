@@ -578,11 +578,6 @@ void CalculateStats(CMobEntity * PMob)
     {
         ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
     }
-
-    if (PMob->m_EcoSystem == SYSTEM_BEASTMEN && !(PMob->m_Detects & DETECT_SCENT))
-    {
-        ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) beastman does not detect by scent!\n", PMob->GetName(), PMob->id, PMob->m_Family);
-    }
 }
 
 void SetupJob(CMobEntity* PMob)
