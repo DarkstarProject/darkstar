@@ -455,9 +455,9 @@ end;
 
 function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
     if (tp>=1000 and tp <2000) then
-        return (ignore1 + ( ((ignore2-ignore1)/100) * (tp-1000)))*def;
+        return (ignore1 + ( ((ignore2-ignore1)/1000) * (tp-1000)))*def;
     elseif (tp>=2000 and tp<=3000) then
-        return (ignore2 + ( ((ignore3-ignore2)/100) * (tp-2000)))*def;
+        return (ignore2 + ( ((ignore3-ignore2)/1000) * (tp-2000)))*def;
     end
     return 1; -- no def ignore mod
 end
