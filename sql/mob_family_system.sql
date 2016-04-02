@@ -204,7 +204,7 @@ INSERT INTO `mob_family_system` VALUES (135,'Golem',3,'Arcana',1,40,130,130,2,3,
 INSERT INTO `mob_family_system` VALUES (136,'Goobbue',17,'Plantoid',1,40,112,90,3,2,2,6,6,4,5,3,2,3,3,1,1,1,1,1.25,1,1,1,1.125,1,1,1.25,6,2);
 INSERT INTO `mob_family_system` VALUES (137,'Gorger',12,'Empty',0,40,112,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,280);
 INSERT INTO `mob_family_system` VALUES (138,'Gorger',12,'Empty',1,40,112,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,1);
-INSERT INTO `mob_family_system` VALUES (139,'Hecteyes',1,'Amorph',1,40,87,140,6,3,6,3,1,5,2,3,3,3,3,1,1,0.75,0.75,1,1,1,1,1,1,1,0.875,8,1);
+INSERT INTO `mob_family_system` VALUES (139,'Hecteyes',1,'Amorph',1,40,87,140,6,3,6,3,1,5,2,3,3,3,3,1,1,0.75,0.75,1,1,1,1,1,1,1,0.875,8,2);
 INSERT INTO `mob_family_system` VALUES (140,'Hippogryph',8,'Bird',1,60,90,140,4,1,4,2,1,5,4,3,3,3,3,1,1.25,1,1,1,1,1,1.25,1,1,1,1,7,1);
 INSERT INTO `mob_family_system` VALUES (141,'Hippogryph',8,'Bird',1,60,90,140,4,1,4,2,1,5,4,3,3,3,3,1,1.25,1,1,0.5,0.5,0.5,0.625,0.5,0.5,0.5,0.5,7,1);
 INSERT INTO `mob_family_system` VALUES (142,'Hound',19,'Undead',1,40,102,120,1,3,3,4,4,5,6,3,5,3,3,1.688,1.5,1.5,1.5,1.875,1.313,1.5,1.5,1.5,1.5,1.875,1.313,8,6);
