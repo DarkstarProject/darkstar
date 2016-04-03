@@ -16637,7 +16637,6 @@ INSERT INTO `item_basic` VALUES (28166,0,'quiahuiz_leggings','quiahuiz_leggings'
 INSERT INTO `item_basic` VALUES (28167,0,'kaabnax_trousers','kaabnax_trousers',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28172,0,'mesyohi_slacks','mesyohi_slacks',1,63568,20,1,0);
 INSERT INTO `item_basic` VALUES (28180,0,'haruspex_slops',''haruspex_slops',1,2080,0,1,0);
-INSERT INTO `item_basic` VALUES (28181,0,'haruspex_slops_+1','haru._slops_+1',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28182,0,'karieyh_brayettes_+1','kari_brayettes_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28183,0,'thurandaut_tights_+1','thur_tights_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28184,0,'orvail_pants_+1','orvail_pants_+1',1,63568,0,1,0);
