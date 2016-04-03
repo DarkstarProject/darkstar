@@ -288,7 +288,8 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(ReservePacket, (0x3C)) = ZonePort;
                 ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
             }
-            else {
+            else
+            {
                 ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
                 WBUFL(ReservePacket, (0x38)) = sd->servip;	// map-server ip
               //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
@@ -337,12 +338,35 @@ int32 lobbydata_parse(int32 fd)
             RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata_size);
             RFIFOFLUSH(sd->login_lobbyview_fd);
 
-            if (SendBuffSize == 0x24) {
+            if (SendBuffSize == 0x24)
+            {
                 // выходим в случае ошибки без разрыва соединения
                 return -1;
             }
 
             do_close_tcp(sd->login_lobbyview_fd);
+
+            if (login_config.log_user_ip == true)
+            {
+                // Log clients IP info when player spawns into map server
+
+                time_t rawtime;
+                tm*    convertedTime;
+                time(&rawtime);
+                convertedTime = localtime(&rawtime);
+
+                char timeAndDate[128];
+                strftime(timeAndDate, sizeof(timeAndDate), "%Y:%m:%d %H:%M:%S", convertedTime);
+
+                fmtQuery = "INSERT INTO account_ip_record(login_time,accid,charid,client_ip)\
+                            VALUES ('%s', %u, %u, '%s');";
+
+                if (Sql_Query(SqlHandle, fmtQuery, timeAndDate, sd->accid, charid, ip2str(sd->client_addr, nullptr)) == SQL_ERROR)
+                {
+                    ShowError("lobbyview_parse: Could not write info to account_ip_record.\n");
+                }
+            }
+
             ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n", ip2str(sd->client_addr, nullptr));
             break;
         }
