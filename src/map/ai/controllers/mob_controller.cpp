@@ -501,11 +501,6 @@ void CMobController::DoCombatTick(time_point tick)
 
     float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
 
-    if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
-    {
-        PMob->PAI->PathFind->LookAt(PTarget->loc.p);
-    }
-
     luautils::OnMobFight(PMob, PTarget);
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
@@ -622,6 +617,13 @@ void CMobController::Move()
                             }
                         }
                     }
+                }
+            }
+            else
+            {
+                if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+                {
+                    PMob->PAI->PathFind->LookAt(PTarget->loc.p);
                 }
             }
         }

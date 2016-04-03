@@ -47,6 +47,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/ai_container.h"
 #include "../ai/controllers/mob_controller.h"
 #include "../ai/controllers/pet_controller.h"
+#include "../ai/controllers/automaton_controller.h"
 #include "../ai/states/ability_state.h"
 
 #include "../packets/char_sync.h"
@@ -907,6 +908,10 @@ namespace petutils
             if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
                 PPetEnt->PMaster = nullptr;
             }
+            else
+            {
+                PPetEnt->PAI->SetController(nullptr);
+            }
             PChar->removePetModifiers(PPetEnt);
             charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
         }
@@ -1195,7 +1200,10 @@ namespace petutils
         }
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
+        {
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
+            PPet->PAI->SetController(std::make_unique<CAutomatonController>(static_cast<CAutomatonEntity*>(PPet)));
+        }
 		else
 			PPet = new CPetEntity(petType);
 

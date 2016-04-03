@@ -47,6 +47,9 @@ private:
     time_point m_magicEnhanceRecast;
     time_point m_magicStatusRecast;
     time_point m_LastRangedTime;
+
+    duration m_rangedCooldown {duration::zero()};
+    static constexpr int m_RangedAbility {1949};
 protected:
     virtual void DoCombatTick(time_point tick) override;
 

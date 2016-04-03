@@ -639,7 +639,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_JUG_PET && 
+        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON)
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
         action.actiontype = ACTION_WEAPONSKILL_FINISH;
