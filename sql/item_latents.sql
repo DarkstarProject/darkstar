@@ -1096,7 +1096,7 @@ INSERT INTO `item_latents` VALUES(15283, 259, 1, 8, 13);
 INSERT INTO `item_latents` VALUES(15284, 87, 5, 8, 14); 
 
 -- 
-INSERT INTO `item_latents` VALUES(14737, 167, 5, 8, 14); 
+INSERT INTO `item_latents` VALUES(14737, 384, 51, 8, 14); 
 
 -- 
 INSERT INTO `item_latents` VALUES(13672, 23, 6, 8, 14);
