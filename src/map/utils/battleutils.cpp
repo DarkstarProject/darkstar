@@ -5211,6 +5211,23 @@ namespace battleutils
             {
                 recast *= 0.5f;
             }
+            // The following modifiers are not multiplicative - as such they must be applied last.
+            // ShowDebug("Recast before reduction: %u\n", recast);
+            if (PSpell->getID() == 462) // apply Finale recast merits
+            {
+                recast -= ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_FINALE_RECAST, (CCharEntity*)PEntity) * 1000;
+            }
+            if (PSpell->getID() == 376 || PSpell->getID() == 377 || PSpell->getID() == 463 || PSpell->getID() == 471) // apply Lullaby recast merits
+            {
+                recast -= ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_LULLABY_RECAST, (CCharEntity*)PEntity) * 1000;
+            }
+            recast -= PEntity->getMod(MOD_SONG_RECAST_DELAY);
+            // ShowDebug("Recast after merit reduction: %u\n", recast);
+        }
+
+        if (recast < 0)
+        {
+            recast = 0;
         }
         return recast / 1000;
     }
