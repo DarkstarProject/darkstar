@@ -33,7 +33,7 @@
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
 {
-    PAI->SetController(std::make_unique<CAutomatonController>(this));
+    PAI->SetController(nullptr);
 }
 
 CAutomatonEntity::~CAutomatonEntity()
