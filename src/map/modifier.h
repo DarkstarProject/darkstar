@@ -348,6 +348,7 @@ enum MODIFIER
     MOD_MAXIMUM_SONGS_BONUS       = 453, //
     MOD_SONG_DURATION_BONUS       = 454, //
     MOD_SONG_SPELLCASTING_TIME    = 455, //
+    MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time (in milliseconds).
 
     // Ranger
     MOD_RECYCLE                   = 305, // Percent chance to recycle
@@ -634,8 +635,8 @@ enum MODIFIER
     // MOD_SPARE = 543, // stuff
     // MOD_SPARE = 552, // stuff
     // MOD_SPARE = 561, // stuff
-    // MOD_SPARE = 833, // stuff
     // MOD_SPARE = 834, // stuff
+    // MOD_SPARE = 835, // stuff
 
 };
 
