@@ -1038,7 +1038,7 @@ INSERT INTO `mob_skills` VALUES (1230,920,'Empty_Thrash',0,10.0,2000,1500,1,0,0,
 INSERT INTO `mob_skills` VALUES (1231,921,'Promyvion_Brume',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1232,922,'Murk',1,10.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1233,923,'Material_Fend',0,10.0,2000,1500,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (1234,924,'Carousel',1,10.0,2000,1500,1,0,0,4);
+INSERT INTO `mob_skills` VALUES (1234,924,'Carousel',1,10.0,2000,1500,4,0,0,4);
 -- INSERT INTO `mob_skills` VALUES (1235,979,'Pile_Pitch',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1236,980,'Guided_Missile',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1237,981,'Hyper_Pulse',0,7.0,2000,1500,4,0,0,0);
