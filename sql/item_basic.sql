@@ -16299,12 +16299,16 @@ INSERT INTO `item_basic` VALUES (27729,0,'otronif_mask_+1','otronif_mask_+1',1,6
 INSERT INTO `item_basic` VALUES (27730,0,'iuitl_headgear_+1','iuitl_headgear_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27731,0,'gendewitha_caubeen_+1','gendewitha_caubeen_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27732,0,'hagondes_hat_+1','hagondes_hat_+1',1,63568,0,1,0);
+INSERT INTO `item_basic` VALUES (27750,0,'haruspex_hat','haruspex_hat',1,2080,0,1,0);
+INSERT INTO `item_basic` VALUES (27751,0,'haruspex_hat_+1','haruspex_hat_+1',1,2080,0,1,0);
+
 
 INSERT INTO `item_basic` VALUES (27735,0,'enedron_glasses','enedron_glasses',1,34816,17,0,100);
 INSERT INTO `item_basic` VALUES (27736,0,'quiahuiz_helm','quiahuiz_helm',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27737,0,'kaabanax_hat','kaabanax_hat',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27738,0,'ejekamal_mask','ejekamal_mask',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27739,0,'otomi_helm','otomi_helm',1,63568,0,1,0);
+
 INSERT INTO `item_basic` VALUES (27752,0,'karieyh_morion_+1','karieyh_morion_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27753,0,'thurandaut_chapeau_+1','thur_chapeau_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27754,0,'orvail_corona_+1','orvail_corona_+1',1,63568,0,1,0);
@@ -16422,7 +16426,8 @@ INSERT INTO `item_basic` VALUES (27886,0,'mesyohi_haubergeon','mes_haubergeon',1
 INSERT INTO `item_basic` VALUES (27888,0,'kyujutsugi','kyujutsugi',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27889,0,'aetosaur_jerkin','aetosaur_jerkin',1,2048,0,1,0);
 INSERT INTO `item_basic` VALUES (27891,0,'shabti_cuirass','shabti_cuirass',1,2048,0,1,0);
-INSERT INTO `item_basic` VALUES (27893,0,'haruspex_coat','haruspex_coat',1,2048,0,1,0);
+INSERT INTO `item_basic` VALUES (27893,0,'haruspex_coat','haruspex_coat',1,2080,0,1,0);
+INSERT INTO `item_basic` VALUES (27894,0,'haruspex_coat_+1','haruspex_coat_+1',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (27895,0,'karieyh_haubert_+1','karieyh_haubert_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27896,0,'thurandaut_tabard_+1','thur_tabard_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (27897,0,'orvail_robe_+1','orvail_robe_+1',1,63568,0,1,0);
@@ -16524,6 +16529,8 @@ INSERT INTO `item_basic` VALUES (28022,0,'hagondes_cuffs_+1','hagondes_cuffs_+1'
 INSERT INTO `item_basic` VALUES (28026,0,'aiwon_gauntlets','aiwon_gauntlets',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28027,0,'boor_bracelets','boor_bracelets',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28028,0,'otomi_gloves','otomi_gloves',1,63568,0,1,0);
+INSERT INTO `item_basic` VALUES (28040,0,'haruspex_cuffs','haruspex_cuffs',1,2080,0,1,0);
+INSERT INTO `item_basic` VALUES (28041,0,'haruspex_cuffs_+1','haru._cuffs_+1',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28042,0,'karieyh_moufles_+1','karieyh_moufles_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28043,0,'thurandaut_gloves_+1','thur_gloves_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28044,0,'orvail_cuffs_+1','orvail_cuffs_+1',1,63568,0,1,0);
@@ -16629,6 +16636,8 @@ INSERT INTO `item_basic` VALUES (28165,0,'laktisma_leggings','laktisma_leggings'
 INSERT INTO `item_basic` VALUES (28166,0,'quiahuiz_leggings','quiahuiz_leggings',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28167,0,'kaabnax_trousers','kaabnax_trousers',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28172,0,'mesyohi_slacks','mesyohi_slacks',1,63568,20,1,0);
+INSERT INTO `item_basic` VALUES (28180,0,'haruspex_slops',''haruspex_slops',1,2080,0,1,0);
+INSERT INTO `item_basic` VALUES (28181,0,'haruspex_slops_+1',''haruspex_slops_+1',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28182,0,'karieyh_brayettes_+1','kari_brayettes_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28183,0,'thurandaut_tights_+1','thur_tights_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28184,0,'orvail_pants_+1','orvail_pants_+1',1,63568,0,1,0);
@@ -16726,6 +16735,8 @@ INSERT INTO `item_basic` VALUES (28300,0,'gendewitha_galoshes_+1','gendewitha_ga
 INSERT INTO `item_basic` VALUES (28301,0,'hagondes_sabots_+1','hagondes_sabots_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28304,0,'litany_clogs','litany_clogs',1,34880,21,0,100);
 INSERT INTO `item_basic` VALUES (28305,0,'ejekamal_boots','ejekamal_boots',1,63568,0,1,0);
+INSERT INTO `item_basic` VALUES (28318,0,'haruspex_pigaches','haru._pigaches'1,2080,0,1,0);
+INSERT INTO `item_basic` VALUES (28319,0,'haruspex_pigaches_+1'haru._pigaches_+1'1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (28320,0,'karieyh_sollerets_+1','kar_sollerets_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28321,0,'thurandaut_boots_+1','thur_boots_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28322,0,'orvail_souliers_+1','orvail_souliers_+1',1,63568,0,1,0);
