@@ -92,7 +92,7 @@ void CMobSkillState::SpendCost()
 
 bool CMobSkillState::Update(time_point tick)
 {
-    if (tick >= GetEntryTime() + m_castTime && !IsCompleted())
+    if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         action_t action;
         m_PEntity->OnMobSkillFinished(*this, action);
