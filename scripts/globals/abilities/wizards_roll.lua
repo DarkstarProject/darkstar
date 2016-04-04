@@ -8,18 +8,18 @@
 --
 -- Die Roll    |No BLM  |With BLM
 -- --------    -------- -----------
--- 1           |+2      |+6
--- 2           |+3      |+6
--- 3           |+4      |+7
--- 4           |+4      |+7
--- 5           |+10     |+13
--- 6           |+5      |+8
--- 7           |+6      |+9
--- 8           |+7      |+9
--- 9           |+1      |+5
--- 10          |+7      |+10
--- 11          |+12     |+16
--- Bust        |-4      |-4
+-- 1           |+4      |+14
+-- 2           |+6      |+16
+-- 3           |+8      |+18
+-- 4           |+10     |+20
+-- 5           |+25     |+35
+-- 6           |+12     |+22
+-- 7           |+14     |+24
+-- 8           |+17     |+27
+-- 9           |+2      |+12
+-- 10          |+20     |+10
+-- 11          |+30     |+40
+-- Bust        |-10     |-10
 --
 -- If the Corsair is a lower level than the player receiving Wizard's Roll, the +MAB will be reduced
 -----------------------------------
@@ -56,10 +56,10 @@ end;
 
 function applyRoll(caster,target,ability,action,total)
     local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
-    local effectpowers = {2, 3, 4, 4, 10, 5, 6, 7, 1, 7, 12, 4};
+    local effectpowers = {4, 6, 8, 10, 25, 12, 14, 17, 2, 20, 30, 10};
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
-        effectpower = effectpower + 3
+        effectpower = effectpower + 10
     end
     if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
