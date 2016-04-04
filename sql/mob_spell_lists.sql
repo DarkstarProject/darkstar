@@ -1470,10 +1470,10 @@ INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 58, 1, 255); -- Pa
 INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 254, 1, 255); -- Blind
 INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 253, 1, 255); -- Sleep
 
-INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream'149,245,1,255);  -- Drain
-INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream'149,247,1,255); -- Aspir
-INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream'149,274,1,255); -- Sleepga
-INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream'149,360,1,255); -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 245, 1, 255);  -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 274, 1, 255); -- Sleepga
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 360, 1, 255); -- Dispelga
 
 
 
