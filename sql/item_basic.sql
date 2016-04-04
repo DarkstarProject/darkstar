@@ -12236,7 +12236,6 @@ INSERT INTO `item_basic` VALUES (16731,0,'colossal_axe_+1','colossal_axe_+1',1,2
 INSERT INTO `item_basic` VALUES (16732,0,'bastokan_greataxe','bas_greataxe',1,2080,6,0,4622);
 INSERT INTO `item_basic` VALUES (16733,0,'republic_greataxe','republic_greataxe',1,2080,6,0,5777);
 INSERT INTO `item_basic` VALUES (16734,0,'pendragon_axe','pendragon_axe',1,63568,0,1,0);
-INSERT INTO `item_basic` VALUES (16735,0,'axe_of_trials','axe_of_trials',1,2080,0,1,0);
 INSERT INTO `item_basic` VALUES (16737,0,'baselard_+1','baselard_+1',1,2080,2,0,1000);
 INSERT INTO `item_basic` VALUES (16738,0,'mythril_dagger_+1','mythril_dagger_+1',1,2080,2,0,1918);
 INSERT INTO `item_basic` VALUES (16739,0,'mythril_knife_+1','mythril_knife_+1',1,2080,2,0,2586);
