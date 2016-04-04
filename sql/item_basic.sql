@@ -12234,7 +12234,6 @@ INSERT INTO `item_basic` VALUES (16729,0,'berserkers_axe','berserkers_axe',1,204
 INSERT INTO `item_basic` VALUES (16730,0,'colossal_axe','colossal_axe',1,2080,6,0,11550);
 INSERT INTO `item_basic` VALUES (16731,0,'colossal_axe_+1','colossal_axe_+1',1,2080,6,0,11892);
 INSERT INTO `item_basic` VALUES (16732,0,'bastokan_greataxe','bas_greataxe',1,2080,6,0,4622);
-INSERT INTO `item_basic` VALUES (16733,0,'republic_greataxe','republic_greataxe',1,2080,6,0,5777);
 INSERT INTO `item_basic` VALUES (16737,0,'baselard_+1','baselard_+1',1,2080,2,0,1000);
 INSERT INTO `item_basic` VALUES (16738,0,'mythril_dagger_+1','mythril_dagger_+1',1,2080,2,0,1918);
 INSERT INTO `item_basic` VALUES (16739,0,'mythril_knife_+1','mythril_knife_+1',1,2080,2,0,2586);
