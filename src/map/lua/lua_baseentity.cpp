@@ -10422,6 +10422,43 @@ int32 CLuaBaseEntity::checkImbuedItems(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CCharEntity* iterTarget = (CCharEntity*)(m_PBaseEntity->objtype == TYPE_PC ? m_PBaseEntity : nullptr);
+
+    if (!iterTarget)
+    {
+        if (m_PBaseEntity->objtype == TYPE_MOB && ((CBattleEntity*)m_PBaseEntity)->GetBattleTarget()->objtype == TYPE_PC)
+        {
+            iterTarget = (CCharEntity*)((CBattleEntity*)m_PBaseEntity)->GetBattleTarget();
+        }
+        else if (((CBattleEntity*)m_PBaseEntity)->PMaster && ((CBattleEntity*)m_PBaseEntity)->PMaster->objtype == TYPE_PC)
+        {
+            iterTarget = (CCharEntity*)((CBattleEntity*)m_PBaseEntity)->PMaster;
+        }
+    }
+
+    lua_newtable(L);
+    int newTable = lua_gettop(L);
+    
+    for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
+    {
+        for (auto&& entity : list)
+        {
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, (void*)entity.second);
+            lua_pcall(L, 2, 1, 0);
+            lua_rawseti(L, newTable, entity.first);
+        }
+    }
+
+    return 1;
+}
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10879,5 +10916,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
     {nullptr,nullptr}
 };

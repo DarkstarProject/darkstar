@@ -29,7 +29,22 @@
 
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
-{}
+{
+    if (PPet->getFrame() == FRAME_SHARPSHOT)
+    {
+        switch (PPet->getHead())
+        {
+            case HEAD_SHARPSHOT:
+                m_rangedCooldown = 20s;
+                break;
+            case HEAD_HARLEQUIN:
+                m_rangedCooldown = 25s;
+                break;
+            default:
+                m_rangedCooldown = 36s;
+        }
+    }
+}
 
 void CAutomatonController::DoCombatTick(time_point tick)
 {
@@ -115,6 +130,11 @@ bool CAutomatonController::TryTPMove()
 
 bool CAutomatonController::TryRangedAttack()
 {
+    if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + m_rangedCooldown)
+    {
+        MobSkill(PTarget->targid, m_RangedAbility);
+        return true;
+    }
     return false;
 }
 
