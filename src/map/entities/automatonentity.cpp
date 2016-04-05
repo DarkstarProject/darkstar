@@ -22,14 +22,19 @@
 */
 
 #include "automatonentity.h"
+#include "../ai/ai_container.h"
+#include "../ai/controllers/automaton_controller.h"
 #include "../utils/puppetutils.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
 #include "../packets/char_job_extra.h"
+#include "../status_effect_container.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
-{}
+{
+    PAI->SetController(nullptr);
+}
 
 CAutomatonEntity::~CAutomatonEntity()
 {}
@@ -135,4 +140,10 @@ void CAutomatonEntity::PostTick()
             ((CCharEntity*)PMaster)->pushPacket(new CCharJobExtraPacket((CCharEntity*)PMaster, PMaster->GetMJob() == JOB_PUP));
         }
     }
+}
+
+void CAutomatonEntity::Die()
+{
+    PMaster->StatusEffectContainer->RemoveAllManeuvers();
+    CPetEntity::Die();
 }

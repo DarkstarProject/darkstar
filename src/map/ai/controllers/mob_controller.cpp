@@ -77,7 +77,7 @@ bool CMobController::TryDeaggro()
         CheckDetection(PTarget) ||
         CheckHide(PTarget))
     {
-        PMob->PEnmityContainer->Clear(PTarget->id);
+        if (PTarget) PMob->PEnmityContainer->Clear(PTarget->id);
         PTarget = PMob->PEnmityContainer->GetHighestEnmity();
         PMob->SetBattleTargetID(PTarget ? PTarget->targid : 0);
         return TryDeaggro();
@@ -501,11 +501,6 @@ void CMobController::DoCombatTick(time_point tick)
 
     float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
 
-    if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
-    {
-        PMob->PAI->PathFind->LookAt(PTarget->loc.p);
-    }
-
     luautils::OnMobFight(PMob, PTarget);
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
@@ -522,6 +517,13 @@ void CMobController::DoCombatTick(time_point tick)
         return;
     }
 
+    Move();
+    return;
+}
+
+void CMobController::Move()
+{
+    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
     if (PMob->PAI->PathFind->IsFollowingScriptedPath() && PMob->PAI->CanFollowPath())
     {
         PMob->PAI->PathFind->FollowPath();
@@ -615,6 +617,13 @@ void CMobController::DoCombatTick(time_point tick)
                             }
                         }
                     }
+                }
+            }
+            else
+            {
+                if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+                {
+                    PMob->PAI->PathFind->LookAt(PTarget->loc.p);
                 }
             }
         }

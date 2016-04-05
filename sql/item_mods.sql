@@ -336,6 +336,7 @@ INSERT INTO `item_mods` VALUES (10329,1,40); -- Shedir Seraweels - DEF +40
 INSERT INTO `item_mods` VALUES (10329,539,35); -- Stoneskin +35
 INSERT INTO `item_mods` VALUES (10329,113,15); -- Enhancing Magic Skill +15
 INSERT INTO `item_mods` VALUES (10329,567,15); -- Barspell potency +15
+INSERT INTO `item_mods` VALUES (10329,832,1); -- Aquaveil count +1
 INSERT INTO `item_mods` VALUES (10330,1,1);
 INSERT INTO `item_mods` VALUES (10331,1,1);
 INSERT INTO `item_mods` VALUES (10332,1,1);
@@ -4570,6 +4571,7 @@ INSERT INTO `item_mods` VALUES (11751,384,60);
 INSERT INTO `item_mods` VALUES (11753,1,5);
 INSERT INTO `item_mods` VALUES (11753,5,20);
 INSERT INTO `item_mods` VALUES (11753,168,12);
+INSERT INTO `item_mods` VALUES (11753,832,1);
 INSERT INTO `item_mods` VALUES (11754,1,8);
 INSERT INTO `item_mods` VALUES (11754,8,5);
 INSERT INTO `item_mods` VALUES (11754,11,5);
@@ -13628,9 +13630,11 @@ INSERT INTO `item_mods` VALUES (14845,12,3);
 INSERT INTO `item_mods` VALUES (14846,1,19);
 INSERT INTO `item_mods` VALUES (14846,5,12);
 INSERT INTO `item_mods` VALUES (14846,14,5);
+INSERT INTO `item_mods` VALUES (14846,833,2000);
 INSERT INTO `item_mods` VALUES (14847,1,20);
 INSERT INTO `item_mods` VALUES (14847,5,14);
 INSERT INTO `item_mods` VALUES (14847,14,6);
+INSERT INTO `item_mods` VALUES (14847,833,4000);
 INSERT INTO `item_mods` VALUES (14848,1,15);
 INSERT INTO `item_mods` VALUES (14848,23,4);
 INSERT INTO `item_mods` VALUES (14848,27,1);

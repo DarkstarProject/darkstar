@@ -587,6 +587,8 @@ public:
     int32 unequipItem(lua_State* L);
     int32 recalculateStats(lua_State* L);
     int32 checkImbuedItems(lua_State* L);
+
+    int32 getNearbyEntities(lua_State* L);
 };
 
 #endif

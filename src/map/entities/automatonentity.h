@@ -84,6 +84,8 @@ public:
 
     void PostTick() override;
 
+    virtual void Die() override;
+
 private:
     std::array<uint8, 8> m_Burden;
 };

@@ -348,6 +348,7 @@ enum MODIFIER
     MOD_MAXIMUM_SONGS_BONUS       = 453, //
     MOD_SONG_DURATION_BONUS       = 454, //
     MOD_SONG_SPELLCASTING_TIME    = 455, //
+    MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time (in milliseconds).
 
     // Ranger
     MOD_RECYCLE                   = 305, // Percent chance to recycle
@@ -612,6 +613,7 @@ enum MODIFIER
     MOD_BARSPELL_MDEF_BONUS       = 827, // Extra magic defense bonus granted to the bar- spell effect
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
+    MOD_AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
 
     // Weaponskill %damage modifiers
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
@@ -633,8 +635,8 @@ enum MODIFIER
     // MOD_SPARE = 543, // stuff
     // MOD_SPARE = 552, // stuff
     // MOD_SPARE = 561, // stuff
-    // MOD_SPARE = 831, // stuff
-    // MOD_SPARE = 832, // stuff
+    // MOD_SPARE = 834, // stuff
+    // MOD_SPARE = 835, // stuff
 
 };
 

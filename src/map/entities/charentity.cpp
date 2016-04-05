@@ -875,7 +875,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         auto charge = ability::GetCharge(this, PAbility->getRecastId());
         if (charge && PAbility->getID() != ABILITY_SIC)
         {
-            action.recast = charge->chargeTime * PAbility->getRecastTime();
+            action.recast = charge->chargeTime * PAbility->getRecastTime() - meritRecastReduction;
         }
         else
         {
@@ -1038,24 +1038,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
 
 
             //#TODO: move all of these to script!
-            // Shadow Bind
-            //if (PAbility->getID() == ABILITY_SHADOWBIND)
-            //{
-            //    //action.flag = 3;
-
-            //    uint16 shadowBindDuration = 30 + this->getMod(MOD_SHADOW_BIND_EXT);
-            //    if (dsprand::GetRandomNumber(100) >= PTarget->getMod(MOD_BINDRES))
-            //    {
-            //        // Shadow bind success!
-            //        this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 11, 277));
-            //        PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, shadowBindDuration));
-            //    }
-            //    else
-            //    {
-            //        // Shadowbind failed!
-            //        this->loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, PAbility->getID() + 16, 11, 283));
-            //    }
-            //}
 
             //// Super Jump
             //else if (PAbility->getID() == ABILITY_SUPER_JUMP)
