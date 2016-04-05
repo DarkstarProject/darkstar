@@ -37,28 +37,3 @@ function ChocoboShirt(player)
     end
     return power;
 end;
-
--- Provides a power for using a equipment modifiers with bunch of wild pamamas or pamamas
-function PamamasEquip(player)
-    local head = target:getEquipID(SLOT_HEAD);
-    local main = target:getEquipID(SLOT_MAIN);
-    local power = 0;
-   
-    if (head == 13870) then -- Opo-Opo Crown
-        power = 1;
-    end
-    if (main == 17592 or main == 17590) then -- Kinkobo - Primate Staff
-        power = 2;
-    elseif (main == 17591) then -- Primate Staff +1
-        power = 3;
-    end
-   
-    if (head == 13870 and (main == 17592 or main == 17590)) then -- Opo-Opo Crown and Kinkobo or Primate Staff
-        power = 4;
-    end
-   
-    if (head == 13870 and main == 17591) then -- Opo-Opo Crown and Primate Staff +1
-        power = 5;
-    end
-    return power;
-end;
