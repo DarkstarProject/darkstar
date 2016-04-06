@@ -95,7 +95,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     end
     attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
-    local isTrickValid = taChar != nil
+    local isTrickValid = taChar ~= nil
 
     local isAssassinValid = isTrickValid;
     if (isAssassinValid and not attacker:hasTrait(68)) then
