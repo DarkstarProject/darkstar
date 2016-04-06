@@ -1928,6 +1928,49 @@ namespace luautils
         return 0;
     }
 
+
+    int32 OnAttachmentEquip(CBattleEntity* PEntity, CItemPuppet* attachment)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onEquip"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onEquip: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+        return 0;
+    }
+
+    int32 OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onUnequip"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onUnequip: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+        return 0;
+    }
+
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());

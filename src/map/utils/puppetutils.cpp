@@ -56,6 +56,7 @@ void LoadAutomaton(CCharEntity* PChar)
         if (PChar->PAutomaton != nullptr)
         {
             delete PChar->PAutomaton;
+            PChar->PPet = nullptr;
             PChar->PAutomaton = nullptr;
         }
 
@@ -229,6 +230,7 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
             {
                 PChar->PAutomaton->addElementCapacity(i, (PAttachment->getElementSlots() >> (i * 4)) & 0xF);
             }
+            luautils::OnAttachmentEquip(PChar->PAutomaton, PAttachment);
             PChar->PAutomaton->setAttachment(slotId, attachment);
         }
         else
@@ -249,8 +251,9 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
                 for (int i = 0; i < 8; i++)
                 {
                     PChar->PAutomaton->addElementCapacity(i, -((PAttachment->getElementSlots() >> (i * 4)) & 0xF));
-                    PChar->PAutomaton->setAttachment(slotId, 0);
                 }
+                luautils::OnAttachmentUnequip(PChar->PAutomaton, PAttachment);
+                PChar->PAutomaton->setAttachment(slotId, 0);
             }
         }
     }
@@ -309,10 +312,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
             PChar->PAutomaton->look.face = 0xB9 + ((frame - 32) * 5) + (head-1);
         for (int i = 0; i < 8; i++)
             PChar->PAutomaton->setElementMax(i, tempElementMax[i]);
-        LoadAutomatonStats(PChar);
     }
-
-    
 }
 
 void setHead(CCharEntity* PChar, uint8 head)
@@ -547,9 +547,9 @@ void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
                 if (PAttachment && PAttachment->getElementSlots() >> (element * 4))
                 {
                     if (gain)
-                        luautils::OnManeuverGain(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                        luautils::OnManeuverGain(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
                     else
-                        luautils::OnManeuverLose(PChar, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                        luautils::OnManeuverLose(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
                 }
             }
         }

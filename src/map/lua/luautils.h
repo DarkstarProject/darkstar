@@ -194,6 +194,8 @@ namespace luautils
     int32 OnEffectTick(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect tick timer has been reached
     int32 OnEffectLose(CBattleEntity* PEntity, CStatusEffect* StatusEffect);	// triggers when effect has been lost
 
+    int32 OnAttachmentEquip(CBattleEntity* PEntity, CItemPuppet* attachment);
+    int32 OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment);
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 

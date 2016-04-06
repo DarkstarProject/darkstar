@@ -27,3 +27,6 @@ ITEM_STATE_EXIT - Entity, Item
 WEATHER_CHANGE - Entity, weather, weather element
 
 EXPERIENCE_POINTS - Entity, exp
+
+TICK - Entity
+EFFECTS_TICK - Entity
