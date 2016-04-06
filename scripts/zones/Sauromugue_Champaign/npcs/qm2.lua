@@ -50,9 +50,9 @@ function onTrigger(player,npc)
     
     if (thickAsThieves == QUEST_ACCEPTED) then
         if (thickAsThievesGrapplingCS == 2) then
-            player:messageSpecial(THF_AF_MOB);    
-            SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise
-            setMobPos(17269107,193,32,211,0);    
+            player:messageSpecial(THF_AF_MOB);
+            GetMobByID(17269107):setSpawn(193,32,211);
+            SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise 
         elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
             thickAsThievesGrapplingCS == 3 or thickAsThievesGrapplingCS == 4 or
             thickAsThievesGrapplingCS == 5 or thickAsThievesGrapplingCS == 6 or
@@ -60,9 +60,9 @@ function onTrigger(player,npc)
             player:messageSpecial(THF_AF_WALL_OFFSET);    --  It is impossible to climb this wall with your bare hands.
         elseif (thickAsThievesGrapplingCS == 8) then
             player:messageSpecial(THF_AF_WALL_OFFSET+1); -- There is no longer any need to climb the tower.
-        end    
+        end
     else 
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);            
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
     
 end;
