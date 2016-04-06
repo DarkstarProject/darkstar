@@ -16,4 +16,4 @@ BLINGBRIX_SHOP_DIALOG = 7190; -- Blingbrix good Gobbie from Boodlix's! Boodlix's
    SILKE_SHOP_DIALOG = 12790; -- You wouldn't happen to be a fellow scholar, by any chance? The contents of these pages are beyond me, but perhaps you might glean something from them. They could be yours...for a nominal fee.
 
 -- Porter Moogle
-  RETRIEVE_DIALOG_ID = 14699; -- You retrieve a <item> from the porter moogle's care.
+  RETRIEVE_DIALOG_ID = 14702; -- You retrieve a <item> from the porter moogle's care.

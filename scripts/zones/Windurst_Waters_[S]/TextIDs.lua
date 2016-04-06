@@ -19,4 +19,4 @@ MIKHE_ARYOHCHA_DIALOG = 12449; -- Do you like the headpiece? I made it from my f
 EZURAROMAZURA_SHOP_DIALOG = 10870; -- A potent spelly-well or two can be the key to survival in this time of war. But can you mastaru my magic, or will it master you
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 14959; -- You retrieve a <item> from the porter moogle's care.
+RETRIEVE_DIALOG_ID = 14962; -- You retrieve a <item> from the porter moogle's care.
