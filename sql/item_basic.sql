@@ -51,7 +51,6 @@ INSERT INTO `item_basic` VALUES (5,0,'bronze_bed','bronze_bed',1,32,34,0,1564);
 INSERT INTO `item_basic` VALUES (6,0,'nobles_bed','nobles_bed',1,32,34,0,12406);
 INSERT INTO `item_basic` VALUES (7,0,'gold_bed','gold_bed',1,28768,0,1,0);
 INSERT INTO `item_basic` VALUES (8,0,'royal_bed','royal_bed',1,32,34,0,19074);
-
 INSERT INTO `item_basic` VALUES (21,0,'desk','desk',1,32,34,0,158);
 INSERT INTO `item_basic` VALUES (22,0,'workbench','workbench',1,32,34,0,91);
 INSERT INTO `item_basic` VALUES (23,0,'maple_table','maple_table',1,32,34,0,159);
