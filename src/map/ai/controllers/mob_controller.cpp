@@ -619,13 +619,13 @@ void CMobController::Move()
                     }
                 }
             }
-            else
-            {
-                if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
-                {
-                    PMob->PAI->PathFind->LookAt(PTarget->loc.p);
-                }
-            }
+        }
+    }
+    else
+    {
+        if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
+        {
+            PMob->PAI->PathFind->LookAt(PTarget->loc.p);
         }
     }
 }
