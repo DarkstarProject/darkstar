@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Horde Lullaby
+-- Spell: Horde Lullaby II
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -16,15 +16,10 @@ function onSpellCast(caster,target,spell)
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
-    local resm = applyResistanceEffect(caster,spell,target,dCHR,SKILL_SNG,0,EFFECT_LULLABY);
+    local resm = applyResistanceEffect(caster,spell,target,dCHR,SINGING_SKILL,0,EFFECT_LULLABY);
+
     if (resm < 0.5) then
         spell:setMsg(85);--resist message
-        return EFFECT_LULLABY;
-    end
-
-    if (target:hasImmunity(1) or 100 * math.random() < target:getMod(MOD_LULLABYRES)) then
-        --No effect
-        spell:setMsg(75);
     else
         local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
 
