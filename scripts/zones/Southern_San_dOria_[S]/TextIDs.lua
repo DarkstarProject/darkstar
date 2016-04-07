@@ -15,4 +15,4 @@ ITEM_DELIVERY_DIALOG = 11203; -- If'n ye have goods tae deliver, then Nembet be 
 WYATT_DIALOG = 11072; -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor merchant from Jeuno. Ended up 'ere in San d'Oria some way or another, though.
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 15564; -- You retrieve a <item> from the porter moogle's care.
+RETRIEVE_DIALOG_ID = 15567; -- You retrieve a <item> from the porter moogle's care.
