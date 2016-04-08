@@ -45,7 +45,7 @@ typedef std::unordered_map<uint32,ModsList_t*> ModsMap_t;
 
 namespace mobutils
 {
-	void	CalculateStats(CMobEntity* PMob);
+	void  CalculateStats(CMobEntity* PMob);
         void  SetupJob(CMobEntity* PMob);
         void  SetupRoaming(CMobEntity* PMob);
         void  SetupDynamisMob(CMobEntity* PMob);
