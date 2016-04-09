@@ -653,8 +653,8 @@ INSERT INTO `item_basic` VALUES (737,0,'chunk_of_gold_ore','gold_ore',12,0,39,0,
 INSERT INTO `item_basic` VALUES (738,0,'chunk_of_platinum_ore','platinum_ore',12,0,39,0,795);
 INSERT INTO `item_basic` VALUES (739,0,'chunk_of_orichalcum_ore','orichalcum_ore',12,0,39,0,850);
 INSERT INTO `item_basic` VALUES (740,0,'chunk_of_phrygian_ore','phrygian_ore',12,0,39,0,0);
-INSERT INTO `item_basic` VALUES (741,0,'chunk_of_palladian_brass_ore','p._brass_ore',12,0,39,1,0);
-INSERT INTO `item_basic` VALUES (742,0,'palladian_brass_ingot','p._brass_ingot',12,0,39,1,0);
+INSERT INTO `item_basic` VALUES (741,0,'chunk_of_palladian_brass_ore','p._brass_ore',12,0,39,0,0);
+INSERT INTO `item_basic` VALUES (742,0,'palladian_brass_ingot','p._brass_ingot',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (743,0,'ingot_of_phrygian_gold','ph_gold_ingot',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (744,0,'silver_ingot','silver_ingot',12,0,39,0,342);
 INSERT INTO `item_basic` VALUES (745,0,'gold_ingot','gold_ingot',12,0,39,0,2100);
@@ -667,7 +667,7 @@ INSERT INTO `item_basic` VALUES (751,0,'platinum_beastcoin','plt_beastcoin',12,0
 INSERT INTO `item_basic` VALUES (752,0,'gold_sheet','gold_sheet',12,0,39,0,2065);
 INSERT INTO `item_basic` VALUES (753,0,'sheet_of_phrygian_gold','ph_gold_sheet',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (754,0,'platinum_sheet','platinum_sheet',12,0,39,0,1052);
-INSERT INTO `item_basic` VALUES (755,0,'palladian_brass_sheet','p._brass_sheet',12,0,39,1,0);
+INSERT INTO `item_basic` VALUES (755,0,'palladian_brass_sheet','p._brass_sheet',12,0,39,0,0);
 INSERT INTO `item_basic` VALUES (756,0,'chunk_of_durium_ore','durium_ore',12,0,38,0,0);
 INSERT INTO `item_basic` VALUES (757,0,'durium_ingot','durium_ingot',12,0,38,0,0);
 INSERT INTO `item_basic` VALUES (758,0,'durium_sheet','durium_sheet',12,0,38,0,0);
@@ -3422,9 +3422,9 @@ INSERT INTO `item_basic` VALUES (3546,0,'piece_of_staghorn_coral','staghorn_cora
 INSERT INTO `item_basic` VALUES (3547,0,'sealord_skin','sealord_skin',12,0,41,0,0);
 INSERT INTO `item_basic` VALUES (3548,0,'square_of_sealord_leather','sealord_leather',12,0,41,0,0);
 INSERT INTO `item_basic` VALUES (3549,0,'vial_of_belladonna_sap','belladonna_sap',12,0,0,1,0);
-INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,0,41,1,0);
-INSERT INTO `item_basic` VALUES (3551,0,'square_of_wyrdweave','wyrdweave',12,0,41,1,0);
-INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,0,41,1,0);
+INSERT INTO `item_basic` VALUES (3550,0,'spool_of_wyrdstrand','wyrdstrand',12,0,41,0,0);
+INSERT INTO `item_basic` VALUES (3551,0,'square_of_wyrdweave','wyrdweave',12,0,41,0,0);
+INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,0,41,0,0);
 INSERT INTO `item_basic` VALUES (3553,0,'banquet_table_blueprint','b._table_blueprint',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3554,0,'set_of_banquet_table_fabric','b._table_fabric',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3555,0,'set_of_banquet_table_wood','b._table_wood',1,28752,0,1,0);
@@ -16292,8 +16292,8 @@ INSERT INTO `item_basic` VALUES (27727,0,'metal_slime_hat','metal_slime_hat',1,6
 INSERT INTO `item_basic` VALUES (27728,0,'cizin_helm_+1','cizin_helm_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27729,0,'otronif_mask_+1','otronif_mask_+1',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27730,0,'iuitl_headgear_+1','iuitl_headgear_+1',1,63552,0,1,0);
-INSERT INTO `item_basic` VALUES (27731,0,'gendewitha_caubeen_+1','gendewitha_caubeen_+1',1,63552,99,0,0);
-INSERT INTO `item_basic` VALUES (27732,0,'hagondes_hat_+1','hagondes_hat_+1',1,63568,99,0,0);
+INSERT INTO `item_basic` VALUES (27731,0,'gendewitha_caubeen_+1','gendewitha_caubeen_+1',1,63552,99,1,0);
+INSERT INTO `item_basic` VALUES (27732,0,'hagondes_hat_+1','hagondes_hat_+1',1,63568,99,1,0);
 INSERT INTO `item_basic` VALUES (27750,0,'haruspex_hat','haruspex_hat',1,2080,17,0,0);
 INSERT INTO `item_basic` VALUES (27751,0,'haruspex_hat_+1','haruspex_hat_+1',1,2080,17,0,0);
 
