@@ -61,18 +61,24 @@ INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+
 INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
 INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, Healing MP +1 if SCH is in party
 
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468);
-INSERT INTO `item_latents` VALUES(13870, 12, 1, 49, 4468);
-INSERT INTO `item_latents` VALUES(13870, 11, -3, 49, 4468); -- Opo-opo Crown, AGI+1 to AGI-2
-INSERT INTO `item_latents` VALUES(13870, 8, -3, 49, 4468); -- Opo-opo Crown, STR+1 to STR-2
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468);
-INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468);
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596);
-INSERT INTO `item_latents` VALUES(13870, 12, 1, 49, 4596);
-INSERT INTO `item_latents` VALUES(13870, 11, -3, 49, 4596); -- Opo-opo Crown, AGI+1 to AGI-2
-INSERT INTO `item_latents` VALUES(13870, 8, -3, 49, 4596); -- Opo-opo Crown, STR+1 to STR-2
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596);
-INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596);
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468); -- Opo-opo crown HP +50 (pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468); -- MP +50
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468); -- CHR +14
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596); -- Opo-opo crown HP +50 (wild pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596); -- MP +50
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
+INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- Primate Staff
+INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4468);
+INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4596);
+INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4468); -- Primate Staff +1
+INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4468);
+INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4596);
+INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4468); -- Kinkobo
+INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468);
+INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
 INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 
