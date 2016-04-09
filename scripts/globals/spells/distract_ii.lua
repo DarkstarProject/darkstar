@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Distract
+-- Spell: Distract II
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,17 +14,11 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-
-    -- Pull base stats.
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
-    
-    -- Base power.  May need more research.
-    local power = 35;
-
-    -- Duration, including resistance.  Unconfirmed.
+    local power = utils.clamp(40+(math.floor(dMND/5), 40, 50);
     local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_EVASION_DOWN);
 
-    if (duration >= 60) then -- Do it!
+    if (duration >= 60) then
         if (target:addStatusEffect(EFFECT_EVASION_DOWN,power,0,duration)) then
             spell:setMsg(236);
         else
