@@ -16525,7 +16525,7 @@ INSERT INTO `item_basic` VALUES (28026,0,'aiwon_gauntlets','aiwon_gauntlets',1,6
 INSERT INTO `item_basic` VALUES (28027,0,'boor_bracelets','boor_bracelets',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28028,0,'otomi_gloves','otomi_gloves',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28040,0,'haruspex_cuffs','haruspex_cuffs',1,2080,19,0,0);
-INSERT INTO `item_basic` VALUES (28041,0,'haruspex_cuffs_+1','haru._cuffs_+1',1,2080,0,19,0);
+INSERT INTO `item_basic` VALUES (28041,0,'haruspex_cuffs_+1','haru._cuffs_+1',1,2080,19,0,0);
 INSERT INTO `item_basic` VALUES (28042,0,'karieyh_moufles_+1','karieyh_moufles_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28043,0,'thurandaut_gloves_+1','thur_gloves_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28044,0,'orvail_cuffs_+1','orvail_cuffs_+1',1,63568,0,1,0);
