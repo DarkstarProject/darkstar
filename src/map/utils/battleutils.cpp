@@ -3900,24 +3900,18 @@ namespace battleutils
         uint32 CharmTime = 0;
         uint32 base = 0;
 
-
         // player charming mob
         if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
         {
-            //Bind uncharmable mobs for 5 seconds
-            if (PVictim->m_EcoSystem == SYSTEM_BEASTMEN || PVictim->m_EcoSystem == SYSTEM_ARCANA ||
-                PVictim->m_EcoSystem == SYSTEM_UNCLASSIFIED || PVictim->m_EcoSystem == SYSTEM_ARCHAICMACHINE ||
-                PVictim->m_EcoSystem == SYSTEM_AVATAR || PVictim->m_EcoSystem == SYSTEM_DEMON ||
-                PVictim->m_EcoSystem == SYSTEM_ELEMENTAL || PVictim->m_EcoSystem == SYSTEM_EMPTY ||
-                PVictim->m_EcoSystem == SYSTEM_LUMORIAN || PVictim->m_EcoSystem == SYSTEM_LUMINION ||
-                PVictim->m_EcoSystem == SYSTEM_UNDEAD || PVictim->PMaster != nullptr) {
-                PVictim->StatusEffectContainer->AddStatusEffect(
-                    new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, 5));
+            // cannot charm NM
+            if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS) {
                 return;
             }
 
-            // cannot charm NM
-            if (((CMobEntity*)PVictim)->m_Type & MOBTYPE_NOTORIOUS) {
+            //Bind uncharmable mobs for 5 seconds
+            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 ||  PVictim->PMaster != nullptr) {
+                PVictim->StatusEffectContainer->AddStatusEffect(
+                    new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, dsprand::GetRandomNumber(1, 5)));
                 return;
             }
 
