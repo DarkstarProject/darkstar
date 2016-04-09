@@ -16728,8 +16728,8 @@ INSERT INTO `item_basic` VALUES (28300,0,'gendewitha_galoshes_+1','gendewitha_ga
 INSERT INTO `item_basic` VALUES (28301,0,'hagondes_sabots_+1','hagondes_sabots_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28304,0,'litany_clogs','litany_clogs',1,34880,21,0,100);
 INSERT INTO `item_basic` VALUES (28305,0,'ejekamal_boots','ejekamal_boots',1,63568,0,1,0);
-INSERT INTO `item_basic` VALUES (28318,0,'haruspex_pigaches','haru._pigaches',1,2080,19,0,0);
-INSERT INTO `item_basic` VALUES (28319,0,'haruspex_pigaches_+1'haru._pigaches_+1'1,2080,19,0,0);
+INSERT INTO `item_basic` VALUES (28318,0,'haruspex_pigaches','haru._pigaches',1,2080,20,0,0);
+INSERT INTO `item_basic` VALUES (28319,0,'haruspex_pigaches_+1'haru._pigaches_+1'1,2080,21,0,0);
 INSERT INTO `item_basic` VALUES (28320,0,'karieyh_sollerets_+1','kar_sollerets_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28321,0,'thurandaut_boots_+1','thur_boots_+1',1,63568,0,1,0);
 INSERT INTO `item_basic` VALUES (28322,0,'orvail_souliers_+1','orvail_souliers_+1',1,63568,0,1,0);
