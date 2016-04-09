@@ -241,4 +241,3 @@ INSERT INTO `job_points` VALUES ('1422', 'vivacious_pulse', '1', '22');
 INSERT INTO `job_points` VALUES ('1424', 'one_for_all_effect_duration', '1', '22');
 INSERT INTO `job_points` VALUES ('1426', 'gambit_effect_duration', '1', '22');
 
-
