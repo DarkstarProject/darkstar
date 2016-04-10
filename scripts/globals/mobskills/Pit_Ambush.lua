@@ -28,7 +28,11 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_WIPE_SHADOWS);
 
+    -- These are here as it doesn't look right otherwise
+    mob:hideName(false);
     mob:untargetable(false);
+    mob:hideModel(false);
+    mob:AnimationSub(1);
     mob:setLocalVar("AMBUSH",1); -- Used it for the last time!
 
     target:delHP(dmg);
