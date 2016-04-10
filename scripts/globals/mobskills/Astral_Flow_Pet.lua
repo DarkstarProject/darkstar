@@ -31,7 +31,7 @@ function onMobSkillCheck(target,mob,skill)
     end
 
     if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
-        return 1;
+        return 0;
     elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
         return 0;
     end
