@@ -109,6 +109,25 @@ CNpcEntity::~CNpcEntity()
 
 }
 
+void CNpcEntity::HideModel(bool hide)
+{
+    if (hide)
+    {
+        // Copied over from mobentity
+        // i'm not sure if this is right
+        m_flags |= 0x80;
+    }
+    else
+    {
+        m_flags &= ~0x80;
+    }
+}
+
+bool CNpcEntity::IsModelHidden()
+{
+    return (m_flags & 0x80) == 0x80;
+}
+
 void CNpcEntity::HideHP(bool hide)
 {
     if (hide)

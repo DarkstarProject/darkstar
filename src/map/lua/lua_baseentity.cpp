@@ -9375,6 +9375,24 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::hideModel(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
+
+    if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        ((CMobEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
+    }
+    else if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ((CNpcEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
+    }
+    m_PBaseEntity->updatemask |= UPDATE_HP;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10862,6 +10880,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideModel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,breathDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,magicDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
