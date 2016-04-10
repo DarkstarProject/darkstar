@@ -10,7 +10,7 @@ require("scripts/globals/monstertpmoves");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
-        return 1;
+        return 0;
     elseif (skill:getParam() == 2 and math.random() <= 0.5) then -- not always used
         return 1;
     elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
