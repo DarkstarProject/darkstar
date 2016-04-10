@@ -589,6 +589,8 @@ public:
     int32 checkImbuedItems(lua_State* L);
 
     int32 getNearbyEntities(lua_State* L);
+    int32 getAutomatonFrame(lua_State* L);
+    int32 getAutomatonHead(lua_State* L);
 };
 
 #endif
