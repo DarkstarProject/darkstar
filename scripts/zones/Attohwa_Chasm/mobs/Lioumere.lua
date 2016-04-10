@@ -5,6 +5,8 @@
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/status");
+mixins = {require("scripts/mixins/families/antlion_ambush")}
 
 -----------------------------------
 -- onMobSpawn

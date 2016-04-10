@@ -193,14 +193,6 @@ INSERT INTO `mob_pool_mods` VALUES (1851,16,1,1);
 INSERT INTO `mob_pool_mods` VALUES (1851,32,1,1);
 
 -- -------------------------
---  Antlion MOBMOD_SPECIAL_SKILL Pit_Ambush 
--- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (586,30,278,1); -- Burrow Antlion 
-INSERT INTO `mob_pool_mods` VALUES (3141,30,278,1); -- Pit Antlion 
-INSERT INTO `mob_pool_mods` VALUES (3996,30,278,1); -- Trench Antlion 
-INSERT INTO `mob_pool_mods` VALUES (662,30,278,1); -- Cave Antlion 
-
--- -------------------------
 --  Race Runner
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def 

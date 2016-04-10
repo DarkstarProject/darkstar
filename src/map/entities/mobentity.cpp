@@ -569,14 +569,6 @@ void CMobEntity::Spawn()
     // spawn somewhere around my point
     loc.p = m_SpawnPoint;
 
-    if (m_roamFlags & ROAMFLAG_AMBUSH)
-    {
-        HideName(true);
-        animationsub = 0;
-        // this will hide the mob
-        HideModel(true);
-    }
-
     if (m_roamFlags & ROAMFLAG_STEALTH)
     {
         HideName(true);
