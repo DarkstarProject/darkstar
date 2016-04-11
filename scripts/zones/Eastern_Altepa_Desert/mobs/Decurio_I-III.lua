@@ -16,10 +16,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, player)
+function onMobDeath(mob,killer,ally)
 
-    if (player:getVar("aCraftsmanWork") == 1) then
-        player:setVar("Decurio_I_IIIKilled",1);
+    if (ally:getVar("aCraftsmanWork") == 1) then
+        ally:setVar("Decurio_I_IIIKilled",1);
     end
 
 end;
