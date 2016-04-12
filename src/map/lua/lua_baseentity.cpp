@@ -6365,6 +6365,34 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Returns the CE and VE the mob has towards the player                 *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getCE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetCE((CBattleEntity*)PEntity->GetBaseEntity()));
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getVE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetVE((CBattleEntity*)PEntity->GetBaseEntity()));
+    return 1;
+}
+
+/************************************************************************
+*                                                                       *
 *  Adds a specified amount of enmity towards the target if the base     *
 *  entity is a mob, or towards the base entity if the base entity is a  *
 *  player.                                                              *
@@ -10787,6 +10815,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,transferEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCE),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),
