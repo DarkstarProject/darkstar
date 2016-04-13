@@ -239,6 +239,8 @@ INSERT INTO `item_basic` VALUES (281,0,'atomos_statue','atomos_statue',1,61520,0
 INSERT INTO `item_basic` VALUES (282,0,'yovra_replica','yovra_replica',1,61520,0,1,0);
 INSERT INTO `item_basic` VALUES (284,0,'goobbue_statue','goobbue_statue',1,61504,0,1,0);
 INSERT INTO `item_basic` VALUES (286,0,'nanaa_mihgo_statue','nanaa_mihgo_statue',1,61504,0,1,0);
+INSERT INTO `item_basic` VALUES (287,0,'nanaa_mihgo_statue_ii','nanaa_mihgo_s_ii',1,61504,0,1,0);
+
 INSERT INTO `item_basic` VALUES (303,0,'crystal_stakes_gold_cup','cs_gold_cup',1,28736,0,1,0);
 INSERT INTO `item_basic` VALUES (304,0,'crystal_stakes_mythril_cup','cs_mythril_cup',1,28736,0,1,0);
 INSERT INTO `item_basic` VALUES (305,0,'crystal_stakes_bronze_cup','cs_bronze_cup',1,28736,0,1,0);
@@ -284,7 +286,7 @@ INSERT INTO `item_basic` VALUES (343,0,'harp_stool','harp_stool',1,32,34,0,789);
 INSERT INTO `item_basic` VALUES (345,0,'san_dorian_marriage_certificate','san_marriage_cert',1,61536,0,1,0);
 INSERT INTO `item_basic` VALUES (346,0,'bastokan_marriage_certificate','bas_marriage_cert',1,61536,0,1,0);
 INSERT INTO `item_basic` VALUES (347,0,'windurstian_marriage_certificate','win_marriage_cert',1,61536,0,1,0);
-
+INSERT INTO `item_basic` VALUES (348,0,'marble_plaque','marble_plaque',1,36,34,1,0);
 INSERT INTO `item_basic` VALUES (349,0,'royal_squires_bunk','ryl_sqr_bunk',1,32,34,0,4550);
 INSERT INTO `item_basic` VALUES (350,0,'republican_legionnaires_bedding','rep_lgn_bedding',1,32,34,0,4550);
 INSERT INTO `item_basic` VALUES (351,0,'federal_mercenarys_hammock','fed_mrc_hammock',1,32,34,0,4550);
@@ -334,7 +336,10 @@ INSERT INTO `item_basic` VALUES (394,0,'blue_tarutaru_desk','b_tarutaru_desk',1,
 INSERT INTO `item_basic` VALUES (395,0,'green_tarutaru_desk','g_tarutaru_desk',1,32,34,0,0);
 INSERT INTO `item_basic` VALUES (396,0,'yellow_tarutaru_desk','y_tarutaru_desk',1,32,34,0,0);
 INSERT INTO `item_basic` VALUES (397,0,'white_tarutaru_desk','w_tarutaru_desk',1,32,34,0,0);
-
+INSERT INTO `item_basic` VALUES (398,0,'red_mahogany_bed','red_mahogany_bed',1,36,34,0,0);
+INSERT INTO `item_basic` VALUES (399,0,'blue_mahogany_bed','blue_mahogany_bed',1,36,34,0,0);
+INSERT INTO `item_basic` VALUES (400,0,'green_mahogany_bed','gr_mahogany_bed',1,36,34,0,0);
+INSERT INTO `item_basic` VALUES (401,0,'yellow_mahogany_bed','yell_mahogany_bed',1,36,34,0,0);
 INSERT INTO `item_basic` VALUES (402,0,'blue_nobles_bed','blue_nobles_bed',1,32,34,0,0);
 INSERT INTO `item_basic` VALUES (403,0,'green_nobles_bed','green_nobles_bed',1,32,34,0,0);
 INSERT INTO `item_basic` VALUES (404,0,'yellow_nobles_bed','yel_nobles_bed',1,32,34,0,0);
@@ -3744,6 +3749,8 @@ INSERT INTO `item_basic` VALUES (4050,0,'fat_burrow_worm','fat_burrow_worm',12,2
 INSERT INTO `item_basic` VALUES (4054,0,'beetle_spirit','beetle_spirit',99,2837,0,1,0);
 INSERT INTO `item_basic` VALUES (4055,0,'antlion_spirit','antlion_spirit',99,2837,0,1,0);
 INSERT INTO `item_basic` VALUES (4056,0,'pachypodium_spirit','pachypodium_spirit',99,2837,0,1,0);
+INSERT INTO `item_basic` VALUES (4062,0,'microcosmic_orb','microcosmic_orb',1,61504,0,1,0);
+INSERT INTO `item_basic` VALUES (4063,0,'macrocosmic_orb','macrocosmic_orb',1,61504,0,1,0);
 INSERT INTO `item_basic` VALUES (4096,0,'fire_crystal','fire_crystal',12,512,35,0,13);
 INSERT INTO `item_basic` VALUES (4097,0,'ice_crystal','ice_crystal',12,512,35,0,30);
 INSERT INTO `item_basic` VALUES (4098,0,'wind_crystal','wind_crystal',12,512,35,0,14);
