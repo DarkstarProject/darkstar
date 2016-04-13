@@ -23,8 +23,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
 
     if (dmg > 0) then
-       target:addTP(2);
-       mob:addTP(8);
+       target:addTP(20);
+       mob:addTP(80);
     end
 
     target:delHP(dmg);
