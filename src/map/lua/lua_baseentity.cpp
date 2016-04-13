@@ -9375,6 +9375,24 @@ inline int32 CLuaBaseEntity::hideHP(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::hideModel(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
+
+    if (m_PBaseEntity->objtype == TYPE_MOB)
+    {
+        ((CMobEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
+    }
+    else if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ((CNpcEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
+    }
+    m_PBaseEntity->updatemask |= UPDATE_HP;
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::entityVisualPacket(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10422,6 +10440,64 @@ int32 CLuaBaseEntity::checkImbuedItems(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CCharEntity* iterTarget = (CCharEntity*)(m_PBaseEntity->objtype == TYPE_PC ? m_PBaseEntity : nullptr);
+
+    if (!iterTarget)
+    {
+        if (m_PBaseEntity->objtype == TYPE_MOB && ((CBattleEntity*)m_PBaseEntity)->GetBattleTarget()->objtype == TYPE_PC)
+        {
+            iterTarget = (CCharEntity*)((CBattleEntity*)m_PBaseEntity)->GetBattleTarget();
+        }
+        else if (((CBattleEntity*)m_PBaseEntity)->PMaster && ((CBattleEntity*)m_PBaseEntity)->PMaster->objtype == TYPE_PC)
+        {
+            iterTarget = (CCharEntity*)((CBattleEntity*)m_PBaseEntity)->PMaster;
+        }
+    }
+
+    lua_newtable(L);
+    int newTable = lua_gettop(L);
+    
+    for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
+    {
+        for (auto&& entity : list)
+        {
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, (void*)entity.second);
+            lua_pcall(L, 2, 1, 0);
+            lua_rawseti(L, newTable, entity.first);
+        }
+    }
+
+    return 1;
+}
+
+int32 CLuaBaseEntity::getAutomatonFrame(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PET || static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON);
+
+    lua_pushinteger(L, static_cast<CAutomatonEntity*>(m_PBaseEntity)->getFrame());
+
+    return 1;
+}
+
+int32 CLuaBaseEntity::getAutomatonHead(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PET || static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON);
+
+    lua_pushinteger(L, static_cast<CAutomatonEntity*>(m_PBaseEntity)->getHead());
+
+    return 1;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -10825,6 +10901,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,untargetable),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideModel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,breathDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,magicDmgTaken),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,physicalDmgTaken),
@@ -10879,5 +10956,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
     {nullptr,nullptr}
 };

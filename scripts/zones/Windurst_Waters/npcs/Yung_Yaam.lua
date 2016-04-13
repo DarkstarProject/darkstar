@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Yung Yaam
+-- Area: Windurst Waters
+--  NPC: Yung Yaam
 --    Involved In Quest: Wondering Minstrel
 --    Working 100%
 --  @zone = 238
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
---player:addFame(WINDURST,WIN_FAME*100)
+--player:addFame(WINDURST,100)
     wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
     fame = player:getFameLevel(WINDURST)
     if (wonderingstatus <= 1 and fame >= 5) then 
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 

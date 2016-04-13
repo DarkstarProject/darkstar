@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
 
     local typeEffect = EFFECT_MAGIC_ATK_BOOST;
     local power = 20;
-    local duration = 30;
+    local duration = 60;
 
     if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);

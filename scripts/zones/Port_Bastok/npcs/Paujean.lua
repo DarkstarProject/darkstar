@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -68,15 +67,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00c3) then
         player:addQuest(BASTOK,SILENCE_OF_THE_RAMS);
     elseif (csid == 0x00c4) then
         player:tradeComplete();
         player:completeQuest(BASTOK,SILENCE_OF_THE_RAMS);
-        player:addFame(3,NORG_FAME*125);
+        player:addFame(3,125);
         player:addItem(13201);
         player:messageSpecial(ITEM_OBTAINED,13201);
         player:addTitle(PURPLE_BELT);

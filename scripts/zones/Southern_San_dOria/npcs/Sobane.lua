@@ -8,7 +8,6 @@
 -- csid: 0x0034  0x02dc  0x02dd  0x02de  0x02df  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -------------------------------------
 require("scripts/globals/player");
 require("scripts/globals/settings");
@@ -75,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -84,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02dc and option == 1) then
         player:addQuest(SANDORIA,SIGNED_IN_BLOOD);
@@ -95,7 +94,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(TORN_OUT_PAGES);
             player:addItem(14760,1);
             player:messageSpecial(ITEM_OBTAINED,14760);
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SIGNED_IN_BLOOD);
             player:setVar("SIGNED_IN_BLOOD_Prog",0);
             player:addGil(GIL_RATE*3500);

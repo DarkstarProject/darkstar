@@ -7,9 +7,7 @@
 -- @pos -75 0 80
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -66,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00b1) then --1
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 32);
@@ -87,7 +85,7 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterVar",1);
         player:addKeyItem(CREST_OF_DAVOI_KI);
         player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,CREST_OF_DAVOI);
         
     elseif (csid == 0x0069) then 
@@ -102,7 +100,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17041);
             player:messageSpecial(ITEM_OBTAINED,17041);
             player:tradeComplete();
-            player:addFame(JEUNO, JEUNO_FAME*30);
+            player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,SAVE_MY_SISTER);
         end
     end

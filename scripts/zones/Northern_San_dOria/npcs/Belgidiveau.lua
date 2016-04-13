@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -47,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0039 and option == 0) then
         player:addQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
@@ -70,7 +69,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(NEUTRALIZER);
             player:addItem(16706);
             player:messageSpecial(ITEM_OBTAINED,16706); -- Heavy Axe
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
         end
     end

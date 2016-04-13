@@ -47,6 +47,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/ai_container.h"
 #include "../ai/controllers/mob_controller.h"
 #include "../ai/controllers/pet_controller.h"
+#include "../ai/controllers/automaton_controller.h"
 #include "../ai/states/ability_state.h"
 
 #include "../packets/char_sync.h"
@@ -738,7 +739,15 @@ namespace petutils
     void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
-        LoadPet(PMaster, PetID, spawningFromZone);
+        if (PMaster->objtype == TYPE_PC && (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
+        {
+            puppetutils::LoadAutomaton(static_cast<CCharEntity*>(PMaster));
+            PMaster->PPet = static_cast<CCharEntity*>(PMaster)->PAutomaton;
+        }
+        else
+        {
+            LoadPet(PMaster, PetID, spawningFromZone);
+        }
 
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
         if (PPet)
@@ -906,6 +915,10 @@ namespace petutils
 
             if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
                 PPetEnt->PMaster = nullptr;
+            }
+            else
+            {
+                PPetEnt->PAI->SetController(nullptr);
             }
             PChar->removePetModifiers(PPetEnt);
             charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
@@ -1195,7 +1208,10 @@ namespace petutils
         }
         CPetEntity* PPet = nullptr;
         if (petType == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
+        {
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
+            PPet->PAI->SetController(std::make_unique<CAutomatonController>(static_cast<CAutomatonEntity*>(PPet)));
+        }
 		else
 			PPet = new CPetEntity(petType);
 
@@ -1380,8 +1396,7 @@ namespace petutils
 		PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
 		PPet->health.tp = 0;
 		PPet->UpdateHealth();
-
-		PMaster->applyPetModifiers(PPet);
+        PMaster->applyPetModifiers(PPet);
 	}
 
 }; // namespace petutils

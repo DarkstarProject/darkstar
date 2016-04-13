@@ -1,11 +1,11 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Kororo
 --  Type: Standard NPC
 --  @zone: 241
 --  @pos -11.883 -3.75 5.508
 --  Starts quest: A Greeting Cardian 
---  Involved in quests: Lost Chick
+-- Involved in quests: Lost Chick
 --  Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
 
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(13330);
             player:messageSpecial(ITEM_OBTAINED, 13330); -- Tourmaline Earring
-            player:addFame(WINDURST,WIN_FAME*30);
+            player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,A_GREETING_CARDIAN);
             player:needToZone(true); -- zone before starting Legendary Plan B
             player:setVar("AGreetingCardian_timer",0);

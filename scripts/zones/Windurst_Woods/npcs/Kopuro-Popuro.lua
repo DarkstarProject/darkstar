@@ -1,18 +1,19 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Kopuro-Popuro
 --  Type: Standard NPC
 --  @zone: 241
 --  @pos -0.037 -4.749 -22.589
---    Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
---  Involved in quests: Lost Chick
+-- Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
+-- Involved in quests: Lost Chick
 -----------------------------------
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-require("scripts/zones/Windurst_Woods/TextIDs");
------------------------------------
+
 
 -----------------------------------
 -- onTrade Action
@@ -126,8 +127,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -135,15 +136,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- The All New C-2000
     if (csid == 0x011d and option ~= 2) then  -- option 2 is declining the quest for the second question
       player:addQuest(WINDURST,THE_ALL_NEW_C_2000);
      elseif (csid == 0x0124) then
       player:tradeComplete();
-      player:addFame(WINDURST,WIN_FAME*80);
+      player:addFame(WINDURST,80);
       player:addTitle(CARDIAN_TUTOR);
       player:addGil(GIL_RATE*200);
       player:completeQuest(WINDURST,THE_ALL_NEW_C_2000);
@@ -158,7 +159,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12749); -- Scentless Armlets
         else
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:addGil(GIL_RATE*700);
         player:addItem(12749);
         player:messageSpecial(ITEM_OBTAINED,12749); -- Scentless Armlets
@@ -173,7 +174,7 @@ function onEventFinish(player,csid,option)
     -- finish The All New C-3000
     elseif (csid == 0x0291) then
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*10);
+        player:addFame(WINDURST,10);
         player:addGil(GIL_RATE*600);
         player:completeQuest(WINDURST,THE_ALL_NEW_C_3000);
         

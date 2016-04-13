@@ -283,13 +283,16 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
         }
     }
 
-    if (!PAI->PathFind->CanSeePoint(*pos))
+    if (distance(loc.p, *pos) > getMobMod(MOBMOD_LINK_RADIUS))
     {
         return false;
     }
 
-    // link if close enough
-    return distance(loc.p, *pos) <= getMobMod(MOBMOD_LINK_RADIUS);
+    if (!PAI->PathFind->CanSeePoint(*pos))
+    {
+        return false;
+    }
+    return true;
 }
 
 /************************************************************************
@@ -566,14 +569,6 @@ void CMobEntity::Spawn()
     // spawn somewhere around my point
     loc.p = m_SpawnPoint;
 
-    if (m_roamFlags & ROAMFLAG_AMBUSH)
-    {
-        HideName(true);
-        animationsub = 0;
-        // this will hide the mob
-        HideModel(true);
-    }
-
     if (m_roamFlags & ROAMFLAG_STEALTH)
     {
         HideName(true);
@@ -636,7 +631,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_JUG_PET && 
+        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON)
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
         action.actiontype = ACTION_WEAPONSKILL_FINISH;

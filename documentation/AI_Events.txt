@@ -18,9 +18,15 @@ DEATH - Entity, Killer
 ENGAGE - Entity, Target
 DISENGAGE - Entity
 
+ATTACK - Attacker, defender, action
+ATTACKED - Defender, attacker, action
+
 ITEM_START - Entity, Item, action
 ITEM_USE - Entity, Item, action
 ITEM_STATE_EXIT - Entity, Item
 WEATHER_CHANGE - Entity, weather, weather element
 
 EXPERIENCE_POINTS - Entity, exp
+
+TICK - Entity
+EFFECTS_TICK - Entity

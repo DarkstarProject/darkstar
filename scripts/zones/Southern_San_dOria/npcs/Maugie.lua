@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Southern San d'Oria
+-- Area: Southern San d'Oria
 --  NPC: Maugie
 --  General Info NPC
 -------------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,13 +63,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x002d and option == 0) then
         player:addQuest(SANDORIA,GRIMY_SIGNPOSTS);
     elseif (csid == 0x002c) then
         player:setVar("CleanSignPost",0);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:completeQuest(SANDORIA,GRIMY_SIGNPOSTS);

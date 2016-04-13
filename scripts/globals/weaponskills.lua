@@ -19,7 +19,7 @@ local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762
 function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
 
     local criticalHit = false;
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
@@ -95,10 +95,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     end
     attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
     attacker:delStatusEffect(EFFECT_SNEAK_ATTACK);
-    local isTrickValid = taChar == nil
-    if (isTrickValid) then
-        isTrickValid = false;
-    end
+    local isTrickValid = taChar ~= nil
 
     local isAssassinValid = isTrickValid;
     if (isAssassinValid and not attacker:hasTrait(68)) then
@@ -200,11 +197,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
 
     local extraHitsLanded = 0;
 
-    if (numHits>1) then
+    if (numHits > 1) then
 
         local hitsdone = 1;
         while (hitsdone < numHits) do
             local chance = math.random();
+            local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
                     not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  -- it hit
                 pdif = generatePdif (cratio[1], cratio[2], true);
@@ -223,6 +221,9 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
                 extraHitsLanded = extraHitsLanded + 1;
             end
             hitsdone = hitsdone + 1;
+            if (finaldmg > targetHP) then
+                break;
+            end
         end
     end
     finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
@@ -257,7 +258,7 @@ end;
 
 function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
 
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
 
@@ -300,7 +301,7 @@ function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
     dmg = dmg * ftp;
     
     dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, 0);
+    dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, bonusacc);
     dmg = target:magicDmgTaken(dmg);
     dmg = adjustForTarget(target,dmg,params.ele);
     
@@ -451,9 +452,9 @@ end;
 
 function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
     if (tp>=1000 and tp <2000) then
-        return (ignore1 + ( ((ignore2-ignore1)/100) * (tp-1000)))*def;
+        return (ignore1 + ( ((ignore2-ignore1)/1000) * (tp-1000)))*def;
     elseif (tp>=2000 and tp<=3000) then
-        return (ignore2 + ( ((ignore3-ignore2)/100) * (tp-2000)))*def;
+        return (ignore2 + ( ((ignore3-ignore2)/1000) * (tp-2000)))*def;
     end
     return 1; -- no def ignore mod
 end
@@ -693,7 +694,7 @@ end;
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, wsID, params, tp, primary)
 
-    local bonusacc = 0;
+    local bonusacc = attacker:getMod(MOD_WSACC);
     local bonusfTP = 0;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
@@ -845,41 +846,36 @@ end;
 
 function getMultiAttacks(attacker, numHits)
     local bonusHits = 0;
-    local tripleChances = 1;
-    local doubleRate = attacker:getMod(MOD_DOUBLE_ATTACK)/100;
-    local tripleRate = attacker:getMod(MOD_TRIPLE_ATTACK)/100;
+    local multiChances = 1;
+    local doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
+    local tripleRate = (attacker:getMod(MOD_TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
+    local quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
 
-    -- triple only procs on first hit, or first two hits if dual wielding
-    if (attacker:getOffhandDmg() > 0) then
-        tripleChances = 2;
+    -- QA/TA/DA can only proc on the first hit of each weapon or each fist
+    if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H) then
+        multiChances = 2;
     end
 
-    for i = 1, numHits, 1 do
-        chance = math.random();
-        if (chance < tripleRate and i <= tripleChances) then
+    for i = 1, multiChances, 1 do
+        local chance = math.random()
+        if (chance < quadRate) then
+            bonusHits = bonusHits + 3;
+        elseif (chance < tripleRate + quadRate) then
             bonusHits = bonusHits + 2;
-        else
-            -- have to check if triples are possible, or else double attack chance
-            -- gets accidentally increased by triple chance (since it can only proc on 1 or 2)
-            if (i <= tripleChances) then
-                if (chance < tripleRate + doubleRate) then
-                    bonusHits = bonusHits + 1;
-                end
-            else
-                if (chance < doubleRate) then
-                    bonusHits = bonusHits + 1;
-                end
-            end
+        elseif(chance < doubleRate + tripleRate + quadRate) then
+            bonusHits = bonusHits + 1;
         end
         if (i == 1) then
             attacker:delStatusEffect(EFFECT_ASSASSIN_S_CHARGE);
             attacker:delStatusEffect(EFFECT_WARRIOR_S_CHARGE);
 
-            -- recalculate mods
-            doubleRate = attacker:getMod(MOD_DOUBLE_ATTACK)/100;
-            tripleRate = attacker:getMod(MOD_TRIPLE_ATTACK)/100;
+            -- recalculate DA/TA/QA rate
+            doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
+            tripleRate = (attacker:getMod(MOD_TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
+            quadRate = attacker:getMod(MOD_QUAD_ATTACK)/100;
         end
     end
+
     if ((numHits + bonusHits ) > 8) then
         return 8;
     end

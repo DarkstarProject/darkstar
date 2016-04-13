@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Metalworks
+-- Area: Metalworks
 --   NPC: Hungry Wolf
 --  Type: Quest Giver
 --  @pos -25.861 -11 -30.172 237
@@ -65,10 +65,10 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
       player:addTitle(HOT_DOG);
         if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
         else
-            player:addFame(BASTOK,BAS_FAME*5);
+            player:addFame(BASTOK,5);
         end
     end
 end;

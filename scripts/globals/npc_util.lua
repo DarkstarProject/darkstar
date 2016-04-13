@@ -147,25 +147,7 @@ function npcUtil.completeQuest(player, area, quest, options)
         options["fame"] = 30;
     end
 
-    local bonus = 1;
-
-    if (area == SANDORIA) then
-        bonus = SAN_FAME;
-    elseif (area == BASTOK) then
-        bonus = BAS_FAME;
-    elseif (area == WINDURST) then
-        bonus = WIN_FAME;
-    elseif (area == JEUNO) then
-        bonus = JEUN_FAME;
-    elseif (area == SELBINA) then
-        bonus = SELB_FAME;
-    elseif (area == RABAO) then
-        bonus = RABA_FAME;
-    elseif (area == NORG) then
-        bonus = NORG_FAME;
-    end
-
-    player:addFame(area, options["fame"] * bonus)
+    player:addFame(area, options["fame"])
 
     player:completeQuest(area,quest)
 

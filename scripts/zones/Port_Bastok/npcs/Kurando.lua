@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Port Bastok
+-- Area: Port Bastok
 --   NPC: Kurando
 --  Type: Quest Giver
 -- @zone: 236
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,13113);
             player:setTitle(AIRSHIP_DENOUNCER);
             player:completeQuest(BASTOK,FEAR_OF_FLYING);
-            player:addFame(BASTOK,BAS_FAME*30);
+            player:addFame(BASTOK,30);
         end    
     end
 end;

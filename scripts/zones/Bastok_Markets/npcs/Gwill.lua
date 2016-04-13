@@ -7,9 +7,7 @@
 -- @pos 0 0 0
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -62,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00f2) then
         player:addQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
@@ -82,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(KULATZ_BRIDGE_COMPANION);
             player:addItem(12498);
             player:messageSpecial(ITEM_OBTAINED,12498);
-            player:addFame(BASTOK,BAS_FAME*80);
+            player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);

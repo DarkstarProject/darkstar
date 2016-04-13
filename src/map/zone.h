@@ -333,7 +333,7 @@ enum ZONEID : uint16
     ZONE_ESCHA_RUAUN                  = 289,
     ZONE_DESUETIA_EMPYREAL_PARADOX    = 290,
     ZONE_REISENJIMA                   = 291,
-    ZONE_292                          = 292,
+    ZONE_REISENJIMA_HENGE             = 292,
     ZONE_REISENJIMA_SANCTORIUM        = 293
 };
 

@@ -11,7 +11,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -75,7 +74,7 @@ Fame       = player:getFameLevel(WINDURST);
                 
                 if (FreeSlots >= 1) then
                     player:completeQuest(WINDURST,THE_PROMISE);
-                    player:addFame(WINDURST,WIN_FAME*150);
+                    player:addFame(WINDURST,150);
                     player:delKeyItem(INVISIBLE_MAN_STICKER);
                     player:addItem(13135);
                     player:messageSpecial(ITEM_OBTAINED,13135);
@@ -208,8 +207,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0170 and option == 0) then
         player:addQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);         
@@ -218,7 +217,7 @@ function onEventFinish(player,csid,option)
         
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
-            player:addFame(WINDURST,WIN_FAME*75);
+            player:addFame(WINDURST,75);
             player:addTitle(STAR_ONION_BRIGADE_MEMBER);
             player:tradeComplete();
             player:addItem(13093);
@@ -245,7 +244,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x0182 or csid == 0x0190) then
         player:completeQuest(WINDURST,KNOW_ONE_S_ONIONS);
-        player:addFame(WINDURST,WIN_FAME*80);
+        player:addFame(WINDURST,80);
         player:addTitle(SOB_SUPER_HERO);    
         player:setVar("KnowOnesOnions",0);
         player:setVar("KnowOnesOnionsTime",0);
@@ -257,7 +256,7 @@ function onEventFinish(player,csid,option)
         
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,INSPECTOR_S_GADGET);
-            player:addFame(WINDURST,WIN_FAME*90);
+            player:addFame(WINDURST,90);
             player:addTitle(FAKEMOUSTACHED_INVESTIGATOR);    
             player:addItem(13204);
             player:messageSpecial(ITEM_OBTAINED,13204);
@@ -278,7 +277,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x01b0 or csid == 0x01b1) then
         player:completeQuest(WINDURST,ONION_RINGS);
-        player:addFame(WINDURST,WIN_FAME*100);
+        player:addFame(WINDURST,100);
         player:addTitle(STAR_ONION_BRIGADIER);
         player:delKeyItem(OLD_RING);
         player:setVar("OnionRingsTime",0);
@@ -309,7 +308,7 @@ function onEventFinish(player,csid,option)
         
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,THE_PROMISE);
-            player:addFame(WINDURST,WIN_FAME*150);
+            player:addFame(WINDURST,150);
             player:delKeyItem(INVISIBLE_MAN_STICKER);
             player:addItem(13135);
             player:messageSpecial(ITEM_OBTAINED,13135);

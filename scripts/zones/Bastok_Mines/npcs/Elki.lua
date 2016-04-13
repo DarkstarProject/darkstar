@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -59,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0029 and option == 0) then
         player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);
@@ -71,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:addItem(12840);
         player:messageSpecial(ITEM_OBTAINED,12840);
         player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
-        player:addFame(BASTOK,BAS_FAME*80);
+        player:addFame(BASTOK,80);
         player:setVar("HeartsOfMythril",0);
         player:needToZone(true);
     elseif (csid == 0x002b and option == 1) then

@@ -183,13 +183,13 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*200);
         player:addTitle(CAT_BURGLAR_GROUPIE);
         player:needToZone(true);
-        player:addFame(NORG,NORG_FAME*60);
+        player:addFame(NORG,60);
         player:completeQuest(WINDURST,MIHGO_S_AMIGO);
     elseif (csid == 0x01ee) then
         player:tradeComplete();
         player:addTitle(CAT_BURGLAR_GROUPIE);
         player:addGil(GIL_RATE*200);
-        player:addFame(NORG,NORG_FAME*30);
+        player:addFame(NORG,30);
     elseif (csid == 0x01f0) then
         player:addQuest(WINDURST,THE_TENSHODO_SHOWDOWN);
         player:setVar("theTenshodoShowdownCS",1);

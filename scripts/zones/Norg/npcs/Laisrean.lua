@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -69,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
             player:messageSpecial(ITEM_OBTAINED, 4946);
             player:addTitle(TREASUREHOUSE_RANSACKER);
-            player:addFame(OUTLANDS,NORG_FAME*75);
+            player:addFame(OUTLANDS,75);
             player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
         end
     end

@@ -6,9 +6,7 @@
 -- @pos -32 -1 -7
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -57,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00e6 and option == 10) then
         if (player:delGil(500000)) then
@@ -76,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00e6 and option == 10) then
         if (player:hasKeyItem(AIRSHIP_PASS) == true) then
@@ -115,7 +113,7 @@ function onEventFinish(player,csid,option)
         player:setVar("saveTheClockTowerNPCz1",0);
         player:setVar("saveTheClockTowerNPCz2",0);
         player:addTitle(CLOCK_TOWER_PRESERVATIONIST);
-        player:addFame(JEUNO, JEUNO_FAME*30);
+        player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);
     end

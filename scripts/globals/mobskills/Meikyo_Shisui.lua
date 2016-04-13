@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobBuffMove(mob, typeEffect, 1, 0, duration);
 
     skill:setMsg(MSG_USES);
-    mob:addTP(300);
+    mob:addTP(3000);
     return typeEffect;
 end;

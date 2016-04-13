@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:delGil(player:getVar("MAGRIFFON_GIL_REQUEST"));
         player:setVar("MAGRIFFON_GIL_REQUEST", 0);
-        player:addFame(KAZHAM, WIN_FAME*30);
+        player:addFame(KAZHAM, 30);
         player:setTitle(285);                                     -- Global Variable not working for this quest
         player:completeQuest(OUTLANDS, GULLIBLES_TRAVELS);
         player:needToZone(true);
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,TREASURE_MAP);
     elseif (csid == 0x0098) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);
-        player:addFame(KAZHAM, WIN_FAME*30);
+        player:addFame(KAZHAM, 30);
         player:completeQuest(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS);
     end
 end;

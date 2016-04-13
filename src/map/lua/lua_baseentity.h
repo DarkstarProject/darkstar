@@ -526,6 +526,7 @@ public:
     int32 hideName(lua_State* L);
     int32 untargetable(lua_State* L);
     int32 hideHP(lua_State* L);
+    int32 hideModel(lua_State* L);
     int32 breathDmgTaken(lua_State* L);
     int32 magicDmgTaken(lua_State* L);
     int32 physicalDmgTaken(lua_State* L);
@@ -587,6 +588,10 @@ public:
     int32 unequipItem(lua_State* L);
     int32 recalculateStats(lua_State* L);
     int32 checkImbuedItems(lua_State* L);
+
+    int32 getNearbyEntities(lua_State* L);
+    int32 getAutomatonFrame(lua_State* L);
+    int32 getAutomatonHead(lua_State* L);
 };
 
 #endif

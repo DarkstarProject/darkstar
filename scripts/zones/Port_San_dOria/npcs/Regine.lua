@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_San_dOria/TextIDs");
@@ -86,7 +85,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*440)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
         player:addTitle(ADVERTISING_EXECUTIVE);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:setVar("tradeAnswald",0);
         player:setVar("tradePrietta",0);
         player:setVar("tradeMiene",0);

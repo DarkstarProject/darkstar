@@ -7,7 +7,6 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
@@ -46,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0025 and option == 1) then
         player:addQuest(SANDORIA,STARTING_A_FLAME);
@@ -65,10 +64,10 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*100);
         if (player:getQuestStatus(SANDORIA,STARTING_A_FLAME) == QUEST_ACCEPTED) then
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,STARTING_A_FLAME);
         else
-            player:addFame(SANDORIA,SAN_FAME*5);
+            player:addFame(SANDORIA,5);
         end
     end
 

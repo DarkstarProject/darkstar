@@ -95,8 +95,9 @@ function onMobFight(mob, target)
         if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
             mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
         end
-        mob:useMobAbility(1832); -- Barofield
+        -- These need to be listed in reverse order as forced moves are added to the top of the queue.
         mob:useMobAbility(1830); -- Polar Blast
+        mob:useMobAbility(1832); -- Barofield
 
     elseif (mob:AnimationSub() == 1 and os.time() > headTimer) then
         mob:AnimationSub(0);
@@ -114,9 +115,10 @@ function onMobFight(mob, target)
         if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
             mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
         end
-        mob:useMobAbility(1832); -- Barofield
-        mob:useMobAbility(1830); -- Polar Blast
+        -- Reverse order, same deal.
         mob:useMobAbility(1828); -- Pyric Blast
+        mob:useMobAbility(1830); -- Polar Blast
+        mob:useMobAbility(1832); -- Barofield
     end
 end;
 

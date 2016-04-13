@@ -9656,7 +9656,7 @@ INSERT INTO `item_armor` VALUES (20561,'carnwenhan',99,119,512,427,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20562,'carnwenhan',99,119,512,563,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20563,'twashtar',99,119,262688,465,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20564,'twashtar',99,119,262688,571,0,0,3,0);
-INSERT INTO `item_armor` VALUES (20604,'ternion_dagger+1',99,119,1605625,168,0,0,3,0);
+INSERT INTO `item_armor` VALUES (20604,'ternion_dagger+1',99,119,1867769,168,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20605,'odium',99,119,333617,731,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20610,'rhadamanthus',99,119,328224,724,0,0,3,0);
 INSERT INTO `item_armor` VALUES (20612,'sangarius+1',99,119,129,287,0,0,3,0);
@@ -10251,6 +10251,7 @@ INSERT INTO `item_armor` VALUES (27189,'horos_tights_+1',99,119,262144,172,0,0,1
 INSERT INTO `item_armor` VALUES (27190,'pedagogy_pants',99,109,524288,174,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27191,'pedagogy_pants_+1',99,119,524288,174,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27220,'miasmic_pants',99,119,3840780,329,0,0,128,0);
+INSERT INTO `item_armor` VALUES (27221,'avatara_slops',99,0,16384,20,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27237,'boii_cuisses',99,109,1,282,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27238,'boii_cuisses_+1',99,119,1,282,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27239,'bhikku_hose',99,109,2,283,0,0,128,0);
@@ -10469,7 +10470,7 @@ INSERT INTO `item_armor` VALUES (27766,'ukuxkaj_cap',99,115,2593826,330,0,0,16,0
 INSERT INTO `item_armor` VALUES (27767,'buremte_hat',99,115,1589788,352,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27773,'yaoyotl_helm',99,119,10689,348,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27774,'whirlpool_mask',99,119,2593826,347,0,0,16,0);
-INSERT INTO `item_armor` VALUES (27775,'nahtirah_hat',99,119,3179576,346,0,0,16,0);
+INSERT INTO `item_armor` VALUES (27775,'nahtirah_hat',99,119,1622556,346,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27776,'mikinaak_helm',99,110,10689,349,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27777,'manibozho_beret',99,110,5187652,350,0,0,16,0);
 INSERT INTO `item_armor` VALUES (27778,'bokwus_circlet',99,110,3179576,351,0,0,16,0);

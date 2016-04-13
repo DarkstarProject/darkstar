@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -58,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x006d and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WATER) == QUEST_COMPLETED) then
@@ -105,7 +104,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(HEIR_OF_THE_GREAT_WATER);
             player:delKeyItem(WHISPER_OF_TIDES); --Whisper of Tides, as a trade for the above rewards
             player:setVar("TrialByWater_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(NORG,NORG_FAME*30);
+            player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,TRIAL_BY_WATER);
         end
     end

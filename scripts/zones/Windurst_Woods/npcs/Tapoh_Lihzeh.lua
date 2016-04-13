@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC: Tapoh Lihzeh
---    Starts & Finishes Repeatable Quest: Paying Lip Service
+-- Area: Windurst Woods
+--  NPC: Tapoh Lihzeh
+-- Starts & Finishes Repeatable Quest: Paying Lip Service
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01dd and option == 1) then
         player:addQuest(WINDURST,PAYING_LIP_SERVICE);
@@ -87,10 +87,10 @@ function onEventFinish(player,csid,option)
         
         if (PayingLipService == QUEST_ACCEPTED) then
             player:completeQuest(WINDURST,PAYING_LIP_SERVICE);
-            player:addFame(WINDURST,WIN_FAME*60);
+            player:addFame(WINDURST,60);
             player:addTitle(KISSER_MAKEUPPER);
         else
-            player:addFame(WINDURST,WIN_FAME*8);
+            player:addFame(WINDURST,8);
         end
         
         if (option == 1) then

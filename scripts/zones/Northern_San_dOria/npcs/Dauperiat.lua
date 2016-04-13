@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -75,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -99,10 +98,10 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
         if (player:getQuestStatus(SANDORIA,BLACKMAIL) == QUEST_ACCEPTED) then
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,BLACKMAIL);
         else
-            player:addFame(SANDORIA,SAN_FAME*5);
+            player:addFame(SANDORIA,5);
         end
     elseif (csid == 0x028 and option == 1) then
         player:addQuest(SANDORIA,BLACKMAIL);

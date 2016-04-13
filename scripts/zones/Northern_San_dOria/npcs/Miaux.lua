@@ -1,12 +1,11 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --   NPC: Miaux
 --  Type: Quest Giver
 --  @pos -169.127 2.999 158.677 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -81,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(ALTEPA_POLISHING_STONE);
             player:addItem(16887); 
             player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
-            player:addFame(SANDORIA,SAN_FAME*AF1_FAME);
+            player:addFame(SANDORIA,AF1_FAME);
             player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then

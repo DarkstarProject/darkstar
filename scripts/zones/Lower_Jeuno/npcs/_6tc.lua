@@ -6,9 +6,7 @@
 -- @pos 35 0 -15
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -59,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0056 ) then 
         player:setVar("PromathiaStatus",1); 
         player:startEvent(0x0009);
@@ -98,7 +96,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13186);
             player:messageSpecial(ITEM_OBTAINED,13186);
             player:setVar("BeatAroundTheBushin",0);
-            player:addFame(NORG,NORG_FAME*125);
+            player:addFame(NORG,125);
             player:tradeComplete();
             player:completeQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
         end

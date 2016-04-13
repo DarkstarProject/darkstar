@@ -80,12 +80,15 @@ public:
     uint8 getElementCapacity(uint8 element);
 
     void burdenTick();
+    void setInitialBurden();
     uint8 addBurden(uint8 element, uint8 burden);
 
     void PostTick() override;
 
+    virtual void Die() override;
+
 private:
-    std::array<uint8, 8> m_Burden;
+    std::array<uint8, 8> m_Burden {};
 };
 
 #endif

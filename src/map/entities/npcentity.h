@@ -37,8 +37,10 @@ int32 reappear_npc(time_point tick,CTaskMgr::CTask *PTask); // used for hideNPC 
 class CNpcEntity : public CBaseEntity {
 public:
 
-	uint32		m_flags;
-	uint8		name_prefix;
+    uint32      m_flags;
+    uint8       name_prefix;
+    void        HideModel(bool hide);                    // hide / show model
+    bool        IsModelHidden();
     void        HideHP(bool hide);
     bool        IsHPHidden();
     void        Untargetable(bool untargetable);

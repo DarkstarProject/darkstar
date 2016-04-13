@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -80,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17422);
             player:messageSpecial(ITEM_OBTAINED,17422); -- Blessed Hammer
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*AF1_FAME);
+            player:addFame(SANDORIA,AF1_FAME);
             player:completeQuest(SANDORIA,MESSENGER_FROM_BEYOND);
         end
     elseif (csid == 0x02b3) then
@@ -90,7 +89,7 @@ function onEventFinish(player,csid,option)
             player:addItem(14091);
             player:messageSpecial(ITEM_OBTAINED,14091); -- Healer's Duckbills
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*AF2_FAME);
+            player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
         end
     elseif (csid == 0x02b4) then
@@ -102,7 +101,7 @@ function onEventFinish(player,csid,option)
             player:addItem(12640);
             player:messageSpecial(ITEM_OBTAINED,12640); -- Healer's Briault
             player:tradeComplete();
-            player:addFame(SANDORIA,SAN_FAME*AF3_FAME);
+            player:addFame(SANDORIA,AF3_FAME);
             player:completeQuest(SANDORIA,PIEUJE_S_DECISION);
         end
     end

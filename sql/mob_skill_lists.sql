@@ -2591,3 +2591,16 @@ INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 662);
 INSERT INTO `mob_skill_lists` VALUES ('Jug_Lycopodium', 766, 663);
 
 INSERT INTO `mob_skill_lists` VALUES ('Lamina-Hyakinthos', 767, 2210);
+
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,530);
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,531);
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,532);
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,533);
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,1326);
+INSERT INTO `mob_skill_lists` VALUES ('Corse_NM_staff',768,1329);
+
+INSERT INTO `mob_skill_lists` VALUES ('Rafflesia',769,2163);
+INSERT INTO `mob_skill_lists` VALUES ('Rafflesia',769,2164);
+INSERT INTO `mob_skill_lists` VALUES ('Rafflesia',769,2165);
+INSERT INTO `mob_skill_lists` VALUES ('Rafflesia',769,2166);
+INSERT INTO `mob_skill_lists` VALUES ('Rafflesia',769,2167);

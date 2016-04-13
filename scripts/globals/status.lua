@@ -1278,6 +1278,8 @@ MOD_BARSPELL_MDEF_BONUS       = 827 -- Extra magic defense bonus granted to the 
 MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
 MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering healing breath
+MOD_AQUAVEIL_COUNT            = 832 -- Modifies the amount of hits that Aquaveil absorbs before being removed
+MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time (in milliseconds).
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1303,8 +1305,8 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98, -- stuff
 -- MOD_SPARE = 99, -- stuff
 -- MOD_SPARE = 100, -- stuff
--- MOD_SPARE = 829, -- stuff
--- MOD_SPARE = 830, -- stuff
+-- MOD_SPARE = 834, -- stuff
+-- MOD_SPARE = 835, -- stuff
 
 ------------------------------------
 -- Merit Definitions

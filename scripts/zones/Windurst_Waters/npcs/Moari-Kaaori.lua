@@ -1,13 +1,14 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Moari-Kaaori
---    Working 100%
+-- Area: Windurst Waters
+--  NPC: Moari-Kaaori
+-- Working 100%
 -----------------------------------
-
+package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -58,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0202 and option == 1) then
         if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_COMPLETED) then
@@ -79,7 +80,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0208) then -- First completion, Iron Sword awarded.
         player:tradeComplete();
         player:completeQuest(WINDURST,SAY_IT_WITH_FLOWERS);
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:addItem(16536);
         player:messageSpecial(ITEM_OBTAINED,16536);
         player:setVar("FLOWER_PROGRESS",0);
@@ -90,12 +91,12 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(100);
         player:messageSpecial(GIL_OBTAINED,100);
-        player:addFame(WINDURST,WIN_FAME*10);
+        player:addFame(WINDURST,10);
         player:setLocalVar("FLOWER_ZONE",1);
         player:setVar("FLOWER_PROGRESS",0);
     elseif (csid == 0x020D) then -- Repeatable quest rewards.
         player:tradeComplete();
-        player:addFame(WINDURST,WIN_FAME*30);
+        player:addFame(WINDURST,30);
         player:addGil(GIL_RATE*400);
         player:setVar("FLOWER_PROGRESS",0);
         player:setLocalVar("FLOWER_ZONE",1);

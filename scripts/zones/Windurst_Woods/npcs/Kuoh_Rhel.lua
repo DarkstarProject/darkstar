@@ -1,10 +1,10 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Kuoh Rhel
 --  Type: Standard NPC
 --  @zone: 241
 --  @pos 131.437 -6 -102.723
---    Starts quests: Chocobilious, In a Stew
+-- Starts quests: Chocobilious, In a Stew
 --  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
 --        writing this quest. Once it is working please feel free to add it in ^^
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -85,15 +85,15 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     --Chocobilious
     if (csid == 0x00e0 and option == 1) then            -- Quest start
         player:addQuest(WINDURST,CHOCOBILIOUS);
     elseif (csid == 0x00e7) then                        -- finish Quest
         player:completeQuest(WINDURST,CHOCOBILIOUS);
-        player:addFame(WINDURST,WIN_FAME*220);
+        player:addFame(WINDURST,220);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:tradeComplete();
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00EF) then
         player:completeQuest(WINDURST,IN_A_STEW);    -- finish Quest
         player:setVar("IASvar",0);
-        player:addFame(WINDURST,WIN_FAME*50);
+        player:addFame(WINDURST,50);
         player:addGil(GIL_RATE*900);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
         player:delKeyItem(RANPIMONPIS_SPECIAL_STEW);

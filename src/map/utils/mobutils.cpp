@@ -578,11 +578,6 @@ void CalculateStats(CMobEntity * PMob)
     {
         ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
     }
-
-    if (PMob->m_EcoSystem == SYSTEM_BEASTMEN && !(PMob->m_Detects & DETECT_SCENT))
-    {
-        ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) beastman does not detect by scent!\n", PMob->GetName(), PMob->id, PMob->m_Family);
-    }
 }
 
 void SetupJob(CMobEntity* PMob)
@@ -729,8 +724,6 @@ void SetupRoaming(CMobEntity* PMob)
 
     if(PMob->m_roamFlags & ROAMFLAG_AMBUSH)
     {
-        PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 278);
-        PMob->setMobMod(MOBMOD_SPECIAL_COOL, 1);
         PMob->m_specialFlags |= SPECIALFLAG_HIDDEN;
         // always stay close to spawn
         PMob->m_maxRoamDistance = 2.0f;

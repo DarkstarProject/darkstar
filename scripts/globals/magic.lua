@@ -480,7 +480,7 @@ function getEffectResistance(target, effect)
         effectres = MOD_CURSERES;
     elseif (effect == EFFECT_WEIGHT) then
         effectres = MOD_GRAVITYRES;
-    elseif (effect == EFFECT_SLOW) then
+    elseif (effect == EFFECT_SLOW or effect == EFFECT_ELEGY) then
         effectres = MOD_SLOWRES;
     elseif (effect == EFFECT_STUN) then
         effectres = MOD_STUNRES;

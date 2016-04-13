@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -64,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0002 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);
@@ -85,10 +84,10 @@ function onEventFinish(player,csid,option)
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
             
         if (ShadyBusiness == QUEST_ACCEPTED) then
-            player:addFame(NORG,NORG_FAME*100);
+            player:addFame(NORG,100);
             player:completeQuest(BASTOK,SHADY_BUSINESS);
         else
-            player:addFame(NORG,NORG_FAME*80);
+            player:addFame(NORG,80);
         end
         
         player:tradeComplete();

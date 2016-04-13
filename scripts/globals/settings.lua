@@ -49,12 +49,6 @@ SHOP_PRICE = 1.000; -- Multiplies prices in NPC shops.
 GIL_RATE   = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
 EXP_RATE   = 1.000; -- Multiplies exp earned from fov.
 TABS_RATE  = 1.000; -- Multiplies tabs earned from fov.
-SAN_FAME   = 1.000; -- Multiplies fame earned from San d'Oria quests.
-BAS_FAME   = 1.000; -- Multiplies fame earned from Bastok quests.
-WIN_FAME   = 1.000; -- Multiplies fame earned from Windurst quests.
-NORG_FAME  = 1.000; -- Multiplies fame earned from Norg and Tenshodo quests.
-JEUNO_FAME = 1.000; -- Multiplies fame earned from Jeuno quests.
-
 CURE_POWER  = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
 SPELL_POWER = 1.000; -- Multiplies damage dealt by Elemental and Divine Magic.
 BLUE_POWER  = 1.000; -- Multiplies damage dealt by most Blue Magic.
@@ -130,7 +124,7 @@ BLINK_SHADOWS = 2;   -- number of shadows supplied by Blink spell
 ENSPELL_DURATION = 180; -- duration of RDM en-spells
 SPIKE_EFFECT_DURATION = 180; -- the duration of RDM, BLM spikes effects (not Reprisal)
 ELEMENTAL_DEBUFF_DURATION = 120; -- base duration of elemental debuffs
-AQUAVEIL_INTERR_RATE = 25;  -- percent spell interruption rate reduction from Aquaveil (see http://www.bluegartrls.com/forum/82143-spell-interruption-down-cap-aquaveil-tests.html)
+AQUAVEIL_COUNTER = 1;  -- Base amount of hits Aquaveil absorbs to prevent spell interrupts. Retail is 1.
 ABSORB_SPELL_AMOUNT = 8; -- how much of a stat gets absorbed by DRK absorb spells - expected to be a multiple of 8.
 ABSORB_SPELL_TICK = 9; -- duration of 1 absorb spell tick
 SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodorize to reduce player torture. 1 = retail behavior.

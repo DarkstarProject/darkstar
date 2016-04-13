@@ -7,7 +7,6 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -100,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     npc:wait(5000);
     
@@ -128,7 +127,7 @@ function onEventFinish(player,csid,option,npc)
             player:addTitle(RONFAURIAN_RESCUER);
             player:addItem(12832);
             player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
-            player:addFame(SANDORIA,SAN_FAME*30);
+            player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,A_SENTRY_S_PERIL);
         end
     end

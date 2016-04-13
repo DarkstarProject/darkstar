@@ -23,14 +23,20 @@ function onSpellCast(caster,target,spell)
     -- tests that quantify the relationship so I'm using 5 minutes for now.
 
     local duration = 300;
+    local power = AQUAVEIL_COUNTER + caster:getMod(MOD_AQUAVEIL_COUNT);
+    if (caster:getSkillLevel(ENHANCING_MAGIC_SKILL) >= 200) then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil
+        power = power + 1;
+    end
+    if (power < 1) then -- this shouldn't happen but it's probably best to prevent someone from accidentally underflowing the counter...
+        power = 1;
+    end;
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_AQUAVEIL,AQUAVEIL_INTERR_RATE,0,duration);
-        spell:setMsg(230);
+    target:addStatusEffect(EFFECT_AQUAVEIL,power,0,duration);
+    spell:setMsg(230);
 
     return EFFECT_AQUAVEIL;
-
 end;

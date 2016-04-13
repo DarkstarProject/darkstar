@@ -5,7 +5,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/globals/titles");

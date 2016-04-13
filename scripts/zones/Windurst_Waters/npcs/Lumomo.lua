@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Windurst Waters
+-- Area: Windurst Waters
 --  NPC: Lumomo
 --  Type: Standard NPC
 --  @zone: 238
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4198);
             player:messageSpecial(ITEM_OBTAINED,4198);
             player:addTitle(EMERALD_EXTERMINATOR);
-            player:addFame(WINDURST,WIN_FAME * 80);
+            player:addFame(WINDURST, 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);
         else
