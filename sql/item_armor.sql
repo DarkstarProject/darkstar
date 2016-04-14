@@ -10374,6 +10374,7 @@ INSERT INTO `item_armor` VALUES (27449,'arbatel_loafers',99,109,524288,306,0,0,2
 INSERT INTO `item_armor` VALUES (27450,'arbatel_loafers_+1',99,119,524288,306,0,0,256,0);
 INSERT INTO `item_armor` VALUES (27506,'defiant_collar',99,0,2473966,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (27507,'deviant_necklace',99,0,4194303,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (27556,'echad_ring',1,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_armor` VALUES (27565,'ifrit_ring_+1',99,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_armor` VALUES (27575,'shiva_ring_+1',99,0,4194303,0,0,0,24576,0);
 INSERT INTO `item_armor` VALUES (27580,'adoulin_ring',99,0,4194303,0,0,0,24576,0);
