@@ -237,19 +237,25 @@ void CBattlefield::pushMessageToAllInBcnm(uint16 msg, uint16 param) {
     }
 }
 
-bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar) {
+bool CBattlefield::addPlayerToBcnm(CCharEntity* PChar)
+{
     //split to get the reason for debugging
-    if (m_PlayerList.size() >= m_MaxParticipants) {
+    if (m_PlayerList.size() >= m_MaxParticipants)
+    {
         ShowDebug("Cannot add %s to BCNM list, max size reached.\n", PChar->GetName()); return false;
     }
-    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD)) {
+
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+    {
         ShowDebug("Cannot add %s to BCNM list, they have BC effect.\n", PChar->GetName()); return false;
     }
+
     if (PChar->getZone() != m_ZoneID) {
         ShowDebug("Cannot add %s to BCNM list, not in right zone.\n", PChar->GetName()); return false;
     }
 
     m_PlayerList.push_back(PChar);
+    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_SYNC);
     PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_BATTLEFIELD, EFFECT_BATTLEFIELD, this->m_BcnmID, 0, 0), true);
     this->capPlayerToBCNM();
     return true;
