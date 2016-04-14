@@ -832,15 +832,30 @@ int32 CLuaBaseEntity::delItem(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     auto quantity = 0;
+    auto location = 0;
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    {
         quantity = (uint32)lua_tointeger(L, 2);
+    }
+
+    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+    {
+        if ((uint32)lua_tointeger(L, 3) < MAX_CONTAINER_ID)
+        {
+            location = (uint32)lua_tointeger(L, 3);
+        }
+        else
+        {
+            ShowWarning(CL_YELLOW"Lua::delItem: Attempting to delete an item from an invalid slot. Defaulting to main inventory.\n" CL_RESET);
+        }
+    }
 
     auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-    auto SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(lua_tointeger(L, 1));
+    auto SlotID = PChar->getStorage(location)->SearchItem(lua_tointeger(L, 1));
     if (SlotID != ERROR_SLOTID)
     {
-        charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -quantity);
+        charutils::UpdateItem(PChar, location, SlotID, -quantity);
         lua_pushboolean(L, true);
         PChar->pushPacket(new CInventoryFinishPacket());
         return 1;
