@@ -16217,6 +16217,7 @@ INSERT INTO `item_basic` VALUES (27450,0,'arbatel_loafers_+1','arbatel_loafers_+
 
 INSERT INTO `item_basic` VALUES (27506,0,'defiant_collar','defiant_collar',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (27507,0,'deviant_necklace','deviant_necklace',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (27556,0,'echad_ring','echad_ring',1,64576,0,1,0);
 INSERT INTO `item_basic` VALUES (27565,0,'ifrit_ring_+1','ifrit_ring_+1',1,2144,25,0,1);
 INSERT INTO `item_basic` VALUES (27575,0,'shiva_ring_+1','shiva_ring_+1',1,2144,25,0,1);
 INSERT INTO `item_basic` VALUES (27580,0,'adoulin_ring','adoulin_ring',1,63552,0,1,0);
@@ -17035,6 +17036,15 @@ INSERT INTO `item_basic` VALUES (29322,0,'storage_slip_11','storage_slip_11',1,6
 INSERT INTO `item_basic` VALUES (29323,0,'storage_slip_12','storage_slip_12',1,61505,0,1,0);
 INSERT INTO `item_basic` VALUES (29324,0,'storage_slip_13','storage_slip_13',1,61505,0,1,0);
 INSERT INTO `item_basic` VALUES (29325,0,'storage_slip_14','storage_slip_14',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29326,0,'storage_slip_15','storage_slip_15',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29327,0,'storage_slip_16','storage_slip_16',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29328,0,'storage_slip_17','storage_slip_17',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29329,0,'storage_slip_18','storage_slip_18',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29330,0,'storage_slip_19','storage_slip_19',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29331,0,'storage_slip_20','storage_slip_20',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29332,0,'storage_slip_21','storage_slip_21',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29333,0,'storage_slip_22','storage_slip_22',1,61505,0,1,0);
+INSERT INTO `item_basic` VALUES (29334,0,'storage_slip_23','storage_slip_23',1,61505,0,1,0);
 
 /*!40000 ALTER TABLE `item_basic` ENABLE KEYS */;
 UNLOCK TABLES;
