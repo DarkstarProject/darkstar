@@ -420,6 +420,7 @@ public:
     int32 resetRecast(lua_State*);          // Reset one recast ID
 
     int32 getCurrency(lua_State*);          // Get Currency
+    int32 setCurrency(lua_State*);          // Set Currency
     int32 addCurrency(lua_State*);          // Add Currency
     int32 delCurrency(lua_State*);          // Delete Currency
 
