@@ -5171,6 +5171,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             else if (RBUFB(data, 0x0D) != 0)
             {
                 puppetutils::setFrame(PChar, RBUFB(data, 0x0D));
+                puppetutils::LoadAutomatonStats(PChar);
             }
             else
             {

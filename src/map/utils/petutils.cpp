@@ -739,7 +739,15 @@ namespace petutils
     void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         DSP_DEBUG_BREAK_IF(PMaster->PPet != nullptr);
-        LoadPet(PMaster, PetID, spawningFromZone);
+        if (PMaster->objtype == TYPE_PC && (PetID == PETID_HARLEQUINFRAME || PetID == PETID_VALOREDGEFRAME || PetID == PETID_SHARPSHOTFRAME || PetID == PETID_STORMWAKERFRAME))
+        {
+            puppetutils::LoadAutomaton(static_cast<CCharEntity*>(PMaster));
+            PMaster->PPet = static_cast<CCharEntity*>(PMaster)->PAutomaton;
+        }
+        else
+        {
+            LoadPet(PMaster, PetID, spawningFromZone);
+        }
 
         CPetEntity* PPet = (CPetEntity*)PMaster->PPet;
         if (PPet)
@@ -1388,8 +1396,7 @@ namespace petutils
 		PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
 		PPet->health.tp = 0;
 		PPet->UpdateHealth();
-
-		PMaster->applyPetModifiers(PPet);
+        PMaster->applyPetModifiers(PPet);
 	}
 
 }; // namespace petutils

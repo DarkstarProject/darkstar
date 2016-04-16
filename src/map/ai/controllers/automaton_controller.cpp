@@ -30,8 +30,10 @@
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
 {
+    PPet->setInitialBurden();
     if (PPet->getFrame() == FRAME_SHARPSHOT)
     {
+        PPet->m_Behaviour |= BEHAVIOUR_STANDBACK;
         switch (PPet->getHead())
         {
             case HEAD_SHARPSHOT:
@@ -130,7 +132,7 @@ bool CAutomatonController::TryTPMove()
 
 bool CAutomatonController::TryRangedAttack()
 {
-    if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + m_rangedCooldown)
+    if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + (m_rangedCooldown - std::chrono::seconds(PAutomaton->getMod(MOD_SNAP_SHOT))))
     {
         MobSkill(PTarget->targid, m_RangedAbility);
         return true;

@@ -112,6 +112,11 @@ void CAutomatonEntity::burdenTick()
     }
 }
 
+void CAutomatonEntity::setInitialBurden()
+{
+    m_Burden.fill(30);
+}
+
 uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
 {
     //TODO: tactical processor attachment
