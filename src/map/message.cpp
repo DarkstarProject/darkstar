@@ -83,9 +83,10 @@ namespace message
             }
             else
             {
-                PChar->status = STATUS_SHUTDOWN;
+                //TODO: disconnect the client, but leave the character in the disconnecting state
+                //PChar->status = STATUS_SHUTDOWN;
                 //won't save their position (since this is the wrong thread) but not a huge deal
-                PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
+                //PChar->pushPacket(new CServerIPPacket(PChar, 1, 0));
             }
             break;
         }
