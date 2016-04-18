@@ -113,7 +113,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100);
+        nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100;
 
         if (nativecrit > 0.2) then -- caps!
             nativecrit = 0.2;
