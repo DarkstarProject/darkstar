@@ -351,6 +351,8 @@ public:
 
     int32 getMobMod(lua_State*);
     int32 setMobMod(lua_State*);
+    int32 addMobMod(lua_State*);
+    int32 delMobMod(lua_State*);
 
     int32 hasTrait(lua_State*);
 
