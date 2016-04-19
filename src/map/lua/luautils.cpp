@@ -321,12 +321,12 @@ namespace luautils
                 break;
             case 1:
                 luaL_checkinteger(L, 1);
-                lua_pushinteger(L, dsprand::GetRandomNumber(1, lua_tointeger(L, 1) + 1));
+                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
                 break;
             default:
                 luaL_checkinteger(L, 1);
                 luaL_checkinteger(L, 2);
-                lua_pushinteger(L, dsprand::GetRandomNumber(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
+                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
                 break;
         }
         return 1;
