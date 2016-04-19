@@ -93,7 +93,8 @@ enum MOBMODIFIER : int
     MOBMOD_HP_SCALE           = 61, // Scale the mobs max HP. ( hp_scale / 100 ) * maxhp
     MOBMOD_NO_STANDBACK       = 62, // Mob will never standback
     MOBMOD_ATTACK_SKILL_LIST  = 63, // skill list to use in place of regular attacks
-    MOBMOD_CHARMABLE          = 64  // mob is charmable
+    MOBMOD_CHARMABLE          = 64, // mob is charmable
+    MOBMOD_NO_MOVE            = 65  // mob is charmable
 };
 
 #endif
