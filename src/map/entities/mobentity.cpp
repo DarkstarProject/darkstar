@@ -244,7 +244,7 @@ void CMobEntity::ResetGilPurse()
 
 bool CMobEntity::CanRoamHome()
 {
-    if (speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) return false;
+    if ((speed == 0 && !(m_roamFlags & ROAMFLAG_WORM)) || getMobMod(MOBMOD_NO_MOVE) > 0) return false;
 
     if (getMobMod(MOBMOD_NO_DESPAWN) != 0 ||
         map_config.mob_no_despawn)
@@ -257,7 +257,7 @@ bool CMobEntity::CanRoamHome()
 
 bool CMobEntity::CanRoam()
 {
-    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM));
+    return !(m_roamFlags & ROAMFLAG_EVENT) && PMaster == nullptr && (speed > 0 || (m_roamFlags & ROAMFLAG_WORM)) && getMobMod(MOBMOD_NO_MOVE) == 0;
 }
 
 bool CMobEntity::CanLink(position_t* pos, int16 superLink)
