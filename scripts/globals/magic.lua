@@ -607,6 +607,17 @@ end;
         -- end
     end
 
+    local skill = spell:getSkillType();
+    if (skill == ELEMENTAL_MAGIC_SKILL) then
+        dmg = dmg * ELEMENTAL_POWER;
+    elseif (skill == DARK_MAGIC_SKILL) then
+        dmg = dmg * DARK_POWER;
+    elseif (skill == NINJUTSU_SKILL) then
+        dmg = dmg * NINJUTSU_POWER;
+    elseif (skill == DIVINE_MAGIC_SKILL) then
+        dmg = dmg * DIVINE_POWER;
+    end
+
     dmg = target:magicDmgTaken(dmg);
 
     if (dmg > 0) then
