@@ -55,12 +55,10 @@ function onTrigger(player,npc)
             player:addItem(181);
             player:messageSpecial(ITEM_OBTAINED,181);
         end
-    elseif (player:getCurrentMission(TOAU) == CONFESSIONS_OF_ROYALTY) then
-        if (player:hasKeyItem(RAILLEFALS_LETTER)) then
-            player:startEvent(564);
-        end
-        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
-            player:startEvent(565);
+    elseif (player:getCurrentMission(TOAU) == CONFESSIONS_OF_ROYALTY and player:hasKeyItem(RAILLEFALS_LETTER)) then
+        player:startEvent(564);
+    elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
+        player:startEvent(565);
     elseif (pNation == SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
         if (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then
@@ -196,7 +194,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,181);
             player:setVar("Flagsando",1);
-        else    player:addItem(181);
+        else
+            player:addItem(181);
             player:messageSpecial(ITEM_OBTAINED,181);
         end
         player:setVar("MissionStatus",0);
@@ -215,5 +214,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,CONFESSIONS_OF_ROYALTY);
         player:addMission(TOAU,EASTERLY_WINDS);
         player:delKeyItem(RAILLEFALS_LETTER);
+    elseif (csid == 565) then
+        player:setVar("AhtUrganStatus", 1);
     end
 end;
