@@ -313,9 +313,11 @@ end;
 function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
-    if (skill == ENFEEBLING_MAGIC_SKILL and player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
-        player:delStatusEffect(EFFECT_STYMIE);
-        return 1;
+    if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
+        if (skill == ENFEEBLING_MAGIC_SKILL and player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+            player:delStatusEffect(EFFECT_STYMIE);
+            return 1;
+        end
     end
 
     if (skill == SINGING_SKILL and player:hasStatusEffect(EFFECT_TROUBADOUR)) then
@@ -347,14 +349,14 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     return getMagicResist(p);
 end;
 
---Applies resistance for things that may not be spells - ie. Quick Draw
+-- Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
     local p = getMagicHitRate(player, target, skill, element, 0, bonus);
 
     return getMagicResist(p);
 end;
 
---Applies resistance for additional effects
+-- Applies resistance for additional effects
 function applyResistanceAddEffect(player,target,element,bonus)
 
     local p = getMagicHitRate(player, target, 0, element, 0, bonus);
