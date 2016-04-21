@@ -38,6 +38,10 @@ function onSpellCast(caster,target,spell)
     if (dmg < 0) then
         dmg = 0
     end
+
+    if (target:getHP() < dmg) then
+        dmg = target:getHP();
+    end
     
     if (target:isUndead()) then
         spell:setMsg(75); -- No effect
@@ -45,8 +49,6 @@ function onSpellCast(caster,target,spell)
     end
 
     dmg = finalMagicAdjustments(caster,target,spell,dmg);
-
-    dmg = (dmg * DRAIN_POWER);
 
     caster:addHP(dmg);
     return dmg;
