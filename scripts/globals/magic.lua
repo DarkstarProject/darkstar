@@ -556,20 +556,19 @@ end;
 function handleAfflatusMisery(caster, spell, dmg)
     if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
+        local miseryMax = caster:getMaxHP() / 4;
 
-        --BGwiki puts the boost capping at 200% bonus at around 300hp
-        if (misery > 300) then
-            misery = 300;
+        -- BGwiki puts the boost capping at 200% bonus at 1/4th max HP.
+        if (misery > miseryMax) then
+            misery = miseryMax;
         end;
 
-        --So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)
-        local boost = 1 + (misery / 300);
-
-        local preboost = dmg;
+        -- Damage is 2x at boost cap.
+        local boost = 1 + (misery / miseryMax);
 
         dmg = math.floor(dmg * boost);
 
-        --printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
+        -- printf("AFFLATUS MISERY: Damage boosted by %f to %d", boost, dmg);
 
         --Afflatus Mod is Used Up...
         caster:setMod(MOD_AFFLATUS_MISERY, 0)
@@ -621,6 +620,7 @@ end;
         spell:setMsg(7);
     else
         target:delHP(dmg);
+        target:handleAfflatusMiseryDamage(dmg);
         target:updateEnmityFromDamage(caster,dmg);
         -- Only add TP if the target is a mob
         if (target:getObjType() ~= TYPE_PC) then

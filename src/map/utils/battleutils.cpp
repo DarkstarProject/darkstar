@@ -4277,8 +4277,10 @@ namespace battleutils
 
     void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
     {
-        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)) {
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) && damage > 0)
+        {
             PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+            // ShowDebug("Misery power: %d\n", damage);
         }
     }
 

@@ -10329,6 +10329,19 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     return 1;
 }
 
+int32 CLuaBaseEntity::handleAfflatusMiseryDamage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    auto damage = lua_tointeger(L, 1);
+
+    battleutils::HandleAfflatusMiseryDamage(static_cast<CBattleEntity*>(m_PBaseEntity), damage);
+
+    return 0;
+}
+
 
 int32 CLuaBaseEntity::setEquipBlock(lua_State* L)
 {
@@ -10911,6 +10924,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,handleAfflatusMiseryDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setEquipBlock),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatDebilitation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
