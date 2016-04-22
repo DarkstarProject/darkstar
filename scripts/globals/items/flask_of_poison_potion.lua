@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 4157
 -- Item: Poison Potion
--- Item Effect: Removes 60 HP over 180 seconds
+-- Item Effect: Poison 1HP / Removes 60 HP over 180 seconds
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -25,4 +25,3 @@ function onItemUse(target)
         target:messageBasic(423);
     end
 end;
-
