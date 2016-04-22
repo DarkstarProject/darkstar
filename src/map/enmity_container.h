@@ -50,26 +50,28 @@ public:
 
     CBattleEntity*	GetHighestEnmity();			// Decays VE and gets target with highest enmity
 
-	float   CalculateEnmityBonus(CBattleEntity* PEntity);
-	void	Clear(uint32 EntityID = 0);			// Removes Entries from list
-    void	AddBaseEnmity(CBattleEntity* PEntity);
-	void	UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool aggroEnmity = false);
-	void	UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
-	void	UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV);
-	void	UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
-        void    AddLinkEnmity(CBattleEntity* PEntity);
-        void    AddAggroEnmity(CBattleEntity* PEntity);
-	void	AddPartyEnmity(CCharEntity* PChar);
-	bool    HasTargetID(uint32 TargetID); //true if ID is in the container with non-zero enmity level
-	void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
-	void	DecayEnmity();
-  bool  IsWithinEnmityRange(CBattleEntity* PEntity);
+    float   CalculateEnmityBonus(CBattleEntity* PEntity);
+    void    Clear(uint32 EntityID = 0);			// Removes Entries from list
+    void    AddBaseEnmity(CBattleEntity* PEntity);
+    void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool aggroEnmity = false);
+    void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
+    void    UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV);
+    void    UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
+    void    AddLinkEnmity(CBattleEntity* PEntity);
+    void    AddAggroEnmity(CBattleEntity* PEntity);
+    void    AddPartyEnmity(CCharEntity* PChar);
+    bool    HasTargetID(uint32 TargetID); //true if ID is in the container with non-zero enmity level
+    void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
+    uint16  GetCE(CBattleEntity* PEntity);
+    uint16  GetVE(CBattleEntity* PEntity);
+    void    DecayEnmity();
+    bool    IsWithinEnmityRange(CBattleEntity* PEntity);
     uint8   GetHighestTH();
-  EnmityList_t* GetEnmityList();
+    EnmityList_t* GetEnmityList();
 
 private:
 	
-	EnmityList_t	m_EnmityList;
+    EnmityList_t    m_EnmityList;
     CBattleEntity*  m_EnmityHolder; //usually a monster
 };
 
