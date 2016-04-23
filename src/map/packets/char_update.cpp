@@ -96,7 +96,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
 
     if (PChar->animation == ANIMATION_FISHING_START)
     {
-        WBUFB(data, (0x4A)) = 0x10;
+        WBUFB(data, (0x4A)) = 0x0D; //was 0x10
     }
     WBUFU(data, (0x4C)) = PChar->StatusEffectContainer->m_Flags;
 }
