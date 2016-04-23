@@ -587,6 +587,7 @@ public:
 
     int32 removeAmmo(lua_State* L);
     int32 takeWeaponskillDamage(lua_State* L);
+    int32 handleAfflatusMiseryDamage(lua_State* L);
 
     int32 setEquipBlock(lua_State* L);
     int32 setStatDebilitation(lua_State* L);

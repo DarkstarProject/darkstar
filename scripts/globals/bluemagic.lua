@@ -243,6 +243,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
 
     target:delHP(dmg);
     target:updateEnmityFromDamage(caster,dmg);
+    target:handleAfflatusMiseryDamage(dmg);
     -- TP has already been dealt with.
     return dmg;
 end;
