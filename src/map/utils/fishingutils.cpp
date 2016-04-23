@@ -644,7 +644,7 @@ namespace fishingutils
                         fishMaxSkill = Sql_GetIntData(SqlHandle, 1);
                     }
                     
-                    int32 fmtQuery = Sql_Query(SqlHandle, "SELECT break FROM fish_rod_break WHERE fishid = %u and rodid = %u;", PFish->getID(), RodID);
+                    int32 fmtQuery = Sql_Query(SqlHandle, "SELECT break FROM fishing_rod_break WHERE fishid = %u and rodid = %u;", PFish->getID(), RodID);
                     if (fmtQuery != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                         rodbreak = Sql_GetIntData(SqlHandle, 0);
                     
