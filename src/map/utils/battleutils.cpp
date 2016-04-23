@@ -2038,14 +2038,15 @@ namespace battleutils
         if (damage > 0)
         {
             damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
-
             damage = HandleStoneskin(PDefender, damage);
-            HandleAfflatusMiseryDamage(PDefender, damage);
         }
+        
         if (!isRanged)
         {
             damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
         }
+        
+        HandleAfflatusMiseryDamage(PDefender, damage);
         damage = dsp_cap(damage, -99999, 99999);
 
         int32 corrected = PDefender->addHP(-damage);
