@@ -29,6 +29,8 @@
 #include "../item_container.h"
 #include "../lua/luautils.h"
 #include "../entities/mobentity.h"
+#include "../ai/ai_container.h"
+#include "../enmity_container.h"
 
 #include "../packets/caught_fish.h"
 #include "../packets/char_update.h"
@@ -409,6 +411,7 @@ namespace fishingutils
         switch (action)
         {
             case FISHACTION_CHECK:
+            {
                 if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
                 {
                     ShowDebug(CL_CYAN"Attempt to fish but UContainer was not empty, Cleaning...\n" CL_RESET);
@@ -540,7 +543,7 @@ namespace fishingutils
                     //PChar->updatemask |= UPDATE_HP;
                     PChar->pushPacket(new CFishingPacket(stamina, regen, response, damage, miss, gTime, rod, arrowLuck));
                 }
-                else 
+                else
                 {
                     // Message: "You didn't catch anything."
                     PChar->animation = ANIMATION_FISHING_STOP;
@@ -548,7 +551,9 @@ namespace fishingutils
                     PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
                 }
                 break;
+            }
             case FISHACTION_FINISH:
+            {
                 if (fightStamina == 0)
                 {
                     uint32 mobid = getCaughtMonster(PChar);
@@ -556,30 +561,22 @@ namespace fishingutils
                     {
                         CMobEntity* PMob = nullptr;
                         PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-
-                        /*
-                        if (PMob, MOBTYPE_FISHED, MOBMOD_ALWAYS_AGGRO) {
+                        if (PMob && PMob->m_Type & MOBTYPE_FISHED && !PMob->PAI->IsSpawned())
+                        {
                             PMob->m_SpawnPoint = nearPosition(PChar->loc.p, 2.2f, M_PI);
                             PMob->m_AllowRespawn = false;
-                            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                            PMob->PBattleAI->SetBattleTarget(PChar);
-                            luautils::OnMobEngaged(PMob, PChar);
-                            PMob->PBattleAI->CheckCurrentAction(gettick());
-                            PMob->m_Aggro = AGGRO_DETECT_SIGHT;
+                            PMob->Spawn();
+                            PMob->PEnmityContainer->AddAggroEnmity(PChar);
                         }
-                        
+
                         // Message: "<blank> caught a monster!" //
                         PChar->animation = ANIMATION_FISHING_MONSTER;
                         PChar->updatemask |= UPDATE_HP;
                         PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 0x05, 0, 0, 0, 0, true));
-                        PMob->PEnmityContainer->AddBaseEnmity(PChar);
-                        PMob->PEnmityContainer->UpdateEnmity(PChar, 500, 500);
-                        PMob->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
-                        */
                     }
                     else
                     {
-                    // Message: "You caught fish!" //
+                        // Message: "You caught fish!" //
                         DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
                         DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
                         CItemWeapon* WeaponItem = nullptr;
@@ -601,11 +598,11 @@ namespace fishingutils
                             fishMinSkill = Sql_GetIntData(SqlHandle, 0);
                             fishMaxSkill = Sql_GetIntData(SqlHandle, 1);
                         }
-                    
+
                         ret = Sql_Query(SqlHandle, "SELECT break FROM fishing_rod_break WHERE fishid = %u and rodid = %u;", PFish->getID(), RodID);
                         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                             rodbreak = Sql_GetIntData(SqlHandle, 0);
-                    
+
                         if (rodbreak == 1)
                         {
                             breakpercent = dsprand::GetRandomNumber(100);
@@ -699,15 +696,20 @@ namespace fishingutils
                 }
                 PChar->UContainer->Clean();
                 break;
+            }
             case FISHACTION_WARNING:
+            {
                 // Message: "You don't know how much longer you can keep this one on the line..." //
                 PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x28));
                 return;
+            }
             case FISHACTION_END:
+            {
                 PChar->animation = ANIMATION_NONE;
                 PChar->updatemask |= UPDATE_HP;
                 resetCaughtMonster(PChar);
                 break;
+            }
         }
 
         PChar->pushPacket(new CCharUpdatePacket(PChar));
