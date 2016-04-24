@@ -996,7 +996,6 @@ INSERT INTO `item_basic` VALUES (1061,0,'sacrarium_chest_key','scr_chest_key',1,
 INSERT INTO `item_basic` VALUES (1062,0,'oldton_chest_key','oldton_chest_key',1,62544,0,1,0);
 INSERT INTO `item_basic` VALUES (1063,0,'newton_coffer_key','ntn_coffer_key',1,62544,0,1,0);
 INSERT INTO `item_basic` VALUES (1064,0,'psoxja_chest_key','pso_chest_key',1,62544,0,1,0);
-
 INSERT INTO `item_basic` VALUES (1088,0,'piece_of_ancient_papyrus','ancient_papyrus',1,61504,0,1,0);
 INSERT INTO `item_basic` VALUES (1089,0,'clump_of_exoray_mold','exoray_mold',1,61504,0,1,0);
 INSERT INTO `item_basic` VALUES (1090,0,'chunk_of_bomb_coal','bomb_coal',1,61504,0,1,0);
