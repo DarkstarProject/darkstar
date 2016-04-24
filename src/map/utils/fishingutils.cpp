@@ -174,7 +174,6 @@ namespace fishingutils
         charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -1);
         charutils::AddItem(PChar, LOC_INVENTORY, BrokenRodID, 1);
     }
-    //-------------------------------------------------------------------------//
 
     void setCaughtMonster(CCharEntity* PChar, uint32 mobid)
     {
@@ -191,155 +190,85 @@ namespace fishingutils
         return PChar->GetLocalVar("CaughtMonster");
     }
 
-    uint32 getMonster(CCharEntity* PChar)
+    bool checkMonsterLuck(CCharEntity* PChar, uint16 lureID)
     {
         uint32 mobid = 0;
-        uint16 zoneID = PChar->loc.zone->GetID();
-        CItemWeapon* WeaponItem = nullptr;
+        if (PChar->loc.zone->GetType() == ZONETYPE_CITY || dsprand::GetRandomNumber(100) < 95)  //monster chance may need verification
+            return false;
 
-        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
-        DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-        DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-        DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
-        uint16 lureID = WeaponItem->getID();
+        uint16 zoneID = PChar->loc.zone->GetID();
 
         int32 ret = Sql_Query(SqlHandle, "SELECT mobid FROM fishing_mobs WHERE zone = %u;", zoneID);
-        if (ret != SQL_ERROR || Sql_NumRows(SqlHandle) != 0) {
-            uint16 monster = dsprand::GetRandomNumber(Sql_NumRows(SqlHandle));
+        if (ret != SQL_ERROR || Sql_NumRows(SqlHandle) != 0)
+        {
+            uint16 monster = dsprand::GetRandomNumber(1, (int)Sql_NumRows(SqlHandle));
             uint16 mCount = 1;
 
-            if (monster == 0) {
-                monster = 1;
-            }
-
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                if (mCount == monster) {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                if (mCount == monster)
+                {
                     mobid = Sql_GetIntData(SqlHandle, 0);
 
-                    // The ONLY fished notorious monster. //
-                    if (zoneID == 151) { // Castle Oztroja. //
-                        if ((mobid == 17396141 || mobid == 17182721) && (lureID == 17001)) {
+                    // The ONLY fished notorious monster.
+                    if (zoneID == 151) // Castle Oztroja.
+                    { 
+                        if ((mobid == 17396141 || mobid == 17182721) && (lureID == 17001))
+                        {
                             // Paladin AF2 Feet NM: Odontotyrannus + Giant Shell Bug. //
                             int8 questState = 0;
-                            double playerPosY = PChar->loc.p.y;
+                            float playerPosY = PChar->loc.p.y;
                             ret = Sql_Query(SqlHandle, "SELECT value FROM char_vars WHERE charid = %u AND varname = 'aBoysDreamCS';", PChar->id);
-                            if (ret != SQL_ERROR || Sql_NumRows(SqlHandle) != 0) {
-                                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
-                                    questState = Sql_GetIntData(SqlHandle, 0);
-                                }
-                            }
+                            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                                questState = Sql_GetIntData(SqlHandle, 0);
 
-                            if (questState < 3 || questState > 4 || ((playerPosY < 22) && (playerPosY > 24))) {
-                                // Player is not at a point where they can fish up this monster. //
-                                return 0;
-                            }
+                            if (questState < 3 || questState > 4 || ((playerPosY < 22) && (playerPosY > 24))) // Player is not at a point where they can fish up this monster.
+                                return false;
                         }
-                        else {
-                            return 0;
-                        }
+                        else
+                            return false;
                     }
 
                     setCaughtMonster(PChar, mobid);
-                    return mobid;
+                    return true;
                 }
                 mCount++;
             }
         }
-        return mobid;
+        return false;
     }
 
-    bool checkMonsterLuck(CCharEntity* PChar) {
-        if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
-        {
-            ShowDebug(CL_CYAN"Player cannot fish! UContainer was not empty, Cleaning...\n" CL_RESET);
-            PChar->UContainer->Clean();
-            return false;
-        }
-
-        CItemWeapon* WeaponItem = nullptr;
-        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-        DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-        DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-        DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
-
-        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
-        DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-        DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-        DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
-
-        int32 monsterChance = dsprand::GetRandomNumber(100);
-        uint32 mobid = 0;
-
-        if (!(PChar->loc.zone->GetType() == ZONETYPE_CITY)) {
-            if (monsterChance >= 95) {
-                mobid = getMonster(PChar);
-            }
-        }
-        return (mobid != 0);
-    }
-
-    bool checkFisherLuck(CCharEntity* PChar)
+    bool checkFisherLuck(CCharEntity* PChar, uint16 rodID, uint16 lureID)
     {
-        if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
-        {
-            ShowDebug(CL_CYAN"Player cannot fish! UContainer was not empty, Cleaning...\n" CL_RESET);
-            PChar->UContainer->Clean();
-            return false;
-        }
-
         CItemFish* PFish = nullptr;
-        CItemWeapon* WeaponItem = nullptr;
-
-        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-        DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-        DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-        DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
-        uint16 RodID = WeaponItem->getID();
-
-        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
-        DSP_DEBUG_BREAK_IF(WeaponItem == nullptr);
-        DSP_DEBUG_BREAK_IF(WeaponItem->isType(ITEM_WEAPON) == false);
-        DSP_DEBUG_BREAK_IF(WeaponItem->getSkillType() != SKILL_FISHING);
-        uint16 LureID = WeaponItem->getID();
 
         const int8* Query =
             "SELECT "
-            "fish.fishid,"      // 0
-            "fish.min,"         // 1
-            "fish.max,"         // 2
-            "fish.size,"        // 3
-            "fish.stamina,"     // 4
-            "fish.watertype,"   // 5
-            "rod.flag, "        // 6
-            "lure.luck "        // 7
+            "fish.fishid, "
+            "lure.luck "
             "FROM fishing_zone AS zone "
             "INNER JOIN fishing_rod  AS rod  USING (fishid) "
             "INNER JOIN fishing_lure AS lure USING (fishid) "
             "INNER JOIN fishing_fish AS fish USING (fishid) "
             "WHERE zone.zoneid = %u AND rod.rodid = %u AND lure.lureid = %u AND lure.luck != 0 "
-            "ORDER BY luck";
-        int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), RodID, LureID);
+            "ORDER BY luck;";
+        int32 ret = Sql_Query(SqlHandle, Query, PChar->getZone(), rodID, lureID);
 
         if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
-            int32 FisherLuck = 0;
-            int32 FishingChance = dsprand::GetRandomNumber(700);
-
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                FisherLuck += Sql_GetIntData(SqlHandle, 7);
-
-                if (FishingChance <= FisherLuck) // FisherLuck -> 20. //
+                if (dsprand::GetRandomNumber(600) <= Sql_GetIntData(SqlHandle, 1))
                 {
                     PFish = new CItemFish(*itemutils::GetItemPointer(Sql_GetIntData(SqlHandle, 0)));
 
                     PChar->UContainer->SetType(UCONTAINER_FISHING);
                     PChar->UContainer->SetItem(0, PFish);
-                    break;
+                    return true;
                 }
             }
         }
-        return (PFish != nullptr);
+        return false;
     }
 
     int32 fishingSkillUp(CCharEntity* PChar, uint8 special) {
@@ -473,61 +402,81 @@ namespace fishingutils
     *																		*
     ************************************************************************/
 
-    void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint8 special)
+    void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 fightStamina, uint8 special)
     {
         uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 
         switch (action)
         {
-        case FISHACTION_CHECK:
-        {
-            if (checkMonsterLuck(PChar))
-            {
-                //New system does not use this animation
-                //PChar->animation = ANIMATION_FISHING_FISH;
-                //PChar->updatemask |= UPDATE_HP;
+            case FISHACTION_CHECK:
+                if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
+                {
+                    ShowDebug(CL_CYAN"Attempt to fish but UContainer was not empty, Cleaning...\n" CL_RESET);
+                    PChar->UContainer->Clean();
+                }
 
-                // Message: "Something caught the hook!!!" //
-                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
-                // Message: "Something clamps onto your line ferociously!" //
-                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x34));
-                PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 140, 30, 0, 12)); //vaules unverified
-            }
-            else if (checkFisherLuck(PChar)) {
-                CItem* PFish = PChar->UContainer->GetItem(0);
+                CItemWeapon* WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+                CItemWeapon* AmmoItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
+                if ((WeaponItem == nullptr || WeaponItem->isType(ITEM_WEAPON) == false || WeaponItem->getSkillType() != SKILL_FISHING) ||
+                    (AmmoItem == nullptr || AmmoItem->isType(ITEM_WEAPON) == false || AmmoItem->getSkillType() != SKILL_FISHING))
+                {
+                    ShowDebug(CL_CYAN"Attempt to fish with invalid equipment.\n" CL_RESET);
+                    // Message: "You didn't catch anything."
+                    PChar->animation = ANIMATION_FISHING_STOP;
+                    PChar->updatemask |= UPDATE_HP;
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
+                    break;
+                }
 
-                uint8 rankSkill = PChar->RealSkills.rank[SKILL_FISHING];
-                uint16 rankSkillCap = (rankSkill + 1) * 100;
-                int32 charSkill = PChar->RealSkills.skill[SKILL_FISHING];
-                uint16 fishMinSkill = 0;
-                uint16 fishMaxSkill = 0;
-                uint16 fishSize = 0;
-                uint16 fishType = PFish->isType(ITEM_USABLE);
-                uint16 stamina = 0;
-                uint16 regen = 0;
-                uint16 response = 0;
-                uint16 gTime = 0;
-                uint16 rod = 0;
-                uint16 arrowLuck = 0;
-                uint16 damage = 0;
-                uint16 miss = 0;
 
-                const int8* Query =
-                    "SELECT "
-                    "stamina,"		// 0
-                    "regen,"		// 1
-                    "response,"		// 2
-                    "max_dmg,"		// 3
-                    "miss_regen,"	// 4
-                    "max_time,"		// 5
-                    "min,"			// 6
-                    "max,"			// 7
-                    "size "			// 8
-                    "FROM fishing_fish WHERE fishid = %u;";
-                int32 ret = Sql_Query(SqlHandle, Query, PFish->getID());
+                if (checkMonsterLuck(PChar, AmmoItem->getID()))
+                {
+                    //New system does not use this animation
+                    //PChar->animation = ANIMATION_FISHING_FISH;
+                    //PChar->updatemask |= UPDATE_HP;
 
-                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) {
-                    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+                    // Message: "Something caught the hook!!!" //
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
+                    // Message: "Something clamps onto your line ferociously!" //
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x34));
+                    PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 140, 30, 1, 12)); //monster values may need verification
+                }
+                else if (checkFisherLuck(PChar, WeaponItem->getID(), AmmoItem->getID()))
+                {
+                    CItem* PFish = PChar->UContainer->GetItem(0);
+
+                    uint8 rankSkill = PChar->RealSkills.rank[SKILL_FISHING];
+                    uint16 rankSkillCap = (rankSkill + 1) * 100;
+                    int32 charSkill = PChar->WorkingSkills.skill[SKILL_FISHING];
+                    uint16 fishMinSkill = 0;
+                    uint16 fishMaxSkill = 0;
+                    uint16 fishSize = 0;
+                    uint16 fishType = PFish->isType(ITEM_USABLE);
+                    uint16 stamina = 0;
+                    uint16 regen = 0;
+                    uint16 response = 0;
+                    uint16 gTime = 0;
+                    uint16 rod = 0;
+                    uint16 arrowLuck = 0;
+                    uint16 damage = 0;
+                    uint16 miss = 0;
+
+                    const int8* Query =
+                        "SELECT "
+                        "stamina,"		// 0
+                        "regen,"		// 1
+                        "response,"		// 2
+                        "max_dmg,"		// 3
+                        "miss_regen,"	// 4
+                        "max_time,"		// 5
+                        "min,"			// 6
+                        "max,"			// 7
+                        "size "			// 8
+                        "FROM fishing_fish WHERE fishid = %u;";
+                    int32 ret = Sql_Query(SqlHandle, Query, PFish->getID());
+
+                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                    {
                         stamina = Sql_GetIntData(SqlHandle, 0);
                         regen = Sql_GetIntData(SqlHandle, 1);
                         response = Sql_GetIntData(SqlHandle, 2);
@@ -538,225 +487,227 @@ namespace fishingutils
                         fishMaxSkill = Sql_GetIntData(SqlHandle, 7);
                         fishSize = Sql_GetIntData(SqlHandle, 8);
                     }
-                }
 
-                if (!fishType) {
-                    // Message: "You feel something pulling at your line." //
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x33));
-                }
-                else if (fishSize == 1) {
-                    // Message: "Something caught the hook!!!" //
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
-                }
-                else {
-                    // Message: "Something caught the hook!" //
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x08));
-                }
-
-                arrowLuck = dsprand::GetRandomNumber(100);
-                if ((fishMaxSkill - (charSkill / 10)) > 0) {
-                    uint8 lower = 0;
-                    for (auto r = 0; r < 2; r++) {
-                        lower = dsprand::GetRandomNumber(100);
-                        if (arrowLuck > lower) {
-                            arrowLuck = lower;
-                        }
-                    }
-                }
-                else if (((charSkill / 10) - fishMaxSkill) > 0) {
-                    uint8 upper = dsprand::GetRandomNumber(100);
-                    if (arrowLuck < upper) {
-                        arrowLuck = upper;
-                    }
-                }
-
-                if (arrowLuck >= 90 && ((charSkill / 10) > (fishMaxSkill - 5))) {
-                    // Message: "Your keen angler senses tell you this is ths pull of a <blank>!" //
-                    PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 0x35, PFish->getID(), 0, 0, 0, 0));
-                    rod = 0x02;
-                }
-                else if (arrowLuck >= 80 && ((charSkill / 10) > (fishMaxSkill - 10)) && !fishType) {
-                    // Message: "You have a good feeling about this one."
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x29));
-                    rod = 0x00;
-                }
-
-                //New system does not use this animation
-                //PChar->animation = ANIMATION_FISHING_FISH;
-                //PChar->updatemask |= UPDATE_HP;
-                PChar->pushPacket(new CFishingPacket(stamina, regen, response, damage, miss, gTime, rod, arrowLuck));
-            }
-            else {
-                // Message: "You didn't catch anything."
-                PChar->animation = ANIMATION_FISHING_STOP;
-                PChar->updatemask |= UPDATE_HP;
-                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
-            }
-        }
-        break;
-        case FISHACTION_FINISH:
-        {
-            if (stamina == 0)
-            {
-                uint32 mobid = getCaughtMonster(PChar);
-                /*if (mobid > 0) {
-                    CMobEntity* PMob = nullptr;
-                    PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
-
-                    if (PMob, MOBTYPE_FISHED, MOBMOD_ALWAYS_AGGRO) {
-                        PMob->m_SpawnPoint = nearPosition(PChar->loc.p, 2.2f, M_PI);
-                        PMob->m_AllowRespawn = false;
-                        PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                        PMob->PBattleAI->SetBattleTarget(PChar);
-                        luautils::OnMobEngaged(PMob, PChar);
-                        PMob->PBattleAI->CheckCurrentAction(gettick());
-                        PMob->m_Aggro = AGGRO_DETECT_SIGHT;
-                    }
-                    // Message: "<blank> caught a monster!" //
-                    PChar->animation = ANIMATION_FISHING_MONSTER;
-                    PChar->updatemask |= UPDATE_HP;
-                    PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 0x05, 0, 0, 0, 0, true));
-                    PMob->PEnmityContainer->AddBaseEnmity(PChar);
-                    PMob->PEnmityContainer->UpdateEnmity(PChar, 500, 500);
-                    PMob->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
-                }
-                else */ {
-                // Message: "You caught fish!" //
-                    DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
-                    DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
-                    CItemWeapon* WeaponItem = nullptr;
-                    WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-                    uint16 RodID = WeaponItem->getID();
-
-                    CItem* PFish = PChar->UContainer->GetItem(0);
-                    uint8 rankSkill = PChar->RealSkills.rank[SKILL_FISHING];
-                    uint16 rankSkillCap = (rankSkill + 1) * 100;
-                    int32 charSkill = PChar->RealSkills.skill[SKILL_FISHING];
-                    int32 fishMinSkill = 0;
-                    int32 fishMaxSkill = 0;
-                    int32 rodbreak = 0;
-                    int32 breakpercent = 0;
-
-                    int32 ret = Sql_Query(SqlHandle, "SELECT min, max FROM fishing_fish WHERE fishid = %u;", PFish->getID());
-                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                    if (!fishType)
                     {
-                        fishMinSkill = Sql_GetIntData(SqlHandle, 0);
-                        fishMaxSkill = Sql_GetIntData(SqlHandle, 1);
+                        // Message: "You feel something pulling at your line." //
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x33));
                     }
-                    
-                    int32 fmtQuery = Sql_Query(SqlHandle, "SELECT break FROM fishing_rod_break WHERE fishid = %u and rodid = %u;", PFish->getID(), RodID);
-                    if (fmtQuery != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        rodbreak = Sql_GetIntData(SqlHandle, 0);
-                    
-                    if (rodbreak == 1)
+                    else if (fishSize == 1)
                     {
-                        breakpercent = dsprand::GetRandomNumber(100);
-                        if (breakpercent >= 25)
-                        {
-                            // Message: Your rod breaks\n  Whatever caught the hook was too heavy to catch with this rod.
-                            PChar->animation = ANIMATION_FISHING_ROD_BREAK;
-                            PChar->updatemask |= UPDATE_HP;
-                            rodBreaks(PChar);
-                            PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x12));
-                        }
-                    }
-                    else if (((charSkill / 10 + ((charSkill / 10) * 0.5)) < fishMinSkill) && (special < 10))
-                    {
-                        // Message: "You lost your catch due to lack of skill." //
-                        PChar->animation = ANIMATION_FISHING_STOP;
-                        PChar->updatemask |= UPDATE_HP;
-                        lureLoss(PChar, false);
-                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x14));
+                        // Message: "Something caught the hook!!!" //
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
                     }
                     else
                     {
-                        // Message: "You caught <blank>" //
-                        // TODO: Analyze RodFlag
-                        PChar->animation = ANIMATION_FISHING_CAUGHT;
-                        PChar->updatemask |= UPDATE_HP;
+                        // Message: "Something caught the hook!" //
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x08));
+                    }
 
-                        charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
-                        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
-                        if (PFish->isType(ITEM_USABLE)) {
-                            lureLoss(PChar, false);
-                        }
-
-                        if (((charSkill / 10) < fishMaxSkill) && ((charSkill / 10) < (rankSkillCap / 10))) {
-                            // If the player's skill level is less than the fish's maximum skill level,
-                            // and, the player's skill level is less than the player's rank skill cap,
-                            // and, the fish's maximum skill level is less than the player's rank skill cap.
-                            if ((fishMinSkill > (charSkill / 10)) && (special > 50)) {
-                                // If the fish's minimum skill level is greater than the player's skill level,
-                                // but the player maintained a high special greater than 50. //
-                                fishingSkillUp(PChar, special);
-                            }
-                            else if ((fishMaxSkill / 4) < (charSkill / 10)) {
-                                if (((special % 3) == 0) || (special > 50)) {
-                                    fishingSkillUp(PChar, special);
-                                }
-                            }
-                            else {
-                                if (((special % 3) == 0) || (special > 60)) {
-                                    fishingSkillUp(PChar, special);
-                                }
-                            }
+                    arrowLuck = dsprand::GetRandomNumber(100);
+                    if ((fishMaxSkill - (charSkill / 10)) > 0)
+                    {
+                        uint8 lower = 0;
+                        for (auto r = 0; r < 2; r++)
+                        {
+                            lower = dsprand::GetRandomNumber(100);
+                            if (arrowLuck > lower)
+                                arrowLuck = lower;
                         }
                     }
-                    delete PFish;
+                    else if (((charSkill / 10) - fishMaxSkill) > 0)
+                    {
+                        uint8 upper = dsprand::GetRandomNumber(100);
+                        if (arrowLuck < upper)
+                            arrowLuck = upper;
+                    }
+
+                    if (arrowLuck >= 90 && ((charSkill / 10) > (fishMaxSkill - 5)))
+                    {
+                        // Message: "Your keen angler senses tell you this is ths pull of a <blank>!" //
+                        PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 0x35, PFish->getID(), 0, 0, 0, 0));
+                        rod = 0x02;
+                    }
+                    else if (arrowLuck >= 80 && ((charSkill / 10) > (fishMaxSkill - 10)) && !fishType)
+                    {
+                        // Message: "You have a good feeling about this one."
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x29));
+                        rod = 0x00;
+                    }
+
+                    //New system does not use this animation
+                    //PChar->animation = ANIMATION_FISHING_FISH;
+                    //PChar->updatemask |= UPDATE_HP;
+                    PChar->pushPacket(new CFishingPacket(stamina, regen, response, damage, miss, gTime, rod, arrowLuck));
                 }
-            }
-            else if (stamina <= 0x64)
-            {
-                // Message: "Your line breaks!" //
-                PChar->animation = ANIMATION_FISHING_LINE_BREAK;
-                PChar->updatemask |= UPDATE_HP;
-
-                lureLoss(PChar, true);
-                resetCaughtMonster(PChar);
-                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
-            }
-            else if (stamina <= 0x100)
-            {
-                // Message: "You give up!" //
-                PChar->animation = ANIMATION_FISHING_STOP;
-                PChar->updatemask |= UPDATE_HP;
-
-                resetCaughtMonster(PChar);
-                if (PChar->UContainer->GetType() == UCONTAINER_FISHING && lureLoss(PChar, false)) {
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x24));
+                else 
+                {
+                    // Message: "You didn't catch anything."
+                    PChar->animation = ANIMATION_FISHING_STOP;
+                    PChar->updatemask |= UPDATE_HP;
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x04));
                 }
-                else {
-                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x25));
+                break;
+            case FISHACTION_FINISH:
+                if (fightStamina == 0)
+                {
+                    uint32 mobid = getCaughtMonster(PChar);
+                    if (mobid > 0)
+                    {
+                        CMobEntity* PMob = nullptr;
+                        PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+
+                        /*
+                        if (PMob, MOBTYPE_FISHED, MOBMOD_ALWAYS_AGGRO) {
+                            PMob->m_SpawnPoint = nearPosition(PChar->loc.p, 2.2f, M_PI);
+                            PMob->m_AllowRespawn = false;
+                            PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
+                            PMob->PBattleAI->SetBattleTarget(PChar);
+                            luautils::OnMobEngaged(PMob, PChar);
+                            PMob->PBattleAI->CheckCurrentAction(gettick());
+                            PMob->m_Aggro = AGGRO_DETECT_SIGHT;
+                        }
+                        
+                        // Message: "<blank> caught a monster!" //
+                        PChar->animation = ANIMATION_FISHING_MONSTER;
+                        PChar->updatemask |= UPDATE_HP;
+                        PChar->pushPacket(new CMessageSpecialPacket(PChar, MessageOffset + 0x05, 0, 0, 0, 0, true));
+                        PMob->PEnmityContainer->AddBaseEnmity(PChar);
+                        PMob->PEnmityContainer->UpdateEnmity(PChar, 500, 500);
+                        PMob->PBattleAI->SetCurrentAction(ACTION_ENGAGE);
+                        */
+                    }
+                    else
+                    {
+                    // Message: "You caught fish!" //
+                        DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
+                        DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
+                        CItemWeapon* WeaponItem = nullptr;
+                        WeaponItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
+                        uint16 RodID = WeaponItem->getID();
+
+                        CItem* PFish = PChar->UContainer->GetItem(0);
+                        uint8 rankSkill = PChar->RealSkills.rank[SKILL_FISHING];
+                        uint16 rankSkillCap = (rankSkill + 1) * 100;
+                        int32 charSkill = PChar->WorkingSkills.skill[SKILL_FISHING];
+                        int32 fishMinSkill = 0;
+                        int32 fishMaxSkill = 0;
+                        int32 rodbreak = 0;
+                        int32 breakpercent = 0;
+
+                        int32 ret = Sql_Query(SqlHandle, "SELECT min, max FROM fishing_fish WHERE fishid = %u;", PFish->getID());
+                        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                        {
+                            fishMinSkill = Sql_GetIntData(SqlHandle, 0);
+                            fishMaxSkill = Sql_GetIntData(SqlHandle, 1);
+                        }
+                    
+                        ret = Sql_Query(SqlHandle, "SELECT break FROM fishing_rod_break WHERE fishid = %u and rodid = %u;", PFish->getID(), RodID);
+                        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                            rodbreak = Sql_GetIntData(SqlHandle, 0);
+                    
+                        if (rodbreak == 1)
+                        {
+                            breakpercent = dsprand::GetRandomNumber(100);
+                            if (breakpercent >= 25)
+                            {
+                                // Message: Your rod breaks\n  Whatever caught the hook was too heavy to catch with this rod.
+                                PChar->animation = ANIMATION_FISHING_ROD_BREAK;
+                                PChar->updatemask |= UPDATE_HP;
+                                rodBreaks(PChar);
+                                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x12));
+                            }
+                        }
+                        else if (((charSkill / 10 + ((charSkill / 10) * 0.5)) < fishMinSkill) && (special < 10))
+                        {
+                            // Message: "You lost your catch due to lack of skill." //
+                            PChar->animation = ANIMATION_FISHING_STOP;
+                            PChar->updatemask |= UPDATE_HP;
+                            lureLoss(PChar, false);
+                            PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x14));
+                        }
+                        else
+                        {
+                            // Message: "You caught <blank>" //
+                            // TODO: Analyze RodFlag
+                            PChar->animation = ANIMATION_FISHING_CAUGHT;
+                            PChar->updatemask |= UPDATE_HP;
+
+                            charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
+                            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                            if (PFish->isType(ITEM_USABLE))
+                            {
+                                lureLoss(PChar, false);
+                            }
+
+                            if (((charSkill / 10) < fishMaxSkill) && ((charSkill / 10) < (rankSkillCap / 10)))
+                            {
+                                // If the player's skill level is less than the fish's maximum skill level,
+                                // and, the player's skill level is less than the player's rank skill cap.
+                                if ((fishMinSkill > (charSkill / 10)) && (special > 50))
+                                {
+                                    // If the fish's minimum skill level is greater than the player's skill level,
+                                    // but the player maintained a high special greater than 50. //
+                                    fishingSkillUp(PChar, special);
+                                }
+                                else if ((fishMaxSkill / 4) < (charSkill / 10))
+                                {
+                                    if (((special % 3) == 0) || (special > 50))
+                                        fishingSkillUp(PChar, special);
+                                }
+                                else
+                                {
+                                    if (((special % 3) == 0) || (special > 60))
+                                        fishingSkillUp(PChar, special);
+                                }
+                            }
+                        }
+                        delete PFish;
+                    }
                 }
-            }
-            else
-            {
-                // Message: "You lost your catch!"
-                PChar->animation = ANIMATION_FISHING_STOP;
+                else if (fightStamina <= 0x64)
+                {
+                    // Message: "Your line breaks!" //
+                    PChar->animation = ANIMATION_FISHING_LINE_BREAK;
+                    PChar->updatemask |= UPDATE_HP;
+
+                    lureLoss(PChar, true);
+                    resetCaughtMonster(PChar);
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x06));
+                }
+                else if (fightStamina <= 0x100)
+                {
+                    // Message: "You give up!" //
+                    PChar->animation = ANIMATION_FISHING_STOP;
+                    PChar->updatemask |= UPDATE_HP;
+
+                    resetCaughtMonster(PChar);
+                    if (PChar->UContainer->GetType() == UCONTAINER_FISHING && lureLoss(PChar, false))
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x24));
+                    else
+                        PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x25));
+                }
+                else
+                {
+                    // Message: "You lost your catch!"
+                    PChar->animation = ANIMATION_FISHING_STOP;
+                    PChar->updatemask |= UPDATE_HP;
+
+                    lureLoss(PChar, false);
+                    resetCaughtMonster(PChar);
+                    PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
+                }
+                PChar->UContainer->Clean();
+                break;
+            case FISHACTION_WARNING:
+                // Message: "You don't know how much longer you can keep this one on the line..." //
+                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x28));
+                return;
+            case FISHACTION_END:
+                PChar->animation = ANIMATION_NONE;
                 PChar->updatemask |= UPDATE_HP;
-
-                lureLoss(PChar, false);
                 resetCaughtMonster(PChar);
-                PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x09));
-            }
-            PChar->UContainer->Clean();
-        }
-        break;
-        case FISHACTION_WARNING:
-        {
-            // Message: "You don't know how much longer you can keep this one on the line..." //
-            PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x28));
-            return;
-        }
-        break;
-        case FISHACTION_END:
-        {
-            PChar->animation = ANIMATION_NONE;
-            PChar->updatemask |= UPDATE_HP;
-
-            resetCaughtMonster(PChar);
-        }
-        break;
+                break;
         }
 
         PChar->pushPacket(new CCharUpdatePacket(PChar));
