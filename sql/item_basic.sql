@@ -38,7 +38,6 @@ INSERT INTO `item_basic` VALUES (21,0,'desk','desk',1,36,34,0,158);
 INSERT INTO `item_basic` VALUES (22,0,'workbench','workbench',1,36,34,0,91);
 INSERT INTO `item_basic` VALUES (23,0,'maple_table','maple_table',1,36,34,0,159);
 INSERT INTO `item_basic` VALUES (24,0,'oak_table','oak_table',1,36,34,0,3026);
-
 INSERT INTO `item_basic` VALUES (26,0,'tarutaru_desk','tarutaru_desk',1,36,34,0,1500);
 
 INSERT INTO `item_basic` VALUES (28,0,'drawing_desk','drawing_desk',1,57408,34,0,19980);
@@ -3430,7 +3429,7 @@ INSERT INTO `item_basic` VALUES (3552,0,'squamous_hide','squamous_hide',12,4,41,
 INSERT INTO `item_basic` VALUES (3553,0,'banquet_table_blueprint','b._table_blueprint',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3554,0,'set_of_banquet_table_fabric','b._table_fabric',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3555,0,'set_of_banquet_table_wood','b._table_wood',1,28752,0,1,0);
-INSERT INTO `item_basic` VALUES (3556,0,'treasury_stand','treasury_stand',1,28752,0,1,0)
+INSERT INTO `item_basic` VALUES (3556,0,'treasury_stand','treasury_stand',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3557,0,'athena_orb','athena_orb',1,28752,0,1,0);
 INSERT INTO `item_basic` VALUES (3558,0,'abdhaljss_honor','abdhaljss_honor',12,12352,0,1,0);
 INSERT INTO `item_basic` VALUES (3559,0,'corvine_abjuration:_head','c.abjuration:_hd.',1,61520,0,1,0);
