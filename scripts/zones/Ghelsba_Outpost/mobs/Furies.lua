@@ -4,11 +4,13 @@
 -- BCNM20
 -----------------------------------
 
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:setMobMod(MOBMOD_CHARMABLE, 1);
 end;
 
 

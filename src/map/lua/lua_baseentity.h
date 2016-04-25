@@ -300,6 +300,8 @@ public:
     int32 resetEnmity(lua_State*);          //resets enmity to player for specificed mob
     int32 lowerEnmity(lua_State*);          //lower enmity to player for specificed mob
     int32 transferEnmity(lua_State*);
+    int32 getCE(lua_State*);                //gets current CE the mob has towards the player
+    int32 getVE(lua_State*);                //gets current VE the mob has towards the player
 
     int32 hasImmunity(lua_State*);          // Check if the mob has immunity for a type of spell (list at mobentity.h)
     int32 getBattleTime(lua_State*);        // Get the time in second of the battle
@@ -585,6 +587,7 @@ public:
 
     int32 removeAmmo(lua_State* L);
     int32 takeWeaponskillDamage(lua_State* L);
+    int32 handleAfflatusMiseryDamage(lua_State* L);
 
     int32 setEquipBlock(lua_State* L);
     int32 setStatDebilitation(lua_State* L);

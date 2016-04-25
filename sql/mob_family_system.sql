@@ -178,7 +178,7 @@ INSERT INTO `mob_family_system` VALUES (108,'Eruca',20,'Vermin',1,40,92,120,1,3,
 INSERT INTO `mob_family_system` VALUES (109,'Euvhi',15,'Luminian',0,40,100,140,1,3,3,3,1,5,4,3,3,3,3,1,1,1,1,1.25,1,1,1,1,1,1,1,0,2,0);
 INSERT INTO `mob_family_system` VALUES (110,'EvilWeapon',3,'Arcana',0,40,105,120,1,3,4,3,3,3,4,3,5,3,3,1,1,1,1,1.25,0.9,0.9,0.9,0.9,0.9,1.25,0.9,3,2,0);
 INSERT INTO `mob_family_system` VALUES (111,'NotUsed',3,'Arcana',0,40,105,120,1,3,4,3,3,3,4,3,5,3,3,1,1,1,1,1.25,0.9,0.9,0.9,0.9,0.9,1.25,0.9,3,0,0);
-INSERT INTO `mob_family_system` VALUES (112,'Flan',1,'Amorph',1,40,70,140,6,3,6,3,1,5,4,3,3,3,3,0.875,1,0.75,0.75,1.25,1.25,1.25,1.125,1.125,1.125,1.125,1.125,6,2,1);
+INSERT INTO `mob_family_system` VALUES (112,'Flan',1,'Amorph',1,40,70,140,6,3,6,3,1,5,4,3,3,3,3,0.875,1,0.75,0.75,1.25,1.25,1.25,1.125,1.125,1.125,1.125,1.125,6,2,0);
 INSERT INTO `mob_family_system` VALUES (113,'Fly',20,'Vermin',0,40,92,90,1,3,4,3,6,6,5,3,3,3,3,1,1.25,1,1,1,1.25,0.875,1,1,1,1,1,3,1,1);
 INSERT INTO `mob_family_system` VALUES (114,'Flytrap',17,'Plantoid',0,40,90,90,1,3,4,3,6,6,2,3,3,3,3,1,1,1,1,1.25,1.125,1,1,1,1,0.875,1,3,2,1);
 INSERT INTO `mob_family_system` VALUES (115,'Fomor',19,'Undead',0,40,105,90,2,5,3,6,2,3,4,3,3,3,3,1,1,1,1,1.125,0.5,1,1,1,1,1.125,0.5,8,6,0);

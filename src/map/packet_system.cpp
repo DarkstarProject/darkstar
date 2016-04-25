@@ -4313,7 +4313,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-            if (PTarget->m_Type & MOBTYPE_NOTORIOUS)
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
             }

@@ -79,7 +79,7 @@ function onRegionEnter(player,region)
                     player:startEvent(143);
                 end
             end
-        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS) then
+        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
             player:startEvent(10094);
         end
     end
@@ -139,14 +139,16 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() == 0) then 
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
             else
-                player:addItem(2184,10);
-                player:messageSpecial(ITEM_OBTAINED,2184);
                 player:completeMission(TOAU,EASTERLY_WINDS);
                 player:addMission(TOAU,WESTERLY_WINDS);
+                player:setVar("AhtUrganStatus", 0);
+                player:addItem(2184,10);
+                player:messageSpecial(ITEM_OBTAINED,2184);
             end
         else
             player:completeMission(TOAU,EASTERLY_WINDS);
             player:addMission(TOAU,WESTERLY_WINDS);
+            player:setVar("AhtUrganStatus", 0);
         end
     elseif (csid == 142) then
         player:addQuest(JEUNO,STORMS_OF_FATE);
