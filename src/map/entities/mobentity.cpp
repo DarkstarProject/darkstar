@@ -274,6 +274,12 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
         return false;
     }
 
+    // Don't link I'm an underground worm
+    if ((m_roamFlags & ROAMFLAG_WORM) && IsNameHidden())
+    {
+        return false;
+    }
+
     // link only if I see him
     if (m_Detects & DETECT_SIGHT) {
 
