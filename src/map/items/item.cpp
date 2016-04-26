@@ -35,7 +35,7 @@
 CItem::CItem(uint16 id)
 {
     m_id = id;
-	
+
     m_subid      = 0;
     m_type       = 0;
     m_subtype    = 0;
@@ -63,15 +63,15 @@ CItem::~CItem()
 *  Уникальный номер предмета                                            *
 *                                                                       *
 ************************************************************************/
-	
+
 void CItem::setID(uint16 id)
 {
-	m_id = id;
+    m_id = id;
 }
 
 uint16 CItem::getID()
 {
-	return m_id;
+    return m_id;
 }
 
 /************************************************************************
@@ -82,12 +82,12 @@ uint16 CItem::getID()
 
 void CItem::setSubID(uint16 subid)
 {
-	m_subid = subid;
+    m_subid = subid;
 }
 
 uint16 CItem::getSubID()
 {
-	return m_subid;
+    return m_subid;
 }
 
 /************************************************************************
@@ -98,12 +98,12 @@ uint16 CItem::getSubID()
 
 void CItem::setFlag(uint16 flag)
 {
-	m_flag = flag;
+    m_flag = flag;
 }
 
 uint16 CItem::getFlag()
 {
-	return m_flag;
+    return m_flag;
 }
 
 /************************************************************************
@@ -114,12 +114,12 @@ uint16 CItem::getFlag()
 
 void CItem::setAHCat(uint8 ahCat)
 {
-	m_ahCat = ahCat;
+    m_ahCat = ahCat;
 }
 
 uint8 CItem::getAHCat()
 {
-	return m_ahCat;
+    return m_ahCat;
 }
 
 /************************************************************************
@@ -130,12 +130,12 @@ uint8 CItem::getAHCat()
 
 void CItem::setType(uint8 type)
 {
-	m_type |= type;
+    m_type |= type;
 }
 
 bool CItem::isType(ITEM_TYPE type)
 {
-	return (m_type & type);
+    return (m_type & type);
 }
 
 /************************************************************************
@@ -146,12 +146,12 @@ bool CItem::isType(ITEM_TYPE type)
 
 void CItem::setSubType(uint8 subtype)
 {
-	m_subtype = (subtype > 128 ? m_subtype & subtype : m_subtype | subtype);
+    m_subtype = (subtype > 128 ? m_subtype & subtype : m_subtype | subtype);
 }
 
 bool CItem::isSubType(ITEM_SUBTYPE subtype)
 {
-	return (m_subtype & subtype);
+    return (m_subtype & subtype);
 }
 
 /************************************************************************
@@ -178,12 +178,12 @@ uint32 CItem::getReserve()
 
 void CItem::setQuantity(uint32 quantity)
 {
-	m_quantity = (quantity < m_stackSize ? quantity : m_stackSize);
+    m_quantity = (quantity < m_stackSize ? quantity : m_stackSize);
 }
 
 uint32 CItem::getQuantity()
 {
-	return m_quantity;
+    return m_quantity;
 }
 
 /************************************************************************
@@ -194,12 +194,12 @@ uint32 CItem::getQuantity()
 
 void CItem::setStackSize(uint32 stackSize)
 {
-	m_stackSize = stackSize;
+    m_stackSize = stackSize;
 }
 
 uint32 CItem::getStackSize()
 {
-	return m_stackSize;
+    return m_stackSize;
 }
 
 /************************************************************************
@@ -210,12 +210,12 @@ uint32 CItem::getStackSize()
 
 void CItem::setBasePrice(uint32 BasePrice)
 {
-	m_BasePrice = BasePrice;
+    m_BasePrice = BasePrice;
 }
 
 uint32 CItem::getBasePrice()
 {
-	return m_BasePrice;
+    return m_BasePrice;
 }
 
 /************************************************************************
@@ -242,13 +242,13 @@ uint32 CItem::getCharPrice()
 
 const int8* CItem::getName()
 {
-	return m_name.c_str();
+    return m_name.c_str();
 }
 
 void CItem::setName(int8* name)
 {
-	m_name.clear();
-	m_name.insert(0,name);
+    m_name.clear();
+    m_name.insert(0,name);
 }
 
 /************************************************************************
@@ -293,7 +293,7 @@ void CItem::setReceiver(int8* receiver)
 
 const int8* CItem::getSignature()
 {
-	return (int8*)m_extra+0x0C;
+    return (int8*)m_extra+0x0C;
 }
 
 void CItem::setSignature(int8* signature)
@@ -309,12 +309,12 @@ void CItem::setSignature(int8* signature)
 
 uint8 CItem::getLocationID()
 {
-	return m_locationID;
+    return m_locationID;
 }
 
 void CItem::setLocationID(uint8 locationID)
 {
-	m_locationID = locationID;
+    m_locationID = locationID;
 }
 
 /************************************************************************
@@ -325,12 +325,12 @@ void CItem::setLocationID(uint8 locationID)
 
 uint8 CItem::getSlotID()
 {
-	return m_slotID;
+    return m_slotID;
 }
-	
+
 void CItem::setSlotID(uint8 slotID)
 {
-	m_slotID = slotID;
+    m_slotID = slotID;
 }
 
 /************************************************************************
@@ -338,13 +338,13 @@ void CItem::setSlotID(uint8 slotID)
 *  Sent (via send/delivery box)                                         *
 *                                                                       *
 ************************************************************************/
-	
+
 void CItem::setSent(bool sent)
 {
-	m_sent = sent;
+    m_sent = sent;
 }
 
 bool CItem::isSent()
 {
-	return m_sent;
+    return m_sent;
 }
