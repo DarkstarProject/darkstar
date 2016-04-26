@@ -560,6 +560,7 @@ public:
     int32 getModelId(lua_State* L);
     int32 setModelId(lua_State* L);
     int32 setTrueDetection(lua_State* L);
+    int32 setAggressive(lua_State* L);
     int32 instantiateMob(lua_State* L);
 
     int32 getActiveManeuvers(lua_State*);
