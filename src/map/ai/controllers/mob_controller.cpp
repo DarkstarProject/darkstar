@@ -949,6 +949,12 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
         return false;
     }
 
+    // Don't aggro I'm an underground worm
+    if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->IsNameHidden())
+    {
+        return false;
+    }
+
     if (PTarget->isDead() || PTarget->animation == ANIMATION_CHOCOBO)
     {
         return false;
