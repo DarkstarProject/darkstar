@@ -1,4 +1,5 @@
 require("scripts/globals/magicburst")
+require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/weather")
 require("scripts/globals/utils")
