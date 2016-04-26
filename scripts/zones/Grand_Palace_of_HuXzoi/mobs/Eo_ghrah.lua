@@ -3,6 +3,7 @@
 -- MOB:  Eo'ghrah
 -----------------------------------
 require("scripts/globals/status");
+
 -----------------------------------
 -- OnMobSpawn Action
 -- Set core Skin and mob elemental resist/weakness; other elements set to 0.
@@ -43,8 +44,13 @@ function onMobSpawn(mob)
     end;
 end;
 
-function onMobEngage(mob)
+-----------------------------------
+-- onMobEngaged
+-----------------------------------
+
+function onMobEngaged(mob,target)
 end;
+
 -----------------------------------
 -- onMobRoam Action
 -- Autochange Aggro and Form
@@ -67,6 +73,7 @@ end;
 -- OnMobFight Action
 -- Set ball form and secondary form
 -----------------------------------
+
 function onMobFight(mob,target)
     local meltdown = 0;
 
@@ -81,5 +88,9 @@ function onMobFight(mob,target)
     end
 end;
 
-function onMobDeath(mob)
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
 end;
