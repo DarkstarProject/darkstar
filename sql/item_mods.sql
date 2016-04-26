@@ -318,7 +318,7 @@ INSERT INTO `item_mods` VALUES (10326,5,40); -- MP +40
 INSERT INTO `item_mods` VALUES (10326,23,6); -- ACC +6
 INSERT INTO `item_mods` VALUES (10326,25,6); -- ATT +6
 INSERT INTO `item_mods` VALUES (10326,170,1); -- Fast Cast
-INSERT INTO `item_mods` VALUES (10326,384,50); -- Haste +5%
+INSERT INTO `item_mods` VALUES (10326,384,51); -- Haste +5%
 INSERT INTO `item_mods` VALUES (10327,1,40); -- Adhara Seraweels - DEF +40
 INSERT INTO `item_mods` VALUES (10327,27,-3); -- Enmity -3
 INSERT INTO `item_mods` VALUES (10327,30,4); -- MACC +4
