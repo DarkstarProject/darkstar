@@ -1123,7 +1123,6 @@ INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,952);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,953);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,957);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1046);
-INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,956);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,813);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,814);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,815);
