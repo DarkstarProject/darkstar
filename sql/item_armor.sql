@@ -9958,6 +9958,7 @@ INSERT INTO `item_armor` VALUES (21429,'mephitis_grip',99,0,8388606,0,0,0,2,0);
 INSERT INTO `item_armor` VALUES (21455,'alternator',99,113,262144,0,0,0,4,0);
 INSERT INTO `item_armor` VALUES (21460,'matre_bell',1,0,1048576,0,0,0,4,0);
 INSERT INTO `item_armor` VALUES (21479,'tsoa_crossbow',99,119,1185,53,0,0,4,0);
+INSERT INTO `item_armor` VALUES (21907,'nagi',99,0,4096,565,0,0,3,0);
 INSERT INTO `item_armor` VALUES (26624,'agoge_mask',99,109,1,65,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26625,'agoge_mask_+1',99,119,1,65,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26626,'hesychasts_crown',99,109,2,67,0,0,16,0);
