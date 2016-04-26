@@ -1,7 +1,8 @@
-require("scripts/globals/magicburst")
-require("scripts/globals/status")
-require("scripts/globals/weather")
-require("scripts/globals/utils")
+require("scripts/globals/magicburst");
+require("scripts/globals/status");
+require("scripts/globals/weather");
+require("scripts/globals/utils");
+require("scripts/globals/settings");
 
     MMSG_BUFF_FAIL = 75;
 
