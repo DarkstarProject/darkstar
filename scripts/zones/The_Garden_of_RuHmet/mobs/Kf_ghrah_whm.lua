@@ -35,10 +35,10 @@ function onMobRoam(mob)
 end;
 
 -----------------------------------
--- onMobEngage
+-- onMobEngaged
 -----------------------------------
 
-function onMobEngage(mob,target)
+function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
