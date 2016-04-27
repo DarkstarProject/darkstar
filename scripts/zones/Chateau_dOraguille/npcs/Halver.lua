@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Halver
+--  NPC: Halver
 -- Involved in Mission 2-3, 3-3, 5-1, 5-2, 8-1
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- @pos 2 0.1 0.1 233
@@ -184,7 +184,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",9);
     elseif (csid == 546) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 507 or 548 or 533 or 534) then
+    elseif (csid == 507 or csid == 533 or csid == 534 or csid == 548) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 25) then
         player:setVar("MissionStatus",1);
