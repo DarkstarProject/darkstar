@@ -127,7 +127,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                     if (PMob->PMaster != nullptr && PMob->PMaster->objtype == TYPE_PC)
                         WBUFB(data, (0x27)) |= 0x08;
                     WBUFB(data, (0x28)) |= (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR) ? 0x10 : 0x00);
-                    WBUFB(data, (0x28)) = PMob->health.hp > 0 && PMob->animation == ANIMATION_DEATH ? 0x08 : 0;
+                    WBUFB(data, (0x28)) |= PMob->health.hp > 0 && PMob->animation == ANIMATION_DEATH ? 0x08 : 0;
                     WBUFB(data, (0x29)) = PEntity->allegiance;
                     WBUFB(data, (0x2B)) = PEntity->namevis;
                 }
