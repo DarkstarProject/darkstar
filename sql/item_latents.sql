@@ -2764,3 +2764,9 @@ INSERT INTO `item_latents` VALUES(17093, 369, -4, 56, 0); -- Rune Staff -4MP/tic
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15532, 370, 1, 56, 0); -- Regen +1HP/tic
 INSERT INTO `item_latents` VALUES(15532, 369, -3, 56, 0); -- MP Drain -3MP/tic
+
+-- -------------------------------------------------------
+-- Shadow Mantle/Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13658, 10, 20, 32, 0); -- Darksday: VIT+20
+INSERT INTO `item_latents` VALUES(14646, 29, 10, 32, 0); -- Darksday: MDB+10
