@@ -19,12 +19,12 @@ end;
 -- onMobEngaged
 -----------------------------------
 
-function onMobEngaged(mob)
+function onMobEngaged(mob, target)
     mob:resetLocalVars();
 end
 
 -----------------------------------
--- onMobDeath
+-- onMobFight Action
 -----------------------------------
 
 function onMobFight(mob, target)

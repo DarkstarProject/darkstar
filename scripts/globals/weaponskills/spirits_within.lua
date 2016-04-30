@@ -21,6 +21,7 @@ function onUseWeaponSkill(player, target, wsID, TP, primary)
 
     local HP = player:getHP();
     local WSC = 0;
+    local tpHits = 0;
     -- Damage calculations based on https://www.bg-wiki.com/index.php?title=Spirits_Within&oldid=269806
     if (TP == 3000) then
         WSC = math.floor(HP * 120/256);
@@ -42,13 +43,20 @@ function onUseWeaponSkill(player, target, wsID, TP, primary)
     end
 
     local damage = target:breathDmgTaken(WSC);
-    damage = damage * WEAPON_SKILL_POWER
+    if (damage > 0) then
+        if (attacker:getOffhandDmg() > 0) then
+            tpHits = 2;
+        else
+            tpHits = 1;
+        end
+    end
     if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
         damage = damage * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
+    damage = damage * WEAPON_SKILL_POWER
 
-    damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, 1, 0, 1);
+    damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, tpHits, 0, 1);
     target:updateEnmityFromDamage(player, damage);
-    return 1, 0, false, damage;
+    return tpHits, 0, false, damage;
 
 end

@@ -393,9 +393,9 @@ int32 version_info_read(const char *fileName)
         ptr++;
         *ptr = '\0';
 
-        if (strcmp(w1, "Min_Client_Ver") == 0)
+        if (strcmp(w1, "CLIENT_VER") == 0)
         {
-            version_info.Min_Client_Ver = aStrdup(w2);
+            version_info.CLIENT_VER = aStrdup(w2);
         }
     }
     fclose(fp);
@@ -430,7 +430,7 @@ int32 login_config_default()
 
 int32 version_info_default()
 {
-    version_info.Min_Client_Ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.CLIENT_VER = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
     // version_info.DSP_VER = 0;
     return 0;
 }

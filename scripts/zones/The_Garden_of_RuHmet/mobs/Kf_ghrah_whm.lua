@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
--- MOB:  Kf'ghrah WHM
+--  MOB: Kf'ghrah WHM
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic"); -- no spells are currently set due to lack of info
+
 -----------------------------------
--- OnMobSpawn Action
+-- onMobSpawn
 -- Set core Skin and mob elemental bonus
 -----------------------------------
 
@@ -15,10 +16,8 @@ function onMobSpawn(mob)
     mob:setModelId(1167); -- light
 end;
 
-function onMobEngage(mob)
-end;
 -----------------------------------
--- onMobRoam Action
+-- onMobRoam
 -- AutochangeForm
 -----------------------------------
 
@@ -36,9 +35,17 @@ function onMobRoam(mob)
 end;
 
 -----------------------------------
--- OnMobFight Action
+-- onMobEngaged
+-----------------------------------
+
+function onMobEngaged(mob,target)
+end;
+
+-----------------------------------
+-- onMobFight
 -- Free form change between ball, spider, and bird.
 -----------------------------------
+
 function onMobFight(mob,target)
     local changeTime = mob:getLocalVar("changeTime");
     local battleForm;
@@ -53,5 +60,9 @@ function onMobFight(mob,target)
     end;
 end;
 
-function onMobDeath(mob)
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
 end;

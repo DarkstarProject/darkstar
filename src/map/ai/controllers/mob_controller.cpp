@@ -575,7 +575,7 @@ void CMobController::Move()
             if (currentDistance >= PMob->m_ModelSize * 2)
                 battleutils::DrawIn(PTarget, PMob, PMob->m_ModelSize - 0.2f);
         }
-        if (PMob->speed != 0 && m_Tick >= m_LastSpecialTime)
+        if (PMob->speed != 0 && PMob->getMobMod(MOBMOD_NO_MOVE) == 0 && m_Tick >= m_LastSpecialTime)
         {
             // attempt to teleport to target (if in range)
             if (PMob->getMobMod(MOBMOD_TELEPORT_TYPE) == 2)
@@ -945,6 +945,12 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 {
     // don't aggro i'm neutral
     if (!PMob->m_Aggro || PMob->m_neutral || PMob->isDead())
+    {
+        return false;
+    }
+
+    // Don't aggro I'm an underground worm
+    if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->IsNameHidden())
     {
         return false;
     }

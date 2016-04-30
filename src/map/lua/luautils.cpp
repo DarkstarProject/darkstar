@@ -166,6 +166,12 @@ namespace luautils
 
         luaL_dostring(LuaHandle, "if not bit then bit = require('bit') end");
 
+        lua_getglobal(LuaHandle, "math");
+        lua_pushstring(LuaHandle, "random");
+        lua_pushcfunction(LuaHandle, luautils::random);
+        lua_rawset(LuaHandle, -3);
+        lua_pop(LuaHandle, 1);
+
         expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
 
         ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
@@ -305,6 +311,26 @@ namespace luautils
     *                                                                       *
     *                                                                       *
     ************************************************************************/
+
+    int32 random(lua_State* L)
+    {
+        switch (lua_gettop(L))
+        {
+            case 0:
+                lua_pushnumber(L, dsprand::GetRandomNumber(1.));
+                break;
+            case 1:
+                luaL_checkinteger(L, 1);
+                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(1, lua_tointeger(L, 1) + 1));
+                break;
+            default:
+                luaL_checkinteger(L, 1);
+                luaL_checkinteger(L, 2);
+                lua_pushinteger(L, dsprand::GetRandomNumber<lua_Integer>(lua_tointeger(L, 1), lua_tointeger(L, 2) + 1));
+                break;
+        }
+        return 1;
+    }
 
     int32 GetNPCByID(lua_State* L)
     {

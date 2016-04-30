@@ -2038,10 +2038,15 @@ namespace battleutils
         if (damage > 0)
         {
             damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
-
             damage = HandleStoneskin(PDefender, damage);
-            HandleAfflatusMiseryDamage(PDefender, damage);
         }
+        
+        if (!isRanged)
+        {
+            damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
+        }
+        
+        HandleAfflatusMiseryDamage(PDefender, damage);
         damage = dsp_cap(damage, -99999, 99999);
 
         int32 corrected = PDefender->addHP(-damage);
@@ -2057,7 +2062,6 @@ namespace battleutils
 
         if (damage > 0)
         {
-            damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
             // Check for bind breaking
@@ -3639,27 +3643,25 @@ namespace battleutils
     ************************************************************************/
     uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage)
     {
-        if (m_PChar->GetMJob() == JOB_SAM || m_PChar->GetSJob() == JOB_SAM) // only allow if player 75 or more
+        if (m_PChar->objtype == TYPE_PC) // Some mobskills use TakeWeaponskillDamage function, which calls upon this one.
         {
-            if (m_PChar->GetMLevel() >= 75)
+            // must be facing mob
+            if (isFaceing(PDefender->loc.p, m_PChar->loc.p, 90))
             {
-                // must be facing mob
-                if (isFaceing(PDefender->loc.p, m_PChar->loc.p, 90))
-                {
-                    uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
-                    float tmpDamage = damage;
+                uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
+                // ShowDebug("Merits: %u\n", meritCount);
+                float tmpDamage = damage;
 
-                    switch (meritCount)
-                    {
-                        case 1:	tmpDamage += tmpDamage * 0.05f; break;
-                        case 2:	tmpDamage += tmpDamage * 0.10f; break;
-                        case 3:	tmpDamage += tmpDamage * 0.15f; break;
-                        case 4:	tmpDamage += tmpDamage * 0.17f; break;
-                        case 5:	tmpDamage += tmpDamage * 0.19f; break;
-                        default: break;
-                    }
-                    damage = (uint16)floor(tmpDamage);
+                switch (meritCount)
+                {
+                    case 1:	tmpDamage += tmpDamage * 0.05f; break;
+                    case 2:	tmpDamage += tmpDamage * 0.10f; break;
+                    case 3:	tmpDamage += tmpDamage * 0.15f; break;
+                    case 4:	tmpDamage += tmpDamage * 0.17f; break;
+                    case 5:	tmpDamage += tmpDamage * 0.19f; break;
+                    default: break;
                 }
+                damage = (uint16)floor(tmpDamage);
             }
         }
         return damage;
@@ -4271,8 +4273,10 @@ namespace battleutils
 
     void HandleAfflatusMiseryDamage(CBattleEntity* PDefender, int32 damage)
     {
-        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY)) {
+        if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_AFFLATUS_MISERY) && damage > 0)
+        {
             PDefender->setModifier(MOD_AFFLATUS_MISERY, damage);
+            // ShowDebug("Misery power: %d\n", damage);
         }
     }
 

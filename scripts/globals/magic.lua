@@ -1,7 +1,8 @@
-require("scripts/globals/magicburst")
-require("scripts/globals/status")
-require("scripts/globals/weather")
-require("scripts/globals/utils")
+require("scripts/globals/magicburst");
+require("scripts/globals/status");
+require("scripts/globals/weather");
+require("scripts/globals/utils");
+require("scripts/globals/settings");
 
     MMSG_BUFF_FAIL = 75;
 
@@ -313,9 +314,11 @@ end;
 function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
-    if (skill == ENFEEBLING_MAGIC_SKILL and player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
-        player:delStatusEffect(EFFECT_STYMIE);
-        return 1;
+    if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
+        if (skill == ENFEEBLING_MAGIC_SKILL and player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+            player:delStatusEffect(EFFECT_STYMIE);
+            return 1;
+        end
     end
 
     if (skill == SINGING_SKILL and player:hasStatusEffect(EFFECT_TROUBADOUR)) then
@@ -347,14 +350,14 @@ function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
     return getMagicResist(p);
 end;
 
---Applies resistance for things that may not be spells - ie. Quick Draw
+-- Applies resistance for things that may not be spells - ie. Quick Draw
 function applyResistanceAbility(player,target,element,skill,bonus)
     local p = getMagicHitRate(player, target, skill, element, 0, bonus);
 
     return getMagicResist(p);
 end;
 
---Applies resistance for additional effects
+-- Applies resistance for additional effects
 function applyResistanceAddEffect(player,target,element,bonus)
 
     local p = getMagicHitRate(player, target, 0, element, 0, bonus);
@@ -556,20 +559,19 @@ end;
 function handleAfflatusMisery(caster, spell, dmg)
     if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
+        local miseryMax = caster:getMaxHP() / 4;
 
-        --BGwiki puts the boost capping at 200% bonus at around 300hp
-        if (misery > 300) then
-            misery = 300;
+        -- BGwiki puts the boost capping at 200% bonus at 1/4th max HP.
+        if (misery > miseryMax) then
+            misery = miseryMax;
         end;
 
-        --So, if wee capped at 300, we'll make the boost it boost 2x (200% damage)
-        local boost = 1 + (misery / 300);
-
-        local preboost = dmg;
+        -- Damage is 2x at boost cap.
+        local boost = 1 + (misery / miseryMax);
 
         dmg = math.floor(dmg * boost);
 
-        --printf("AFFLATUS MISERY: Boosting %d -> %f, Final %d", preboost, boost, dmg);
+        -- printf("AFFLATUS MISERY: Damage boosted by %f to %d", boost, dmg);
 
         --Afflatus Mod is Used Up...
         caster:setMod(MOD_AFFLATUS_MISERY, 0)
@@ -605,6 +607,17 @@ end;
         -- end
     end
 
+    local skill = spell:getSkillType();
+    if (skill == ELEMENTAL_MAGIC_SKILL) then
+        dmg = dmg * ELEMENTAL_POWER;
+    elseif (skill == DARK_MAGIC_SKILL) then
+        dmg = dmg * DARK_POWER;
+    elseif (skill == NINJUTSU_SKILL) then
+        dmg = dmg * NINJUTSU_POWER;
+    elseif (skill == DIVINE_MAGIC_SKILL) then
+        dmg = dmg * DIVINE_POWER;
+    end
+
     dmg = target:magicDmgTaken(dmg);
 
     if (dmg > 0) then
@@ -621,10 +634,11 @@ end;
         spell:setMsg(7);
     else
         target:delHP(dmg);
+        target:handleAfflatusMiseryDamage(dmg);
         target:updateEnmityFromDamage(caster,dmg);
         -- Only add TP if the target is a mob
         if (target:getObjType() ~= TYPE_PC) then
-            target:addTP(10);
+            target:addTP(100);
         end
     end
 

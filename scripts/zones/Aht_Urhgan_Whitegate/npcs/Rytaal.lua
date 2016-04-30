@@ -46,6 +46,7 @@ function onTrigger(player,npc)
         player:setVar("AssaultComplete",0);
     elseif ((player:getCurrentMission(TOAU) > PRESIDENT_SALAHEEM) or (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") >= 1)) then
         if (lastIDtag == 0) then -- first time you get the tag
+            tagCount = 1;
             player:setCurrency("id_tags", tagCount);
             player:setVar("LAST_IMPERIAL_TAG",currentday);
         elseif (diffday > 0) then
@@ -88,7 +89,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 269) then
         player:setVar("AhtUrganStatus",1);
-    elseif (csid == 268 and option == 1 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and currentTags > 0) then
+    elseif (csid == 268 and option == 1 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0) then
         player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
         player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
         player:setCurrency("id_tags", tagCount - 1);

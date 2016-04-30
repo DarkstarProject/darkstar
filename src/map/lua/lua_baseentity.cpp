@@ -832,15 +832,30 @@ int32 CLuaBaseEntity::delItem(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     auto quantity = 0;
+    auto location = 0;
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    {
         quantity = (uint32)lua_tointeger(L, 2);
+    }
+
+    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+    {
+        if ((uint32)lua_tointeger(L, 3) < MAX_CONTAINER_ID)
+        {
+            location = (uint32)lua_tointeger(L, 3);
+        }
+        else
+        {
+            ShowWarning(CL_YELLOW"Lua::delItem: Attempting to delete an item from an invalid slot. Defaulting to main inventory.\n" CL_RESET);
+        }
+    }
 
     auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-    auto SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(lua_tointeger(L, 1));
+    auto SlotID = PChar->getStorage(location)->SearchItem(lua_tointeger(L, 1));
     if (SlotID != ERROR_SLOTID)
     {
-        charutils::UpdateItem(PChar, LOC_INVENTORY, SlotID, -quantity);
+        charutils::UpdateItem(PChar, location, SlotID, -quantity);
         lua_pushboolean(L, true);
         PChar->pushPacket(new CInventoryFinishPacket());
         return 1;
@@ -5201,6 +5216,48 @@ inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::addMobMod(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    // putting this in here to find elusive bug
+    if (!(m_PBaseEntity->objtype & TYPE_MOB))
+    {
+        // this once broke on an entity (17532673) but it could not be found
+        ShowError("CLuaBaseEntity::addMobMod Expected type mob (%d) but its a (%d)\n", m_PBaseEntity->id, m_PBaseEntity->objtype);
+        return 0;
+    }
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    ((CMobEntity*)m_PBaseEntity)->addMobMod(
+        lua_tointeger(L, 1),
+        lua_tointeger(L, 2));
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::delMobMod(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    // putting this in here to find elusive bug
+    if (!(m_PBaseEntity->objtype & TYPE_MOB))
+    {
+        // this once broke on an entity (17532673) but it could not be found
+        ShowError("CLuaBaseEntity::addMobMod Expected type mob (%d) but its a (%d)\n", m_PBaseEntity->id, m_PBaseEntity->objtype);
+        return 0;
+    }
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    ((CMobEntity*)m_PBaseEntity)->addMobMod(
+        lua_tointeger(L, 1),
+        -lua_tointeger(L, 2));
+    return 0;
+}
+
 /************************************************************************
 *                                                                       *
 *  Добавляем очки опыта персонажу                                       *
@@ -6304,6 +6361,34 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
         }
     }
     return 0;
+}
+
+/************************************************************************
+*                                                                       *
+*  Returns the CE and VE the mob has towards the player                 *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getCE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetCE((CBattleEntity*)PEntity->GetBaseEntity()));
+    return 1;
+}
+
+inline int32 CLuaBaseEntity::getVE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    lua_pushinteger(L, ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetVE((CBattleEntity*)PEntity->GetBaseEntity()));
+    return 1;
 }
 
 /************************************************************************
@@ -7705,6 +7790,25 @@ inline int32 CLuaBaseEntity::getCurrency(lua_State *L)
     lua_pushinteger(L, charutils::GetPoints(PChar, type));
 
     return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::setCurrency(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    const char* type = lua_tostring(L, 1);
+    int32 amount = (int32)lua_tointeger(L, 2);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    charutils::SetPoints(PChar, type, amount);
+
+    return 0;
 }
 
 //==========================================================//
@@ -9959,6 +10063,17 @@ inline int32 CLuaBaseEntity::setTrueDetection(lua_State* L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::setAggressive(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    ((CMobEntity*)m_PBaseEntity)->m_Aggro = lua_tointeger(L, -1);
+
+    return 0;
+}
+
 inline int32 CLuaBaseEntity::instantiateMob(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10347,6 +10462,19 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     return 1;
 }
 
+int32 CLuaBaseEntity::handleAfflatusMiseryDamage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    auto damage = lua_tointeger(L, 1);
+
+    battleutils::HandleAfflatusMiseryDamage(static_cast<CBattleEntity*>(m_PBaseEntity), damage);
+
+    return 0;
+}
+
 
 int32 CLuaBaseEntity::setEquipBlock(lua_State* L)
 {
@@ -10699,6 +10827,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMobMod),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMobMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,moghouseFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectPacket),
@@ -10709,6 +10839,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,transferEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCE),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),
@@ -10785,6 +10917,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,BCNMSetLoot),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCurrency),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delCurrency),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCP),
@@ -10929,6 +11062,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelId),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setModelId),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setTrueDetection),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAggressive),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,instantiateMob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
@@ -10951,6 +11085,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,triggerListener),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,handleAfflatusMiseryDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setEquipBlock),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setStatDebilitation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unequipItem),
