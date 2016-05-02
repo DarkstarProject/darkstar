@@ -836,6 +836,7 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
                             CStatusEffect* bustEffect = new CStatusEffect(EFFECT_BUST, EFFECT_BUST, PStatusEffect->GetPower(),
                                 0, duration, PStatusEffect->GetTier(), PStatusEffect->GetStatusID());
                             AddStatusEffect(bustEffect, true);
+                            DelStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
                         }
                     }
                     DelStatusEffectSilent(PStatusEffect->GetStatusID());

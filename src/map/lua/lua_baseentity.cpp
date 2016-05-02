@@ -4693,6 +4693,17 @@ inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::numBustEffects(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    uint8 numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount(EFFECT_BUST);
+
+    lua_pushinteger(L, numEffects);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::canGainStatusEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10805,6 +10816,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffectByFlag),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasBustEffect),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,numBustEffects),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delStatusEffectsByFlag),

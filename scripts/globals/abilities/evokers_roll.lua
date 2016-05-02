@@ -35,8 +35,10 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     local effectID = EFFECT_EVOKERS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
-    if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
+    if (player:hasStatusEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+    elseif atMaxCorsairBusts(player) then
+        return MSGBASIC_CANNOT_PERFORM,0;
     else
         return 0,0;
     end

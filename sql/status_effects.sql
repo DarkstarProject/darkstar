@@ -343,7 +343,7 @@ INSERT INTO `status_effects` VALUES (305,'water_maneuver',818,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (306,'light_maneuver',818,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (307,'dark_maneuver',818,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (308,'double-up_chance',288,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (309,'bust',288,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (309,'bust',288,0,0,4,0,0,0,0);
 INSERT INTO `status_effects` VALUES (310,'fighters_roll',131360,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (311,'monks_roll',131360,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (312,'healers_roll',131360,0,0,0,0,0,0,0);
