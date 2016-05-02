@@ -434,6 +434,11 @@ function corsairSetup(caster, ability, action, effect, job)
     caster:addRecast(RECAST_ABILITY, 194, 8)
 end
 
+function atMaxCorsairBusts(caster)
+    local numBusts = caster:numBustEffects();
+    return (numBusts >= 2 and caster:getMainJob() == JOB_COR) or (numBusts >= 1 and caster:getMainJob() ~= JOB_COR);
+end
+
 function checkForJobBonus(caster, job)
     local jobBonus = 0
     if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
