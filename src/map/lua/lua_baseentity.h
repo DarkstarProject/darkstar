@@ -316,6 +316,7 @@ public:
     int32 hasStatusEffect(lua_State*);        // Checks to see if character has specified effect
     int32 hasStatusEffectByFlag(lua_State*);  // Checks to see if a character has an effect with the specified flag
     int32 hasBustEffect(lua_State*);          // Checks to see if a character has a specified busted corsair roll
+    int32 numBustEffects(lua_State*);         // Gets the number of bust effects on the player
     int32 canGainStatusEffect(lua_State*);    // Returns true if the effect can be added
     int32 getStatusEffect(lua_State*);        //
     int32 getStatusEffects(lua_State*);
