@@ -39,14 +39,14 @@ extern lan_config_t lan_config;
 
 struct login_config_t
 {
-    uint16 usLoginAuthPort;         // authentication port of login server ->  54231
-    uint32 uiLoginAuthIp;           // authentication ip of login server   -> INADDR_ANY
+    uint16 login_auth_port;         // authentication port of login server ->  54231
+    const char* login_auth_ip;           // authentication ip of login server   -> INADDR_ANY
 
-    uint16 usLobbyDataPort;
-    uint32 uiLobbyDataIp;
+    uint16 login_data_port;
+    const char* login_data_ip;
 
-    uint16 usLobbyViewPort;
-    uint32 uiLobbyViewIp;
+    uint16 login_view_port;
+    const char* login_view_ip;
 
     uint16 expansions;
 
