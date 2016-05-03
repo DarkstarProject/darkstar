@@ -44,14 +44,14 @@ function onUseWeaponSkill(player, target, wsID, TP, primary)
 
     local damage = target:breathDmgTaken(WSC);
     if (damage > 0) then
-        if (attacker:getOffhandDmg() > 0) then
+        if (player:getOffhandDmg() > 0) then
             tpHits = 2;
         else
             tpHits = 1;
         end
     end
     if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        damage = damage * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+        damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     damage = damage * WEAPON_SKILL_POWER
 
