@@ -1543,7 +1543,7 @@ void CCharEntity::Die()
     else
     {
         auto PTarget = GetEntity(GetBattleTargetID());
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, 0, 0, 97));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, this, 0, 0, 97));
     }
     Die(60min);
     m_DeathCounter = 0;
