@@ -885,6 +885,8 @@ void CMobController::Reset()
 
     // Don't attack player right off of spawn
     m_NeutralTime = m_Tick;
+
+    PTarget = nullptr;
 }
 
 bool CMobController::MobSkill(uint16 targid, uint16 wsid)
