@@ -3303,12 +3303,7 @@ namespace charutils
                             PMember->PTreasurePool->AddItem(4095 + PMob->m_Element, PMob);
                         }
                     }
-                    if (PMember->PParty != nullptr && PMember->PParty->m_PAlliance != nullptr && PMob->m_Type == MOBTYPE_NORMAL)
-                    {
-                        if ((Pzone > 38 && Pzone < 43) || (Pzone > 133 && Pzone < 136) || (Pzone > 184 && Pzone < 189)) charutils::AddExperiencePoints(false, PMember, PMob, exp, 1, false);
-                        else charutils::AddExperiencePoints(false, PMember, PMob, 1, 1, false);
-                    }
-                    else charutils::AddExperiencePoints(false, PMember, PMob, exp, baseexp, chainactive);
+                    charutils::AddExperiencePoints(false, PMember, PMob, exp, baseexp, chainactive);
                 }
             }
         });
