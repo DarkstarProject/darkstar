@@ -3,13 +3,18 @@
 -- desc: Prints current MissionID for the given LogID and target Player to the in game chatlog
 ---------------------------------------------------------------------------------------------------
 
+req
+
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "ss"
 };
 
 function onTrigger(player,logId,target)
+    
+    logId = tonumber(logId) or _G[logId];
+    
     if (logId == nil) then
         player:PrintToPlayer( "You must enter a valid LogID!" );
         player:PrintToPlayer( "@checkmission <Log ID> <Player>" );

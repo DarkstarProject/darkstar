@@ -3,13 +3,19 @@
 -- desc: Completes the given quest for the GM or target player.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/quests")
+
 cmdprops =
 {
     permission = 1,
-    parameters = "iis"
+    parameters = "sss"
 };
 
 function onTrigger(player, logId, questId, target)
+
+    logId = tonumber(logId) or _G[logId];
+    questId = tonumber(questId) or _G[questId];
+    
     if (questId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
         player:PrintToPlayer( "@completequest <logID> <questID> <player>" );

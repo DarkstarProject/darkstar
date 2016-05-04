@@ -2155,3 +2155,28 @@ ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
  ITEM_CURRENCY    = 0x20;
  ITEM_FURNISHING  = 0x40;
  ITEM_LINKSHELL   = 0x80;
+
+ ------------------------------------
+ -- Animation IDs
+ ------------------------------------
+ANIMATION_NONE                     = 0;
+ANIMATION_ATTACK                   = 1;
+ANIMATION_DEATH                    = 3;
+ANIMATION_CHOCOBO                  = 5;
+ANIMATION_FISHING                  = 6;
+ANIMATION_HEALING                  = 7;
+ANIMATION_OPEN_DOOR                = 8;
+ANIMATION_CLOSE_DOOR               = 9;
+ANIMATION_ELEVATOR_UP              = 10;
+ANIMATION_ELEVATOR_DOWN            = 11;
+ANIMATION_HEALING                  = 33;
+ANIMATION_FISHING_FISH             = 38;
+ANIMATION_FISHING_CAUGHT           = 39;
+ANIMATION_FISHING_ROD_BREAK        = 40;
+ANIMATION_FISHING_LINE_BREAK       = 41;
+ANIMATION_FISHING_MONSTER          = 42;
+ANIMATION_FISHING_STOP             = 43;
+ANIMATION_SYNTH                    = 44;
+ANIMATION_SIT                      = 47;
+ANIMATION_RANGED                   = 48;
+ANIMATION_FISHING_START            = 50;
