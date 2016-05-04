@@ -31,7 +31,6 @@ function onTrigger(player, target, id)
             effectTarget = pc;
         else
             id = _G[target];
-            return;
         end
 
         if (id == 0 or id == nil) then
