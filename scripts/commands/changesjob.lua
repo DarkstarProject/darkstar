@@ -31,7 +31,7 @@ function onTrigger(player, job, level)
 
     -- Attempt to set the players subjob level..
     if (level ~= nil and level > 0 and level <= 99) then
-        player:setsLevel(level ;
+        player:setsLevel(level);
     else
         player:PrintToPlayer( "Invalid level given. Level must be between 1 and 99!" );
     end
