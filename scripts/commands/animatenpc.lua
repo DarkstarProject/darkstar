@@ -3,13 +3,19 @@
 -- desc: Changes the animation of the given npc. (For testing purposes.)
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/status");
+
 cmdprops =
 {
     permission = 1,
-    parameters = "ii"
+    parameters = "ss"
 };
 
 function onTrigger(player, npcId, animationId)
+
+    npcId = tonumber(npcId) or npcId;
+    animationId = tonumber(animationId) or _G[animationId];
+    
     if (npcId ~= nil and animationId ~= nil) then
         local npc = GetNPCByID( npcId, player );
         if (npc == nil) then return; end

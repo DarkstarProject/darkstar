@@ -3,14 +3,19 @@
 -- desc: Deletes the given key item from the player.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/keyitems");
+
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "ss"
 };
 
 function onTrigger(player, keyId, target)
-    if (keyId == nil or tonumber(keyId) == 0 or tonumber(keyId) == nil or keyId == 0) then
+
+    keyId = tonumber(keyId) or _G[keyId];
+
+    if (keyId == nil or keyId == 0) then
         player:PrintToPlayer("You must enter a valid keyitem ID.");
         player:PrintToPlayer( "@delkeyitem <ID> <player>" );
         return;

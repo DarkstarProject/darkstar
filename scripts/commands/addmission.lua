@@ -3,13 +3,19 @@
 -- desc: Adds a mission to the GM or target players log.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/missions");
+
 cmdprops =
 {
     permission = 1,
-    parameters = "iis"
+    parameters = "sss"
 };
 
 function onTrigger(player, logId, missionId, target)
+    
+    logId = tonumber(logId) or _G[logId];
+    missionId = tonumber(missionId) or _G[missionId];
+    
     if (missionId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log id and mission id!" );
         player:PrintToPlayer( "@addmission <logID> <missionID> <player>" );

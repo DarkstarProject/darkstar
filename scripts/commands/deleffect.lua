@@ -3,6 +3,8 @@
 -- desc: Adds the given effect to the given player.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/status");
+
 cmdprops =
 {
     permission = 1,
@@ -28,6 +30,7 @@ function onTrigger(player, target, id)
         if (pc ~= nil) then
             effectTarget = pc;
         else
+            id = _G[target];
             return;
         end
 
