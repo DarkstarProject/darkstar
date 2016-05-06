@@ -377,7 +377,7 @@ int32 login_config_read(const char *cfgName)
         }
         else if (strcmp(w1, "log_user_ip") == 0)
         {
-            login_config.log_user_ip = aStrdup(w2);
+            login_config.log_user_ip = config_switch(w2);
         }
         else
         {
