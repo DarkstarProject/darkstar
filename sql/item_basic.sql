@@ -5664,8 +5664,8 @@ INSERT INTO `item_basic` VALUES (6058,287,'klimaform_schema','klimaform',1,63168
 INSERT INTO `item_basic` VALUES (6059,308,'animus_augeo_schema','animus_augeo',1,34436,28,0,1614);
 INSERT INTO `item_basic` VALUES (6060,309,'animus_minuo_schema','animus_minuo',1,34436,28,0,1614);
 INSERT INTO `item_basic` VALUES (6061,495,'adloquium_schema','adloquium',1,34436,28,0,1815);
-INSERT INTO `item_basic` VALUES (6063,0,'fruit_parfait','fruit_parfait',1,1580,55,0,100);
-INSERT INTO `item_basic` VALUES (6064,0,'queens_crown','queens_crown',1,1580,55,0,100);
+INSERT INTO `item_basic` VALUES (6063,0,'fruit_parfait','fruit_parfait',1,1580,57,0,100);
+INSERT INTO `item_basic` VALUES (6064,0,'queens_crown','queens_crown',1,1580,57,0,100);
 INSERT INTO `item_basic` VALUES (6065,0,'tiny_macaroon','tiny_macaroon',99,30280,99,1,0);
 INSERT INTO `item_basic` VALUES (6066,0,'tiny_rusk','tiny_rusk',99,30280,99,1,0);
 INSERT INTO `item_basic` VALUES (6067,0,'ontic_extremity','ontic_extremity',1,63168,99,1,0);
