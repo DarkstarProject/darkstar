@@ -1521,7 +1521,6 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         PItem->setSlotID(Sql_GetIntData(SqlHandle, 2));
                         PItem->setQuantity(Sql_GetUIntData(SqlHandle, 3));
 
-                        int what = Sql_GetUIntData(SqlHandle, 4);
                         if (Sql_GetUIntData(SqlHandle, 4) > 0)
                         {
                             PItem->setSent(true);
@@ -2337,10 +2336,8 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 equipSlotID = RBUFB(data, (0x05));        // charequip slot
     uint8 containerID = RBUFB(data, (0x06));     // container id
 
-    if (containerID != 0 && containerID != 8)
-    {
+    if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2)
         return;
-    }
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
@@ -2365,7 +2362,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint8 slotID = RBUFB(data, (0x08 + (0x04 * i)));        // inventory slot
         uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));        // charequip slot
         uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
-        if (containerID == 0 || containerID == 8)
+        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2)
         {
             charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
         }
