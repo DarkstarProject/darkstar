@@ -523,6 +523,10 @@ void CMobController::DoCombatTick(time_point tick)
 
 void CMobController::Move()
 {
+    if (!PMob->PAI->CanFollowPath())
+    {
+        return;
+    }
     float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
     if (PMob->PAI->PathFind->IsFollowingScriptedPath() && PMob->PAI->CanFollowPath())
     {
