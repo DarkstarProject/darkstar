@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 #include "../common/utils.h"
 
 #include "entities/battleentity.h"
+#include "ai/ai_container.h"
 #include "enmity_container.h"
 #include "utils/battleutils.h"
 #include "entities/charentity.h"
@@ -87,7 +88,11 @@ void CEnmityContainer::Clear(uint32 EntityID)
 
 void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 {
-    UpdateEnmity(PChar, 0, 0);
+    //engage, but don't add enmity object until an offensive action is taken
+    if (!m_EnmityHolder->PAI->IsEngaged())
+    {
+        m_EnmityHolder->PAI->Engage(PChar->targid);
+    }
 }
 
 /************************************************************************
@@ -115,7 +120,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster, bool aggroEnmity)
+void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster)
 {
     // you're too far away so i'm ignoring you
     if (!IsWithinEnmityRange(PEntity))
@@ -147,7 +152,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         //Check for cap limit
         PEnmity->second->CE = dsp_cap(newCE, 1, 10000);
         PEnmity->second->VE = dsp_cap(newVE, 0, 10000);
-        PEnmity->second->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > PEnmity->second->maxTH)
             PEnmity->second->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -171,7 +175,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         PEnmityObject->CE = dsp_cap(CE * bonus, 0, 10000);
         PEnmityObject->VE = dsp_cap(VE * bonus, 0, 10000);
         PEnmityObject->PEnmityOwner = PEntity;
-        PEnmityObject->isAggroEnmity = aggroEnmity;
 
         if (CE + VE > 0)
             PEnmityObject->maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
@@ -192,40 +195,11 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     }
 }
 
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
-void CEnmityContainer::AddPartyEnmity(CCharEntity* PChar)
-{
-    // TODO: добавляемые персонажи уже могут быть в списке enmity, я не уверен, что добавление базового значения здесь актуально
-
-    PChar->ForAlliance([this, PChar](CBattleEntity* PMember)
-    {
-        if (distance(PChar->loc.p, PMember->loc.p) <= 40)
-        {
-            AddBaseEnmity(PMember);
-        }
-    });
-}
-
-void CEnmityContainer::AddLinkEnmity(CBattleEntity* PEntity)
-{
-    UpdateEnmity(PEntity, 0, 0, false, true);
-}
-
-void CEnmityContainer::AddAggroEnmity(CBattleEntity* PEntity)
-{
-    UpdateEnmity(PEntity, 0, 0, true, true);
-}
-
 bool CEnmityContainer::HasTargetID(uint32 TargetID){
     EnmityList_t::iterator PEnmity = m_EnmityList.lower_bound(TargetID);
 
     if (PEnmity != m_EnmityList.end() &&
-        !m_EnmityList.key_comp()(TargetID, PEnmity->first) && PEnmity->second->isAggroEnmity == false)
+        !m_EnmityList.key_comp()(TargetID, PEnmity->first))
     {
         return true;
     }

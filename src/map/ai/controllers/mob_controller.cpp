@@ -143,7 +143,7 @@ void CMobController::TryLink()
     // my pet should help as well
     if (PMob->PPet != nullptr && PMob->PPet->PAI->IsRoaming())
     {
-        ((CMobEntity*)PMob->PPet)->PEnmityContainer->AddLinkEnmity(PTarget);
+        ((CMobEntity*)PMob->PPet)->PEnmityContainer->AddBaseEnmity(PTarget);
     }
 
     // Handle monster linking if they are close enough
@@ -155,7 +155,7 @@ void CMobController::TryLink()
 
             if (PPartyMember->PAI->IsRoaming() && PPartyMember->CanLink(&PMob->loc.p, PMob->getMobMod(MOBMOD_SUPERLINK)))
             {
-                PPartyMember->PEnmityContainer->AddLinkEnmity(PTarget);
+                PPartyMember->PEnmityContainer->AddBaseEnmity(PTarget);
 
                 if (PPartyMember->m_roamFlags & ROAMFLAG_IGNORE)
                 {
@@ -174,7 +174,7 @@ void CMobController::TryLink()
 
         if (PMaster->PAI->IsRoaming() && PMaster->CanLink(&PMob->loc.p, PMob->getMobMod(MOBMOD_SUPERLINK)))
         {
-            PMaster->PEnmityContainer->AddLinkEnmity(PTarget);
+            PMaster->PEnmityContainer->AddBaseEnmity(PTarget);
         }
     }
 }
@@ -646,7 +646,7 @@ void CMobController::HandleEnmity()
     else
     {
         auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
-        ChangeTarget(PTarget ? PTarget->targid : 0);
+        if (PTarget) ChangeTarget(PTarget->targid);
     }
 }
 
