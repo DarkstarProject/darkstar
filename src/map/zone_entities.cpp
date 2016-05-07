@@ -433,7 +433,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
             if (validAggro && PController->CanAggroTarget(PChar))
             {
-                PCurrentMob->PEnmityContainer->AddAggroEnmity(PChar);
+                PCurrentMob->PEnmityContainer->AddBaseEnmity(PChar);
             }
         }
         else
