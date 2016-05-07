@@ -76,14 +76,17 @@ void CPlayerCharmController::DoCombatTick(time_point tick)
     auto PTarget {POwner->GetBattleTarget()};
     if (PTarget)
     {
-        POwner->PAI->PathFind->LookAt(PTarget->loc.p);
-        std::unique_ptr<CMessageBasicPacket> err;
-        if ((!POwner->CanAttack(PTarget, err)) && POwner->PAI->CanFollowPath())
+        if (POwner->PAI->CanFollowPath())
         {
-            if (POwner->speed > 0)
+            POwner->PAI->PathFind->LookAt(PTarget->loc.p);
+            std::unique_ptr<CMessageBasicPacket> err;
+            if (!POwner->CanAttack(PTarget, err))
             {
-                POwner->PAI->PathFind->PathAround(PTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-                POwner->PAI->PathFind->FollowPath();
+                if (POwner->speed > 0)
+                {
+                    POwner->PAI->PathFind->PathAround(PTarget->loc.p, 2.0f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                    POwner->PAI->PathFind->FollowPath();
+                }
             }
         }
     }
