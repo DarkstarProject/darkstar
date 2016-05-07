@@ -28,14 +28,14 @@
 
 enum CONTAINER_ID
 {
-	LOC_INVENTORY		= 0,
-	LOC_MOGSAFE			= 1,
-	LOC_STORAGE			= 2,
-	LOC_TEMPITEMS		= 3,
-	LOC_MOGLOCKER		= 4,
-	LOC_MOGSATCHEL		= 5,
-	LOC_MOGSACK			= 6,
-	LOC_MOGCASE			= 7,
+    LOC_INVENTORY       = 0,
+    LOC_MOGSAFE         = 1,
+    LOC_STORAGE         = 2,
+    LOC_TEMPITEMS       = 3,
+    LOC_MOGLOCKER       = 4,
+    LOC_MOGSATCHEL      = 5,
+    LOC_MOGSACK         = 6,
+    LOC_MOGCASE         = 7,
     LOC_WARDROBE        = 8,
     LOC_MOGSAFE2        = 9,
     LOC_WARDROBE2       = 10
