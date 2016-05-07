@@ -1064,11 +1064,11 @@ namespace charutils
 
     void SendInventory(CCharEntity* PChar)
     {
-        for (uint8 LocationID = 0; LocationID < MAX_CONTAINER_ID; ++LocationID)
+        auto pushContainer = [&](auto LocationID)
         {
             CItemContainer* container = PChar->getStorage(LocationID);
             if (container == nullptr)
-                continue;
+                return;
 
             uint8 size = container->GetSize();
             for (uint8 slotID = 0; slotID <= size; ++slotID)
@@ -1079,6 +1079,14 @@ namespace charutils
                     PChar->pushPacket(new CInventoryItemPacket(PItem, LocationID, slotID));
                 }
             }
+        };
+
+        //Send important items first
+        //Note: it's possible that non-essential inventory items are sent in response to another packet
+        for (auto&& containerID : {LOC_INVENTORY, LOC_TEMPITEMS, LOC_WARDROBE, LOC_WARDROBE2, LOC_MOGSAFE,
+            LOC_STORAGE, LOC_MOGLOCKER, LOC_MOGSATCHEL, LOC_MOGSACK, LOC_MOGCASE, LOC_MOGSAFE2})
+        {
+            pushContainer(containerID);
         }
 
         for (int32 i = 0; i < 16; ++i)
