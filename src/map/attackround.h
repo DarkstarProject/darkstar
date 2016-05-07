@@ -54,8 +54,8 @@ public:
 
     uint8						GetAttackSwingCount();		// Returns the attack list count.
     bool						IsH2H();					// Flag: Is the attacker using H2H?
-    CAttack 					GetAttack(uint8);			// Returns an attack object.
-    CAttack 					GetCurrentAttack();			// Returns the current attack.
+    CAttack& 					GetAttack(uint8);			// Returns an attack object.
+    CAttack& 					GetCurrentAttack();			// Returns the current attack.
     void						SetSATA(bool value);		// Sets the SATA flag.
     bool						GetSATAOccured();			// Returns the SATA flag.
     CBattleEntity*				GetTAEntity();				// Returns the TA entity.
