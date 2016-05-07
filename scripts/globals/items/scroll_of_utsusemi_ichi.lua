@@ -9,7 +9,6 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    print("ass");
     return target:canLearnSpell(338);
 end;
 
