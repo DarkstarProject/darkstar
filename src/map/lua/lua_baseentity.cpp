@@ -8209,11 +8209,8 @@ inline int32 CLuaBaseEntity::isBehind(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    uint8 angle = 42;
-    if (lua_gettop(L) > 1)
-    {
-        angle = lua_tonumber(L, 2);
-    }
+
+    uint8 angle = lua_gettop(L) > 1 ? lua_tointeger(L, 2) : 42;
 
     uint8 turn = PLuaBaseEntity->GetBaseEntity()->loc.p.rotation - getangle(PLuaBaseEntity->GetBaseEntity()->loc.p, m_PBaseEntity->loc.p);
 
@@ -8235,9 +8232,11 @@ inline int32 CLuaBaseEntity::isFacing(lua_State *L)
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
+    uint8 angle = lua_gettop(L) > 1 ? lua_tointeger(L, 2) : 45;
+
     DSP_DEBUG_BREAK_IF(PLuaBaseEntity == nullptr);
 
-    lua_pushboolean(L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, 45));
+    lua_pushboolean(L, isFaceing(m_PBaseEntity->loc.p, PLuaBaseEntity->GetBaseEntity()->loc.p, angle));
     return 1;
 }
 

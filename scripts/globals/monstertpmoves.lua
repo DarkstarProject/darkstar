@@ -125,6 +125,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
+    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    end
+
     --apply WSC
     local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
     if (base < 1) then
