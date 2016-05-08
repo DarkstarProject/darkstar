@@ -3646,7 +3646,7 @@ namespace battleutils
         if (m_PChar->objtype == TYPE_PC) // Some mobskills use TakeWeaponskillDamage function, which calls upon this one.
         {
             // must be facing mob
-            if (isFaceing(PDefender->loc.p, m_PChar->loc.p, 90))
+            if (isFaceing(PDefender->loc.p, m_PChar->loc.p, 23))
             {
                 uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
                 // ShowDebug("Merits: %u\n", meritCount);
