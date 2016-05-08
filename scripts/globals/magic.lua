@@ -1130,6 +1130,12 @@ function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistB
 end
 
 function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,mabBonus)
+    mabBonus = mabBonus or 0;
+
+    mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
+    if (caster:hasStatusEffect(EFFECT_INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
+        mabBonus = mabBonus + caster:getStatusEffect(EFFECT_INNIN):getPower();
+    end
     return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT,mabBonus);
 end
 
