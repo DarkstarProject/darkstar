@@ -85,7 +85,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100;
+        nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        end
 
         if (nativecrit > 0.2) then -- caps!
             nativecrit = 0.2;
@@ -308,9 +311,17 @@ function getHitRate(attacker,target,capHitRate,bonus)
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
         attacker:delMod(MOD_ACC, 20 + flourisheffect:getSubPower())
     end
-    if (bonus) then
-        acc = acc + bonus;
+    if (bonus == nil) then
+        bonus = 0;
     end
+    if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost if attacker is behind target
+        bonus = bonus + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+    end
+    if (target:hasStatusEffect(EFFECT_YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
+        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+    end
+
+    acc = acc + bonus;
     
     if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
@@ -347,9 +358,14 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
     local acc = attacker:getRACC();
     local eva = target:getEVA();
 
-    if (bonus) then
-        acc = acc + bonus;
+    if (bonus == nil) then
+        bonus = 0;
     end
+    if (target:hasStatusEffect(EFFECT_YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
+        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+    end
+
+    acc = acc + bonus;
 
     if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
@@ -673,6 +689,11 @@ end;
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
+        nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
+            nativecrit = nativecrit + attacker:getStatusEffect(EFFECT_INNIN):getPower();
+        end
+
         if (nativecrit > 0.2) then -- caps!
             nativecrit = 0.2;
         elseif (nativecrit < 0.05) then
