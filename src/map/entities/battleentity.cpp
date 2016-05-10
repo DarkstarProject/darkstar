@@ -1375,7 +1375,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
     {
         actionTarget_t& actionTarget = list.getNewActionTarget();
         // Reference to the current swing.
-        CAttack attack = attackRound.GetCurrentAttack();
+        CAttack& attack = attackRound.GetCurrentAttack();
 
         // Set the swing animation.
         actionTarget.animation = attack.GetAnimationID();

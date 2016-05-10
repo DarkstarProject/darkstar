@@ -104,7 +104,7 @@ uint8 CAttackRound::GetAttackSwingCount()
 *  Returns an attack via index.											*
 *																		*
 ************************************************************************/
-CAttack CAttackRound::GetAttack(uint8 index)
+CAttack& CAttackRound::GetAttack(uint8 index)
 {
     return m_attackSwings[index];
 }
@@ -114,7 +114,7 @@ CAttack CAttackRound::GetAttack(uint8 index)
 *  Returns the current attack.											*
 *																		*
 ************************************************************************/
-CAttack CAttackRound::GetCurrentAttack()
+CAttack& CAttackRound::GetCurrentAttack()
 {
     return m_attackSwings[0];
 }

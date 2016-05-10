@@ -312,58 +312,58 @@ INSERT INTO `item_mods` VALUES (10325,5,30); -- MP +30
 INSERT INTO `item_mods` VALUES (10325,374,5); -- Cure Potency +5%
 INSERT INTO `item_mods` VALUES (10325,310,10); -- Cursna Effect +10%
 INSERT INTO `item_mods` VALUES (10325,384,20); -- Haste +2%
-INSERT INTO `item_mods` VALUES (10326,1,49);
-INSERT INTO `item_mods` VALUES (10326,2,40);
-INSERT INTO `item_mods` VALUES (10326,5,40);
-INSERT INTO `item_mods` VALUES (10326,23,6);
-INSERT INTO `item_mods` VALUES (10326,25,6);
-INSERT INTO `item_mods` VALUES (10326,170,1);
-INSERT INTO `item_mods` VALUES (10326,384,51);
-INSERT INTO `item_mods` VALUES (10327,1,40);
-INSERT INTO `item_mods` VALUES (10327,27,-3);
-INSERT INTO `item_mods` VALUES (10327,30,4);
-INSERT INTO `item_mods` VALUES (10327,111,11);
-INSERT INTO `item_mods` VALUES (10327,112,11);
-INSERT INTO `item_mods` VALUES (10327,114,11);
-INSERT INTO `item_mods` VALUES (10327,384,30);
-INSERT INTO `item_mods` VALUES (10328,1,49);
-INSERT INTO `item_mods` VALUES (10328,2,36);
-INSERT INTO `item_mods` VALUES (10328,5,36);
-INSERT INTO `item_mods` VALUES (10328,24,7);
-INSERT INTO `item_mods` VALUES (10328,26,16);
-INSERT INTO `item_mods` VALUES (10328,359,5);
+INSERT INTO `item_mods` VALUES (10326,1,49); -- Enif Cociales - DEF +49
+INSERT INTO `item_mods` VALUES (10326,2,40); -- HP +40
+INSERT INTO `item_mods` VALUES (10326,5,40); -- MP +40
+INSERT INTO `item_mods` VALUES (10326,23,6); -- ACC +6
+INSERT INTO `item_mods` VALUES (10326,25,6); -- ATT +6
+INSERT INTO `item_mods` VALUES (10326,170,1); -- Fast Cast
+INSERT INTO `item_mods` VALUES (10326,384,51); -- Haste +5%
+INSERT INTO `item_mods` VALUES (10327,1,40); -- Adhara Seraweels - DEF +40
+INSERT INTO `item_mods` VALUES (10327,27,-3); -- Enmity -3
+INSERT INTO `item_mods` VALUES (10327,30,4); -- MACC +4
+INSERT INTO `item_mods` VALUES (10327,111,11); -- Divine +11
+INSERT INTO `item_mods` VALUES (10327,112,11); -- Healing +11
+INSERT INTO `item_mods` VALUES (10327,114,11); -- Enfeebling +11
+INSERT INTO `item_mods` VALUES (10327,384,30);-- Haste +3%
+INSERT INTO `item_mods` VALUES (10328,1,49); -- Murzim Cosciales DEF + 49
+INSERT INTO `item_mods` VALUES (10328,2,36); -- HP +36
+INSERT INTO `item_mods` VALUES (10328,5,36); -- MP +36
+INSERT INTO `item_mods` VALUES (10328,24,7); -- RATT +7
+INSERT INTO `item_mods` VALUES (10328,26,16); -- RACC +16
+INSERT INTO `item_mods` VALUES (10328,359,5); -- Rapid Shot -increase
 INSERT INTO `item_mods` VALUES (10329,1,40); -- Shedir Seraweels - DEF +40
 INSERT INTO `item_mods` VALUES (10329,539,35); -- Stoneskin +35
 INSERT INTO `item_mods` VALUES (10329,113,15); -- Enhancing Magic Skill +15
 INSERT INTO `item_mods` VALUES (10329,567,15); -- Barspell potency +15
 INSERT INTO `item_mods` VALUES (10329,832,1); -- Aquaveil count +1
-INSERT INTO `item_mods` VALUES (10330,1,1);
-INSERT INTO `item_mods` VALUES (10331,1,1);
-INSERT INTO `item_mods` VALUES (10332,1,1);
-INSERT INTO `item_mods` VALUES (10333,1,1);
-INSERT INTO `item_mods` VALUES (10334,1,1);
-INSERT INTO `item_mods` VALUES (10335,1,1);
-INSERT INTO `item_mods` VALUES (10336,1,1);
-INSERT INTO `item_mods` VALUES (10337,1,1);
-INSERT INTO `item_mods` VALUES (10338,1,2);
-INSERT INTO `item_mods` VALUES (10339,1,2);
-INSERT INTO `item_mods` VALUES (10340,1,2);
-INSERT INTO `item_mods` VALUES (10341,1,2);
-INSERT INTO `item_mods` VALUES (10342,1,2);
-INSERT INTO `item_mods` VALUES (10343,1,2);
-INSERT INTO `item_mods` VALUES (10344,1,2);
-INSERT INTO `item_mods` VALUES (10345,1,2);
-INSERT INTO `item_mods` VALUES (10346,1,55);
-INSERT INTO `item_mods` VALUES (10346,8,7);
-INSERT INTO `item_mods` VALUES (10346,23,11);
-INSERT INTO `item_mods` VALUES (10346,27,5);
-INSERT INTO `item_mods` VALUES (10346,161,-4);
-INSERT INTO `item_mods` VALUES (10347,1,56);
-INSERT INTO `item_mods` VALUES (10347,8,8);
-INSERT INTO `item_mods` VALUES (10347,23,12);
-INSERT INTO `item_mods` VALUES (10347,27,6);
-INSERT INTO `item_mods` VALUES (10347,161,-5);
-INSERT INTO `item_mods` VALUES (10348,1,46);
+INSERT INTO `item_mods` VALUES (10330,1,1); -- Marine Boxers - DEF +1
+INSERT INTO `item_mods` VALUES (10331,1,1); -- Marine Shorts - DEF +1
+INSERT INTO `item_mods` VALUES (10332,1,1); -- Woodsy Boxers - DEF +1
+INSERT INTO `item_mods` VALUES (10333,1,1); -- Woodsy Shorts - DEF +1
+INSERT INTO `item_mods` VALUES (10334,1,1); -- Creek Boxers - DEF +1
+INSERT INTO `item_mods` VALUES (10335,1,1); -- Creek Shorts - DEF +1
+INSERT INTO `item_mods` VALUES (10336,1,1); -- River Shorts - DEF +1
+INSERT INTO `item_mods` VALUES (10337,1,1); -- Dune Boxers - DEF +1
+INSERT INTO `item_mods` VALUES (10338,1,2); -- Marine Boxers+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10339,1,2); -- Marine Shorts+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10340,1,2); -- Woodsy Boxers+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10341,1,2); -- Woodsy Shorts+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10342,1,2); -- Creek Boxers+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10343,1,2); -- Creek Shorts+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10344,1,2); -- River Shorts+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10345,1,2); -- Dune Boxers+1 - DEF +2
+INSERT INTO `item_mods` VALUES (10346,1,55); -- Dex Cuisses - DEF +55
+INSERT INTO `item_mods` VALUES (10346,8,7); -- STR +7
+INSERT INTO `item_mods` VALUES (10346,23,11); -- ATT +11
+INSERT INTO `item_mods` VALUES (10346,27,5); -- Enmity +5
+INSERT INTO `item_mods` VALUES (10346,161,-4); -- PDT -4%
+INSERT INTO `item_mods` VALUES (10347,1,56); -- Dex Cuisses+1 - DEF +56
+INSERT INTO `item_mods` VALUES (10347,8,8); -- STR +8
+INSERT INTO `item_mods` VALUES (10347,23,12); -- ATT +12
+INSERT INTO `item_mods` VALUES (10347,27,6); -- Enmity +6
+INSERT INTO `item_mods` VALUES (10347,161,-5); -- PDT -5%
+INSERT INTO `item_mods` VALUES (10348,1,46); -- Chelona Trousers - DEF +46
 INSERT INTO `item_mods` VALUES (10348,5,40);
 INSERT INTO `item_mods` VALUES (10348,8,-8);
 INSERT INTO `item_mods` VALUES (10348,9,-8);
@@ -374,7 +374,7 @@ INSERT INTO `item_mods` VALUES (10348,13,8);
 INSERT INTO `item_mods` VALUES (10348,14,8);
 INSERT INTO `item_mods` VALUES (10348,27,-5);
 INSERT INTO `item_mods` VALUES (10348,487,1);
-INSERT INTO `item_mods` VALUES (10349,1,47);
+INSERT INTO `item_mods` VALUES (10349,1,47); -- Chelona Trousers - DEF +47
 INSERT INTO `item_mods` VALUES (10349,5,45);
 INSERT INTO `item_mods` VALUES (10349,8,-9);
 INSERT INTO `item_mods` VALUES (10349,9,-9);
@@ -3379,6 +3379,7 @@ INSERT INTO `item_mods` VALUES (11354,9,10);
 INSERT INTO `item_mods` VALUES (11354,10,10);
 INSERT INTO `item_mods` VALUES (11354,25,12);
 INSERT INTO `item_mods` VALUES (11354,302,1);
+INSERT INTO `item_mods` VALUES (11354,475,5);
 INSERT INTO `item_mods` VALUES (11355,1,1);
 INSERT INTO `item_mods` VALUES (11356,1,1);
 INSERT INTO `item_mods` VALUES (11357,1,1);
@@ -3919,7 +3920,7 @@ INSERT INTO `item_mods` VALUES (11501,9,6);
 INSERT INTO `item_mods` VALUES (11501,11,6);
 INSERT INTO `item_mods` VALUES (11501,23,8);
 INSERT INTO `item_mods` VALUES (11501,288,2);
-INSERT INTO `item_mods` VALUES (11501,416,15);
+INSERT INTO `item_mods` VALUES (11501,512,5);
 INSERT INTO `item_mods` VALUES (11502,1,28);
 INSERT INTO `item_mods` VALUES (11502,25,-10);
 INSERT INTO `item_mods` VALUES (11502,58,-15);
@@ -9618,7 +9619,7 @@ INSERT INTO `item_mods` VALUES (13657,1,10);
 INSERT INTO `item_mods` VALUES (13657,5,32);
 INSERT INTO `item_mods` VALUES (13657,27,-6);
 INSERT INTO `item_mods` VALUES (13658,1,15);
-INSERT INTO `item_mods` VALUES (13658,416,15);
+INSERT INTO `item_mods` VALUES (13658,416,6);
 INSERT INTO `item_mods` VALUES (13659,1,2);
 INSERT INTO `item_mods` VALUES (13660,1,2);
 INSERT INTO `item_mods` VALUES (13661,1,2);
@@ -13210,6 +13211,7 @@ INSERT INTO `item_mods` VALUES (14644,14,1);
 INSERT INTO `item_mods` VALUES (14645,5,30);
 INSERT INTO `item_mods` VALUES (14645,60,-30);
 INSERT INTO `item_mods` VALUES (14646,255,5);
+INSERT INTO `item_mods` VALUES (14646,476,13);
 INSERT INTO `item_mods` VALUES (14649,58,20);
 INSERT INTO `item_mods` VALUES (14650,1,2);
 INSERT INTO `item_mods` VALUES (14650,26,6);
@@ -21053,7 +21055,7 @@ INSERT INTO `item_mods` VALUES (18650,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (18650,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18650,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (18651,23,35); -- Spharai LV90 -- ATT +35
-INSERT INTO `item_mods` VALUES (18651,291,11); -- Counter +11 
+INSERT INTO `item_mods` VALUES (18651,291,11); -- Counter +11
 INSERT INTO `item_mods` VALUES (18651,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18651,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18651,507,300); -- Extra DMG X3
@@ -21137,7 +21139,7 @@ INSERT INTO `item_mods` VALUES (18664,506,50); -- Extra DMG Chance 5%
 INSERT INTO `item_mods` VALUES (18664,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (18664,770,25); -- Namas Arrow DMG +25%
 INSERT INTO `item_mods` VALUES (18665,23,35); -- Spharai LV95 -- ATT +35
-INSERT INTO `item_mods` VALUES (18665,291,11); -- Counter +11 
+INSERT INTO `item_mods` VALUES (18665,291,11); -- Counter +11
 INSERT INTO `item_mods` VALUES (18665,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (18665,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (18665,507,300); -- Extra DMG X3
@@ -22090,7 +22092,7 @@ INSERT INTO `item_mods` VALUES (19739,24,12);
 INSERT INTO `item_mods` VALUES (19739,73,4);
 INSERT INTO `item_mods` VALUES (19740,26,7);
 INSERT INTO `item_mods` VALUES (19746,23,40); -- Spharai LV99 -- ATT +40
-INSERT INTO `item_mods` VALUES (19746,291,14); -- Counter +14 
+INSERT INTO `item_mods` VALUES (19746,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (19746,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (19746,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19746,507,300); -- Extra DMG X3
@@ -22292,7 +22294,7 @@ INSERT INTO `item_mods` VALUES (19838,30,30);
 INSERT INTO `item_mods` VALUES (19838,288,25);
 INSERT INTO `item_mods` VALUES (19838,302,5);
 INSERT INTO `item_mods` VALUES (19839,23,40); -- Spharai LV99 AG -- ATT +40
-INSERT INTO `item_mods` VALUES (19839,291,14); -- Counter +14 
+INSERT INTO `item_mods` VALUES (19839,291,14); -- Counter +14
 INSERT INTO `item_mods` VALUES (19839,355,10); -- Final Heaven
 INSERT INTO `item_mods` VALUES (19839,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19839,507,300); -- Extra DMG X3

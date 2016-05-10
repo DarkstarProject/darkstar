@@ -797,7 +797,7 @@ int connect_client(int listen_fd, sockaddr_in& client_address)
 	return fd;
 }
 
-int32 makeListenBind_tcp(uint32 ip, uint16 port,RecvFunc connect_client)
+int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client)
 {
 	struct sockaddr_in server_address;
 	int fd;
@@ -827,7 +827,7 @@ int32 makeListenBind_tcp(uint32 ip, uint16 port,RecvFunc connect_client)
 	//set_nonblocking(fd, 1);
 
 	server_address.sin_family      = AF_INET;
-	server_address.sin_addr.s_addr = htonl(ip);
+	server_address.sin_addr.s_addr = inet_addr(ip);
 	server_address.sin_port        = htons(port);
 
 	result = sBind(fd, (struct sockaddr*)&server_address, sizeof(server_address));

@@ -3,6 +3,7 @@
 -- MOB:  Eo'ghrah
 -----------------------------------
 require("scripts/globals/status");
+
 -----------------------------------
 -- OnMobSpawn Action
 -- Set core Skin and mob elemental resist/weakness; other elements set to 0.
@@ -11,7 +12,7 @@ require("scripts/globals/status");
 
 function onMobSpawn(mob)
     mob:AnimationSub(0);
-    mob:setTrueDetection(0);
+    mob:setAggressive(0);
     mob:setLocalVar("roamTime", os.time());
     mob:setLocalVar("form2",math.random(2,3));
     local skin = math.random(1161,1168);
@@ -43,8 +44,13 @@ function onMobSpawn(mob)
     end;
 end;
 
-function onMobEngage(mob)
+-----------------------------------
+-- onMobEngaged
+-----------------------------------
+
+function onMobEngaged(mob,target)
 end;
+
 -----------------------------------
 -- onMobRoam Action
 -- Autochange Aggro and Form
@@ -55,10 +61,10 @@ function onMobRoam(mob)
     if (mob:AnimationSub() == 0 and os.time() - roamTime > 60) then
         mob:AnimationSub(mob:getLocalVar("form2"));
         mob:setLocalVar("roamTime", os.time());
-        mob:setTrueDetection(1);
+        mob:setAggressive(1);
     elseif (mob:AnimationSub() == mob:getLocalVar("form2") and os.time() - roamTime > 60) then
         mob:AnimationSub(0);
-        mob:setTrueDetection(0);
+        mob:setAggressive(0);
         mob:setLocalVar("roamTime", os.time());
     end
 end;
@@ -67,19 +73,25 @@ end;
 -- OnMobFight Action
 -- Set ball form and secondary form
 -----------------------------------
+
 function onMobFight(mob,target)
-    local meltdown = 0;
 
     local changeTime = mob:getLocalVar("changeTime");
 
     if (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
         mob:AnimationSub(mob:getLocalVar("form2"));
+        mob:setAggressive(1);
         mob:setLocalVar("changeTime", mob:getBattleTime());
     elseif (mob:AnimationSub() == mob:getLocalVar("form2") and mob:getBattleTime() - changeTime > 60) then
         mob:AnimationSub(0);
+        mob:setAggressive(0);
         mob:setLocalVar("changeTime", mob:getBattleTime());
     end
 end;
 
-function onMobDeath(mob)
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, killer, ally)
 end;

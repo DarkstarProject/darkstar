@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 2;
     local dmgmod = 5;
     
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,1.5,2);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_IGNORE_SHADOWS);
     
     target:delHP(dmg);
