@@ -35,7 +35,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
 
-    if ((player:getEquipID(SLOT_MAIN) == 18998) and (player:getMainJob() == JOB_DRK)) then
+    if ((player:getEquipID(SLOT_MAIN) == 18998) and (player:getMainJob() == JOBS.DRK)) then
         if (damage > 0) then
             applyAftermathEffect(player, tp)
         end

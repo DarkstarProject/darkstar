@@ -41,7 +41,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         end
     end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18990) and (player:getMainJob() == JOB_SCH)) then
+    if ((player:getEquipID(SLOT_MAIN) == 18990) and (player:getMainJob() == JOBS.SCH)) then
         if (damage > 0) then
             local params = initAftermathParams()
             params.power.lv2_inc = 1

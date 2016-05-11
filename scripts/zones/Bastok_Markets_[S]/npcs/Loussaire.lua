@@ -59,7 +59,7 @@ function onTrigger(player,npc)
             player:startEvent(50, itemid, FristKI, SecondKI);
 
         -- Nothing in progress and meet the starting requirements.
-        elseif (downwardHelix == QUEST_COMPLETED and mJob == JOB_SCH and mLvl >= AF2_QUEST_LEVEL) then
+        elseif (downwardHelix == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= AF2_QUEST_LEVEL) then
 
              -- If a player has completed any of the paths, it will be a different cutscene.
             local counter = 0;

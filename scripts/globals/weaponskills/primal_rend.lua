@@ -35,7 +35,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
 
     -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
-    if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOB_BST)) then
+    if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOBS.BST)) then
         if (damage > 0) then
             applyAftermathEffect(player, tp)
         end

@@ -7,29 +7,29 @@ WYVERN_OFFENSIVE = 1
 WYVERN_DEFENSIVE = 2
 WYVERN_MULTI = 3
 local wyvernTypes = {
-    [JOB_WAR] = WYVERN_OFFENSIVE,
-    [JOB_MNK] = WYVERN_OFFENSIVE,
-    [JOB_WHM] = WYVERN_DEFENSIVE,
-    [JOB_BLM] = WYVERN_DEFENSIVE,
-    [JOB_RDM] = WYVERN_DEFENSIVE,
-    [JOB_THF] = WYVERN_OFFENSIVE,
-    [JOB_PLD] = WYVERN_MULTI,
-    [JOB_DRK] = WYVERN_MULTI,
-    [JOB_BST] = WYVERN_OFFENSIVE,
-    [JOB_BRD] = WYVERN_MULTI,
-    [JOB_RNG] = WYVERN_OFFENSIVE,
-    [JOB_SAM] = WYVERN_OFFENSIVE,
-    [JOB_NIN] = WYVERN_MULTI,
-    [JOB_DRG] = WYVERN_OFFENSIVE,
-    [JOB_SMN] = WYVERN_DEFENSIVE,
-    [JOB_BLU] = WYVERN_DEFENSIVE,
-    [JOB_COR] = WYVERN_OFFENSIVE,
-    [JOB_PUP] = WYVERN_OFFENSIVE,
-    [JOB_DNC] = WYVERN_OFFENSIVE,
-    [JOB_SCH] = WYVERN_DEFENSIVE,
+    [JOBS.WAR] = WYVERN_OFFENSIVE,
+    [JOBS.MNK] = WYVERN_OFFENSIVE,
+    [JOBS.WHM] = WYVERN_DEFENSIVE,
+    [JOBS.BLM] = WYVERN_DEFENSIVE,
+    [JOBS.RDM] = WYVERN_DEFENSIVE,
+    [JOBS.THF] = WYVERN_OFFENSIVE,
+    [JOBS.PLD] = WYVERN_MULTI,
+    [JOBS.DRK] = WYVERN_MULTI,
+    [JOBS.BST] = WYVERN_OFFENSIVE,
+    [JOBS.BRD] = WYVERN_MULTI,
+    [JOBS.RNG] = WYVERN_OFFENSIVE,
+    [JOBS.SAM] = WYVERN_OFFENSIVE,
+    [JOBS.NIN] = WYVERN_MULTI,
+    [JOBS.DRG] = WYVERN_OFFENSIVE,
+    [JOBS.SMN] = WYVERN_DEFENSIVE,
+    [JOBS.BLU] = WYVERN_DEFENSIVE,
+    [JOBS.COR] = WYVERN_OFFENSIVE,
+    [JOBS.PUP] = WYVERN_OFFENSIVE,
+    [JOBS.DNC] = WYVERN_OFFENSIVE,
+    [JOBS.SCH] = WYVERN_DEFENSIVE,
     --These two might not be right (I'd guess GEO is multi)
-    [JOB_GEO] = WYVERN_OFFENSIVE,
-    [JOB_RUN] = WYVERN_OFFENSIVE
+    [JOBS.GEO] = WYVERN_OFFENSIVE,
+    [JOBS.RUN] = WYVERN_OFFENSIVE
 }
 
 -----------------------------------
@@ -65,7 +65,7 @@ function onMobSpawn(mob)
                 end
             end
         end);
-        if (master:getSubJob() ~= JOB_SMN) then
+        if (master:getSubJob() ~= JOBS.SMN) then
             master:addListener("MAGIC_USE", "PET_WYVERN_MAGIC", function(player, target, spell, action)
                 -- check master first!
                 local threshold = 33;

@@ -19,7 +19,7 @@ require("scripts/zones/Norg/TextIDs");
 
 function onTrade(player,npc,trade)
     
-    if (trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
+    if (trade:hasItemQty(1549,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN) then
         player:startEvent(0x00c8,0,1549,2,20);
     end
 
@@ -32,7 +32,7 @@ end;
 function onTrigger(player,npc)
     
     local TrialSizeWater = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
-    if (player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
+    if (player:getMainLvl() >= 20 and player:getMainJob() == JOBS.SMN and TrialSizeWater == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(0x00c7,0,1549,2,20);     --mini tuning fork of water, zone, level
     elseif (TrialSizeWater == QUEST_ACCEPTED) then
         local WaterFork = player:hasItem(1549);
