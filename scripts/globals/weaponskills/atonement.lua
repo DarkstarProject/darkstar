@@ -83,7 +83,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         target:updateEnmityFromDamage(player, damage * enmityMult);
     end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOB_PLD)) then
+    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOBS.PLD)) then
         if (damage > 0) then
             applyAftermathEffect(player, tp)
         end

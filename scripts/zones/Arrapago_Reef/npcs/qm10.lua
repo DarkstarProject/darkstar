@@ -31,12 +31,12 @@ function onTrigger(player,npc)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
     
     
-    if (equipedForAll == QUEST_AVAILABLE and mJob == JOB_COR and mLvl >= AF1_QUEST_LEVEL) then
+    if (equipedForAll == QUEST_AVAILABLE and mJob == JOBS.COR and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(0x0E4);
     elseif (equipedForAll == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==3) then
         player:startEvent(0x0E7);
         player:delKeyItem(WHEEL_LOCK_TRIGGER);
-    elseif (equipedForAll == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_AVAILABLE and mJob == JOB_COR and mLvl >= AF2_QUEST_LEVEL) then
+    elseif (equipedForAll == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_AVAILABLE and mJob == JOBS.COR and mLvl >= AF2_QUEST_LEVEL) then
         player:startEvent(0x0E8);
     elseif (player:getVar("NavigatingtheUnfriendlySeas") ==4) then
         player:startEvent(0x0E9);

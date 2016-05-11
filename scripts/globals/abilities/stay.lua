@@ -33,9 +33,9 @@ function onUseAbility(player,target,ability,action)
       -- more than 10.  This seems to mimic retail.  There is no formula
       -- that I can find, but this seems close.
         local level = 0
-        if (player:getMainJob() == JOB_BST) then
+        if (player:getMainJob() == JOBS.BST) then
             level = player:getMainLvl()
-        elseif (player:getSubJob() == JOB_BST) then
+        elseif (player:getSubJob() == JOBS.BST) then
             level = player:getSubLvl()
         end
         

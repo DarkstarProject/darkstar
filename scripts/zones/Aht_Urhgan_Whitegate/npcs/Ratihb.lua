@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0304);
         player:setVar("EquipedforAllOccasions",5);
         player:setVar("LuckOfTheDraw",0);
-    elseif (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getMainJob() == JOB_COR and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getMainJob() == JOBS.COR and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(0x031D);
     elseif (player:getQuestStatus(AHT_URHGAN,LUCK_OF_THE_DRAW) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_COMPLETED) then
         player:setVar("EquipedforAllOccasions",0);
