@@ -3,6 +3,7 @@
 --
 --
 -----------------------------------
+require("scripts/globals/status");
 
 -----------------------------------
 -- onEffectGain Action
@@ -18,7 +19,7 @@ end;
 function onEffectTick(target,effect)
     local complete = false;
     local level = 0;
-    if (target:getMainJob() == JOB_SCH) then
+    if (target:getMainJob() == JOBS.SCH) then
         level = target:getMainLvl();
     else
         level = target:getSubLvl();

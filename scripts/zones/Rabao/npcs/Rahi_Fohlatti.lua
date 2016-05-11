@@ -18,7 +18,7 @@ require("scripts/zones/Rabao/TextIDs");
 
 function onTrade(player,npc,trade)
     
-    if (trade:hasItemQty(1546,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND) == QUEST_ACCEPTED and player:getMainJob() == JOB_SMN) then
+    if (trade:hasItemQty(1546,1) and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN) then
         player:startEvent(0x006d,0,1546,3,20);
     end
 end; 
@@ -30,7 +30,7 @@ end;
 function onTrigger(player,npc)
     local TrialSizeWind = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
 
-    if (player:getMainLvl() >= 20 and player:getMainJob() == JOB_SMN and TrialSizeWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 2) then --Requires player to be Summoner at least lvl 20
+    if (player:getMainLvl() >= 20 and player:getMainJob() == JOBS.SMN and TrialSizeWind == QUEST_AVAILABLE and player:getFameLevel(RABAO) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(0x006c,0,1546,3,20);     --mini tuning fork, zone, level
     elseif (TrialSizeWind == QUEST_ACCEPTED) then
         local WindFork = player:hasItem(1546);
