@@ -594,7 +594,12 @@ namespace spell
             uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
             uint8 requirements = spell->getRequirements();
 
-            if(PCaster->objtype == TYPE_MOB){
+            if (PCaster->objtype == TYPE_MOB)
+            {
+                // cant cast cause im hidden or untargetable
+                if (PCaster->IsNameHidden() || static_cast<CMobEntity*>(PCaster)->IsUntargetable())
+                    return false;
+
                 // Mobs can cast any non-given char spell
                 return true;
             }
