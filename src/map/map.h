@@ -122,6 +122,7 @@ struct map_config_t
     bool   audit_yell;
     bool   audit_linkshell;
     bool   audit_party;
+    uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     const char* msg_server_ip;        // central message server IP
 };
