@@ -3444,7 +3444,7 @@ void SmallPacket0x084(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             quantity = dsp_min(quantity, PItem->getQuantity());
             PChar->Container->setItem(PChar->Container->getSize() - 1, itemID, slotID, quantity);
-            PChar->pushPacket(new CShopAppraisePacket(slotID, PItem->getBasePrice()));
+            PChar->pushPacket(new CShopAppraisePacket(slotID, (uint32)(PItem->getBasePrice() * map_config.item_vendor_sell_multiplier)));
         }
         return;
     }
@@ -3468,7 +3468,7 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if ((PItem != nullptr) && ((gil != nullptr) && gil->isType(ITEM_CURRENCY)))
     {
-        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
+        charutils::UpdateItem(PChar, LOC_INVENTORY, 0, (uint32)(quantity * PItem->getBasePrice() * map_config.item_vendor_sell_multiplier));
         charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
 
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
