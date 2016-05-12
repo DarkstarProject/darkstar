@@ -47,7 +47,7 @@ function onUseAbility(player,target,ability)
     local thfLevel;
     local stolen = 0;
 
-    if (player:getMainJob() == JOB_THF) then
+    if (player:getMainJob() == JOBS.THF) then
         thfLevel = player:getMainLvl();
     else
         thfLevel = player:getSubLvl();

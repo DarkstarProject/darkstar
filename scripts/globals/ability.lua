@@ -3,6 +3,8 @@
 --  ABILITIES
 --
 -----------------------------------
+require("scripts/globals/status");
+
     ABILITY_MIGHTY_STRIKES     = 0;
     ABILITY_HUNDRED_FISTS      = 1;
     ABILITY_BENEDICTION        = 2;
@@ -436,7 +438,7 @@ end
 
 function atMaxCorsairBusts(caster)
     local numBusts = caster:numBustEffects();
-    return (numBusts >= 2 and caster:getMainJob() == JOB_COR) or (numBusts >= 1 and caster:getMainJob() ~= JOB_COR);
+    return (numBusts >= 2 and caster:getMainJob() == JOBS.COR) or (numBusts >= 1 and caster:getMainJob() ~= JOBS.COR);
 end
 
 function checkForJobBonus(caster, job)

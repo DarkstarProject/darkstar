@@ -24,12 +24,12 @@ end;
 function onUseAbility(player,target,ability)
 
     local regenbonus = 0;
-    if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
     end
 
     local helixbonus = 0;
-    if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
         helixbonus = math.floor(player:getMainLvl() / 4);
     end
     player:resetRecast(RECAST_ABILITY, 228);

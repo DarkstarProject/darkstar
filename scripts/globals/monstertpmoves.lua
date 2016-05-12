@@ -125,6 +125,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
+    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    end
+
     --apply WSC
     local base = mob:getWeaponDmg() + dstr; --todo: change to include WSC
     if (base < 1) then
@@ -315,7 +319,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     if (mob:isPet() and mob:getMaster() ~= nil) then
         local master = mob:getMaster();
         if (master:getPetID() >= 0 and master:getPetID() <= 20) then -- check to ensure pet is avatar
-            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), JOB_SMN, SUMMONING_SKILL), 0, 200);
+            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), JOBS.SMN, SUMMONING_SKILL), 0, 200);
         end
     end
     resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),avatarAccBonus,element);
@@ -769,7 +773,7 @@ function MobTakeAoEShadow(mob, target, max)
 
     -- this is completely crap and should be using actual nin skill
     -- TODO fix this
-    if (target:getMainJob() == JOB_NIN and math.random() < 0.6) then
+    if (target:getMainJob() == JOBS.NIN and math.random() < 0.6) then
         max = max - 1;
         if (max < 1) then
             max = 1;

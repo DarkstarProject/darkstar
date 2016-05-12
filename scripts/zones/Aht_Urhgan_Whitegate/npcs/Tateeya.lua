@@ -5,8 +5,8 @@
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
     local tradeStatus = player:getVar('TateeyaTradeStatus');
     local automatonName = player:getAutomatonName();
     if (tradeStatus == 0) then
-        if (player:getMainJob() == JOB_PUP) then
+        if (player:getMainJob() == JOBS.PUP) then
             player:startEventString(0x028A, automatonName, automatonName, automatonName, automatonName); --trade me to unlock attachments
         else
             player:startEvent(0x0102); --default no PUP CS

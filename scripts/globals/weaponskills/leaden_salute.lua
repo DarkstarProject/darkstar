@@ -34,7 +34,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
 
-    if ((player:getEquipID(SLOT_RANGED) == 19007) and (player:getMainJob() == JOB_COR)) then
+    if ((player:getEquipID(SLOT_RANGED) == 19007) and (player:getMainJob() == JOBS.COR)) then
         if (damage > 0) then
             local params = initAftermathParams()
             params.subpower.lv1 = 3
