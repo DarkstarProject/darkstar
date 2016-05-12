@@ -979,6 +979,7 @@ int32 map_config_default()
     map_config.msg_server_port = 54003;
     map_config.msg_server_ip = "127.0.0.1";
     map_config.item_vendor_sell_multiplier = 1.0f;
+    map_config.healing_tick_delay = 10;
     return 0;
 }
 
@@ -1275,6 +1276,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "item_vendor_sell_multiplier") == 0)
         {
             map_config.item_vendor_sell_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "healing_tick_delay") == 0)
+        {
+            map_config.healing_tick_delay = atoi(w2);
         }
         else
         {

@@ -123,6 +123,7 @@ struct map_config_t
     bool   audit_linkshell;
     bool   audit_party;
     float  item_vendor_sell_multiplier;
+    uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     const char* msg_server_ip;        // central message server IP
 };
