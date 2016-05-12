@@ -53,6 +53,11 @@ time_point CState::GetEntryTime()
     return m_entryTime;
 }
 
+void CState::ResetEntryTime()
+{
+    m_entryTime = server_clock::now();
+}
+
 void CState::SetTarget(uint16 _targid)
 {
     if (_targid != m_targid)

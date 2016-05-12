@@ -75,6 +75,7 @@ protected:
     uint16 GetTargetID();
     void Complete();
     time_point GetEntryTime();
+    void ResetEntryTime();
 
     std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
