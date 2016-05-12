@@ -17,10 +17,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED) then
-        ally:setVar("bladeOfEvilCS",1);
+    if (player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED) then
+        player:setVar("bladeOfEvilCS",1);
     end
 
 end;

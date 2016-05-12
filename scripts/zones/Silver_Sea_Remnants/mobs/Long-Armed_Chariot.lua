@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(MOON_CHARIOTEER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(MOON_CHARIOTEER);
 end;

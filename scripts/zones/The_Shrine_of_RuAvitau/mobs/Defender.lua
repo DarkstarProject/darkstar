@@ -75,9 +75,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,749,1);
+    checkGoVregime(player,mob,749,1);
 
     local Defender = mob:getID();
     local AuraGear = mob:getID() + 1;

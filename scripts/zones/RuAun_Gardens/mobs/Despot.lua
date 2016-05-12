@@ -8,7 +8,7 @@ require("scripts/globals/fieldsofvalor");
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Despot ToD
     SetServerVariable("[POP]Despot", os.time(t) + 7200); -- 2 hour

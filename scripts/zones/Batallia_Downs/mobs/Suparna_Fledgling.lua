@@ -16,12 +16,12 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    local kills = ally:getVar("Mission9-1Kills");
+    local kills = player:getVar("Mission9-1Kills");
 
-    if (ally:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and ally:getVar("MissionStatus") == 3 and kills < 2) then
-        ally:setVar("Mission9-1Kills",kills + 1);
+    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3 and kills < 2) then
+        player:setVar("Mission9-1Kills",kills + 1);
     end
 
 end;

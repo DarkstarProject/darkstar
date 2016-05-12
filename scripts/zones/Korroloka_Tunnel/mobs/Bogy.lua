@@ -9,9 +9,9 @@ require("scripts/zones/Korroloka_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,732,1);
+    checkGoVregime(player,mob,732,1);
 
     local mobID = mob:getID();
     if (Dame_Blanche_PH[mobID] ~= nil) then

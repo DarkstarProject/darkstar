@@ -39,11 +39,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
         
-  if (ally:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false) then 
-       ally:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
-       ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
+  if (player:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false) then 
+       player:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
+       player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
   end
-       ally:addTitle(DYNAMISBUBURIMU_INTERLOPER);
+       player:addTitle(DYNAMISBUBURIMU_INTERLOPER);
 end;

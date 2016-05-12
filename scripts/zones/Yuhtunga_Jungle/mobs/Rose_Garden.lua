@@ -2,6 +2,10 @@
 -- Area: Yuhtunga Jungle
 -- MOB:  Rose Garden
 -----------------------------------
+
+
+-----------------------------------
+-- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -10,6 +14,10 @@ function onMobSpawn(mob)
     GetMobByID(Voluptuous_Vilma):setLocalVar("1",os.time() + math.random((36000), (37800)));
 
 end;
+
+-----------------------------------
+-- onMobRoam
+-----------------------------------
 
 function onMobRoam(mob)
 
@@ -40,12 +48,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local Rose_Garden = 17281357;
     local Rose_Garden_PH = GetServerVariable("Rose_Garden_PH");
 
-    GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
+    GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random(36000,37800));
     SetServerVariable("Rose_Garden_PH", 0);
     DeterMob(Rose_Garden, true);
     DeterMob(Rose_Garden_PH, false);

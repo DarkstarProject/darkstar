@@ -17,10 +17,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:hasKeyItem(SEANCE_STAFF) and ally:getVar("Enagakure_Killed") == 0) then
-        ally:setVar("Enagakure_Killed",1);
+    if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0) then
+        player:setVar("Enagakure_Killed",1);
     end
 
 end;

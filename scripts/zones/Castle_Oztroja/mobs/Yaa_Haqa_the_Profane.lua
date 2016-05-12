@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Yaa_Haqa_the_Profane's Window Open Time
     local wait = math.random(3600,7200);

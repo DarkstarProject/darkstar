@@ -14,6 +14,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     GetNPCByID(17428978):openDoor(300); -- 5min
 end;

@@ -16,8 +16,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(HELLSBANE);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(HELLSBANE);
 
     -- Set Count_Bifrons's Window Open Time
     local wait = math.random(3600,28800);

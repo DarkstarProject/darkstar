@@ -24,11 +24,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local npc = GetNPCByID(17236306);
-    if (ally:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and ally:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
-        ally:messageSpecial(BLOCKS_OF_ICE);
+    if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
+        player:messageSpecial(BLOCKS_OF_ICE);
     end
     npc:showNPC(FrigiciteDuration);
 

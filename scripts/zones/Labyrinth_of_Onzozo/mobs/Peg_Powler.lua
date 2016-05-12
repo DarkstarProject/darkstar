@@ -7,9 +7,9 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,774,1);
+    checkGoVregime(player,mob,774,1);
 
     -- Set Peg Powler's Window Open Time
     local wait = math.random((7200),(57600));

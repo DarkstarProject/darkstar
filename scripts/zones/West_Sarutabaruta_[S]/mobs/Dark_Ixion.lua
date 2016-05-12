@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(IXION_HORNBREAKER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(IXION_HORNBREAKER);
 end;

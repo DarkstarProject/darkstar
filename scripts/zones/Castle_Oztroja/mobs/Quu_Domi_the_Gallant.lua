@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     if (math.random(1,100) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
         SetDropRate(1936,15737,1000); -- Sarutobi Kyahan

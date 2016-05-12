@@ -25,12 +25,12 @@ end;
 -- onMobEngaged
 -----------------------------------
 
-function onMobEngaged(mob, killer)
+function onMobEngaged(mob, target)
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 end;

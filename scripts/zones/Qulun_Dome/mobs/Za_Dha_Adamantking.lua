@@ -26,9 +26,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    ally:addTitle(ADAMANTKING_USURPER);
+    player:addTitle(ADAMANTKING_USURPER);
     mob:showText(mob,QUADAV_KING_DEATH);
 
     -- Set Za_Dha_Adamantking's Window Open Time

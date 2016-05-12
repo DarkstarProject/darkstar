@@ -9,7 +9,7 @@ require("scripts/zones/Giddeus/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobID = mob:getID();
     if (Vuu_Puqu_the_Beguiler_PH[mobID] ~= nil) then

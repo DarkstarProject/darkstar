@@ -27,7 +27,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     -- Needs to be zone wide message
     -- mob:messagePublic(mob, YAGUDO_AVATAR_DEATH);
 

@@ -15,10 +15,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    local ills = ally:getVar("FOMOR_HATE");
+function onMobDeath(mob, player, isKiller)
+    local ills = player:getVar("FOMOR_HATE");
 
     if (kills < 60) then
-        ally:setVar("FOMOR_HATE",kills + 2);
+        player:setVar("FOMOR_HATE",kills + 2);
     end
 end;

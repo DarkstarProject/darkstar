@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Ose's Window Open Time
     SetServerVariable("[POP]Ose", os.time(t) + 3600); -- 1 hour

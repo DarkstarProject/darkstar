@@ -32,10 +32,34 @@ function onMobFight(mob,target)
 end;
 
 -----------------------------------
+-- onAdditionalEffect
+-----------------------------------
+
+function onAdditionalEffect(mob, target, damage))
+    local chance = 100;
+    local resist = applyResistanceAddEffect(mob,target,ELE_DARK,EFFECT_ENASPIR);
+    if (math.random(0,99) >= chance or resist <= 0.5) then
+        return 0,0,0;
+    else
+        local mp = math.random(1,10);
+        if (target:getMP() < mp) then
+            mp = target:getMP();
+        end
+        if (mp == 0) then
+            return 0,0,0;
+        else
+            target:delMP(mp);
+            mob:addMP(mp);
+            return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, mp;
+        end
+    end
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
     UpdateNMSpawnPoint(mob:getID());
 end;
@@ -44,30 +68,5 @@ end;
 -- onMobDespawn
 -----------------------------------
 
-function onMobDespawn(mob, killer)
-end;
-
-
------------------------------------
--- onAdditionalEffect
------------------------------------
-
-function onAdditionalEffect(mob, player)
-    local chance = 100;
-    local resist = applyResistanceAddEffect(mob,player,ELE_DARK,EFFECT_ENASPIR);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local mp = math.random(1,10);
-        if (player:getMP() < mp) then
-            mp = player:getMP();
-        end
-        if (mp == 0) then
-            return 0,0,0;
-        else
-            player:delMP(mp);
-            mob:addMP(mp);
-            return SUBEFFECT_MP_DRAIN, MSGBASIC_ADD_EFFECT_MP_DRAIN, mp;
-        end
-    end
+function onMobDespawn(mob)
 end;

@@ -17,10 +17,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(BASTOK,THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED) then
-        ally:setVar("theTalekeepersGiftKilledNM",ally:getVar("theTalekeepersGiftKilledNM") + 1);
+    if (player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_GIFT) == QUEST_ACCEPTED) then
+        player:setVar("theTalekeepersGiftKilledNM",player:getVar("theTalekeepersGiftKilledNM") + 1);
     end
 
 end;

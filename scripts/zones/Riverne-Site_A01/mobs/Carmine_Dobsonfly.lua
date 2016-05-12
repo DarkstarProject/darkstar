@@ -33,7 +33,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     local firstDobsonfly = 16900230;
     local mobID = mob:getID();
     local carminesKilled = GetServerVariable("[NM]Carmine_Dobsonflies_Killed");

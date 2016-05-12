@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set LL's ToD
     SetServerVariable("[POP]Leaping_Lizzy", os.time(t) + 3600); -- 1 hour
