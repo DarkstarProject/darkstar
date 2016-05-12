@@ -2562,7 +2562,7 @@ INSERT INTO `mob_skills` VALUES (2752,1926,'Raptorial_Claw',1,15.0,2000,1000,4,0
 INSERT INTO `mob_skills` VALUES (2753,1927,'Phlegm_Expulsion',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2754,1928,'Macerating_Bile',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2755,1929,'Preying_Posture',0,7.0,2000,1000,1,0,0,0);
-INSERT INTO `mob_skills` VALUES (2756,1930,'Dead_Prophet ',4,10.0,2000,1000,4,0,0,0); -- May Need Loki settings (2500,1609,1924,'Death_Prophet',1,10.0,8000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2756,1930,'Dead_Prophet ',4,10.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2757,2501,'Sakra_Storm',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2758,2502,'Kaleidoscopic_Fury',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2759,2503,'Telsonic_Tempest',0,7.0,2000,1500,4,0,0,0);
@@ -2590,12 +2590,12 @@ INSERT INTO `mob_skills` VALUES (2756,1930,'Dead_Prophet ',4,10.0,2000,1000,4,0,
 -- INSERT INTO `mob_skills` VALUES (2781,1953,'Gallu_Melee_Triple',0,10.0,2000,0,4,16,0,3);  -- Gallu Melee Specials
 -- INSERT INTO `mob_skills` VALUES (2782,1954,'Gallu_Melee_Frontal',4,10.0,2000,0,4,16,0,0); -- Gallu Melee Specials
 -- INSERT INTO `mob_skills` VALUES (2783,1955,'Gallu_Melee_Radial',1,10.0,2000,0,4,16,0,0);  -- Gallu Melee Specials
-INSERT INTO `mob_skills` VALUES (2784,1956,'Diluvial_Wakes',4,10.0,2000,1000,4,0,0,0); -- May need Loki SQL (2528,1706,1956,'VW_Diluvial_wakes',1,20.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2784,1956,'Diluvial_Wakes',4,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2785,1957,'Kurugi_Collapse',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2786,1958,'Searing_Halitus',1,15.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2787,1959,'Divesting_Gale',1,18.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2788,1960,'Bolt_of_Perdition',1,15.0,2000,1000,4,0,0,3);
-INSERT INTO `mob_skills` VALUES (2789,1961,'Crippling_Rime',4,10.0,2000,1000,4,0,0,0); -- may need Loki SQL (2533,1706,1961,'VW_Crippling_rime',1,20.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2789,1961,'Crippling_Rime',4,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2790,1962,'Oblivions_Mantle',1,15.0,2000,1000,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2791,2535,'.',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2792,2536,'.',0,7.0,2000,1500,4,0,0,0);
