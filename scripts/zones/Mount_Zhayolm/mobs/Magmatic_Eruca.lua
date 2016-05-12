@@ -10,7 +10,7 @@ require("scripts/zones/Mount_Zhayolm/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Get Magmatic Eruca ID and check if it is a PH of EE
     local mobID = mob:getID();

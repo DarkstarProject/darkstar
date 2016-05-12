@@ -9,9 +9,9 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkRegime(ally,mob,100,2);
+    checkRegime(player,mob,100,2);
 
     local mobID = mob:getID();
     if (Blighting_Brand_PH[mobID] ~= nil) then

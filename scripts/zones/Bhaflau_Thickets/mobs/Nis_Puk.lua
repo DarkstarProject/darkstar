@@ -10,7 +10,7 @@ require("scripts/zones/Bhaflau_Thickets/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set NP's ToD
     SetServerVariable("[POP]Nis_Puk", os.time(t) + 43200); -- 12 hours

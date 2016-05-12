@@ -59,13 +59,14 @@ function onMobFight(mob,target)
     end
 
 end;
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    if ((IsMobDead(16933144) == false or IsMobDead(16933137) == false) and alreadyReceived(killer,1,GetInstanceRegion(1294)) == false) then
-        ally:addTimeToSpecialBattlefield(5,5);
-        addLimbusList(killer,1,GetInstanceRegion(1294));
+function onMobDeath(mob, player, isKiller)
+    if ((IsMobDead(16933144) == false or IsMobDead(16933137) == false) and alreadyReceived(player,1,GetInstanceRegion(1294)) == false) then
+        player:addTimeToSpecialBattlefield(5,5);
+        addLimbusList(player,1,GetInstanceRegion(1294));
     end
 end;

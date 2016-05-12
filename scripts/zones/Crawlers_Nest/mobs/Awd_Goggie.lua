@@ -25,6 +25,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(BOGEYDOWNER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(BOGEYDOWNER);
 end;

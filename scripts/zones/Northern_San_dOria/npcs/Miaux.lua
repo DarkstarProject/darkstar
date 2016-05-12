@@ -93,7 +93,7 @@ end;
 -- 0x000b Miaux : "<Sigh> Why must all craftsmen be so uptight?"
 -- 0x0049 Miaux : "I wish to have a breastplate repaired... Y/N dialog
 -- 0x0047 Miaux : "I...I hesitate to impose upon you again, but would it be possible for you to find
--- me an Altepa polishing stone? Naturally, I will pay you for your troubles...
+-- me an Altepa polishing stone? Naturplayer, I will pay you for your troubles...
 -- accept the task? Yes/No dialog Thank you.  It would mean so much to me."
 -- 0x0045 Miaux : "The Altepa polishing stone can be found in the Eastern Altepa Desert.  Please take
 -- care on your travels!"    

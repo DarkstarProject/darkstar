@@ -43,8 +43,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(TEMENOS_LIBERATOR);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(TEMENOS_LIBERATOR);
     GetNPCByID(16928768+79):setPos(-559,5,-357);
     GetNPCByID(16928768+79):setStatus(STATUS_NORMAL);
     GetNPCByID(16928768+474):setStatus(STATUS_NORMAL);

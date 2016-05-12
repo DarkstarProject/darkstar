@@ -95,8 +95,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(APOLLYON_RAVAGER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(APOLLYON_RAVAGER);
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();

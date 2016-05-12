@@ -10,7 +10,7 @@ require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobID = mob:getID();
     if (Hellion_PH[mobID] ~= nil) then

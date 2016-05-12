@@ -9,12 +9,12 @@ require("scripts/globals/missions");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    local currentMission = ally:getCurrentMission(SANDORIA);
-    local MissionStatus = ally:getVar("MissionStatus");
+function onMobDeath(mob, player, isKiller)
+    local currentMission = player:getCurrentMission(SANDORIA);
+    local MissionStatus = player:getVar("MissionStatus");
 
     if (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 2) then
-        ally:setVar("Mission6-1MobKilled",1);
+        player:setVar("Mission6-1MobKilled",1);
     end
 
 end;

@@ -15,11 +15,11 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    local thickAsThievesGamblingCS = ally:getVar("thickAsThievesGamblingCS");
+    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
 
     if (thickAsThievesGamblingCS == 5) then
-        ally:setVar("thickAsThievesGamblingCS",6)
+        player:setVar("thickAsThievesGamblingCS",6)
     end
 end;

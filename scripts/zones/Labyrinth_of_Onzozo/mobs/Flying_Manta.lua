@@ -11,9 +11,9 @@ require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,774,1);
+    checkGoVregime(player,mob,774,1);
 
     local mobID = mob:getID();
     if (Lord_of_Onzozo_PH[mobID] ~= nil) then

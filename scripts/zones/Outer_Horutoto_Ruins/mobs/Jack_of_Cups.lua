@@ -17,11 +17,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    local CurrentMission = ally:getCurrentMission(WINDURST);
-    local MissionStatus = ally:getVar("MissionStatus");
+function onMobDeath(mob, player, isKiller)
+    local CurrentMission = player:getCurrentMission(WINDURST);
+    local MissionStatus = player:getVar("MissionStatus");
 
     if (CurrentMission == FULL_MOON_FOUNTAIN and MissionStatus == 1) then
-        ally:setVar("MissionStatus",2);
+        player:setVar("MissionStatus",2);
     end
 end;

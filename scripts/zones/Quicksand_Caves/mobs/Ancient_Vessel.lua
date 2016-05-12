@@ -17,11 +17,11 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and ally:getVar("ZilartStatus") == 1) then
-        ally:needToZone(true);
-        ally:setVar("AncientVesselKilled",1);
+    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1) then
+        player:needToZone(true);
+        player:setVar("AncientVesselKilled",1);
     end
 
 end;

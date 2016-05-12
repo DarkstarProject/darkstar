@@ -11,8 +11,8 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,17,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,17,1);
 
     local mobID = mob:getID();
     if (Stinging_Sophie_PH[mobID] ~= nil) then

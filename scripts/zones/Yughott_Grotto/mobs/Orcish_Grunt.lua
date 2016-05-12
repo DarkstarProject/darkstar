@@ -9,7 +9,7 @@ require("scripts/zones/Yughott_Grotto/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobID = mob:getID();
     if (Ashmaker_Gotblut_PH[mobID] ~= nil) then

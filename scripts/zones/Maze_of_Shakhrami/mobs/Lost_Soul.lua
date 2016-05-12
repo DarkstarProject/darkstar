@@ -15,8 +15,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getVar("EquipedforAllOccasions") == 1) then
-        ally:setVar("EquipedforAllOccasions",2);
+function onMobDeath(mob, player, isKiller)
+    if (player:getVar("EquipedforAllOccasions") == 1) then
+        player:setVar("EquipedforAllOccasions",2);
     end
 end;

@@ -11,9 +11,9 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,9,1);
-    checkRegime(ally,mob,10,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,9,1);
+    checkRegime(player,mob,10,2);
 
     local mobID = mob:getID();
     if (Valkurm_Emperor_PH[mobID] ~= nil) then

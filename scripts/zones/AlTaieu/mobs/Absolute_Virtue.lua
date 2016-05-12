@@ -82,6 +82,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(VIRTUOUS_SAINT);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(VIRTUOUS_SAINT);
 end;

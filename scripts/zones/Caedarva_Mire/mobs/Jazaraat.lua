@@ -14,6 +14,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:setVar("AhtUrganStatus",2);
+function onMobDeath(mob, player, isKiller)
+    player:setVar("AhtUrganStatus",2);
 end;

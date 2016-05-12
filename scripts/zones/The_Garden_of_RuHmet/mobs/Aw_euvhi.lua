@@ -82,6 +82,5 @@ end
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, npc)
-
+function onMobDeath(mob, player, isKiller)
 end;

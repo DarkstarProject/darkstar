@@ -84,13 +84,13 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     if (mob:getID() < 17453060) then
-        ally:startEvent(0x7d04);
-        ally:setVar("mobid",mob:getID());
+        player:startEvent(0x7d04);
+        player:setVar("mobid",mob:getID());
     else
-        ally:addTitle(SHADOW_BANISHER);
+        player:addTitle(SHADOW_BANISHER);
     end
     -- reset everything on death
     mob:AnimationSub(0);

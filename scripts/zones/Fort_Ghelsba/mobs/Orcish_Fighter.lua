@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local OrcPanzer = 17354894;
     local OrcFighter = 17354895;
     -- Making sure we've got the correct Orcish Fighter here, as others exist in zone.

@@ -10,7 +10,7 @@ require("scripts/zones/Bhaflau_Thickets/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Mahishasura's ToD
     SetServerVariable("[POP]Mahishasura", os.time(t) + 10800); -- 3 hours

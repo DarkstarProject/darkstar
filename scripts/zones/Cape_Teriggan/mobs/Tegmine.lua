@@ -58,7 +58,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     -- UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((7200),(7800))); -- 120 to 130 min
 end;

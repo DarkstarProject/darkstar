@@ -10,7 +10,7 @@ require("scripts/zones/Riverne-Site_B01/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Get Nimbus Hippogryph ID and check if it is a PH of Imdugud
     local mobID = mob:getID();

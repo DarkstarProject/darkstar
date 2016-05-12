@@ -25,20 +25,20 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     if (mob:isInBattlefieldList() == false) then
         mob:addInBattlefieldList();
 
-        ally:addTimeToDynamis(30); -- Add + 30min
+        player:addTimeToDynamis(30); -- Add + 30min
 
-        ally:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
+        player:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
 
         local npc = GetNPCByID(17539323); -- Spawn ???
         npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
         npc:setStatus(0);
 
-        ally:launchDynamisSecondPart(); -- Spawn dynamis second part
+        player:launchDynamisSecondPart(); -- Spawn dynamis second part
     end
 
 end;

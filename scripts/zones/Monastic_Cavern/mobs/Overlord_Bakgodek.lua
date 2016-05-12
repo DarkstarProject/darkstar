@@ -27,8 +27,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(OVERLORD_OVERTHROWER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(OVERLORD_OVERTHROWER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,ORC_KING_DEATH);
 end;

@@ -11,9 +11,9 @@ require("scripts/zones/Western_Altepa_Desert/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkRegime(ally,mob,135,1);
+    checkRegime(player,mob,135,1);
 
     local mobID = mob:getID();
     if (Celphie_PH[mobID] ~= nil) then

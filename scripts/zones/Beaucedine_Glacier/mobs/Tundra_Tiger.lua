@@ -11,9 +11,9 @@ require("scripts/zones/Beaucedine_Glacier/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,46,1);
-    checkRegime(ally,mob,47,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,46,1);
+    checkRegime(player,mob,47,1);
 
     -- Kirata
     local mobID = mob:getID();

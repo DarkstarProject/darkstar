@@ -13,6 +13,6 @@ require("scripts/globals/pathfind");
 function onMobSpawn(mob)
 end;
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,56,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,56,2);
 end;

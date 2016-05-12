@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(GOLIATH_KILLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(GOLIATH_KILLER);
 end;

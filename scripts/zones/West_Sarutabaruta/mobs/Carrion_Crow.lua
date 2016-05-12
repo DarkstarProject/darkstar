@@ -11,8 +11,8 @@ require("scripts/zones/West_Sarutabaruta/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,28,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,28,2);
 
     local mobID = mob:getID();
     if (Nunyenunc_PH[mobID] ~= nil) then

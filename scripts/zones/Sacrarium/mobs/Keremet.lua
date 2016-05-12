@@ -35,8 +35,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and ally:getVar("PromathiaStatus") == 3 and  ally:hasKeyItem(RELIQUIARIUM_KEY)==false) then
-        ally:setVar("PromathiaStatus",4);
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(RELIQUIARIUM_KEY)==false) then
+        player:setVar("PromathiaStatus",4);
     end
 end;

@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(OUPIRE_IMPALER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(OUPIRE_IMPALER);
 end;

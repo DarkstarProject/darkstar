@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Juu_Duzu_the_Whirlwind's Window Open Time
     SetServerVariable("[POP]Juu_Duzu_the_Whirlwind", os.time(t) + math.random((3600),(7200))); -- 1-2 hours

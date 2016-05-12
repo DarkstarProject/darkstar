@@ -10,9 +10,9 @@ require("scripts/zones/Sauromugue_Champaign/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkRegime(ally,mob,100,1);
+    checkRegime(player,mob,100,1);
 
     local mobID = mob:getID();
     if (Deadly_Dodo_PH[mobID] ~= nil) then

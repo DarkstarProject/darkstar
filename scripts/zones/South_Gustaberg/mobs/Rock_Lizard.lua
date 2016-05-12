@@ -11,8 +11,8 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,80,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,80,1);
 
     -- Get Rock Lizard ID and check if it is a PH of LL
     local mobID = mob:getID();

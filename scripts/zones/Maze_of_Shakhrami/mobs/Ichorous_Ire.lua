@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(JELLYBANE);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(JELLYBANE);
 end;

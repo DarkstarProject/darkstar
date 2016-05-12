@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)    
+function onMobDeath(mob, player, isKiller)    
   
     -- Set Drooling_Daisy's Window Open Time
     SetServerVariable("[POP]Drooling_Daisy", os.time(t) + 3600); -- 1 hour

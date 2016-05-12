@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Fradubio spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

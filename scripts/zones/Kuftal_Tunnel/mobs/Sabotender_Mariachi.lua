@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Sabotender Mariachi's Window Open Time
     local wait = math.random(10800,28800); -- 3-8 hours

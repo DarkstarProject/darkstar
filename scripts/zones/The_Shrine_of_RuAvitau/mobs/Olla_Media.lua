@@ -14,7 +14,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     SpawnMob(mob:getID() + 1,180):updateEnmity(killer);
 end;
 

@@ -9,10 +9,10 @@ require("scripts/globals/missions");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and ally:getVar("MissionStatus") == 2) then
-        ally:setVar("Mission6-1MobKilled",1);
+    if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2) then
+        player:setVar("Mission6-1MobKilled",1);
     end
 
 end;

@@ -32,6 +32,6 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    killer:showText(mob,YOUVE_COME_A_LONG_WAY);
+function onMobDeath(mob, player, isKiller)
+    player:showText(mob,YOUVE_COME_A_LONG_WAY);
 end;

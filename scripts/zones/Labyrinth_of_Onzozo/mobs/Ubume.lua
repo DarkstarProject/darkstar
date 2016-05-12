@@ -17,10 +17,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and ally:getVar("yomiOkuriCS") <= 3) then
-        ally:setVar("yomiOkuriKilledNM",1);
+    if (player:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and player:getVar("yomiOkuriCS") <= 3) then
+        player:setVar("yomiOkuriKilledNM",1);
     end
 
 end;

@@ -26,9 +26,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
-        ally:needToZone(true);
-        ally:setVar("FingerfilcherKilled",1);
+function onMobDeath(mob, player, isKiller)
+    if (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
+        player:needToZone(true);
+        player:setVar("FingerfilcherKilled",1);
     end
 end;

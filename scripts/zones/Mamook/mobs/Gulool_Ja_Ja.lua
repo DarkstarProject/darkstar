@@ -29,6 +29,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(SHINING_SCALE_RIFLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(SHINING_SCALE_RIFLER);
 end;

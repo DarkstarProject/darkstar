@@ -57,9 +57,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(OMEGA_OSTRACIZER);
-    ally:startEvent(0x000b);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(OMEGA_OSTRACIZER);
+    player:startEvent(0x000b);
 end;
 
 -----------------------------------
