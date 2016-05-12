@@ -461,12 +461,12 @@ void LoadMOBList()
                 PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 51);
 
                 // Cap Level if Necessary (Don't Cap NMs)
-                if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin)
+                if (normalLevelRangeMin > 0 && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->m_minLevel > normalLevelRangeMin)
                 {
                     PMob->m_minLevel = normalLevelRangeMin;
                 }
 
-                if (normalLevelRangeMax > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_maxLevel > normalLevelRangeMax)
+                if (normalLevelRangeMax > 0 && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->m_maxLevel > normalLevelRangeMax)
                 {
                     PMob->m_maxLevel = normalLevelRangeMax;
                 }
