@@ -2704,7 +2704,7 @@ namespace luautils
             // onMobDeathEx
             lua_prepscript("scripts/globals/mobs.lua");
 
-            PChar->ForAlliance([PChar, PMob, PKiller, &File](CBattleEntity* PMember)
+            PChar->ForAlliance([PMob, PChar, &File](CBattleEntity* PMember)
             {
                 if (PMember->getZone() == PChar->getZone())
                 {
@@ -2714,18 +2714,18 @@ namespace luautils
                     }
 
                     CLuaBaseEntity LuaMobEntity(PMob);
-                    CLuaBaseEntity LuaKillerEntity(PChar);
                     CLuaBaseEntity LuaAllyEntity(PMember);
-
+                    bool isKiller = PMember == PChar;
                     bool isWeaponSkillKill = PChar->getWeaponSkillKill();
 
                     Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-                    Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
                     Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
+                    lua_pushboolean(LuaHandle, isKiller);
+
                     lua_pushboolean(LuaHandle, isWeaponSkillKill);
                     // lua_pushboolean(LuaHandle, isMagicKill);
                     // lua_pushboolean(LuaHandle, isPetKill);
-                    // Upcoming AI rewrite will likely have a better way to handle it..
+                    // Todo: look at better way do do these than additional bools...
 
                     if (lua_pcall(LuaHandle, 4, 0, 0))
                     {
@@ -2743,14 +2743,14 @@ namespace luautils
 
             snprintf(File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-            PChar->ForAlliance([PChar, PMob, &File, oldtop](CBattleEntity* PPartyMember)
+            PChar->ForAlliance([PMob, PChar, &File, oldtop](CBattleEntity* PPartyMember)
             {
                 CCharEntity* PMember = (CCharEntity*)PPartyMember;
                 if (PMember->getZone() == PChar->getZone())
                 {
                     CLuaBaseEntity LuaMobEntity(PMob);
-                    CLuaBaseEntity LuaKillerEntity(PChar);
                     CLuaBaseEntity LuaAllyEntity(PMember);
+                    bool isKiller = PMember == PChar;
 
                     PMember->m_event.reset();
                     PMember->m_event.Target = PMob;
@@ -2773,10 +2773,9 @@ namespace luautils
                     Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
                     if (PMember)
                     {
-                        CLuaBaseEntity LuaKillerEntity(PChar);
                         CLuaBaseEntity LuaAllyEntity(PMember);
-                        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaKillerEntity);
                         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaAllyEntity);
+                        lua_pushboolean(LuaHandle, isKiller);
                     }
                     else
                     {
