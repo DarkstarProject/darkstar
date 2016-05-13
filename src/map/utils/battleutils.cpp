@@ -1621,6 +1621,24 @@ namespace battleutils
         check *= interruptRate;
         uint8 chance = dsprand::GetRandomNumber(100);
 
+        if (check != 100)
+        {
+            // Convert to odds and apply multiplier then back to probability * 100
+            float checkOdds = check / (100 - check);
+
+            if (PDefender->objtype == TYPE_PC)
+                checkOdds *= map_config.player_cast_interrupt_multiplier;
+            else if (PDefender->objtype == TYPE_MOB)
+            {
+                if (((CMobEntity*)PDefender)->m_Type & MOBTYPE_NOTORIOUS)
+                    checkOdds *= map_config.nm_cast_interrupt_multiplier;
+                else
+                    checkOdds *= map_config.mob_cast_interrupt_multiplier;
+            }
+
+            check = (checkOdds / (1 + checkOdds)) * 100;
+        }
+
         // caps, always give a 1% chance of interrupt
         if (check < 1) {
             check = 0;
