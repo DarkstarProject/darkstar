@@ -255,6 +255,18 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     // TODO: Could be converted to value/1024 if the exact cap is ever determined.
     MinimumDelay -= (MinimumDelay * 0.8);
     WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
+
+    // Adjust globally configured attack delay
+    if (objtype == TYPE_PC)
+        WeaponDelay *= map_config.player_attack_delay_multiplier;
+    else if (objtype == TYPE_MOB)
+    {
+        if (((CMobEntity*)this)->m_Type & MOBTYPE_NOTORIOUS)
+            WeaponDelay *= map_config.nm_attack_delay_multiplier;
+        else
+            WeaponDelay *= map_config.mob_attack_delay_multiplier;
+    }
+
     return WeaponDelay;
 }
 
@@ -281,6 +293,18 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     {
         delay += ((PAmmo->getDelay() * 60) / 1000);
     }
+
+    // Adjust globally configured attack delay
+    if (objtype == TYPE_PC)
+        delay *= map_config.player_attack_delay_multiplier;
+    else if (objtype == TYPE_MOB)
+    {
+        if (((CMobEntity*)this)->m_Type & MOBTYPE_NOTORIOUS)
+            delay *= map_config.nm_attack_delay_multiplier;
+        else
+            delay *= map_config.mob_attack_delay_multiplier;
+    }
+
     return delay;
 }
 
@@ -294,6 +318,18 @@ int16 CBattleEntity::GetAmmoDelay()
     }
 
     delay = ((delay * 1000) / 120);
+
+    // Adjust globally configured attack delay
+    if (objtype == TYPE_PC)
+        delay *= map_config.player_attack_delay_multiplier;
+    else if (objtype == TYPE_MOB)
+    {
+        if (((CMobEntity*)this)->m_Type & MOBTYPE_NOTORIOUS)
+            delay *= map_config.nm_attack_delay_multiplier;
+        else
+            delay *= map_config.mob_attack_delay_multiplier;
+    }
+
     return delay;
 }
 
