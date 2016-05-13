@@ -4968,6 +4968,16 @@ namespace battleutils
         uint32 base = PSpell->getCastTime();
         uint32 cast = base;
 
+        if (PEntity->objtype == TYPE_PC)
+            cast *= map_config.player_cast_time_multiplier;
+        else if (PEntity->objtype == TYPE_MOB)
+        {
+            if (((CMobEntity*)PEntity)->m_Type & MOBTYPE_NOTORIOUS)
+                cast *= map_config.nm_cast_time_multiplier;
+            else
+                cast *= map_config.mob_cast_time_multiplier;
+        }
+
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) || PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
         {
             cast = cast * 2.0f;
@@ -5140,6 +5150,16 @@ namespace battleutils
         bool applyArts = true;
         uint32 base = PSpell->getRecastTime();
         int32 recast = base;
+
+        if (PEntity->objtype == TYPE_PC)
+            recast *= map_config.player_recast_time_multiplier;
+        else if (PEntity->objtype == TYPE_MOB)
+        {
+            if (((CMobEntity*)PEntity)->m_Type & MOBTYPE_NOTORIOUS)
+                recast *= map_config.nm_recast_time_multiplier;
+            else
+                recast *= map_config.mob_recast_time_multiplier;
+        }
 
         //apply Fast Cast
         recast *= ((100.0f - dsp_cap((float)PEntity->getMod(MOD_FASTCAST) / 2.0f, 0.0f, 25.0f)) / 100.0f);
