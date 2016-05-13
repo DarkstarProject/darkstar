@@ -958,6 +958,12 @@ int32 map_config_default()
     map_config.nm_stat_multiplier = 1.0f;
     map_config.mob_stat_multiplier = 1.0f;
     map_config.player_stat_multiplier = 1.0f;
+    map_config.nm_cast_time_multiplier = 1.0f;
+    map_config.mob_cast_time_multiplier = 1.0f;
+    map_config.player_cast_time_multiplier = 1.0f;
+    map_config.nm_recast_time_multiplier = 1.0f;
+    map_config.mob_recast_time_multiplier = 1.0f;
+    map_config.player_recast_time_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
@@ -1124,6 +1130,30 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "player_stat_multiplier") == 0)
         {
             map_config.player_stat_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_cast_time_multiplier") == 0)
+        {
+            map_config.nm_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_cast_time_multiplier") == 0)
+        {
+            map_config.mob_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_cast_time_multiplier") == 0)
+        {
+            map_config.player_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_recast_time_multiplier") == 0)
+        {
+            map_config.nm_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_recast_time_multiplier") == 0)
+        {
+            map_config.mob_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_recast_time_multiplier") == 0)
+        {
+            map_config.player_cast_time_multiplier = atof(w2);
         }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
