@@ -376,19 +376,19 @@ function onTrigger(player,npc)
         player:startEvent(0x0108); -- you give the antique automaton to him and need to wait a gameday
     elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 5 and CreationReady == true) then
         player:startEvent(0x0109); -- you go back for your automaton
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 0 and attachmentStatus == 0 and player:getMainJob() == JOB_PUP and player:getMainLvl() >= 10) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 0 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 10) then
         player:startEventString(620, automatonName, automatonName, automatonName, automatonName, attachments, 0, 0, 0, 0, 2185, 3, unlockedAttachments);
     elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 0 and attachmentStatus == 1) then
         player:startEvent(621, 0, 0, 0, 0, 0, 2185, 3, unlockedAttachments);
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 1 and attachmentStatus == 0 and player:getMainJob() == JOB_PUP and player:getMainLvl() >= 20) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 1 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 20) then
         player:startEventString(620, automatonName, automatonName, automatonName, automatonName, attachments, 0, 0, 0, 0, 2186, 3, unlockedAttachments);
     elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 1 and attachmentStatus == 1) then
         player:startEvent(621, 0, 0, 0, 0, 0, 2186, 3, unlockedAttachments);
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 2 and attachmentStatus == 0 and player:getMainJob() == JOB_PUP and player:getMainLvl() >= 30) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 2 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 30) then
         player:startEventString(620, automatonName, automatonName, automatonName, automatonName, attachments, 0, 0, 0, 0, 2187, 1, unlockedAttachments);
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 3 and attachmentStatus == 0 and player:getMainJob() == JOB_PUP and player:getMainLvl() >= 40) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 3 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 40) then
         player:startEventString(900, automatonName, automatonName, automatonName, automatonName, 0, 0, 0, 0, 0, 2186, 2);
-    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 4 and attachmentStatus == 0 and player:getMainJob() == JOB_PUP and player:getMainLvl() >= 50) then
+    elseif (NoStringsAttached == QUEST_COMPLETED and attachments == 4 and attachmentStatus == 0 and player:getMainJob() == JOBS.PUP and player:getMainLvl() >= 50) then
         if (unlockedAttachments == 30) then
             player:startEventString(901, automatonName, automatonName, automatonName, automatonName, 1, 0, 0, 0, 0, 2186, 4);
         elseif (unlockedAttachments == 46) then

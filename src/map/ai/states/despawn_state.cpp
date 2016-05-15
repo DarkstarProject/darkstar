@@ -64,7 +64,11 @@ bool CDespawnState::Update(time_point tick)
         }
         else
         {
-            m_spawnTime = std::chrono::milliseconds(PMob->m_RespawnTime);
+            if (std::chrono::milliseconds(PMob->m_RespawnTime) != m_spawnTime)
+            {
+                m_spawnTime = std::chrono::milliseconds(PMob->m_RespawnTime);
+                ResetEntryTime();
+            }
         }
     }
     if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)

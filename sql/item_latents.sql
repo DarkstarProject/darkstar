@@ -69,21 +69,21 @@ INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596); -- MP +50
 INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
 INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- Primate Staff
 INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4468);
-INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596);
 INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4596);
 INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4468); -- Primate Staff +1
 INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4468);
-INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17591, 171, 80, 49, 4596);
 INSERT INTO `item_latents` VALUES(17591, 25, 12, 49, 4596);
 INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4468); -- Kinkobo
 INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468);
-INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596); 
+INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596);
 INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
 INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 
 -- -------------------------------------------------------
--- Uggalepih Pendant  
+-- Uggalepih Pendant
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51); -- "Magic Atk. Bonus" while MP <51%
 
@@ -180,7 +180,7 @@ INSERT INTO `item_latents` VALUES(13790, 23, 13, 0, 25); -- Attack+13 when HP <=
 INSERT INTO `item_latents` VALUES(13790, 1, 45, 0, 25); -- DEF:45 when HP <=25%
 
 -- -------------------------------------------------------
--- Hercules' Ring 
+-- Hercules' Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14659, 370, 3, 0, 50); -- Regen+3 when HP <=50%
 INSERT INTO `item_latents` VALUES(14659, 369, 1, 0, 50); -- Refresh+1 when HP <=50%
@@ -204,37 +204,37 @@ INSERT INTO `item_latents` VALUES(17471, 25, 10, 0, 25); -- Accuracy+10 when HP 
 INSERT INTO `item_latents` VALUES(17471, 23, 10, 0, 25); -- Attack+10 when HP <=25% while weapon drawn
 
 -- -------------------------------------------------------
--- Kerykeion  
+-- Kerykeion
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18859, 370, 3, 0, 50); -- Regen+3 when HP <51%
 
 -- -------------------------------------------------------
--- Rasetsu Jinpachi  
+-- Rasetsu Jinpachi
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13925, 291, 1, 0, 25); -- Counter+1 when HP <25%
 
 -- -------------------------------------------------------
--- Rasetsu Samue 
+-- Rasetsu Samue
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14376, 291, 1, 0, 25); -- Counter+1 when HP <25%
 
 -- -------------------------------------------------------
--- Rasetsu Tekko   
+-- Rasetsu Tekko
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14819, 291, 1, 0, 25); -- Counter+1 when HP <25%
 
 -- -------------------------------------------------------
--- Rasetsu Hakama     
+-- Rasetsu Hakama
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14299, 291, 1, 0, 25); -- Counter+1 when HP <25%
 
 -- -------------------------------------------------------
--- Rasetsu Sune-Ate     
+-- Rasetsu Sune-Ate
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14178, 291, 1, 0, 25); -- Counter+1 when HP <25%
 
 -- -------------------------------------------------------
--- Unicorn Cap    
+-- Unicorn Cap
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15209, 8, 4, 1, 75); -- STR+4 when HP >75%
 
@@ -244,7 +244,7 @@ INSERT INTO `item_latents` VALUES(15209, 8, 4, 1, 75); -- STR+4 when HP >75%
 INSERT INTO `item_latents` VALUES(15210, 8, 5, 1, 75); -- STR+5 when HP >75%
 
 -- -------------------------------------------------------
--- Unicorn Harness  
+-- Unicorn Harness
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71); -- VIT+6 when HP >71%
 
@@ -254,7 +254,7 @@ INSERT INTO `item_latents` VALUES(14448, 10, 6, 1, 71); -- VIT+6 when HP >71%
 INSERT INTO `item_latents` VALUES(14449, 10, 7, 1, 71); -- VIT+7 when HP >71%
 
 -- -------------------------------------------------------
--- Unicorn Mittens  
+-- Unicorn Mittens
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14055, 23, 7, 1, 75); -- Attack+7 when HP >75%
 
@@ -264,7 +264,7 @@ INSERT INTO `item_latents` VALUES(14055, 23, 7, 1, 75); -- Attack+7 when HP >75%
 INSERT INTO `item_latents` VALUES(14056, 23, 8, 1, 75); -- Attack+8 when HP >75%
 
 -- -------------------------------------------------------
--- Unicorn Subligar   
+-- Unicorn Subligar
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15406, 68, 3, 1, 75); -- Evasion+3 when HP >75%
 
@@ -289,7 +289,7 @@ INSERT INTO `item_latents` VALUES(15346, 384, 41, 1, 75); -- Haste+4% when HP > 
 INSERT INTO `item_latents` VALUES(19108, 366, 5, 0, 75); -- DNG:36 when HP <=75%
 
 -- -------------------------------------------------------
--- Zareehkl Scythe  
+-- Zareehkl Scythe
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18949, 302, 1, 0, 25); -- Tiple Attack 1% when HP <=25%
 
@@ -299,7 +299,7 @@ INSERT INTO `item_latents` VALUES(18949, 302, 1, 0, 25); -- Tiple Attack 1% when
 INSERT INTO `item_latents` VALUES(13286, 288, 2, 2, 75); -- Double Attack+2% when HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Soldier's Earring  
+-- Soldier's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13419, 63, 20, 2, 25); -- DEF:20% when HP <=25% and TP <=100%
 
@@ -309,7 +309,7 @@ INSERT INTO `item_latents` VALUES(13419, 63, 20, 2, 25); -- DEF:20% when HP <=25
 INSERT INTO `item_latents` VALUES(13287, 291, 2, 2, 75); -- Counter+2 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Kampfer Earring  
+-- Kampfer Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13420, 291, 5, 2, 25); -- Counter+5 while HP <=25% and TP <=100%
 
@@ -329,126 +329,126 @@ INSERT INTO `item_latents` VALUES(13422, 160, -30, 2, 25); -- Damage Taken -30% 
 INSERT INTO `item_latents` VALUES(13423, 163, -77, 2, 25); -- Magic Taken -30% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Rogue's Earring    
+-- Rogue's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13424, 68, 15, 2, 25); -- Evasion+15 while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Rogue's Ring  
+-- Rogue's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13291, 298, 3, 2, 75); -- Steel+3 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Guardian Earring 
+-- Guardian Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13425, 168, 30, 2, 25); -- Spell interruption rate down 30% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Slayer's Earring 
+-- Slayer's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13426, 161, -20, 2, 25); -- Physical damage taken -20% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Tamer's Earring 
+-- Tamer's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13427, 304, 5, 2, 25); -- "Tame" success rate  while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Minstrel's Earring 
+-- Minstrel's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13428, 161, -30, 2, 25); -- Physical damage taken -30% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Tracker's Ring   
+-- Tracker's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13296, 27, -2, 2, 75); -- Enmity-2 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Tracker's Earring 
+-- Tracker's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13429, 161, -30, 2, 25); -- Physical damage taken -30% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Ronin Ring   
+-- Ronin Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13297, 25, 5, 2, 75); -- Accuracy+5 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Ronin Earring     
+-- Ronin Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13430, 243, 20, 2, 25); -- Magic damage taken -20% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Shinobi Ring   
+-- Shinobi Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13298, 167, 4, 2, 75); -- Haste+4% while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Shinobi Earring     
+-- Shinobi Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13431, 167, 20, 2, 25); -- Haste+20% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Drake Earring     
+-- Drake Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13432, 288, 5, 2, 25); -- "Double Attack"+5% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Conjurer's Ring   
+-- Conjurer's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13300, 346, 1, 2, 75); -- Avatar perpetuation cost -1 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Wagh Baghnakhs   
+-- Wagh Baghnakhs
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18358, 366, 5, 6, 1000); -- DMG+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18358, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18358, 23, 14, 6, 1000); -- Attack+14 while TP <100%
 
 -- -------------------------------------------------------
--- Blau Dolch   
+-- Blau Dolch
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18015, 366, 7, 6, 1000); -- DMG+7 while TP <100%
 INSERT INTO `item_latents` VALUES(18015, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18015, 23, 16, 6, 1000); -- Attack+16 while TP <100%
 
 -- -------------------------------------------------------
--- Maneater   
+-- Maneater
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17946, 366, 6, 6, 1000); -- DMG+6 while TP <100%
 INSERT INTO `item_latents` VALUES(17946, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(17946, 23, 18, 6, 1000); -- Attack+18 while TP <100%
 
 -- -------------------------------------------------------
--- Stone-splitter    
+-- Stone-splitter
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18099, 366, 5, 6, 1000); -- DMG+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18099, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18099, 23, 24, 6, 1000); -- Attack+24 while TP <100%
 
 -- -------------------------------------------------------
--- Onimaru  
+-- Onimaru
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16976, 366, 6, 6, 1000); -- DMG+6 while TP <100%
 INSERT INTO `item_latents` VALUES(16976, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(16976, 23, 18, 6, 1000); -- Attack+18 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Hanger   
+-- Perdu Hanger
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17741, 366, 6, 6, 1000); -- DMG+6 while TP <100%
 INSERT INTO `item_latents` VALUES(17741, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(17741, 23, 15, 6, 1000); -- Attack+15 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Sickle     
+-- Perdu Sickle
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18943, 366, 5, 6, 1000); -- DMG+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18943, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18943, 23, 14, 6, 1000); -- Attack+14 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Wand       
+-- Perdu Wand
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18850, 366, 5, 6, 1000); -- DMG+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18850, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
@@ -469,21 +469,21 @@ INSERT INTO `item_latents` VALUES(18588, 25, 5, 6, 1000); -- Accuracy+5 while TP
 INSERT INTO `item_latents` VALUES(18588, 23, 15, 6, 1000); -- Attack+15 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Sword  
+-- Perdu Sword
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16602, 366, 4, 6, 1000); -- DMG+4 while TP <100%
 INSERT INTO `item_latents` VALUES(16602, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(16602, 23, 12, 6, 1000); -- Attack+12 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Voulge    
+-- Perdu Voulge
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18491, 366, 5, 6, 1000); -- DMG+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18491, 25, 5, 6, 1000); -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18491, 23, 10, 6, 1000); -- Attack+10 while TP <100%
 
 -- -------------------------------------------------------
--- Trump Crown  
+-- Trump Crown
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15186, 2, 14, 51, 20); -- "MP +14 at Lv 20-29"
 INSERT INTO `item_latents` VALUES(15186, 5, 14, 51, 20); -- "HP +14 at Lv 20-29"
@@ -515,7 +515,7 @@ INSERT INTO `item_latents` VALUES(15186, 2, 1, 51, 75);  -- "MP +27 at Lv 75~"
 INSERT INTO `item_latents` VALUES(15186, 5, 1, 51, 75);  -- "HP +27 at Lv 75~"
 
 -- -------------------------------------------------------
--- Hachiman Jinpachi    
+-- Hachiman Jinpachi
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2% while TP >=100%
 
@@ -525,7 +525,7 @@ INSERT INTO `item_latents` VALUES(15188, 288, 2, 7, 1000); -- "Double Attack"+2%
 INSERT INTO `item_latents` VALUES(15187, 288, 3, 7, 1000); -- "Double Attack"+3% while TP >=100%
 
 -- -------------------------------------------------------
--- Hachiman Kote    
+-- Hachiman Kote
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 1000); -- Attack+10 while TP >=100%
 
@@ -535,7 +535,7 @@ INSERT INTO `item_latents` VALUES(14876, 23, 10, 7, 1000); -- Attack+10 while TP
 INSERT INTO `item_latents` VALUES(14878, 23, 12, 7, 1000); -- Attack+12 while TP >=100%
 
 -- -------------------------------------------------------
--- Hachiman Hakama    
+-- Hachiman Hakama
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15392, 24, 7, 7, 1000); -- Ranged Attack+7 while TP >=100%
 
@@ -908,393 +908,393 @@ INSERT INTO `item_latents` VALUES(17654, 54, -10, 47, 0);
 INSERT INTO `item_latents` VALUES(17654, 56, -10, 47, 0);
 
 -- -------------------------------------------------------
--- Mercen. Earring  
+-- Mercen. Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13435, 10, 2, 8, 1); -- VIT+2 when WAR Subjob
 
 -- -------------------------------------------------------
--- Mercen. Mantle  
+-- Mercen. Mantle
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13659, 27, 1, 8, 1); -- Enmity+1 when WAR Subjob
 
 -- -------------------------------------------------------
--- Mercenary's Targe  
+-- Mercenary's Targe
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(12389, 2, 5, 8, 1); -- HP+5 when WAR Subjob
 INSERT INTO `item_latents` VALUES(12389, 5, 10, 8, 1); -- MP+10 when WAR Subjob
 
 -- -------------------------------------------------------
--- Axe Belt  
+-- Axe Belt
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15271, 85, 5, 8, 1); -- Great Axe skill +5 when WAR Subjob
 
 -- -------------------------------------------------------
--- Wrestler's Aspis  
+-- Wrestler's Aspis
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(12390, 12, 2, 8, 2); -- INT+2 when MNK Subjob
 
 -- -------------------------------------------------------
--- Wrestler's Earring  
+-- Wrestler's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13436, 2, 30, 8, 2); -- HP+30 when MNK Subjob
 
 -- -------------------------------------------------------
--- Wrestler's Mantle  
+-- Wrestler's Mantle
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13660, 173, 10, 8, 2); -- Enhances "Martial Arts" effect when MNK Subjob
 
 -- -------------------------------------------------------
--- Cestus Belt  
+-- Cestus Belt
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15272, 80, 5, 8, 2); -- Hand-to-Hand skill +5 when MNK Subjob
 
 -- -------------------------------------------------------
--- Dominion Ring 
+-- Dominion Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15784, 5, 30, 8, 3); -- MP+30 when WHM subjob
 
 -- -------------------------------------------------------
--- Healer's Earring  
--- ------------------------------------------------------- 
+-- Healer's Earring
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13437, 27, -1, 8, 3); -- Enmity -1 when WHM subjob
 
 -- -------------------------------------------------------
--- Healer's Shield    
--- -------------------------------------------------------  
+-- Healer's Shield
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(12391, 9, 2, 8, 3); -- DEX+2 when WHM subjob
 
 -- -------------------------------------------------------
--- Healer's Mantle      
--- ------------------------------------------------------- 
+-- Healer's Mantle
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13661, 29, 1, 8, 3); -- Magic Defense Bonus while WHM subjob
 
 -- -------------------------------------------------------
--- Mace Belt       
--- -------------------------------------------------------  
+-- Mace Belt
+-- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15273, 90, 5, 8, 3); -- Club skill+5 while WHM subjob
 
--- 
-INSERT INTO `item_latents` VALUES(13438, 115, 5, 8, 4); 
+--
+INSERT INTO `item_latents` VALUES(13438, 115, 5, 8, 4);
 
--- 
-INSERT INTO `item_latents` VALUES(13662, 71, 1, 8, 4); 
+--
+INSERT INTO `item_latents` VALUES(13662, 71, 1, 8, 4);
 
--- 
-INSERT INTO `item_latents` VALUES(12392, 8, 2, 8, 4); 
+--
+INSERT INTO `item_latents` VALUES(12392, 8, 2, 8, 4);
 
--- 
-INSERT INTO `item_latents` VALUES(15274, 91, 5, 8, 4); 
+--
+INSERT INTO `item_latents` VALUES(15274, 91, 5, 8, 4);
 
--- 
-INSERT INTO `item_latents` VALUES(18390, 28, 3, 8, 4); 
+--
+INSERT INTO `item_latents` VALUES(18390, 28, 3, 8, 4);
 
--- 
-INSERT INTO `item_latents` VALUES(13439, 71, 1, 8, 5); 
+--
+INSERT INTO `item_latents` VALUES(13439, 71, 1, 8, 5);
 
--- 
-INSERT INTO `item_latents` VALUES(13663, 170, 2, 8, 5); 
+--
+INSERT INTO `item_latents` VALUES(13663, 170, 2, 8, 5);
 
--- 
-INSERT INTO `item_latents` VALUES(12393, 2, 7, 8, 5); 
-INSERT INTO `item_latents` VALUES(12393, 5, 7, 8, 5); 
+--
+INSERT INTO `item_latents` VALUES(12393, 2, 7, 8, 5);
+INSERT INTO `item_latents` VALUES(12393, 5, 7, 8, 5);
 
--- 
-INSERT INTO `item_latents` VALUES(15275, 82, 5, 8, 5); 
+--
+INSERT INTO `item_latents` VALUES(15275, 82, 5, 8, 5);
 
--- 
-INSERT INTO `item_latents` VALUES(12394, 109, 5, 8, 6); 
+--
+INSERT INTO `item_latents` VALUES(12394, 109, 5, 8, 6);
 
--- 
-INSERT INTO `item_latents` VALUES(14729, 9, 2, 8, 6); 
+--
+INSERT INTO `item_latents` VALUES(14729, 9, 2, 8, 6);
 
--- 
-INSERT INTO `item_latents` VALUES(13664, 68, 4, 8, 6); 
+--
+INSERT INTO `item_latents` VALUES(13664, 68, 4, 8, 6);
 
--- 
-INSERT INTO `item_latents` VALUES(15276, 81, 5, 8, 6); 
+--
+INSERT INTO `item_latents` VALUES(15276, 81, 5, 8, 6);
 
--- 
-INSERT INTO `item_latents` VALUES(14730, 1, 5, 8, 7); 
+--
+INSERT INTO `item_latents` VALUES(14730, 1, 5, 8, 7);
 
--- 
-INSERT INTO `item_latents` VALUES(13665, 231, 4, 8, 7); 
+--
+INSERT INTO `item_latents` VALUES(13665, 231, 4, 8, 7);
 
--- 
-INSERT INTO `item_latents` VALUES(12395, 11, 2, 8, 7); 
+--
+INSERT INTO `item_latents` VALUES(12395, 11, 2, 8, 7);
 
--- 
-INSERT INTO `item_latents` VALUES(15277, 109, 5, 8, 7); 
+--
+INSERT INTO `item_latents` VALUES(15277, 109, 5, 8, 7);
 
--- 
-INSERT INTO `item_latents` VALUES(14731, 23, 5, 8, 8); 
+--
+INSERT INTO `item_latents` VALUES(14731, 23, 5, 8, 8);
 
--- 
-INSERT INTO `item_latents` VALUES(13666, 116, 5, 8, 8); 
+--
+INSERT INTO `item_latents` VALUES(13666, 116, 5, 8, 8);
 
--- 
-INSERT INTO `item_latents` VALUES(12396, 14, 2, 8, 8); 
-INSERT INTO `item_latents` VALUES(12396, 5, 5, 8, 8); 
+--
+INSERT INTO `item_latents` VALUES(12396, 14, 2, 8, 8);
+INSERT INTO `item_latents` VALUES(12396, 5, 5, 8, 8);
 
--- 
-INSERT INTO `item_latents` VALUES(15278, 86, 5, 8, 8); 
+--
+INSERT INTO `item_latents` VALUES(15278, 86, 5, 8, 8);
 
--- 
-INSERT INTO `item_latents` VALUES(12397, 13, 2, 8, 9); 
+--
+INSERT INTO `item_latents` VALUES(12397, 13, 2, 8, 9);
 
--- 
-INSERT INTO `item_latents` VALUES(14732, 25, 5, 8, 9); 
+--
+INSERT INTO `item_latents` VALUES(14732, 25, 5, 8, 9);
 
--- 
-INSERT INTO `item_latents` VALUES(13667, 250, 5, 8, 9); 
+--
+INSERT INTO `item_latents` VALUES(13667, 250, 5, 8, 9);
 
--- 
-INSERT INTO `item_latents` VALUES(15279, 84, 5, 8, 9); 
+--
+INSERT INTO `item_latents` VALUES(15279, 84, 5, 8, 9);
 
--- 
-INSERT INTO `item_latents` VALUES(14733, 68, 5, 8, 10); 
+--
+INSERT INTO `item_latents` VALUES(14733, 68, 5, 8, 10);
 
--- 
-INSERT INTO `item_latents` VALUES(13668, 244, 5, 8, 10); 
+--
+INSERT INTO `item_latents` VALUES(13668, 244, 5, 8, 10);
 
--- 
-INSERT INTO `item_latents` VALUES(12398, 110, 5, 8, 10); 
+--
+INSERT INTO `item_latents` VALUES(12398, 110, 5, 8, 10);
 
--- 
-INSERT INTO `item_latents` VALUES(15280, 119, 5, 8, 10); 
+--
+INSERT INTO `item_latents` VALUES(15280, 119, 5, 8, 10);
 
--- 
-INSERT INTO `item_latents` VALUES(12399, 68, 2, 8, 11); 
+--
+INSERT INTO `item_latents` VALUES(12399, 68, 2, 8, 11);
 
--- 
-INSERT INTO `item_latents` VALUES(14734, 26, 3, 8, 11); 
+--
+INSERT INTO `item_latents` VALUES(14734, 26, 3, 8, 11);
 
--- 
-INSERT INTO `item_latents` VALUES(13669, 359, 5, 8, 11); 
+--
+INSERT INTO `item_latents` VALUES(13669, 359, 5, 8, 11);
 
--- 
-INSERT INTO `item_latents` VALUES(15281, 105, 5, 8, 11); 
+--
+INSERT INTO `item_latents` VALUES(15281, 105, 5, 8, 11);
 
--- 
-INSERT INTO `item_latents` VALUES(14735, 110, 5, 8, 12); 
+--
+INSERT INTO `item_latents` VALUES(14735, 110, 5, 8, 12);
 
--- 
-INSERT INTO `item_latents` VALUES(13670, 243, 5, 8, 12); 
+--
+INSERT INTO `item_latents` VALUES(13670, 243, 5, 8, 12);
 
--- 
-INSERT INTO `item_latents` VALUES(12400, 106, 5, 8, 12); 
+--
+INSERT INTO `item_latents` VALUES(12400, 106, 5, 8, 12);
 
--- 
-INSERT INTO `item_latents` VALUES(15282, 73, 1, 8, 12); 
+--
+INSERT INTO `item_latents` VALUES(15282, 73, 1, 8, 12);
 
--- 
-INSERT INTO `item_latents` VALUES(12401, 23, 5, 8, 13); 
+--
+INSERT INTO `item_latents` VALUES(12401, 23, 5, 8, 13);
 
--- 
-INSERT INTO `item_latents` VALUES(14736, 11, 4, 8, 13); 
+--
+INSERT INTO `item_latents` VALUES(14736, 11, 4, 8, 13);
 
--- 
-INSERT INTO `item_latents` VALUES(13671, 247, 5, 8, 13); 
+--
+INSERT INTO `item_latents` VALUES(13671, 247, 5, 8, 13);
 
--- 
-INSERT INTO `item_latents` VALUES(15283, 259, 1, 8, 13); 
+--
+INSERT INTO `item_latents` VALUES(15283, 259, 1, 8, 13);
 
--- 
-INSERT INTO `item_latents` VALUES(15284, 87, 5, 8, 14); 
+--
+INSERT INTO `item_latents` VALUES(15284, 87, 5, 8, 14);
 
--- 
-INSERT INTO `item_latents` VALUES(14737, 384, 51, 8, 14); 
+--
+INSERT INTO `item_latents` VALUES(14737, 384, 51, 8, 14);
 
--- 
+--
 INSERT INTO `item_latents` VALUES(13672, 23, 6, 8, 14);
 
--- 
+--
 INSERT INTO `item_latents` VALUES(12402, 167, 1, 8, 14);
 
--- 
-INSERT INTO `item_latents` VALUES(14738, 5, 30, 8, 15); 
+--
+INSERT INTO `item_latents` VALUES(14738, 5, 30, 8, 15);
 
--- 
-INSERT INTO `item_latents` VALUES(13673, 117, 5, 8, 15); 
+--
+INSERT INTO `item_latents` VALUES(13673, 117, 5, 8, 15);
 
--- 
-INSERT INTO `item_latents` VALUES(12403, 2, 10, 8, 15); 
-INSERT INTO `item_latents` VALUES(12403, 5, 5, 8, 15); 
+--
+INSERT INTO `item_latents` VALUES(12403, 2, 10, 8, 15);
+INSERT INTO `item_latents` VALUES(12403, 5, 5, 8, 15);
 
--- 
-INSERT INTO `item_latents` VALUES(15285, 346, 2, 8, 15); 
+--
+INSERT INTO `item_latents` VALUES(15285, 346, 2, 8, 15);
 
--- 
-INSERT INTO `item_latents` VALUES(16217, 240, 5, 8, 16); 
+--
+INSERT INTO `item_latents` VALUES(16217, 240, 5, 8, 16);
 
--- 
-INSERT INTO `item_latents` VALUES(15975, 122, 5, 8, 16); 
+--
+INSERT INTO `item_latents` VALUES(15975, 122, 5, 8, 16);
 
--- 
-INSERT INTO `item_latents` VALUES(16218, 242, 5, 8, 17); 
+--
+INSERT INTO `item_latents` VALUES(16218, 242, 5, 8, 17);
 
--- 
-INSERT INTO `item_latents` VALUES(15976, 24, 5, 8, 17); 
+--
+INSERT INTO `item_latents` VALUES(15976, 24, 5, 8, 17);
 
--- 
-INSERT INTO `item_latents` VALUES(16219, 107, 5, 8, 18); 
+--
+INSERT INTO `item_latents` VALUES(16219, 107, 5, 8, 18);
 
--- 
-INSERT INTO `item_latents` VALUES(15977, 27, -2, 8, 18); 
+--
+INSERT INTO `item_latents` VALUES(15977, 27, -2, 8, 18);
 
 -- -------------------------------------------------------
 -- Relic Weapons (In Dynamis)
 -- -------------------------------------------------------
 
--- Militant Knuckles  
+-- Militant Knuckles
 INSERT INTO `item_latents` VALUES(18261, 366, 15, 48, 0); -- DMG:+16
 INSERT INTO `item_latents` VALUES(18261, 59, 7, 48, 0); -- [Element: Water]+7
 
--- Dynamis Knuckles  
+-- Dynamis Knuckles
 INSERT INTO `item_latents` VALUES(18262, 366, 2, 48, 0); -- DMG:+18
 INSERT INTO `item_latents` VALUES(18262, 59, 9, 48, 0); -- [Element: Water]+9
 
--- Malefic Dagger  
+-- Malefic Dagger
 INSERT INTO `item_latents` VALUES(18267, 366, 22, 48, 0); -- DMG:+23
 INSERT INTO `item_latents` VALUES(18267, 61, 7, 48, 0); -- [Element: Dark]+7
 
--- Dynamis Dagger  
+-- Dynamis Dagger
 INSERT INTO `item_latents` VALUES(18268, 366, 3, 48, 0); -- DMG:+26
 INSERT INTO `item_latents` VALUES(18268, 61, 9, 48, 0); -- [Element: Dark]+9
 
--- Glyptic Sword  
+-- Glyptic Sword
 INSERT INTO `item_latents` VALUES(18273, 366, 39, 48, 0); -- DMG:+40
 INSERT INTO `item_latents` VALUES(18273, 58, 7, 48, 0); -- [Element: Thunder]+7
 
--- Dynamis Sword  
-INSERT INTO `item_latents` VALUES(18274, 366, 8, 48, 0); -- DMG:48 
+-- Dynamis Sword
+INSERT INTO `item_latents` VALUES(18274, 366, 8, 48, 0); -- DMG:48
 INSERT INTO `item_latents` VALUES(18274, 58, 9, 48, 0); -- [Element: Thunder]+9
 
--- Gilded Blade  
-INSERT INTO `item_latents` VALUES(18279, 366, 79, 48, 0); -- DMG:80 
+-- Gilded Blade
+INSERT INTO `item_latents` VALUES(18279, 366, 79, 48, 0); -- DMG:80
 INSERT INTO `item_latents` VALUES(18279, 56, 7, 48, 0); -- [Element: Air]+7
 
--- Dynamis Blade  
-INSERT INTO `item_latents` VALUES(18280, 366, 5, 48, 0); -- DMG:85 
+-- Dynamis Blade
+INSERT INTO `item_latents` VALUES(18280, 366, 5, 48, 0); -- DMG:85
 INSERT INTO `item_latents` VALUES(18280, 56, 9, 48, 0); -- [Element: Air]+9
 
--- Leonine Axe  
-INSERT INTO `item_latents` VALUES(18285, 366, 45, 48, 0); -- DMG:46 
+-- Leonine Axe
+INSERT INTO `item_latents` VALUES(18285, 366, 45, 48, 0); -- DMG:46
 INSERT INTO `item_latents` VALUES(18285, 60, 7, 48, 0); -- [Element: Light]+7
 
--- Dynamis Axe  
+-- Dynamis Axe
 INSERT INTO `item_latents` VALUES(18286, 366, 4, 48, 0); -- DMG:50
 INSERT INTO `item_latents` VALUES(18286, 60, 9, 48, 0); -- [Element: Light]+9
 
--- Agonal Bhuj  
-INSERT INTO `item_latents` VALUES(18291, 366, 86, 48, 0); -- DMG:87 
+-- Agonal Bhuj
+INSERT INTO `item_latents` VALUES(18291, 366, 86, 48, 0); -- DMG:87
 INSERT INTO `item_latents` VALUES(18291, 60, 7, 48, 0); -- [Element: Light]+7
 
--- Dynamis Bhuj  
-INSERT INTO `item_latents` VALUES(18292, 366, 4, 48, 0); -- DMG:93 
+-- Dynamis Bhuj
+INSERT INTO `item_latents` VALUES(18292, 366, 4, 48, 0); -- DMG:93
 INSERT INTO `item_latents` VALUES(18292, 60, 9, 48, 0); -- [Element: Light]+9
 
--- Hotspur Lance  
-INSERT INTO `item_latents` VALUES(18297, 366, 81, 48, 0); -- DMG:82 
+-- Hotspur Lance
+INSERT INTO `item_latents` VALUES(18297, 366, 81, 48, 0); -- DMG:82
 INSERT INTO `item_latents` VALUES(18297, 57, 7, 48, 0); -- [Element: Earth]+7
 
--- Dynamis Lance  
-INSERT INTO `item_latents` VALUES(18298, 366, 2, 48, 0); -- DMG:84 
+-- Dynamis Lance
+INSERT INTO `item_latents` VALUES(18298, 366, 2, 48, 0); -- DMG:84
 INSERT INTO `item_latents` VALUES(18298, 57, 9, 48, 0); -- [Element: Earth]+9
 
--- Memento Scythe  
-INSERT INTO `item_latents` VALUES(18303, 366, 81, 48, 0); -- DMG:82 
+-- Memento Scythe
+INSERT INTO `item_latents` VALUES(18303, 366, 81, 48, 0); -- DMG:82
 INSERT INTO `item_latents` VALUES(18303, 55, 7, 48, 0); -- [Element: Ice]+7
 
--- Dynamis Scythe  
-INSERT INTO `item_latents` VALUES(18304, 366, 3, 48, 0); -- DMG:85 
+-- Dynamis Scythe
+INSERT INTO `item_latents` VALUES(18304, 366, 3, 48, 0); -- DMG:85
 INSERT INTO `item_latents` VALUES(18304, 55, 9, 48, 0); -- [Element: Ice]+9
 
--- Mimizuku  
-INSERT INTO `item_latents` VALUES(18309, 366, 32, 48, 0); -- DMG:33 
+-- Mimizuku
+INSERT INTO `item_latents` VALUES(18309, 366, 32, 48, 0); -- DMG:33
 INSERT INTO `item_latents` VALUES(18309, 61, 7, 48, 0); -- [Element: Dark]+7
 
--- Rogetsu  
-INSERT INTO `item_latents` VALUES(18310, 366, 7, 48, 0); -- DMG:40 
+-- Rogetsu
+INSERT INTO `item_latents` VALUES(18310, 366, 7, 48, 0); -- DMG:40
 INSERT INTO `item_latents` VALUES(18310, 61, 9, 48, 0); -- [Element: Dark]+9
 
--- Hayatemaru  
-INSERT INTO `item_latents` VALUES(18315, 366, 75, 48, 0); -- DMG:76 
+-- Hayatemaru
+INSERT INTO `item_latents` VALUES(18315, 366, 75, 48, 0); -- DMG:76
 INSERT INTO `item_latents` VALUES(18315, 56, 7, 48, 0); -- [Element: Air]+7
 
--- Oboromaru  
-INSERT INTO `item_latents` VALUES(18316, 366, 3, 48, 0); -- DMG:79 
+-- Oboromaru
+INSERT INTO `item_latents` VALUES(18316, 366, 3, 48, 0); -- DMG:79
 INSERT INTO `item_latents` VALUES(18316, 56, 9, 48, 0); -- [Element: Air]+9
 
--- Battering Maul  
-INSERT INTO `item_latents` VALUES(18321, 366, 28, 48, 0); -- DMG:29 
+-- Battering Maul
+INSERT INTO `item_latents` VALUES(18321, 366, 28, 48, 0); -- DMG:29
 INSERT INTO `item_latents` VALUES(18321, 58, 7, 48, 0); -- [Element: Thunder]+7
 
--- Dynamis Maul  
-INSERT INTO `item_latents` VALUES(18322, 366, 5, 48, 0); -- DMG:35 
+-- Dynamis Maul
+INSERT INTO `item_latents` VALUES(18322, 366, 5, 48, 0); -- DMG:35
 INSERT INTO `item_latents` VALUES(18322, 58, 9, 48, 0); -- [Element: Thunder]+9
 
--- Sage's Staff  
-INSERT INTO `item_latents` VALUES(18327, 366, 54, 48, 0); -- DMG:55 
+-- Sage's Staff
+INSERT INTO `item_latents` VALUES(18327, 366, 54, 48, 0); -- DMG:55
 INSERT INTO `item_latents` VALUES(18327, 54, 7, 48, 0); -- [Element: Fire]+7
 
--- Dynamis Staff  
-INSERT INTO `item_latents` VALUES(18328, 366, 3, 48, 0); -- DMG:58 
+-- Dynamis Staff
+INSERT INTO `item_latents` VALUES(18328, 366, 3, 48, 0); -- DMG:58
 INSERT INTO `item_latents` VALUES(18328, 54, 9, 48, 0); -- [Element: Fire]+9
 
--- Marksman Gun  
-INSERT INTO `item_latents` VALUES(18333, 366, 38, 48, 0); -- DMG:39 
+-- Marksman Gun
+INSERT INTO `item_latents` VALUES(18333, 366, 38, 48, 0); -- DMG:39
 INSERT INTO `item_latents` VALUES(18333, 54, 7, 48, 0); -- [Element: Fire]+7
 
--- Dynamis Gun  
-INSERT INTO `item_latents` VALUES(18334, 366, 3, 48, 0); -- DMG:42 
+-- Dynamis Gun
+INSERT INTO `item_latents` VALUES(18334, 366, 3, 48, 0); -- DMG:42
 INSERT INTO `item_latents` VALUES(18334, 54, 9, 48, 0); -- [Element: Fire]+9
 
--- Pyrrhic Horn  
+-- Pyrrhic Horn
 INSERT INTO `item_latents` VALUES(18339, 14, 1, 48, 0); -- CHR+1
 INSERT INTO `item_latents` VALUES(18339, 55, 7, 48, 0); -- [Element: Ice]+7
 
--- Dynamis Horn  
+-- Dynamis Horn
 INSERT INTO `item_latents` VALUES(18340, 14, 2, 48, 0); -- CHR+2
 INSERT INTO `item_latents` VALUES(18340, 55, 9, 48, 0); -- [Element: Ice]+9
 
--- Millennium Horn  
+-- Millennium Horn
 INSERT INTO `item_latents` VALUES(18341, 14, 3, 48, 0); -- CHR+3
 INSERT INTO `item_latents` VALUES(18341, 452, 2, 48, 0); -- All songs +2
 
--- Wolver Bow  
-INSERT INTO `item_latents` VALUES(18345, 366, 67, 48, 0); -- DMG:68 
+-- Wolver Bow
+INSERT INTO `item_latents` VALUES(18345, 366, 67, 48, 0); -- DMG:68
 INSERT INTO `item_latents` VALUES(18345, 59, 7, 48, 0); -- [Element: Water]+7
 
--- Dynamis Bow  
-INSERT INTO `item_latents` VALUES(18346, 366, 3, 48, 0); -- DMG:71 
+-- Dynamis Bow
+INSERT INTO `item_latents` VALUES(18346, 366, 3, 48, 0); -- DMG:71
 INSERT INTO `item_latents` VALUES(18346, 59, 9, 48, 0); -- [Element: Water]+9
 
--- Bulwark Shield  
+-- Bulwark Shield
 INSERT INTO `item_latents` VALUES(15067, 1, 21, 48, 0); -- DEF:22
 
--- Dynamis Shield  
+-- Dynamis Shield
 INSERT INTO `item_latents` VALUES(15068, 1, 6, 48, 0); -- DEF:28
 
--- Ancile  
+-- Ancile
 INSERT INTO `item_latents` VALUES(15069, 385, 200, 48, 0); -- Augments "Shield Bash"
 
 -- -------------------------------------------------------
--- Halting Stole       
+-- Halting Stole
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16306, 25, 20, 13, 4); -- accuracy+20 while under status paralysis
 
 -- -------------------------------------------------------
--- Colossus's Earring         
+-- Colossus's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16058, 161, -1, 52, 7); -- physical damage -2% during light weather (has -1% normally)
 
 -- -------------------------------------------------------
--- Aesir Ear Pendant        
+-- Aesir Ear Pendant
 -- -------------------------------------------------------
 -- NEED modID# INSERT INTO `item_latents` VALUES(16057, ??, 6, ??, 0); -- conserve tp+6 during dark weather
 
 -- -------------------------------------------------------
--- Fatality Belt        
+-- Fatality Belt
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 44); -- critical hit damage 2% under status mighty strikes (war)
 INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 48); -- critical hit damage 2% under status chainspell (rdm)
@@ -1312,39 +1312,39 @@ INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 163); -- critical hit damag
 INSERT INTO `item_latents` VALUES(15955, 421, 2, 13, 376); -- critical hit damage 2% under status trance (dnc)
 
 -- -------------------------------------------------------
--- Nyx Gorget        
+-- Nyx Gorget
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11587, 25, 12, 13, 75); -- accuracy+12 under status arcane circle
 
 -- -------------------------------------------------------
--- Colossus's Torque         
+-- Colossus's Torque
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11590, 112, 3, 36, 0); -- Healing magic skill +10 On Lightsdays
 INSERT INTO `item_latents` VALUES(11590, 113, 3, 36, 0); -- Enhancing magic skill +10 On Lightsdays
 
 -- -------------------------------------------------------
--- Colossus's Mantle         
+-- Colossus's Mantle
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11547, 163, -1, 36, 0); -- Magic damage taken -3% On Lightsdays
 
 -- -------------------------------------------------------
--- Beguiling Collar         
+-- Beguiling Collar
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11585, 27, -3, 0, 100); -- Boosts enmity decrease when taking damage (used additional -3)
 
 -- -------------------------------------------------------
--- Aesir Torque          
+-- Aesir Torque
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11589, 115, 3, 32, 0); -- Elemental magic skill +7 On Darksdays
 INSERT INTO `item_latents` VALUES(11589, 116, 3, 32, 0); -- Dark magic skill +7 On Darksdays
 
 -- -------------------------------------------------------
--- Aesir Mantle         
+-- Aesir Mantle
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11546, 288, 1, 32, 0); -- Double Attack +2% On Darksdays
 
 -- -------------------------------------------------------
--- Vampire Earring           
+-- Vampire Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14783, 8, 4, 26, 1); -- STR+4 during Nighttime
 INSERT INTO `item_latents` VALUES(14783, 10, 4, 26, 1); -- VIT+4 during Nighttime
@@ -1366,24 +1366,24 @@ INSERT INTO `item_latents` VALUES(15816, 2, 20, 26, 0); -- HP+20 during Daytime
 INSERT INTO `item_latents` VALUES(15816, 5, 20, 26, 0); -- MP+20 during Daytime
 
 -- -------------------------------------------------------
--- Mandraguard         
+-- Mandraguard
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(10807, 370, 1, 26, 0); -- Regen 1/tick during Daytime
 
 -- -------------------------------------------------------
--- Mushroom Helm        
+-- Mushroom Helm
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13913, 370, 1, 30, 0); -- Regen 1/tick on Watersdays
 INSERT INTO `item_latents` VALUES(13913, 370, 1, 32, 0); -- Regen 1/tick on Darksdays
 
 -- -------------------------------------------------------
--- Dinner Jacket       
+-- Dinner Jacket
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11355, 14, 1, 26, 1); -- CHR+1 during Nighttime
 INSERT INTO `item_latents` VALUES(11355, 27, -1, 0, 75); -- Enmity-1 when HP <75%
 
 -- -------------------------------------------------------
--- Dinner Hose         
+-- Dinner Hose
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16378, 14, 1, 26, 1); -- CHR+1 during Nighttime
 INSERT INTO `item_latents` VALUES(16378, 27, -1, 0, 75); -- Enmity-1 when HP <75%
@@ -1399,7 +1399,7 @@ INSERT INTO `item_latents` VALUES(15543, 9, 1, 51, 60); -- MND+1 above level 60
 INSERT INTO `item_latents` VALUES(15543, 9, 1, 51, 75); -- MND+1 above level 75
 
 -- -------------------------------------------------------
--- Tamas Ring     
+-- Tamas Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15544, 2, 5, 51, 45); -- MP+5 above level 45
 INSERT INTO `item_latents` VALUES(15544, 2, 5, 51, 60); -- MP+5 above level 60
@@ -1432,7 +1432,7 @@ INSERT INTO `item_latents` VALUES(15506, 369, 1, 1, 85); -- Refresh when HP >=85
 -- -------------------------------------------------------
 -- Caitiff's Socks
 /*
-	[NOT CODED] Latent effect Flee
+    [NOT CODED] Latent effect Flee
 */
 -- -------------------------------------------------------
 -- INSERT INTO `item_latents` VALUES(15324, ???, 1, 2, 25); -- Flee when HP <25% and TP <100%
@@ -1444,14 +1444,14 @@ INSERT INTO `item_latents` VALUES(18165, 2, 30, 26, 0); -- Daytime: HP+30
 INSERT INTO `item_latents` VALUES(18165, 68, 10, 26, 1); -- Nighttime: Evasion+10
 
 -- -------------------------------------------------------
--- Chocobo Shirt  
+-- Chocobo Shirt
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(10293, 25, 50, 50, 31); -- Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 26, 50, 50, 31); -- Rng. Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31); -- Mag. Acc.+50
 
 -- -------------------------------------------------------
--- Destrier Beret  
+-- Destrier Beret
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11811, 370, 1, 50, 30); -- Adds "Regen"
 INSERT INTO `item_latents` VALUES(11811, 369, 1, 50, 30); -- Adds "Refresh"
@@ -1535,30 +1535,30 @@ INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 5); -- DMG increases by 2 p
 INSERT INTO `item_latents` VALUES(17952, 160, 2, 15, 6); -- DMG increases by 2 per member
 
 -- -------------------------------------------------------
--- Medicine Ring  
+-- Medicine Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13288, 374, 10, 2, 75); -- "Cure" potency +10% while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
 -- Fencer's Ring
 /*
-	[NOT CODED] Latent effect: Sword enhancement spell damage +5
-*/ 
+    [NOT CODED] Latent effect: Sword enhancement spell damage +5
+*/
 -- -------------------------------------------------------
 -- INSERT INTO `item_latents` VALUES(13290, ???, 5, 2, 75); -- Sword enhancement spell damage +5 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Guardian's Ring   
+-- Guardian's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13292, 385, 10, 2, 75); -- "Shield Bash"+10 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Slayer's Ring   
+-- Slayer's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13293, 385, 10, 2, 75); -- "Shield Bash"+10 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Tamer's Ring   
+-- Tamer's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13294, 224, 3, 2, 75); -- Enhances "Vermin Killer" effect while HP <=75% and TP <=100%
 INSERT INTO `item_latents` VALUES(13294, 225, 3, 2, 75); -- Enhances "Bird Killer" effect while HP <=75% and TP <=100%
@@ -1577,22 +1577,22 @@ INSERT INTO `item_latents` VALUES(13294, 237, 3, 2, 75); -- Enhances "Lumorian K
 INSERT INTO `item_latents` VALUES(13294, 238, 3, 2, 75); -- Enhances "Luminion Killer" effect while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Minstrel's Ring  
+-- Minstrel's Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13295, 455, -25, 2, 75); -- "Shield Bash"+10 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Drake Ring  
+-- Drake Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13299, 361, 10, 2, 75); -- Enhances "Jump" effects while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
--- Conjurer's Earring 
+-- Conjurer's Earring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13433, 160, -20, 2, 25); -- Damage taken -20% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
--- Desperado Ring  
+-- Desperado Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15835, 23, 5, 4, 5); -- Attack+5 while MP <=5%
 
@@ -1602,14 +1602,14 @@ INSERT INTO `item_latents` VALUES(15835, 23, 5, 4, 5); -- Attack+5 while MP <=5%
 INSERT INTO `item_latents` VALUES(14413, 369, 1, 5, 49); -- "Refresh" effect while MP under 49 (actual number, not %)
 
 -- -------------------------------------------------------
--- Perdu Bow         
+-- Perdu Bow
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18717, 366, 6, 6, 1000); -- DMG+6 while TP <100%
 INSERT INTO `item_latents` VALUES(18717, 26, 5, 6, 1000); -- Ranged Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES(18717, 24, 18, 6, 1000); -- Ranged Attack+18 while TP <100%
 
 -- -------------------------------------------------------
--- Perdu Crossbow          
+-- Perdu Crossbow
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18718, 366, 4, 6, 1000); -- DMG+4 while TP <100%
 INSERT INTO `item_latents` VALUES(18718, 26, 5, 6, 1000); -- Ranged Accuracy+5 while TP <100%
@@ -1743,7 +1743,7 @@ INSERT INTO `item_latents` VALUES(17502, 110, 10, 53, 1); -- DEX +2 in areas out
 
 
 -- -------------------------------------------------------
--- Master Caster's Bracelets 
+-- Master Caster's Bracelets
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14017, 12, 1, 53, 1); -- INT +1 in areas outside own nation's control
 INSERT INTO `item_latents` VALUES(14017, 13, 1, 53, 1); -- MND +1 in areas outside own nation's control
@@ -1809,7 +1809,7 @@ INSERT INTO `item_latents` VALUES(17540, 5, 12, 53, 1); -- MP +12 in areas outsi
 
 
 -- -------------------------------------------------------
--- Tactician Magician's Espadon +1/+2 
+-- Tactician Magician's Espadon +1/+2
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17676, 2, 18, 53, 1); -- HP +18 in areas outside own nation's control
 INSERT INTO `item_latents` VALUES(17677, 2, 20, 53, 1); -- HP +20 in areas outside own nation's control
@@ -2770,3 +2770,20 @@ INSERT INTO `item_latents` VALUES(15532, 369, -3, 56, 0); -- MP Drain -3MP/tic
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13658, 10, 20, 32, 0); -- Darksday: VIT+20
 INSERT INTO `item_latents` VALUES(14646, 29, 10, 32, 0); -- Darksday: MDB+10
+
+-- -------------------------------------------------------
+-- LAVALIER
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (10961,60,-40,13,14); -- CHARMED:LIGHTRES
+INSERT INTO `item_latents` VALUES (10961,61,-40,13,14); -- CHARMED:DARKRES
+-- -------------------------------------------------------
+-- LAVALIER +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (10962,60,-50,13,14); -- CHARMED:LIGHTRES
+INSERT INTO `item_latents` VALUES (10962,61,-50,13,14); -- CHARMED:DARKRES
+INSERT INTO `item_latents` VALUES (10962,169,-12,13,14); -- CHARMED:DECREASES MOV SPEED - https://www.bg-wiki.com/bg/Movement_Speed
+-- -------------------------------------------------------
+-- Archon Cape +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (10975, 25, 13, 52, 8); -- DARK WEATHER:ACC
+INSERT INTO `item_latents` VALUES (10975, 23, 13, 52, 8); -- DARK WEATHER:ATT

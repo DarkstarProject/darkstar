@@ -40,7 +40,7 @@ function onUseAbility(player,target,ability)
     local skillbonus = player:getMod(MOD_LIGHT_ARTS_SKILL);
     local effectbonus = player:getMod(MOD_LIGHT_ARTS_EFFECT);
     local regenbonus = 0;
-    if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
         regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
     end
 

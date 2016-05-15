@@ -36,7 +36,7 @@ function onUseAbility(player,target,ability)
     player:delStatusEffect(EFFECT_PERPETUANCE);
 
     local helixbonus = 0;
-    if (player:getMainJob() == JOB_SCH and player:getMainLvl() >= 20) then
+    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
         helixbonus = math.floor(player:getMainLvl() / 4);
     end
 

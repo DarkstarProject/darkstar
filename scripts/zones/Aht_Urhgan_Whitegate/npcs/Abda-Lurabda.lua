@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getMainJob() == JOB_PUP) then
+    if (player:getMainJob() == JOBS.PUP) then
         player:startEvent(0x288, 0, 9800, player:getGil());
     else
         player:startEvent(0x101);
