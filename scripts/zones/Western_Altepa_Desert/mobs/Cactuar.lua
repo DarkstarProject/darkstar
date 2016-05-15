@@ -11,8 +11,8 @@ require("scripts/zones/Western_Altepa_Desert/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,136,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,136,2);
 
     local mobID = mob:getID();
     if (Cactuar_Cantautor_PH[mobID] ~= nil) then

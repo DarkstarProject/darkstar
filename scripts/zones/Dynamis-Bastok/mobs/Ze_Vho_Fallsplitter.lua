@@ -22,7 +22,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local bossTrigger = GetServerVariable("[DynaBastok]Boss_Trigger");
 

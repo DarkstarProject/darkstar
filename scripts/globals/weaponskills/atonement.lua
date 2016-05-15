@@ -66,12 +66,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         dmg = utils.clamp(dmg, 0, player:getMainLvl() * 10); -- Damage is capped to player's level * 10, before WS damage mods
         damage = target:breathDmgTaken(dmg);
         if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-            damage = damage * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+            damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
         end
         damage = damage * WEAPON_SKILL_POWER;
 
         if (damage > 0) then
-            if (attacker:getOffhandDmg() > 0) then
+            if (player:getOffhandDmg() > 0) then
                 tpHits = 2;
             else
                 tpHits = 1;
@@ -83,7 +83,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         target:updateEnmityFromDamage(player, damage * enmityMult);
     end
 
-    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOB_PLD)) then
+    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOBS.PLD)) then
         if (damage > 0) then
             applyAftermathEffect(player, tp)
         end

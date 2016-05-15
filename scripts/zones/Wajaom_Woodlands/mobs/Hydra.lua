@@ -46,8 +46,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    ally:addTitle(HYDRA_HEADHUNTER);
+    player:addTitle(HYDRA_HEADHUNTER);
 
 end;

@@ -24,10 +24,10 @@ function onTrade(player,npc,trade)
 
     if (ALittleKnowledge == QUEST_ACCEPTED and ALittleKnowledgeProgress == 1) then
         if (trade:hasItemQty(2550, 12) and trade:getGil() == 0 and trade:getItemCount() == 12) then
-            if( player:getMainJob() == JOB_BLM or
-                player:getMainJob() == JOB_RDM or
-                player:getMainJob() == JOB_SMN or
-                player:getMainJob() == JOB_BLU) then
+            if( player:getMainJob() == JOBS.BLM or
+                player:getMainJob() == JOBS.RDM or
+                player:getMainJob() == JOBS.SMN or
+                player:getMainJob() == JOBS.BLU) then
                 player:startEvent(0x000C, 1);
             else
                 player:startEvent(0x000C);
@@ -67,9 +67,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x000D);
         end
-    elseif (ALittleKnowledge == QUEST_COMPLETED and mJob == JOB_SCH and mLvl >= 5 and not (player:hasSpell(478) and player:hasSpell(502))) then
+    elseif (ALittleKnowledge == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= 5 and not (player:hasSpell(478) and player:hasSpell(502))) then
             player:startEvent(0x002F);   
-    elseif (onSabbatical == QUEST_AVAILABLE and mJob == JOB_SCH and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (onSabbatical == QUEST_AVAILABLE and mJob == JOBS.SCH and mLvl >= AF1_QUEST_LEVEL) then
             player:startEvent(0x0012);
     elseif (onSabbatical == QUEST_ACCEPTED) then
         if (onSabbaticalProgress < 3) then
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x0014);
         end
-    elseif (onSabbatical == QUEST_COMPLETED and player:getVar("Erlene_Sabbatical_Timer")~=VanadielDayOfTheYear() and mJob == JOB_SCH and mLvl >= AF2_QUEST_LEVEL and downwardHelix == QUEST_AVAILABLE) then
+    elseif (onSabbatical == QUEST_COMPLETED and player:getVar("Erlene_Sabbatical_Timer")~=VanadielDayOfTheYear() and mJob == JOBS.SCH and mLvl >= AF2_QUEST_LEVEL and downwardHelix == QUEST_AVAILABLE) then
         player:startEvent(0x0017);
     elseif (downwardHelix == QUEST_ACCEPTED) then
         if (player:getVar("DownwardHelix") == 0) then

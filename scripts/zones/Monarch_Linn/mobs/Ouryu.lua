@@ -58,8 +58,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    ally:addTitle(MIST_MELTER);
+    player:addTitle(MIST_MELTER);
 
 end;

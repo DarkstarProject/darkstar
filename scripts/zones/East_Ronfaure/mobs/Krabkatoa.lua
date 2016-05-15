@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(KRABKATOA_STEAMER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(KRABKATOA_STEAMER);
 end;

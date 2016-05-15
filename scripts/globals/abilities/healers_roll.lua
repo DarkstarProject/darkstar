@@ -35,8 +35,10 @@ require("scripts/globals/ability");
 function onAbilityCheck(player,target,ability)
     local effectID = EFFECT_HEALERS_ROLL
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
-    if (player:hasStatusEffect(effectID) or player:hasBustEffect(effectID)) then
+    if (player:hasStatusEffect(effectID)) then
         return MSGBASIC_ROLL_ALREADY_ACTIVE,0;
+    elseif atMaxCorsairBusts(player) then
+        return MSGBASIC_CANNOT_PERFORM,0;
     else
         return 0,0;
     end
@@ -48,7 +50,7 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT_HEALERS_ROLL, JOB_WHM);
+        corsairSetup(caster, ability, action, EFFECT_HEALERS_ROLL, JOBS.WHM);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
@@ -61,9 +63,9 @@ function applyRoll(caster,target,ability,action,total)
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
         effectpower = effectpower + 4
     end
-    if (caster:getMainJob() == JOB_COR and caster:getMainLvl() < target:getMainLvl()) then
+    if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
-    elseif (caster:getSubJob() == JOB_COR and caster:getSubLvl() < target:getMainLvl()) then
+    elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
     if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_HEALERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_CURE_POTENCY_RCVD) == false) then

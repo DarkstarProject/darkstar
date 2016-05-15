@@ -3,6 +3,8 @@
 --  ABILITIES
 --
 -----------------------------------
+require("scripts/globals/status");
+
     ABILITY_MIGHTY_STRIKES     = 0;
     ABILITY_HUNDRED_FISTS      = 1;
     ABILITY_BENEDICTION        = 2;
@@ -432,6 +434,11 @@ function corsairSetup(caster, ability, action, effect, job)
     end
     checkForJobBonus(caster, job)
     caster:addRecast(RECAST_ABILITY, 194, 8)
+end
+
+function atMaxCorsairBusts(caster)
+    local numBusts = caster:numBustEffects();
+    return (numBusts >= 2 and caster:getMainJob() == JOBS.COR) or (numBusts >= 1 and caster:getMainJob() ~= JOBS.COR);
 end
 
 function checkForJobBonus(caster, job)

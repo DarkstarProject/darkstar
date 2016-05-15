@@ -16,9 +16,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    ally:addTitle(MORBOLBANE);
+    player:addTitle(MORBOLBANE);
 
     -- Set Morbolger's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

@@ -43,7 +43,7 @@ function onUseAbility(player, target, ability)
         damage = 90 + damage;
     end
 
-    if (player:getMainJob() ~= JOB_PLD) then
+    if (player:getMainJob() ~= JOBS.PLD) then
         damage = math.floor(damage / 2.5);
         chance = 60;
     else

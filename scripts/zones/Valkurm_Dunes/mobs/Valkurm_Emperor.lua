@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set VE's Window Open Time
     SetServerVariable("[POP]Valkurm_Emperor", os.time(t) + 3600); -- 1 hour

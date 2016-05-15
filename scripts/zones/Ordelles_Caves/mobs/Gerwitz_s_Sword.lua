@@ -18,10 +18,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getVar("darkPuppetCS") >= 3) then
-        ally:setVar("darkPuppetCS",4);
+    if (player:getVar("darkPuppetCS") >= 3) then
+        player:setVar("darkPuppetCS",4);
     end
 
 end;

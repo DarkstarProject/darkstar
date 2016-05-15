@@ -1163,6 +1163,9 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
         if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
         {
+            // whoever commented above lied about ex items
+            if (PItem->getFlag() & ITEM_FLAG_EX)
+                return;
 
             PItem->setReserve(quantity);
             // If item count is zero.. remove from container..
@@ -1518,7 +1521,6 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         PItem->setSlotID(Sql_GetIntData(SqlHandle, 2));
                         PItem->setQuantity(Sql_GetUIntData(SqlHandle, 3));
 
-                        int what = Sql_GetUIntData(SqlHandle, 4);
                         if (Sql_GetUIntData(SqlHandle, 4) > 0)
                         {
                             PItem->setSent(true);
@@ -2334,10 +2336,8 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 equipSlotID = RBUFB(data, (0x05));        // charequip slot
     uint8 containerID = RBUFB(data, (0x06));     // container id
 
-    if (containerID != 0 && containerID != 8)
-    {
+    if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2)
         return;
-    }
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
     charutils::SaveCharEquip(PChar);
@@ -2362,7 +2362,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint8 slotID = RBUFB(data, (0x08 + (0x04 * i)));        // inventory slot
         uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));        // charequip slot
         uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
-        if (containerID == 0 || containerID == 8)
+        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2)
         {
             charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
         }
@@ -4629,6 +4629,13 @@ void SmallPacket0x0F1(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (IconID != 0)
     {
+        auto effect = PChar->StatusEffectContainer->GetStatusEffect((EFFECT)IconID);
+
+        // think this covers all the removable effects
+        if (!effect || effect->GetFlag() & EFFECTFLAG_CONFRONTATION || effect->GetFlag() & EFFECTFLAG_FOOD ||
+            effect->GetFlag() & EFFECTFLAG_ERASABLE)
+            return;
+
         PChar->StatusEffectContainer->DelStatusEffectsByIcon(IconID);
     }
     return;

@@ -3,17 +3,26 @@
 -- desc: Adds the given effect to the given player.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/status");
+require("scripts/globals/teleports");
+
+
 cmdprops =
 {
     permission = 1,
-    parameters = "siiiii"
+    parameters = "ssssss"
 };
 
 function onTrigger(player, target, id, power, duration, subid, subPower)
-
+    id = tonumber(id);
+    power = tonumber(power) or _G[power]; -- EFFECT_TELEPORT etc, only works self-targeted cause lazy
+    duration = tonumber(duration);
+    subid = tonumber(subid);
+    subPower = tonumber(subPower);
+    
     -- Ensure a target is set..
     if (target == nil) then
-        player:PrintToPlayer( "Target required; cannot be nil." );
+        player:PrintToPlayer( "What are you even trying to add?" );
         return;
     end
 
@@ -52,7 +61,7 @@ function onTrigger(player, target, id, power, duration, subid, subPower)
         if (pc ~= nil) then
             effectTarget = pc;
         else
-            return;
+            id = _G[target];
         end
 
         if (power == nil) then

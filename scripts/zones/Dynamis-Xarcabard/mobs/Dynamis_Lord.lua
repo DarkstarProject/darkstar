@@ -7,24 +7,6 @@
 --
 -- In Neo Dynamis, he is spawned by trading
 -- a Shrouded Bijou to the ??? in front of Castle Zvahl.
---
--- Suggested method for old school Dyna: mask bits
--- Duke Berith        bit 0
--- Marquis Decarabia  bit 1
--- Count Zaebos       bit 2
--- Duke Gomory        bit 3
--- Marquis Andras     bit 4
--- Prince Seere       bit 5
--- Count Raum         bit 6
--- Marquis Nebiros    bit 7
--- Marquis Sabnak     bit 8
--- Duke Scox          bit 9
--- Marquis Orias      bit 10
--- Marquis Gamygyn    bit 11
--- Count Vine         bit 12
--- Marquis Cimeries   bit 13
--- King Zagan         bit 14
--- Mask full = pop Dyna Lord
 -----------------------------------
 
 require("scripts/globals/status");
@@ -52,13 +34,20 @@ function onMobFight(mob,target)
     local YingID = 17330183;
     local YangID = 17330184;
 
-    if (mob:getBattleTime() % 90 == 0) then
-        if (GetMobAction(YingID) == ACTION_NONE) then
-            SpawnMob(YingID):updateEnmity(target); -- Respawn Ying after 90sec
+    if (mob:getBattleTime() % 90 == 0 and mob:getBattleTime() >= 90) then
+        if (GetMobAction(YingID) == ACTION_NONE and GetMobAction(YangID) == ACTION_NONE) then
+            GetMobByID(YingID):setSpawn(-414.282,-44,20.427); -- These come from DL's spawn point when he spawns them.
+            GetMobByID(YangID):setSpawn(-414.282,-44,20.427);
+            SpawnMob(YingID):updateEnmity(target); -- Respawn the dragons after 90sec
+            SpawnMob(YangID):updateEnmity(target);
         end
-        if (GetMobAction(YangID) == ACTION_NONE) then
-            SpawnMob(YangID):updateEnmity(target); -- Respawn Yang after 90sec
-        end
+    end
+
+    if (GetMobAction(YingID) == ACTION_ROAMING) then -- ensure that it's always going after someone, can't kite it away!
+        GetMobByID(YingID):updateEnmity(target);
+    end
+    if (GetMobAction(YangID) == ACTION_ROAMING) then
+        GetMobByID(YangID):updateEnmity(target);
     end
 end;
 
@@ -66,9 +55,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    local npc = GetNPCByID(17330778); -- ID of the '???' target.
-    ally:addTitle(LIFTER_OF_SHADOWS);
+function onMobDeath(mob, player, isKiller)
+    local npc = GetNPCByID(17330781); -- ID of the '???' target.
+    player:addTitle(LIFTER_OF_SHADOWS);
     npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
     npc:setStatus(0); -- Spawn the '???'
+    DespawnMob(17330183); -- despawn dragons
+    DespawnMob(17330184);
 end;

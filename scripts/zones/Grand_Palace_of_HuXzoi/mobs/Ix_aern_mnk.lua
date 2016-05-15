@@ -68,7 +68,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);

@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Hellion's Window Open Time
     local wait = math.random(7200,14400);

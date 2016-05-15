@@ -16,12 +16,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Curses, Foiled A-Golem!?
-    if (ally:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        ally:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        ally:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(SHANTOTTOS_EXSPELL);
     end
 
 end;

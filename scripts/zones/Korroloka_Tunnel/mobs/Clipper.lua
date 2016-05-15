@@ -10,9 +10,9 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,731,1);
+    checkGoVregime(player,mob,731,1);
 
     local mobID = mob:getID();
     if (Cargo_Crab_Colin_PH[mobID] ~= nil) then

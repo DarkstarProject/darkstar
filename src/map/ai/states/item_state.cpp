@@ -81,12 +81,13 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     }
 
     auto PTarget = m_PEntity->IsValidTarget(targid, m_PItem->getValidTarget(), m_errorMsg);
-    auto error = luautils::OnItemCheck(PTarget, m_PItem);
 
     if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
     }
+
+    auto error = luautils::OnItemCheck(PTarget, m_PItem);
 
     if (error || m_PEntity->StatusEffectContainer->HasPreventActionEffect())
     {

@@ -3,13 +3,18 @@
 -- desc: Removes a keyitem from the target.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/keyitems");
+
 cmdprops =
 {
     permission = 1,
-    parameters = "si"
+    parameters = "ss"
 };
 
 function onTrigger(player, target, keyId)
+    
+    keyId = tonumber(keyId) or _G[keyId];
+    
     -- Load needed text ids for players current zone..
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;

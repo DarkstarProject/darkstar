@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Southern Shadow's ToD
     SetServerVariable("[POP]Southern_Shadow", os.time(t) + 57600); -- 16 hours

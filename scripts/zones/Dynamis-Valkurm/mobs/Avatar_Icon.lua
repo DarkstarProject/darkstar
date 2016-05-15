@@ -28,7 +28,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     
     --local mobID = mob:getID();
     

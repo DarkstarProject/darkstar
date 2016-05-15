@@ -20,6 +20,6 @@ end;
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer, ally)
-    ally:setVar("TheRequiemYumKilled",1);
+function onMobDeath(mob, player, isKiller)
+    player:setVar("TheRequiemYumKilled",1);
 end;

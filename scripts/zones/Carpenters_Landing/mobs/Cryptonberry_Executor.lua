@@ -21,8 +21,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and ally:getVar("Cryptonberry_Executor_KILL") == 0) then
-        ally:setVar("Cryptonberry_Executor_KILL",1);
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") == 0) then
+        player:setVar("Cryptonberry_Executor_KILL",1);
     end
 end;

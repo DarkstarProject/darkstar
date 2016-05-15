@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Hoo_Mjuu_the_Torrent's Window Open Time
     SetServerVariable("[POP]Hoo_Mjuu_the_Torrent", os.time(t) + 3600); -- 1 hour

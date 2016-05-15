@@ -30,7 +30,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     local MammetID = mob:getID();
     -- printf("MammetID dead: %u",MammetID);
 
@@ -58,7 +58,7 @@ function onMobDeath(mob, killer, ally)
         (mammet_1_3 == 0 or mammet_1_3 == 21 or mammet_1_3 == 22 or mammet_1_3 == 23)and
         (mammet_1_4 == 0 or mammet_1_4 == 21 or mammet_1_4 == 22 or mammet_1_4 == 23)and
         (mammet_1_5 == 0 or mammet_1_5 == 21 or mammet_1_5 == 22 or mammet_1_5 == 23)) then
-            ally:startEvent(0x000b);
+            player:startEvent(0x000b);
         end
     elseif (MammetID == 16908297 or MammetID == 16908298 or MammetID == 16908299 or MammetID == 16908300 or MammetID == 16908296) then
         if ((mammet_2_1 == 0 or mammet_2_1 == 21 or mammet_2_1 == 22 or mammet_2_1 == 23)and
@@ -66,7 +66,7 @@ function onMobDeath(mob, killer, ally)
         (mammet_2_3 == 0 or mammet_2_3 == 21 or mammet_2_3 == 22 or mammet_2_3 == 23)and
         (mammet_2_4 == 0 or mammet_2_4 == 21 or mammet_2_4 == 22 or mammet_2_4 == 23)and
         (mammet_2_5 == 0 or mammet_2_5 == 21 or mammet_2_5 == 22 or mammet_2_5 == 23)) then
-            ally:startEvent(0x000b);
+            player:startEvent(0x000b);
         end
     elseif (MammetID == 16908303 or MammetID == 16908304 or MammetID == 16908305 or MammetID == 16908306 or MammetID == 16908307) then
         if ((mammet_3_1 == 0 or mammet_3_1 == 21 or mammet_3_1 == 22 or mammet_3_1 == 23)and
@@ -74,7 +74,7 @@ function onMobDeath(mob, killer, ally)
         (mammet_3_3 == 0 or mammet_3_3 == 21 or mammet_3_3 == 22 or mammet_3_3 == 23)and
         (mammet_3_4 == 0 or mammet_3_4 == 21 or mammet_3_4 == 22 or mammet_3_4 == 23)and
         (mammet_3_5 == 0 or mammet_3_5 == 21 or mammet_3_5 == 22 or mammet_3_5 == 23)) then
-            ally:startEvent(0x000b);
+            player:startEvent(0x000b);
         end
     end
 end;

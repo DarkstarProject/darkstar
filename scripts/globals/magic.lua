@@ -1130,6 +1130,12 @@ function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistB
 end
 
 function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,mabBonus)
+    mabBonus = mabBonus or 0;
+
+    mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
+    if (caster:hasStatusEffect(EFFECT_INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
+        mabBonus = mabBonus + caster:getStatusEffect(EFFECT_INNIN):getPower();
+    end
     return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT,mabBonus);
 end
 
@@ -1141,7 +1147,7 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
     --get the resisted damage
     dmg = dmg*resist;
     if (skill == NINJUTSU_SKILL) then
-        if (caster:getMainJob() == JOB_NIN) then -- NIN main gets a bonus to their ninjutsu nukes
+        if (caster:getMainJob() == JOBS.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
             local ninSkillBonus = 100;
             if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
                 ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)

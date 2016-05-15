@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(COMET_CHARIOTEER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(COMET_CHARIOTEER);
 end;

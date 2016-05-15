@@ -23,11 +23,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-
-    if (mob:getID() == 17539301 and alreadyReceived(killer,6) == false) then
-        ally:addTimeToDynamis(10);
-        addDynamisList(killer,32);
+function onMobDeath(mob, player, isKiller)
+    if (mob:getID() == 17539301 and alreadyReceived(player,6) == false) then
+        player:addTimeToDynamis(10);
+        addDynamisList(player,32);
     end
-
 end;

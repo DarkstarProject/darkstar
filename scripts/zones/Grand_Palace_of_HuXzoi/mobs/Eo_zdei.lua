@@ -71,7 +71,7 @@ end;
 -- Jailer of Temperance pop
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
 

@@ -64,7 +64,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
    local mobID = mob:getID();    
   if (mobID==16929030) then
           if (IsMobDead(16929031)==true and IsMobDead(16929032)==true ) then

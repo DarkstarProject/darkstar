@@ -17,10 +17,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
-        ally:setVar("IsonadeKilled",1);
+    if (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
+        player:setVar("IsonadeKilled",1);
     end
 
 end;

@@ -11,8 +11,8 @@ require("scripts/zones/East_Sarutabaruta/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,91,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,91,1);
 
     local mobID = mob:getID();
     if (Sharp_Eared_Ropipi_PH[mobID] ~= nil) then

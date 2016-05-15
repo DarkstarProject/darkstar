@@ -27,8 +27,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(DEITY_DEBUNKER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(DEITY_DEBUNKER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
 

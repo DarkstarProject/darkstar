@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local B_ToD = GetServerVariable("[POP]Biast");
     local X = mob:getXPos();
     local Y = mob:getYPos();

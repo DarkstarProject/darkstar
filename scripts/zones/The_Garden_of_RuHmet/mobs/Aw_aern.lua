@@ -28,7 +28,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     local currentMobID = mob:getID();
 
     -- Ix'Aern (DRG) Placeholder mobs

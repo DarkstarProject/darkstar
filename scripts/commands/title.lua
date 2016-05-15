@@ -3,13 +3,18 @@
 -- desc: Sets a players title.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/titles");
+
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "ss"
 };
 
 function onTrigger(player, titleId, target)
+    
+    titleId = tonumber(titleId) or _G[titleId];
+    
     if (titleId == nil) then
         player:PrintToPlayer("You must enter a valid title id.");
         return

@@ -138,10 +138,10 @@ namespace battleutils
     bool			IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender);
 
     int32				GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID);
-    uint8				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy);
+    uint8				GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy);
     uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber);
-    uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, uint8 offsetAccuracy);
+    uint8				GetHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy);
     uint8				GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack);
     uint8				GetBlockRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     uint8				GetParryRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);

@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Golden_Bat's Window Open Time
     local wait = math.random((3600),(18000));

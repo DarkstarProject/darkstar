@@ -15,8 +15,8 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob,killer,ally)
-    ally:startEvent(0x7d04,3,3,1,3,3,3,3,3);
+function onMobDeath(mob, player, isKiller)
+    player:startEvent(0x7d04,3,3,1,3,3,3,3,3);
 end;
 
 -----------------------------------

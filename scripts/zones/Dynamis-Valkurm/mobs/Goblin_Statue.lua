@@ -17,14 +17,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 local mobID = mob:getID();
     if (mobID == 16937289 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(10);
+        player:addTimeToDynamis(10);
         mob:addInBattlefieldList();
         --print("addtime 10min");
     elseif (mobID == 16937287 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(20);
+        player:addTimeToDynamis(20);
         mob:addInBattlefieldList();
         --print("addtime 20min");
     end

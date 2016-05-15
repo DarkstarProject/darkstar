@@ -10,7 +10,7 @@ require("scripts/zones/Wajaom_Woodlands/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
 
     if (Zoraal_Ja_s_Pkuucha_PH[mobID] ~= nil) then

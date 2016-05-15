@@ -9,7 +9,7 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Swamfisk's Window Open Time
     local wait = math.random(3600,10800);

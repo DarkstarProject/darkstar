@@ -31,7 +31,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     local pet = GetMobByID(Zoraal_Ja_s_Pkuucha);
 
     pet:setUnkillable(false);

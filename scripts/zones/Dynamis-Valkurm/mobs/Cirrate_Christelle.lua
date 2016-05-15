@@ -109,10 +109,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-  if (ally:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then
-       ally:addKeyItem(DYNAMIS_VALKURM_SLIVER);
-       ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
+function onMobDeath(mob, player, isKiller)
+  if (player:hasKeyItem(DYNAMIS_VALKURM_SLIVER ) == false) then
+       player:addKeyItem(DYNAMIS_VALKURM_SLIVER);
+       player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_VALKURM_SLIVER);
   end
-       ally:addTitle(DYNAMISVALKURM_INTERLOPER);
+       player:addTitle(DYNAMISVALKURM_INTERLOPER);
 end;
