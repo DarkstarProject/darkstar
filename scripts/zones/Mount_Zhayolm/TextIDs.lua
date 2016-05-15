@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6385; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here
-            HOMEPOINT_SET = 8714; -- Home point set!
+            HOMEPOINT_SET = 8715; -- Home point set!
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7409; -- Mining is possible here if you have

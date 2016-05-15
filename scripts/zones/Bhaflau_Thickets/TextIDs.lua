@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
            GIL_OBTAINED = 6385; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here.
-            HOMEPOINT_SET = 7682; -- Home point set!
+            HOMEPOINT_SET = 7683; -- Home point set!
 
 -- Assault
 CANNOT_ENTER = 7575; -- You cannot enter at this time.  Please wait a while before trying again.
