@@ -109,6 +109,7 @@ struct map_config_t
     float  nm_attack_delay_multiplier;
     float  mob_attack_delay_multiplier;
     float  player_attack_delay_multiplier;
+    float  ws_tp_cost_multiplier;     // Weapon skill TP cost multiplier
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.

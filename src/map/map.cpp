@@ -961,6 +961,7 @@ int32 map_config_default()
     map_config.nm_attack_delay_multiplier = 1.0f;
     map_config.mob_attack_delay_multiplier = 1.0f;
     map_config.player_attack_delay_multiplier = 1.0f;
+    map_config.ws_tp_cost_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
@@ -1137,6 +1138,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "player_attack_delay_multiplier") == 0)
         {
             map_config.player_attack_delay_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "ws_tp_cost_multiplier") == 0)
+        {
+            map_config.ws_tp_cost_multiplier = atof(w2);
         }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
