@@ -17,10 +17,10 @@ GUILD_TERMINATE_CONTRACT = 7152; -- You have terminated your trading contract wi
 
 -- Other
 NOTHING_OUT_OF_ORDINARY =  6557; -- There is nothing out of the ordinary here.
-      DIABOLOS_UNLOCKED = 11873; -- You are now able to summon Diabolos!
+      DIABOLOS_UNLOCKED = 11879; -- You are now able to summon Diabolos!
 
 -- Conquest System
-CONQUEST = 9197; -- You've earned conquest points!
+CONQUEST = 9203; -- You've earned conquest points!
 
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 6727; -- You have accepted the mission.
@@ -35,7 +35,7 @@ YOU_ACCEPT_THE_MISSION = 6727; -- You have accepted the mission.
   HIKOMUMAKIMU_SHOP_DIALOG = 8902; -- Welcome to the Federal Magic Reserve, the only place in the Federation where high-level magic is allowed to be sold.
      OREZEBREZ_SHOP_DIALOG = 8903; -- Welcome to Baren-Moren's, makers of the finest headwear. Our slogan is: he smarter the hat, the smarter the head.
        TAAJIJI_SHOP_DIALOG = 8905; -- May I take your order, please...
-NESSRUGETOMALL_SHOP_DIALOG = 11444; -- Welcome to the Rarab Tail Hostelry.
+NESSRUGETOMALL_SHOP_DIALOG = 11450; -- Welcome to the Rarab Tail Hostelry.
 
     MAQUMOLPIH_OPEN_DIALOG = 8906; -- Psst... Check out these things my suppliers in Aragoneu dug up.
   MAQUMOLPIH_CLOSED_DIALOG = 8907; -- Sorrrry, but I'm waiting on my next shipment from Aragoneu, so I'm all out of things to sell you at the moment.
@@ -54,15 +54,15 @@ NESSRUGETOMALL_SHOP_DIALOG = 11444; -- Welcome to the Rarab Tail Hostelry.
       JOURILLE_OPEN_DIALOG = 8916; -- Greetings.  Can I interest you in some of these goods from Ronfaure...?
     JOURILLE_CLOSED_DIALOG = 8917; -- Greetings! I am Jourille, your friendly neighborhood traveling merchant. I would most like to sell you something from Ronfaure right now, but I regret that I am waiting on my next shipment.
 
-   PRESTAPIQ_CLOSED_DIALOG = 10639; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
-     PRESTAPIQ_OPEN_DIALOG = 10640; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
+   PRESTAPIQ_CLOSED_DIALOG = 10645; -- Goodebyongo! Wingdorsht tooo fhar awayz fhrum mai hormtowne! Dropt arll goodhys whylle ahn trripp!
+     PRESTAPIQ_OPEN_DIALOG = 10646; -- Helgohelgo! Me's bhrink goodhys arll ja wayz fhrum hormtowne ovf Morvalporlis!
 
 -- Harvest Festival
-  TRICK_OR_TREAT = 10146; -- Trick or treat...
- THANK_YOU_TREAT = 10147; -- And now for your treat...
-  HERE_TAKE_THIS = 10148; -- Here, take this...
-IF_YOU_WEAR_THIS = 10149; -- If you put this on and walk around, something...unexpected might happen...
-       THANK_YOU = 10147; -- Thank you...
+  TRICK_OR_TREAT = 10152; -- Trick or treat...
+ THANK_YOU_TREAT = 10153; -- And now for your treat...
+  HERE_TAKE_THIS = 10154; -- Here, take this...
+IF_YOU_WEAR_THIS = 10155; -- If you put this on and walk around, something...unexpected might happen...
+       THANK_YOU = 10153; -- Thank you...
 
 -- conquest Base
 CONQUEST_BASE = 0;

@@ -6,7 +6,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
            GIL_OBTAINED = 6385; -- Obtained <number> gil.
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>.
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here.
-            HOMEPOINT_SET = 8964; -- Home point set!
+            HOMEPOINT_SET = 8965; -- Home point set!
 
 -- Logging
 LOGGING_IS_POSSIBLE_HERE = 7334; -- Logging is possible here if you have
@@ -22,5 +22,5 @@ MEMBER_TOO_FAR = 7463; -- One or more party members are too far away from the en
 NOTHING_OUT_OF_ORDINARY = 7372; --There is nothing out of the ordinary here.
         NOTHING_HAPPENS = 7440; -- Nothing happens...
 
- JAZARAATS_HEADSTONE = 7514; -- The name ir Jazaraat is engraved on the headstone... 
-SEAPRINCES_TOMBSTONE = 8038; -- It appears to be the grave of a great soul to an age long past.
+ JAZARAATS_HEADSTONE = 7515; -- The name ir Jazaraat is engraved on the headstone... 
+SEAPRINCES_TOMBSTONE = 8039; -- It appears to be the grave of a great soul to an age long past.
