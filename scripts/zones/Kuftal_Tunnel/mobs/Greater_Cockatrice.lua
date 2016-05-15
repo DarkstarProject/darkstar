@@ -11,9 +11,9 @@ require("scripts/zones/Kuftal_Tunnel/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,741,2);
+    checkGoVregime(player,mob,741,2);
 
     local mobID = mob:getID();
     if (Pelican_PH[mobID] ~= nil) then

@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(LAMBTON_WORM_DESEGMENTER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(LAMBTON_WORM_DESEGMENTER);
 end;

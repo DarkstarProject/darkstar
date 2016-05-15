@@ -10,8 +10,8 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkGoVregime(ally,mob,712,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,712,1);
 
     -- Get Specter ID and check if it is a PH of any Shadow NM
     local mobID = mob:getID();

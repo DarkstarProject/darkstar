@@ -23,60 +23,60 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and ally:getVar("PromathiaStatus") == 2) then
+    if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then
         switch (mob:getID()) : caseof
         {
             -- South Tower
             [16912829] = function (x)
-            ally:setVar("Ru_aern_1-1KILL",1);
+            player:setVar("Ru_aern_1-1KILL",1);
             end,
             [16912830] = function (x)
-            ally:setVar("Ru_aern_1-2KILL",1);
+            player:setVar("Ru_aern_1-2KILL",1);
 
             end,
             [16912831] = function (x)
-            ally:setVar("Ru_aern_1-3KILL",1);
+            player:setVar("Ru_aern_1-3KILL",1);
             end,
 
             -- West Tower
             [16912832] = function (x)
-            ally:setVar("Ru_aern_2-1KILL",1);
+            player:setVar("Ru_aern_2-1KILL",1);
             end,
             [16912833] = function (x)
-            ally:setVar("Ru_aern_2-2KILL",1);
+            player:setVar("Ru_aern_2-2KILL",1);
             end,
             [16912834] = function (x)
-            ally:setVar("Ru_aern_2-3KILL",1);
+            player:setVar("Ru_aern_2-3KILL",1);
             end,
 
             -- East Tower
             [16912835] = function (x)
-             ally:setVar("Ru_aern_3-1KILL",1);
+             player:setVar("Ru_aern_3-1KILL",1);
             end,
             [16912836] = function (x)
-             ally:setVar("Ru_aern_3-2KILL",1);
+             player:setVar("Ru_aern_3-2KILL",1);
             end,
             [16912837] = function (x)
-            ally:setVar("Ru_aern_3-3KILL",1);
+            player:setVar("Ru_aern_3-3KILL",1);
             end,
         }
 
 
-        if (ally:getVar("Ru_aern_1-1KILL") == 1 and ally:getVar("Ru_aern_1-2KILL") == 1 and ally:getVar("Ru_aern_1-3KILL") == 1) then
-            ally:setVar("[SEA][AlTieu]SouthTower",1);
-            clearTowerVars(killer, 1);
+        if (player:getVar("Ru_aern_1-1KILL") == 1 and player:getVar("Ru_aern_1-2KILL") == 1 and player:getVar("Ru_aern_1-3KILL") == 1) then
+            player:setVar("[SEA][AlTieu]SouthTower",1);
+            clearTowerVars(player, 1);
         end
 
-        if (ally:getVar("Ru_aern_2-1KILL") == 1 and ally:getVar("Ru_aern_2-2KILL") == 1 and ally:getVar("Ru_aern_2-3KILL") == 1) then
-            ally:setVar("[SEA][AlTieu]WestTower",1);
-            clearTowerVars(killer, 2);
+        if (player:getVar("Ru_aern_2-1KILL") == 1 and player:getVar("Ru_aern_2-2KILL") == 1 and player:getVar("Ru_aern_2-3KILL") == 1) then
+            player:setVar("[SEA][AlTieu]WestTower",1);
+            clearTowerVars(player, 2);
         end
 
-        if (ally:getVar("Ru_aern_3-1KILL") == 1 and ally:getVar("Ru_aern_3-2KILL") == 1 and ally:getVar("Ru_aern_3-3KILL") == 1) then
-            ally:setVar("[SEA][AlTieu]EastTower",1);
-            clearTowerVars(killer, 3);
+        if (player:getVar("Ru_aern_3-1KILL") == 1 and player:getVar("Ru_aern_3-2KILL") == 1 and player:getVar("Ru_aern_3-3KILL") == 1) then
+            player:setVar("[SEA][AlTieu]EastTower",1);
+            clearTowerVars(player, 3);
         end
     end
 end;

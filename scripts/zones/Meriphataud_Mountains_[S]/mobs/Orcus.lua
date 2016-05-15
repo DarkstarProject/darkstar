@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(ORCUS_TROPHY_HUNTER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(ORCUS_TROPHY_HUNTER);
 end;

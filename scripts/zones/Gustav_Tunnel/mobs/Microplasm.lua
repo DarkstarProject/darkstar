@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local X = GetMobByID(17645797):getXPos();
     local Y = GetMobByID(17645797):getYPos();
     local Z = GetMobByID(17645797):getZPos();

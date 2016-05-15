@@ -17,11 +17,11 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
-        ally:needToZone(true);
-        ally:setVar("WarLynxKilled",1);
+    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
+        player:needToZone(true);
+        player:setVar("WarLynxKilled",1);
     end
 
 end;

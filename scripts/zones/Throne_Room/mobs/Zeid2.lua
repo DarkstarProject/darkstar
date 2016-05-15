@@ -49,7 +49,7 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     mob:setLocalVar("2hour",0);
     mob:setLocalVar("2hourtime",0);
     DespawnMob(mob:getID()+1);

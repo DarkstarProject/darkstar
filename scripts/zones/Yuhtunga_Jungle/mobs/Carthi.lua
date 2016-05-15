@@ -14,7 +14,7 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     if (GetServerVariable("[ZM4]Fire_Headstone_Active") == 0) then
         SetServerVariable("[ZM4]Fire_Headstone_Active",1);

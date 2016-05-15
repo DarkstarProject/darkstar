@@ -58,7 +58,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     mob:messageText(mob, SELHTEUS_TEXT);
     mob:getBattlefield():lose();
 end;

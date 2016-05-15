@@ -10,8 +10,8 @@ require("scripts/zones/Buburimu_Peninsula/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,62,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,62,1);
 
     local mobID = mob:getID();
     if (Buburimboo_PH[mobID] ~= nil) then

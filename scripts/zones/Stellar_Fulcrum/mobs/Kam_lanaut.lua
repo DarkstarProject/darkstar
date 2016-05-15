@@ -49,6 +49,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(DESTROYER_OF_ANTIQUITY);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(DESTROYER_OF_ANTIQUITY);
 end;

@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(RUTHVEN_ENTOMBER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(RUTHVEN_ENTOMBER);
 end;

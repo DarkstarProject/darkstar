@@ -311,7 +311,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     -- TODO: Death speech.
-    ally:addTitle(PANDEMONIUM_QUELLER);
+    player:addTitle(PANDEMONIUM_QUELLER);
 end;

@@ -18,14 +18,14 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    ally:setVar("BCNM_Killed",1);
+    player:setVar("BCNM_Killed",1);
     record = 300;
     partyMembers = 6;
-    pZone = ally:getZoneID();
+    pZone = player:getZoneID();
 
-    ally:startEvent(0x7d01,0,record,0,(os.time() - ally:getVar("BCNM_Timer")),partyMembers,0,0);
+    player:startEvent(0x7d01,0,record,0,(os.time() - player:getVar("BCNM_Timer")),partyMembers,0,0);
 
 end;
 

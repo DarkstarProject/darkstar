@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(YILBEGAN_HIDEFLAYER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(YILBEGAN_HIDEFLAYER);
 end;

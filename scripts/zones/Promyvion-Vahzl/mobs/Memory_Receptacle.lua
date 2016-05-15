@@ -92,12 +92,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
-    local difX = ally:getXPos()-mob:getXPos();
-    local difY = ally:getYPos()-mob:getYPos();
-    local difZ = ally:getZPos()-mob:getZPos();
-    local killeranimation = ally:getAnimation();
+    local difX = player:getXPos()-mob:getXPos();
+    local difY = player:getYPos()-mob:getYPos();
+    local difZ = player:getZPos()-mob:getZPos();
+    local killeranimation = player:getAnimation();
     local Distance = math.sqrt( math.pow(difX,2) + math.pow(difY,2) + math.pow(difZ,2) ); --calcul de la distance entre les "killer" et le memory receptacle
 
     mob:AnimationSub(0); -- Set ani. sub to default or the recepticles wont work properly
@@ -106,67 +106,67 @@ function onMobDeath(mob,killer,ally)
         [16867387] = function (x)
         GetNPCByID(16867700):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                ally:startEvent(32);
+                player:startEvent(32);
             end
         end,
         [16867382] = function (x)
         GetNPCByID(16867699):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(33);
+                    player:startEvent(33);
             end
         end,
         [16867429] = function (x)
         GetNPCByID(16867697):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(30);
+                    player:startEvent(30);
             end
         end,
         [16867436] = function (x)
         GetNPCByID(16867698):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(31);
+                    player:startEvent(31);
             end
         end,
         [16867501] = function (x)
         GetNPCByID(16867703):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(35);
+                    player:startEvent(35);
             end
         end,
         [16867515] = function (x)
         GetNPCByID(16867705):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(36);
+                    player:startEvent(36);
             end
         end,
         [16867494] = function (x)
         GetNPCByID(16867702):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(37);
+                    player:startEvent(37);
             end
         end,
         [16867508] = function (x)
         GetNPCByID(16867704):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(38);
+                    player:startEvent(38);
             end
         end,
         [16867604] = function (x)
         GetNPCByID(16867707):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(34);
+                    player:startEvent(34);
             end
         end,
         [16867586] = function (x)
         GetNPCByID(16867701):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(39);
+                    player:startEvent(39);
             end
         end,
         [16867595] = function (x)
         GetNPCByID(16867706):openDoor(180);
             if (Distance <4 and killeranimation == 0) then
-                    ally:startEvent(40);
+                    player:startEvent(40);
             end
         end,
     }
