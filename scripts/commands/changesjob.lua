@@ -12,7 +12,7 @@ cmdprops =
 };
 
 function onTrigger(player, jobId, level)
-    jobId = tonumber(jobId) or JOBS.(string.upper(jobId));
+    jobId = tonumber(jobId) or JOBS[string.upper(jobId)];
 
     if (jobId == nil) then
         player:PrintToPlayer("You must enter a job ID or short-name.");
