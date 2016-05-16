@@ -15,18 +15,18 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    local kills = ally:getVar("FOMOR_HATE");
+    local kills = player:getVar("FOMOR_HATE");
 
     if (kills > 1) then
-        ally:setVar("FOMOR_HATE",kills - 2);
+        player:setVar("FOMOR_HATE",kills - 2);
     else
-        ally:setVar("FOMOR_HATE",0);
+        player:setVar("FOMOR_HATE",0);
     end
 
-    if (ally:getCurrentMission(COP) == DISTANT_BELIEFS and ally:getVar("PromathiaStatus") == 0) then
-        ally:setVar("PromathiaStatus",1);
+    if (player:getCurrentMission(COP) == DISTANT_BELIEFS and player:getVar("PromathiaStatus") == 0) then
+        player:setVar("PromathiaStatus",1);
     end
 
 end;

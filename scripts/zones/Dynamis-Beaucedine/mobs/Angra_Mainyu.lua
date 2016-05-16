@@ -80,14 +80,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     
-    ally:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
-    ally:setVar("DynaBeaucedine_Win",1);
+    player:addTitle(DYNAMISBEAUCEDINE_INTERLOPER); -- Add title
+    player:setVar("DynaBeaucedine_Win",1);
     
-    if (ally:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
-        ally:addKeyItem(HYDRA_CORPS_INSIGNIA);
-        ally:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
+    if (player:hasKeyItem(HYDRA_CORPS_INSIGNIA) == false) then
+        player:addKeyItem(HYDRA_CORPS_INSIGNIA);
+        player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_INSIGNIA);
     end
     
 end;

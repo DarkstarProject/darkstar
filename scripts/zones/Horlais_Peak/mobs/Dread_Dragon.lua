@@ -17,6 +17,6 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    ally:addTitle(DREAD_DRAGON_SLAYER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(DREAD_DRAGON_SLAYER);
 end;

@@ -41,7 +41,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local OP_Mariselle = mob:getID();
 
@@ -51,8 +51,8 @@ function onMobDeath(mob, killer, ally)
         end
     end
 
-    if (ally:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and ally:getVar("PromathiaStatus") == 3 and  ally:hasKeyItem(RELIQUIARIUM_KEY)==false) then
-        ally:setVar("PromathiaStatus",4);
+    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(RELIQUIARIUM_KEY)==false) then
+        player:setVar("PromathiaStatus",4);
     end
 
   -- Set random variable for determining Old Prof. Mariselle's next spawn location

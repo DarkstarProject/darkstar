@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(3600,4200));
 end;

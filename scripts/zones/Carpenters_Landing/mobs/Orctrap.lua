@@ -10,7 +10,7 @@ require("scripts/zones/Carpenters_Landing/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Orctrap's ToD
     SetServerVariable("[POP]Orctrap", os.time(t) + math.random(3600,25200)); -- 1-7 hours

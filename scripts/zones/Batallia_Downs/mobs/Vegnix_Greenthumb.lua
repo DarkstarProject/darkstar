@@ -13,9 +13,9 @@ require("scripts/zones/Batallia_Downs/TextIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    if (ally:hasKeyItem(SEEDSPALL_ROSEUM) == false and ally:hasKeyItem(VIRIDIAN_KEY) == false) then
-        ally:addKeyItem(SEEDSPALL_ROSEUM);
-        ally:messageSpecial(KEYITEM_OBTAINED,SEEDSPALL_ROSEUM);
+function onMobDeath(mob, player, isKiller)
+    if (player:hasKeyItem(SEEDSPALL_ROSEUM) == false and player:hasKeyItem(VIRIDIAN_KEY) == false) then
+        player:addKeyItem(SEEDSPALL_ROSEUM);
+        player:messageSpecial(KEYITEM_OBTAINED,SEEDSPALL_ROSEUM);
     end
 end;

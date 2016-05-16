@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local plasms = {17645801,17645802,17645803,17645804,17645805,17645806,17645807,17645808};
     local victory = true
 
@@ -25,6 +25,6 @@ function onMobDeath(mob,killer,ally)
     end
 
     if (victory == true) then
-        ally:setVar("BASTOK91",3);
+        player:setVar("BASTOK91",3);
     end
 end;

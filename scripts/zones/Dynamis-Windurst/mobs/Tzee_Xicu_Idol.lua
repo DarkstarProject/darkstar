@@ -32,18 +32,18 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (alreadyReceived(ally,8) == false) then
-        addDynamisList(ally,128);
+    if (alreadyReceived(player,8) == false) then
+        addDynamisList(player,128);
 
-        ally:addTitle(DYNAMISWINDURST_INTERLOPER); -- Add title
+        player:addTitle(DYNAMISWINDURST_INTERLOPER); -- Add title
 
         local npc = GetNPCByID(17543480); -- Spawn ???
         npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
         npc:setStatus(0);
 
-        ally:launchDynamisSecondPart(); -- Spawn dynamis second part
+        player:launchDynamisSecondPart(); -- Spawn dynamis second part
     end
 
 end;

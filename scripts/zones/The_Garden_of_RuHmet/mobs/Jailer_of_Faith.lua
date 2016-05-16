@@ -46,7 +46,7 @@ end;
 -- onMobDespawn
 -----------------------------------
 
-function onMobDespawn(mob, killer, npc)
+function onMobDespawn(mob)
     local qm3 = GetNPCByID(Jailer_of_Faith_QM);
     qm3:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
     local qm3position = math.random(1,5);

@@ -24,6 +24,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:setVar("rootProblem",3);
+function onMobDeath(mob, player, isKiller)
+    player:setVar("rootProblem",3);
 end;

@@ -43,7 +43,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local Heliodromos = mob:getID();
     local Heliodromos_Table =

@@ -29,14 +29,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     
     local mobID = mob:getID();
     if (mobID ==16937283) then --hp        
-        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
-        ally:restoreHP(3000);
+        player:messageBasic(024,(player:getMaxHP()-player:getHP()));
+        player:restoreHP(3000);
     elseif (mobID ==16937284) then --mp
-        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
-        ally:restoreMP(3000);
+        player:messageBasic(025,(player:getMaxMP()-player:getMP()));
+        player:restoreMP(3000);
     end
 end;

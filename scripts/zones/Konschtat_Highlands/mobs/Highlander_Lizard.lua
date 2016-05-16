@@ -37,10 +37,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     -- I think he still counts the FoV pages? Most NM's do not though.
-    checkRegime(ally,mob,20,2);
-    checkRegime(ally,mob,82,2);
+    checkRegime(player,mob,20,2);
+    checkRegime(player,mob,82,2);
 
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(1200,1800)); -- 20~30 min repop

@@ -11,9 +11,9 @@ require("scripts/zones/Sea_Serpent_Grotto/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,810,2);
+    checkGoVregime(player,mob,810,2);
 
     local mobID = mob:getID();
     if (Charybdis_PH[mobID] ~= nil) then

@@ -14,7 +14,7 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     if (GetServerVariable("[ZM4]Light_Headstone_Active") == 0) then
         SetServerVariable("[ZM4]Light_Headstone_Active",os.time()+ 900);

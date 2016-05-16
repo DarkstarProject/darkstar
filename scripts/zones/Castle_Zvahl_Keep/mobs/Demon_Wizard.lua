@@ -9,7 +9,7 @@ require("scripts/zones/Castle_Zvahl_Keep/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobID = mob:getID();
     if (Baron_Vapula_PH[mobID] ~= nil) then

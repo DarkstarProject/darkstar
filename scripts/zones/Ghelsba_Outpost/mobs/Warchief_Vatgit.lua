@@ -19,14 +19,14 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(ally:getNation()) == 6) then
-        if (ally:getVar("MissionStatus") == 4) then
-            ally:setVar("MissionStatus",5);
+    if (player:getCurrentMission(player:getNation()) == 6) then
+        if (player:getVar("MissionStatus") == 4) then
+            player:setVar("MissionStatus",5);
         end
     end
 
-    ally:addTitle(WARCHIEF_WRECKER);
+    player:addTitle(WARCHIEF_WRECKER);
 
 end;

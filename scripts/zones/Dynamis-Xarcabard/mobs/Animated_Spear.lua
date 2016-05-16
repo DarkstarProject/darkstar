@@ -49,9 +49,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     
-    ally:showText(mob,ANIMATED_SPEAR_DIALOG+1);
+    player:showText(mob,ANIMATED_SPEAR_DIALOG+1);
     
     DespawnMob(17330423);
     DespawnMob(17330424);

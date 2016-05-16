@@ -24,8 +24,8 @@ end;
 -----------------------------------
 -- onMobDeath Action
 -----------------------------------
-function onMobDeath(mob,killer,ally)
-    if (ally:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US and ally:getVar("MissionStatus") == 1) then
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(BASTOK) == THE_CHAINS_THAT_BIND_US and player:getVar("MissionStatus") == 1) then
         SetServerVariable("Bastok8-1LastClear", os.time());
     end
 end;

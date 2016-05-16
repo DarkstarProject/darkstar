@@ -8,7 +8,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Fraelissa spawnpoint and respawn time (1-1.15 hours)
     UpdateNMSpawnPoint(mob:getID());

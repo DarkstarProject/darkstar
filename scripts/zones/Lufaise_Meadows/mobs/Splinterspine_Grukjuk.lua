@@ -39,10 +39,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
-        ally:setVar("SPLINTERSPINE_GRUKJUK",2);
+    if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
+        player:setVar("SPLINTERSPINE_GRUKJUK",2);
     end
 
 end;

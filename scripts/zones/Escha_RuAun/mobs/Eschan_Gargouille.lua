@@ -19,7 +19,7 @@ end;
 -- onMobEngaged
 -----------------------------------
 
-function onMobEngaged(mob, killer)
+function onMobEngaged(mob, target)
     mob:hideName(false);
     mob:untargetable(false);
     mob:AnimationSub(0);
@@ -29,5 +29,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 end;

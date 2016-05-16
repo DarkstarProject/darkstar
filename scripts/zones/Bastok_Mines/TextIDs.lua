@@ -17,30 +17,30 @@
              FISHING_MESSAGE_OFFSET = 10791; -- You can't fish here.
 
 -- Conquest System
-CONQUEST = 11091; --You've earned conquest points!
+CONQUEST = 11097; --You've earned conquest points!
 
 -- Mission Dialogs
       YOU_ACCEPT_THE_MISSION =  6504; -- You have accepted the mission.
        ORIGINAL_MISSION_OFFSET =  6509; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
-   EXTENDED_MISSION_OFFSET = 11594; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
+   EXTENDED_MISSION_OFFSET = 11600; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dynamis dialogs
-      YOU_CANNOT_ENTER_DYNAMIS = 11704; -- You cannot enter Dynamis
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 11706; -- Players who have not reached levelare prohibited from entering Dynamis.
-   UNUSUAL_ARRANGEMENT_PEBBLES = 11717; -- There is an unusual arrangement of pebbles here.
+      YOU_CANNOT_ENTER_DYNAMIS = 11710; -- You cannot enter Dynamis
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 11712; -- Players who have not reached levelare prohibited from entering Dynamis.
+   UNUSUAL_ARRANGEMENT_PEBBLES = 11723; -- There is an unusual arrangement of pebbles here.
 
 -- Dialog Texts
    HEMEWMEW_DIALOG =  7053; -- I have been appointed by the Guildworkers' Union to manage the trading of manufactured crafts and the exchange of guild points.
   VIRNAGE_DIALOG_1 = 10968; -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still!
   VIRNAGE_DIALOG_2 = 10974; -- Hand my letter to Eperdur in the San d'Oria Cathedral to claim your reward.
-THE_GATE_IS_LOCKED = 12139; -- The gate is locked.
+THE_GATE_IS_LOCKED = 12145; -- The gate is locked.
 
 -- Harvest Festival
-      TRICK_OR_TREAT = 11666; -- Trick or treat...
-     THANK_YOU_TREAT = 11667; -- And now for your treat...
-      HERE_TAKE_THIS = 11668; -- Here, take this...
-    IF_YOU_WEAR_THIS = 11669; -- If you put this on and walk around, something...unexpected might happen...
-           THANK_YOU = 11667; -- Thank you...
+      TRICK_OR_TREAT = 11672; -- Trick or treat...
+     THANK_YOU_TREAT = 11673; -- And now for your treat...
+      HERE_TAKE_THIS = 11674; -- Here, take this...
+    IF_YOU_WEAR_THIS = 11675; -- If you put this on and walk around, something...unexpected might happen...
+           THANK_YOU = 11673; -- Thank you...
 
 -- Shop Texts
          FAUSTIN_CLOSED_DIALOG = 10770; -- I'm trying to start a business selling goods from Ronfaure,
@@ -63,16 +63,16 @@ THE_GATE_IS_LOCKED = 12139; -- The gate is locked.
           MAYMUNAH_SHOP_DIALOG = 10896; -- Welcome to the Alchemists' Guild! Looking for something specific?
              ODOBA_SHOP_DIALOG = 10897; -- Welcome to the Alchemists' Guild. How may I help you?
 
-            GALDEO_OPEN_DIALOG = 11451; -- Come! Take a look at all the wonderful goods from Li'Telor.
+            GALDEO_OPEN_DIALOG = 11457; -- Come! Take a look at all the wonderful goods from Li'Telor.
 
-           AULAVIA_OPEN_DIALOG = 11452; -- May I interest you in some specialty goods from Vollbow?
-         AULAVIA_CLOSED_DIALOG = 11453; -- I'm trying to start a business selling goods from Vollbow,
+           AULAVIA_OPEN_DIALOG = 11458; -- May I interest you in some specialty goods from Vollbow?
+         AULAVIA_CLOSED_DIALOG = 11459; -- I'm trying to start a business selling goods from Vollbow,
 
-        PROUDBEARD_SHOP_DIALOG = 11622; -- Would you be interested in a nice suit of adventurer-issue armor? Be careful when you buy, though. We offer no refunds.
+        PROUDBEARD_SHOP_DIALOG = 11628; -- Would you be interested in a nice suit of adventurer-issue armor? Be careful when you buy, though. We offer no refunds.
 
-EMALIVEULAUX_COP_NOT_COMPLETED = 12220; -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
-      EMALIVEULAUX_OPEN_DIALOG = 12221; -- Rare Tavnazian imports! Get them before they're gone!
-    EMALIVEULAUX_CLOSED_DIALOG = 12222; -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
+EMALIVEULAUX_COP_NOT_COMPLETED = 12226; -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
+      EMALIVEULAUX_OPEN_DIALOG = 12227; -- Rare Tavnazian imports! Get them before they're gone!
+    EMALIVEULAUX_CLOSED_DIALOG = 12228; -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
 
 -- Weather Dialog
 MARIADOK_DIALOG = 6736; -- Your fate rides on the changing winds of Vana'diel. I can give you insight on the local weather.

@@ -18,7 +18,7 @@ FULL_INVENTORY_AFTER_TRADE = 6427; -- Try trading again after sorting your inven
    NOTHING_OUT_OF_ORDINARY = 6442; -- There is nothing out of the ordinary here.<Prompt>
 
 -- Tutorial NPC
-TUTORIAL_NPC = 13495; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
+TUTORIAL_NPC = 13501; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
 
 -- Conquest System
 CONQUEST =  8474; -- You've earned conquest points!

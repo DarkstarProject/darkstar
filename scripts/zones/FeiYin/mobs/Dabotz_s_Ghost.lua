@@ -16,10 +16,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:hasKeyItem(AQUAFLORA3)) then
-        ally:setVar("DabotzKilled",1);
+    if (player:hasKeyItem(AQUAFLORA3)) then
+        player:setVar("DabotzKilled",1);
     end
 
 end;

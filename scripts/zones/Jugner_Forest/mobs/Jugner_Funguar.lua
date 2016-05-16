@@ -9,7 +9,7 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,13,1);
-    checkRegime(ally,mob,14,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,13,1);
+    checkRegime(player,mob,14,1);
 end;

@@ -45,7 +45,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local Hippogryph = mob:getID();
     local Heliodromos_PH_Table =

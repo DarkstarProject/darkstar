@@ -18,10 +18,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getVar("theDoormanMyMob") == 1) then
-        ally:setVar("theDoormanKilledNM",ally:getVar("theDoormanKilledNM") + 1);
+    if (player:getVar("theDoormanMyMob") == 1) then
+        player:setVar("theDoormanKilledNM",player:getVar("theDoormanKilledNM") + 1);
     end
 
 end;
