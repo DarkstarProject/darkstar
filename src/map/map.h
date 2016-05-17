@@ -93,6 +93,9 @@ struct map_config_t
     bool   craft_day_matters;         // Enable/disable Element day factor in synthesis
     bool   craft_moonphase_matters;   // Enable/disable Moon phase factor in synthesis
     bool   craft_direction_matters;   // Enable/disable Compass direction factor in synthesis
+    float  craft_success_chance_multiplier;
+    float  craft_hq_chance_multiplier;
+    float  craft_item_lost_multiplier;
     float  mob_tp_multiplier;         // Multiplies the amount of TP mobs gain on any effect that would grant TP
     float  player_tp_multiplier;      // Multiplies the amount of TP players gain on any effect that would grant TP
     bool   mob_no_despawn;            // Toggle whether mobs roam home or despawn
