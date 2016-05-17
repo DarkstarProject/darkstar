@@ -60,6 +60,9 @@ int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 
 float distance(const position_t& A, const position_t& B)
 {
+    if (A.x == B.x && A.y == B.y && A.z == B.z)
+        return 0;
+
 	float one = 0, two = 0, three = 0, four = 0;
 
 	one = A.x - B.x;
