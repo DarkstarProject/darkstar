@@ -183,20 +183,24 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
     {
         return false;
     }
-    if (distance(m_PEntity->loc.p, PTarget->loc.p) > 40)
+    // don't need to check distance to self from self
+    if (PTarget != m_PEntity)
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_TOO_FAR_AWAY);
-        return false;
-    }
-    if (distance(m_PEntity->loc.p, PTarget->loc.p) > m_PSpell->getRange())
-    {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
-        return false;
-    }
-    if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
-    {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_PERFORM_ACTION);
-        return false;
+        if (distance(m_PEntity->loc.p, PTarget->loc.p) > 40)
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_TOO_FAR_AWAY);
+            return false;
+        }
+        if (distance(m_PEntity->loc.p, PTarget->loc.p) > m_PSpell->getRange())
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
+            return false;
+        }
+        if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_CANNOT_PERFORM_ACTION);
+            return false;
+        }
     }
     return true;
 }
@@ -317,6 +321,9 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
 
 bool CMagicState::HasMoved()
 {
+    if (!distance(m_startPos, m_PEntity->loc.p))
+        return false;
+
     return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
         floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
 }

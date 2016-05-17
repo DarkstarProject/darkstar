@@ -415,6 +415,9 @@ bool CTargetFind::isWithinCone(position_t* pos)
     // holds final weight
     position_t WPoint;
 
+    if (!distance(m_PBattleEntity->loc.p, *pos))
+        return true;
+
     // move origin to one vertex
     PPoint.x = pos->x - m_APoint->x;
     PPoint.z = pos->z - m_APoint->z;

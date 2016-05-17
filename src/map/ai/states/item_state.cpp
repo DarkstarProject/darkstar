@@ -260,6 +260,9 @@ void CItemState::FinishItem(action_t& action)
 
 bool CItemState::HasMoved()
 {
+    if (!distance(m_startPos, m_PEntity->loc.p))
+        return false;
+
     return floorf(m_startPos.x * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.x * 10 + 0.5) / 10 ||
         floorf(m_startPos.z * 10 + 0.5) / 10 != floorf(m_PEntity->loc.p.z * 10 + 0.5) / 10;
 }
