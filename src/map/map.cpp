@@ -946,6 +946,9 @@ int32 map_config_default()
     map_config.craft_day_matters = 1;
     map_config.craft_moonphase_matters = 0;
     map_config.craft_direction_matters = 0;
+    map_config.craft_success_chance_multiplier = 1.0f;
+    map_config.craft_hq_chance_multiplier = 1.0f;
+    map_config.craft_item_lost_multiplier = 1.0f;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
     map_config.nm_hp_multiplier = 1.0f;
@@ -1186,6 +1189,18 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "craft_direction_matters") == 0)
         {
             map_config.craft_direction_matters = atof(w2);
+        }
+        else if (strcmp(w1, "craft_success_chance_multiplier") == 0)
+        {
+            map_config.craft_success_chance_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "craft_hq_chance_multiplier") == 0)
+        {
+            map_config.craft_hq_chance_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "craft_item_lost_multiplier") == 0)
+        {
+            map_config.craft_item_lost_multiplier = atof(w2);
         }
         else if (strcmp(w1, "mysql_host") == 0)
         {
