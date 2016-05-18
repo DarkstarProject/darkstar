@@ -33,9 +33,9 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     local mobs = {{17621017,17621018,17621019,17621020,17621021,17621022,17621023,17621024,17621025,17621026,17621027},{17621031,17621032,17621033,17621034,17621035,17621036,17621037,17621038,17621039,17621040,17621041},{17621031,17621046,17621047,17621048,17621049,17621050,17621051,17621052,17621053,17621054,17621055}};
-    local inst = ally:getBattlefield():getBattlefieldNumber();
+    local inst = player:getBattlefield():getBattlefieldNumber();
     local victory = true
     for i,v in ipairs(mobs[inst]) do
         local action = GetMobAction(v);
@@ -46,7 +46,7 @@ function onMobDeath(mob, killer, ally)
     end
 
     if (victory == true) then
-        ally:startEvent(0x7d04,0,0,4);
+        player:startEvent(0x7d04,0,0,4);
     end
 
 end;

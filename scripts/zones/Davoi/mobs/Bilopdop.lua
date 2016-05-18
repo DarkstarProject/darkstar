@@ -18,11 +18,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    local theFirstMeeting = ally:getQuestStatus(BASTOK,THE_FIRST_MEETING);
-    local martialArtsScroll = ally:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
+function onMobDeath(mob, player, isKiller)
+    local theFirstMeeting = player:getQuestStatus(BASTOK,THE_FIRST_MEETING);
+    local martialArtsScroll = player:hasKeyItem(SANDORIAN_MARTIAL_ARTS_SCROLL);
 
     if (theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
-        ally:setVar("theFirstMeetingKilledNM",ally:getVar("theFirstMeetingKilledNM") + 1);
+        player:setVar("theFirstMeetingKilledNM",player:getVar("theFirstMeetingKilledNM") + 1);
     end
 end;

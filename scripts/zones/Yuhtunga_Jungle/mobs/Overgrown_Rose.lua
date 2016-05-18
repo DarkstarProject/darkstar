@@ -32,7 +32,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local Overgrown_Rose = mob:getID();
     local Rose_Garden = 17281357;

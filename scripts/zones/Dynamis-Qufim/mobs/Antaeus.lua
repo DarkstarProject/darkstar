@@ -56,10 +56,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-  if (ally:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then 
-       ally:addKeyItem(DYNAMIS_QUFIM_SLIVER);
-       ally:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
+function onMobDeath(mob, player, isKiller)
+  if (player:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then 
+       player:addKeyItem(DYNAMIS_QUFIM_SLIVER);
+       player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
   end
-       ally:addTitle(DYNAMISQUFIM_INTERLOPER);
+       player:addTitle(DYNAMISQUFIM_INTERLOPER);
 end;

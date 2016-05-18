@@ -17,10 +17,10 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:hasKeyItem(YOMOTSU_HIRASAKA)) then
-        ally:setVar("OkuriNMKilled",ally:getVar("OkuriNMKilled") + 1);
+    if (player:hasKeyItem(YOMOTSU_HIRASAKA)) then
+        player:setVar("OkuriNMKilled",player:getVar("OkuriNMKilled") + 1);
     end
 
 end;

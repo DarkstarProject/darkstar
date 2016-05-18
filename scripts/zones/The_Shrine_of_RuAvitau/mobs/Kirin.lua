@@ -86,10 +86,10 @@ end
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     -- Award title and cleanup..
-    ally:addTitle( KIRIN_CAPTIVATOR );
-    ally:showText( mob, KIRIN_OFFSET + 1 );
+    player:addTitle( KIRIN_CAPTIVATOR );
+    player:showText( mob, KIRIN_OFFSET + 1 );
 
     -- Despawn pets..
     DespawnMob( 17506671 );

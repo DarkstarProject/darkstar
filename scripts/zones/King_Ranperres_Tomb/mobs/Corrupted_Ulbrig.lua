@@ -16,11 +16,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    local currentMission = ally:getCurrentMission(SANDORIA);
-    local MissionStatus = ally:getVar("MissionStatus");
+function onMobDeath(mob, player, isKiller)
+    local currentMission = player:getCurrentMission(SANDORIA);
+    local MissionStatus = player:getVar("MissionStatus");
 
     if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
-        ally:setVar("Mission6-2MobKilled",1);
+        player:setVar("Mission6-2MobKilled",1);
     end
 end;

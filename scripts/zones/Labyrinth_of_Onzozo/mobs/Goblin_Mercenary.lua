@@ -11,11 +11,11 @@ require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,771,2);
-    checkGoVregime(ally,mob,772,2);
-    checkGoVregime(ally,mob,774,2);
+    checkGoVregime(player,mob,771,2);
+    checkGoVregime(player,mob,772,2);
+    checkGoVregime(player,mob,774,2);
 
     local mobID = mob:getID();
     if (Soulstealer_Skullnix_PH[mobID] ~= nil) then

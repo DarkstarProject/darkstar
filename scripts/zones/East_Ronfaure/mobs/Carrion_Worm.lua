@@ -10,8 +10,8 @@ require("scripts/zones/East_Ronfaure/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,65,1);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,65,1);
 
     local mobID = mob:getID();
     if (Bigmouth_Billy_PH[mobID] ~= nil) then

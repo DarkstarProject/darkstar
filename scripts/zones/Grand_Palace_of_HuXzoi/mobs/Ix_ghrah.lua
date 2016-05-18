@@ -39,8 +39,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getCurrentMission(COP) == A_FATE_DECIDED  and ally:getVar("PromathiaStatus")==1) then
-        ally:setVar("PromathiaStatus",2);
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == A_FATE_DECIDED  and player:getVar("PromathiaStatus")==1) then
+        player:setVar("PromathiaStatus",2);
     end
 end;

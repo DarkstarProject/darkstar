@@ -11,8 +11,8 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,108,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,108,2);
     local mobID = mob:getID();
     if (Frostmane_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Frostmane");

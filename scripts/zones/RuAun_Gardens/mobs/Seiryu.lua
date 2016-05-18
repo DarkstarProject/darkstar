@@ -66,8 +66,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:showText(mob,SKY_GOD_OFFSET + 10);
+function onMobDeath(mob, player, isKiller)
+    player:showText(mob,SKY_GOD_OFFSET + 10);
 end;
 
 -----------------------------------

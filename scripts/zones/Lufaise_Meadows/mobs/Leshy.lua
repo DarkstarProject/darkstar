@@ -39,7 +39,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
     local Leshy = mob:getID();
     local Colorful_Leshy = 16875762;

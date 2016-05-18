@@ -69,9 +69,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    local battlefield = ally:getBattlefield();
-    ally:startEvent(0x7d04, battlefield:getBattlefieldNumber());
+function onMobDeath(mob, player, isKiller)
+    local battlefield = player:getBattlefield();
+    player:startEvent(0x7d04, battlefield:getBattlefieldNumber());
 end;
 
 -----------------------------------

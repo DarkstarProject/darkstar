@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)    
+function onMobDeath(mob, player, isKiller)    
   
     -- Set Deadly_Dodo's Window Open Time
     SetServerVariable("[POP]Deadly_Dodo", os.time(t) + 3600); -- 1 hour

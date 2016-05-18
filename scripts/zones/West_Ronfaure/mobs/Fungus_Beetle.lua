@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Fungus Beetle's Window Open Time, and disable respawn
     local wait = math.random(900,10800);

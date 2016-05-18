@@ -11,7 +11,7 @@ require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobid = mob:getID();
     if (MultiNM_Zone_194_PH[mobid] ~= nil) then
         local ToD = GetServerVariable("[POP]MultiNM_Zone_194");

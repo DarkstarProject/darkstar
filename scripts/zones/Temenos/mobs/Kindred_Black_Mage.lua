@@ -26,6 +26,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     GetNPCByID(16928770+453):setStatus(STATUS_NORMAL);
 end;

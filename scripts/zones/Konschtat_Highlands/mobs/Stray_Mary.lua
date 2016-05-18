@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(MARYS_GUIDE);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(MARYS_GUIDE);
 end;

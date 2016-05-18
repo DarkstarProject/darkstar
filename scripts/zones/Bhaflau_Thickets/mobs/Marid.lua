@@ -10,7 +10,7 @@ require("scripts/zones/Bhaflau_Thickets/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Get Marid ID and check if it is a PH of Mahishasura
     local mobID = mob:getID();

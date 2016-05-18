@@ -37,8 +37,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    if (ally:getCurrentMission(COP) == THREE_PATHS and ally:getVar("COP_Tenzen_s_Path") == 6) then
-        ally:setVar("COP_Tenzen_s_Path",7);
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 6) then
+        player:setVar("COP_Tenzen_s_Path",7);
     end
 end;

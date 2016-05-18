@@ -17,6 +17,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(THE_HORNSPLITTER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(THE_HORNSPLITTER);
 end;

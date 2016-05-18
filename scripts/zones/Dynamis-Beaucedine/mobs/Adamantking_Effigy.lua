@@ -29,23 +29,23 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     -- Time Bonus: 063 066
     if (mobID == 17326892 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(15);
+        player:addTimeToDynamis(15);
         mob:addInBattlefieldList();
     elseif (mobID == 17326895 and mob:isInBattlefieldList() == false) then
-        ally:addTimeToDynamis(15);
+        player:addTimeToDynamis(15);
         mob:addInBattlefieldList();
     -- HP Bonus: 056 059 065 070 074 103
     elseif (mobID == 17326885 or mobID == 17326888 or mobID == 17326894 or mobID == 17326899 or mobID == 17326903 or mobID == 17326932) then 
-        ally:restoreHP(2000);
-        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+        player:restoreHP(2000);
+        player:messageBasic(024,(player:getMaxHP()-player:getHP()));
     -- MP Bonus: 057 061 067 072 076
     elseif (mobID == 17326886 or mobID == 17326890 or mobID == 17326896 or mobID == 17326901 or mobID == 17326905) then 
-        ally:restoreMP(2000);
-        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+        player:restoreMP(2000);
+        player:messageBasic(025,(player:getMaxMP()-player:getMP()));
     end
     
 end;

@@ -15,7 +15,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- If last boss trigger is killed -> pop the boss
     if (GetServerVariable("[DynaWindurst]Boss_Trigger") == 8) then

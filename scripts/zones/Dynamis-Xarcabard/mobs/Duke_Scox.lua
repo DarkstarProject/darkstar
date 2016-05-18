@@ -24,7 +24,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     
     local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger");
     
@@ -47,7 +47,7 @@ function onMobDeath(mob,killer,ally)
     end
     
     if (Animate_Trigger == 32767) then
-        ally:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
+        player:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
     end
     
 end;

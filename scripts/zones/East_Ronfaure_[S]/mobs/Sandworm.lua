@@ -17,6 +17,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(SANDWORM_WRANGLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(SANDWORM_WRANGLER);
 end;

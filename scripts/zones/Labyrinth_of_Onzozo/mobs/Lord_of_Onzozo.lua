@@ -8,9 +8,9 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(ally,mob,774,1);
+    checkGoVregime(player,mob,774,1);
 
     -- Set LoO's Window Open Time
     local wait = math.random((75600),(86400));

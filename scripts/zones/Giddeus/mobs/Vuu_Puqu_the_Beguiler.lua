@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     -- Set Vuu_Puqu_the_Beguiler's Window Open Time
     SetServerVariable("[POP]Vuu_Puqu_the_Beguiler", os.time(t) + math.random((7200),(14400))); -- 2-4 hours

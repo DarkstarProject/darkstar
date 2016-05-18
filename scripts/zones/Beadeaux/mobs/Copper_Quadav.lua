@@ -19,13 +19,13 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
-        local missionStatus = ally:getVar("MissionStatus");
+    if (player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
+        local missionStatus = player:getVar("MissionStatus");
 
         if (missionStatus > 1 and missionStatus < 22) then
-            ally:setVar("MissionStatus", missionStatus + 1)
+            player:setVar("MissionStatus", missionStatus + 1)
         end
     end
 

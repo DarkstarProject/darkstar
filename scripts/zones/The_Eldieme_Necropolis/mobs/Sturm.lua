@@ -16,13 +16,13 @@ end;
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    local ANewDawn = ally:getQuestStatus(JEUNO,A_NEW_DAWN);
-    local ANewDawnEvent = ally:getVar("ANewDawn_Event");
+    local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
+    local ANewDawnEvent = player:getVar("ANewDawn_Event");
 
     if (ANewDawn == QUEST_ACCEPTED and ANewDawnEvent == 4) then
-        ally:setVar("ANewDawn_Event",5);
+        player:setVar("ANewDawn_Event",5);
     end
 
     -- Despawn Tigers if alive

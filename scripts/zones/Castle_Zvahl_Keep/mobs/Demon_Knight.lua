@@ -10,7 +10,7 @@ require("scripts/zones/Castle_Zvahl_Keep/MobIDs");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 
     local mobID = mob:getID();
     if (Count_Bifrons_PH[mob] ~= nil) then

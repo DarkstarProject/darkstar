@@ -9,8 +9,8 @@ require("scripts/globals/fieldsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
-    checkRegime(ally,mob,100,2);
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,100,2);
 
      -- Set Eldritch Edge's Window Open Time
     local wait = math.random(5400,7200);

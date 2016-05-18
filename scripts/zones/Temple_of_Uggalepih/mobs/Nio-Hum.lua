@@ -17,10 +17,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
 
-    if (ally:getCurrentMission(SANDORIA) == LIGHTBRINGER and ally:getVar("Mission8-2Kills") < 2) then
-        local kills = ally:getVar("Mission8-2Kills");
-        ally:setVar("Mission8-2Kills",kills + 1);
+    if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("Mission8-2Kills") < 2) then
+        local kills = player:getVar("Mission8-2Kills");
+        player:setVar("Mission8-2Kills",kills + 1);
     end
 end;

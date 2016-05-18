@@ -41,7 +41,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
           if (IsMobDead(16929005)==true and IsMobDead(16929006)==true and IsMobDead(16929007)==true) then
             GetNPCByID(16928768+78):setPos(-280,-161,-440);
             GetNPCByID(16928768+78):setStatus(STATUS_NORMAL);

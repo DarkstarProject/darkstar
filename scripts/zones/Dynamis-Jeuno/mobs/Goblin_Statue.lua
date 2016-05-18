@@ -30,22 +30,22 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
     mobID = mob:getID();
     
     -- HP Bonus: 005 011 016 023 026 031 040 057 063 065 068 077 079 080 082 083 084 093 102 119 | 123 126 128 
     if (mobID == 17547534 or mobID == 17547540 or mobID == 17547545 or mobID == 17547552 or mobID == 17547555 or mobID == 17547560 or mobID == 17547569 or mobID == 17547586 or
        mobID == 17547592 or mobID == 17547594 or mobID == 17547597 or mobID == 17547606 or mobID == 17547608 or mobID == 17547609 or mobID == 17547612 or mobID == 17547613 or 
        mobID == 17547622 or mobID == 17547631 or mobID == 17547647 or mobID == 17547651 or mobID == 17547654 or mobID == 17547656) then 
-        ally:restoreHP(3000);
-        ally:messageBasic(024,(ally:getMaxHP()-ally:getHP()));
+        player:restoreHP(3000);
+        player:messageBasic(024,(player:getMaxHP()-player:getHP()));
     -- MP Bonus: 009 012 017 024 025 030 039 044 056 062 064 067 076 078 081 082 085 094 095 101 118 | 122 127 129 150
     elseif (mobID == 17547538 or mobID == 17547541 or mobID == 17547546 or mobID == 17547553 or mobID == 17547554 or mobID == 17547559 or mobID == 17547568 or mobID == 17547573 or 
            mobID == 17547585 or mobID == 17547591 or mobID == 17547593 or mobID == 17547596 or mobID == 17547605 or mobID == 17547607 or mobID == 17547610 or mobID == 17547611 or 
            mobID == 17547614 or mobID == 17547623 or mobID == 17547624 or mobID == 17547630 or mobID == 17547646 or mobID == 17547650 or mobID == 17547655 or mobID == 17547657 or 
            mobID == 17547678) then
-        ally:restoreMP(3000);
-        ally:messageBasic(025,(ally:getMaxMP()-ally:getMP()));
+        player:restoreMP(3000);
+        player:messageBasic(025,(player:getMaxMP()-player:getMP()));
     end
     -- Spawn 089-097 when statue 044 is defeated
     if (mobID == 17547573) then

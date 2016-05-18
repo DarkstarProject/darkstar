@@ -13,7 +13,7 @@
               NO_MORE_GP_ELIGIBLE =  6975;  -- You are not eligible to receive guild points at this time
                                  GP_OBTAINED =  6964;  -- Obtained <<<Numeric Parameter 0>>> guild points.
              NOT_HAVE_ENOUGH_GP =  6981;  -- You do not have enough guild points.
-                           MOGHOUSE_EXIT = 12335;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
+                           MOGHOUSE_EXIT = 12341;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
       FISHING_MESSAGE_OFFSET =  7408;  -- You can't fish here.
       
 -- Conquest System
@@ -28,7 +28,7 @@ ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission wi
        FLYER_REFUSED = 11503; -- Your flyer is refused.
       FLYER_ACCEPTED = 12041; -- Your flyer is accepted!
        FLYER_ALREADY = 12042; -- This person already has a flyer.
-      SHIVA_UNLOCKED = 12780; -- You are now able to summon
+      SHIVA_UNLOCKED = 12786; -- You are now able to summon
 
 -- Other Dialog
  GUILBERDRIER_DIALOG = 11131; -- A magic shop, you say? A bit of magic would come in handy... I know! I'll have my daughter study it for me!
@@ -69,11 +69,11 @@ ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission wi
       VILLION_DIALOG = 12039; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
      COULLENE_DIALOG = 12040; -- Magic could be of use on my journey to Paradise. Thank you so much!
 
-    COULLENE_MESSAGE = 13347; -- Coullene looks over curiously for a moment.
-GUILBERDRIER_MESSAGE = 13348; -- Guilberdrier looks over curiously for a moment.
-     BONCORT_MESSAGE = 13349; -- Boncort looks over curiously for a moment.
-     CAPIRIA_MESSAGE = 13350; -- Capiria looks over curiously for a moment.
-     VILLION_MESSAGE = 13351; -- Villion looks over curiously for a moment.
+    COULLENE_MESSAGE = 13353; -- Coullene looks over curiously for a moment.
+GUILBERDRIER_MESSAGE = 13354; -- Guilberdrier looks over curiously for a moment.
+     BONCORT_MESSAGE = 13355; -- Boncort looks over curiously for a moment.
+     CAPIRIA_MESSAGE = 13356; -- Capiria looks over curiously for a moment.
+     VILLION_MESSAGE = 13357; -- Villion looks over curiously for a moment.
 
 -- Shop Texts
    DOGGOMEHR_SHOP_DIALOG = 11525; -- Welcome to the Blacksmiths' Guild shop.
@@ -97,26 +97,26 @@ EUGBALLION_CLOSED_DIALOG = 11622; -- I'd be making a fortune selling goods from 
   EUGBALLION_OPEN_DIALOG = 11623; -- Have a look at these goods imported direct from Qufim Island!
     CHAUPIRE_SHOP_DIALOG = 11624; -- San d'Orian woodcraft is the finest in the land!
 
-    GAUDYLOX_SHOP_DIALOG = 12595; -- You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
-MILLECHUCA_CLOSED_DIALOG = 12596; -- I've been trying to import goods from Vollbow, but it's so hard to get items from areas that aren't under San d'Orian control.
+    GAUDYLOX_SHOP_DIALOG = 12601; -- You never see Goblinshhh from underworld? Me no bad. Me sell chipshhh. You buy. Use with shhhtone heart. You get lucky!
+MILLECHUCA_CLOSED_DIALOG = 12602; -- I've been trying to import goods from Vollbow, but it's so hard to get items from areas that aren't under San d'Orian control.
 
-    ATTARENA_OPEN_DIALOG = 12681; -- Good day! Take a look at my selection from Li'Telor!
-  MILLECHUCA_OPEN_DIALOG = 12682; -- Specialty goods from Vollbow! Specialty goods from Vollbow!
+    ATTARENA_OPEN_DIALOG = 12687; -- Good day! Take a look at my selection from Li'Telor!
+  MILLECHUCA_OPEN_DIALOG = 12688; -- Specialty goods from Vollbow! Specialty goods from Vollbow!
 
-  ARACHAGNON_SHOP_DIALOG = 12884; -- Would you be interested in purchasing some adventurer-issue armor? Be careful when selecting, as we accept no refunds.
+  ARACHAGNON_SHOP_DIALOG = 12890; -- Would you be interested in purchasing some adventurer-issue armor? Be careful when selecting, as we accept no refunds.
 
-       JUSTI_SHOP_DIALOG = 13537; -- Hello!
+       JUSTI_SHOP_DIALOG = 13543; -- Hello!
 
 -- Harvest Festival
-      TRICK_OR_TREAT = 13027; -- Trick or treat...
-     THANK_YOU_TREAT = 13028; -- And now for your treat...
+      TRICK_OR_TREAT = 13033; -- Trick or treat...
+     THANK_YOU_TREAT = 13034; -- And now for your treat...
       HERE_TAKE_THIS = 12060; -- Here, take this...
-    IF_YOU_WEAR_THIS = 13030; -- If you put this on and walk around, something...unexpected might happen...
-           THANK_YOU = 13028; -- Thank you...
+    IF_YOU_WEAR_THIS = 13036; -- If you put this on and walk around, something...unexpected might happen...
+           THANK_YOU = 13034; -- Thank you...
 
 -- conquest Base
 CONQUEST_BASE = 7249; -- Tallying conquest results...
 
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 18074; -- You retrieve a <item> from the porter moogle's care.
+RETRIEVE_DIALOG_ID = 18080; -- You retrieve a <item> from the porter moogle's care.

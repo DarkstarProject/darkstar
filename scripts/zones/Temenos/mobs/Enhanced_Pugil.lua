@@ -27,7 +27,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer,ally)
+function onMobDeath(mob, player, isKiller)
 local cofferID=Randomcoffer(6,GetInstanceRegion(1298));
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();

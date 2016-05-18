@@ -57,6 +57,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
-    ally:addTitle(TROLL_SUBJUGATOR);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(TROLL_SUBJUGATOR);
 end;

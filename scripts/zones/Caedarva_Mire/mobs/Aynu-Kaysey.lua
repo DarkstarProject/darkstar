@@ -49,6 +49,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer, ally)
+function onMobDeath(mob, player, isKiller)
     mob:setRespawnTime(math.random(7200,14400));
 end;
