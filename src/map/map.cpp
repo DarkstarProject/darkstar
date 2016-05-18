@@ -946,6 +946,9 @@ int32 map_config_default()
     map_config.craft_day_matters = 1;
     map_config.craft_moonphase_matters = 0;
     map_config.craft_direction_matters = 0;
+    map_config.craft_success_chance_multiplier = 1.0f;
+    map_config.craft_hq_chance_multiplier = 1.0f;
+    map_config.craft_item_lost_multiplier = 1.0f;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
     map_config.nm_hp_multiplier = 1.0f;
@@ -955,9 +958,24 @@ int32 map_config_default()
     map_config.mob_mp_multiplier = 1.0f;
     map_config.player_mp_multiplier = 1.0f;
     map_config.sj_mp_divisor = 2.0f;
+    map_config.sj_level_ratio = 0.5f;
     map_config.nm_stat_multiplier = 1.0f;
     map_config.mob_stat_multiplier = 1.0f;
     map_config.player_stat_multiplier = 1.0f;
+    map_config.nm_cast_time_multiplier = 1.0f;
+    map_config.mob_cast_time_multiplier = 1.0f;
+    map_config.player_cast_time_multiplier = 1.0f;
+    map_config.nm_recast_time_multiplier = 1.0f;
+    map_config.mob_recast_time_multiplier = 1.0f;
+    map_config.player_recast_time_multiplier = 1.0f;
+    map_config.nm_cast_interrupt_multiplier = 1.0f;
+    map_config.mob_cast_interrupt_multiplier = 1.0f;
+    map_config.player_cast_interrupt_multiplier = 1.0f;
+    map_config.nm_attack_delay_multiplier = 1.0f;
+    map_config.mob_attack_delay_multiplier = 1.0f;
+    map_config.player_attack_delay_multiplier = 1.0f;
+    map_config.ws_tp_cost_multiplier = 1.0f;
+    map_config.ability_recast_multiplier = 1.0f;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
@@ -978,6 +996,8 @@ int32 map_config_default()
     map_config.audit_linkshell = 0;
     map_config.msg_server_port = 54003;
     map_config.msg_server_ip = "127.0.0.1";
+    map_config.item_vendor_sell_multiplier = 1.0f;
+    map_config.healing_tick_delay = 10;
     return 0;
 }
 
@@ -1111,6 +1131,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.sj_mp_divisor = atof(w2);
         }
+        else if (strcmp(w1, "sj_level_ratio") == 0)
+        {
+            map_config.sj_level_ratio = atof(w2);
+        }
         else if (strcmp(w1, "nm_stat_multiplier") == 0)
         {
             map_config.nm_stat_multiplier = atof(w2);
@@ -1122,6 +1146,62 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "player_stat_multiplier") == 0)
         {
             map_config.player_stat_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_cast_time_multiplier") == 0)
+        {
+            map_config.nm_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_cast_time_multiplier") == 0)
+        {
+            map_config.mob_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_cast_time_multiplier") == 0)
+        {
+            map_config.player_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_recast_time_multiplier") == 0)
+        {
+            map_config.nm_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_recast_time_multiplier") == 0)
+        {
+            map_config.mob_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_recast_time_multiplier") == 0)
+        {
+            map_config.player_cast_time_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_cast_interrupt_multiplier") == 0)
+        {
+            map_config.nm_cast_interrupt_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_cast_interrupt_multiplier") == 0)
+        {
+            map_config.mob_cast_interrupt_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_cast_interrupt_multiplier") == 0)
+        {
+            map_config.player_cast_interrupt_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "nm_attack_delay_multiplier") == 0)
+        {
+            map_config.nm_attack_delay_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "mob_attack_delay_multiplier") == 0)
+        {
+            map_config.mob_attack_delay_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "player_attack_delay_multiplier") == 0)
+        {
+            map_config.player_attack_delay_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "ws_tp_cost_multiplier") == 0)
+        {
+            map_config.ws_tp_cost_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "ability_recast_multiplier") == 0)
+        {
+            map_config.ability_recast_multiplier = atof(w2);
         }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
@@ -1186,6 +1266,18 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "craft_direction_matters") == 0)
         {
             map_config.craft_direction_matters = atof(w2);
+        }
+        else if (strcmp(w1, "craft_success_chance_multiplier") == 0)
+        {
+            map_config.craft_success_chance_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "craft_hq_chance_multiplier") == 0)
+        {
+            map_config.craft_hq_chance_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "craft_item_lost_multiplier") == 0)
+        {
+            map_config.craft_item_lost_multiplier = atof(w2);
         }
         else if (strcmp(w1, "mysql_host") == 0)
         {
@@ -1270,6 +1362,14 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "mob_no_despawn") == 0)
         {
             map_config.mob_no_despawn = atoi(w2);
+        }
+        else if (strcmp(w1, "item_vendor_sell_multiplier") == 0)
+        {
+            map_config.item_vendor_sell_multiplier = atof(w2);
+        }
+        else if (strcmp(w1, "healing_tick_delay") == 0)
+        {
+            map_config.healing_tick_delay = atoi(w2);
         }
         else
         {

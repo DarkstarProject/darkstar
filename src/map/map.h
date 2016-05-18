@@ -93,6 +93,9 @@ struct map_config_t
     bool   craft_day_matters;         // Enable/disable Element day factor in synthesis
     bool   craft_moonphase_matters;   // Enable/disable Moon phase factor in synthesis
     bool   craft_direction_matters;   // Enable/disable Compass direction factor in synthesis
+    float  craft_success_chance_multiplier;
+    float  craft_hq_chance_multiplier;
+    float  craft_item_lost_multiplier;
     float  mob_tp_multiplier;         // Multiplies the amount of TP mobs gain on any effect that would grant TP
     float  player_tp_multiplier;      // Multiplies the amount of TP players gain on any effect that would grant TP
     bool   mob_no_despawn;            // Toggle whether mobs roam home or despawn
@@ -103,9 +106,24 @@ struct map_config_t
     float  mob_mp_multiplier;         // Multiplier for max MP pool of mob
     float  player_mp_multiplier;      // Multiplier for max MP pool of player
     float  sj_mp_divisor;             // Divisor to use on subjob max MP
+    float  sj_level_ratio;            // Subjob level ratio
     float  nm_stat_multiplier;        // Multiplier for str/vit/etc of NMs
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
+    float  nm_cast_time_multiplier;   
+    float  mob_cast_time_multiplier;  
+    float  player_cast_time_multiplier;
+    float  nm_recast_time_multiplier;
+    float  mob_recast_time_multiplier;
+    float  player_recast_time_multiplier;
+    float  nm_cast_interrupt_multiplier;
+    float  mob_cast_interrupt_multiplier;  
+    float  player_cast_interrupt_multiplier;
+    float  nm_attack_delay_multiplier;
+    float  mob_attack_delay_multiplier;
+    float  player_attack_delay_multiplier;
+    float  ws_tp_cost_multiplier;     // Weapon skill TP cost multiplier
+    float  ability_recast_multiplier; // Adjust ability recast time
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
@@ -122,6 +140,8 @@ struct map_config_t
     bool   audit_yell;
     bool   audit_linkshell;
     bool   audit_party;
+    float  item_vendor_sell_multiplier;
+    uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     const char* msg_server_ip;        // central message server IP
 };

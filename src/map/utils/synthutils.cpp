@@ -362,6 +362,14 @@ uint8 calcSynthResult(CCharEntity* PChar)
             }
 
 			double random = dsprand::GetRandomNumber(1.);
+
+            if (success != 1.0)
+            {
+                double successOdds = success / (1 - success);
+                successOdds *= map_config.craft_success_chance_multiplier;
+                success = successOdds / (1 + successOdds);
+            }
+
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 			ShowDebug(CL_CYAN"Success: %g  Random: %g\n" CL_RESET, success, random);
 			#endif
@@ -404,6 +412,13 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					if(chance > 0.500)
 					    chance = 0.500;
 
+                    if (chance != 1.0)
+                    {
+                        double chanceOdds = chance / (1 - chance);
+                        chanceOdds *= map_config.craft_hq_chance_multiplier;
+                        chance = chanceOdds / (1 + chanceOdds);
+                    }
+                    
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
 					#endif
@@ -670,6 +685,13 @@ int32 doSynthFail(CCharEntity* PChar)
 
 	double random   = 0;
 	double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
+
+    if (lostItem != 1.0)
+    {
+        double lostItemOdds = lostItem / (1 - lostItem);
+        lostItemOdds *= map_config.craft_item_lost_multiplier;
+        lostItem = lostItemOdds / (1 + lostItemOdds);
+    }
 
 	invSlotID = PChar->CraftContainer->getInvSlotID(1);
 
