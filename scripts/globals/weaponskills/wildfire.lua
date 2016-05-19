@@ -1,4 +1,5 @@
 -----------------------------------
+-- Wildfire
 -- Skill Level: N/A
 -- Description: Deals fire elemental damage. Enmity generation varies with TP. Armageddon: Aftermath.
 -- Acquired permanently by completing the appropriate Walk of Echoes Weapon Skill Trials.

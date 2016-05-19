@@ -1,4 +1,5 @@
 -----------------------------------
+-- Namas Arrow
 -- Skill Level: N/A
 -- Description: Additional Effect: Temporarily improves Ranged Accuracy
 -- Aligned with the Light Gorget, Snow Gorget & Aqua Gorget.
