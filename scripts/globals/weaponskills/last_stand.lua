@@ -1,4 +1,5 @@
 -----------------------------------
+-- Last Stand
 -- Skill Level: 357
 -- Description: Attacks once or twice, depending on remaining ammunition. Damage dealt varies with TP.
 -- If the first shot of the weapon skill does enough damage to defeat the target, the second shot will not be used.

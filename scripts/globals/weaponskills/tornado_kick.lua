@@ -1,5 +1,4 @@
 -------------------------------
--- Auth : Thief
 -- Skill: Tornado Kick
 -- Class: H2H Weapon Skill
 -- Level: 225
@@ -41,7 +40,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.ftp100 = 2.25; params.ftp200 = 4.25; params.ftp300 = 7.5;
-        params.str_wsc = 0.4; params.dex_wsc = 0.4; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+        params.str_wsc = 0.4; params.dex_wsc = 0.4; 
         params.atkmulti = 1.5;
     end
 

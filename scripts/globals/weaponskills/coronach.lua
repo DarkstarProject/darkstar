@@ -1,4 +1,5 @@
 -----------------------------------
+-- Coronach
 -- Skill Level: N/A
 -- Description: Additional effect: temporarily lowers enmity.
 -- Lowers Enmity for a certain amount of time. (Enmity -20)
