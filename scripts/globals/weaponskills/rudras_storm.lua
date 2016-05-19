@@ -27,7 +27,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.atkmulti = 1;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-        params.ftp100 = 6; params.ftp200 = 15; params.ftp300 = 19.5;
+        params.ftp100 = 5; params.ftp200 = 10.19; params.ftp300 = 13;
         params.dex_wsc = 0.8;
     end
 

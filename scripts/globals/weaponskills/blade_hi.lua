@@ -1,5 +1,5 @@
 -----------------------------------
--- Blade HI
+-- Blade Hi
 -- Katana weapon skill
 -- Skill level: N/A
 -- Description: Deals quadruple damage. Chance of params.critical hit varies with TP. Kannagi: Aftermath.
