@@ -3962,6 +3962,7 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PItemLinkPearl->setID(515);
             PItemLinkPearl->setSubType(ITEM_UNLOCKED);
+            PItemLinkPearl->setFlag(PItemLinkPearl->getFlag() & ~ITEM_FLAG_EX);
 
             charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
         }
@@ -4001,6 +4002,7 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
                 PItemLinkshell->setID(513);
+                PItemLinkshell->setFlag(PItemLinkshell->getFlag() | ITEM_FLAG_NOSALE);
                 PItemLinkshell->SetLSID(LinkshellID);
                 PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                 PItemLinkshell->SetLSColor(LinkshellColor);
