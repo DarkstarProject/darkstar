@@ -3953,17 +3953,13 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
     }
 
-    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
+    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && (PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK || PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL))
     {
-        CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
-
-        if (PItemLinkPearl->GetLSType() == LSTYPE_PEARLSACK ||
-            PItemLinkPearl->GetLSType() == LSTYPE_LINKSHELL)
+        CItemLinkshell* PItemLinkPearl = (CItemLinkshell*)itemutils::GetItem(515);
+        if (PItemLinkPearl)
         {
-            PItemLinkPearl->setID(515);
-            PItemLinkPearl->setSubType(ITEM_UNLOCKED);
-            PItemLinkPearl->setFlag(PItemLinkPearl->getFlag() & ~ITEM_FLAG_EX);
-
+            PItemLinkPearl->setQuantity(1);
+            memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
             charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
         }
     }
@@ -4001,8 +3997,12 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
-                PItemLinkshell->setID(513);
-                PItemLinkshell->setFlag(PItemLinkshell->getFlag() | ITEM_FLAG_NOSALE);
+                delete PItemLinkshell;
+                PItemLinkshell = (CItemLinkshell*)itemutils::GetItem(513);
+                if (PItemLinkshell == nullptr)
+                    return;
+                PItemLinkshell->setQuantity(1);
+                PChar->getStorage(LOC_INVENTORY)->InsertItem(PItemLinkshell, SlotID);
                 PItemLinkshell->SetLSID(LinkshellID);
                 PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                 PItemLinkshell->SetLSColor(LinkshellColor);
