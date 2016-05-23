@@ -579,8 +579,7 @@ void CalculateStats(CMobEntity * PMob)
         ShowError("Mobutils::CalculateStats Mob (%s, %d) with magic but no cool down set!\n", PMob->GetName(), PMob->id);
     }
 
-    if (!(PMob->m_Detects & DETECT_SIGHT) && !(PMob->m_Detects & DETECT_HEARING) &&
-            !(PMob->m_Detects & DETECT_SCENT))
+    if (PMob->m_Detects == 0)
     {
         ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
     }

@@ -1,4 +1,5 @@
 -----------------------------------
+-- Trueflight
 -- Skill Level: N/A
 -- Description: Deals light elemental damage. Damage varies with TP. Gastraphetes: Aftermath effect varies with TP.
 -- Available only after completing the Unlocking a Myth (Ranger) quest.

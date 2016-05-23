@@ -175,35 +175,35 @@ void CLinkshell::ChangeMemberRank(int8* MemberName, uint8 toSack)
 
                 CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PMember->getEquip(slot);
 
-                if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
+                if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
                 {
-				    PItemLinkshell->setID(newId);
+                    CItemLinkshell* newShellItem = (CItemLinkshell*)itemutils::GetItem(newId);
+                    if (newShellItem == nullptr)
+                        return;
+                    newShellItem->setQuantity(1);
+                    memcpy(newShellItem->m_extra, PItemLinkshell->m_extra, 24);
+                    newShellItem->setSubType(ITEM_LOCKED);
+                    uint8 SlotID = PItemLinkshell->getSlotID();
+                    delete PItemLinkshell;
+                    PItemLinkshell = newShellItem;
+
+                    PMember->getStorage(LOC_INVENTORY)->InsertItem(PItemLinkshell, SlotID);
+                    const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
+                    Sql_Query(SqlHandle, Query, PItemLinkshell->getID(), PMember->id, LOC_INVENTORY, SlotID);
+                    if (lsID == 1)
+                    {
+                        Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid1 = %u , linkshellrank1 = %u WHERE charid = %u",
+                            m_id, PItemLinkshell->GetLSType(), PMember->id);
+                    }
+                    else if (lsID == 2)
+                    {
+                        Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid2 = %u , linkshellrank2 = %u WHERE charid = %u",
+                            m_id, PItemLinkshell->GetLSType(), PMember->id);
+                    }
 
                     PMember->pushPacket(new CInventoryAssignPacket(PItemLinkshell, INV_NORMAL));
                     PMember->pushPacket(new CLinkshellEquipPacket(PMember, lsID));
-                }
-
-			    CItemContainer* Inventory = PMember->getStorage(LOC_INVENTORY);
-                for (uint8 SlotID = 0; SlotID < Inventory->GetSize(); ++SlotID)
-                {
-                        CItemLinkshell* PItemLinkshell = (CItemLinkshell*)Inventory->GetItem(SlotID);
-
-					    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && PItemLinkshell->GetLSID() == m_id)
-		                {
-                            const int8* Query = "UPDATE char_inventory SET itemid = %u WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
-						    Sql_Query(SqlHandle, Query, PItemLinkshell->getID(),PMember->id, LOC_INVENTORY, SlotID);
-                            if (lsID == 1)
-                            {
-                                Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid1 = %u , linkshellrank1 = %u WHERE charid = %u",
-                                    m_id, PItemLinkshell->GetLSType(), PMember->id);
-                            }
-                            else if (lsID == 2)
-                            {
-                                Sql_Query(SqlHandle, "UPDATE accounts_sessions SET linkshellid2 = %u , linkshellrank2 = %u WHERE charid = %u",
-                                    m_id, PItemLinkshell->GetLSType(), PMember->id);
-                            }
-                            PMember->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
-		                }
+                    PMember->pushPacket(new CInventoryItemPacket(PItemLinkshell, LOC_INVENTORY, SlotID));
                 }
 	        
                 charutils::SaveCharStats(PMember);

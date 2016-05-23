@@ -264,10 +264,10 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
     // base delay
-    int delay = 240;
+    int delay = 0;
 
     if (PRange != nullptr && PRange->getDamage() != 0) {
-        delay += ((PRange->getDelay() * 60) / 1000);
+        delay = ((PRange->getDelay() * 60) / 1000);
     }
 
     delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 120);
@@ -279,7 +279,7 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     }
     else if (PAmmo)
     {
-        delay += ((PAmmo->getDelay() * 60) / 1000);
+        delay += PAmmo->getDelay() / 2;
     }
     return delay;
 }
@@ -288,12 +288,11 @@ int16 CBattleEntity::GetAmmoDelay()
 {
     CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
-    int delay = 240;
+    int delay = 0;
     if (PAmmo != nullptr && PAmmo->getDamage() != 0) {
-        delay += ((PAmmo->getDelay() * 60) / 1000);
+        delay = PAmmo->getDelay() / 2;
     }
 
-    delay = ((delay * 1000) / 120);
     return delay;
 }
 

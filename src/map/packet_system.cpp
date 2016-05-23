@@ -3954,16 +3954,13 @@ void SmallPacket0x0C3(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
     }
 
-    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
+    if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL) && (PItemLinkshell->GetLSType() == LSTYPE_PEARLSACK || PItemLinkshell->GetLSType() == LSTYPE_LINKSHELL))
     {
-        CItemLinkshell* PItemLinkPearl = new CItemLinkshell(*PItemLinkshell);
-
-        if (PItemLinkPearl->GetLSType() == LSTYPE_PEARLSACK ||
-            PItemLinkPearl->GetLSType() == LSTYPE_LINKSHELL)
+        CItemLinkshell* PItemLinkPearl = (CItemLinkshell*)itemutils::GetItem(515);
+        if (PItemLinkPearl)
         {
-            PItemLinkPearl->setID(515);
-            PItemLinkPearl->setSubType(ITEM_UNLOCKED);
-
+            PItemLinkPearl->setQuantity(1);
+            memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
             charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
         }
     }
@@ -4001,7 +3998,12 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
             if (LinkshellID = linkshell::RegisterNewLinkshell(DecodedName, LinkshellColor))
             {
-                PItemLinkshell->setID(513);
+                delete PItemLinkshell;
+                PItemLinkshell = (CItemLinkshell*)itemutils::GetItem(513);
+                if (PItemLinkshell == nullptr)
+                    return;
+                PItemLinkshell->setQuantity(1);
+                PChar->getStorage(LOC_INVENTORY)->InsertItem(PItemLinkshell, SlotID);
                 PItemLinkshell->SetLSID(LinkshellID);
                 PItemLinkshell->setSignature(EncodedName); //because apparently the format from the packet isn't right, and is missing terminators
                 PItemLinkshell->SetLSColor(LinkshellColor);
@@ -4884,6 +4886,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             rotation = (col >= 2 ? 3 : 1);
         }
 
+        bool wasInstalled = PItem->isInstalled();
         PItem->setInstalled(true);
         PItem->setCol(col);
         PItem->setRow(row);
@@ -4901,7 +4904,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "extra = '%s' "
             "WHERE location = 1 AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 

@@ -429,35 +429,35 @@ void CMobEntity::HideModel(bool hide)
     {
         // I got this from ambush antlion
         // i'm not sure if this is right
-        m_flags |= 0x80;
+        m_flags |= FLAG_HIDE_MODEL;
     }
     else
     {
-        m_flags &= ~0x80;
+        m_flags &= ~FLAG_HIDE_MODEL;
     }
 }
 
 bool CMobEntity::IsModelHidden()
 {
-    return (m_flags & 0x80) == 0x80;
+    return m_flags & FLAG_HIDE_MODEL;
 }
 
 void CMobEntity::HideHP(bool hide)
 {
     if (hide)
     {
-        m_flags |= 0x100;
+        m_flags |= FLAG_HIDE_HP;
     }
     else
     {
-        m_flags &= ~0x100;
+        m_flags &= ~FLAG_HIDE_HP;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::IsHPHidden()
 {
-    return (m_flags & 0x100) == 0x100;
+    return m_flags & FLAG_HIDE_HP;
 }
 
 
@@ -465,36 +465,36 @@ void CMobEntity::CallForHelp(bool call)
 {
     if (call)
     {
-        m_flags |= 0x20;
+        m_flags |= FLAG_CALL_FOR_HELP;
     }
     else
     {
-        m_flags &= ~0x20;
+        m_flags &= ~FLAG_CALL_FOR_HELP;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::CalledForHelp()
 {
-    return (m_flags & 0x20) == 0x20;
+    return m_flags & FLAG_CALL_FOR_HELP;
 }
 
 void CMobEntity::Untargetable(bool untargetable)
 {
     if (untargetable)
     {
-        m_flags |= 0x800;
+        m_flags |= FLAG_UNTARGETABLE;
     }
     else
     {
-        m_flags &= ~0x800;
+        m_flags &= ~FLAG_UNTARGETABLE;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::IsUntargetable()
 {
-    return (m_flags & 0x800) == 0x800;
+    return m_flags & FLAG_UNTARGETABLE;
 }
 
 void CMobEntity::PostTick()
@@ -637,7 +637,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_JUG_PET && 
+    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_JUG_PET &&
         static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON)
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
