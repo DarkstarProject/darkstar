@@ -242,6 +242,13 @@ INSERT INTO `mob_spawn_mods` VALUES (17428811,2,5625,1);
 INSERT INTO `mob_spawn_mods` VALUES (16986431,16,1,1); -- Tinnin 2hour
 
 -- Timers for mobs that depop when idle+unclaimed
+-- Sea
+INSERT INTO `mob_spawn_mods` VALUES (16912838,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912839,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912846,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912847,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16912848,55,300,1);
+-- ZNM
 INSERT INTO `mob_spawn_mods` VALUES (16986428,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (16986429,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (16986430,55,180,1);

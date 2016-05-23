@@ -1980,7 +1980,7 @@ namespace battleutils
 
                 int16 delay = PAttacker->GetRangedWeaponDelay(true);
 
-                baseTp = CalculateBaseTP((delay * 110) / 1000);
+                baseTp = CalculateBaseTP((delay * 120) / 1000);
 
             }
             else
@@ -2100,7 +2100,7 @@ namespace battleutils
             if (isRanged)
             {
                 int16 delay = PChar->GetRangedWeaponDelay(true);
-                baseTp = CalculateBaseTP((delay * 110) / 1000);
+                baseTp = CalculateBaseTP((delay * 120) / 1000);
             }
             else
             {

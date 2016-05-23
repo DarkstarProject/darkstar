@@ -1,5 +1,5 @@
 -----------------------------------
--- Shadow Of Death
+-- Shadow of Death
 -- Scythe weapon skill
 -- Skill Level: 70
 -- Delivers a dark elemental attack. Damage varies with TP.
