@@ -43,6 +43,7 @@
 #include "../packets/release.h"
 #include "../packets/message_system.h"
 
+#include "battleutils.h"
 #include "charutils.h"
 #include "fishingutils.h"
 #include "itemutils.h"
@@ -566,7 +567,7 @@ namespace fishingutils
                             PMob->m_SpawnPoint = nearPosition(PChar->loc.p, 2.2f, M_PI);
                             PMob->m_AllowRespawn = false;
                             PMob->Spawn();
-                            PMob->PEnmityContainer->AddAggroEnmity(PChar);
+                            battleutils::ClaimMob((CBattleEntity*)PMob, (CBattleEntity*)PChar);
                         }
 
                         // Message: "<blank> caught a monster!" //
