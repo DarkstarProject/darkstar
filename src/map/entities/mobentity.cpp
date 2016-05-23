@@ -433,7 +433,7 @@ void CMobEntity::HideModel(bool hide)
     }
     else
     {
-        m_flags &= FLAG_HIDE_MODEL;
+        m_flags &= ~FLAG_HIDE_MODEL;
     }
 }
 
@@ -450,7 +450,7 @@ void CMobEntity::HideHP(bool hide)
     }
     else
     {
-        m_flags &= FLAG_HIDE_HP;
+        m_flags &= ~FLAG_HIDE_HP;
     }
     updatemask |= UPDATE_HP;
 }
@@ -469,7 +469,7 @@ void CMobEntity::CallForHelp(bool call)
     }
     else
     {
-        m_flags &= FLAG_CALL_FOR_HELP;
+        m_flags &= ~FLAG_CALL_FOR_HELP;
     }
     updatemask |= UPDATE_HP;
 }
@@ -487,7 +487,7 @@ void CMobEntity::Untargetable(bool untargetable)
     }
     else
     {
-        m_flags &= FLAG_UNTARGETABLE;
+        m_flags &= ~FLAG_UNTARGETABLE;
     }
     updatemask |= UPDATE_HP;
 }

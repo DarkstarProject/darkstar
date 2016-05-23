@@ -108,7 +108,7 @@ void CBaseEntity::HideName(bool hide)
 	}
 	else
 	{
-		namevis &= FLAG_HIDE_NAME;
+		namevis &= ~FLAG_HIDE_NAME;
 	}
     updatemask |= UPDATE_HP;
 }
