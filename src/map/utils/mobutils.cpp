@@ -580,7 +580,7 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     if (!(PMob->m_Detects & DETECT_SIGHT) && !(PMob->m_Detects & DETECT_HEARING) &&
-            !(PMob->m_Detects & DETECT_SCENT))
+            !(PMob->m_Detects & DETECT_SCENT) && !(PMob->m_Detects & DETECT_MAGIC))
     {
         ShowError("Mobutils::CalculateStats Mob (%s, %d, %d) has no detection methods!\n", PMob->GetName(), PMob->id, PMob->m_Family);
     }
