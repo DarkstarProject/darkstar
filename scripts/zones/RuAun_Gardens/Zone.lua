@@ -9,6 +9,7 @@ package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/conquest");
+require("scripts/globals/zone");
 require("scripts/zones/RuAun_Gardens/TextIDs");
 
 -----------------------------------
