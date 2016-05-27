@@ -2,6 +2,9 @@
 -- Area: VeLugannon Palace
 -- NPC:  Zipacna
 -----------------------------------
+
+require("scripts/globals/pathfind");
+
 local path = {
 -202, 0, 391,
 -209, 0, 387,

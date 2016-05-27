@@ -3,6 +3,7 @@
 --  MOB: Shikigami Weapon
 -----------------------------------
 
+require("scripts/globals/pathfind");
 
 local path = {
 -47, -4, -37,

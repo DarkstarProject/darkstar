@@ -58,10 +58,10 @@ end;
 function onInitialize(zone)
     local manuals = {17228375,17228376};
     local book = GetNPCByID(17228375);
-    local rift = GetNPCByID(17228385)
+    local rift = GetNPCByID(17228385);
 
-    book:setPos(-98,-9,-655,216)
-    rift:setPos(-90.707,-7.899,-663.99,216)
+    book:setPos(-98,-9,-655,216);
+    rift:setPos(-90.707,-7.899,-663.99,216);
     SetFieldManual(manuals);
 
     -- Simurgh
