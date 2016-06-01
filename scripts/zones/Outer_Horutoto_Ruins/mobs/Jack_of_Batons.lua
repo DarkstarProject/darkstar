@@ -11,6 +11,20 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:setLocalVar("popTime", os.time())
+end;
+
+-----------------------------------
+-- onMobRoam Action
+-----------------------------------
+
+function onMobRoam(mob)
+    local spawnTime = mob:getLocalVar("popTime");
+
+    if (os.time() - spawnTime > 180) then
+        DespawnMob(mob:getID());
+    end
+
 end;
 
 -----------------------------------
