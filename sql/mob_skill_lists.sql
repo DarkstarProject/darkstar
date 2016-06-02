@@ -2608,3 +2608,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Hippomaritimus',770,452);
 INSERT INTO `mob_skill_lists` VALUES ('Rambukk',771,267);
 
 INSERT INTO `mob_skill_lists` VALUES ('Koropkkur',772,302);
+
+INSERT INTO `mob_skill_lists` VALUES ('Metal_Shears',773,448);
+
+INSERT INTO `mob_skill_lists` VALUES ('Skirling_Liger',774,270);
+INSERT INTO `mob_skill_lists` VALUES ('Skirling_Liger',774,273);
+
+INSERT INTO `mob_skill_lists` VALUES ('Wake_Warder_Wanda',775,442);
+INSERT INTO `mob_skill_lists` VALUES ('Wake_Warder_Wanda',775,445);
