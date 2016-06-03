@@ -371,8 +371,6 @@ function ItemToBCNMID(player, zone, trade)
                         questTimelineOK = 1;
                     elseif (item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then -- Carbuncle Debacle (Ogmios)
                         questTimelineOK = 1;
-					elseif (item == 1842) then --Ouryu Cometh
-						questTimelineOK = 1;
                     end
 
                     if (questTimelineOK == 1) then
