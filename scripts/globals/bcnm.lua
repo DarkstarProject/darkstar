@@ -19,6 +19,7 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
                    21, {0, 0}, -- Spire of Mea
                    23, {0, 0}, -- Spire of Vahzl
                    29, {0, 0}, -- Riverne Site #B01
+				   30, {1842, 928}, -- Riverne Site #A01
                    31, {0, 0}, -- Monarch Linn
                    32, {0, 0}, -- Sealion's Den
                    35, {0, 0}, -- The Garden of RuHmet
@@ -27,7 +28,7 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
                    140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
                    144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
                    146, {1553, 107, 1551, 105, 1177, 100}, -- Balgas Dias
-                   163, {1130, 129}, -- Sacrificial Chamber
+                   163, {1130, 129, 1130, 130}, -- Sacrificial Chamber 
                    168, {0, 0}, -- Chamber of Oracles
                    170, {0, 0}, -- Full Moon Fountain
                    180, {1550, 293}, -- LaLoff Amphitheater
@@ -55,6 +56,7 @@ bcnmid_param_map = {6, {640, 0},
                   21, {832, 0},
                   23, {864, 0},
                   29, {896, 0},
+				  30, {0, 0},
                   31, {960, 0, 961, 1},
                   32, {992, 0, 993, 1},
                   35, {1024, 0},
@@ -63,7 +65,7 @@ bcnmid_param_map = {6, {640, 0},
                   140, {32, 0, 33, 1, 34, 2, 35, 3, 36, 4},
                   144, {65, 1, 73, 9, 64, 0, 67, 3, 68, 4, 70, 6, 71, 7, 72, 8, 81, 17, 76, 12, 82, 18, 79, 15},
                   146, {99, 3, 96, 0, 101, 5, 102, 6, 103, 7, 107, 11, 105, 9},
-                  163, {128, 0, 129, 1},
+                  163, {128, 0, 129, 1, 130, 2},
                   165, {160, 0, 161, 1},
                   168, {192, 0, 194, 2, 195, 3, 196, 4},
                   170, {224, 0, 225, 1},
@@ -251,7 +253,7 @@ function EventFinishBCNM(player, csid, option)
 
         if (id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
             player:tradeComplete(); -- Removes the item
-        elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
+        elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553 or item == 1842) then -- Orb and Testimony (one time item)
             player:createWornItem(item);
         end
         return true;
@@ -370,6 +372,8 @@ function ItemToBCNMID(player, zone, trade)
                         questTimelineOK = 1;
                     elseif (item == 1174 and player:getVar("CarbuncleDebacleProgress") == 6) then -- Carbuncle Debacle (Ogmios)
                         questTimelineOK = 1;
+					elseif (item == 1842) then --Ouryu Cometh
+						questTimelineOK = 1;
                     end
 
                     if (questTimelineOK == 1) then
