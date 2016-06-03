@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : DarkStar
-Source Server Version : 50529
+Source Server         : Darkstar
+Source Server Version : 50710
 Source Host           : localhost:3306
 Source Database       : dspdb
 
 Target Server Type    : MYSQL
-Target Server Version : 50529
+Target Server Version : 50710
 File Encoding         : 65001
 
-Date: 2013-02-12 17:25:00
+Date: 2016-06-02 17:14:53
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -34,7 +34,7 @@ CREATE TABLE `bcnm_info` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
 -- ----------------------------
--- Records
+-- Records of bcnm_info
 -- ----------------------------
 INSERT INTO `bcnm_info` VALUES ('0', '139', 'rank_2_mission', null, null, '1800', '25', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1', '139', 'tails_of_woe', null, null, '1800', '40', '6', '0', '15');
@@ -108,7 +108,7 @@ INSERT INTO `bcnm_info` VALUES ('115', '146', 'avian_apostates', null, null, '18
 INSERT INTO `bcnm_info` VALUES ('116', '146', 'beyond_infinity', null, null, '600', '0', '6', '0', '6');
 INSERT INTO `bcnm_info` VALUES ('128', '163', 'temple_of_uggalepih', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('129', '163', 'jungle_boogymen', null, null, '1800', '60', '6', '10', '15');
-INSERT INTO `bcnm_info` VALUES ('130', '163', 'amphibian_assault', null, null, '1800', '60', '6', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('130', '163', 'amphibian_assault', null, null, '1800', '60', '6', '156', '15');
 INSERT INTO `bcnm_info` VALUES ('131', '163', 'project_shantottofication', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('132', '163', 'whom_wilt_thou_call', null, null, '1800', '0', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('160', '165', 'shadow_lord_battle', null, null, '1800', '90', '6', '0', '5');
@@ -274,24 +274,21 @@ INSERT INTO `bcnm_info` VALUES ('1286', '39', 'dynamis_Valkurm', null, null, '36
 INSERT INTO `bcnm_info` VALUES ('1287', '40', 'dynamis_Buburimu', null, null, '3600', '0', '36', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1288', '41', 'dynamis_Qufim', null, null, '3600', '0', '36', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1289', '42', 'dynamis_Tavnazia', null, null, '3600', '0', '18', '0', '7');
-
 INSERT INTO `bcnm_info` VALUES ('1290', '38', 'NW_Apollyon', null, null, '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1291', '38', 'SW_Apollyon', null, null, '1800', '0', '18', '0', '7');
-
 INSERT INTO `bcnm_info` VALUES ('1292', '38', 'NE_Apollyon', null, null, '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1293', '38', 'SE_Apollyon', null, null, '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1294', '38', 'CS_Apollyon' , null, null, '1200', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1294', '38', 'CS_Apollyon', null, null, '1200', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1295', '38', 'CS_Apollyon_II', null, null, '1200', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1296', '38', 'Central_Apollyon', null, null, '1800', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1297', '38', 'Central_Apollyon_II', null, null, '1800', '0', '18', '0', '7');
-
-INSERT INTO `bcnm_info` VALUES ('1298', '37', 'Temenos_Western_Tower', null, null,  '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1299', '37', 'Temenos_Northern_Tower', null, null,  '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1300', '37', 'Temenos_Eastern_Tower', null, null,  '1800', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1301', '37', 'Central_Temenos_Basement', null, null,	 '900', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1302', '37', 'Central_Temenos_Basement_II', null, null,  '900', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1303', '37', 'Central_Temenos_1st_Floor', null, null,	 '2700', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1304', '37', 'Central_Temenos_2nd_Floor', null, null, 	 '2700', '0', '18', '0', '7');
-INSERT INTO `bcnm_info` VALUES ('1305', '37', 'Central_Temenos_3rd_Floor', null, null,	 '2700', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1298', '37', 'Temenos_Western_Tower', null, null, '1800', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1299', '37', 'Temenos_Northern_Tower', null, null, '1800', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1300', '37', 'Temenos_Eastern_Tower', null, null, '1800', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1301', '37', 'Central_Temenos_Basement', null, null, '900', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1302', '37', 'Central_Temenos_Basement_II', null, null, '900', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1303', '37', 'Central_Temenos_1st_Floor', null, null, '2700', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1304', '37', 'Central_Temenos_2nd_Floor', null, null, '2700', '0', '18', '0', '7');
+INSERT INTO `bcnm_info` VALUES ('1305', '37', 'Central_Temenos_3rd_Floor', null, null, '2700', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1306', '37', 'Central_Temenos_4th_Floor', null, null, '3600', '0', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1307', '37', 'Central_Temenos_4th_Floor_II', null, null, '3600', '0', '18', '0', '7');
