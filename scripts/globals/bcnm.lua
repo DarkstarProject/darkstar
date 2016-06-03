@@ -19,7 +19,6 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
                    21, {0, 0}, -- Spire of Mea
                    23, {0, 0}, -- Spire of Vahzl
                    29, {0, 0}, -- Riverne Site #B01
-				   30, {0, 0}, -- Riverne Site #A01
                    31, {0, 0}, -- Monarch Linn
                    32, {0, 0}, -- Sealion's Den
                    35, {0, 0}, -- The Garden of RuHmet
