@@ -4134,6 +4134,7 @@ namespace battleutils
         {
             CMobEntity* mob = (CMobEntity*)PDefender;
 
+            mob->PEnmityContainer->UpdateEnmity(PAttacker, 0, 0);
             if (PAttacker->objtype != TYPE_PC) {
                 if (PAttacker->PMaster != nullptr)
                 {
@@ -4153,7 +4154,6 @@ namespace battleutils
                     mob->m_HiPCLvl = PAttacker->GetMLevel();
                 }
 
-                mob->PEnmityContainer->AddBaseEnmity(PAttacker);
                 mob->m_OwnerID.id = PAttacker->id;
                 mob->m_OwnerID.targid = PAttacker->targid;
                 mob->updatemask |= UPDATE_STATUS;
