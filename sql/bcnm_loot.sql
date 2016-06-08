@@ -1662,7 +1662,7 @@ INSERT INTO `bcnm_loot` VALUES ('155', '1958', '200', '6'); -- SMN
 INSERT INTO `bcnm_loot` VALUES ('155', '2658', '400', '6'); -- COR
 INSERT INTO `bcnm_loot` VALUES ('155', '1940', '200', '6'); -- THF
 
---BCNM Amphibian Assualt
+-- BCNM Amphibian Assualt
 INSERT INTO `bcnm_loot` VALUES ('156', '13155', '100', '0');
 INSERT INTO `bcnm_loot` VALUES ('156', '13152', '100', '0');
 INSERT INTO `bcnm_loot` VALUES ('156', '13150', '100', '0');
