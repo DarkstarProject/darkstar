@@ -96,7 +96,7 @@ void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 c
 
     if (type == RECAST_ABILITY)
     {
-        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %llu, %u);", m_PChar->id, recast->ID, recast->TimeStamp, recast->RecastTime);
+        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %u, %u);", m_PChar->id, recast->ID, static_cast<uint32>(recast->TimeStamp), recast->RecastTime);
     }
 }
 
