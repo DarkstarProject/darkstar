@@ -43,11 +43,6 @@ end
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    -- Despawn pets..
-    DespawnMob(wyvernA);
-    DespawnMob(wyvernB);
-    DespawnMob(wyvernC);
-	
 end;
 
 -----------------------------------
