@@ -16,7 +16,13 @@ function onMobDeath(mob, player, isKiller)
     if (kills < 480) then
         player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
     end
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     -- Set Bright-handed Kunberry's spawnpoint and respawn time (21-21.5 hours)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(75600,77400));

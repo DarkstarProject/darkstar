@@ -23,10 +23,10 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,ORCISH_WARLORD_DEATH);
     mob:setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours

@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Tempest Tigon's spawnpoint and respawn time (1-2 hours)
     UpdateNMSpawnPoint(mob:getID());

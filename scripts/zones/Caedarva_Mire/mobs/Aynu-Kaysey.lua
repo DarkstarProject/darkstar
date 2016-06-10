@@ -46,9 +46,9 @@ function onCriticalHit(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     mob:setRespawnTime(math.random(7200,14400));
 end;

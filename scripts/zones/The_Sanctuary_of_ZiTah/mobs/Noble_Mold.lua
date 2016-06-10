@@ -11,6 +11,17 @@ require("scripts/globals/fieldsofvalor");
 
 function onMobDeath(mob, player, isKiller)
 
+    checkRegime(player, mob, 115, 1);
+    checkRegime(player, mob, 116, 2);
+
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     local Noble_Mold = mob:getID();
     local Noble_Mold_PH = GetServerVariable("Noble_Mold_PH");
 
@@ -19,8 +30,5 @@ function onMobDeath(mob, player, isKiller)
     DeterMob(Noble_Mold, true);
     DeterMob(Noble_Mold_PH, false);
     SpawnMob(Noble_Mold_PH, "", GetMobRespawnTime(Noble_Mold_PH));
-
-    checkRegime(player, mob, 115, 1);
-    checkRegime(player, mob, 116, 2);
 
 end;
