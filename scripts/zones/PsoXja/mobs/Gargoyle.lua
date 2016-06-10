@@ -12,10 +12,10 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     for i = 0, 16, 1 do
 

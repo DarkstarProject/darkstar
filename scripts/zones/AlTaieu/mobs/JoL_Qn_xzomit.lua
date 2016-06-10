@@ -13,10 +13,10 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     local JoL = GetMobByID(16912848);
     local XZOMITS = JoL:getLocalVar("JoL_Qn_xzomit_Killed");
     JoL:setLocalVar("JoL_Qn_xzomit_Killed", XZOMITS+1);

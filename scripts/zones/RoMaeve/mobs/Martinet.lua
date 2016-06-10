@@ -44,10 +44,10 @@ function onSpikesDamage(mob,target,damage)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     -- UpdateNMSpawnPoint(mob:getID());
     -- mob:setRespawnTime(math.random((?),(?))); -- Uncertain repop time
 end;

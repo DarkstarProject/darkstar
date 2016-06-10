@@ -8,10 +8,10 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     -- Set PH back to normal
     local PH = GetServerVariable("[PH]Blubbery_Bulge");
     SetServerVariable("[PH]Blubbery_Bulge", 0);

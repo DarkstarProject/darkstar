@@ -7,10 +7,10 @@
 require("scripts/zones/Bhaflau_Thickets/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Get Olden Treant ID and check if it is a PH of EE
     local mobID = mob:getID();

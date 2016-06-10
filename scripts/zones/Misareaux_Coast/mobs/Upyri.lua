@@ -11,9 +11,9 @@
 -- Earring may or may not drop only if the ToD was at night.
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     mob:setRespawnTime(math.random(75600,86400));   -- 21 to 24 hr
 end;

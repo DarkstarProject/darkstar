@@ -6,10 +6,10 @@
 require("scripts/zones/Castle_Oztroja/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Quu_Domi_the_Gallant_PH[mobID] ~= nil) then

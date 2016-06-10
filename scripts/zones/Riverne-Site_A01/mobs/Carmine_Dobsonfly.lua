@@ -30,10 +30,10 @@ function onMobDisengage(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     local firstDobsonfly = 16900230;
     local mobID = mob:getID();
     local carminesKilled = GetServerVariable("[NM]Carmine_Dobsonflies_Killed");

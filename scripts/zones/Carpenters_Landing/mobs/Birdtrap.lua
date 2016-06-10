@@ -7,10 +7,10 @@
 require("scripts/zones/Carpenters_Landing/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Get Birdtrap ID and check if it is a PH of Orctrap
     local mobID = mob:getID();

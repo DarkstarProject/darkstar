@@ -59,10 +59,10 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(5400,6000));
 end;

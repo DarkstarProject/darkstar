@@ -10,6 +10,14 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+    player:addTitle(BYEBYE_TAISAI);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local Taisaijin = 17457216;
     local Taisaijin_PH = GetServerVariable("Taisaijin_PH");
@@ -19,7 +27,5 @@ function onMobDeath(mob, player, isKiller)
     DeterMob(Taisaijin, true);
     DeterMob(Taisaijin_PH, false);
     SpawnMob(Taisaijin_PH, "", GetMobRespawnTime(Taisaijin_PH));
-
-    player:addTitle(BYEBYE_TAISAI);
 
 end;
