@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Western Shadow's ToD
     SetServerVariable("[POP]Western_Shadow", os.time(t) + 36000); -- 10 hours

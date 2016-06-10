@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)    
+function onMobDespawn(mob)    
 
     -- Set Jaggedy-Eared_Jack's Window Open Time, and disable respawn
     local wait = math.random((3000),(21600));

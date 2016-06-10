@@ -6,10 +6,10 @@
 require("scripts/globals/fieldsofvalor");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Stinging_Sophie's Window Open Time
     local wait = math.random(1200,3600)
