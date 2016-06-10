@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Narasimha's Window Open Time
     local wait = math.random(21600,36000); -- 6-10 hours

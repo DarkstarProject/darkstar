@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Taxim's Window Open Time
     SetServerVariable("[POP]Taxim", os.time(t) + 7200); -- 2 hours

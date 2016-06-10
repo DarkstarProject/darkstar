@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Goblinsavior Heronox's Window Open Time
     local wait = math.random(10800,18000);  -- 3-5 hours
