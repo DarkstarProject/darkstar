@@ -14,7 +14,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkRegime(player,mob,2,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Jaggedy_Eared_Jack_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Jaggedy_Eared_Jack");
         if (ToD <= os.time(t) and GetMobAction(Jaggedy_Eared_Jack) == 0) then

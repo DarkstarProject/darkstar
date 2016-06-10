@@ -13,7 +13,15 @@ require("scripts/zones/Buburimu_Peninsula/MobIDs");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,62,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Buburimboo_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Buburimboo");
         if (ToD <= os.time(t) and GetMobAction(Buburimboo) == 0) then

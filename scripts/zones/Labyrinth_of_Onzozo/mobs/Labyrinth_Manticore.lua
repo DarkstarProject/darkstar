@@ -15,7 +15,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkGoVregime(player,mob,775,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Narasimha_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Narasimha");
         if (ToD <= os.time(t) and GetMobAction(Narasimha) == 0) then

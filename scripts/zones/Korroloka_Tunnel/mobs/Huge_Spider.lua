@@ -13,7 +13,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkGoVregime(player,mob,279,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Falcatus_Aranei_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Falcatus_Aranei");
         if (ToD <= os.time(t) and GetMobAction(Falcatus_Aranei) == 0) then
