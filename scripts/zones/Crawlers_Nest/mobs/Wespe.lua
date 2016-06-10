@@ -14,7 +14,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkGoVregime(player,mob,691,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Demonic_Tiphia_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Demonic_Tiphia");
         if (ToD <= os.time(t) and GetMobAction(Demonic_Tiphia) == 0) then

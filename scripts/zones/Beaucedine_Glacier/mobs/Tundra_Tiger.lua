@@ -14,9 +14,16 @@ require("scripts/zones/Beaucedine_Glacier/MobIDs");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,46,1);
     checkRegime(player,mob,47,1);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    local mobID = mob:getID();
 
     -- Kirata
-    local mobID = mob:getID();
     if (Kirata_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Kirata");
         if (ToD <= os.time(t) and GetMobAction(Kirata) == 0) then
