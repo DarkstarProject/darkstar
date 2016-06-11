@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Lilac Tower NMs Window Open Time
     local wait = math.random(2700,3600); -- between 45 and 60 minute spawn timer

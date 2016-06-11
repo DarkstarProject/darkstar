@@ -5,10 +5,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Amemet's Window Open Time
     local wait = math.random(7200,43200); -- 2-12 hours

@@ -15,7 +15,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkGoVregime(player,mob,810,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Charybdis_PH[mobID] ~= nil) then
         local Charybdis_ToD = GetServerVariable("[POP]Charybdis");
         if (Charybdis_ToD <= os.time(t) and GetMobAction(Charybdis) == 0 and math.random((1),(10)) == 10) then

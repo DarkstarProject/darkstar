@@ -14,7 +14,15 @@ require("scripts/zones/East_Sarutabaruta/MobIDs");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,91,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Sharp_Eared_Ropipi_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Sharp_Eared_Ropipi");
         if (ToD <= os.time(t) and GetMobAction(Sharp_Eared_Ropipi) == 0) then

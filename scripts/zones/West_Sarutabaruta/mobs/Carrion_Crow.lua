@@ -14,7 +14,15 @@ require("scripts/zones/West_Sarutabaruta/MobIDs");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,28,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Nunyenunc_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Nunyenunc");
         if (ToD <= os.time(t) and GetMobAction(Nunyenunc) == 0) then

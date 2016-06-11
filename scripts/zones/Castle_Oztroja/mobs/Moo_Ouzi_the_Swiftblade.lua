@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     if (math.random(1,100) <= 14) then -- Hardcoded "this or this item" drop rate until implemented.
         SetDropRate(1936,16936,1000); -- Demonic Sword

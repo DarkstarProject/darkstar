@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Ungur's Window Open Time
     SetServerVariable("[POP]Ungur", os.time(t) + 7200); -- 2 hours

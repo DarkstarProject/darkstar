@@ -7,10 +7,10 @@
 require("scripts/zones/Mount_Zhayolm/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set EnE's ToD
     SetServerVariable("[POP]Energetic_Eruca", os.time(t) + 86400); -- 24 hours
