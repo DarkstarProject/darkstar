@@ -34,9 +34,9 @@ function onUseAbility(player,target,ability)
     
     -- Weapon Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0;
-    if (player:getMainJob()==JOB_DRK) then
+    if (player:getMainJob() == JOBS.DRK) then
         darkKnightLvl = player:getMainLvl();    -- Use Mainjob Lvl
-    elseif (player:getSubJob()==JOB_DRK) then
+    elseif (player:getSubJob() == JOBS.DRK) then
         darkKnightLvl = player:getSubLvl();    -- Use Subjob Lvl
     end
     
