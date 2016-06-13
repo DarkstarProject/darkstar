@@ -32,7 +32,7 @@ function onUseAbility(player,target,ability)
 
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
-    if (target:getMainJob()==JOB_DRG) then
+    if (target:getMainJob() == JOBS.DRG) then
         strBoost = (1 + target:getMainLvl()/5); -- Use Mainjob Lvl
     else
         strBoost = (1 + target:getSubLvl()/5);  -- Use Subjob Lvl

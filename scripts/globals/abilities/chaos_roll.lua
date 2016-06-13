@@ -63,7 +63,7 @@ function onUseAbilityRoll(caster,target,ability,total)
 
     if (total < 12) then
         if (jobBonus == 0) then -- this happens on the first roll only, and only for the roller
-            if (caster:hasPartyJob(JOB_DRK) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
+            if (caster:hasPartyJob(JOBS.DRK) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
                 jobBonus = 1; -- enables job boost
                 -- print("first roll w/ bonus")
             else
