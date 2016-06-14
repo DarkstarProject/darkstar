@@ -31,10 +31,10 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     
     local mobID = mob:getID();
     

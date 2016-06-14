@@ -18,9 +18,9 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     DespawnMob(mob:getID() + 1);
 end;
