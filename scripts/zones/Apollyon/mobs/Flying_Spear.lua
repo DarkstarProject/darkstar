@@ -23,10 +23,10 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
  local mobID = mob:GetID();    
  if (mobID ==16933034) then -- time
  

@@ -97,6 +97,13 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(APOLLYON_RAVAGER);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
