@@ -43,10 +43,10 @@ function onMobFight(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     local Yang = GetMobByID(17330184);
     local dynaLord = GetMobByID(17330177);
     -- localVars clear on death, so setting it on its partner
