@@ -9823,14 +9823,17 @@ inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
         int i = 1;
         for (auto member : *enmityList)
         {
-            lua_getglobal(L, CLuaBaseEntity::className);
-            lua_pushstring(L, "new");
-            lua_gettable(L, -2);
-            lua_insert(L, -2);
-            lua_pushlightuserdata(L, (void*)member.second->PEnmityOwner);
-            lua_pcall(L, 2, 1, 0);
+            if (member.second.PEnmityOwner)
+            {
+                lua_getglobal(L, CLuaBaseEntity::className);
+                lua_pushstring(L, "new");
+                lua_gettable(L, -2);
+                lua_insert(L, -2);
+                lua_pushlightuserdata(L, (void*)member.second.PEnmityOwner);
+                lua_pcall(L, 2, 1, 0);
 
-            lua_rawseti(L, -2, i++);
+                lua_rawseti(L, -2, i++);
+            }
         }
     }
     else

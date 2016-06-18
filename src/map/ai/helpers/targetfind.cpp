@@ -263,8 +263,11 @@ void CTargetFind::addAllInEnmityList()
 
         for (EnmityList_t::iterator it = enmityList->begin(); it != enmityList->end(); ++it)
         {
-            EnmityObject_t* PEnmityObject = it->second;
-			addEntity(PEnmityObject->PEnmityOwner, false);
+            EnmityObject_t& PEnmityObject = it->second;
+            if (PEnmityObject.PEnmityOwner)
+            {
+                addEntity(PEnmityObject.PEnmityOwner, false);
+            }
         }
     }
 }
