@@ -346,11 +346,15 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
     for (auto PMobIt : m_mobList)
     {
         CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
-        PCurrentMob->PEnmityContainer->Clear(PChar->id);
+        PCurrentMob->PEnmityContainer->LogoutReset(PChar->id);
         if (PCurrentMob->m_OwnerID.id == PChar->id)
         {
             PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
+        }
+        if (PCurrentMob->GetBattleTargetID() == PChar->targid)
+        {
+            PCurrentMob->SetBattleTargetID(0);
         }
     }
 
