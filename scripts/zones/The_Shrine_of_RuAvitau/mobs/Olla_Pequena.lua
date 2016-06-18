@@ -2,6 +2,7 @@
 -- Area: The Shrine of Ru'Avitau
 --  MOB: Olla Pequena
 -----------------------------------
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onMobSpawn Action
