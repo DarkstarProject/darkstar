@@ -6,10 +6,10 @@
 require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     local whichNM = math.random(0,19);
 
     if (whichNM < 10) then

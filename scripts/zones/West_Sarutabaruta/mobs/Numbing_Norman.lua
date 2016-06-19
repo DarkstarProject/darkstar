@@ -33,5 +33,12 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,61,2);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());
 end;
