@@ -6,10 +6,10 @@
 require("scripts/globals/settings");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     local mobID = mob:getID();
     -- Wiki doesn't mention any sort of cooldown, so assuming pure lotto for now.
     if (mobID == 17387919) then -- Making sure is the correct mush.

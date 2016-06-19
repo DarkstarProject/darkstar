@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)    
+function onMobDespawn(mob)    
   
     -- Set Deadly_Dodo's Window Open Time
     SetServerVariable("[POP]Deadly_Dodo", os.time(t) + 3600); -- 1 hour

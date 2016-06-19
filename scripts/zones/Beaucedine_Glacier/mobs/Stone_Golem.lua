@@ -7,10 +7,10 @@
 require("scripts/zones/Beaucedine_Glacier/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Gargantua_PH[mobID] ~= nil) then

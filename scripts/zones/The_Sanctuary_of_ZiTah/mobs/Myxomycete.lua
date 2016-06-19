@@ -44,6 +44,17 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
+    checkRegime(player, mob, 115, 1);
+    checkRegime(player, mob, 116, 2);
+
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     local Myxomycete = mob:getID();
     local Noble_Mold = 17273278;
     local Noble_Mold_PH_Table =
@@ -59,8 +70,5 @@ function onMobDeath(mob, player, isKiller)
             end
         end
     end
-
-    checkRegime(player, mob, 115, 1);
-    checkRegime(player, mob, 116, 2);
 
 end;

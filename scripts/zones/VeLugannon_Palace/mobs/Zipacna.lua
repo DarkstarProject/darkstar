@@ -110,9 +110,9 @@ function onMobRoam(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     mob:setRespawnTime(math.random((10800),(14400))); -- respawn 3-4 hrs
 end;

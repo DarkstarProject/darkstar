@@ -59,10 +59,10 @@ function onSpikesDamage(mob,target,damage)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
     -- UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((7200),(10800))); -- 2 to 3 hrs
 end;

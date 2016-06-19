@@ -6,10 +6,10 @@
 require("scripts/zones/Giddeus/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Hoo_Mjuu_the_Torrent_PH[mobID] ~= nil) then

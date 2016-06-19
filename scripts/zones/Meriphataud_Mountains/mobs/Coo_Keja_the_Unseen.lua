@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Coo_Keja_the_Unseen's spawnpoint and respawn time (21-24 hours)
     UpdateNMSpawnPoint(mob:getID());

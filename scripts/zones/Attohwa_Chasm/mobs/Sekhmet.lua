@@ -56,17 +56,10 @@ function onAdditionalEffect(mob, target, damage)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-    mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
-    UpdateNMSpawnPoint(mob:getID());
-end;
-
------------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
+    UpdateNMSpawnPoint(mob:getID());
 end;

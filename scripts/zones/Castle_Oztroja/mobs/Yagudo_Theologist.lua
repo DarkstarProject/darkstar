@@ -6,10 +6,10 @@
 require("scripts/zones/Castle_Oztroja/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Moo_Ouzi_the_Swiftblade_PH[mobID] ~= nil) then
