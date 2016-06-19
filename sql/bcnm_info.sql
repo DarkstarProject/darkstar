@@ -201,13 +201,13 @@ INSERT INTO `bcnm_info` VALUES ('611', '211', 'sugar-coated_directive', null, nu
 INSERT INTO `bcnm_info` VALUES ('640', '6', 'flames_for_the_dead', null, null, '1800', '60', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('641', '6', 'follow_the_white_rabbit', null, null, '1800', '75', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('642', '6', 'when_hell_freezes_over', null, null, '900', '75', '18', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('643', '6', 'brothers', null, null, '1800', '75', '18', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('643', '6', 'brothers', null, null, '1800', '75', '18', '183', '15');
 INSERT INTO `bcnm_info` VALUES ('644', '6', 'holy_cow', null, null, '1800', '75', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('672', '8', 'head_wind', null, null, '1800', '50', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('673', '8', 'like_the_wind', null, null, '900', '75', '18', '179', '15');
 INSERT INTO `bcnm_info` VALUES ('674', '8', 'sheep_in_antlions_clothing', null, null, '1800', '75', '18', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('675', '8', 'shell_we_dance', null, null, '1800', '75', '18', '0', '15');
-INSERT INTO `bcnm_info` VALUES ('676', '8', 'totentanz', null, null, '1800', '75', '18', '0', '15');
+INSERT INTO `bcnm_info` VALUES ('676', '8', 'totentanz', null, null, '1800', '75', '18', '182', '15');
 INSERT INTO `bcnm_info` VALUES ('677', '8', 'tango_with_a_tracker', null, null, '1800', '0', '6', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('678', '8', 'requiem_of_a_sin', null, null, '1800', '0', '6', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('679', '8', 'antagonistic_ambuscade', null, null, '900', '0', '6', '0', '15');

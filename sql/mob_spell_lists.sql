@@ -1496,6 +1496,20 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
 
+-- Wake Warder Wanda
+INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
+
+-- Eldertaur Brothers ENM
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur', 151, 5, 1, 255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur', 151, 46, 1, 255); -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur', 151, 50, 1, 255); -- Shell III
+
+-- Mindertaur Brothers ENM
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur', 152, 5, 1, 255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur', 152, 29, 1, 255); -- Banish II
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur', 152, 112, 1, 255); -- Flash
+
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

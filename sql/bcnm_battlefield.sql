@@ -563,6 +563,12 @@ INSERT INTO `bcnm_battlefield` VALUES ('532', '3', '17621301', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '1', '16801793', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '2', '16801794', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '3', '16801795', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '1', '16801841', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '1', '16801842', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '2', '16801844', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '2', '16801845', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '3', '16801847', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '3', '16801848', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809987', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809986', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809985', '3');
@@ -579,6 +585,16 @@ INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809995', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809999', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '3', '16809998', '0');
 INSERT INTO `bcnm_battlefield` VALUES ('673', '1', '16810018', '3');	-- Race Runner
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810051', '3');    -- Gwyn Ap Knudd
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810052', '1');	-- Cadaver Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810053', '1');	-- Cadaver Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810054', '1');	-- Cadaver Warrior
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810055', '1');	-- Cadaver Witch
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810056', '1');	-- Cadaver Witch
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810057', '1');	-- Cadaver Witch
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810058', '1');	-- Erdgeist
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810059', '1');	-- Erdgeist
+INSERT INTO `bcnm_battlefield` VALUES ('676', '1', '16810060', '1');	-- Erdgeist
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830466', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830465', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('736', '1', '16830468', '3');

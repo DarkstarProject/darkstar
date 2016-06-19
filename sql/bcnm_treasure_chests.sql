@@ -91,6 +91,11 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
 
 -- Boneyard Gully
 INSERT INTO `bcnm_treasure_chests` VALUES ('673', '1', '16810019');
+INSERT INTO `bcnm_treasure_chests` VALUES ('676', '1', '16810032');
+
+-- Bearclaw Pinnacle
+INSERT INTO `bcnm_treasure_chests` VALUES ('643', '1', '16801802');
+
 
 -- Throne Room
 

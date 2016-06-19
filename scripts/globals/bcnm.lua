@@ -46,8 +46,8 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0, 1, 2, 3, 4, 5, ...
-bcnmid_param_map = {6, {640, 0},
-                  8, {672, 0, 673, 1},
+bcnmid_param_map = {6, {640, 0, 643, 3},
+                  8, {672, 0, 673, 1, 676, 4},
                   10, {704, 0, 706, 2},
                   13, {736, 0},
                   17, {768, 0},
@@ -397,7 +397,10 @@ function checkNonTradeBCNM(player, npc)
     if (Zone == 6) then -- Bearclaw_Pinnacle
            if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then -- flames_for_the_dead
              mask = GetBattleBitmask(640, Zone, 1);
-             player:setVar("trade_bcnmid", 640);
+             player:setVar("trade_bcnmid", 640); 
+	    elseif (player:hasKeyItem(ZEPHYR_FAN)==true) then
+            mask = GetBattleBitmask(643, Zone, 1); -- Brothers ENM
+            player:setVar("trade_bcnmid", 643);		 
         end
     elseif (Zone == 8) then -- Boneyard_Gully
            if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then -- head_wind
@@ -406,7 +409,6 @@ function checkNonTradeBCNM(player, npc)
         elseif (player:hasKeyItem(MIASMA_FILTER)==true) then
             mask = GetBattleBitmask(673, Zone, 1);
             player:setVar("trade_bcnmid", 673);
-        else
         end
     elseif (Zone == 10) then -- The_Shrouded_Maw
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then-- DARKNESS_NAMED
