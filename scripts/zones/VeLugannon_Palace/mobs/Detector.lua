@@ -77,18 +77,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
     checkGoVregime(player,mob,743,1);
-
-    local Detector = mob:getID();
-    local Caretaker = mob:getID() + 1;
-
-    GetMobByID(Detector):resetLocalVars();
-
-    if (GetMobAction(Caretaker) ~= 0) then
-        DespawnMob(Caretaker);
-    end
-
 end;
 
 -----------------------------------
