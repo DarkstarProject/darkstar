@@ -101,10 +101,10 @@ enum UPDATETYPE
 
 enum ENTITYFLAGS
 {
-    FLAG_NONE          = 0x00,
-    FLAG_HIDE_NAME     = 0x08,
-    FLAG_CALL_FOR_HELP = 0x20,
-    FLAG_HIDE_MODEL    = 0x80,
+    FLAG_NONE          = 0x000,
+    FLAG_HIDE_NAME     = 0x008,
+    FLAG_CALL_FOR_HELP = 0x020,
+    FLAG_HIDE_MODEL    = 0x080,
     FLAG_HIDE_HP       = 0x100,
     FLAG_UNTARGETABLE  = 0x800,
 };
