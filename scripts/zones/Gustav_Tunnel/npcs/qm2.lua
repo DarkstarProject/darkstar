@@ -37,7 +37,7 @@ function onTrigger(player,npc)
                     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
                 end
             elseif (player:getVar("BASTOK91") == 2) then
-                SpawnMob(17645794);
+                SpawnMob(17645794):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
             end    
