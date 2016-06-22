@@ -144,7 +144,7 @@ public:
     int32 delMission(lua_State*);           // Delete Mission from Mission Log
     int32 hasCompletedMission(lua_State*);  // Checks if mission has been completed
     int32 getCurrentMission(lua_State*);    // Gets the current mission
-    int32 completeMission(lua_State*);      // Complete Missiony
+    int32 completeMission(lua_State*);      // Complete Mission
 
     int32 addAssault(lua_State*);           // Add Mission
     int32 delAssault(lua_State*);           // Delete Mission from Mission Log
