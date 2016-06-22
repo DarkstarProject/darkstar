@@ -59,7 +59,7 @@ public:
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
     int32 getHP(lua_State*);                // Returns Entity Health
-    int32 getGender(lua_State*);			// Returns the player character's gender
+    int32 getGender(lua_State*);            // Returns the player character's gender
     int32 getBaseHP(lua_State*);            // Returns Entity base Health before modifiers
     int32 addHP(lua_State*);                // Modify hp of Entity +/-
     int32 restoreHP(lua_State*);            // Modify hp of Entity, but check if alive first
@@ -114,11 +114,12 @@ public:
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
     int32 costume(lua_State*);              // get or set user costume
-    int32 costume2(lua_State*);				// set monstrosity costume
+    int32 costume2(lua_State*);             // set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
 
+    int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
@@ -143,7 +144,7 @@ public:
     int32 delMission(lua_State*);           // Delete Mission from Mission Log
     int32 hasCompletedMission(lua_State*);  // Checks if mission has been completed
     int32 getCurrentMission(lua_State*);    // Gets the current mission
-    int32 completeMission(lua_State*);      // Complete Mission
+    int32 completeMission(lua_State*);      // Complete Missiony
 
     int32 addAssault(lua_State*);           // Add Mission
     int32 delAssault(lua_State*);           // Delete Mission from Mission Log

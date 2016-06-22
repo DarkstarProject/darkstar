@@ -130,6 +130,7 @@
 #include "../ai/states/magic_state.h"
 
 #include "../transport.h"
+#include "../treasure_pool.h"
 #include "../mob_modifier.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
@@ -711,6 +712,28 @@ inline int32 CLuaBaseEntity::getSpawnPos(lua_State* L)
     lua_setfield(L, newTable, "rot");
 
     return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    if (PChar->PTreasurePool != nullptr)
+    {
+        PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PChar);
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::addTreasure: Tried to add item to a treasure pool that was nullptr! \n" CL_RESET);
+    }
+    return 0;
 }
 
 //==========================================================//
@@ -10601,7 +10624,7 @@ inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
 
     lua_newtable(L);
     int newTable = lua_gettop(L);
-    
+
     for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
     {
         for (auto&& entity : list)
@@ -10672,6 +10695,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStat),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
