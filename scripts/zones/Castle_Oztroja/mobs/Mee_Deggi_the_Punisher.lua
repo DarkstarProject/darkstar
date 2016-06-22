@@ -4,18 +4,24 @@
 -----------------------------------
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDespawn(mob, player, isKiller)
+    if (isKiller) then -- using killer check to run once
+        if (math.random(1,100) <= 5) then
+            player:addTreasure(14986); -- Ochimusha Kote
+        else
+            player:addTreasure(16703); -- Impact Knuckles
+        end
+    end
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
-
-    if (math.random(1,100) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,14986,1000); -- Ochimusha Kote
-        SetDropRate(1936,16703,0);
-    else
-        SetDropRate(1936,14986,0);
-        SetDropRate(1936,16703,1000); -- Impact Knuckles
-    end
 
     -- Set Mee_Deggi_the_Punisher's Window Open Time
     local wait = math.random(3600,10800);

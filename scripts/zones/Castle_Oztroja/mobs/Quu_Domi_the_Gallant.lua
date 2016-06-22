@@ -4,18 +4,24 @@
 -----------------------------------
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDespawn(mob, player, isKiller)
+    if (isKiller) then -- using killer check to run once
+        if (math.random(1,100) <= 7) then
+            player:addTreasure(15737); -- Sarutobi Kyahan
+        else
+            player:addTreasure(16820); -- Strider Sword
+        end
+    end
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
-
-    if (math.random(1,100) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,15737,1000); -- Sarutobi Kyahan
-        SetDropRate(1936,16820,0);
-    else
-        SetDropRate(1936,15737,0);
-        SetDropRate(1936,16820,1000); -- Strider Sword
-    end
 
     -- Set Quu_Domi_the_Gallant's Window Open Time
     local wait = math.random(3600,10800);
