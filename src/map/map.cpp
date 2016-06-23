@@ -978,6 +978,7 @@ int32 map_config_default()
     map_config.audit_linkshell = 0;
     map_config.msg_server_port = 54003;
     map_config.msg_server_ip = "127.0.0.1";
+    map_config.item_vendor_sell_multiplier = 1.0f;
     return 0;
 }
 
@@ -1270,6 +1271,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "mob_no_despawn") == 0)
         {
             map_config.mob_no_despawn = atoi(w2);
+        }
+        else if (strcmp(w1, "item_vendor_sell_multiplier") == 0)
+        {
+            map_config.item_vendor_sell_multiplier = atof(w2);
         }
         else
         {
