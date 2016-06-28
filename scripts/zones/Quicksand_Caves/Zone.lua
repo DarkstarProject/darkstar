@@ -9,9 +9,17 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
+require("scripts/globals/npc_util");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
 base_id = 17629685;
+
+anticanTagPositions = {
+    [1] = {590.000, -6.600, -663.000},
+    [2] = {748.000, 2.000, -570.000},
+    [3] = {479.000, -14.000, -815.000},
+    [4] = {814.000, -14.000, -761.000}
+}
 
 -----------------------------------
 -- onInitialize
@@ -66,6 +74,7 @@ function onInitialize(zone)
     
     UpdateTreasureSpawnPoint(17629735);
 
+    UpdateAnticanTagSpawnPoint(17629757, 60, 120); -- move ??? around every 1-2min, wiki isn't very clear on this
 end;
 
 -----------------------------------        
@@ -196,3 +205,21 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 end;    
+
+-----------------------------------
+-- UpdateAnticanTagSpawnPoint
+----------------------------------
+
+function UpdateAnticanTagSpawnPoint(id, minTime, maxTime)
+    local npc = GetNPCByID(id);
+    local respawnTime = math.random(minTime, maxTime);
+    local newPosition = npcUtil.pickNewPosition(npc:getID(), anticanTagPositions);
+
+    if (GetServerVariable("[POP]Antican_Tag") <= os.time(t)) then
+        npc:hideNPC(1); -- hide so the NPC is not "moving" through the zone
+        npc:setPos(anticanTagPositions[newPosition][1], anticanTagPositions[newPosition][2], anticanTagPositions[newPosition][3]);
+    end
+    npc:timer(respawnTime * 1000, function(npc)
+        UpdateAnticanTagSpawnPoint(id, minTime, maxTime);
+    end)
+end;
