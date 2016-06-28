@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 6;
@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.crit300 = 0.45; -- params.crit200 = 0.45; -- unknown
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     if ((player:getEquipID(SLOT_MAIN) == 19008) and (player:getMainJob() == JOBS.PUP)) then
         if (damage > 0) then
             applyAftermathEffect(player, tp)
