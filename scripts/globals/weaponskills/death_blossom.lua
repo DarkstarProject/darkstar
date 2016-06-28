@@ -16,7 +16,7 @@ require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.numHits = 3;
     -- ftp damage mods (for Damage Varies with TP; lines are calculated in the function
@@ -36,7 +36,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         params.ftp100 = 4.0; params.ftp200 = 4.0; params.ftp300 = 4.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     if (damage > 0) then
         local duration = (tp/1000 * 20) - 5;
         if (target:hasStatusEffect(EFFECT_MAGIC_EVASION_DOWN) == false) then

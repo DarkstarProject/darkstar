@@ -747,7 +747,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                     SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
                     if (effect != SUBEFFECT_NONE)
                     {
-                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param);
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, NULL);
                         if (skillChainDamage < 0)
                         {
                             target.addEffectParam = -skillChainDamage;
