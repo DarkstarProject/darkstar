@@ -3241,14 +3241,7 @@ namespace battleutils
 
             case TYPE_MOB:
             {
-                if (taChar == nullptr)
-                {
-                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, (uint16)damage);
-                }
-                else
-                {
-                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, (uint16)damage);
-                }
+                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (uint16)damage);
             }
             break;
         }
