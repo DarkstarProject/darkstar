@@ -226,7 +226,7 @@ end;
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
 
-function doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
 
     local bonusTP = params.bonusTP or 0
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
