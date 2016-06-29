@@ -16,7 +16,7 @@ require("scripts/globals/weather");
 require("scripts/globals/chocobo_digging");
 
 fallenEggPositions = {
-        [1] = {211.000, 24.000, 258.000},
+        [1] = {211.000, 24.000, 257.000},
         [2] = {228.000, 25.000, 249.000},
         [3] = {221.000, 24.000, 252.000},
         [4] = {202.000, 23.000, 243.000},
@@ -131,7 +131,7 @@ function onInitialize(zone)
     local fallenEgg = GetNPCByID(17195583); 
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);
 
-    fallenEgg:setPos(fallenEggPositions[newPosition][1], fallenEggPositions[newPosition][2], fallenEggPositions[newPosition][3]);
+    fallenEgg:setPos(newPosition.x, newPosition.y, newPosition.z);
 end;
 
 

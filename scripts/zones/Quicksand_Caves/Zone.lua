@@ -213,11 +213,11 @@ end;
 function UpdateAnticanTagSpawnPoint(id, minTime, maxTime)
     local npc = GetNPCByID(id);
     local respawnTime = math.random(minTime, maxTime);
-    local newPosition = npcUtil.pickNewPosition(npc:getID(), anticanTagPositions);
+    local newPosition = npcUtil.pickNewPosition(npc:getID(), anticanTagPositions, true);
 
     if (GetServerVariable("[POP]Antican_Tag") <= os.time(t)) then
         npc:hideNPC(1); -- hide so the NPC is not "moving" through the zone
-        npc:setPos(anticanTagPositions[newPosition][1], anticanTagPositions[newPosition][2], anticanTagPositions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
     end
     npc:timer(respawnTime * 1000, function(npc)
         UpdateAnticanTagSpawnPoint(id, minTime, maxTime);
