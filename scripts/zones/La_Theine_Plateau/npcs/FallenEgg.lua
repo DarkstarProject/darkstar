@@ -28,11 +28,11 @@ function onTrigger(player,npc)
         GetMobByID(Nihniknoovi):setSpawn(X,Y,Z);
         SpawnMob(Nihniknoovi):updateClaim(player);
         npc:hideNPC(1800); -- Hide for 30mins
-        npc:setPos(fallenEggPositions[newPosition][1], fallenEggPositions[newPosition][2], fallenEggPositions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
     elseif (random > 20 and random <= 61) then
         player:messageSpecial(BROKEN_EGG);
         npc:hideNPC(300); -- Hide for 5mins
-        npc:setPos(fallenEggPositions[newPosition][1], fallenEggPositions[newPosition][2], fallenEggPositions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
     elseif(random > 61) then
         if (player:getFreeSlotsCount() > 0) then
             if (player:addItem(4570)) then
@@ -43,6 +43,6 @@ function onTrigger(player,npc)
         end
         -- this is executed on purpose whether the item is obtained or not, to counter abuse with a full inv
         npc:hideNPC(300); -- Hide for 5mins
-        npc:setPos(fallenEggPositions[newPosition][1], fallenEggPositions[newPosition][2], fallenEggPositions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y,newPosition.z);
    end
 end;
