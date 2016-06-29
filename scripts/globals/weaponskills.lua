@@ -492,7 +492,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
         pdifmax = cratio + 0.3;
     elseif (cratio < 1.5) then
         pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 1.5) then
+    elseif (cratio < 2.625) then
         pdifmax = cratio + 0.375;
     else
         pdifmax = 3;
