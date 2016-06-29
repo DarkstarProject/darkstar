@@ -55,7 +55,7 @@ enum QUESTAREA
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
-#define MAX_MISSIONID    94
+#define MAX_MISSIONID    129
 
 struct jobs_t
 {
