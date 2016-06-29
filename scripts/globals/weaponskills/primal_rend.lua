@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 4; params.ftp200 = 4.25; params.ftp300 = 4.75;
@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         params.dex_wsc = 0.3; params.chr_wsc = 0.6;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
     -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
     if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOBS.BST)) then
