@@ -227,18 +227,7 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
     chains = ((chains * 0x08) + 0x60);
 
     uint32 soa = (PChar->m_missionLog[MISSION_SOA - 12].current * 2) + 0x6E;
-
-    uint32 rov = PChar->m_missionLog[MISSION_ROV - 12].current;
-    // Most ROV mission byte values occur in sets of 2 (ie: D4 and D5 are the same mission).
-    // But there are a few "half" missions wedged in there. (Mission X is D1/D2, Y is D3, and Z is D4/D5). This also leads to offset issues with missions after them.
-    bool half_rov = false;
-    if ((rov == 52) || (rov == 79) || ((rov >= 83) && (rov <= 86)))
-        half_rov = true;
-    rov = (rov > 79) ? rov - 1 : rov;
-    rov = (rov < 53) ? rov + 1 : rov;
-    rov = (rov > 4) ? (rov * 2) + 0x6A : rov + 0x6C;
-    if (half_rov)
-        rov = rov - 1;
+    uint32 rov = PChar->m_missionLog[MISSION_ROV - 12].current + 0x6C;
 
     WBUFB(data, (0x04)) = PChar->profile.nation;								// Nation
     WBUFW(data, (0x08)) = PChar->m_missionLog[PChar->profile.nation].current;	// National Missions
