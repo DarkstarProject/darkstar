@@ -189,11 +189,11 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
             break;
         }
     case MISSION_COP:
-    case MISSION_CRISTALLINE_PROPHECY:
-    case MISSION_MOOGLE_KUPO_DETAT:
-    case MISSION_SHANTOTTO_ASCENSION:
-    case MISSION_ADOULIN:
-    case MISSION_RHAPSODIES:
+    case MISSION_ACP:
+    case MISSION_AMK:
+    case MISSION_ASA:
+    case MISSION_SOA:
+    case MISSION_ROV:
         if (status == 0x01)
         {
             generateCurrentMissionPacket(PChar);
@@ -217,18 +217,18 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 {
     uint16 add_on_scenarios = 0;
 
-    add_on_scenarios += PChar->m_missionLog[MISSION_CRISTALLINE_PROPHECY - 12].current;
-    add_on_scenarios += PChar->m_missionLog[MISSION_MOOGLE_KUPO_DETAT - 12].current << 0x04;
-    add_on_scenarios += PChar->m_missionLog[MISSION_SHANTOTTO_ASCENSION - 12].current << 0x08;
+    add_on_scenarios += PChar->m_missionLog[MISSION_ACP - 12].current;
+    add_on_scenarios += PChar->m_missionLog[MISSION_AMK - 12].current << 0x04;
+    add_on_scenarios += PChar->m_missionLog[MISSION_ASA - 12].current << 0x08;
     // Not perfect, but they display and missions DO progress. Can fix properly later. There is a delay before when the menu updates. Zoning will force it.
 
     uint32 chains = 0;
     chains = PChar->m_missionLog[MISSION_COP - 11].current + 1;
     chains = ((chains * 0x08) + 0x60);
 
-    uint32 soa = (PChar->m_missionLog[MISSION_ADOULIN - 12].current * 2) + 0x6E;
+    uint32 soa = (PChar->m_missionLog[MISSION_SOA - 12].current * 2) + 0x6E;
 
-    uint32 rov = PChar->m_missionLog[MISSION_RHAPSODIES - 12].current;
+    uint32 rov = PChar->m_missionLog[MISSION_ROV - 12].current;
     // Most ROV mission byte values occur in sets of 2 (ie: D4 and D5 are the same mission).
     // But there are a few "half" missions wedged in there. (Mission X is D1/D2, Y is D3, and Z is D4/D5). This also leads to offset issues with missions after them.
     bool half_rov = false;
