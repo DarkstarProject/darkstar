@@ -32,7 +32,6 @@
 #include <list>
 
 #include "../entities/battleentity.h"
-#include "../attack.h"
 
 class CAbility;
 class CItemWeapon;
@@ -41,6 +40,7 @@ class CSpell;
 class CTrait;
 class CWeaponSkill;
 struct actionTarget_t;
+enum class PHYSICAL_ATTACK_TYPE;
 
 enum ENSPELL
 {

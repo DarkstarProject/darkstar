@@ -31,17 +31,17 @@
 #include <vector>
 
 
-enum PHYSICAL_ATTACK_TYPE
+enum class PHYSICAL_ATTACK_TYPE
 {
-    ATTACK_NORMAL = 0,
-    DOUBLE_ATTACK = 1,
-    TRIPLE_ATTACK = 2,
-    ZANSHIN_ATTACK = 3,
-    KICK_ATTACK = 4,
-    RANGED_ATTACK = 5,
-    RAPID_SHOT_ATTACK = 6,
-    SAMBA_ATTACK = 7,
-    QUAD_ATTACK = 8,
+    NORMAL = 0,
+    DOUBLE = 1,
+    TRIPLE = 2,
+    ZANSHIN = 3,
+    KICK = 4,
+    RANGED = 5,
+    RAPID_SHOT = 6,
+    SAMBA = 7,
+    QUAD = 8,
 };
 
 enum PHYSICAL_ATTACK_DIRECTION

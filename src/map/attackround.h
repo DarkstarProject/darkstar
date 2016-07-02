@@ -25,6 +25,7 @@
 #define _CATTACKROUND_H
 
 #include "../common/cbasetypes.h"
+#include "attack.h"
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
 #include "utils/attackutils.h"
