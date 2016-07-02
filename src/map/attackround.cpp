@@ -206,7 +206,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         num = PWeapon->getHitCount();
     }
 
-    AddAttackSwing(ATTACK_NORMAL, direction, num);
+    AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
 
     // Checking the players triple, double and quadruple attack
     int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
@@ -233,16 +233,16 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         int16 shadows = m_attacker->getMod(MOD_UTSUSEMI);
         //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
-        AddAttackSwing(ATTACK_NORMAL, direction, shadows);
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, shadows);
     }
     else if (num == 1 && dsprand::GetRandomNumber(100) < quadAttack)
-        AddAttackSwing(QUAD_ATTACK, direction, 3);
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::QUAD, direction, 3);
 
     else if (num == 1 && dsprand::GetRandomNumber(100) < tripleAttack)
-        AddAttackSwing(TRIPLE_ATTACK, direction, 2);
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::TRIPLE, direction, 2);
 
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
-        AddAttackSwing(DOUBLE_ATTACK, direction, 1);
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
     // Ammo extra swing - players only
     if (m_attacker->objtype == TYPE_PC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
@@ -260,7 +260,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 &&
             dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
-            AddAttackSwing(ATTACK_NORMAL, direction, 1);
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
             ammoCount += 1;
         }
         else
@@ -268,13 +268,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
             if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 &&
                 dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
-                AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
+                AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
                 ammoCount += 1;
             }
             if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 &&
                 dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
-                AddAttackSwing(ATTACK_NORMAL, LEFTATTACK, 1);
+                AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, LEFTATTACK, 1);
                 ammoCount += 1;
             }
         }
@@ -296,7 +296,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
     // Iga mod: Extra attack chance whilst dual wield is on.
     if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
-        AddAttackSwing(ATTACK_NORMAL, RIGHTATTACK, 1);
+        AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
 
 }
 
@@ -321,7 +321,7 @@ void CAttackRound::CreateKickAttacks()
 
         if (dsprand::GetRandomNumber(100) < kickAttack)
         {
-            AddAttackSwing(KICK_ATTACK, RIGHTATTACK, 1);
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, RIGHTATTACK, 1);
             m_kickAttackOccured = true;
         }
 
@@ -330,7 +330,7 @@ void CAttackRound::CreateKickAttacks()
         // Mantra set mod: Try an extra left kick attack.
         if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
         {
-            AddAttackSwing(KICK_ATTACK, LEFTATTACK, 1);
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, LEFTATTACK, 1);
         }
     }
 }

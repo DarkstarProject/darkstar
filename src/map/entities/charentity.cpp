@@ -1204,11 +1204,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 {
                     if (state.IsRapidShot())
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, RAPID_SHOT_ATTACK);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RAPID_SHOT);
                     }
                     else
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, RANGED_ATTACK);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RANGED);
                     }
 
                     if (PItem != nullptr)
@@ -1270,7 +1270,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
         }
 
-        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, RANGED_ATTACK, totalDamage, false, slot, realHits, nullptr, true, true);
+        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, PHYSICAL_ATTACK_TYPE::RANGED, totalDamage, false, slot, realHits, nullptr, true, true);
 
         // lower damage based on shadows taken
         if (shadowsTaken)

@@ -38,6 +38,7 @@
 #include "../ai/states/raise_state.h"
 #include "../ai/states/inactive_state.h"
 #include "../ai/states/weaponskill_state.h"
+#include "../attack.h"
 #include "../attackround.h"
 #include "../weapon_skill.h"
 #include "../packets/action.h"
@@ -1564,7 +1565,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                   actionTarget.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) ||
                 (GetMJob() == JOB_SAM && this->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && dsprand::GetRandomNumber(100) < (zanshinChance / 4)))
             {
-                attack.SetAttackType(ZANSHIN_ATTACK);
+                attack.SetAttackType(PHYSICAL_ATTACK_TYPE::ZANSHIN);
                 attack.SetAsFirstSwing(false);
             }
             else
