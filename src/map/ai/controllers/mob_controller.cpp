@@ -111,7 +111,11 @@ bool CMobController::CheckHide(CBattleEntity* PTarget)
 
 bool CMobController::CheckDetection(CBattleEntity* PTarget)
 {
-    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND))
+    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || 
+        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) || 
+        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) || 
+        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) ||
+        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
     {
         TapDeaggroTime();
     }
