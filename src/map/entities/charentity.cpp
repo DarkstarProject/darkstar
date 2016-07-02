@@ -55,6 +55,7 @@
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
+#include "../attack.h"
 #include "../utils/attackutils.h"
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
