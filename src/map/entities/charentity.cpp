@@ -55,6 +55,7 @@
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
+#include "../attack.h"
 #include "../utils/attackutils.h"
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
@@ -1269,7 +1270,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
         }
 
-        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, totalDamage, false, slot, realHits, nullptr, true, true);
+        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, RANGED_ATTACK, totalDamage, false, slot, realHits, nullptr, true, true);
 
         // lower damage based on shadows taken
         if (shadowsTaken)
