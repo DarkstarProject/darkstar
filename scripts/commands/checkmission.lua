@@ -3,7 +3,7 @@
 -- desc: Prints current MissionID for the given LogID and target Player to the in game chatlog
 ---------------------------------------------------------------------------------------------------
 
-req
+require("scripts/globals/missions");
 
 cmdprops =
 {
