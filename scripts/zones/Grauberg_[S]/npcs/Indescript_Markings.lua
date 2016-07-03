@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
         
-        npc:setPos(positions[newPosition][1], positions[newPosition][2], positions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
