@@ -217,3 +217,25 @@ function npcUtil.genTmask(player,title)
 
     return val1
 end
+
+-----------------------------------
+-- UpdateNPCSpawnPoint
+----------------------------------
+
+function npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
+    local npc = GetNPCByID(id);
+    local respawnTime = math.random(minTime, maxTime);
+    local newPosition = npcUtil.pickNewPosition(npc:getID(), posTable, true);
+    serverVar = serverVar or null; -- serverVar is optional
+
+    if serverVar then
+        if (GetServerVariable(serverVar) <= os.time(t)) then
+            npc:hideNPC(1); -- hide so the NPC is not "moving" through the zone
+            npc:setPos(newPosition.x, newPosition.y, newPosition.z);
+        end
+    end
+
+    npc:timer(respawnTime * 1000, function(npc)
+        npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar);
+    end)
+end;
