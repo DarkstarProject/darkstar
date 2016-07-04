@@ -3,17 +3,26 @@
 -- desc: Adds the given effect to the given player.
 ---------------------------------------------------------------------------------------------------
 
+require("scripts/globals/status");
+require("scripts/globals/teleports");
+
+
 cmdprops =
 {
     permission = 1,
-    parameters = "siii"
+    parameters = "ssssss"
 };
 
-function onTrigger(player, target, id, power, duration)
-
+function onTrigger(player, target, id, power, duration, subid, subPower)
+    id = tonumber(id);
+    power = tonumber(power) or _G[power]; -- EFFECT_TELEPORT etc, only works self-targeted cause lazy
+    duration = tonumber(duration);
+    subid = tonumber(subid);
+    subPower = tonumber(subPower);
+    
     -- Ensure a target is set..
     if (target == nil) then
-        player:PrintToPlayer( "Target required; cannot be nil." );
+        player:PrintToPlayer( "What are you even trying to add?" );
         return;
     end
 
@@ -22,6 +31,18 @@ function onTrigger(player, target, id, power, duration)
     -- check if target name was entered
     local num = tonumber(target)
     if (type(num) == "number") then
+        if (subid == 0 or subid == nil) then
+            subPower = 0;
+        else
+            subPower = subid;
+        end
+
+        if (duration == 0 or duration == nil) then
+            subid = 0;
+        else
+            subid = duration;
+        end
+
         if (power == 0 or power == nil) then
             duration = 60;
         else
@@ -40,7 +61,7 @@ function onTrigger(player, target, id, power, duration)
         if (pc ~= nil) then
             effectTarget = pc;
         else
-            return;
+            id = _G[target];
         end
 
         if (power == nil) then
@@ -49,6 +70,14 @@ function onTrigger(player, target, id, power, duration)
 
         if (duration == nil) then
             duration = 60;
+        end
+
+        if (subid == nil) then
+            subid = 0;
+        end
+
+        if (subPower == nil) then
+            subPower = 0;
         end
 
         if (id == 0 or id == nil) then
@@ -61,7 +90,7 @@ function onTrigger(player, target, id, power, duration)
         return;
     end
 
-    if (effectTarget:addStatusEffect(id, power, 3, duration)) then
+    if (effectTarget:addStatusEffect(id, power, 3, duration, subid, subPower)) then
         effectTarget:messagePublic(280, effectTarget, id, id);
     else
         effectTarget:messagePublic(283, effectTarget, id);

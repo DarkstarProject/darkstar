@@ -1,6 +1,6 @@
 -----------------------------------------
---	ID: 28540
---	Warp Ring
+--    ID: 28540
+--    Warp Ring
 --  Transports the user to their Home Point
 -----------------------------------------
 require("scripts/globals/status");
@@ -10,7 +10,7 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------
@@ -18,5 +18,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
 end;

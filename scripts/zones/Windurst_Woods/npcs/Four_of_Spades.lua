@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Woods
---	NPC:  Four of Spades
---	Working 100%
+--    Area: Windurst Woods
+--    NPC:  Four of Spades
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x10d);
+    player:startEvent(0x10d);
 end;
 
 -----------------------------------

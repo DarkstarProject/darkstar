@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Nio A
+--  MOB: Nio A
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -17,10 +17,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-	if(killer:getCurrentMission(SANDORIA) == LIGHTBRINGER and killer:getVar("Mission8-2Kills") < 2) then
-		local kills = killer:getVar("Mission8-2Kills");
-		killer:setVar("Mission8-2Kills",kills + 1);
-	end
+    if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("Mission8-2Kills") < 2) then
+        local kills = player:getVar("Mission8-2Kills");
+        player:setVar("Mission8-2Kills",kills + 1);
+    end
 end;

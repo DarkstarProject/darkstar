@@ -27,7 +27,6 @@
 CMobSkill::CMobSkill(uint16 id)
 {
 	m_ID = id;
-	m_FamilyID= 0;
 	m_AnimID = 0;
 	m_Aoe = 0;
     m_Distance = 0;
@@ -39,6 +38,7 @@ CMobSkill::CMobSkill(uint16 id)
 	m_Message = 0;
     m_Param = 0;
     m_skillchain = 0;
+    m_HPP = 0;
 }
 
 bool CMobSkill::hasMissMsg()
@@ -63,9 +63,19 @@ bool CMobSkill::isSingle()
 
 bool CMobSkill::isTwoHour()
 {
-  // id zero means it was put on mob skill list
   // flag means this skill is a real two hour
-  return m_ID == 0 || m_Flag & SKILLFLAG_TWO_HOUR;
+  return m_Flag & SKILLFLAG_TWO_HOUR;
+}
+
+bool CMobSkill::isTpSkill()
+{
+    return !isSpecial();
+}
+
+bool CMobSkill::isSpecial()
+{
+  // means it is a ranged attack or call beast, etc..
+  return m_Flag & SKILLFLAG_SPECIAL;
 }
 
 void CMobSkill::setID(uint16 id)
@@ -81,11 +91,6 @@ void CMobSkill::setMsg(uint16 msg)
 void CMobSkill::setTotalTargets(uint16 targets)
 {
     m_TotalTargets = targets;
-}
-
-void CMobSkill::setfamilyID(uint16 familyID)
-{
-	m_FamilyID = familyID;
 }
 
 void CMobSkill::setAnimationID(uint16 animID)
@@ -124,6 +129,11 @@ void CMobSkill::setTP(int16 tp)
 	m_TP = tp;
 }
 
+void CMobSkill::setHPP(uint8 hpp)
+{
+    m_HPP = hpp;
+}
+
 void CMobSkill::setAnimationTime(uint16 AnimationTime)
 {
     m_AnimationTime = AnimationTime;
@@ -145,19 +155,62 @@ uint16 CMobSkill::getID()
 	return m_ID;
 }
 
-uint16 CMobSkill::getfamilyID()
-{
-	return m_FamilyID;
-}
-
 uint16 CMobSkill::getAnimationID()
 {
 	return m_AnimID;
 }
 
+uint16 CMobSkill::getPetAnimationID()
+{
+  // levi
+  if(m_AnimID >= 552 && m_AnimID <= 560){
+    return m_AnimID - 488;
+  }
+  // garuda
+  if(m_AnimID >= 565 && m_AnimID <= 573){
+    return m_AnimID - 485;
+  }
+  // titan
+  if(m_AnimID >= 539 && m_AnimID <= 547){
+    return m_AnimID - 491;
+  }
+  // ifrit
+  if(m_AnimID >= 526 && m_AnimID <= 534){
+    return m_AnimID - 494;
+  }
+  // fenrir
+  if(m_AnimID >= 513 && m_AnimID <= 521){
+    return m_AnimID - 497;
+  }
+  // shiva
+  if(m_AnimID >= 578 && m_AnimID <= 586){
+    return m_AnimID - 482;
+  }
+  // rumah
+  if(m_AnimID >= 591 && m_AnimID <= 599){
+    return m_AnimID - 479;
+  }
+  // carbuncle
+  if(m_AnimID >= 605 && m_AnimID <= 611){
+    return m_AnimID - 605;
+  }
+
+  // wyvern
+  if (m_AnimID >= 621 && m_AnimID <= 632) {
+      return m_AnimID - 493;
+  }
+
+  return m_AnimID;
+}
+
 int16 CMobSkill::getTP()
 {
-	return m_TP;
+    return m_TP;
+}
+
+uint8 CMobSkill::getHPP()
+{
+    return m_HPP;
 }
 
 uint16 CMobSkill::getTotalTargets()
@@ -167,40 +220,12 @@ uint16 CMobSkill::getTotalTargets()
 
 uint16 CMobSkill::getMsg()
 {
-	return m_Message;
+    return m_Message;
 }
 
 uint16 CMobSkill::getMsgForAction()
 {
-  uint16 id = getID();
-    uint16 messageid = 256 + id;
-    uint8 flag = getFlag();
-    if (flag == SKILLFLAG_WS)
-    {
-      switch (id)
-      {
-        case 190:  //dimensional death
-          messageid = 255;
-          break;
-        case 246:  //shackled fists
-        case 247:  //foxfire
-        case 248:  //grim halo
-        case 249:  //netherspikes
-        case 250:  //carnal nightmare
-          messageid = id;
-          break;
-        case 251:  //dancing chains
-        case 252:  //barbed crescent
-          messageid = id+1;
-          break;
-        case 253:  //aegis schism
-          messageid = 251;
-          break;
-        default:
-          break;
-      }
-    }
-    return messageid;
+    return getID();
 }
 
 uint16 CMobSkill::getAoEMsg()

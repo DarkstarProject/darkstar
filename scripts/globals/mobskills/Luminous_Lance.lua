@@ -34,6 +34,8 @@ function onMobWeaponSkill(target, mob, skill)
     mob:setLocalVar("lanceTime", mob:getBattleTime())
     mob:setLocalVar("lanceOut", 0)
     target:AnimationSub(3);
+
+    -- Cannot be resisted
     target:addStatusEffect(EFFECT_STUN, 0, 0, 20);
     
     target:delHP(dmg);

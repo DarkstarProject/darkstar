@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Throne Room
--- NPC:  Shadows
+--  MOB: Shadows
 -- Mission 9-2 BCNM Fight
 -----------------------------------
 
-require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -15,23 +14,15 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobEngaged
+-- onMobDeath
 -----------------------------------
 
------------------------------------
--- onMobFight
------------------------------------
-
-function onMobFight(mob,target)
+function onMobDeath(mob, player, isKiller)
 end;
-
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-
-function onMobDeath(mob,killer)
-end;
 
 function onMobDespawn(mob)
 end;
@@ -41,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-printf("updateCSID: %u",csid);
-printf("RESULT: %u",option);
+    printf("updateCSID: %u",csid);
+    printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +41,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-printf("finishCSID: %u",csid);
-printf("RESULT: %u",option);
+    printf("finishCSID: %u",csid);
+    printf("RESULT: %u",option);
 end;

@@ -112,6 +112,11 @@ void CWeaponSkill::setAnimationId(int8 id)
 	m_AnimationId = id;
 }
 
+void CWeaponSkill::setAnimationTime(duration time)
+{
+    m_AnimationTime = time;
+}
+
 void CWeaponSkill::setAoe(uint8 aoe)
 {
 	m_AOE = aoe;
@@ -155,6 +160,11 @@ bool CWeaponSkill::isElemental()
 uint8 CWeaponSkill::getAnimationId()
 {
 	return m_AnimationId;
+}
+
+duration CWeaponSkill::getAnimationTime()
+{
+    return m_AnimationTime;
 }
 
 uint8 CWeaponSkill::getAoe()

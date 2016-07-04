@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -- onMobInitialize Action
 -----------------------------------
 
-function onMobInitialize(mob)	
+function onMobInitialize(mob)
 end;
 
 -----------------------------------
@@ -31,5 +31,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Foi-Mui
+--    Area: Windurst Waters
+--    NPC:  Foi-Mui
 --  Involved in Quest: Making the Grade
---	Working 100% 
+--    Working 100% 
 --  @zone = 238
 --  @pos = 126 -6 162
 -----------------------------------
@@ -27,11 +27,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-		player:startEvent(0x01c1); -- During Making the GRADE
-	else
-		player:startEvent(0x01ae); -- Standard conversation
-	end
+    if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+        player:startEvent(0x01c1); -- During Making the GRADE
+    else
+        player:startEvent(0x01ae); -- Standard conversation
+    end
 end; 
 
 -----------------------------------

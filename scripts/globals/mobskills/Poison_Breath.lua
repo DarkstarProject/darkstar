@@ -12,18 +12,18 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_POISON;
-	local power = math.ceil(mob:getMainLvl() / 5);
+    local typeEffect = EFFECT_POISON;
+    local power = math.ceil(mob:getMainLvl() / 5);
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
-	local dmgmod = MobBreathMove(mob, target, 0.1, 1.25, ELE_WATER, 200);
+    local dmgmod = MobBreathMove(mob, target, 0.1, 1.25, ELE_WATER, 200);
 
-	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

@@ -54,7 +54,7 @@ function onSpellCast(caster,target,spell)
    
     local chance = math.random();
 
-    if(damage > 0 and chance > 10) then
+    if (damage > 0 and chance > 10) then
         local typeEffect = EFFECT_POISON;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,3,0,getBlueEffectDuration(caster,resist,typeEffect));

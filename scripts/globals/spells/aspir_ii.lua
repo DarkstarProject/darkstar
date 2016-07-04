@@ -27,12 +27,18 @@ function onSpellCast(caster,target,spell)
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --add in final adjustments
 
-    if(target:isUndead()) then
+    if (dmg < 0) then
+        dmg = 0
+    end
+
+    dmg = dmg * DARK_POWER;
+
+    if (target:isUndead()) then
         spell:setMsg(75); -- No effect
         return dmg;
     end
 
-    if(target:getMP() > dmg) then
+    if (target:getMP() > dmg) then
         caster:addMP(dmg);
         target:delMP(dmg);
     else

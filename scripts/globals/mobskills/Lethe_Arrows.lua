@@ -15,23 +15,23 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_BIND;
+    local typeEffect = EFFECT_BIND;
 
-	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 120);
+    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 120);
 
-	typeEffect = EFFECT_AMNESIA;
+    typeEffect = EFFECT_AMNESIA;
 
-	MobStatusEffectMove(mob, target, typeEffect, 1, 0, 120);
+    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 120);
 
-	local numhits = 1;
-	local accmod = 3;
-	local dmgmod = 4;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
-	target:delHP(dmg);
-	return dmg;
+    local numhits = 1;
+    local accmod = 3;
+    local dmgmod = 4;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS);
+    target:delHP(dmg);
+    return dmg;
 end;

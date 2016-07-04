@@ -1,6 +1,6 @@
 ----------------------------------
 -- Area: Labyrinth of Onzozo
--- NM: Lord of Onzozo
+--   NM: Lord of Onzozo
 -----------------------------------
 
 
@@ -8,9 +8,15 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,774,1);
+end;
 
-    checkGoVregime(killer,mob,774,1);
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set LoO's Window Open Time
     local wait = math.random((75600),(86400));

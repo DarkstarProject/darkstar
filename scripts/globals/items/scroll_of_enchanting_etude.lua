@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5038
---	Scroll of Enchanting Etude
---	Teaches the song Enchanting Etude
+--    ID: 5038
+--    Scroll of Enchanting Etude
+--    Teaches the song Enchanting Etude
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(430);
+    return target:canLearnSpell(430);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(430);
+    target:addSpell(430);
 end;

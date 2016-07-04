@@ -14,7 +14,7 @@ require("scripts/globals/settings");
 function onTrigger(player,npc)
 
 -- To be implemented
-	
+    
 end;
 
 -----------------------------------

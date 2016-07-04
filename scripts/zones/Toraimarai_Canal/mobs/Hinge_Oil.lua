@@ -1,11 +1,8 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- Mob: Hinge Oil
+--  MOB: Hinge Oil
 -----------------------------------
 
-require("scripts/globals/titles");
-require("scripts/globals/status");
-require("scripts/globals/missions");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -25,5 +22,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

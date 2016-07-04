@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos N T	
+-- Area: Temenos N T    
 -- NPC:  Kari
 
 -----------------------------------
@@ -26,6 +26,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(16928770+451):setStatus(STATUS_NORMAL);
+function onMobDeath(mob, player, isKiller)
+    GetNPCByID(16928770+451):setStatus(STATUS_NORMAL);
 end;

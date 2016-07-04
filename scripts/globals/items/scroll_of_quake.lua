@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4818
---	Scroll of Quake
---	Teaches the black magic Quake
+--    ID: 4818
+--    Scroll of Quake
+--    Teaches the black magic Quake
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(210);
+    return target:canLearnSpell(210);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(210);
+    target:addSpell(210);
 end;

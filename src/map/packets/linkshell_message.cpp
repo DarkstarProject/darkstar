@@ -27,29 +27,28 @@
 
 #include <string.h>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(CLinkshell* PLinkshell, uint8 lsNum)
+CLinkshellMessagePacket::CLinkshellMessagePacket(const int8* poster, const int8* message, const int8* lsname, uint32 posttime, bool ls1)
 {
-    this->type = 0xCC;
+    CBasicPacket::id(id);
 	this->size = 0x58;
 
     ref<uint8>(0x04) = 0x03;
     ref<uint8>(0x05) = 0x90;
 
-    if (PLinkshell != nullptr)
+    ref<uint8>(0x04) = 0x70;
+    ref<uint8>(0x05) = 0x06;
+
+    if (!ls1)
     {
-        ref<uint8>(0x04) = 0x70;
-        ref<uint8>(0x05) = 0x06;
+        ref<uint8>(0x05) |= 0x40; //LS2
+    }
+    if (message)
+    {
+        memcpy(data + (0x08), message, dsp_min(strlen(message), 115));
+        memcpy(data + (0x8C), poster, dsp_min(strlen(poster), 15));
+        memcpy(data + (0xA0), lsname, dsp_min(strlen(lsname), 16));
 
-        if (lsNum == 2)
-        {
-            ref<uint8>(0x05) |= 0x40; //LS2
-        }
-
-        memcpy(data+(0x08), PLinkshell->getMessage(), dsp_min(strlen(PLinkshell->getMessage()), 115));
-        memcpy(data+(0x8C), PLinkshell->getPoster(), dsp_min(strlen(PLinkshell->getPoster()), 15));
-        memcpy(data+(0xA0), PLinkshell->getName(), dsp_min(strlen(PLinkshell->getName()), 16));
-
-        ref<uint32>(0x88) = PLinkshell->getMessageTime();
+        ref<uint32>(0x88) = posttime;
     }
     ref<uint32>(0x9C) = 0x02;
 }

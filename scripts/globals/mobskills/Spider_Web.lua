@@ -14,10 +14,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_SLOW;
-	local power = 300;
+    local typeEffect = EFFECT_SLOW;
+    local power = 300;
 
-	skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, 90));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, 90));
 
-	return typeEffect;
+    return typeEffect;
 end;

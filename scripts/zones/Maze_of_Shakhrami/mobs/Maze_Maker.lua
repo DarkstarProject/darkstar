@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
--- MOB:  Maze Maker
+--  MOB: Maze Maker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,696,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,696,1);
 end;

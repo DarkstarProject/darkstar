@@ -24,6 +24,7 @@ ENABLE_AMK     = 0;
 ENABLE_ASA     = 0;
 ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
+ENABLE_ROV     = 0;
 
 -- Setting to lock content more accurately to the expansions you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
@@ -44,21 +45,17 @@ ADVANCED_JOB_LEVEL = 30; -- Minimum level to accept advanced job quests.  Set to
 ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
 UNLOCK_OUTPOST_WARPS = 0; -- Set to 1 to give starting characters all outpost warps.  2 to add Tu'Lia and Tavnazia.
 
-SHOP_PRICE = 1.000; -- Multiplies prices in NPC shops.
-GIL_RATE   = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
-EXP_RATE   = 1.000; -- Multiplies exp earned from fov.
-TABS_RATE  = 1.000; -- Multiplies tabs earned from fov.
-SAN_FAME   = 1.000; -- Multiplies fame earned from San d'Oria quests.
-BAS_FAME   = 1.000; -- Multiplies fame earned from Bastok quests.
-WIN_FAME   = 1.000; -- Multiplies fame earned from Windurst quests.
-NORG_FAME  = 1.000; -- Multiplies fame earned from Norg and Tenshodo quests.
-JEUNO_FAME = 1.000; -- Multiplies fame earned from Jeuno quests.
-
-CURE_POWER  = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
-SPELL_POWER = 1.000; -- Multiplies damage dealt by Elemental and Divine Magic.
-BLUE_POWER  = 1.000; -- Multiplies damage dealt by most Blue Magic.
-DRAIN_POWER = 1.000; -- Multiplies amount drained by Drain, Aspir, and relevant Blue Magic spells.
-ITEM_POWER  = 1.000; -- Multiplies the effect of items such as Potions and Ethers.
+SHOP_PRICE      = 1.000; -- Multiplies prices in NPC shops.
+GIL_RATE        = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
+EXP_RATE        = 1.000; -- Multiplies exp earned from fov.
+TABS_RATE       = 1.000; -- Multiplies tabs earned from fov.
+CURE_POWER      = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
+ELEMENTAL_POWER = 1.000; -- Multiplies damage dealt by Elemental and non-drain Dark Magic.
+DIVINE_POWER    = 1.000; -- Multiplies damage dealt by Divine Magic.
+NINJUTSU_POWER  = 1.000; -- Multiplies damage dealt by Ninjutsu Magic.
+BLUE_POWER      = 1.000; -- Multiplies damage dealt by Blue Magic.
+DARK_POWER      = 1.000; -- Multiplies amount drained by Dark Magic.
+ITEM_POWER      = 1.000; -- Multiplies the effect of items such as Potions and Ethers.
 WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
 WEAPON_SKILL_POINTS = 1.000; -- Multiplies points earned during weapon unlocking.
 USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
@@ -66,11 +63,11 @@ USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Ad
 HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
 LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 0.33; -- % chance for the pickaxe to break during mining.  Set between 0 and 1.
+MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100. 
 HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
 EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
 LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE             = 0.50; -- % chance to recieve an item from mining.  Set between 0 and 1.
+MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100. 
 
 -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
 -- till a random time between MIN_ILLSION_TIME and MAX_ILLUSION_TIME. During this time players can loot keyitem and item related to quests (AF, maps... etc.)
@@ -81,11 +78,12 @@ CHEST_MIN_ILLUSION_TIME  = 1800;  -- 30 minutes
 
 -- Sets spawn type for: Behemoth, Fafnir, Adamantoise, King Behemoth, Nidhog, Aspidochelone.
 -- Use 0 for timed spawns, 1 for force pop only, 2 for both
-LandKingSystem_NQ = 2;
-LandKingSystem_HQ = 2;
+LandKingSystem_NQ = 0;
+LandKingSystem_HQ = 0;
 
 -- DYNAMIS SETTINGS
     BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 Dynamis (in real day) min: 1 day
+        DYNA_MIDNIGHT_RESET = true;     -- if true, makes the wait time count by number of server midnights instead of full 24 hour intervals
              DYNA_LEVEL_MIN = 65;       -- level min for entering in Dynamis
     TIMELESS_HOURGLASS_COST = 500000;   -- cost of the timeless hourglass for Dynamis.
      CURRENCY_EXCHANGE_RATE = 100;      -- X Tier 1 ancient currency -> 1 Tier 2, and so on.  Certain values may conflict with shop items.  Not designed to exceed 198.
@@ -128,7 +126,7 @@ BLINK_SHADOWS = 2;   -- number of shadows supplied by Blink spell
 ENSPELL_DURATION = 180; -- duration of RDM en-spells
 SPIKE_EFFECT_DURATION = 180; -- the duration of RDM, BLM spikes effects (not Reprisal)
 ELEMENTAL_DEBUFF_DURATION = 120; -- base duration of elemental debuffs
-AQUAVEIL_INTERR_RATE = 25;  -- percent spell interruption rate reduction from Aquaveil (see http://www.bluegartrls.com/forum/82143-spell-interruption-down-cap-aquaveil-tests.html)
+AQUAVEIL_COUNTER = 1;  -- Base amount of hits Aquaveil absorbs to prevent spell interrupts. Retail is 1.
 ABSORB_SPELL_AMOUNT = 8; -- how much of a stat gets absorbed by DRK absorb spells - expected to be a multiple of 8.
 ABSORB_SPELL_TICK = 9; -- duration of 1 absorb spell tick
 SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodorize to reduce player torture. 1 = retail behavior.
@@ -161,6 +159,7 @@ HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
 DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
 MIASMA_FILTER_COOLDOWN = 5;  -- Number of days a player can obtain a Miasma Filter KI for any of the Boneyard Gully ENMs (Minimum:1)
+FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
 
 -- LIMBUS
 BETWEEN_2COSMOCLEANSE_WAIT_TIME = 3; -- day between 2 limbus keyitem  (default 3 days)

@@ -4,26 +4,34 @@
 -- Note: Place holder Narasimha
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(killer,mob,775,2);
+    checkGoVregime(player,mob,775,2);
 
-    local mob = mob:getID();
-    if (Narasimha_PH[mob] ~= nil) then
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    local mobID = mob:getID();
+
+    if (Narasimha_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Narasimha");
         if (ToD <= os.time(t) and GetMobAction(Narasimha) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Narasimha);
-                GetMobByID(Narasimha):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Narasimha", mob);
-                DeterMob(mob, true);
+                GetMobByID(Narasimha):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Narasimha", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

@@ -58,7 +58,7 @@ int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 *																		*
 ************************************************************************/
 
-float distance(position_t A, position_t B)
+float distance(const position_t& A, const position_t& B)
 {
 	float one = 0, two = 0, three = 0, four = 0;
 
@@ -134,7 +134,7 @@ uint8 radianToRotation(float radian)
 *																		*
 ************************************************************************/
 
-uint8 getangle(position_t A, position_t B)
+uint8 getangle(const position_t& A, const position_t& B)
 {
 	uint8 angle = (uint8)(atanf(( B.z - A.z ) / ( B.x - A.x )) * -(128.0f / M_PI));
 
@@ -147,7 +147,7 @@ uint8 getangle(position_t A, position_t B)
 *																		*
 ************************************************************************/
 
-bool isFaceing(position_t A, position_t B, uint8 coneAngle)
+bool isFaceing(const position_t& A, const position_t& B, uint8 coneAngle)
 {
 	int32 angle = getangle(A,B);
 	return ( abs(angle - A.rotation) < (coneAngle >> 1) );
@@ -160,7 +160,7 @@ offset - distance to be placed away from given Position.
 radian - angle relative to given position to be placed at. Zero will be a position infront of the given position.
 Pi will make the position behind the target (180 degrees).
 */
-position_t nearPosition(position_t A, float offset, float radian)
+position_t nearPosition(const position_t& A, float offset, float radian)
 {
 	// PI * 0.75 offsets the rotation to the proper place
 	float totalRadians = rotationToRadian(A.rotation) + radian;
@@ -469,7 +469,7 @@ int8* DecodeStringLinkshell(int8* signature, int8* target)
 
         if (tempChar == '\0')
         {
-            decodedSignature[currChar-1] = '\0';
+            decodedSignature[currChar == 0 ? currChar : currChar-1] = '\0';
             break;
         }
         else if (tempChar == 63)

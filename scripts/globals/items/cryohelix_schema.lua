@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6044
---	Cryohelix Schema
---	Teaches the black magic Cryohelix
+--    ID: 6044
+--    Cryohelix Schema
+--    Teaches the black magic Cryohelix
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(282);
+    return target:canLearnSpell(282);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(282);
+    target:addSpell(282);
 end;

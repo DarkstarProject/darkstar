@@ -18,26 +18,36 @@ require("scripts/globals/titles");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------        
+-- onZoneIn        
+-----------------------------------        
 
-function onZoneIn(player,prevZone)		
-	local cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-260.136,2.09,-325.702,188);
-	end	
-	if(player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
-		cs = 0x0032;
-	elseif(player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 7) then
-			cs = 0x003D;
-	end
-	return cs;
-end;		
+function onZoneIn(player,prevZone)        
+    local cs = -1;    
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+        player:setPos(-260.136,2.09,-325.702,188);
+    end    
+    if (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
+        cs = 0x0032;
+    elseif (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 7) then
+            cs = 0x003D;
+    end
+    return cs;
+end;        
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------
+-- afterZoneIn
+-----------------------------------
+
+function afterZoneIn(player)
+    player:entityVisualPacket("kilk");
+    player:entityVisualPacket("izum");
+    player:entityVisualPacket("hast");
+end;
+
+-----------------------------------        
+-- onConquestUpdate        
+-----------------------------------        
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -47,34 +57,34 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+-----------------------------------        
+-- onRegionEnter        
+-----------------------------------        
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)    
+end;    
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------    
+-- onEventUpdate    
+-----------------------------------    
 
-function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+function onEventUpdate(player,csid,option)    
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+end;    
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------    
+-- onEventFinish    
+-----------------------------------    
 
-function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-	
-	if(csid == 0x0032) then
-		finishMissionTimeline(player,3,csid,option);
-	elseif(csid == 0x003D) then
-		player:addTitle(GUIDING_STAR);
-		finishMissionTimeline(player,3,csid,option);
-	end
-end;	
+function onEventFinish(player,csid,option)    
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+    
+    if (csid == 0x0032) then
+        finishMissionTimeline(player,3,csid,option);
+    elseif (csid == 0x003D) then
+        player:addTitle(GUIDING_STAR);
+        finishMissionTimeline(player,3,csid,option);
+    end
+end;    

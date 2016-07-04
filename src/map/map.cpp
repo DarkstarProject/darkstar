@@ -56,12 +56,10 @@ This file is part of DarkStar-server source code.
 #include "time_server.h"
 #include "transport.h"
 #include "vana_time.h"
+#include "status_effect_container.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"
-
-#include "ai/ai_char_gm.h"
-#include "ai/ai_char_normal.h"
 
 #include "lua/luautils.h"
 
@@ -74,11 +72,8 @@ const int8* MAP_CONF_FILENAME = nullptr;
 
 int8*  g_PBuff = nullptr;                // глобальный буфер обмена пакетами
 int8*  PTempBuff = nullptr;                // временный  буфер обмена пакетами
-#ifdef WIN32
-__declspec(thread) Sql_t* SqlHandle = nullptr; // SQL descriptor
-#else
+
 thread_local Sql_t* SqlHandle = nullptr;
-#endif
 
 int32  map_fd = 0;                      // main socket
 uint32 map_amntplayers = 0;             // map amnt unique players
@@ -142,7 +137,6 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
 		return nullptr;
 	}
-    ShowInfo(CL_WHITE"mapsession" CL_RESET":" CL_WHITE"%s" CL_RESET":" CL_WHITE"%u" CL_RESET" is coming to world...\n", ip2str(map_session_data->client_addr, nullptr), map_session_data->client_port);
     return map_session_data;
 }
 
@@ -168,7 +162,7 @@ int32 do_init(int32 argc, int8** argv)
     MAP_CONF_FILENAME = "./conf/map_darkstar.conf";
 
     srand((uint32)time(nullptr));
-    WELL512::seed((uint32)time(nullptr));
+    dsprand::seed();
 
     map_config_default();
     map_config_read(MAP_CONF_FILENAME);
@@ -217,7 +211,6 @@ int32 do_init(int32 argc, int8** argv)
 
     guildutils::Initialize();
     charutils::LoadExpTable();
-    linkshell::LoadLinkshellList();
     traits::LoadTraitsList();
     effects::LoadEffectsParameters();
     battleutils::LoadSkillTable();
@@ -229,7 +222,7 @@ int32 do_init(int32 argc, int8** argv)
     petutils::LoadPetList();
     mobutils::LoadCustomMods();
 
-    ShowStatus("do_init: loading zones\n");
+    ShowStatus("do_init: loading zones");
     zoneutils::LoadZoneList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
@@ -245,9 +238,9 @@ int32 do_init(int32 argc, int8** argv)
 
     CTransportHandler::getInstance()->InitializeTransport();
 
-    CTaskMgr::getInstance()->AddTask("time_server", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400);
-    CTaskMgr::getInstance()->AddTask("map_cleanup", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5000);
-    CTaskMgr::getInstance()->AddTask("garbage_collect", gettick(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15 * 60 * 1000);
+    CTaskMgr::getInstance()->AddTask("time_server", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400ms);
+    CTaskMgr::getInstance()->AddTask("map_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5s);
+    CTaskMgr::getInstance()->AddTask("garbage_collect", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15min);
 
     CREATE(g_PBuff, int8, map_config.buffer_size + 20);
     CREATE(PTempBuff, int8, map_config.buffer_size + 20);
@@ -273,7 +266,7 @@ void do_final(int code)
 
     itemutils::FreeItemList();
     battleutils::FreeWeaponSkillsList();
-    battleutils::FreeSkillChainDamageModifiers();
+    battleutils::FreeMobSkillList();
 
     petutils::FreePetList();
     zoneutils::FreeZoneList();
@@ -324,14 +317,14 @@ void set_server_type()
 *                                                                       *
 ************************************************************************/
 
-int32 do_sockets(fd_set* rfd, int32 next)
+int32 do_sockets(fd_set* rfd, duration next)
 {
     struct timeval timeout;
     int32 ret;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
-    timeout.tv_sec = next / 1000;
-    timeout.tv_usec = next % 1000 * 1000;
+    timeout.tv_sec = std::chrono::duration_cast<std::chrono::seconds>(next).count();
+    timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
 
     ret = sSelect(fd_max, rfd, nullptr, nullptr, &timeout);
 
@@ -399,7 +392,7 @@ int32 do_sockets(fd_set* rfd, int32 next)
             }
             if (map_session_data->shuttingDown > 0)
             {
-                map_close_session(gettick(), map_session_data);
+                map_close_session(server_clock::now(), map_session_data);
             }
         }
     }
@@ -518,7 +511,6 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
             // наверное создание персонажа лучше вынести в метод charutils::LoadChar() и загрузку инвентаря туда же сунуть
             CCharEntity* PChar = new CCharEntity();
             PChar->id = CharID;
-            PChar->PBattleAI = new CAICharNormal(PChar);
 
             charutils::LoadChar(PChar);
 
@@ -616,7 +608,6 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             ShowWarning("Bad packet size %03hX | %04hX %04hX %02hX from user: %s\n", SmallPD_Type, RBUFW(SmallPD_ptr, 2), RBUFW(buff, 2), SmallPD_Size, PChar->GetName());
         }
     }
-    ((CAICharNormal*)PChar->PBattleAI)->CheckActionAfterReceive(gettick());
     map_session_data->client_packet_id = SmallPD_Code;
 
     // здесь мы проверяем, получил ли клиент предыдущий пакет
@@ -739,7 +730,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
 *                                                                       *
 ************************************************************************/
 
-int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
+int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
 {
     if (map_session_data != nullptr &&
         map_session_data->server_packet_data != nullptr &&
@@ -778,7 +769,7 @@ int32 map_close_session(uint32 tick, map_session_data_t* map_session_data)
 *                                                                       *
 ************************************************************************/
 
-int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
+int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 {
     map_session_list_t::iterator it = map_session_list.begin();
 
@@ -832,6 +823,8 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
                         }
 
                         PChar->StatusEffectContainer->SaveStatusEffects(true);
+                        charutils::SaveCharPosition(PChar);
+
                         ShowDebug(CL_CYAN"map_cleanup: %s timed out, closing session\n" CL_RESET, PChar->GetName());
 
                         PChar->status = STATUS_SHUTDOWN;
@@ -870,7 +863,6 @@ int32 map_cleanup(uint32 tick, CTaskMgr::CTask* PTask)
         {
             PChar->nameflags.flags &= ~FLAG_DC;
             PChar->updatemask |= UPDATE_HP;
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
 
             if (PChar->status == STATUS_NORMAL)
             {
@@ -1054,6 +1046,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "vanadiel_time_offset") == 0)
         {
             map_config.vanadiel_time_offset = atoi(w2);
+        }
+        else if (strcmp(w1, "fame_multiplier") == 0)
+        {
+            map_config.fame_multiplier = atof(w2);
         }
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
@@ -1271,6 +1267,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.msg_server_ip = aStrdup(w2);
         }
+        else if (strcmp(w1, "mob_no_despawn") == 0)
+        {
+            map_config.mob_no_despawn = atoi(w2);
+        }
         else
         {
             ShowWarning(CL_YELLOW"Unknown setting '%s' in file %s\n" CL_RESET, w1, cfgName);
@@ -1324,7 +1324,7 @@ int32 map_config_read(const int8* cfgName)
     return 0;
 }
 
-int32 map_garbage_collect(uint32 tick, CTaskMgr::CTask* PTask)
+int32 map_garbage_collect(time_point tick, CTaskMgr::CTask* PTask)
 {
     luautils::garbageCollect();
     return 0;

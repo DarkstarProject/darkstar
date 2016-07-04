@@ -11,12 +11,12 @@ require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- For those who don't know
--- at the end of if(player:getQuestStatus(REGION,QUEST_NAME)
+-- at the end of if (player:getQuestStatus(REGION,QUEST_NAME)
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED 
--- e.g. if(player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
--- means if(player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
+-- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
+-- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
 -----------------------------------
 -- onTrade Action
@@ -33,11 +33,11 @@ function onTrigger(player,npc)
 
 local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
-	if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
-		player:addKeyItem(609);
-		player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
+    if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
+        player:addKeyItem(609);
+        player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
 
-	end
+    end
 end
 -----------------------------------
 -- onEventUpdate

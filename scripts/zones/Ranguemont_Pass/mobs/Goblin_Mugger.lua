@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- MOB:  Goblin Mugger
+--  MOB: Goblin Mugger
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,604,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,604,1);
 end;

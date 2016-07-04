@@ -31,55 +31,52 @@ This file is part of DarkStar-server source code.
 #include "../alliance.h"
 #include "../party.h"
 
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 ZoneID)
 {
     this->type = 0xDD;
     this->size = 0x20;
 
     DSP_DEBUG_BREAK_IF(PChar == nullptr);
 
-    WBUFL(data, (0x04) ) = PChar->id;
+    ref<uint32>(0x04) = PChar->id;
 
-    if (PChar->PParty != nullptr)
-    {
-        WBUFW(data, (0x14) ) = PChar->PParty->GetMemberFlags(PChar);
-    }
+    ref<uint16>(0x14) = memberflags;
 
     if (PChar->getZone() != ZoneID)
     {
-        WBUFW(data, (0x20) ) = PChar->getZone();
+        ref<uint16>(0x20) = PChar->getZone();
     }
     else
     {
-        WBUFL(data, (0x08) ) = PChar->health.hp;
-        WBUFL(data, (0x0C) ) = PChar->health.mp;
-        WBUFW(data, (0x10) ) = PChar->health.tp;
-        WBUFW(data, (0x18) ) = PChar->targid;
-        WBUFB(data, (0x1A) ) = MemberNumber;
-        WBUFB(data, (0x1D) ) = PChar->GetHPP();
-        WBUFB(data, (0x1E) ) = PChar->GetMPP();
+        ref<uint32>(0x08) = PChar->health.hp;
+        ref<uint32>(0x0C) = PChar->health.mp;
+        ref<uint16>(0x10) = PChar->health.tp;
+        ref<uint16>(0x18) = PChar->targid;
+        ref<uint8>(0x1A) = MemberNumber;
+        ref<uint8>(0x1D) = PChar->GetHPP();
+        ref<uint8>(0x1E) = PChar->GetMPP();
 
         if (!(PChar->nameflags.flags & FLAG_ANON))
         {
-            WBUFB(data, (0x22) ) = PChar->GetMJob();
-            WBUFB(data, (0x23) ) = PChar->GetMLevel();
-            WBUFB(data, (0x24) ) = PChar->GetSJob();
-            WBUFB(data, (0x25) ) = PChar->GetSLevel();
+            ref<uint8>(0x22) = PChar->GetMJob();
+            ref<uint8>(0x23) = PChar->GetMLevel();
+            ref<uint8>(0x24) = PChar->GetSJob();
+            ref<uint8>(0x25) = PChar->GetSLevel();
         }
     }
 
-    memcpy(data + (0x26) , PChar->GetName(), PChar->name.size());
+    memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
 }
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 ZoneID)
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID)
 {
 
-	this->type = 0xDD;
-	this->size = 0x20;
+    this->type = 0xDD;
+    this->size = 0x20;
 
-	WBUFL(data, (0x04) ) = id;
+    ref<uint32>(0x04) = id;
 
-	WBUFW(data, (0x14) ) = memberFlags;
-	WBUFW(data, (0x20) ) = ZoneID;
+    ref<uint16>(0x14) = memberFlags;
+    ref<uint16>(0x20) = ZoneID;
 
-	memcpy(data + (0x26) , name, strlen(name));
+    memcpy(data + (0x26), name, strlen(name));
 }

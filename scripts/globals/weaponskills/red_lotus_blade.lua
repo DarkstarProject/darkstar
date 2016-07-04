@@ -16,22 +16,21 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
-	local params = {};
-	params.ftp100 = 1; params.ftp200 = 2.38; params.ftp300 = 3;
-	params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.2; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-	params.ele = ELE_FIRE;
-	params.skill = SKILL_SWD;
-	params.includemab = true;
+    local params = {};
+    params.ftp100 = 1; params.ftp200 = 2.38; params.ftp300 = 3;
+    params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.2; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+    params.ele = ELE_FIRE;
+    params.skill = SKILL_SWD;
+    params.includemab = true;
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.ftp300 = 3.75;
-		params.str_wsc = 0.4; params.int_wsc = 0.4;
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.ftp300 = 3.75;
+        params.str_wsc = 0.4; params.int_wsc = 0.4;
+    end
 
-	local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, params);
-	damage = damage * WEAPON_SKILL_POWER
-	return tpHits, extraHits, criticalHit, damage;
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
+    return tpHits, extraHits, criticalHit, damage;
 
 end

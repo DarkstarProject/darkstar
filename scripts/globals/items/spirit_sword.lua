@@ -27,9 +27,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
 
-        local message = 163;
+        local message = MSGBASIC_ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = 167;
+            message = MSGBASIC_ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_LIGHT_DAMAGE,message,dmg;
@@ -53,5 +53,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addTP(10); -- Core currently makes this *10 stated value, so its 100...
+    target:addTP(100);
 end;

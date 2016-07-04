@@ -29,18 +29,18 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
-if(mob:getLocalVar("2HOUR") == 0)then
-	if(mob:getHPP() < mob:getLocalVar("2HGO"))then
-		mob:setLocalVar("2HOUR",1);
-		mob:useMobAbility(438);
-	end
+if (mob:getLocalVar("2HOUR") == 0) then
+    if (mob:getHPP() < mob:getLocalVar("2HGO")) then
+        mob:setLocalVar("2HOUR",1);
+        mob:useMobAbility(694);
+    end
 end
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 mob:setLocalVar("2HOUR",0);
 mob:setLocalVar("2HGO",0);
 

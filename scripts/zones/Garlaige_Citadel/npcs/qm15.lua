@@ -24,14 +24,14 @@ end;
 
 function onTrigger(player,npc)
 
-	local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
+    local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
-	if (hittingTheMarquisateHagainCS == 8) then 
-		player:messageSpecial(HEAT_FROM_CEILING);
-		-- TODO: player must wait 10 minutes before they can spawn bomb again
-		SpawnMob(17596533,120):updateClaim(player); -- Chandelier
-	end
-	
+    if (hittingTheMarquisateHagainCS == 8) then 
+        player:messageSpecial(HEAT_FROM_CEILING);
+        -- TODO: player must wait 10 minutes before they can spawn bomb again
+        SpawnMob(17596533,120):updateClaim(player); -- Chandelier
+    end
+    
 end;
 
 -----------------------------------

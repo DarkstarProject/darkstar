@@ -1,5 +1,5 @@
 -----------------------------------
--- Attachment: Heat Sink
+-- Attachment: Inhibitor
 -----------------------------------
 
 require("scripts/globals/status");
@@ -8,23 +8,30 @@ require("scripts/globals/status");
 -- onUseAbility
 -----------------------------------
 
-function onManeuverGain(player,maneuvers)
-    -- PROOF OF CONCEPT
-    --[[if (maneuvers == 1) then
-        player:addPetMod(MOD_BURDEN_DECAY, 2);
-    elseif (maneuvers == 2) then
-        player:addPetMod(MOD_BURDEN_DECAY, 3); 
-    elseif (maneuvers == 3) then
-        player:addPetMod(MOD_BURDEN_DECAY, 2);
-    end]]
+function onEquip(pet)
+    pet:addMod(MOD_STORE_TP, 5)
 end
 
-function onManeuverLose(player,maneuvers)
-    --[[if (maneuvers == 1) then
-        player:delPetMod(MOD_BURDEN_DECAY, 2);
+function onUnequip(pet)
+    pet:delMod(MOD_STORE_TP, 5)
+end
+
+function onManeuverGain(pet,maneuvers)
+    if (maneuvers == 1) then
+        pet:addMod(MOD_STORE_TP, 10);
     elseif (maneuvers == 2) then
-        player:delPetMod(MOD_BURDEN_DECAY, 3); 
+        pet:addMod(MOD_STORE_TP, 10); 
     elseif (maneuvers == 3) then
-        player:delPetMod(MOD_BURDEN_DECAY, 2);
-    end]]
+        pet:addMod(MOD_STORE_TP, 15);
+    end
+end
+
+function onManeuverLose(pet,maneuvers)
+    if (maneuvers == 1) then
+        pet:delMod(MOD_STORE_TP, 10);
+    elseif (maneuvers == 2) then
+        pet:delMod(MOD_STORE_TP, 10); 
+    elseif (maneuvers == 3) then
+        pet:delMod(MOD_STORE_TP, 15);
+    end
 end

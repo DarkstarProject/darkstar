@@ -22,11 +22,11 @@ end;
 
 function onZoneIn(player,prevZone)
 local cs = -1;
-	player:addKeyItem(MAP_OF_ABDH_ISLE_PURGONORGO);
+    player:addKeyItem(MAP_OF_ABDH_ISLE_PURGONORGO);
 
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-		player:setPos(521.600,-3.000,563.000,64);
-	end
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        player:setPos(521.600,-3.000,563.000,64);
+    end
 return cs;
 end;
 

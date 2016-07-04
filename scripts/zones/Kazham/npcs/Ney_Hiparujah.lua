@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x00FB + player:getFameLevel(KAZHAM));
+    player:startEvent(0x00FB + player:getFameLevel(KAZHAM));
 end;
 -----------------------------------
 -- onEventUpdate

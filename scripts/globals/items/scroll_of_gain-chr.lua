@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5093
---	Scroll of Gain-CHR
---	Teaches the white magic Gain-CHR
+--    ID: 5093
+--    Scroll of Gain-CHR
+--    Teaches the white magic Gain-CHR
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(492);
+    return target:canLearnSpell(492);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(492);
+    target:addSpell(492);
 end;

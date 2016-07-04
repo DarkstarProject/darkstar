@@ -16,9 +16,9 @@ local mHP = target:getMaxHP();
 local cHP = target:getHP();
 
 if (mHP == cHP) then
-	value = 56; -- Does not let player use item if their hp is full
+    value = 56; -- Does not let player use item if their hp is full
 end
-	
+    
 return value;
 end;
 -----------------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:messageBasic(24,0,target:addHP(160*ITEM_POWER));
+    target:messageBasic(24,0,target:addHP(160*ITEM_POWER));
 end;

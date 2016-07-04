@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4952
---	Scroll of Hojo: Ichi
---	Teaches the ninjutsu Hojo: Ichi
+--    ID: 4952
+--    Scroll of Hojo: Ichi
+--    Teaches the ninjutsu Hojo: Ichi
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(344);
+    return target:canLearnSpell(344);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(344);
+    target:addSpell(344);
 end;

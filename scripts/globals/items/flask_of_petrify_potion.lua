@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_PETRIFICATION) == false) then
+    if (target:hasStatusEffect(EFFECT_PETRIFICATION) == false) then
         target:addStatusEffect(EFFECT_PETRIFICATION,1,3,180);
     else
         target:messageBasic(423);

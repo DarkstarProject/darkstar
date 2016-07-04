@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: West Sarutabaruta
--- NPC:  Krabkatoa
+--  MOB: Krabkatoa
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(ORCUS_TROPHY_HUNTER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(ORCUS_TROPHY_HUNTER);
 end;

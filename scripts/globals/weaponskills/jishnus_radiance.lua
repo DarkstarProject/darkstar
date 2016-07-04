@@ -16,25 +16,26 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action)
 
-	local params = {};
-	params.numHits = 3;
-	params.ftp100 = 1.75; params.ftp200 = 1.75; params.ftp300 = 1.75;
-	params.str_wsc = 0.0; params.dex_wsc = 0.60; params.vit_wsc = 0.0;
-	params.agi_wsc = 0.00; params.int_wsc = 0.0; params.mnd_wsc = 0.0;
-	params.chr_wsc = 0.0;
-	params.crit100 = 0.15; params.crit200 = 0.2; params.crit300 = 0.25;
-	params.canCrit = true;
-	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 1;
+    local params = {};
+    params.numHits = 3;
+    params.ftp100 = 1.75; params.ftp200 = 1.75; params.ftp300 = 1.75;
+    params.str_wsc = 0.0; params.dex_wsc = 0.60; params.vit_wsc = 0.0;
+    params.agi_wsc = 0.00; params.int_wsc = 0.0; params.mnd_wsc = 0.0;
+    params.chr_wsc = 0.0;
+    params.crit100 = 0.15; params.crit200 = 0.2; params.crit300 = 0.25;
+    params.canCrit = true;
+    params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+    params.atkmulti = 1;
+    params.multiHitfTP = true
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.dex_wsc = 0.8;
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.dex_wsc = 0.8;
+    end
 
-	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
-	damage = damage * WEAPON_SKILL_POWER
-	return tpHits, extraHits, criticalHit, damage;
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
+    action:speceffect(target:getID(), 8)
+    return tpHits, extraHits, criticalHit, damage;
 
 end;

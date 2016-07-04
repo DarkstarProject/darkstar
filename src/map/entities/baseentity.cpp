@@ -25,13 +25,15 @@
 #include "baseentity.h"
 #include "../map.h"
 #include "../zone.h"
+#include "../ai/ai_container.h"
+#include "../instance.h"
 
 CBaseEntity::CBaseEntity()
 {
 	m_TargID = 0;
 	namevis = 1;
 
-    PBattleAI = nullptr;
+    PAI = nullptr;
 	PBCNM = nullptr;
 	PInstance = nullptr;
 
@@ -50,10 +52,21 @@ CBaseEntity::CBaseEntity()
 
 CBaseEntity::~CBaseEntity()
 {
-	if(PBattleAI != nullptr)
-	{
-	    delete PBattleAI;
-	}
+}
+
+void CBaseEntity::Spawn()
+{
+    status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
+    updatemask |= UPDATE_HP;
+    ResetLocalVars();
+    PAI->Reset();
+    PAI->EventHandler.triggerListener("SPAWN", this);
+}
+
+void CBaseEntity::FadeOut()
+{
+    status = STATUS_DISAPPEAR;
+    updatemask |= UPDATE_HP;
 }
 
 const int8* CBaseEntity::GetName()
@@ -91,18 +104,18 @@ void CBaseEntity::HideName(bool hide)
 	if(hide)
 	{
 		// I totally guessed this number
-		namevis |= 0x08;
+		namevis |= FLAG_HIDE_NAME;
 	}
 	else
 	{
-		namevis &= ~0x08;
+		namevis &= ~FLAG_HIDE_NAME;
 	}
     updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis & 0x08;
+	return namevis & FLAG_HIDE_NAME;
 }
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)

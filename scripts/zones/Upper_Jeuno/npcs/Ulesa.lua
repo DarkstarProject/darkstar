@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Upper Jeuno
---	NPC:  Ulesa
---	Working 100%
+--    Area: Upper Jeuno
+--    NPC:  Ulesa
+--    Working 100%
 -----------------------------------
 
 -----------------------------------
@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:sendMenu(3);
+    player:sendMenu(3);
 end; 
 
 -----------------------------------

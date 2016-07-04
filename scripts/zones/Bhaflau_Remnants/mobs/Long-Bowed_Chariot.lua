@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
--- NPC:  Long-Bowed_Chariot
+--  MOB: Long-Bowed_Chariot
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(COMET_CHARIOTEER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(COMET_CHARIOTEER);
 end;

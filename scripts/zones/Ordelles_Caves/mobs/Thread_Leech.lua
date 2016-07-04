@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
--- MOB:  Thread Leech
+--  MOB: Thread Leech
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,655,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,655,2);
 end;

@@ -4,7 +4,7 @@
 -- @pos -257 8 -249 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

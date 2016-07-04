@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  Honor
+--  MOB: Honor
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 
@@ -18,17 +18,16 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-
 end;
 
 -----------------------------------
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-	if(killer:getCurrentMission(SANDORIA) == COMING_OF_AGE and killer:getVar("MissionStatus") == 2) then
-		killer:setVar("MissionStatus",3);
-	end
+    if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2) then
+        player:setVar("MissionStatus",3);
+    end
 
 end;

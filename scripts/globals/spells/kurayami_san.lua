@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -23,10 +23,10 @@ function onSpellCast(caster,target,spell)
     local power = 30;
 
     --Calculates resist chanve from Reist Blind
-    if(math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
-        if(duration >= 210) then
+    if (math.random(0,100) >= target:getMod(MOD_BLINDRES)) then
+        if (duration >= 210) then
 
-            if(target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
+            if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
                 spell:setMsg(236);
             else
                 spell:setMsg(75);

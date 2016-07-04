@@ -1,33 +1,22 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Dynamis_Lord
+--  NM:  Dynamis_Lord
+--
+-- In OLD Dynamis, he is spawned by killing 15 Kindred NMs..
+-- ..NOT by killing Ying and Yang.
+--
+-- In Neo Dynamis, he is spawned by trading
+-- a Shrouded Bijou to the ??? in front of Castle Zvahl.
 -----------------------------------
 
 require("scripts/globals/status");
-
------------------------------------
-
 require("scripts/globals/titles");
 
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
-function onMobInitialize(mob,target)
-end;
-
------------------------------------
--- onMobRoam
------------------------------------
-
-function onMobRoam(mob)
-	--[[
-	if(mob:getExtraVar(1) <= os.time()) then
-		DespawnMob(17330177); -- Despawn after 30min
-		DespawnMob(17330183);
-		DespawnMob(17330184);
-	end
-	]]
+function onMobInitialize(mob)
 end;
 
 -----------------------------------
@@ -35,10 +24,6 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-	
-	SpawnMob(17330183):updateEnmity(target); -- Spawn Ying
-	SpawnMob(17330184):updateEnmity(target); -- Spawn Yang
-	
 end;
 
 -----------------------------------
@@ -46,34 +31,35 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-	
-	if(mob:getLocalVar("timeLimit") <= os.time()) then
-		DespawnMob(17330177); -- Despawn after 30min
-		DespawnMob(17330183);
-		DespawnMob(17330184);
-	end
-	
-	if(mob:getBattleTime() % 90 == 0) then
-		if(GetMobAction(17330183) == 0) then
-			SpawnMob(17330183):updateEnmity(target); -- Respawn Ying after 90sec
-		end
-		if(GetMobAction(17330184) == 0) then
-			SpawnMob(17330184):updateEnmity(target); -- Respawn Yang after 90sec
-		end
-	end
-	
+    local YingID = 17330183;
+    local YangID = 17330184;
+
+    if (mob:getBattleTime() % 90 == 0 and mob:getBattleTime() >= 90) then
+        if (GetMobAction(YingID) == ACTION_NONE and GetMobAction(YangID) == ACTION_NONE) then
+            GetMobByID(YingID):setSpawn(-414.282,-44,20.427); -- These come from DL's spawn point when he spawns them.
+            GetMobByID(YangID):setSpawn(-414.282,-44,20.427);
+            SpawnMob(YingID):updateEnmity(target); -- Respawn the dragons after 90sec
+            SpawnMob(YangID):updateEnmity(target);
+        end
+    end
+
+    if (GetMobAction(YingID) == ACTION_ROAMING) then -- ensure that it's always going after someone, can't kite it away!
+        GetMobByID(YingID):updateEnmity(target);
+    end
+    if (GetMobAction(YangID) == ACTION_ROAMING) then
+        GetMobByID(YangID):updateEnmity(target);
+    end
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	killer:addTitle(LIFTER_OF_SHADOWS);
-	
-	local npc = GetNPCByID(17330778); -- Spawn ???
-	npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-	npc:setStatus(0);
-	
+function onMobDeath(mob, player, isKiller)
+    local npc = GetNPCByID(17330781); -- ID of the '???' target.
+    player:addTitle(LIFTER_OF_SHADOWS);
+    npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+    npc:setStatus(0); -- Spawn the '???'
+    DespawnMob(17330183); -- despawn dragons
+    DespawnMob(17330184);
 end;

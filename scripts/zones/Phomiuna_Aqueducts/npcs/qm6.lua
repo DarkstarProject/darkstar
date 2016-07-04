@@ -18,15 +18,15 @@ end;
 
 function onTrigger(player,npc)
 
-	local xPos = player:getXPos();
-	local DoorOffset = npc:getID() - 1;
-	
-	if (GetNPCByID(DoorOffset):getAnimation() == 9) then
-		if (xPos > 105) then
-			GetNPCByID(DoorOffset):openDoor(7) -- _0rl
-		end
-	end
-	
+    local xPos = player:getXPos();
+    local DoorOffset = npc:getID() - 1;
+    
+    if (GetNPCByID(DoorOffset):getAnimation() == 9) then
+        if (xPos > 105) then
+            GetNPCByID(DoorOffset):openDoor(7) -- _0rl
+        end
+    end
+    
 end; 
 
 -----------------------------------

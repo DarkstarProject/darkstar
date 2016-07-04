@@ -4,7 +4,7 @@
 -- @pos -305.061 16.172 -438.904 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

@@ -1,15 +1,15 @@
------------------------------------	
--- Area: RoMaeve	
--- MOB:  Darksteel Golem	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,122,2);
-	checkRegime(killer,mob,123,2);
-end;	
+-----------------------------------
+-- Area: RoMaeve
+--  MOB: Darksteel Golem
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,122,2);
+    checkRegime(player,mob,123,2);
+end;

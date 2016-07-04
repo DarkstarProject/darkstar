@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
--- MOB:  Blind Bat
+--  MOB: Blind Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,615,1);
-   checkGoVregime(killer,mob,617,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,615,1);
+    checkGoVregime(player,mob,617,2);
 end;

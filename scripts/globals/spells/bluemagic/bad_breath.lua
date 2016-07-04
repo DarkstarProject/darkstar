@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.08;
-    if(caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
         multi = multi + 0.50;
     end
         params.multiplier = multi;
@@ -52,42 +52,42 @@ function onSpellCast(caster,target,spell)
 
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
 
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
         local typeEffect = EFFECT_PARALYSIS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_WEIGHT;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_POISON;
         target:delStatusEffect(typeEffect); 
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_SLOW;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_SILENCE;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
-    if(damage > 0 and resist > 0.3) then
+    if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_BIND;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-        if(damage > 0 and resist > 0.3) then
+        if (damage > 0 and resist > 0.3) then
     local typeEffect = EFFECT_BLINDNESS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));

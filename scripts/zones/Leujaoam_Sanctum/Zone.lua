@@ -15,20 +15,19 @@ function onInitialize(zone)
 end;
 
 -----------------------------------
--- onZoneIn
+-- onInstanceZoneIn
 -----------------------------------
 
-function onZoneIn(player,prevZone)
+function onInstanceZoneIn(player,instance)
     local cs = -1;
 
     local pos = player:getPos();
     if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
-        player:setPos(player:getInstance():getEntryPos());
+        local entrypos = instance:getEntryPos();
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot);
     end
 
     player:addTempItem(5343);
-
-    return cs;
 end;
 
 -----------------------------------

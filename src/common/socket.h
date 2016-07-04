@@ -153,7 +153,7 @@ extern time_t stall_time;
 int32 makeConnection(uint32 ip, uint16 port, int32 type);
 
 //Интерфейс функции, обрабатывающей соединения
-int32 do_sockets(fd_set* rfd,int32 next);
+int32 do_sockets(fd_set* rfd,duration next);
 
 //функция, закрывающая сокет
 void do_close(int32 fd);
@@ -274,7 +274,7 @@ extern int32 naddr_;   // # of ip addresses
 
 	int32 makeConnection_tcp(uint32 ip, uint16 port);
 
-	int32 makeListenBind_tcp(uint32 ip, uint16 port,RecvFunc connect_client);
+	int32 makeListenBind_tcp(const char* ip, uint16 port,RecvFunc connect_client);
 
 	int32 realloc_fifo(int32 fd, uint32 rfifo_size, uint32 wfifo_size);
 

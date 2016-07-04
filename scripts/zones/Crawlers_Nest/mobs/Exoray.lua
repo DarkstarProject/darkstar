@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Exoray
+--  MOB: Exoray
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,690,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,690,1);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
--- MOB:  Ice Elemental
+--  MOB: Ice Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,748,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,748,1);
 end;

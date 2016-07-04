@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Davoi
--- NPC: Barakbok
+--  MOB: Barakbok
 -- Involved in Quest: The Doorman
 -----------------------------------
 
@@ -17,10 +17,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-
-	if(killer:getVar("theDoormanMyMob") == 1) then
-		killer:setVar("theDoormanKilledNM",killer:getVar("theDoormanKilledNM") + 1);
-	end
-
+function onMobDeath(mob, player, isKiller)
+    if (player:getVar("theDoormanMyMob") == 1) then
+        player:setVar("theDoormanKilledNM",player:getVar("theDoormanKilledNM") + 1);
+    end
 end;

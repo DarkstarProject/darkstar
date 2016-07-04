@@ -127,7 +127,7 @@ function hasMawActivated(player,portal)
     for i = 8,0,-1 do
         twop = 2^i
 
-        if(mawActivated >= twop) then
+        if (mawActivated >= twop) then
             bit[i]=true; mawActivated = mawActivated - twop;
         else
             bit[i]=false;

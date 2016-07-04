@@ -22,5 +22,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_COUNTER,effect:getPower());
-	target:delMod(MOD_ENMITY,effect:getPower()/5);
+    target:delMod(MOD_ENMITY,effect:getPower()/5);
 end;

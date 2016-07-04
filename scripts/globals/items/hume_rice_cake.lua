@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5294
---	Hume Rice Cake
---	Enchantment: 60Min, Costume - Hume child (female)
+--    ID: 5294
+--    Hume Rice Cake
+--    Enchantment: 60Min, Costume - Hume child (female)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canUseCostume();
+    return target:canUseCostume();
 end;
 
 -----------------------------------------
@@ -19,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_COSTUME,118,0,3600);
+    target:addStatusEffect(EFFECT_COSTUME,118,0,3600);
 end;

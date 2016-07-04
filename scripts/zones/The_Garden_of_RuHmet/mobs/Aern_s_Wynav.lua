@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Aern_s_Wynav
+--  MOB: Aern_s_Wynav
 -----------------------------------
 
 require("scripts/globals/status");
@@ -34,7 +34,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;
 
 -----------------------------------

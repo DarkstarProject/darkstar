@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Labyrinth of Onzozo
--- MOB:  Goblin Hunter
+--  MOB: Goblin Hunter
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,8 +9,8 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,771,2);
-   checkGoVregime(killer,mob,772,2);
-   checkGoVregime(killer,mob,774,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,771,2);
+    checkGoVregime(player,mob,772,2);
+    checkGoVregime(player,mob,774,2);
 end;

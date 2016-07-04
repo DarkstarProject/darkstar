@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	CheckMaps(player, npc, 0x03EE);
+    CheckMaps(player, npc, 0x03EE);
 end;
 
 -----------------------------------
@@ -29,9 +29,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	if (csid == 0x03EE) then
-		CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
-	end
+    if (csid == 0x03EE) then
+        CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+    end
 end;
 
 -----------------------------------

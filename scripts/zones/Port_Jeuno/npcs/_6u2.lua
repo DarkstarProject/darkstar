@@ -19,10 +19,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
-	player:startEvent(0x36);
-	return 1;
-	
+    
+    player:startEvent(0x36);
+    return 1;
+    
 end; 
 
 -----------------------------------

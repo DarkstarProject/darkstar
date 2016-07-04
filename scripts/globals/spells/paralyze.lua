@@ -16,13 +16,13 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if(target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
+    if (target:hasStatusEffect(EFFECT_PARALYSIS)) then --effect already on, do nothing
         spell:setMsg(75);
     else
         -- Calculate duration.
         local duration = math.random(20,120);
-		
-		    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        
+            if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         duration = duration * 2;
     end
 
@@ -38,7 +38,7 @@ function onSpellCast(caster,target,spell)
         if potency > 25 then
             potency = 25;
         end
-		    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+            if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
         potency = potency * 2;
     end
     caster:delStatusEffect(EFFECT_SABOTEUR);
@@ -46,8 +46,8 @@ function onSpellCast(caster,target,spell)
         --printf("Potency : %u",potency);
         local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_PARALYSIS);
 
-        if(resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
-            if(target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
+        if (resist >= 0.5) then --there are no quarter or less hits, if target resists more than .5 spell is resisted completely
+            if (target:addStatusEffect(EFFECT_PARALYSIS,potency,0,duration*resist)) then
                 spell:setMsg(236);
             else
                 -- no effect

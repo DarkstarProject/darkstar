@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- MOB:  Boggart
+--  MOB: Boggart
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,650,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,650,1);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4727
---	Scroll of Enwater II
---	Teaches the white magic Enwater II
+--    ID: 4727
+--    Scroll of Enwater II
+--    Teaches the white magic Enwater II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(317);
+    return target:canLearnSpell(317);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(317);
+    target:addSpell(317);
 end;

@@ -7,6 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/weaponskills");
 
 -----------------------------------
 -- onAbilityCheck
@@ -32,14 +33,12 @@ end;
 function onUseAbility(player,target,ability)
     local params = {};
     params.includemab = true;
-    local dmg = 2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG);
+    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, ELE_EARTH, target, dmg, params);
     dmg = dmg * applyResistanceAbility(player,target,ELE_EARTH,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_EARTH);
     
-    dmg = utils.stoneskin(target, dmg);
-        
-    target:delHP(dmg);
+    target:takeWeaponskillDamage(player, dmg, SLOT_RANGED, 1, 0, 0); -- targetTPMult is 0 because Quick Draw gives no TP to the mob
     target:updateEnmityFromDamage(player,dmg);
     
     local effects = {};
@@ -76,6 +75,8 @@ function onUseAbility(player,target,ability)
         local newEffect = target:getStatusEffect(effectId);
         newEffect:setStartTime(startTime);
     end
-    
+
+    local del = player:delItem(2179, 1) or player:delItem(2974, 1)
+    target:updateClaim(player);
     return dmg;
 end;

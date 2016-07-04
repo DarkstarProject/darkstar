@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5041
---	Scroll of Vital Etude
---	Teaches the song Vital Etude
+--    ID: 5041
+--    Scroll of Vital Etude
+--    Teaches the song Vital Etude
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(433);
+    return target:canLearnSpell(433);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(433);
+    target:addSpell(433);
 end;

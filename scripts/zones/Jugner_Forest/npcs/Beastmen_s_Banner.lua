@@ -4,7 +4,7 @@
 -- @pos 448.240 0.210 -157.228 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Jugner_Forest/TextIDs");
 
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

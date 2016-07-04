@@ -55,6 +55,16 @@ void CUContainer::Clean()
             delete m_PItem[i];
         }
     }
+    if (m_ContainerType == UCONTAINER_TRADE)
+    {
+        for (auto&& PItem : m_PItem)
+        {
+            if (PItem)
+            {
+                PItem->setReserve(0);
+            }
+        }
+    }
     m_ContainerType = UCONTAINER_EMPTY;
 
     m_lock   = 0;
@@ -192,6 +202,14 @@ bool CUContainer::SetItem(uint8 slotID, CItem* PItem)
 void CUContainer::SetSize(uint8 size)
 {
     m_PItem.resize(size, nullptr);
+}
+
+void CUContainer::ClearSlot(uint8 slotID)
+{
+    if (slotID < m_PItem.size())
+    {
+        m_PItem[slotID] = nullptr;
+    }
 }
 
 /************************************************************************

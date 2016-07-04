@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- MOB:  Ooze
+--  MOB: Ooze
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,603,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,603,2);
 end;

@@ -9,21 +9,21 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	local duration = SPIKE_EFFECT_DURATION;
+    local duration = SPIKE_EFFECT_DURATION;
   local typeEffect = EFFECT_ICE_SPIKES;
-	if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
-		duration = duration * 3;
-	end
+    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+        duration = duration * 3;
+    end
 
     local int = caster:getStat(MOD_INT);
     local magicAtk = caster:getMod(MOD_MATT);
     local power = ((int + 10) / 20 + 2) * (1 + (magicAtk / 100));
 
-   if(target:addStatusEffect(typeEffect,power,0,duration)) then
+   if (target:addStatusEffect(typeEffect,power,0,duration)) then
      spell:setMsg(230);
    else
      spell:setMsg(75);

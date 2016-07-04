@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Beryl-footed Molberry
+--  NM:  Beryl-footed Molberry
 -----------------------------------
 
 -----------------------------------
@@ -14,10 +14,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	SetServerVariable("[POP]Beryl-footed_Molberry",os.time(t) + 900); -- 15min
-	kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
-	if(kills < 480) then
-		killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-	end
+function onMobDeath(mob, player, isKiller)
+    SetServerVariable("[POP]Beryl-footed_Molberry",os.time(t) + 900); -- 15min
+
+    local kills = player:getVar("EVERYONES_GRUDGE_KILLS");
+
+    if (kills < 480) then
+        player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+    end
 end;

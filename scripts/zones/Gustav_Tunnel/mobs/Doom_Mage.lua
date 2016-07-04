@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Doom Mage
+--  MOB: Doom Mage
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,765,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,765,2);
 end;

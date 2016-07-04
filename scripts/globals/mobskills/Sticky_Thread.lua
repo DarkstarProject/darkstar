@@ -10,13 +10,13 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_SLOW;
+    local typeEffect = EFFECT_SLOW;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120));
 
-	return typeEffect;
+    return typeEffect;
 end;

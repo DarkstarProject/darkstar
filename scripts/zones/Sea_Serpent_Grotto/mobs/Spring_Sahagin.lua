@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
--- MOB:  Spring Sahagin
+--  MOB: Spring Sahagin
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,8 +9,8 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,806,1);
-   checkGoVregime(killer,mob,807,1);
-   checkGoVregime(killer,mob,808,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,806,1);
+    checkGoVregime(player,mob,807,1);
+    checkGoVregime(player,mob,808,1);
 end;

@@ -26,9 +26,9 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-		result = 246;
-	end
+    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+        result = 246;
+    end
 return result;
 end;
 
@@ -37,8 +37,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-
-	target:addStatusEffect(EFFECT_FOOD,PamamasEquip(target),0,1800,4596);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,4596);
 end;
 
 -----------------------------------
@@ -46,23 +45,8 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-	local power = effect:getPower();
-	if (power == 1 or power == 4 or power == 5) then
-		target:addMod(MOD_HP, 50);
-		target:addMod(MOD_MP, 50);
-		target:addMod(MOD_AGI, -3);
-		target:addMod(MOD_CHR, 14);
-	end
-	if (power == 2 or power == 4) then
-		target:addMod(MOD_DELAY, -90);
-		target:addMod(MOD_ACC, 10);
-	end
-	if (power == 3 or power == 5) then
-		target:addMod(MOD_DELAY, -80);
-		target:addMod(MOD_ACC, 12);
-	end
-	target:addMod(MOD_STR, -3);
-	target:addMod(MOD_INT, 1);
+    target:addMod(MOD_STR, -3);
+    target:addMod(MOD_INT, 1);
 end;
 
 -----------------------------------------
@@ -70,21 +54,6 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-	local power = effect:getPower();
-	if (power == 1 or power == 4 or power == 5) then
-		target:delMod(MOD_HP, 50);
-		target:delMod(MOD_MP, 50);
-		target:delMod(MOD_AGI, -3);
-		target:delMod(MOD_CHR, 14);
-	end
-	if (power == 2 or power == 4) then
-		target:delMod(MOD_DELAY, -90);
-		target:delMod(MOD_ACC, 10);
-	end
-	if (power == 3 or power == 5) then
-		target:delMod(MOD_DELAY, -80);
-		target:delMod(MOD_ACC, 12);
-	end
-	target:delMod(MOD_STR, -3);
-	target:delMod(MOD_INT, 1);
+    target:delMod(MOD_STR, -3);
+    target:delMod(MOD_INT, 1);
 end;

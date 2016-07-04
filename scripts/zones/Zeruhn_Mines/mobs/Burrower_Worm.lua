@@ -1,6 +1,6 @@
 ----------------------------------
---  Area: Zeruhn Mines (172)
---   Mob: Burrower Worm
+-- Area: Zeruhn Mines (172)
+--  Mob: Burrower Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-    checkGoVregime(killer,mob,629,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,629,2);
 end;

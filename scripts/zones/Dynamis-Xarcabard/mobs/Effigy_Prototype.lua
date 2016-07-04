@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Xarcabard
--- NPC:  Effigy Prototype
+--  MOB: Effigy Prototype
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -34,14 +34,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	local mobID = mob:getID();
-	
-	-- HP Bonus: 112 142
-	if(mobID == 17330532 or mobID == 17330911) then
-		killer:restoreHP(2000);
-		killer:messageBasic(024,(killer:getMaxHP()-killer:getHP()));
-	end
-	
+function onMobDeath(mob, player, isKiller)
+    
+    local mobID = mob:getID();
+    
+    -- HP Bonus: 112 142
+    if (mobID == 17330532 or mobID == 17330911) then
+        player:restoreHP(2000);
+        player:messageBasic(024,(player:getMaxHP()-player:getHP()));
+    end
+    
 end;

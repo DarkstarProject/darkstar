@@ -35,11 +35,11 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-	local cs = -1;
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-		player:setPos(316.848,-2.182,340.03,125);
-	end
-	return cs;
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        player:setPos(316.848,-2.182,340.03,125);
+    end
+    return cs;
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,18 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-
-	if(csid == 0x0007) then
-		player:startEvent(0x0008);
-	elseif(csid == 0x0008) then
-		if(player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-			player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
-			player:addKeyItem(DARK_FRAGMENT);
-			player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
-			player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
-			player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
-		end
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

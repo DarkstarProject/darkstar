@@ -8,6 +8,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/ability");
 
 -----------------------------------
 -- onAbilityCheck
@@ -21,6 +22,19 @@ end;
 -- onUseAbilityRoll
 -----------------------------------
 
-function onUseAbilityRoll(caster,target,ability,total)
-    
+function onUseAbility(caster,target,ability,action)
+    if (caster:getID() == target:getID()) then
+        local roll = math.random(1,6);
+        caster:setLocalVar("corsairRollTotal", roll);
+        action:speceffect(caster:getID(), roll);
+    end
+    local total = caster:getLocalVar("corsairRollTotal")
+    return applyRoll(caster,target,ability,action,total)
 end;
+
+function applyRoll(caster,target,ability,action,total)
+    caster:doWildCard(target,total)
+    ability:setMsg(435 + math.floor((total-1)/2)*2)
+    action:animation(target:getID(), 132 + (total) - 1)
+    return total
+end

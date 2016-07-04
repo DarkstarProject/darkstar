@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(SPACE_SEEMS_DISTORTED);
+    player:messageSpecial(SPACE_SEEMS_DISTORTED);
 end;
 
 -----------------------------------

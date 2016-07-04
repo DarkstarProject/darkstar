@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ordelle's Caves
--- MOB:  Goblin Furrier
+--  MOB: Goblin Furrier
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,657,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,657,1);
 end;

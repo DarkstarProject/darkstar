@@ -13,7 +13,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-	return 0,0;
+    return 0,0;
 end;
 
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 
 function onUseAbility(player,target,ability)
     local amount = 12;
-    if(player:getMainJob()==12) then
+    if (player:getMainJob()==12) then
         amount = 20;
     end
 

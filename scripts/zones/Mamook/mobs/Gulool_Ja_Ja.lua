@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
--- NPC:  Gulool Ja Ja
+--  MOB: Gulool Ja Ja
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,10 +18,10 @@ end;
 
 function onMobEngaged(mob,target)
 
-	SpawnMob(17043876,180):updateEnmity(target);
-	SpawnMob(17043877,180):updateEnmity(target);
-	SpawnMob(17043878,180):updateEnmity(target);
-	SpawnMob(17043879,180):updateEnmity(target);
+    SpawnMob(17043876,180):updateEnmity(target);
+    SpawnMob(17043877,180):updateEnmity(target);
+    SpawnMob(17043878,180):updateEnmity(target);
+    SpawnMob(17043879,180):updateEnmity(target);
 
 end;
 
@@ -29,6 +29,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(SHINING_SCALE_RIFLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(SHINING_SCALE_RIFLER);
 end;

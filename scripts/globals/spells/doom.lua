@@ -11,12 +11,12 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
     local effect = EFFECT_DOOM;
-    if(target:hasStatusEffect(effect) == false) then
+    if (target:hasStatusEffect(effect) == false) then
         spell:setMsg(237); -- gains effect
         target:addStatusEffect(effect,10,3,30);
     else

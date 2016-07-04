@@ -4,7 +4,7 @@
 -- @pos -172.764 25.119 93.640 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
+-----------------------------------
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
 -----------------------------------
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(BEASTMEN_BANNER);
+    player:messageSpecial(BEASTMEN_BANNER);
 end;
 
 -----------------------------------

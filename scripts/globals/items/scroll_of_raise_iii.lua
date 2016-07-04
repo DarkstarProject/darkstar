@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4748
---	Scroll of Raise II
---	Teaches the white magic Raise III
+--    ID: 4748
+--    Scroll of Raise II
+--    Teaches the white magic Raise III
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(140);
+    return target:canLearnSpell(140);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(140);
+    target:addSpell(140);
 end;

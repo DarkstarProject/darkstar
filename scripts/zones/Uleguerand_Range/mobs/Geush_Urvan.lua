@@ -1,7 +1,7 @@
 -----------------------------------
---  Area:  Uleguerand_Range
---  NPC:   Geush Urvan
---  Notes: Spawned from qm1
+-- Area: Uleguerand_Range
+--  MOB: Geush Urvan
+-- Notes: Spawned from qm1
 -----------------------------------
 
 -----------------------------------
@@ -15,6 +15,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(16798095):hideNPC(900);
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(16798097):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

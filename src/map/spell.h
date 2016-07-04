@@ -31,7 +31,6 @@
 #include "entities/charentity.h"
 
 #define CANNOT_USE_SPELL    0
-#define MAX_SPELL_ID        847
 
 enum SPELLGROUP
 {
@@ -77,12 +76,12 @@ class CSpell
 public:
 
     CSpell(uint16 id);
+    virtual std::unique_ptr<CSpell> clone();
 
     bool        canTargetEnemy();
     bool        isBuff();
     bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
 
-    float       getMaxRange();
     uint16      getTotalTargets();
     uint16      getID();
     uint8       getJob(JOBTYPE JobID);
@@ -110,10 +109,12 @@ public:
     uint8       getRequirements();
     uint16      getMeritId();
     uint8       getFlag();
-    int8*        getExpansionCode();
+    int8*       getExpansionCode();
+    float       getRange();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
     bool        isHeal(); // is a heal spell
+    bool        isCure(); // is a Cure spell
     bool        isNa(); // is a -na spell
     bool        canHitShadow(); // check if spell ignores shadows
 
@@ -143,18 +144,24 @@ public:
     void        setModifiedRecast(uint32 mrec);
     void        setFlag(uint8 flag);
     void        setExpansionCode(int8* expansionCode);
+    void        setRange(float range);
 
     const int8* getName();
     void        setName(int8* name);
 
-private:
+protected:
 
+    CSpell(const CSpell&) = default;
+    CSpell& operator=(const CSpell&) = default;
+
+private:
     uint16      m_ID;                                   // spell id
     uint32      m_castTime;                             // time to cast spell
     uint32      m_recastTime;                           // recast time
     uint16      m_animation;                            // animation for spell
     uint16      m_animationTime;
     uint8       m_skillType;
+    float       m_range;
     float       m_radius;
     uint8       m_totalTargets;
     uint16      m_mpCost;                               // mpCost/itemId for ninjitsu tool
@@ -186,6 +193,7 @@ namespace spell
     CSpell* GetSpellByMonsterSkillId(uint16 SkillID);
     CSpell* GetSpell(uint16 SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
+    bool    CanUseSpell(CBattleEntity* PCaster, CSpell* PSpell);
     bool    CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
     float   GetSpellRadius(CSpell* spellId, CBattleEntity* PCaster);
 };

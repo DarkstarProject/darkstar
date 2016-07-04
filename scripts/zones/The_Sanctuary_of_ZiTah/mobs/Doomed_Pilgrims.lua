@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
--- NPC:  Doomed Pilgrims
+--  MOB: Doomed Pilgrims
 -----------------------------------
 
 -----------------------------------
@@ -11,13 +11,13 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath Action
+-- onMobDespawn Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDespawn(mob)
 
-	if(GetServerVariable("[ZM4]Light_Headstone_Active") == 0) then
-		SetServerVariable("[ZM4]Light_Headstone_Active",os.time()+ 900);
-	end
+    if (GetServerVariable("[ZM4]Light_Headstone_Active") == 0) then
+        SetServerVariable("[ZM4]Light_Headstone_Active",os.time()+ 900);
+    end
 
 end;

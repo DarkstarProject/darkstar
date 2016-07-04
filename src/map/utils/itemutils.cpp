@@ -22,14 +22,15 @@
 */
 
 #include <string.h>
+#include <array>
 
 #include "../entities/battleentity.h"
 #include "../map.h"
 #include "itemutils.h"
 
-CItem *		g_pItemList[MAX_ITEMID];    // глобальный массив указателей на игровые предметы
-DropList_t* g_pDropList[MAX_DROPID];    // глобальный массив списков выпадающих предметов
-LootList_t* g_pLootList[MAX_LOOTID];
+std::array<CItem*, MAX_ITEMID> g_pItemList;// глобальный массив указателей на игровые предметы
+std::array<DropList_t*, MAX_DROPID> g_pDropList;    // глобальный массив списков выпадающих предметов
+std::array<LootList_t*, MAX_LOOTID> g_pLootList;
 
 CItemWeapon* PUnarmedItem;
 CItemWeapon* PUnarmedH2HItem;
@@ -263,9 +264,6 @@ namespace itemutils
 
     void LoadItemList()
     {
-	    memset(g_pItemList,0,sizeof(g_pItemList));
-	    memset(g_pDropList,0,sizeof(g_pDropList));
-
 	    const int8* Query =    
             "SELECT "
                 "b.itemId,"         //  0

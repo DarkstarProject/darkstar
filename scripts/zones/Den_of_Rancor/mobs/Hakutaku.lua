@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  HakuTaku
+--  MOB: HakuTaku
 -----------------------------------
 
 -----------------------------------
@@ -14,6 +14,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(17433018):hideNPC(900);
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17433015):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

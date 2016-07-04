@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "../utils/charutils.h"
 #include "inventory_size.h"
 #include "../entities/charentity.h"
+#include "../item_container.h"
 
 /************************************************************************
 *																		*
@@ -49,6 +50,7 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
     WBUFB(data, (0x0B)) = 1 + PChar->getStorage(LOC_MOGCASE)->GetSize();
     WBUFB(data, (0x0C)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetSize();
     WBUFB(data, (0x0D)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetSize();
+    WBUFB(data, (0x0E)) = 1 + PChar->getStorage(LOC_WARDROBE2)->GetSize();
 
     WBUFW(data, (0x14)) = 1 + PChar->getStorage(LOC_INVENTORY)->GetBuff();
     WBUFW(data, (0x16)) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
@@ -64,4 +66,5 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
     WBUFW(data, (0x22)) = 1 + PChar->getStorage(LOC_MOGCASE)->GetBuff();
     WBUFW(data, (0x24)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetBuff();
     WBUFW(data, (0x26)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetBuff();
+    WBUFW(data, (0x28)) = 1 + PChar->getStorage(LOC_WARDROBE2)->GetBuff();
 }

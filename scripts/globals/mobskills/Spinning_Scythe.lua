@@ -17,16 +17,16 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	mob:messageBasic(43, 0, 688+256);
-	skill:setSkillchain(100);
+    mob:messageBasic(43, 0, 688+256);
+    skill:setSkillchain(100);
     
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 2;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 2;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
 
-	-- 150-200 damage
+    -- 150-200 damage
    target:delHP(dmg);
-	return dmg;
+    return dmg;
 end;

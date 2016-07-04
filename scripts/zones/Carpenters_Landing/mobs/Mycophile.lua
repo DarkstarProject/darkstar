@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Carpenters' Landing
--- Mob:  Mycophile
+--  MOB: Mycophile
 -----------------------------------
 
 -----------------------------------
@@ -14,6 +14,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(16785730):hideNPC(900);
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(16785729):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Waughroon Shrine
--- NPC:  Black Dragon
+--  MOB: Black Dragon
 -- Mission 2-3 BCNM Fight
 -----------------------------------
 
@@ -17,6 +17,6 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	killer:addTitle(BLACK_DRAGON_SLAYER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(BLACK_DRAGON_SLAYER);
 end;

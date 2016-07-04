@@ -52,7 +52,7 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
    
-    if(target:hasStatusEffect(EFFECT_VIT_DOWN)) then
+    if (target:hasStatusEffect(EFFECT_VIT_DOWN)) then
         spell:setMsg(75); -- no effect
     else    
         target:addStatusEffect(EFFECT_VIT_DOWN,15,0,20);

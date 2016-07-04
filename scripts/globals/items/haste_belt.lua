@@ -19,7 +19,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if(target:hasStatusEffect(EFFECT_HASTE) == false) then
+    if (target:hasStatusEffect(EFFECT_HASTE) == false) then
         target:addStatusEffect(EFFECT_HASTE,102,0,180);
     else
         target:messageBasic(423);

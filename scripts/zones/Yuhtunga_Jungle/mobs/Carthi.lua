@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Yuhtunga Jungle
--- NPC:  Carthi
+--  MOB: Carthi
 -----------------------------------
 
 -----------------------------------
@@ -11,15 +11,15 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath Action
+-- onMobDespawn Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDespawn(mob)
 
-	if(GetServerVariable("[ZM4]Fire_Headstone_Active") == 0) then
-		SetServerVariable("[ZM4]Fire_Headstone_Active",1);
-	elseif(GetServerVariable("[ZM4]Fire_Headstone_Active") == 1) then
-		SetServerVariable("[ZM4]Fire_Headstone_Active",os.time()+ 900);
-	end
+    if (GetServerVariable("[ZM4]Fire_Headstone_Active") == 0) then
+        SetServerVariable("[ZM4]Fire_Headstone_Active",1);
+    elseif (GetServerVariable("[ZM4]Fire_Headstone_Active") == 1) then
+        SetServerVariable("[ZM4]Fire_Headstone_Active",os.time()+ 900);
+    end
 
 end;

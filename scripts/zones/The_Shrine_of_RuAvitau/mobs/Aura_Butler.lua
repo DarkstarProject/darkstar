@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
--- MOB:  Aura Butler
+--  MOB: Aura Butler
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,749,1);
-   checkGoVregime(killer,mob,752,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,749,1);
+    checkGoVregime(player,mob,752,1);
 end;

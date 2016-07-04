@@ -127,7 +127,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 			}
 		case MISSION_CAMPAIGN:
 			if(status == 0x02) {
-				generateCompaingUnMissionPacket(PChar);
+				generateFirstCampaignMissionPacket(PChar);
 				logType = CAMPAIGN_MISSION_UN;
 				break;
 			}
@@ -139,7 +139,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 				break;
 			}
 			if(status == 0x02) {
-				generateCompaingDeuxMissionPacket(PChar);
+				generateSecondCampaignMissionPacket(PChar);
 				logType = CAMPAIGN_MISSION_DEUX;
 				break;
 			}
@@ -189,32 +189,11 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 				break;
 			}
 		case MISSION_COP:
-			if(status == 0x01) {
-				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;
-				break;
-			}
-			if(status == 0x02) {
-				generateCompleteCopMissionPacket(PChar);
-				logType = MISS_COMPLETE;
-				break;
-			}
-		case MISSION_ADOULIN:
 		case MISSION_CRISTALLINE_PROPHECY:
-			if(status == 0x01)
-			{
-				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;
-				break;
-			}
 		case MISSION_MOOGLE_KUPO_DETAT:
-			if(status == 0x01)
-			{
-				generateCurrentMissionPacket(PChar);
-				logType = MISS_CURRENT;
-				break;
-			}
 		case MISSION_SHANTOTTO_ASCENSION:
+		case MISSION_ADOULIN:
+        case MISSION_RHAPSODIES:
 			if(status == 0x01)
 			{
 				generateCurrentMissionPacket(PChar);
@@ -255,6 +234,7 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
   //WBUFB(data,(0x16)) = 0x30;                                                // назначение неизвестно
 	WBUFW(data,(0x18)) = add_on_scenarios;                                    // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
 	WBUFW(data,(0x1C)) = PChar->m_missionLog[MISSION_ADOULIN-11].current;
+    WBUFW(data,(0x20)) = PChar->m_missionLog[MISSION_RHAPSODIES-11].current;
 }
 
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
@@ -279,23 +259,16 @@ void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PCha
 			data[(questMissionID/8) + ((logID-0x04)*0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCompleteCopMissionPacket(CCharEntity * PChar)
-{
-	uint8 logID = 0x06;
-	for(uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
-		data[(questMissionID/8) + (logID*0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
-}
-
-void CQuestMissionLogPacket::generateCompaingUnMissionPacket(CCharEntity * PChar)
+void CQuestMissionLogPacket::generateFirstCampaignMissionPacket(CCharEntity * PChar)
 {
 	for(uint16 questMissionID = 0; questMissionID < 256; questMissionID++)
 		data[(questMissionID/8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateCompaingDeuxMissionPacket(CCharEntity * PChar)
+void CQuestMissionLogPacket::generateSecondCampaignMissionPacket(CCharEntity * PChar)
 {
-	for(uint16 questMissionID = 0; questMissionID < 256; questMissionID++)
-		data[(questMissionID/8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID+256]) << (questMissionID % 8));
+	for(uint16 questMissionID = 256; questMissionID < 512; questMissionID++)
+		data[(questMissionID/8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 
 void CQuestMissionLogPacket::generateAssaultMissionPacket(CCharEntity * PChar)

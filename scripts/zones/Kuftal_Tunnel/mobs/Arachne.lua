@@ -4,13 +4,13 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDespawn(mob)
 
     -- Set Arachne's Window Open Time
-    local wait = math.random((7200),(28800)); -- 2-8 hours
+    local wait = math.random(7200,28800); -- 2-8 hours
     SetServerVariable("[POP]Arachne", os.time(t) + wait);
     DeterMob(mob:getID(), true);
 

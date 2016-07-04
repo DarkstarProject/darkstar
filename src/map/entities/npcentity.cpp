@@ -24,6 +24,7 @@
 #include "../../common/taskmgr.h"
 
 #include "npcentity.h"
+#include "../ai/ai_container.h"
 #include "../utils/zoneutils.h"
 
 #include "../packets/entity_update.h"
@@ -38,7 +39,7 @@
 *																		*
 ************************************************************************/
 
-int32 close_door(uint32 tick, CTaskMgr::CTask* PTask)
+int32 close_door(time_point tick, CTaskMgr::CTask* PTask)
 {
 	//DSP_DEBUG_BREAK_IF(PTask->m_data == nullptr)
     //DSP_DEBUG_BREAK_IF(((CBaseEntity*)PTask->m_data)->objtype != TYPE_NPC);
@@ -50,7 +51,7 @@ int32 close_door(uint32 tick, CTaskMgr::CTask* PTask)
 	return 0;
 }
 
-int32 open_door(uint32 tick, CTaskMgr::CTask* PTask)
+int32 open_door(time_point tick, CTaskMgr::CTask* PTask)
 {
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
 
@@ -65,7 +66,7 @@ int32 open_door(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-int32 disappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
+int32 disappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 {
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
 
@@ -80,7 +81,7 @@ int32 disappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-int32 reappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
+int32 reappear_npc(time_point tick, CTaskMgr::CTask* PTask)
 {
 	CNpcEntity* PNpc = (CNpcEntity*)PTask->m_data;
 
@@ -95,16 +96,36 @@ int32 reappear_npc(uint32 tick, CTaskMgr::CTask* PTask)
 *																		*
 ************************************************************************/
 
-CNpcEntity::CNpcEntity() 
+CNpcEntity::CNpcEntity()
 {
 	objtype = TYPE_NPC;
 	look.face = 0x32;
 	allegiance = ALLEGIANCE_MOB;
+    PAI = std::make_unique<CAIContainer>(this);
 }
 
 CNpcEntity::~CNpcEntity()
 {
-  
+
+}
+
+void CNpcEntity::HideModel(bool hide)
+{
+    if (hide)
+    {
+        // Copied over from mobentity
+        // i'm not sure if this is right
+        m_flags |= 0x80;
+    }
+    else
+    {
+        m_flags &= ~0x80;
+    }
+}
+
+bool CNpcEntity::IsModelHidden()
+{
+    return (m_flags & 0x80) == 0x80;
 }
 
 void CNpcEntity::HideHP(bool hide)
@@ -141,7 +162,7 @@ bool CNpcEntity::IsUntargetable()
     return (m_flags & 0x800) == 0x800;
 }
 
-void CNpcEntity::UpdateEntity()
+void CNpcEntity::PostTick()
 {
     if (loc.zone && updatemask)
     {

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: East Ronfaure [S]
--- NPC:  Dark Ixion
+--  MOB: Dark Ixion
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(IXION_HORNBREAKER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(IXION_HORNBREAKER);
 end;

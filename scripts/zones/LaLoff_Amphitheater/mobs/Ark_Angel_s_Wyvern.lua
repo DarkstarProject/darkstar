@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel's Wyvern
+--  MOB: Ark Angel's Wyvern
 -----------------------------------
-
+package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -37,5 +39,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

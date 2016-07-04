@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Ranged Attack
--- Deals a ranged attack to a single target.
+-- Eagle Eye Shot
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -10,7 +9,9 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if(mob:getHPP() <= 70) then
+    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+        return 0;
+    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
         return 0;
     end
     return 1;
@@ -25,9 +26,9 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
 
-    if(dmg > 0) then
-       target:addTP(2);
-       mob:addTP(8);
+    if (dmg > 0) then
+       target:addTP(20);
+       mob:addTP(80);
     end
 
     target:delHP(dmg);

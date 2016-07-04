@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Hobibi
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Hobibi
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x286);
+    player:startEvent(0x286);
 end; 
 
 -----------------------------------

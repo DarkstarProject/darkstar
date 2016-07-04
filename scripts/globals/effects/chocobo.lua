@@ -1,7 +1,7 @@
 -----------------------------------
 --
--- 	EFFECT_CHOCOBO
--- 	
+--     EFFECT_CHOCOBO
+--     
 -----------------------------------
 
 -----------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:setAnimation(5);
+    target:setAnimation(5);
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:setAnimation(0);
+    target:setAnimation(0);
 end;

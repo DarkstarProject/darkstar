@@ -1,14 +1,14 @@
-----------------------------------	
+----------------------------------
 -- Area: Gustav Tunnel
 --   NM: Taxim
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     -- Set Taxim's Window Open Time
     SetServerVariable("[POP]Taxim", os.time(t) + 7200); -- 2 hours
     DeterMob(mob:getID(), true);

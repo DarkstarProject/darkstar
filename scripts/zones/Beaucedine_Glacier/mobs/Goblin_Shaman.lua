@@ -1,16 +1,16 @@
------------------------------------	
--- Area: Beaucedine Glacier	
--- MOB:  Goblin Shaman	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,46,2);
-	checkRegime(killer,mob,49,1);
-	checkRegime(killer,mob,50,2);
-end;	
+-----------------------------------
+-- Area: Beaucedine Glacier
+--  MOB: Goblin Shaman
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,46,2);
+    checkRegime(player,mob,49,1);
+    checkRegime(player,mob,50,2);
+end;

@@ -34,7 +34,7 @@ function onUseAbility(player,target,ability)
     local duration = 60;
     local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     
-    if(resist < 0.25) then
+    if (resist < 0.25) then
         ability:setMsg(324);--resist message
         return 0;
     end
@@ -46,6 +46,11 @@ function onUseAbility(player,target,ability)
     local bio = target:getStatusEffect(EFFECT_BIO);
     if (bio ~= nil) then
         effects[counter] = bio;
+        counter = counter + 1;
+    end
+    local blind = target:getStatusEffect(EFFECT_BLIND);
+    if (blind ~= nil) then
+        effects[counter] = blind;
         counter = counter + 1;
     end
     local threnody = target:getStatusEffect(EFFECT_THRENODY);
@@ -74,10 +79,12 @@ function onUseAbility(player,target,ability)
     
     ability:setMsg(321);
     local dispelledEffect = target:dispelStatusEffect();
-    if(dispelledEffect == EFFECT_NONE) then
+    if (dispelledEffect == EFFECT_NONE) then
         -- no effect
         ability:setMsg(323);
     end
-    
+
+    local del = player:delItem(2183, 1) or player:delItem(2974, 1)
+    target:updateClaim(player);
     return dispelledEffect;
 end;

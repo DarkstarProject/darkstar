@@ -26,8 +26,7 @@
 #include <string.h>
 #include "../../common/timer.h"
 
-#include "../ai/ai_mob_dummy.h"
-#include "../ai/ai_npc_dummy.h"
+#include "../ai/ai_container.h"
 
 #include "../lua/luautils.h"
 
@@ -37,9 +36,11 @@
 #include "../entities/npcentity.h"
 #include "zoneutils.h"
 #include "mobutils.h"
+#include "../items/item_weapon.h"
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../zone_instance.h"
+#include "../mob_modifier.h"
 
 
 std::map<uint16, CZone*> g_PZoneList;   // глобальный массив указателей на игровые зоны
@@ -85,7 +86,7 @@ void UpdateTreasureSpawnPoint(uint32 npcid, uint32 respawnTime)
             PNpc->loc.p.y = Sql_GetFloatData(SqlHandle, 3);
             PNpc->loc.p.z = Sql_GetFloatData(SqlHandle, 4);
             // ShowDebug(CL_YELLOW"zoneutils::UpdateTreasureSpawnPoint: After %i - %d (%f, %f, %f), %d\n" CL_RESET, Sql_GetIntData(SqlHandle,0), PNpc->id, PNpc->loc.p.x,PNpc->loc.p.y,PNpc->loc.p.z, PNpc->loc.zone->GetID());
-            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", gettick() + respawnTime, PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
+            CTaskMgr::getInstance()->AddTask(new CTaskMgr::CTask("reappear_npc", server_clock::now() + std::chrono::milliseconds(respawnTime), PNpc, CTaskMgr::TASK_ONCE, reappear_npc));
         }
         else
         {
@@ -359,7 +360,8 @@ void LoadMOBList()
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
             mob_pools.familyid, name_prefix, flags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-            allegiance, namevis, aggro, roamflag, mob_groups.roam_distance \
+            allegiance, namevis, aggro, roamflag, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects, \
+            mob_family_system.charmable \
             FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
             INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid \
             INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
@@ -444,15 +446,6 @@ void LoadMOBList()
                 PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 38) * 1000));
                 PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 39) * 1000));
 
-                PMob->setModifier(MOD_FIREDEF, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -1000)); // These are stored as floating percentages
-                PMob->setModifier(MOD_ICEDEF, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -1000)); // and need to be adjusted into modifier units.
-                PMob->setModifier(MOD_WINDDEF, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -1000)); // Higher DEF = lower damage.
-                PMob->setModifier(MOD_EARTHDEF, (int16)((Sql_GetFloatData(SqlHandle, 43) - 1) * -1000)); // Negatives signify increased damage.
-                PMob->setModifier(MOD_THUNDERDEF, (int16)((Sql_GetFloatData(SqlHandle, 44) - 1) * -1000)); // Positives signify reduced damage.
-                PMob->setModifier(MOD_WATERDEF, (int16)((Sql_GetFloatData(SqlHandle, 45) - 1) * -1000)); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-                PMob->setModifier(MOD_LIGHTDEF, (int16)((Sql_GetFloatData(SqlHandle, 46) - 1) * -1000)); // (1.25 - 1) * -1000 = -250 DEF
-                PMob->setModifier(MOD_DARKDEF, (int16)((Sql_GetFloatData(SqlHandle, 47) - 1) * -1000)); // (0.50 - 1) * -1000 = 500 DEF
-
                 PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100)); // These are stored as floating percentages
                 PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100)); // and need to be adjusted into modifier units.
                 PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100)); // Higher RES = lower damage.
@@ -468,12 +461,12 @@ void LoadMOBList()
                 PMob->m_flags = (uint32)Sql_GetIntData(SqlHandle, 51);
 
                 // Cap Level if Necessary (Don't Cap NMs)
-                if (normalLevelRangeMin > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_minLevel > normalLevelRangeMin)
+                if (normalLevelRangeMin > 0 && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->m_minLevel > normalLevelRangeMin)
                 {
                     PMob->m_minLevel = normalLevelRangeMin;
                 }
 
-                if (normalLevelRangeMax > 0 && PMob->m_Type != MOBTYPE_NOTORIOUS && PMob->m_maxLevel > normalLevelRangeMax)
+                if (normalLevelRangeMax > 0 && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->m_maxLevel > normalLevelRangeMax)
                 {
                     PMob->m_maxLevel = normalLevelRangeMax;
                 }
@@ -483,16 +476,12 @@ void LoadMOBList()
                 // phuabo 1: sous l'eau, 2: sort de l'eau, 3: rentre dans l'eau
                 PMob->animationsub = (uint32)Sql_GetIntData(SqlHandle, 52);
 
+                if (PMob->animationsub != 0)
+                    PMob->setMobMod(MOBMOD_SPAWN_ANIMATIONSUB, PMob->animationsub);
+
                 // Setup HP / MP Stat Percentage Boost
                 PMob->HPscale = Sql_GetFloatData(SqlHandle, 53);
                 PMob->MPscale = Sql_GetFloatData(SqlHandle, 54);
-
-                PMob->PBattleAI = new CAIMobDummy(PMob);
-
-                if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
-                {
-                    PMob->PBattleAI->SetCurrentAction(ACTION_SPAWN);
-                }
 
                 // Check if we should be looking up scripts for this mob
                 PMob->m_HasSpellScript = (uint8)Sql_GetIntData(SqlHandle, 55);
@@ -506,7 +495,12 @@ void LoadMOBList()
                 PMob->m_Aggro = Sql_GetUIntData(SqlHandle, 62);
 
                 PMob->m_roamFlags = (uint16)Sql_GetUIntData(SqlHandle, 63);
-                PMob->m_roamDistance = Sql_GetFloatData(SqlHandle, 64);
+                PMob->m_MobSkillList = Sql_GetUIntData(SqlHandle, 64);
+
+                PMob->m_TrueDetection = Sql_GetUIntData(SqlHandle, 65);
+                PMob->m_Detects = Sql_GetUIntData(SqlHandle, 66);
+
+                PMob->setMobMod(MOBMOD_CHARMABLE, Sql_GetUIntData(SqlHandle, 67));
 
                 // must be here first to define mobmods
                 mobutils::InitializeMob(PMob, GetZone(ZoneID));
@@ -522,8 +516,18 @@ void LoadMOBList()
         PZone->ForEachMob([](CMobEntity* PMob)
         {
             luautils::OnMobInitialize(PMob);
+            luautils::ApplyMixins(PMob);
             PMob->saveModifiers();
             PMob->saveMobModifiers();
+
+            if (PMob->m_AllowRespawn = PMob->m_SpawnType == SPAWNTYPE_NORMAL)
+            {
+                PMob->Spawn();
+            }
+            else
+            {
+                PMob->PAI->Despawn();
+            }
         });
     });
 
@@ -566,8 +570,7 @@ void LoadMOBList()
                 // pet is always spawned by master
                 PPet->m_AllowRespawn = false;
                 PPet->m_SpawnType = SPAWNTYPE_SCRIPTED;
-                PPet->PBattleAI->SetCurrentAction(ACTION_NONE);
-                PPet->SetDespawnTimer(0);
+                PPet->SetDespawnTime(0s);
 
                 PMaster->PPet = PPet;
                 PPet->PMaster = PMaster;
@@ -651,8 +654,6 @@ void LoadZoneList()
 
     for (auto PZone : g_PZoneList)
     {
-        PZone.second->ZoneServer(-1);
-
         if (PZone.second->GetIP() != 0)
             luautils::OnZoneInitialise(PZone.second->GetID());
     }

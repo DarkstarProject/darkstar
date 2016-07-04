@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     -- NOTE: uncertain of retailness of messages. Had expected but did not find any csid.
-    if(GetMobAction(16875774) == 0 and player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getVar("SPLINTERSPINE_GRUKJUK") <= 1) then 
+    if (GetMobAction(16875774) == 0 and player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getVar("SPLINTERSPINE_GRUKJUK") <= 1) then 
         player:messageSpecial(SURVEY_THE_SURROUNDINGS);
         player:messageSpecial(MURDEROUS_PRESENCE);
         player:setVar("SPLINTERSPINE_GRUKJUK",1);

@@ -1,10 +1,15 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel HM
+--  MOB: Ark Angel HM
 -----------------------------------
-
-require("scripts/globals/status");
+package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/status");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);
@@ -39,17 +44,17 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
-	local battletime = mob:getBattleTime();
-	local mstime = mob:getLocalVar("Mighty");
+    local battletime = mob:getBattleTime();
+    local mstime = mob:getLocalVar("Mighty");
     local mghp = mob:getLocalVar("Mijin");
 
-	if (battletime > mstime + 150) then
-		mob:useMobAbility(432);
-		mob:setLocalVar("Mighty", battletime);
-	elseif (mob:getHPP() < mghp) then
-		mob:useMobAbility(475);
-		mob:setLocalVar("Mijin", 0);
-	end
+    if (battletime > mstime + 150) then
+        mob:useMobAbility(688);
+        mob:setLocalVar("Mighty", battletime);
+    elseif (mob:getHPP() < mghp) then
+        mob:useMobAbility(731);
+        mob:setLocalVar("Mijin", 0);
+    end
 
 end;
 
@@ -57,5 +62,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

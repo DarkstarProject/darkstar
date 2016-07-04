@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:setMod(MOD_BLINK,effect:getPower());
+    target:setMod(MOD_BLINK,effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:setMod(MOD_BLINK,0);
+    target:setMod(MOD_BLINK,0);
 end;

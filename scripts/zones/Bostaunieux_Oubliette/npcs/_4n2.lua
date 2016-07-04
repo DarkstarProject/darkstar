@@ -16,7 +16,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(SEEMS_LOCKED);
+    player:messageSpecial(SEEMS_LOCKED);
 end;
 
 -----------------------------------

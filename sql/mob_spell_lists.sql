@@ -244,7 +244,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,4,55,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,21,55,98);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,22,99,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,28,7,33);
-INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,255);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,29,34,65);
+INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,30,66,255);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,43,10,29);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,44,30,49);
 INSERT INTO `mob_spell_lists` VALUES ('Beastmen_PLD',4,45,50,69);
@@ -1405,9 +1406,95 @@ INSERT INTO `mob_spell_lists` VALUES ('Sekhmet', 137, 56, 1, 255);
 -- Jailer of Faith
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 162, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 191, 1, 255);
-INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 257, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 357, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Faith', 138, 365, 1, 255);
 
+-- Sarameya
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 146, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 147, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 175, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 176, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 204, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 205, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 249, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Sarameya', 139, 235, 1, 255);
+
+-- Jailer of Hope
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 196, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Hope', 140, 213, 1, 255);
+
+-- SMN Dynamis / Maat spell list
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 296, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 298, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 299, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 300, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 301, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 302, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Avatar_SMN', 141, 303, 1, 255);
+
+-- Prune
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 245, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Charming_Trio', 142, 247, 1, 255);
+
+INSERT INTO `mob_spell_lists` VALUES ('Onki', 143, 288, 1, 255);
+
+-- Bahamut
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 5, 1, 255);  -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 106, 1, 255); -- Phalanx
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 54, 1, 255);  -- Stoneskin
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 47, 1, 255);  -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 52, 1, 255);  -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 148, 1, 255);  -- Fire V
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 205, 1, 255);  -- Flare II
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 177, 1, 255);  -- Firaga IV
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 359, 1, 255);  -- Silencega
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 360, 1, 255);  -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Bahamut', 144, 366, 1, 255);  -- Graviga
+
+-- Carmine Dobsonfly
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 57, 1, 255);  -- Haste
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 155, 1, 255);  -- Aero II
+INSERT INTO `mob_spell_lists` VALUES ('Dobsonfly', 145, 357, 1, 255);  -- Slowga
+
+-- Duke Decapod
+INSERT INTO `mob_spell_lists` VALUES ('Duke_Decapod', 146, 169, 1, 10);  -- Water
+
+-- Ankou
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 230, 1, 255); -- Bio
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Ankou', 147, 247, 1, 255); -- Aspir
+
+-- Blighting Brand
+INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 231, 1, 255); -- Bio II
+INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 58, 1, 255); -- Paralyze
+INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 254, 1, 255); -- Blind
+INSERT INTO `mob_spell_lists` VALUES ('Blighting_Brand', 148, 253, 1, 255); -- Sleep
+
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 245, 1, 255);  -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 274, 1, 255); -- Sleepga
+INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 360, 1, 255); -- Dispelga
+
+-- Oupire
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 186, 1, 255); -- Aeroga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 191, 1, 255); -- Stonega III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 201, 1, 255); -- Waterga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 152, 1, 255); -- Blizzard IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 147, 1, 255); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 157, 1, 255); -- Aero IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 162, 1, 255); -- Stone IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 167, 1, 255); -- Thunder IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 172, 1, 255); -- Water IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 227, 1, 255); -- Poisonga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 360, 1, 255); -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 365, 1, 255); -- Breakga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga 
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga 
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

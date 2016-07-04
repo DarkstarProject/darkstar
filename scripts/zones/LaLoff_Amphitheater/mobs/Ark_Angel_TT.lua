@@ -1,9 +1,15 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel TT
+--  MOB: Ark Angel TT
 -----------------------------------
-
+package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/status");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_UFASTCAST, 30);
@@ -55,5 +61,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

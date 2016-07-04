@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- MOB:  Warden Beetle
+--  MOB: Warden Beetle
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,710,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,710,2);
 end;

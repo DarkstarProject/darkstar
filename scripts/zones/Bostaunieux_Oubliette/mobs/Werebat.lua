@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
--- MOB:  Werebat
+--  MOB: Werebat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,611,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,611,2);
 end;

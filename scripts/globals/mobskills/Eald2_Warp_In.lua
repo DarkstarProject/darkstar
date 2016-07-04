@@ -10,11 +10,11 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 1;
+    return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:useMobAbility(733);
+    mob:useMobAbility(989);
     skill:setMsg(0);
     return 0;
 end;

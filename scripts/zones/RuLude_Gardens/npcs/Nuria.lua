@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Ru'Lud Gardens
---	NPC:  Nuria
---	Map Marker
---	Working 100%
+--    Area: Ru'Lud Gardens
+--    NPC:  Nuria
+--    Map Marker
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -19,7 +19,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x276f);
+    player:startEvent(0x276f);
 end;
 
 -----------------------------------

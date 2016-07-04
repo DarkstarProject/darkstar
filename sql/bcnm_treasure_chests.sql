@@ -88,6 +88,9 @@ INSERT INTO `bcnm_treasure_chests` VALUES ('107', '3', '17375286');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '1', '17444884');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '2', '17444891');
 INSERT INTO `bcnm_treasure_chests` VALUES ('129', '3', '17444898');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '1', '17444929');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '2', '17444934');
+INSERT INTO `bcnm_treasure_chests` VALUES ('130', '3', '17444939');
 
 -- Boneyard Gully
 INSERT INTO `bcnm_treasure_chests` VALUES ('673', '1', '16810019');

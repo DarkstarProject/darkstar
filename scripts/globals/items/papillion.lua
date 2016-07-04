@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4257
---	Papillion
---	Adds butterfly wings to the user
+--    ID: 4257
+--    Papillion
+--    Adds butterfly wings to the user
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return 0;
+    return 0;
 end;
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Metalworks
---	NPC:  Quasim
---	Adventurer's Assistant
+--    Area: Metalworks
+--    NPC:  Quasim
+--    Adventurer's Assistant
 -------------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -------------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x02E6);
+    player:startEvent(0x02E6);
 end; 
 
 -----------------------------------

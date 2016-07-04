@@ -17,10 +17,10 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-	kills = killer:getVar("FOMOR_HATE");
-	if(kills > 4) then
-		killer:setVar("FOMOR_HATE",kills -4);
-	end
+    kills = player:getVar("FOMOR_HATE");
+    if (kills > 4) then
+        player:setVar("FOMOR_HATE",kills -4);
+    end
 end;

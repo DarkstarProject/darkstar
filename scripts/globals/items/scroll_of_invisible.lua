@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4744
---	Scroll of Invisible
---	Teaches the white magic Invisible
+--    ID: 4744
+--    Scroll of Invisible
+--    Teaches the white magic Invisible
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(136);
+    return target:canLearnSpell(136);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(136);
+    target:addSpell(136);
 end;

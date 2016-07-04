@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers Nest
--- NPC:  Queen Crawler
+--  MOB: Queen Crawler
 -- @pos -337.156 -3.607 -253.294 197
 -----------------------------------
 
@@ -13,9 +13,16 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17584459):setStatus(STATUS_NORMAL); -- qm5
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(17584459):hideNPC(900); -- qm5
+function onMobDeath(mob, player, isKiller)
 end;

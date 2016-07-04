@@ -27,10 +27,10 @@ end;
 
 function onUseAbility(player,target,ability)
     local strboost = target:getMainLvl()/7;
-    if(target:getMainJob()~=12) then --sjob sam, use sub level
+    if (target:getMainJob()~=12) then --sjob sam, use sub level
         strboost = target:getSubLvl()/7;
     end
-    if(target:isWeaponTwoHanded()) then
+    if (target:isWeaponTwoHanded()) then
         target:delStatusEffect(EFFECT_HASSO);
         target:delStatusEffect(EFFECT_SEIGAN);
         target:addStatusEffect(EFFECT_HASSO,strboost,0,300);

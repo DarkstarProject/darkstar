@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
--- MOB:  Defender
+--  MOB: Defender
 -----------------------------------
+
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -73,9 +75,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(killer,mob,749,1);
+    checkGoVregime(player,mob,749,1);
 
     local Defender = mob:getID();
     local AuraGear = mob:getID() + 1;

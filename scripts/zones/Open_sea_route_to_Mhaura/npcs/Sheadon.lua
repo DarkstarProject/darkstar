@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(ON_WAY_TO_MHAURA,0,0); -- Earth Time, Vana Hours. Needs a get-time function for boat?
+    player:messageSpecial(ON_WAY_TO_MHAURA,0,0); -- Earth Time, Vana Hours. Needs a get-time function for boat?
 end; 
 
 -----------------------------------

@@ -22,13 +22,16 @@
 */
 
 #include <string.h>
+#include <array>
 
 #include "lua/luautils.h"
 
 #include "map.h"
 #include "spell.h"
 #include "blue_spell.h"
+#include "status_effect_container.h"
 #include "utils/blueutils.h"
+#include "items/item_weapon.h"
 
 
 CSpell::CSpell(uint16 id)
@@ -53,6 +56,12 @@ CSpell::CSpell(uint16 id)
 
     memset(m_job, 0, sizeof(m_job));
 }
+
+  std::unique_ptr<CSpell> CSpell::clone()
+  {
+      //no make_unique because it requires the copy constructor to be public
+      return std::unique_ptr<CSpell>(new CSpell(*this));
+  }
 
 void CSpell::setTotalTargets(uint16 total)
 {
@@ -158,9 +167,15 @@ bool CSpell::isHeal()
     return (getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA || m_ID == 549 || m_ID == 578 || m_ID == 581 || m_ID == 593;
 }
 
+
+bool CSpell::isCure()
+{
+    return ((m_ID >= 1 && m_ID <= 11) || m_ID == 93 || m_ID == 474 || m_ID == 475);
+}
+
 bool CSpell::isNa()
 {
-    return m_ID >= 14 && m_ID <= 20;
+    return (m_ID >= 14 && m_ID <= 20) || m_ID == 143;
 }
 
 bool CSpell::canHitShadow()
@@ -386,29 +401,35 @@ int8* CSpell::getExpansionCode()
     return m_expansionCode;
 }
 
+float CSpell::getRange()
+{
+    return m_range;
+}
+
 void CSpell::setExpansionCode(int8* expansionCode)
 {
     m_expansionCode = expansionCode;
 }
 
-//Implement namespace to work with spells       
+void CSpell::setRange(float range)
+{
+    m_range = range;
+}
+
+//Implement namespace to work with spells
 namespace spell
 {
-    CSpell* PSpellList[MAX_SPELL_ID]; // spell list
-    std::map<uint16, uint16> PMobSkillToBlueSpell[256]; // maps the skill id (key) to spell id (value).
-
+    std::array<CSpell*, 1024> PSpellList; // spell list
+    std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
     void LoadSpellList()
     {
-        memset(PSpellList, 0, sizeof(PSpellList));
-
         const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion \
-                             FROM spell_list \
-                             WHERE spellid < %u;";
+                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion, spell_range \
+                             FROM spell_list;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_SPELL_ID);
+        int32 ret = Sql_Query(SqlHandle, Query);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -451,6 +472,8 @@ namespace spell
                 Sql_GetData(SqlHandle, 21, &expansionCode, nullptr);
                 PSpell->setExpansionCode(expansionCode);
 
+                PSpell->setRange(static_cast<float>(Sql_GetIntData(SqlHandle, 22)) / 10);
+
                 if(PSpell->getAOE())
                 {
                     // default radius
@@ -481,10 +504,6 @@ namespace spell
 
                 // Sanity check the spell ID
                 uint16 spellId = Sql_GetIntData(SqlHandle,0);
-                if (spellId > MAX_SPELL_ID || spellId < 0x200) {
-                    ShowWarning("Tried to load a blue magic spell with ID %u which is higher than the max (%u) or less than 0x200!\n", spellId, MAX_SPELL_ID);
-                    continue;
-                }
 
                 if(PSpellList[spellId] == nullptr)
                 {
@@ -498,7 +517,7 @@ namespace spell
                 ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(Sql_GetIntData(SqlHandle,4));
                 ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(Sql_GetIntData(SqlHandle,5));
                 ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(Sql_GetIntData(SqlHandle,6));
-                PMobSkillToBlueSpell->insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
+                PMobSkillToBlueSpell.insert(std::make_pair(Sql_GetIntData(SqlHandle,1), spellId));
             }
         }
         ret = Sql_Query(SqlHandle,"SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
@@ -511,7 +530,7 @@ namespace spell
                 uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
-                if (!(spellId > MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
+                if (PSpellList[spellId])
                 {
                     ((CBlueSpell*)PSpellList[spellId])->addModifier(new CModifier(modID,value));
                 }
@@ -533,7 +552,7 @@ namespace spell
 
                 uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
 
-                if (!(spellId >= MAX_SPELL_ID) && (PSpellList[spellId] != nullptr))
+                if (PSpellList[spellId])
                 {
                     PSpellList[spellId]->setMeritId(Sql_GetUIntData(SqlHandle,1));
                 }
@@ -542,16 +561,12 @@ namespace spell
     }
 
     CSpell* GetSpellByMonsterSkillId(uint16 SkillID) {
-        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell->find(SkillID);
-        if (it == PMobSkillToBlueSpell->end()) {
+        std::map<uint16,uint16>::iterator it = PMobSkillToBlueSpell.find(SkillID);
+        if (it == PMobSkillToBlueSpell.end()) {
             return nullptr;
         }
         else {
             uint16 spellId = it->second;
-            if (spellId > MAX_SPELL_ID) {
-                ShowError("Resolved spell ID from mob skill %u is out of spell range (%u)\n",SkillID,spellId);
-                return nullptr;
-            }
             return PSpellList[spellId];
         }
     }
@@ -559,26 +574,32 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(uint16 SpellID)
     {
-        if (SpellID < MAX_SPELL_ID)
-        {
-            return PSpellList[SpellID];
-        }
-        ShowFatalError(CL_RED"SpellID <%u> out of range\n" CL_RESET, SpellID);
-        return nullptr;
+        return PSpellList[SpellID];
+    }
+
+    bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
+    {
+        CSpell* spell = GetSpell(SpellID);
+        return CanUseSpell(PCaster, spell);
     }
 
     //Check If user can cast spell
-    bool CanUseSpell(CBattleEntity* PCaster, uint16 SpellID)
+    bool CanUseSpell(CBattleEntity* PCaster, CSpell* spell)
     {
         bool usable = false;
-        CSpell* spell = GetSpell(SpellID);
+
         if (spell != nullptr)
         {
             uint8 JobMLVL = spell->getJob(PCaster->GetMJob());
             uint8 JobSLVL = spell->getJob(PCaster->GetSJob());
             uint8 requirements = spell->getRequirements();
 
-            if(PCaster->objtype == TYPE_MOB){
+            if (PCaster->objtype == TYPE_MOB)
+            {
+                // cant cast cause im hidden or untargetable
+                if (PCaster->IsNameHidden() || static_cast<CMobEntity*>(PCaster)->IsUntargetable())
+                    return false;
+
                 // Mobs can cast any non-given char spell
                 return true;
             }
@@ -694,7 +715,7 @@ namespace spell
         // brd gets bonus radius from string skill
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
             if(entity->objtype == TYPE_MOB || (entity->GetMJob() == JOB_BRD &&
-                entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) && 
+                entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) &&
                 ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STR)){
                 total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
             }

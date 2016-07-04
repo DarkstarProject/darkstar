@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Grand Palace of HuXzoi
--- NPC: Qn'aern (WHM)
+--  MOB: Qn'aern (WHM)
 -- ID: 16916817
 -----------------------------------
 
@@ -41,5 +41,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

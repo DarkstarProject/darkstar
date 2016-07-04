@@ -26,4 +26,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    target:transferEnmity(player, 50, 20.6)
 end;

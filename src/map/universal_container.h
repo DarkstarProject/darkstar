@@ -66,6 +66,7 @@ public:
 	void	SetType(UCONTAINERTYPE Type);
 	bool	SetItem(uint8 slotID, CItem* PItem);
     void    SetSize(uint8 size);
+    void    ClearSlot(uint8 slotID);
 
 	void	Clean();
     bool    IsLocked();

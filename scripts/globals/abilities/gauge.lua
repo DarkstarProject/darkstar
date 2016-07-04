@@ -26,6 +26,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    -- Nothing, all is handled in the core.
-    return 0,0;
+
 end;

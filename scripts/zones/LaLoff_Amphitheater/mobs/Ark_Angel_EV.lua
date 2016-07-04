@@ -1,10 +1,15 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel EV
+--  MOB: Ark Angel EV
 -----------------------------------
-
-require("scripts/globals/status");
+package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/status");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);
@@ -39,17 +44,17 @@ end;
 -----------------------------------
 function onMobFight(mob,target)
 
-	local battletime = mob:getBattleTime();
-	local invtime = mob:getLocalVar("Invincible");
+    local battletime = mob:getBattleTime();
+    local invtime = mob:getLocalVar("Invincible");
     local bhp = mob:getLocalVar("Benediction");
 
-	if (battletime > invtime + 150) then
-		mob:useMobAbility(438);
-		mob:setLocalVar("Invincible", battletime);
-	elseif (mob:getHPP() < bhp) then
-		mob:useMobAbility(433);
-		mob:setLocalVar("Benediction", 0);
-	end
+    if (battletime > invtime + 150) then
+        mob:useMobAbility(694);
+        mob:setLocalVar("Invincible", battletime);
+    elseif (mob:getHPP() < bhp) then
+        mob:useMobAbility(689);
+        mob:setLocalVar("Benediction", 0);
+    end
 
 end;
 
@@ -57,5 +62,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

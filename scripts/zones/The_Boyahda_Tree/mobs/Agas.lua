@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- NPC:  Agas
+--  MOB: Agas
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -16,9 +16,9 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob, killer)
-	if (killer:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED and not killer:hasKeyItem(MOONDROP)) then
-		printf("Agas successfully killed!");
-		killer:setVar("Searching_AgasKilled", 1);
-	end
+function onMobDeath(mob, player, isKiller)
+    if (player:getQuestStatus(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS) == QUEST_ACCEPTED and not player:hasKeyItem(MOONDROP)) then
+        printf("Agas successfully killed!");
+        player:setVar("Searching_AgasKilled", 1);
+    end
 end;

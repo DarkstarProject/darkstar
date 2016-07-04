@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Qulun Dome
--- NM:   Za Dha Adamantking
+--  NM:  Za Dha Adamantking
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -18,18 +18,25 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
---TODO: Addtionaleffect:Slow on melee attacks
-	mob:showText(mob,QUADAV_KING_ENGAGE);
+    -- TODO: Addtionaleffect:Slow on melee attacks
+    mob:showText(mob,QUADAV_KING_ENGAGE);
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-	killer:addTitle(ADAMANTKING_USURPER);
-	mob:showText(mob,QUADAV_KING_DEATH);
+    player:addTitle(ADAMANTKING_USURPER);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    mob:showText(mob,QUADAV_KING_DEATH);
 
     -- Set Za_Dha_Adamantking's Window Open Time
     local wait = 48 * 3600
@@ -38,6 +45,6 @@ function onMobDeath(mob, killer)
     -- Set Diamond_Quadav's spawnpoint and respawn time (21-24 hours)
     local Diamond_Quadav = 17383442;
     DeterMob(Diamond_Quadav, false);
-    GetMobByID(Diamond_Quadav):setRespawnTime(math.random((75600),(86400))); -- 21 to 24 hours
+    GetMobByID(Diamond_Quadav):setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
 
 end;

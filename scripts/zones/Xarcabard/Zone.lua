@@ -33,7 +33,7 @@ function onZoneIn( player, prevZone)
 
     local UnbridledPassionCS = player:getVar("unbridledPassion");
 
-    if(prevZone == 135) then -- warp player to a correct position after dynamis
+    if (prevZone == 135) then -- warp player to a correct position after dynamis
         player:setPos(569.312,-0.098,-270.158,90);
     end
 
@@ -46,9 +46,9 @@ function onZoneIn( player, prevZone)
         cs = 0x000D;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0009;
-    elseif(UnbridledPassionCS == 3) then
+    elseif (UnbridledPassionCS == 3) then
         cs = 0x0004;
-    elseif(player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1)then
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 0x000b; 
     end
 
@@ -83,8 +83,8 @@ function onEventUpdate( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0009) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
-    elseif (csid == 0x000b)then
-        if(player:getPreviousZone() == 111)then
+    elseif (csid == 0x000b) then
+        if (player:getPreviousZone() == 111) then
             player:updateEvent(0,0,0,0,0,2);
         else
             player:updateEvent(0,0,0,0,0,3);
@@ -101,7 +101,7 @@ function onEventFinish( player, csid, option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0009) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
-    elseif(csid == 0x0004) then
+    elseif (csid == 0x0004) then
         player:setVar("unbridledPassion",4);
     end
 end;

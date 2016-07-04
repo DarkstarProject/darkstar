@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5089
---	Scroll of Gain-VIT
---	Teaches the white magic Gain-VIT
+--    ID: 5089
+--    Scroll of Gain-VIT
+--    Teaches the white magic Gain-VIT
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(488);
+    return target:canLearnSpell(488);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(488);
+    target:addSpell(488);
 end;

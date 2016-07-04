@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
--- MOB:  Panna Cotta
+--  MOB: Panna Cotta
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,614,2);
-   checkGoVregime(killer,mob,615,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,614,2);
+    checkGoVregime(player,mob,615,2);
 end;

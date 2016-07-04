@@ -1,8 +1,8 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Kirarara
+--    Area: Windurst Waters
+--    NPC:  Kirarara
 --  Involved in Quest: Making the Grade
---	Working 100% 
+--    Working 100% 
 --  @zone = 238
 --  @pos = 132 -7 172
 -----------------------------------
@@ -27,11 +27,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
-		player:startEvent(0x01bf); -- During Making the GRADE
-	else
-		player:startEvent(0x01a9);  -- Standard conversation
-	end
+    if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
+        player:startEvent(0x01bf); -- During Making the GRADE
+    else
+        player:startEvent(0x01a9);  -- Standard conversation
+    end
 end; 
 
 -----------------------------------

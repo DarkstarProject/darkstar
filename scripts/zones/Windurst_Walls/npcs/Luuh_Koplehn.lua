@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Luuh Koplehn
---	Standard Info NPC
+--    Area: Windurst Walls
+--    NPC:  Luuh Koplehn
+--    Standard Info NPC
 --  Involved in Quest: Star Struck
 --  @zone = 239
 --  @pos = -93 -5 130
@@ -25,11 +25,11 @@ function onTrigger(player,npc)
 
 qStarStruck = player:getQuestStatus(WINDURST,STAR_STRUCK);
 
-	if (qStarStruck == QUEST_ACCEPTED) then
-		player:startEvent(0x00c8);
-	else
-		player:startEvent(0x142);
-	end
+    if (qStarStruck == QUEST_ACCEPTED) then
+        player:startEvent(0x00c8);
+    else
+        player:startEvent(0x142);
+    end
 end;
 
 -----------------------------------

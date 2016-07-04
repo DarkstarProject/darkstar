@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Boyahda Sapling
+--  MOB: Boyahda Sapling
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,725,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,725,1);
 end;

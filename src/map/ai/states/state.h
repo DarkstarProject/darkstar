@@ -25,73 +25,66 @@
 #ifndef _CSTATE_H
 #define _CSTATE_H
 
-#include "../../../common/utils.h"
+#include <stdexcept>
+#include <memory>
+#include "../../../common/mmo.h"
 #include "../../packets/message_basic.h"
-#include "../../packets/action.h"
 
 class CBattleEntity;
-class CTargetFind;
 
-// delay for casting next spell
-#define COOL_DOWN_TIME 3000
-
-enum STATESTATUS {
-  STATESTATUS_NONE,
-  STATESTATUS_START,
-  STATESTATUS_TICK,
-  STATESTATUS_FINISH,
-  STATESTATUS_ERROR,
-  STATESTATUS_INTERRUPT
+class CStateInitException : std::exception
+{
+public:
+    CStateInitException(std::unique_ptr<CMessageBasicPacket> _msg) : std::exception(),
+        packet(std::move(_msg)) {}
+    std::unique_ptr<CMessageBasicPacket> packet;
 };
 
 class CState
 {
+public:
+    CState(CBaseEntity* PEntity, uint16 _targid);
 
-  public:
-    CState(CBattleEntity* PEntity, CTargetFind* PTargetFind);
-    ~CState();
+    virtual ~CState() = default;
 
-    virtual STATESTATUS Update(uint32 tick);
-    virtual void Clear();
+    CBaseEntity* GetTarget();
+    void SetTarget(uint16 targid);
 
-    bool CheckValidTarget(CBattleEntity* PTarget);
+    bool HasErrorMsg();
+    /* Releases ownership to the caller */
+    CMessageBasicPacket* GetErrorMsg();
 
-    bool IsOnCoolDown(uint32 tick);
+    bool DoUpdate(time_point tick);
+    //try interrupt (on hit)
+    virtual void TryInterrupt(CBattleEntity* PAttacker) {}
 
-    void SetCoolDown(uint32 coolDown);
-    void SetLastCoolTime(uint32 tick);
-    void SetHiPCLvl(CBattleEntity* PTarget, uint8 lvl);
-    void ClearTarget();
+    //called when state completes
+    virtual void Cleanup(time_point tick) = 0;
+    //whether the state can be changed by normal means
+    virtual bool CanChangeState() = 0;
+    virtual bool CanFollowPath() = 0;
+    //whether the state can be interrupted (including by stun/sleep)
+    virtual bool CanInterrupt() = 0;
+    bool IsCompleted();
 
-    CBattleEntity* GetTarget();
+protected:
+    //state logic done per tick - returns whether to exit the state or not
+    virtual bool Update(time_point tick) = 0;
+    virtual void UpdateTarget(uint16 targid);
 
-    // has moved from start position
-    bool HasMoved();
+    uint16 GetTargetID();
+    void Complete();
+    time_point GetEntryTime();
+    void ResetEntryTime();
 
-  protected:
-    // push message for everyone to see
-    void PushMessage(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0);
+    std::unique_ptr<CMessageBasicPacket> m_errorMsg;
 
-    // push message for only target to see
-    // outputs nothing for any other than char
-    void PushError(MSGBASIC_ID msgID, int32 param = 0, int32 value = 0, CBattleEntity* PTarget = nullptr);
-
-    CBattleEntity* m_PEntity;
-    CBattleEntity* m_PTarget;
-
-    CTargetFind* m_PTargetFind;
-    uint8 m_flags;
-
-    // last cool down time
-    uint32 m_lastCoolTime;
-
-    // amount of time to wait on cool down
-    uint32 m_coolTime;
-
-    position_t m_startPosition;
-
-  private:
-
+    CBaseEntity* const m_PEntity;
+    uint16 m_targid;
+private:
+    CBaseEntity* m_PTarget;
+    bool m_completed {false};
+    time_point m_entryTime {server_clock::now()};
 };
 
 #endif

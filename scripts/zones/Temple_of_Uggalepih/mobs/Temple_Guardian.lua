@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Temple Guardian
+--  MOB: Temple Guardian
 -----------------------------------
 
 -----------------------------------
@@ -14,6 +14,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	GetNPCByID(17428957):openDoor(300); -- 5min
+function onMobDeath(mob, player, isKiller)
+    GetNPCByID(17428978):openDoor(300); -- 5min
 end;

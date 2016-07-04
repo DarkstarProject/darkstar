@@ -38,7 +38,7 @@
 37 - You do not have a linkshell item equipped.
 38 - You must wait longer to perform that action.
 39 - You don't have any .
-40 - mes40 
+40 - mes40
 41 - DEBUG: Title changed. (0)
 42 - DEBUG: San d'Oria normal fame (0) Result=0
 43 - DEBUG: Bastok normal fame (0) Result=0
@@ -68,7 +68,7 @@
 67 - This plant isn't doing well, kupo... But I'm sure it'll get better now that you've looked at it, kupo!
 68 - This plant isn't doing well, kupo... But I'm sure it'll get better now that you've looked at it, kupo!
 69 - Flowers are blooming, kupo!
-70 - Beautiful flowers are blooming, kupo! They're so pretty, kupo!1 
+70 - Beautiful flowers are blooming, kupo! They're so pretty, kupo!1
 71 - Kupo! This plant is ready to be picked, kupo!
 72 - ItPlayer Name's grown so big, kupoÅ`. ItPlayer Name's ready to be picked now, kupoÅ`.
 73 - Oh, no... This plant is all withered up, kupo...
@@ -87,7 +87,7 @@
 86 - Make it into a dried flower, kupo?
 87 - Throw it away, kupo!?
 88 - Dice roll!  rolls !
-89 - 
+89 -
 90 -
 91 - Looking at the items in Player Name's bazaar...
 92 - Player Name bought 0 .
@@ -98,10 +98,10 @@
 97 - Player Name isn't selling anything.
 98 - I can't look after any more flowerpots, kupo...
 99 - Please, master. Don't bring home any more mannequins. Those things give me the creeps, kupo...
-100 - 
-101 - 
-102 - 
-103 - 
+100 -
+101 -
+102 -
+103 -
 104 - That item is already placed in the trade window.
 105 - You cannot use that command in the specified chat mode.
 106 - You have already cast your vote.

@@ -188,7 +188,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 
 	WBUFL(data,(0xA0)) = PChar->GetPlayTime();				// время, проведенное персонажем в игре с момента создания
 
-	uint32 pktTime = CVanaTime::getInstance()->getVanaTime() + 2; //buffering this by 2 prevents autohp
+    uint32 pktTime = CVanaTime::getInstance()->getVanaTime();
 
     WBUFL(data,(0x38)) = pktTime + VTIME_BASEDATE;
     WBUFL(data,(0x3C)) = pktTime;
@@ -196,6 +196,9 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     // 60min starts at 0x03A020 (66 min) and ventures down to 0x5460 (6 min)
     if (PChar->m_DeathCounter < 3600 && PChar->isDead())
         WBUFL(data,(0xA4)) = 0x03A020 - (60 * PChar->m_DeathCounter);
+
+	ref<uint8>(0xB4) = PChar->GetMJob();
+	ref<uint8>(0xB7) = PChar->GetSJob();
 
 	memcpy(data+(0xCC), &PChar->stats, 14);
 

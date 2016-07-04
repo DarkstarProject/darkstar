@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-   if(target:addStatusEffect(typeEffect,reflectedPercent, 0,duration, 0, maxReflectedDamage, 1)) then
+   if (target:addStatusEffect(typeEffect,reflectedPercent, 0,duration, 0, maxReflectedDamage, 1)) then
      spell:setMsg(230);
    else
      spell:setMsg(75);

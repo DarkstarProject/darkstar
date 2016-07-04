@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC: Sarcophagus
+--  MOB: Yumi Kimil
 -- Involved in Quest: The Requiem (BARD AF2)
 -- @pos -414 8 499 195
 -----------------------------------
@@ -15,11 +15,11 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onMobSpawn(mob)
-end; 
+end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer)
-	killer:setVar("TheRequiemYumKilled",1);
+function onMobDeath(mob, player, isKiller)
+    player:setVar("TheRequiemYumKilled",1);
 end;

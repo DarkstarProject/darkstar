@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Garlaige Citadel
--- MOB:  Fallen Officer
+--  MOB: Fallen Officer
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,703,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,703,2);
 end;

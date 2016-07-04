@@ -16,9 +16,9 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local typeEffect = EFFECT_MAGIC_SHIELD;
+    local typeEffect = EFFECT_MAGIC_SHIELD;
 
-	mob:addStatusEffect(EFFECT_MAGIC_SHIELD, 0, 0, 0);
+    mob:addStatusEffect(EFFECT_MAGIC_SHIELD, 0, 0, 0);
     mob:AnimationSub(2);
 
     skill:setMsg(MSG_BUFF);

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Abyssea_Vunkeral
---	NPC: Liloune
---	Standard Info NPC
+--    Area: Abyssea_Vunkeral
+--    NPC: Liloune
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x044B);
+    player:startEvent(0x044B);
 end;
 
 -----------------------------------

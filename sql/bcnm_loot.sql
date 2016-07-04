@@ -1662,6 +1662,51 @@ INSERT INTO `bcnm_loot` VALUES ('155', '1958', '200', '6'); -- SMN
 INSERT INTO `bcnm_loot` VALUES ('155', '2658', '400', '6'); -- COR
 INSERT INTO `bcnm_loot` VALUES ('155', '1940', '200', '6'); -- THF
 
+-- BCNM Amphibian Assualt
+INSERT INTO `bcnm_loot` VALUES ('156', '13155', '100', '0');
+INSERT INTO `bcnm_loot` VALUES ('156', '13152', '100', '0');
+INSERT INTO `bcnm_loot` VALUES ('156', '13150', '100', '0');
+INSERT INTO `bcnm_loot` VALUES ('156', '13160', '100', '0');
+INSERT INTO `bcnm_loot` VALUES ('156', '13156', '250', '1');
+INSERT INTO `bcnm_loot` VALUES ('156', '13148', '250', '1');
+INSERT INTO `bcnm_loot` VALUES ('156', '13151', '250', '1');
+INSERT INTO `bcnm_loot` VALUES ('156', '13154', '250', '1');
+INSERT INTO `bcnm_loot` VALUES ('156', '13158', '250', '1');
+INSERT INTO `bcnm_loot` VALUES ('156', '4896', '48', '2');
+INSERT INTO `bcnm_loot` VALUES ('156', '4874', '48', '2');
+INSERT INTO `bcnm_loot` VALUES ('156', '4751', '143', '2');
+INSERT INTO `bcnm_loot` VALUES ('156', '4714', '119', '2');
+INSERT INTO `bcnm_loot` VALUES ('156', '4621', '150', '2');
+INSERT INTO `bcnm_loot` VALUES ('156', '4175', '77', '3');
+INSERT INTO `bcnm_loot` VALUES ('156', '4173', '154', '3');
+INSERT INTO `bcnm_loot` VALUES ('156', '1260', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1257', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1256', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1259', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1261', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1255', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1262', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '1258', '48', '4');
+INSERT INTO `bcnm_loot` VALUES ('156', '887', '150', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '837', '10', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '751', '850', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '810', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '797', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '803', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '784', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '791', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '802', '50', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '652', '100', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '702', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '771', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '769', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '776', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '772', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '773', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '801', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '775', '30', '5');
+INSERT INTO `bcnm_loot` VALUES ('156', '774', '30', '5');
+
 -- ENM Like the Wind
 INSERT INTO `bcnm_loot` VALUES ('179','1763','30','1'); 
 INSERT INTO `bcnm_loot` VALUES ('179','1769','30','1'); 

@@ -11,16 +11,16 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-	if (target:hasStatusEffect(EFFECT_INVISIBLE) == false) then
-		target:addStatusEffect(EFFECT_INVISIBLE,0,10,600);
+    if (target:hasStatusEffect(EFFECT_INVISIBLE) == false) then
+        target:addStatusEffect(EFFECT_INVISIBLE,0,10,600);
         spell:setMsg(230);
-	else
-		spell:setMsg(75); -- no effect.
-	end
+    else
+        spell:setMsg(75); -- no effect.
+    end
 
     return EFFECT_INVISIBLE;
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: Southern San d'Oria
---	NPC: Fulchia
+--    Area: Southern San d'Oria
+--    NPC: Fulchia
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -22,7 +22,7 @@ end;
 -----------------------------------
  
 function onTrigger(player,npc) 
-	player:startEvent(0x24b);
+    player:startEvent(0x24b);
 end; 
 
 -----------------------------------

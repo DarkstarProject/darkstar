@@ -21,7 +21,7 @@ function onAbilityCheck(player,target,ability)
     else
         if (player:hasStatusEffect(EFFECT_TRANCE)) then
             return 0,0;
-        elseif (player:getTP() < 10) then
+        elseif (player:getTP() < 100) then
             return MSGBASIC_NOT_ENOUGH_TP,0;
         else
             return 0,0;
@@ -33,10 +33,10 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
-        player:delTP(10);
+        player:delTP(100);
     end;
     
     local hit = 3;
@@ -180,6 +180,8 @@ function onUseAbility(player,target,ability)
         ability:setMsg(158);
     end
     
-    return effect, getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)), hit;
+    action:animation(target:getID(), getStepAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+    action:speceffect(target:getID(), hit)
+    return effect
     
 end;

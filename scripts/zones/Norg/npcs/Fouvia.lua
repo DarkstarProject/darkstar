@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-   if (player:getMainJob() ~= JOB_DRG) then
+   if (player:getMainJob() ~= JOBS.DRG) then
       player:showText(npc,FOUIVA_DIALOG); -- Oi 'av naw business wi' de likes av you.
    elseif (player:getGil() < 9800) then
       player:showText(npc,FOUIVA_DIALOG + 9); -- You don't 'av enough gil.  Come back when you do.
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x82 and option ~= 1073741824) then -- Player didn't cancel out
       player:delGil(9800);
       player:setVar("ChangedWyvernName",1);

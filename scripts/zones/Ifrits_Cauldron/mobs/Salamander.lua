@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- NPC:  Salamander
+--  MOB: Salamander
 -----------------------------------
 
 -----------------------------------
@@ -14,5 +14,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

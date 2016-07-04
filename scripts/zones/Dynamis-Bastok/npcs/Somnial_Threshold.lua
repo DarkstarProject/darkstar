@@ -21,7 +21,7 @@ end;
 function onEventUpdate(player,csid,option)
 --printf("onUpdate CSID: %u",csid);
 --printf("onUpdate RESULT: %u",option);
-	
+    
 end;
 
 -----------------------------------
@@ -33,7 +33,7 @@ function onEventFinish(player,csid,option)
 --printf("onFinish RESULT: %u",option);
 
     if (csid == 101 and option == 1) then
-	    player:setPos(116.000,0.994,-72.000,127,0xEA);
+        player:setPos(116.000,0.994,-72.000,127,0xEA);
     end
-	
+    
 end;

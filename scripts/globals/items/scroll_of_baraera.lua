@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4676
---	Scroll of Baraera
---	Teaches the white magic Baraera
+--    ID: 4676
+--    Scroll of Baraera
+--    Teaches the white magic Baraera
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(68);
+    return target:canLearnSpell(68);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(68);
+    target:addSpell(68);
 end;

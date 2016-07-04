@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gusgen Mines
--- MOB:  Rockmill
+--  MOB: Rockmill
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,685,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,685,2);
 end;

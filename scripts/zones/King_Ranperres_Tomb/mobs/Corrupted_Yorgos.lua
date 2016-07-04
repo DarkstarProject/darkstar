@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
--- NPC:  Corrupted Yorgos
+--  MOB: Corrupted Yorgos
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -16,11 +16,11 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	local currentMission = killer:getCurrentMission(SANDORIA);
-	local MissionStatus = killer:getVar("MissionStatus");
+function onMobDeath(mob, player, isKiller)
+    local currentMission = player:getCurrentMission(SANDORIA);
+    local MissionStatus = player:getVar("MissionStatus");
 
-	if(currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
-		killer:setVar("Mission6-2MobKilled",1);
-	end
+    if (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 1) then
+        player:setVar("Mission6-2MobKilled",1);
+    end
 end;

@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4699
---	Scroll of Barpetra
---	Teaches the white magic Barpetra
+--    ID: 4699
+--    Scroll of Barpetra
+--    Teaches the white magic Barpetra
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(91);
+    return target:canLearnSpell(91);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(91);
+    target:addSpell(91);
 end;

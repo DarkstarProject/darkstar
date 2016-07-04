@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Ix'aern (drg)
+--  MOB: Ix'aern (drg)
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,7 +11,7 @@ require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-    if (math.random(0,1) > 0) then     
+    if (math.random(0,3) == 0) then
         SetDropRate(4396,1870,1000); -- Deed Of Sensib.
         SetDropRate(4396,1903,0);
     else
@@ -26,7 +26,7 @@ end;
 
 function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
-    -- TODO: summon animations?    
+    -- TODO: summon animations?
     if (GetMobAction(wynavA) == 0) then
         GetMobByID(wynavA):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
         SpawnMob(wynavA, 300):updateEnmity(target);
@@ -51,19 +51,14 @@ end
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	-- Despawn pets..
-	DespawnMob(wynavA);
-	DespawnMob(wynavB);
-	DespawnMob(wynavC);
-    
-    local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
+function onMobDeath(mob, player, isKiller)
+    -- Despawn pets..
+    DespawnMob(wynavA);
+    DespawnMob(wynavB);
+    DespawnMob(wynavC);
 
-    -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, set it.
-    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
-        IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
-        SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
-    end;
+    -- Pick a new for PH Ix'Aern (DRG)
+    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
 end;
 
 -----------------------------------
@@ -71,16 +66,10 @@ end;
 -----------------------------------
 function onMobDespawn( mob )
     -- Despawn pets.
-	DespawnMob(wynavA);
-	DespawnMob(wynavB);
-	DespawnMob(wynavC);
+    DespawnMob(wynavA);
+    DespawnMob(wynavB);
+    DespawnMob(wynavC);
 
-    local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
-
-    -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, set it.
-    if (GetMobAction(realAwAern_PH) == 0 and GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
-        local AwAernGroups = {16920777,16920781,16920785,16920789}; -- First Aw'Aerns in each group.
-        IxAernDRG_PH = AwAernGroups[math.random(1, #AwAernGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
-        SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
-    end;
+    -- Pick a new PH for Ix'Aern (DRG)
+    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
 end

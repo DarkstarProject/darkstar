@@ -139,10 +139,13 @@ enum TRAITTYPE
     TRAIT_PRIMEVAL_ZEAL       = 120,
     TRAIT_INSPIRATION         = 121,
     TRAIT_SLEIGHT_OF_SWORD    = 122,
-    TRAIT_DAKEN               = 123
-};
+    TRAIT_DAKEN               = 123,
+    TRAIT_SUPERIOR            = 124, 
+    TRAIT_MAGIC_ACC_BONUS     = 125,
+    TRAIT_MAGIC_EVA_BONUS     = 126
+  };
 
-#define MAX_TRAIT_ID    124
+#define MAX_TRAIT_ID    127
 
 /************************************************************************
 *                                                                       *

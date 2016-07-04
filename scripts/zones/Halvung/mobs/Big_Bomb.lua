@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Halvung
--- NPC:  Big Bomb
+--  MOB: Big Bomb
 -----------------------------------
 
 -----------------------------------
@@ -14,6 +14,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(17031609):hideNPC(900);
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17031608):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

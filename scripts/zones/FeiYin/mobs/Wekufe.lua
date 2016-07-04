@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- MOB:  Wekufe
+--  MOB: Wekufe
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,717,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,717,2);
 end;

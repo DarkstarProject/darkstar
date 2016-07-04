@@ -4,26 +4,34 @@
 -- Note: Place holder Baobhan Sith
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(killer,mob,767,2);
+    checkGoVregime(player,mob,767,2);
 
-    local mob = mob:getID();
-    if (Baobhan_Sith_PH[mob] ~= nil) then
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    local mobID = mob:getID();
+
+    if (Baobhan_Sith_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Baobhan_Sith");
         if (ToD <= os.time(t) and GetMobAction(Baobhan_Sith) == 0) then
-            if (math.random((1),(20)) == 5) then
+            if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Baobhan_Sith);
-                GetMobByID(Baobhan_Sith):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Baobhan_Sith", mob);
-                DeterMob(mob, true);
+                GetMobByID(Baobhan_Sith):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Baobhan_Sith", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

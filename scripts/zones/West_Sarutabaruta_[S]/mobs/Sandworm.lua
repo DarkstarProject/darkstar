@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crystal War Areas
--- NPC:  Sandworm
+--  MOB: Sandworm
 -- Note:  Title Given if Sandworm does not Doomvoid
 -----------------------------------
 
@@ -17,6 +17,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(SANDWORM_WRANGLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(SANDWORM_WRANGLER);
 end;

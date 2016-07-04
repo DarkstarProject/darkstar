@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4797
---	Scroll of Stonega
---	Teaches the black magic Stonega
+--    ID: 4797
+--    Scroll of Stonega
+--    Teaches the black magic Stonega
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(189);
+    return target:canLearnSpell(189);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(189);
+    target:addSpell(189);
 end;

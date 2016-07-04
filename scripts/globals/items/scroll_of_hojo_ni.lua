@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4953
---	Scroll of Hojo: Ni
---	Teaches the ninjutsu Hojo: Ni
+--    ID: 4953
+--    Scroll of Hojo: Ni
+--    Teaches the ninjutsu Hojo: Ni
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(345);
+    return target:canLearnSpell(345);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(345);
+    target:addSpell(345);
 end;

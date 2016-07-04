@@ -20,15 +20,15 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         local dmg = player:getStat(MOD_MND) - target:getStat(MOD_MND);
-		if (dmg > 40) then
+        if (dmg > 40) then
             dmg = dmg+(dmg-40)/2;
         end
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
         dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
-        dmg = adjustForTarget(target,dmg,ELE_LIGHT);		
-		dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
-        return SUBEFFECT_LIGHT_DAMAGE, 163, dmg;
+        dmg = adjustForTarget(target,dmg,ELE_LIGHT);
+        dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
+        return SUBEFFECT_LIGHT_DAMAGE, MSGBASIC_ADD_EFFECT_DMG, dmg;
     end
 end;

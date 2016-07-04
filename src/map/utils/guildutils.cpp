@@ -146,7 +146,7 @@ void UpdateGuildsStock()
 
 void UpdateGuildPointsPattern()
 {
-    uint8 pattern = WELL512::GetRandomNumber(8);
+    uint8 pattern = dsprand::GetRandomNumber(8);
     
     bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
     bool commit = false;

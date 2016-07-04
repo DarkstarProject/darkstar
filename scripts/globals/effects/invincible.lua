@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- 	EFFECT_INVINCIBLE
+--     EFFECT_INVINCIBLE
 --
 -----------------------------------
 
@@ -12,6 +12,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     target:addMod(MOD_UDMGPHYS, -100);
+    target:addMod(MOD_UDMGRANGE, -100);
 end;
 
 -----------------------------------
@@ -27,4 +28,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_UDMGPHYS, -100);
+    target:delMod(MOD_UDMGRANGE, -100);
 end;

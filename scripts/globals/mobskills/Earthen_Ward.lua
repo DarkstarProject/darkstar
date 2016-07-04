@@ -20,6 +20,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180));
 
-	return EFFECT_STONESKIN;
+    return EFFECT_STONESKIN;
 
 end

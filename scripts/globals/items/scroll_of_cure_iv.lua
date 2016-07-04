@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4612
---	Scroll of Cure IV
---	Teaches the white magic Cure IV
+--    ID: 4612
+--    Scroll of Cure IV
+--    Teaches the white magic Cure IV
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(4);
+    return target:canLearnSpell(4);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(4);
+    target:addSpell(4);
 end;

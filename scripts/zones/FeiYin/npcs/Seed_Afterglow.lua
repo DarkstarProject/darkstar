@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     local Mission = player:getCurrentMission(ACP);
     local NeedToZone = player:needToZone();
     local Afterglow = npc:getID();
-    local First = 17613145;
+    local First = 17613148;
     local MARK_EFFECT = player:hasStatusEffect(EFFECT_MARK_OF_SEED);
     local PROGRESS = player:getVar("SEED_AFTERGLOW_MASK");
     local INTENSITY = player:getVar("SEED_AFTERGLOW_INTENSITY");

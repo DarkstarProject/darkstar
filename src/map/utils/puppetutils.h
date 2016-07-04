@@ -26,6 +26,7 @@
 
 #include "../entities/charentity.h"
 #include "../items/item_puppet.h"
+#include "../status_effect.h"
 
 namespace puppetutils
 {

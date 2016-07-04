@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Temoe-Amoe
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Temoe-Amoe
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x1fc);
+    player:startEvent(0x1fc);
 end; 
 
 -----------------------------------

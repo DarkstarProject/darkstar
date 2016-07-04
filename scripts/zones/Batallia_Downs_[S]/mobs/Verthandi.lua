@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
--- NPC:  Verthandi
+--  MOB: Verthandi
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(VERTHANDI_ENSNARER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(VERTHANDI_ENSNARER);
 end;

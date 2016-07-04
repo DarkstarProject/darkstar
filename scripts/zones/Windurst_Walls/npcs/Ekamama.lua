@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Walls
---	NPC:  Ekamama
---	Working 100%
+--    Area: Windurst Walls
+--    NPC:  Ekamama
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x135);
+    player:startEvent(0x135);
 end;
 
 -----------------------------------

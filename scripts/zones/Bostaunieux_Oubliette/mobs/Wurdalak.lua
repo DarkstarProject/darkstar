@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette
--- MOB:  Wurdalak
+--  MOB: Wurdalak
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,617,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,617,1);
 end;

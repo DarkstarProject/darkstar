@@ -9,8 +9,8 @@ require("scripts/globals/missions");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-   if(killer:getCurrentMission(COP) == A_PLACE_TO_RETURN and killer:getVar("PromathiaStatus") == 1)then 
-      killer:setVar("Warder_Thalia_KILL",1);
-   end  
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == A_PLACE_TO_RETURN and player:getVar("PromathiaStatus") == 1) then
+        player:setVar("Warder_Thalia_KILL",1);
+    end
 end;

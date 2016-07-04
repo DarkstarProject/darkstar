@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Vespo
+--  MOB: Vespo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,693,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,693,2);
 end;

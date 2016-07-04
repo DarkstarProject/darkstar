@@ -86,16 +86,16 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if(csid == 0x001F) then
+    if (csid == 0x001F) then
         player:completeMission(ACP,THE_ECHO_AWAKENS);
         player:addMission(ACP,GATHERER_OF_LIGHT_I);
-    elseif(csid == 0x0020) then
+    elseif (csid == 0x0020) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_I);
         player:addMission(ACP,GATHERER_OF_LIGHT_II);
         player:delKeyItem(SEEDSPALL_ROSEUM)
         player:delKeyItem(SEEDSPALL_CAERULUM)
         player:delKeyItem(SEEDSPALL_VIRIDIS)
-    elseif(csid == 0x0022) then
+    elseif (csid == 0x0022) then
         player:completeMission(ACP,GATHERER_OF_LIGHT_II);
         player:addMission(ACP,THOSE_WHO_LURK_IN_SHADOWS_I);
     end

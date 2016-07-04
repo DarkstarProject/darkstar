@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
--- MOB:  Dark Elemental
+--  MOB: Dark Elemental
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,750,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,750,1);
 end;

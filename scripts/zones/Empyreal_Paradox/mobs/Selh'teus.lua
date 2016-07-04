@@ -1,12 +1,16 @@
 -----------------------------------
 -- Area: Empyreal Paradox
--- NPC:  Selh'teus
+--  MOB: Selh'teus
 -- Chains of Promathia 8-4 BCNM Fight
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
+
+-----------------------------------
+-- onMobInitialize Action
+-----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 50);
@@ -18,12 +22,18 @@ end
 -----------------------------------
 
 function onMobSpawn(mob)
-
 end;
+
+-----------------------------------
+-- onMobEngaged Action
+-----------------------------------
 
 function onMobEngaged(mob, target)
-
 end;
+
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
 
 function onMobFight(mob, target)
     if (target:getTarget():getID() ~= mob:getID()) then
@@ -36,7 +46,7 @@ function onMobFight(mob, target)
     local rejuv = mob:getLocalVar("rejuv");
     if (mob:getHPP() < 30 and rejuv == 0 and target:getFamily() == 478) then
         mob:messageText(mob, SELHTEUS_TEXT + 2);
-        mob:useMobAbility(1253);
+        mob:useMobAbility(1509);
         mob:setLocalVar("rejuv", 1);
     elseif lanceTime + 50 < mob:getBattleTime() and lanceOut == 0 then
         mob:entityAnimationPacket("sp00");
@@ -48,7 +58,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
     mob:messageText(mob, SELHTEUS_TEXT);
     mob:getBattlefield():lose();
 end;

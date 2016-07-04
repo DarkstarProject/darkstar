@@ -6,7 +6,7 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "siiiiiiiii"
+    parameters = "ssssssssss"
 };
 
 function onTrigger(player, csid, op1, op2, op3, op4, op5, op6, op7, op8, texttable)

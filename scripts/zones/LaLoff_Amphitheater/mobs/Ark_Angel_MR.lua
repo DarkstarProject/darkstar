@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: LaLoff Amphitheater
--- NPC:  Ark Angel MR
+--  MOB: Ark Angel MR
 -----------------------------------
-
+package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 
@@ -42,7 +44,7 @@ function onMobFight(mob,target)
     local charm = mob:getLocalVar("Charm");
 
     if (charm == 0 and mob:getHPP() <  50) then
-        mob:useMobAbility(454);
+        mob:useMobAbility(710);
         mob:setLocalVar("Charm",1);
     end
 end;
@@ -51,5 +53,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

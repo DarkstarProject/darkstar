@@ -32,27 +32,20 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local duration = 90;
     local typeEffect = EFFECT_SLEEP_II;
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
-    local dINT = (pINT - mINT);
-    local resm = applyResistance(caster,spell,target,dINT,BLUE_SKILL,0);
+    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local resist = applyResistanceEffect(caster,spell,target,dINT,BLUE_SKILL,0,typeEffect);
+    local duration = 90 * resist;
     
-    if(resm < 0.5) then
-        spell:setMsg(85);--resist message
-        return typeEffect;
-    end
-
-    duration = duration * resm;
-
-
-    if(target:hasStatusEffect(typeEffect) == true) then
-        spell:setMsg(75);
+    if (resist > 0.5) then -- Do it!
+        if (target:addStatusEffect(typeEffect,2,0,duration)) then
+            spell:setMsg(236);
+        else
+            spell:setMsg(75);
+        end
     else
-        target:addStatusEffect(typeEffect,2,0,duration)
-        spell:setMsg(236);
-    end
+        spell:setMsg(85);
+    end;
 
     return typeEffect;
 end;

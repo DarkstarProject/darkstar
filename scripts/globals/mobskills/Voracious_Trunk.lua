@@ -15,22 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    -- try to drain buff
-    local effect = target:stealStatusEffect();
-    local dmg = 0;
+    skill:setMsg(MobDrainStatusEffectMove(mob, target));
 
-    if(effect ~= nil) then
-        if(mob:hasStatusEffect(effect:getType()) == false) then
-            -- add to myself
-            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
-        end
-        -- add buff to myself
-        skill:setMsg(MSG_EFFECT_DRAINED);
-
-        dmg = 1;
-    else
-        skill:setMsg(MSG_NO_EFFECT);
-    end
-
-    return dmg;
+    return 1;
 end;

@@ -28,7 +28,14 @@
 #include "../mob_spell_list.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
-
+#include "../ai/ai_container.h"
+#include "../ai/controllers/pet_controller.h"
+#include "../ai/helpers/pathfind.h"
+#include "../ai/helpers/targetfind.h"
+#include "../ai/states/ability_state.h"
+#include "../utils/battleutils.h"
+#include "../utils/petutils.h"
+#include "../../common/utils.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -36,11 +43,13 @@ CPetEntity::CPetEntity(PETTYPE petType)
 	m_PetType = petType;
 	m_EcoSystem = SYSTEM_UNCLASSIFIED;
 	allegiance = ALLEGIANCE_PLAYER;
+    m_MobSkillList = 0;
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CPetController>(this),
+        std::make_unique<CTargetFind>(this));
 }
 
 CPetEntity::~CPetEntity()
 {
-
 }
 
 PETTYPE CPetEntity::getPetType(){
@@ -50,6 +59,40 @@ PETTYPE CPetEntity::getPetType(){
 bool CPetEntity::isBstPet()
 {
   return getPetType()==PETTYPE_JUG_PET || objtype == TYPE_MOB;
+}
+
+std::string CPetEntity::GetScriptName()
+{
+    switch (getPetType())
+    {
+        case PETTYPE_AVATAR:
+            return "avatar";
+            break;
+        case PETTYPE_WYVERN:
+            return "wyvern";
+            break;
+        case PETTYPE_JUG_PET:
+            return "jug";
+            break;
+        case PETTYPE_CHARMED_MOB:
+            return "charmed";
+            break;
+        case PETTYPE_AUTOMATON:
+            return "automaton";
+            break;
+        case PETTYPE_ADVENTURING_FELLOW:
+            return "fellow";
+            break;
+        case PETTYPE_CHOCOBO:
+            return "chocobo";
+            break;
+        case PETTYPE_TRUST:
+            return GetName();
+            break;
+        default:
+            return "";
+            break;
+    }
 }
 
 WYVERNTYPE CPetEntity::getWyvernType()
@@ -86,8 +129,9 @@ WYVERNTYPE CPetEntity::getWyvernType()
   };
 }
 
-void CPetEntity::UpdateEntity()
+void CPetEntity::PostTick()
 {
+    CBattleEntity::PostTick();
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         if (PMaster && PMaster->PPet == this)
@@ -97,4 +141,82 @@ void CPetEntity::UpdateEntity()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         updatemask = 0;
     }
+}
+
+void CPetEntity::FadeOut()
+{
+    CMobEntity::FadeOut();
+    loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_DESPAWN, UPDATE_NONE));
+}
+
+void CPetEntity::Die()
+{
+    PAI->ClearStateStack();
+    PAI->Internal_Die(0s);
+    luautils::OnMobDeath(this, nullptr);
+    CBattleEntity::Die();
+    if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
+    {
+        petutils::DetachPet(PMaster);
+    }
+}
+
+void CPetEntity::Spawn()
+{
+    //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
+    CBattleEntity::Spawn();
+    luautils::OnMobSpawn(this);
+}
+
+void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
+{
+    auto PAbility = state.GetAbility();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    std::unique_ptr<CMessageBasicPacket> errMsg;
+    if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
+    {
+        if (this != PTarget && distance(this->loc.p, PTarget->loc.p) > PAbility->getRange())
+        {
+            return;
+        }
+        if (battleutils::IsParalyzed(this)) {
+            // display paralyzed
+            loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, PTarget, 0, 0, MSGBASIC_IS_PARALYZED));
+            return;
+        }
+
+        action.id = this->id;
+        action.actiontype = PAbility->getActionType();
+        //#TODO: unoffset this
+        action.actionid = PAbility->getID() + 16;
+        actionList_t& actionList = action.getNewActionList();
+        actionList.ActionTargetID = PTarget->id;
+        actionTarget_t& actionTarget = actionList.getNewActionTarget();
+        actionTarget.reaction = REACTION_NONE;
+        actionTarget.speceffect = SPECEFFECT_RECOIL;
+        actionTarget.animation = PAbility->getAnimationID();
+        actionTarget.param = 0;
+        auto prevMsg = actionTarget.messageID;
+
+        int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
+        if (prevMsg == actionTarget.messageID) actionTarget.messageID = PAbility->getMessage();
+        if (actionTarget.messageID == 0) actionTarget.messageID = MSGBASIC_USES_JA;
+        actionTarget.param = value;
+
+        if (value < 0)
+        {
+            actionTarget.messageID = ability::GetAbsorbMessage(actionTarget.messageID);
+            actionTarget.param = -value;
+        }
+    }
+}
+
+bool CPetEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
+{
+    if (targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance)
+    {
+        return false;
+    }
+    return CMobEntity::ValidTarget(PInitiator, targetFlags);
 }

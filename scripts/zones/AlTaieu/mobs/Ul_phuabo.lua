@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Al'Taieu
--- NPC:  Ul'Phuabo
+--  MOB: Ul'Phuabo
 -----------------------------------
 
 require("scripts/globals/missions");
-
+require("scripts/globals/status");
+mixins = { require("scripts/mixins/families/phuabo") }
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -17,24 +18,25 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:hideName(true);
-    mob:untargetable(true);
-    mob:AnimationSub(5);
 end;
 
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
 
-function onMobEngaged(mob, killer)
-    mob:hideName(false);
-    mob:untargetable(false);
-    mob:AnimationSub(6);
+function onMobEngaged(mob, target)
+end;
+
+-----------------------------------
+-- onMobDisengage
+-----------------------------------
+
+function onMobDisengage(mob)
 end;
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

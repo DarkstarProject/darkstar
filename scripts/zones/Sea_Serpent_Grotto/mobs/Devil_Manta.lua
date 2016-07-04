@@ -4,31 +4,39 @@
 -- Note: Place holder Charybdis
 -----------------------------------
 
+require("scripts/globals/groundsofvalor");
 require("scripts/zones/Sea_Serpent_Grotto/MobIDs");
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(killer,mob,810,2);
+    checkGoVregime(player,mob,810,2);
 
-    mob = mob:getID();
-    if (Charybdis_PH[mob] ~= nil) then
+end;
 
-        Charybdis_ToD = GetServerVariable("[POP]Charybdis");
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    local mobID = mob:getID();
+
+    if (Charybdis_PH[mobID] ~= nil) then
+        local Charybdis_ToD = GetServerVariable("[POP]Charybdis");
         if (Charybdis_ToD <= os.time(t) and GetMobAction(Charybdis) == 0 and math.random((1),(10)) == 10) then
             UpdateNMSpawnPoint(Charybdis);
-            GetMobByID(Charybdis):setRespawnTime(GetMobRespawnTime(mob));
-            SetServerVariable("[PH]Charybdis", mob);
-            DeterMob(mob, true);
+            GetMobByID(Charybdis):setRespawnTime(GetMobRespawnTime(mobID));
+            SetServerVariable("[PH]Charybdis", mobID);
+            DeterMob(mobID, true);
         else
-            r = math.random((1),(2));
-            if (mob ~= Charybdis_PH[r]) then
-                DeterMob(mob, true);
+            local r = math.random(1,2);
+            if (mobID ~= Charybdis_PH[r]) then -- what is this?
+                DeterMob(mobID, true);
                 DeterMob(Charybdis_PH[r], false);
-                GetMobByID(Charybdis_PH[r]):setRespawnTime(GetMobRespawnTime(mob));
+                GetMobByID(Charybdis_PH[r]):setRespawnTime(GetMobRespawnTime(mobID));
             end
         end
     end

@@ -30,45 +30,45 @@ OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
 CryingOverOnions     = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
 ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
 
-	if (ThePromise == QUEST_COMPLETED) then
-		Message = math.random(0,1)
-		
-		if (Message == 1) then
-			player:startEvent(0x021a);
-		else
-			player:startEvent(0x020e);
-		end
-	elseif (ThePromise == QUEST_ACCEPTED) then
-		player:startEvent(0x0204);
-	elseif (CryingOverOnions == QUEST_COMPLETED) then
-		player:startEvent(0x01fa);
-	elseif (CryingOverOnions == QUEST_ACCEPTED) then
-		player:startEvent(0x01f3);
-	elseif (OnionRings == QUEST_COMPLETED) then
-		player:startEvent(0x01bc);
-	elseif (OnionRings == QUEST_ACCEPTED ) then
-		player:startEvent(0x01b4);
-	elseif (InspectorsGadget == QUEST_COMPLETED) then
-		player:startEvent(0x01ab);
-	elseif (InspectorsGadget == QUEST_ACCEPTED) then
-		player:startEvent(0x01a3);
-	elseif (KnowOnesOnions == QUEST_COMPLETED) then
-		player:startEvent(0x0197);
-	elseif (KnowOnesOnions == QUEST_ACCEPTED) then
-		KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
-		
-		if (KnowOnesOnionsVar == 2) then
-			player:startEvent(0x0196);
-		else
-			player:startEvent(0x018d);
-		end
-	elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
-		player:startEvent(0x017f);
-	elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
-		player:startEvent(0x0178);
-	else
-		player:startEvent(0x016d);
-	end
+    if (ThePromise == QUEST_COMPLETED) then
+        Message = math.random(0,1)
+        
+        if (Message == 1) then
+            player:startEvent(0x021a);
+        else
+            player:startEvent(0x020e);
+        end
+    elseif (ThePromise == QUEST_ACCEPTED) then
+        player:startEvent(0x0204);
+    elseif (CryingOverOnions == QUEST_COMPLETED) then
+        player:startEvent(0x01fa);
+    elseif (CryingOverOnions == QUEST_ACCEPTED) then
+        player:startEvent(0x01f3);
+    elseif (OnionRings == QUEST_COMPLETED) then
+        player:startEvent(0x01bc);
+    elseif (OnionRings == QUEST_ACCEPTED ) then
+        player:startEvent(0x01b4);
+    elseif (InspectorsGadget == QUEST_COMPLETED) then
+        player:startEvent(0x01ab);
+    elseif (InspectorsGadget == QUEST_ACCEPTED) then
+        player:startEvent(0x01a3);
+    elseif (KnowOnesOnions == QUEST_COMPLETED) then
+        player:startEvent(0x0197);
+    elseif (KnowOnesOnions == QUEST_ACCEPTED) then
+        KnowOnesOnionsVar  = player:getVar("KnowOnesOnions");
+        
+        if (KnowOnesOnionsVar == 2) then
+            player:startEvent(0x0196);
+        else
+            player:startEvent(0x018d);
+        end
+    elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
+        player:startEvent(0x017f);
+    elseif (TruthJusticeOnionWay == QUEST_ACCEPTED) then
+        player:startEvent(0x0178);
+    else
+        player:startEvent(0x016d);
+    end
    
 end;
 

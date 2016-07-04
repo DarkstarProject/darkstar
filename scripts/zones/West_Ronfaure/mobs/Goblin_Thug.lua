@@ -1,14 +1,14 @@
------------------------------------	
--- Area: West Ronfaure	
--- MOB:  Goblin Thug	
------------------------------------	
-	
-require("scripts/globals/fieldsofvalor");	
-	
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-	checkRegime(killer,mob,56,2);
-end;	
+-----------------------------------
+-- Area: West Ronfaure
+--  MOB: Goblin Thug
+-----------------------------------
+
+require("scripts/globals/fieldsofvalor");
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+    checkRegime(player,mob,56,2);
+end;

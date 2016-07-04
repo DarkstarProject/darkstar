@@ -1,16 +1,16 @@
-----------------------------------	
+----------------------------------
 -- Area: Labyrinth of Onzozo
 --   NM: Hellion
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     -- Set Hellion's Window Open Time
-    local wait = math.random((7200),(14400));
+    local wait = math.random(7200,14400);
     SetServerVariable("[POP]Hellion", os.time(t) + wait); -- 2-4 hours
     DeterMob(mob:getID(), true);
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area:
--- NPC:  Battleclad Chariot
+--  MOB: Battleclad Chariot
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(STAR_CHARIOTEER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(STAR_CHARIOTEER);
 end;

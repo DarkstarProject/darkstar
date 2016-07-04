@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba outpost
--- NPC:  Kalamainu
+--  MOB: Kalamainu
 -- BCNM30
 -----------------------------------
 
@@ -17,8 +17,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
-
-	GetMobByID(17350934):updateEnmity(target);
+    GetMobByID(17350934):updateEnmity(target);
 end;
 
 
@@ -26,5 +25,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 end;

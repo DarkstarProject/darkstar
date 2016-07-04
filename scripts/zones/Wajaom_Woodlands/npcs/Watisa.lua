@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 
     local price = player:getLocalVar("chocoboPriceOffer");
 
-    if(csid == 0x0009 and option == 0) then
+    if (csid == 0x0009 and option == 0) then
         if (player:delGil(price)) then
             updateChocoboPrice(player, price);
 

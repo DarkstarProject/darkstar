@@ -16,9 +16,9 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------		
--- onConquestUpdate		
------------------------------------		
+-----------------------------------        
+-- onConquestUpdate        
+-----------------------------------        
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -29,39 +29,39 @@ function onConquestUpdate(zone, updatetype)
 end;
 
 
------------------------------------		
--- onZoneIn		
------------------------------------		
+-----------------------------------        
+-- onZoneIn        
+-----------------------------------        
 
-function onZoneIn(player,prevZone)		
-	local cs = -1;	
-	if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then	
-		player:setPos(-177.804,-2.765,-37.893,179);
-	end	
-	return cs;	
-end;		
+function onZoneIn(player,prevZone)        
+    local cs = -1;    
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+        player:setPos(-177.804,-2.765,-37.893,179);
+    end    
+    return cs;    
+end;        
 
------------------------------------		
--- onRegionEnter		
------------------------------------		
+-----------------------------------        
+-- onRegionEnter        
+-----------------------------------        
 
-function onRegionEnter(player,region)	
-end;	
+function onRegionEnter(player,region)    
+end;    
 
------------------------------------	
--- onEventUpdate	
------------------------------------	
+-----------------------------------    
+-- onEventUpdate    
+-----------------------------------    
 
-function onEventUpdate(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+function onEventUpdate(player,csid,option)    
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+end;    
 
------------------------------------	
--- onEventFinish	
------------------------------------	
+-----------------------------------    
+-- onEventFinish    
+-----------------------------------    
 
-function onEventFinish(player,csid,option)	
-	--printf("CSID: %u",csid);
-	--printf("RESULT: %u",option);
-end;	
+function onEventFinish(player,csid,option)    
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+end;    

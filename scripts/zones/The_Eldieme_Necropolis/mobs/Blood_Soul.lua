@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- MOB:  Blood Soul
+--  MOB: Blood Soul
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,674,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,674,2);
 end;

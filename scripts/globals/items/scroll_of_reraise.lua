@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4743
---	Scroll of Reraise
---	Teaches the white magic Reraise
+--    ID: 4743
+--    Scroll of Reraise
+--    Teaches the white magic Reraise
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(135);
+    return target:canLearnSpell(135);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(135);
+    target:addSpell(135);
 end;

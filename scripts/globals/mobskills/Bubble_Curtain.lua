@@ -15,13 +15,12 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-	return 0;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SHELL;
-    local power = 128;
-
+    local power = 50;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180));
 

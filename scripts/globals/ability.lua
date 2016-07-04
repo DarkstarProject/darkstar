@@ -1,8 +1,10 @@
 -----------------------------------
 --
--- 	ABILITIES
+--  ABILITIES
 --
 -----------------------------------
+require("scripts/globals/status");
+
     ABILITY_MIGHTY_STRIKES     = 0;
     ABILITY_HUNDRED_FISTS      = 1;
     ABILITY_BENEDICTION        = 2;
@@ -342,48 +344,49 @@
     ABILITY_ONE_FOR_ALL        = 358;
     ABILITY_WARD               = 363;
     ABILITY_EFFUSION           = 364;
+    ABILITY_APOGEE             = 369;
     ABILITY_HEALING_RUBY       = 496;
     ABILITY_POISON_NAILS       = 497;
     ABILITY_SHINING_RUBY       = 498;
     ABILITY_GLITTERING_RUBY    = 499;
     ABILITY_METEORITE          = 500;
     ABILITY_HEALING_RUBY_II    = 501;
-	ABILITY_SEARING_LIGHT	   = 502;
-	ABILITY_MOONLIT_CHARGE	   = 512;
-	ABILITY_CRESCENT_FANG	   = 513;
-	ABILITY_LUNAR_CRY		   = 514;
-	ABILITY_LUNAR_ROAR		   = 515;
-	ABILITY_ECLIPTIC_GROWL	   = 516;
-	ABILITY_ECLIPTIC_HOWL	   = 517;
-	ABILITY_ECLIPSE_BITE	   = 518;
-	ABILITY_HOWLING_MOON	   = 520;
-	ABILITY_PUNCH			   = 528;
-	ABILITY_FIRE_II			   = 529;
-	ABILITY_BURNING_STRIKE	   = 530;
-	ABILITY_DOUBLE_PUNCH	   = 531;
-	ABILITY_CRIMSON_HOWL	   = 532;
-	ABILITY_FIRE_IV			   = 533;
-	ABILITY_FLAMING_CRUSH	   = 534;
-	ABILITY_METEOR_STRIKE	   = 535;
-	ABILITY_INFERNO			   = 536;
-	ABILITY_ROCK_THROW		   = 544;
-	ABILITY_STONE_II		   = 545;
-	ABILITY_ROCK_BUSTER		   = 546;
-	ABILITY_MEGALITH_THROW	   = 547;
-	ABILITY_EARTHEN_WARD	   = 548;
-	ABILITY_STONE_IV		   = 549;
-	ABILITY_MOUNTAIN_BUSTER	   = 550;
-	ABILITY_GEOCRUSH		   = 551;
-	ABILITY_EARTHEN_FURY	   = 552;
-	ABILITY_BARRACUDA_DIVE	   = 560;
-	ABILITY_WATER_II		   = 561;
-	ABILITY_TAIL_WHIP		   = 562;
-	ABILITY_SLOWGA			   = 564;
-	ABILITY_SPRING_WATER	   = 563;
-	ABILITY_WATER_IV		   = 565;
-	ABILITY_SPINNING_DIVE	   = 566;
-	ABILITY_GRAND_FALL		   = 567;
-	ABILITY_TIDAL_WAVE		   = 568;
+    ABILITY_SEARING_LIGHT      = 502;
+    ABILITY_MOONLIT_CHARGE     = 512;
+    ABILITY_CRESCENT_FANG      = 513;
+    ABILITY_LUNAR_CRY          = 514;
+    ABILITY_LUNAR_ROAR         = 515;
+    ABILITY_ECLIPTIC_GROWL     = 516;
+    ABILITY_ECLIPTIC_HOWL      = 517;
+    ABILITY_ECLIPSE_BITE       = 518;
+    ABILITY_HOWLING_MOON       = 520;
+    ABILITY_PUNCH              = 528;
+    ABILITY_FIRE_II            = 529;
+    ABILITY_BURNING_STRIKE     = 530;
+    ABILITY_DOUBLE_PUNCH       = 531;
+    ABILITY_CRIMSON_HOWL       = 532;
+    ABILITY_FIRE_IV            = 533;
+    ABILITY_FLAMING_CRUSH      = 534;
+    ABILITY_METEOR_STRIKE      = 535;
+    ABILITY_INFERNO            = 536;
+    ABILITY_ROCK_THROW         = 544;
+    ABILITY_STONE_II           = 545;
+    ABILITY_ROCK_BUSTER        = 546;
+    ABILITY_MEGALITH_THROW     = 547;
+    ABILITY_EARTHEN_WARD       = 548;
+    ABILITY_STONE_IV           = 549;
+    ABILITY_MOUNTAIN_BUSTER    = 550;
+    ABILITY_GEOCRUSH           = 551;
+    ABILITY_EARTHEN_FURY       = 552;
+    ABILITY_BARRACUDA_DIVE     = 560;
+    ABILITY_WATER_II           = 561;
+    ABILITY_TAIL_WHIP          = 562;
+    ABILITY_SLOWGA             = 564;
+    ABILITY_SPRING_WATER       = 563;
+    ABILITY_WATER_IV           = 565;
+    ABILITY_SPINNING_DIVE      = 566;
+    ABILITY_GRAND_FALL         = 567;
+    ABILITY_TIDAL_WAVE         = 568;
     ABILITY_CLAW               = 576;
     ABILITY_AERO_II            = 577;
     ABILITY_WHISPERING_WIND    = 578;
@@ -392,22 +395,136 @@
     ABILITY_AERO_IV            = 581;
     ABILITY_PREDATOR_CLAWS     = 582;
     ABILITY_WIND_BLADE         = 583;
-	ABILITY_AERIAL_BLAST	   = 584;
-	ABILITY_AXE_KICK		   = 592;
-	ABILITY_BLIZZARD_II		   = 593;
-	ABILITY_FROST_ARMOR		   = 594;
-	ABILITY_SLEEPGA			   = 595;
-	ABILITY_DOUBLE_SLAP		   = 596;
-	ABILITY_BLIZZARD_IV		   = 597;
-	ABILITY_RUSH			   = 598;
-	ABILITY_HEAVENLY_STRIKE	   = 599;
-	ABILITY_DIAMOND_DUST	   = 600;
-	ABILITY_SHOCK_STRIKE	   = 608;
-	ABILITY_THUNDER_II		   = 609;
-	ABILITY_THUNDERSPARK	   = 611;
-	ABILITY_ROLLING_THUNDER	   = 610;
-	ABILITY_LIGHTNING_ARMOR	   = 612;
-	ABILITY_THUNDER_IV		   = 613;
-	ABILITY_CHAOTIC_STRIKE	   = 614;
-	ABILITY_THUNDERSTORM	   = 615;
-	ABILITY_JUDGMENT_BOLT	   = 616;
+    ABILITY_AERIAL_BLAST       = 584;
+    ABILITY_AXE_KICK           = 592;
+    ABILITY_BLIZZARD_II        = 593;
+    ABILITY_FROST_ARMOR        = 594;
+    ABILITY_SLEEPGA            = 595;
+    ABILITY_DOUBLE_SLAP        = 596;
+    ABILITY_BLIZZARD_IV        = 597;
+    ABILITY_RUSH               = 598;
+    ABILITY_HEAVENLY_STRIKE    = 599;
+    ABILITY_DIAMOND_DUST       = 600;
+    ABILITY_SHOCK_STRIKE       = 608;
+    ABILITY_THUNDER_II         = 609;
+    ABILITY_THUNDERSPARK       = 611;
+    ABILITY_ROLLING_THUNDER    = 610;
+    ABILITY_LIGHTNING_ARMOR    = 612;
+    ABILITY_THUNDER_IV         = 613;
+    ABILITY_CHAOTIC_STRIKE     = 614;
+    ABILITY_THUNDERSTORM       = 615;
+    ABILITY_JUDGMENT_BOLT      = 616;
+
+function corsairSetup(caster, ability, action, effect, job)
+    local roll = math.random(1,6);
+    caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(EFFECT_DOUBLE_UP_CHANCE,
+                             EFFECT_DOUBLE_UP_CHANCE, 
+                             roll,
+                             0,
+                             45,
+                             ability:getID(),
+                             effect,
+                             job,
+                             true);
+    caster:setLocalVar("corsairRollTotal", roll);
+    action:speceffect(caster:getID(), roll);
+    if (checkForElevenRoll(caster)) then
+        action:recast(action:recast()/2)
+    end
+    checkForJobBonus(caster, job)
+    caster:addRecast(RECAST_ABILITY, 194, 8)
+end
+
+function atMaxCorsairBusts(caster)
+    local numBusts = caster:numBustEffects();
+    return (numBusts >= 2 and caster:getMainJob() == JOBS.COR) or (numBusts >= 1 and caster:getMainJob() ~= JOBS.COR);
+end
+
+function checkForJobBonus(caster, job)
+    local jobBonus = 0
+    if (caster:hasPartyJob(job) or math.random(0, 99) < caster:getMod(MOD_JOB_BONUS_CHANCE)) then
+        jobBonus = 1;
+    end
+    caster:setLocalVar("corsairRollBonus", jobBonus);
+end
+
+function checkForElevenRoll(caster)
+    local effects = caster:getStatusEffects()
+    for _,effect in ipairs(effects) do
+        if (effect:getType() >= EFFECT_FIGHTERS_ROLL and
+            effect:getType() <= EFFECT_SCHOLARS_ROLL and
+            effect:getSubPower() == 11) then
+            return true
+        end
+    end
+    return false
+end
+
+function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
+    -- physical attack missed, skip rest
+    local msg = skill:getMsg()
+    if (msg == 158 or msg == 188 or msg == 31 or msg == 30) then
+        return 0;
+    end
+
+    --handle pd
+    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+            and skilltype==MOBSKILL_PHYSICAL) then
+        skill:setMsg(MSGBASIC_USES_BUT_MISSES);
+        return 0;
+    end
+
+    -- set message to damage
+    -- this is for AoE because its only set once
+    skill:setMsg(MSGBASIC_USES_JA_TAKE_DAMAGE);
+
+    --Handle shadows depending on shadow behaviour / skilltype
+    if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
+
+        dmg = utils.takeShadows(target, dmg, shadowbehav);
+
+        -- dealt zero damage, so shadows took hit
+        if (dmg == 0) then
+            skill:setMsg(MSG_SHADOW);
+            return shadowbehav;
+        end
+
+    elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
+        target:delStatusEffect(EFFECT_COPY_IMAGE);
+        target:delStatusEffect(EFFECT_BLINK);
+        target:delStatusEffect(EFFECT_THIRD_EYE);
+    end
+
+    --handle Third Eye using shadowbehav as a guide
+    if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
+        skill:setMsg(MSG_ANTICIPATE);
+        return 0;
+    end
+
+    if (skilltype == MOBSKILL_PHYSICAL) then
+        dmg = target:physicalDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_MAGICAL) then
+        dmg = target:magicDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_BREATH) then
+        dmg = target:breathDmgTaken(dmg);
+    elseif (skilltype == MOBSKILL_RANGED) then
+        dmg = target:rangedDmgTaken(dmg);
+    end
+
+    --handling phalanx
+    dmg = dmg - target:getMod(MOD_PHALANX);
+
+    if (dmg < 0) then
+        return 0;
+    end
+
+    dmg = utils.stoneskin(target, dmg);
+
+    if (dmg > 0) then
+        target:wakeUp();
+        target:updateEnmityFromDamage(mob,dmg);
+    end
+
+    return dmg;
+end

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Port Windurst
---	NPC:  Hepo Pinulpe
---	Working 100%
+--    Area: Port Windurst
+--    NPC:  Hepo Pinulpe
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x15a);
+    player:startEvent(0x15a);
 end;
 
 -----------------------------------

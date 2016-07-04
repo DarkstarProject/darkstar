@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
--- NPC:  Ix'aern (drk)
+--  MOB: Ix'aern (drk)
 -----------------------------------
 
 -----------------------------------
@@ -15,7 +15,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	--SetServerVariable("[PH]Ix_aern_drk", 0);
+function onMobDeath(mob, player, isKiller)
+    --SetServerVariable("[PH]Ix_aern_drk", 0);
 
 end;

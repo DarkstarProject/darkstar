@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
--- Mob:  Bloodsucker (NM)
+--  MOB: Bloodsucker (NM)
 -- @pos -21.776 16.983 -231.477 167
 -----------------------------------
 
@@ -10,15 +10,21 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-   checkGoVregime(killer,mob,613,1);
+    checkGoVregime(player,mob,613,1);
+end;
 
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDespawn(mob)
    local mobID = mob:getID();
 
-   if(mobID == 17461478) then
+   if (mobID == 17461478) then
       UpdateNMSpawnPoint(mob);
-      mob:setRespawnTime(259200);
+      mob:setRespawnTime(3600);
    end
 end;
 

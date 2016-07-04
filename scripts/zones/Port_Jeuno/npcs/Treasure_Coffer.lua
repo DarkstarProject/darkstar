@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(CHEST_IS_EMPTY);
+    player:messageSpecial(CHEST_IS_EMPTY);
 end;
 
 -----------------------------------

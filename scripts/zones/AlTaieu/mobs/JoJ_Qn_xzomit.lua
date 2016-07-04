@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, target)
-    mob:useMobAbility(475); -- Mijin_Gakure
+    mob:useMobAbility(731); -- Mijin_Gakure
 end;
 
 
@@ -33,5 +33,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Fei'Yin
--- MOB:  Mind Hoarder
+--  MOB: Mind Hoarder
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,12 +16,12 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-	-- Curses, Foiled A-Golem!?
-	if(killer:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-		killer:delKeyItem(SHANTOTTOS_NEW_SPELL);
-		killer:addKeyItem(SHANTOTTOS_EXSPELL);
-	end
+    -- Curses, Foiled A-Golem!?
+    if (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(SHANTOTTOS_EXSPELL);
+    end
 
 end;

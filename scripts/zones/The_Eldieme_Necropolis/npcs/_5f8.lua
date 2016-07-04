@@ -20,10 +20,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	if (npc:getAnimation() == 9) then
-		player:messageSpecial(SOLID_STONE);
-	end
-	return 0;
+    if (npc:getAnimation() == 9) then
+        player:messageSpecial(SOLID_STONE);
+    end
+    return 0;
 end;
 -- 
 -----------------------------------

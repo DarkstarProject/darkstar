@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
--- MOB:  Seven of Batons
+--  MOB: Seven of Batons
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,666,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,666,2);
 end;

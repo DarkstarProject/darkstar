@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- MOB:  Chaos Elemental
+--  MOB: Chaos Elemental
 -- Spawned for Quest: The Three Magi
 -- @pos -335.245 -26.403 -49.190 112
 -----------------------------------
@@ -17,6 +17,13 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	GetNPCByID(17236279):hideNPC(600); -- qm1
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(17236279):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

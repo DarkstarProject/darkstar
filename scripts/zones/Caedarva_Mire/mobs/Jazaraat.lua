@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  Jazaraat
+--  MOB: Jazaraat
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/settings");
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -15,8 +14,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-
-	killer:setVar("TOAUM13",2);
-
+function onMobDeath(mob, player, isKiller)
+    player:setVar("AhtUrganStatus",2);
 end;

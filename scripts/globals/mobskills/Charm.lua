@@ -9,12 +9,12 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 1;
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local typeEffect = EFFECT_CHARM_I;
-	local power = 0;
+    local typeEffect = EFFECT_CHARM_I;
+    local power = 0;
 
     if (not target:isPC()) then
         skill:setMsg(MSG_MISS);

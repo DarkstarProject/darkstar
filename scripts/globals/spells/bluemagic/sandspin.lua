@@ -48,8 +48,8 @@ function onSpellCast(caster,target,spell)
     
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
 
-    if(damage > 0 and resist > 0.0625) then
-        if(target:canGainStatusEffect(EFFECT_ACCURACY_DOWN)) then
+    if (damage > 0 and resist > 0.0625) then
+        if (target:canGainStatusEffect(EFFECT_ACCURACY_DOWN)) then
             target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60);
         end
     end

@@ -1,14 +1,14 @@
------------------------------------   
+-----------------------------------
 -- Area: Korroloka Tunnel
--- MOB:  Thread Leech   
------------------------------------   
+--  MOB: Thread Leech
+-----------------------------------
 
-require("scripts/globals/groundsofvalor");   
+require("scripts/globals/groundsofvalor");
 
------------------------------------   
--- onMobDeath   
------------------------------------   
+-----------------------------------
+-- onMobDeath
+-----------------------------------
 
-function onMobDeath(mob,killer)   
-   checkGoVregime(killer,mob,730,1);
-end;   
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,730,1);
+end;

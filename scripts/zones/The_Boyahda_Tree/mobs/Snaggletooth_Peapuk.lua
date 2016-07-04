@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Snaggletooth Peapuk
+--  MOB: Snaggletooth Peapuk
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,726,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,726,2);
 end;

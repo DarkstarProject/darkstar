@@ -42,10 +42,10 @@ function onZoneIn(player,prevZone)
             cs = 0x7534;
         end
         player:setVar("PlayerMainJob",0);
-    elseif(player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==0)then
+    elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus")==0) then
         player:setVar("PromathiaStatus",1);
         cs = 0x0046;
-    elseif(ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
+    elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
         cs = 0x276E;
     end
 
@@ -85,13 +85,13 @@ function onGameHour()
     local VanadielHour = VanadielHour();
 
     -- Community Service Quest
-    if(VanadielHour == 1) then
-        if(GetServerVariable("[JEUNO]CommService") == 0) then
+    if (VanadielHour == 1) then
+        if (GetServerVariable("[JEUNO]CommService") == 0) then
             GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
             GetNPCByID(17780880):initNpcAi();
         end;
 
-    elseif(VanadielHour == 5) then
+    elseif (VanadielHour == 5) then
         SetServerVariable("[JEUNO]CommService",0);
     end
 end;

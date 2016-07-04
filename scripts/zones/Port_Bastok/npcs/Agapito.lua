@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -26,15 +25,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
+    local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
-	if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(AIRSHIP_PASS) == true) then
-		player:startEvent(0x00b4);
-	elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == true) then
-		player:startEvent(0x00b5);
-	else
-		player:startEvent(0x0011);
-	end
+    if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(AIRSHIP_PASS) == true) then
+        player:startEvent(0x00b4);
+    elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == true) then
+        player:startEvent(0x00b5);
+    else
+        player:startEvent(0x0011);
+    end
 end;
 
 -----------------------------------
@@ -42,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,16 +50,16 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-	-- printf("CSID: %u",csid);
-	-- printf("RESULT: %u",option);
-	if(csid == 0x00b4) then
-		player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
-	elseif(csid == 0x00b5) then
-		player:addGil(GIL_RATE*2100);
-		player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
-		player:addFame(BASTOK,BAS_FAME*100);
-		player:addTitle(STAR_OF_IFRIT);
-		player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
-	end
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+    if (csid == 0x00b4) then
+        player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
+    elseif (csid == 0x00b5) then
+        player:addGil(GIL_RATE*2100);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:addFame(BASTOK,100);
+        player:addTitle(STAR_OF_IFRIT);
+        player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
+    end
 end;
 

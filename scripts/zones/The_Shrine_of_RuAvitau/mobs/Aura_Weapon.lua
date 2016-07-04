@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Shrine of Ru'Avitau
--- MOB:  Aura Weapon
+--  MOB: Aura Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,753,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,749,1);
+    checkGoVregime(player,mob,753,1);
 end;

@@ -7,8 +7,8 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-   if(killer:getCurrentMission(COP) == THE_ROAD_FORKS and killer:getVar("EMERALD_WATERS_Status") == 4)then 
-      killer:setVar("EMERALD_WATERS_Status",5);
-   end  
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 4) then
+        player:setVar("EMERALD_WATERS_Status",5);
+    end
 end;

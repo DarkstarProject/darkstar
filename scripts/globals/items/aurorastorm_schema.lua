@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6055
---	Item: Aurorastorm Schema
---	Teaches the white magic Aurorastorm
+--    ID: 6055
+--    Item: Aurorastorm Schema
+--    Teaches the white magic Aurorastorm
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(119);
+    return target:canLearnSpell(119);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(119);
+    target:addSpell(119);
 end;

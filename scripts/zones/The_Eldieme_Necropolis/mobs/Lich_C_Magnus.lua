@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
--- NPC:  Lich_C_Magnus
+--  MOB: Lich_C_Magnus
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,9 +16,9 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(LICH_BANISHER);
-	if(killer:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED) then
-		killer:setVar("Lich_C_Magnus_Died",1);
-	end
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(LICH_BANISHER);
+    if (player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED) then
+        player:setVar("Lich_C_Magnus_Died",1);
+    end
 end;

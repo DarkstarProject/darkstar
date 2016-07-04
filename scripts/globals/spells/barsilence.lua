@@ -9,11 +9,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-    local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);	
+    local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);    
     --printf("Barspell: Merit Bonus +%d", meritBonus);
     
     local enhanceSkill = caster:getSkillLevel(34);
@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
 
     local power = 1 + 0.02 * enhanceSkill + meritBonus;
 
-    if(enhanceSkill >180)then
+    if (enhanceSkill > 180) then
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARSILENCE,power,0,duration,0,1);
+    target:addStatusEffect(EFFECT_BARSILENCE,power,0,duration);
 
     return EFFECT_BARSILENCE;
 end;

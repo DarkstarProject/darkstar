@@ -30,10 +30,10 @@
 
 enum TREASUREPOOLTYPE
 {
-	TREASUREPOOL_SOLO		= 1,
-	TREASUREPOOL_PARTY		= 6,
-	TREASUREPOOL_ALLIANCE	= 18,
-	TREASUREPOOL_ZONE		= 128
+    TREASUREPOOL_SOLO = 1,
+    TREASUREPOOL_PARTY = 6,
+    TREASUREPOOL_ALLIANCE = 18,
+    TREASUREPOOL_ZONE = 128
 };
 
 #define TREASUREPOOL_SIZE	10
@@ -54,51 +54,54 @@ struct LotInfo
     CCharEntity* member;
 };
 
-struct TreasurePoolItem 
+struct TreasurePoolItem
 {
     uint16 ID;
     uint8  SlotID;
-	uint32 TimeStamp;
+    time_point TimeStamp;
 
-	std::vector<LotInfo> Lotters;
+    std::vector<LotInfo> Lotters;
 };
 
 class CTreasurePool
 {
 public:
 
-	CTreasurePool(TREASUREPOOLTYPE PoolType);
+    CTreasurePool(TREASUREPOOLTYPE PoolType);
 
-	TREASUREPOOLTYPE GetPoolType();
+    TREASUREPOOLTYPE GetPoolType();
 
-	uint8 AddItem(uint16 ItemID, CBaseEntity*);
+    uint8 AddItem(uint16 ItemID, CBaseEntity*);
 
-	void LotItem(uint8 SlotID, uint16 Lot);
-	void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
-	void AddMember(CCharEntity* PChar);
-	void DelMember(CCharEntity* PChar);
-	void UpdatePool(CCharEntity* PChar);
+    void LotItem(uint8 SlotID, uint16 Lot);
+    void LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot);
+    void PassItem(CCharEntity* PChar, uint8 SlotID);
+    bool HasLottedItem(CCharEntity* PChar, uint8 SlotID);
+    bool HasPassedItem(CCharEntity* PChar, uint8 SlotID);
+    void AddMember(CCharEntity* PChar);
+    void DelMember(CCharEntity* PChar);
+    void UpdatePool(CCharEntity* PChar);
 
-	void CheckItems(uint32 tick);
+    void CheckItems(time_point);
 
-	void TreasureWon(CCharEntity* winner, uint8 SlotID);
+    void TreasureWon(CCharEntity* winner, uint8 SlotID);
     void TreasureError(CCharEntity* winner, uint8 SlotID);
-	void TreasureLost(uint8 SlotID);
+    void TreasureLost(uint8 SlotID);
 
     bool CanAddSeal();
 
 private:
 
-	uint32 m_Tick;
+    time_point m_Tick;
     uint8  m_count;
 
-	TREASUREPOOLTYPE m_TreasurePoolType;
+    TREASUREPOOLTYPE m_TreasurePoolType;
 
-	void CheckTreasureItem(uint32 tick, uint8 SlotID);
+    void CheckTreasureItem(time_point tick, uint8 SlotID);
 
-	TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
+    TreasurePoolItem m_PoolItems[TREASUREPOOL_SIZE];
 
-	std::vector<CCharEntity*> members;
+    std::vector<CCharEntity*> members;
 };
 
 #endif

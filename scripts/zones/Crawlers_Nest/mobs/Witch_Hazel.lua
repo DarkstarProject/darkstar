@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Crawlers' Nest
--- MOB:  Witch Hazel
+--  MOB: Witch Hazel
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,689,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,689,2);
 end;

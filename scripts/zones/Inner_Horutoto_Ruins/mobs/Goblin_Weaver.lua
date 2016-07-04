@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- MOB:  Goblin Weaver
+--  MOB: Goblin Weaver
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,648,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,648,2);
 end;

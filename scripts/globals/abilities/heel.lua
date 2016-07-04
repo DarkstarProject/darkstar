@@ -14,7 +14,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-	return 0,0;
+    if (player:getPet() == nil) then
+      return MSGBASIC_REQUIRES_A_PET,0;
+    end
+    
+    return 0,0;
 end;
 
 -----------------------------------
@@ -22,5 +26,11 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    local pet = player:getPet()
+
+    if (pet:hasStatusEffect(EFFECT_HEALING)) then
+        pet:delStatusEffect(EFFECT_HEALING)
+    end
+    
     player:petRetreat();
 end;

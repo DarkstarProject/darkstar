@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     if mobhp > 50 then
         return 0;
-    else
+    end
 
     if (potency == 0) then
         potency = 10;

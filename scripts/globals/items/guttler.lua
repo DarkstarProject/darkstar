@@ -16,6 +16,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_CHOKE, 17, 0, 60);
-        return SUBEFFECT_CHOKE, 160, EFFECT_CHOKE;
+        return SUBEFFECT_CHOKE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_CHOKE;
     end
 end;

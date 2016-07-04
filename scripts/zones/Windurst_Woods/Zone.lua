@@ -79,7 +79,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if(csid == 0x016F) then
+    if (csid == 0x016F) then
         player:messageSpecial(ITEM_OBTAINED,0x218);
     elseif (csid == 0x7534 and option == 0) then
         player:setHomePoint();

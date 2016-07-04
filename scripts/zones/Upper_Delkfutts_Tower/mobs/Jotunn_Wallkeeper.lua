@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- MOB:  Jotunn Wallkeeper
+--  MOB: Jotunn Wallkeeper
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,786,1);
-   checkGoVregime(killer,mob,789,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,786,1);
+    checkGoVregime(player,mob,789,2);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
---	Area: Windurst Waters
---	NPC:  Okaka
---	Working 100%
+--    Area: Windurst Waters
+--    NPC:  Okaka
+--    Working 100%
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -18,7 +18,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x23e);
+    player:startEvent(0x23e);
 end; 
 
 -----------------------------------

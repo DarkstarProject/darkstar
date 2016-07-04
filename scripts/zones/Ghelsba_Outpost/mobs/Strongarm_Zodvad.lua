@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
--- NPC:  Strongarm Zodvad
+--  MOB: Strongarm Zodvad
 -- Involved in Mission: Save the Children
 -----------------------------------
 
@@ -15,5 +15,5 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

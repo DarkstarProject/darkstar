@@ -12,21 +12,34 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-   -- TODO: Replace this with a better solution than isBehind()
-	if(target:isBehind(mob) == false) then
-		return 1;
-	end
-	return 0;
+
+    if (mob:getFamily() == 316) then
+        local mobSkin = mob:getModelId();
+
+        if (mobSkin == 1796) then
+            return 0;
+        else
+            return 1;
+        end
+    elseif (mob:getFamily() == 313) then -- Tinnin
+        if (mob:AnimationSub() < 2 and target:isBehind(mob, 48) == true) then
+            return 0;
+        else
+            return 1;
+        end
+    end
+
+    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-	local numhits = 1;
-	local accmod = 1;
-	local dmgmod = 4.25;
-	local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,2,3,4);
-	local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 4.25;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,2,3,4);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
-	target:delHP(dmg);
-	return dmg;
+    target:delHP(dmg);
+    return dmg;
 end;

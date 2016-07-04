@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	RunElevator(ELEVATOR_PALBOROUGH_MINES_LIFT);
+    RunElevator(ELEVATOR_PALBOROUGH_MINES_LIFT);
 end;
 
 -----------------------------------

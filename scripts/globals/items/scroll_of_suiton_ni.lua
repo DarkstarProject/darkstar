@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4944
---	Scroll of Suiton: Ni
---	Teaches the ninjutsu Suiton: Ni
+--    ID: 4944
+--    Scroll of Suiton: Ni
+--    Teaches the ninjutsu Suiton: Ni
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(336);
+    return target:canLearnSpell(336);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(336);
+    target:addSpell(336);
 end;

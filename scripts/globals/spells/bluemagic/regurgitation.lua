@@ -32,22 +32,27 @@ end;
 function onSpellCast(caster,target,spell)
 
     local params = {};    
-        params.multiplier = 1.975;
-        params.tMultiplier = 1.0;
+        params.multiplier = 1.83;
+        params.tMultiplier = 2.0;
         params.duppercap = 69;
         params.str_wsc = 0.0;
         params.dex_wsc = 0.0;
         params.vit_wsc = 0.0;
         params.agi_wsc = 0.0;
-        params.int_wsc = 0.2;
-        params.mnd_wsc = 0.52;
+        params.int_wsc = 0.0;
+        params.mnd_wsc = 0.30;
         params.chr_wsc = 0.0;
     damage = BlueMagicalSpell(caster, target, spell, params, INT_BASED);
+    if (caster:isBehind(target, 15)) then -- guesstimating the angle at 15 degrees here
+        damage = math.floor(damage * 1.25);
+        -- printf("is behind mob")
+    end;
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-    
+
+    --TODO: Knockback? Where does that get handled? How much knockback does it have?
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT) - target:getStat(MOD_INT),BLUE_SKILL,1.0);
 
-    if(damage > 0 and resist > 0.125) then
+    if (damage > 0 and resist > 0.125) then
         local typeEffect = EFFECT_BIND;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));

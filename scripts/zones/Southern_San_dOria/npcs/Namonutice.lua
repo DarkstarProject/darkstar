@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:startEvent(0x001f, player:getFame(SANDORIA));
+    player:startEvent(0x001f, player:getFame(SANDORIA));
 end;
 
 -----------------------------------

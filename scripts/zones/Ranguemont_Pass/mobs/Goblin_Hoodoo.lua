@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ranguemont Pass
--- MOB:  Goblin Hoodoo
+--  MOB: Goblin Hoodoo
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,608,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,608,1);
 end;

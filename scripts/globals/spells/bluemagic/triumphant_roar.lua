@@ -31,26 +31,23 @@ end;
 
 function onSpellCast(caster,target,spell)
 
+    local typeEffect = EFFECT_ATTACK_BOOST
     local power = 15    
     local duration = 90;
-    
-    if(caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+
+    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
-        
-        if(diffMerit > 0) then
+
+        if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
-        end
-        
+        end;
+
         caster:delStatusEffect(EFFECT_DIFFUSION);
-    end
-    
-    if(caster:hasStatusEffect(EFFECT_ATTACK_BOOST) == true) then
-        local effect = caster:getStatusEffect(EFFECT_ATTACK_BOOST);
-        effect:setPower(effect:getPower() + power);
-        caster:addMod(MOD_ATTP,power);
-    else
-        caster:addStatusEffect(EFFECT_ATTACK_BOOST,power,1,duration);
-    end
-    
-    return EFFECT_ATTACK_BOOST;
+    end;
+
+    if (target:addStatusEffect(typeEffect,power,1,duration) == false) then
+        spell:setMsg(75);
+    end;
+
+    return typeEffect;
 end;

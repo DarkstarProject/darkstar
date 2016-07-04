@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Hawker
+--  MOB: Hawker
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,764,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,764,1);
 end;

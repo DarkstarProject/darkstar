@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lufaise Meadows
--- NPC:  Kurrea
+--  MOB: Kurrea
 -----------------------------------
 
 -----------------------------------
@@ -14,6 +14,13 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	GetNPCByID(16875855):hideNPC(900);
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+    GetNPCByID(16875886):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

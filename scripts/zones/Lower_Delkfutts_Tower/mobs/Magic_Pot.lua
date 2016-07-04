@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Delkfutt's Tower
--- MOB:  Magic Pot
+--  MOB: Magic Pot
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,781,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,781,2);
 end;

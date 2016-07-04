@@ -1,4 +1,4 @@
-﻿SET NAMES 'utf8';
+SET NAMES 'utf8';
 
 DELIMITER $$
 
@@ -51,12 +51,17 @@ BEGIN
 	DELETE FROM `char_inventory` WHERE `charid` = OLD.charid;
 	DELETE FROM `char_jobs`      WHERE `charid` = OLD.charid;
 	DELETE FROM `char_look`      WHERE `charid` = OLD.charid;
+	DELETE FROM `char_merit`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_pet`       WHERE `charid` = OLD.charid;
+	DELETE FROM `char_pet_name`  WHERE `charid` = OLD.charid;
 	DELETE FROM `char_points`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_profile`   WHERE `charid` = OLD.charid;
+	DELETE FROM `char_recast`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_skills`    WHERE `charid` = OLD.charid;
+	DELETE FROM `char_spells`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_stats`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_storage`   WHERE `charid` = OLD.charid;
+	DELETE FROM `char_style`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_vars`      WHERE `charid` = OLD.charid;
 	DELETE FROM `char_weapon_skill_points` WHERE `charid` = OLD.charid;
 	DELETE FROM `auction_house`  WHERE `seller` = OLD.charid;
@@ -71,7 +76,7 @@ BEGIN
 	INSERT INTO `char_equip`     SET `charid` = NEW.charid;
 	INSERT INTO `char_exp`       SET `charid` = NEW.charid;
 	INSERT INTO `char_jobs`      SET `charid` = NEW.charid;
-	INSERT INTO `char_pet`  SET `charid` = NEW.charid;
+	INSERT INTO `char_pet`       SET `charid` = NEW.charid;
 	INSERT INTO `char_points`    SET `charid` = NEW.charid;
 	INSERT INTO `char_profile`   SET `charid` = NEW.charid;
 	INSERT INTO `char_storage`   SET `charid` = NEW.charid;
@@ -85,7 +90,7 @@ CREATE TRIGGER char_pos
 BEGIN
     SET @zoning := 0;
     SELECT zoning INTO @zoning FROM char_stats WHERE charid = OLD.charid;
-    IF @zoning = 1 THEN
+    IF NOT @zoning = 0 THEN
         SET NEW.pos_x = OLD.pos_x;
         SET NEW.pos_y = OLD.pos_y;
         SET NEW.pos_z = OLD.pos_z;

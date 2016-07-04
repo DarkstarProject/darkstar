@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Outer Horutoto
--- MOB:  Thorn Bat
+--  MOB: Thorn Bat
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,670,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,670,1);
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- MOB:  Goblin Alchemist
+--  MOB: Goblin Alchemist
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,757,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,757,1);
 end;

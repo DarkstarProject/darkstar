@@ -443,7 +443,24 @@ function onTrade(player,npc,trade)
                 player:setVar("ItB_Var",93);
                 player:startEvent(0x00a7); -- Gil Only
             end
-
+        elseif (trade:hasItemQty(5476,1) == true and trade:getItemCount() == 1) then -- Abaia
+            rand = math.random(1,1000);
+            if (rand >= 1 and rand <= 125) then -- 12.5% chance
+                player:setVar("ItB_Var",94);
+                player:startEvent(0x00a6,0,5818); -- Aurora Bass
+            elseif (rand >= 126 and rand <= 204) then -- 7.8% chance
+                player:setVar("ItB_Var",95);
+                player:startEvent(0x00a6,0,5818); -- Aurora Bass x2
+            elseif (rand >= 205 and rand <= 230) then -- 2.5% chance
+                player:setVar("ItB_Var",96);
+                player:startEvent(0x00a6,0,5818); -- Aurora Bass x3
+            elseif (rand >= 231 and rand <= 238) then -- 0.7% chance
+                player:setVar("ItB_Var",97);
+                player:startEvent(0x00a6,0,10372); -- Plumb Boots
+            else
+                player:setVar("ItB_Var",98);
+                player:startEvent (0x00a7); -- Gil Only
+            end
         end
     end
 end;
@@ -1017,7 +1034,49 @@ function onEventFinish(player,csid,option)
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
             end
-
+        elseif (player:getVar("ItB_Var") == 94) then
+            player:tradeComplete();
+            player:addItem(5818);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:addGil(GIL_RATE*960);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*960);
+            player:setVar("ItB_Var",0);
+            if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
+                player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
+            end
+        elseif (player:getVar("ItB_Var") == 95) then
+            player:tradeComplete();
+            player:addItem(5818,2);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:addGil(GIL_RATE*960);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*960);
+            player:setVar("ItB_Var",0);
+            if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
+                player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
+            end
+        elseif (player:getVar("ItB_Var") == 96) then
+            player:tradeComplete();
+            player:addItem(5818,3);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:messageSpecial(ITEM_OBTAINED,5818);
+            player:addGil(GIL_RATE*960);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*960);
+            player:setVar("ItB_Var",0);
+            if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
+                player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
+            end
+        elseif (player:getVar("ItB_Var") == 97) then
+            player:tradeComplete();
+            player:addItem(10372);
+            player:messageSpecial(ITEM_OBTAINED,10372);
+            player:addGil(GIL_RATE*960);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*960);
+            player:setVar("ItB_Var",0);
+            if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
+                player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
+            end
         end
 --------------------------------------------------------------------------------------------------------------------
 ------------------------------------- Gil Only ---------------------------------------------------------------------
@@ -1371,7 +1430,14 @@ function onEventFinish(player,csid,option)
             if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
                 player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
             end
-
+        elseif (player:getVar("ItB_Var") == 98) then
+            player:tradeComplete();
+            player:addGil(GIL_RATE*960);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*960);
+            player:setVar("ItB_Var",0);
+            if (player:getQuestStatus(OTHER_AREAS,INSIDE_THE_BELLY) == QUEST_ACCEPTED) then
+                player:completeQuest(OTHER_AREAS,INSIDE_THE_BELLY);
+            end
         end
     end
 end;

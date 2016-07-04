@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Yilbegan
+--  VNM: Yilbegan
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(YILBEGAN_HIDEFLAYER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(YILBEGAN_HIDEFLAYER);
 end;

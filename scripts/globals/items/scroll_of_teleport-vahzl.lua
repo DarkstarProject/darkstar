@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4747
---	Scroll of Teleport-Vahzl
---	Teaches the white magic Teleport-Vahzl
+--    ID: 4747
+--    Scroll of Teleport-Vahzl
+--    Teaches the white magic Teleport-Vahzl
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(139);
+    return target:canLearnSpell(139);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(139);
+    target:addSpell(139);
 end;

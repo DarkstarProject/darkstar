@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Southern San d'Oria
+-- Area: Southern San d'Oria
 --  NPC: Maugie
 --  General Info NPC
 -------------------------------------
@@ -15,18 +15,18 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade) 
-if(player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED)then
-if(trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0)then 
-player:messageSpecial(8709);
-player:setVar("FFR",player:getVar("FFR") - 1);
-player:setVar("tradeMaugie",1);
-        player:messageSpecial(FLYER_ACCEPTED);
-        trade:complete();
-elseif(player:getVar("tradeMaugie") ==1)then
-player:messageSpecial(8710);
-end
-end
-end;
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
+        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then 
+            player:messageSpecial(MAUGIE_DIALOG);
+            player:setVar("FFR",player:getVar("FFR") - 1);
+            player:setVar("tradeMaugie",1);
+            player:messageSpecial(FLYER_ACCEPTED);
+            player:tradeComplete();
+            elseif (player:getVar("tradeMaugie") ==1) then
+                player:messageSpecial(FLYER_ALREADY);
+            end
+        end
+    end;
 
 ----------------------------------- 
 -- onTrigger Action 
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
     if (grimySignpost == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
         player:startEvent(0x002d);
     elseif (grimySignpost == QUEST_ACCEPTED) then
-        if(player:getVar("CleanSignPost") == 15) then
+        if (player:getVar("CleanSignPost") == 15) then
             player:startEvent(0x002c);
         else
             player:startEvent(0x002b);
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,13 +63,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x002d and option == 0) then
         player:addQuest(SANDORIA,GRIMY_SIGNPOSTS);
     elseif (csid == 0x002c) then
         player:setVar("CleanSignPost",0);
-        player:addFame(SANDORIA,SAN_FAME*30);
+        player:addFame(SANDORIA,30);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:completeQuest(SANDORIA,GRIMY_SIGNPOSTS);

@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Hall of Transference
--- NPC:  Large Apparatus (Right) - Mea
+--  NPC: Large Apparatus (Right) - Mea
 -- @pos 290.253 -81.849 -42.381 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Hall_of_Transference/TextIDs");
 
 -----------------------------------
@@ -36,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00A4) then
         player:messageSpecial(NO_RESPONSE_OFFSET+4,478); -- You fit.. 
         player:messageSpecial(NO_RESPONSE_OFFSET+5);     -- Device has been repaired

@@ -17,14 +17,14 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 
 function onTrade(player,npc,trade)
 
-	local count = trade:getItemCount();
-	local BrassCanteen = trade:hasItemQty(493,1);
+    local count = trade:getItemCount();
+    local BrassCanteen = trade:hasItemQty(493,1);
 
-	if (BrassCanteen == true and count == 1) then
-		player:tradeComplete();
-		player:addItem(492);
-		player:messageSpecial(ITEM_OBTAINED,492);
-	end
+    if (BrassCanteen == true and count == 1) then
+        player:tradeComplete();
+        player:addItem(492);
+        player:messageSpecial(ITEM_OBTAINED,492);
+    end
 end;
 
 -----------------------------------
@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:messageSpecial(REACH_WATER_FROM_HERE);
+    player:messageSpecial(REACH_WATER_FROM_HERE);
 end;
 
 -----------------------------------

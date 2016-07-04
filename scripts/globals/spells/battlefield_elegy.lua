@@ -8,7 +8,7 @@ require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)
@@ -18,14 +18,10 @@ function onSpellCast(caster,target,spell)
     local pCHR = caster:getStat(MOD_CHR);
     local mCHR = target:getStat(MOD_CHR);
     local dCHR = (pCHR - mCHR);
-    local resm = applyResistance(caster,spell,target,dCHR,SINGING_SKILL,0);
-    if(resm < 0.5) then
-        spell:setMsg(85);--resist message
-        return 1;
-    end
+    local resm = applyResistanceEffect(caster,spell,target,dCHR,SINGING_SKILL,0,EFFECT_ELEGY);
 
-    if(100 * math.random() < target:getMod(MOD_SLOWRES)) then
-        spell:setMsg(85); -- resisted spell
+    if (resm < 0.5) then
+        spell:setMsg(85); -- resist message
     else
         local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
         power = power + iBoost*10;
@@ -44,7 +40,7 @@ function onSpellCast(caster,target,spell)
         end
 
         -- Try to overwrite weaker elegy
-        if(target:addStatusEffect(EFFECT_ELEGY,power,0,duration)) then
+        if (target:addStatusEffect(EFFECT_ELEGY,power,0,duration)) then
             spell:setMsg(237);
         else
             spell:setMsg(75); -- no effect

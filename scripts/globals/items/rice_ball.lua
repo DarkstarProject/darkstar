@@ -1,13 +1,17 @@
 -----------------------------------------
 -- ID: 4405
--- Item: rice_ball
+-- Item: Rice Ball
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- HP 10, Vit +2, Dex -1, hHP +1 (Def +50)*enhances rice ball effect
+-- HP 10,
+-- Vit +2
+-- Dex -1
+-- hHP +1
+-- Effect with enhancing equipment (Note: these are latents on gear with the effect)
+-- Def +50
 -----------------------------------------
 
 require("scripts/globals/status");
-require("scripts/globals/equipment");
 
 -----------------------------------------
 -- OnItemCheck
@@ -15,10 +19,10 @@ require("scripts/globals/equipment");
 
 function onItemCheck(target)
    local result = 0;
-	if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-		result = 246;
-	end
-return result;
+    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+        result = 246;
+    end
+    return result;
 end;
 
 -----------------------------------------
@@ -26,7 +30,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,RiceBalls(target),0,1800,4405);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,4405);
 end;
 
 -----------------------------------
@@ -34,11 +38,9 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-   local power = effect:getPower();
-	target:addMod(MOD_HP, 10);
-   target:addMod(MOD_VIT, 2);
-   target:addMod(MOD_DEX, -1);
-   target:addMod(MOD_DEF, 40*power);
+    target:addMod(MOD_HP, 10);
+    target:addMod(MOD_VIT, 2);
+    target:addMod(MOD_DEX, -1);
 end;
 
 -----------------------------------------
@@ -46,9 +48,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-   local power = effect:getPower();
-	target:delMod(MOD_HP, 10);
-   target:delMod(MOD_VIT, 2);
-   target:delMod(MOD_DEX, -1);
-   target:delMod(MOD_DEF, 40*power);
+    target:delMod(MOD_HP, 10);
+    target:delMod(MOD_VIT, 2);
+    target:delMod(MOD_DEX, -1);
 end;

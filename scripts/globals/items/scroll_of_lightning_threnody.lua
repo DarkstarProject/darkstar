@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 5066
---	Scroll of Lightning Threnody
---	Teaches the song Lightning Threnody
+--    ID: 5066
+--    Scroll of Lightning Threnody
+--    Teaches the song Lightning Threnody
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(458);
+    return target:canLearnSpell(458);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(458);
+    target:addSpell(458);
 end;

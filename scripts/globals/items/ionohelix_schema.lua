@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 6043
---	Ionohelix Schema
---	Teaches the black magic Ionohelix
+--    ID: 6043
+--    Ionohelix Schema
+--    Teaches the black magic Ionohelix
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(283);
+    return target:canLearnSpell(283);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(283);
+    target:addSpell(283);
 end;

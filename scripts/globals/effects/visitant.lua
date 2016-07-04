@@ -1,6 +1,6 @@
 -----------------------------------
 --
---
+-- EFFECT_VISITANT
 --
 -----------------------------------
 
@@ -16,11 +16,13 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-    if (player:getVar("Abyssea_Time") >= 3) then
-        player:setVar("Abyssea_Time",duration);
+    --[[
+    local duration = effect:getDuration();
+    if (target:getVar("Abyssea_Time") >= 3) then
+        target:setVar("Abyssea_Time",duration);
     end
--- TODO: messages about remaining time.
--- Some will need to handled outside of this effect (zone ejection warnings after visitant is gone).
+    Some messages about remaining time.will need to handled outside of this effect (zone ejection warnings after visitant is gone).
+    ]]
 end;
 
 -----------------------------------

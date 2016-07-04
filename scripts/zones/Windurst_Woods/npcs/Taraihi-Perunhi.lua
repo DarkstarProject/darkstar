@@ -16,7 +16,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	onHalloweenTrade(player,trade,npc);
+    onHalloweenTrade(player,trade,npc);
 end;
 
 -----------------------------------

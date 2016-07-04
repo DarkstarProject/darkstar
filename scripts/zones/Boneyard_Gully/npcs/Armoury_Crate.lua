@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:getBCNMloot();
+    player:getBCNMloot();
 end;
 
 -----------------------------------

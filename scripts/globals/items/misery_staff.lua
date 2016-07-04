@@ -18,6 +18,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(EFFECT_CURSE_I, 5, 0, 30);
-        return SUBEFFECT_CURSE, 160, EFFECT_CURSE_I;
+        return SUBEFFECT_CURSE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_CURSE_I;
     end
 end;

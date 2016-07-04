@@ -8,7 +8,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_ENSPELL_DMG, 0);
+    target:addMod(MOD_ENSPELL_DMG, 0);
 end;
 
 -----------------------------------
@@ -23,5 +23,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:setMod(MOD_ENSPELL_DMG, 0);
+    target:setMod(MOD_ENSPELL_DMG, 0);
 end;

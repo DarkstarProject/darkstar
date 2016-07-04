@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-    checkGoVregime(killer,mob,627,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,627,1);
 end;

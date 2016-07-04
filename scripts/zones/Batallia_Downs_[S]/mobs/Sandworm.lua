@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
--- NPC:  Sandworm
--- Note:  Title Given if Sandworm does not Doomvoid
+--  MOB: Sandworm
+-- Note: Title Given if Sandworm does not Doomvoid
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -17,6 +17,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(SANDWORM_WRANGLER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(SANDWORM_WRANGLER);
 end;

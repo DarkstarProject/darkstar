@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mamook
--- NPC:  Darting Kachaal Ja
+--  MOB: Darting Kachaal Ja
 -----------------------------------
 
 -----------------------------------
@@ -14,5 +14,5 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;

@@ -20,9 +20,9 @@ end;
 
 function onItemUse(target)
 
-    local power = 24;
+    local power = 9;
 
-    if(target:addStatusEffect(EFFECT_SHELL, power, 0, 1800)) then
+    if (target:addStatusEffect(EFFECT_SHELL, power, 0, 1800)) then
         target:messageBasic(205);
     else
         target:messageBasic(423); -- no effect

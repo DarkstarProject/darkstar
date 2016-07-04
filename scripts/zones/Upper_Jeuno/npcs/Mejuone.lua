@@ -20,12 +20,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	
+    
 player:showText(npc,MEJUONE_SHOP_DIALOG);
 
-stock = {0x11C1,62,		-- Gysahl Greens
-	 0x0348,7,		-- Chocobo Feather
-	 0x439B,9}		-- Dart
+stock = {0x11C1,62,        -- Gysahl Greens
+     0x0348,7,        -- Chocobo Feather
+     0x439B,9}        -- Dart
  
 showShop(player, STATIC, stock);
 end; 

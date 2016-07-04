@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-	player:startEvent(0x0070)
+    player:startEvent(0x0070)
 
 end;
 

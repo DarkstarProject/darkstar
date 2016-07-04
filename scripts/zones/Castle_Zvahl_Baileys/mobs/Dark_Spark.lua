@@ -1,25 +1,25 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
--- NPC: Dark Spark
+--  MOB: Dark Spark
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
 -- @zone 161
 -- @pos 63 -24 21
 -----------------------------------
-
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- OnMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-end; 
+end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer)
-	killer:setVar("BorghertzSparkKilled",1);
+function onMobDeath(mob, player, isKiller)
+    player:setVar("BorghertzSparkKilled",1);
 end;

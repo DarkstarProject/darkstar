@@ -40,9 +40,9 @@ int32 login_lobbydata_fd;
 int32 login_lobbyview_fd;
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 connect_client_lobbydata(int32 listenfd)
@@ -61,9 +61,9 @@ int32 connect_client_lobbydata(int32 listenfd)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 lobbydata_parse(int32 fd)
@@ -210,7 +210,7 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
                 // todo: cap login packet for zones > 255
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);		// если персонаж в MogHouse
+                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
                 ///////////////////////////////////////////////////
                 ++i;
             }
@@ -288,17 +288,18 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(ReservePacket, (0x3C)) = ZonePort;
                 ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
             }
-            else {
+            else
+            {
                 ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
-                WBUFL(ReservePacket, (0x38)) = sd->servip;	// map-server ip
-              //WBUFW(ReservePacket,(0x3C)) = port;			// map-server port
+                WBUFL(ReservePacket, (0x38)) = sd->servip;  // map-server ip
+              //WBUFW(ReservePacket,(0x3C)) = port;         // map-server port
             }
 
             if (PrevZone == 0)
                 Sql_Query(SqlHandle, "UPDATE chars SET pos_prevzone = %d WHERE charid = %u;", ZoneID, charid);
 
-            WBUFL(ReservePacket, (0x40)) = sd->servip;									// search-server ip
-            WBUFW(ReservePacket, (0x44)) = login_config.search_server_port;				// search-server port
+            WBUFL(ReservePacket, (0x40)) = sd->servip;                                  // search-server ip
+            WBUFW(ReservePacket, (0x44)) = login_config.search_server_port;             // search-server port
 
             memcpy(MainReservePacket, ReservePacket, RBUFB(ReservePacket, 0));
 
@@ -320,6 +321,10 @@ int32 lobbydata_parse(int32 fd)
                 memcpy(MainReservePacket, ReservePacket, RBUFB(ReservePacket, 0));
             }
 
+            // disallow change of pos while 'zoning'
+            fmtQuery = "UPDATE char_stats SET zoning = 2 WHERE charid = %u";
+            Sql_Query(SqlHandle, fmtQuery, charid);
+
             unsigned char Hash[16];
             uint8 SendBuffSize = RBUFB(MainReservePacket, 0);
 
@@ -333,12 +338,35 @@ int32 lobbydata_parse(int32 fd)
             RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata_size);
             RFIFOFLUSH(sd->login_lobbyview_fd);
 
-            if (SendBuffSize == 0x24) {
+            if (SendBuffSize == 0x24)
+            {
                 // выходим в случае ошибки без разрыва соединения
                 return -1;
             }
 
             do_close_tcp(sd->login_lobbyview_fd);
+
+            if (login_config.log_user_ip == true)
+            {
+                // Log clients IP info when player spawns into map server
+
+                time_t rawtime;
+                tm*    convertedTime;
+                time(&rawtime);
+                convertedTime = localtime(&rawtime);
+
+                char timeAndDate[128];
+                strftime(timeAndDate, sizeof(timeAndDate), "%Y:%m:%d %H:%M:%S", convertedTime);
+
+                fmtQuery = "INSERT INTO account_ip_record(login_time,accid,charid,client_ip)\
+                            VALUES ('%s', %u, %u, '%s');";
+
+                if (Sql_Query(SqlHandle, fmtQuery, timeAndDate, sd->accid, charid, ip2str(sd->client_addr, nullptr)) == SQL_ERROR)
+                {
+                    ShowError("lobbyview_parse: Could not write info to account_ip_record.\n");
+                }
+            }
+
             ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n", ip2str(sd->client_addr, nullptr));
             break;
         }
@@ -351,9 +379,9 @@ int32 lobbydata_parse(int32 fd)
 };
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 do_close_lobbydata(login_session_data_t *loginsd, int32 fd)
@@ -382,9 +410,9 @@ int32 do_close_lobbydata(login_session_data_t *loginsd, int32 fd)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 connect_client_lobbyview(int32 listenfd)
@@ -401,9 +429,9 @@ int32 connect_client_lobbyview(int32 listenfd)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 lobbyview_parse(int32 fd)
@@ -440,20 +468,33 @@ int32 lobbyview_parse(int32 fd)
             int32 sendsize = 0x28;
             unsigned char MainReservePacket[0x28];
 
-            string_t client_ver((char*)(buff + 0x74), 10);
+            string_t client_ver_data((char*)(buff + 0x74), 6); // Full length is 10 but we drop last 4
+            client_ver_data = client_ver_data+"xx_x";          // And then we replace those last 4..
 
-            if (version_info.Min_Client_Ver > client_ver)
+            string_t expected_version(version_info.CLIENT_VER, 6); // Same deal here!
+            expected_version = expected_version+"xx_x";
+
+            if (expected_version != client_ver_data)
             {
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                 WBUFW(ReservePacket, 32) = 331;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
+                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
+                if (expected_version < client_ver_data)
+                {
+                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                }
+                else
+                {
+                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+                }
             }
             else
             {
                 LOBBY_026_RESERVEPACKET(ReservePacket);
-                WBUFW(ReservePacket, 32) = login_config.expansions;	// BitMask for expansions;
+                WBUFW(ReservePacket, 32) = login_config.expansions; // BitMask for expansions;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
             }
             //Хеширование пакета, и запись значения Хеш функции в пакет
@@ -641,9 +682,9 @@ int32 lobbyview_parse(int32 fd)
 };
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
@@ -654,9 +695,9 @@ int32 do_close_lobbyview(login_session_data_t* sd, int32 fd)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
@@ -730,9 +771,9 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 };
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)

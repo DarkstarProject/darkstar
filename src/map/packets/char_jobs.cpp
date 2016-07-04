@@ -29,7 +29,7 @@
 #include "../entities/charentity.h"
 
 
-CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar) 
+CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar)
 {
 	this->type = 0x1B;
 	this->size = 0x32;
@@ -49,5 +49,5 @@ CCharJobsPacket::CCharJobsPacket(CCharEntity * PChar)
 	WBUFL(data,(0x44)) = PChar->jobs.unlocked & 1;    // первый бит в unlocked отвечает за дополнительную профессию
 
     WBUFW(data,(0x60)) = PChar->m_EquipBlock;         // заблокированные ячейки экипировки
-  //WBUFW(data,(0x62)) =  blok;                       // битовое поле. занижение физических характеристик, характеристика становится красной и рядом появляется красная стрелка.
+    WBUFW(data,(0x62)) = PChar->m_StatsDebilitation;  // битовое поле. занижение физических характеристик, характеристика становится красной и рядом появляется красная стрелка.
 }

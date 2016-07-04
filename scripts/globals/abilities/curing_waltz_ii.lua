@@ -16,17 +16,17 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     if (target:getHP() == 0) then
         return MSGBASIC_CANNOT_ON_THAT_TARG,0;
-    elseif(player:hasStatusEffect(EFFECT_SABER_DANCE)) then
+    elseif (player:hasStatusEffect(EFFECT_SABER_DANCE)) then
         return MSGBASIC_UNABLE_TO_USE_JA2, 0;
     elseif (player:hasStatusEffect(EFFECT_TRANCE)) then
         return 0,0;
-    elseif (player:getTP() < 35) then
+    elseif (player:getTP() < 350) then
         return MSGBASIC_NOT_ENOUGH_TP,0;
     else
         -- apply waltz recast modifiers
-        if(player:getMod(MOD_WALTZ_RECAST)~=0) then
+        if (player:getMod(MOD_WALTZ_RECAST)~=0) then
             local recastMod = -80 * (player:getMod(MOD_WALTZ_RECAST)); -- 400 ms per 5% (per merit)
-            if(recastMod <0) then
+            if (recastMod <0) then
                 --TODO
             end
         end
@@ -41,7 +41,7 @@ end;
 function onUseAbility(player,target,ability)
     -- Only remove TP if the player doesn't have Trance.
     if not player:hasStatusEffect(EFFECT_TRANCE) then
-        player:delTP(35);
+        player:delTP(350);
     end;
     
     --Grabbing variables.
@@ -54,11 +54,11 @@ function onUseAbility(player,target,ability)
     
     
     --Performing sj mj check.
-    if(mjob == 19) then
+    if (mjob == 19) then
         cure = (vit+chr)*0.5+130;
     end
     
-    if(sjob == 19) then
+    if (sjob == 19) then
         cure = (vit+chr)*0.25+130;
     end
 
@@ -71,7 +71,7 @@ function onUseAbility(player,target,ability)
     cure = cure * CURE_POWER;
 
     --Cap the final amount to max HP.
-    if((target:getMaxHP() - target:getHP()) < cure) then
+    if ((target:getMaxHP() - target:getHP()) < cure) then
         cure = (target:getMaxHP() - target:getHP());
     end
     

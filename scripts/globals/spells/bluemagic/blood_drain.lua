@@ -45,14 +45,16 @@ function onSpellCast(caster,target,spell)
         dmg = 0
     end
     
-    if(target:isUndead()) then
+    if (target:isUndead()) then
         spell:setMsg(75); 
         return dmg;
     end
 
-    dmg = finalMagicAdjustments(caster,target,spell,dmg);
-    dmg = (dmg * DRAIN_POWER);
-    spell:setMsg(227);
+    if (target:getHP() < dmg) then
+        dmg = target:getHP();
+    end
+
+    dmg = BlueFinalAdjustments(caster,target,spell,dmg);
     caster:addHP(dmg);
     
     return dmg;

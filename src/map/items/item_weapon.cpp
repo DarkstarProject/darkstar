@@ -107,7 +107,7 @@ bool CItemWeapon::isUnlocked()
     return isUnlockable() && getCurrentUnlockPoints() == m_wsunlockpoints;
 }
 
-bool CItemWeapon::addWsPoints(uint8 points)
+bool CItemWeapon::addWsPoints(uint16 points)
 {
     if (getCurrentUnlockPoints() + points >= m_wsunlockpoints)
     {

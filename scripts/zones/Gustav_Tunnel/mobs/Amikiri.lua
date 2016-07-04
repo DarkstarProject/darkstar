@@ -1,16 +1,16 @@
-----------------------------------	
+----------------------------------
 -- Area: Gustav Tunnel
 --   NM: Amikiri
------------------------------------	
-  
------------------------------------	
--- onMobDeath	
------------------------------------	
-	
-function onMobDeath(mob,killer)	
-  
+-----------------------------------
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     -- Set Amikiri's Window Open Time
-    local wait = math.random((7),(9)) * 3600
+    local wait = math.random(7,9) * 3600;
     SetServerVariable("[POP]Amikiri", os.time(t) + wait); -- 7-9 hours
     DeterMob(mob:getID(), true);
 
@@ -19,5 +19,5 @@ function onMobDeath(mob,killer)
     SetServerVariable("[PH]Amikiri", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

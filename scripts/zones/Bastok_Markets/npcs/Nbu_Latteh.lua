@@ -6,7 +6,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -29,7 +28,7 @@ function onTrigger(player,npc)
     local MomTheAdventurer = player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER)
     local questStatus = player:getVar("MomTheAdventurer_Event");
 
-    if(player:needToZone()) then
+    if (player:needToZone()) then
         player:startEvent(127); -- chat about my work
     elseif (pFame < 2 and MomTheAdventurer ~= QUEST_ACCEPTED and questStatus == 0) then
             player:startEvent(0x00e6);  
@@ -87,10 +86,10 @@ function onEventFinish(player,csid,option)
         player:setVar("MomTheAdventurer_Event",0);
 
         if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_ACCEPTED) then
-            player:addFame(BASTOK,BAS_FAME*50);
+            player:addFame(BASTOK,50);
             player:completeQuest(BASTOK,MOM_THE_ADVENTURER);
         else
-            player:addFame(BASTOK,BAS_FAME*8)
+            player:addFame(BASTOK,8)
         end
     elseif (csid == 0x00eb and option == 0) then
         player:addQuest(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);

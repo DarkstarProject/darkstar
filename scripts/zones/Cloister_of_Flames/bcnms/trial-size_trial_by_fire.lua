@@ -31,35 +31,35 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-	
-	if(leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-		player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
-	elseif(leavecode == 4) then
-		player:setVar("TrialSizeFire_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
-		player:startEvent(0x7d02);
-	end
-	
+    
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
+        player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+    elseif (leavecode == 4) then
+        player:setVar("TrialSizeFire_date",tonumber(os.date("%j"))); -- If you loose, you need to wait 1 real day
+        player:startEvent(0x7d02);
+    end
+    
 end;
 
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-	
+    
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-	
-	if(csid == 0x7d01) then
-		if(player:hasSpell(298) == false) then
-		player:addSpell(298); -- Ifrit
-		player:messageSpecial(IFRIT_UNLOCKED,0,0,0);
-		end
-		if(player:hasItem(4181) == false) then
-			player:addItem(4181);
-			player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
-		end
-		player:setVar("TrialSizeFire_date", 0);
-		player:addFame(KAZHAM,WIN_FAME*30);
-		player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
-	end
-	
+    
+    if (csid == 0x7d01) then
+        if (player:hasSpell(298) == false) then
+        player:addSpell(298); -- Ifrit
+        player:messageSpecial(IFRIT_UNLOCKED,0,0,0);
+        end
+        if (player:hasItem(4181) == false) then
+            player:addItem(4181);
+            player:messageSpecial(ITEM_OBTAINED,4181); -- Scroll of instant warp
+        end
+        player:setVar("TrialSizeFire_date", 0);
+        player:addFame(KAZHAM,30);
+        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
+    end
+    
 end;

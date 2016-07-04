@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion vahzl
--- NPC:  Ponderer
+--  MOB: Ponderer
 -----------------------------------
 
 
@@ -17,8 +17,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
- if (killer:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and killer:getVar("PromathiaStatus")==5)then
-	killer:setVar("PromathiaStatus",6);
-  end
+function onMobDeath(mob, player, isKiller)
+    if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==5) then
+        player:setVar("PromathiaStatus",6);
+    end
 end;

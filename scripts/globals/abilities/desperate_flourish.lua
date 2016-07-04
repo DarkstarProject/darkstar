@@ -49,10 +49,10 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     
     local isSneakValid = player:hasStatusEffect(EFFECT_SNEAK_ATTACK);
-    if(isSneakValid and not player:isBehind(target))then
+    if (isSneakValid and not player:isBehind(target)) then
         isSneakValid = false;
     end
 
@@ -71,7 +71,9 @@ function onUseAbility(player,target,ability)
             ability:setMsg(110);
         end
         ability:setMsg(127);
-        return EFFECT_WEIGHT, getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)), 2;
+        action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+        action:speceffect(target:getID(), 2)
+        return EFFECT_WEIGHT
     else
         ability:setMsg(158);
         return 0;

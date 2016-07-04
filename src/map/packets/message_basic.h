@@ -54,6 +54,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
 	MSGBASIC_USES_JA_TAKE_DAMAGE	= 317, /* The <player> uses .. <target> takes .. points of damage. */
 	MSGBASIC_IS_INTIMIDATED			= 106, /* The <player> is intimidated by <target>'s presence. */
+	MSGBASIC_CANNOT_PERFORM_ACTION	= 71, /* You cannot perform that action on the specified target. */
 	MSGBASIC_CANNOT_ON_THAT_TARG	= 155, /* You cannot perform that action on the specified target. */
 	MSGBASIC_OUT_OF_RANGE_UNABLE_CAST	= 313, /* Out of range unable to cast */
 	MSGBASIC_CANNOT_ATTACK_TARGET	= 446, /* You cannot attack that target */
@@ -67,7 +68,9 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_LOSE_SIGHT				= 36, /* You lose sight of <target>. */
 	MSGBASIC_TOO_FAR_AWAY			= 78, /* <target> is too far away. */
 	/* Weaponskills */
+    MSGBASIC_UNABLE_TO_USE_WS       = 89,  /* Unable to use weaponskill. */
 	MSGBASIC_CANNOT_USE_WS			= 190, /* The <player> cannot use that weapon ability. */
+    MSGBASIC_CANNOT_USE_ANY_WS      = 191, /* The <player> is unable to use weapon skills. */
 	MSGBASIC_NOT_ENOUGH_TP			= 192, /* The <player> does not have enough TP. */
 	/* Pets */
 	MSGBASIC_REQUIRES_A_PET			= 215, /* That action requires a pet. */
@@ -143,6 +146,7 @@ class CMessageBasicPacket : public CBasicPacket
 public:
 
 	CMessageBasicPacket(CBaseEntity* PSender, CBaseEntity* PTarget, int32 param, int32 value, uint16 messageID);
+    uint16 getMessageID();
 };
 
 #endif

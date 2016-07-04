@@ -2,16 +2,15 @@
 -- Area: Abyssea - Konschtat
 --  NPC: Cruor Prospector
 -- Type: Cruor NPC
---
+-- @pos 132.000,-75.856,-822.000 15
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Abyssea-Konschtat/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Konschtat/TextIDs");
 
 -----------------------------------
 -- onTrade Action

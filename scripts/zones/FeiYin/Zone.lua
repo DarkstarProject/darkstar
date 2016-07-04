@@ -18,14 +18,14 @@ require("scripts/zones/FeiYin/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17613260,17613261};
+    local tomes = {17613263,17613264};
 
     SetGroundsTome(tomes);
 
     -- Capricious Cassie
     SetRespawnTime(17613130, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17613235);
+    UpdateTreasureSpawnPoint(17613238);
 end;
 
 -----------------------------------
@@ -34,9 +34,9 @@ end;
 
 function onZoneIn(player,prevZone)
     local pNation = player:getNation();
-	local currentMission = player:getCurrentMission(pNation);
-	local MissionStatus = player:getVar("MissionStatus");
-	local cs = -1;
+    local currentMission = player:getCurrentMission(pNation);
+    local MissionStatus = player:getVar("MissionStatus");
+    local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(99.98,-1.768,275.993,70);
@@ -48,7 +48,7 @@ function onZoneIn(player,prevZone)
 
     if (prevZone == 111 and currentMission == 14 and MissionStatus == 10) then
         cs = 0x0001; -- MISSION 5-1
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 2)then
+    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 2) then
         cs = 0x0017; -- San d'Oria 9-2 
     elseif (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 0x001D;

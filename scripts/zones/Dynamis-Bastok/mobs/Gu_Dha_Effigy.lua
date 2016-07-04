@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
--- NPC:  Gu'Dha Effigy
+--  MOB: Gu'Dha Effigy
 -- Mega Boss
 -----------------------------------
 require("scripts/globals/status");
@@ -25,20 +25,20 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-	if(mob:isInBattlefieldList() == false) then
-		mob:addInBattlefieldList();
+    if (mob:isInBattlefieldList() == false) then
+        mob:addInBattlefieldList();
 
-		killer:addTimeToDynamis(30); -- Add + 30min
+        player:addTimeToDynamis(30); -- Add + 30min
 
-		killer:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
+        player:addTitle(DYNAMISBASTOK_INTERLOPER); -- Add title
 
-		local npc = GetNPCByID(17539323); -- Spawn ???
-		npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
-		npc:setStatus(0);
+        local npc = GetNPCByID(17539323); -- Spawn ???
+        npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());
+        npc:setStatus(0);
 
-		killer:launchDynamisSecondPart(); -- Spawn dynamis second part
-	end
+        player:launchDynamisSecondPart(); -- Spawn dynamis second part
+    end
 
 end;

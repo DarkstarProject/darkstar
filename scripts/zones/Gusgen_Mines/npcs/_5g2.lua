@@ -21,12 +21,12 @@ end;
 
 function onTrigger(player,npc)
 
-	if (npc:getAnimation() == 9) then
-		player:messageSpecial(LOCK_OTHER_DEVICE)
-	else	
-		return 0;
-	end	
-	
+    if (npc:getAnimation() == 9) then
+        player:messageSpecial(LOCK_OTHER_DEVICE)
+    else    
+        return 0;
+    end    
+    
 end;
 
 -----------------------------------

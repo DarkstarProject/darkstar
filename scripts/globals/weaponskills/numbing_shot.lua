@@ -15,31 +15,29 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID)
+function onUseWeaponSkill(player, target, wsID, tp, primary)
 
-	local params = {};
-	params.numHits = 1;
-	params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
-	params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.6; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-	params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
-	params.canCrit = false;
-	params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-	params.atkmulti = 1;
+    local params = {};
+    params.numHits = 1;
+    params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;
+    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.6; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
+    params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
+    params.canCrit = false;
+    params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
+    params.atkmulti = 1;
 
-	if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-		params.agi_wsc = 0.8;
-	end
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.agi_wsc = 0.8;
+    end
 
-	local damage, tpHits, extraHits = doRangedWeaponskill(player, target, params);
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
 
-	if damage > 0 then
-		local tp = player:getTP();
-		local duration = (tp/100 * 60)
-		if(target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
-			target:addStatusEffect(EFFECT_PARALYSIS, 30, 0, duration);
-		end
-	end
-	damage = damage * WEAPON_SKILL_POWER
-	return tpHits, extraHits, criticalHit, damage;
+    if (damage > 0) then
+        local duration = (tp/1000 * 60)
+        if (target:hasStatusEffect(EFFECT_PARALYSIS) == false) then
+            target:addStatusEffect(EFFECT_PARALYSIS, 30, 0, duration);
+        end
+    end
+    return tpHits, extraHits, criticalHit, damage;
 
 end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- MOB:  Land Worm
+--  MOB: Land Worm
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,727,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,727,1);
 end;

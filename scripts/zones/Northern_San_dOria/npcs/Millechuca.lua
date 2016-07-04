@@ -21,13 +21,13 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+    if (FlyerForRegine == 1) then
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
+        if (MagicFlyer == true and count == 1) then
+            player:messageSpecial(FLYER_REFUSED);
+        end
+    end
 end;
 
 -----------------------------------
@@ -36,21 +36,21 @@ end;
 
 function onTrigger(player,npc)
 
-	RegionOwner = GetRegionOwner(VOLLBOW);
+    RegionOwner = GetRegionOwner(VOLLBOW);
 
-	if (RegionOwner ~= SANDORIA) then 
-		player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
-	else
-		player:showText(npc,MILLECHUCA_OPEN_DIALOG);
+    if (RegionOwner ~= SANDORIA) then 
+        player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
+    else
+        player:showText(npc,MILLECHUCA_OPEN_DIALOG);
 
-		stock = {0x27c,119,  -- Chamomile
-				 0x360,88,   -- Fish Scales
-				 0x3a8,14,   -- Rock Salt
-				 0x582,1656} -- Sweet William
-		
-		showShop(player,SANDORIA,stock);	
-	end
-	
+        stock = {0x27c,119,  -- Chamomile
+                 0x360,88,   -- Fish Scales
+                 0x3a8,14,   -- Rock Salt
+                 0x582,1656} -- Sweet William
+        
+        showShop(player,SANDORIA,stock);    
+    end
+    
 end; 
 
 -----------------------------------

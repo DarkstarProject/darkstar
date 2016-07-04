@@ -1,7 +1,7 @@
 -----------------------------------------
---	ID: 4847
---	Scroll of Shock
---	Teaches the black magic Shock
+--    ID: 4847
+--    Scroll of Shock
+--    Teaches the black magic Shock
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	return target:canLearnSpell(239);
+    return target:canLearnSpell(239);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addSpell(239);
+    target:addSpell(239);
 end;

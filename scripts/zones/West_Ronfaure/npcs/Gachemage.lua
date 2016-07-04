@@ -1,6 +1,6 @@
 -----------------------------------
---	Area: West Ronfaure
---	NPC:  Gachemage
+--    Area: West Ronfaure
+--    NPC:  Gachemage
 --  Type: Gate Guard
 --  @pos -176.000 -61.999 382.425 100
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:showText(npc, GACHEMAGE_DIALOG);
+    player:showText(npc, GACHEMAGE_DIALOG);
 end;
 
 -----------------------------------

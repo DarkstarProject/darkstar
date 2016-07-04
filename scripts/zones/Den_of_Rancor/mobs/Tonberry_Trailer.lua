@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Den of Rancor
--- NPC:  Tonberry Trailer
+--  MOB: Tonberry Trailer
 -----------------------------------
+
+require("scripts/globals/groundsofvalor");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -14,14 +16,14 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(killer,mob,798,1);
-    checkGoVregime(killer,mob,799,2);
-    checkGoVregime(killer,mob,800,2);
+    checkGoVregime(player,mob,798,1);
+    checkGoVregime(player,mob,799,2);
+    checkGoVregime(player,mob,800,2);
 
-    kills = killer:getVar("EVERYONES_GRUDGE_KILLS");
-    if(kills < 480) then
-        killer:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
+    local kills = player:getVar("EVERYONES_GRUDGE_KILLS");
+    if (kills < 480) then
+        player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
     end
 end;

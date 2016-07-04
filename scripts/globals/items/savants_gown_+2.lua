@@ -1,6 +1,6 @@
 -----------------------------------------
---	ID: 11103
---	Equip: savants_gown_+2
+--    ID: 11103
+--    Equip: savants_gown_+2
 --  Adds "Refresh" Effect +1 every 3 sec
 -----------------------------------------
 
@@ -11,11 +11,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:getEquipID(SLOT_BODY) == 11103) then
-		target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,11103);
-	else
-		target:delStatusEffect(EFFECT_AUTO_REFRESH,11103);
-	end
+    if (target:getEquipID(SLOT_BODY) == 11103) then
+        target:addStatusEffectEx(EFFECT_AUTO_REFRESH,0,1,3,0,11103);
+    else
+        target:delStatusEffect(EFFECT_AUTO_REFRESH,11103);
+    end
 end;
 
 -----------------------------------
@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
-	target:addMP(effect:getPower());
+    target:addMP(effect:getPower());
 end;
 
 -----------------------------------

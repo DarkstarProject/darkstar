@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
--- NPC:  Suzaku (Pet version)
+--  MOB: Suzaku (Pet version)
 -----------------------------------
 
 -----------------------------------
@@ -13,7 +13,7 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
 end;
 -----------------------------------
 -- onMonsterMagicPrepare

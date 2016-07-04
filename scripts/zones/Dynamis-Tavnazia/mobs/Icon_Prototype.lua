@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis tavnazia
--- NPC:  Icon_Prototype
+--  MOB: Icon_Prototype
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
@@ -22,13 +22,13 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 local mobID = mob:getID();
 
-    if(mobID == 16949306 and mob:isInBattlefieldList() == false)then
-		killer:addTimeToDynamis(10);
-		--print("addtime 10min");
-		mob:addInBattlefieldList();
-	end
-	
+    if (mobID == 16949306 and mob:isInBattlefieldList() == false) then
+        player:addTimeToDynamis(10);
+        --print("addtime 10min");
+        mob:addInBattlefieldList();
+    end
+    
 end;

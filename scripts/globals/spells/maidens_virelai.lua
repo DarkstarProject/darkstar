@@ -17,7 +17,7 @@ function onMagicCastingCheck(caster,target,spell)
         end
     end
     
-	return 0;
+    return 0;
 end;
 
 function onSpellCast(caster,target,spell)

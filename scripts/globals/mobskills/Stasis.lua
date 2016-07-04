@@ -17,17 +17,16 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-	local shadows = MOBPARAM_1_SHADOW;
-	local dmg = MobFinalAdjustments(10,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
+    local shadows = MOBPARAM_1_SHADOW;
+    local dmg = MobFinalAdjustments(10,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
 
-	local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = EFFECT_PARALYSIS;
 
-    mob:resetEnmity(target);
+        mob:resetEnmity(target);
 
-    if(MobPhysicalHit(skill)) then
-        target:addStatusEffect(typeEffect,40,0,60);
-        skill:setMsg(MSG_ENFEEB_IS);
-		return typeEffect;
+    if (MobPhysicalHit(skill)) then
+        skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 40, 0, 60));
+        return typeEffect;
     end
 
     return shadows;

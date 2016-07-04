@@ -22,13 +22,13 @@ function onTrade(player,npc,trade)
 -- "Flyers for Regine" conditional script
 FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
-	if (FlyerForRegine == 1) then
-		count = trade:getItemCount();
-		MagicFlyer = trade:hasItemQty(532,1);
-		if (MagicFlyer == true and count == 1) then
-			player:messageSpecial(FLYER_REFUSED);
-		end
-	end
+    if (FlyerForRegine == 1) then
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
+        if (MagicFlyer == true and count == 1) then
+            player:messageSpecial(FLYER_REFUSED);
+        end
+    end
 end;
 
 -----------------------------------
@@ -37,16 +37,16 @@ end;
 
 function onTrigger(player,npc)
 
-	-- "Rosel the Armorer" quest status var
-	RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
-	
-	-- "Rosel the Armorer" - turn in reciept to prince
-	if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
-		player:startEvent(0x01fb);
-	else
-		player:showText(npc,GUILERME_DIALOG);
-	end
-		
+    -- "Rosel the Armorer" quest status var
+    RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
+    
+    -- "Rosel the Armorer" - turn in reciept to prince
+    if (RoselTheArmorer == QUEST_ACCEPTED and player:hasKeyItem(RECEIPT_FOR_THE_PRINCE)) then
+        player:startEvent(0x01fb);
+    else
+        player:showText(npc,GUILERME_DIALOG);
+    end
+        
 end; 
 
 -----------------------------------
@@ -66,11 +66,11 @@ function onEventFinish(player,csid,option)
 --printf("CSID: %u",csid);
 --printf("RESULT: %u",option);
 
-	-- "Rosel the Armorer", give receipt to NPC:Guilerme
-	if (csid == 0x01fb) then
-		player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
-	end;
-		
+    -- "Rosel the Armorer", give receipt to NPC:Guilerme
+    if (csid == 0x01fb) then
+        player:delKeyItem(RECEIPT_FOR_THE_PRINCE);
+    end;
+        
 end;
 
 

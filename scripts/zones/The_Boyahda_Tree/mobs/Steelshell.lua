@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Steelshell
+--  MOB: Steelshell
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,723,2);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,723,2);
 end;

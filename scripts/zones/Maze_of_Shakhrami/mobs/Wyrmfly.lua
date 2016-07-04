@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Maze Of Shakhrami
---  NPC:  ???
---  Involved in Eco Warrior (Windurst)
+-- Area: Maze Of Shakhrami
+--  MOB: Wyrmfly
+-- Involved in Eco Warrior (Windurst)
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -17,8 +17,8 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	if(killer:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and killer:getVar("ECO_WARRIOR_ACTIVE") == 238 and killer:hasStatusEffect(EFFECT_LEVEL_RESTRICTION))then
-		killer:setVar("ECOR_WAR_WIN-NMs_killed",1);
-	end
+function onMobDeath(mob, player, isKiller)
+    if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238 and player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION)) then
+        player:setVar("ECOR_WAR_WIN-NMs_killed",1);
+    end
 end;

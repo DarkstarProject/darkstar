@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  Lord Ruthven
+--  MOB: Lord Ruthven
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -16,6 +16,6 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, killer)
-	killer:addTitle(RUTHVEN_ENTOMBER);
+function onMobDeath(mob, player, isKiller)
+    player:addTitle(RUTHVEN_ENTOMBER);
 end;

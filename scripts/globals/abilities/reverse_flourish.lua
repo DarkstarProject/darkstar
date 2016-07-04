@@ -66,6 +66,8 @@ function onUseAbility(player,target,ability)
         TPGain = 9.5 * 5 + STM * 5 ^ 2 + Merits;
     end;
     
+    TPGain = TPGain * 10;
+    
     player:addTP(TPGain);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_2);

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Quicksand Caves
--- NPC:  Ancient Vessel
+--  MOB: Ancient Vessel
 -- Mithra and the Crystal (Zilart 12) Fight
 -----------------------------------
 
@@ -17,11 +17,11 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
 
-	if(killer:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and killer:getVar("ZilartStatus") == 1) then
-		killer:needToZone(true);
-		killer:setVar("AncientVesselKilled",1);
-	end
+    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1) then
+        player:needToZone(true);
+        player:setVar("AncientVesselKilled",1);
+    end
 
 end;

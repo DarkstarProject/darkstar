@@ -11,25 +11,25 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onMobSpawn(mob)
-end; 
+end;
 
 -----------------------------------
 -- OnMobDeath Action
 -----------------------------------
-function onMobDeath(mob, killer)
-	
-	local ANewDawn = killer:getQuestStatus(JEUNO,A_NEW_DAWN);
-	local ANewDawnEvent = killer:getVar("ANewDawn_Event");
-	
-	if (ANewDawn == QUEST_ACCEPTED and ANewDawnEvent == 4) then
-		killer:setVar("ANewDawn_Event",5);
-	end
+function onMobDeath(mob, player, isKiller)
 
-	-- Despawn Tigers if alive
-	for i = 17576268, 17576269 do 
-		if (GetMobAction(i) ~= 0) then
-			DespawnMob(i);
-		end
-	end
-	
+    local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
+    local ANewDawnEvent = player:getVar("ANewDawn_Event");
+
+    if (ANewDawn == QUEST_ACCEPTED and ANewDawnEvent == 4) then
+        player:setVar("ANewDawn_Event",5);
+    end
+
+    -- Despawn Tigers if alive
+    for i = 17576268, 17576269 do
+        if (GetMobAction(i) ~= 0) then
+            DespawnMob(i);
+        end
+    end
+
 end;

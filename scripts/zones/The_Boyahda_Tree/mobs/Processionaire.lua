@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Boyahda Tree
--- MOB:  Processionaire
+--  MOB: Processionaire
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,6 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,724,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,724,1);
 end;

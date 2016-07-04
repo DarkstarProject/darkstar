@@ -17,7 +17,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	onHalloweenTrade(player,trade,npc);
+    onHalloweenTrade(player,trade,npc);
 end;
 
 -----------------------------------
@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if(GetRegionOwner(QUFIMISLAND) ~= WINDURST) then
+    if (GetRegionOwner(QUFIMISLAND) ~= WINDURST) then
         player:showText(npc,MILLEROVIEUNET_CLOSED_DIALOG);
     else
         player:showText(npc,MILLEROVIEUNET_OPEN_DIALOG);

@@ -13,7 +13,7 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-	player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
+    player:messageSpecial(PROBABLY_WORKS_WITH_SOMETHING_ELSE);
 end;
 
 -----------------------------------

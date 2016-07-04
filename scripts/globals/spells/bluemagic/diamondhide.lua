@@ -32,14 +32,14 @@ end;
 
 function onSpellCast(caster,target,spell)
 
+    local typeEffect = EFFECT_STONESKIN;
     local blueskill = caster:getSkillLevel(BLUE_SKILL);
     local power = ((blueskill)/3) *2;
+    local duration = 300;
 
-    if(target:addStatusEffect(EFFECT_STONESKIN,power,0,300)) then
-        spell:setMsg(230);
-    else
+    if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
         spell:setMsg(75);
-    end
+    end;
 
-    return EFFECT_STONESKIN;
+    return typeEffect;
 end;

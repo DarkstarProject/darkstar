@@ -1,27 +1,27 @@
 -----------------------------------
---  Area: Beaucedine Glacier (111)
+-- Area: Beaucedine Glacier (111)
 --  Mob:  Stone_Golem
---  Note: PH for Gargantua
+-- Note: PH for Gargantua
 -----------------------------------
 
 require("scripts/zones/Beaucedine_Glacier/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob,killer)	
+function onMobDespawn(mob)
 
-    mob = mob:getID();
-    if (Gargantua_PH[mob] ~= nil) then
+    local mobID = mob:getID();
+    if (Gargantua_PH[mobID] ~= nil) then
 
-        ToD = GetServerVariable("[POP]Gargantua");
+        local ToD = GetServerVariable("[POP]Gargantua");
         if (ToD <= os.time(t) and GetMobAction(Gargantua) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Gargantua);
-                GetMobByID(Gargantua):setRespawnTime(GetMobRespawnTime(mob));
-                SetServerVariable("[PH]Gargantua", mob);
-                DeterMob(mob, true);
+                GetMobByID(Gargantua):setRespawnTime(GetMobRespawnTime(mobID));
+                SetServerVariable("[PH]Gargantua", mobID);
+                DeterMob(mobID, true);
             end
         end
     end

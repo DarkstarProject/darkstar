@@ -1,10 +1,7 @@
-
 -----------------------------------
--- mob : Fomor Dark Knight
--- zone : Lufaise_Meadows
+-- Area: Lufaise_Meadows
+--  MOB: Fomor Dark Knight
 -----------------------------------
-
-
 
 
 -----------------------------------
@@ -15,13 +12,13 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob, killer)
+function onMobDeath(mob, player, isKiller)
+    local kills = player:getVar("FOMOR_HATE");
 
-	local kills = killer:getVar("FOMOR_HATE");
-	if(kills < 60) then
-		killer:setVar("FOMOR_HATE",kills + 2);
-	end
+    if (kills < 60) then
+        player:setVar("FOMOR_HATE",kills + 2);
+    end
 end;

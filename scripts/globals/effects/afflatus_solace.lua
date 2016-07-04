@@ -11,7 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-	target:addMod(MOD_AFFLATUS_SOLACE,0);
+    target:addMod(MOD_AFFLATUS_SOLACE,0);
+    target:addMod(MOD_BARSPELL_MDEF_BONUS,5);
 end;
 
 -----------------------------------
@@ -26,5 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-	target:delMod(MOD_AFFLATUS_SOLACE,0);
+    target:delMod(MOD_AFFLATUS_SOLACE,0);
+    target:delMod(MOD_BARSPELL_MDEF_BONUS,5);
 end;

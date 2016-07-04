@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
--- NPC:  Warchief Vatgit
+--  MOB: Warchief Vatgit
 -- Involved in Mission 2-3
 -----------------------------------
 
@@ -19,14 +19,14 @@ end;
 -- onMobDeath Action
 -----------------------------------
 
-function onMobDeath(mob,killer)
-	
-	if(killer:getCurrentMission(killer:getNation()) == 6) then
-		if(killer:getVar("MissionStatus") == 4) then
-			killer:setVar("MissionStatus",5);
-		end
-	end
+function onMobDeath(mob, player, isKiller)
 
-	killer:addTitle(WARCHIEF_WRECKER);
-	
+    if (player:getCurrentMission(player:getNation()) == 6) then
+        if (player:getVar("MissionStatus") == 4) then
+            player:setVar("MissionStatus",5);
+        end
+    end
+
+    player:addTitle(WARCHIEF_WRECKER);
+
 end;

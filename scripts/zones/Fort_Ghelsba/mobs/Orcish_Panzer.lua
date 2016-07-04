@@ -7,7 +7,7 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
+function onMobDeath(mob, player, isKiller)
     local OrcFighter = 17354895;
     local Chariotbuster = 17354896;
     local ToD = GetServerVariable("Chariotbuster_Byakzak");

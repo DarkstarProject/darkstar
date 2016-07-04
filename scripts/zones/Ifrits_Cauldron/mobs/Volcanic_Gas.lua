@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
--- MOB:  Volcanic Gas
+--  MOB: Volcanic Gas
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,10 +9,10 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,755,2);
-   checkGoVregime(killer,mob,756,2);
-   checkGoVregime(killer,mob,757,2);
-   checkGoVregime(killer,mob,758,2);
-   checkGoVregime(killer,mob,759,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,755,2);
+    checkGoVregime(player,mob,756,2);
+    checkGoVregime(player,mob,757,2);
+    checkGoVregime(player,mob,758,2);
+    checkGoVregime(player,mob,759,1);
 end;

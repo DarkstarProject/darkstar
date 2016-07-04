@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ve'Lugannon Palace
--- MOB:  Ornamental Weapon
+--  MOB: Ornamental Weapon
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,6 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,744,1);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,743,1);
+    checkGoVregime(player,mob,744,1);
 end;

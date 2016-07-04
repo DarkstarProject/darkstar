@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Gustav Tunnel
--- MOB:  Goblin Shepherd
+--  MOB: Goblin Shepherd
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");
@@ -9,7 +9,7 @@ require("scripts/globals/groundsofvalor");
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob,killer)
-   checkGoVregime(killer,mob,764,3);
-   checkGoVregime(killer,mob,765,3);
+function onMobDeath(mob, player, isKiller)
+    checkGoVregime(player,mob,764,3);
+    checkGoVregime(player,mob,765,3);
 end;

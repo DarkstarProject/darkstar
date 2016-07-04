@@ -36,7 +36,8 @@ CMenuConfigPacket::CMenuConfigPacket(CCharEntity* PChar)
     WBUFB(data,(0x04)) = 0x18 + (PChar->nameflags.flags & FLAG_INVITE ? 1 : 0);
     WBUFB(data,(0x05))|= PChar->m_hasAutoTarget ? 0 : 0x40;
   //WBUFB(data,(0x05))|= PChar->nameflags.flags & FLAG_AUTOGROUP ? 0x80 : 0;  
-    WBUFB(data,(0x07)) = 0x04; 
+    WBUFB(data,(0x07)) = 0x04;
+  //WBUFB(data, (0x07)) |= party request mode ? 0x20 : 0;
 
     WBUFB(data,(0x12)) = 0x02;
     WBUFB(data,(0x14)) = 0x02;
