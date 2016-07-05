@@ -6,7 +6,6 @@
 
 require("scripts/globals/settings");
 package.loaded["scripts/zones/The_Ashu_Talif/TextIDs"] = nil;
-require("scripts/zones/The_Ashu_Talif/IDs");
 require("scripts/zones/The_Ashu_Talif/TextIDs");
 
 -----------------------------------
@@ -20,16 +19,14 @@ end;
 -- onInstanceZoneIn
 -----------------------------------
 
-function onInstanceZoneIn(player,prevZone)
--- cs = -1;
+function onZoneIn(player,prevZone)
+cs = -1;
 
-   --  local pos = player:getPos();
-    -- if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
-       --  local entrypos = instance:getEntryPos();
-        player:setPos(0,-22,25,66);
-		
-    -- end
-
+    local pos = player:getPos();
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        local entrypos = instance:getEntryPos();
+        player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot);
+    end
 end;
 
 -----------------------------------
