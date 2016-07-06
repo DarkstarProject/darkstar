@@ -12102,8 +12102,8 @@ INSERT INTO `mob_droplist` VALUES (1935,0,4174,1000);
 INSERT INTO `mob_droplist` VALUES (1935,0,12924,1000);
 INSERT INTO `mob_droplist` VALUES (1935,0,15899,80);
 INSERT INTO `mob_droplist` VALUES (1936,0,831,530);
-INSERT INTO `mob_droplist` VALUES (1936,0,13415,950);
-INSERT INTO `mob_droplist` VALUES (1936,0,13566,50);
+INSERT INTO `mob_droplist` VALUES (1936,0,13415,0); -- handled in script
+INSERT INTO `mob_droplist` VALUES (1936,0,13566,0); -- handled in script
 INSERT INTO `mob_droplist` VALUES (1936,0,1527,670);
 INSERT INTO `mob_droplist` VALUES (1936,0,1322,320);
 INSERT INTO `mob_droplist` VALUES (1936,0,1322,160);
@@ -13434,8 +13434,8 @@ INSERT INTO `mob_droplist` VALUES (2236,0,3250,100);
 INSERT INTO `mob_droplist` VALUES (2237,0,2357,80);
 INSERT INTO `mob_droplist` VALUES (2237,0,14959,100);
 INSERT INTO `mob_droplist` VALUES (2238,2,656,0);
-INSERT INTO `mob_droplist` VALUES (2238,0,14986,50);
-INSERT INTO `mob_droplist` VALUES (2238,0,16703,950);
+INSERT INTO `mob_droplist` VALUES (2238,0,14986,0); -- handled in script
+INSERT INTO `mob_droplist` VALUES (2238,0,16703,0); -- handled in script
 INSERT INTO `mob_droplist` VALUES (2239,0,1640,70);
 INSERT INTO `mob_droplist` VALUES (2239,0,1680,10);
 INSERT INTO `mob_droplist` VALUES (2239,0,1718,70);
@@ -13898,8 +13898,8 @@ INSERT INTO `mob_droplist` VALUES (2340,0,922,160);
 INSERT INTO `mob_droplist` VALUES (2341,0,858,300);
 INSERT INTO `mob_droplist` VALUES (2341,0,940,150);
 INSERT INTO `mob_droplist` VALUES (2342,0,4277,100);
-INSERT INTO `mob_droplist` VALUES (2343,0,16935,840);
-INSERT INTO `mob_droplist` VALUES (2343,0,16936,140);
+INSERT INTO `mob_droplist` VALUES (2343,0,16935,0); -- handled in script
+INSERT INTO `mob_droplist` VALUES (2343,0,16936,0); -- handled in script
 INSERT INTO `mob_droplist` VALUES (2344,0,557,140);
 INSERT INTO `mob_droplist` VALUES (2344,2,921,0);
 INSERT INTO `mob_droplist` VALUES (2344,0,921,500);
@@ -17240,8 +17240,8 @@ INSERT INTO `mob_droplist` VALUES (2914,0,4514,50);
 INSERT INTO `mob_droplist` VALUES (2914,0,17503,420);
 INSERT INTO `mob_droplist` VALUES (2915,0,5365,200);
 INSERT INTO `mob_droplist` VALUES (2915,0,5366,190);
-INSERT INTO `mob_droplist` VALUES (2916,0,15737,70);
-INSERT INTO `mob_droplist` VALUES (2916,0,16820,930);
+INSERT INTO `mob_droplist` VALUES (2916,0,15737,0); -- handled in script
+INSERT INTO `mob_droplist` VALUES (2916,0,16820,0); -- handled in script
 INSERT INTO `mob_droplist` VALUES (2917,0,856,150);
 INSERT INTO `mob_droplist` VALUES (2917,2,4358,0);
 INSERT INTO `mob_droplist` VALUES (2917,0,4358,120);
