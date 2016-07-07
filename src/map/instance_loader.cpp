@@ -233,7 +233,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         Query =
             "SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
 			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, flags, look, name_prefix \
+			status, flags, look, name_prefix, widescan \
 			FROM instance_entities INNER JOIN npc_list ON \
 			(instance_entities.id = npc_list.npcid) \
 			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";
@@ -271,6 +271,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
 
                 PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
+                PNpc->widescan = (uint8)Sql_GetIntData(SqlInstanceHandle, 16);
 
                 memcpy(&PNpc->look, Sql_GetData(SqlInstanceHandle, 14), 20);
 

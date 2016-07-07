@@ -100,6 +100,7 @@ CNpcEntity::CNpcEntity()
 {
 	objtype = TYPE_NPC;
 	look.face = 0x32;
+        widescan = 1;
 	allegiance = ALLEGIANCE_MOB;
     PAI = std::make_unique<CAIContainer>(this);
 }

@@ -273,7 +273,8 @@ void LoadNPCList()
           flags,\
           look,\
           name_prefix, \
-          required_expansion \
+          required_expansion, \
+          widescan \
         FROM npc_list INNER JOIN zone_settings \
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
@@ -320,6 +321,7 @@ void LoadNPCList()
                 PNpc->m_flags = (uint32)Sql_GetUIntData(SqlHandle, 13);
 
                 PNpc->name_prefix = (uint8)Sql_GetIntData(SqlHandle, 15);
+                PNpc->widescan = (uint8)Sql_GetIntData(SqlHandle, 17);
 
                 memcpy(&PNpc->look, Sql_GetData(SqlHandle, 14), 20);
 
