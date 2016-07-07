@@ -38,10 +38,7 @@ function onUseAbility(player,target,ability,action)
     params.atkmulti = (player:getMod(MOD_JUMP_ATT_BONUS) + 100) / 100
     params.bonusTP = player:getMod(MOD_JUMP_TP_BONUS)
     
-    local taChar = nil
-    if (player:hasStatusEffect(EFFECT_TRICK_ATTACK)) then
-        taChar = player:getTrickAttackChar(target)
-    end
+    local taChar = player:getTrickAttackChar(target);
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params);
 
