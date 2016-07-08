@@ -39,6 +39,7 @@ public:
 
     uint32      m_flags;
     uint8       name_prefix;
+    uint8       widescan;
     void        HideModel(bool hide);                    // hide / show model
     bool        IsModelHidden();
     void        HideHP(bool hide);
