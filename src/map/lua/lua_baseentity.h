@@ -180,8 +180,9 @@ public:
     int32 canLearnAbility(lua_State*);      // Check to see if character can learn spell, 0 if so
     int32 delLearnedAbility(lua_State*);    // Remove spell from Entity spell list
 
-    int32 addWeaponSkill(lua_State*);       //
-    int32 delWeaponSkill(lua_State*);       //
+    int32 addLearnedWeaponskill(lua_State*);
+    int32 hasLearnedWeaponskill(lua_State*);
+    int32 delLearnedWeaponskill(lua_State*);
 
     int32 getMainJob(lua_State*);           // Returns Entity Main Job
     int32 getMainLvl(lua_State*);           // Gets Entity Main Job Level
