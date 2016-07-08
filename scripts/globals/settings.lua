@@ -47,7 +47,8 @@ UNLOCK_OUTPOST_WARPS = 0; -- Set to 1 to give starting characters all outpost wa
 
 SHOP_PRICE      = 1.000; -- Multiplies prices in NPC shops.
 GIL_RATE        = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
-EXP_RATE        = 1.000; -- Multiplies exp earned from fov.
+BAYLD_RATE      = 1.000; -- Multiples bayld earned from quests.
+EXP_RATE        = 1.000; -- Multiplies exp earned from fov and quests.
 TABS_RATE       = 1.000; -- Multiplies tabs earned from fov.
 CURE_POWER      = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
 ELEMENTAL_POWER = 1.000; -- Multiplies damage dealt by Elemental and non-drain Dark Magic.
