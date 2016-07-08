@@ -3105,8 +3105,16 @@ namespace luautils
         CLuaAction LuaAction(&action);
         Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
 
-        CLuaBaseEntity LuaTrickAttackEntity(taChar);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTrickAttackEntity);
+        if (taChar == nullptr)
+        {
+            lua_pushnil(LuaHandle);
+        }
+        else
+        {
+            CLuaBaseEntity LuaTrickAttackEntity(taChar);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTrickAttackEntity);
+        }
+        
 
         if (lua_pcall(LuaHandle, 7, LUA_MULTRET, 0))
         {
