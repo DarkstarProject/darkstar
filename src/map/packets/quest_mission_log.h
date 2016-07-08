@@ -59,32 +59,32 @@
 
 // MISS_CURRENT	0xFF исключая Add-on Scenarios
 
-#define EXP_MISS_COMPLETE				0xD8
-#define EXP_MISS_CURRENT				0x80
+#define EXP_MISS_COMPLETE               0xD8
+#define EXP_MISS_CURRENT                0x80
 
-#define CAMPAIGN_MISSION_UN				0x30
-#define CAMPAIGN_MISSION_DEUX			0x38
+#define CAMPAIGN_MISSION_UN             0x30
+#define CAMPAIGN_MISSION_DEUX           0x38
 
 // Mission Logs
-#define MISSION_SANDORIA				0x0B
-#define MISSION_BASTOK					0x0C
-#define MISSION_WINDURST				0x0D
-#define MISSION_ZILART					0x0E
-#define MISSION_TOAU					0x0F
-#define MISSION_WOTG					0x10
-#define MISSION_COP						0x11
+#define MISSION_SANDORIA                0x0B
+#define MISSION_BASTOK                  0x0C
+#define MISSION_WINDURST                0x0D
+#define MISSION_ZILART                  0x0E
+#define MISSION_TOAU                    0x0F
+#define MISSION_WOTG                    0x10
+#define MISSION_COP                     0x11
 
-#define MISSION_ASSAULT					0x12
+#define MISSION_ASSAULT                 0x12
 
-#define MISSION_CAMPAIGN				0x13
-#define MISSION_CAMPAIGN2				0x14
+#define MISSION_CAMPAIGN                0x13
+#define MISSION_CAMPAIGN2               0x14
 
-#define MISSION_CRISTALLINE_PROPHECY	0x15
-#define MISSION_MOOGLE_KUPO_DETAT		0x16
-#define MISSION_SHANTOTTO_ASCENSION		0x17
+#define MISSION_ACP                     0x15
+#define MISSION_AMK		                0x16
+#define MISSION_ASA		                0x17
 
-#define MISSION_ADOULIN					0x18
-#define MISSION_RHAPSODIES              0x19
+#define MISSION_SOA					    0x18
+#define MISSION_ROV                     0x19
 
 /************************************************************************
 *																		*
@@ -98,20 +98,20 @@ class CQuestMissionLogPacket : public CBasicPacket
 {
 public:
 
-	CQuestMissionLogPacket(CCharEntity* PChar, uint8 logID, uint8 status);
+    CQuestMissionLogPacket(CCharEntity* PChar, uint8 logID, uint8 status);
 private:
 
-	// формирование пакетов вынес в отдельные функции, специально для тех,
-	// кто захочет понять, что же на самом деле происходит в switch(logID)
+    // формирование пакетов вынес в отдельные функции, специально для тех,
+    // кто захочет понять, что же на самом деле происходит в switch(logID)
 
-	void generateQuestPacket(CCharEntity* PChar, uint8 logID, uint8 status);
-	void generateCurrentMissionPacket(CCharEntity* PChar); 
-	void generateCompleteMissionPacket(CCharEntity* PChar);
-	void generateCurrentExpMissionPacket(CCharEntity* PChar); 
-	void generateCompleteExpMissionPacket(CCharEntity* PChar);
-	void generateFirstCampaignMissionPacket(CCharEntity* PChar);
-	void generateSecondCampaignMissionPacket(CCharEntity* PChar);
-	void generateAssaultMissionPacket(CCharEntity* PChar);
+    void generateQuestPacket(CCharEntity* PChar, uint8 logID, uint8 status);
+    void generateCurrentMissionPacket(CCharEntity* PChar);
+    void generateCompleteMissionPacket(CCharEntity* PChar);
+    void generateCurrentExpMissionPacket(CCharEntity* PChar);
+    void generateCompleteExpMissionPacket(CCharEntity* PChar);
+    void generateFirstCampaignMissionPacket(CCharEntity* PChar);
+    void generateSecondCampaignMissionPacket(CCharEntity* PChar);
+    void generateAssaultMissionPacket(CCharEntity* PChar);
 };
 
 #endif
