@@ -127,7 +127,7 @@ bool CNavMesh::load(const std::string& filename)
     dtStatus status = m_navMesh->init(&header.params);
     if (dtStatusFailed(status))
     {
-        ShowNavError("CNavMesh::load Could not initialize detour for (%s)", filename);
+        ShowNavError("CNavMesh::load Could not initialize detour for (%s)", filename.c_str());
         outputError(status);
         return false;
     }

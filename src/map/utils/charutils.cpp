@@ -2334,7 +2334,7 @@ namespace charutils
         }
         if (PPet->getPetType() == PETTYPE_JUG_PET)
         {
-            auto skillList {battleutils::GetMobSkillList(PPet->m_MobSkillList)};
+            auto skillList = battleutils::GetMobSkillList(PPet->m_MobSkillList);
             for (auto&& abilityid : skillList)
             {
                 addPetAbility(PChar, abilityid - 496);

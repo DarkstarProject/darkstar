@@ -155,7 +155,7 @@ void CAIContainer::Inactive(duration _duration, bool canChangeState)
 bool CAIContainer::Internal_Engage(uint16 targetid)
 {
     //#TODO: pet engage/disengage
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
 
     if (entity && entity->PAI->IsEngaged())
     {
@@ -184,7 +184,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
 
 bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         return ChangeState<CMagicState>(entity, targetid, spellid);
     return false;
@@ -192,7 +192,7 @@ bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
 
 void CAIContainer::Internal_ChangeTarget(uint16 targetid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
     {
         if (IsEngaged() || targetid == 0)
@@ -204,14 +204,14 @@ void CAIContainer::Internal_ChangeTarget(uint16 targetid)
 
 void CAIContainer::Internal_Disengage()
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         entity->SetBattleTargetID(0);
 }
 
 bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         return ChangeState<CWeaponSkillState>(entity, targid, wsid);
     return false;
@@ -219,7 +219,7 @@ bool CAIContainer::Internal_WeaponSkill(uint16 targid, uint16 wsid)
 
 bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 {
-    auto entity {dynamic_cast<CMobEntity*>(PEntity)};
+    auto entity = dynamic_cast<CMobEntity*>(PEntity);
     if (entity)
         return ChangeState<CMobSkillState>(entity, targid, wsid);
     return false;
@@ -227,7 +227,7 @@ bool CAIContainer::Internal_MobSkill(uint16 targid, uint16 wsid)
 
 bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         return ChangeState<CAbilityState>(entity, targetid, abilityid);
     return false;
@@ -235,7 +235,7 @@ bool CAIContainer::Internal_Ability(uint16 targetid, uint16 abilityid)
 
 bool CAIContainer::Internal_RangedAttack(uint16 targetid)
 {
-    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
+    auto entity = dynamic_cast<CCharEntity*>(PEntity);
     if (entity)
         return ChangeState<CRangeState>(entity, targetid);
     return false;
@@ -243,21 +243,21 @@ bool CAIContainer::Internal_RangedAttack(uint16 targetid)
 
 void CAIContainer::Internal_Die(duration deathTime)
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         ChangeState<CDeathState>(entity, deathTime);
 }
 
 void CAIContainer::Internal_Raise()
 {
-    auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
+    auto entity = dynamic_cast<CBattleEntity*>(PEntity);
     if (entity)
         ForceChangeState<CRaiseState>(entity);
 }
 
 void CAIContainer::Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid)
 {
-    auto entity {dynamic_cast<CCharEntity*>(PEntity)};
+    auto entity = dynamic_cast<CCharEntity*>(PEntity);
     if (entity)
         ChangeState<CItemState>(entity, targetid, loc, slotid);
 }

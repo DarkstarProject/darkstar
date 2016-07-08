@@ -98,7 +98,7 @@ void CAttackState::ResetAttackTimer()
 void CAttackState::UpdateTarget(uint16 targid)
 {
     m_errorMsg.reset();
-    auto newTargid {m_PEntity->GetBattleTargetID()};
+    auto newTargid = m_PEntity->GetBattleTargetID();
     CBattleEntity* PNewTarget {nullptr};
     if (newTargid != 0)
     {
