@@ -2292,6 +2292,57 @@ inline int32 CLuaBaseEntity::delLearnedAbility(lua_State *L)
     return 0;
 }
 
+inline int32 CLuaBaseEntity::addLearnedWeaponskill(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 wsid = (uint16)lua_tointeger(L, 1);
+
+    charutils::addLearnedWeaponskill(PChar, wsid);
+    charutils::BuildingCharWeaponSkills(PChar);
+    charutils::SaveLearnedAbilities(PChar);
+    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::hasLearnedWeaponskill(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 wsid = (uint16)lua_tointeger(L, 1);
+
+    lua_pushboolean(L, (charutils::hasLearnedWeaponskill((CCharEntity*)m_PBaseEntity, wsid) != 0));
+    return 1;
+}
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    uint8 wsid = (uint16)lua_tointeger(L, 1);
+
+    charutils::delLearnedWeaponskill(PChar, wsid);
+    charutils::BuildingCharWeaponSkills(PChar);
+    charutils::SaveLearnedAbilities(PChar);
+    PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+    return 0;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::getMainJob(lua_State *L)
@@ -10743,6 +10794,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedAbility),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedWeaponskill),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedWeaponskill),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainJob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMainLvl),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSubJob),

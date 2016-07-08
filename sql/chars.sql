@@ -36,6 +36,7 @@ CREATE TABLE `chars` (
   `keyitems` blob,
   `set_blue_spells` blob,
   `abilities` blob,
+  `weaponskills` blob,
   `titles` blob,
   `zones` blob,
   `playtime` int(10) unsigned NOT NULL DEFAULT '0',

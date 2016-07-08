@@ -102,6 +102,10 @@ namespace charutils
     int32	addLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// добавляем заклинание
     int32	delLearnedAbility(CCharEntity* PChar, uint16 AbilityID);	// улаляем заклинание
 
+    bool	hasLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
+    void	addLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
+    void	delLearnedWeaponskill(CCharEntity* PChar, uint8 wsid);
+
     int32	hasAbility(CCharEntity* PChar, uint16 AbilityID);	        // проверяем наличие ключевого предмета
     int32	addAbility(CCharEntity* PChar, uint16 AbilityID);	        // добавляем ключевой предмет
     int32	delAbility(CCharEntity* PChar, uint16 AbilityID);	        // улаляем ключевой предмет
