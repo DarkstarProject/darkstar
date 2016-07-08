@@ -9,9 +9,17 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
+require("scripts/globals/npc_util");
 require("scripts/zones/Quicksand_Caves/TextIDs");
 
 base_id = 17629685;
+
+anticanTagPositions = {
+    [1] = {590.000, -6.600, -663.000},
+    [2] = {748.000, 2.000, -570.000},
+    [3] = {479.000, -14.000, -815.000},
+    [4] = {814.000, -14.000, -761.000}
+}
 
 -----------------------------------
 -- onInitialize
@@ -66,6 +74,7 @@ function onInitialize(zone)
     
     UpdateTreasureSpawnPoint(17629735);
 
+    npcUtil.UpdateNPCSpawnPoint(17629757, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
 -----------------------------------        
