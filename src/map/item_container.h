@@ -38,10 +38,12 @@ enum CONTAINER_ID
     LOC_MOGCASE         = 7,
     LOC_WARDROBE        = 8,
     LOC_MOGSAFE2        = 9,
-    LOC_WARDROBE2       = 10
+    LOC_WARDROBE2       = 10,
+    LOC_WARDROBE3       = 11,
+    LOC_WARDROBE4       = 12
 };
 
-#define MAX_CONTAINER_ID	 11
+#define MAX_CONTAINER_ID	 13
 #define MAX_CONTAINER_SIZE	120
 #define ERROR_SLOTID		255
 

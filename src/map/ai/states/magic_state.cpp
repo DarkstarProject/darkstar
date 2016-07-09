@@ -190,8 +190,11 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
     }
     if (distance(m_PEntity->loc.p, PTarget->loc.p) > m_PSpell->getRange())
     {
-        m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
-        return false;
+        if (m_PEntity->objtype != TYPE_MOB)
+        {
+            m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_OUT_OF_RANGE_UNABLE_CAST);
+            return false;
+        }
     }
     if (!m_PEntity->PAI->TargetFind->canSee(&PTarget->loc.p))
     {

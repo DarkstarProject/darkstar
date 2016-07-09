@@ -375,6 +375,8 @@ private:
     CItemContainer*   m_Wardrobe;
     CItemContainer*   m_Mogsafe2;
     CItemContainer*   m_Wardrobe2;
+    CItemContainer*   m_Wardrobe3;
+    CItemContainer*   m_Wardrobe4;
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;
