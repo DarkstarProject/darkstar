@@ -439,15 +439,25 @@ namespace charutils
 
         fmtQuery =
             "SELECT "
-            "rank_points,"    // 0
-            "rank_sandoria,"  // 1
-            "rank_bastok,"    // 2
-            "rank_windurst,"  // 3
-            "fame_sandoria,"  // 4
-            "fame_bastok,"    // 5
-            "fame_windurst,"  // 6
-            "fame_norg, "     // 7
-            "fame_jeuno "     // 8
+            "rank_points,"          // 0
+            "rank_sandoria,"        // 1
+            "rank_bastok,"          // 2
+            "rank_windurst,"        // 3
+            "fame_sandoria,"        // 4
+            "fame_bastok,"          // 5
+            "fame_windurst,"        // 6
+            "fame_norg, "           // 7
+            "fame_jeuno, "          // 8
+            "fame_aby_konschtat, "  // 9
+            "fame_aby_tahrongi, "   // 10
+            "fame_aby_latheine, "   // 11
+            "fame_aby_misareaux, "  // 12
+            "fame_aby_vunkerl, "    // 13
+            "fame_aby_attohwa, "    // 14
+            "fame_aby_altepa, "     // 15
+            "fame_aby_grauberg, "   // 16
+            "fame_aby_uleguerand, " // 17
+            "fame_adoulin "         // 18
             "FROM char_profile "
             "WHERE charid = %u;";
 
@@ -463,11 +473,21 @@ namespace charutils
             PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle, 2);
             PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle, 3);
 
-            PChar->profile.fame[0] = (uint16)Sql_GetIntData(SqlHandle, 4);  //Sandoria
-            PChar->profile.fame[1] = (uint16)Sql_GetIntData(SqlHandle, 5);  //Bastok
-            PChar->profile.fame[2] = (uint16)Sql_GetIntData(SqlHandle, 6);  //Windurst
-            PChar->profile.fame[3] = (uint16)Sql_GetIntData(SqlHandle, 7);  //Norg
-            PChar->profile.fame[4] = (uint16)Sql_GetIntData(SqlHandle, 8);  //Jeuno
+            PChar->profile.fame[0] = (uint16)Sql_GetIntData(SqlHandle, 4);    //Sandoria
+            PChar->profile.fame[1] = (uint16)Sql_GetIntData(SqlHandle, 5);    //Bastok
+            PChar->profile.fame[2] = (uint16)Sql_GetIntData(SqlHandle, 6);    //Windurst
+            PChar->profile.fame[3] = (uint16)Sql_GetIntData(SqlHandle, 7);    //Norg
+            PChar->profile.fame[4] = (uint16)Sql_GetIntData(SqlHandle, 8);    //Jeuno
+            PChar->profile.fame[5] = (uint16)Sql_GetIntData(SqlHandle, 9);    //AbysseaKonschtat
+            PChar->profile.fame[6] = (uint16)Sql_GetIntData(SqlHandle, 10);   //AbysseaTahrongi
+            PChar->profile.fame[7] = (uint16)Sql_GetIntData(SqlHandle, 11);   //AbysseaLaTheine
+            PChar->profile.fame[8] = (uint16)Sql_GetIntData(SqlHandle, 12);   //AbysseaMisareaux
+            PChar->profile.fame[9] = (uint16)Sql_GetIntData(SqlHandle, 13);   //AbysseaVunkerl
+            PChar->profile.fame[10] = (uint16)Sql_GetIntData(SqlHandle, 14);  //AbysseaAttohwa
+            PChar->profile.fame[11] = (uint16)Sql_GetIntData(SqlHandle, 15);  //AbysseaAltepa
+            PChar->profile.fame[12] = (uint16)Sql_GetIntData(SqlHandle, 16);  //AbysseaGrauberg
+            PChar->profile.fame[13] = (uint16)Sql_GetIntData(SqlHandle, 17);  //AbysseaUleguerand
+            PChar->profile.fame[14] = (uint16)Sql_GetIntData(SqlHandle, 18);  //Adoulin
         }
 
         fmtQuery =
@@ -3718,7 +3738,17 @@ namespace charutils
             "fame_bastok = %u,"
             "fame_windurst = %u,"
             "fame_norg = %u,"
-            "fame_jeuno = %u "
+            "fame_jeuno = %u,"
+            "fame_aby_konschtat = %u,"
+            "fame_aby_tahrongi = %u,"
+            "fame_aby_latheine = %u,"
+            "fame_aby_misareaux = %u,"
+            "fame_aby_vunkerl = %u,"
+            "fame_aby_attohwa = %u,"
+            "fame_aby_altepa = %u,"
+            "fame_aby_grauberg = %u,"
+            "fame_aby_uleguerand = %u,"
+            "fame_adoulin = %u "
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle, Query,
@@ -3727,6 +3757,16 @@ namespace charutils
             PChar->profile.fame[2],
             PChar->profile.fame[3],
             PChar->profile.fame[4],
+            PChar->profile.fame[5],
+            PChar->profile.fame[6],
+            PChar->profile.fame[7],
+            PChar->profile.fame[8],
+            PChar->profile.fame[9],
+            PChar->profile.fame[10],
+            PChar->profile.fame[11],
+            PChar->profile.fame[12],
+            PChar->profile.fame[13],
+            PChar->profile.fame[14],
             PChar->id);
     }
 
