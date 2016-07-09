@@ -95,13 +95,13 @@ function onUseAbility(player,target,ability,action)
                 else
                     daze = 2;
                 end
-                target:addStatusEffect(EFFECT_WEAKENED_DAZE_2,1,0,duration+30);
+                target:addStatusEffect(EFFECT_WEAKENED_DAZE_5,1,0,duration+30);
                 effect = 5;
 
             elseif (target:hasStatusEffect(EFFECT_WEAKENED_DAZE_5)) then
                 local duration = target:getStatusEffect(EFFECT_WEAKENED_DAZE_5):getDuration();
                 target:delStatusEffectSilent(EFFECT_WEAKENED_DAZE_5);
-                target:addStatusEffect(EFFECT_WEAKENED_DAZE_3,1,0,duration+30);
+                target:addStatusEffect(EFFECT_WEAKENED_DAZE_5,1,0,duration+30);
                 daze = 1;
                 effect = 5;
 
