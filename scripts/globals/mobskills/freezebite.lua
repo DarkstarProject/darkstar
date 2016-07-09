@@ -30,10 +30,10 @@ function onMobWeaponSkill(target, mob, skill)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(mob, target, params);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(mob, target, 0, 0, true, nil, nil, params);
     
-       target:delHP(dmg);
-    return dmg;
+    target:delHP(damage);
+    return damage;
 end;
     
     
