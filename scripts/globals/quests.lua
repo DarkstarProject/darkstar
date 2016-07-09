@@ -26,6 +26,27 @@ ADOULIN     = 9;
 COALITION   = 10;
 
 -----------------------------------
+--  Fame IDs
+-----------------------------------
+
+FAME_SANDORIA           = 0;
+FAME_BASTOK             = 1;
+FAME_WINDURST           = 2;
+FAME_JEUNO              = 3;
+FAME_SELBINA_RABAO      = 4;
+FAME_NORG               = 5;
+FAME_ABYSSEA_KONSCHTAT  = 6;
+FAME_ABYSSEA_TAHRONGI   = 7;
+FAME_ABYSSEA_LATHEINE   = 8;
+FAME_ABYSSEA_MISAREAUX  = 9;
+FAME_ABYSSEA_VUNKERL    = 10;
+FAME_ABYSSEA_ATTOHWA    = 11;
+FAME_ABYSSEA_ALTEPA     = 12;
+FAME_ABYSSEA_GRAUBERG   = 13;
+FAME_ABYSSEA_ULEGUERAND = 14;
+FAME_ADOULIN            = 15;
+
+-----------------------------------
 --  San d'Oria - 0
 -----------------------------------
 
@@ -1011,7 +1032,7 @@ KEEP_YOUR_BLOOMERS_ON_ERISA     = 71;
 SCAREDYCATS                     = 72;
 RAPTOR_RAPTURE                  = 73;
 EXOTIC_DELICACIES               = 74;
-A_PIONEERS_BEST_IMAGINARY_FRIEND= 75;
+A_PIONEERS_BEST_IMAGINARY_FRIEND= 75; 
 HUNGER_STRIKES                  = 76;
 THE_OLD_MAN_AND_THE_HARPOON     = 77;
 A_CERTAIN_SUBSTITUTE_PATROLMAN  = 78;
