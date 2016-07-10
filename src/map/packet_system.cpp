@@ -2336,7 +2336,7 @@ void SmallPacket0x050(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 equipSlotID = RBUFB(data, (0x05));        // charequip slot
     uint8 containerID = RBUFB(data, (0x06));     // container id
 
-    if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2)
+    if (containerID != LOC_INVENTORY && containerID != LOC_WARDROBE && containerID != LOC_WARDROBE2 && containerID != LOC_WARDROBE3 && containerID != LOC_WARDROBE4)
         return;
 
     charutils::EquipItem(PChar, slotID, equipSlotID, containerID); //current
@@ -2362,7 +2362,7 @@ void SmallPacket0x051(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         uint8 slotID = RBUFB(data, (0x08 + (0x04 * i)));        // inventory slot
         uint8 equipSlotID = RBUFB(data, (0x09 + (0x04 * i)));        // charequip slot
         uint8 containerID = RBUFB(data, (0x0A + (0x04 * i)));     // container id
-        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2)
+        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2 || containerID == LOC_WARDROBE3 || containerID == LOC_WARDROBE4)
         {
             charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
         }
