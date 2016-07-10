@@ -189,14 +189,15 @@ function npcUtil.tradeHas(trade, items, gil)
             return false;
         end
 
-        for k, v in pairs(items) do
-            if (itemCount[k] == nil) then
-                itemCount[k] = 1;
+        for _, v in pairs(items) do
+            if (itemCount[v] == nil) then
+                itemCount[v] = 1;
             else
-                itemCount[k] = itemCount[k] + 1
+                itemCount[v] = itemCount[v] + 1
             end
-
-            if (trade:hasItemQty(k, itemCount[k]) == false) then
+        end
+        for k, v in pairs(itemCount) do
+            if (trade:hasItemQty(k, v) == false) then
                 -- don't have the right amount of item
                 return false;
             end
