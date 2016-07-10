@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
     local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
-    local Order_Marjoirelle = bit.band(bit.rshift(player:getVar("Order_Up_NPCs"), 8), 1);
+    local Order_Marjoirelle = player:getMaskBit(player:getVar("Order_Up_NPCs"), 8);
 
-    if ((Order_Up == QUEST_ACCEPTED) and (Order_Marjoirelle < 1)) then
+    if ((Order_Up == QUEST_ACCEPTED) and (not Order_Marjoirelle)) then
         -- Progresses Quest: 'Order Up'
         player:startEvent(0x0044);
     else
@@ -46,6 +46,6 @@ end;
 function onEventFinish(player,csid,option)    
     if (csid == 0x0044) then
         -- Progresses Quest: 'Order Up'
-        player:addVar("Order_Up_NPCs", bit.lshift(1, 8));
+        player:setMaskBit("Order_Up_NPCs", 8, true);
     end
 end;
