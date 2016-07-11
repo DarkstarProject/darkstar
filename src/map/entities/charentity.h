@@ -364,19 +364,19 @@ protected:
 
 private:
 
-    CItemContainer*   m_Inventory;
-    CItemContainer*   m_Mogsafe;
-    CItemContainer*   m_Storage;
-    CItemContainer*	  m_Tempitems;
-    CItemContainer*   m_Moglocker;
-    CItemContainer*	  m_Mogsatchel;
-    CItemContainer*	  m_Mogsack;
-    CItemContainer*   m_Mogcase;
-    CItemContainer*   m_Wardrobe;
-    CItemContainer*   m_Mogsafe2;
-    CItemContainer*   m_Wardrobe2;
-    CItemContainer*   m_Wardrobe3;
-    CItemContainer*   m_Wardrobe4;
+    std::unique_ptr<CItemContainer>   m_Inventory;
+    std::unique_ptr<CItemContainer>   m_Mogsafe;
+    std::unique_ptr<CItemContainer>   m_Storage;
+    std::unique_ptr<CItemContainer>   m_Tempitems;
+    std::unique_ptr<CItemContainer>   m_Moglocker;
+    std::unique_ptr<CItemContainer>   m_Mogsatchel;
+    std::unique_ptr<CItemContainer>   m_Mogsack;
+    std::unique_ptr<CItemContainer>   m_Mogcase;
+    std::unique_ptr<CItemContainer>   m_Wardrobe;
+    std::unique_ptr<CItemContainer>   m_Mogsafe2;
+    std::unique_ptr<CItemContainer>   m_Wardrobe2;
+    std::unique_ptr<CItemContainer>   m_Wardrobe3;
+    std::unique_ptr<CItemContainer>   m_Wardrobe4;
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;
