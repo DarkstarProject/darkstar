@@ -477,7 +477,11 @@ namespace charutils
             "locker,"     // 2
             "satchel,"    // 3
             "sack,"       // 4
-            "`case` "     // 5
+            "`case`,"     // 5
+            "wardrobe,"     // 6
+            "wardrobe2,"     // 7
+            "wardrobe3,"     // 8
+            "wardrobe4 "     // 9
             "FROM char_storage "
             "WHERE charid = %u;";
 
@@ -496,8 +500,10 @@ namespace charutils
             PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 4));
             PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 5));
 
-            PChar->getStorage(LOC_WARDROBE)->AddBuff(80); // Always 80..
-            PChar->getStorage(LOC_WARDROBE2)->AddBuff(80); // Always 80..
+            PChar->getStorage(LOC_WARDROBE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 6));
+            PChar->getStorage(LOC_WARDROBE2)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 7));
+            PChar->getStorage(LOC_WARDROBE3)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 8));
+            PChar->getStorage(LOC_WARDROBE4)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 9));
         }
 
         fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged "
@@ -1089,7 +1095,7 @@ namespace charutils
 
         //Send important items first
         //Note: it's possible that non-essential inventory items are sent in response to another packet
-        for (auto&& containerID : {LOC_INVENTORY, LOC_TEMPITEMS, LOC_WARDROBE, LOC_WARDROBE2, LOC_MOGSAFE,
+        for (auto&& containerID : {LOC_INVENTORY, LOC_TEMPITEMS, LOC_WARDROBE, LOC_WARDROBE2, LOC_WARDROBE3, LOC_WARDROBE4, LOC_MOGSAFE,
             LOC_STORAGE, LOC_MOGLOCKER, LOC_MOGSATCHEL, LOC_MOGSACK, LOC_MOGCASE, LOC_MOGSAFE2})
         {
             pushContainer(containerID);
@@ -3782,7 +3788,11 @@ namespace charutils
             "locker = %u,"
             "satchel = %u,"
             "sack = %u, "
-            "`case` = %u "
+            "`case` = %u, "
+            "wardrobe = %u, "
+            "wardrobe2 = %u, "
+            "wardrobe3 = %u, "
+            "wardrobe4 = %u "
             "WHERE charid = %u";
 
         Sql_Query(SqlHandle, Query,
@@ -3792,6 +3802,10 @@ namespace charutils
             PChar->getStorage(LOC_MOGSATCHEL)->GetSize(),
             PChar->getStorage(LOC_MOGSACK)->GetSize(),
             PChar->getStorage(LOC_MOGCASE)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE2)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE3)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE4)->GetSize(),
             PChar->id);
     }
 

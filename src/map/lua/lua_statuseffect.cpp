@@ -101,7 +101,7 @@ inline int32 CLuaStatusEffect::getDuration(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    lua_pushinteger(L, m_PLuaStatusEffect->GetDuration());
+    lua_pushinteger(L, m_PLuaStatusEffect->GetDuration() / 1000);
     return 1;
 }
 

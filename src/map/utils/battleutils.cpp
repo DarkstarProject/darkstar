@@ -2006,8 +2006,10 @@ namespace battleutils
 
             if (giveTPtoAttacker)
             {
-                if (attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
+                if (PAttacker->objtype == TYPE_PC && attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
+                {
                     baseTp += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_IKISHOTEN, (CCharEntity*)PAttacker);
+                }
 
                 PAttacker->addTP(tpMultiplier * (baseTp * (1.0f + 0.01f * (float)((PAttacker->getMod(MOD_STORETP) + getStoreTPbonusFromMerit(PAttacker))))));
             }
