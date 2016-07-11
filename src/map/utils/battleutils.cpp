@@ -2515,52 +2515,6 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *  Returns a mob / pets multihits								        *
-    *                                                                       *
-    ************************************************************************/
-
-    uint8 CheckMobMultiHits(CBattleEntity* PEntity)
-    {
-
-        if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
-        {
-            uint8 num = 1;
-
-            //Monk
-            if (PEntity->GetMJob() == JOB_MNK)
-            {
-                num = 2;
-            }
-
-            //check for unique mobs
-            switch (PEntity->id)
-            {
-                case 17498522:// Charybdis 2-6
-                    return (1 + getHitCount(5));
-
-                default:
-                    break;
-            }
-
-            int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
-            int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
-            doubleAttack = dsp_cap(doubleAttack, 0, 100);
-            tripleAttack = dsp_cap(tripleAttack, 0, 100);
-            if (dsprand::GetRandomNumber(100) < tripleAttack)
-            {
-                num += 2;
-            }
-            else if (dsprand::GetRandomNumber(100) < doubleAttack)
-            {
-                num += 1;
-            }
-            return num;
-        }
-        return 0;
-    }
-
-    /************************************************************************
-    *                                                                       *
     *  Returns the number of hits for multihit weapons if applicable        *
     *  (Keeping this for backwards compatibility with the old system)       *
     ************************************************************************/

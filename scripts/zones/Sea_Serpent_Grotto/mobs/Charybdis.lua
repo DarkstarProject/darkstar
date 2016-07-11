@@ -1,7 +1,17 @@
 ----------------------------------
--- Area: Valkurm Dunes
+-- Area: Sea Serpent Grotto
 --   NM: Charybdis
 -----------------------------------
+
+-----------------------------------
+-- onMobInitialize
+-----------------------------------
+
+function onMobInitialize(mob)
+
+    mob:setMobMod(MOBMOD_MULTI_HIT, 5);
+
+end;
 
 -----------------------------------
 -- onMobDespawn
