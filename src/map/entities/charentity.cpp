@@ -105,8 +105,8 @@ CCharEntity::CCharEntity()
     m_Wardrobe = new CItemContainer(LOC_WARDROBE);
     m_Mogsafe2 = new CItemContainer(LOC_MOGSAFE2);
     m_Wardrobe2 = new CItemContainer(LOC_WARDROBE2);
-    m_Wardrobe3 = new CItemContainer(LOC_WARDROBE2);
-    m_Wardrobe4 = new CItemContainer(LOC_WARDROBE2);
+    m_Wardrobe3 = new CItemContainer(LOC_WARDROBE3);
+    m_Wardrobe4 = new CItemContainer(LOC_WARDROBE4);
 
     memset(&jobs, 0, sizeof(jobs));
     memset(&keys, 0, sizeof(keys));
