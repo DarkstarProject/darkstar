@@ -27,6 +27,7 @@
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
 #include "mob_modifier.h"
+#include "utils/battleutils.h"
 
 /************************************************************************
 *																		*
@@ -40,7 +41,7 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     m_kickAttackOccured = false;
     m_sataOccured = false;
     m_subWeaponType = 0;
-
+    
     if (attacker->m_Weapons[SLOT_SUB]->isType(ITEM_WEAPON))
     {
         m_subWeaponType = attacker->m_Weapons[SLOT_SUB]->getDmgType();
@@ -53,7 +54,6 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
-
 
     if (IsH2H())
     {
@@ -199,12 +199,20 @@ void CAttackRound::DeleteAttackSwing()
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
-
+    
+    bool isPC = m_attacker->objtype == TYPE_PC; 
+    
     // Checking the players weapon hit count
     if (PWeapon->getReqLvl() <= m_attacker->GetMLevel())
     {
         num = PWeapon->getHitCount();
     }
+    
+    // If the attacker is a mob, check to see if it has special multi-hit capabilites
+    if (!isPC)
+    {
+        num = battleutils::CheckSpecialMobMultiHits(m_attacker);
+    } 
 
     AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
 
@@ -214,7 +222,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
     //check for merit upgrades
-    if (m_attacker->objtype == TYPE_PC)
+    if (isPC)
     {
         CCharEntity* PChar = (CCharEntity*)m_attacker;
 
@@ -245,7 +253,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
     // Ammo extra swing - players only
-    if (m_attacker->objtype == TYPE_PC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
+    if (isPC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
     {
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
@@ -291,13 +299,11 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         }
     }
 
-
     // TODO: Possible Lua function for the nitty gritty stuff below.
 
     // Iga mod: Extra attack chance whilst dual wield is on.
     if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
-
 }
 
 /************************************************************************

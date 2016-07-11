@@ -2521,7 +2521,6 @@ namespace battleutils
 
     uint8 CheckMobMultiHits(CBattleEntity* PEntity)
     {
-
         if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
         {
             uint8 num = 1;
@@ -2530,17 +2529,7 @@ namespace battleutils
             if (PEntity->GetMJob() == JOB_MNK)
             {
                 num = 2;
-            }
-
-            //check for unique mobs
-            switch (PEntity->id)
-            {
-                case 17498522:// Charybdis 2-6
-                    return (1 + getHitCount(5));
-
-                default:
-                    break;
-            }
+            }           
 
             int16 tripleAttack = PEntity->getMod(MOD_TRIPLE_ATTACK);
             int16 doubleAttack = PEntity->getMod(MOD_DOUBLE_ATTACK);
@@ -2554,8 +2543,38 @@ namespace battleutils
             {
                 num += 1;
             }
+            
             return num;
         }
+        
+        return 0;
+    }
+    
+    /************************************************************************
+    *                                                                       *
+    *  Returns multihits for special mobs / pets 							*
+    *                                                                       *
+    ************************************************************************/
+    
+    uint8 CheckSpecialMobMultiHits(CBattleEntity* PEntity)
+    {
+        if (PEntity->objtype == TYPE_MOB || PEntity->objtype == TYPE_PET)
+        {
+            uint8 num = 1;
+            
+            // Check for unique mobs
+            switch (PEntity->id)
+            {
+                case 17498522: // Charybdis 2-6
+                    return (1 + getHitCount(5));
+    
+                default:
+                    break;
+            }
+            
+            return num;
+        }
+        
         return 0;
     }
 
