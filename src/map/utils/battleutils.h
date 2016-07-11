@@ -108,6 +108,7 @@ namespace battleutils
 
     uint8			getHitCount(uint8 hits);
     uint8			CheckMobMultiHits(CBattleEntity* PEntity);
+    uint8           CheckSpecialMobMultiHits(CBattleEntity* PEntity);
 
     int16			GetSnapshotReduction(CCharEntity* m_PChar, int16 delay);
     int32			GetRangedAttackBonuses(CBattleEntity* battleEntity);
