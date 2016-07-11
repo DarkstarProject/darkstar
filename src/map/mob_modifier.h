@@ -94,7 +94,8 @@ enum MOBMODIFIER : int
     MOBMOD_NO_STANDBACK       = 62, // Mob will never standback
     MOBMOD_ATTACK_SKILL_LIST  = 63, // skill list to use in place of regular attacks
     MOBMOD_CHARMABLE          = 64, // mob is charmable
-    MOBMOD_NO_MOVE            = 65  // Mob will not be able to move
+    MOBMOD_NO_MOVE            = 65, // Mob will not be able to move
+    MOBMOD_MULTI_HIT          = 66  // Mob will not be able to move
 };
 
 #endif
