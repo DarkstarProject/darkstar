@@ -26,27 +26,6 @@ ADOULIN     = 9;
 COALITION   = 10;
 
 -----------------------------------
---  Fame IDs
------------------------------------
-
-FAME_SANDORIA           = 0;
-FAME_BASTOK             = 1;
-FAME_WINDURST           = 2;
-FAME_JEUNO              = 3;
-FAME_SELBINA_RABAO      = 4;
-FAME_NORG               = 5;
-FAME_ABYSSEA_KONSCHTAT  = 6;
-FAME_ABYSSEA_TAHRONGI   = 7;
-FAME_ABYSSEA_LATHEINE   = 8;
-FAME_ABYSSEA_MISAREAUX  = 9;
-FAME_ABYSSEA_VUNKERL    = 10;
-FAME_ABYSSEA_ATTOHWA    = 11;
-FAME_ABYSSEA_ALTEPA     = 12;
-FAME_ABYSSEA_GRAUBERG   = 13;
-FAME_ABYSSEA_ULEGUERAND = 14;
-FAME_ADOULIN            = 15;
-
------------------------------------
 --  San d'Oria - 0
 -----------------------------------
 
