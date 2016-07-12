@@ -22,7 +22,7 @@ YOU_CAN_NOW_BECOME_A_SAMURAI = 10189; -- You can now become a samurai.
 
              AVATAR_UNLOCKED = 10460; -- You are now able to summon
          NOMAD_MOOGLE_DIALOG = 10528; -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
-               FOUIVA_DIALOG = 10552; -- Oi 'av naw business wi' de likes av you.
+               FOUIVA_DIALOG = 10557; -- Oi 'av naw business wi' de likes av you.
 
 -- Shop Texts
    JIROKICHI_SHOP_DIALOG = 10336; -- Heh-heh-heh. Feast your eyes on these beauties. You won't find stuff like this anywhere!
