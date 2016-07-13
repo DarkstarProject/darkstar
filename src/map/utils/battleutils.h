@@ -119,7 +119,7 @@ namespace battleutils
 
     CWeaponSkill*	GetWeaponSkill(uint16 WSkillID);
     CMobSkill*		GetMobSkill(uint16 SkillID);
-    CMobSkill*          GetTwoHourMobSkill(JOBTYPE job, uint16 familyId);
+    CMobSkill*      GetTwoHourMobSkill(JOBTYPE job, uint16 familyId);
 
     const std::list<CWeaponSkill*>& GetWeaponSkills(uint8 skill);
     const std::vector<uint16>& GetMobSkillList(uint16 ListID);
@@ -179,7 +179,8 @@ namespace battleutils
 
     bool				HasNinjaTool(CBattleEntity* PEntity, CSpell* PSpell, bool ConsumeTool);
 
-    bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base);
+    float               GetCharmChance(CBattleEntity* PCharmer, CBattleEntity* PTarget, bool includeCharmAffinityAndChanceMods = true);
+    bool				TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
     void				tryToCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim);
     void                applyCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, duration charmTime = 0s);
     void                unCharm(CBattleEntity* PEntity);
