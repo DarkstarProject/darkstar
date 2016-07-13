@@ -36,6 +36,7 @@
 #include "../entities/charentity.h"
 #include "../packets/action.h"
 #include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
@@ -503,6 +504,13 @@ void CMobEntity::PostTick()
     if (loc.zone && updatemask)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        
+        // If this mob is charmed, it should sync with its master
+        if (PMaster && PMaster->PPet == this)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        }
+        
         updatemask = 0;
     }
 }
@@ -594,6 +602,7 @@ void CMobEntity::Spawn()
             }
         }
     }
+    
     m_DespawnTimer = time_point::min();
     luautils::OnMobSpawn(this);
 }
@@ -612,7 +621,6 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
 
 void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 {
-
     auto PSkill = state.GetSkill();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
