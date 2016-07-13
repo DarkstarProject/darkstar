@@ -366,6 +366,28 @@ inline int32 CLuaBaseEntity::isJugPet(lua_State* L)
 
 //======================================================//
 
+inline int32 CLuaBaseEntity::getCharmChance(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->objtype == TYPE_NPC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    
+    auto PCharmer = static_cast<CBattleEntity*>(m_PBaseEntity);
+    auto PTarget = static_cast<CBattleEntity*>(PLuaBaseEntity->GetBaseEntity());
+    
+    bool includeCharmAffinityAndChanceMods = true;
+    if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
+        includeCharmAffinityAndChanceMods = lua_toboolean(L, 2);;
+    
+    float charmChance = battleutils::GetCharmChance(PCharmer, PTarget, includeCharmAffinityAndChanceMods);
+    lua_pushnumber(L, charmChance);
+
+    return 1;
+}
+
+//======================================================//
+
 inline int32 CLuaBaseEntity::getMP(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11002,6 +11024,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,familiar),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPetID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJugPet),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCharmChance),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,needToZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getContainerSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeContainerSize),

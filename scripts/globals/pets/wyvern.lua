@@ -27,9 +27,8 @@ local wyvernTypes = {
     [JOBS.PUP] = WYVERN_OFFENSIVE,
     [JOBS.DNC] = WYVERN_OFFENSIVE,
     [JOBS.SCH] = WYVERN_DEFENSIVE,
-    --These two might not be right (I'd guess GEO is multi)
-    [JOBS.GEO] = WYVERN_OFFENSIVE,
-    [JOBS.RUN] = WYVERN_OFFENSIVE
+    [JOBS.GEO] = WYVERN_DEFENSIVE,
+    [JOBS.RUN] = WYVERN_MULTI
 }
 
 -----------------------------------

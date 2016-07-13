@@ -1,8 +1,8 @@
 -----------------------------------
--- Ability: Super Climb
--- Used by the Wyvern when the Dragoon uses Super Jump. 
--- Does not shed hate, but allows the wyvern to dodge any attack like the Dragoon.
--- Obtained: Dragoon Level 50
+-- Ability: Tame
+-- Makes target docile and more susceptible to charm.
+-- Obtained: Beastmaster Level 30
+-- Recast Time: 10:00
 -- Duration: Instant
 -----------------------------------
 
@@ -22,5 +22,4 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-
 end;
