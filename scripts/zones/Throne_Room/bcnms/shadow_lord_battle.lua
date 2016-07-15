@@ -53,7 +53,10 @@ function onEventFinish(player,csid,option)
     
     if (csid == 0x7d01) then
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
-            player:addMission(ZILART,THE_NEW_FRONTIER);
+            if (player:getCurrentMission(ZILART) < THE_NEW_FRONTIER) then
+                -- Don't add missions we already completed..Players who change nation will hit this.
+                player:addMission(ZILART,THE_NEW_FRONTIER);
+            end
             player:addKeyItem(SHADOW_FRAGMENT);
             player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
             player:setVar("MissionStatus",4);
