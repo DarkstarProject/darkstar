@@ -4010,6 +4010,21 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
         case 5: // Norg
             fame = PChar->profile.fame[3]*fameMultiplier;
             break;
+        // Abyssea
+        case 6: // Konschtat
+        case 7: // Tahrongi
+        case 8: // La Theine
+        case 9: // Misareaux
+        case 10: // Vunkerl
+        case 11: // Attohwa
+        case 12: // Altepa
+        case 13: // Grauberg
+        case 14: // Uleguerand
+            fame = PChar->profile.fame[fameArea-1] * fameMultiplier;
+            break;
+        case 15: // Adoulin
+            fame = PChar->profile.fame[14] * fameMultiplier;
+            break;
     }
     lua_pushinteger(L, fame);
     return 1;
@@ -4026,6 +4041,7 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
+    uint8  fameArea = (uint8)lua_tointeger(L, 1);
     this->getFame(L);
 
     uint16 fame = (uint16)lua_tointeger(L, -1);
@@ -4047,6 +4063,9 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
         fameLevel = 3;
     else if (fame >= 50)
         fameLevel = 2;
+
+    if ((fameArea >= 6) && (fameArea <= 14) && (fameLevel >= 6))
+        fameLevel = 6; // Abyssea areas cap out at level 6 fame.
 
     lua_pushinteger(L, fameLevel);
     return 1;
@@ -4085,6 +4104,21 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
             break;
         case 5: // Norg
             ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
+            break;
+        // Abyssea
+        case 6: // Konschtat
+        case 7: // Tahrongi
+        case 8: // La Theine
+        case 9: // Misareaux
+        case 10: // Vunkerl
+        case 11: // Attohwa
+        case 12: // Altepa
+        case 13: // Grauberg
+        case 14: // Uleguerand
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea-1] = fame;
+            break;
+        case 15: // Adoulin
+            ((CCharEntity*)m_PBaseEntity)->profile.fame[14] = fame;
             break;
     }
     charutils::SaveFame((CCharEntity*)m_PBaseEntity);
@@ -4126,6 +4160,21 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
             break;
         case 5: // Norg
             PChar->profile.fame[3] += fame;
+            break;
+        // Abyssea
+        case 6: // Konschtat
+        case 7: // Tahrongi
+        case 8: // La Theine
+        case 9: // Misareaux
+        case 10: // Vunkerl
+        case 11: // Attohwa
+        case 12: // Altepa
+        case 13: // Grauberg
+        case 14: // Uleguerand
+            PChar->profile.fame[fameArea-1] += fame;
+            break;
+        case 15: // Adoulin
+            PChar->profile.fame[14] += fame;
             break;
     }
     charutils::SaveFame(PChar);
@@ -10679,7 +10728,7 @@ inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
 
     lua_newtable(L);
     int newTable = lua_gettop(L);
-
+    
     for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
     {
         for (auto&& entity : list)
