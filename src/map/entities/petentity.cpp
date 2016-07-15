@@ -134,11 +134,13 @@ void CPetEntity::PostTick()
     CBattleEntity::PostTick();
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
+        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        
         if (PMaster && PMaster->PPet == this)
         {
             ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
         }
-        loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        
         updatemask = 0;
     }
 }
