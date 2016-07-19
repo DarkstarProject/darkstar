@@ -992,7 +992,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, CMobEntity::sight_range);
     PMob->defaultMobMod(MOBMOD_SOUND_RANGE, CMobEntity::sound_range);
 
-
     // Killer Effect
     switch (PMob->m_EcoSystem)
       {
@@ -1018,7 +1017,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
             ShowError("Mob %s level is 0! zoneid %d, poolid %d\n", PMob->GetName(), PMob->getZone(), PMob->m_Pool);
         }
     }
-
 }
 
 /*

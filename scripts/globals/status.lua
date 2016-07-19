@@ -1970,6 +1970,7 @@ MOBMOD_NO_STANDBACK   = 62
 MOBMOD_ATTACK_SKILL_LIST = 63
 MOBMOD_CHARMABLE      = 64
 MOBMOD_NO_MOVE        = 65
+MOBMOD_MULTI_HIT      = 66
 
 ------------------------------------
 -- Skills
