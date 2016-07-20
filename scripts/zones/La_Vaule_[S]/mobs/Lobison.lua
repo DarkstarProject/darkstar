@@ -14,15 +14,15 @@ end;
 -- onMobRoam Action
 -----------------------------------
 function onMobRoam(mob)
-    local spawnTime = mob:getLocalVar("transformTime");
+    local changeTime = mob:getLocalVar("transformTime");
     local roamChance = math.random(1,100);
     local roamMoonPhase = VanadielMoonPhase();
     
     if (roamChance > 100-roamMoonPhase) then
-        if (mob:AnimationSub() == 0 and os.time() - transformTime > 300) then
+        if (mob:AnimationSub() == 0 and os.time() - changeTime > 300) then
             mob:AnimationSub(1);
             mob:setLocalVar("transformTime", os.time());
-        elseif (mob:AnimationSub() == 1 and os.time() - transformTime > 300) then
+        elseif (mob:AnimationSub() == 1 and os.time() - changeTime > 300) then
             mob:AnimationSub(0);
             mob:setLocalVar("transformTime", os.time());
         end
