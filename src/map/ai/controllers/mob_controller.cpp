@@ -918,7 +918,7 @@ void CMobController::Disengage()
 
     if (PMob->getMobMod(MOBMOD_IDLE_DESPAWN))
     {
-        PMob->SetDespawnTime(std::chrono::milliseconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
+        PMob->SetDespawnTime(std::chrono::seconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
 
     PMob->delRageMode();
