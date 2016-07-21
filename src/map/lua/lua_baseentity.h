@@ -602,6 +602,10 @@ public:
     int32 getNearbyEntities(lua_State* L);
     int32 getAutomatonFrame(lua_State* L);
     int32 getAutomatonHead(lua_State* L);
+
+    int32 isAsleep(lua_State* L);
+    int32 isSpawned(lua_State* L);
+    int32 isEngaged(lua_State* L);
 };
 
 #endif

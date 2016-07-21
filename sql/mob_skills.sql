@@ -717,13 +717,13 @@ INSERT INTO `mob_skills` VALUES (909,608,'glittering_ruby',1,10.0,499,3000,1,0,0
 INSERT INTO `mob_skills` VALUES (910,609,'meteorite',0,10.0,500,3000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (911,610,'healing_ruby_ii',1,10.0,501,3000,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (912,611,'searing_light',1,10.0,502,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (913,534,'Inferno',1,25.0,2000,0,4,0,0,0); -- Mob avatar skills
-INSERT INTO `mob_skills` VALUES (914,547,'Earthen_Fury',1,25.0,2000,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (915,560,'tidal_wave',1,25.0,2000,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (916,573,'aerial_blast',1,25.0,2000,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (917,586,'diamond_dust',1,25.0,2000,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (918,599,'judgment_bolt',1,25.0,2000,0,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (919,611,'searing_light',1,25.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (913,534,'Inferno',1,30.0,2000,0,4,0,0,0); -- Mob avatar skills
+INSERT INTO `mob_skills` VALUES (914,547,'Earthen_Fury',1,30.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (915,560,'tidal_wave',1,30.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (916,573,'aerial_blast',1,30.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (917,586,'diamond_dust',1,30.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (918,599,'judgment_bolt',1,30.0,2000,0,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (919,611,'searing_light',1,30.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (920,503,'Everyones_Grudge',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (921,504,'Everyones_Rancor',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (922,143,'Blind_Vortex',0,7.0,2000,1500,4,0,0,0);
@@ -1863,7 +1863,7 @@ INSERT INTO `mob_skills` VALUES (2055,1408,'Intertia_stream',1,10.0,2000,1000,4,
 INSERT INTO `mob_skills` VALUES (2056,1399,'Discharge',1,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2057,1401,'PW_Mortal_revolution',1,15.0,2000,1000,4,0,0,1);
 INSERT INTO `mob_skills` VALUES (2058,1400,'PW_Homing_missile',2,20.0,2000,1000,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (2059,1402,'PW_Discoid',4,10.0,2000,1000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (2059,1402,'PW_Discoid',1,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (2060,1403,'PW_Brainjack',0,10.0,2000,1000,4,0,0,0);
 -- for long armed chariot charm brainjack right one is 1410 (probably 1407-1409 for his other moves)
 -- INSERT INTO `mob_skills` VALUES (2060,1410,'PW_Brainjack',0,10.0,2000,1000,4,0,0,0);

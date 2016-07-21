@@ -8,9 +8,10 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId();
+    -- See PW's script
+    local phase = mob:getLocalVar("phase");
 
-    if (mobSkin == 1825) then
+    if (phase == 2) then
         return 0;
     else
         return 1;
@@ -19,7 +20,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local needles = 10000 / skill:getTotalTargets();
-    local dmg = MobFinalAdjustments(needles,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_LIGHT,MOBPARAM_WIPE_SHADOWS);
+    local dmg = MobFinalAdjustments(needles,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_WIPE_SHADOWS);
 
     target:delHP(dmg);
 

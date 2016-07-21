@@ -8,9 +8,10 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId();
+    -- See PW's script
+    local phase = mob:getLocalVar("phase");
 
-    if (mobSkin == 1825) then
+    if (phase == 4) then
         return 0;
     else
         return 1;
@@ -20,17 +21,14 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local targetcurrentHP = target:getHP();
     local targetmaxHP = target:getMaxHP();
-    local hpset=targetmaxHP*0.20;
-    local typeEffect = EFFECT_BIND;
-
-    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
+    local hpset = targetmaxHP * 0.20;
 
     if (targetcurrentHP > hpset) then
-        dmg= targetcurrentHP - hpset;
+        dmg = targetcurrentHP - hpset;
     else
-        dmg=0;
+        dmg = 0;
     end
 
     target:delHP(dmg);
     return dmg;
-end
+end;
