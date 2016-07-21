@@ -171,7 +171,7 @@ private:
     // формирование пакетов вынес в отдельные функции, специально для тех,
     // кто захочет понять, что же на самом деле происходит в switch(logID)
 
-    void generateQuestPacket(CCharEntity* PChar, uint8 logID, uint8 status);
+    void generateQuestPacket(CCharEntity* PChar, uint8 subjectID, uint8 status);
     void generateCurrentMissionPacket(CCharEntity* PChar);
     void generateCompleteMissionPacket(CCharEntity* PChar);
     void generateCurrentExpMissionPacket(CCharEntity* PChar);
