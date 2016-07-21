@@ -28,19 +28,19 @@
 #include "quest_mission_log.h"
 #include "../entities/charentity.h"
 
-CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 contentID, uint8 status)
+CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 subjectID, uint8 status)
 {
     this->type = 0x56;
     this->size = 0x14;
 
-    int16 logType = LOG_TYPES[contentID][status + (status > STATUS_QUEST_COMP ? 1 : 0)];
-    int16 questLogID = LOG_TYPES[contentID][QUEST_LOG];
-    int16 missionLogID = LOG_TYPES[contentID][MISSION_LOG];
+    int16 logType = LOG_TYPES[subjectID][status + (status > STATUS_QUEST_COMP ? 1 : 0)];
+    int16 questLogID = LOG_TYPES[subjectID][QUEST_LOG];
+    int16 missionLogID = LOG_TYPES[subjectID][MISSION_LOG];
 
     // FFXI packs different TOAU information in the same packet as certain other content
-    if ((contentID >= LOG_TOAU) && (contentID <= LOG_CAMPAIGN2))
+    if ((subjectID >= LOG_TOAU) && (subjectID <= LOG_CAMPAIGN2))
     {
-        if ((contentID == LOG_WOTG) && (status <= STATUS_QUEST_COMP))
+        if ((subjectID == LOG_WOTG) && (status <= STATUS_QUEST_COMP))
         {
             // We're updating Crystal War quests
             generateQuestPacket(PChar, questLogID, status);
@@ -60,7 +60,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 conten
                     generateAssaultMissionPacket(PChar);            // Writes more to it
                     break;
                 case STATUS_MISS_COMP:
-                    switch (contentID) {
+                    switch (subjectID) {
                     case LOG_TOAU:
                     case LOG_WOTG:
                         // Completed TOAU and WOTG missions share a packet
@@ -90,7 +90,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 conten
     }
     else if ((status <= STATUS_MISS_COMP) && (missionLogID >= 0)) 
     {   // We're updating any other mission log
-        if ((contentID <= LOG_ZILART) && (status == STATUS_MISS_COMP))
+        if ((subjectID <= LOG_ZILART) && (status == STATUS_MISS_COMP))
         {
             // Completed Nation and Zilart missions are updated in the same packet
             generateCompleteMissionPacket(PChar);
@@ -157,7 +157,7 @@ void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar
     WBUFW(data, (0x14)) = PChar->m_assaultLog.current;						                // Assault Missions
     WBUFW(data, (0x18)) = PChar->m_missionLog[LOG_TYPES[LOG_TOAU][MISSION_LOG]].current;	// Treasures of Aht Urhgan
     WBUFW(data, (0x1C)) = PChar->m_missionLog[LOG_TYPES[LOG_WOTG][MISSION_LOG]].current;	// Wings of the Goddess
-    WBUFW(data, (0x20)) = PChar->m_campaignLog.current;						                // Campaign Operations
+    WBUFW(data, (0x20)) = PChar->m_campaignLog.current;                                     // Campaign Operations
 }
 
 void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)
