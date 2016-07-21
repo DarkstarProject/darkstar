@@ -1421,24 +1421,25 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 logID = (uint8)lua_tointeger(L, -2);
+    uint8 ContentID = (uint8)lua_tointeger(L, -2);
+    int8 QuestLogID = LOG_TYPES[ContentID][QUEST_LOG];
 
-    if (logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 current = PChar->m_questLog[logID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = PChar->m_questLog[logID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current == 0) && (complete == 0))
         {
-            PChar->m_questLog[logID].current[questID / 8] |= (1 << (questID % 8));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 1));
+            PChar->m_questLog[QuestLogID].current[questID / 8] |= (1 << (questID % 8));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_QUEST_CURR));
 
             charutils::SaveQuestsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::addQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
+        ShowError(CL_RED"Lua::addQuest: ContentID %i or QuestID %i is invalid\n" CL_RESET, ContentID, questID);
     }
     return 0;
 }
@@ -1456,27 +1457,28 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 logID = (uint8)lua_tointeger(L, -2);
+    uint8 ContentID = (uint8)lua_tointeger(L, -2);
+    int8 QuestLogID = LOG_TYPES[ContentID][QUEST_LOG];
 
-    if (logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 current = PChar->m_questLog[logID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = PChar->m_questLog[logID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current != 0) || (complete != 0))
         {
-            PChar->m_questLog[logID].current[questID / 8] &= ~(1 << (questID % 8));
-            PChar->m_questLog[logID].complete[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[QuestLogID].current[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[QuestLogID].complete[questID / 8] &= ~(1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 1));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 2));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_QUEST_COMP));
 
             charutils::SaveQuestsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::delQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
+        ShowError(CL_RED"Lua::delQuest: ContentID %i or QuestID %i is invalid\n" CL_RESET, ContentID, questID);
     }
     return 0;
 }
@@ -1492,19 +1494,20 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
     uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 logID = (uint8)lua_tointeger(L, -2);
+    uint8 ContentID = (uint8)lua_tointeger(L, -2);
+    int8 QuestLogID = LOG_TYPES[ContentID][QUEST_LOG];
 
-    if (logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 current = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushinteger(L, (complete != 0 ? 2 : (current != 0 ? 1 : 0)));
         return 1;
     }
     else
     {
-        ShowError(CL_RED"Lua::getQuestStatus: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
+        ShowError(CL_RED"Lua::getQuestStatus: ContentID %i or QuestID %i is invalid\n" CL_RESET, ContentID, questID);
     }
     lua_pushnil(L);
     return 1;
@@ -1523,25 +1526,26 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 logID = (uint8)lua_tointeger(L, -2);
+    uint8 ContentID = (uint8)lua_tointeger(L, -2);
+    int8 QuestLogID = LOG_TYPES[ContentID][QUEST_LOG];
 
-    if (logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 complete = PChar->m_questLog[logID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if (complete == 0)
         {
-            PChar->m_questLog[logID].current[questID / 8] &= ~(1 << (questID % 8));
-            PChar->m_questLog[logID].complete[questID / 8] |= (1 << (questID % 8));
+            PChar->m_questLog[QuestLogID].current[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[QuestLogID].complete[questID / 8] |= (1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 1));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, logID, 2));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_QUEST_COMP));
         }
         charutils::SaveQuestsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::completeQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
+        ShowError(CL_RED"Lua::completeQuest: ContentID %i or QuestID %i is invalid\n" CL_RESET, ContentID, questID);
     }
     return 0;
 }
@@ -1561,16 +1565,17 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
     uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 logID = (uint8)lua_tointeger(L, -2);
+    uint8 ContentID = (uint8)lua_tointeger(L, -2);
+    int8 QuestLogID = LOG_TYPES[ContentID][QUEST_LOG];
 
-    if (logID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[logID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushboolean(L, (complete != 0));
         return 1;
     }
-    ShowError(CL_RED"Lua::hasCompleteQuest: LogID %i or QuestID %i is invalid\n" CL_RESET, logID, questID);
+    ShowError(CL_RED"Lua::hasCompleteQuest: ContentID %i or QuestID %i is invalid\n" CL_RESET, ContentID, questID);
     lua_pushboolean(L, false);
     return 1;
 }
@@ -1590,25 +1595,26 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 LogID = (uint8)lua_tointeger(L, 1);
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
+    int8 MissionLogID = LOG_TYPES[ContentID][MISSION_LOG];
 
-    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        if (PChar->m_missionLog[LogID].current != LogID > 2 ? 0 : -1)
+        if (PChar->m_missionLog[MissionLogID].current != MissionLogID > 2 ? 0 : -1)
         {
-            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, LogID);
+            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, MissionLogID);
         }
-        PChar->m_missionLog[LogID].current = MissionID;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 1));
+        PChar->m_missionLog[MissionLogID].current = MissionID;
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_MISS_CURR));
 
         charutils::SaveMissionsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::delMission: ContentID %i or Mission %i is invalid\n" CL_RESET, ContentID, MissionID);
     }
     return 0;
 }
@@ -1627,31 +1633,32 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 LogID = (uint8)lua_tointeger(L, 1);
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
+    int8 MissionLogID = LOG_TYPES[ContentID][MISSION_LOG];
 
-    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        uint8 current = PChar->m_missionLog[LogID].current;
-        bool complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? false : PChar->m_missionLog[LogID].complete[MissionID];
+        uint8 current = PChar->m_missionLog[MissionLogID].current;
+        bool complete = (ContentID == LOG_COP || MissionID >= 64) ? false : PChar->m_missionLog[MissionLogID].complete[MissionID];
 
         if (current == MissionID)
         {
-            PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 1));
+            PChar->m_missionLog[MissionLogID].current = MissionLogID > 2 ? 0 : -1;
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_MISS_CURR));
         }
         if (complete)
         {
-            PChar->m_missionLog[LogID].complete[MissionID] = false;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 2));
+            PChar->m_missionLog[MissionLogID].complete[MissionID] = false;
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_MISS_COMP));
         }
         charutils::SaveMissionsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::delMission: ContentID %i or Mission %i is invalid\n" CL_RESET, ContentID, MissionID);
     }
     return 0;
 }
@@ -1670,19 +1677,20 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 LogID = (uint8)lua_tointeger(L, 1);
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
+    int8 MissionLogID = LOG_TYPES[ContentID][MISSION_LOG];
 
     bool complete = false;
 
-    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
-        complete = (LogID == MISSION_COP-11 || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current :
-            ((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].complete[MissionID];
+        complete = (ContentID == LOG_COP || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].current :
+            ((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].complete[MissionID];
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::completeMission: ContentID %i or Mission %i is invalid\n" CL_RESET, ContentID, MissionID);
     }
     lua_pushboolean(L, complete);
     return 1;
@@ -1701,16 +1709,17 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8  LogID = (uint8)lua_tointeger(L, 1);
-    uint8  MissionID = 0;
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
+    uint8 MissionID = 0;
+    int8  MissionLogID = LOG_TYPES[ContentID][MISSION_LOG];
 
-    if (LogID < MAX_MISSIONAREA)
+    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA)
     {
-        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[LogID].current;
+        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].current;
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i is invalid\n" CL_RESET, LogID);
+        ShowError(CL_RED"Lua::completeMission: ContentID %i is invalid\n" CL_RESET, ContentID);
     }
     lua_pushinteger(L, MissionID);
     return 1;
@@ -1730,33 +1739,34 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 LogID = (uint8)lua_tointeger(L, 1);
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
+    int8  MissionLogID = LOG_TYPES[ContentID][MISSION_LOG];
 
-    if (LogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        if (PChar->m_missionLog[LogID].current != MissionID)
+        if (PChar->m_missionLog[MissionLogID].current != MissionID)
         {
-            ShowWarning(CL_YELLOW"Lua::completeMission: can't complete non current mission\n" CL_RESET, LogID);
+            ShowWarning(CL_YELLOW"Lua::completeMission: can't complete non current mission\n" CL_RESET, MissionLogID);
         }
         else
         {
-            PChar->m_missionLog[LogID].current = LogID > 2 ? 0 : -1;
-            if (LogID != MISSION_COP-11 && MissionID < 64)
+            PChar->m_missionLog[MissionLogID].current = MissionLogID > 2 ? 0 : -1;
+            if ((ContentID != LOG_COP) && (MissionID < 64))
             {
-                PChar->m_missionLog[LogID].complete[MissionID] = true;
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 2));
+                PChar->m_missionLog[MissionLogID].complete[MissionID] = true;
+                PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_MISS_COMP));
             }
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, LogID + 11, 1));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, ContentID, STATUS_MISS_CURR));
 
             charutils::SaveMissionsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: LogID %i or Mission %i is invalid\n" CL_RESET, LogID, MissionID);
+        ShowError(CL_RED"Lua::completeMission: ContentID %i or Mission %i is invalid\n" CL_RESET, ContentID, MissionID);
     }
     return 0;
 }
@@ -1777,7 +1787,7 @@ inline int32 CLuaBaseEntity::addAssault(lua_State *L)
         ShowWarning(CL_YELLOW"Lua::addAssault: player has a current assault\n" CL_RESET);
     }
     PChar->m_assaultLog.current = MissionID;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
 
     charutils::SaveMissionsList(PChar);
 
@@ -1801,7 +1811,7 @@ inline int32 CLuaBaseEntity::delAssault(lua_State *L)
     if (current == MissionID)
     {
         PChar->m_assaultLog.current = 0;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
     }
     charutils::SaveMissionsList(PChar);
 
@@ -1851,8 +1861,8 @@ inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
     }
     PChar->m_assaultLog.current = 0;
     PChar->m_assaultLog.complete[MissionID] = true;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 1));
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, 2));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_COMP));
 
     charutils::SaveMissionsList(PChar);
 
@@ -4005,44 +4015,54 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    uint8  fameArea = (uint8)lua_tointeger(L, 1);
-    uint16 fame = 0;
-    float fameMultiplier = map_config.fame_multiplier;
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 ContentID = (uint8)lua_tointeger(L, 1);
+    int8  fameArea = LOG_TYPES[ContentID][FAME];
 
-    switch (fameArea)
+    if (fameArea >= 0)
     {
-        case 0: // San d'Oria
-        case 1: // Bastok
-        case 2: // Windurst
-            fame = PChar->profile.fame[fameArea]*fameMultiplier;
-            break;
-        case 3: // Jeuno
-            fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) * fameMultiplier / 3);
-            break;
-        case 4: // Selbina / Rabao
-            fame = (PChar->profile.fame[0] + PChar->profile.fame[1])*fameMultiplier / 2;
-            break;
-        case 5: // Norg
-            fame = PChar->profile.fame[3]*fameMultiplier;
-            break;
-        // Abyssea
-        case 6: // Konschtat
-        case 7: // Tahrongi
-        case 8: // La Theine
-        case 9: // Misareaux
-        case 10: // Vunkerl
-        case 11: // Attohwa
-        case 12: // Altepa
-        case 13: // Grauberg
-        case 14: // Uleguerand
-            fame = PChar->profile.fame[fameArea-1] * fameMultiplier;
-            break;
-        case 15: // Adoulin
-            fame = PChar->profile.fame[14] * fameMultiplier;
-            break;
+        uint16 fame = 0;
+        float fameMultiplier = map_config.fame_multiplier;
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        switch (fameArea)
+        {
+            case 0: // San d'Oria
+            case 1: // Bastok
+            case 2: // Windurst
+                fame = PChar->profile.fame[fameArea]*fameMultiplier;
+                break;
+            case 3: // Jeuno
+                fame = PChar->profile.fame[4] + ((PChar->profile.fame[0] + PChar->profile.fame[1] + PChar->profile.fame[2]) * fameMultiplier / 3);
+                break;
+            case 4: // Selbina / Rabao
+                fame = (PChar->profile.fame[0] + PChar->profile.fame[1])*fameMultiplier / 2;
+                break;
+            case 5: // Norg
+                fame = PChar->profile.fame[3]*fameMultiplier;
+                break;
+            // Abyssea
+            case 6: // Konschtat
+            case 7: // Tahrongi
+            case 8: // La Theine
+            case 9: // Misareaux
+            case 10: // Vunkerl
+            case 11: // Attohwa
+            case 12: // Altepa
+            case 13: // Grauberg
+            case 14: // Uleguerand
+                fame = PChar->profile.fame[fameArea-1] * fameMultiplier;
+                break;
+            case 15: // Adoulin
+                fame = PChar->profile.fame[14] * fameMultiplier;
+                break;
+        }
+        lua_pushinteger(L, fame);
     }
-    lua_pushinteger(L, fame);
+    else
+    {
+        ShowError(CL_RED"Lua::getFame: ContentID %i is invalid\n" CL_RESET, ContentID);
+        lua_pushinteger(L, 0);
+    }
     return 1;
 }
 
@@ -4057,33 +4077,42 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    uint8  fameArea = (uint8)lua_tointeger(L, 1);
-    this->getFame(L);
+    uint8  ContentID = (uint8)lua_tointeger(L, 1);
+    int8   fameArea = LOG_TYPES[ContentID][FAME];
 
-    uint16 fame = (uint16)lua_tointeger(L, -1);
-    uint8  fameLevel = 1;
+    if (fameArea >= 0)
+    {
+        this->getFame(L);
+        uint16 fame = (uint16)lua_tointeger(L, -1);
+        uint8  fameLevel = 1;
 
-    if (fame >= 613)
-        fameLevel = 9;
-    else if (fame >= 550)
-        fameLevel = 8;
-    else if (fame >= 488)
-        fameLevel = 7;
-    else if (fame >= 425)
-        fameLevel = 6;
-    else if (fame >= 325)
-        fameLevel = 5;
-    else if (fame >= 225)
-        fameLevel = 4;
-    else if (fame >= 125)
-        fameLevel = 3;
-    else if (fame >= 50)
-        fameLevel = 2;
+        if (fame >= 613)
+            fameLevel = 9;
+        else if (fame >= 550)
+            fameLevel = 8;
+        else if (fame >= 488)
+            fameLevel = 7;
+        else if (fame >= 425)
+            fameLevel = 6;
+        else if (fame >= 325)
+            fameLevel = 5;
+        else if (fame >= 225)
+            fameLevel = 4;
+        else if (fame >= 125)
+            fameLevel = 3;
+        else if (fame >= 50)
+            fameLevel = 2;
 
-    if ((fameArea >= 6) && (fameArea <= 14) && (fameLevel >= 6))
-        fameLevel = 6; // Abyssea areas cap out at level 6 fame.
+        if ((fameArea >= 6) && (fameArea <= 14) && (fameLevel >= 6))
+            fameLevel = 6; // Abyssea areas cap out at level 6 fame.
 
-    lua_pushinteger(L, fameLevel);
+        lua_pushinteger(L, fameLevel);
+    }
+    else
+    {
+        ShowError(CL_RED"Lua::getFameLevel: ContentID %i is invalid\n" CL_RESET, ContentID);
+        lua_pushinteger(L, 1);
+    }
     return 1;
 }
 
@@ -4101,43 +4130,51 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
-    uint8  fameArea = (uint8)lua_tointeger(L, -2);
+    uint8  ContentID = (uint8)lua_tointeger(L, -2);
     uint16 fame = (uint16)lua_tointeger(L, -1);
+    int8   fameArea = LOG_TYPES[ContentID][FAME];
 
-    switch (fameArea)
+    if (fameArea >= 0)
     {
-        case 0: // San d'Oria
-        case 1: // Bastok
-        case 2: // Windurst
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
-            break;
-        case 3: // Jeuno
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[4] = fame;
-            break;
-        case 4: // Selbina / Rabao
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
-            break;
-        case 5: // Norg
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
-            break;
-        // Abyssea
-        case 6: // Konschtat
-        case 7: // Tahrongi
-        case 8: // La Theine
-        case 9: // Misareaux
-        case 10: // Vunkerl
-        case 11: // Attohwa
-        case 12: // Altepa
-        case 13: // Grauberg
-        case 14: // Uleguerand
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea-1] = fame;
-            break;
-        case 15: // Adoulin
-            ((CCharEntity*)m_PBaseEntity)->profile.fame[14] = fame;
-            break;
+        switch (fameArea)
+        {
+            case 0: // San d'Oria
+            case 1: // Bastok
+            case 2: // Windurst
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea] = fame;
+                break;
+            case 3: // Jeuno
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[4] = fame;
+                break;
+            case 4: // Selbina / Rabao
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[0] = fame;
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[1] = fame;
+                break;
+            case 5: // Norg
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[3] = fame;
+                break;
+            // Abyssea
+            case 6: // Konschtat
+            case 7: // Tahrongi
+            case 8: // La Theine
+            case 9: // Misareaux
+            case 10: // Vunkerl
+            case 11: // Attohwa
+            case 12: // Altepa
+            case 13: // Grauberg
+            case 14: // Uleguerand
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[fameArea-1] = fame;
+                break;
+            case 15: // Adoulin
+                ((CCharEntity*)m_PBaseEntity)->profile.fame[14] = fame;
+                break;
+        }
+        charutils::SaveFame((CCharEntity*)m_PBaseEntity);
     }
-    charutils::SaveFame((CCharEntity*)m_PBaseEntity);
+    else
+    {
+        ShowError(CL_RED"Lua::setFame: ContentID %i is invalid\n" CL_RESET, ContentID);
+    }
     return 0;
 }
 
@@ -4155,45 +4192,53 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
 
-    uint8  fameArea = (uint8)lua_tointeger(L, -2);
+    uint8  ContentID = (uint8)lua_tointeger(L, -2);
     uint16 fame = (uint16)lua_tointeger(L, -1);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    switch (fameArea)
+    int8  fameArea = LOG_TYPES[ContentID][FAME];
+    
+    if (fameArea >= 0)
     {
-        case 0: // San d'Oria
-        case 1: // Bastok
-        case 2: // Windurst
-            PChar->profile.fame[fameArea] += fame;
-            break;
-        case 3: // Jeuno
-            PChar->profile.fame[4] += fame;
-            break;
-        case 4: // Selbina / Rabao
-            PChar->profile.fame[0] += fame;
-            PChar->profile.fame[1] += fame;
-            break;
-        case 5: // Norg
-            PChar->profile.fame[3] += fame;
-            break;
-        // Abyssea
-        case 6: // Konschtat
-        case 7: // Tahrongi
-        case 8: // La Theine
-        case 9: // Misareaux
-        case 10: // Vunkerl
-        case 11: // Attohwa
-        case 12: // Altepa
-        case 13: // Grauberg
-        case 14: // Uleguerand
-            PChar->profile.fame[fameArea-1] += fame;
-            break;
-        case 15: // Adoulin
-            PChar->profile.fame[14] += fame;
-            break;
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        switch (fameArea)
+        {
+            case 0: // San d'Oria
+            case 1: // Bastok
+            case 2: // Windurst
+                PChar->profile.fame[fameArea] += fame;
+                break;
+            case 3: // Jeuno
+                PChar->profile.fame[4] += fame;
+                break;
+            case 4: // Selbina / Rabao
+                PChar->profile.fame[0] += fame;
+                PChar->profile.fame[1] += fame;
+                break;
+            case 5: // Norg
+                PChar->profile.fame[3] += fame;
+                break;
+            // Abyssea
+            case 6: // Konschtat
+            case 7: // Tahrongi
+            case 8: // La Theine
+            case 9: // Misareaux
+            case 10: // Vunkerl
+            case 11: // Attohwa
+            case 12: // Altepa
+            case 13: // Grauberg
+            case 14: // Uleguerand
+                PChar->profile.fame[fameArea-1] += fame;
+                break;
+            case 15: // Adoulin
+                PChar->profile.fame[14] += fame;
+                break;
+        }
+        charutils::SaveFame(PChar);
     }
-    charutils::SaveFame(PChar);
+    else
+    {
+        ShowError(CL_RED"Lua::addFame: ContentID %i is invalid\n" CL_RESET, ContentID);
+    }
     return 0;
 }
 
