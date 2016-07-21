@@ -199,11 +199,22 @@ void CAttackRound::DeleteAttackSwing()
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
+    
+    bool isPC = m_attacker->objtype == TYPE_PC;
 
     // Checking the players weapon hit count
     if (PWeapon->getReqLvl() <= m_attacker->GetMLevel())
     {
         num = PWeapon->getHitCount();
+    }
+    
+    // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
+    if (dynamic_cast<CMobEntity*>(m_attacker))
+    {
+        auto multiHitMax = static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
+        
+        if (multiHitMax > 0)
+            num = 1 + battleutils::getHitCount(multiHitMax);
     }
 
     AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
@@ -214,7 +225,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
 
     //check for merit upgrades
-    if (m_attacker->objtype == TYPE_PC)
+    if (isPC)
     {
         CCharEntity* PChar = (CCharEntity*)m_attacker;
 
@@ -245,7 +256,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
     // Ammo extra swing - players only
-    if (m_attacker->objtype == TYPE_PC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
+    if (isPC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
     {
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
