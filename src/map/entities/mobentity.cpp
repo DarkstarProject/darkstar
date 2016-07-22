@@ -992,7 +992,7 @@ void CMobEntity::OnDisengage(CAttackState& state)
 
     if (getMobMod(MOBMOD_IDLE_DESPAWN))
     {
-        SetDespawnTime(std::chrono::milliseconds(getMobMod(MOBMOD_IDLE_DESPAWN)));
+        SetDespawnTime(std::chrono::seconds(getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
     // this will let me decide to walk home or despawn
     m_neutral = true;
