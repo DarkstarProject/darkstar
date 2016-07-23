@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 
     if (GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();        
-        SpawnMob(feelerID,120):updateClaim(player);
+        SpawnMob(feelerID):updateClaim(player);
     end
 end;
 

@@ -45,9 +45,9 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
             player:setVar("TheRequiemAlreadyPoped",1);
-            SpawnMob(17576264,300):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
-            SpawnMob(17576267,180):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
-            SpawnMob(17576266,180):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
+            SpawnMob(17576264):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
+            SpawnMob(17576267):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
+            SpawnMob(17576266):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
         else
             player:messageSpecial(NOTHING_HAPPENED);
         end
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         if (ANewDawnEvent == 4) then
             for i = 17576267, 17576269 do 
                 if (GetMobAction(i) == 0) then
-                    SpawnMob(i,180):updateClaim(player); -- Spawn Sturm, Taifun and Trombe. 
+                    SpawnMob(i):updateClaim(player); -- Spawn Sturm, Taifun and Trombe. 
                 end
             end
         elseif (ANewDawnEvent == 5) then
