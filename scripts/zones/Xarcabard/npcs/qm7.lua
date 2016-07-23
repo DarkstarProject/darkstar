@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
 
     if (csid == 0x0008) then
-        SpawnMob(koenigsTiger,240):updateClaim(player);
+        SpawnMob(koenigsTiger):updateClaim(player);
     end
 
 end;

@@ -43,10 +43,10 @@ function onTrigger(player,npc)
     if (Executorkill == 1 and Assassin1kill == 1 and Assassin2kill == 1 and Assassin3kill == 1) then -- If all Mobs have been killed
         player:startEvent(0x0025);
     elseif (ExecutorA == 0 and Assassin1A == 0 and Assassin2A == 0 and Assassin3A == 0 and Executorkill~=2) then -- If no mobs present
-        SpawnMob(ExecutorID,180):updateClaim(player);
-        SpawnMob(Assassin1ID,420);
-        SpawnMob(Assassin2ID,420);
-        SpawnMob(Assassin3ID,420);
+        SpawnMob(ExecutorID):updateClaim(player);
+        SpawnMob(Assassin1ID);
+        SpawnMob(Assassin2ID);
+        SpawnMob(Assassin3ID);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
