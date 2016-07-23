@@ -609,6 +609,61 @@ INSERT INTO `mob_spawn_mods` VALUES (17576269,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17354895,55,600,1);
 INSERT INTO `mob_spawn_mods` VALUES (17354896,55,600,1);
 
+-- Mimics
+INSERT INTO `mob_spawn_mods` VALUES (17379783,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17404338,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17396144,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17436965,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17584426,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17432583,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17576271,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17596728,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17617157,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17490230,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17391805,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (16826564,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17629190,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17309979,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17498564,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17428497,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17469761,55,120,1);
+INSERT INTO `mob_spawn_mods` VALUES (17502567,55,120,1);
+
+-- Strange Apperatus
+INSERT INTO `mob_spawn_mods` VALUES (17559870,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17568139,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17572203,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17580340,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17584427,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17588704,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (17596729,55,300,1);
+
+-- Phantom Worm
+INSERT INTO `mob_spawn_mods` VALUES (17490233,55,180,1);
+
+-- Olla Media, Olla Grande
+INSERT INTO `mob_spawn_mods` VALUES (17506668,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17506669,55,180,1);
+
+-- Jailer of Temperance 
+INSERT INTO `mob_spawn_mods` VALUES (16916814,55,300,1);
+
+-- Jailer of Fortitude
+INSERT INTO `mob_spawn_mods` VALUES (16921015,55,180,1);
+-- Jailer of Fortitude Pets
+INSERT INTO `mob_spawn_mods` VALUES (16921016,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (16921017,55,180,1);
+
+-- Jailer of Faith
+INSERT INTO `mob_spawn_mods` VALUES (16921021,55,900,1);
+
+-- Gurfurlur the Menacing
+INSERT INTO `mob_spawn_mods` VALUES (17031592,55,180,1);
+
+INSERT INTO `mob_spawn_mods` VALUES (17588701,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17588702,55,180,1);
+INSERT INTO `mob_spawn_mods` VALUES (17588703,55,180,1);
+
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
