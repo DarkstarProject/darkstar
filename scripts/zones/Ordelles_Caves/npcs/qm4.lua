@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(654,1) and trade:getItemCount() == 1) then -- Trade Darksteel Ingot
             player:tradeComplete();
             player:messageSpecial(GERWITZS_AXE_DIALOG);
-            SpawnMob(17568135,180):updateClaim(player);
+            SpawnMob(17568135):updateClaim(player);
         end
     end
 

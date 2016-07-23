@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         local canSpawn = (os.time() - DreadbugTimer) > 30;
         
         if (canSpawn) then
-            SpawnMob(17584425,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+            SpawnMob(17584425):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
             player:setVar("DreadbugNM_Timer",os.time()+180);
             player:setVar("DreadbugNM_Day",VanadielDayOfTheYear());
             player:messageSpecial(SENSE_OF_FOREBODING);

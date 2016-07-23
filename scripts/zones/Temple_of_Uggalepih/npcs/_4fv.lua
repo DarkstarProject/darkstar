@@ -29,8 +29,8 @@ function onTrigger(player,npc)
             if (player:getVar("Mission8-2Kills") >= 1) then
                 player:startEvent(0x0041);
             else
-                SpawnMob(17428495,180)
-                SpawnMob(17428496,180)
+                SpawnMob(17428495)
+                SpawnMob(17428496)
             end
         end
     end

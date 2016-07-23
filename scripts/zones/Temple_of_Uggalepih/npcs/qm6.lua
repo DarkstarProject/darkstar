@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     -- Trade Uggalepih Whistle
     if (trade:hasItemQty(1184,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(17428816,300):updateClaim(player);
+        SpawnMob(17428816):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end

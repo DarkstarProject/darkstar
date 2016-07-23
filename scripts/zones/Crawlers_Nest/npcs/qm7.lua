@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17584135) == 0 and trade:hasItemQty(4531,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
         if (math.random(1,100)<=73) then
-            SpawnMob(17584135,120):updateClaim(player); -- Awd Goggie
+            SpawnMob(17584135):updateClaim(player); -- Awd Goggie
             npc:setStatus(STATUS_DISAPPEAR) -- hide ???
         else 
             player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                

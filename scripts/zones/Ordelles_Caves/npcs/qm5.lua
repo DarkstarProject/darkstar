@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(16681,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Axe
             player:tradeComplete();
             player:messageSpecial(GERWITZS_SWORD_DIALOG);
-            SpawnMob(17568136,180):updateClaim(player);
+            SpawnMob(17568136):updateClaim(player);
         end
     end
 

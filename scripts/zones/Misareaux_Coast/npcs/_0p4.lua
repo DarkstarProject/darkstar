@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and GetMobAction(16879897) == 0 and player:getVar("COP_Boggelmann_KILL") == 0) then
-      SpawnMob(16879897,180):updateClaim(player);
+      SpawnMob(16879897):updateClaim(player);
     elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("COP_Boggelmann_KILL") == 1) then
       player:startEvent(0x000D);
     else

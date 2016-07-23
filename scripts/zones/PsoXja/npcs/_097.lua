@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
                     local Rand = math.random(1,2); -- estimated 50% success as per the wiki
                     if (Rand == 1) then -- Spawn Gargoyle
                         player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); 
-                        SpawnMob(16814088,120):updateClaim(player); -- Gargoyle
+                        SpawnMob(16814088):updateClaim(player); -- Gargoyle
                     else
                         player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
                         npc:openDoor(30);
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
                 local Rand = math.random(1,10);
                 if (Rand <=9) then -- Spawn Gargoyle
                     player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
-                    SpawnMob(16814088,120):updateClaim(player); -- Gargoyle
+                    SpawnMob(16814088):updateClaim(player); -- Gargoyle
                 else
                     player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);

@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==1) then
-        SpawnMob(17588706,180):updateClaim(player);
+        SpawnMob(17588706):updateClaim(player);
     end
     if (player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==2) then
         player:startEvent(0x042)

@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc) 
 
     if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==1) then
-        SpawnMob(16867330,240):updateClaim(player);
+        SpawnMob(16867330):updateClaim(player);
     elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==2) then    
         player:startEvent(0x0033);
     else

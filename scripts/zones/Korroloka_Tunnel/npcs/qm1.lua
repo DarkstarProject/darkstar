@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     -- Trade Iron ore
     if (GetMobAction(17486190) == 0 and trade:hasItemQty(643,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(17486190,1800):updateClaim(player); -- Morion Worm
+        SpawnMob(17486190):updateClaim(player); -- Morion Worm
         mob:setPos(x+1,y,z);
         npc:setStatus(STATUS_DISAPPEAR);
     end

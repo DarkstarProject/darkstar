@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     if (hittingTheMarquisateHagainCS == 8) then 
         player:messageSpecial(HEAT_FROM_CEILING);
         -- TODO: player must wait 10 minutes before they can spawn bomb again
-        SpawnMob(17596533,120):updateClaim(player); -- Chandelier
+        SpawnMob(17596533):updateClaim(player); -- Chandelier
     end
     
 end;

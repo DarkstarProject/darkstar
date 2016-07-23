@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         player:messageSpecial(SURVEY_THE_SURROUNDINGS);
         player:messageSpecial(MURDEROUS_PRESENCE);
         player:setVar("SPLINTERSPINE_GRUKJUK",1);
-        SpawnMob(16875774,120):updateClaim(player); -- Splinterspine Grukjuk
+        SpawnMob(16875774):updateClaim(player); -- Splinterspine Grukjuk
     else
         player:messageSpecial(YOU_CAN_SEE_FOR_MALMS);
         player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);

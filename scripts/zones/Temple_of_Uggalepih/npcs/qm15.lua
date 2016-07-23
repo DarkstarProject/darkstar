@@ -29,8 +29,8 @@ function onTrigger(player,npc)
       and NM_Kill == 0 and GetMobAction(17428807) == 0 and GetMobAction(17428808) == 0) then
         -- These mobs specifically will not engage unless aggro'd.
         player:messageSpecial(SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
-        SpawnMob(17428807,180);
-        SpawnMob(17428808,180);
+        SpawnMob(17428807);
+        SpawnMob(17428808);
     elseif (NM_Kill == 1) then
         player:startEvent(67);
     else

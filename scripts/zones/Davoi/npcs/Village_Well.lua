@@ -31,8 +31,8 @@ end;
 function onTrigger(player,npc)
 
     if (player:getVar("UnderOathCS") == 5 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER) and player:hasItem(1095) == false) then -- Under Oath Quest - PLD AF3
-        SpawnMob(17387970,180):updateClaim(player); --One-eyed_Gwajboj
-        SpawnMob(17387971,180):updateClaim(player); --Three-eyed_Prozpuz
+        SpawnMob(17387970):updateClaim(player); --One-eyed_Gwajboj
+        SpawnMob(17387971):updateClaim(player); --Three-eyed_Prozpuz
     elseif (player:getVar("UnderOathCS") == 6 and player:hasKeyItem(KNIGHTS_CONFESSION)) then
         player:startEvent(0x0070);  --Under Oath -- Reads contents of the letter
     else
