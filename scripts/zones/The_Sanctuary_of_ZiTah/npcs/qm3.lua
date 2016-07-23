@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1168,1) and trade:getItemCount() == 1) then -- Trade Sack of Fish Bait
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
-            SpawnMob(17273285,180):updateClaim(player);
+            SpawnMob(17273285):updateClaim(player);
         end
     end
     

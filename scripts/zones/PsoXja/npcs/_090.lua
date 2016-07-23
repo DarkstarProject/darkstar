@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
                     if (Rand == 1) then -- Spawn Gargoyle
                         -- + 0x8000 along with the 6th param being true makes it display the player's name properly as part of the message.
                         player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true);
-                        SpawnMob(16814081,120):updateClaim(player); -- Gargoyle
+                        SpawnMob(16814081):updateClaim(player); -- Gargoyle
                     else
                         player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
                         npc:openDoor(30);
@@ -57,7 +57,7 @@ function onTrigger(player,npc)
                 local Rand = math.random(1,10);
                 if (Rand <=9) then -- Spawn Gargoyle
                     player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); 
-                    SpawnMob(16814081,120):updateClaim(player); -- Gargoyle
+                    SpawnMob(16814081):updateClaim(player); -- Gargoyle
                 else
                     player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);

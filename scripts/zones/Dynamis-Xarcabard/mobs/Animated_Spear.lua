@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
     
     target:showText(mob,ANIMATED_SPEAR_DIALOG);
     
-    SpawnMob(17330423,120):updateEnmity(target);
-    SpawnMob(17330424,120):updateEnmity(target);
-    SpawnMob(17330425,120):updateEnmity(target);
-    SpawnMob(17330435,120):updateEnmity(target);
-    SpawnMob(17330436,120):updateEnmity(target);
-    SpawnMob(17330437,120):updateEnmity(target);
+    SpawnMob(17330423):updateEnmity(target);
+    SpawnMob(17330424):updateEnmity(target);
+    SpawnMob(17330425):updateEnmity(target);
+    SpawnMob(17330435):updateEnmity(target);
+    SpawnMob(17330436):updateEnmity(target);
+    SpawnMob(17330437):updateEnmity(target);
 
 end;
 

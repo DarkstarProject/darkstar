@@ -60,8 +60,8 @@ function onEventFinish(player,csid,option)
     if (csid == 0x000a and option == 1) then
         player:needToZone(true); -- If you zone, you will need to repeat the fight. 
         player:setVar("OkuriNMKilled",0);
-        SpawnMob(17199567,300):updateClaim(player); -- Doman
-        SpawnMob(17199568,300):updateClaim(player); -- Onryo
+        SpawnMob(17199567):updateClaim(player); -- Doman
+        SpawnMob(17199568):updateClaim(player); -- Onryo
     end
     
 end;

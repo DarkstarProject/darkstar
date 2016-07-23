@@ -37,11 +37,11 @@ function onTrigger(player,npc)
         player:messageSpecial(NONE_HOSTILE);--(SHEER_ANIMOSITY);
     elseif (Kills == 3) then 
         moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921018,180):updateClaim(player);
+        SpawnMob(16921018):updateClaim(player);
         mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921019,180):updateClaim(player);
+        SpawnMob(16921019):updateClaim(player);
         mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921020,180):updateClaim(player);
+        SpawnMob(16921020):updateClaim(player);
         GetNPCByID(16921028):hideNPC(900);
             if (math.random(0,1) == 1) then -- random do select which item do drop. Will select one item 100% of the time.
                 SetDropRate(4397,1854,000);

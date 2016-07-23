@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     -- Trade Flickering Lantern 
     if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(17428751,300):updateClaim(player);
+        SpawnMob(17428751):updateClaim(player);
         -- Note: The ??? reappears after 15 minutes
     end
 

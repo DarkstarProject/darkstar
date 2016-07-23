@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(1757,1) and trade:getItemCount() == 1) then -- Coveter Remnant
         player:tradeComplete();
         player:messageSpecial(ON_NM_SPAWN);
-        SpawnMob(16867544,180):updateClaim(player); -- Spawn Wailer
+        SpawnMob(16867544):updateClaim(player); -- Spawn Wailer
         npc:setStatus(STATUS_DISAPPEAR);
     end
 

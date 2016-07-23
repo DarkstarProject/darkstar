@@ -40,9 +40,9 @@ function onTrigger(player,npc)
                     player:setVar("KorrolokaLeeches_Spawned",0);
                     player:setVar("KorrolokaLeeches_Timer",0);
                 elseif (leechesDespawned) then
-                    SpawnMob(17486187,168); -- Despawn after 3 minutes (-12 seconds for despawn delay).
-                    SpawnMob(17486188,168);
-                    SpawnMob(17486189,168);
+                    SpawnMob(17486187); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+                    SpawnMob(17486188);
+                    SpawnMob(17486189);
                     player:setVar("KorrolokaLeeches",0);
                     player:setVar("KorrolokaLeeches_Spawned",os.time()+180);
                     player:messageSpecial(SENSE_OF_BOREBODING);
@@ -50,9 +50,9 @@ function onTrigger(player,npc)
                     player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
                 end
             elseif (canSpawn) then
-                SpawnMob(17486187,168); -- Despawn after 3 minutes (-12 seconds for despawn delay).
-                SpawnMob(17486188,168);
-                SpawnMob(17486189,168);
+                SpawnMob(17486187); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+                SpawnMob(17486188);
+                SpawnMob(17486189);
                 player:setVar("KorrolokaLeeches_Spawned",os.time()+180);
                 player:messageSpecial(SENSE_OF_BOREBODING);
             else
