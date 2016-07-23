@@ -1415,31 +1415,34 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "quest_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
-    uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 subjectID = (uint8)lua_tointeger(L, -2);
-    int8 QuestLogID = LOG_TYPES[subjectID][QUEST_LOG];
-
-    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 current = PChar->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current == 0) && (complete == 0))
         {
-            PChar->m_questLog[QuestLogID].current[questID / 8] |= (1 << (questID % 8));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_QUEST_CURR));
+            PChar->m_questLog[questLogID].current[questID / 8] |= (1 << (questID % 8));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
 
             charutils::SaveQuestsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::addQuest: subjectID %i or QuestID %i is invalid\n" CL_RESET, subjectID, questID);
+        ShowError(CL_RED"Lua::addQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     }
     return 0;
 }
@@ -1451,34 +1454,37 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "quest_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
-    uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 subjectID = (uint8)lua_tointeger(L, -2);
-    int8 QuestLogID = LOG_TYPES[subjectID][QUEST_LOG];
-
-    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 current = PChar->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 current = PChar->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if ((current != 0) || (complete != 0))
         {
-            PChar->m_questLog[QuestLogID].current[questID / 8] &= ~(1 << (questID % 8));
-            PChar->m_questLog[QuestLogID].complete[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[questLogID].current[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[questLogID].complete[questID / 8] &= ~(1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_QUEST_CURR));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_QUEST_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMP));
 
             charutils::SaveQuestsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::delQuest: subjectID %i or QuestID %i is invalid\n" CL_RESET, subjectID, questID);
+        ShowError(CL_RED"Lua::delQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     }
     return 0;
 }
@@ -1490,24 +1496,28 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
-
-    uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 subjectID = (uint8)lua_tointeger(L, -2);
-    int8 QuestLogID = LOG_TYPES[subjectID][QUEST_LOG];
-
-    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
     {
-        uint8 current = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].current[questID / 8] & (1 << (questID % 8));
-        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
+        lua_getfield(L, 1, "quest_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
+
+    if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    {
+        uint8 current = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].current[questID / 8] & (1 << (questID % 8));
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushinteger(L, (complete != 0 ? 2 : (current != 0 ? 1 : 0)));
         return 1;
     }
     else
     {
-        ShowError(CL_RED"Lua::getQuestStatus: subjectID %i or QuestID %i is invalid\n" CL_RESET, subjectID, questID);
+        ShowError(CL_RED"Lua::getQuestStatus: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     }
     lua_pushnil(L);
     return 1;
@@ -1520,32 +1530,35 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "quest_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
 
-    uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 subjectID = (uint8)lua_tointeger(L, -2);
-    int8 QuestLogID = LOG_TYPES[subjectID][QUEST_LOG];
-
-    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
     {
-        uint8 complete = PChar->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
+        uint8 complete = PChar->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         if (complete == 0)
         {
-            PChar->m_questLog[QuestLogID].current[questID / 8] &= ~(1 << (questID % 8));
-            PChar->m_questLog[QuestLogID].complete[questID / 8] |= (1 << (questID % 8));
+            PChar->m_questLog[questLogID].current[questID / 8] &= ~(1 << (questID % 8));
+            PChar->m_questLog[questLogID].complete[questID / 8] |= (1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_QUEST_CURR));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_QUEST_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMP));
         }
         charutils::SaveQuestsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::completeQuest: subjectID %i or QuestID %i is invalid\n" CL_RESET, subjectID, questID);
+        ShowError(CL_RED"Lua::completeQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     }
     return 0;
 }
@@ -1561,21 +1574,25 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
-
-    uint8 questID = (uint8)lua_tointeger(L, -1);
-    uint8 subjectID = (uint8)lua_tointeger(L, -2);
-    int8 QuestLogID = LOG_TYPES[subjectID][QUEST_LOG];
-
-    if (QuestLogID >= 0 && QuestLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
     {
-        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[QuestLogID].complete[questID / 8] & (1 << (questID % 8));
+        lua_getfield(L, 1, "quest_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    uint8 questLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint8 questID = (uint8)lua_tointeger(L, 2);
+
+    if (questLogID < MAX_QUESTAREA && questID < MAX_QUESTID)
+    {
+        uint8 complete = ((CCharEntity*)m_PBaseEntity)->m_questLog[questLogID].complete[questID / 8] & (1 << (questID % 8));
 
         lua_pushboolean(L, (complete != 0));
         return 1;
     }
-    ShowError(CL_RED"Lua::hasCompleteQuest: subjectID %i or QuestID %i is invalid\n" CL_RESET, subjectID, questID);
+    ShowError(CL_RED"Lua::hasCompleteQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     lua_pushboolean(L, false);
     return 1;
 }
@@ -1591,30 +1608,33 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "mission_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
-    int8 MissionLogID = LOG_TYPES[subjectID][MISSION_LOG];
 
-    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        if (PChar->m_missionLog[MissionLogID].current != MissionLogID > 2 ? 0 : -1)
+        if (PChar->m_missionLog[missionLogID].current != missionLogID > 2 ? 0 : -1)
         {
-            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, MissionLogID);
+            ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, missionLogID);
         }
-        PChar->m_missionLog[MissionLogID].current = MissionID;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_MISS_CURR));
+        PChar->m_missionLog[missionLogID].current = MissionID;
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
 
         charutils::SaveMissionsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: subjectID %i or Mission %i is invalid\n" CL_RESET, subjectID, MissionID);
+        ShowError(CL_RED"Lua::delMission: missionLogID %i or Mission %i is invalid\n" CL_RESET, missionLogID, MissionID);
     }
     return 0;
 }
@@ -1630,35 +1650,39 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "mission_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
-    int8 MissionLogID = LOG_TYPES[subjectID][MISSION_LOG];
 
-    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        uint8 current = PChar->m_missionLog[MissionLogID].current;
-        bool complete = (subjectID == LOG_COP || MissionID >= 64) ? false : PChar->m_missionLog[MissionLogID].complete[MissionID];
+        uint8 current = PChar->m_missionLog[missionLogID].current;
+        bool complete = (missionLogID == MISSION_COP || MissionID >= 64) ? false : PChar->m_missionLog[missionLogID].complete[MissionID];
 
         if (current == MissionID)
         {
-            PChar->m_missionLog[MissionLogID].current = MissionLogID > 2 ? 0 : -1;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_MISS_CURR));
+            PChar->m_missionLog[missionLogID].current = missionLogID > 2 ? 0 : -1;
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
         }
         if (complete)
         {
-            PChar->m_missionLog[MissionLogID].complete[MissionID] = false;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_MISS_COMP));
+            PChar->m_missionLog[missionLogID].complete[MissionID] = false;
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_COMP));
         }
         charutils::SaveMissionsList(PChar);
     }
     else
     {
-        ShowError(CL_RED"Lua::delMission: subjectID %i or Mission %i is invalid\n" CL_RESET, subjectID, MissionID);
+        ShowError(CL_RED"Lua::delMission: missionLogID %i or Mission %i is invalid\n" CL_RESET, missionLogID, MissionID);
     }
     return 0;
 }
@@ -1674,23 +1698,27 @@ inline int32 CLuaBaseEntity::hasCompletedMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "mission_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
-    int8 MissionLogID = LOG_TYPES[subjectID][MISSION_LOG];
 
     bool complete = false;
 
-    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
-        complete = (subjectID == LOG_COP || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].current :
-            ((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].complete[MissionID];
+        complete = (missionLogID == MISSION_COP || MissionID >= 64) ? MissionID < ((CCharEntity*)m_PBaseEntity)->m_missionLog[missionLogID].current :
+            ((CCharEntity*)m_PBaseEntity)->m_missionLog[missionLogID].complete[MissionID];
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: subjectID %i or Mission %i is invalid\n" CL_RESET, subjectID, MissionID);
+        ShowError(CL_RED"Lua::hasCompletedMission: missionLogID %i or Mission %i is invalid\n" CL_RESET, missionLogID, MissionID);
     }
     lua_pushboolean(L, complete);
     return 1;
@@ -1707,19 +1735,23 @@ inline int32 CLuaBaseEntity::getCurrentMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
-    uint8 MissionID = 0;
-    int8  MissionLogID = LOG_TYPES[subjectID][MISSION_LOG];
-
-    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA)
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
+    if (lua_istable(L, 1))
     {
-        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[MissionLogID].current;
+        lua_getfield(L, 1, "mission_log");
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+
+    uint8 missionLogID = (uint8)lua_tointeger(L, -1);
+    uint8 MissionID = 0;
+
+    if (missionLogID < MAX_MISSIONAREA)
+    {
+        MissionID = (uint8)((CCharEntity*)m_PBaseEntity)->m_missionLog[missionLogID].current;
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: subjectID %i is invalid\n" CL_RESET, subjectID);
+        ShowError(CL_RED"Lua::getCurrentMission: missionLogID %i is invalid\n" CL_RESET, missionLogID);
     }
     lua_pushinteger(L, MissionID);
     return 1;
@@ -1736,37 +1768,41 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "mission_log");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
+    uint8 missionLogID = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint8 MissionID = (uint8)lua_tointeger(L, 2);
-    int8  MissionLogID = LOG_TYPES[subjectID][MISSION_LOG];
 
-    if (MissionLogID >= 0 && MissionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
+    if (missionLogID < MAX_MISSIONAREA && MissionID < MAX_MISSIONID)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-        if (PChar->m_missionLog[MissionLogID].current != MissionID)
+        if (PChar->m_missionLog[missionLogID].current != MissionID)
         {
-            ShowWarning(CL_YELLOW"Lua::completeMission: can't complete non current mission\n" CL_RESET, MissionLogID);
+            ShowWarning(CL_YELLOW"Lua::completeMission: can't complete non current mission\n" CL_RESET, missionLogID);
         }
         else
         {
-            PChar->m_missionLog[MissionLogID].current = MissionLogID > 2 ? 0 : -1;
-            if ((subjectID != LOG_COP) && (MissionID < 64))
+            PChar->m_missionLog[missionLogID].current = missionLogID > 2 ? 0 : -1;
+            if ((missionLogID != MISSION_COP) && (MissionID < 64))
             {
-                PChar->m_missionLog[MissionLogID].complete[MissionID] = true;
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_MISS_COMP));
+                PChar->m_missionLog[missionLogID].complete[MissionID] = true;
+                PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_COMP));
             }
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, subjectID, STATUS_MISS_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
 
             charutils::SaveMissionsList(PChar);
         }
     }
     else
     {
-        ShowError(CL_RED"Lua::completeMission: subjectID %i or Mission %i is invalid\n" CL_RESET, subjectID, MissionID);
+        ShowError(CL_RED"Lua::completeMission: missionLogID %i or Mission %i is invalid\n" CL_RESET, missionLogID, MissionID);
     }
     return 0;
 }
@@ -1787,7 +1823,7 @@ inline int32 CLuaBaseEntity::addAssault(lua_State *L)
         ShowWarning(CL_YELLOW"Lua::addAssault: player has a current assault\n" CL_RESET);
     }
     PChar->m_assaultLog.current = MissionID;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
 
     charutils::SaveMissionsList(PChar);
 
@@ -1811,7 +1847,7 @@ inline int32 CLuaBaseEntity::delAssault(lua_State *L)
     if (current == MissionID)
     {
         PChar->m_assaultLog.current = 0;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
     }
     charutils::SaveMissionsList(PChar);
 
@@ -1861,8 +1897,8 @@ inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
     }
     PChar->m_assaultLog.current = 0;
     PChar->m_assaultLog.complete[MissionID] = true;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_CURR));
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ASSAULT, STATUS_MISS_COMP));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_COMP));
 
     charutils::SaveMissionsList(PChar);
 
@@ -4013,12 +4049,16 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "fame_area");
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    uint8 subjectID = (uint8)lua_tointeger(L, 1);
-    int8  fameArea = LOG_TYPES[subjectID][FAME];
+    uint8 fameArea = (uint8)lua_tointeger(L, -1);
 
-    if (fameArea >= 0)
+    if (fameArea <= 15)
     {
         uint16 fame = 0;
         float fameMultiplier = map_config.fame_multiplier;
@@ -4060,7 +4100,7 @@ inline int32 CLuaBaseEntity::getFame(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::getFame: subjectID %i is invalid\n" CL_RESET, subjectID);
+        ShowError(CL_RED"Lua::getFame: fameArea %i is invalid\n" CL_RESET, fameArea);
         lua_pushinteger(L, 0);
     }
     return 1;
@@ -4077,10 +4117,16 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    uint8  subjectID = (uint8)lua_tointeger(L, 1);
-    int8   fameArea = LOG_TYPES[subjectID][FAME];
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "fame_area");
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    if (fameArea >= 0)
+    uint8 fameArea = (uint8)lua_tointeger(L, -1);
+
+    if (fameArea <= 15)
     {
         this->getFame(L);
         uint16 fame = (uint16)lua_tointeger(L, -1);
@@ -4110,7 +4156,7 @@ inline int32 CLuaBaseEntity::getFameLevel(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::getFameLevel: subjectID %i is invalid\n" CL_RESET, subjectID);
+        ShowError(CL_RED"Lua::getFameLevel: fameArea %i is invalid\n" CL_RESET, fameArea);
         lua_pushinteger(L, 1);
     }
     return 1;
@@ -4127,14 +4173,18 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "fame_area");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8  subjectID = (uint8)lua_tointeger(L, -2);
-    uint16 fame = (uint16)lua_tointeger(L, -1);
-    int8   fameArea = LOG_TYPES[subjectID][FAME];
+    uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint16 fame = (uint16)lua_tointeger(L, 2);
 
-    if (fameArea >= 0)
+    if (fameArea <= 15)
     {
         switch (fameArea)
         {
@@ -4173,7 +4223,7 @@ inline int32 CLuaBaseEntity::setFame(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::setFame: subjectID %i is invalid\n" CL_RESET, subjectID);
+        ShowError(CL_RED"Lua::setFame: fameArea %i is invalid\n" CL_RESET, fameArea);
     }
     return 0;
 }
@@ -4189,14 +4239,18 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, -2) || !lua_isnumber(L, -2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || (!lua_isnumber(L, 1) && !lua_istable(L, 1)));
+    if (lua_istable(L, 1))
+    {
+        lua_getfield(L, 1, "fame_area");
+        DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
+    }
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    uint8  subjectID = (uint8)lua_tointeger(L, -2);
-    uint16 fame = (uint16)lua_tointeger(L, -1);
-    int8  fameArea = LOG_TYPES[subjectID][FAME];
+    uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
+    uint16 fame = (uint16)lua_tointeger(L, 2);
     
-    if (fameArea >= 0)
+    if (fameArea <= 15)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
@@ -4237,7 +4291,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
     }
     else
     {
-        ShowError(CL_RED"Lua::addFame: subjectID %i is invalid\n" CL_RESET, subjectID);
+        ShowError(CL_RED"Lua::addFame: fameArea %i is invalid\n" CL_RESET, fameArea);
     }
     return 0;
 }

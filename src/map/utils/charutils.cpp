@@ -1031,33 +1031,25 @@ namespace charutils
     {
         // Quests (Current + Completed):
         // --------------------------------
-        int8 sentQuestAreas[LOG_ROV] = {0};
-        int8 questLogID = 0;
-        
-        for (int8 areaID = 0; areaID <= LOG_COALITION; areaID++)
+        for (int8 areaID = 0; areaID <= QUESTS_COALITION; areaID++)
         {
-            questLogID = LOG_TYPES[areaID][QUEST_LOG];
-            if ((questLogID >= 0) && (sentQuestAreas[questLogID] == 0))
-            {
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, STATUS_QUEST_CURR));
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, STATUS_QUEST_COMP));
-                sentQuestAreas[LOG_TYPES[areaID][QUEST_LOG]] = 1;
-            }
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_COMP));
         }
 
         // Completed Missions:
         // --------------------------------
         // Completed missions for Nation + Zilart Missions are all sent in single packet
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ZILART, STATUS_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISS_COMP));
 
         // Completed missions for TOAU and WOTG are sent in the same packet
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_TOAU, STATUS_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, LOG_MISS_COMP));
 
         // Completed Assaults were sent in the same packet as completed TOAU quests
 
         // Completed Campaign Operations
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_CAMPAIGN, STATUS_MISS_COMP));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_CAMPAIGN2, STATUS_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_CAMPAIGN2));
 
         // Current Missions:
         // --------------------------------
@@ -1065,7 +1057,7 @@ namespace charutils
 
         // Current Nation, Zilart, COP, Add-On, SOA, and ROV missions are all sent in a shared, single packet.
         // So sending this packet updates multiple Mission logs at once.
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, LOG_ZILART, STATUS_MISS_CURR));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISS_CURR));
     }
 
     /************************************************************************
