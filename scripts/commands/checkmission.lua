@@ -16,11 +16,11 @@ function onTrigger(player,logId,target)
     local logName;
     logId = tonumber(logId) or _G[logId];
     if ((type(logId) == "table")) then
-        logName = logId["full_name"];
-        logId = logId["mission_log"];
+        logName = logId.full_name;
+        logId = logId.mission_log;
     else
         local missionAreas = {SANDORIA, BASTOK, WINDURST, ZILART, TOAU, WOTG, COP, ASSAULT, CAMPAIGN, ACP, AMK, ASA, SOA, ROV};
-        logName = missionAreas[logId + 1]["full_name"];
+        logName = missionAreas[logId + 1].full_name;
     end
     
     if (logId == nil) then

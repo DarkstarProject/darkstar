@@ -16,8 +16,8 @@ function onTrigger(player, logId, questId, target)
     local logName;
     logId = tonumber(logId) or _G[logId];
     if ((type(logId) == "table")) then
-        logName = logId["full_name"];
-        logId = logId["quest_log"];
+        logName = logId.full_name;
+        logId = logId.quest_log;
     end
 
     questId = tonumber(questId) or _G[questId];

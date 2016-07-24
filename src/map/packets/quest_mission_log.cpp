@@ -41,7 +41,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
     {
         // We're updating any non-TOAU quest log
         generateQuestPacket(PChar, logID, logType);
-        packetType = QUEST_PACKET_BYTES[logID][logType - 1];
+        packetType = QUEST_PACKET_BYTES.at(logID * 2 + logType);
     }
     // Then get our mission log updates out of the way
     else if (logType >= LOG_MISS_CURR)
@@ -74,7 +74,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
                         // Completed Assault Missions share a packet with completed TOAU quests
                         generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_COMP);
                         generateAssaultMissionPacket(PChar);
-                        packetType = EXP_COMPLETE;
+                        packetType = ASSAULT_COMPLETE;
                         break;
                     case MISSION_CAMPAIGN:
                         // Completed Campaign missions take up two packets. Second half will come in a follow-up packet.
@@ -108,7 +108,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
             // Completed TOAU Quests share a packet with completed Assault Missions
             generateAssaultMissionPacket(PChar); // Writes in same packet
         }
-        packetType = QUEST_PACKET_BYTES[logID][logType - 1];
+        packetType = QUEST_PACKET_BYTES.at(logID * 2 + logType);
     }
 
     // Write the byte that informs FFXI client what kind of Quest/Mission log update this packet is.
