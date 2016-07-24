@@ -28,7 +28,7 @@
 #include "quest_mission_log.h"
 #include "../entities/charentity.h"
 
-CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, uint8 logType)
+CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE logType)
 {
     this->type = 0x56;
     this->size = 0x14;
@@ -41,7 +41,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
     {
         // We're updating any non-TOAU quest log
         generateQuestPacket(PChar, logID, logType);
-        packetType = QUEST_PACKET_BYTES.at(logID * 2 + logType);
+        packetType = questPacketBytes.at({logID, logType});
     }
     // Then get our mission log updates out of the way
     else if (logType >= LOG_MISS_CURR)
@@ -108,14 +108,14 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
             // Completed TOAU Quests share a packet with completed Assault Missions
             generateAssaultMissionPacket(PChar); // Writes in same packet
         }
-        packetType = QUEST_PACKET_BYTES.at(logID * 2 + logType);
+        packetType = questPacketBytes.at({logID, logType});
     }
 
     // Write the byte that informs FFXI client what kind of Quest/Mission log update this packet is.
     WBUFW(data, (0x24)) = packetType;
 }
 
-void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, uint8 status)
+void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE status)
 {
     if (status == LOG_QUEST_CURR)
         memcpy(data + 4, PChar->m_questLog[logID].current, 32);
