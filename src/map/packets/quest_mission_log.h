@@ -24,6 +24,7 @@
 #ifndef _CQUESTMISSIONLOGPACKET_H
 #define _CQUESTMISSIONLOGPACKET_H
 
+#include <unordered_map>
 #include "../../common/cbasetypes.h"
 
 #include "basic.h"
@@ -56,52 +57,39 @@
 #define MISSION_SOA         12
 #define MISSION_ROV         13
 
-// Quest Log Packet Values
-#define SAN_CURRENT			0x50
-#define BAS_CURRENT			0x58
-#define WIN_CURRENT			0x60
-#define JEU_CURRENT			0x68
-#define OTH_CURRENT			0x70
-#define OUT_CURRENT			0x78
-#define EXP_CURRENT			0x80
-#define WAR_CURRENT			0x88
-#define ABY_CURRENT			0xE0
-#define ADO_CURRENT			0xF0
-#define COA_CURRENT			0x0100
-
-#define SAN_COMPLETE		0x90
-#define BAS_COMPLETE		0x98
-#define WIN_COMPLETE		0xA0
-#define JEU_COMPLETE		0xA8
-#define OTH_COMPLETE		0xB0
-#define OUT_COMPLETE		0xB8
-#define EXP_COMPLETE		0xC0
-#define WAR_COMPLETE		0xC8
-#define ABY_COMPLETE		0xE8
-#define ADO_COMPLETE		0xF8
-#define COA_COMPLETE		0x0108
-
-const int QUEST_PACKET_BYTES[11][2] =
+// Quest Log Packet Bytes
+const std::unordered_map<uint8, uint16> QUEST_PACKET_BYTES =
 {
-    // Quest Cur. | Quest Comp.
-    { SAN_CURRENT, SAN_COMPLETE }, // SANDORIA
-    { BAS_CURRENT, BAS_COMPLETE }, // BASTOK
-    { WIN_CURRENT, WIN_COMPLETE }, // WINDURST
-    { JEU_CURRENT, JEU_COMPLETE }, // JEUNO
-    { OTH_CURRENT, OTH_COMPLETE }, // OTHER_AREAS
-    { OUT_CURRENT, OUT_COMPLETE }, // OUTLANDS
-    { EXP_CURRENT, EXP_COMPLETE }, // TOAU
-    { WAR_CURRENT, WAR_COMPLETE }, // WOTG
-    { ABY_CURRENT, ABY_COMPLETE }, // ABYSSEA
-    { ADO_CURRENT, ADO_COMPLETE }, // ADOULIN
-    { COA_CURRENT, COA_COMPLETE }  // COALITION
+    { 1,  0x50   }, // SAN_CURRENT
+    { 2,  0x90   }, // SAN_COMPLETE
+    { 3,  0x58   }, // BAS_CURRENT
+    { 4,  0x98   }, // BAS_COMPLETE
+    { 5,  0x60   }, // WIN_CURRENT
+    { 6,  0xA0   }, // WIN_COMPLETE
+    { 7,  0x68   }, // JEU_CURRENT
+    { 8,  0xA8   }, // JEU_COMPLETE
+    { 9,  0x70   }, // OTH_CURRENT
+    { 10, 0xB0   }, // OTH_COMPLETE
+    { 11, 0x78   }, // OUT_CURRENT
+    { 12, 0xB8   }, // OUT_COMPLETE
+    { 13, 0x80   }, // EXP_CURRENT
+    { 14, 0xC0   }, // EXP_COMPLETE
+    { 15, 0x88   }, // WAR_CURRENT
+    { 16, 0xC8   }, // WAR_COMPLETE
+    { 17, 0xE0   }, // ABY_CURRENT
+    { 18, 0xE8   }, // ABY_COMPLETE
+    { 19, 0xF0   }, // ADO_CURRENT
+    { 20, 0xF8   }, // ADO_COMPLETE
+    { 21, 0x0100 }, // COA_CURRENT
+    { 22, 0x0108 }  // COA_COMPLETE
 };
 
 // Mission Log Packet Bytes
-#define MISS_COMPLETE		0xD0
-#define MISS_CURRENT		0xFFFF
+#define MISS_COMPLETE       0xD0
+#define MISS_CURRENT        0xFFFF
 #define EXP_MISS_COMPLETE   0xD8
 #define EXP_MISS_CURRENT    0x80
+#define ASSAULT_COMPLETE    0xC0
 #define CMPGN_MISS_UN       0x30
 #define CMPGN_MISS_DEUX     0x38
 

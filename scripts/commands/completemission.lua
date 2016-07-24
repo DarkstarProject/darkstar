@@ -16,8 +16,8 @@ function onTrigger(player, logId, missionId, target)
     local logName;
     logId = tonumber(logId) or _G[logId];
     if ((type(logId) == "table")) then
-        logName = logId["full_name"];
-        logId = logId["mission_log"];
+        logName = logId.full_name;
+        logId = logId.mission_log;
     end
 
     missionId = tonumber(missionId) or _G[missionId];
