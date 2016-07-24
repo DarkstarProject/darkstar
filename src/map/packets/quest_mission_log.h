@@ -24,8 +24,8 @@
 #ifndef _CQUESTMISSIONLOGPACKET_H
 #define _CQUESTMISSIONLOGPACKET_H
 
-#include <unordered_map>
 #include "../../common/cbasetypes.h"
+#include <map>
 
 #include "basic.h"
 
@@ -57,31 +57,41 @@
 #define MISSION_SOA         12
 #define MISSION_ROV         13
 
-// Quest Log Packet Bytes
-const std::unordered_map<uint8, uint16> QUEST_PACKET_BYTES =
+// Log Types
+enum LOG_TYPE
 {
-    { 1,  0x50   }, // SAN_CURRENT
-    { 2,  0x90   }, // SAN_COMPLETE
-    { 3,  0x58   }, // BAS_CURRENT
-    { 4,  0x98   }, // BAS_COMPLETE
-    { 5,  0x60   }, // WIN_CURRENT
-    { 6,  0xA0   }, // WIN_COMPLETE
-    { 7,  0x68   }, // JEU_CURRENT
-    { 8,  0xA8   }, // JEU_COMPLETE
-    { 9,  0x70   }, // OTH_CURRENT
-    { 10, 0xB0   }, // OTH_COMPLETE
-    { 11, 0x78   }, // OUT_CURRENT
-    { 12, 0xB8   }, // OUT_COMPLETE
-    { 13, 0x80   }, // EXP_CURRENT
-    { 14, 0xC0   }, // EXP_COMPLETE
-    { 15, 0x88   }, // WAR_CURRENT
-    { 16, 0xC8   }, // WAR_COMPLETE
-    { 17, 0xE0   }, // ABY_CURRENT
-    { 18, 0xE8   }, // ABY_COMPLETE
-    { 19, 0xF0   }, // ADO_CURRENT
-    { 20, 0xF8   }, // ADO_COMPLETE
-    { 21, 0x0100 }, // COA_CURRENT
-    { 22, 0x0108 }  // COA_COMPLETE
+    LOG_QUEST_CURR = 1,
+    LOG_QUEST_COMP = 2,
+    LOG_MISS_CURR = 3,
+    LOG_MISS_COMP = 4,
+    LOG_CAMPAIGN2 = 5,
+};
+
+// Quest Log Packet Values
+static const std::map<std::pair<uint8, LOG_TYPE>, uint16> questPacketBytes =
+{
+    {{ QUESTS_SANDORIA , LOG_QUEST_CURR }, 0x50   }, // Sandoria Current
+    {{ QUESTS_SANDORIA , LOG_QUEST_COMP }, 0x90   }, // Sandoria Complete
+    {{ QUESTS_BASTOK   , LOG_QUEST_CURR }, 0x58   }, // Bastok Current
+    {{ QUESTS_BASTOK   , LOG_QUEST_COMP }, 0x98   }, // Bastok Complete
+    {{ QUESTS_WINDURST , LOG_QUEST_CURR }, 0x60   }, // Windurst Current
+    {{ QUESTS_WINDURST , LOG_QUEST_COMP }, 0xA0   }, // Windurst Complete
+    {{ QUESTS_JEUNO    , LOG_QUEST_CURR }, 0x68   }, // Jeuno Current
+    {{ QUESTS_JEUNO    , LOG_QUEST_COMP }, 0xA8   }, // Jeuno Complete
+    {{ QUESTS_OTHER    , LOG_QUEST_CURR }, 0x70   }, // Other Areas Current
+    {{ QUESTS_OTHER    , LOG_QUEST_COMP }, 0xB0   }, // Other Areas Complete
+    {{ QUESTS_OUTLANDS , LOG_QUEST_CURR }, 0x78   }, // Outlands Current
+    {{ QUESTS_OUTLANDS , LOG_QUEST_COMP }, 0xB8   }, // Outlands Complete
+    {{ QUESTS_TOAU     , LOG_QUEST_CURR }, 0x80   }, // Aht Urhgan Current
+    {{ QUESTS_TOAU     , LOG_QUEST_COMP }, 0xC0   }, // Aht Urhgan Complete
+    {{ QUESTS_WOTG     , LOG_QUEST_CURR }, 0x88   }, // Crystal War Current
+    {{ QUESTS_WOTG     , LOG_QUEST_COMP }, 0xC8   }, // Crystal War Complete
+    {{ QUESTS_ABYSSEA  , LOG_QUEST_CURR }, 0xE0   }, // Abyssea Current
+    {{ QUESTS_ABYSSEA  , LOG_QUEST_COMP }, 0xE8   }, // Abyssea Complete
+    {{ QUESTS_ADOULIN  , LOG_QUEST_CURR }, 0xF0   }, // Adoulin Current
+    {{ QUESTS_ADOULIN  , LOG_QUEST_COMP }, 0xF8   }, // Adoulin Complete
+    {{ QUESTS_COALITION, LOG_QUEST_CURR }, 0x0100 }, // Coalition Current
+    {{ QUESTS_COALITION, LOG_QUEST_COMP }, 0x0108 }  // Coalition Complete
 };
 
 // Mission Log Packet Bytes
@@ -92,13 +102,6 @@ const std::unordered_map<uint8, uint16> QUEST_PACKET_BYTES =
 #define ASSAULT_COMPLETE    0xC0
 #define CMPGN_MISS_UN       0x30
 #define CMPGN_MISS_DEUX     0x38
-
-// Log Types
-#define LOG_QUEST_CURR  0x01
-#define LOG_QUEST_COMP  0x02
-#define LOG_MISS_CURR   0x03
-#define LOG_MISS_COMP   0x04
-#define LOG_CAMPAIGN2   0x05
 
 /************************************************************************
 *																		*
@@ -112,13 +115,13 @@ class CQuestMissionLogPacket : public CBasicPacket
 {
 public:
 
-    CQuestMissionLogPacket(CCharEntity* PChar, uint8 logID, uint8 logType);
+    CQuestMissionLogPacket(CCharEntity* PChar, uint8 logID, LOG_TYPE logType);
 private:
 
     // формирование пакетов вынес в отдельные функции, специально для тех,
     // кто захочет понять, что же на самом деле происходит в switch(logID)
 
-    void generateQuestPacket(CCharEntity* PChar, uint8 logID, uint8 status);
+    void generateQuestPacket(CCharEntity* PChar, uint8 logID, LOG_TYPE logType);
     void generateCurrentMissionPacket(CCharEntity* PChar);
     void generateCompleteMissionPacket(CCharEntity* PChar);
     void generateCurrentExpMissionPacket(CCharEntity* PChar);
