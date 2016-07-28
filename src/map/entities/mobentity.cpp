@@ -36,6 +36,7 @@
 #include "../entities/charentity.h"
 #include "../packets/action.h"
 #include "../packets/entity_update.h"
+#include "../packets/pet_sync.h"
 #include "../utils/battleutils.h"
 #include "../utils/blueutils.h"
 #include "../utils/charutils.h"
@@ -429,35 +430,35 @@ void CMobEntity::HideModel(bool hide)
     {
         // I got this from ambush antlion
         // i'm not sure if this is right
-        m_flags |= 0x80;
+        m_flags |= FLAG_HIDE_MODEL;
     }
     else
     {
-        m_flags &= ~0x80;
+        m_flags &= ~FLAG_HIDE_MODEL;
     }
 }
 
 bool CMobEntity::IsModelHidden()
 {
-    return (m_flags & 0x80) == 0x80;
+    return m_flags & FLAG_HIDE_MODEL;
 }
 
 void CMobEntity::HideHP(bool hide)
 {
     if (hide)
     {
-        m_flags |= 0x100;
+        m_flags |= FLAG_HIDE_HP;
     }
     else
     {
-        m_flags &= ~0x100;
+        m_flags &= ~FLAG_HIDE_HP;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::IsHPHidden()
 {
-    return (m_flags & 0x100) == 0x100;
+    return m_flags & FLAG_HIDE_HP;
 }
 
 
@@ -465,36 +466,36 @@ void CMobEntity::CallForHelp(bool call)
 {
     if (call)
     {
-        m_flags |= 0x20;
+        m_flags |= FLAG_CALL_FOR_HELP;
     }
     else
     {
-        m_flags &= ~0x20;
+        m_flags &= ~FLAG_CALL_FOR_HELP;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::CalledForHelp()
 {
-    return (m_flags & 0x20) == 0x20;
+    return m_flags & FLAG_CALL_FOR_HELP;
 }
 
 void CMobEntity::Untargetable(bool untargetable)
 {
     if (untargetable)
     {
-        m_flags |= 0x800;
+        m_flags |= FLAG_UNTARGETABLE;
     }
     else
     {
-        m_flags &= ~0x800;
+        m_flags &= ~FLAG_UNTARGETABLE;
     }
     updatemask |= UPDATE_HP;
 }
 
 bool CMobEntity::IsUntargetable()
 {
-    return (m_flags & 0x800) == 0x800;
+    return m_flags & FLAG_UNTARGETABLE;
 }
 
 void CMobEntity::PostTick()
@@ -503,6 +504,13 @@ void CMobEntity::PostTick()
     if (loc.zone && updatemask)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        
+        // If this mob is charmed, it should sync with its master
+        if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
+        {
+            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+        }
+        
         updatemask = 0;
     }
 }
@@ -594,6 +602,7 @@ void CMobEntity::Spawn()
             }
         }
     }
+    
     m_DespawnTimer = time_point::min();
     luautils::OnMobSpawn(this);
 }
@@ -612,7 +621,6 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
 
 void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 {
-
     auto PSkill = state.GetSkill();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
@@ -637,8 +645,9 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 
     action.id = id;
-    if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_JUG_PET && 
-        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON)
+    if (objtype == TYPE_PET && (
+        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AUTOMATON ||
+        static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR))
         action.actiontype = ACTION_PET_MOBABILITY_FINISH;
     else if (PSkill->getID() < 256)
         action.actiontype = ACTION_WEAPONSKILL_FINISH;
@@ -746,7 +755,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                     SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
                     if (effect != SUBEFFECT_NONE)
                     {
-                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param);
+                        int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
                         if (skillChainDamage < 0)
                         {
                             target.addEffectParam = -skillChainDamage;
@@ -799,7 +808,7 @@ void CMobEntity::DropItems()
                     uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
                     while (tries < maxTries)
                     {
-                        if (dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
+                        if (DropList->at(i).DropRate > 0 && dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
                         {
                             PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, this);
                             break;
@@ -983,7 +992,7 @@ void CMobEntity::OnDisengage(CAttackState& state)
 
     if (getMobMod(MOBMOD_IDLE_DESPAWN))
     {
-        SetDespawnTime(std::chrono::milliseconds(getMobMod(MOBMOD_IDLE_DESPAWN)));
+        SetDespawnTime(std::chrono::seconds(getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
     // this will let me decide to walk home or despawn
     m_neutral = true;

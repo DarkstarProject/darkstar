@@ -15,7 +15,7 @@ require("scripts/globals/magicburst");
 
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
-function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
+function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
 
     local criticalHit = false;
     local bonusTP = params.bonusTP or 0
@@ -49,11 +49,6 @@ function doPhysicalWeaponskill(attacker, target, wsID, params, tp, primary)
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
         ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
-    end
-
-    local taChar = nil
-    if (primary and attacker:hasStatusEffect(EFFECT_TRICK_ATTACK)) then
-        taChar = attacker:getTrickAttackChar(target)
     end
 
     -- get cratio min and max
@@ -231,7 +226,7 @@ end;
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
 
-function doMagicWeaponskill(attacker, target, wsID, params, tp, primary)
+function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
 
     local bonusTP = params.bonusTP or 0
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
@@ -455,7 +450,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
         pdifmax = cratio + 0.3;
     elseif (cratio < 1.5) then
         pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 1.5) then
+    elseif (cratio < 2.625) then
         pdifmax = cratio + 0.375;
     else
         pdifmax = 3;
@@ -492,7 +487,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
         pdifmax = cratio + 0.3;
     elseif (cratio < 1.5) then
         pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 1.5) then
+    elseif (cratio < 2.625) then
         pdifmax = cratio + 0.375;
     else
         pdifmax = 3;

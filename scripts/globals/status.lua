@@ -1787,6 +1787,8 @@ LOC_MOGCASE         = 7
 LOC_WARDROBE        = 8
 LOC_MOGSAFE2        = 9
 LOC_WARDROBE2       = 10
+LOC_WARDROBE3       = 11
+LOC_WARDROBE4       = 12
 
 ------------------------------------
 -- Message enum
@@ -1968,6 +1970,7 @@ MOBMOD_NO_STANDBACK   = 62
 MOBMOD_ATTACK_SKILL_LIST = 63
 MOBMOD_CHARMABLE      = 64
 MOBMOD_NO_MOVE        = 65
+MOBMOD_MULTI_HIT      = 66
 
 ------------------------------------
 -- Skills

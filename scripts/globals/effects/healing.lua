@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onEffectGain Action
@@ -30,7 +31,7 @@ function onEffectTick(target,effect)
             if (target:getContinentID() == 1 and target:hasStatusEffect(EFFECT_SIGNET)) then
                 healHP = 10+(3*math.floor(target:getMainLvl()/10))+(healtime-2)*(1+math.floor(target:getMaxHP()/300))+(target:getMod(MOD_HPHEAL));
             else
-                target:addTP(-100);
+                target:addTP(HEALING_TP_CHANGE);
                 healHP = 10+(healtime-2)+(target:getMod(MOD_HPHEAL));
             end
 

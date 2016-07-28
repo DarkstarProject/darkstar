@@ -6,10 +6,10 @@
 require("scripts/zones/Giddeus/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Juu_Duzu_the_Whirlwind_PH[mobID] ~= nil) then

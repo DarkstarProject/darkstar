@@ -18,6 +18,13 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(DRAGON_ASHER);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set ASh Dragon's spawnpoint and respawn time (3-5 Days)
     UpdateNMSpawnPoint(mob:getID());

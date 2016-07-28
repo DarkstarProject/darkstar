@@ -35,7 +35,7 @@ end;
 -- onAdditionalEffect
 -----------------------------------
 
-function onAdditionalEffect(mob, target, damage))
+function onAdditionalEffect(mob, target, damage)
     local chance = 100;
     local resist = applyResistanceAddEffect(mob,target,ELE_DARK,EFFECT_ENASPIR);
     if (math.random(0,99) >= chance or resist <= 0.5) then
@@ -56,17 +56,10 @@ function onAdditionalEffect(mob, target, damage))
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-    mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
-    UpdateNMSpawnPoint(mob:getID());
-end;
-
------------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(5400,7200)); -- 1.5 to 2 hours.
+    UpdateNMSpawnPoint(mob:getID());
 end;

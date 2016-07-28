@@ -55,6 +55,7 @@
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
+#include "../attack.h"
 #include "../utils/attackutils.h"
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
@@ -93,17 +94,19 @@ CCharEntity::CCharEntity()
     UContainer = new CUContainer();
     CraftContainer = new CTradeContainer();
 
-    m_Inventory = new CItemContainer(LOC_INVENTORY);
-    m_Mogsafe = new CItemContainer(LOC_MOGSAFE);
-    m_Storage = new CItemContainer(LOC_STORAGE);
-    m_Tempitems = new CItemContainer(LOC_TEMPITEMS);
-    m_Moglocker = new CItemContainer(LOC_MOGLOCKER);
-    m_Mogsatchel = new CItemContainer(LOC_MOGSATCHEL);
-    m_Mogsack = new CItemContainer(LOC_MOGSACK);
-    m_Mogcase = new CItemContainer(LOC_MOGCASE);
-    m_Wardrobe = new CItemContainer(LOC_WARDROBE);
-    m_Mogsafe2 = new CItemContainer(LOC_MOGSAFE2);
-    m_Wardrobe2 = new CItemContainer(LOC_WARDROBE2);
+    m_Inventory = std::make_unique<CItemContainer>(LOC_INVENTORY);
+    m_Mogsafe = std::make_unique<CItemContainer>(LOC_MOGSAFE);
+    m_Storage = std::make_unique<CItemContainer>(LOC_STORAGE);
+    m_Tempitems = std::make_unique<CItemContainer>(LOC_TEMPITEMS);
+    m_Moglocker = std::make_unique<CItemContainer>(LOC_MOGLOCKER);
+    m_Mogsatchel = std::make_unique<CItemContainer>(LOC_MOGSATCHEL);
+    m_Mogsack = std::make_unique<CItemContainer>(LOC_MOGSACK);
+    m_Mogcase = std::make_unique<CItemContainer>(LOC_MOGCASE);
+    m_Wardrobe = std::make_unique<CItemContainer>(LOC_WARDROBE);
+    m_Mogsafe2 = std::make_unique<CItemContainer>(LOC_MOGSAFE2);
+    m_Wardrobe2 = std::make_unique<CItemContainer>(LOC_WARDROBE2);
+    m_Wardrobe3 = std::make_unique<CItemContainer>(LOC_WARDROBE3);
+    m_Wardrobe4 = std::make_unique<CItemContainer>(LOC_WARDROBE4);
 
     memset(&jobs, 0, sizeof(jobs));
     memset(&keys, 0, sizeof(keys));
@@ -213,16 +216,6 @@ CCharEntity::~CCharEntity()
     delete CraftContainer;
     delete PMeritPoints;
     delete PRecastContainer;
-
-    delete m_Inventory;
-    delete m_Mogsafe;
-    delete m_Storage;
-    delete m_Tempitems;
-    delete m_Moglocker;
-    delete m_Mogsatchel;
-    delete m_Mogsack;
-    delete m_Mogcase;
-    delete m_Mogsafe2;
 }
 
 uint8 CCharEntity::GetGender()
@@ -304,17 +297,19 @@ CItemContainer* CCharEntity::getStorage(uint8 LocationID)
 {
     switch (LocationID)
     {
-        case LOC_INVENTORY:	 return m_Inventory;
-        case LOC_MOGSAFE:	 return m_Mogsafe;
-        case LOC_STORAGE:	 return m_Storage;
-        case LOC_TEMPITEMS:	 return m_Tempitems;
-        case LOC_MOGLOCKER:	 return m_Moglocker;
-        case LOC_MOGSATCHEL: return m_Mogsatchel;
-        case LOC_MOGSACK:	 return m_Mogsack;
-        case LOC_MOGCASE:	 return m_Mogcase;
-        case LOC_WARDROBE:   return m_Wardrobe;
-        case LOC_MOGSAFE2:   return m_Mogsafe2;
-        case LOC_WARDROBE2:  return m_Wardrobe2;
+        case LOC_INVENTORY:	 return m_Inventory.get();
+        case LOC_MOGSAFE:	 return m_Mogsafe.get();
+        case LOC_STORAGE:	 return m_Storage.get();
+        case LOC_TEMPITEMS:	 return m_Tempitems.get();
+        case LOC_MOGLOCKER:	 return m_Moglocker.get();
+        case LOC_MOGSATCHEL: return m_Mogsatchel.get();
+        case LOC_MOGSACK:	 return m_Mogsack.get();
+        case LOC_MOGCASE:	 return m_Mogcase.get();
+        case LOC_WARDROBE:   return m_Wardrobe.get();
+        case LOC_MOGSAFE2:   return m_Mogsafe2.get();
+        case LOC_WARDROBE2:  return m_Wardrobe2.get();
+        case LOC_WARDROBE3:  return m_Wardrobe3.get();
+        case LOC_WARDROBE4:  return m_Wardrobe4.get();
     }
 
     DSP_DEBUG_BREAK_IF(LocationID >= MAX_CONTAINER_ID);	// неразрешенный ID хранилища
@@ -630,7 +625,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, static_cast<CBlueSpell*>(PSpell));
                 if (effect != SUBEFFECT_NONE)
                 {
-                    uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param);
+                    uint16 skillChainDamage = battleutils::TakeSkillchainDamage(static_cast<CBattleEntity*>(this), PTarget, actionTarget.param, nullptr);
 
                     actionTarget.addEffectParam = skillChainDamage;
                     actionTarget.addEffectMessage = 287 + effect;
@@ -724,12 +719,13 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             uint16 tpHitsLanded;
             uint16 extraHitsLanded;
             int32 damage;
+            CBattleEntity* taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
 
             actionTarget.reaction = REACTION_NONE;
             actionTarget.speceffect = SPECEFFECT_NONE;
             actionTarget.animation = PWeaponSkill->getAnimationId();
             actionTarget.messageID = 0;
-            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary, action);
+            std::tie(damage, tpHitsLanded, extraHitsLanded) = luautils::OnUseWeaponSkill(this, PTarget, PWeaponSkill, tp, primary, action, taChar);
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
@@ -798,7 +794,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
                         if (effect != SUBEFFECT_NONE)
                         {
-                            actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage);
+                            actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);
                             if (actionTarget.addEffectParam < 0)
                             {
                                 actionTarget.addEffectParam = -actionTarget.addEffectParam;
@@ -1202,11 +1198,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 {
                     if (state.IsRapidShot())
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, RAPID_SHOT_ATTACK);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RAPID_SHOT);
                     }
                     else
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, RANGED_ATTACK);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RANGED);
                     }
 
                     if (PItem != nullptr)
@@ -1268,7 +1264,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
         }
 
-        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, totalDamage, false, slot, realHits, nullptr, true, true);
+        actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, PHYSICAL_ATTACK_TYPE::RANGED, totalDamage, false, slot, realHits, nullptr, true, true);
 
         // lower damage based on shadows taken
         if (shadowsTaken)

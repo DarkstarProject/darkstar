@@ -14,7 +14,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkRegime(player,mob,109,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Dune_Widow_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Dune_Widow");
         if (ToD <= os.time(t) and GetMobAction(Dune_Widow) == 0) then

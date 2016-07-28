@@ -38,6 +38,7 @@
 #include "../ai/states/raise_state.h"
 #include "../ai/states/inactive_state.h"
 #include "../ai/states/weaponskill_state.h"
+#include "../attack.h"
 #include "../attackround.h"
 #include "../weapon_skill.h"
 #include "../packets/action.h"
@@ -264,10 +265,10 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
     // base delay
-    int delay = 240;
+    int delay = 0;
 
     if (PRange != nullptr && PRange->getDamage() != 0) {
-        delay += ((PRange->getDelay() * 60) / 1000);
+        delay = ((PRange->getDelay() * 60) / 1000);
     }
 
     delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 120);
@@ -279,7 +280,7 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
     }
     else if (PAmmo)
     {
-        delay += ((PAmmo->getDelay() * 60) / 1000);
+        delay += PAmmo->getDelay() / 2;
     }
     return delay;
 }
@@ -288,12 +289,11 @@ int16 CBattleEntity::GetAmmoDelay()
 {
     CItemWeapon* PAmmo = (CItemWeapon*)m_Weapons[SLOT_AMMO];
 
-    int delay = 240;
+    int delay = 0;
     if (PAmmo != nullptr && PAmmo->getDamage() != 0) {
-        delay += ((PAmmo->getDelay() * 60) / 1000);
+        delay = PAmmo->getDelay() / 2;
     }
 
-    delay = ((delay * 1000) / 120);
     return delay;
 }
 
@@ -1436,7 +1436,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 
                         float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
                         auto damage = ((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
-                        actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
+                        actionTarget.spikesParam = battleutils::TakePhysicalDamage(PTarget, this, attack.GetAttackType(), damage, false, SLOT_MAIN, 1, nullptr, true, false, true);
                         actionTarget.spikesMessage = 33;
                         if (PTarget->objtype == TYPE_PC)
                         {
@@ -1486,7 +1486,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     actionTarget.reaction = REACTION_BLOCK;
                 }
 
-                actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, attack.GetDamage(), attack.IsBlocked(), attack.GetWeaponSlot(), 1, attackRound.GetTAEntity(), true, true);
+                actionTarget.param = battleutils::TakePhysicalDamage(this, PTarget, attack.GetAttackType(), attack.GetDamage(), attack.IsBlocked(), attack.GetWeaponSlot(), 1, attackRound.GetTAEntity(), true, true);
                 if (actionTarget.param < 0)
                 {
                     actionTarget.param = -(actionTarget.param);
@@ -1565,7 +1565,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                   actionTarget.spikesEffect == SUBEFFECT_COUNTER) && dsprand::GetRandomNumber(100) < zanshinChance) ||
                 (GetMJob() == JOB_SAM && this->StatusEffectContainer->HasStatusEffect(EFFECT_HASSO) && dsprand::GetRandomNumber(100) < (zanshinChance / 4)))
             {
-                attack.SetAttackType(ZANSHIN_ATTACK);
+                attack.SetAttackType(PHYSICAL_ATTACK_TYPE::ZANSHIN);
                 attack.SetAsFirstSwing(false);
             }
             else

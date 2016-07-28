@@ -1,4 +1,5 @@
 -----------------------------------
+-- Namas Arrow
 -- Skill Level: N/A
 -- Description: Additional Effect: Temporarily improves Ranged Accuracy
 -- Aligned with the Light Gorget, Snow Gorget & Aqua Gorget.
@@ -15,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 1;

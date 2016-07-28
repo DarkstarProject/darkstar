@@ -1475,7 +1475,29 @@ INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 247, 1, 255)
 INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 274, 1, 255); -- Sleepga
 INSERT INTO `mob_spell_lists` VALUES ('Diabolos_Waking_Dream', 149, 360, 1, 255); -- Dispelga
 
+-- Oupire
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 186, 1, 255); -- Aeroga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 191, 1, 255); -- Stonega III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 201, 1, 255); -- Waterga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 152, 1, 255); -- Blizzard IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 147, 1, 255); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 157, 1, 255); -- Aero IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 162, 1, 255); -- Stone IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 167, 1, 255); -- Thunder IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 172, 1, 255); -- Water IV
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 227, 1, 255); -- Poisonga III
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 360, 1, 255); -- Dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 365, 1, 255); -- Breakga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga 
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga 
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
 
+-- Wake Warder Wanda
+INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

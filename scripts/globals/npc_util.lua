@@ -7,27 +7,36 @@ npcUtil = {};
 -- Picks a new position for an NPC and excluding the current position.
 -- INPUT: npc = npcID, position = 2D table with coords: index, {x, y, z}
 -- RETURN: table index
-function npcUtil.pickNewPosition(npc, positionTable)
+function npcUtil.pickNewPosition(npc, positionTable, allowCurrentPosition)
+    local npc = GetNPCByID(npc);
+    local positionIndex = 1; -- Default to position one in the table if it can't be found.
+    local tableSize = 0;
+    local newPosition = 0;
+    allowCurrentPosition = allowCurrentPosition or false;
 
-    local npc = GetNPCByID(npc)
-    local positionIndex = 1 -- Default to position one in the table if it can't be found.
-    local tableSize = 0
     for i, v in ipairs(positionTable) do   -- Looking for the current position
 
-        -- Finding by comparing the NPC's coords
-        if (math.floor(v[1]) == math.floor(npc:getXPos()) and math.floor(v[2]) == math.floor(npc:getYPos()) and math.floor(v[3]) == math.floor(npc:getZPos())) then
-            positionIndex = i; -- Found where the NPC is!
+        if not allowCurrentPosition then
+            -- Finding by comparing the NPC's coords
+            if (math.floor(v[1]) == math.floor(npc:getXPos()) and math.floor(v[2]) == math.floor(npc:getYPos()) and math.floor(v[3]) == math.floor(npc:getZPos())) then
+                positionIndex = i; -- Found where the NPC is!
+            end
         end
+
         tableSize = tableSize + 1; -- Counting the array size
     end
 
-    -- Pick a new pos that isn't the current
-    local newPosition = positionIndex
-    repeat
-        newPosition = math.random(1, tableSize)
-    until (newPosition ~= positionIndex)
-    return newPosition
-end
+    if not allowCurrentPosition then
+        -- Pick a new pos that isn't the current
+        repeat
+            newPosition = math.random(1, tableSize);
+        until (newPosition ~= positionIndex)
+    else
+        newPosition = math.random(1, tableSize);
+    end
+
+    return {["x"] = positionTable[newPosition][1], ["y"] = positionTable[newPosition][2], ["z"] = positionTable[newPosition][3]};
+end;
 
 -- give gil to player with message and multiplied gil
 -- npcUtil.giveGil(player, 200)
@@ -208,3 +217,25 @@ function npcUtil.genTmask(player,title)
 
     return val1
 end
+
+-----------------------------------
+-- UpdateNPCSpawnPoint
+----------------------------------
+
+function npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
+    local npc = GetNPCByID(id);
+    local respawnTime = math.random(minTime, maxTime);
+    local newPosition = npcUtil.pickNewPosition(npc:getID(), posTable, true);
+    serverVar = serverVar or null; -- serverVar is optional
+
+    if serverVar then
+        if (GetServerVariable(serverVar) <= os.time(t)) then
+            npc:hideNPC(1); -- hide so the NPC is not "moving" through the zone
+            npc:setPos(newPosition.x, newPosition.y, newPosition.z);
+        end
+    end
+
+    npc:timer(respawnTime * 1000, function(npc)
+        npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar);
+    end)
+end;

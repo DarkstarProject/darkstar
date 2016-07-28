@@ -19,10 +19,10 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local bossTrigger = GetServerVariable("[DynaSandoria]Boss_Trigger");
 

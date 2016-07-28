@@ -4,10 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Drexerion_the_Condemned's spawnpoint and respawn time (60-72 hours)
     UpdateNMSpawnPoint(mob:getID());

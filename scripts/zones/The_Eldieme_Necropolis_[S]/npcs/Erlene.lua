@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ALittleKnowledge", 2);
     elseif (csid == 0x000E) then
         player:addKeyItem(GRIMOIRE);
-        player:unlockJob(JOB_SCH);
+        player:unlockJob(JOBS.SCH);
         player:addTitle(SCHULTZ_SCHOLAR);
         player:setVar("ALittleKnowledge", 0);
         player:setVar("SheetsofVellum", 0);

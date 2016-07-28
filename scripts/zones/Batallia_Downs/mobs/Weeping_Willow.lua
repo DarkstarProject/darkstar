@@ -31,6 +31,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local JACK = mob:getID()+6;
-    SpawnMob(JACK):updateEnmity(killer);
+    SpawnMob(JACK):updateEnmity(player);
     GetMobByID(JACK):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
 end;

@@ -5,10 +5,10 @@
 
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     -- Set Eldritch Edge's Window Open Time
     local wait = math.random(5400,7200);

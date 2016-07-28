@@ -13,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 ---------------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local ftphp = fTP(tp,0.22,0.34,0.52);
     local ftpmp = fTP(tp,0.15,0.25,0.35);
     player:addHP(ftphp*player:getMaxHP());

@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 2.75; params.ftp200 = 3.50; params.ftp300 = 4;
@@ -26,10 +26,11 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        params.ftp100 = 2; params.ftp200 = 3; params.ftp300 = 4.5; -- https://www.bg-wiki.com/bg/Aeolian_Edge
         params.dex_wsc = 0.4;params.int_wsc = 0.4;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
     return tpHits, extraHits, criticalHit, damage;
 
 end

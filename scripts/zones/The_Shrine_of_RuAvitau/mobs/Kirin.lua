@@ -23,6 +23,7 @@ end
 
 function onMobSpawn(mob)
     mob:setMod(MOD_WINDRES, -64);
+    mob:setLocalVar("numAdds", 1);
 end
 
 -----------------------------------
@@ -36,7 +37,8 @@ function onMobFight( mob, target )
         mob:spawnPet();
         mob:setLocalVar("astralFlow", 1);
     end
-    if (mob:getBattleTime() ~= 0 and mob:getBattleTime() % 180 == 0) then
+    local numAdds = mob:getLocalVar("numAdds");
+    if (mob:getBattleTime() / 180 == numAdds) then
         -- Ensure we have not spawned all pets yet..
         local genbu = mob:getLocalVar("genbu");
         local seiryu = mob:getLocalVar("seiryu");
@@ -71,6 +73,7 @@ function onMobFight( mob, target )
 
         -- Update Kirins extra vars..
         mob:setLocalVar(newVar, 1);
+        mob:setLocalVar("numAdds", numAdds + 1);
     end
 
     -- Ensure all spawned pets are doing stuff..

@@ -346,15 +346,16 @@ namespace charutils
             "quests,"               // 14
             "keyitems,"             // 15
             "abilities,"            // 16
-            "titles,"               // 17
-            "zones,"                // 18
-            "missions,"             // 19
-            "assault,"              // 20
-            "campaign,"             // 21
-            "playtime,"             // 22
-            "isnewplayer,"          // 23
-            "campaign_allegiance,"  // 24
-            "isstylelocked "        // 25
+            "weaponskills,"         // 17
+            "titles,"               // 18
+            "zones,"                // 19
+            "missions,"             // 20
+            "assault,"              // 21
+            "campaign,"             // 22
+            "playtime,"             // 23
+            "isnewplayer,"          // 24
+            "campaign_allegiance,"  // 25
+            "isstylelocked "        // 26
             "FROM chars "
             "WHERE charid = %u";
 
@@ -399,49 +400,64 @@ namespace charutils
             memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
 
             length = 0;
+            int8* weaponskills = nullptr;
+            Sql_GetData(SqlHandle, 17, &weaponskills, &length);
+            memcpy(&PChar->m_LearnedWeaponskills, weaponskills, (length > sizeof(PChar->m_LearnedWeaponskills) ? sizeof(PChar->m_LearnedWeaponskills) : length));
+
+            length = 0;
             int8* titles = nullptr;
-            Sql_GetData(SqlHandle, 17, &titles, &length);
+            Sql_GetData(SqlHandle, 18, &titles, &length);
             memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
             length = 0;
             int8* zones = nullptr;
-            Sql_GetData(SqlHandle, 18, &zones, &length);
+            Sql_GetData(SqlHandle, 19, &zones, &length);
             memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
             length = 0;
             int8* missions = nullptr;
-            Sql_GetData(SqlHandle, 19, &missions, &length);
+            Sql_GetData(SqlHandle, 20, &missions, &length);
             memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
             length = 0;
             int8* assault = nullptr;
-            Sql_GetData(SqlHandle, 20, &assault, &length);
+            Sql_GetData(SqlHandle, 21, &assault, &length);
             memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
 
             length = 0;
             int8* campaign = nullptr;
-            Sql_GetData(SqlHandle, 21, &campaign, &length);
+            Sql_GetData(SqlHandle, 22, &campaign, &length);
             memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
 
-            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 22));
-            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 23) == 1 ? true : false;
-            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 24);
-            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 25) == 1 ? true : false);
+            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
+            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
+            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
         }
 
         LoadSpells(PChar);
 
         fmtQuery =
             "SELECT "
-            "rank_points,"    // 0
-            "rank_sandoria,"  // 1
-            "rank_bastok,"    // 2
-            "rank_windurst,"  // 3
-            "fame_sandoria,"  // 4
-            "fame_bastok,"    // 5
-            "fame_windurst,"  // 6
-            "fame_norg, "     // 7
-            "fame_jeuno "     // 8
+            "rank_points,"          // 0
+            "rank_sandoria,"        // 1
+            "rank_bastok,"          // 2
+            "rank_windurst,"        // 3
+            "fame_sandoria,"        // 4
+            "fame_bastok,"          // 5
+            "fame_windurst,"        // 6
+            "fame_norg, "           // 7
+            "fame_jeuno, "          // 8
+            "fame_aby_konschtat, "  // 9
+            "fame_aby_tahrongi, "   // 10
+            "fame_aby_latheine, "   // 11
+            "fame_aby_misareaux, "  // 12
+            "fame_aby_vunkerl, "    // 13
+            "fame_aby_attohwa, "    // 14
+            "fame_aby_altepa, "     // 15
+            "fame_aby_grauberg, "   // 16
+            "fame_aby_uleguerand, " // 17
+            "fame_adoulin "         // 18
             "FROM char_profile "
             "WHERE charid = %u;";
 
@@ -457,11 +473,21 @@ namespace charutils
             PChar->profile.rank[1] = (uint8)Sql_GetIntData(SqlHandle, 2);
             PChar->profile.rank[2] = (uint8)Sql_GetIntData(SqlHandle, 3);
 
-            PChar->profile.fame[0] = (uint16)Sql_GetIntData(SqlHandle, 4);  //Sandoria
-            PChar->profile.fame[1] = (uint16)Sql_GetIntData(SqlHandle, 5);  //Bastok
-            PChar->profile.fame[2] = (uint16)Sql_GetIntData(SqlHandle, 6);  //Windurst
-            PChar->profile.fame[3] = (uint16)Sql_GetIntData(SqlHandle, 7);  //Norg
-            PChar->profile.fame[4] = (uint16)Sql_GetIntData(SqlHandle, 8);  //Jeuno
+            PChar->profile.fame[0] = (uint16)Sql_GetIntData(SqlHandle, 4);    //Sandoria
+            PChar->profile.fame[1] = (uint16)Sql_GetIntData(SqlHandle, 5);    //Bastok
+            PChar->profile.fame[2] = (uint16)Sql_GetIntData(SqlHandle, 6);    //Windurst
+            PChar->profile.fame[3] = (uint16)Sql_GetIntData(SqlHandle, 7);    //Norg
+            PChar->profile.fame[4] = (uint16)Sql_GetIntData(SqlHandle, 8);    //Jeuno
+            PChar->profile.fame[5] = (uint16)Sql_GetIntData(SqlHandle, 9);    //AbysseaKonschtat
+            PChar->profile.fame[6] = (uint16)Sql_GetIntData(SqlHandle, 10);   //AbysseaTahrongi
+            PChar->profile.fame[7] = (uint16)Sql_GetIntData(SqlHandle, 11);   //AbysseaLaTheine
+            PChar->profile.fame[8] = (uint16)Sql_GetIntData(SqlHandle, 12);   //AbysseaMisareaux
+            PChar->profile.fame[9] = (uint16)Sql_GetIntData(SqlHandle, 13);   //AbysseaVunkerl
+            PChar->profile.fame[10] = (uint16)Sql_GetIntData(SqlHandle, 14);  //AbysseaAttohwa
+            PChar->profile.fame[11] = (uint16)Sql_GetIntData(SqlHandle, 15);  //AbysseaAltepa
+            PChar->profile.fame[12] = (uint16)Sql_GetIntData(SqlHandle, 16);  //AbysseaGrauberg
+            PChar->profile.fame[13] = (uint16)Sql_GetIntData(SqlHandle, 17);  //AbysseaUleguerand
+            PChar->profile.fame[14] = (uint16)Sql_GetIntData(SqlHandle, 18);  //Adoulin
         }
 
         fmtQuery =
@@ -471,7 +497,11 @@ namespace charutils
             "locker,"     // 2
             "satchel,"    // 3
             "sack,"       // 4
-            "`case` "     // 5
+            "`case`,"     // 5
+            "wardrobe,"     // 6
+            "wardrobe2,"     // 7
+            "wardrobe3,"     // 8
+            "wardrobe4 "     // 9
             "FROM char_storage "
             "WHERE charid = %u;";
 
@@ -490,8 +520,10 @@ namespace charutils
             PChar->getStorage(LOC_MOGSACK)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 4));
             PChar->getStorage(LOC_MOGCASE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 5));
 
-            PChar->getStorage(LOC_WARDROBE)->AddBuff(80); // Always 80..
-            PChar->getStorage(LOC_WARDROBE2)->AddBuff(80); // Always 80..
+            PChar->getStorage(LOC_WARDROBE)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 6));
+            PChar->getStorage(LOC_WARDROBE2)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 7));
+            PChar->getStorage(LOC_WARDROBE3)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 8));
+            PChar->getStorage(LOC_WARDROBE4)->AddBuff((uint8)Sql_GetIntData(SqlHandle, 9));
         }
 
         fmtQuery = "SELECT face, race, size, head, body, hands, legs, feet, main, sub, ranged "
@@ -1083,7 +1115,7 @@ namespace charutils
 
         //Send important items first
         //Note: it's possible that non-essential inventory items are sent in response to another packet
-        for (auto&& containerID : {LOC_INVENTORY, LOC_TEMPITEMS, LOC_WARDROBE, LOC_WARDROBE2, LOC_MOGSAFE,
+        for (auto&& containerID : {LOC_INVENTORY, LOC_TEMPITEMS, LOC_WARDROBE, LOC_WARDROBE2, LOC_WARDROBE3, LOC_WARDROBE4, LOC_MOGSAFE,
             LOC_STORAGE, LOC_MOGLOCKER, LOC_MOGSATCHEL, LOC_MOGSACK, LOC_MOGCASE, LOC_MOGSAFE2})
         {
             pushContainer(containerID);
@@ -2243,9 +2275,12 @@ namespace charutils
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
-            if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
-                || PSkill->getID() == main_ws
-                || isInDynamis && (PSkill->getID() == main_ws_dyn))
+            if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
+                (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
+                (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
+                (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                PSkill->getID() == main_ws ||
+                isInDynamis && (PSkill->getID() == main_ws_dyn))
             {
                 addWeaponSkill(PChar, PSkill->getID());
             }
@@ -2259,9 +2294,12 @@ namespace charutils
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
-                if (PChar->GetSkill(skill) >= PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())
-                    || PSkill->getID() == range_ws
-                    || isInDynamis && (PSkill->getID() == range_ws_dyn))
+                if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
+                    (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
+                    (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
+                    (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly())) ||
+                    PSkill->getID() == range_ws ||
+                    isInDynamis && (PSkill->getID() == range_ws_dyn))
                 {
                     addWeaponSkill(PChar, PSkill->getID());
                 }
@@ -2785,6 +2823,27 @@ namespace charutils
     int32 delLearnedAbility(CCharEntity* PChar, uint16 AbilityID)
     {
         return delBit(AbilityID, PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
+    }
+
+    /************************************************************************
+    *																		*
+    *  Learned weaponskills 	             								*
+    *																		*
+    ************************************************************************/
+
+    bool hasLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    {
+        return PChar->m_LearnedWeaponskills[wsid];
+    }
+
+    void addLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    {
+        PChar->m_LearnedWeaponskills[wsid] = true;
+    }
+
+    void delLearnedWeaponskill(CCharEntity* PChar, uint8 wsid)
+    {
+        PChar->m_LearnedWeaponskills[wsid] = false;
     }
 
     /************************************************************************
@@ -3679,7 +3738,17 @@ namespace charutils
             "fame_bastok = %u,"
             "fame_windurst = %u,"
             "fame_norg = %u,"
-            "fame_jeuno = %u "
+            "fame_jeuno = %u,"
+            "fame_aby_konschtat = %u,"
+            "fame_aby_tahrongi = %u,"
+            "fame_aby_latheine = %u,"
+            "fame_aby_misareaux = %u,"
+            "fame_aby_vunkerl = %u,"
+            "fame_aby_attohwa = %u,"
+            "fame_aby_altepa = %u,"
+            "fame_aby_grauberg = %u,"
+            "fame_aby_uleguerand = %u,"
+            "fame_adoulin = %u "
             "WHERE charid = %u;";
 
         Sql_Query(SqlHandle, Query,
@@ -3688,6 +3757,16 @@ namespace charutils
             PChar->profile.fame[2],
             PChar->profile.fame[3],
             PChar->profile.fame[4],
+            PChar->profile.fame[5],
+            PChar->profile.fame[6],
+            PChar->profile.fame[7],
+            PChar->profile.fame[8],
+            PChar->profile.fame[9],
+            PChar->profile.fame[10],
+            PChar->profile.fame[11],
+            PChar->profile.fame[12],
+            PChar->profile.fame[13],
+            PChar->profile.fame[14],
             PChar->id);
     }
 
@@ -3749,7 +3828,11 @@ namespace charutils
             "locker = %u,"
             "satchel = %u,"
             "sack = %u, "
-            "`case` = %u "
+            "`case` = %u, "
+            "wardrobe = %u, "
+            "wardrobe2 = %u, "
+            "wardrobe3 = %u, "
+            "wardrobe4 = %u "
             "WHERE charid = %u";
 
         Sql_Query(SqlHandle, Query,
@@ -3759,6 +3842,10 @@ namespace charutils
             PChar->getStorage(LOC_MOGSATCHEL)->GetSize(),
             PChar->getStorage(LOC_MOGSACK)->GetSize(),
             PChar->getStorage(LOC_MOGCASE)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE2)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE3)->GetSize(),
+            PChar->getStorage(LOC_WARDROBE4)->GetSize(),
             PChar->id);
     }
 
@@ -3816,14 +3903,18 @@ namespace charutils
     {
         const int8* Query =
             "UPDATE chars SET "
-            "abilities = '%s' "
+            "abilities = '%s', "
+            "weaponskills = '%s' "
             "WHERE charid = %u;";
 
         int8 abilities[sizeof(PChar->m_LearnedAbilities) * 2 + 1];
+        int8 weaponskills[sizeof(PChar->m_LearnedWeaponskills) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, abilities, (const int8*)PChar->m_LearnedAbilities, sizeof(PChar->m_LearnedAbilities));
+        Sql_EscapeStringLen(SqlHandle, weaponskills, (const int8*)&PChar->m_LearnedWeaponskills, sizeof(PChar->m_LearnedWeaponskills));
 
         Sql_Query(SqlHandle, Query,
             abilities,
+            weaponskills,
             PChar->id);
     }
 

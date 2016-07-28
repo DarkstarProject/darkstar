@@ -99,6 +99,16 @@ enum UPDATETYPE
     UPDATE_ALL_CHAR = 0x1F
 };
 
+enum ENTITYFLAGS
+{
+    FLAG_NONE          = 0x000,
+    FLAG_HIDE_NAME     = 0x008,
+    FLAG_CALL_FOR_HELP = 0x020,
+    FLAG_HIDE_MODEL    = 0x080,
+    FLAG_HIDE_HP       = 0x100,
+    FLAG_UNTARGETABLE  = 0x800,
+};
+
 // TODO: возможо стоит сделать эту структуру частью класса, взамен нынешних id и targid, но уже без метода clean
 
 struct EntityID_t

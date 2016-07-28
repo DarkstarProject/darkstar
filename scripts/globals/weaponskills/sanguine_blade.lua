@@ -19,7 +19,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local drain = 0;
 
@@ -38,7 +38,16 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.skill = SKILL_SWD;
     params.includemab = true;
 
-    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
+
+    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+        if (tp >= 2000 and tp <= 2999) then
+            drain = 100;
+        elseif (tp == 3000) then
+            drain = 160;
+        end
+    end
+
+    local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
     if (target:isUndead() == false) then
         player:addHP((damage/100) * drain);

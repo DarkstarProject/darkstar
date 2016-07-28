@@ -29,7 +29,8 @@
 
 #include "../entities/charentity.h"
 #include "../entities/mobentity.h"
-#include "../attack.h"
+
+enum class PHYSICAL_ATTACK_TYPE;
 
 namespace attackutils
 {

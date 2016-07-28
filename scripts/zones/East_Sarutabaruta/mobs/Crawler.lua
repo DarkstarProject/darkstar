@@ -15,7 +15,15 @@ function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,92,2);
     checkRegime(player,mob,93,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Spiny_Spipi_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Spiny_Spipi");
         if (ToD <= os.time(t) and GetMobAction(Spiny_Spipi) == 0) then

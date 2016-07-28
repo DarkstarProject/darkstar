@@ -931,6 +931,11 @@ int32 map_config_default()
     map_config.server_message = "";
     map_config.server_message_fr = "";
     map_config.buffer_size = 1800;
+    map_config.ah_base_fee_single = 1;
+    map_config.ah_base_fee_stacks = 4;
+    map_config.ah_tax_rate_single = 1.0;
+    map_config.ah_tax_rate_stacks = 0.5;
+    map_config.ah_max_fee = 10000;
     map_config.exp_rate = 1.0f;
     map_config.exp_loss_rate = 1.0f;
     map_config.exp_retain = 0.0f;
@@ -978,6 +983,7 @@ int32 map_config_default()
     map_config.audit_linkshell = 0;
     map_config.msg_server_port = 54003;
     map_config.msg_server_ip = "127.0.0.1";
+    map_config.healing_tick_delay = 10;
     return 0;
 }
 
@@ -1054,6 +1060,26 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "lightluggage_block") == 0)
         {
             map_config.lightluggage_block = atoi(w2);
+        }
+        else if (strcmp(w1, "ah_base_fee_single") == 0)
+        {
+            map_config.ah_base_fee_single = atoi(w2);
+        }
+        else if (strcmp(w1, "ah_base_fee_stacks") == 0)
+        {
+            map_config.ah_base_fee_stacks = atoi(w2);
+        }
+        else if (strcmp(w1, "ah_tax_rate_single") == 0)
+        {
+            map_config.ah_tax_rate_single = atof(w2);
+        }
+        else if (strcmp(w1, "ah_tax_rate_stacks") == 0)
+        {
+            map_config.ah_tax_rate_stacks = atof(w2);
+        }
+        else if (strcmp(w1, "ah_max_fee") == 0)
+        {
+            map_config.ah_max_fee = atoi(w2);
         }
         else if (strcmp(w1, "exp_rate") == 0)
         {
@@ -1270,6 +1296,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "mob_no_despawn") == 0)
         {
             map_config.mob_no_despawn = atoi(w2);
+        }
+        else if (strcmp(w1, "healing_tick_delay") == 0)
+        {
+            map_config.healing_tick_delay = atoi(w2);
         }
         else
         {

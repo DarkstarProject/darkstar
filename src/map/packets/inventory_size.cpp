@@ -51,6 +51,8 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
     WBUFB(data, (0x0C)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetSize();
     WBUFB(data, (0x0D)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetSize();
     WBUFB(data, (0x0E)) = 1 + PChar->getStorage(LOC_WARDROBE2)->GetSize();
+    WBUFB(data, (0x0F)) = 1 + PChar->getStorage(LOC_WARDROBE3)->GetSize();
+    WBUFB(data, (0x10)) = 1 + PChar->getStorage(LOC_WARDROBE4)->GetSize();
 
     WBUFW(data, (0x14)) = 1 + PChar->getStorage(LOC_INVENTORY)->GetBuff();
     WBUFW(data, (0x16)) = 1 + PChar->getStorage(LOC_MOGSAFE)->GetBuff();
@@ -67,4 +69,6 @@ CInventorySizePacket::CInventorySizePacket(CCharEntity* PChar)
     WBUFW(data, (0x24)) = 1 + PChar->getStorage(LOC_WARDROBE)->GetBuff();
     WBUFW(data, (0x26)) = 1 + PChar->getStorage(LOC_MOGSAFE2)->GetBuff();
     WBUFW(data, (0x28)) = 1 + PChar->getStorage(LOC_WARDROBE2)->GetBuff();
+    WBUFW(data, (0x2A)) = 1 + PChar->getStorage(LOC_WARDROBE3)->GetBuff();
+    WBUFW(data, (0x2C)) = 1 + PChar->getStorage(LOC_WARDROBE4)->GetBuff();
 }

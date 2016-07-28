@@ -11,7 +11,13 @@ require("scripts/globals/fieldsofvalor");
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,100,2);
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
      -- Set Eldritch Edge's Window Open Time
     local wait = math.random(5400,7200);
     SetServerVariable("[POP]Blighting_Brand", os.time(t) + wait); -- 90 to 120 minutes

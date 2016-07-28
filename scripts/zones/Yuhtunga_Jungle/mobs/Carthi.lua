@@ -11,10 +11,10 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath Action
+-- onMobDespawn Action
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     if (GetServerVariable("[ZM4]Fire_Headstone_Active") == 0) then
         SetServerVariable("[ZM4]Fire_Headstone_Active",1);

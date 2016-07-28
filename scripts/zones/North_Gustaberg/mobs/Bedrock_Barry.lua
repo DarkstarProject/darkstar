@@ -16,6 +16,13 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,16,1);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random((3600),(4200)));
 end;

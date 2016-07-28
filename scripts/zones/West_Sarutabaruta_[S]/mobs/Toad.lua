@@ -7,10 +7,10 @@
 require("scripts/zones/West_Sarutabaruta_[S]/MobIDs");
 
 -----------------------------------
--- onMobDeath
+-- onMobDespawn
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (mobID == Ramponneau_PH) then

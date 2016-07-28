@@ -59,7 +59,7 @@ public:
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
     int32 getHP(lua_State*);                // Returns Entity Health
-    int32 getGender(lua_State*);			// Returns the player character's gender
+    int32 getGender(lua_State*);            // Returns the player character's gender
     int32 getBaseHP(lua_State*);            // Returns Entity base Health before modifiers
     int32 addHP(lua_State*);                // Modify hp of Entity +/-
     int32 restoreHP(lua_State*);            // Modify hp of Entity, but check if alive first
@@ -114,11 +114,12 @@ public:
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
     int32 costume(lua_State*);              // get or set user costume
-    int32 costume2(lua_State*);				// set monstrosity costume
+    int32 costume2(lua_State*);             // set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
 
+    int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
@@ -180,8 +181,9 @@ public:
     int32 canLearnAbility(lua_State*);      // Check to see if character can learn spell, 0 if so
     int32 delLearnedAbility(lua_State*);    // Remove spell from Entity spell list
 
-    int32 addWeaponSkill(lua_State*);       //
-    int32 delWeaponSkill(lua_State*);       //
+    int32 addLearnedWeaponskill(lua_State*);
+    int32 hasLearnedWeaponskill(lua_State*);
+    int32 delLearnedWeaponskill(lua_State*);
 
     int32 getMainJob(lua_State*);           // Returns Entity Main Job
     int32 getMainLvl(lua_State*);           // Gets Entity Main Job Level

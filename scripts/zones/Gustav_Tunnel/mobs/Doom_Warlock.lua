@@ -17,7 +17,15 @@ function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,766,1);
     checkGoVregime(player,mob,769,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Taxim_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Taxim");
         if (ToD <= os.time(t) and GetMobAction(Taxim) == 0) then

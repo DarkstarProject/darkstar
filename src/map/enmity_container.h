@@ -25,20 +25,21 @@
 #define _CENMITYCONTAINER_H
 
 #include "../common/cbasetypes.h"
-#include <map>
+#include <unordered_map>
 
 class CBattleEntity;
 class CCharEntity;
 
 struct EnmityObject_t
 {
-	CBattleEntity* PEnmityOwner;	// Enmity Target
+    CBattleEntity* PEnmityOwner;
 	int16 CE;						// Cumulative Enmity
 	int16 VE;						// Volatile Enmity
+    bool active;
 	uint8 maxTH;                    // Maximum Treasure Hunter level of this Enmity Owner
 };
 
-typedef std::map<uint32,EnmityObject_t*> EnmityList_t;
+typedef std::unordered_map<uint16,EnmityObject_t> EnmityList_t;
 
 class CEnmityContainer
 {
@@ -51,12 +52,13 @@ public:
 
     float   CalculateEnmityBonus(CBattleEntity* PEntity);
     void    Clear(uint32 EntityID = 0);			// Removes Entries from list
+    void    LogoutReset(uint32 EntityID);		// Sets entry to inactive
     void    AddBaseEnmity(CBattleEntity* PEntity);
     void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true);
     void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
     void    UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level, uint16 CureAmount, bool isCureV);
     void    UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
-    bool    HasTargetID(uint32 TargetID); //true if ID is in the container with non-zero enmity level
+    bool    HasID(uint32 ID); //true if ID is in the container with non-zero enmity level
     void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
     uint16  GetCE(CBattleEntity* PEntity);
     uint16  GetVE(CBattleEntity* PEntity);

@@ -216,7 +216,7 @@ uint8 CAttack::GetAnimationID()
     }
 
     // Try normal kick attacks (without footwork)
-    if (this->m_attackType == KICK_ATTACK)
+    if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
         return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
     }
@@ -233,9 +233,9 @@ uint8 CAttack::GetAnimationID()
 uint8 CAttack::GetHitRate()
 {
     // Right hand hitrate
-    if (m_attackDirection == RIGHTATTACK && m_attackType != KICK_ATTACK)
+    if (m_attackDirection == RIGHTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
     {
-        if (m_attackType == ZANSHIN_ATTACK)
+        if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
             m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 0, (uint8)35);
         }
@@ -251,9 +251,9 @@ uint8 CAttack::GetHitRate()
         }
     }
     // Left hand hitrate
-    else if (m_attackDirection == LEFTATTACK && m_attackType != KICK_ATTACK)
+    else if (m_attackDirection == LEFTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
     {
-        if (m_attackType == ZANSHIN_ATTACK)
+        if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
             m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1, (uint8)35);
         }
@@ -263,7 +263,7 @@ uint8 CAttack::GetHitRate()
         }
     }
     // Kick hit rate
-    else if (m_attackType == KICK_ATTACK)
+    else if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
         m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 2);
     }
@@ -415,7 +415,7 @@ void CAttack::ProcessDamage()
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f) + 3;
         m_baseDamage = m_attacker->GetMainWeaponDmg() - 3;
-        if (m_attackType == KICK_ATTACK)
+        if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(MOD_KICK_DMG);
         }
@@ -444,9 +444,9 @@ void CAttack::ProcessDamage()
     }
 
     // Set attack type to Samba if the attack type is normal.  Don't overwrite other types.  Used for Samba double damage.
-    if (m_attackType == ATTACK_NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::NORMAL && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_DRAIN_SAMBA))
     {
-        SetAttackType(SAMBA_ATTACK);
+        SetAttackType(PHYSICAL_ATTACK_TYPE::SAMBA);
     }
 
     // Get damage multipliers.

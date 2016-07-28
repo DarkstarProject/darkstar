@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 
 -----------------------------------
 -- onInitialize
@@ -21,7 +22,13 @@ function onInitialize(zone)
     SetGroundsTome(tomes);
 
     UpdateTreasureSpawnPoint(17588769);
-    
+
+    local whichNM = math.random(0,19);
+    if (whichNM < 10) then
+        SetRespawnTime(Argus, 900, 43200); -- 0-12 hours 
+    else
+        SetRespawnTime(Leech_King, 900, 43200); -- 0-12 hours
+    end
 end;
 
 -----------------------------------        

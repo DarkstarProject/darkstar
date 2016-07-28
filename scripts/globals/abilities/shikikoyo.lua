@@ -30,7 +30,7 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    local pTP = player:getTP() - 1000 + (player:getMerit(MERIT_SHIKIKOYO) - 12);
+    local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(MERIT_SHIKIKOYO) - 12) / 100));
     pTP = utils.clamp(pTP, 0, 3000 - target:getTP());
 
     player:setTP(1000);

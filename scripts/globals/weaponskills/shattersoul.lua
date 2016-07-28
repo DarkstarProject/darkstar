@@ -1,4 +1,5 @@
 -----------------------------------
+-- Shattersoul
 -- Skill Level: 357
 -- Description: Delivers a threefold attack. Decreases target's magic defense. Duration of effect varies with TP.
 -- To obtain Shattersoul, the quest Martial Mastery must be completed and it must be purchased from the Merit Points menu.
@@ -20,7 +21,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 3;
@@ -32,11 +33,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.atkmulti = 1;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-        params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
         params.int_wsc = 0.7 + (player:getMerit(MERIT_SHATTERSOUL) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
     if (damage > 0 and target:hasStatusEffect(EFFECT_MAGIC_DEF_DOWN) == false) then
         target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, 120);

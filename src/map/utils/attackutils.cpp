@@ -163,11 +163,11 @@ namespace attackutils
 
         switch (attackType)
         {
-            case ZANSHIN_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-            case TRIPLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-            case DOUBLE_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-            case RAPID_SHOT_ATTACK:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-            case SAMBA_ATTACK:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::ZANSHIN:	    if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::TRIPLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
+            case PHYSICAL_ATTACK_TYPE::DOUBLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::SAMBA:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		    return originalDamage * 2;
             default: break;
         }
         return originalDamage;

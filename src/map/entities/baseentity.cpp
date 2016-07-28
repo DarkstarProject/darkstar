@@ -104,18 +104,18 @@ void CBaseEntity::HideName(bool hide)
 	if(hide)
 	{
 		// I totally guessed this number
-		namevis |= 0x08;
+		namevis |= FLAG_HIDE_NAME;
 	}
 	else
 	{
-		namevis &= ~0x08;
+		namevis &= ~FLAG_HIDE_NAME;
 	}
     updatemask |= UPDATE_HP;
 }
 
 bool CBaseEntity::IsNameHidden()
 {
-	return namevis & 0x08;
+	return namevis & FLAG_HIDE_NAME;
 }
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)

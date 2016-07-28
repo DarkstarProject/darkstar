@@ -346,11 +346,15 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
     for (auto PMobIt : m_mobList)
     {
         CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
-        PCurrentMob->PEnmityContainer->Clear(PChar->id);
+        PCurrentMob->PEnmityContainer->LogoutReset(PChar->id);
         if (PCurrentMob->m_OwnerID.id == PChar->id)
         {
             PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
+        }
+        if (PCurrentMob->GetBattleTargetID() == PChar->targid)
+        {
+            PCurrentMob->SetBattleTargetID(0);
         }
     }
 
@@ -910,7 +914,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
     {
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
-        if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->IsUntargetable())
+        if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->IsUntargetable() && PNpc->widescan == 1)
         {
             if (distance(PChar->loc.p, PNpc->loc.p) < radius)
             {

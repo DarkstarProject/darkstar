@@ -1,4 +1,5 @@
 -----------------------------------
+-- Coronach
 -- Skill Level: N/A
 -- Description: Additional effect: temporarily lowers enmity.
 -- Lowers Enmity for a certain amount of time. (Enmity -20)
@@ -19,7 +20,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.numHits = 1;
     params.ftp100 = 3; params.ftp200 = 3; params.ftp300 = 3;

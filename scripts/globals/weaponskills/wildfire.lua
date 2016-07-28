@@ -1,4 +1,5 @@
 -----------------------------------
+-- Wildfire
 -- Skill Level: N/A
 -- Description: Deals fire elemental damage. Enmity generation varies with TP. Armageddon: Aftermath.
 -- Acquired permanently by completing the appropriate Walk of Echoes Weapon Skill Trials.
@@ -18,7 +19,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.ftp100 = 5.5; params.ftp200 = 5.5; params.ftp300 = 5.5;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0;
@@ -31,6 +32,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     -- TODO: needs to give enmity down at varying tp percent's that is treated separately than the gear cap of -50% enmity http://www.bg-wiki.com/bg/Wildfire
     -- TODO: also needs aftermath effects added
 
-    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
     return tpHits, extraHits, criticalHit, damage;
 end;

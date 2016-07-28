@@ -39,3 +39,6 @@ CONQUEST_BASE = 7045; -- Tallying conquest results...
 --chocobo digging
 DIG_THROW_AWAY = 7221; -- You dig up$, but your inventory is full. You regretfully throw the # away.
 FIND_NOTHING =  7223; -- You dig and you dig, but find nothing.
+
+-- FallenEgg
+BROKEN_EGG = 7811; -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
