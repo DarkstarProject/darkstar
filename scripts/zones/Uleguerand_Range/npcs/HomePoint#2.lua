@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Uleguerand_Range
 -- NPC:  HomePoint#2
--- @pos 
+-- $pos 
 -----------------------------------
 
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;

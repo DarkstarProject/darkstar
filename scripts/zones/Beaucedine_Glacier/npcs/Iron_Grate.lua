@@ -2,12 +2,12 @@
 -- Area: Beaucedine Glacier
 -- NPC:  Iron Grate
 -- Type: Door
--- @pos 241.000 5.000 -20.000 111     : J-8
--- @pos 60.000 5.000 -359.000 111     : H-10
--- @pos 100.000 -15.000 159.000 111   : I-7
--- @pos -199.000 -35.000 -220.000 111 : G-9
--- @pos -20.000 -55.000 -41.000 111   : H-8
--- @pos -340.000 -95.000 159.000 111  : F-7
+-- $pos 241.000 5.000 -20.000 111     : J-8
+-- $pos 60.000 5.000 -359.000 111     : H-10
+-- $pos 100.000 -15.000 159.000 111   : I-7
+-- $pos -199.000 -35.000 -220.000 111 : G-9
+-- $pos -20.000 -55.000 -41.000 111   : H-8
+-- $pos -340.000 -95.000 159.000 111  : F-7
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     local LVLcap = 0;
     

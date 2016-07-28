@@ -2,7 +2,7 @@
 -- Area: Kuftal Tunnel
 -- NPC:  ??? (qm2)
 -- Note: Used to spawn Cancer & Bastok mission 8-2
--- @pos -25.238 -12.785 -148.393 174
+-- $pos -25.238 -12.785 -148.393 174
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Crawlers' Nest
 -- NPC:  ??? - Drown Crawler (Spawn area 1)
--- @pos 4.045 -2.703 285.026 197
+-- $pos 4.045 -2.703 285.026 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC: Jabbar
 -- Type: Tenshodo Merchant
 -- Involved in Quests: Tenshodo Menbership
--- @pos -99.718 -2.299 26.027 236
+-- $pos -99.718 -2.299 26.027 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0097) then
         player:addKeyItem(TENSHODO_APPLICATION_FORM);
         player:messageSpecial(KEYITEM_OBTAINED,TENSHODO_APPLICATION_FORM);

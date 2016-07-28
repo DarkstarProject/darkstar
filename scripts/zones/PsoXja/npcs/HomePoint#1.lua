@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: PsoXja
 -- NPC:  HomePoint#1
--- @pos -58 40 14 10
+-- $pos -58 40 14 10
 -----------------------------------
 
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;

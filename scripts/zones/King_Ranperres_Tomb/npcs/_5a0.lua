@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: King Ranperre's Tomb
 -- DOOR: _5a0 (Heavy Stone Door)
--- @pos -39.000 4.823 20.000 190
+-- $pos -39.000 4.823 20.000 190
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0005) then 
         player:setVar("MissionStatus",9);
     elseif (csid == 0x000e) then 

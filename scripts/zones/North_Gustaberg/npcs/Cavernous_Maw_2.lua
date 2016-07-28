@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg
 --  NPC: Cavernous Maw
--- @pos -78 -0.5 600 106
+-- $pos -78 -0.5 600 106
 -- Teleports Players to Abyssea - Grauberg
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;

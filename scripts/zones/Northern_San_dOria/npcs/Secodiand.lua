@@ -2,8 +2,8 @@
 -- Area: Northern San d'Oria
 -- NPC:  Secodiand
 -- Starts and Finishes Quest: Fear of the dark
--- @zone 231
--- @pos -160 -0 137
+-- $zone 231
+-- $pos -160 -0 137
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

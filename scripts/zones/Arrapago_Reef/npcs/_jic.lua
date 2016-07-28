@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago Reef
 -- Door: Runic Seal
--- @pos 36 -10 620 54
+-- $pos 36 -10 620 54
 -----------------------------------
 
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;

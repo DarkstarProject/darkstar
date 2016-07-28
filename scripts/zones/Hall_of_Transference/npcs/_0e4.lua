@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Hall of Transference
 --  NPC: Large Apparatus (Right) - Holla
--- @pos -242.301 -1.849 269.867 14
+-- $pos -242.301 -1.849 269.867 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------

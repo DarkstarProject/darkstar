@@ -2,7 +2,7 @@
 -- Area: West Ronfaure
 -- NPC:  Aaveleon
 -- Involved in Quest: A Sentry's Peril
--- @pos -431 -45 343 100
+-- $pos -431 -45 343 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0064) then
         player:tradeComplete();
@@ -59,6 +59,4 @@ function onEventFinish(player,csid,option)
     end
     
 end;
-
-
 

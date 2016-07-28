@@ -230,8 +230,8 @@ function EventUpdateBCNM(player, csid, option, entrance)
             -- param2 alters the eventfinish option (offset)
             -- param7/8 = does nothing??
         end
-        -- @pos -517 159 -209
-        -- @pos -316 112 -103
+        -- #pos -517 159 -209
+        -- #pos -316 112 -103
         -- player:updateEvent(msgid, bcnmFight, 0, record, numadventurers, skip); skip=1 to skip anim
         -- msgid 1=wait a little longer, 2=enters
     end

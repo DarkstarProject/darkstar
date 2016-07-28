@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis
 -- NPC: Sarcophagus
 -- Involved in Quest: The Requiem (BARD AF2)
--- @pos -420 8 500 195
+-- $pos -420 8 500 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -45,9 +45,9 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
             player:setVar("TheRequiemAlreadyPoped",1);
-            SpawnMob(17576264,300):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
-            SpawnMob(17576267,180):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
-            SpawnMob(17576266,180):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
+            SpawnMob(17576264,300):updateClaim(player); -- Spawn Yum Kimil NM $pos -414 8 499
+            SpawnMob(17576267,180):updateClaim(player); -- Spawn Owl Guardian NM $pos -414 8 501
+            SpawnMob(17576266,180):updateClaim(player); -- Spawn Dog Guardian NM $pos -414 8 497
         else
             player:messageSpecial(NOTHING_HAPPENED);
         end
@@ -82,9 +82,9 @@ function onTrigger(player,npc)
             player:startEvent(0x002e);
         elseif (player:getVar("TheRequiemAlreadyPoped") == 1) then
             player:messageSpecial(SENSE_OF_FOREBODING);
-            SpawnMob(17576264):updateClaim(player); -- Spawn Yum Kimil NM @pos -414 8 499
-            SpawnMob(17576267):updateClaim(player); -- Spawn Owl Guardian NM @pos -414 8 501
-            SpawnMob(17576266):updateClaim(player); -- Spawn Dog Guardian NM @pos -414 8 497
+            SpawnMob(17576264):updateClaim(player); -- Spawn Yum Kimil NM $pos -414 8 499
+            SpawnMob(17576267):updateClaim(player); -- Spawn Owl Guardian NM $pos -414 8 501
+            SpawnMob(17576266):updateClaim(player); -- Spawn Dog Guardian NM $pos -414 8 497
         end
         
     -- Standard Dialogue

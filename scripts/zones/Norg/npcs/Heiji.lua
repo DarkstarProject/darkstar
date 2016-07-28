@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC:  Heiji
 -- Starts and Ends Quest: Like a Shining Subligar
--- @pos -1 -5 25 252
+-- $pos -1 -5 25 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

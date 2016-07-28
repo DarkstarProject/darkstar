@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Caedarva Mire
 --  MOB: Tyger
--- @pos -766 -12 632
--- Spawn with Singed Buffalo: @additem 2593
+-- $pos -766 -12 632
+-- Spawn with Singed Buffalo: $additem 2593
 -----------------------------------
 
 require("scripts/globals/status");

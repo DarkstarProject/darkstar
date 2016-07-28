@@ -2,7 +2,7 @@
 -- Area:  Pso'Xja
 -- NPC:   _09f (Stone Gate)
 -- Notes: Spawns Gargoyle when triggered
--- @pos 310.000 -1.925 -38.400 9
+-- $pos 310.000 -1.925 -38.400 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

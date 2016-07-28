@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 -- Quest: Corsair Af1 "Equiped for All Occasions"
 -- NPC: Iron Door (Spawn Lost Soul)
--- @pos 247.735 18.499 -142.267 198
+-- $pos 247.735 18.499 -142.267 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
    if (csid == 0x042) then
         player:setVar("EquipedforAllOccasions",3);

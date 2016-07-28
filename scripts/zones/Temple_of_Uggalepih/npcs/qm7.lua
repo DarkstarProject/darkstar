@@ -2,7 +2,7 @@
 -- Area: Temple of Uggalepih
 -- NPC:  ??? (Death From Above NM)
 -- Involved In Mission: Death From Above
--- @pos 53 1 -32 159
+-- $pos 53 1 -32 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

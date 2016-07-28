@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Shattered telepoint
--- @pos 135 19 220 108
+-- $pos 135 19 220 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

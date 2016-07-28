@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Wajoam Woodlands
 --  MOB: Tinnin
--- @pos 276 0 -694
--- Spawned with Monkey Wine: @additem 2573
+-- $pos 276 0 -694
+-- Spawned with Monkey Wine: $additem 2573
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Tinnin
 -----------------------------------
 

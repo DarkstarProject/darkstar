@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC: Ratihb
 -- Standard Info NPC
--- @pos 75.225 -6.000 -137.203 50
+-- $pos 75.225 -6.000 -137.203 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0304) then
         local AFgun = 18702; 
@@ -88,6 +88,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);
     end
 end;
-
-
 

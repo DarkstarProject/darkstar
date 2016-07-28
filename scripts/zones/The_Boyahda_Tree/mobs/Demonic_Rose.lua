@@ -23,7 +23,6 @@ function onMobDespawn(mob)
 
         -- Check if Voluptuous Vivian window is open, and there is not an Voluptuous Vivian popped already(ACTION_NONE = 0)
         if (Voluptuous_Vivian_ToD <= os.time(t) and GetMobAction(Voluptuous_Vivian) == 0) then
-
             -- printf("Voluptuous Vivian window open");
             -- Give Demonic Rose 10 percent chance to pop Voluptuous Vivian
             if (math.random(1,10) == 5) then

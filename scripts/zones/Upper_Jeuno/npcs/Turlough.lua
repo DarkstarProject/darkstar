@@ -2,7 +2,7 @@
 -- Area: Upper Jeuno
 -- NPC: Turlough
 -- Mission NPC
--- @pos 
+-- $pos 
 -----------------------------------
 
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;

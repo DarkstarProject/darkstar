@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Riverne-Site B01
 -- NPC:  HomePoint#1
--- @pos 
+-- $pos 
 -----------------------------------
 
 package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;

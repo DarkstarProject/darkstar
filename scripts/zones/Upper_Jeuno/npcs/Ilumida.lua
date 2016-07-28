@@ -2,7 +2,7 @@
 -- Area: Upper Jeuno
 -- NPC: Ilumida
 -- Starts and Finishes Quest: A Candlelight Vigil
--- @pos -75 -1 58 244
+-- $pos -75 -1 58 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: The Boyahda Tree
 -- NPC: qm2 (???)
 -- Involved in Quest: Searching for the Right Words
--- @pos 34.651 -20.183 -61.647 153
+-- $pos 34.651 -20.183 -61.647 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
@@ -21,8 +21,6 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
-
 -- Notes: does ??? depop when Agas is spawned?
 -- current implementation: when Agas is active, triggering ??? will result in detarget
 
@@ -61,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x000e) then
         player:addKeyItem(MOONDROP);
         player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Markets
 -- NPC:  HomePoint#3
--- @pos -189 -8 26 235
+-- $pos -189 -8 26 235
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

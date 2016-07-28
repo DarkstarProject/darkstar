@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Muckvix
 -- Involved in Mission: Magicite
--- @zone 245
--- @pos -26.824 3.601 -137.082
+-- $zone 245
+-- $pos -26.824 3.601 -137.082
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00b8) then
         player:addKeyItem(YAGUDO_TORCH);

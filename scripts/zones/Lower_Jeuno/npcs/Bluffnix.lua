@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Bluffnix
 -- Starts and Finishes Quests: Gobbiebags I-X
--- @pos -43.099 5.900 -114.788 245
+-- $pos -43.099 5.900 -114.788 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

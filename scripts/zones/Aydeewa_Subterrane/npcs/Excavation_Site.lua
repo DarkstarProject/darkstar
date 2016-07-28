@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
 --  NPC: Excavation Site (Olduum Ring quest)
--- @pos 390 1 349 68
+-- $pos 390 1 349 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------

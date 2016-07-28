@@ -2,7 +2,7 @@
 -- Area: Upper Delkfutt's Tower
 -- NPC:  Treasure Chest
 -- Involved In Quest: Wings of Gold
--- @pos -380 -143 23 158
+-- $pos -380 -143 23 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -95,8 +95,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -104,6 +104,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

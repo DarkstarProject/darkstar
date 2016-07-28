@@ -3,7 +3,7 @@
 -- NPC:  Mighty Fist
 -- Starts & Finishes Quest: The Darksmith (R)
 -- Involved in Quest: Dark Legacy
--- @pos -47 2 -30 237
+-- $pos -47 2 -30 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------

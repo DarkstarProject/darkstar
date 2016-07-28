@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC: Katharina
+-- Area: Southern San d'Oria
+-- NPC: Katharina
 --  General Info NPC
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -29,14 +29,14 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
   
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
---print("CSID:",csid);
---print("RESULT:",option);
+    -- printf("CSID:",csid);
+    -- printf("RESULT:",option);
 end;

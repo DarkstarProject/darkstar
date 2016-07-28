@@ -1,10 +1,8 @@
 -----------------------------------
 -- Area:  Sacrarium
 -- NPC:   _0s0 (Iron Gate)
--- @pos -35.026 -3.000 -9.997 28
+-- $pos -35.026 -3.000 -9.997 28
 -----------------------------------
-
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -20,8 +18,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -29,6 +27,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Berstrogus
 --  Type: Standard NPC
---  @zone 256
---  @pos -44 4 -10
+--  $zone 256
+-- $pos -44 4 -10
 -----------------------------------
 require("scripts/globals/missions");
 

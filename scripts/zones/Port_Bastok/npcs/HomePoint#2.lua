@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port_Bastok
 -- NPC:  HomePoint#2
--- @pos 42 8.5 -244 236
+-- $pos 42 8.5 -244 236
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

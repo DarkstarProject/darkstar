@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lufaise Meadows
 -- NPC:  ??? - spawns Splinterspine Grukjuk for quest "A Hard Day's Knight"
--- @pos -38.605 -9.022 -290.700 24
+-- $pos -38.605 -9.022 -290.700 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------

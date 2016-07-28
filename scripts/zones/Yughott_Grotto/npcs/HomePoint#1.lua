@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Yughott_Grotto
 -- NPC:  HomePoint#1
--- @pos 434 -40.299 171 142
+-- $pos 434 -40.299 171 142
 -----------------------------------
 
 package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;

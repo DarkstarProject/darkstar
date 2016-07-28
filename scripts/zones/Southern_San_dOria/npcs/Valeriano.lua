@@ -16,7 +16,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
+    -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     
     player:showText(npc,VALERIANO_SHOP_DIALOG);
 
-    stock = {0x112a,10,        --Ginger Cookie  
+    local stock = {0x112a,10,        --Ginger Cookie  
              0x43c1,43,        --Flute 
              0x43c3,990,    --Piccolo 
              0x1399,585,    --Scroll of Scop's Operetta  
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,10 +66,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
-

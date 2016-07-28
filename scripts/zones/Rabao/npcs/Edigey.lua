@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0002 and option == 1) then
         player:addQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:setVar("DontForgetAntidoteVar",1);
@@ -74,6 +74,4 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-
 

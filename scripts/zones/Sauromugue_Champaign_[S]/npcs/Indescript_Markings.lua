@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign [S]
 --  NPC: Indescript Markings
--- @pos 322 24 113
+-- $pos 322 24 113
 -- Quest NPC
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;

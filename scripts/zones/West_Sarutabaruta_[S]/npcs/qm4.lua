@@ -1,7 +1,7 @@
 -----------------------------------
 -- ???
 -- WOGT Quest
--- @pos 150 -39 331 95
+-- $pos 150 -39 331 95
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,7 +43,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;

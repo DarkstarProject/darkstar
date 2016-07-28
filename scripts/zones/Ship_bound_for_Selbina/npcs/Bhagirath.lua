@@ -2,7 +2,7 @@
 -- Area:  Ship_bound_for_Selbina
 -- NPC:   Bhagirath
 -- Notes: Tells ship ETA time
--- @pos 0.278 -14.707 -1.411 220
+-- $pos 0.278 -14.707 -1.411 220
 -----------------------------------
 
 package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;

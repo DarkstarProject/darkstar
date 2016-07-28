@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim Island
 -- NPC:  HomePoint#1
--- @pos -212 -21 93 126
+-- $pos -212 -21 93 126
 -----------------------------------
 
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;

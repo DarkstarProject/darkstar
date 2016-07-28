@@ -10,11 +10,11 @@ require("scripts/globals/missions");
 require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
---instance 1   @pos -780 -103 -90
+--instance 1   $pos -780 -103 -90
           -- >     -231              = lieux de combat
---instance 2   @pos -140 -23 -450
+--instance 2   $pos -140 -23 -450
          --  >      -151             = lieux de combat
---instance 3   @pos 500  56  -810
+--instance 3   $pos 500  56  -810
          --  >    640  -71   -206           = lieux de combat
          
          

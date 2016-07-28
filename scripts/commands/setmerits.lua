@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @setmerits <amount> <player>
+-- func: $setmerits <amount> <player>
 -- desc: Sets the target players merit count.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, amount, target)
     if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@setmerits <amount> <player>" );
+        player:PrintToPlayer( "$setmerits <amount> <player>" );
         return;
     end
 
@@ -24,7 +24,7 @@ function onTrigger(player, amount, target)
             targ:setMerits( amount );
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@setmerits <amount> <player>" );
+            player:PrintToPlayer( "$setmerits <amount> <player>" );
         end
     end
 end;

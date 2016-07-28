@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @takexp <amount> <player>
+-- func: $takexp <amount> <player>
 -- desc: Removes experience points from the target player.
 ---------------------------------------------------------------------------------------------------
 
@@ -13,7 +13,7 @@ function onTrigger(player, amount, target)
     -- print( 'Exp amount: ' .. tostring( amount ) );
     if (amount == nil) then
         player:PrintToPlayer( "You must enter a valid point amount." );
-        player:PrintToPlayer( "@takexp <amount> <player>" );
+        player:PrintToPlayer( "$takexp <amount> <player>" );
         return;
     end
 
@@ -27,7 +27,7 @@ function onTrigger(player, amount, target)
             player:PrintToPlayer( string.format( "Removed %i exp from player '%s' ", amount, target ) )
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@takexp <amount> <player>" );
+            player:PrintToPlayer( "$takexp <amount> <player>" );
         end
     end
 end;

@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC: Kakkaroon
 -- Standard Info NPC
--- @pos 13.245 0.000 -25.307 53
+-- $pos 13.245 0.000 -25.307 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0134) then
        player:setVar("ratraceCS",1);
@@ -74,6 +74,4 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
 

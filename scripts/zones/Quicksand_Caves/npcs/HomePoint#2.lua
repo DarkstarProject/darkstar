@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Quicksand_Caves
 -- NPC:  HomePoint#2
--- @pos  573 9 -500 208
+-- $pos  573 9 -500 208
 -----------------------------------
 
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;

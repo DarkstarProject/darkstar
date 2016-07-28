@@ -2,7 +2,7 @@
 -- Area:  Open_sea_route_to_Al_Zahbi
 -- NPC:   Adeben
 -- Notes: Tells ship ETA time
--- @pos 0.340 -12.232 -4.120 46
+-- $pos 0.340 -12.232 -4.120 46
 -----------------------------------
 package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,9 +38,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- Name: Saintly Invitation
--- @pos 299 -123 345 146
+-- $pos 299 -123 345 146
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------

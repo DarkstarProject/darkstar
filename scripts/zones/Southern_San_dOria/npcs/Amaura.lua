@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC:  Amaura
 -- Involved in Quest: The Medicine Woman, To Cure a Cough
--- @zone 230
--- @pos -85 -6 89
+-- $zone 230
+-- $pos -85 -6 89
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x027C and option == 0) then
         player:addKeyItem(AMAURAS_FORMULA);

@@ -3,8 +3,8 @@
 -- NPC:  Babenn
 -- Finishes Quest: The Eleventh's Hour
 -- Involved in Quests: Riding on the Clouds
--- @zone 234
--- @pos 73 -1 34
+-- $zone 234
+-- $pos 73 -1 34
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------

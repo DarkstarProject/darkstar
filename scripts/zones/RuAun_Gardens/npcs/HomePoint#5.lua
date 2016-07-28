@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RuAun_Gardens
 -- NPC:  HomePoint#5
--- @pos 305 -42 -427 130
+-- $pos 305 -42 -427 130
 -----------------------------------
 
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;

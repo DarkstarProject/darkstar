@@ -1,18 +1,18 @@
 -----------------------------------
 -- Area: Phomiuna Aqueducts
 -- NPC:  Wooden Ladder
--- @pos 101.9 -1.5 -101.9
--- @pos 101.948 -1.5 -18.016
--- @pos -61.888 -1.5 -18.079
--- @pos -218.109 -1.499 18.081
--- @pos -61.903 -1.5 138.099
--- @pos 21.901 -1.5 138.096
--- @pos 101.902 -1.5 181.902
--- @pos  -159.32 -2.5 60
--- @pos -159.38 -22.559 60
--- @pos 199.317 -2.5 60
--- @pos 199.38 -22.559 60
--- @pos -200.679 -8.57 60
+-- $pos 101.9 -1.5 -101.9
+-- $pos 101.948 -1.5 -18.016
+-- $pos -61.888 -1.5 -18.079
+-- $pos -218.109 -1.499 18.081
+-- $pos -61.903 -1.5 138.099
+-- $pos 21.901 -1.5 138.096
+-- $pos 101.902 -1.5 181.902
+-- $pos  -159.32 -2.5 60
+-- $pos -159.38 -22.559 60
+-- $pos 199.317 -2.5 60
+-- $pos 199.38 -22.559 60
+-- $pos -200.679 -8.57 60
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -84,6 +84,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

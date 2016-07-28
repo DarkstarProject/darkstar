@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC:  Heizo
 -- Starts and Ends Quest: Like Shining Leggings
--- @pos -1 -5 25 252
+-- $pos -1 -5 25 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
