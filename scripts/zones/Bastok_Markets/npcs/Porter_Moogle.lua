@@ -2,8 +2,8 @@
 --  Area:   Bastok Markets
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  @zone 235
---  @pos TODO
+--  $zone 235
+-- $pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

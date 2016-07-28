@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst_Waters_[S]
 -- NPC:  HomePoint#1
--- @pos -32 -5 131 94
+-- $pos -32 -5 131 94
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

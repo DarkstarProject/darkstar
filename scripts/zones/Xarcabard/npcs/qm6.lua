@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  qm6 (???)
 -- Involved in Quests: RNG AF3 - Unbridled Passion
--- @pos -254.883 -17.003 -150.818 112
+-- $pos -254.883 -17.003 -150.818 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0006) then
         player:setVar("unbridledPassion",6);

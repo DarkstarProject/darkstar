@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qufim_Island
 -- NPC:  Beastmen_s_Banner
--- @pos 0.348 -20.126 73.479 126
+-- $pos 0.348 -20.126 73.479 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;

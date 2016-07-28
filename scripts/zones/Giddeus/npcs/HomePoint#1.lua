@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Giddeus
 -- NPC:  HomePoint#1
--- @pos -132 -3 -303 145
+-- $pos -132 -3 -303 145
 -----------------------------------
 
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;

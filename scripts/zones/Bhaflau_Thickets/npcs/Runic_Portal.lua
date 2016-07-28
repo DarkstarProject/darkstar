@@ -2,7 +2,7 @@
 -- Area: Bhaflau Thickets
 --  NPC: Runic Portal
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
--- @pos -211 -11 -818 52
+-- $pos -211 -11 -818 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------

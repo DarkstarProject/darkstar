@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addcurrency <currency type> <amount> <target player>
+-- func: $addcurrency <currency type> <amount> <target player>
 -- desc: Adds the specified currency to the player
 ---------------------------------------------------------------------------------------------------
 
@@ -14,7 +14,7 @@ function onTrigger(player,currency,amount,target)
 
     if (currency == nil or amount == nil) then
         player:PrintToPlayer( "You must enter a valid currency and amount." );
-        player:PrintToPlayer( "@addcurrency <currency type> <amount> <target player>" );
+        player:PrintToPlayer( "$addcurrency <currency type> <amount> <target player>" );
         return
     end
 

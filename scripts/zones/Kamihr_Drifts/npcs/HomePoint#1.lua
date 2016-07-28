@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Kamihr Drifts
 -- NPC:  HomePoint#1
--- @pos 210 20.299 315 267
+-- $pos 210 20.299 315 267
 -----------------------------------
 
 package.loaded["scripts/zones/Kamihr_Drifts/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: La_Theine Plateau
 -- NPC:  Shattered Telepoint
--- @pos 334 19 -60 102
+-- $pos 334 19 -60 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------

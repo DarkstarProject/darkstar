@@ -2,7 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Treasure Chest
 -- 
--- @pos -158.563 0.999 -226.058 145
+-- $pos -158.563 0.999 -226.058 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -82,8 +82,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -91,6 +91,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

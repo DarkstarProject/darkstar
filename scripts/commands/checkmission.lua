@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @checkmission <Log ID> <Player>
+-- func: $checkmission <Log ID> <Player>
 -- desc: Prints current MissionID for the given LogID and target Player to the in game chatlog
 ---------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ function onTrigger(player,logId,target)
     
     if (logId == nil) then
         player:PrintToPlayer( "You must enter a valid LogID!" );
-        player:PrintToPlayer( "@checkmission <Log ID> <Player>" );
+        player:PrintToPlayer( "$checkmission <Log ID> <Player>" );
         return;
     end
 

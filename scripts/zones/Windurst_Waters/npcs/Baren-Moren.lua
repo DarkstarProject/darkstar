@@ -3,8 +3,8 @@
 --  NPC: Baren-Moren
 -- Starts and Finishes Quest: Hat in Hand
 --    Working 100%
---  @zone = 238
---  @pos = -66 -3 -148
+--  $zone = 238
+-- $pos = -66 -3 -148
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -46,14 +46,14 @@ function onTrigger(player,npc)
 --        player:startEvent(0x0033,80); -- Hat in Hand: During Quest - Objective Reminder
     elseif (hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) then
         --     Variable to track quest progress
-        --     1 = Machitata       @pos 163 0 -22
-        --    2 = Honoi-Gomoi       @pos -195 -11 -120
-        --    4 = Kenapa-Keppa    @pos 27 -6 -199
-        --    8 = Clais            @pos -31 -3 11
-        --    16 = Kyume-Romeh    @pos -58 -4 23
-        --  32 = Tosuka-Porika    @pos -26 -6 103
-        --  64 = Pechiru-Mashiru @pos = 162 -2 159
-        --  128 = Bondada        @pos = -66 -3 -148
+        --     1 = Machitata       $pos 163 0 -22
+        --    2 = Honoi-Gomoi       $pos -195 -11 -120
+        --    4 = Kenapa-Keppa    $pos 27 -6 -199
+        --    8 = Clais            $pos -31 -3 11
+        --    16 = Kyume-Romeh    $pos -58 -4 23
+        --  32 = Tosuka-Porika    $pos -26 -6 103
+        --  64 = Pechiru-Mashiru $pos = 162 -2 159
+        --  128 = Bondada        $pos = -66 -3 -148
         count = player:getVar("QuestHatInHand_count");
         if (count == 8) then                 -- 80 = HAT + FULL REWARD  =  8 NPCS - Option 5
             player:startEvent(0x0034,80); 

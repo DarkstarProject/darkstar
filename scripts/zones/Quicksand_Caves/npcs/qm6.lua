@@ -2,7 +2,7 @@
 -- Area: Quicksand Caves
 -- NPC:  ??? (qm6)
 -- Bastok Mission 8.1 "The Chains That Bind Us"
--- @pos 
+-- $pos 
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------

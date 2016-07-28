@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Chauxnatte 
--- @zone 80
--- @pos 85 1 -51
+-- $zone 80
+-- $pos 85 1 -51
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");

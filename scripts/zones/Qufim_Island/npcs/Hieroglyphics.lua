@@ -2,7 +2,7 @@
 -- Area: Qufim_Island
 -- NPC:  Hieroglyphics
 -- Dynamis Qufim Entrance
--- @pos 117 -10 133 172 118
+-- $pos 117 -10 133 172 118
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("finishRESULT: %u",option);
     
     
      if (csid == 0x0003 and option == 0) then

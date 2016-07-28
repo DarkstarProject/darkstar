@@ -3,7 +3,7 @@
 -- NPC:  Melyon
 -- Starts and Finishes Quest: Only the Best (R)
 -- Involved in Quest: Riding on the Clouds
--- @pos 25 -6 6 248
+-- $pos 25 -6 6 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

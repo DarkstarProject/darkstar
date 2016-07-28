@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Karl
 -- Starts and Finishes Quest: Child's Play
--- @pos -60 0.1 -8 246
+-- $pos -60 0.1 -8 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

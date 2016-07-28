@@ -3,7 +3,7 @@
 -- NPC:  Gulmama
 -- Starts and Finishes Quest: Trial by Ice
 -- Involved in Quest: Class Reunion
--- @pos -186 0 107 231
+-- $pos -186 0 107 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02c2 and option == 1) then
         if (player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then

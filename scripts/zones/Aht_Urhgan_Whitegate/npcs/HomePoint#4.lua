@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 -- NPC:  HomePoint#4
--- @pos  -99 -6 -68 50
+-- $pos  -99 -6 -68 50
 -----------------------------------
 
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

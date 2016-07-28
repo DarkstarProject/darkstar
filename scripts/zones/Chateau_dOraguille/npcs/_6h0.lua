@@ -3,7 +3,7 @@
 -- Door: Prince Royal's
 -- Finishes Quest: A Boy's Dream, Under Oath
 -- Involved in Missions: 3-1, 5-2, 8-2
--- @pos -38 -3 73 233
+-- $pos -38 -3 73 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------

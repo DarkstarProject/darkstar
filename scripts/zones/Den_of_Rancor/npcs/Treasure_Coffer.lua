@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Den of Rancor
 -- NPC:  Treasure Coffer
--- @zone 160
--- @pos 
+-- $zone 160
+-- $pos 
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------
@@ -99,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -108,6 +108,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

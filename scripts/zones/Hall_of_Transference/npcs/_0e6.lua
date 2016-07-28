@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Hall of Transference
 --  NPC: Large Apparatus (Right) - Dem
--- @pos -243.723 -41.482 -289.937 14
+-- $pos -243.723 -41.482 -289.937 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------

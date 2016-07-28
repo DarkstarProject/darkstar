@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 -- NPC:  Forine
 -- Involved In Mission: Journey Abroad
--- @zone 241
--- @pos -52.677 -0.501 -26.299
+-- $zone 241
+-- $pos -52.677 -0.501 -26.299
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

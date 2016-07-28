@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC:  Maryoh Comyujah
 -- Involved in Mission: The Mithra and the Crystal (Zilart 12)
--- @pos 0 8 73 247
+-- $pos 0 8 73 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0051 and option == 1) then
         player:setVar("ZilartStatus",1);

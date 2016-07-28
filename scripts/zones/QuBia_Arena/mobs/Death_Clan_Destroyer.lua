@@ -42,8 +42,8 @@ function onMobFight(mob,target)
     end
 
     for i,v in ipairs(allies[inst]) do
-        -- printf("inst %u",inst);
-        -- printf("MP %u",mob:getMP());
+    -- printf("inst %u",inst);
+    -- printf("MP %u",mob:getMP());
         if (GetMobAction(v) == 27) then
             if (mob:actionQueueEmpty() == true) then
                 if (mob:getLocalVar("cooldown") == 0) then
@@ -78,7 +78,7 @@ function onMobDeath(mob, player, isKiller)
     end
 
     if (victory == true) then
-        player:startEvent(0x7d04,0,0,4);
+    player:startEvent(0x7d04,0,0,4);
     end
 end;
 -----------------------------------

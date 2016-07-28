@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Malduc
 -- Type: Mission Giver
--- @pos 66.200 -14.999 4.426 237
+-- $pos 66.200 -14.999 4.426 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,1,csid,option);
     

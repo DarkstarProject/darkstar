@@ -3,7 +3,7 @@
 -- NPC:  Cermet Door
 -- Cermet Door for Basty Ambassador  
 -- Bastok Mission 3.3 "Appointment to Jeuno"
--- @pos 596 16 -19 184
+-- $pos 596 16 -19 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

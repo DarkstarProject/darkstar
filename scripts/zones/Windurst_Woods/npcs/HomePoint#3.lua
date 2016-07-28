@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC:  HomePoint#3
--- @pos -92 -5 62 241
+-- $pos -92 -5 62 241
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;

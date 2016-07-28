@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Gusgen Mines
 -- NPC:  _5gd (Lever F)
--- @pos 44 -20.56 143.802 196
+-- $pos 44 -20.56 143.802 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

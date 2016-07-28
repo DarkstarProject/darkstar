@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Boyahada Tree
 -- NPC:  Treasure Coffer
--- @pos 27 6 144 153
+-- $pos 27 6 144 153
 -----------------------------------
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
 -----------------------------------
@@ -123,8 +123,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -132,6 +132,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @takegil <amount> <player>
+-- func: $takegil <amount> <player>
 -- desc: Removes the amount of gil from the given player.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, amount, target)
     if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@takegil <amount> <player>" );
+        player:PrintToPlayer( "$takegil <amount> <player>" );
         return;
     end
 
@@ -26,7 +26,7 @@ function onTrigger(player, amount, target)
             player:PrintToPlayer( string.format( "Removed %i gil from player '%s' ", amount, target ) )
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@takegil <amount> <player>" );
+            player:PrintToPlayer( "$takegil <amount> <player>" );
         end
     end
 end;

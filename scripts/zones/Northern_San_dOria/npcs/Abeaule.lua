@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Abeaule
 -- Starts and Finishes Quest: The Trader in the Forest, The Medicine Woman
--- @pos -136 -2 56 231
+-- $pos -136 -2 56 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

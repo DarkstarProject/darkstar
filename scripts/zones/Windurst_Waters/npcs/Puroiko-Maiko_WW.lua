@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Windurst Water
---    NPC:  Puroiko-Maiko, W.W.
+-- Area: Windurst Water
+-- NPC:  Puroiko-Maiko, W.W.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band

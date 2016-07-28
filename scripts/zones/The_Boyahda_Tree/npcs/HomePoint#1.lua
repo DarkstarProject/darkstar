@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Boyahda Tree
 -- NPC:  HomePoint#1
--- @pos 88 -15 -217 153
+-- $pos 88 -15 -217 153
 -----------------------------------
 
 package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;

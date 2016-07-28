@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 -- NPC:  Nuimahn
 -- Type: Alzadaal Undersea Ruins
--- @pos  -380 0 -381 79
+-- $pos  -380 0 -381 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00cb) then
         player:setPos(-515,-6.5,740,0,72);

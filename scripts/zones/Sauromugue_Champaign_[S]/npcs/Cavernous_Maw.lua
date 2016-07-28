@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign [S]
 --  NPC: Cavernous Maw
--- @pos 369 8 -227 98
+-- $pos 369 8 -227 98
 -- Teleports Players to Sauromugue_Champaign
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;

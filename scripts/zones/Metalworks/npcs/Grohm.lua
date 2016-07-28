@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Grohm
 -- Involved In Mission: Journey Abroad
--- @pos -18 -11 -27 237
+-- $pos -18 -11 -27 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01a7 or csid == 0x01a9) then
         if (player:getFreeSlotsCount() == 0) then 

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: temenos
 -- NPC:  Matter diffusion module
--- @pos 
+-- $pos 
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
@@ -171,8 +171,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x7d00) then
 
    end

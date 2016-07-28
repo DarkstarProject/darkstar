@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  Song Runes
 -- Finishes Quest: Path of the Bard
--- @pos -721 -7 102 103
+-- $pos -721 -7 102 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0002) then
         player:addGil(GIL_RATE*3000);

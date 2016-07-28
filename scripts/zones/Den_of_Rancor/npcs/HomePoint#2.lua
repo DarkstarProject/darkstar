@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Den_of_Rancor
 -- NPC:  HomePoint#2
--- @pos 182 34 -62 160
+-- $pos 182 34 -62 160
 -----------------------------------
 
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;

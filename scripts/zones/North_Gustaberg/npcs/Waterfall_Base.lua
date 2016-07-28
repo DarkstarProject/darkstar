@@ -2,7 +2,7 @@
 -- Area: North Gustaberg
 -- NPC:  Waterfall Base
 -- Involved In Quest: Drachenfall
--- @pos -217.594 98.644 464.722 106
+-- $pos -217.594 98.644 464.722 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -2,7 +2,7 @@
 -- NPC:  _0s8 (Wooden Gate)
 -- Area: Sacrarium
 -- Involved in Mission: Secrets of Worship
--- @pos 45.500 -1.500 10.000 28
+-- $pos 45.500 -1.500 10.000 28
 -----------------------------------
 
 require("scripts/globals/keyitems");
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

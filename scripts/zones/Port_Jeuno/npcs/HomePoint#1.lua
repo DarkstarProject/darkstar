@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 -- NPC:  HomePoint#1
--- @pos 37.076 0.001 8.831 246
+-- $pos 37.076 0.001 8.831 246
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;

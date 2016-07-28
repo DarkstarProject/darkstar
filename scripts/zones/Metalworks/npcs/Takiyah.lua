@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Metalworks
---    NPC:  Takiyah
+-- Area: Metalworks
+-- NPC:  Takiyah
 --  Type: Regional Merchant
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printff("CSID: %u",csid);
+    -- printff("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,6 +49,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printff("CSID: %u",csid);
+    -- printff("RESULT: %u",option);
 end;

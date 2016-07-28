@@ -74,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (EventFinishBCNM(player,csid,option)) then
         return;

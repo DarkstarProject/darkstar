@@ -2,7 +2,7 @@
 -- Area: Ru'Lude Gardens
 -- NPC:  Nelcabrit
 -- Involved in Mission: San d'Oria 3-3, 4-1
--- @pos -32 9 -49 243
+-- $pos -32 9 -49 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002a) then
         player:setVar("MissionStatus",4);

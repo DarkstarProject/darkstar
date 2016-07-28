@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Quicksand Caves
---     NPC:  qm25
+-- Area: Quicksand Caves
+--  NPC:  qm25
 --  Notes: Antican Tag
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;

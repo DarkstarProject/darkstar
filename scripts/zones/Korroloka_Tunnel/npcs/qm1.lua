@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
 -- NPC:  ??? (qm1) - Morion Worm spawn
--- @pos 254.652 -6.039 20.878 173
+-- $pos 254.652 -6.039 20.878 173
 -----------------------------------
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------

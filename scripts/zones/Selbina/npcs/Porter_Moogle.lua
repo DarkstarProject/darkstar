@@ -2,8 +2,8 @@
 --  Area:   Selbina
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  @zone 248
---  @pos TODO
+--  $zone 248
+-- $pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

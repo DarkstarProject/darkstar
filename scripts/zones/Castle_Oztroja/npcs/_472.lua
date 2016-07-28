@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   Brass Door
 -- Notes: Opened by handle near password 1
--- @pos -59 0.5 -28 151
+-- $pos -59 0.5 -28 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -26,8 +26,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("upCSID: %u",csid);
---printf("upRESULT: %u",option);
+    -- printf("upCSID: %u",csid);
+    -- printf("upRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -35,6 +35,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

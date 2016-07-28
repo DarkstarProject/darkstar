@@ -2,8 +2,8 @@
 -- Area: Upper Jeuno
 -- NPC: Guslam
 -- Starts Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 244
--- @pos -5 1 48
+-- $zone 244
+-- $pos -5 1 48
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -135,8 +135,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -144,8 +144,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x009b) then 
         NumQuest = 43 + player:getMainJob();

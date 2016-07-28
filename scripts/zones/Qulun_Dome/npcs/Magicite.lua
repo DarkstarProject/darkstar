@@ -2,7 +2,7 @@
 -- Area: Qulun Dome
 -- NPC:  Magicite
 -- Involved in Mission: Magicite
--- @pos 11 25 -81 148
+-- $pos 11 25 -81 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);    
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);    
     
     if (csid == 0x0000) then
         player:setVar("MissionStatus",4);

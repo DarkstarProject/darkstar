@@ -3,8 +3,8 @@
 --  NPC: Yung Yaam
 --    Involved In Quest: Wondering Minstrel
 --    Working 100%
---  @zone = 238
---  @pos = -63 -4 27
+--  $zone = 238
+-- $pos = -63 -4 27
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

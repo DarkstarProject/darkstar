@@ -2,7 +2,7 @@
 -- Area: Qulun Dome
 -- NPC:  Door
 -- Involved in Mission: Limit Break 3
--- @pos 299.999 37.864 47.067 148
+-- $pos 299.999 37.864 47.067 148
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);    
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);    
 end;

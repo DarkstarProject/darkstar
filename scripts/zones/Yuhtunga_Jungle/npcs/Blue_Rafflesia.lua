@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 -- NPC: Blue Rafflesia
 -- Used in quest Even More Gullible Travels
--- @pos -468.876 -1 220.247 123 <many>
+-- $pos -468.876 -1 220.247 123 <many>
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     local evenmoreTravelsStatus = player:getQuestStatus(OUTLANDS, EVEN_MORE_GULLIBLES_TRAVELS)
 
 -- Set BathedInScent to 1 if they touched all 3 Rafflesia for EVEN_MORE_GULLIBLES_TRAVELS which opens the quest The Opo-Opo and I

@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Savae E Paleade
 -- Involved In Mission: Journey Abroad
--- @pos 23.724 -17.39 -43.360 237
+-- $pos 23.724 -17.39 -43.360 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00cc) then
         player:addMission(SANDORIA,JOURNEY_TO_BASTOK);

@@ -79,8 +79,6 @@ function onMobFight(mob, target)
            mob:AnimationSub(2);
    end
 end;
-
-
 -----------------------------------
 -- onMobDeath
 -----------------------------------
@@ -104,8 +102,6 @@ function onMobDeath(mob, player, isKiller)
         player:setVar("MemoryReceptacle",1);
         rnd = 1;
     end
-
-
     switch (mob:getID()) : caseof {
         [16859151] = function (x)
         GetNPCByID(16859453):openDoor(180);
@@ -197,8 +193,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 ----------------------------------
@@ -206,8 +202,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (option==1) then
     player:setVar("MemoryReceptacle",0);
     end

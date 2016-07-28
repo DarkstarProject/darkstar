@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 -- NPC:  ???
 -- Involved In Quest: The Talekeeper's Gift
--- @pos 211 4 -79 127
+-- $pos 211 4 -79 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

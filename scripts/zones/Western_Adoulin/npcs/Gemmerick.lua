@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Gemmerick
 --  Type: Standard AH Info NPC
---  @zone 256
---  @pos 79 4 26
+--  $zone 256
+-- $pos 79 4 26
 -----------------------------------
 
 -----------------------------------

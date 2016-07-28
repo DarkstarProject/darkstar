@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
 -- NPC:  HomePoint#3
--- @pos 31 -6.5 -40 239
+-- $pos 31 -6.5 -40 239
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;

@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Shami
 -- Orb Seller (BCNM)
--- @pos -14 8 44 246
+-- $pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -221,8 +221,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -230,8 +230,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local BeastmensSeal = player:getSeals(0);
     local KindredsSeal = player:getSeals(1);
     local KindredsCrest = player:getSeals(2);

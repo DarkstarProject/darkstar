@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RuLude_Gardens
 -- NPC:  HomePoint#3
--- @pos -67 6 -25 243
+-- $pos -67 6 -25 243
 -----------------------------------
 
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;

@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Northern San d'Oria
---    NPC:  Achatere, T.K.
+-- Area: Northern San d'Oria
+-- NPC:  Achatere, T.K.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band

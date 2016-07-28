@@ -3,7 +3,7 @@
 -- NPC:  Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
--- @pos 2 0.1 30 242
+-- $pos 2 0.1 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -124,8 +124,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -133,8 +133,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00ee) then
         if (player:getNation() == BASTOK) then

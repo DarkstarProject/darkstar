@@ -16,12 +16,12 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    -- "Flyers for Regine" conditional script
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
+        local count = trade:getItemCount();
+        local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     
     player:showText(npc,MIOGIQUE_SHOP_DIALOG);
 
-    stock = {0x3108,14256,1,    -- Chainmail
+    local stock = {0x3108,14256,1,    -- Chainmail
              0x3188,7783,1,        -- Chain Mittens
              0x3180,23846,1,    -- Gauntlets
              0x3088,9439,1,        -- Iron Mask
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,10 +73,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
-

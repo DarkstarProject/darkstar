@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 -- NPC:  Sahagin Key Door
--- @zone 176
--- @pos 40 8.6 20.012
+-- $zone 176
+-- $pos 40 8.6 20.012
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -44,10 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,7 +53,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
  
 end;

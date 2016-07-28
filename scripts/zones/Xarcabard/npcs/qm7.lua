@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  qm7 (???)
 -- Involved in Quests: RNG AF3 quest - Unbridled Passion
--- @pos -295.065 -25.054 151.250 112
+-- $pos -295.065 -25.054 151.250 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0008) then
         SpawnMob(koenigsTiger,240):updateClaim(player);

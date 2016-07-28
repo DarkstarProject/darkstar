@@ -2,7 +2,7 @@
 -- Area: West Sarutabaruta
 -- NPC:  Mahien-Uhien
 -- Type: Outpost Vendor
--- @pos -13 -12 311 115
+-- $pos -13 -12 311 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     if (option == 1) then
         ShowOPVendorShop(player);
