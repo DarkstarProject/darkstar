@@ -1541,22 +1541,25 @@ namespace battleutils
         return dsprand::GetRandomNumber(minPdif, maxPdif);
     }
 
-    int16 CalculateBaseTP(int delay) {
+    int16 CalculateBaseTP(int delay){ 
         int16 x = 1;
         if (delay <= 180) {
-            x = 50 + (((float)delay - 180)*1.5f) / 18;
+            x = 61 + ((delay - 180)*63.f) / 360;
         }
-        else if (delay <= 450) {
-            x = 50 + (((float)delay - 180)*6.5f) / 27;
+        else if (delay <= 540) {
+            x = 61 + ((delay - 180)*88.f) / 360;
         }
-        else if (delay <= 480) {
-            x = 115 + (((float)delay - 450)*1.5f) / 3;
+        else if (delay <= 630) {
+            x = 149 + ((delay - 540)*20.f) / 360;
         }
-        else if (delay <= 530) {
-            x = 130 + (((float)delay - 480)*1.5f) / 5;
+        else if (delay <= 720) {
+            x = 154 + ((delay - 630)*28.f) / 360;
+        }
+        else if (delay <= 900) {
+            x = 161 + ((delay - 720)*24.f) / 360;
         }
         else {
-            x = 145 + (((float)delay - 530)*3.5f) / 47;
+            x = 173 + ((delay - 900)*28.f) / 360;
         }
         return x;
     }
