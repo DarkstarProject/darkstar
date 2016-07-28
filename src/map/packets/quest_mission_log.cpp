@@ -41,7 +41,7 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
     {
         // We're updating any non-TOAU quest log
         generateQuestPacket(PChar, logID, logType);
-        packetType = questPacketBytes.at({logID, logType});
+        packetType = (logType == LOG_QUEST_CURR ? questPacketBytes.at(logID).first : questPacketBytes.at(logID).second);
     }
     // Then get our mission log updates out of the way
     else if (logType >= LOG_MISS_CURR)
@@ -103,12 +103,13 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
         if (logType == LOG_QUEST_CURR) {
             // As before, current TOAU Quests share with TOAU Mission, WOTG, Assault, and Campaign Missions
             generateCurrentExpMissionPacket(PChar); // Writes 12 bytes in same packet
+            packetType = questPacketBytes.at(logID).first;
         }
         else {
             // Completed TOAU Quests share a packet with completed Assault Missions
             generateAssaultMissionPacket(PChar); // Writes in same packet
+            packetType = questPacketBytes.at(logID).second;
         }
-        packetType = questPacketBytes.at({logID, logType});
     }
 
     // Write the byte that informs FFXI client what kind of Quest/Mission log update this packet is.
@@ -155,12 +156,9 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
 {
     // This packet simultaneously updates completed mission logs for Nation and Zilart missions.
-    uint8 logID = 0x00;
-    uint8 missionAreas[4] = { MISSION_SANDORIA, MISSION_BASTOK, MISSION_WINDURST, MISSION_ZILART };
-    for (uint8 i = 0; i <= 3; i++) {
-        logID = missionAreas[i];
+    for (uint8 logID = MISSION_SANDORIA; logID <= MISSION_ZILART; logID++) {
         for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
-            data[(questMissionID / 8) + (i * 0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
+            data[(questMissionID / 8) + (logID * 0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
     }
 }
 

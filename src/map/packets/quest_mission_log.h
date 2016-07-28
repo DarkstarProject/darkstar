@@ -25,7 +25,7 @@
 #define _CQUESTMISSIONLOGPACKET_H
 
 #include "../../common/cbasetypes.h"
-#include <map>
+#include <unordered_map>
 
 #include "basic.h"
 
@@ -68,30 +68,20 @@ enum LOG_TYPE
 };
 
 // Quest Log Packet Values
-static const std::map<std::pair<uint8, LOG_TYPE>, uint16> questPacketBytes =
+static const std::unordered_map<uint8, std::pair<uint16, uint16>> questPacketBytes =
 {
-    {{ QUESTS_SANDORIA , LOG_QUEST_CURR }, 0x50   }, // Sandoria Current
-    {{ QUESTS_SANDORIA , LOG_QUEST_COMP }, 0x90   }, // Sandoria Complete
-    {{ QUESTS_BASTOK   , LOG_QUEST_CURR }, 0x58   }, // Bastok Current
-    {{ QUESTS_BASTOK   , LOG_QUEST_COMP }, 0x98   }, // Bastok Complete
-    {{ QUESTS_WINDURST , LOG_QUEST_CURR }, 0x60   }, // Windurst Current
-    {{ QUESTS_WINDURST , LOG_QUEST_COMP }, 0xA0   }, // Windurst Complete
-    {{ QUESTS_JEUNO    , LOG_QUEST_CURR }, 0x68   }, // Jeuno Current
-    {{ QUESTS_JEUNO    , LOG_QUEST_COMP }, 0xA8   }, // Jeuno Complete
-    {{ QUESTS_OTHER    , LOG_QUEST_CURR }, 0x70   }, // Other Areas Current
-    {{ QUESTS_OTHER    , LOG_QUEST_COMP }, 0xB0   }, // Other Areas Complete
-    {{ QUESTS_OUTLANDS , LOG_QUEST_CURR }, 0x78   }, // Outlands Current
-    {{ QUESTS_OUTLANDS , LOG_QUEST_COMP }, 0xB8   }, // Outlands Complete
-    {{ QUESTS_TOAU     , LOG_QUEST_CURR }, 0x80   }, // Aht Urhgan Current
-    {{ QUESTS_TOAU     , LOG_QUEST_COMP }, 0xC0   }, // Aht Urhgan Complete
-    {{ QUESTS_WOTG     , LOG_QUEST_CURR }, 0x88   }, // Crystal War Current
-    {{ QUESTS_WOTG     , LOG_QUEST_COMP }, 0xC8   }, // Crystal War Complete
-    {{ QUESTS_ABYSSEA  , LOG_QUEST_CURR }, 0xE0   }, // Abyssea Current
-    {{ QUESTS_ABYSSEA  , LOG_QUEST_COMP }, 0xE8   }, // Abyssea Complete
-    {{ QUESTS_ADOULIN  , LOG_QUEST_CURR }, 0xF0   }, // Adoulin Current
-    {{ QUESTS_ADOULIN  , LOG_QUEST_COMP }, 0xF8   }, // Adoulin Complete
-    {{ QUESTS_COALITION, LOG_QUEST_CURR }, 0x0100 }, // Coalition Current
-    {{ QUESTS_COALITION, LOG_QUEST_COMP }, 0x0108 }  // Coalition Complete
+    // Quest Log ID   , Current, Complete
+    { QUESTS_SANDORIA , {0x50  , 0x90   }},
+    { QUESTS_BASTOK   , {0x58  , 0x98   }},
+    { QUESTS_WINDURST , {0x60  , 0xA0   }},
+    { QUESTS_JEUNO    , {0x68  , 0xA8   }},
+    { QUESTS_OTHER    , {0x70  , 0xB0   }},
+    { QUESTS_OUTLANDS , {0x78  , 0xB8   }},
+    { QUESTS_TOAU     , {0x80  , 0xC0   }},
+    { QUESTS_WOTG     , {0x88  , 0xC8   }},
+    { QUESTS_ABYSSEA  , {0xE0  , 0xE8   }},
+    { QUESTS_ADOULIN  , {0xF0  , 0xF8   }},
+    { QUESTS_COALITION, {0x0100, 0x0108 }},
 };
 
 // Mission Log Packet Bytes
