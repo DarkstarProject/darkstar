@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0006) then
         player:addQuest(OUTLANDS,THE_MISSING_PIECE);
     elseif (csid == 0x0008) then -- give the player the key items he needs to complete the quest
@@ -67,6 +67,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_ALFESAR);
     end;
 end;
-
-
 

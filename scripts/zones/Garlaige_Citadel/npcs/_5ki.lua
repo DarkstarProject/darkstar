@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 -- NPC:  _5ki (Banishing Gate #3)
--- @pos -100 -3.008 359 200
+-- $pos -100 -3.008 359 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

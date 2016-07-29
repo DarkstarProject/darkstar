@@ -2,7 +2,7 @@
 -- Area:    Caedarva Mire
 -- NPC:     Verdelet
 -- ID:      17101202
--- @pos 417 -19.3 -70
+-- $pos 417 -19.3 -70
 -----------------------------------
 
 require("scripts/globals/status");

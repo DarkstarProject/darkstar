@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Yorcia Weald
 -- NPC:  HomePoint#1
--- @pos -420 0 -62 263
+-- $pos -420 0 -62 263
 -----------------------------------
 
 package.loaded["scripts/zones/Yorcia_Weald/TextIDs"] = nil;

@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Pius
 -- Involved In Mission: Journey Abroad
--- @pos 99 -21 -12 237
+-- $pos 99 -21 -12 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0163) then
         if (player:getVar("MissionStatus") == 3) then

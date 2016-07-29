@@ -3,7 +3,7 @@
 -- NPC:  Waoud
 -- Standard Info NPC
 -- Involved in quest: An Empty Vessel
--- @pos 65 -6 -78 50
+-- $pos 65 -6 -78 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     local success = player:getVar("SuccessfullyAnswered"); -- number of questions answered successfully
 
@@ -122,8 +122,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x003c and option == 50) then -- Begin BLU quest
         player:needToZone(true);

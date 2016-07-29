@@ -16,7 +16,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
+    -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,10 +69,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-
-

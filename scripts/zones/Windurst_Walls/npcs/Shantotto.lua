@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
 --  NPC: Shantotto
---    @pos 122 -2 112 239
+--    $pos 122 -2 112 239
 --  CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;

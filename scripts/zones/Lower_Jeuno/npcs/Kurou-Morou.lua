@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
 -- Starts and Finishes Quest: Your Crystal Ball & Never to return
--- @pos -4 -6 -28 245
+-- $pos -4 -6 -28 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -2,13 +2,12 @@
 -- Area: Northern San d'Oria
 -- NPC:  Bertenont
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -165 0.1 226 231
+-- $pos -165 0.1 226 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
@@ -45,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0329) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",9,true);

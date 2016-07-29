@@ -2,9 +2,9 @@
 -- Area: FeiYin
 -- NPC:  Underground Pool
 -- Involved In Quest: Scattered into Shadow
--- @pos 7 0 32 204 (H-8)
--- @pos 7 0 247 204 (H-5)
--- @pos -168 0 247 204 (F-5)
+-- $pos 7 0 32 204 (H-8)
+-- $pos 7 0 247 204 (H-5)
+-- $pos -168 0 247 204 (F-5)
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0015) then
         player:delKeyItem(AQUAFLORA1);

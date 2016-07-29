@@ -2,8 +2,8 @@
 -- Area: Castle Zvahl Baileys
 -- NPC: Torch (x4)
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
--- @zone 161
--- @pos 63 -24 21
+-- $zone 161
+-- $pos 63 -24 21
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -88,9 +88,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

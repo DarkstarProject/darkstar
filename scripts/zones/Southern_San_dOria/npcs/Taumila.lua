@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Taumila
 -- Starts and Finishes Quest: Tiger's Teeth (R)
--- @pos -140 -5 -8 230
+-- $pos -140 -5 -8 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

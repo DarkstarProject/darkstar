@@ -2,7 +2,7 @@
 -- Area: Ru'Lude Gardens
 -- NPC:  Audience Chamber
 -- Involved in Mission: Magicite
--- @pos 0 -5 66 243
+-- $pos 0 -5 66 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0080) then
         player:setVar("MissionStatus",2);

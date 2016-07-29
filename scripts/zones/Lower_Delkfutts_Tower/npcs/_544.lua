@@ -2,7 +2,7 @@
 -- Area:  Lower Delkfutt's Tower
 -- NPC:   Cermet Door
 -- Notes: Door opens when you trade Delkfutt Key to it
--- @pos 345 0.1 20 184
+-- $pos 345 0.1 20 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
  
 -----------------------------------

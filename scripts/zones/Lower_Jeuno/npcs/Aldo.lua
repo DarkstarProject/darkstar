@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Aldo
 -- Involved in Mission: Magicite, Return to Delkfutt's Tower (Zilart)
--- @pos 20 3 -58 245
+-- $pos 20 3 -58 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0098) then
         player:delKeyItem(LETTERS_TO_ALDO);

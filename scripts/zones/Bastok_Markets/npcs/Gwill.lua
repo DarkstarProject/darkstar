@@ -3,8 +3,8 @@
 -- NPC:  Gwill
 -- Starts & Ends Quest: The Return of the Adventurer
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
--- @zone 235
--- @pos 0 0 0
+-- $zone 235
+-- $pos 0 0 0
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

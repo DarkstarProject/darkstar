@@ -2,7 +2,7 @@
 -- Area: Cloister of Gales
 -- NPC:  Wind Protocrystal
 -- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
--- @zone -361 1 -381 201
+-- $zone -361 1 -381 201
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;

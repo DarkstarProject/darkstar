@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of Zi'Tah
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Light Headstone)
--- @pos 235 0 280 121
+-- $pos 235 0 280 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17272839,300):updateClaim(player); -- Doomed Pilgrims

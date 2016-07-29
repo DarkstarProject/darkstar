@@ -2,7 +2,7 @@
 -- Zone: Abyssea - Konschtat
 --  NPC: Conflux Surveyor
 -- Type: 
--- @pos 133.000 -72.738 -824.000 15
+-- $pos 133.000 -72.738 -824.000 15
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------

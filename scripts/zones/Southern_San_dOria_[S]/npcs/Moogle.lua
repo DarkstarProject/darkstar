@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Moogle
--- @zone 80
--- @pos <many>
+-- $zone 80
+-- $pos <many>
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x7530) then
         player:setVar("MoghouseExplication",0);
     end

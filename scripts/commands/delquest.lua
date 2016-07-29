@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delquest <logID> <questID> <player>
+-- func: $delquest <logID> <questID> <player>
 -- desc: Deletes the given quest from the GM or target player.
 ---------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ function onTrigger(player, logId, questId, target)
     
     if (questId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log id and quest id!" );
-        player:PrintToPlayer( "@delquest <logID> <questID> <player>" );
+        player:PrintToPlayer( "$delquest <logID> <questID> <player>" );
         return;
     end
 
@@ -32,6 +32,6 @@ function onTrigger(player, logId, questId, target)
         player:PrintToPlayer( string.format( "Deleted Quest for log %u with ID %u from %s", logId, questId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@delquest <logID> <questID> <player>" );
+        player:PrintToPlayer( "$delquest <logID> <questID> <player>" );
     end
 end;

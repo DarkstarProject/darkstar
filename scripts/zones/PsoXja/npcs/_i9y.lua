@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Pso'Xja
 -- NPC:  _i9y (Crystal Receptor)
--- @pos -389.980 -3.198 -203.595 9
+-- $pos -389.980 -3.198 -203.595 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

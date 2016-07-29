@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Quicksand Caves
 -- NPC:  Fountain of Kings
--- @pos 567 18 -939 208
+-- $pos 567 18 -939 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

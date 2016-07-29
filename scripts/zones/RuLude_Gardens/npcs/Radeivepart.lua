@@ -3,8 +3,8 @@
 -- NPC:  Radeivepart
 -- Starts and Finishes Quest: Northward
 -- Involved in Quests: Save the Clock Tower
--- @zone 243
--- @pos 5 9 -39
+-- $zone 243
+-- $pos 5 9 -39
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

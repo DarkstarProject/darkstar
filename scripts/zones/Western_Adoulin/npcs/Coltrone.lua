@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Coltrone
 --  Type: Standard NPC
---  @zone 256
---  @pos -30 19 97
+--  $zone 256
+-- $pos -30 19 97
 -----------------------------------
 
 -----------------------------------

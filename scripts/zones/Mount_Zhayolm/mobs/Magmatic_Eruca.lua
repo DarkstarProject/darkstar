@@ -23,7 +23,6 @@ function onMobDespawn(mob)
 
         -- Check if EnE window is open, and there is not an EnE popped already(ACTION_NONE = 0)
         if (EnE_ToD <= os.time(t) and GetMobAction(Energetic_Eruca) == 0) then
-
             -- printf("EnE window open");
             -- Give Magmatic Eruca 10 percent chance to pop EnE
             if (math.random(1,10) == 5) then

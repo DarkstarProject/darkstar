@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC:  Endracion
--- @pos -110 1 -34 230
+-- $pos -110 1 -34 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -99,8 +99,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdateCSID: %u",csid);
---printf("onUpdateOPTION: %u",option);
+    -- printf("onUpdateCSID: %u",csid);
+    -- printf("onUpdateOPTION: %u",option);
 end;
 
 -----------------------------------
@@ -108,8 +108,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinishCSID: %u",csid);
---printf("onFinishOPTION: %u",option);
+    -- printf("onFinishCSID: %u",csid);
+    -- printf("onFinishOPTION: %u",option);
     
     finishMissionTimeline(player,1,csid,option);
     if (csid == 0x040b) then

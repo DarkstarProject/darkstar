@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47h (Handle)
 -- Notes: Opens door _471
--- @pos -182 -15 -19 151
+-- $pos -182 -15 -19 151
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -22,8 +22,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -31,6 +31,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

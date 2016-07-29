@@ -2,7 +2,7 @@
 -- Area: Port San d'Oria
 -- NPC: Ceraulian
 -- Involved in Quest: The Holy Crest
--- @pos 0 -8 -122 232
+-- $pos 0 -8 -122 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

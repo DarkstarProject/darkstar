@@ -2,7 +2,7 @@
 -- Area: Qufim Island
 -- NPC:  Giant Footprint
 -- Involved in quest: Regaining Trust
--- @pos 501 -11 354 126
+-- $pos 501 -11 354 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,6 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("finishRESULT: %u",option);
 end;

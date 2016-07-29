@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
 -- NPC:  Eliot
--- @pos -103 -26 -49 26
+-- $pos -103 -26 -49 26
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -30,8 +30,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,6 +39,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

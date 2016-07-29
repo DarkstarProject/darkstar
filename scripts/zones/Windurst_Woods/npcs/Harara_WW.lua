@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Harara, W.W.
+-- Area: Windurst Woods
+-- NPC:  Harara, W.W.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band

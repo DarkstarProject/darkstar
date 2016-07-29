@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Rahal
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
--- @pos -28 0.1 -6 233
+-- $pos -28 0.1 -6 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,8 +90,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x003c) then
         player:addKeyItem(DRAGON_CURSE_REMEDY);

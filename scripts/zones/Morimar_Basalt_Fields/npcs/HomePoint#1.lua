@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Morimar Basalt Fields
 -- NPC:  HomePoint#1
--- @pos -415 -63.2 409 265
+-- $pos -415 -63.2 409 265
 -----------------------------------
 
 package.loaded["scripts/zones/Morimar_Basalt_Fields/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Telepoint
--- @pos 220.000 19.104 300.000 106
+-- $pos 220.000 19.104 300.000 106
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,6 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

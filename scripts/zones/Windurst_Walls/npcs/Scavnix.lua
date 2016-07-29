@@ -2,7 +2,7 @@
 -- Area: Windurst Walls
 -- NPC: Scavnix
 -- Standard merchant, though he acts like a guild merchant
--- @pos 17.731 0.106 239.626 239
+-- $pos 17.731 0.106 239.626 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,6 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

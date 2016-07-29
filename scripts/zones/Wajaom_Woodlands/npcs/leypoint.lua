@@ -2,7 +2,7 @@
 -- Area: Wajaom Woodlands
 -- NPC:  Leypoint
 -- Teleport point, Quest -- NAVIGATING THE UNFRIENDLY SEAS RELATED --
--- @pos -200.027 -8.500 80.058 51
+-- $pos -200.027 -8.500 80.058 51
 -----------------------------------
 
 require("scripts/zones/Wajaom_Woodlands/TextIDs");
@@ -55,8 +55,8 @@ function onTrigger(player,npc)
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,6 +64,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

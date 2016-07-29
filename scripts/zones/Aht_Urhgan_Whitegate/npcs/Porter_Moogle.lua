@@ -2,8 +2,8 @@
 --  Area:   Aht Urhgan Whitegate
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  @zone 50
---  @pos TODO
+--  $zone 50
+-- $pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

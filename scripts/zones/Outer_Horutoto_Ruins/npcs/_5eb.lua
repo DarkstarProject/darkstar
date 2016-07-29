@@ -2,7 +2,7 @@
 -- Area: Inner Horutoto Ruins
 -- NPC:  Gate: Magical Gizmo
 -- Involved In Mission: Full Moon Fountain
--- @pos -291 0 -659 194
+-- $pos -291 0 -659 194
 -----------------------------------
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0044) then
         player:setVar("MissionStatus",3);

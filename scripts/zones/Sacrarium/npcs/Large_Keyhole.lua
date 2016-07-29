@@ -2,7 +2,7 @@
 -- Area:  Sacrarium
 -- NPC:   Large Keyhole
 -- Notes: Used to open R. Gate
--- @pos 100.231 -1.414 51.700 28
+-- $pos 100.231 -1.414 51.700 28
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------

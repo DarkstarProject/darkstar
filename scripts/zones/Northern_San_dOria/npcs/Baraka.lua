@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Baraka
 -- Involved in Missions 2-3
--- @pos 36 -2 -2 231
+-- $pos 36 -2 -2 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

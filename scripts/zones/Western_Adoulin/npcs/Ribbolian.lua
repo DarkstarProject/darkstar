@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Ribbolian
 --  Type: Standard NPC
---  @zone 256
---  @pos 21 1 -27
+--  $zone 256
+-- $pos 21 1 -27
 -----------------------------------
 
 -----------------------------------

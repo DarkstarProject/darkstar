@@ -2,7 +2,7 @@
 -- Area: Crawler Nest
 -- NPC:  Treasure Chest
 -- Involved In Quest: Enveloped in Darkness
--- @pos 41 0.1 -314 197
+-- $pos 41 0.1 -314 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -13,7 +13,7 @@ require("scripts/globals/treasure");
 require("scripts/zones/Crawlers_Nest/TextIDs");
 
 local TreasureType = "Chest";
-local TreasureLvL = 43;
+local y = 43;
 local TreasureMinLvL = 33;
 
 -----------------------------------
@@ -94,8 +94,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -103,6 +103,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

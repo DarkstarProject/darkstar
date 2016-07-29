@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Fire Fragment)
--- @pos 491 20 301 123
+-- $pos 491 20 301 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17281031,300):updateClaim(player); -- Carthi
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         SetServerVariable("[ZM4]Fire_Headstone_Active",0);
     elseif (csid == 0x00CA) then
         if (player:getFreeSlotsCount() == 0) then
-             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13143);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13143);
         else        
             player:tradeComplete();
             player:addItem(13143);        

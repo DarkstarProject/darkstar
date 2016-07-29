@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Wyatt
--- @zone 80
--- @pos 124 0 84
+-- $zone 80
+-- $pos 124 0 84
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0002) then
         player:addQuest(CRYSTAL_WAR,SEEING_SPOTS);
     elseif (csid == 0x0004) then

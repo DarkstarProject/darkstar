@@ -3,8 +3,8 @@
 -- NPC:  Panta-Putta
 -- Starts and Finishes Quest: The Wonder Magic Set, The kind cardian
 -- Involved in Quests: The Lost Cardian
--- @zone 245
--- @pos -61 0 -140
+-- $zone 245
+-- $pos -61 0 -140
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

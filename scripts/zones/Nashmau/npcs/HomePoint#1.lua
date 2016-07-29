@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Nashmau
 -- NPC:  HomePoint#1
--- @pos -19.860 0.001 -25.441 53
+-- $pos -19.860 0.001 -25.441 53
 -----------------------------------
 
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: FeiYin
 -- NPC:  HomePoint#2
--- @pos 102 0 269 204
+-- $pos 102 0 269 204
 -----------------------------------
 
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;

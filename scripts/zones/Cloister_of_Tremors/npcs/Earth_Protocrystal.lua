@@ -2,7 +2,7 @@
 -- Area: Cloister of Tremors
 -- NPC:  Earth Protocrystal
 -- Involved in Quest: Trial by Earth
--- @pos -539 1 -493 209
+-- $pos -539 1 -493 209
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;

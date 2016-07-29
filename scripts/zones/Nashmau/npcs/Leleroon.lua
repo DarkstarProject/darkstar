@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC: Leleroon
 -- Standard Info NPC -- Corsair SideQuests
--- @pos -14.687 0.000 25.114 53
+-- $pos -14.687 0.000 25.114 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -59,10 +59,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-
-
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (option == 0) then
     
     elseif (option == 1) then
@@ -89,6 +87,4 @@ function onEventFinish(player,csid,option)
     end        
 
 end;
-
-
 

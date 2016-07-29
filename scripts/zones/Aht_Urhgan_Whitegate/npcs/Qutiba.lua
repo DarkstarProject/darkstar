@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Qutiba
 -- Type: Standard NPC
--- @pos 92.341 -7.5 -129.980 50
+-- $pos 92.341 -7.5 -129.980 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

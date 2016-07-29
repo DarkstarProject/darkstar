@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
 -- Name: San d'Oria Mission 1-3 Save the children 
--- @pos -162 -11 78 140
+-- $pos -162 -11 78 140
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------

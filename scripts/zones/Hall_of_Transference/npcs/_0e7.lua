@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Hall of Transference
 -- NPC:  Large Apparatus (Left) - Mea
--- @pos 269 -81 -39 14
+-- $pos 269 -81 -39 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00A0) then
         player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
     end

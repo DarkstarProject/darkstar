@@ -3,8 +3,8 @@
 --  NPC: Jatan-Paratan
 -- Starts and Finished Quest: Wondering Minstrel
 --    Working 100%
---  @zone = 238
---  @pos = -59 -4 22
+--  $zone = 238
+-- $pos = -59 -4 22
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

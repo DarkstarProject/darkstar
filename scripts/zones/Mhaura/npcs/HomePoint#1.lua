@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mhaura
 -- NPC:  HomePoint#1
--- @pos -12.750 -15.791 87.286 249
+-- $pos -12.750 -15.791 87.286 249
 -----------------------------------
 
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addkeyitem <ID> <player>
+-- func: $addkeyitem <ID> <player>
 -- desc: Adds a key item to the player.
 ---------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ function onTrigger(player, keyId, target)
     
     if (keyId == nil or keyId == 0) then
         player:PrintToPlayer( "You must enter a valid KeyItem ID." );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+        player:PrintToPlayer( "$addkeyitem <ID> <player>" );
         return;
     end
 
@@ -35,6 +35,6 @@ function onTrigger(player, keyId, target)
         player:PrintToPlayer( string.format( "Keyitem ID '%u' added to player!", keyId ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@addkeyitem <ID> <player>" );
+        player:PrintToPlayer( "$addkeyitem <ID> <player>" );
     end
 end;

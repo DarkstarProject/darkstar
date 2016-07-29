@@ -571,7 +571,7 @@ function handleAfflatusMisery(caster, spell, dmg)
 
         dmg = math.floor(dmg * boost);
 
-        -- printf("AFFLATUS MISERY: Damage boosted by %f to %d", boost, dmg);
+    -- printf("AFFLATUS MISERY: Damage boosted by %f to %d", boost, dmg);
 
         --Afflatus Mod is Used Up...
         caster:setMod(MOD_AFFLATUS_MISERY, 0)

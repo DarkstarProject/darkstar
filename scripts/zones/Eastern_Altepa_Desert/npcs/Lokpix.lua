@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------

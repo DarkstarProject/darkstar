@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cape_Teriggan
 -- NPC:  Beastmen_s_Banner
--- @pos 162.059 -0.859 250.538 113
+-- $pos 162.059 -0.859 250.538 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;

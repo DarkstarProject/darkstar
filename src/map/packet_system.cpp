@@ -3689,7 +3689,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (RBUFB(data, (0x06)) == '@' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if ((RBUFB(data, (0x06)) == '@' || RBUFB(data, (0x06)) == '$') && CmdHandler.call(PChar, (const int8*)data[7]) == 0) // '@' deprecated, to be replaced by '$' later.
     {
         //this makes sure a command isn't sent to chat
     }

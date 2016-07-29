@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of ZiTah
 -- NPC:  qm2 (???)
 -- Involved in Quest: Forge Your Destiny
--- @pos 639 -1 -151 121
+-- $pos 639 -1 -151 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,7 +57,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

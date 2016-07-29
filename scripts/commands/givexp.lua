@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @givexp <amount> <player>
+-- func: $givexp <amount> <player>
 -- desc: Gives the GM or target player experience points.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, amount, target)
     if (amount == nil or amount <= 0) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@givexp <amount> <player>" );
+        player:PrintToPlayer( "$givexp <amount> <player>" );
         return;
     end
 
@@ -27,7 +27,7 @@ function onTrigger(player, amount, target)
             player:PrintToPlayer( string.format( "Gave %i exp to player '%s' ", amount, target ) );
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@givexp <amount> <player>" );
+            player:PrintToPlayer( "$givexp <amount> <player>" );
         end
     end
 end;

@@ -2,7 +2,7 @@
 -- Area: Ru'Aun Gardens
 -- NPC:  ??? (Genbu's Spawn)
 -- Allows players to spawn the HNM Genbu with a Gem of the North and a Winterstone.
--- @pos 257 -70 517 130
+-- $pos 257 -70 517 130
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

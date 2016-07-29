@@ -2,7 +2,7 @@
 -- Area: Open sea route to Mhaura
 -- NPC:  Pashi Maccaleh
 -- Guild Merchant NPC: Fishing Guild 
--- @zone 4.986 -2.101 -12.026 47
+-- $zone 4.986 -2.101 -12.026 47
 -----------------------------------
 package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,9 +42,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

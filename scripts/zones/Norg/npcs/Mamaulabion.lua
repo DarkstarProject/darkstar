@@ -2,8 +2,8 @@
 -- Area: Norg
 -- NPC: Mamaulabion
 -- Starts and finishes Quest: Mama Mia
--- @zone 252
--- @pos -57 -9 68 (88)
+-- $zone 252
+-- $pos -57 -9 68 (88)
 
 --CSIDs for Mamaulabion
 --0x005D / 93 = Standard

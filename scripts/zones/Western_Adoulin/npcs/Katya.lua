@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Katya
 --  Type: Standard NPC
---  @zone 256
---  @pos 11 0 68
+--  $zone 256
+-- $pos 11 0 68
 -----------------------------------
 
 -----------------------------------

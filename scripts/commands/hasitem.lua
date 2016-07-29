@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @hasitem
+-- func: $hasitem
 -- desc: Checks if a player has a specific item
 ---------------------------------------------------------------------------------------------------
 
@@ -12,13 +12,13 @@ cmdprops =
 function onTrigger(player, itemId, target)
     if (itemId == nil or tonumber(itemId) == 0 or tonumber(itemId) == nil or itemId == 0) then
         player:PrintToPlayer("You must enter a valid item ID.");
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
+        player:PrintToPlayer( "$hasitem <ID> <player>" );
         return;
     end
 
     if (target == nil) then
         player:PrintToPlayer("You must enter a valid target name.");
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
+        player:PrintToPlayer( "$hasitem <ID> <player>" );
         return;
     end
 
@@ -31,6 +31,6 @@ function onTrigger(player, itemId, target)
         end
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@hasitem <ID> <player>" );
+        player:PrintToPlayer( "$hasitem <ID> <player>" );
     end
 end;

@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC:  Mathilde
 -- Involved in Quest: Riding on the Clouds
--- @pos 12.578 -8.287 -7.576 248
+-- $pos 12.578 -8.287 -7.576 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x2715) then
       player:setVar("PromathiaStatus",0);
       player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);

@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  Trail Markings
 -- Dynamis-Xarcabard Enter
--- @pos 570 0 -272 112
+-- $pos 570 0 -272 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("updateRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,8 +64,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("finishRESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("finishRESULT: %u",option);
     
     if (csid == 0x0020) then
         player:setVar("DynaXarcabard_Win",0);

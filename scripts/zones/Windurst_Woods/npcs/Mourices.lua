@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 -- NPC:  Mourices
 -- Involved In Mission: Journey Abroad
--- @zone 241
--- @pos -50.646 -0.501 -27.642
+-- $zone 241
+-- $pos -50.646 -0.501 -27.642
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -74,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -83,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01c0) then
         player:addMission(SANDORIA,JOURNEY_TO_WINDURST);

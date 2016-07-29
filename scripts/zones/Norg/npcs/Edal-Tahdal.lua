@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC:  Edal-Tahdal
 -- Starts and Finishes Quest: Trial by Water
--- @pos -13 1 -20 252
+-- $pos -13 1 -20 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

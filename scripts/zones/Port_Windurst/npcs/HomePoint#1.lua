@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Windurst
 -- NPC:  HomePoint#1
--- @pos -68.216 -4.000 111.761 240
+-- $pos -68.216 -4.000 111.761 240
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

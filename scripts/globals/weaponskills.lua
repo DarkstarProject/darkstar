@@ -394,14 +394,16 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-    if tp < 1000 then tp = 1000 end
-    if (tp>=1000 and tp<2000) then
+    if (tp < 1000) then
+        tp = 1000;
+    end
+    if (tp >= 1000 and tp < 2000) then
         return ftp1 + ( ((ftp2-ftp1)/1000) * (tp-1000));
-    elseif (tp>=2000 and tp<=3000) then
+    elseif (tp >= 2000 and tp <= 3000) then
         -- generate a straight line between ftp2 and ftp3 and find point @ tp
         return ftp2 + ( ((ftp3-ftp2)/1000) * (tp-2000));
     else
-        print("fTP error: TP value is not between 100-300!");
+        print("fTP error: TP value is not between 1000-3000!");
     end
     return 1; -- no ftp mod
 end;
