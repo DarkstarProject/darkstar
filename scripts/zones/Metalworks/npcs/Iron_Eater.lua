@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Iron Eater
 -- Involved in Missions
--- $pos 92.936 -19.532 1.814 237
+-- @pos 92.936 -19.532 1.814 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x02cb and option == 0) then
         player:setVar("MissionStatus",1);
     elseif (csid == 0x030c) then

@@ -3,8 +3,8 @@
 --  NPC: Angelica
 -- Starts and Finished Quest: A Pose By Any Other Name
 --    Working 100%
---  $zone = 238
--- $pos = -70 -10 -6
+--  @zone = 238
+--  @pos = -70 -10 -6
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $tp <amount> <player>
+-- func: @tp <amount> <player>
 -- desc: Sets a players tp.
 -- current known issue: pet tp fails to be set
 ---------------------------------------------------------------------------------------------------
@@ -13,7 +13,7 @@ cmdprops =
 function onTrigger(player, tp, target)
     if (tp == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "$tp <amount> <player>" );
+        player:PrintToPlayer( "@tp <amount> <player>" );
         return;
     end
 
@@ -33,7 +33,7 @@ function onTrigger(player, tp, target)
             end
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "$tp <amount> <player>" );
+            player:PrintToPlayer( "@tp <amount> <player>" );
         end
     end
 end;

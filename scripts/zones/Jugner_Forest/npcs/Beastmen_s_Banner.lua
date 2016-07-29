@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Jugner_Forest
 -- NPC:  Beastmen_s_Banner
--- $pos 448.240 0.210 -157.228 104
+-- @pos 448.240 0.210 -157.228 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("OPTION: %u",option);
+--printf("CSID: %u",csid);
+--printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("OPTION: %u",option);
+--printf("CSID: %u",csid);
+--printf("OPTION: %u",option);
 end;

@@ -3,7 +3,7 @@
 -- NPC:  Vilatroire
 -- Involved in Quests: "Introduction To Teamwork", "Intermediate Teamwork",
 -- "Advanced Teamwork"
--- $pos -260.361 -70.999 423.420 100 
+-- @pos -260.361 -70.999 423.420 100 
 -----------------------------------
 
 require("scripts/globals/quests");
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,7 +49,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
 end;

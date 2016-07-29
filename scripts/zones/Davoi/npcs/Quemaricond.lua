@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Quemaricond
 -- Involved in Mission: Infiltrate Davoi
--- $pos 23 0.1 -23 149
+-- @pos 23 0.1 -23 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,8 +69,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0075) then
         player:setVar("MissionStatus",4);

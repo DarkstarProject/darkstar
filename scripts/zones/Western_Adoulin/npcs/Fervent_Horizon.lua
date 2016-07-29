@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Fervent Horizon
 --  Type: Standard NPC
---  $zone 256
--- $pos -8 0 -61
+--  @zone 256
+--  @pos -8 0 -61
 -----------------------------------
 
 -----------------------------------

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $givegil <amount> <player>
+-- func: @givegil <amount> <player>
 -- desc: Gives the specified amount of gil to GM or target player.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, amount, target)
     if (amount == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "$givegil <amount> <player>" );
+        player:PrintToPlayer( "@givegil <amount> <player>" );
         return;
     end
 
@@ -24,7 +24,7 @@ function onTrigger(player, amount, target)
             targ:addGil(amount);
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "$givegil <amount> <player>" );
+            player:PrintToPlayer( "@givegil <amount> <player>" );
         end
     end
 end;

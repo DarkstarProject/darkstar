@@ -3,7 +3,7 @@
 -- NPC:  Cid
 -- Starts & Finishes Quest: Cid's Secret, The Usual, Dark Puppet (start)
 -- Involved in Mission: Bastok 7-1
--- $pos -12 -12 1 237
+-- @pos -12 -12 1 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

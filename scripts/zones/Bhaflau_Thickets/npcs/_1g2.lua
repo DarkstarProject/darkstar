@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 -- Door: Runic Seal
--- $pos -180 -6.8 -833 52
+-- @pos -180 -6.8 -833 52
 -----------------------------------
 
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;

@@ -2,7 +2,7 @@
 -- Area: Castle Oztroja
 -- NPC:  _m70 (Torch Stand)
 -- Involved in Mission: Magicite
--- $pos -97.134 24.250 -105.979 151
+-- @pos -97.134 24.250 -105.979 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);    
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);    
 end;

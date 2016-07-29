@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $delkeyitem
+-- func: @delkeyitem
 -- desc: Deletes the given key item from the player.
 ---------------------------------------------------------------------------------------------------
 
@@ -17,7 +17,7 @@ function onTrigger(player, keyId, target)
 
     if (keyId == nil or keyId == 0) then
         player:PrintToPlayer("You must enter a valid keyitem ID.");
-        player:PrintToPlayer( "$delkeyitem <ID> <player>" );
+        player:PrintToPlayer( "@delkeyitem <ID> <player>" );
         return;
     end
 
@@ -31,7 +31,7 @@ function onTrigger(player, keyId, target)
             player:PrintToPlayer( string.format( "Keyitem ID '%u' deleted from player!", keyId ) );
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "$delkeyitem <ID> <player>" );
+            player:PrintToPlayer( "@delkeyitem <ID> <player>" );
         end
     end
 end;

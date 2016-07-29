@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Illi-Milli
 --  Type: Standard NPC
---  $zone 256
--- $pos 170 4 -5
+--  @zone 256
+--  @pos 170 4 -5
 -----------------------------------
 
 -----------------------------------

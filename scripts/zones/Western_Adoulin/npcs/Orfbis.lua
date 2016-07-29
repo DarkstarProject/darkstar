@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Orfbis
 --  Type: Standard NPC
---  $zone 256
--- $pos -13 0 -44
+--  @zone 256
+--  @pos -13 0 -44
 -----------------------------------
 
 -----------------------------------

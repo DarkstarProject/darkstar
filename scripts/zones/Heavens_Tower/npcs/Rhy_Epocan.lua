@@ -2,7 +2,7 @@
 -- Area: Heavens Tower
 -- NPC:  Rhy Epocan
 -- Involved in Mission 3-1
--- $pos 2 -48 14 242
+-- @pos 2 -48 14 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,7 +52,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
+-- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     
     if (csid == 0x006B) then

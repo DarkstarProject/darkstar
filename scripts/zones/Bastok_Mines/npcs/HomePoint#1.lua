@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
 -- NPC:  HomePoint#1
--- $pos 39.189 0.001 -42.618 234
+-- @pos 39.189 0.001 -42.618 234
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;

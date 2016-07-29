@@ -2,16 +2,16 @@
 -- Area: Southern San d'Oria
 -- NPC:  Raimbroy
 -- Starts and Finishes Quest: The Sweetest Things
--- $zone 230
--- $pos 
+-- @zone 230
+-- @pos 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 
@@ -19,9 +19,9 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     -- "The Sweetest Things" quest status var
-    local theSweetestThings = player:getQuestStatus(SANDORIA,THE_SWEETEST_THINGS);
+    theSweetestThings = player:getQuestStatus(SANDORIA,THE_SWEETEST_THINGS);
    
     if (theSweetestThings ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(4370,5) and trade:getItemCount() == 5) then
@@ -32,8 +32,8 @@ function onTrade(player,npc,trade)
     end
    
     if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -47,7 +47,7 @@ end;
 
 function onTrigger(player,npc) 
    
-    local theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
+    theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
    
     -- "The Sweetest Things" Quest Dialogs
     if (player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $checkvar <varType> <varName>
+-- func: @checkvar <varType> <varName>
 -- desc: checks player or server variable and returns result value.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, varType, varName)
     if (varType == nil or varName == nil) then
         player:PrintToPlayer("Incorrect command syntax or missing paramters.");
-        player:PrintToPlayer("$checkvar <player name or server> <variable name>");
+        player:PrintToPlayer("@checkvar <player name or server> <variable name>");
         return;
     end
 

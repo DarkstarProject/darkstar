@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC:  Mendoline
 -- Guild Merchant NPC: Fishing Guild 
--- $pos -13.603 -7.287 10.916 248
+-- @pos -13.603 -7.287 10.916 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,7 +42,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 

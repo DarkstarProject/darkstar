@@ -1,26 +1,27 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC:  Fiva
---  Only sells when San d'Oria controls Kolshushu
+--    Area: Port San d'Oria
+--    NPC:  Fiva
+--     Only sells when San d'Oria controls Kolshushu
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+
+require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
-require("scripts/globals/shop");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+-- "Flyers for Regine" conditional script
+FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -33,14 +34,14 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(KOLSHUSHU);
+RegionOwner = GetRegionOwner(KOLSHUSHU);
 
 if (RegionOwner ~= SANDORIA) then 
     player:showText(npc,FIVA_CLOSED_DIALOG);
 else
     player:showText(npc,FIVA_OPEN_DIALOG);
     
-    local stock = {0x1197,184,  --Buburimu Grape
+    stock = {0x1197,184,  --Buburimu Grape
              0x0460,1620, --Casablanca
              0x1107,220,  --Dhalmel Meat
              0x0266,72,   --Mhaura Garlic
@@ -55,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -64,7 +65,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+
 

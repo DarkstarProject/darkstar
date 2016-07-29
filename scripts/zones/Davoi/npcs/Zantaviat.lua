@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Zantaviat
 -- Involved in Mission: The Davoi Report
--- $pos 215 0.1 -10 149
+-- @pos 215 0.1 -10 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0064) then
         player:setVar("MissionStatus",1);

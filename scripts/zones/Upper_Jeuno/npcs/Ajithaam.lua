@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC:  Ajithaam
--- $pos -82 0.1 160 244
+-- @pos -82 0.1 160 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

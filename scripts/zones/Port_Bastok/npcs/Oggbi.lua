@@ -2,8 +2,8 @@
 -- Area: Port Bastok
 -- NPC:  Oggbi
 -- Starts and Finishes: Ghosts of the Past, The First Meeting
--- $zone 236
--- $pos -159 -7 5
+-- @zone 236
+-- @pos -159 -7 5
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

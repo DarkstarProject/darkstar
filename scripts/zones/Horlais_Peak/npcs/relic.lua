@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- NPC:  <this space intentionally left blank>
--- $pos 450 -40 -31 139
+-- @pos 450 -40 -31 139
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
    if (csid == 13) then
       if (player:getFreeSlotsCount() < 2) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18318);

@@ -2,7 +2,7 @@
 -- Area:  Pso'Xja
 -- NPC:   _i96 (Stone Gate)
 -- Notes: Red Bracelet Door
--- $pos -310.000 -1.925 -238.399 9
+-- @pos -310.000 -1.925 -238.399 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------

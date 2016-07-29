@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
 -- Name: pertrifying_pair BCNM30
--- $pos -162 -11 78 140
+-- @pos -162 -11 78 140
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------

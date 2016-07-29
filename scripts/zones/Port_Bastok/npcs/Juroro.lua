@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 -- NPC:  Juroro
 -- Starts and Finishes Quest: Trial by Earth
--- $pos 32 7 -41 236
+-- @pos 32 7 -41 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Castle Zvahl Keep
 -- NPC:  Ore door
 -- Involved In Quest: Recollections
--- $pos -14 0 69 162
+-- @pos -14 0 69 162
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0008) then
         player:tradeComplete();

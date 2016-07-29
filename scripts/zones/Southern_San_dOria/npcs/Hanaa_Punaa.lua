@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC:  Hanaa Punaa
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
--- $zone 230
--- $pos 
+-- @zone 230
+-- @pos 
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ function onTrade(player,npc,trade)
     
     -- "Flyers for Regine"
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

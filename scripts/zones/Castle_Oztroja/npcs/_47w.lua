@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47w (Handle)
 -- Notes: Opens door _473 from behind
--- $pos -41.377 -17.084 17.036 151
+-- @pos -41.377 -17.084 17.036 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

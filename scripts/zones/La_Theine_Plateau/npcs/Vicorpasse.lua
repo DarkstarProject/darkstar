@@ -2,7 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Vicorpasse
 -- Involved in Mission: The Rescue Drill
--- $pos -344 37 266 102
+-- @pos -344 37 266 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x006c) then
         player:setVar("MissionStatus",5);

@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Streetlamp
 -- Involved in Quests: Community Service
--- $zone 245
--- $pos -109.065 0 -158.032
+-- @zone 245
+-- @pos -109.065 0 -158.032
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);    
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);    
 end;

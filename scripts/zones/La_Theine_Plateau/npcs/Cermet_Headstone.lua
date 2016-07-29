@@ -2,7 +2,7 @@
 -- Area: La Theine Plateau
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Water Fragment)
--- $pos -170 39 -504 102
+-- @pos -170 39 -504 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
         player:addKeyItem(WATER_FRAGMENT);

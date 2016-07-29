@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 -- NPC:  Fossil Rock
 -- Used in Mission: Windurst Mission 2-1
--- $pos 17 18 184 198 + <many pos>
+-- @pos 17 18 184 198 + <many pos>
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -133,8 +133,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -142,6 +142,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

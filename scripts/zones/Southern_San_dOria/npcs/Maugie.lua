@@ -5,16 +5,17 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action
 ----------------------------------- 
 
 function onTrade(player,npc,trade) 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then 
             player:messageSpecial(MAUGIE_DIALOG);
             player:setVar("FFR",player:getVar("FFR") - 1);
@@ -74,4 +75,6 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA,GRIMY_SIGNPOSTS);
     end
 end;
+
+
 

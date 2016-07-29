@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 -- NPC:  ??? Used for Norg quest "It's not your vault"
--- $zone 176
--- $pos -173 26 252 2
+-- @zone 176
+-- @pos -173 26 252 2
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

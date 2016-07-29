@@ -2,7 +2,7 @@
 -- Area: Ru'Lude Gardens
 -- NPC:  Harith
 -- Type: Standard NPC
--- $pos -4.349 1 134.014 243
+-- @pos -4.349 1 134.014 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,8 +90,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 
     if (csid == 0x006E or csid == 0x006D) then
         local objecttrade = player:getVar("harithreward");

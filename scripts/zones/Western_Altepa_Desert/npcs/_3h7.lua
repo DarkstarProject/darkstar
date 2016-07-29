@@ -2,7 +2,7 @@
 -- Area:  Western Altepa Desert
 -- NPC:   _3h7 (Emerald Column)
 -- Notes: Mechanism for Altepa Gate
--- $pos -775 2 -460 125
+-- @pos -775 2 -460 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,6 +63,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cape Terrigan
 -- NPC:  <this space intentionally left blank>
--- $pos 73 4 -174 113
+-- @pos 73 4 -174 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
    if (csid == 18) then
       if (player:getFreeSlotsCount() < 2) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18348);

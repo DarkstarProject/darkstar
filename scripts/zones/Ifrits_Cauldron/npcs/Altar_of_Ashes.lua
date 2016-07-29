@@ -2,7 +2,7 @@
 -- Area: Ifrit's Cauldron
 -- NPC: Altar of Ashes
 -- Involved in Quest: Greetings to the Guardian
--- $pos 16 .1 -58 205
+-- @pos 16 .1 -58 205
 -----------------------------------
 
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,7 +56,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 

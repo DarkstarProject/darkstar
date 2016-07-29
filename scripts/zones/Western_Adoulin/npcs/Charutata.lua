@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Charutata
 --  Type: Standard NPC
---  $zone 256
--- $pos -17 0 -90
+--  @zone 256
+--  @pos -17 0 -90
 -----------------------------------
 
 -----------------------------------

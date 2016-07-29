@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Mhaura
---  NPC: Nomad Moogle
+--    Area: Mhaura
+--     NPC: Nomad Moogle
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -29,9 +29,9 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("onEventUpdate");
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--print("onEventUpdate");
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -39,7 +39,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("onEventFinish");
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--print("onEventFinish");
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+

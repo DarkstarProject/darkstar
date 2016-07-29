@@ -2,8 +2,8 @@
 -- Area: Selbina
 -- NPC:  Romeo
 -- Starts and Finishes Quest: Donate to Recycling
--- $zone 248
--- $pos -11 -11 -6
+-- @zone 248
+-- @pos -11 -11 -6
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0014) then
         player:addQuest(OTHER_AREAS,DONATE_TO_RECYCLING);
     elseif (csid == 0x0015) then
@@ -74,4 +74,6 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
+
+
 

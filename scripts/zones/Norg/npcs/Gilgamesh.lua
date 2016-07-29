@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Norg
 -- NPC:  Gilgamesh
--- $pos 122.452 -9.009 -12.052 252
+-- @pos 122.452 -9.009 -12.052 252
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
     
     if (csid == 0x0063) then
         player:tradeComplete();

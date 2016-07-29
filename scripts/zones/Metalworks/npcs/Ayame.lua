@@ -3,7 +3,7 @@
 -- NPC:  Ayame
 -- Involved in Missions
 -- Starts and Finishes Quest: True Strength
--- $pos 133 -19 34 237
+-- @pos 133 -19 34 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

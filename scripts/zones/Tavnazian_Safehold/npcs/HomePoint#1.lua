@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Tavnazian_Safehold
 -- NPC:  HomePoint#1
--- $pos -1.250 -27.907 107.425 26
+-- @pos -1.250 -27.907 107.425 26
 -----------------------------------
 
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

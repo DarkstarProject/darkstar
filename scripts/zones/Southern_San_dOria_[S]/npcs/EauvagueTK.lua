@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Eauvague T.K
--- $zone 80
--- $pos 105 0 -53
+-- @zone 80
+-- @pos 105 0 -53
 -----------------------------------
 
 -----------------------------------
@@ -25,8 +25,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0C8 and option == 1) then
         player:setPos(94,-62,266,40,81);

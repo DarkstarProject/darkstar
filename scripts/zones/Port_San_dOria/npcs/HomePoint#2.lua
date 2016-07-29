@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port San dOria
 -- NPC:  HomePoint#2
--- $pos 48 -12.000 -105 232
+-- @pos 48 -12.000 -105 232
 -----------------------------------
 
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

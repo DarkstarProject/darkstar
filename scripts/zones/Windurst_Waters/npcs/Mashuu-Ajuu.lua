@@ -4,8 +4,8 @@
 -- Starts and Finished Quest: Reap What You Sow
 -- Involved in Quest: Making the Grade
 -- Working 100% 
---  $zone = 238
--- $pos = 129 -6 167
+--  @zone = 238
+--  @pos = 129 -6 167
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Aht Urhgan Whitegate
--- NPC:  Auction Counter
+--    Area: Aht Urhgan Whitegate
+--    NPC:  Auction Counter
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+

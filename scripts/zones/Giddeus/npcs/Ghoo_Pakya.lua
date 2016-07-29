@@ -2,7 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Ghoo Pakya
 -- Involved in Mission 1-3
--- $pos -139 0 147 145
+-- @pos -139 0 147 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0031) then
         player:delKeyItem(DRINK_OFFERINGS);

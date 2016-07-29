@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 -- NPC:  West Plate
--- $pos 128 -34 20 195
+-- @pos 128 -34 20 195
 -----------------------------------
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -80,6 +80,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

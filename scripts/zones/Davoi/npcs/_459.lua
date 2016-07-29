@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Wall of Dark Arts
 -- Involved in Mission: Magicite
--- $pos -22 1 -66 149
+-- @pos -22 1 -66 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,6 +45,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);    
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);    
 end;

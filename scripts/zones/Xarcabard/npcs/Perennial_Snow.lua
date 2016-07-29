@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  Perennial Snow
 -- Involved in Quests: The Circle of Time
--- $pos 339 0 -379 112
+-- @pos 339 0 -379 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
    if (csid == 0x03) then
        player:setVar("star_ringburied",os.date("%j"));

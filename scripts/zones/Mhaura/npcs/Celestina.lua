@@ -4,7 +4,7 @@
 -- Finish Quest: The Sand Charm
 -- Involved in Quest: Riding on the Clouds
 -- Guild Merchant NPC: Goldsmithing Guild 
--- $pos -37.624 -16.050 75.681 249
+-- @pos -37.624 -16.050 75.681 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x007e and option == 70) then
         player:setVar("theSandCharmVar",4);

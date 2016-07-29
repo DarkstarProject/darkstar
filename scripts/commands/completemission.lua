@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $completemission <logID> <missionID> <player>
+-- func: @completemission <logID> <missionID> <player>
 -- desc: Completes the given mission for the target player, if that mission is currently active.
 ---------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ function onTrigger(player, logId, missionId, target)
 
     if (missionId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log id and mission id!" );
-        player:PrintToPlayer( "$completemission <logID> <missionID> <player>" );
+        player:PrintToPlayer( "@completemission <logID> <missionID> <player>" );
         return;
     end
 
@@ -32,6 +32,6 @@ function onTrigger(player, logId, missionId, target)
         player:PrintToPlayer( string.format( "Completed Mission for log %u with ID %u for %s", logId, missionId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "$completemission <logID> <missionID> <player>" );
+        player:PrintToPlayer( "@completemission <logID> <missionID> <player>" );
     end
 end;

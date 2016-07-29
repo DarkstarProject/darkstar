@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC:  Parvipon
 -- Starts and Finishes Quest: The Merchant's Bidding (R)
--- $zone 230
--- $pos -169 -1 13
+-- @zone 230
+-- @pos -169 -1 13
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -24,11 +24,12 @@ function onTrade(player,npc,trade)
         end
     end
 
-    -- "Flyers for Regine" conditional script    local count = trade:getItemCount();
+-- "Flyers for Regine" conditional script
+count = trade:getItemCount();
 MagicFlyer = trade:hasItemQty(532,1);
 
     if (MagicFlyer == true and count == 1) then
-        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

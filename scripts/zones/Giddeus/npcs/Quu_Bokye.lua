@@ -2,7 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Quu Bokye
 -- Involved in Quest: Dark Legacy
--- $pos -159 16 181 145
+-- @pos -159 16 181 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
     
     if (csid == 0x003e) then
         player:tradeComplete();

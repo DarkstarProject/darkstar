@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Batallia Downs
 --  NPC: Cavernous Maw
--- $pos -48 0.1 435 105
+-- @pos -48 0.1 435 105
 -- Teleports Players to Batallia Downs [S]
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;

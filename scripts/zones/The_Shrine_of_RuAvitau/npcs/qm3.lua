@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
 -- NPC:  ??? (Spawn Ullikummi)
--- $pos 739 -99 -581 178
+-- @pos 739 -99 -581 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

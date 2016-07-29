@@ -2,8 +2,10 @@
 -- Area:  Sacrarium
 -- NPC:   _0st (Switch)
 -- Notes: Opens _0su (Gate)
--- $pos 103.478 -1.563 50.181 28
+-- @pos 103.478 -1.563 50.181 28
 -----------------------------------
+
+
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -23,8 +25,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -32,6 +34,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

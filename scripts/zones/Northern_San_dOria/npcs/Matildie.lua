@@ -1,13 +1,14 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC:  Matildie
--- Adventurer's Assistant
+--    Area: Northern San d'Oria
+--    NPC:  Matildie
+--    Adventurer's Assistant
 -------------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 
@@ -20,12 +21,12 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
     end
 
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+-- "Flyers for Regine" conditional script
+FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -45,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,10 +55,13 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x277) then
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
     end
 end;
+
+
+
 

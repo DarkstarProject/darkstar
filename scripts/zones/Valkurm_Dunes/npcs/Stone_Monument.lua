@@ -2,7 +2,7 @@
 --  Area: Valkurm Dunes
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
---    $pos -311.299 -4.420 -138.878 103
+--    @pos -311.299 -4.420 -138.878 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

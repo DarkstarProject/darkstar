@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Riverne Site #B01
 -- Name: Storms of Fate
--- $pos 299 -123 345 146
+-- @pos 299 -123 345 146
 -----------------------------------
 package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
 -----------------------------------

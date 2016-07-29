@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC: Goraow
 -- Starts Quests: Vengeful Wrath
--- $pos 38 .1 14 234
+-- @pos 38 .1 14 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -82,5 +82,7 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",16,true);
     end
 end;
+
+
 
 

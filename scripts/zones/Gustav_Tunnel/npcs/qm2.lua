@@ -2,7 +2,7 @@
 -- Area: Gustav tunnel
 --  NPC: qm2 (???)
 -- Missions: Bastok 9-1
--- $pos -130 1.256 252.696 212
+-- @pos -130 1.256 252.696 212
 -----------------------------------
 package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 -----------------------------------

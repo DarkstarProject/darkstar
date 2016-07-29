@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 -- NPC:  Sola Jaab
 -- Involved in Quest: Riding on the Clouds
--- $zone 241
--- $pos 109 -5 -25
+-- @zone 241
+-- @pos 109 -5 -25
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

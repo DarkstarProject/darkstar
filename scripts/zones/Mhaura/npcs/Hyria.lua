@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Mhaura
--- NPC:  Hyria
+--    Area: Mhaura
+--    NPC:  Hyria
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -37,6 +37,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+

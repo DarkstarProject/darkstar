@@ -2,7 +2,7 @@
 -- Area: Ship bound for Mhaura
 -- NPC:  Lokhong
 -- Type: Guild Merchant: Fishing Guild 
--- $pos 1.841 -2.101 -9.000 221
+-- @pos 1.841 -2.101 -9.000 221
 -----------------------------------
 package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,7 +42,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 

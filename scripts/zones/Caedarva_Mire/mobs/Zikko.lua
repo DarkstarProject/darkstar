@@ -2,7 +2,7 @@
 -- Area:    Caedarva Mire
 -- NPC:     Zikko
 -- ID:      17101144
--- $pos -608.5 11.3 -186.5
+-- @pos -608.5 11.3 -186.5
 -----------------------------------
 
 require("scripts/globals/status");

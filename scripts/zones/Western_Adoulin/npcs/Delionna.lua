@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Delionna
 --  Type: Standard NPC
---  $zone 256
--- $pos 16 0 165
+--  @zone 256
+--  @pos 16 0 165
 -----------------------------------
 
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Daggao
 -- Involved in Quest: Peace for the Spirit, Lure of the Wildcat (San d'Oria)
--- $pos 89 0 119 230
+-- @pos 89 0 119 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x032a) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",0,true);

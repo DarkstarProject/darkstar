@@ -2,14 +2,15 @@
 --  Area: Northern San d'Oria
 --   NPC: Nouveil
 --  Type: General
--- $zone 231
--- $pos 123 0 106
+-- @zone: 231
+--  @pos 123 0 106
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+
 require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -56,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     -- Waters of the Cheval, recieve blessed waterskin
     if (csid == 0x023b) then
@@ -79,3 +80,7 @@ function onEventFinish(player,csid,option)
         end;
     end;
 end;
+
+
+
+

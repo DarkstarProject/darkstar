@@ -6,12 +6,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
 require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -41,7 +42,7 @@ RegionOwner = GetRegionOwner(ARAGONEU);
         else
                 player:showText(npc,ANTONIAN_OPEN_DIALOG);
 
-                local stock = {0x0277,36,  --Horo Flour
+                stock = {0x0277,36,  --Horo Flour
                                  0x0275,43,  --Millioncorn
                                  0x113f,111, --Roasted Corn
                                  0x0349,36,  --Yagudo Feather
@@ -56,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,6 +66,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

@@ -3,8 +3,8 @@
 -- NPC: Trodden Snow
 -- Mission: ASA - THAT_WHICH_CURDLES_BLOOD
 -- Mission: ASA - SUGAR_COATED_DIRECTIVE
--- $zone 126
--- $pos -19 -17 104
+-- @zone 126
+-- @pos -19 -17 104
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
     
         if (trade:getItemCount() == 1 and trade:hasItemQty(item,1)) then
             player:tradeComplete();
-    player:startEvent(0x002c);
+        player:startEvent(0x002c);
     end
     end
 end;
@@ -73,7 +73,7 @@ function onTrigger(player,npc)
         
         if (completedSeals >= 3) then
             player:setVar("ASA_Status", completedSeals);
-        player:startEvent(0x002d);
+            player:startEvent(0x002d);
         end;
     end
 end;
@@ -93,7 +93,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+        -- printf("RESULT: %u",option);
     
      if (csid==0x002c) then
             player:addKeyItem(DOMINAS_SCARLET_SEAL);

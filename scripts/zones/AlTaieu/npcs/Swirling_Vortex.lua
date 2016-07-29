@@ -2,7 +2,7 @@
 --  Area: Al'Taieu
 --  NPC:  Swirling_Vortex
 --  Type: Standard NPC
---  $zone 33
+--  @zone 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Valkurm_Dunes
 -- NPC:  Hieroglyphics
 -- Dynamis Valkurm_Dunes Enter
--- $pos 117 -10 133 172 103
+-- @pos 117 -10 133 172 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("updateRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("finishRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("finishRESULT: %u",option);
     
     if (csid == 0x0021) then
         if (checkFirstDyna(player,7)) then

@@ -2,7 +2,7 @@
 -- Area: Garlaige Citadel
 -- NPC:  qm15 (???)
 -- Involved in Quest: Hitting the Marquisate (THF AF3)
--- $pos 19.893 -5.500 325.767 200
+-- @pos 19.893 -5.500 325.767 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

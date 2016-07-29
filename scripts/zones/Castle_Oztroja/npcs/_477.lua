@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _477 (Brass Door)
 -- Notes: Open by 4 torch stands
--- $pos -100 -71 -49 151
+-- @pos -100 -71 -49 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("upCSID: %u",csid);
-    -- printf("upRESULT: %u",option);
+--printf("upCSID: %u",csid);
+--printf("upRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

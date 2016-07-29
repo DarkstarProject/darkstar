@@ -2,7 +2,7 @@
 -- Area:  Sacrarium
 -- NPC:   qm3 (???)
 -- Notes: Used to spawn Old Prof. Mariselle
--- $pos 62.668 -3.111 127.288 28
+-- @pos 62.668 -3.111 127.288 28
 -----------------------------------
 package.loaded["scripts/zones/Sacrarium/TextIDs"] = nil;
 -----------------------------------

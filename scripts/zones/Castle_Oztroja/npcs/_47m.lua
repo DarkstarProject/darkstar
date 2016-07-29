@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47m (Torch Stand)
 -- Notes: Opens door _471 near password #3
--- $pos -45.230 -17.832 17.668 151
+-- @pos -45.230 -17.832 17.668 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,5 +55,5 @@ function onEventFinish(player,csid,option)
 
 end;
 
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);

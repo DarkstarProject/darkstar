@@ -2,7 +2,7 @@
 -- Area: Windurst Walls
 -- NPC:  Trail Markings
 -- Dynamis-Windurst Enter
--- $pos -216 0 -94 239
+-- @pos -216 0 -94 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("updateRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("finishRESULT: %u",option);
+--printf("CSID: %u",csid);
+-- printf("finishRESULT: %u",option);
     
     if (csid == 0x01c7) then
         player:addKeyItem(VIAL_OF_SHROUDED_SAND);

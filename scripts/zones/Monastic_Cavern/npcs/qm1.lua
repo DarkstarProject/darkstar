@@ -2,7 +2,7 @@
 -- Area: Monastic Cavern
 -- NPC:  ???
 -- Used In Quest: Whence Blows the Wind 
--- $pos 168 -1 -22 150
+-- @pos 168 -1 -22 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

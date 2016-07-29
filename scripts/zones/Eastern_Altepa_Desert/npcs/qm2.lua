@@ -2,7 +2,7 @@
 -- Area: Eastern Altepa Desert
 -- NPC:  qm2 (???)
 -- Involved In Quest: 20 in Pirate Years
--- $pos 47.852 -7.808 403.391 114
+-- @pos 47.852 -7.808 403.391 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +56,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

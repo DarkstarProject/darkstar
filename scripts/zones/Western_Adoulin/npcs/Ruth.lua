@@ -3,8 +3,8 @@
 --  NPC: Ruth
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'A Pioneers Best (Imaginary) Friend'
---  $zone 256
--- $pos -44 4 -10
+--  @zone 256
+--  @pos -44 4 -10
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

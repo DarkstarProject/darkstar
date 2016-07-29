@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Heaven's Tower
 -- NPC:  Vestal Chamber (chamber of the Star Sibyl)
--- $pos 0.1 -49 37 242
+-- @pos 0.1 -49 37 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0099) then
         player:setVar("MissionStatus",1);

@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC: Maymunah
 -- Guild Merchant NPC: Alchemy Guild 
--- $pos 108.738 5.017 -3.129 234
+-- @pos 108.738 5.017 -3.129 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

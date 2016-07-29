@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Lollano
 --  Type: Standard NPC
---  $zone 256
--- $pos 96 0 -13
+--  @zone 256
+--  @pos 96 0 -13
 -----------------------------------
 
 -----------------------------------

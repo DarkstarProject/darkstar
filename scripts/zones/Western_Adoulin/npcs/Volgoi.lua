@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Volgoi
 --  Type: Standard NPC
---  $zone 256
--- $pos -154 4 -22
+--  @zone 256
+--  @pos -154 4 -22
 -----------------------------------
 require("scripts/globals/missions");
 

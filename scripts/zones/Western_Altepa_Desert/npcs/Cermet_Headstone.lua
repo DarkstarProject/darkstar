@@ -2,7 +2,7 @@
 -- Area: Western Altepa Desert
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Earth Fragment)
--- $pos -108 10 -216 125
+-- @pos -108 10 -216 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x00C8 and option == 1) then
         player:addKeyItem(EARTH_FRAGMENT);

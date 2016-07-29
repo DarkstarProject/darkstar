@@ -2,7 +2,7 @@
 -- Area: Mhaura
 -- NPC:  Phoochuchu
 -- Involved in Quest: A Thief in Norg!?
--- $pos -4 -4 69 249
+-- @pos -4 -4 69 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
     
     if (csid == 0x012d) then
         player:setVar("aThiefinNorgCS",3);

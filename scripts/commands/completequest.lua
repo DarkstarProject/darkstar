@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $completequest <logID> <questID> <player>
+-- func: @completequest <logID> <questID> <player>
 -- desc: Completes the given quest for the GM or target player.
 ---------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ function onTrigger(player, logId, questId, target)
     
     if (questId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
-        player:PrintToPlayer( "$completequest <logID> <questID> <player>" );
+        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
         return;
     end
 
@@ -32,6 +32,6 @@ function onTrigger(player, logId, questId, target)
         player:PrintToPlayer( string.format( "Completed Quest for log %u with ID %u for %s", logId, questId, target ) );
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "$completequest <logID> <questID> <player>" );
+        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
     end
 end;

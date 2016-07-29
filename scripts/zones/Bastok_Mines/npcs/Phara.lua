@@ -3,8 +3,8 @@
 -- NPC:  Phara
 -- Starts and Finishes Quest: The doorman (start)
 -- Involved in Quest: The Talekeeper's Truth
--- $zone 234
--- $pos 75 0 -80
+-- @zone 234
+-- @pos 75 0 -80
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0097) then
         player:addQuest(BASTOK,THE_DOORMAN);

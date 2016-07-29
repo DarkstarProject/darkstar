@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 -- NPC:  <this space intentionally left blank>
--- $pos -152 -16 20 125
+-- @pos -152 -16 20 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
    if (csid == 205) then
       if (player:getFreeSlotsCount() < 2) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18288);

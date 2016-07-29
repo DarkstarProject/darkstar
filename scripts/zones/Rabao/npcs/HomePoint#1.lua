@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Rabao
 -- NPC:  HomePoint#1
--- $pos -29.276 0.001 -76.585 247
+-- @pos -29.276 0.001 -76.585 247
 -----------------------------------
 
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;

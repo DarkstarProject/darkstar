@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $addallspells
+-- func: addallspells
 -- desc: Adds all valid spells to the given target. If no target; then to the current player.
 ---------------------------------------------------------------------------------------------------
 

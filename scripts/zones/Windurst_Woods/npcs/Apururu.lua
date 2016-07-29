@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 -- NPC:  Apururu
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
--- $zone 241
--- $pos -11 -2 13
+-- @zone 241
+-- @pos -11 -2 13
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;

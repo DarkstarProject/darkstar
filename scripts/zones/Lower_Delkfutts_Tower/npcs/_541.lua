@@ -3,7 +3,7 @@
 -- NPC:  Cermet Door
 -- Cermet Door for Sandy Ambassador  
 -- San d'Orian Mission 3.3 "Appointment to Jeuno"
--- $pos 636 16 20 184
+-- @pos 636 16 20 184
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------

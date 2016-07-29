@@ -2,8 +2,8 @@
 -- Area: Alzadaal Undersea Ruins
 --  NPC: Runic Portal
 -- Arrapago Reef Teleporter Back to Aht Urgan Whitegate
--- $pos 206.500 -1.220 33.500 72
--- $pos 206.500 -1.220 6.500 72
+-- @pos 206.500 -1.220 33.500 72
+-- @pos 206.500 -1.220 6.500 72
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------

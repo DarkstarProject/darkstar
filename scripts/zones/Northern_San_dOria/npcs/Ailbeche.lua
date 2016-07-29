@@ -2,17 +2,17 @@
 -- Area: Northern San d'Oria
 -- NPC:  Ailbeche
 -- Starts and Finishes Quest: Father and Son, Sharpening the Sword, A Boy's Dream (start)
--- $zone 231
--- $pos 4 -1 24
+-- @zone 231
+-- @pos 4 -1 24
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/globals/quests");
+require("scripts/globals/keyitems");
 require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -20,7 +20,7 @@ require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     
     if (player:getQuestStatus(SANDORIA, FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then 
         if (trade:hasItemQty(17391,1) == true and trade:getItemCount() == 1) then 
@@ -37,8 +37,8 @@ function onTrade(player,npc,trade)
     end
     
     if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

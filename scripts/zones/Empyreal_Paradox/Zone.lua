@@ -28,6 +28,8 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------
@@ -66,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0064 and option == 1) then
         player:setPos(-420,-1,379.900,62,0x23);

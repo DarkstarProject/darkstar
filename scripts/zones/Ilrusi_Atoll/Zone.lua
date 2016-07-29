@@ -20,16 +20,18 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
+cs = -1;
 
    --------------RANDOMIZE COFFER------------------------
   local correctcoffer = math.random(17002505,17002516);
   SetServerVariable("correctcoffer",correctcoffer);
   printf("corect_golden_salvage_coffer: %u",correctcoffer);
   ---------------------------------------------------
+
+
   
  
-    return cs;
+return cs;
 end;
 
 -----------------------------------
@@ -44,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,7 +55,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
 

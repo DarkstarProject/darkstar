@@ -1,11 +1,13 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Aissaville
--- $zone 80
--- $pos -3 -2 44
+-- @zone 80
+-- @pos -3 -2 44
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -26,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -35,6 +37,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

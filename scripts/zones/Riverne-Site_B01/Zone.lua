@@ -28,6 +28,8 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
+
+
 -----------------------------------
 -- onZoneIn
 -----------------------------------
@@ -41,7 +43,7 @@ function onZoneIn(player,prevZone)
     if (ENABLE_COP_ZONE_CAP == 1) then
         player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0);
     end    
-    return cs;
+return cs;
 end;
 
 -----------------------------------
@@ -56,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,6 +67,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

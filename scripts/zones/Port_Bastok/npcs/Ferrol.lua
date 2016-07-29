@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 -- NPC:  Ferrol
 -- Starts Quest: Trial Size Trial by Earth
--- $pos 33.708 6.499 -39.425 236
+-- @pos 33.708 6.499 -39.425 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
     
     if (csid == 0x0129 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 

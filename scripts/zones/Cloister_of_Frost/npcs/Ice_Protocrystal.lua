@@ -2,7 +2,7 @@
 -- Area: Cloister of Frost
 -- NPC:  Ice Protocrystal
 -- Involved in Quests: Trial by Ice, Trial Size Trial by Ice
--- $pos 558 0 596 203
+-- @pos 558 0 596 203
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -------------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;

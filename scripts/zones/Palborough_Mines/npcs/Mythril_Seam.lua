@@ -3,8 +3,8 @@
 -- NPC:  Mythril Seam
 -- Involved In Mission: Journey Abroad
 -- Involved in quest: Rock Racketeer
--- $zone 143
--- $pos -68 -7 173  //  Rock Racketeer $pos 210 -32 -63
+-- @zone 143
+-- @pos -68 -7 173  //  Rock Racketeer @pos 210 -32 -63
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -78,8 +78,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -87,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x002b) then
         player:tradeComplete();

@@ -2,8 +2,8 @@
 --  Area:   Southern San d'Oria [S]
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  $zone 80
--- $pos TODO
+--  @zone 80
+--  @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC:  Leodarion
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box, True Will
--- $pos -50 8 40 247
+-- @pos -50 8 40 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------

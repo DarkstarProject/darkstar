@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC:  Jaucribaix
 -- Starts and Finishes Quest: Forge Your Destiny, The Sacred Katana, Yomi Okuri, A Thief in Norg!?
--- $pos 91 -7 -8 252
+-- @pos 91 -7 -8 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: West Ronfaure
 --  NPC:  Signpost
---  $zone 100
+--  @zone 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Selbina
 -- NPC:  HomePoint#1
--- $pos 36.117 -10.729 34.635 248
+-- @pos 36.117 -10.729 34.635 248
 -----------------------------------
 
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;

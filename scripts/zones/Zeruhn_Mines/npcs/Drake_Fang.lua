@@ -2,7 +2,7 @@
 -- Area: Zeruhn Mines
 -- NPC:  Drake Fang
 -- Involved in Mission: Bastok 6-1, 8-2
--- $pos -74 0.1 58 172
+-- @pos -74 0.1 58 172
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

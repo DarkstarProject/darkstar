@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg
 -- NPC:  <this space intentionally left blank>
--- $pos -217 97 461 106
+-- @pos -217 97 461 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
    if (csid == 254) then
       if (player:getFreeSlotsCount() < 2) then
          player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18306);

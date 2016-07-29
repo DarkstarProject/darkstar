@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago Reef
 -- Door: Heavy Iron Gate
--- $pos 5 -9 579 54
+-- @pos 5 -9 579 54
 -----------------------------------
 
 -----------------------------------
@@ -32,8 +32,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -41,6 +41,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;

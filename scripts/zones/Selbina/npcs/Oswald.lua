@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC: Oswald
 -- Starts and Finishes Quest: Under the sea (finish), The gift, The real gift
--- $pos 48 -15 9 248
+-- @pos 48 -15 9 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0020) then 
         player:setVar("underTheSeaVar",2);
     elseif (csid == 0x0025) then 
@@ -120,4 +120,6 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
+
+
 

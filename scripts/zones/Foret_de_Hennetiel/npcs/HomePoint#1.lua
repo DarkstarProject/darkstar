@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Foret de Hennetiel
 -- NPC:  HomePoint#1
--- $pos -193 -0.5 -252 262
+-- @pos -193 -0.5 -252 262
 -----------------------------------
 
 package.loaded["scripts/zones/Foret_de_Hennetiel/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Western_Adoulin
 -- NPC:  HomePoint#2
--- $pos 
+-- @pos 
 -----------------------------------
 
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;

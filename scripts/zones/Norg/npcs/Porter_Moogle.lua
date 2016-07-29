@@ -2,8 +2,8 @@
 --  Area:   Norg
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  $zone 252
--- $pos TODO
+--  @zone 252
+--  @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: $!hp <amount> <player>
+-- func: !hp <amount> <player>
 -- desc: Sets the GM or target players health.
 ---------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ cmdprops =
 function onTrigger(player, hp, target)
     if (hp == nil) then
         player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "$hp <amount> <player>" );
+        player:PrintToPlayer( "@hp <amount> <player>" );
         return;
     end
 
@@ -28,7 +28,7 @@ function onTrigger(player, hp, target)
             end
         else
             player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "$hp <amount> <player>" );
+            player:PrintToPlayer( "@hp <amount> <player>" );
         end
     end
 end

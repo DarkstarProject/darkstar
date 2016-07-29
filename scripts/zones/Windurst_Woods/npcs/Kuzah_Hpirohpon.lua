@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 -- NPC: Kuzah Hpirohpon
 -- Guild Merchant NPC: Clothcrafting Guild 
--- $pos -80.068 -3.25 -127.686 241
+-- @pos -80.068 -3.25 -127.686 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

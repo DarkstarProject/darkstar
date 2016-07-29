@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 -- NPC: Silver Owl
 -- Type: Tenshodo Merchant
--- $pos -99.155 4.649 23.292 236
+-- @pos -99.155 4.649 23.292 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

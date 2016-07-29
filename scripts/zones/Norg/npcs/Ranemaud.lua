@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC: Ranemaud
 -- Involved in Quest: Forge Your Destiny, The Sacred Katana
--- $pos 15 0 23 252
+-- @pos 15 0 23 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -85,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     questItem = player:getVar("ForgeYourDestiny_Event");
 

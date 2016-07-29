@@ -2,7 +2,7 @@
 -- Area: Crawlers Nest
 -- NPC:  ???
 -- Used In Quest: A Boy's Dream
--- $pos -18 -8 124 197
+-- @pos -18 -8 124 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,7 +57,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 

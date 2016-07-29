@@ -3,7 +3,7 @@
 -- NPC:  Ryoma
 -- Start and Finish Quest: 20 in Pirate Years, I'll Take the Big Box, True Will
 -- Involved in Quest: Ayame and Kaede
--- $pos -23 0 -9 252
+-- @pos -23 0 -9 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

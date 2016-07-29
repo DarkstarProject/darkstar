@@ -3,7 +3,7 @@
 -- NPC: Monberaux
 -- Starts and Finishes Quest: The Lost Cardian (finish), The kind cardian (start)
 -- Involved in Quests: Save the Clock Tower
--- $pos -43 0 -1 244
+-- @pos -43 0 -1 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -89,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -98,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0006) then
         player:setVar("COP_Tenzen_s_Path",5);    
     elseif (csid == 0x004a) then

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 -- Door: Runic Seal
--- $pos -353 -3 -20 79
+-- @pos -353 -3 -20 79
 -----------------------------------
 
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;

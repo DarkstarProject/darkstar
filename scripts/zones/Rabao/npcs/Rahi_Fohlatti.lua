@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC:  Rahi Fohlatti
 -- Starts Quest: Trial Size Trial by Wind
--- $pos -17 7 -10 247
+-- @pos -17 7 -10 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x006c and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 

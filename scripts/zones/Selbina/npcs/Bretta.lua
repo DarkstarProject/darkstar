@@ -1,10 +1,12 @@
 -----------------------------------
 -- Area: Selbina
---  NPC: Bretta
--- $pos Poor Bretta lost in the depths of the database. Go find her.
+-- NPC: Bretta
+-- @zone
+-- @pos
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
+
 require("scripts/zones/Selbina/TextIDs");
 
 -----------------------------------
@@ -31,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,6 +42,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

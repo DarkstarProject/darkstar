@@ -2,8 +2,8 @@
 -- Area: Upper Jeuno
 -- NPC: Collet
 -- Involved in Quests: A Clock Most Delicate, Save the Clock Tower
--- $zone 244
--- $pos -44 0 107
+-- @zone 244
+-- @pos -44 0 107
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0070) then
         player:setVar("aClockMostdelicateVar", 1);
     elseif (csid == 0x0073) then 
@@ -66,4 +66,6 @@ function onEventFinish(player,csid,option)
         player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 2);
     end
 end;
+
+
 

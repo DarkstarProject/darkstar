@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Screaming Pond
 -- Used In Quest: Whence Blows the Wind
--- $pos -219 0.1 -101 149
+-- @pos -219 0.1 -101 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0035 and player:getVar("miniQuestForORB_CS") == 1) then
         

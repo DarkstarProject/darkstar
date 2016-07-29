@@ -2,7 +2,7 @@
 -- Area: Promyvion-Vahzl
 -- NPC:  ??? (qm3)
 -- Notes: Spawn Provoker Floor 5
--- $pos -260.000 -0.003 72.000 22
+-- @pos -260.000 -0.003 72.000 22
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 -----------------------------------

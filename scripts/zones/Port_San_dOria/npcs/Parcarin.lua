@@ -2,12 +2,13 @@
 -- Area: Port San d'Oria
 -- NPC: Parcarin
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- $pos -9 -13 -151 232
+-- @pos -9 -13 -151 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+
 require("scripts/globals/quests");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -44,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x02eb) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",13,true);

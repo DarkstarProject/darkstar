@@ -2,8 +2,8 @@
 -- Area: Tavnazian Safehold
 -- NPC: ???
 -- Involved in Quest: Unforgiven
--- $zone 26
--- $pos 110.714 -40.856 -53.154
+-- @zone 26
+-- @pos 110.714 -40.856 -53.154
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
@@ -44,8 +44,8 @@ end
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,7 +53,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
 end

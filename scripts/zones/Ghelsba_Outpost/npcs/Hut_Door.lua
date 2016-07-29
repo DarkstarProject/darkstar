@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ghelsba_Outpost
 -- NPC:  Hut Door
--- $pos -165.357 -11.672 77.771 140
+-- @pos -165.357 -11.672 77.771 140
 -------------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -21,6 +21,8 @@ require("scripts/zones/Ghelsba_Outpost/TextIDs");
     ---- 4: 
     ---- 5: 
     ---- 6: 
+
+
 
 -----------------------------------
 -- onTrade Action
@@ -59,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -73,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
+--printf("onFinish CSID: %u",csid);
+--printf("onFinish RESULT: %u",option);
     
    if (csid == 0x0003 or csid == 0x0037) then
       player:delKeyItem(ORCISH_HUT_KEY);

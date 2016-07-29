@@ -1,14 +1,15 @@
 -----------------------------------
--- Area: Northern San d'Oria
--- NPC: Eugballion
--- Only sells when San d'Oria controlls Qufim Region
+--    Area: Northern San d'Oria
+--    NPC: Eugballion
+--    Only sells when San d'Oria controlls Qufim Region
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
+
 require("scripts/globals/shop");
+require("scripts/globals/quests");
+require("scripts/globals/conquest");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -36,7 +37,7 @@ function onTrigger(player,npc)
     else
         player:showText(npc,EUGBALLION_OPEN_DIALOG);
         
-        local stock = {0x03ba,4121}        -- Magic Pot Shard
+        stock = {0x03ba,4121}        -- Magic Pot Shard
                   
         showShop(player,SANDORIA,stock);
     end
@@ -48,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

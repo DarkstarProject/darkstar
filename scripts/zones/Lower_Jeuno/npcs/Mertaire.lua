@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Mertaire
 -- Starts and Finishes Quest: The Old Monument (start only), A Minstrel in Despair, Painful Memory (BARD AF1)
--- $pos -17 0 -61 245
+-- @pos -17 0 -61 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
