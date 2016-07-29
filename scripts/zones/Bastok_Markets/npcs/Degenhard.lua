@@ -3,8 +3,8 @@
 -- NPC:  Degenhard
 -- Starts & Ends Quest: The Bare Bones
 -- Involved in Quests: Beat Around the Bushin
--- $zone 235
--- $pos -175 2 -135
+-- @zone 235
+-- @pos -175 2 -135
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

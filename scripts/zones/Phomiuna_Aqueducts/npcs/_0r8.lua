@@ -1,8 +1,10 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:  _0r8 (Ornate Gate)
--- $pos 129.500 -25.500 60.000 27
+-- @pos 129.500 -25.500 60.000 27
 -----------------------------------
+
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -25,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -34,6 +36,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

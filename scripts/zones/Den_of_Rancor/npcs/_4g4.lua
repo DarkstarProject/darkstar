@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Den of Rancor
 -- NPC:  Lantern (NW)
--- $pos -59 45 24 160
+-- @pos -59 45 24 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------

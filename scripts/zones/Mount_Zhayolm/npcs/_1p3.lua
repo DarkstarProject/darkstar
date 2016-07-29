@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 -- Door: Runic Seal
--- $pos 703 -18 382 61
+-- @pos 703 -18 382 61
 -----------------------------------
 
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;

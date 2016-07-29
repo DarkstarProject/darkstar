@@ -2,14 +2,15 @@
 -- Area: Port San d'Oria
 -- NPC:  Brifalien
 -- Involved in Quests: Riding on the Clouds
--- $zone 232
--- $pos -20 -4 -74
+-- @zone 232
+-- @pos -20 -4 -74
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -47,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

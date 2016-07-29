@@ -1,8 +1,10 @@
 -----------------------------------
 -- Area:  Sacrarium
 -- NPC:   _0s9 (Wooden Gate)
--- $pos 20.000 0.500 19.500 28
+-- @pos 20.000 0.500 19.500 28
 -----------------------------------
+
+
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -22,8 +24,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -31,6 +33,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

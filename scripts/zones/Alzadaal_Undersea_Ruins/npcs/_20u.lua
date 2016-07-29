@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 -- Door: Gilded Gateway (Arrapago)
--- $pos -580 0 -159 72
+-- @pos -580 0 -159 72
 -----------------------------------
 
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;

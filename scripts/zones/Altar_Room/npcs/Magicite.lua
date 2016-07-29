@@ -2,8 +2,8 @@
 -- Area: Altar Room
 -- NPC:  Magicite
 -- Involved in Mission: Magicite
--- $zone 152
--- $pos -344 25 43
+-- @zone 152
+-- @pos -344 25 43
 -----------------------------------
 package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
 -----------------------------------
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);    
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);    
     
     if (csid == 0x002c) then
         player:setVar("MissionStatus",4);

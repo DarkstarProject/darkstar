@@ -2,7 +2,7 @@
 -- Area: Qufim Island
 -- NPC:  Nightflowers
 -- Involved in Quest: Save My Son (Beastmaster Flag #1)
--- $pos -264.775 -3.718 28.767 126
+-- @pos -264.775 -3.718 28.767 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0000) then
         player:setVar("SaveMySon_Event",1);

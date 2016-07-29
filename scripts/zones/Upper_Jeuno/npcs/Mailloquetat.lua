@@ -2,8 +2,8 @@
 -- Area: Upper Jeuno
 -- NPC: Mailloquetat
 -- Involved in Quests: Save my Sister
--- $zone 244
--- $pos -31 -1 8
+-- @zone 244
+-- @pos -31 -1 8
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,10 +46,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x009f) then 
         player:setVar("saveMySisterVar", 2);
     end
 end;
+
+
 

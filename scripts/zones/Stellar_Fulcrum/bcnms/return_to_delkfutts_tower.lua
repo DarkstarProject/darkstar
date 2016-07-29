@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Stellar Fulcrum
 -- Name: Mission 5-2
--- $pos -520 -4 17 179
+-- @pos -520 -4 17 179
 -----------------------------------
 package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
 -------------------------------------

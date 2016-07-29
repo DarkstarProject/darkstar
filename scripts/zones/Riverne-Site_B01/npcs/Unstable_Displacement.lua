@@ -2,7 +2,7 @@
 -- Area: Riverne Site #B01
 -- NPC:  Unstable Displacement
 -- ENM Battlefield
--- $pos -612 4 693
+-- @pos -612 4 693
 -----------------------------------
 package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
 -----------------------------------

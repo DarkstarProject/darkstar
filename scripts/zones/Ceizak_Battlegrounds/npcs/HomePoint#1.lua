@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ceizak Battlegrounds
 -- NPC:  HomePoint#1
--- $pos -107 3.2 295 261
+-- @pos -107 3.2 295 261
 -----------------------------------
 
 package.loaded["scripts/zones/Ceizak_Battlegrounds/TextIDs"] = nil;

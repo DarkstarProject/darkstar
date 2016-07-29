@@ -3,8 +3,8 @@
 -- NPC:  Kerutoto
 -- Starts Quest Food For Thought
 -- Involved in Quest: Riding on the Clouds
--- $zone 238
--- $pos 13 -5 -157
+-- @zone 238
+-- @pos 13 -5 -157
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

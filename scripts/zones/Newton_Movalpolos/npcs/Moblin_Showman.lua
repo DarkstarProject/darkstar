@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Newton Movalpolos
 -- NPC:  Moblin Showman - Bugbear Matman
--- $pos 124.544 19.988 -60.670 12
+-- @pos 124.544 19.988 -60.670 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

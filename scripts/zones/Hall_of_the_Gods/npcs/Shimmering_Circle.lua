@@ -2,7 +2,7 @@
 -- Area: Hall of the Gods
 -- NPC:  Shimmering Circle
 -- Lifts players up to the sky!
--- $pos 0 -20 147 251
+-- @pos 0 -20 147 251
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_the_Gods/TextIDs"] = nil;
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0003) then
         player:setVar("ZilartStatus",1);

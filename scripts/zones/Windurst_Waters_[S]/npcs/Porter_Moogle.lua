@@ -2,8 +2,8 @@
 --  Area:   Windurst Waters [S]
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
---  $zone 94
--- $pos TODO
+--  @zone 94
+--  @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------

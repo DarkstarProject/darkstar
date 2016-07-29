@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Ru'Lud Gardens
--- NPC:  Crooked Arrow
--- Standard Info NPC
+--    Area: Ru'Lud Gardens
+--    NPC:  Crooked Arrow
+--    Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,9 +43,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 10090) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",1,true);
     end
 end;
+
+
+

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- Name: Mission Rank 2
--- $pos 299 -123 345 146
+-- @pos 299 -123 345 146
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
 -------------------------------------

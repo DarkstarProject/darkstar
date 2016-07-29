@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- Name: Zilart Mission 6
--- $pos -221 -24 19 206
+-- @pos -221 -24 19 206
 -----------------------------------
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------

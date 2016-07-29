@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis (S)
 -- NPC:  Erlene
 -- Involved in Quest: "A Little Knowledge"
--- $pos 376.936 -39.999 17.914 175
+-- @pos 376.936 -39.999 17.914 175
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -100,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -109,8 +109,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+-- printf("CSID: %u",csid);
+-- printf("RESULT: %u",option);
     
     if (csid == 0x000A and option == 0) then
         player:addQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);

@@ -2,8 +2,8 @@
 -- Area: Tavnazian Safehold
 -- NPC: Pradiulot
 -- Involved in Quest: Unforgiven
--- $zone 26
--- $pos -20.814 -22 8.399
+-- @zone 26
+-- @pos -20.814 -22 8.399
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 if (csid == 0x00CC) then
     player:setVar("UnforgivenVar",2);
     player:addKeyItem(440)
@@ -77,4 +77,6 @@ elseif (csid == 0x00CE) then
     
     end
 end;
+
+
 

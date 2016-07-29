@@ -2,7 +2,7 @@
 -- Area: Beadeaux (S)
 --  MOB: Observant Zekka
 -- ID: 17154359
--- $pos 128 0.4 161
+-- @pos 128 0.4 161
 -----------------------------------
 
 require("scripts/globals/status");

@@ -2,8 +2,8 @@
 -- Area: Toraimarai Canal
 -- NPC:  Tome of Magic ( Needed for Mission )
 -- Involved In Windurst Mission 7-1
--- $zone 169
--- $pos 142 13 -13 169 <many>
+-- @zone 169
+-- @pos 142 13 -13 169 <many>
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 require("scripts/zones/Toraimarai_Canal/TextIDs");
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 
 end;
 
@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 
     if (csid == 0x0045) then
         player:setVar("MissionStatus",2);

@@ -2,7 +2,7 @@
 -- Area: Valkurm Dunes
 -- NPC:  qm2 (???)
 -- Involved In Quest: Messenger from Beyond
--- $pos -716 -10 66 103
+-- @pos -716 -10 66 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

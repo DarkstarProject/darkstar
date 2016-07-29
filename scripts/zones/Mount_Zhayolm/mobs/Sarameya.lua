@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  MOB: Sarameya
--- $pos 322 -14 -581 61
--- Spawned with Buffalo Corpse: $additem 2583
+-- @pos 322 -14 -581 61
+-- Spawned with Buffalo Corpse: @additem 2583
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Sarameya
 -- TODO: PostAIRewrite: Code the Howl effect and gradual resists.
 -----------------------------------

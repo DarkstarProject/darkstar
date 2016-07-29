@@ -1,7 +1,7 @@
 -----------------------------------
--- Area: Windurst Woods
--- NPC:  Tih Pikeh
--- Working 100%
+--    Area: Windurst Woods
+--    NPC:  Tih Pikeh
+--    Working 100%
 -----------------------------------
 
 package.loaded["scripts/globals/settings"] = nil;
@@ -27,8 +27,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -36,6 +36,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+

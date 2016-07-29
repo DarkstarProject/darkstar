@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+--printf("CSID2: %u",csid);
+--printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -86,5 +86,7 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
     end
 
 end;
+
+
 
 

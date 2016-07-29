@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Zauko
 -- Involved in Quests: Save the Clock Tower, Community Service
--- $zone 245
--- $pos -3 0 11
+-- @zone 245
+-- @pos -3 0 11
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

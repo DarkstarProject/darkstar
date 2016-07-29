@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Trail Markings
 -- Dynamis-San d'Oria Enter
--- $pos 139 -2 122 230
+-- @pos 139 -2 122 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("updateRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("updateRESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("finishRESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("finishRESULT: %u",option);
     
     if (csid == 0x02AE) then
         player:addKeyItem(VIAL_OF_SHROUDED_SAND);

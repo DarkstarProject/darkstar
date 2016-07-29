@@ -15,6 +15,8 @@ function onMobInitialize(mob)
     mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
     mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
 end;
+
+
 -----------------------------------
 -- onMobFight Action
 -----------------------------------
@@ -84,6 +86,8 @@ function onMobFight(mob, target)
            mob:AnimationSub(2);
    end
 end;
+
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
@@ -173,8 +177,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 ----------------------------------
@@ -182,6 +186,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

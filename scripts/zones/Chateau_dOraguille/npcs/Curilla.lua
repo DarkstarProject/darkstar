@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Curilla
 -- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit, Lure of the Wildcat (San d'Oria)
--- $pos 27 0.1 0.1 233
+-- @pos 27 0.1 0.1 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------

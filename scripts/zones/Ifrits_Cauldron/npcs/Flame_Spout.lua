@@ -1,7 +1,7 @@
 ----------------------------------
 -- Area: Ifrit's Cauldron
 -- NPC: Flame Spout
--- $pos 193.967 -0.400 19.492 205
+-- @pos 193.967 -0.400 19.492 205
 -----------------------------------
 
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

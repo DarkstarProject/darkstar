@@ -2,7 +2,7 @@
 -- Area: Cloister of Tides
 -- NPC:  Water Protocrystal
 -- Involved in Quests: Trial by Water, Trial Size Trial by Water
--- $pos 560 36 560 211
+-- @pos 560 36 560 211
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
 -------------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
+--printf("onUpdate CSID: %u",csid);
+--printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;

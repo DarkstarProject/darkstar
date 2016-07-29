@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Harnek
 -- Starts and Finishes Quest: The Tenshodo Showdown (finish)
--- $zone 245
--- $pos 44 0 -19
+-- @zone 245
+-- @pos 44 0 -19
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC: Jimaida
 -- Involved in Quests: Under the sea
--- $pos -15 -2 -16 248
+-- @pos -15 -2 -16 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,10 +43,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0021) then 
         player:setVar("underTheSeaVar",3);
     end
 end;
+
+
 

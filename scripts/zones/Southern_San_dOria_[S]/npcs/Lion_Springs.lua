@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 -- NPC: Door:Lion Springs
--- $zone 80
--- $pos 96 0 106
+-- @zone 80
+-- @pos 96 0 106
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

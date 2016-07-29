@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 -- NPC:  HomePoint#1
--- $pos  -98 -10 -493 52
+-- @pos  -98 -10 -493 52
 -----------------------------------
 
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;

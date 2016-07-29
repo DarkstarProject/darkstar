@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Rolanberry Fields
 --  NPC: Cavernous Maw
--- $pos -198 8 361 110
+-- @pos -198 8 361 110
 -- Teleports Players to Rolanberry Fields [S]
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;

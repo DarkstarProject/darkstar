@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: West Sarutabaruta
--- NPC:  Twinkle Tree
--- Involved in Quest: To Catch a Falling Star
+--    Area: West Sarutabaruta
+--    NPC:  Twinkle Tree
+--    Involved in Quest: To Catch a Falling Star
 --  Note: EventID for Twinkle Tree is unknown. Quest funtions but the full event is not played.
--- $pos 156.003 -40.753 333.742 115
+--  @pos 156.003 -40.753 333.742 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 

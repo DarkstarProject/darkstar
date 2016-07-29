@@ -5,10 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
-require("scripts/globals/settings");
 require("scripts/globals/titles");
+require("scripts/globals/settings");
 require("scripts/globals/quests");
+require("scripts/zones/Port_San_dOria/TextIDs");
+
 
 -----------------------------------
 -- onTrade Action
@@ -17,15 +18,15 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     -- "The Pickpocket" Quest status
     thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
     
     -- "The Pickpocket" Quest, trading for light axe
     if (thePickpocket == 1) then
-        local count = trade:getItemCount();
-        local freeSlot = player:getFreeSlotsCount();
-        local giltGlasses = trade:hasItemQty(579, 1);
+        count = trade:getItemCount();
+        freeSlot = player:getFreeSlotsCount();
+        giltGlasses = trade:hasItemQty(579, 1);
         if (count == 1 and freeSlot > 0 and giltGlasses == true) then
             player:tradeComplete();
             player:addFame(SANDORIA,30);
@@ -39,16 +40,16 @@ function onTrade(player,npc,trade)
         end;
     -- "Flyers for Regine"
     elseif (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         elseif (MagicFlyer == false) then
             player:startEvent(0x0227);
-        end
+        end;
     else 
         player:startEvent(0x0227);
-    end
+    end;
 end; 
 
 -----------------------------------
@@ -58,8 +59,8 @@ end;
 function onTrigger(player,npc)
     
     -- Vars for the Quest "The Pickpocket"
-    local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-    local openingCS = player:getVar("thePickpocket");
+    thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+    openingCS = player:getVar("thePickpocket");
     
     -- "The Pickpocket" Quest dialog
     if (thePickpocket == 0 and openingCS == 1) then
@@ -97,3 +98,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(6403, 16667);
     end;
 end;
+
+
+
+

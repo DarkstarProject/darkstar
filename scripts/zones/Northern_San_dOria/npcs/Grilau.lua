@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC:  Grilau
--- $pos -241.987 6.999 57.887 231
+-- @pos -241.987 6.999 57.887 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -97,8 +97,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdateCSID: %u",csid);
-    -- printf("onUpdateOPTION: %u",option);
+--printf("onUpdateCSID: %u",csid);
+--printf("onUpdateOPTION: %u",option);
 end;
 
 -----------------------------------
@@ -106,8 +106,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("onFinishCSID: %u",csid);
-    -- printf("onFinishOPTION: %u",option);
+--printf("onFinishCSID: %u",csid);
+--printf("onFinishOPTION: %u",option);
     
     finishMissionTimeline(player,1,csid,option);
     if (csid == 0x040b) then

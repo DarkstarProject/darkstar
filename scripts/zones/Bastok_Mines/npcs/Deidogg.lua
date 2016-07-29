@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC:  Deidogg
 -- Starts and Finishes Quest: The Talekeeper's Truth, The Talekeeper's Gift (start)
--- $pos -13 7 29 234
+-- @pos -13 7 29 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

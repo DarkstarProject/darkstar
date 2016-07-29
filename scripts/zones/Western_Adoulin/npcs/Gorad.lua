@@ -2,8 +2,8 @@
 --  Area: Western Adoulin
 --  NPC: Gorad
 --  Type: Standard NPC
---  $zone 256
--- $pos 23 0 -115
+--  @zone 256
+--  @pos 23 0 -115
 -----------------------------------
 
 -----------------------------------

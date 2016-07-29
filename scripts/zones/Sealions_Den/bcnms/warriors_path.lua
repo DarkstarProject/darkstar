@@ -18,11 +18,11 @@ require("scripts/zones/Sealions_Den/TextIDs");
  --Kukki-Chebukki (BLM)     16908312    16908316   16908320 group 852   2293
  --Cherukiki (WHM).         16908313    16908317   16908321 group 851   710
  
---instance 1   $pos -780 -103 -90
+--instance 1   @pos -780 -103 -90
 
---instance 2   $pos -140 -23 -450
+--instance 2   @pos -140 -23 -450
 
---instance 3   $pos 500  56  -810
+--instance 3   @pos 500  56  -810
 
          
 -- After registering the BCNM via bcnmRegister(bcnmid)

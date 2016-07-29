@@ -3,8 +3,8 @@
 -- NPC:  Bki Tbujhja
 -- Involved in Quest: The Old Monument
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
--- $zone 245
--- $pos -22 0 -60
+-- @zone 245
+-- @pos -22 0 -60
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

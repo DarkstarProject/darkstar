@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Den of Rancor
 -- NPC:  Altar of Rancor
--- $pos 199 32 -280 160
+-- @pos 199 32 -280 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------

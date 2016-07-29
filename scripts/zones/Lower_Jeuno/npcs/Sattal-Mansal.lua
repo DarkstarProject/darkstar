@@ -2,8 +2,8 @@
 -- Area: Lower Jeuno
 -- NPC:  Sattal-Mansal
 -- Starts and Finishes Quest: Mysteries of Beadeaux I & II
--- $zone 245
--- $pos 40 3 -53
+-- @zone 245
+-- @pos 40 3 -53
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

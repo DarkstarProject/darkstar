@@ -229,7 +229,7 @@ function ApplyMod(player, gearset, matches)
         if (addMatches ~= 0 and addMatchValue ~= 0) then
             modValue = modValue + (addMatchValue * addMatches);
         end
-    -- printf("gearset: %u, mod: %u, value %u", gearset.id, modId, modValue + addSetBonus);
+        -- printf("gearset: %u, mod: %u, value %u", gearset.id, modId, modValue + addSetBonus);
         player:addGearSetMod(gearset.id + i, modId, modValue + addSetBonus);
         i = i + 1;
     end
@@ -247,7 +247,7 @@ function HandleHipsterSet(player, gearset, matches)
         elseif (matches > 3) then
             modValue = 10; -- 4 or 5 pieces
         end;
-    -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_FASTCAST, modValue);
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_FASTCAST, modValue);
         player:addGearSetMod(gearset.id, MOD_FASTCAST, modValue);
         return;
     end

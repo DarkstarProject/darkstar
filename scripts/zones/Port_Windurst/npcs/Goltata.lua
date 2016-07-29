@@ -1,16 +1,17 @@
 -----------------------------------
--- Area: Port Windurst
--- NPC:  Goltata
+--    Area: Port Windurst
+--    NPC:  Goltata
 --  Involved in Quests: Wonder Wands
--- Working 100%
+--    Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
+
 require("scripts/globals/quests");
+require("scripts/globals/settings");
 require("scripts/globals/titles");
+require("scripts/globals/keyitems");
+require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -39,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +49,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+

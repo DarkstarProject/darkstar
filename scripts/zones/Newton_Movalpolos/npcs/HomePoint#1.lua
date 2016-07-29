@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Newton Movalpolos
 -- NPC:  HomePoint#1
--- $pos 444 27 -22 12
+-- @pos 444 27 -22 12
 -----------------------------------
 
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;

@@ -2,7 +2,7 @@
 -- Area: East Ronfaure
 -- NPC:  Signpost
 -- Involved in Quest: To Cure a Cough
--- $pos 257 -45 212 101
+-- @pos 257 -45 212 101
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------

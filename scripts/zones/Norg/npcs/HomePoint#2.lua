@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Norg
 -- NPC:  HomePoint#2
--- $pos -65 -5 54 252
+-- @pos -65 -5 54 252
 -----------------------------------
 
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

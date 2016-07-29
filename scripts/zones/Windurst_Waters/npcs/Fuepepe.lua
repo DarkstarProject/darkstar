@@ -3,8 +3,8 @@
 --  NPC: Fuepepe
 -- Starts and Finishes Quest: Teacher's Pet
 -- Involved in Quest: Making the grade, Class Reunion
---  $zone = 238
--- $pos = 161 -2 161
+--  @zone = 238
+--  @pos = 161 -2 161
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

@@ -1,27 +1,28 @@
 -----------------------------------
--- Area: Port San d'Oria
--- NPC:  Deguerendars
--- Only sells when San d'Oria contrls Tavnazian Archipelago
--- Only available to those with CoP Ch. 4.1 or higher
+--    Area: Port San d'Oria
+--    NPC:  Deguerendars
+--    Only sells when San d'Oria contrls Tavnazian Archipelago
+--    Only available to those with CoP Ch. 4.1 or higher
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+
+require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
-require("scripts/globals/shop");
+require("scripts/zones/Port_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+-- "Flyers for Regine" conditional script
+FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
+        count = trade:getItemCount();
+        MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -34,7 +35,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
+RegionOwner = GetRegionOwner(TAVNAZIANARCH);
 cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
 if (cop >= 40) then
@@ -43,7 +44,7 @@ if (cop >= 40) then
     else
         player:showText(npc,DEGUERENDARS_OPEN_DIALOG);
 
-        local stock = {0x05f3,290,  --Apple Mint
+        stock = {0x05f3,290,  --Apple Mint
                  0x142c,1945, --Ground Wasabi
                  0x426d,99,   --Lufaise Fly
                  0x144b,233}  --Misareaux Parsley
@@ -60,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,7 +70,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printff("CSID: %u",csid);
-    -- printff("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
+
+
+
 

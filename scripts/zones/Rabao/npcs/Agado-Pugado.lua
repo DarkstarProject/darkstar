@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC:  Agado-Pugado
 -- Starts and Finishes Quest: Trial by Wind
--- $pos -17 7 -10 247
+-- @pos -17 7 -10 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -79,8 +79,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     if (csid == 0x0042 and option == 1) then
         if (player:getQuestStatus(OUTLANDS,TRIAL_BY_WIND) == QUEST_COMPLETED) then
             player:delQuest(OUTLANDS,TRIAL_BY_WIND);
@@ -129,4 +129,6 @@ function onEventFinish(player,csid,option)
         end;
     end
 end;
+
+
 

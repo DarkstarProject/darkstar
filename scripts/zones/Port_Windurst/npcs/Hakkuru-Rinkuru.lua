@@ -3,7 +3,7 @@
 -- NPC:  Hakkuru-Rinkuru
 -- Involved In Quest: Making Amends
 -- Starts and Ends Quest: Wonder Wands
--- $pos -111 -4 101 240
+-- @pos -111 -4 101 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;

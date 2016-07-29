@@ -767,7 +767,7 @@ AD_INFINITUM                     = 98;
 --  Abyssea - 8
 -----------------------------------
 -- For some reason these did not match dat file order,
--- had to adjust IDs >120 after using $addquest
+-- had to adjust IDs >120 after using @addquest
 CATERING_CAPERS                 = 0;
 GIFT_OF_LIGHT                   = 1;
 FEAR_OF_THE_DARK_III            = 2;

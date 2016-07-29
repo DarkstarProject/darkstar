@@ -3,8 +3,8 @@
 -- NPC:  Brygid
 -- Start & Finishes Quest: Brygid the Stylist & Brygid the Stylist Returns
 -- Involved in Quests: Riding on the Clouds
--- $zone 235
--- $pos -90 -4 -108
+-- @zone 235
+-- @pos -90 -4 -108
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

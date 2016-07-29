@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC:  Authere
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- $pos 33 1 -31 230
+-- @pos 33 1 -31 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -46,8 +46,8 @@ end
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
     
     if (csid == 0x0329) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",1,true);

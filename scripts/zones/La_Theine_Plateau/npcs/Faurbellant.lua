@@ -3,7 +3,7 @@
 -- NPC:  Faurbellant
 -- Type: Quest NPC
 -- Involved in Quest: Gates of Paradise
--- $pos 484 24 -89 102
+-- @pos 484 24 -89 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
@@ -42,13 +42,15 @@ function onTrigger(player,npc)
     end;
     
 end; 
+
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,6 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+--printf("CSID: %u",csid);
+--printf("RESULT: %u",option);
 end;

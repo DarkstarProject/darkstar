@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Ulycille
 -- Type: Woodworking Adv. Synthesis Image Support
--- $pos -183.320 9.999 269.651 231
+-- @pos -183.320 9.999 269.651 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
