@@ -1905,38 +1905,43 @@ namespace battleutils
             damage = HandleStoneskin(PDefender, damage);
             HandleAfflatusMiseryDamage(PDefender, damage);
         }
-        damage = dsp_cap(damage, -99999, 99999);
 
 		if (PAttacker->objtype == TYPE_MOB && PDefender->objtype == TYPE_PC)
 		{
 			switch (PAttacker->m_EcoSystem)
 			{
-				//TODO: all the other circles + Magic defense
+				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:
-					if (PDefender->objtype == TYPE_PC && PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
-						damage = damage * (1 - (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower() / 100));
+			case SYSTEM_DRAGON:
+			{
+				if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
+					damage = damage * (100 - int16(PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower())) / 100;
 
-					break;
+				break;
+			}
 
-				default: break;
+			default: break;
 			}
 		}
 		else if (PAttacker->objtype == TYPE_PC && PDefender->objtype == TYPE_MOB)
 		{
 			switch (PDefender->m_EcoSystem)
 			{
-				//TODO: all the other circles + Magic attack
+				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:
-					if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
-						damage = damage * (1 + (PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower() / 100));
+			case SYSTEM_DRAGON:
+			{
+				if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
+					damage = damage * (100 + int16(PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower())) / 100;
 
-					break;
+				break;
+			}
 
-				default: break;
+			default: break;
 			}
 		}
+
+		damage = dsp_cap(damage, -99999, 99999);
 
         int32 corrected = PDefender->addHP(-damage);
         if (damage < 0)
@@ -2684,27 +2689,35 @@ namespace battleutils
         // cannot intimidate yourself!
         if (PAttacker == PDefender) return false;
 
-        int16 KillerEffect = 0;
-		CCharEntity* PChar = (CCharEntity*)PDefender;
+		int16 KillerEffect = 0;
+		int16 MeritBonus = 0;
 
-        switch (PAttacker->m_EcoSystem)
-        {
-			case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(MOD_AMORPH_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-			case SYSTEM_AQUAN:		KillerEffect = PDefender->getMod(MOD_AQUAN_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);    break;
-			case SYSTEM_ARCANA:		KillerEffect = PDefender->getMod(MOD_ARCANA_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-			case SYSTEM_BEAST:		KillerEffect = PDefender->getMod(MOD_BEAST_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);    break;
-			case SYSTEM_BIRD:		KillerEffect = PDefender->getMod(MOD_BIRD_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);     break;
-			case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(MOD_DEMON_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);    break;
-			case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(MOD_DRAGON_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-			case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(MOD_EMPTY_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);    break;
-			case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(MOD_HUMANOID_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender); break;
-			case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(MOD_LIZARD_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-			case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(MOD_LUMINION_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender); break;
-			case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(MOD_LUMORIAN_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender); break;
-			case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(MOD_PLANTOID_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender); break;
-			case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(MOD_UNDEAD_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-			case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(MOD_VERMIN_KILLER) + PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);   break;
-        }
+		if (PDefender->objtype == TYPE_PC)
+		{
+			CCharEntity* PChar = (CCharEntity*)PDefender;
+
+			if (PDefender->GetMJob() == 9 && PDefender->GetMLevel() >= 75)	//Don't want to make a gorillion hasTrait checks
+				MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);
+		}
+
+		switch (PAttacker->m_EcoSystem)
+		{
+			case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(MOD_AMORPH_KILLER) + MeritBonus;   break;
+			case SYSTEM_AQUAN:		KillerEffect = PDefender->getMod(MOD_AQUAN_KILLER) + MeritBonus;    break;
+			case SYSTEM_ARCANA:		KillerEffect = PDefender->getMod(MOD_ARCANA_KILLER);				break;
+			case SYSTEM_BEAST:		KillerEffect = PDefender->getMod(MOD_BEAST_KILLER) + MeritBonus;    break;
+			case SYSTEM_BIRD:		KillerEffect = PDefender->getMod(MOD_BIRD_KILLER) + MeritBonus;     break;
+			case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(MOD_DEMON_KILLER);					break;
+			case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(MOD_DRAGON_KILLER);				break;
+			case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(MOD_EMPTY_KILLER);					break;
+			case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(MOD_HUMANOID_KILLER);				break;
+			case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(MOD_LIZARD_KILLER) + MeritBonus;   break;
+			case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(MOD_LUMINION_KILLER);				break;
+			case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(MOD_LUMORIAN_KILLER);				break;
+			case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(MOD_PLANTOID_KILLER) + MeritBonus; break;
+			case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(MOD_UNDEAD_KILLER);				break;
+			case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(MOD_VERMIN_KILLER) + MeritBonus;   break;
+		}
 
         return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
