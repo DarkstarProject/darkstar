@@ -2685,6 +2685,7 @@ namespace battleutils
         if (PAttacker == PDefender) return false;
 
         int16 KillerEffect = 0;
+		CCharEntity* PChar = (CCharEntity*)PDefender;
 
         switch (PAttacker->m_EcoSystem)
         {
