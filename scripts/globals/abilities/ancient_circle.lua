@@ -7,7 +7,7 @@
 
 --According to BGWiki:
 --	When cast as Subjob DRG it gives 5% damage reduction/increase
---	as Mainjog it gives 15%
+--	as Mainjob it gives 15%
 --	when wearing certain Brais it gets another +2% power
 -----------------------------------
 
@@ -27,19 +27,19 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-	local power = 5;			--when cast as Subjob
-	local duration = 180;
-	
-	if (player:getMainJob() == 14) then
-		local sLegs = player:getEquipID(SLOT_LEGS);
-		
-		if (sLegs == 14227 or sLegs == 15574 or sLegs == 28103) then
-			power = 17;			--when cast as Mainjob w/ equipment
-			duration = 240;		--Brais increase duration by 50%
-		else
-			power = 15;			--when cast as Mainjob w/o equipment
-		end
-	end
+    local power = 5;			--when cast as Subjob
+    local duration = 180;
+
+    if (player:getMainJob() == JOB_DRG) then
+        local sLegs = player:getEquipID(SLOT_LEGS);
+
+        if (sLegs == 14227 or sLegs == 15574 or sLegs == 28103) then
+            power = 17;			--when cast as Mainjob w/ equipment
+            duration = 240;		--Brais increase duration by 50%
+        else
+            power = 15;			--when cast as Mainjob w/o equipment
+        end
+    end
 	
     target:addStatusEffect(EFFECT_ANCIENT_CIRCLE,power,0,duration);
 end;
