@@ -19,8 +19,13 @@ function onTrigger(player,logId,target)
         logName = logId.full_name;
         logId = logId.mission_log;
     else
-        local missionAreas = {SANDORIA, BASTOK, WINDURST, ZILART, TOAU, WOTG, COP, ASSAULT, CAMPAIGN, ACP, AMK, ASA, SOA, ROV};
-        logName = missionAreas[logId + 1].full_name;
+        if (logId <= 2) then
+            local logNames = {"San d'Oria", "Bastok", "Windurst"}
+            logName = logNames[logId + 1];
+        else
+            local missionAreas = {ZILART, TOAU, WOTG, COP, ASSAULT, CAMPAIGN, ACP, AMK, ASA, SOA, ROV};
+            logName = missionAreas[logId - 2].full_name;
+        end
     end
     
     if (logId == nil) then
