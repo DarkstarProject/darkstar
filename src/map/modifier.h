@@ -620,10 +620,9 @@ enum MODIFIER
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
 
-	// Damage/reistance bonus from Circle Effects
-	MOD_ANCIENT_CIRCLE_BONUS	  = 571, // Increases/decreases damage against/from dragons
+	// Damage/resistance bonus from Circle Effects
+	MOD_DRAGON_DAMAGE_BONUS		  = 64, // Increases/decreases damage against/from dragons
 
-    // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 92, // stuff

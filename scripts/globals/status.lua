@@ -1297,7 +1297,7 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 831 -- Percentage increase to QD damage
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
 -- Damage/resistance bonus from Circle Effects
-MOD_ANCIENT_CIRCLE_BONUS      = 571 -- // Increases/decreases damage against/from dragons
+MOD_DRAGON_DAMAGE_BONUS       = 64 -- // Increases/decreases damage against/from dragons
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.

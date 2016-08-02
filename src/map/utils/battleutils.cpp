@@ -1906,24 +1906,24 @@ namespace battleutils
             HandleAfflatusMiseryDamage(PDefender, damage);
         }
 
-		if (PAttacker->objtype == TYPE_MOB && PDefender->objtype == TYPE_PC)
+		if (PAttacker->objtype == TYPE_MOB && PDefender->objtype == TYPE_PC)	//Attacker is the Monster, damage gets decreased
 		{
 			switch (PAttacker->m_EcoSystem)
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_ANCIENT_CIRCLE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;		break;
 
 				default:				break;
 			}
 		}
-		else if (PAttacker->objtype == TYPE_PC && PDefender->objtype == TYPE_MOB)
+		else if (PAttacker->objtype == TYPE_PC && PDefender->objtype == TYPE_MOB)	//Attacker is the Player, damage gets increased
 		{
 			switch (PDefender->m_EcoSystem)
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_ANCIENT_CIRCLE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;		break;
 
 				default:			    break;
 			}
