@@ -1912,15 +1912,9 @@ namespace battleutils
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-			case SYSTEM_DRAGON:
-			{
-				if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
-					damage = damage * (100 - int16(PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower())) / 100;
+				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_ANCIENT_CICRLE_BONUS)) / 100;	break;
 
-				break;
-			}
-
-			default: break;
+				default:				break;
 			}
 		}
 		else if (PAttacker->objtype == TYPE_PC && PDefender->objtype == TYPE_MOB)
@@ -1929,15 +1923,9 @@ namespace battleutils
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-			case SYSTEM_DRAGON:
-			{
-				if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_ANCIENT_CIRCLE))
-					damage = damage * (100 + int16(PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_ANCIENT_CIRCLE)->GetPower())) / 100;
+				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_ANCIENT_CICRLE_BONUS)) / 100;	break;
 
-				break;
-			}
-
-			default: break;
+				default:			    break;
 			}
 		}
 
@@ -2696,8 +2684,7 @@ namespace battleutils
 		{
 			CCharEntity* PChar = (CCharEntity*)PDefender;
 
-			if (PDefender->GetMJob() == 9 && PDefender->GetMLevel() >= 75)	//Don't want to make a gorillion hasTrait checks
-				MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);
+			MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, (CCharEntity*)PDefender);
 		}
 
 		switch (PAttacker->m_EcoSystem)

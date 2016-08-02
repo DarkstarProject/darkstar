@@ -30,7 +30,7 @@ function onUseAbility(player,target,ability)
     local power = 5;			--when cast as Subjob
     local duration = 180;
 
-    if (player:getMainJob() == JOB_DRG) then
+    if (player:getMainJob() == JOBS.DRG) then
         local sLegs = player:getEquipID(SLOT_LEGS);
 
         if (sLegs == 14227 or sLegs == 15574 or sLegs == 28103) then
