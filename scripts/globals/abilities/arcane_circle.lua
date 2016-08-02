@@ -35,5 +35,5 @@ function onUseAbility(player,target,ability)
         end
     end
     
-    target:addStatusEffect(EFFECT_ARCANE_CIRCLE,8,0,180);
+    target:addStatusEffect(EFFECT_ARCANE_CIRCLE,power,0,duration);
 end;
