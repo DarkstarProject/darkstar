@@ -1912,10 +1912,10 @@ namespace battleutils
 			{
 				//TODO: Magic attack/defense(/resistance ? ) + BST Killer Instinct
 
-				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_ARCANA:		damage = damage * (100 - PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_UNDEAD:		damage = damage * (100 - PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_DEMON:		damage = damage * (100 - PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;		break;
+				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_ARCANA:		damage = damage * (100 - PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_UNDEAD:		damage = damage * (100 - PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_DEMON:		damage = damage * (100 - PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
 				default:				break;
 			}
 		}
@@ -1925,10 +1925,10 @@ namespace battleutils
 			{
 				//TODO: Magic attack/defense(/resistance ? ) + BST Killer Instinct
 
-				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_ARCANA:		damage = damage * (100 + PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_UNDEAD:		damage = damage * (100 + PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;		break;
-				case SYSTEM_DEMON:		damage = damage * (100 + PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;		break;
+				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_ARCANA:		damage = damage * (100 + PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_UNDEAD:		damage = damage * (100 + PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_DEMON:		damage = damage * (100 + PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
 				default:			    break;
 			}
 		}
@@ -2683,14 +2683,10 @@ namespace battleutils
 
 		int16 KillerEffect = 0;
 		int16 MeritBonus = 0;
-
 		auto PChar = dynamic_cast<CCharEntity*>(PDefender);
 
-		if (PChar)
-		{
-			MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, PChar);
-		}
-
+		if (PChar) MeritBonus = PChar->PMeritPoints->GetMeritValue(MERIT_KILLER_EFFECTS, PChar);
+		
 		switch (PAttacker->m_EcoSystem)
 		{
 			case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(MOD_AMORPH_KILLER) + MeritBonus;   break;
