@@ -21,5 +21,19 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+    local power = 5;			--when cast as Subjob
+    local duration = 180;
+
+    if (player:getMainJob() == JOBS.DRK) then
+        local sFeet = player:getEquipID(SLOT_FEET);
+
+        if (sFeet == 14096 or sFeet == 15359 or sFeet == 28230 or sFeet == 28251) then
+            power = 17;			--when cast as Mainjob w/ equipment
+            duration = 240;		--Sollerets increase duration by 50%
+        else
+            power = 15;			--when cast as Mainjob w/o equipment
+        end
+    end
+    
     target:addStatusEffect(EFFECT_ARCANE_CIRCLE,8,0,180);
 end;

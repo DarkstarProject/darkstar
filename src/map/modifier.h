@@ -622,10 +622,10 @@ enum MODIFIER
 
 	// Damage/resistance bonus from Circle Effects
 	MOD_DRAGON_DAMAGE_BONUS		  = 64, // Increases/decreases damage against/from dragons
-
-    // MOD_SPARE = 65, // stuff
-    // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 92, // stuff
+	MOD_ARCANA_DAMAGE_BONUS		  = 65, // Increases/decreases damage against/from arcana
+	MOD_UNDEAD_DAMAGE_BONUS		  = 67, // Increases/decreases damage against/from undead
+	MOD_DEMON_DAMAGE_BONUS		  = 92, // Increases/decreases damage against/from demons
+    
     // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
     // MOD_SPARE = 95, // stuff

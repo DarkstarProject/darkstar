@@ -33,7 +33,7 @@ function onUseAbility(player,target,ability)
     if (player:getMainJob() == JOBS.DRG) then
         local sLegs = player:getEquipID(SLOT_LEGS);
 
-        if (sLegs == 14227 or sLegs == 15574 or sLegs == 28103) then
+        if (sLegs == 14227 or sLegs == 15574 or sLegs == 28103 or sLegs == 28124) then
             power = 17;			--when cast as Mainjob w/ equipment
             duration = 240;		--Brais increase duration by 50%
         else
