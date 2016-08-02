@@ -621,7 +621,7 @@ enum MODIFIER
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
 
 	// Damage/reistance bonus from Circle Effects
-	MOD_ANCIENT_CICRLE_BONUS	  = 571, // Increases/decreases damage against/from dragons
+	MOD_ANCIENT_CIRCLE_BONUS	  = 571, // Increases/decreases damage against/from dragons
 
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff

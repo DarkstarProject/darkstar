@@ -1912,7 +1912,7 @@ namespace battleutils
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_ANCIENT_CICRLE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_ANCIENT_CIRCLE_BONUS)) / 100;	break;
 
 				default:				break;
 			}
@@ -1923,7 +1923,7 @@ namespace battleutils
 			{
 				//TODO: all the other circles + Magic attack/defense(/resistance ? )
 
-				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_ANCIENT_CICRLE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_ANCIENT_CIRCLE_BONUS)) / 100;	break;
 
 				default:			    break;
 			}
