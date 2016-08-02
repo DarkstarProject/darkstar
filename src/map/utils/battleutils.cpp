@@ -1906,7 +1906,7 @@ namespace battleutils
             HandleAfflatusMiseryDamage(PDefender, damage);
         }
 
-		if (PAttacker->objtype == TYPE_MOB && PDefender->objtype == TYPE_PC)	//Attacker is the Monster, damage gets decreased
+		if (PAttacker->objtype == TYPE_MOB)	//Attacker is the Monster, damage gets decreased
 		{
 			switch (PAttacker->m_EcoSystem)
 			{
@@ -1919,16 +1919,16 @@ namespace battleutils
 				default:				break;
 			}
 		}
-		else if (PAttacker->objtype == TYPE_PC && PDefender->objtype == TYPE_MOB)	//Attacker is the Player, damage gets increased
+		else if (PDefender->objtype == TYPE_MOB)	//Attacker is the Player or his pet, damage gets increased
 		{
 			switch (PDefender->m_EcoSystem)
 			{
 				//TODO: Magic attack/defense(/resistance ? ) + BST Killer Instinct
 
 				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_ARCANA:		damage = damage * (100 + PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_UNDEAD:		damage = damage * (100 + PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_DEMON:		damage = damage * (100 + PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_ARCANA:		damage = damage * (100 + PAttacker->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_UNDEAD:		damage = damage * (100 + PAttacker->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_DEMON:		damage = damage * (100 + PAttacker->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
 				default:			    break;
 			}
 		}
