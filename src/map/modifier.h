@@ -621,18 +621,20 @@ enum MODIFIER
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
 
 	// Damage/resistance bonus from Circle Effects
-	MOD_DRAGON_DAMAGE_BONUS		  = 64, // Increases/decreases damage against/from dragons
-	MOD_ARCANA_DAMAGE_BONUS		  = 65, // Increases/decreases damage against/from arcana
-	MOD_UNDEAD_DAMAGE_BONUS		  = 67, // Increases/decreases damage against/from undead
-	MOD_DEMON_DAMAGE_BONUS		  = 92, // Increases/decreases damage against/from demons
+	MOD_DRAGON_DAMAGE_BONUS		  = 64, // Increases/decreases damage against/from dragons via Ancient Circle
+	MOD_ARCANA_DAMAGE_BONUS		  = 65, // Increases/decreases damage against/from arcana via Arcane Circle
+	MOD_UNDEAD_DAMAGE_BONUS		  = 67, // Increases/decreases damage against/from undead via Holy Circle
+	MOD_DEMON_DAMAGE_BONUS		  = 92, // Increases/decreases damage against/from demons via Warding Circle
     
-    // MOD_SPARE = 93, // stuff
-    // MOD_SPARE = 94, // stuff
-    // MOD_SPARE = 95, // stuff
-    // MOD_SPARE = 96, // stuff
-    // MOD_SPARE = 97, // stuff
-    // MOD_SPARE = 98, // stuff
-    // MOD_SPARE = 99, // stuff
+	// Damage/resistance bonus from Beast Strenght boni and BST's Killer Effect
+	MOD_LIZARD_DAMAGE_BONUS		  = 93,
+	MOD_VERMIN_DAMAGE_BONUS		  = 94,
+	MOD_BIRD_DAMAGE_BONUS		  = 95,
+	MOD_AMORPH_DAMAGE_BONUS		  = 96,
+	MOD_AQUAN_DAMAGE_BONUS		  = 97,
+	MOD_PLANTOID_DAMAGE_BONUS	  = 98,
+	MOD_BEAST_DAMAGE_BONUS		  = 99,
+
     // MOD_SPARE = 100, // stuff
     // MOD_SPARE = 543, // stuff
     // MOD_SPARE = 552, // stuff

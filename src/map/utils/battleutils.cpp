@@ -1906,29 +1906,45 @@ namespace battleutils
             HandleAfflatusMiseryDamage(PDefender, damage);
         }
 
-		if (PAttacker->objtype == TYPE_MOB)	//Attacker is the Monster, damage gets decreased
+		if (PAttacker->objtype == TYPE_MOB)		// Attacker is the Monster, damage gets decreased
 		{
 			switch (PAttacker->m_EcoSystem)
 			{
-				//TODO: Magic attack/defense(/resistance ? ) + BST Killer Instinct
+				// TODO: Magic attack/defense(/resistance ? )
+				//	     (check out getSystemStrengthBonus, system bonus only applied during MOB ws's and never otherwise?)
 
-				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_ARCANA:		damage = damage * (100 - PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_UNDEAD:		damage = damage * (100 - PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_DEMON:		damage = damage * (100 - PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 - PDefender->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_ARCANA:		damage = damage * (100 - PDefender->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_UNDEAD:		damage = damage * (100 - PDefender->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_DEMON:		damage = damage * (100 - PDefender->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_BEAST:		damage = damage * (100 - PDefender->getMod(MOD_BEAST_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_LIZARD:		damage = damage * (100 - PDefender->getMod(MOD_LIZARD_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_VERMIN:		damage = damage * (100 - PDefender->getMod(MOD_VERMIN_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_PLANTOID:	damage = damage * (100 - PDefender->getMod(MOD_PLANTOID_DAMAGE_BONUS)) / 100; break;
+				case SYSTEM_AQUAN:		damage = damage * (100 - PDefender->getMod(MOD_AQUAN_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_AMORPH:		damage = damage * (100 - PDefender->getMod(MOD_AMORPH_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_BIRD:		damage = damage * (100 - PDefender->getMod(MOD_BIRD_DAMAGE_BONUS)) / 100;	  break;
 				default:				break;
 			}
 		}
-		else if (PDefender->objtype == TYPE_MOB)	//Attacker is the Player or his pet, damage gets increased
+		else if (PDefender->objtype == TYPE_MOB)	// Attacker is the Player or his pet, damage gets increased
 		{
 			switch (PDefender->m_EcoSystem)
 			{
-				//TODO: Magic attack/defense(/resistance ? ) + BST Killer Instinct
+				// TODO: Magic attack/defense(/resistance ? )
+				//		 (check out getSystemStrengthBonus, system bonus only applied during MOB ws's and never otherwise?)
 
-				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_ARCANA:		damage = damage * (100 + PAttacker->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_UNDEAD:		damage = damage * (100 + PAttacker->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	break;
-				case SYSTEM_DEMON:		damage = damage * (100 + PAttacker->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;	break;
+				case SYSTEM_DRAGON:		damage = damage * (100 + PAttacker->getMod(MOD_DRAGON_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_ARCANA:		damage = damage * (100 + PAttacker->getMod(MOD_ARCANA_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_UNDEAD:		damage = damage * (100 + PAttacker->getMod(MOD_UNDEAD_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_DEMON:		damage = damage * (100 + PAttacker->getMod(MOD_DEMON_DAMAGE_BONUS)) / 100;    break;
+				case SYSTEM_BEAST:		damage = damage * (100 + PAttacker->getMod(MOD_BEAST_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_LIZARD:		damage = damage * (100 + PAttacker->getMod(MOD_LIZARD_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_VERMIN:		damage = damage * (100 + PAttacker->getMod(MOD_VERMIN_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_PLANTOID:	damage = damage * (100 + PAttacker->getMod(MOD_PLANTOID_DAMAGE_BONUS)) / 100; break;
+				case SYSTEM_AQUAN:		damage = damage * (100 + PAttacker->getMod(MOD_AQUAN_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_AMORPH:		damage = damage * (100 + PAttacker->getMod(MOD_AMORPH_DAMAGE_BONUS)) / 100;	  break;
+				case SYSTEM_BIRD:		damage = damage * (100 + PAttacker->getMod(MOD_BIRD_DAMAGE_BONUS)) / 100;	  break;
 				default:			    break;
 			}
 		}
