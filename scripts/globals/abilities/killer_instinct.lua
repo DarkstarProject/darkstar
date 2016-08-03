@@ -42,13 +42,13 @@ function onUseAbility(player,target,ability)
     -- local sHead = player:getEquipID(SLOT_HEAD)
     local duration = 180                           -- TODO: duration increase by merits (10s per) and equipment
     
-    if (pet:getSystem() == SYSTEM_BEAST) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,1,0,duration)
-    elseif (pet:getSystem() == SYSTEM_LIZARD) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,2,0,duration)
-    elseif (pet:getSystem() == SYSTEM_VERMIN) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,3,0,duration)
-    elseif (pet:getSystem() == SYSTEM_PLANTOID) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,4,0,duration)
-    elseif (pet:getSystem() == SYSTEM_AQUAN) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,5,0,duration)
-    elseif (pet:getSystem() == SYSTEM_AMORPH) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,6,0,duration)
-    elseif (pet:getSystem() == SYSTEM_BIRD) then player:addStatusEffect(EFFECT_KILLER_INSTINCT,7,0,duration)
-    else player:addStatusEffect(EFFECT_KILLER_INSTINCT,9,0,duration)
+    if (pet:getSystem() == SYSTEM_BEAST) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,1,0,duration)
+    elseif (pet:getSystem() == SYSTEM_LIZARD) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,2,0,duration)
+    elseif (pet:getSystem() == SYSTEM_VERMIN) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,3,0,duration)
+    elseif (pet:getSystem() == SYSTEM_PLANTOID) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,4,0,duration)
+    elseif (pet:getSystem() == SYSTEM_AQUAN) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,5,0,duration)
+    elseif (pet:getSystem() == SYSTEM_AMORPH) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,6,0,duration)
+    elseif (pet:getSystem() == SYSTEM_BIRD) then target:addStatusEffect(EFFECT_KILLER_INSTINCT,7,0,duration)
+    else target:addStatusEffect(EFFECT_KILLER_INSTINCT,9,0,duration)
     end
 end;
