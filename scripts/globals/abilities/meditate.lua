@@ -31,11 +31,13 @@ function onUseAbility(player,target,ability)
     local sHands = target:getEquipID(SLOT_HANDS);
     local sHead = target:getEquipID(SLOT_HEAD);
     -- Todo: change these item checks into a modifier.
-    if (sHands == 15113 or sHands == 14920) then
-        extratick = 1;
-    end
-    if (sHead == 13868 or sHead == 15236) then
-        extratick = extratick + 1;
+    if (player:getMainLvl() >= 60) then --wrap this to account for level sync
+        if (sHands == 15113 or sHands == 14920) then
+            extratick = 1;
+        end
+        if (sHead == 13868 or sHead == 15236) then
+            extratick = extratick + 1;
+        end
     end
     if (extratick == 1) then
         extratick = math.random(1,2);
