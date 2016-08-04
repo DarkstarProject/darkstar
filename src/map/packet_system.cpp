@@ -3866,8 +3866,21 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
         return;
     }
+    //  01234 567890123456789 0123...
+    // |     |               |     
 
-    string_t RecipientName = data[5];
+    char recipbuf[16];
+    
+    // copy 15 bytes into recip buffer
+    memcpy(recipbuf, data+5, sizeof(char)*15);
+    // the packet does not have space for the null terminator if the
+    // name is 15 characters
+    recipbuf[15] = 0x00;
+
+    // then we can put it in a c++ string
+    string_t RecipientName = recipbuf;
+    //string_t RecipientName = data[5];
+
     int8 packetData[64];
     strncpy(packetData + 4, RecipientName.c_str(), RecipientName.length() + 1);
     WBUFL(packetData, 0) = PChar->id;
