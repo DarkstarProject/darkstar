@@ -79,6 +79,27 @@ float distance(const position_t& A, const position_t& B)
 *																		*
 ************************************************************************/
 
+float distanceSquared(const position_t& A, const position_t& B)
+{
+	float one = 0, two = 0, three = 0, four = 0;
+
+	one = A.x - B.x;
+	two = A.y - B.y;
+	three = A.z - B.z;
+	one *= one;
+	two *= two;
+	three *= three;
+	four = one + two + three;
+
+	return abs(four);
+}
+
+/************************************************************************
+*																		*
+*																		*
+*																		*
+************************************************************************/
+
 int32 intpow32(int32 base, int32 exponent)
 {
 	int32 power = 1;
