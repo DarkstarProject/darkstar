@@ -11,15 +11,15 @@ ITEM_CANNOT_BE_OBTAINED_TWICE = 6559; -- You cannot obtain the item <item>.
        FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 7472; -- You've earned conquest points!
+CONQUEST = 7477; -- You've earned conquest points!
 
 -- Quests
-SHINING_OBJECT_SLIPS_AWAY = 7429; -- The shining object slips through your fingers and is washed further down the stream.
+SHINING_OBJECT_SLIPS_AWAY = 7434; -- The shining object slips through your fingers and is washed further down the stream.
 
 -- Other Dialog
         NOTHING_HAPPENS = 300;  -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6579; -- There is nothing out of the ordinary here.
-  REACH_WATER_FROM_HERE = 7436; -- You can reach the water from here.
+  REACH_WATER_FROM_HERE = 7441; -- You can reach the water from here.
 
 -- conquest Base
 CONQUEST_BASE = 0;

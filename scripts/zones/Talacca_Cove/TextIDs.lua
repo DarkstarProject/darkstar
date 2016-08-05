@@ -8,4 +8,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here
 
 -- Quest Texts
-YOU_CAN_NOW_BECOME_A_CORSAIR = 7769; -- You can now become a corsair!
+YOU_CAN_NOW_BECOME_A_CORSAIR = 7776; -- You can now become a corsair!

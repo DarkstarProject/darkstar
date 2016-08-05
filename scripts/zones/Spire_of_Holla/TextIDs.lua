@@ -7,4 +7,4 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
 
         FAINT_SCRAPING = 7077; -- You can hear a faint scraping sound from within, but the way is barred by some strange membrane...
-         CANT_REMEMBER = 7625; -- You cannot remember when exactly, but you have obtained
+         CANT_REMEMBER = 7627; -- You cannot remember when exactly, but you have obtained
