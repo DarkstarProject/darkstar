@@ -60,7 +60,7 @@ function onTrigger(player,npc)
         elseif (player:getQuestStatus(WINDURST,I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
             player:startEvent(0x0181,1125,1125,1125,1125,1125,1125,1125,1125);
         else
-            player:messageSpecial(7532); -- "The doors are firmly sealed shut."
+            player:messageSpecial(DOORS_SEALED_SHUT); -- "The doors are firmly sealed shut."
         end;
     end;
 
