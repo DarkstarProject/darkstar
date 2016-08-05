@@ -13,4 +13,4 @@ LOGGING_IS_POSSIBLE_HERE = 7065; -- Logging is possible here if you have
 
 -- Other Texts
       NOTHING_HAPPENS = 119; -- Nothing happens.
-ALREADY_OBTAINED_TELE = 7689; -- You already possess the gate crystal for this telepoint.
+ALREADY_OBTAINED_TELE = 7694; -- You already possess the gate crystal for this telepoint.

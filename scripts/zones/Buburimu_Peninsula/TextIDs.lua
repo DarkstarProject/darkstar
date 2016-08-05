@@ -9,24 +9,24 @@ ITEM_CANNOT_BE_OBTAINED = 6414; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7245; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 7403; -- You've earned conquest points!
+CONQUEST = 7408; -- You've earned conquest points!
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7387; -- Logging is possible here if you have
+LOGGING_IS_POSSIBLE_HERE = 7392; -- Logging is possible here if you have
 
 -- Dialog Texts
 FIVEOFSPADES_DIALOG = 7239; -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol! 
 
-      YOU_CANNOT_ENTER_DYNAMIS = 7880; -- You cannot enter Dynamis
-          MYSTERIOUS_VOICE = 7881; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7882; -- Players who have not reached levelare prohibited from entering Dynamis.
+      YOU_CANNOT_ENTER_DYNAMIS = 7885; -- You cannot enter Dynamis
+          MYSTERIOUS_VOICE = 7886; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7887; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 -- Signs
-SIGN_1 = 7382; -- West: Tahrongi Canyon Southeast: Mhaura
-SIGN_2 = 7383; -- West: Tahrongi Canyon South: Mhaura
-SIGN_3 = 7384; -- West: Tahrongi Canyon Southwest: Mhaura
-SIGN_4 = 7385; -- West: Mhaura and Tahrongi Canyon
-SIGN_5 = 7386; -- West: Mhaura Northwest: Tahrongi Canyon
+SIGN_1 = 7387; -- West: Tahrongi Canyon Southeast: Mhaura
+SIGN_2 = 7388; -- West: Tahrongi Canyon South: Mhaura
+SIGN_3 = 7389; -- West: Tahrongi Canyon Southwest: Mhaura
+SIGN_4 = 7390; -- West: Mhaura and Tahrongi Canyon
+SIGN_5 = 7391; -- West: Mhaura Northwest: Tahrongi Canyon
 
 -- conquest Base
 CONQUEST_BASE = 7080; -- Tallying conquest results...
