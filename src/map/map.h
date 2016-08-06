@@ -113,6 +113,15 @@ struct map_config_t
     float  nm_stat_multiplier;        // Multiplier for str/vit/etc of NMs
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
+    float  nm_cast_time_multiplier;   
+    float  mob_cast_time_multiplier;  
+    float  player_cast_time_multiplier;
+    float  nm_recast_time_multiplier;
+    float  mob_recast_time_multiplier;
+    float  player_recast_time_multiplier;
+    float  nm_cast_interrupt_multiplier;
+    float  mob_cast_interrupt_multiplier;  
+    float  player_cast_interrupt_multiplier;
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
