@@ -201,17 +201,17 @@ int16 CMobSpellContainer::GetHealSpell()
 
 int16 CMobSpellContainer::GetNaSpell()
 {
-  if(m_naList.empty()) return -1;
+    if (m_naList.empty()) return -1;
 
-  // paralyna
-  if(HasNaSpell(15) && m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS)){
-    return 15;
-  }
+    // paralyna
+    if (HasNaSpell(15) && m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS)) {
+        return 15;
+    }
 
-  // cursna
-  if(HasNaSpell(20) && (m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) || m_PMob->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE_II))){
-    return 20;
-  }
+    // cursna
+    if (HasNaSpell(20) && m_PMob->StatusEffectContainer->HasStatusEffect({EFFECT_CURSE, EFFECT_CURSE_II })){
+        return 20;
+    }
 
   // erase
   if(HasNaSpell(143) && m_PMob->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_ERASABLE)){

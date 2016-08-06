@@ -39,7 +39,7 @@ CMobSkillState::CMobSkillState(CMobEntity* PEntity, uint16 targid, uint16 wsid) 
         throw CStateInitException(nullptr);
     }
 
-    if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT))
+    if (m_PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
     {
         throw CStateInitException(nullptr);
     }

@@ -135,7 +135,8 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT)) {
+        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
+        {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
         }

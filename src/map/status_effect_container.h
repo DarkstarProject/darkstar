@@ -58,6 +58,7 @@ public:
 
     bool HasStatusEffect(EFFECT StatusID);                      // проверяем наличие эффекта
     bool HasStatusEffect(EFFECT StatusID, uint16 SubID);        // проверяем наличие эффекта с уникальным subid
+    bool HasStatusEffect(std::initializer_list<EFFECT>);
     bool HasStatusEffectByFlag(uint32 flag);
 
     EFFECT EraseStatusEffect();                                 // удаляем первый отрицательный эффект

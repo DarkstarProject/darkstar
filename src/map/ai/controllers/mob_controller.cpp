@@ -112,10 +112,7 @@ bool CMobController::CheckHide(CBattleEntity* PTarget)
 bool CMobController::CheckDetection(CBattleEntity* PTarget)
 {
     if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || 
-        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_BIND) || 
-        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP) || 
-        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SLEEP_II) ||
-        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_LULLABY))
+        PMob->StatusEffectContainer->HasStatusEffect({EFFECT_BIND, EFFECT_SLEEP, EFFECT_SLEEP_II, EFFECT_LULLABY}))
     {
         TapDeaggroTime();
     }
@@ -419,8 +416,7 @@ bool CMobController::CanCastSpells()
     }
 
     // check for spell blockers e.g. silence
-    if (PMob->StatusEffectContainer->HasStatusEffect(EFFECT_SILENCE) ||
-        PMob->StatusEffectContainer->HasStatusEffect(EFFECT_MUTE))
+    if (PMob->StatusEffectContainer->HasStatusEffect({EFFECT_SILENCE, EFFECT_MUTE}))
     {
         return false;
     }
