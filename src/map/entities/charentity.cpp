@@ -632,8 +632,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                     actionTarget.additionalEffect = effect;
 
                 }
-                if (StatusEffectContainer->HasStatusEffect(EFFECT_SEKKANOKI) ||
-                    StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI))
+                if (StatusEffectContainer->HasStatusEffect({EFFECT_SEKKANOKI, EFFECT_MEIKYO_SHISUI}))
                 {
                     health.tp = (health.tp > 1000 ? health.tp - 1000 : 0);
                 }

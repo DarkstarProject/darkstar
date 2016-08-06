@@ -933,8 +933,7 @@ void CParty::SetSyncTarget(int8* MemberName, uint16 message)
             {
                 for (uint8 i = 0; i < members.size(); ++i)
                 {
-                    if (members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION) ||
-                        members.at(i)->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+                    if (members.at(i)->StatusEffectContainer->HasStatusEffect({EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_SYNC}))
                     {
                         ((CCharEntity*)GetLeader())->pushPacket(new CMessageBasicPacket((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, 543));
                         return;
