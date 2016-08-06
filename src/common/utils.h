@@ -32,7 +32,8 @@
 
 int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
 
-float distance(const position_t& A, const position_t& B);						// расстояние между двумя точками
+float distance(const position_t& A, const position_t& B);		// distance between positions
+float distanceSquared(const position_t& A, const position_t& B);// squared distance between positions (use squared unless otherwise needed)
 int32 intpow32(int32 base, int32 exponent);						// Exponential power of integers
 void getMSB(uint32* result,uint32 value);						// fast Most Significant Byte search under GCC or MSVC. Fallback included.
 float rotationToRadian(uint8 rotation);
