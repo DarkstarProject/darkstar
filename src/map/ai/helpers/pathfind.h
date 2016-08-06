@@ -116,6 +116,9 @@ class CPathFind
     // returns true if raycast didn't hit any walls
     bool CanSeePoint(const position_t& point);
 
+    // returns the final destination of the current path
+    const position_t& GetDestination() const;
+
   private:
 
     // find a valid path using polys

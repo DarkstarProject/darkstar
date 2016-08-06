@@ -470,6 +470,11 @@ bool CPathFind::CanSeePoint(const position_t& point)
     return true;
 }
 
+const position_t& CPathFind::GetDestination() const
+{
+    return m_points.back();
+}
+
 void CPathFind::Clear()
 {
     m_distanceFromPoint = 0;
