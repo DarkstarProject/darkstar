@@ -199,7 +199,7 @@ INSERT INTO `abilities` VALUES ('152', 'blade_bash', '12', '75', '4', '180', '13
 INSERT INTO `abilities` VALUES ('153', 'deep_breathing', '14', '75', '1', '300', '164', '0', '0', '153', '2000', '0', '6', '20.0', '0', '0', '0', '2880', '1','TOAU');
 INSERT INTO `abilities` VALUES ('154', 'angon', '14', '75', '4', '180', '165', '127', '0', '245', '2000', '0', '3', '20.0', '0', '0', '0', '2882', '1','TOAU');
 INSERT INTO `abilities` VALUES ('155', 'sange', '13', '75', '1', '300', '145', '0', '0', '200', '2000', '0', '6', '20.0', '0', '1', '0', '2816', '1','TOAU');
-INSERT INTO `abilities` VALUES ('156', 'blood_pact_ward', '15', '1', '1', '60', '174', '0', '0', '0', '2000', '0', '6', '20.0', '0', '0', '0', '0', '256','ROTZ'); -- ROTZ Not really RotZ, but it will otherwise shut off abilities that were since it used to be one category
+INSERT INTO `abilities` VALUES ('156', 'blood_pact_ward', '15', '1', '1', '60', '174', '0', '0', '0', '2000', '0', '6', '20.0', '0', '0', '0', '0', '256',null); -- ROTZ Not really RotZ, but it will otherwise shut off abilities that were since it used to be one category
 INSERT INTO `abilities` VALUES ('157', 'hasso', '12', '25', '1', '60', '138', '0', '0', '163', '2000', '0', '6', '20.0', '0', '1', '300', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('158', 'seigan', '12', '35', '1', '60', '139', '0', '0', '164', '2000', '0', '6', '20.0', '0', '1', '300', '0', '0','TOAU');
 INSERT INTO `abilities` VALUES ('159', 'convergence', '16', '75', '1', '600', '183', '0', '0', '165', '2000', '0', '6', '20.0', '0', '1', '300', '3008', '1','TOAU');
