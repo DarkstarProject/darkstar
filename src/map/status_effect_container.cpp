@@ -1007,6 +1007,7 @@ bool CStatusEffectContainer::HasStatusEffect(std::initializer_list<EFFECT> effec
             }
         }
     }
+    return false;
 }
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
