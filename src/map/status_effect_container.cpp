@@ -363,6 +363,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         m_StatusEffectList.push_back(PStatusEffect);
 
         luautils::OnEffectGain(m_POwner, PStatusEffect);
+        m_POwner->PAI->EventHandler.triggerListener("EFFECT_GAIN", m_POwner, PStatusEffect);
 
         m_POwner->addModifiers(&PStatusEffect->modList);
 
@@ -425,6 +426,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
     luautils::OnEffectLose(m_POwner, PStatusEffect);
+    m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
 
     m_POwner->delModifiers(&PStatusEffect->modList);
     m_POwner->UpdateHealth();
