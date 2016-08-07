@@ -30,3 +30,5 @@ EXPERIENCE_POINTS - Entity, exp
 
 TICK - Entity
 EFFECTS_TICK - Entity
+EFFECT_GAIN - Entity, Effect
+EFFECT_LOSE - Entity, Effect
