@@ -10766,6 +10766,48 @@ int32 CLuaBaseEntity::getAutomatonHead(lua_State* L)
     return 1;
 }
 
+int32 CLuaBaseEntity::isSpawned(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+   
+    if (((CMobEntity*)m_PBaseEntity)->PAI->IsSpawned())
+    {
+        lua_pushboolean(L, true);
+        return 1;
+    }
+
+    lua_pushboolean(L, false);
+    return 0;
+}
+
+int32 CLuaBaseEntity::isEngaged(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (((CMobEntity*)m_PBaseEntity)->PAI->IsEngaged())
+    {
+        lua_pushboolean(L, true);
+        return 1;
+    }
+
+    lua_pushboolean(L, false);
+    return 0;
+}
+
+int32 CLuaBaseEntity::isAsleep(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    if (((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->IsAsleep())
+    {
+        lua_pushboolean(L, true);
+        return 1;
+    }
+
+    lua_pushboolean(L, false);
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -11237,5 +11279,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAsleep),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isEngaged),
     {nullptr,nullptr}
 };

@@ -15,9 +15,10 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId();
+    -- See PW's script
+    local phase = mob:getLocalVar("phase");
 
-    if (mobSkin == 1793) then
+    if (phase == 16) then
         return 0;
     else
         return 1;
