@@ -200,7 +200,7 @@ public:
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
-    std::bitset<48>         m_LearnedWeaponskills;          // learnable weaponskills
+    std::bitset<49>         m_LearnedWeaponskills;          // learnable weaponskills
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8					m_PetCommands[32];				// список доступных команд питомцу
     uint8					m_WeaponSkills[32];
