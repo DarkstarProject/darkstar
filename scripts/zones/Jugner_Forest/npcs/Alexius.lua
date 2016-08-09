@@ -2,7 +2,7 @@
 --  Area: Jugner Forest
 --  NPC:  Alexius
 --  Involved in Quest: A purchase of Arms & Sin Hunting
---  @pos  105 1 382 104
+-- @pos  105 1 382 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0005) then
         player:delKeyItem(WEAPONS_ORDER);
         player:addKeyItem(WEAPONS_RECEIPT);

@@ -2,7 +2,7 @@
 --  Area: Carpenters' Landing
 --  NPC:  Beugungel
 --  Type: Guild Merchant NPC (Woodworking Guild)
---  @pos -333.729, -5.512, 475.647 2
+-- @pos -333.729, -5.512, 475.647 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

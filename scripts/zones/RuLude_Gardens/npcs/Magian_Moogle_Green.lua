@@ -2,7 +2,7 @@
 --  Area: Ru'Lude Gardens
 --  NPC:  Magian Moogle (Green Bobble)
 --  Type: Magian Trials NPC (Job Emotes)
---  @pos -4.558 2.451 111.305 64
+-- @pos -4.558 2.451 111.305 64
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0344) then
        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
        player:setVar("threemenandaclosetCS",2);
@@ -74,6 +74,4 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
 

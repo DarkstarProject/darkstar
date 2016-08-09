@@ -2,7 +2,7 @@
 --  Area: Al Zahbi
 --   NPC: Gajaad
 --  Type: Donation Taker
---  @pos 40.781 -1.398 116.261 48
+-- @pos 40.781 -1.398 116.261 48
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

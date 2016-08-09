@@ -3,7 +3,7 @@
 --  NPC:  Iruki-Waraki
 --  Type: Standard NPC
 --  Involved in quest: No Strings Attached
---  @pos 101.329 -6.999 -29.042 50
+-- @pos 101.329 -6.999 -29.042 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

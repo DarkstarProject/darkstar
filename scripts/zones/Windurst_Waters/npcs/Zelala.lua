@@ -2,8 +2,8 @@
 --  Area: Windurst Waters
 --   NPC: Zelala
 --  Type: Map Marker
--- @zone: 238
---  @pos 169.855 -1.295 -3.238
+-- @zone 238
+-- @pos 169.855 -1.295 -3.238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

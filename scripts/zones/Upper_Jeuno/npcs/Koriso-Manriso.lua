@@ -2,8 +2,8 @@
 --  Area: Upper Jeuno
 --  NPC: Koriso-Manriso
 --  Type: Item Deliverer
---  @zone: 244
---  @pos -64.39    1    23.704
+--  @zone 244
+-- @pos -64.39    1    23.704
 --
 -----------------------------------
 

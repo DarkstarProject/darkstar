@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @completequest <logID> <questID> <player>
+-- func: completequest <logID> <questID> <player>
 -- desc: Completes the given quest for the GM or target player.
 ---------------------------------------------------------------------------------------------------
 

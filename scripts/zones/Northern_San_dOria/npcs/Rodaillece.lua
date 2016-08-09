@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Rodaillece
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -246.943 7.000 46.836
+--  @zone 231
+-- @pos -246.943 7.000 46.836
 --
 -----------------------------------
 

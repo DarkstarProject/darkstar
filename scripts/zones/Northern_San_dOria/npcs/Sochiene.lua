@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Sochiene
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 4.000 0.000 -28.000
+--  @zone 231
+-- @pos 4.000 0.000 -28.000
 --
 -----------------------------------
 

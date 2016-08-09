@@ -2,7 +2,7 @@
 --  Area: Nashmau
 --  NPC:  Nanaroon
 --  Type: Item Deliverer
---  @pos -2.404    -6    37.141 53
+-- @pos -2.404    -6    37.141 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

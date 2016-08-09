@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Pettette
 --  Type: Standard NPC
--- @zone: 94
---  @pos 164.026 -0.001 -26.690
+-- @zone 94
+-- @pos 164.026 -0.001 -26.690
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

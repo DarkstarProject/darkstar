@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x012c) then
         if (player:delGil(148000)) then
             player:addKeyItem(AIRSHIP_PASS_FOR_KAZHAM);
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x012c) then
         if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM) == true) then
             player:messageSpecial(KEYITEM_OBTAINED,AIRSHIP_PASS_FOR_KAZHAM);
@@ -70,6 +70,4 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     end
 end;
-
-
 

@@ -2,7 +2,7 @@
 --  Area: Carpenters' Landing
 --  NPC:  ??? (qm1)
 --  Note: Used to spawn Mycophile NM
---  @pos 145.500 -9.000 -699.000 2
+-- @pos 145.500 -9.000 -699.000 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

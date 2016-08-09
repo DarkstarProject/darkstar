@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: East Sarutabaruta
---     NPC:  Sama Gohjima
+-- Area: East Sarutabaruta
+--  NPC:  Sama Gohjima
 --  Involved in Mission: The Horutoto Ruins Experiment (optional)
---    @pos 377 -13 98 116
+-- @pos 377 -13 98 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

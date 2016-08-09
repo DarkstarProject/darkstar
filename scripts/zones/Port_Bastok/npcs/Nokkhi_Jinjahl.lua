@@ -2,8 +2,8 @@
 --  Area: Port Bastok
 --   NPC: Nokkhi Jinjahl
 --  Type: Travelling Merchant NPC / NPC Quiver Maker / Bastok 1st Place
--- @zone: 236
---  @pos 112.667 7.455 -46.174
+-- @zone 236
+-- @pos 112.667 7.455 -46.174
 --
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

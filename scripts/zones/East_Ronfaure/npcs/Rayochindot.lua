@@ -2,7 +2,7 @@
 --  Area: East Ronfaure
 --  NPC: Rayochindot
 --  Type: Gate Guard
---  @pos 93.159 -62.999 272.601 101
+-- @pos 93.159 -62.999 272.601 101
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
 -----------------------------------

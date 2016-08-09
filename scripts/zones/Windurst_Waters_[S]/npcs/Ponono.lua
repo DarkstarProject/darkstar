@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Ponono
 --  Type: Standard NPC
--- @zone: 94
---  @pos 156.069 -0.001 -15.667
+-- @zone 94
+-- @pos 156.069 -0.001 -15.667
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

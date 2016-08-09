@@ -5,7 +5,7 @@
 --  Involved with Mission: 'A Curse From The Past'
 --  Involved with Quests: 'A Certain Substitute Patrolman' and 'Transporting'
 --  @zone 256
---  @pos 61 32 138
+-- @pos 61 32 138
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

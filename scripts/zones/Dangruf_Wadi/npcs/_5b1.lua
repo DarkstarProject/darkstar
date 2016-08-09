@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Dangruf Wadi
 -- NPC: Strange Apparatus
--- @pos: -494 -4 -100 191
+-- @pos -494 -4 -100 191
 -----------------------------------
 
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;

@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Hiwon-Biwon
+-- Area: Windurst Walls
+-- NPC:  Hiwon-Biwon
 --  Involved In Quest: Making Headlines, Curses, Foiled...Again!?
---    Working 100%
+-- Working 100%
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -40,12 +40,12 @@ function onTrigger(player,npc)
     -- Making Headlines
     elseif (MakingHeadlines == 1) then
         prog = player:getVar("QuestMakingHeadlines_var");
-        --     Variable to track if player has talked to 4 NPCs and a door
-        --     1 = Kyume
-        --    2 = Yujuju
-        --    4 = Hiwom
-        --    8 = Umumu
-        --    16 = Mahogany Door
+        --  Variable to track if player has talked to 4 NPCs and a door
+        --  1 = Kyume
+        -- 2 = Yujuju
+        -- 4 = Hiwom
+        -- 8 = Umumu
+        -- 16 = Mahogany Door
         if (testflag(tonumber(prog),4) == false) then
             if (player:getQuestStatus(WINDURST,CURSES_FOILED_AGAIN_1) == 1) then
                 if (math.random(1,2) == 1) then
@@ -85,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
 
@@ -95,8 +95,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     -- Making Headlines
     if (csid == 0x0119 or csid == 0x011b or csid == 0x011c) then

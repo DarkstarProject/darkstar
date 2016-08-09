@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Truffle
 --  Type: Standard NPC
--- @zone: 48
---  @pos 18.306 -1 53.761
+-- @zone 48
+-- @pos 18.306 -1 53.761
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

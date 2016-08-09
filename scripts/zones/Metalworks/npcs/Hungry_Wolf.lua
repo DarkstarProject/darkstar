@@ -2,7 +2,7 @@
 -- Area: Metalworks
 --   NPC: Hungry Wolf
 --  Type: Quest Giver
---  @pos -25.861 -11 -30.172 237
+-- @pos -25.861 -11 -30.172 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -- Updated for "Smoke on the Mountain" by EccentricAnata 03.22.13

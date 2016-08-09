@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     local mobID = mob:getID();
 
     if (Tumbling_Truffle_PH[mobID] ~= nil) then
-        -- printf("%u is a PH",mob);
+    -- printf("%u is a PH",mob);
         local TT_ToD = GetServerVariable("[POP]Tumbling_Truffle");
 
         if (TT_ToD <= os.time(t) and GetMobAction(Tumbling_Truffle) == 0) then

@@ -2,7 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Moreno-Toeno
 -- Starts and Finishes Quest: Teacher's Pet
---  @pos  
+-- @pos  
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;

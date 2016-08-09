@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,8 +71,8 @@ end;
 
 function onEventFinish(player,csid,option)
 local currentday = tonumber(os.date("%j")); 
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 local ringtakeNbr=player:getVar("COP-RingTakeNbr");
     if (csid ==  0x271B) then 
        player:setVar("PromathiaStatus",2);
@@ -103,6 +103,4 @@ local ringtakeNbr=player:getVar("COP-RingTakeNbr");
         player:setVar("COP-lastRingday",currentday);
     end
 end;
-
-
 

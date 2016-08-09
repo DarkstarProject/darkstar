@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: West Ronfaure
---    NPC:  Gachemage
+-- Area: West Ronfaure
+-- NPC:  Gachemage
 --  Type: Gate Guard
---  @pos -176.000 -61.999 382.425 100
+-- @pos -176.000 -61.999 382.425 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

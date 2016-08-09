@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
--- func: @ah
--- desc: opens the Auction House menu anywhere in the world just to see if we can
+-- func: ah
+-- desc: opens the Auction House menu anywhere in the world
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =

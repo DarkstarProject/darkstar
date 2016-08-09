@@ -1,18 +1,17 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC: Ailevia
---    Adventurer's Assistant
---    Only recieving Adv.Coupon and simple talk event are scripted
---    This NPC participates in Quests and Missions
+-- Area: Southern San d'Oria
+-- NPC: Ailevia
+-- Adventurer's Assistant
+-- Only recieving Adv.Coupon and simple talk event are scripted
+-- This NPC participates in Quests and Missions
 -- @zone 230 
 -- @pos -8 1 1
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 
 ----------------------------------- 
 -- onTrade Action 
@@ -24,11 +23,11 @@ function onTrade(player,npc,trade)
         player:startEvent(0x028f);
     end
     -- "Flyers for Regine" conditional script
-    count = trade:getItemCount();
-    MagicFlyer = trade:hasItemQty(532,1);
+   local count = trade:getItemCount();
+   local MagicFlyer = trade:hasItemQty(532,1);
 
     if (MagicFlyer == true and count == 1) then
-        FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end
@@ -48,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,15 +56,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x028f) then
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
     end
 end;
-
-
-
-

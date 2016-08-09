@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --  NPC: Ju Kamja
 --  Type: Item Deliverer
---  @zone: 241
---  @pos 58.145 -2.5 -136.91
+--  @zone 241
+-- @pos 58.145 -2.5 -136.91
 
 --
 -----------------------------------

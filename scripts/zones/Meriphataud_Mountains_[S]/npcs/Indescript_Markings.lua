@@ -2,7 +2,7 @@
 --  Area: Meriphataud_Mountains_[S]
 --  NPC: Indescript Markings
 --  Type: Quest
---  @pos -389 -9 92 1 96
+-- @pos -389 -9 92 1 96
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
 -----------------------------------

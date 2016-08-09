@@ -2,8 +2,8 @@
 -- Area: Bastok Markets
 --   NPC: Malene
 --  Type: Quest NPC
--- @zone: 235
---  @pos -173 -4 64
+-- @zone 235
+-- @pos -173 -4 64
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Gaweesh
 --  Type: Najelith's Attendant
--- @zone: 48
---  @pos -64.537 -8 37.928
+-- @zone 48
+-- @pos -64.537 -8 37.928
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

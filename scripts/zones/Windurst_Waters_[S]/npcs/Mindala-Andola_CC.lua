@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Mindala-Andola, C.C.
 --  Type: Sigil
--- @zone: 94
---  @pos -31.869 -6.009 226.793
+-- @zone 94
+-- @pos -31.869 -6.009 226.793
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

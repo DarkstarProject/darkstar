@@ -2,8 +2,8 @@
 --  Area: Bastok Markets (S)
 --   NPC: Heumila
 --  Type: Past Event Watcher
--- @zone: 87
---  @pos 
+-- @zone 87
+-- @pos 
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

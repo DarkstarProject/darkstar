@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
 --  @zone 256
---  @pos 127 4 -81
+-- @pos 127 4 -81
 -----------------------------------
 require("scripts/globals/quests");
 

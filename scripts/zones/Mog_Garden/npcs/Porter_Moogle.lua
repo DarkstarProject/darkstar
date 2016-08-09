@@ -3,7 +3,7 @@
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
 --  @zone 280
---  @pos TODO
+-- @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
 -----------------------------------

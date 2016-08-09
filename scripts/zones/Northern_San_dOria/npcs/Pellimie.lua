@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Pellimie
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 145.459 0.000 131.540
+--  @zone 231
+-- @pos 145.459 0.000 131.540
 --
 -----------------------------------
 

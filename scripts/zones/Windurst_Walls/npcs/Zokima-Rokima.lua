@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Walls
---    NPC:  Zokima-Rokima
---    Starts Windurst Missions
---    @pos 0 -16 124 239
+-- Area: Windurst Walls
+-- NPC:  Zokima-Rokima
+-- Starts Windurst Missions
+-- @pos 0 -16 124 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     finishMissionTimeline(player,4,csid,option);
     

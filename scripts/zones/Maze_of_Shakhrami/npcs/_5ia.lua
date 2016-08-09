@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 -- NPC: Strange Apparatus
--- @pos: 375 20 -259 198
+-- @pos 375 20 -259 198
 -----------------------------------
 
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;

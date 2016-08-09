@@ -2,8 +2,8 @@
 -- Area: Port San d'Oria
 --   NPC: Joulet
 --  Starts The Competition
--- @zone: 232
---  @pos -18 -2 -45
+-- @zone 232
+-- @pos -18 -2 -45
 
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

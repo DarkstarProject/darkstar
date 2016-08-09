@@ -2,7 +2,7 @@
 --  Area: Northern San d'Oria
 --  NPC: Doggomehr
 --  Guild Merchant NPC: Blacksmithing Guild 
---  @pos -193.920 3.999 162.027 231
+-- @pos -193.920 3.999 162.027 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
