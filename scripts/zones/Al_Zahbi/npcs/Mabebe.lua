@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --  NPC: Mabebe
 --  Type: Item Deliverer
---  @zone: 48
---  @pos -27.551 0 -141.095
+--  @zone 48
+-- @pos -27.551 0 -141.095
 --
 -----------------------------------
 

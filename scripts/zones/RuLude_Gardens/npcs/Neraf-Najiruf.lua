@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0062) then 
         player:addQuest(JEUNO,SAVE_MY_SISTER);
         player:setVar("saveMySisterVar", 0);
@@ -63,6 +63,4 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterFireLantern", 0);
     end
 end;
-
-
 

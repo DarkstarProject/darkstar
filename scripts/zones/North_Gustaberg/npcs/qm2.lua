@@ -17,8 +17,6 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 
 function onTrade(player,npc,trade)
 end; 
-
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -33,25 +31,21 @@ function onTrigger(player,npc)
     end
     
 end;
-
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
-
-
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00c8) then
         if (player:getFreeSlotsCount() == 0) then 

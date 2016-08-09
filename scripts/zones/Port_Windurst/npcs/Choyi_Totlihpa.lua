@@ -2,7 +2,7 @@
 --  Area: Port Windurst
 --  NPC:  Choyi Totlihpa
 --  Type: Standard NPC
---  @pos -58.927 -5.732 132.819 240
+-- @pos -58.927 -5.732 132.819 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

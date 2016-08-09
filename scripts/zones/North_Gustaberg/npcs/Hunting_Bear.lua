@@ -2,7 +2,7 @@
 --  Area: North Gustaberg
 --  NPC:  Hunting Bear
 --  Involved in Quest "The Gustaberg Tour" 
---  @pos -232.415 40.465 426.495 106
+-- @pos -232.415 40.465 426.495 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------

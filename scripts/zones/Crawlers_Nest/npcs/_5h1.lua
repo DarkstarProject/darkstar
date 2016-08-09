@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Crawlers' Nest
 -- NPC: Strange Apparatus
--- @pos: 214 0 -339 197
+-- @pos 214 0 -339 197
 -----------------------------------
 
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;

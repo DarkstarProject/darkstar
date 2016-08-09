@@ -2,7 +2,7 @@
 --  Area: West Sarutabaruta
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
---  @pos -205.593 -23.210 -119.670 115
+-- @pos -205.593 -23.210 -119.670 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

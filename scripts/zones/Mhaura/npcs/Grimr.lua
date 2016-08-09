@@ -2,7 +2,7 @@
 --  Area: Mhaura
 --  NPC:  Grimr
 --  Type: Standard NPC
---  @pos 31.819 -11.001 22.311 249
+-- @pos 31.819 -11.001 22.311 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

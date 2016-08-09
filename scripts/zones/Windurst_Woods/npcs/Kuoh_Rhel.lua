@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 --  NPC: Kuoh Rhel
 --  Type: Standard NPC
---  @zone: 241
---  @pos 131.437 -6 -102.723
+--  @zone 241
+-- @pos 131.437 -6 -102.723
 -- Starts quests: Chocobilious, In a Stew
 --  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
 --        writing this quest. Once it is working please feel free to add it in ^^

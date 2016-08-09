@@ -2,7 +2,7 @@
 --  Area: Metalworks
 --  NPC:  Invincible Shield
 --  Type: Ballista
---  @pos -51.083 -11 2.126 237
+-- @pos -51.083 -11 2.126 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

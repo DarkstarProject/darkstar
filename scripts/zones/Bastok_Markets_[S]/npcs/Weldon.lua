@@ -2,7 +2,7 @@
 --  Area: Bastok Markets [S]
 --  NPC:  Weldon
 --  Type: Item Deliverer
---  @pos -191.575    -8    36.688 87
+-- @pos -191.575    -8    36.688 87
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------

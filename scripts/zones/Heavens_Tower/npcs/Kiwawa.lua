@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Kiwawa
 --  Type: Standard NPC
---  @pos 13.369 -27.25 18.718 242
+-- @pos 13.369 -27.25 18.718 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

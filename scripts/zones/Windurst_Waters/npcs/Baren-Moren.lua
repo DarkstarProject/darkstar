@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: Hat in Hand
 --    Working 100%
 --  @zone = 238
---  @pos = -66 -3 -148
+-- @pos = -66 -3 -148
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

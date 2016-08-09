@@ -5,11 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Promyvion-Vahzl/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Promyvion-Vahzl/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/zones/Promyvion-Vahzl/TextIDs");
 
 -----------------------------------
 -- onInitialize

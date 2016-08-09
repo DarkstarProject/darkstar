@@ -2,8 +2,8 @@
 -- Area: Upper Jeuno
 --   NPC: Laila
 --  Type: Job Quest Giver
--- @zone: 244
---  @pos -54.045 -1 100.996
+-- @zone 244
+-- @pos -54.045 -1 100.996
 --
 --TODO--
 -- make sure the surrounding npcs react to the player accordingly after each quest. There are a few event IDs that I don't recall using

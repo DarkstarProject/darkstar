@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Talruf
 --  Type: Standard NPC
--- @zone: 48
---  @pos 100.878 -7 14.291
+-- @zone 48
+-- @pos 100.878 -7 14.291
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

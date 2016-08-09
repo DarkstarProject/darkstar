@@ -2,8 +2,8 @@
 --  Area: Kazham
 --  NPC: Kobhi Sarhigamya
 --  Type: Item Deliverer
---  @zone: 250
---  @pos -115.29    -11    -22.609
+--  @zone 250
+-- @pos -115.29    -11    -22.609
 --
 -----------------------------------
 

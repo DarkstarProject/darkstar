@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @return <player>
+-- func: return <player>
 -- desc: Warps GM or target player to their previous zone
 ---------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ function onTrigger(player, target)
     local targ = GetPlayerByName( target );
     if (targ ~= nil) then
         ZoneID = targ:getPreviousZone();
-        if (ZoneID == nil or ZoneID == 0) then
+        if (ZoneID == nil or ZoneID == 0 or ZoneID == 214) then
             player:PrintToPlayer( "Previous Zone was a Mog House or there was a problem fetching the ID.");
         else
             targ:setPos( 0, 0, 0, 0, ZoneID );

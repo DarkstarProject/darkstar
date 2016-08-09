@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --   NPC: Synergy Engineer
 --  Type: Standard NPC
--- @zone: 231
---  @pos -123.000 10.5 244.000
+-- @zone 231
+-- @pos -123.000 10.5 244.000
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

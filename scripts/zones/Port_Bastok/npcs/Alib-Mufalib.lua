@@ -2,7 +2,7 @@
 --  Area: Port Bastok
 --  NPC:  Alib-Mufalib
 --  Type: Warp NPC
---  @pos 116.080 7.372 -31.820 236
+-- @pos 116.080 7.372 -31.820 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -83,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0165) then
         player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
         player:setVar("WildcatBastok",0);

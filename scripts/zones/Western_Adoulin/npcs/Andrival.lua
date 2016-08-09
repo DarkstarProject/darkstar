@@ -3,7 +3,7 @@
 --  NPC: Andrival
 --  Type: Standard NPC
 --  @zone 256
---  @pos 26 0 127
+-- @pos 26 0 127
 -----------------------------------
 require("scripts/globals/missions");
 

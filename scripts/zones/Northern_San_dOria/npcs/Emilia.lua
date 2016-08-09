@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Emilia
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -39.840 -2.000 -5.403
+--  @zone 231
+-- @pos -39.840 -2.000 -5.403
 --
 -----------------------------------
 

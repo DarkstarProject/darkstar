@@ -22,8 +22,6 @@ require("scripts/zones/Ghelsba_Outpost/TextIDs");
     ---- 5: 
     ---- 6: 
 
-
-
 -----------------------------------
 -- onTrade Action
 -----------------------------------
@@ -61,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     
     if (EventUpdateBCNM(player,csid,option)) then
         return;
@@ -75,8 +73,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
    if (csid == 0x0003 or csid == 0x0037) then
       player:delKeyItem(ORCISH_HUT_KEY);

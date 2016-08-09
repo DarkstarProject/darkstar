@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'A Thirst for the Ages'
 --  @zone 256
---  @pos -101 3 9
+-- @pos -101 3 9
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Milma-Hapilma, W.W.
+-- Area: Port Windurst
+-- NPC:  Milma-Hapilma, W.W.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band

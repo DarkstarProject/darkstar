@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Alter Of Offering
---    Involved in Quest: A Crisis in the Making
---    Working 100%
+-- Area: Windurst Waters
+-- NPC:  Alter Of Offering
+-- Involved in Quest: A Crisis in the Making
+-- Working 100%
 --  @zone = 145
---  @pos = -137 17 177
+-- @pos = -137 17 177
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,8 +49,8 @@ end;
 -----------------------------------
     
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0035 and option == 1) then
         player:addKeyItem(39,OFF_OFFERING);
         player:messageSpecial(KEYITEM_OBTAINED,OFF_OFFERING);    

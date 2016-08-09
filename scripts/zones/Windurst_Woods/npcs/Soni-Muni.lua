@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Soni-Muni
 -- Starts & Finishes Quest: The Amazin' Scorpio
---  @pos -17.073 1.749 -59.327 241
+-- @pos -17.073 1.749 -59.327 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

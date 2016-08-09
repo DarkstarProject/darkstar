@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Gameem
 --  Type: Standard NPC
--- @zone: 48
---  @pos 18.813 -7 11.298
+-- @zone 48
+-- @pos 18.813 -7 11.298
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

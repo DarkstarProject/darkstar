@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Norg
---    NPC:  Oaken door (Gilgamesh's room)
---    @pos 97 -7 -12 252
+-- Area: Norg
+-- NPC:  Oaken door (Gilgamesh's room)
+-- @pos 97 -7 -12 252
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

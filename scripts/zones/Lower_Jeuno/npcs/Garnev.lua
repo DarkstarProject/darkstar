@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00a7) then 
         player:addQuest(JEUNO,DEAL_WITH_TENSHODO);
     elseif (csid == 0x00a6) then 
@@ -69,6 +69,4 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,DEAL_WITH_TENSHODO);
     end
 end;
-
-
 

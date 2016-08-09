@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delquest <logID> <questID> <player>
+-- func: delquest <logID> <questID> <player>
 -- desc: Deletes the given quest from the GM or target player.
 ---------------------------------------------------------------------------------------------------
 

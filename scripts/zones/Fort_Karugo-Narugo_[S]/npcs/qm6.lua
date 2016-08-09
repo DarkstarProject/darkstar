@@ -2,8 +2,8 @@
 --  Area: Fort Karugo Narugo [S]
 --  NPC: ???
 --  Type: Quest
---  @zone: 96
---  @pos -63 -75 4
+--  @zone 96
+-- @pos -63 -75 4
 --
 -----------------------------------
 

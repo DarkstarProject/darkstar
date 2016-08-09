@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Zacc
 --  Type: Quest NPC
--- @zone: 235
---  @pos -255.709 -13 -91.379
+-- @zone 235
+-- @pos -255.709 -13 -91.379
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

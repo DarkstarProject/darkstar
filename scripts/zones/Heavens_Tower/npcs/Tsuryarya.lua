@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Tsuryarya
 --  Type: Standard NPC
---  @pos -0.881 -27 15.950 242
+-- @pos -0.881 -27 15.950 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

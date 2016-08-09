@@ -2,8 +2,8 @@
 --  Area: Port Windurst
 --  NPC: Fennella
 --  Type: Guildworker's Union Representative
---  @zone: 240
---  @pos -177.811 -2.835 65.639
+--  @zone 240
+-- @pos -177.811 -2.835 65.639
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;

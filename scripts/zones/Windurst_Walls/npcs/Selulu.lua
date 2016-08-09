@@ -2,8 +2,8 @@
 --  Area: Windurst Walls
 --  NPC: Selulu
 --  Type: Item Deliverer
---  @zone: 239
---  @pos 58.027 -2.5 -60.548
+--  @zone 239
+-- @pos 58.027 -2.5 -60.548
 --
 -----------------------------------
 

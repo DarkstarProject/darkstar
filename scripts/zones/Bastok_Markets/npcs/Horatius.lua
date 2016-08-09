@@ -3,7 +3,7 @@
 --  NPC:  Horatius
 --  Type: Quest Giver
 --  Starts and Finishes: Breaking Stones
---  @pos -158.392 -5.839 -117.061 235
+-- @pos -158.392 -5.839 -117.061 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

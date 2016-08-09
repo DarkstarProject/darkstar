@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Pepigort
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -126.739 11.999 262.757
+--  @zone 231
+-- @pos -126.739 11.999 262.757
 --
 -----------------------------------
 

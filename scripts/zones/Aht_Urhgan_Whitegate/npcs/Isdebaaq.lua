@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Isdebaaq
 --  Type: Assault Mission Giver
---  @pos 127.565 0.161 -43.846 50
+-- @pos 127.565 0.161 -43.846 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

@@ -6,11 +6,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/teleports");
 require("scripts/globals/status");
 require("scripts/globals/quests");
-require("scripts/globals/teleports");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -22,7 +21,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
         player:messageSpecial(FLYER_REFUSED);
-    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN and count == 1) then -- Trade mini fork of ice
+    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN andlocal count == 1) then -- Trade mini fork of ice
         player:startEvent(0x02de,0,1545,4,20);
     end
     
@@ -60,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02dd and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 

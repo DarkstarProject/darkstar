@@ -2,7 +2,7 @@
 --  Area: Northern San d'Oria
 --  NPC: Lucretia
 --  Guild Merchant NPC: Blacksmithing Guild 
---  @pos -193.729 3.999 159.412 231
+-- @pos -193.729 3.999 159.412 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

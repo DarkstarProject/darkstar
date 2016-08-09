@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Ellard
 --  Type: Guildworker's Union Representative
--- @zone: 235
---  @pos -214.355 -7.814 -63.809
+-- @zone 235
+-- @pos -214.355 -7.814 -63.809
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

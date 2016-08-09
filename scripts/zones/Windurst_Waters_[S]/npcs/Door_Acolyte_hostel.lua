@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Windurst Waters (S)
 --  NPC: Door Acolyte hostel
---  @pos 125 -2 216 94
+-- @pos 125 -2 216 94
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------

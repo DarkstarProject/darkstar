@@ -23,7 +23,7 @@ end;
 function onZoneIn(player,prevZone)
 local cs = -1;
 
-return cs;
+    return cs;
 end;
 -----------------------------------
 -- onTransportEvent
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,12 +54,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
   if (csid == 0x0401) then
     player:setPos(0,0,0,0,53);
   end
 end;
-
-
 

@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Treasure Coffer
 -- Type: Add-on NPC
---  @pos 41.169 3.899 -51.005 245
+-- @pos 41.169 3.899 -51.005 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

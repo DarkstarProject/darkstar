@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delmission <logID> <missionID> <player>
+-- func: delmission <logID> <missionID> <player>
 -- desc: Deletes the given mission from the GM or target player.
 ---------------------------------------------------------------------------------------------------
 

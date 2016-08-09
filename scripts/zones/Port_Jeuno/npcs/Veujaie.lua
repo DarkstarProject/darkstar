@@ -2,8 +2,8 @@
 --  Area: Port Jeuno
 --  NPC: Veujaie
 --  Type: Item Deliverer
---  @zone: 246
---  @pos -20.349    7.999    -2.888
+--  @zone 246
+-- @pos -20.349    7.999    -2.888
 --
 -----------------------------------
 

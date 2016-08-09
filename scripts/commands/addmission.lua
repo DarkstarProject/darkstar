@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addmission <logID> <missionID> <player>
+-- func: addmission <logID> <missionID> <player>
 -- desc: Adds a mission to the GM or target players log.
 ---------------------------------------------------------------------------------------------------
 

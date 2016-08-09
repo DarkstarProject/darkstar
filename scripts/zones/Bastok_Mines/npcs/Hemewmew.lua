@@ -2,8 +2,8 @@
 --  Area: Bastok Mines
 --  NPC: Hemewmew
 --  Type: Guildworker's Union Representative
---  @zone: 234
---  @pos 117.970 1.017 -10.438
+--  @zone 234
+-- @pos 117.970 1.017 -10.438
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;

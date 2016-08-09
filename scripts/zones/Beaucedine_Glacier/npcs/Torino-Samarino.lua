@@ -3,7 +3,7 @@
 --  NPC:  Torino-Samarino
 --  Type: Quest NPC
 --     Involved in Quests: Curses, Foiled A-Golem!?, Tuning Out
---  @pos 105 -20 140 111
+-- @pos 105 -20 140 111
 -----------------------------------
 
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;

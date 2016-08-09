@@ -2,7 +2,7 @@
 --  Area: East Ronfaure
 --  NPC: Andelain
 --  Type: Standard NPC
---  @pos 664.231 -12.849 -539.413 101
+-- @pos 664.231 -12.849 -539.413 101
 --  Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;

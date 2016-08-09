@@ -2,7 +2,7 @@
 --  Area: Norg
 --  NPC: Chiyo
 --  Type: Tenshodo Merchant
---  @pos 5.801 0.020 -18.739 252
+-- @pos 5.801 0.020 -18.739 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

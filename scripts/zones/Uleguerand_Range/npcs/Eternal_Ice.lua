@@ -2,9 +2,9 @@
 --  Area: Uleguerand Range
 --  NPC:  Eternal Ice
 --  Gives key item Mystic Ice upon examining
---  @pos 575 -26 -101 5
---  @pos 455 -82 421 5
---  @pos -95 -146 378 5
+-- @pos 575 -26 -101 5
+-- @pos 455 -82 421 5
+-- @pos -95 -146 378 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

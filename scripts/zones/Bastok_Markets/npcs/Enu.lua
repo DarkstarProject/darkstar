@@ -2,8 +2,8 @@
 -- Area: Bastok Markets
 --   NPC: Enu
 --  Type: Quest NPC
--- @zone: 235
---  @pos -253.673 -13 -92.326
+-- @zone 235
+-- @pos -253.673 -13 -92.326
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

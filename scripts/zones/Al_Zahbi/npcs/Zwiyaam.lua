@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Zwiyaam
 --  Type: Standard NPC
--- @zone: 48
---  @pos 14.814 -7.667 41.889
+-- @zone 48
+-- @pos 14.814 -7.667 41.889
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Attohwa Chasm
 --  NPC:  Jakaka
 --  Type: ENM
---  @pos -144.711 6.246 -250.309 7
+-- @pos -144.711 6.246 -250.309 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------

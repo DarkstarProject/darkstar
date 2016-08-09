@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC: Tehf Kimasnahya
 --  Type: Standard NPC
---  @pos -89.897 -1 6.199 50
+-- @pos -89.897 -1 6.199 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

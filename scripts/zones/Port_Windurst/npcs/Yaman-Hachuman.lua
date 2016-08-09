@@ -3,7 +3,7 @@
 --  NPC:  Yaman-Hachuman
 --  Type: Standard NPC
 --  Involved in Quests: Wonder Wands
---  @pos -101.209 -4.25 110.886 240
+-- @pos -101.209 -4.25 110.886 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Wajaom Woodlands
 --   NPC: Watisa
 --  Type: Chocobo Renter
---  @pos -201 -11 93 51
+-- @pos -201 -11 93 51
 -----------------------------------
 
 require("scripts/globals/status");

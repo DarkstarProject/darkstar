@@ -1,16 +1,14 @@
 -----------------------------------
---    Area: Ru'Lud Gardens
---    Door: Windurstian Ambassador
---    Windurst Missions 3.3 "A New Journey" and 4.1 "Magicite"
---  @pos 31 9 -22 243
+-- Area: Ru'Lud Gardens
+-- Door: Windurstian Ambassador
+-- Windurst Missions 3.3 "A New Journey" and 4.1 "Magicite"
+-- @pos 31 9 -22 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
+require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -51,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0028) then
         finishMissionTimeline(player,1,csid,option);

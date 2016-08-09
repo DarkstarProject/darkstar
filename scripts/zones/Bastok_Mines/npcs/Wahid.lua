@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC: Wahid
 -- Start & Finishes Quest: The Siren's Tear
--- @zone: 234
+-- @zone 234
 -- @pos 26.305 -1 -66.403
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------

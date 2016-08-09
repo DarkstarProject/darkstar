@@ -2,7 +2,7 @@
 --  Area: Port Jeuno
 --   NPC: Squintrox Dryeyes
 --  Type: Addon Mission Merchant
---  @pos -100.071 -1 11.869 246
+-- @pos -100.071 -1 11.869 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

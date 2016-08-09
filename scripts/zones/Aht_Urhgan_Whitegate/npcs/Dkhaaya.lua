@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Dkhaaya
 --  Type: Standard NPC
---  @pos -73.212 -1 -5.842 50
+-- @pos -73.212 -1 -5.842 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

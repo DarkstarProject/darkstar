@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  ???
 --  Type: Quest NPC
---  @pos -6 0 -295
+-- @pos -6 0 -295
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
