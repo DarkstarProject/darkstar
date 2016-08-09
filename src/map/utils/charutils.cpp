@@ -1033,23 +1033,23 @@ namespace charutils
         // --------------------------------
         for (int8 areaID = 0; areaID <= QUESTS_COALITION; areaID++)
         {
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_CURR));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_CURRENT));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_COMPLETE));
         }
 
         // Completed Missions:
         // --------------------------------
         // Completed missions for Nation + Zilart Missions are all sent in single packet
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_COMPLETE));
 
         // Completed missions for TOAU and WOTG are sent in the same packet
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, LOG_MISS_COMP));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, LOG_MISSION_COMPLETE));
 
         // Completed Assaults were sent in the same packet as completed TOAU quests
 
         // Completed Campaign Operations
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_MISS_COMP));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_CAMPAIGN2));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_MISSION_COMPLETE));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_CAMPAIGN_TWO));
 
         // Current Missions:
         // --------------------------------
@@ -1057,7 +1057,7 @@ namespace charutils
 
         // Current Nation, Zilart, COP, Add-On, SOA, and ROV missions are all sent in a shared, single packet.
         // So sending this packet updates multiple Mission logs at once.
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISS_CURR));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_CURRENT));
     }
 
     /************************************************************************

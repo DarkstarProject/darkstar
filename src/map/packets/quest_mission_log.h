@@ -60,11 +60,11 @@
 // Log Types
 enum LOG_TYPE
 {
-    LOG_QUEST_CURR = 1,
-    LOG_QUEST_COMP = 2,
-    LOG_MISS_CURR = 3,
-    LOG_MISS_COMP = 4,
-    LOG_CAMPAIGN2 = 5,
+    LOG_QUEST_CURRENT = 1,
+    LOG_QUEST_COMPLETE = 2,
+    LOG_MISSION_CURRENT = 3,
+    LOG_MISSION_COMPLETE = 4,
+    LOG_CAMPAIGN_TWO = 5,
 };
 
 // Quest Log Packet Values
@@ -85,13 +85,13 @@ static const std::unordered_map<uint8, std::pair<uint16, uint16>> questPacketByt
 };
 
 // Mission Log Packet Bytes
-#define MISS_COMPLETE       0xD0
-#define MISS_CURRENT        0xFFFF
-#define EXP_MISS_COMPLETE   0xD8
-#define EXP_MISS_CURRENT    0x80
-#define ASSAULT_COMPLETE    0xC0
-#define CMPGN_MISS_UN       0x30
-#define CMPGN_MISS_DEUX     0x38
+#define MISSION_CURRENT             0xFFFF
+#define MISSION_COMPLETE            0xD0
+#define TOAU_WOTG_MISSION_CURRENT   0x80
+#define TOAU_WOTG_MISSION_COMPLETE  0xD8
+#define ASSAULT_COMPLETE            0xC0
+#define CAMPAIGN_MISSION_ONE        0x30
+#define CAMPAIGN_MISSION_TWO        0x38
 
 /************************************************************************
 *																		*
