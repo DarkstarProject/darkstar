@@ -1435,7 +1435,7 @@ inline int32 CLuaBaseEntity::addQuest(lua_State *L)
         if ((current == 0) && (complete == 0))
         {
             PChar->m_questLog[questLogID].current[questID / 8] |= (1 << (questID % 8));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURRENT));
 
             charutils::SaveQuestsList(PChar);
         }
@@ -1476,8 +1476,8 @@ inline int32 CLuaBaseEntity::delQuest(lua_State *L)
             PChar->m_questLog[questLogID].current[questID / 8] &= ~(1 << (questID % 8));
             PChar->m_questLog[questLogID].complete[questID / 8] &= ~(1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURRENT));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMPLETE));
 
             charutils::SaveQuestsList(PChar);
         }
@@ -1551,8 +1551,8 @@ inline int32 CLuaBaseEntity::completeQuest(lua_State *L)
             PChar->m_questLog[questLogID].current[questID / 8] &= ~(1 << (questID % 8));
             PChar->m_questLog[questLogID].complete[questID / 8] |= (1 << (questID % 8));
 
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURR));
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_CURRENT));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, questLogID, LOG_QUEST_COMPLETE));
         }
         charutils::SaveQuestsList(PChar);
     }
@@ -1628,7 +1628,7 @@ inline int32 CLuaBaseEntity::addMission(lua_State *L)
             ShowWarning(CL_YELLOW"Lua::addMission: player has a current mission\n" CL_RESET, missionLogID);
         }
         PChar->m_missionLog[missionLogID].current = MissionID;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISSION_CURRENT));
 
         charutils::SaveMissionsList(PChar);
     }
@@ -1671,12 +1671,12 @@ inline int32 CLuaBaseEntity::delMission(lua_State *L)
         if (current == MissionID)
         {
             PChar->m_missionLog[missionLogID].current = missionLogID > 2 ? 0 : -1;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISSION_CURRENT));
         }
         if (complete)
         {
             PChar->m_missionLog[missionLogID].complete[MissionID] = false;
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_COMP));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISSION_COMPLETE));
         }
         charutils::SaveMissionsList(PChar);
     }
@@ -1793,9 +1793,9 @@ inline int32 CLuaBaseEntity::completeMission(lua_State *L)
             if ((missionLogID != MISSION_COP) && (MissionID < 64))
             {
                 PChar->m_missionLog[missionLogID].complete[MissionID] = true;
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_COMP));
+                PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISSION_COMPLETE));
             }
-            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISS_CURR));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, missionLogID, LOG_MISSION_CURRENT));
 
             charutils::SaveMissionsList(PChar);
         }
@@ -1823,7 +1823,7 @@ inline int32 CLuaBaseEntity::addAssault(lua_State *L)
         ShowWarning(CL_YELLOW"Lua::addAssault: player has a current assault\n" CL_RESET);
     }
     PChar->m_assaultLog.current = MissionID;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISSION_CURRENT));
 
     charutils::SaveMissionsList(PChar);
 
@@ -1847,7 +1847,7 @@ inline int32 CLuaBaseEntity::delAssault(lua_State *L)
     if (current == MissionID)
     {
         PChar->m_assaultLog.current = 0;
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISSION_CURRENT));
     }
     charutils::SaveMissionsList(PChar);
 
@@ -1897,8 +1897,8 @@ inline int32 CLuaBaseEntity::completeAssault(lua_State *L)
     }
     PChar->m_assaultLog.current = 0;
     PChar->m_assaultLog.complete[MissionID] = true;
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_CURR));
-    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISS_COMP));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISSION_CURRENT));
+    PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ASSAULT, LOG_MISSION_COMPLETE));
 
     charutils::SaveMissionsList(PChar);
 

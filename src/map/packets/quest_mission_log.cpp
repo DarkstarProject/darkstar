@@ -37,70 +37,71 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 
     // FFXI packs different TOAU information in the same packet as certain other content, so we'll have to work around it.
     // First, deal with all quest areas which aren't TOAU:
-    if ((logType <= LOG_QUEST_COMP) && (logID != QUESTS_TOAU))
+    if ((logType <= LOG_QUEST_COMPLETE) && (logID != QUESTS_TOAU))
     {
         // We're updating any non-TOAU quest log
         generateQuestPacket(PChar, logID, logType);
-        packetType = (logType == LOG_QUEST_CURR ? questPacketBytes.at(logID).first : questPacketBytes.at(logID).second);
+        packetType = (logType == LOG_QUEST_CURRENT ? questPacketBytes.at(logID).first : questPacketBytes.at(logID).second);
     }
     // Then get our mission log updates out of the way
-    else if (logType >= LOG_MISS_CURR)
+    else if (logType >= LOG_MISSION_CURRENT)
     {
-        if ((logID <= MISSION_ZILART) && (logType == LOG_MISS_COMP))
+        if ((logID <= MISSION_ZILART) && (logType == LOG_MISSION_COMPLETE))
         {
             // Completed Nation and Zilart missions are updated in the same packet
             generateCompleteMissionPacket(PChar);
-            packetType = MISS_COMPLETE;
+            packetType = MISSION_COMPLETE;
         }
         else if ((logID >= MISSION_TOAU) && (logID <= MISSION_CAMPAIGN) && (logID != MISSION_COP))
         {
             // Deal with compound TOAU/WOTG quest/mission packets
             switch (logType) {
-                case LOG_MISS_CURR:
+                case LOG_MISSION_CURRENT:
                     // Current TOAU Quests, TOAU Mission, WOTG, Assault, and Campaign Mission all share a packet
-                    generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_CURR);    // "Base" of the packet
+                    generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_CURRENT); // "Base" of the packet
                     generateCurrentExpMissionPacket(PChar);                     // Writes 12 bytes in same packet
-                    packetType = EXP_MISS_CURRENT;
+                    packetType = TOAU_WOTG_MISSION_CURRENT;
                     break;
-                case LOG_MISS_COMP:
-                    switch (logID) {
-                    case MISSION_TOAU:
-                    case MISSION_WOTG:
-                        // Completed TOAU and WOTG missions share a packet
-                        generateCompleteExpMissionPacket(PChar);
-                        packetType = EXP_MISS_COMPLETE;
-                        break;
-                    case MISSION_ASSAULT:
-                        // Completed Assault Missions share a packet with completed TOAU quests
-                        generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_COMP);
-                        generateAssaultMissionPacket(PChar);
-                        packetType = ASSAULT_COMPLETE;
-                        break;
-                    case MISSION_CAMPAIGN:
-                        // Completed Campaign missions take up two packets. Second half will come in a follow-up packet.
-                        generateCampaignMissionPacket(PChar, 0);
-                        packetType = CMPGN_MISS_UN;
-                        break;
+                case LOG_MISSION_COMPLETE:
+                    switch (logID)
+                    {
+                        case MISSION_TOAU:
+                        case MISSION_WOTG:
+                            // Completed TOAU and WOTG missions share a packet
+                            generateCompleteExpMissionPacket(PChar);
+                            packetType = TOAU_WOTG_MISSION_COMPLETE;
+                            break;
+                        case MISSION_ASSAULT:
+                            // Completed Assault Missions share a packet with completed TOAU quests
+                            generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_COMPLETE);
+                            generateAssaultMissionPacket(PChar);
+                            packetType = ASSAULT_COMPLETE;
+                            break;
+                        case MISSION_CAMPAIGN:
+                            // Completed Campaign missions take up two packets. Second half will come in a follow-up packet.
+                            generateCampaignMissionPacket(PChar, 0);
+                            packetType = CAMPAIGN_MISSION_ONE;
+                            break;
                     }
                     break;
-                case LOG_CAMPAIGN2:
+                case LOG_CAMPAIGN_TWO:
                     // Second Campaign packet, summoned through logType
                     generateCampaignMissionPacket(PChar, 256);
-                    packetType = CMPGN_MISS_DEUX;
+                    packetType = CAMPAIGN_MISSION_TWO;
                     break;
             }
         }
         else {
             // All other mission logs update current / completed with a standard "current mission" update
             generateCurrentMissionPacket(PChar);
-            packetType = MISS_CURRENT;
+            packetType = MISSION_CURRENT;
         }
     }
     else
     {
         // Now all that remains is TOAU quests.
         generateQuestPacket(PChar, QUESTS_TOAU, logType);  // "Base" of the packet
-        if (logType == LOG_QUEST_CURR) {
+        if (logType == LOG_QUEST_CURRENT) {
             // As before, current TOAU Quests share with TOAU Mission, WOTG, Assault, and Campaign Missions
             generateCurrentExpMissionPacket(PChar); // Writes 12 bytes in same packet
             packetType = questPacketBytes.at(logID).first;
@@ -118,9 +119,9 @@ CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID,
 
 void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE status)
 {
-    if (status == LOG_QUEST_CURR)
+    if (status == LOG_QUEST_CURRENT)
         memcpy(data + 4, PChar->m_questLog[logID].current, 32);
-    else if (status == LOG_QUEST_COMP)
+    else if (status == LOG_QUEST_COMPLETE)
         memcpy(data + 4, PChar->m_questLog[logID].complete, 32);
 }
 
