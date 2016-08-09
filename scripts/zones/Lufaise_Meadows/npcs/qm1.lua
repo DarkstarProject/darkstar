@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     -- Trade Relic Shield
     if (GetMobAction(16875779) == 0 and trade:hasItemQty(15066,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(16875779,120):updateClaim(player); -- Amaltheia
+        SpawnMob(16875779):updateClaim(player); -- Amaltheia
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end; 

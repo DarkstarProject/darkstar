@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(16940,1) and trade:getItemCount() == 1) then -- Trade Gerwitz's Sword
             player:tradeComplete();
             player:messageSpecial(GERWITZS_SOUL_DIALOG);
-            SpawnMob(17568137,180):updateClaim(player);
+            SpawnMob(17568137):updateClaim(player);
         end
     end
 

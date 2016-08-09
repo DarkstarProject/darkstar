@@ -33,7 +33,7 @@ end;
 function onMobEngaged(mob,target)
     -- pop pets
     for i = 17056170, 17056177, 1 do
-        SpawnMob(i,180):updateEnmity(target);
+        SpawnMob(i):updateEnmity(target);
         GetMobByID(i):setModelId(1841);
     end
 end;

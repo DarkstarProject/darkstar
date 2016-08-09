@@ -40,8 +40,8 @@ function onTrigger(player,npc)
         elseif (swordGripMaterial == true or player:getVar("theDoormanCS") >= 2) then 
             player:messageSpecial(YOU_SEE_NOTHING);
         else
-            SpawnMob(17387965,300):updateClaim(player); -- Gavotvut
-            SpawnMob(17387966,300):updateClaim(player); -- Barakbok
+            SpawnMob(17387965):updateClaim(player); -- Gavotvut
+            SpawnMob(17387966):updateClaim(player); -- Barakbok
             player:setVar("theDoormanMyMob",1);
         end
     elseif (player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and martialArtsScroll == false and X <= -122 and X >= -126 and Z <= -41 and Z >= -45) then
@@ -50,8 +50,8 @@ function onTrigger(player,npc)
             player:messageSpecial(KEYITEM_OBTAINED,SANDORIAN_MARTIAL_ARTS_SCROLL);
             player:setVar("theFirstMeetingKilledNM",0);
         else
-            SpawnMob(17387967,300):updateClaim(player); -- Bilopdop
-            SpawnMob(17387968,300):updateClaim(player); -- Deloknok
+            SpawnMob(17387967):updateClaim(player); -- Bilopdop
+            SpawnMob(17387968):updateClaim(player); -- Deloknok
         end
     else
         player:messageSpecial(YOU_SEE_NOTHING);

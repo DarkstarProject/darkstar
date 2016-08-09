@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
-        SpawnMob(17272839,300):updateClaim(player); -- Doomed Pilgrims
+        SpawnMob(17272839):updateClaim(player); -- Doomed Pilgrims
         SetServerVariable("[ZM4]Light_Headstone_Active",0);
     elseif (csid == 0x00CA) then
         if (player:getFreeSlotsCount() == 0) then

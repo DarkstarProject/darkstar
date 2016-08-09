@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 0 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
         player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(WestTowerAern,180):updateClaim(player);
-        SpawnMob(WestTowerAern+1,180):updateClaim(player);
-        SpawnMob(WestTowerAern+2,180):updateClaim(player);
+        SpawnMob(WestTowerAern):updateClaim(player);
+        SpawnMob(WestTowerAern+1):updateClaim(player);
+        SpawnMob(WestTowerAern+2):updateClaim(player);
     elseif (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 1 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
         player:startEvent(0x00A2);
     else

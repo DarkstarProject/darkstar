@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
 --printf("RESULT: %u",option);
     
     if (csid == 0x000c and option == 1) then
-        SpawnMob(17629642,600):updateClaim(player); -- Ancient Vessel
+        SpawnMob(17629642):updateClaim(player); -- Ancient Vessel
     end
     
 end;

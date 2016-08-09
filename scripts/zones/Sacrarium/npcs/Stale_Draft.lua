@@ -46,7 +46,7 @@ function onTrade(player,npc,trade)
             if (Hate >= 50) then
                 player:setVar("FOMOR_HATE",0); --reset fomor hate
                 player:tradeComplete();
-                SpawnMob(16892069,180):updateClaim(player);
+                SpawnMob(16892069):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_HAPPENS);
             end           
@@ -59,7 +59,7 @@ function onTrade(player,npc,trade)
             if (Hate >= 50) then
                 player:setVar("FOMOR_HATE",0); --reset fomor hate
                 player:tradeComplete();
-                SpawnMob(16892073,180):updateClaim(player);
+                SpawnMob(16892073):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_HAPPENS);
            end           
@@ -72,7 +72,7 @@ function onTrade(player,npc,trade)
             if (Hate >= 50) then
                 player:setVar("FOMOR_HATE",0); --reset fomor hate
                 player:tradeComplete();
-                SpawnMob(16892074,180):updateClaim(player);
+                SpawnMob(16892074):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_HAPPENS);
            end           
@@ -85,7 +85,7 @@ function onTrade(player,npc,trade)
             if (Hate >= 50) then
                 player:setVar("FOMOR_HATE",0); --reset fomor hate
                 player:tradeComplete();
-                SpawnMob(16892070,180):updateClaim(player);
+                SpawnMob(16892070):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_HAPPENS);
            end           
@@ -98,7 +98,7 @@ function onTrade(player,npc,trade)
             if (Hate >= 50) then
                 player:setVar("FOMOR_HATE",0); --reset fomor hate
                 player:tradeComplete();
-                SpawnMob(16892068,180):updateClaim(player);
+                SpawnMob(16892068):updateClaim(player);
             else
                 player:messageSpecial(NOTHING_HAPPENS);
             end           

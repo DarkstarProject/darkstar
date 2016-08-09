@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     -- Trade Gem of the North and Winterstone
     if (GetMobAction(17309980) == 0 and trade:hasItemQty(1424,1) and trade:hasItemQty(1425,1) and trade:getItemCount() == 2) then
         player:tradeComplete();
-        SpawnMob(17309980,300):updateClaim(player); -- Spawn Genbu
+        SpawnMob(17309980):updateClaim(player); -- Spawn Genbu
         player:showText(npc,SKY_GOD_OFFSET + 5);
         npc:setStatus(STATUS_DISAPPEAR);
     end

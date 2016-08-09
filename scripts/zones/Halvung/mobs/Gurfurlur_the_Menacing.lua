@@ -19,10 +19,10 @@ end;
 function onMobEngaged(mob,target)
 
     local gurfurlur = mob:getID()
-    SpawnMob(gurfurlur+1,180):updateEnmity(target);
-    SpawnMob(gurfurlur+2,180):updateEnmity(target);
-    SpawnMob(gurfurlur+3,180):updateEnmity(target);
-    SpawnMob(gurfurlur+4,180):updateEnmity(target);
+    SpawnMob(gurfurlur+1):updateEnmity(target);
+    SpawnMob(gurfurlur+2):updateEnmity(target);
+    SpawnMob(gurfurlur+3):updateEnmity(target);
+    SpawnMob(gurfurlur+4):updateEnmity(target);
 
 end;
 

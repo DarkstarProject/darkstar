@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17584134) == 0 and trade:hasItemQty(4530,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
         if (math.random(1,100)<=34) then
-            SpawnMob(17584134,120):updateClaim(player); -- Matron Crawler
+            SpawnMob(17584134):updateClaim(player); -- Matron Crawler
             npc:setStatus(STATUS_DISAPPEAR) -- hide ???
         else 
             player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                

@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             if (player:needToZone() and player:getVar("WarLynxKilled") == 1) then
                 player:startEvent(0x0067);
             else
-                SpawnMob(17170645,180):updateClaim(player);
+                SpawnMob(17170645):updateClaim(player);
             end
         end
     else

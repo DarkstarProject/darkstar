@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     -- Trade a Rattling Egg to pop Tarasque
     if(GetMobAction(17617164) == 0 and trade:hasItemQty(1189,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
-        SpawnMob(17617164,900):updateClaim(player); -- Spawn Tarasque
+        SpawnMob(17617164):updateClaim(player); -- Spawn Tarasque
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end; 

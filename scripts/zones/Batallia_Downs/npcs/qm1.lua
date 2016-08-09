@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
     local Gob = GetMobAction(17207710);
     if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) == true) and (player:hasKeyItem(SEEDSPALL_ROSEUM) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
-        SpawnMob(17207710,180):updateClaim(player);
+        SpawnMob(17207710):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end

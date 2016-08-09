@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             if (player:getVar("DabotzKilled") == 1) then
                 player:startEvent(0x0012);
             else
-                SpawnMob(17613129,300):updateClaim(player);
+                SpawnMob(17613129):updateClaim(player);
             end
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

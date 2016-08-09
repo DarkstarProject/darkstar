@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     end
     
     if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0) then
-        SpawnMob(17678351,600);
+        SpawnMob(17678351);
     end
     
     return cs;

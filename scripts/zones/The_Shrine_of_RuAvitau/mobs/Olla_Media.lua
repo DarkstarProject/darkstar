@@ -16,7 +16,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller == true) then
-        SpawnMob(mob:getID() + 1,180):updateClaim(player);
+        SpawnMob(mob:getID() + 1):updateClaim(player);
     end
 end;
 
