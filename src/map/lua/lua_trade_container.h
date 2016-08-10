@@ -46,6 +46,7 @@ public:
 
     int32 getGil(lua_State*);
     int32 getItem(lua_State*);
+    int32 getItemId(lua_State*);
     int32 getItemSubId(lua_State*);
     int32 getItemQty(lua_State*);
     int32 hasItemQty(lua_State*);

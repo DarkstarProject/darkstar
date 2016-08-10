@@ -82,7 +82,7 @@ function onHalloweenTrade(player,trade,npc)
     require(TextIDs);
     
     local contentEnabled = isHalloweenEnabled();
-    local item = trade:getItem();
+    local item = trade:getItemId();
     -------------------
     -- 2005 edition ---
     -------------------

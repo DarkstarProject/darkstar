@@ -12,34 +12,34 @@ require("scripts/globals/missions");
 -----------------------------------
 
 SANDORIA = 0;
-  BASTOK = 1;
+BASTOK   = 1;
 WINDURST = 2;
 BEASTMEN = 3;
 OTHER    = 4;
 
-       RONFAURE = 0;
-       ZULKHEIM = 1;
-      NORVALLEN = 2;
-      GUSTABERG = 3;
-       DERFLAND = 4;
-   SARUTABARUTA = 5;
-      KOLSHUSHU = 6;
-       ARAGONEU = 7;
-     FAUREGANDI = 8;
-     VALDEAUNIA = 9;
-    QUFIMISLAND = 10;
-        LITELOR = 11;
-         KUZOTZ = 12;
-        VOLLBOW = 13;
+RONFAURE        = 0;
+ZULKHEIM        = 1;
+NORVALLEN       = 2;
+GUSTABERG       = 3;
+DERFLAND        = 4;
+SARUTABARUTA    = 5;
+KOLSHUSHU       = 6;
+ARAGONEU        = 7;
+FAUREGANDI      = 8;
+VALDEAUNIA      = 9;
+QUFIMISLAND     = 10;
+LITELOR         = 11;
+KUZOTZ          = 12;
+VOLLBOW         = 13;
 ELSHIMOLOWLANDS = 14;
- ELSHIMOUPLANDS = 15;
-          TULIA = 16;
-     MOVALPOLOS = 17;
-  TAVNAZIANARCH = 18;
+ELSHIMOUPLANDS  = 15;
+TULIA           = 16;
+MOVALPOLOS      = 17;
+TAVNAZIANARCH   = 18;
 
-  CONQUEST_TALLY_START = 0;
-  CONQUEST_TALLY_END = 1;
-  CONQUEST_UPDATE = 2;
+CONQUEST_TALLY_START = 0;
+CONQUEST_TALLY_END   = 1;
+CONQUEST_UPDATE      = 2;
   
 nationAlly = 3;
 
@@ -147,7 +147,7 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
     -- Type:     1: city, 2: foreign, 3: outpost, 4: border
 
     local myCP = player:getCP();
-    local item = trade:getItem();
+    local item = trade:getItemId();
     local AddPoints = 0;
 
     if (player:getNation() == guardnation or guardnation == OTHER) then

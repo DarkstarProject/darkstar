@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
-    local itemID = trade:getItem();
+    local itemID = trade:getItemId();
     local itemList =
     {
         {564, 200},   -- Fingernail Sack

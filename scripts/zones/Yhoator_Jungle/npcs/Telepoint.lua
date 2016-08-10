@@ -14,7 +14,7 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    local item = trade:getItem();
+    local item = trade:getItemId();
 
     if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then    
         if (player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
