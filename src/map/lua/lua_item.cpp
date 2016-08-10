@@ -215,6 +215,20 @@ inline int32 CLuaItem::getSkillType(lua_State* L)
 
     return 1;
 }
+
+inline int32 CLuaItem::getWeaponskillPoints(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    auto PItem = dynamic_cast<CItemWeapon*>(m_PLuaItem);
+
+    if (PItem)
+        lua_pushinteger(L, PItem->getCurrentUnlockPoints());
+    else
+        lua_pushinteger(L, 0);
+
+    return 1;
+}
 //==========================================================//
 
 const int8 CLuaItem::className[] = "CItem";
@@ -237,5 +251,6 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,delMod),
     LUNAR_DECLARE_METHOD(CLuaItem,getAugment),
     LUNAR_DECLARE_METHOD(CLuaItem,getSkillType),
+    LUNAR_DECLARE_METHOD(CLuaItem,getWeaponskillPoints),
     {nullptr,nullptr}
 };
