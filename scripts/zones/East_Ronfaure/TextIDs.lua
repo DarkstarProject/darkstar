@@ -8,17 +8,17 @@ ITEM_CANNOT_BE_OBTAINED = 6401; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7477; -- Logging is possible here if you have
+LOGGING_IS_POSSIBLE_HERE = 7482; -- Logging is possible here if you have
 
 -- General Dialog
-     RAYOCHINDOT_DIALOG = 7401; -- If you are outmatched, run to the city as quickly as you can.
-     CROTEILLARD_DIALOG = 7402; -- Sorry, no chatting while I'm on duty.
-      BLESSED_WATERSKIN = 7446; -- To get water, rade the waterskin you hold with the river. 
-     CHEVAL_RIVER_WATER = 7427; -- You fill your waterskin with water from the river. You now have
+     RAYOCHINDOT_DIALOG = 7406; -- If you are outmatched, run to the city as quickly as you can.
+     CROTEILLARD_DIALOG = 7407; -- Sorry, no chatting while I'm on duty.
+      BLESSED_WATERSKIN = 7451; -- To get water, rade the waterskin you hold with the river. 
+     CHEVAL_RIVER_WATER = 7432; -- You fill your waterskin with water from the river. You now have
 NOTHING_OUT_OF_ORDINARY = 6420; -- There is nothing out of the ordinary here.
 
 -- Other Dialog
-NOTHING_HAPPENS = 7321; -- Nothing happens...
+NOTHING_HAPPENS = 7326; -- Nothing happens...
 -- conquest Base
 CONQUEST_BASE = 7067; -- Tallying conquest results...
 

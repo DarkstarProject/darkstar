@@ -10,20 +10,20 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
   
   
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7306; -- You unlock the chest!
-    CHEST_FAIL = 7307; -- Fails to open the chest.
-    CHEST_TRAP = 7308; -- The chest was trapped!
-    CHEST_WEAK = 7309; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7310; -- The chest was a mimic!
-  CHEST_MOOGLE = 7311; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7312; -- The chest was but an illusion...
-  CHEST_LOCKED = 7313; -- The chest appears to be locked.
+CHEST_UNLOCKED = 7311; -- You unlock the chest!
+    CHEST_FAIL = 7312; -- Fails to open the chest.
+    CHEST_TRAP = 7313; -- The chest was trapped!
+    CHEST_WEAK = 7314; -- You cannot open the chest when you are in a weakened state.
+   CHEST_MIMIC = 7315; -- The chest was a mimic!
+  CHEST_MOOGLE = 7316; -- You cannot open the chest while participating in the moogle event.
+CHEST_ILLUSION = 7317; -- The chest was but an illusion...
+  CHEST_LOCKED = 7318; -- The chest appears to be locked.
 
 
 -- Other Dialog
-FELL = 7324; -- The piece of wood fell off the cliff!
-EVIL = 7325; -- You sense an evil presence...
-FISHBONES = 7339; -- Fish bones lie scattered about the area...
+FELL = 7329; -- The piece of wood fell off the cliff!
+EVIL = 7330; -- You sense an evil presence...
+FISHBONES = 7344; -- Fish bones lie scattered about the area...
 
 -- conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...

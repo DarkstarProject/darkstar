@@ -12,14 +12,14 @@ ITEM_CANNOT_BE_OBTAINED = 6401; -- You cannot obtain the item <item>. Come back 
 NOTHING_HAPPENS = 141; -- Nothing happens...
 
 -- Signs
-SIGN = 7391; -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands
+SIGN = 7396; -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands
 
 -- Conquest Base
 CONQUEST_BASE = 7067; -- Tallying conquest results...
 
 -- Legion
-AWAIT_YOUR_CHALLENGE = 12157; -- We await your challenge
-  LACK_LEGION_POINTS = 12194; -- It would seem that you lack the necessary amount of Legion points.
+AWAIT_YOUR_CHALLENGE = 12162; -- We await your challenge
+  LACK_LEGION_POINTS = 12199; -- It would seem that you lack the necessary amount of Legion points.
 
  -- chocobo digging
 DIG_THROW_AWAY = 7239; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.

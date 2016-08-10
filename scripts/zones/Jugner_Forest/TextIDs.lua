@@ -9,10 +9,10 @@ ITEM_CANNOT_BE_OBTAINED = 6401; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7700; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 8039; -- You've earned conquest points!
+CONQUEST = 8044; -- You've earned conquest points!
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7888; -- Logging is possible here if you have
+LOGGING_IS_POSSIBLE_HERE = 7893; -- Logging is possible here if you have
 
 -- Other Dialog
 NOTHING_HAPPENS = 141; -- Nothing happens...
