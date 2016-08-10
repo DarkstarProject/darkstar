@@ -24,6 +24,10 @@ KOLAPO_OILAPO_DIALOG = 7385; -- Hi-diddly-diddly! This is the gateway to Windurs
         MAATA_ULAATA = 7386; -- Hello-wello! This is the central tower of the Horutoto Ruins. It's one of the several ancient-wancient magic towers which dot these grasslands.
         IPUPU_DIALOG = 7389; -- I decided to take a little strolly-wolly, but before I realized it, I found myself way out here! Now I am sorta stuck... Woe is me!
 
+-- Quest Dialog
+    FROST_DEPOSIT_TWINKLES = 7396; -- A frost deposit at the base of the tree twinkles in the starlight.
+    MELT_BARE_HANDS = 7398; -- It looks like it would melt if you touched it with your bare hands...
+
 -- Other Dialog
         NOTHING_HAPPENS = 7304; -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 7399; -- There is nothing out of the ordinary here.
