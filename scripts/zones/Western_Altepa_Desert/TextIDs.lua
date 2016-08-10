@@ -11,15 +11,15 @@ FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the <item>. Try trading 
     FISHING_MESSAGE_OFFSET = 7204; -- You can't fish here.
 
 -- ZM4 dialog
-    CANNOT_REMOVE_FRAG = 7336; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
- ALREADY_OBTAINED_FRAG = 7337; -- You have already obtained this monument's
-ALREADY_HAVE_ALL_FRAGS = 7338; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-       FOUND_ALL_FRAGS = 7339; -- You now have all 8 fragments of light!
-       ZILART_MONUMENT = 7340; -- It is an ancient Zilart monument.
+    CANNOT_REMOVE_FRAG = 7341; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ ALREADY_OBTAINED_FRAG = 7342; -- You have already obtained this monument's
+ALREADY_HAVE_ALL_FRAGS = 7343; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+       FOUND_ALL_FRAGS = 7344; -- You now have all 8 fragments of light!
+       ZILART_MONUMENT = 7345; -- It is an ancient Zilart monument.
 
 -- Other dialog
-     THE_DOOR_IS_LOCKED = 7319; -- The door is locked.
-       DOES_NOT_RESPOND = 7320; -- It does not respond.
+     THE_DOOR_IS_LOCKED = 7324; -- The door is locked.
+       DOES_NOT_RESPOND = 7325; -- It does not respond.
 
 -- conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...

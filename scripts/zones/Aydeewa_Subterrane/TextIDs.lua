@@ -8,5 +8,5 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here.
 
 -- Other Texts
-MINING_IS_POSSIBLE_HERE = 7311; -- Mining is possible here if you have
+MINING_IS_POSSIBLE_HERE = 7316; -- Mining is possible here if you have
         NOTHING_HAPPENS = 119; -- Nothing happens...

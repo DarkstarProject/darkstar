@@ -47,7 +47,7 @@ function onTrigger(player,npc)
                 
             else
                 player:messageSpecial(SOMETHING_NOT_RIGHT);
-                SpawnMob(17404337,288):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
+                SpawnMob(17404337):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
             end
             
         else

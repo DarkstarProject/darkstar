@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
     
     target:showText(mob,ANIMATED_HORN_DIALOG);
     
-    SpawnMob(17330495,120):updateEnmity(target);
-    SpawnMob(17330496,120):updateEnmity(target);
-    SpawnMob(17330497,120):updateEnmity(target);
-    SpawnMob(17330503,120):updateEnmity(target);
-    SpawnMob(17330504,120):updateEnmity(target);
-    SpawnMob(17330505,120):updateEnmity(target);
+    SpawnMob(17330495):updateEnmity(target);
+    SpawnMob(17330496):updateEnmity(target);
+    SpawnMob(17330497):updateEnmity(target);
+    SpawnMob(17330503):updateEnmity(target);
+    SpawnMob(17330504):updateEnmity(target);
+    SpawnMob(17330505):updateEnmity(target);
 
 end;
 

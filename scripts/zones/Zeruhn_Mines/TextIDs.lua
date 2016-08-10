@@ -8,10 +8,10 @@ ITEM_CANNOT_BE_OBTAINED = 6538; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7204; -- You can't fish here.
 
 -- Mission Texts
-MAKARIM_DIALOG_I = 7306; -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
+MAKARIM_DIALOG_I = 7311; -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
 
 -- Mining
-MINING_IS_POSSIBLE_HERE = 7338; -- Mining is possible here if you have
+MINING_IS_POSSIBLE_HERE = 7343; -- Mining is possible here if you have
 
 
 -- conquest Base

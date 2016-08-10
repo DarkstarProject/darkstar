@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
     
     target:showText(mob,ANIMATED_DAGGER_DIALOG);
     
-    SpawnMob(17330306,120):updateEnmity(target);
-    SpawnMob(17330307,120):updateEnmity(target);
-    SpawnMob(17330308,120):updateEnmity(target);
-    SpawnMob(17330316,120):updateEnmity(target);
-    SpawnMob(17330317,120):updateEnmity(target);
-    SpawnMob(17330318,120):updateEnmity(target);
+    SpawnMob(17330306):updateEnmity(target);
+    SpawnMob(17330307):updateEnmity(target);
+    SpawnMob(17330308):updateEnmity(target);
+    SpawnMob(17330316):updateEnmity(target);
+    SpawnMob(17330317):updateEnmity(target);
+    SpawnMob(17330318):updateEnmity(target);
 
 end;
 

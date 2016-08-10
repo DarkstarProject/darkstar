@@ -180,5 +180,5 @@ function spawnElementalNM(player)
     local zone = player:getZoneID();
     local mob = GetMobByID(strAppData[zone][5]);
     
-    SpawnMob(strAppData[zone][5],300):updateEnmity(player);
+    SpawnMob(strAppData[zone][5]):updateEnmity(player);
 end;

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
 
     if (player:getVar("peaceForTheSpiritCS") == 4 and player:hasItem(1094) == false) then -- Nail Puller
         player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(17596643,180):updateClaim(player);
+        SpawnMob(17596643):updateClaim(player);
     else
         player:messageSpecial(YOU_FIND_NOTHING);
     end

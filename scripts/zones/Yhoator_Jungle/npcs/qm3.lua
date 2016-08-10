@@ -32,9 +32,9 @@ function onTrigger(player,npc)
                 player:setVar("trueWillKilledNM",0);
             end
         else
-            SpawnMob(17285544,150):updateClaim(player); -- Kappa Akuso
-            SpawnMob(17285545,300):updateClaim(player); -- Kappa Bonze
-            SpawnMob(17285546,150):updateClaim(player); -- Kappa Biwa
+            SpawnMob(17285544):updateClaim(player); -- Kappa Akuso
+            SpawnMob(17285545):updateClaim(player); -- Kappa Bonze
+            SpawnMob(17285546):updateClaim(player); -- Kappa Biwa
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

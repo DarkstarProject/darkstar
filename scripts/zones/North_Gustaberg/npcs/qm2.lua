@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
     
     if (thickAsThievesGamblingCS == 5) then
-        SpawnMob(17211848,120):updateClaim(player);
+        SpawnMob(17211848):updateClaim(player);
     elseif (thickAsThievesGamblingCS == 6) then
         player:startEvent(0x00c8,1092);
     end

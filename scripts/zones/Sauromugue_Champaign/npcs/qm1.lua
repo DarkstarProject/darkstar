@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
     local Gob = GetMobAction(17269114);
     if ( (Gob == ACTION_NONE or Gob == ACTION_SPAWN) and (player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == true) and (player:hasKeyItem(SEEDSPALL_VIRIDIS) == false) and (player:hasKeyItem(VIRIDIAN_KEY) == false) ) then
-        SpawnMob(17269114,180):updateClaim(player);
+        SpawnMob(17269114):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end

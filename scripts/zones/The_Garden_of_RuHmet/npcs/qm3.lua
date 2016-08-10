@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
         -- Change MobSpawn to ???'s @pos.
         GetMobByID(Jailer_of_Faith):setSpawn(qm3:getXPos(),qm3:getYPos(),qm3:getZPos());
         -- Spawn Jailer of Faith
-        SpawnMob(Jailer_of_Faith,900):updateClaim(player); 
+        SpawnMob(Jailer_of_Faith):updateClaim(player); 
     end
 end; 
 

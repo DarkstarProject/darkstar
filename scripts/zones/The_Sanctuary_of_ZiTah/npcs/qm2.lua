@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1021,1) and trade:getItemCount() == 1 and player:hasItem(1153) == false) then
             if (GetMobAction(17272838) == 0) then
-                SpawnMob(17272838,288):updateClaim(player); -- Spawn Guardian Treant
+                SpawnMob(17272838):updateClaim(player); -- Spawn Guardian Treant
                 player:tradeComplete();
             end
         elseif (player:getVar("ForgeYourDestiny_killed") == 1) then

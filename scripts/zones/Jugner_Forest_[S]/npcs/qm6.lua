@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x00C9) then
         player:setVar("ClawsOfGriffonProg",2);
     elseif (csid == 0x00CA) then
-        SpawnMob(17113462,180):updateClaim(player);
+        SpawnMob(17113462):updateClaim(player);
     elseif (csid == 0x00CB) then
         player:addItem(8131,1)
         player:messageSpecial(ITEM_OBTAINED,813)

@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(2566,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(17174889,1800):updateClaim(player); -- Bloodlapper
+        SpawnMob(17174889):updateClaim(player); -- Bloodlapper
     end
 end; 
 

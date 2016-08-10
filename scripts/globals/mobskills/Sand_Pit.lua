@@ -40,7 +40,7 @@ function onMobWeaponSkill(target, mob, skill)
         if (spawnId > 0) then
             local executioner = GetMobByID(spawnId);
             executioner:setSpawn(npcX-1,npcY-2,npcZ-1); -- Set its spawn location.
-            SpawnMob(spawnId,120):updateEnmity(target);
+            SpawnMob(spawnId):updateEnmity(target);
         end;
     end;
 

@@ -29,8 +29,8 @@ function onTrigger(player,npc)
     
     if (twentyInPirateYearsCS == 3 and TsuchigumoKilled <= 1) then
         player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(17244524,300):updateClaim(player);
-        SpawnMob(17244525,300):updateClaim(player);
+        SpawnMob(17244524):updateClaim(player);
+        SpawnMob(17244525):updateClaim(player);
     elseif (twentyInPirateYearsCS == 3 and TsuchigumoKilled >= 2) then
         player:addKeyItem(TRICK_BOX);
         player:messageSpecial(KEYITEM_OBTAINED,TRICK_BOX);

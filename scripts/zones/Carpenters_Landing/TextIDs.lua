@@ -13,10 +13,10 @@ FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the #. Try trading again
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
 
 -- Logging
-LOGGING_IS_POSSIBLE_HERE = 7378; -- Logging is possible here if you have
+LOGGING_IS_POSSIBLE_HERE = 7383; -- Logging is possible here if you have
 
 -- Shop Texts
-BEUGUNGEL_SHOP_DIALOG = 7410; -- I'm selling goods direct from the Carpenters' Guild.
+BEUGUNGEL_SHOP_DIALOG = 7415; -- I'm selling goods direct from the Carpenters' Guild.
 
 -- conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...
