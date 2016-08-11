@@ -25,6 +25,7 @@
 #include "../items/item.h"
 
 #include "lua_trade_container.h"
+#include "lua_item.h"
 #include "../trade_container.h"
 
 //======================================================//
@@ -73,7 +74,16 @@ inline int32 CLuaTradeContainer::getItem(lua_State *L)
         {
             SlotID = (uint8)lua_tonumber(L, 1);
         }
-        lua_pushlightuserdata(L, m_pMyTradeContainer->getItem(SlotID));
+        lua_getglobal(L, CLuaItem::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)m_pMyTradeContainer->getItem(SlotID));
+
+        if (lua_pcall(L, 2, 1, 0))
+        {
+            return 0;
+        }
         return 1;
     }
     lua_pushnil(L);
