@@ -78,7 +78,7 @@ ASH_THADI_ENE_SHOP_DIALOG = 7973; -- Welcome to Helbort's Blades!
 FERDOULEMIONT_SHOP_DIALOG = 7951; -- Hello!
       AVELINE_SHOP_DIALOG = 8410; -- Welcome to Raimbroy's Grocery!
       BENAIGE_SHOP_DIALOG = 8411; -- Looking for something in particular?
-
+     CAPUCINE_SHOP_DIALOG = 8404; -- Hello!
     MACHIELLE_OPEN_DIALOG = 8406; -- Might I interest you in produce from Norvallen?
         CORUA_OPEN_DIALOG = 8407; -- Ronfaure produce for sale!
     PHAMELISE_OPEN_DIALOG = 8408; -- I've got fresh produce from Zulkheim!
