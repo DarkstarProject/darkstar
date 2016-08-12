@@ -33,10 +33,12 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7407; -- Players who have not reached level <<<
   UNUSUAL_ARRANGEMENT_BRANCHES = 7417; -- There is an unusual arrangement of branches here.
 
 -- Quest Dialogs
-UNLOCK_PALADIN = 8000; -- You can now become a paladin!
- FLYER_REFUSED = 8171; -- Your flyer is refused.
-FLYER_ACCEPTED = 8820; -- The flyer is accepted.
- FLYER_ALREADY = 8821; -- This person already has a flyer.
+      UNLOCK_PALADIN = 8000; -- You can now become a paladin!
+       FLYER_REFUSED = 8171; -- Your flyer is refused.
+      FLYER_ACCEPTED = 8820; -- The flyer is accepted.
+       FLYER_ALREADY = 8821; -- This person already has a flyer.
+    VARCHET_BET_LOST = 7748; -- You lose your bet of 5 gil.
+VARCHET_KEEP_PROMISE = 7757; -- As promised, I shall go and see about those woodchippers. Maybe we can play another game later.
 
 -- Harvest Festival
   TRICK_OR_TREAT = 7347; -- Trick or treat...

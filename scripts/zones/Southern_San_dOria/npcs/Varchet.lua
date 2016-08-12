@@ -18,8 +18,7 @@ local GAME_TIE = 3;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (npcUtil.tradeHas(trade, nil, 5)) then
+    if (trade:getGil() == 5 and trade:getItemCount() == 1) then
         player:tradeComplete();
         local vdie1 = math.random(1,6);
         local vdie2 = math.random(1,6);
@@ -28,15 +27,13 @@ function onTrade(player,npc,trade)
         local pdie2 = math.random(1,6);
         local ptotal = pdie1 + pdie2;
 
-           if (ptotal > vtotal) then
-              player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
-           elseif (vtotal > ptotal) then
-              player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_LOST);
-           elseif (ptotal == vtotal) then
-              player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_TIE);
-           else
-              printf("Results Varchet's Roll : %u, Player's Roll : %u", vtotal, ptotal);
-           end
+        if (ptotal > vtotal) then
+            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_WON);
+        elseif (vtotal > ptotal) then
+            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_LOST);
+        elseif (ptotal == vtotal) then
+            player:startEvent(0x0207,vdie1,vdie2,vtotal,pdie1,pdie2,ptotal,GAME_TIE);
+        end
     else
         player:startEvent(0x0260);
     end
@@ -47,14 +44,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
-        local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
-
-        if (exitTheGambler == QUEST_ACCEPTED) then
-           player:startEvent(0x027e);
-        else
-           player:startEvent(0x020d);
-        end
+    if (exitTheGambler == QUEST_ACCEPTED) then
+        player:startEvent(0x027e);
+    else
+        player:startEvent(0x020d);
+    end
 end;
 
 -----------------------------------
@@ -71,25 +67,27 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("F CSID: %u",csid);
-    --printf("F RESULT: %u",option);
+    -- printf("F CSID: %u",csid);
+    -- printf("F RESULT: %u",option);
 
     local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
     local npc = player:getEventTarget();
 
-    if (csid == 519) then
-          if (option == GAME_WON) then
-            npc.giveGil(player, 10, {rate=false});
-        if (exitTheGambler == QUEST_ACCEPTED) then
-          player:completeQuest(SANDORIA,EXIT_THE_GAMBLER);
-          player:showText(npc,7629);
+    if (csid == 0x207) then
+        if (option == GAME_WON) then
+            if (exitTheGambler == QUEST_ACCEPTED) then
+                player:completeQuest(SANDORIA,EXIT_THE_GAMBLER);
+                player:showText(npc,VARCHET_KEEP_PROMISE);
+            end
+            local gilPayout = 10;
+            player:addGil(gilPayout);
+            player:messageSpecial(GIL_OBTAINED,gilPayout);
+        elseif (option == GAME_TIE) then
+            local gilPayout = 5;
+            player:addGil(gilPayout);
+            player:messageSpecial(GIL_OBTAINED,gilPayout);
+        else
+            player:messageSpecial(VARCHET_BET_LOST);
         end
-          elseif (option == GAME_TIE) then
-            npc.giveGil(player, 5, {rate=false});
-          player:showText(npc,7622);
-          else
-            player:showText(npc,7620);
-          end
-        end
+    end
 end;
-
