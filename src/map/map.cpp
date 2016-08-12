@@ -373,6 +373,12 @@ int32 do_sockets(fd_set* rfd, duration next)
             map_session_data->last_update = time(nullptr);
             size_t size = ret;
 
+            if (map_session_data->shuttingDown > 0 && map_session_data->PChar)
+            {
+                map_close_session(server_clock::now(), map_session_data);
+                return 0;
+            }
+
             if (recv_parse(g_PBuff, &size, &from, map_session_data) != -1)
             {
                 // если предыдущий пакет был потерян, то мы не собираем новый,
@@ -389,10 +395,6 @@ int32 do_sockets(fd_set* rfd, duration next)
 
                 map_session_data->server_packet_data = data;
                 map_session_data->server_packet_size = size;
-            }
-            if (map_session_data->shuttingDown > 0)
-            {
-                map_close_session(server_clock::now(), map_session_data);
             }
         }
     }

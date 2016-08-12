@@ -4739,8 +4739,10 @@ namespace charutils
     {
         if (type == 2)
         {
-            Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u;",
-                (uint32)ipp, (uint32)(ipp >> 32), PChar->id);
+            auto currZone = PChar->m_moghouseID ? 0 : PChar->getZone();
+
+            Sql_Query(SqlHandle, "UPDATE accounts_sessions SET server_addr = %u, server_port = %u WHERE charid = %u AND charid IN ( SELECT charid FROM chars WHERE charid = %u AND pos_zone = %u );",
+                (uint32)ipp, (uint32)(ipp >> 32), PChar->id, PChar->id, currZone);
 
             const int8* Query =
                 "UPDATE chars "
@@ -4752,22 +4754,28 @@ namespace charutils
                 "pos_y = %.3f,"
                 "pos_z = %.3f,"
                 "boundary = %u "
-                "WHERE charid = %u;";
+                "WHERE charid = %u AND pos_zone = %u;";
 
             Sql_Query(SqlHandle, Query,
                 PChar->loc.destination,
-                PChar->m_moghouseID ? 0 : PChar->getZone(),
+                currZone,
                 PChar->loc.p.rotation,
                 PChar->loc.p.x,
                 PChar->loc.p.y,
                 PChar->loc.p.z,
                 PChar->loc.boundary,
-                PChar->id);
+                PChar->id,
+                currZone);
         }
         else
         {
             SaveCharPosition(PChar);
         }
+
+        if (Sql_Query(SqlHandle, "SELECT charid FROM char_stats WHERE charid = %u AND zoning = 1", PChar->id) != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            return;
+
+        Sql_Query( SqlHandle, "UPDATE char_stats SET zoning = 1 WHERE charid = %u", PChar->id );
 
         PChar->pushPacket(new CServerIPPacket(PChar, type, ipp));
     }
