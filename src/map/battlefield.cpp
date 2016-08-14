@@ -586,12 +586,12 @@ bool CBattlefield::isMonsterInList(CMobEntity* PMob)
 
 void CBattlefield::clearPlayerEnmity(CCharEntity* PChar)
 {
-    for (std::vector<CMobEntity*>::iterator it = m_MobList.begin(); it != m_MobList.end(); ++it)
+    auto clearEnmity = [PChar](auto entity)
     {
-        CMobEntity* PMob = *it;
-
-        PMob->PEnmityContainer->Clear(PChar->id);
-    }
+        entity->PEnmityContainer->Clear(PChar->id);
+    };
+    std::for_each(m_MobList.cbegin(), m_MobList.cend(), clearEnmity);
+    std::for_each(m_EnemyList.cbegin(), m_EnemyList.cend(), clearEnmity);
 }
 
 bool CBattlefield::lost()
