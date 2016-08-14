@@ -1329,7 +1329,6 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     //        return;
     //    }
     //}
-    static_cast<CPlayerController*>(PAI->GetController())->setNextRangedTime(server_clock::now() + 1s + std::chrono::milliseconds(this->GetAmmoDelay()));
 }
 
 bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)

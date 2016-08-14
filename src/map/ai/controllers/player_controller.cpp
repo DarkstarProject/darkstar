@@ -120,7 +120,7 @@ void CPlayerController::Ability(uint16 targid, uint16 abilityid)
 void CPlayerController::RangedAttack(uint16 targid)
 {
     auto PChar = static_cast<CCharEntity*>(POwner);
-    if (PChar->PAI->CanChangeState() && server_clock::now() > m_NextRangedTime)
+    if (PChar->PAI->CanChangeState())
     {
         PChar->PAI->Internal_RangedAttack(targid);
     }
@@ -205,11 +205,6 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
 void CPlayerController::setLastAttackTime(time_point _LastAttackTime)
 {
     m_LastAttackTime = _LastAttackTime;
-}
-
-void CPlayerController::setNextRangedTime(time_point _NextRangedTime)
-{
-    m_NextRangedTime = _NextRangedTime;
 }
 
 void CPlayerController::setLastErrMsgTime(time_point _LastErrMsgTime)

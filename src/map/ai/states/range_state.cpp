@@ -85,7 +85,7 @@ void CRangeState::SpendCost()
 
 bool CRangeState::CanChangeState()
 {
-    return IsCompleted();
+    return false;
 }
 
 bool CRangeState::Update(time_point tick)
@@ -122,7 +122,7 @@ bool CRangeState::Update(time_point tick)
         Complete();
     }
 
-    if (IsCompleted() && tick > GetEntryTime() + m_aimTime + 2s)
+    if (IsCompleted() && tick > GetEntryTime() + m_aimTime + 1.5s)
     {
         return true;
     }
