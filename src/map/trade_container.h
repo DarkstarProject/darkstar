@@ -62,7 +62,7 @@ public:
 	void	setItemID(uint8 slotID, uint16 itemID);
 	void	setInvSlotID(uint8 slotID, uint8 invSlotID);
 	void	setQuantity(uint8 slotID, uint32 quantity);
-	void	setConfirmedStatus(uint8 slotID, uint8 amount);
+	bool	setConfirmedStatus(uint8 slotID, uint8 amount);
 	void	setItem(uint8 slotID, uint16 itemID, uint8 invSlotID, uint32 quantity, CItem* item = nullptr);
     void    setSize(uint8 size);
 

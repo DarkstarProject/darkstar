@@ -230,15 +230,17 @@ inline int32 CLuaTradeContainer::confirmItem(lua_State *L)
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint8 slotID = (uint8)lua_tonumber(L, 1);
-            uint8 amount = -1;
+            uint8 amount = 1;
             if (lua_isnumber(L, 2))
             {
                 amount = (uint8)lua_tonumber(L, 2);
             }
-            m_pMyTradeContainer->setConfirmedStatus(slotID, amount);
+            lua_pushboolean(L, m_pMyTradeContainer->setConfirmedStatus(slotID, amount));
+            return 1;
         }
     }
-    return 0;
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
