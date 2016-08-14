@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NM:  Byakko
+--  NM:  Byakko 17309982
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
