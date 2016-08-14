@@ -33,17 +33,17 @@ ENABLE_ROV     = 0;
 RESTRICT_BY_EXPANSION = 0;
 
 -- CHARACTER CONFIG
-INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
+INITIAL_LEVEL_CAP = 75; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
 NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-START_GIL = 10; --Amount of gil given to newly created characters.
-START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
+START_GIL = 1000000; --Amount of gil given to newly created characters.
+START_INVENTORY = 80; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
 OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
-SUBJOB_QUEST_LEVEL = 18; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
-ADVANCED_JOB_LEVEL = 30; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
-ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
-UNLOCK_OUTPOST_WARPS = 0; -- Set to 1 to give starting characters all outpost warps.  2 to add Tu'Lia and Tavnazia.
+SUBJOB_QUEST_LEVEL = 0; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
+ADVANCED_JOB_LEVEL =0; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
+ALL_MAPS = 1; -- Set to 1 to give starting characters all the maps.
+UNLOCK_OUTPOST_WARPS = 1; -- Set to 1 to give starting characters all outpost warps.  2 to add Tu'Lia and Tavnazia.
 
 SHOP_PRICE      = 1.000; -- Multiplies prices in NPC shops.
 GIL_RATE        = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
@@ -70,7 +70,7 @@ EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation. 
 LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
 MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100. 
 
-HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
+HEALING_TP_CHANGE       = -0; -- Change in TP for each healing tick. Default is -100
 
 -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
 -- till a random time between MIN_ILLSION_TIME and MAX_ILLUSION_TIME. During this time players can loot keyitem and item related to quests (AF, maps... etc.)
@@ -81,8 +81,8 @@ CHEST_MIN_ILLUSION_TIME  = 1800;  -- 30 minutes
 
 -- Sets spawn type for: Behemoth, Fafnir, Adamantoise, King Behemoth, Nidhog, Aspidochelone.
 -- Use 0 for timed spawns, 1 for force pop only, 2 for both
-LandKingSystem_NQ = 0;
-LandKingSystem_HQ = 0;
+LandKingSystem_NQ = 2;
+LandKingSystem_HQ = 2;
 
 -- DYNAMIS SETTINGS
     BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 Dynamis (in real day) min: 1 day

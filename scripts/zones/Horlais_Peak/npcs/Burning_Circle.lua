@@ -37,7 +37,8 @@ require("scripts/zones/Horlais_Peak/TextIDs");
 
 function onTrade(player,npc,trade)
     
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
+    player:setVar("bcnmwin",1);  --- Prevents issues with warp/dc after wins
+	if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
     
@@ -49,7 +50,8 @@ end;
 
 function onTrigger(player,npc)
     
-    if (EventTriggerBCNM(player,npc)) then
+    player:setVar("bcnmwin",1);  --- Prevents issues with warp/dc after wins
+	if (EventTriggerBCNM(player,npc)) then
         return;
     end
     

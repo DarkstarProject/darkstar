@@ -251,8 +251,8 @@ function EventFinishBCNM(player, csid, option)
 
         if (id == 68 or id == 418 or id == 450 or id == 482 or id == 545 or id == 578 or id == 609 or id == 293) then
             player:tradeComplete(); -- Removes the item
-        elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
-            player:createWornItem(item);
+        -- elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
+        --    player:createWornItem(item);
         end
         return true;
     end
@@ -601,7 +601,7 @@ function checkNonTradeBCNM(player, npc)
             player:setVar("trade_bcnmid", 484);
         end
     elseif (Zone == 206) then -- Qu'Bia Arena
-        if (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11) then -- Mission 5-1
+        if (player:getCurrentMission(player:getNation()) == 14) then -- Mission 5-1
             mask = GetBattleBitmask(512, Zone, 1);
             player:setVar("trade_bcnmid", 512);
         elseif (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3) then -- sando 9-2
