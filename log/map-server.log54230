@@ -1,0 +1,45 @@
+[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37m08e3dc8d7a70e17ba68d456e147dd91383230a43[0m.
+[1;32m[Status][0m do_init: begin server initialization...
+[12/Aug] [13:53:40][1;37m[Info][0m Console Silent Setting: 0 			 - [1;32m[OK][0m
+[12/Aug] [13:53:40][1;32m[Status][0m do_init: map_config is reading 		 - [1;32m[OK][0m
+[12/Aug] [13:53:40][1;32m[Status][0m luautils::init:lua initializing... 		 - [1;32m[OK][0m
+[12/Aug] [13:53:40][1;32m[Status][0m do_init: sqlhandle is allocating 		 - [1;32m[OK][0m
+[12/Aug] [13:53:40][1;32m[Status][0m do_init: zlib is reading 			 - [1;32m[OK][0m
+[12/Aug] [13:53:40][1;32m[Status][0m do_init: loading items 			 - [1;32m[OK][0m
+[12/Aug] [13:53:41][1;32m[Status][0m do_init: loading spells 			 - [1;32m[OK][0m
+[12/Aug] [13:53:42][1;36m[Debug][0m [1;36mUpdateGuildPointsPattern is finished. New pattern: 7
+[0m[12/Aug] [13:53:42][1;32m[Status][0m do_init: loading zones[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37m08e3dc8d7a70e17ba68d456e147dd91383230a43[0m.
+[1;32m[Status][0m do_init: begin server initialization...
+[12/Aug] [13:55:19][1;37m[Info][0m Console Silent Setting: 0 			 - [1;32m[OK][0m
+[12/Aug] [13:55:19][1;32m[Status][0m do_init: map_config is reading 		 - [1;32m[OK][0m
+[12/Aug] [13:55:19][1;32m[Status][0m luautils::init:lua initializing... 		 - [1;32m[OK][0m
+[12/Aug] [13:55:19][1;32m[Status][0m do_init: sqlhandle is allocating 		 - [1;32m[OK][0m
+[12/Aug] [13:55:19][1;32m[Status][0m do_init: zlib is reading 			 - [1;32m[OK][0m
+[12/Aug] [13:55:19][1;32m[Status][0m do_init: loading items 			 - [1;32m[OK][0m
+[12/Aug] [13:55:20][1;32m[Status][0m do_init: loading spells 			 - [1;32m[OK][0m
+[12/Aug] [13:55:20][1;36m[Debug][0m [1;36mUpdateGuildPointsPattern is finished. New pattern: 7
+[0m[12/Aug] [13:55:21][1;32m[Status][0m do_init: loading zones[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37m08e3dc8d7a70e17ba68d456e147dd91383230a43[0m.
+[1;32m[Status][0m do_init: begin server initialization...
+[12/Aug] [13:58:02][1;37m[Info][0m Console Silent Setting: 0 			 - [1;32m[OK][0m
+[12/Aug] [13:58:02][1;32m[Status][0m do_init: map_config is reading 		 - [1;32m[OK][0m
+[12/Aug] [13:58:02][1;32m[Status][0m luautils::init:lua initializing... 		 - [1;32m[OK][0m
+[12/Aug] [13:58:02][1;32m[Status][0m do_init: sqlhandle is allocating 		 - [1;32m[OK][0m
+[12/Aug] [13:58:02][1;32m[Status][0m do_init: zlib is reading 			 - [1;32m[OK][0m
+[12/Aug] [13:58:02][1;32m[Status][0m do_init: loading items 			 - [1;32m[OK][0m
+[12/Aug] [13:58:04][1;32m[Status][0m do_init: loading spells 			 - [1;32m[OK][0m
+[12/Aug] [13:58:04][1;36m[Debug][0m [1;36mUpdateGuildPointsPattern is finished. New pattern: 7
+[0m[12/Aug] [13:58:05][1;32m[Status][0m do_init: loading zones[1;32m[Status][0m Memory manager initialised: [1;37mlog/DSP.leaks[0m
+[1;37m[Info][0m DarkStar - Git Revision Hash: [1;37m08e3dc8d7a70e17ba68d456e147dd91383230a43[0m.
+[1;32m[Status][0m do_init: begin server initialization...
+[12/Aug] [13:58:37][1;37m[Info][0m Console Silent Setting: 0 			 - [1;32m[OK][0m
+[12/Aug] [13:58:37][1;32m[Status][0m do_init: map_config is reading 		 - [1;32m[OK][0m
+[12/Aug] [13:58:37][1;32m[Status][0m luautils::init:lua initializing... 		 - [1;32m[OK][0m
+[12/Aug] [13:58:37][1;32m[Status][0m do_init: sqlhandle is allocating 		 - [1;32m[OK][0m
+[12/Aug] [13:58:37][1;32m[Status][0m do_init: zlib is reading 			 - [1;32m[OK][0m
+[12/Aug] [13:58:37][1;32m[Status][0m do_init: loading items 			 - [1;32m[OK][0m
+[12/Aug] [13:58:39][1;32m[Status][0m do_init: loading spells 			 - [1;32m[OK][0m
+[12/Aug] [13:58:39][1;36m[Debug][0m [1;36mUpdateGuildPointsPattern is finished. New pattern: 7
+[0m[12/Aug] [13:58:40][1;32m[Status][0m do_init: loading zones

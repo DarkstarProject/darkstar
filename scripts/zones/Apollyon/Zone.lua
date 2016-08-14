@@ -194,7 +194,7 @@ function onRegionEnter(player,region)
              -- //////////////////////////////////////////////////////////////////////////////////////////////////
          -- /////////////////////    APPOLLYON NW TELEPORTER           //////////////////////////////// 
          [33] = function (x) 
-              if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(0x00CD);end --205
+              if (IsMobDead(16932937)==false and player:getAnimation()==0) then player:startEvent(0x00C8);end --205
          end,
          [34] = function (x) 
               if (IsMobDead(16932950)==true and player:getAnimation()==0) then player:startEvent(0x00CB);end --203
