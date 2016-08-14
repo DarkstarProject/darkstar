@@ -942,6 +942,11 @@ void CZoneEntities::ZoneServer(time_point tick)
     {
         CMobEntity* PMob = (CMobEntity*)it->second;
 
+        if (PMob->PBCNM && PMob->PBCNM->cleared())
+        {
+            return;
+        }
+
         PMob->StatusEffectContainer->CheckEffects(tick);
         PMob->PAI->Tick(tick);
         PMob->StatusEffectContainer->CheckRegen(tick);
