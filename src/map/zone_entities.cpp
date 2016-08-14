@@ -944,7 +944,7 @@ void CZoneEntities::ZoneServer(time_point tick)
 
         if (PMob->PBCNM && PMob->PBCNM->cleared())
         {
-            return;
+            continue;
         }
 
         PMob->StatusEffectContainer->CheckEffects(tick);
