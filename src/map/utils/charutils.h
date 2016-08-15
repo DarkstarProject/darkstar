@@ -88,11 +88,11 @@ namespace charutils
     void    UpdateWeaponStyle(CCharEntity* PChar, uint8 equipSlotID, CItemWeapon* PItem);
     void    UpdateArmorStyle(CCharEntity* PChar, uint8 equipSlotID);
 
-    int32	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем наличие ключевого предмета
-    int32	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем, было ли описание ключевого предмета прочитано
-    int32	unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID);        // Attempt to remove keyitem from seen list
-    int32	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // добавляем ключевой предмет
-    int32	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // улаляем ключевой предмет
+    bool	hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем наличие ключевого предмета
+    bool	seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // проверяем, было ли описание ключевого предмета прочитано
+    void	unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID);        // Attempt to remove keyitem from seen list
+    void	addKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // добавляем ключевой предмет
+    void	delKeyItem(CCharEntity* PChar, uint16 KeyItemID);	        // улаляем ключевой предмет
 
     int32	hasSpell(CCharEntity* PChar, uint16 SpellID);		        // проверяем наличие заклинания
     int32	addSpell(CCharEntity* PChar, uint16 SpellID);		        // добавляем заклинание
