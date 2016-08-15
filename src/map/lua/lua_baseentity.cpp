@@ -1850,12 +1850,10 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
-    if (charutils::addKeyItem(PChar, KeyItemID))
-    {
-        PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    charutils::addKeyItem(PChar, KeyItemID);
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
 
-        charutils::SaveKeyItems(PChar);
-    }
+    charutils::SaveKeyItems(PChar);
     return 0;
 }
 
@@ -1872,12 +1870,10 @@ inline int32 CLuaBaseEntity::delKeyItem(lua_State *L)
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
-    if (charutils::delKeyItem(PChar, KeyItemID))
-    {
-        PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    charutils::delKeyItem(PChar, KeyItemID);
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
 
-        charutils::SaveKeyItems(PChar);
-    }
+    charutils::SaveKeyItems(PChar);
     return 0;
 }
 
@@ -1933,12 +1929,10 @@ inline int32 CLuaBaseEntity::unseenKeyItem(lua_State *L)
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
 
-    if (charutils::unseenKeyItem(PChar, KeyItemID))
-    {
-        PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    charutils::unseenKeyItem(PChar, KeyItemID);
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
 
-        charutils::SaveKeyItems(PChar);
-    }
+    charutils::SaveKeyItems(PChar);
     return 0;
 }
 
