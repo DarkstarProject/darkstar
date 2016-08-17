@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(FAUREGANDI);
-    if (RegionOwner ~= BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then 
         player:showText(npc,RODELLIEUX_CLOSED_DIALOG);
     else
         player:showText(npc,RODELLIEUX_OPEN_DIALOG);

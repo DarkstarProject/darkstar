@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         0x32B9,  1495,3,     --Holly Clogs
         0x349D,  1150,3      --Leather Ring
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then 
         player:showText(npc,EVELYN_CLOSED_DIALOG);
     else
         player:showText(npc,EVELYN_OPEN_DIALOG);

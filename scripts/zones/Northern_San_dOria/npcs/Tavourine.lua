@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         17059,90,3,    -- Bronze Rod
         17034,169,3    -- Bronze Mace 
     }
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------

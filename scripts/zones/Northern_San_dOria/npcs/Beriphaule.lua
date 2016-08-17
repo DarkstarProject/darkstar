@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
     
-    local new_nation = SANDORIA;
+    local new_nation = NATION_SANDORIA;
     local old_nation = player:getNation();
     local rank = getNationRank(new_nation);
     
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     
     if (csid == 0x025e and option == 1) then
-        local new_nation = SANDORIA;
+        local new_nation = NATION_SANDORIA;
         local rank = getNationRank(new_nation);
         local cost = 0;
         

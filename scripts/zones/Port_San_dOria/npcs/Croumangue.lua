@@ -48,7 +48,7 @@ stock = {0x1159,837,1,  --Grape Juice
          0x119d,10,3,   --Distilled Water 
          0x1167,180,3}  --Pebble Soup
  
-showNationShop(player, SANDORIA, stock);
+showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------

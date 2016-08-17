@@ -1,4 +1,11 @@
-require("scripts/globals/npc_util");
+-----------------------------------
+--  Nation IDs
+-----------------------------------
+
+NATION_SANDORIA = 0;
+NATION_BASTOK   = 1;
+NATION_WINDURST = 2;
+
 -----------------------------------
 --
 --  QUESTS ID

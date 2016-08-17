@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         0x138C,  5544,3,     --Scroll of Valor Minuet III
         0x138E, 53820,3      --Scroll of Valor Minuet V
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

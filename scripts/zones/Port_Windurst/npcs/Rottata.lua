@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Port_Windurst/TextIDs");
 
-guardnation = WINDURST;
+guardnation = NATION_WINDURST;
 csid         = 0x0228;
 
 -----------------------------------

@@ -50,7 +50,7 @@ stock = {0x1020,4445,1, --Ether
          0x1036,2387,3, --Eye Drops
          0x349d,1150,3} --Leather Ring
  
-showNationShop(player, SANDORIA, stock);
+showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------

@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         0x16EC, 18000,3,     --Toolbag (Shika)
         0x16ED, 18000,3      --Toolbag (Cho)
     }
-     showNationShop(player, BASTOK, stock);
+     showNationShop(player, NATION_BASTOK, stock);
 end; 
 
 -----------------------------------

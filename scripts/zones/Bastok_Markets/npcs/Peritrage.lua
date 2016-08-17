@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         0x4041,   837,3,     --Brass Dagger
         0x4042,  1827,3      --Dagger
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

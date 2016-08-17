@@ -125,7 +125,7 @@ function onEventFinish(player,csid,option)
                 0x122b,219,3,  -- Scroll of Protect
                 0x1230,1584,3  -- Scroll of Shell
             }
-            showNationShop(player, SANDORIA, stockA);
+            showNationShop(player, NATION_SANDORIA, stockA);
         elseif (option == 1) then
             local stockB =
             {
@@ -147,7 +147,7 @@ function onEventFinish(player,csid,option)
                 0x12a4,3261,3, -- Scroll of Thunder
                 0x12a9,140,3   -- Scroll of Water
             }
-            showNationShop(player, SANDORIA, stockB);
+            showNationShop(player, NATION_SANDORIA, stockB);
         end
     end
 end;

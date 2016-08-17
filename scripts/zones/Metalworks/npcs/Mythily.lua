@@ -20,7 +20,7 @@ end;
 
 function onTrigger(player,npc)
     
-    local new_nation = BASTOK;
+    local new_nation = NATION_BASTOK;
     local old_nation = player:getNation();
     local rank = getNationRank(new_nation);
     
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     
     if (csid == 0x0168 and option == 1) then
-        local new_nation = BASTOK;
+        local new_nation = NATION_BASTOK;
         local rank = getNationRank(new_nation);
         local cost = 0;
         

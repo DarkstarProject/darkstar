@@ -51,7 +51,7 @@ function onTrigger(player,npc)
              0x1125,28,3,    --San d'Orian Carrot
              0x114f,68,3}    --San d'Orian Grape
      
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

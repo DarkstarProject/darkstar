@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         0x30A0,   151,3,     --Bronze Cap
         0x30A1,  1471,3      --Brass Cap
     } 
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end;
 

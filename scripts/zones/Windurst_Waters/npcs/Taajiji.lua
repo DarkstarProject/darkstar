@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         0x118D,   184,3,     --Windurstian Tea
         0x11CB,  1711,3      --Windurst Salad
     }
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end;
 

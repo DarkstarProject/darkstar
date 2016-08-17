@@ -20,7 +20,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 function onTrigger(player,npc)
     
-    if (player:getNation() ~= WINDURST) then
+    if (player:getNation() ~= NATION_WINDURST) then
         player:startEvent(0x0069); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);

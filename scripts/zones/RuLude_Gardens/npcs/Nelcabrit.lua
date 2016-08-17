@@ -46,9 +46,9 @@ function onTrigger(player,npc)
         player:startEvent(0x0024);
     elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
         player:startEvent(0x0038);
-    elseif (pNation == WINDURST) then
+    elseif (pNation == NATION_WINDURST) then
         player:startEvent(0x002F);
-    elseif (pNation == BASTOK) then
+    elseif (pNation == NATION_BASTOK) then
         player:startEvent(0x002E);
     else
         player:startEvent(0x0066);

@@ -76,7 +76,7 @@ function onZoneIn( player, prevZone)
         player:setPos( 547.841, 23.192, 696.323, 136);
     end
 
-    if (prevZone == 147 and player:getCurrentMission( BASTOK) == THE_FOUR_MUSKETEERS) then
+    if (prevZone == 147 and player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
         missionStatus = player:getVar("MissionStatus");
         if (missionStatus < 22) then
             cs = 0x000a;

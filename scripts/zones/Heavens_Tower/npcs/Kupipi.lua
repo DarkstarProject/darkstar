@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
-    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
+    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == NATION_WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
         if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
             player:startEvent(0x0123); -- Qualifies for the reward immediately
         else
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(pNation);
     local MissionStatus = player:getVar("MissionStatus");
     
-    if (pNation == SANDORIA) then
+    if (pNation == NATION_SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (currentMission == JOURNEY_TO_WINDURST) then
             if (MissionStatus == 4) then
@@ -70,7 +70,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x00fb);
         end
-    elseif (pNation == BASTOK) then
+    elseif (pNation == NATION_BASTOK) then
         -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
         if (currentMission == THE_EMISSARY_WINDURST) then
             if (MissionStatus == 3) then
@@ -94,7 +94,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x00fb);
         end
-    elseif (pNation == WINDURST) then
+    elseif (pNation == NATION_WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
             player:startEvent(0x005F,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
         elseif (currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     
     if (csid == 0x00ee) then
-        if (player:getNation() == BASTOK) then
+        if (player:getNation() == NATION_BASTOK) then
             player:setVar("MissionStatus",4);
             player:addKeyItem(SWORD_OFFERING);
             player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);

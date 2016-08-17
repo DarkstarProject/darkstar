@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Bastok_Mines/TextIDs");
 
-guardnation = BASTOK;
+guardnation = NATION_BASTOK;
 csid         = 0x0245;
 
 -----------------------------------

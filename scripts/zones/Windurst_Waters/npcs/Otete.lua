@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(LITELOR);
-    if (RegionOwner ~= WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST) then 
         player:showText(npc,OTETE_CLOSED_DIALOG);
     else
         player:showText(npc,OTETE_OPEN_DIALOG);

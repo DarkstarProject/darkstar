@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         0x031C,  1676,2,     --Light Opal
         0x348E,    68,3      --Copper Ring
     }
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

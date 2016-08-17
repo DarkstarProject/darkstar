@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(VOLLBOW);
-    if (RegionOwner ~= WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST) then 
         player:showText(npc,LEBONDUR_CLOSED_DIALOG);
     else
         player:showText(npc,LEBONDUR_OPEN_DIALOG);

@@ -28,7 +28,7 @@ stock = {0x4360,46836,2,        -- Arquebus
         0x43BC,90,3,        -- Bullet
         0x03A0,463,3}        -- Bomb Ash
  
-showNationShop(player, BASTOK, stock);
+showNationShop(player, NATION_BASTOK, stock);
 end; 
 
 -----------------------------------

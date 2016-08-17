@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 
         0x348E,    68,3      --Copper Ring
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 
