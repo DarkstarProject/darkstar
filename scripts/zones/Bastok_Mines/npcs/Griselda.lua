@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             0x1118,   108,3,     --Strip of meat jerky
             0x119D,    10,3      --Flask of distilled water
         }
-        showNationShop(player, BASTOK, stock);
+        showNationShop(player, NATION_BASTOK, stock);
         
     end
 

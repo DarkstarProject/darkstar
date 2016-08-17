@@ -23,12 +23,12 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ZULKHEIM);
-    if (RegionOwner ~= WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST) then 
         player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);
     else
         player:showText(npc,BIN_STEJIHNA_OPEN_DIALOG);
 
-        rank = getNationRank(BASTOK);
+        rank = getNationRank(NATION_WINDURST);
         if (rank ~= 3) then
             table.insert(stock,0x0730); --Semolina
             table.insert(stock,1840);

@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         0x31B0,  1363,3,     --Gloves
         0x31B8,   118,3      --Cuffs
     } 
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end; 
 

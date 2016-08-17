@@ -54,7 +54,7 @@ function onTrigger(player,npc)
         0x119d,10,3,    --Distilled Water
         0x15a5,1260,3    --Royal Grape
     }
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

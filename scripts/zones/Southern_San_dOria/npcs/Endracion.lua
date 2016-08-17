@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 
-    if (player:getNation() ~= SANDORIA) then
+    if (player:getNation() ~= NATION_SANDORIA) then
         player:startEvent(0x03F3); -- for Non-San d'Orians
     else
         CurrentMission = player:getCurrentMission(SANDORIA);

@@ -47,7 +47,7 @@ function onTrigger(player,npc)
              0x0018,129168,3, --Oak Table
              0x005d,518,3}    --Water Cask
 
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
     
 end; 
 

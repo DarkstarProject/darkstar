@@ -32,7 +32,7 @@ function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(NORVALLEN);
 
-if (RegionOwner ~= SANDORIA) then
+if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,MACHIELLE_CLOSED_DIALOG);
 else
         player:showText(npc,MACHIELLE_OPEN_DIALOG);

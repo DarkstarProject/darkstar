@@ -53,7 +53,7 @@ function onTrigger(player,npc)
              0x3138,216,3,    -- Robe
              0x3238,172,3}    -- Slops
              
-    rank = getNationRank(SANDORIA);
+    rank = getNationRank(NATION_SANDORIA);
 
         if (rank ~= 1) then
             table.insert(stock,0x03fe); --Thief's Tools
@@ -66,7 +66,7 @@ function onTrigger(player,npc)
             table.insert(stock,3);
         end
 
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

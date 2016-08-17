@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
-guardnation = SANDORIA;
+guardnation = NATION_SANDORIA;
 csid         = 0x02cc;
 
 -----------------------------------

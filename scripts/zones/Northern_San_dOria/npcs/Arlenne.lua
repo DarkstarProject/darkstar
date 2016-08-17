@@ -53,7 +53,7 @@ function onTrigger(player,npc)
              16833,792,3,   --Bronze Spear 
              16768,309,3}   --Bronze Zaghnal 
      
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------

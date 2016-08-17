@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         0x3230,  1899,3,     --Brais
         0x32B0,  1269,3         --Gaiters
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

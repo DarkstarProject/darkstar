@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         0x4085,  9201,3,     --Degen
         0x40A7,   698,3      --Sapara
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

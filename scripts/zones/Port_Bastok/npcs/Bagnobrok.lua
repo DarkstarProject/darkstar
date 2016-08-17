@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(MOVALPOLOS);
 
-    if (RegionOwner ~= BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then 
         player:showText(npc,BAGNOBROK_CLOSED_DIALOG);
     else
         player:showText(npc,BAGNOBROK_OPEN_DIALOG);

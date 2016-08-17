@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         0x43A8,     7,3,     --Iron Arrow
         0x43B8,     5,3      --Crossbow Bolt
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

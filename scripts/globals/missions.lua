@@ -1,4 +1,12 @@
 -----------------------------------
+--  Nation IDs
+-----------------------------------
+
+NATION_SANDORIA = 0;
+NATION_BASTOK   = 1;
+NATION_WINDURST = 2;
+
+-----------------------------------
 -- Areas  ID     mission step var
 -----------------------------------
 
@@ -687,7 +695,7 @@ function getMissionMask(player)
     first_mission = 0;
     repeat_mission = 0;
 
-    if (nation == WINDURST) then
+    if (nation == NATION_WINDURST) then
         if (rank >= 1) then
             if (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
@@ -784,7 +792,7 @@ function getMissionMask(player)
                 first_mission = first_mission + 8388608;
             end
         end
-    elseif (nation == SANDORIA) then
+    elseif (nation == NATION_SANDORIA) then
         if (rank >= 1) then
             if (player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
                 -- 1-1
@@ -882,7 +890,7 @@ function getMissionMask(player)
 
             end
         end
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
         if (rank >= 1) then
             if (player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
@@ -992,7 +1000,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
     offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
     nation = player:getNation();
 
-    if (nation == SANDORIA) then
+    if (nation == NATION_SANDORIA) then
 
             if (guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
         elseif (guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
@@ -1019,7 +1027,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
 
         switch (pMission) : caseof {
             [0] = function (x) offset = 0; end,
@@ -1044,7 +1052,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == WINDURST) then
+    elseif (nation == NATION_WINDURST) then
 
             if (guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
         elseif (guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
@@ -1086,7 +1094,7 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 13: player:addTitle(number);
     -- 14: player:setVar("MissionStatus",value);
 
-    if (nation == SANDORIA) then
+    if (nation == NATION_SANDORIA) then
         if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
             if (option > 100) then
                 badoption = {101,1,102,2,104,4,110,10,111,11};
@@ -1135,7 +1143,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
                         };
         end
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
         if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
         else
@@ -1164,7 +1172,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 
                         };
         end
-    elseif (nation == WINDURST) then
+    elseif (nation == NATION_WINDURST) then
         guardlist = {0x0072,0x006f,0x004e,0x005d};
         if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};

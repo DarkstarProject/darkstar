@@ -16,7 +16,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Metalworks/TextIDs");
 
-local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local size        = table.getn(SandInv);
 local inventory   = SandInv;

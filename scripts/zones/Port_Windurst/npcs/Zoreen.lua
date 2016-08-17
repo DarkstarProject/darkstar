@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(VALDEAUNIA);
-    if (RegionOwner ~= WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST) then 
         player:showText(npc,ZOREEN_CLOSED_DIALOG);
     else
         player:showText(npc,ZOREEN_OPEN_DIALOG);

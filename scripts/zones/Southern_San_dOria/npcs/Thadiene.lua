@@ -51,7 +51,7 @@ function onTrigger(player,npc)
              0x43a6,3,3,     --Wooden Arrow
              0x13a5,4320,3}     --Scroll of Battlefield Elegy
 
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

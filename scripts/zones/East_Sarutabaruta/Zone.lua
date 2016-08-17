@@ -76,7 +76,7 @@ function onZoneIn( player, prevZone)
     end
 
     -- Check if we are on Windurst Mission 1-2
-    if (player:getCurrentMission( WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar( "MissionStatus") == 5 and prevZone == 194) then
+    if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER and player:getVar( "MissionStatus") == 5 and prevZone == 194) then
         cs = 0x0030;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0032;

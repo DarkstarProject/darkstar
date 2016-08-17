@@ -40,7 +40,7 @@ stock =
     0x02ba,86,3,   --Ash Log 
     0x0001,1800,3  --Chocobo Bedding 
 }
-showNationShop(player, SANDORIA, stock);
+showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------
