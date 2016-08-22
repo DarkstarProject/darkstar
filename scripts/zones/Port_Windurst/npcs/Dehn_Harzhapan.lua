@@ -2,8 +2,8 @@
 --  Area: Port Windurst
 --   NPC: Dehn Harzhapan
 --  Type: Standard NPC
--- @zone: 240
---  @pos -7.974 -7 152.633
+-- @zone 240
+-- @pos -7.974 -7 152.633
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

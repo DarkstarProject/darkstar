@@ -310,9 +310,9 @@ end;
 -- ftp2 - The TP 150% value
 -- ftp3 - The TP 300% value
 function BluefTP(tp,ftp1,ftp2,ftp3)
-    if (tp>=0 and tp<1500) then
+    if (tp >= 0 and tp < 1500) then
         return ftp1 + ( ((ftp2-ftp1)/100) * (tp / 10));
-    elseif (tp>=1500 and tp<=3000) then
+    elseif (tp >= 1500 and tp <= 3000) then
         -- generate a straight line between ftp2 and ftp3 and find point @ tp
         return ftp2 + ( ((ftp3-ftp2)/100) * ((tp-1500) / 10));
     else

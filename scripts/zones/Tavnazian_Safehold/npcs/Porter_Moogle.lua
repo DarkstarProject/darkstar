@@ -3,7 +3,7 @@
 --  NPC:    Porter Moogle
 --  Type:   Storage Moogle
 --  @zone 26
---  @pos TODO
+-- @pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

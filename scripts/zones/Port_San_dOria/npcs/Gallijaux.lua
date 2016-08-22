@@ -2,8 +2,8 @@
 -- Area: Port San d'Oria
 --   NPC: Gallijaux
 --  Starts The Rivalry
--- @zone: 232
---  @pos -14 -2 -45
+-- @zone 232
+-- @pos -14 -2 -45
 
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

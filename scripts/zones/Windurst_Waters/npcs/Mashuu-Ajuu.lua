@@ -5,7 +5,7 @@
 -- Involved in Quest: Making the Grade
 -- Working 100% 
 --  @zone = 238
---  @pos = 129 -6 167
+-- @pos = 129 -6 167
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 --  NPC: ??? (QM5)
 --     Type: Eggblix dice roll game part 3
---     @zone: 191
+--     @zone 191
 --     Involved in quest "As Thick As Thieves"
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;

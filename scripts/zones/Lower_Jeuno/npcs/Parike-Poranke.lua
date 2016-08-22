@@ -2,8 +2,8 @@
 --  Area: Lower Jeuno
 --   NPC: Parike-Poranke
 --  Type: Adventurer's Assistant
--- @zone: 245
---  @pos -33.161 -1 -61.303
+-- @zone 245
+-- @pos -33.161 -1 -61.303
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

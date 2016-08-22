@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --   NPC: Istvan
 --  Type: ENM Quest Timer
--- @zone: 241
---  @pos 116.294 -6 -98.164
+-- @zone 241
+-- @pos 116.294 -6 -98.164
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

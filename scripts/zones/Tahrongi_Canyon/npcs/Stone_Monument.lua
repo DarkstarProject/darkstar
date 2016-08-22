@@ -2,7 +2,7 @@
 --  Area: Tahrongi Canyon
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
---  @pos -499.189 12.600 373.592 117
+-- @pos -499.189 12.600 373.592 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

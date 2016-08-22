@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Woods
---    NPC:  Rakoh Buuma
---    Starts Windurst Missions
---    @pos 106 -5 -23 241
+-- Area: Windurst Woods
+-- NPC:  Rakoh Buuma
+-- Starts Windurst Missions
+-- @pos 106 -5 -23 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     finishMissionTimeline(player,1,csid,option);
     

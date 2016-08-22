@@ -2,7 +2,7 @@
 --  Area: Norg
 --  NPC: Vuliaie
 --  Type: Tenshodo Merchant
---  @pos -24.259 0.891 -19.556 252
+-- @pos -24.259 0.891 -19.556 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

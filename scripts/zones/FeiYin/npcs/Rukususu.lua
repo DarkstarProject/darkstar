@@ -2,7 +2,7 @@
 --  Area: Fei'Yin
 --  NPC: Rukususu (talk to Cermet Door _no5 to trigger)
 --  Type: Quest NPC
---  @pos -194.133 -0.986 191.077 204
+-- @pos -194.133 -0.986 191.077 204
 --     Involved in quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
 --    Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------

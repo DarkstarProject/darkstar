@@ -3,7 +3,7 @@
 --  NPC:  Faursel
 --  Type: Aht Urhgan Quest NPC
 -- Involved in Quests: The Road to Aht Urhgan
---  @pos 37.985 3.118 -45.208 245
+-- @pos 37.985 3.118 -45.208 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

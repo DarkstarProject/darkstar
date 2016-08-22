@@ -32,7 +32,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    local cs = -1;
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
         player:setPos(143,2 ,-147);
     end    
@@ -66,7 +66,7 @@ cs = -1;
         cs = 0x0065;
     end
 
-return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -90,12 +90,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0065) then
         player:setPos(154,-1,-170,190, 118);
     end
 end;
-
-
 

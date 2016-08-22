@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Outer Horutoto Ruins
 -- NPC: Strange Apparatus
--- @pos: -574 0 739 194
+-- @pos -574 0 739 194
 -----------------------------------
 
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;

@@ -61,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +70,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x006a and option == 0) then
         stock = {0x1135,144,  -- Rice Ball
                  0x1169,2700, -- Eel Kabob 
@@ -112,6 +112,4 @@ function onEventFinish(player,csid,option)
         player:setVar("PXPassGetGems",1);
     end
 end;
-
-
 

@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --  NPC: Pew Sahbaraef
 --  Type: Item Deliverer
---  @zone: 241
---  @pos 61.899 -2.5 -112.956
+--  @zone 241
+-- @pos 61.899 -2.5 -112.956
 
 --
 -----------------------------------

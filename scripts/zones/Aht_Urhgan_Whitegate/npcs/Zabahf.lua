@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Zabahf
 --  Type: Standard NPC
---  @pos -90.070 -1 10.140 50
+-- @pos -90.070 -1 10.140 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

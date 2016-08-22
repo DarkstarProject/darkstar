@@ -2,8 +2,8 @@
 --  Area: Southern Sandoria
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
---  @zone: 230
---  @pos -41.550 1.999 -2.845
+--  @zone 230
+-- @pos -41.550 1.999 -2.845
 --
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

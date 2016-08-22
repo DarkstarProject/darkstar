@@ -2,7 +2,7 @@
 --  Area: Port Bastok
 --  NPC:  Tilian
 --  Type: Quest NPC
---  @pos -118.460 4.999 -68.090 236
+-- @pos -118.460 4.999 -68.090 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

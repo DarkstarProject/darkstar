@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  _5ci (Gate of Light)
+-- Area: Inner Horutoto Ruins
+-- NPC:  _5ci (Gate of Light)
 --  Involved In Mission: 3-2
---  @pos -331 0 139 192
+-- @pos -331 0 139 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0029) then
         player:setVar("MissionStatus",2);

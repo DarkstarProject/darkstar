@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delcurrency <currency type> <amount> <target player>
+-- func: delcurrency <currency type> <amount> <target player>
 -- desc: Removes the specified currency from the player
 ---------------------------------------------------------------------------------------------------
 

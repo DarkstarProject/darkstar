@@ -2,7 +2,7 @@
 --  Area: Uleguerand Range
 --  NPC:  Zebada
 --  Type: ENM Quest Activator
---  @pos -308.112 -42.137 -570.096 5
+-- @pos -308.112 -42.137 -570.096 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

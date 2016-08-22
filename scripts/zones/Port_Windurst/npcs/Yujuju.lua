@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Yujuju
+-- Area: Port Windurst
+-- NPC:  Yujuju
 --  Involved In Quest: Making Headlines
---  @pos 201.523 -4.785 138.978 240
+-- @pos 201.523 -4.785 138.978 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -37,12 +37,12 @@ function onTrigger(player,npc)
         player:startEvent(0x0250);--COP event
     elseif (MakingHeadlines == 1) then
         local prog = player:getVar("QuestMakingHeadlines_var");
-        --     Variable to track if player has talked to 4 NPCs and a door
-        --     1 = Kyume
-        --    2 = Yujuju
-        --    4 = Hiwom
-        --    8 = Umumu
-        --    16 = Mahogany Door
+        --  Variable to track if player has talked to 4 NPCs and a door
+        --  1 = Kyume
+        -- 2 = Yujuju
+        -- 4 = Hiwom
+        -- 8 = Umumu
+        -- 16 = Mahogany Door
         if (testflag(tonumber(prog),2) == false) then
             player:startEvent(0x013a); -- Get Scoop
         else
@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x013a) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(PORT_WINDURST_SCOOP);
@@ -80,6 +80,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",19,true);
     end    
 end;
-
-
-

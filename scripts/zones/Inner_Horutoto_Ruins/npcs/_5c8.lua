@@ -1,10 +1,10 @@
 -----------------------------------
---    Area: Inner Horutoto Ruins
---    NPC:  Sealed Portal
+-- Area: Inner Horutoto Ruins
+-- NPC:  Sealed Portal
 --  Involved in Quest: Making the Grade
---    Working 50%
+-- Working 50%
 --  Notes: Door will open if player has Making the Grade quest active, or if the have the KI portal charm. Door should open when 3 mages stand on circles, but no API for this yet.
---  @pos -259 -1 -20 192
+-- @pos -259 -1 -20 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,6 +61,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

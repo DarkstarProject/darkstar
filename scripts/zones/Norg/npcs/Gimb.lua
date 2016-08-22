@@ -2,8 +2,8 @@
 --  Area: Norg
 --   NPC: Gimb
 --  Type: Begins the "Sahagin Key Quest" but it doesn't appear in the log. See http://wiki.ffxiclopedia.org/wiki/Sahagin_Key_Quest
--- @zone: 252
---  @pos -4.975 -1.975 -44.039
+-- @zone 252
+-- @pos -4.975 -1.975 -44.039
 -- 
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

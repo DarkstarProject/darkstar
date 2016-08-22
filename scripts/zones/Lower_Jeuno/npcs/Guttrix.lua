@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
--- @zone: 245
+-- @zone 245
 -- @pos -36.010 4.499 -139.714
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;

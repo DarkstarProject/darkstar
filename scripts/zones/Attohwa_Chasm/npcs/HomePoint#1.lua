@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Attohwa Chasm
 --  NPC:  HomePoint#2
---  @pos  
+-- @pos  
 -----------------------------------
 
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;

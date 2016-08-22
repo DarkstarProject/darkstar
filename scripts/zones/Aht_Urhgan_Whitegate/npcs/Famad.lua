@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Famad
 --  Type: Assault Mission Giver
---  @pos 134.098 0.161 -43.759 50
+-- @pos 134.098 0.161 -43.759 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

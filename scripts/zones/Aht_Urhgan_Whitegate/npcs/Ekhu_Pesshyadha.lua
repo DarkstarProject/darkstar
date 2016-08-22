@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Ekhu Pesshyadha
 --  Type: Standard NPC
---  @pos -13.043 0.999 103.423 50
+-- @pos -13.043 0.999 103.423 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

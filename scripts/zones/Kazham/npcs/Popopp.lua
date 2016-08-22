@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00DF) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 4 then
@@ -93,6 +93,4 @@ function onEventFinish(player,csid,option)
         player:setVar("OPO_OPO_RETRY",5);
     end
 end;
-
-
 

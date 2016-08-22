@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Malfine
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 136.943 0.000 132.305
+--  @zone 231
+-- @pos 136.943 0.000 132.305
 --
 -----------------------------------
 

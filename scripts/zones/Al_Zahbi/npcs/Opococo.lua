@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --  NPC: Opococo
 --  Type: Item Deliverer
---  @zone: 48
---  @pos -24.702 0 -139.982
+--  @zone 48
+-- @pos -24.702 0 -139.982
 --
 -----------------------------------
 

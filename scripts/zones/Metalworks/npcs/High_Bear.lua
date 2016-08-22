@@ -2,8 +2,8 @@
 -- Area: Metalworks
 --   NPC: High Bear
 --  Type: Quest Giver
--- @zone: 237
---  @pos 25.231 -14.999 4.552
+-- @zone 237
+-- @pos 25.231 -14.999 4.552
 -----------------------------------
 
 require("scripts/globals/quests");

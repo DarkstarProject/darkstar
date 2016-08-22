@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Ozzmo-Mazmo
 --  Type: Standard NPC
--- @zone: 94
---  @pos -61.677 -13.311 106.400
+-- @zone 94
+-- @pos -61.677 -13.311 106.400
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Ru'Lude Gardens
 --  NPC:  Magian Moogle (Orange Bobble)
 --  Type: Magian Trials NPC (Weapon/Empyrean Armor)
---  @pos -11 2.453 118 64
+-- @pos -11 2.453 118 64
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

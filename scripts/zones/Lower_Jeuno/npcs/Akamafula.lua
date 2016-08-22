@@ -2,7 +2,7 @@
 --  Area: Lower Jeuno
 --  NPC: Akamafula
 --  Type: Tenshodo Merchant
---  @pos 28.465 2.899 -46.699 245
+-- @pos 28.465 2.899 -46.699 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

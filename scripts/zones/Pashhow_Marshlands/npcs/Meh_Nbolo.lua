@@ -2,7 +2,7 @@
 --  Area: Pashhow Marshlands
 --  NPC: Meh Nbolo
 --  Type: Armor Storer
---  @pos 80.899 23.999 176.643 109
+-- @pos 80.899 23.999 176.643 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,8 @@
 --  Area: Tavnazian Safehold
 --  NPC: Suzel
 --  Type: Item Deliverer
---  @zone: 26
---  @pos -72.701 -20.25 -64.058
+--  @zone 26
+-- @pos -72.701 -20.25 -64.058
 --
 -----------------------------------
 

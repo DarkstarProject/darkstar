@@ -2,7 +2,7 @@
 --  Area: Davoi
 --  NPC:  Lootblox
 --  Type: Standard NPC
---  @pos 218.073 -0.982 -20.746 149
+-- @pos 218.073 -0.982 -20.746 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------

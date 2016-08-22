@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 --  NPC: Kororo
 --  Type: Standard NPC
---  @zone: 241
---  @pos -11.883 -3.75 5.508
+--  @zone 241
+-- @pos -11.883 -3.75 5.508
 --  Starts quest: A Greeting Cardian 
 -- Involved in quests: Lost Chick
 --  Auto-Script: Requires Verification (Verfied by Brawndo)

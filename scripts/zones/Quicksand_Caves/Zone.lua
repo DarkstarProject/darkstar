@@ -165,7 +165,7 @@ function onRegionLeave(player,region)
     
     if (RegionID < 30) then
         local race = player:getRace();
-        -- printf("exiting region %u",RegionID);
+    -- printf("exiting region %u",RegionID);
         
         if (race == 8) then -- Galka
             weight = 3;

@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Miaux
 --  Type: Quest Giver
---  @pos -169.127 2.999 158.677 231
+-- @pos -169.127 2.999 158.677 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0049 and option == 0) then -- first part of long CS -- declines questgiver
         player:setVar("has_seen_drgaf1_quest_already",1);

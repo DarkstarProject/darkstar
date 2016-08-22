@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x028A) then --unlocking attachments explanation
         player:setVar('TateeyaTradeStatus', 1);
     elseif (csid == 0x028B) then
@@ -76,6 +76,4 @@ function onEventFinish(player,csid,option)
         player:setVar('TateeyaUnlock',0);
     end
 end;
-
-
 

@@ -164,8 +164,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID2: %u",csid);
--- printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -173,8 +173,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0050 or csid == 0x0051) then
         player:addQuest(WINDURST,MIHGO_S_AMIGO);

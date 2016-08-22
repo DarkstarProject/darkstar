@@ -26,8 +26,6 @@ end;
 
 function onTrigger(player,npc)
 local CurrentMission = player:getCurrentMission(WINDURST);
-
-
 -- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned.
 --         Not really sure why but this seems to work.
 --         print("HingeOil 1 Action: "..GetMobAction(17469666));
@@ -50,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -59,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

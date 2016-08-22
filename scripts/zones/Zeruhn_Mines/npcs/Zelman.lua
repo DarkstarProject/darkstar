@@ -1,15 +1,14 @@
 -----------------------------------
---    Area: Zeruhn Mines
---    NPC:  Zelman
---    Involved In Quest: Groceries
+-- Area: Zeruhn Mines
+-- NPC:  Zelman
+-- Involved In Quest: Groceries
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Zeruhn_Mines/TextIDs");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -47,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00a1) then
         player:setVar("Groceries",2);

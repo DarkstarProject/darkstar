@@ -2,7 +2,7 @@
 --  Area: Selbina
 --  NPC: Boris
 --  Type: Item Deliverer
---  @pos 61.074 -14.655 -7.1 248
+-- @pos 61.074 -14.655 -7.1 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

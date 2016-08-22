@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Rolanberry Fields
 --  NPC: qm1 (???)
---  @pos -686.216 -31.556 -369.723 110
+-- @pos -686.216 -31.556 -369.723 110
 -- Notes: Spawns Chuglix Berrypaws for ACP mission "Gatherer of Light (I)"
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;

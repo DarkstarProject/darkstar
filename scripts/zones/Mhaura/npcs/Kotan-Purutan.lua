@@ -2,7 +2,7 @@
 --  Area: Mhaura
 --  NPC:  Kotan-Purutan
 --  Involved in Quest: Overnight Delivery
---  @pos 40.323 -8.999 44.242 249
+-- @pos 40.323 -8.999 44.242 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

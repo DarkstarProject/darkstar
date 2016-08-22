@@ -1,9 +1,8 @@
 ---------------------------------------------------------------------------------------------------
--- func: @zoneplayer <player1> (<player2) or zone)
+-- func: send <player1> (<player2) or zone)
 -- desc: Teleport a player to:
 -- A) The given zone
 -- B) another player
--- 
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -275,6 +274,7 @@ local zone_list =
     { 0x27, 0x5A, 280 }, -- Mog Garden
     { 0x27, 0x59, 284 }, -- Celennia Memorial Library
     { 0x27, 0x5B, 285 }, -- Feretory
+    { 0x14, 0x09, 288 }, -- Escha - Zi'Tah
 };
 
 ---------------------------------------------------------------------------------------------------
@@ -286,21 +286,20 @@ function onTrigger(player, p1, zoneId)
     local i     = 0;
     local zone  = zoneId;
     local targ1 = GetPlayerByName(p1);
-    
-    
-    -- Not enough info.. 
+
+    -- Not enough info..
     if (p1 == nil and zone == nil) then
-        player:PrintToPlayer( string.format("Must specify 2 players or zone: @zoneplayer <player to be sent> (<player to arrive at> or zone) ") );
+        player:PrintToPlayer( string.format("Must specify 2 players or zone: @send <player to be sent> (<player to arrive at> or zone) ") );
         return;
     end
-    
-    -- Ensure we have a correct combination of values.. 
+
+    -- Ensure we have a correct combination of values..
     if (p1 ~= nil) then
         if (targ1 == nil) then
             player:PrintToPlayer( string.format( "Player named '%s' not found!", p1 ) );
             return;
         end
-        if (zone == nil) then 
+        if (zone == nil) then
             player:PrintToPlayer( string.format("Must specify player to arrive at or zone.") );
             return;
         end
@@ -309,7 +308,7 @@ function onTrigger(player, p1, zoneId)
             -- Pull the group and message id from the translated string..
             local groupId = string.byte(zoneId, 4);
             local messageId = string.byte(zoneId, 5);
-        
+
             -- Attempt to lookup this zone..
             for k, v in pairs(zone_list) do
                 if (v[1] == groupId and v[2] == messageId) then
@@ -322,10 +321,10 @@ function onTrigger(player, p1, zoneId)
             if (zoneId ~= nil) then
                 local p2 = zoneId;
                 local targ2 = GetPlayerByName(p2);
-                    -- Teleports Player 1 to Player 2 coordinates and zone.
-                    targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
+                -- Teleports Player 1 to Player 2 coordinates and zone.
+                targ1:setPos( targ2:getXPos(), targ2:getYPos(), targ2:getZPos(), 0, targ2:getZoneID() );
             end
         end
-    end    
+    end
 end
-    
+

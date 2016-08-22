@@ -2,7 +2,7 @@
 --  Area: Oldton Movalpolos
 --  NPC:  Twinkbrix
 --  Type: Warp NPC
---  @pos -292.779 6.999 -263.153 11
+-- @pos -292.779 6.999 -263.153 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

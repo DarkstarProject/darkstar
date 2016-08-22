@@ -2,8 +2,8 @@
 --  Area: Lower Jeuno
 --   NPC: Biora
 --  Type: Map Viewer
--- @zone: 245
---  @pos -28.768 -2 -11.300
+-- @zone 245
+-- @pos -28.768 -2 -11.300
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

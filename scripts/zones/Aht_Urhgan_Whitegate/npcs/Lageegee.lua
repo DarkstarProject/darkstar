@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Lageegee
 --  Type: Assault Mission Giver
---  @pos 120.808 0.161 -30.435
+-- @pos 120.808 0.161 -30.435
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

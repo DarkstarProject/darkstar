@@ -2,7 +2,7 @@
 --  Area: The Eldieme Necropolis [S]
 --  NPC:  Lennart
 --  Type: Item Deliverer
---  @pos 378.783 -36 61.805 175
+-- @pos 378.783 -36 61.805 175
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------

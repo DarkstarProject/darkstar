@@ -2,8 +2,8 @@
 -- Area: Port San d'Oria
 --   NPC: Thierride
 --  Type: Quest Giver
--- @zone: 232
---  @pos -67 -5 -28
+-- @zone 232
+-- @pos -67 -5 -28
 --
 -- Starts and Finishes Quest: A Taste For Meat
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: Nashmau
 --  NPC:  Nabihwah
 --  Type: Standard NPC
---  @pos 9.988 -7 68.585 53
+-- @pos 9.988 -7 68.585 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

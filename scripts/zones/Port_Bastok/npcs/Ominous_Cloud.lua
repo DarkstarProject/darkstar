@@ -2,8 +2,8 @@
 --  Area: Port Bastok
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
--- @zone: 236
---  @pos 146.962 7.499 -63.316
+-- @zone 236
+-- @pos 146.962 7.499 -63.316
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

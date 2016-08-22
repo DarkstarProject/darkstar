@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: West Ronfaure
---    NPC:  Laillera
---    @pos -127.297 -62.000 266.800 100
+-- Area: West Ronfaure
+-- NPC:  Laillera
+-- @pos -127.297 -62.000 266.800 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

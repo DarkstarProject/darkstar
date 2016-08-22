@@ -3,7 +3,7 @@
 -- NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
 --  @zone = 238
---  @pos = -195 -11 -120
+-- @pos = -195 -11 -120
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -80,8 +80,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -121,7 +121,5 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
     end
 end;
-
-
 
 

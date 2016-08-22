@@ -32,7 +32,7 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-cs = -1;
+    local cs = -1;
     local realDay = os.time();
     local dynaWaitxDay = player:getVar("dynaWaitxDay");
     
@@ -62,7 +62,7 @@ cs = -1;
         cs = 0x0065;
     end
 
-return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -77,8 +77,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -86,12 +86,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0065) then
         player:setPos(0.0,-7,-23,195,26);
     end
 end;
-
-
 

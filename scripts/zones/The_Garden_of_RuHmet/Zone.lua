@@ -114,7 +114,7 @@ function onGameHour(npc, mob, player)
     --[[
     -- Ix'DRK spawn randomiser
     if (VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
-        local qm2p = math.random(1,4); -- random for next @pos. -- start in spawn pos 1.
+        local qm2p = math.random(1,4); -- random for next pos. -- start in spawn pos 1.
             --print(qm2p) 
             qm3:hideNPC(30);
                 if (qm2p == 1) then
@@ -148,8 +148,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
-
 -----------------------------------        
 -- onZoneIn        
 -----------------------------------        
@@ -237,8 +235,6 @@ function onRegionEnter(player,region)
     }
  end
 end;    
-
-
 -----------------------------------    
 -- onRegionLeave    
 -----------------------------------    
@@ -251,8 +247,8 @@ end;
 -----------------------------------    
 
 function onEventUpdate(player,csid,option)    
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if ((csid >0x0095 and csid < 0x00B8)or  csid ==0x0066 or  csid ==0x0067 or csid ==0x0065) then
         player:setVar("Ru-Hmet-TP",1);
     
@@ -264,8 +260,8 @@ end;
 -----------------------------------    
 
 function onEventFinish(player,csid,option)    
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0065 and option == 1) then
         player:setPos(540,-1,-499.900,62,0x24);
