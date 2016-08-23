@@ -3,35 +3,27 @@
 -----------------------------------
 
 STATIC = -1; -- Just so shop NPC scripts have something to check against. Not sent to core.
-
--- Tables for nations currently commented out due to potential conflicts with Conquest system and player nation checks.
--- They can be reintroduced when the scripts expect them and/or don't overwrite their value.
---  SANDORIA =
---  {
---      ['full_name'] = "San d' Oria",
---      ['mission_log']= 0,
---      ['quest_log']= 0,
---      ['fame_area']= 0
---  };
---  BASTOK =
---  {
---      ['full_name'] = "Bastok",
---      ['mission_log']= 1,
---      ['quest_log']= 1,
---      ['fame_area']= 1
---  };
---  WINDURST =
---  {
---      ['full_name'] = "Windurst",
---      ['mission_log']= 2,
---      ['quest_log']= 2,
---      ['fame_area']= 2
---  };
-
-SANDORIA = 0;
-BASTOK = 1;
-WINDURST = 2;
-
+SANDORIA =
+{
+    ['full_name'] = "San d' Oria",
+    ['mission_log']= 0,
+    ['quest_log']= 0,
+    ['fame_area']= 0
+};
+BASTOK =
+{
+    ['full_name'] = "Bastok",
+    ['mission_log']= 1,
+    ['quest_log']= 1,
+    ['fame_area']= 1
+};
+WINDURST =
+{
+    ['full_name'] = "Windurst",
+    ['mission_log']= 2,
+    ['quest_log']= 2,
+    ['fame_area']= 2
+};
 JEUNO =
 {
     ['full_name'] = "Jeuno",
