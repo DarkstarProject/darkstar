@@ -2,8 +2,8 @@
 --  Area: Lower Jeuno
 --  NPC: Subash
 --  Type: Item Deliverer
---  @zone: 245
---  @pos -19.84    -0.101    -38.081
+--  @zone 245
+-- @pos -19.84    -0.101    -38.081
 --
 -----------------------------------
 
@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 

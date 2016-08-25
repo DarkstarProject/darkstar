@@ -2,8 +2,8 @@
 --  Area: Ru'Lude Gardens
 --   NPC: Rainhard
 --  Type: Standard NPC
--- @zone: 243
---  @pos -2.397 -5.999 68.749
+-- @zone 243
+-- @pos -2.397 -5.999 68.749
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

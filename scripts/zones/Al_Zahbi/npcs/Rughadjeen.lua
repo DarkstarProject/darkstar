@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Rughadjeen
 --  Type: Skyserpent General
--- @zone: 48
---  @pos -74.150 -7 70.656
+-- @zone 48
+-- @pos -74.150 -7 70.656
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

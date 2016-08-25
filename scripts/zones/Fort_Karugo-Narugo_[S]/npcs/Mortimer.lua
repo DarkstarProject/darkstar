@@ -2,8 +2,8 @@
 --  Area: Fort Karugo Narugo [S]
 --  NPC: Mortimer
 --  Type: Item Deliverer
---  @zone: 96
---  @pos -24.08    -68.508    93.88
+--  @zone 96
+-- @pos -24.08    -68.508    93.88
 --
 -----------------------------------
 

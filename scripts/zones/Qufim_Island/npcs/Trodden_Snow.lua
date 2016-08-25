@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
     
         if (trade:getItemCount() == 1 and trade:hasItemQty(item,1)) then
             player:tradeComplete();
-        player:startEvent(0x002c);
+    player:startEvent(0x002c);
     end
     end
 end;
@@ -73,7 +73,7 @@ function onTrigger(player,npc)
         
         if (completedSeals >= 3) then
             player:setVar("ASA_Status", completedSeals);
-            player:startEvent(0x002d);
+        player:startEvent(0x002d);
         end;
     end
 end;
@@ -93,7 +93,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
-        -- printf("RESULT: %u",option);
+    -- printf("RESULT: %u",option);
     
      if (csid==0x002c) then
             player:addKeyItem(DOMINAS_SCARLET_SEAL);

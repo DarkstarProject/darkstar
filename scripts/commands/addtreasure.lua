@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @addtreasure <itemId> <target player/party/alliance>
+-- func: addtreasure <itemId> <target player/party/alliance>
 -- desc: Adds an item directly to the treasure pool.
 ---------------------------------------------------------------------------------------------------
 

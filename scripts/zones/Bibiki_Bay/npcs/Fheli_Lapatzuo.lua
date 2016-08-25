@@ -2,7 +2,7 @@
 --  Area: Bibiki Bay
 --  NPC:  Fheli Lapatzuo
 --  Type: Manaclipper
---  @pos 488.793 -4.003 709.473 4
+-- @pos 488.793 -4.003 709.473 4
 -----------------------------------
 
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;

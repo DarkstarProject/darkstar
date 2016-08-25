@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
         return MSGBASIC_REQUIRES_A_PET,0;
-   elseif (player:getPetID() ~= 48) then
+   elseif (player:getPetID() ~= PET_WYVERN) then
       return MSGBASIC_NO_EFFECT_ON_PET,0;
     else
       return 0,0;

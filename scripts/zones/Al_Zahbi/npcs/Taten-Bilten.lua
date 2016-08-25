@@ -2,7 +2,7 @@
 --  Area: Al Zahbi
 --  NPC: Taten-Bilten
 --  Guild Merchant NPC: Clothcraft Guild
---  @pos 71.598 -6.000 -56.930 48
+-- @pos 71.598 -6.000 -56.930 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Lamepaue
 --  Type: Past Event Watcher
--- @zone: 235
---  @pos -172.136 -5 -69.632
+-- @zone 235
+-- @pos -172.136 -5 -69.632
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;

@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --   NPC: Nokkhi Jinjahl
 --  Type: Travelling Merchant NPC / NPC Quiver Maker / Windurst 1st Place
--- @zone: 241
---  @pos 3.306 0.84 -41.601
+-- @zone 241
+-- @pos 3.306 0.84 -41.601
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

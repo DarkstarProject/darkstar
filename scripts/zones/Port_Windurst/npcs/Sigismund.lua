@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: To Catch a Falling Star
 --    Working 100%
 --  @zone = 240
---  @pos = -110 -10 82
+-- @pos = -110 -10 82
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

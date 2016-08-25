@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Prillaure
 --  Type: Event Scene Replayer
---  @pos -143.000 0.999 9.000 50
+-- @pos -143.000 0.999 9.000 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

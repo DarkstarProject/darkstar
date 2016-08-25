@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  Glowing Pebbles
 --  Type: Involved in Quest
---  @pos 
+-- @pos 
 --  player:startEvent(0x006a); Left over Cutscene
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;

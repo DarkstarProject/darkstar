@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Mhaura
---    NPC: Lacia
---    Starts Quest: Trial Size Trial By Lightning
+-- Area: Mhaura
+-- NPC: Lacia
+-- Starts Quest: Trial Size Trial By Lightning
 --  The "TrialSizeLightning_date" still needs to be set at the BCNM/Mob level to reflect defeat by the Avatar
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x2729 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork 
@@ -84,6 +84,3 @@ function onEventFinish(player,csid,option)
         toCloisterOfStorms(player);
     end    
 end;
-
-
-

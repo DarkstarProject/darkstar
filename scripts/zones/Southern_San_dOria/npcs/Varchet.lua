@@ -2,7 +2,7 @@
 --  Area: Southern San d'Oria
 --  NPC:  Varchet
 --  Type: NPC
---  @pos 116.484 -1 91.554 230
+-- @pos 116.484 -1 91.554 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

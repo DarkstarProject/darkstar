@@ -2,7 +2,7 @@
 --  Area: Norg
 --   NPC: Jirokichi
 --  Type: Tenshodo Merchant
---  @pos -1.463 0.000 18.846 252
+-- @pos -1.463 0.000 18.846 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

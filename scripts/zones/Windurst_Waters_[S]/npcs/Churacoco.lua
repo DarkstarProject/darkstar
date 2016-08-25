@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Churacoco
 --  Type: Standard NPC
--- @zone: 94
---  @pos -76.139 -4.499 20.986
+-- @zone 94
+-- @pos -76.139 -4.499 20.986
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

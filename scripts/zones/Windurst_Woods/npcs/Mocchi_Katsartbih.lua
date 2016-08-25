@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --   NPC: Mocchi Katsartbih
 --  Type: Standard NPC
--- @zone: 241
---  @pos -13.225 -4.888 -164.108
+-- @zone 241
+-- @pos -13.225 -4.888 -164.108
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

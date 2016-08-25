@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  Rubious Crystal (West Tower) 
---  @pos -683.709 -6.250 -222.142 33
+-- @pos -683.709 -6.250 -222.142 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

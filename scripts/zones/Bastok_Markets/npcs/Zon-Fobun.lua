@@ -2,8 +2,8 @@
 -- Area: Bastok Markets
 --   NPC: Zon-Fobun
 --  Type: Quest Giver
--- @zone: 235
---  @pos -241.293 -3 63.406
+-- @zone 235
+-- @pos -241.293 -3 63.406
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 function onEventFinish(player,csid,option)
     
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00fb) then
         player:addQuest(BASTOK,THE_CURSE_COLLECTOR);

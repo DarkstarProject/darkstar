@@ -24,12 +24,11 @@ function onTrade(player,npc,trade)
         end
     end
 
--- "Flyers for Regine" conditional script
-count = trade:getItemCount();
+    -- "Flyers for Regine" conditional script    local count = trade:getItemCount();
 MagicFlyer = trade:hasItemQty(532,1);
 
     if (MagicFlyer == true and count == 1) then
-        FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

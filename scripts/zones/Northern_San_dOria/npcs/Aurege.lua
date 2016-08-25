@@ -3,8 +3,8 @@
 --  NPC: Aurege
 --  Type: Quest Giver NPC
 --  Starts Quest: Exit the Gambler
---  @zone: 231
---  @pos -156.253 11.999 253.691
+--  @zone 231
+-- @pos -156.253 11.999 253.691
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");

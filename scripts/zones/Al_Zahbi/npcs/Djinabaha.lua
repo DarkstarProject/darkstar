@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Djinabaha
 --  Type: AH Manager
--- @zone: 48
---  @pos -17.661 -1 -117.352
+-- @zone 48
+-- @pos -17.661 -1 -117.352
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

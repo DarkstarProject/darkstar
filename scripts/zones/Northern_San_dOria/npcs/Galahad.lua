@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Galahad
 --  Type: Consulate Representative NPC
---  @zone: 231
---  @pos -51.984 -2.000 -15.373
+--  @zone 231
+-- @pos -51.984 -2.000 -15.373
 --
 -----------------------------------
 

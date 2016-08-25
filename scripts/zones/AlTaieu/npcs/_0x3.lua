@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  Rubious Crystal (East Tower)
---  @pos 683.718 -6.250 -222.167 33
+-- @pos 683.718 -6.250 -222.167 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,8 @@
 --  Area: Metalworks
 --   NPC: Taulluque
 --  Type: Past Event Watcher
--- @zone: 237
---  @pos 39.907 -14.999 -21.083
+-- @zone 237
+-- @pos 39.907 -14.999 -21.083
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

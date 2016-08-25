@@ -2,8 +2,8 @@
 --  Area: Upper Jeuno
 --   NPC: Mhao Kehtsoruho
 --  Type: Past Event Watcher
--- @zone: 244
---  @pos -73.032 -1 146.919
+-- @zone 244
+-- @pos -73.032 -1 146.919
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

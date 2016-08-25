@@ -2,7 +2,7 @@
 --  Area: Bastok Markets
 --   NPC: Offa
 --  Type: Quest NPC
---  @pos -281.628 -16.971 -140.607 235
+-- @pos -281.628 -16.971 -140.607 235
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

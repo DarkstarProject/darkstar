@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC: Vemalpeau
+-- Area: Southern San d'Oria
+-- NPC: Vemalpeau
 -- Involved in Quests: Under Oath
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -16,8 +16,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 ----------------------------------- 
 
 function onTrade(player,npc,trade)
--- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    -- "Flyers for Regine" conditional script
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -52,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x007) then
         player:setVar("UnderOathCS", 1)
@@ -75,7 +74,3 @@ function onEventFinish(player,csid,option)
     end
     
 end;
-
-
-
-

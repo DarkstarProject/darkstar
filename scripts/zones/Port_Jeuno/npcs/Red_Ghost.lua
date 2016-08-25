@@ -25,8 +25,6 @@ local path = {
 -96.254066, 0.001000, 8.195477,
 -96.567200, 0.001000, -7.685426
 };
-
-
 function onSpawn(npc)
     npc:initNpcAi();
     npc:setPos(pathfind.first(path));
@@ -65,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option,npc)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 314) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true);
     end

@@ -2,8 +2,8 @@
 --  Area: Upper Jeuno
 --   NPC: Zekobi-Morokobi
 --  Type: Standard NPC
--- @zone: 244
---  @pos 41.258 -5.999 -74.105
+-- @zone 244
+-- @pos 41.258 -5.999 -74.105
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

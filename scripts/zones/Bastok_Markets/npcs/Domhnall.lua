@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Domhnall
 --  Type: Standard Info NPC
--- @zone: 235
---  @pos -104.611 -5.825 -81.531
+-- @zone 235
+-- @pos -104.611 -5.825 -81.531
 --
 -- Auto-Script: Requires Verification. Verfied standard dialog - thrydwolf 12/8/2011
 -----------------------------------

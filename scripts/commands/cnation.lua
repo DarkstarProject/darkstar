@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @cnation <target> <campaign allegiance>
+-- func: cnation <target> <campaign allegiance>
 -- desc: check or alter target characters campaign allegiance
 ---------------------------------------------------------------------------------------------------
 

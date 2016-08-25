@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC:  Alphollon C Meriard
 -- Type: Purifies cursed items with their corresponding abjurations.
--- @zone: 231
+-- @zone 231
 -- @pos 98.108 -1 137.999
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -67,8 +67,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x02d0 and player:getVar("reward") ~= 0) then
         reward = player:getVar("reward");

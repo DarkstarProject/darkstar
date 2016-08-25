@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 -- NPC: Strange Apparatus
--- @pos: 104 0 -179 195
+-- @pos 104 0 -179 195
 -----------------------------------
 
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;

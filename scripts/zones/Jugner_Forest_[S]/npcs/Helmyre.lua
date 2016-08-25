@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  Helmyre
 --  Type: Chocobo Renter
---  @pos -120.853 -1 -152.582 82
+-- @pos -120.853 -1 -152.582 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------

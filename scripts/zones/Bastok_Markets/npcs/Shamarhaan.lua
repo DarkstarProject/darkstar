@@ -3,8 +3,8 @@
 --  NPC: Shamarhaan
 --  Type: Quest Starter
 --  Involved in quest: No Strings Attached
---  @zone: 235
---  @pos -285.382 -13.021 -84.743
+--  @zone 235
+-- @pos -285.382 -13.021 -84.743
 --
 --  Auto-Script: Requires Verification.  Verified standard dialog - thrydwolf 12/8/2011
 -----------------------------------
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x01b2) then
         player:setVar("NoStringsAttachedProgress",1);

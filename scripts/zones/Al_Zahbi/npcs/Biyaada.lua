@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Biyaada
 --  Type: Rughadjeen's Attendant
--- @zone: 48
---  @pos -65.802 -6.999 69.273
+-- @zone 48
+-- @pos -65.802 -6.999 69.273
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

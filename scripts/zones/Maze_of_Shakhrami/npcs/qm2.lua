@@ -2,7 +2,7 @@
 --  Area: Maze of Shakhrami
 --  NPC:  qm2
 --  Type: Quest NPC
---  @pos 143 9 -219 198
+-- @pos 143 9 -219 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------

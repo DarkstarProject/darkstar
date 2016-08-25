@@ -2,8 +2,8 @@
 --  Area: Kazham
 --   NPC: Gatih Mijurabi
 --  Type: Standard NPC
--- @zone: 250
---  @pos 58.249 -13.086 -49.084
+-- @zone 250
+-- @pos 58.249 -13.086 -49.084
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

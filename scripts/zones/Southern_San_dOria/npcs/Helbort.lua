@@ -3,7 +3,7 @@
 --  NPC: Helbort
 --  Starts and Finished Quest: A purchase of Arms
 --  @zone 230
---  @pos  71 -1 65
+-- @pos  71 -1 65
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

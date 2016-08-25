@@ -2,7 +2,7 @@
 --  Area: Nashmau
 --  NPC:  Fhe Maksojha
 --  Type: Standard NPC
---  @pos 19.084 -7 71.287 53
+-- @pos 19.084 -7 71.287 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

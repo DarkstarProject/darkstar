@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Balthilda
 --  Type: Merchant
--- @zone: 235
---  @pos -300 -10 -161
+-- @zone 235
+-- @pos -300 -10 -161
 --
 -- NPC not found in 'npc_list'
 --

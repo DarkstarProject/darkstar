@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Khea Mhyyih
 --  Type: Standard NPC
--- @zone: 94
---  @pos -53.927 -4.499 56.215
+-- @zone 94
+-- @pos -53.927 -4.499 56.215
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

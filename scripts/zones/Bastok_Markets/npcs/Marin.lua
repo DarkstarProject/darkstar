@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Marin
 --  Type: Quest Giver
--- @zone: 235
---  @pos -340.060 -11.003 -148.181
+-- @zone 235
+-- @pos -340.060 -11.003 -148.181
 --
 -- Auto-Script: Requires Verification. Verified standard dialog is also "All By Myself" repeatable quest. - thrydwolf 12/18/2011
 -----------------------------------

@@ -2,8 +2,8 @@
 -- Area: Windurst Walls
 --   NPC: Yoran-Oran
 --  Type: Standard NPC
--- @zone: 239
---  @pos -109.987 -14 203.338
+-- @zone 239
+-- @pos -109.987 -14 203.338
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -117,8 +117,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -126,8 +126,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x00f9) then
         player:addQuest(WINDURST,MANDRAGORA_MAD);
     elseif (csid == 0x01D5) then

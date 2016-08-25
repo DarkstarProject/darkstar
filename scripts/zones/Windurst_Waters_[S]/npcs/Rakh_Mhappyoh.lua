@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Rakh Mhappyoh
 --  Type: Standard NPC
--- @zone: 94
---  @pos -55.989 -4.5 48.365
+-- @zone 94
+-- @pos -55.989 -4.5 48.365
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

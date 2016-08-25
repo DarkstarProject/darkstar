@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x0077 and option == 1) then 
         player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);
@@ -101,6 +101,4 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
 

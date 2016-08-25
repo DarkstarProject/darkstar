@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Pebul-Tabul
 --  Type: Standard NPC
--- @zone: 94
---  @pos -68.500 -4.5 3.694
+-- @zone 94
+-- @pos -68.500 -4.5 3.694
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

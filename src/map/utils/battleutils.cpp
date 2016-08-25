@@ -3899,7 +3899,6 @@ namespace battleutils
         //IT				30 seconds	guess
 
         uint32 CharmTime = 0;
-        uint32 base = 0;
 
         // player charming mob
         if (PVictim->objtype == TYPE_MOB && PCharmer->objtype == TYPE_PC)
@@ -3921,31 +3920,24 @@ namespace battleutils
 
             if (baseExp >= 400) {//IT
                 CharmTime = 22500;
-                base = 90;
             }
             else if (baseExp >= 240) {//VT
                 CharmTime = 45000;
-                base = 75;
             }
             else if (baseExp >= 120) {//T
                 CharmTime = 90000;
-                base = 60;
             }
             else if (baseExp == 100) {//EM
                 CharmTime = 180000;
-                base = 40;
             }
             else if (baseExp >= 75) {//DC
                 CharmTime = 600000;
-                base = 30;
             }
             else if (baseExp >= 15) {//EP
                 CharmTime = 1200000;
-                base = 20;
             }
             else if (baseExp == 0) {//TW
                 CharmTime = 1800000;
-                base = 10;
             }
 
             //apply charm time extension from gear
@@ -3960,8 +3952,7 @@ namespace battleutils
                 CharmTime *= dsprand::GetRandomNumber(0.75f, 1.25f);
             }
 
-
-            if (TryCharm(PCharmer, PVictim, base) == false)
+            if (TryCharm(PCharmer, PVictim) == false)
             {
                 //player failed to charm mob - agro mob
                 battleutils::ClaimMob(PVictim, PCharmer);
@@ -4043,11 +4034,11 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	calculate if charm is successful                                    *
+    *	Returns the percentage chance that one entity has to charm another. *
     *                                                                       *
     ************************************************************************/
 
-    bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim, uint32 base)
+    float GetCharmChance(CBattleEntity* PCharmer, CBattleEntity* PTarget, bool includeCharmAffinityAndChanceMods)
     {
         //---------------------------------------------------------
         //	chance of charm is based on:
@@ -4056,39 +4047,107 @@ namespace battleutils
         //  -charmers BST level (not main level)
         //
         //  -75 with a BST SJ lvl10 will struggle on EP
-        //	-75 with a BST SJ lvl75 will not - thats player has bst leveled to 75 and is using it as SJ
+        //	-75 with a BST SJ lvl75 will not - this player has bst leveled to 75 and is using it as SJ
         //---------------------------------------------------------
-
+        
+        float charmChance = 0.0f;
+        
+        if (PCharmer == nullptr || PTarget == nullptr)
+            return charmChance;
+            
+        // Can the target even be charmed?
+        auto PTargetAsMob = dynamic_cast<CMobEntity*>(PTarget);
+        if (PTargetAsMob)
+        {
+            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS || 
+                PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) == 0 ||
+                PTargetAsMob->PMaster != nullptr) 
+            {
+                // 0% chance to charm an NM, non-charmable mob, or pet
+                return charmChance;
+            }
+        }
+        
+        uint8 charmerLvl = PCharmer->GetMLevel();
+        uint8 targetLvl = PTarget->GetMLevel();
+        
+        //printf("Charmer = %s, Lvl. %u\n", PCharmer->name.c_str(), charmerLvl);
+        //printf("Target = %s, Lvl. %u\n", PTarget->name.c_str(), targetLvl);
+        
+        uint32 base = 0;
+        uint16 baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
+    
+        //printf("baseExp = %u\n", baseExp);
+        if (baseExp >= 400) // IT 
+            base = 90;
+        else if (baseExp >= 240) // VT
+            base = 75;
+        else if (baseExp >= 120) // T
+            base = 60;
+        else if (baseExp == 100) // EM
+            base = 40;
+        else if (baseExp >= 75) // DC
+            base = 30;
+        else if (baseExp >= 15) // EP
+            base = 20;
+        else if (baseExp == 0) // TW
+            base = 10;
+        
         uint8 charmerBSTlevel = 0;
-
+    
         if (PCharmer->objtype == TYPE_PC)
-            charmerBSTlevel = ((CCharEntity*)PCharmer)->jobs.job[JOB_BST];
-
+            charmerBSTlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BST];
         else if (PCharmer->objtype == TYPE_MOB)
-            charmerBSTlevel = PCharmer->GetMLevel();
-
-
-        float check = base;
-
-        float levelRatio = (float)(PVictim->GetMLevel()) / charmerBSTlevel;
-        check *= levelRatio;
-
-        float chrRatio = (float)PVictim->CHR() / PCharmer->CHR();
-        check *= chrRatio;
-
-        float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
-        // NQ elemental staves have 2 affinity, HQ have 3 affinity. Boost is 10/15% respectively so multiply by 5.
-        float charmAffintyMods = 5 * (PCharmer->getMod(MOD_LIGHT_AFFINITY_ACC));
-        check *= ((float)((100.0f - charmChanceMods - charmAffintyMods) / 100.0f));
-
-
-        //cap chance at 95%
-        if (check < 5) {
-            check = 5;
+            charmerBSTlevel = charmerLvl;
+    
+        //printf("base = %u\n", base);
+        charmChance = base;
+    
+        float levelRatio = float(targetLvl) / charmerBSTlevel;
+        charmChance *= levelRatio;
+        //printf("levelRatio = %f\n", levelRatio);
+    
+        float chrRatio = float(PTarget->CHR()) / PCharmer->CHR();
+        charmChance *= chrRatio;
+        //printf("chrRatio = %f\n", chrRatio);
+    
+        // Retail doesn't take light/apollo into account for Gauge
+        if (includeCharmAffinityAndChanceMods)
+        {
+            // NQ elemental staves have 2 affinity, HQ have 3 affinity. Boost is 10/15% respectively so multiply by 5.
+            float charmAffintyMods = 5 * (PCharmer->getMod(MOD_LIGHT_AFFINITY_ACC));
+            float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
+        
+            charmChance *= ((float)((100.0f - charmChanceMods - charmAffintyMods) / 100.0f));
         }
-        if (check < dsprand::GetRandomNumber(100)) {
+    
+        // Cap chance at 95%
+        if (charmChance < 5) 
+            charmChance = 5;
+            
+        charmChance = 100 - charmChance;
+        
+        if (charmChance < 0)
+            charmChance = 0;
+        else if (charmChance > 100)
+            charmChance = 100;
+            
+        return charmChance;
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *	calculate if charm is successful                                    *
+    *                                                                       *
+    ************************************************************************/
+
+    bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
+    {
+        float charmChance = GetCharmChance(PCharmer, PVictim);
+        
+        if (charmChance >= dsprand::GetRandomNumber(100)) 
             return true;
-        }
+        
         return false;
     }
 

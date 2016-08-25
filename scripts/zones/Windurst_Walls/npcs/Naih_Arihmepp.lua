@@ -2,7 +2,7 @@
 --  Area: Windurst Walls
 --  NPC:  Naih Arihmepp
 --  Type: Standard NPC
---  @pos -64.578 -13.465 202.147 239
+-- @pos -64.578 -13.465 202.147 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------

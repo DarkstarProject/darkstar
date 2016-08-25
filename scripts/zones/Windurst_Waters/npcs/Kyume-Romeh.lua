@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Kyume-Romeh
+-- Area: Windurst Waters
+-- NPC:  Kyume-Romeh
 --  Involved In Quest: Making Headlines, Hat in Hand
---  @pos -58 -4 23 238
+-- @pos -58 -4 23 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -40,12 +40,12 @@ function onTrigger(player,npc)
         player:startEvent(0x003c); -- Show Off Hat
     elseif (MakingHeadlines == 1) then
         local prog = player:getVar("QuestMakingHeadlines_var");
-        --     Variable to track if player has talked to 4 NPCs and a door
-        --     1 = Kyume
-        --    2 = Yujuju
-        --    4 = Hiwom
-        --    8 = Umumu
-        --    16 = Mahogany Door
+        --  Variable to track if player has talked to 4 NPCs and a door
+        --  1 = Kyume
+        -- 2 = Yujuju
+        -- 4 = Hiwom
+        -- 8 = Umumu
+        -- 16 = Mahogany Door
         if (testflag(tonumber(prog),1) == false) then
             player:startEvent(0x029c); -- Quest progress
         else
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x029c) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(WINDURST_WATERS_SCOOP);

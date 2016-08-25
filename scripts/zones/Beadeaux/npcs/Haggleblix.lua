@@ -2,7 +2,7 @@
 --  Area: Beadeaux
 --  NPC:  Haggleblix
 --  Type: Dynamis NPC
---  @pos -255.847 0.595 106.485 147
+-- @pos -255.847 0.595 106.485 147
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------

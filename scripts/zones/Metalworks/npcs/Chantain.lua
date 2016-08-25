@@ -2,8 +2,8 @@
 --  Area: Metalworks
 --   NPC: Chantain
 --  Type: Consulate Representative
--- @zone: 237
---  @pos 21.729 -17 -30.888
+-- @zone 237
+-- @pos 21.729 -17 -30.888
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

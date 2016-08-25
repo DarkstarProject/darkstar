@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Yahsra
 --  Type: Assault Mission Giver
---  @pos 120.967 0.161 -44.002 50
+-- @pos 120.967 0.161 -44.002 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
