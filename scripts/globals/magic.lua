@@ -467,7 +467,7 @@ function getEffectResistance(target, effect)
         effectres = MOD_LULLABYRES;
     elseif (effect == EFFECT_POISON) then
         effectres = MOD_POISONRES;
-    elseif (effect == EFFECT_PARALYZE) then
+    elseif (effect == EFFECT_PARALYSIS) then
         effectres = MOD_PARALYZERES;
     elseif (effect == EFFECT_BLINDNESS) then
         effectres = MOD_BLINDRES
