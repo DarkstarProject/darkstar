@@ -82,6 +82,6 @@ function onMobDespawn(mob)
     -- Despawn his minions if they are alive (Qn'aern)
     DespawnMob(mob:getID()+1);
     DespawnMob(mob:getID()+2);
-    local QuestionMark = 16916819; -- The ??? that spawned this mob.
+    local QuestionMark = GetNPCByID(16916819); -- The ??? that spawned this mob.
     QuestionMark:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;
