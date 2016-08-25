@@ -403,7 +403,10 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     magicacc = magicacc + bonusAcc;
 
-    return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getMainLvl(), target:getMainLvl());
+    if (caster:getMaxSkillLevel(skillType,caster:getMainJob(),caster:getMainlvl()) == 0) --player is using a subjob spell
+        return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getSubLvl(), target:getMainLvl()); --use subjob for resist
+    else
+        return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getMainLvl(), target:getMainLvl());  --this is a main job skill, use main job level
 end
 
 function calculateMagicHitRate(magicacc, magiceva, percentBonus, casterLvl, targetLvl)
