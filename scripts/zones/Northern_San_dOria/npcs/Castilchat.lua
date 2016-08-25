@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:hasItemQty(532,1) and count == 1) then
         player:messageSpecial(FLYER_REFUSED);
-    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN andlocal count == 1) then -- Trade mini fork of ice
+    elseif (trade:hasItemQty(1545,1) and player:getQuestStatus(SANDORIA,TRIAL_SIZE_TRIAL_BY_ICE) == QUEST_ACCEPTED and player:getMainJob() == JOBS.SMN and count == 1) then -- Trade mini fork of ice
         player:startEvent(0x02de,0,1545,4,20);
     end
     
