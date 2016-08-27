@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(DERFLAND);
-    if (RegionOwner ~= BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then 
         player:showText(npc,BELKA_CLOSED_DIALOG);
     else
         player:showText(npc,BELKA_OPEN_DIALOG);

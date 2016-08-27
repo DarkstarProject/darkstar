@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         0x3002,   556,3,      --Maple Shield
         0x3001,   110,3      --Lauan Shield
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

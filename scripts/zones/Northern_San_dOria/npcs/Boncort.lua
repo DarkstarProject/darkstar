@@ -47,7 +47,7 @@ function onTrigger(player,npc)
         0x119d,10,3,    --Distilled Water 
         0x138F,163,3    --Scroll of Sword Madrigal 
     }
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 end; 
 
 -----------------------------------

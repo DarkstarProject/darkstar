@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
-    if (RegionOwner ~= WINDURST) then 
+    if (RegionOwner ~= NATION_WINDURST) then 
         player:showText(npc,FOMINA_CLOSED_DIALOG);
     else
         player:showText(npc,FOMINA_OPEN_DIALOG);

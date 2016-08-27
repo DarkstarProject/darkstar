@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         0x1036,  2387,3,     --Eye Drops
         0x1034,   290,3      --Antidote
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

@@ -55,7 +55,7 @@ function onTrigger(player,npc)
              0x4097,241,3,        --Bronze Sword
              0x40b5,1674,3}        --Spatha
      
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

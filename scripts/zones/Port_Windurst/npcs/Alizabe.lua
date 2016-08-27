@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
     if (cop >= 40) then
-        if (RegionOwner ~= WINDURST) then 
+        if (RegionOwner ~= NATION_WINDURST) then 
             player:showText(npc,ALIZABE_CLOSED_DIALOG);
         else
             player:showText(npc,ALIZABE_OPEN_DIALOG);

@@ -53,7 +53,7 @@ function onTrigger(player,npc)
              0x119d,10,3,    --Distilled Water
              0x1472,198,3}    --Cibol
      
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

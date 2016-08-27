@@ -96,7 +96,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",2);
     elseif (csid == 42) then
         -- This cs should only play if you visit Windurst first.
-        if (player:getNation() == SANDORIA) then
+        if (player:getNation() == NATION_SANDORIA) then
             player:setVar("MissionStatus",4);
         else
             player:setVar("MissionStatus",3);

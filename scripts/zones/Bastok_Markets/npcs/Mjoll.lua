@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         0x43B8,     3,3,     --Crossbow Bolt
         0x43B9,    21,3,     --Mythril Bolt
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

@@ -203,8 +203,8 @@ function onEventFinish( player, csid, option)
         player:addItem( 14096);
         player:messageSpecial( ITEM_OBTAINED, 14096); -- Chaos Sollerets
         player:setVar( "darkPuppetCS", 0);
-        player:addFame( BASTOK, AF2_FAME);
-        player:completeQuest( BASTOK,DARK_PUPPET);
+        player:addFame(BASTOK, AF2_FAME);
+        player:completeQuest(BASTOK,DARK_PUPPET);
     end
 end;
 

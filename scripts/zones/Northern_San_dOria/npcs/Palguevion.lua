@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(VALDEAUNIA);
 
-if (RegionOwner ~= SANDORIA) then 
+if (RegionOwner ~= NATION_SANDORIA) then 
     player:showText(npc,PALGUEVION_CLOSED_DIALOG);
 else
     player:showText(npc,PALGUEVION_OPEN_DIALOG);

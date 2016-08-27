@@ -37,7 +37,7 @@ function onTrigger(player,npc)
 
     local RegionOwner = GetRegionOwner(VOLLBOW);
 
-    if (RegionOwner ~= SANDORIA) then 
+    if (RegionOwner ~= NATION_SANDORIA) then 
         player:showText(npc,MILLECHUCA_CLOSED_DIALOG);
     else
         player:showText(npc,MILLECHUCA_OPEN_DIALOG);

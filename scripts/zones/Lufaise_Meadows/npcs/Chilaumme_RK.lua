@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
 
-local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = TAVNAZIANARCH;
 local csid        = 0x7ffa;

@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         0x0280,    10,3,     --Copper Ore
         0x0088,  1800,3      --Kaiserin Cosmetics
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end; 
 

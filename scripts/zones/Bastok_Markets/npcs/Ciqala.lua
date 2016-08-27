@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         0x42C0,    57,3,     --Ash Staff
         0x42C7,   386,3      --Ash Pole
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         0x3388,   382,3,     --Leather Belt
         0x338C, 10166,3      --Silver Belt
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

@@ -49,7 +49,7 @@ function onTrigger(player,npc)
             0x43C1,    43,3,     --Flute
             0x13B5, 54000,3      --Scroll of Bewitching Etude
         }
-        showNationShop(player, BASTOK, stock);
+        showNationShop(player, NATION_BASTOK, stock);
 
     end;
 end; 

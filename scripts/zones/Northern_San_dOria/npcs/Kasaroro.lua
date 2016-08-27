@@ -32,7 +32,7 @@ end;
 function onTrigger(player,npc)
     
     pNation = player:getNation();
-    if (pNation == WINDURST) then
+    if (pNation == NATION_WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
     

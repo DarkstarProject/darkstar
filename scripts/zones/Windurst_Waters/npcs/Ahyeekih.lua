@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(KOLSHUSHU);
-    if (RegionOwner ~= WINDURST) then
+    if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
     else
         player:showText(npc,AHYEEKIH_OPEN_DIALOG);

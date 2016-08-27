@@ -37,9 +37,9 @@ function onTrigger(player,npc)
     else
         local pNation = player:getNation();
 
-        if (pNation == SANDORIA) then
+        if (pNation == NATION_SANDORIA) then
             player:startEvent(580);
-        elseif (pNation == WINDURST) then
+        elseif (pNation == NATION_WINDURST) then
             player:startEvent(579);
         else
             player:startEvent(539);

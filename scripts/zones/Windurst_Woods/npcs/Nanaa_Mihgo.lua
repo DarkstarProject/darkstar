@@ -125,7 +125,7 @@ function onTrigger(player,npc)
         
         
         -- Rock Racketeer (listed as ROCK_RACKETTER in quests.lua)
-        elseif (MihgosAmigo == QUEST_COMPLETED and RockRacketeer == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
+        elseif (MihgosAmigo == QUEST_COMPLETED and RockRacketeer == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 3) then
             if (player:needToZone()) then
                 player:startEvent(0x0059); -- Mihgos Amigo complete text
             else

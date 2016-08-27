@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         0x43B8,     5,3,     --Crossbow Bolt
         0x1391,  2649,3      --Scroll of Hunter's Prelude
     }
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end; 
 

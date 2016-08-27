@@ -54,7 +54,7 @@ function onTrigger(player,npc)
              0x1387,5148,3,  --Scroll of Knight's Minne III
              0x0927,1984,3}  --La Theine Millet
      
-    showNationShop(player, SANDORIA, stock);
+    showNationShop(player, NATION_SANDORIA, stock);
 
 end; 
 

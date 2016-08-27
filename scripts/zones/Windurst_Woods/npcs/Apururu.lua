@@ -107,7 +107,7 @@ local MissionStatus = player:getVar("MissionStatus");
             end
         
     -- Can Cardians Cry?
-    elseif (ANC3K == QUEST_COMPLETED and C3 == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 5) then
+    elseif (ANC3K == QUEST_COMPLETED and C3 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 5) then
         player:startEvent(0x013F,0,6000); -- start C3
     elseif (C3 == QUEST_ACCEPTED) then
         player:startEvent(0x0140,0,6000); -- C3 reminder

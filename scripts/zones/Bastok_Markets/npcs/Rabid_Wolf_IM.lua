@@ -16,7 +16,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Bastok_Markets/TextIDs");
 
-local guardnation = BASTOK; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;      -- 1: city, 2: foreign, 3: outpost, 4: border
 local size        = table.getn(BastInv);
 local inventory   = BastInv;
