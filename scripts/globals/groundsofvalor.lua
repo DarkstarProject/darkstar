@@ -241,6 +241,14 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     local tabs = player:getCurrency("valor_point");
     local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
     local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
+    local fov_repeat = bit.band(option, 0x80000000);
+    
+    if (fov_repeat ~= 0) then
+        fov_repeat = 1;
+    end
+    
+    option = bit.band(option, 0x7FFFFFFF);
+    
 -- ================= FIELD SUPPORT ============================================
     if (option == GOV_MENU_REPATRIATION) then -- Send to home nation
         if (tabs >= 50) then
@@ -403,46 +411,37 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         player:setVar("fov_numkilled3",0);
         player:setVar("fov_numkilled4",0);
         player:showText(player,msg_cancel);
+        
     elseif (option == GOV_MENU_PAGE_1) then -- Page 1
-        writeRegime(player,r1,msg_accept,msg_jobs,0);
+        writeRegime(player,r1,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_2) then -- Page 2
-        writeRegime(player,r2,msg_accept,msg_jobs,0);
+        writeRegime(player,r2,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_3) then -- Page 3
-        writeRegime(player,r3,msg_accept,msg_jobs,0);
+        writeRegime(player,r3,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_4) then -- Page 4
-        writeRegime(player,r4,msg_accept,msg_jobs,0);
+        writeRegime(player,r4,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_5) then -- Page 5
-        writeRegime(player,r5,msg_accept,msg_jobs,1);
+        writeRegime(player,r5,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_6) then -- Page 6
-        writeRegime(player,r6,msg_accept,msg_jobs,0);
+        writeRegime(player,r6,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_7) then -- Page 7
-        writeRegime(player,r7,msg_accept,msg_jobs,0);
+        writeRegime(player,r7,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_8) then -- Page 8
-        writeRegime(player,r8,msg_accept,msg_jobs,0);
+        writeRegime(player,r8,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_9) then -- Page 9
-        writeRegime(player,r9,msg_accept,msg_jobs,0);
+        writeRegime(player,r9,msg_accept,msg_jobs, fov_repeat);
+        
     elseif (option == GOV_MENU_PAGE_10) then -- Page 10
-        writeRegime(player,r10,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME1) then -- Page 1 Repeat
-        writeRegime(player,r1,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME2) then -- Page 2 Repeat
-        writeRegime(player,r2,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME3) then -- Page 3 Repeat
-        writeRegime(player,r3,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME4) then -- Page 4 Repeat
-        writeRegime(player,r4,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME5) then -- Page 5 Repeat
-        writeRegime(player,r5,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME6) then -- Page 6 Repeat
-        writeRegime(player,r6,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME7) then -- Page 7 Repeat
-        writeRegime(player,r7,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME8) then -- Page 8 Repeat
-        writeRegime(player,r8,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME9) then -- Page 9 Repeat
-        writeRegime(player,r9,msg_accept,msg_jobs,1);
-    elseif (option == GOV_MENU_REPEAT_REGIME10) then -- Page 10 Repeat
-        writeRegime(player,r10,msg_accept,msg_jobs,1);
+        writeRegime(player,r10,msg_accept,msg_jobs, fov_repeat);
+        
     else
         -- print("opt is "..option);
     end
@@ -475,7 +474,7 @@ end
 
 function checkGoVregime(player,mob,rid,index)
     -- Dead people get no points
-    if (player:getHP() == 0) then
+    if (player == nil or player:getHP() == 0) then
         return;
     end
 
