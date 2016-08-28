@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest Giver
 --  Starts, Involved With, and Finishes Quest: 'A Certain Substitute Patrolman'
 --  @zone 256
--- @pos -154 4 -29
+--  @pos -154 4 -29 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -66,7 +66,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     if (csid == 0x09F6) then
         -- Starting Quest: 'A Certain Substitute Patrolman'
         player:addQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
@@ -79,6 +79,8 @@ function onEventFinish(player,csid,option)
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
         player:messageSpecial(BAYLD_OBTAINED, 500 * BAYLD_RATE);
+        player:delKeyItem(WESTERN_ADOULIN_PATROL_ROUTE);
+        player:addFame(ADOULIN);
         player:setVar("ACSP_NPCs_Visited", 0);
     end
 end;

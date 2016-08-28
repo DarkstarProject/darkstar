@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
     local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
-    local Order_Oka_Qhantari = bit.band(bit.rshift(player:getVar("Order_Up_NPCs"), 9), 1)
+    local Order_Oka_Qhantari = player:getMaskBit(player:getVar("Order_Up_NPCs"), 9);
 
-    if ((Order_Up == QUEST_ACCEPTED) and (Order_Oka_Qhantari < 1)) then
+    if ((Order_Up == QUEST_ACCEPTED) and (not Order_Oka_Qhantari)) then
         -- Progresses Quest: 'Order Up'
         player:startEvent(0x0047);
     else
@@ -46,6 +46,6 @@ end;
 function onEventFinish(player,csid,option)    
     if (csid == 0x0047) then
         -- Progresses Quest: 'Order Up'
-        player:addVar("Order_Up_NPCs", bit.lshift(1, 9));
+        player:setMaskBit("Order_Up_NPCs", 9, true);
     end
 end;
