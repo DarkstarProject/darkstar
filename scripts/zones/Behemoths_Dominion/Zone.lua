@@ -19,8 +19,9 @@ function onInitialize(zone)
     
     SetFieldManual(manuals);
     
-    -- Behemoth
-    SetRespawnTime(17297440, 900, 10800);
+    if (LandKingSystem_NQ ~= 1) then
+        SetRespawnTime(17297440, 900, 10800); -- Behemoth
+    end
 end;
 
 -----------------------------------        
