@@ -15,10 +15,9 @@ require("scripts/zones/Dragons_Aery/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    -- Fafnir
-    SetRespawnTime(17408018, 900, 10800);
-
+    if (LandKingSystem_NQ ~= 1) then
+        SetRespawnTime(17408018, 900, 10800); -- Fafnir
+    end
 end;
 
 -----------------------------------
