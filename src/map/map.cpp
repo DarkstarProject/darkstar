@@ -540,8 +540,7 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         PacketDataSize = zlib_decompress(buff + FFXI_HEADER_SIZE,
             PacketDataSize,
             PacketDataBuff,
-            map_config.buffer_size,
-            zlib_decompress_table);
+            map_config.buffer_size);
 
         // it's making result buff
         // don't need memcpy header
@@ -679,10 +678,10 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
         }
         //Сжимаем данные без учета заголовка
         //Возвращаемый размер в 8 раз больше реальных данных
-        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize, zlib_compress_table);
-        WBUFL(PTempBuff, (PacketSize + 7) / 8) = PacketSize;
+        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize);
+        WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
-        PacketSize = (PacketSize + 7) / 8 + 4;
+        PacketSize = zlib_compressed_size(PacketSize) + 4;
 
         PacketCount /= 2;
     }
