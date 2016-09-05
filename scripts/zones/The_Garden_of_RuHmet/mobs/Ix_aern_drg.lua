@@ -56,9 +56,6 @@ function onMobDeath(mob, player, isKiller)
     DespawnMob(wynavA);
     DespawnMob(wynavB);
     DespawnMob(wynavC);
-
-    -- Pick a new for PH Ix'Aern (DRG)
-    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
 end;
 
 -----------------------------------
