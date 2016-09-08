@@ -4,11 +4,10 @@
 -----------------------------------
 
 -----------------------------------
--- onMobDespawn
+-- onMobSpawn
 -----------------------------------
 
-function onMobDespawn(mob)
-
+function onMobSpawn(mob)
     if (math.random(1,100) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
         SetDropRate(1936,14986,1000); -- Ochimusha Kote
         SetDropRate(1936,16703,0);
@@ -16,6 +15,13 @@ function onMobDespawn(mob)
         SetDropRate(1936,14986,0);
         SetDropRate(1936,16703,1000); -- Impact Knuckles
     end
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Mee_Deggi_the_Punisher's Window Open Time
     local wait = math.random(3600,10800);
