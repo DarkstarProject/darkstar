@@ -127,9 +127,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
 	// Set mob highest level PC attacker to that of the person with enmity if they are solo, a party member, or alliance member (Fixes spell only kills not getting FoV/GoV credit)
 	auto PChar = static_cast<CCharEntity*>(PEntity);
 	auto PMob = dynamic_cast<CMobEntity*>(m_EnmityHolder);
-	std::vector<CCharEntity*> members;
 	// Get a list of all valid party members
-	PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
+	PChar->ForAlliance([PMob](CBattleEntity* PPartyMember)
 	{
 		// Check to see if they are in the same zone as the mob and within 100 yalms
 		if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
