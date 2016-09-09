@@ -9,12 +9,19 @@
 
 function onMobSpawn(mob)
     if (math.random(1,100) <= 14) then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,16936,1000); -- Demonic Sword
-        SetDropRate(1936,16935,0);
+        SetDropRate(2343,16936,1000); -- Demonic Sword
+        SetDropRate(2343,16935,0);
     else
-        SetDropRate(1936,16936,0);
-        SetDropRate(1936,16935,1000); -- Barbarians Sword
+        SetDropRate(2343,16936,0);
+        SetDropRate(2343,16935,1000); -- Barbarians Sword
     end
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
 end;
 
 -----------------------------------
@@ -35,4 +42,3 @@ function onMobDespawn(mob)
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;
-
