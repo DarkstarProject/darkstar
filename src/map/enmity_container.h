@@ -68,7 +68,7 @@ public:
     EnmityList_t* GetEnmityList();
 
 private:
-	
+
     EnmityList_t    m_EnmityList;
     CBattleEntity*  m_EnmityHolder; //usually a monster
 };

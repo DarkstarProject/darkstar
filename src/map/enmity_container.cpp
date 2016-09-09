@@ -124,10 +124,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         VE = 0;
     }
 
-    auto PMob = dynamic_cast<CMobEntity*>(m_EnmityHolder);
-    if (PMob && PMob->m_HiPCLvl < PEntity->GetMLevel())
-        PMob->m_HiPCLvl = PEntity->GetMLevel();
-
     auto enmity_obj = m_EnmityList.find(PEntity->id);
 
     if (enmity_obj != m_EnmityList.end())
@@ -311,6 +307,10 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
     uint16 CE = (80.0f / mod) * Damage;
     uint16 VE = (240.0f / mod) * Damage;
 
+    auto PMob = dynamic_cast<CMobEntity*>( m_EnmityHolder );
+    if( PMob && PMob->m_HiPCLvl < PEntity->GetMLevel() )
+        PMob->m_HiPCLvl = PEntity->GetMLevel();
+
     UpdateEnmity(PEntity, CE, VE);
 }
 
@@ -328,6 +328,10 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
     }
     float reduction = (100.f - dsp_min(PEntity->getMod(MOD_ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
     int16 CE = -(1800 * Damage / PEntity->GetMaxHP()) * reduction;
+
+    auto PMob = dynamic_cast<CMobEntity*>( m_EnmityHolder );
+    if( PMob && PMob->m_HiPCLvl < PEntity->GetMLevel() )
+        PMob->m_HiPCLvl = PEntity->GetMLevel();
 
     UpdateEnmity(PEntity, CE, 0);
 }
