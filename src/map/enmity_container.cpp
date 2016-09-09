@@ -233,8 +233,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
         enmity_obj->second.VE = dsp_cap(enmity_obj->second.VE + VE, 0, 10000);
         enmity_obj->second.active = true;
     }
-    else if (CE >= 0 && VE >= 0)
-        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, CE, VE, true, 0 });
+    else
+        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, dsp_cap(CE, 1, 10000), dsp_cap(VE, 0, 10000), true, 0 });
 }
 
 /************************************************************************
