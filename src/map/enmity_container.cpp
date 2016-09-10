@@ -134,14 +134,11 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
     {
         float bonus = CalculateEnmityBonus(PEntity);
 
-        if (enmity_obj->second.CE == 0 && CE + VE <= 0)
-            return;
-
         int newCE = enmity_obj->second.CE + ((CE > 0) ? CE * bonus : CE);
         int newVE = enmity_obj->second.VE + ((VE > 0) ? VE * bonus : VE);
 
         //Check for cap limit
-        enmity_obj->second.CE = dsp_cap(newCE, 1, 10000);
+        enmity_obj->second.CE = dsp_cap(newCE, 0, 10000);
         enmity_obj->second.VE = dsp_cap(newVE, 0, 10000);
         enmity_obj->second.active = true;
 
@@ -229,12 +226,12 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 
     if (enmity_obj != m_EnmityList.end())
     {
-        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 1, 10000);
+        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 0, 10000);
         enmity_obj->second.VE = dsp_cap(enmity_obj->second.VE + VE, 0, 10000);
         enmity_obj->second.active = true;
     }
     else
-        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, dsp_cap(CE, 1, 10000), dsp_cap(VE, 0, 10000), true, 0 });
+        m_EnmityList.emplace(PEntity->id, EnmityObject_t{ PEntity, dsp_cap(CE, 0, 10000), dsp_cap(VE, 0, 10000), true, 0 });
 }
 
 /************************************************************************
@@ -326,11 +323,7 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
 
     if (enmity_obj != m_EnmityList.end())
     {
-        if (enmity_obj->second.CE == 0)
-            return;
-        
-        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 1, 10000);
-        enmity_obj->second.active = true;
+        enmity_obj->second.CE = dsp_cap(enmity_obj->second.CE + CE, 0, 10000);
     }
 }
 
