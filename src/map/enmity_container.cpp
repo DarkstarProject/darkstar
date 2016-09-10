@@ -196,11 +196,13 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 
     int16 CE;
     int16 VE;
+    float bonus = CalculateEnmityBonus(PEntity);
+    float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
     
     if (isCureV)
     {
-        CE = 400;
-        VE = 700;
+        CE = 400 * bonus * tranquilHeartReduction;
+        VE = 700 * bonus * tranquilHeartReduction;
     }
     else
     {
@@ -208,14 +210,8 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint16 level
 
         uint16 mod = battleutils::GetEnmityModCure(level);
 
-        CE = 40. / mod * CureAmount;
-        VE = 240. / mod * CureAmount;
-
-        float bonus = CalculateEnmityBonus(PEntity);
-        float tranquilHeartReduction = 1.f - battleutils::HandleTranquilHeart(PEntity);
-
-        CE = CE * bonus * tranquilHeartReduction;
-        VE = VE * bonus * tranquilHeartReduction;           
+        CE = 40. / mod * CureAmount * bonus * tranquilHeartReduction;
+        VE = 240. / mod * CureAmount * bonus * tranquilHeartReduction;
     }
 
     auto enmity_obj = m_EnmityList.find(PEntity->id);
