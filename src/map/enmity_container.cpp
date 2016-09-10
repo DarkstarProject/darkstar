@@ -40,7 +40,7 @@ This file is part of DarkStar-server source code.
 *                                                                       *
 ************************************************************************/
 
-CEnmityContainer::CEnmityContainer(CBattleEntity* holder) : m_EnmityHolder(holder)
+CEnmityContainer::CEnmityContainer(CMobEntity* holder) : m_EnmityHolder(holder)
 {
 }
 
@@ -123,10 +123,6 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         CE = 0;
         VE = 0;
     }
-
-    auto PMob = dynamic_cast<CMobEntity*>(m_EnmityHolder);
-    if (PMob && PMob->m_HiPCLvl < PEntity->GetMLevel())
-        PMob->m_HiPCLvl = PEntity->GetMLevel();
 
     auto enmity_obj = m_EnmityList.find(PEntity->id);
 
@@ -302,6 +298,9 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Dam
     uint16 VE = (240.0f / mod) * Damage;
 
     UpdateEnmity(PEntity, CE, VE);
+
+    if (m_EnmityHolder && m_EnmityHolder->m_HiPCLvl < PEntity->GetMLevel())
+        m_EnmityHolder->m_HiPCLvl = PEntity->GetMLevel();
 }
 
 /************************************************************************
