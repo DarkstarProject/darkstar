@@ -8740,6 +8740,12 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
     {
         auto skillid {lua_tointeger(L, 1)};
         CBattleEntity* PTarget {nullptr};
+        auto PMobSkill {battleutils::GetMobSkill(skillid)};
+
+        if (!PMobSkill)
+        {
+            return 0;
+        }
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
@@ -8747,11 +8753,16 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
             PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
-        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid](auto PEntity) {
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid, PMobSkill](auto PEntity) {
             if (PTarget)
                 PEntity->PAI->MobSkill(PTarget->targid, skillid);
             else if (dynamic_cast<CMobEntity*>(PEntity))
-                PEntity->PAI->MobSkill(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+            {
+                if (PMobSkill->getValidTargets() & TARGET_ENEMY)
+                    PEntity->PAI->MobSkill(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+                else if (PMobSkill->getValidTargets() & TARGET_SELF)
+                    PEntity->PAI->MobSkill(PEntity->targid, skillid);
+            }
         }));
     }
     else
