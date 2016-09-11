@@ -8748,10 +8748,19 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
         }
 
         m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, skillid](auto PEntity) {
-            if (PTarget)
-                PEntity->PAI->MobSkill(PTarget->targid, skillid);
+            if (!PTarget && battleutils::GetMobSkill(skillid)->getValidTargets() & TARGET_SELF)
+                PEntity->PAI->MobSkill(PEntity->targid, skillid);
+
+            else if (PTarget)
+            {
+                if (distance(PEntity->loc.p, PTarget->loc.p) <= battleutils::GetMobSkill(skillid)->getDistance())
+                    PEntity->PAI->MobSkill(PTarget->targid, skillid);
+            }
             else if (dynamic_cast<CMobEntity*>(PEntity))
-                PEntity->PAI->MobSkill(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+            {
+                if (distance(PEntity->loc.p, static_cast<CMobEntity*>(PEntity)->GetBattleTarget()->loc.p) <= battleutils::GetMobSkill(skillid)->getDistance())
+                    PEntity->PAI->MobSkill(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), skillid);
+            }
         }));
     }
     else
