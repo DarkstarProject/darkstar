@@ -721,8 +721,7 @@ namespace battleutils
             // check if spikes are handled in mobs script
             if (PDefender->objtype == TYPE_MOB && ((CMobEntity*)PDefender)->getMobMod(MOBMOD_AUTO_SPIKES) > 0)
             {
-                //#TODO
-                //luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
+                luautils::OnSpikesDamage(PDefender, PAttacker, Action, Action->spikesParam);
             }
 
             // calculate damage
