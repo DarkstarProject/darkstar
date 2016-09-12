@@ -7,6 +7,13 @@
 require("scripts/zones/Valkurm_Dunes/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
