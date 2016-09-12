@@ -6,6 +6,13 @@
 require("scripts/zones/Rolanberry_Fields/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

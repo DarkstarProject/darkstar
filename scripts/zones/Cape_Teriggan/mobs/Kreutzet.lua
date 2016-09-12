@@ -6,6 +6,13 @@
 require("scripts/globals/weather");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

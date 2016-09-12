@@ -6,6 +6,13 @@
 require("scripts/zones/Ghelsba_Outpost/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

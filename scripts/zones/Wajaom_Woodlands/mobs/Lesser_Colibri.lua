@@ -7,6 +7,13 @@
 require("scripts/zones/Wajaom_Woodlands/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
