@@ -1795,7 +1795,7 @@ namespace luautils
         return 0;
     }
 
-    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, apAction_t* Action, uint32 damage)
+    int32 OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, uint32 damage)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PDefender->loc.zone->GetName(), PDefender->GetName());
 
