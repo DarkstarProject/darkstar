@@ -4,15 +4,13 @@
 
 #include "../common/cbasetypes.h"
 
-extern uint32 zlib_compress_table[];
-extern uintptr zlib_decompress_table[];
+static inline size_t zlib_compressed_size(const size_t sz)
+{
+    return (sz + 7) / 8;
+}
 
-int32   zlib_init();
-
-int32   zlib_compress_sub(char * output,uint32 var1,uint32 cume, char * lookup1,uint32 var2,uint32 var3,uint32 lookup2);
-int32   zlib_compress(char * input,uint32 var1, char * output, uint32 var2, uint32 * lookup);
-
-uint32  zlib_decompress(char *in,uint32 inSize, char *out, uint32 outSize, uintptr *table);
-
+int32 zlib_init();
+int32 zlib_compress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz);
+uint32 zlib_decompress(const int8 *in, const uint32 in_sz, int8 *out, const uint32 out_sz);
 
 #endif
