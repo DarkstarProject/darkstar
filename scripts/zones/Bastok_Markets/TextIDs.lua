@@ -10,10 +10,12 @@ FULL_INVENTORY_AFTER_TRADE =  6383; --Try trading again after sorting your inven
             ITEMS_OBTAINED =  6393; --You obtain ?Numeric Parameter 1? ?Possible Special Code: 01??Speaker Name?)??BAD CHAR: 80??BAD CHAR: 80??BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?!?Prompt?
              HOMEPOINT_SET =  6475; --Home point set!
       GOLDSMITHING_SUPPORT =  7069; --Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-  GUILD_TERMINATE_CONTRACT =  7083; --You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-        GUILD_NEW_CONTRACT =  7091; --You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+  GUILD_TERMINATE_CONTRACT =  7083; --You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+
+        GUILD_NEW_CONTRACT =  7091; --You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+
        NO_MORE_GP_ELIGIBLE =  7098; --You are not eligible to receive guild points at this time.
-               GP_OBTAINED =  7103; --Obtained <<<Numeric Parameter 0>>> guild points.
+               GP_OBTAINED =  7103; --Obtained: ?Numeric Parameter 0? guild points.
         NOT_HAVE_ENOUGH_GP =  7104; --You do not have enough guild points.
     FISHING_MESSAGE_OFFSET =  7198; --You can't fish here.
 
@@ -61,7 +63,7 @@ CHARGINGCHOKOBO_SHOP_DIALOG =  7673; --Hello. What piece of armor are you missin
       SOMNPAEMN_OPEN_DIALOG =  7685; --Welcome! I have goods straight from Sarutabaruta! What say you?
 
 -- conquest Base
-CONQUEST_BASE = 6577; -- Tallying conquest results...
+              CONQUEST_BASE = 6577; -- Tallying conquest results...
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 12866; -- You retrieve a <item> from the porter moogle's care.
+         RETRIEVE_DIALOG_ID = 12866; -- You retrieve$ from the porter moogle's care.

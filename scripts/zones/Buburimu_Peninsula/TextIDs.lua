@@ -15,10 +15,9 @@ CONQUEST = 7408; -- You've earned conquest points!
 LOGGING_IS_POSSIBLE_HERE = 7392; -- Logging is possible here if you have
 
 -- Dialog Texts
-FIVEOFSPADES_DIALOG = 7239; -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol! 
-
+           FIVEOFSPADES_DIALOG = 7239; -- GiMmeIvE! FiVe is cArdIanF WiN-DuRst! FIvES OnA-tRol!
       YOU_CANNOT_ENTER_DYNAMIS = 7885; -- You cannot enter Dynamis
-          MYSTERIOUS_VOICE = 7886; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
+              MYSTERIOUS_VOICE = 7886; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7887; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 -- Signs

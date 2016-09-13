@@ -17,7 +17,7 @@ ITEM_DELIVERY_DIALOG = 7774; -- Now offering quick and easy delivery of packages
           GUIDE_STONE = 7131; -- Up: Upper Jeuno (Selection Dialogfacing San d'Oria) Down: Port Jeuno (Selection Dialogfacing Windurst)
    STREETLAMP_EXAMINE = 7245; -- You examine the lamp. It seems that it must be lit manually.
 PARIKE_PORANKE_DIALOG = 8945; -- All these people running back and forth... There have to be a few that have munched down more mithkabobs than they can manage.
-    WAYPOINT_EXAMINE = 10333; -- An enigmatic contrivance hovers in silence...
+    WAYPOINT_EXAMINE = 10336; -- An enigmatic contrivance hovers in silence...
 
                  NO_KEY = 9897; -- You do not have a usable key in your possession.
             ALDO_DIALOG = 7136; -- Hi. I'm Aldo, head of Tenshodo. We deal in things you can't buy anywhere else. Take your time and have a look around.
@@ -33,8 +33,8 @@ PARIKE_PORANKE_DIALOG = 8945; -- All these people running back and forth... Ther
        PARIKE_PORANKE_9 = 8963; -- Consider this a petite present from your pal Parike-Poranke!
       PARIKE_PORANKE_10 = 8967; -- Wait a minute... Don't tell me you came to Parike-Poranke on an empty stomach! This is terrible! The minister will have my head!
       PARIKE_PORANKE_12 = 8969; -- Phew! That was close... What were you thinking, crazy adventurer!
-      PARIKE_PORANKE_13 = 8972; -- Speaker Name's ll in the name of science skill rises 0.1 points. 
-      PARIKE_PORANKE_14 = 8973; -- Speaker Name's ll in the name of science skill rises one level. 
+      PARIKE_PORANKE_13 = 8972; -- Speaker Name's ll in the name of scienceskill rises 0.1 points. 
+      PARIKE_PORANKE_14 = 8973; -- Speaker Name's ll in the name of scienceskill rises one level.
       PARIKE_PORANKE_15 = 8974; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 = 8975; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
         MERTAIRE_DIALOG = 7416; -- Who are you? Leave me alone!
@@ -63,4 +63,4 @@ AMALASANDA_SHOP_DIALOG = 7674; -- Welcome to the Tenshodo. You want something, w
 CONQUEST_BASE = 6538; -- Tallying conquest results...
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 10177; -- You retrieve a <item> from the porter moogle's care.
+    RETRIEVE_DIALOG_ID = 10177; -- You retrieve$ from the porter moogle's care.

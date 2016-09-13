@@ -9,10 +9,13 @@
        NOT_HAVE_ENOUGH_GIL = 6548; -- You do not have enough gil.
              HOMEPOINT_SET = 6634; -- Home point set!
     FISHING_MESSAGE_OFFSET = 7090; -- You can't fish here.
-       NO_MORE_GP_ELIGIBLE = 7223; -- You are not eligible to receive guild points at this time.
-               GP_OBTAINED = 7228; -- Obtained <<<Numeric Parameter 0>>> guild points.
-        NOT_HAVE_ENOUGH_GP = 7229; -- You do not have enough guild points.
              IMAGE_SUPPORT = 7194; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+       NO_MORE_GP_ELIGIBLE = 7223; -- You are not eligible to receive guild points at this time.
+  GUILD_TERMINATE_CONTRACT = 7208; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+        GUILD_NEW_CONTRACT = 7216; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+               GP_OBTAINED = 7228; -- Obtained: ?Numeric Parameter 0? guild points.
+        NOT_HAVE_ENOUGH_GP = 7229; -- You do not have enough guild points.
+
 
 -- Conquest System
 CONQUEST = 8920; -- You've earned conquest points!

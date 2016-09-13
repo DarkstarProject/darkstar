@@ -12,10 +12,10 @@ FULL_INVENTORY_AFTER_TRADE =  6438; -- You cannot obtain the item <item>. Try tr
   GUILD_TERMINATE_CONTRACT =  6870; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
         GUILD_NEW_CONTRACT =  6878; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
        NO_MORE_GP_ELIGIBLE =  6885; -- You are not eligible to receive guild points at this time
-               GP_OBTAINED =  6890; -- Obtained <<<Numeric Parameter 0>>> guild points.
+               GP_OBTAINED =  6890; -- Obtained: ?Numeric Parameter 0? guild points.
         NOT_HAVE_ENOUGH_GP =  6891; -- You do not have enough guild points.
     FISHING_MESSAGE_OFFSET =  8001; -- You can't fish here
-            HOMEPOINT_SET = 10998; -- Home point set!
+             HOMEPOINT_SET = 10998; -- Home point set!
             
 -- Mission Dialogs
     YOU_ACCEPT_THE_MISSION  =     9; -- You have accepted the mission.
