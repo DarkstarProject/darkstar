@@ -743,6 +743,7 @@ int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
         if (map_session_data->shuttingDown == 1)
         {
             Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->PChar->id);
+            ShowDebug( "Deleted session for %s\n", map_session_data->PChar->name.c_str() );
         }
 
         uint64 port64 = map_session_data->client_port;
@@ -834,7 +835,6 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
                     else
                     {
                         map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
-                        Sql_Query(SqlHandle, "DELETE FROM accounts_sessions WHERE charid = %u;", map_session_data->PChar->id);
 
                         aFree(map_session_data->server_packet_data);
                         delete map_session_data->PChar;
