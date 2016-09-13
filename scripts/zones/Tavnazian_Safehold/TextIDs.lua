@@ -32,4 +32,4 @@ MYSTERIOUS_VOICE = 11812; -- You hear a mysterious, floating voice:
 CONQUEST_BASE = 6532; -- Tallying conquest results...
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 12249; -- You retrieve a <item> from the porter moogle's care.
+    RETRIEVE_DIALOG_ID = 12249; -- You retrieve$ from the porter moogle's care.

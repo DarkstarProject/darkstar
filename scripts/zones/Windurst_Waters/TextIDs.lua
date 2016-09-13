@@ -8,10 +8,10 @@
            HOMEPOINT_SET = 6634; -- Home point set!
   FISHING_MESSAGE_OFFSET = 7040; -- You can't fish here.
          COOKING_SUPPORT = 7144; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-GUILD_TERMINATE_CONTRACT = 7158; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-      GUILD_NEW_CONTRACT = 7166; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+GUILD_TERMINATE_CONTRACT = 7158; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+      GUILD_NEW_CONTRACT = 7166; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
      NO_MORE_GP_ELIGIBLE = 7173; -- You are not eligible to receive guild points at this time.
-             GP_OBTAINED = 7178; -- Obtained <<<Numeric Parameter 0>>> guild points.
+             GP_OBTAINED = 7178; -- Obtained: ?Numeric Parameter 0? guild points.
       NOT_HAVE_ENOUGH_GP = 7179; -- You do not have enough guild points.
 
 

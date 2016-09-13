@@ -2,19 +2,19 @@
 
 -- General Texts
     ITEM_CANNOT_BE_OBTAINED =  6587;  -- Come back after sorting your inventory.
-                              ITEM_OBTAINED =  6592;  -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-                                 GIL_OBTAINED =  6593;  -- Obtained <<<Numeric Parameter 0>>> gil.
-                      KEYITEM_OBTAINED =  6595;  -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
-             NOT_HAVE_ENOUGH_GIL =  6597;  -- You do not have enough gil.
-                            HOMEPOINT_SET =   188;  -- Home point set!
-                            IMAGE_SUPPORT =  6947;  -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
- GUILD_TERMINATE_CONTRACT =  6961; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-              GUILD_NEW_CONTRACT =  6969; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-              NO_MORE_GP_ELIGIBLE =  6976;  -- You are not eligible to receive guild points at this time
-                                 GP_OBTAINED =  6964;  -- Obtained <<<Numeric Parameter 0>>> guild points.
-             NOT_HAVE_ENOUGH_GP =  6982;  -- You do not have enough guild points.
-                           MOGHOUSE_EXIT = 12347;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
-      FISHING_MESSAGE_OFFSET =  7409;  -- You can't fish here.
+              ITEM_OBTAINED =  6592;  -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
+               GIL_OBTAINED =  6593;  -- Obtained <<<Numeric Parameter 0>>> gil.
+           KEYITEM_OBTAINED =  6595;  -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+        NOT_HAVE_ENOUGH_GIL =  6597;  -- You do not have enough gil.
+              HOMEPOINT_SET =   188;  -- Home point set!
+              IMAGE_SUPPORT =  6947;  -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+   GUILD_TERMINATE_CONTRACT =  6961;  -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+         GUILD_NEW_CONTRACT =  6969;  -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+        NO_MORE_GP_ELIGIBLE =  6976;  -- You are not eligible to receive guild points at this time
+                GP_OBTAINED =  6981;  -- Obtained: ?Numeric Parameter 0? guild points.
+         NOT_HAVE_ENOUGH_GP =  6982;  -- You do not have enough guild points.
+              MOGHOUSE_EXIT = 12347;  -- You have learned your way through the back alleys of San d'Oria! Now you can exit to any area from your residence.
+     FISHING_MESSAGE_OFFSET =  7409;  -- You can't fish here.
       
 -- Conquest System
 CONQUEST = 11696; -- You've earned conquest points!
@@ -64,7 +64,7 @@ ORIGINAL_MISSION_OFFSET = 16; -- Bring me one of those axes, and your mission wi
 
      GILIPESE_DIALOG = 11518; -- Nothing to report!
 
-      BONCORT_DIALOG = 12043; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this art out. 
+      BONCORT_DIALOG = 12043; -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this
       CAPIRIA_DIALOG = 12044; -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
       VILLION_DIALOG = 12045; -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!
      COULLENE_DIALOG = 12046; -- Magic could be of use on my journey to Paradise. Thank you so much!
@@ -119,4 +119,4 @@ CONQUEST_BASE = 7250; -- Tallying conquest results...
 
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 18099; -- You retrieve a <item> from the porter moogle's care.
+    RETRIEVE_DIALOG_ID = 18099; -- You retrieve$ from the porter moogle's care.

@@ -56,7 +56,7 @@ Arrapago = {
                 DOOR1 = 17080970,
             },
             [2] = {
-                ARMORY_CRATE = 17080595,
+                ARMORY_CRATE = 17080594,
             }
         }
     }
