@@ -28,4 +28,4 @@ WATAKHAMAZOM_SHOP_DIALOG = 10491; -- Looking for some bows and bolts to strrrike
     YOYOROON_SHOP_DIALOG = 0; -- [UNKNOWN]
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 11882; -- You retrieve a <item> from the porter moogle's care.
+      RETRIEVE_DIALOG_ID = 11882; -- You retrieve$ from the porter moogle's care.

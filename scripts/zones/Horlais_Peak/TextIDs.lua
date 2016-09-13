@@ -11,12 +11,12 @@ FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the #. Try trading again
    NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
 
 -- Maat dialog
-      YOU_DECIDED_TO_SHOW_UP = 7736; -- So, you decided to show up.
- LOOKS_LIKE_YOU_WERENT_READY = 7737; -- Looks like you weren't ready for me, were you?
-       YOUVE_COME_A_LONG_WAY = 7738; -- Hm. That was a mighty fine display of skill there, Player Name. You've come a long way...
- TEACH_YOU_TO_RESPECT_ELDERS = 7739; -- I'll teach you to respect your elders!
-TAKE_THAT_YOU_WHIPPERSNAPPER = 7740; -- Take that, you whippersnapper!
- THAT_LL_HURT_IN_THE_MORNING = 7742; -- Ungh... That'll hurt in the morning...
+      YOU_DECIDED_TO_SHOW_UP = 7737; -- So, you decided to show up.
+ LOOKS_LIKE_YOU_WERENT_READY = 7738; -- Looks like you weren't ready for me, were you?
+       YOUVE_COME_A_LONG_WAY = 7739; -- Hm. That was a mighty fine display of skill there, Player Name. You've come a long way...
+ TEACH_YOU_TO_RESPECT_ELDERS = 7740; -- I'll teach you to respect your elders!
+TAKE_THAT_YOU_WHIPPERSNAPPER = 7741; -- Take that, you whippersnapper!
+ THAT_LL_HURT_IN_THE_MORNING = 7743; -- Ungh... That'll hurt in the morning...
 
 -- conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...

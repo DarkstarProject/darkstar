@@ -586,7 +586,7 @@ switch (region): caseof {
   ---------------------------------
     --print("RONFAURE");
 
-    local Doladepaiton = 17187553;
+    local Doladepaiton = 17187521;
 
     npc  = {
     --
