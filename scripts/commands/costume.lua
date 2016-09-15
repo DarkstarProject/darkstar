@@ -5,10 +5,10 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 0,
     parameters = "i"
 };
 
 function onTrigger(player, costume)
-    player:costume( costume );
+    player:costume2( costume );
 end

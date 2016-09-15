@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
--- func: changesjob
--- desc: Changes the players current subjob.
+-- func: changejob
+-- desc: Changes the players current job.
 ---------------------------------------------------------------------------------------------------
 
 require("scripts/globals/status");
@@ -27,9 +27,9 @@ function onTrigger(player, jobId, level)
     -- Change the players subjob..
     player:changesJob(jobId);
 
-    -- Attempt to set the players subjob level..
+    -- Attempt to set the players level..
     if (level ~= nil and level > 0 and level <= 99) then
-        player:setsLevel(level);
+        player:setLevel(level);
     else
         player:PrintToPlayer("Invalid level given. Level must be between 1 and 99!");
     end

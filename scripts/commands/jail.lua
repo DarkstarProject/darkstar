@@ -11,7 +11,7 @@ cmdprops =
 
 function onTrigger(player, target, cellId, reason)
     local jailCells = 
-    {
+    { 
         -- Floor 1 (Bottom)
         {-620, 11,  660, 0},  {-180, 11,  660, 0}, {-260, 11,  660, 0}, {-700, 11,  660, 0},
         {-620, 11,  220, 0},  {-180, 11,  220, 0}, {-260, 11,  220, 0}, {-700, 11,  220, 0},
@@ -45,9 +45,12 @@ function onTrigger(player, target, cellId, reason)
     -- Print that we have jailed someone..
     local message = string.format( '%s jailed %s(%d) into cell %d. Reason: %s', player:getName(), target, targ:getID(), cellId, reason );
     printf( message );
-
+    
     -- Send the target to jail..
     local dest = jailCells[ cellId ];
     targ:setVar( "inJail", cellId );
     targ:setPos( dest[1], dest[2], dest[3], dest[4], 131 );
+    targ:addStatusEffect(EFFECT_TERROR,1,0,9999999);
+    targ:addStatusEffect(EFFECT_MUTE,1,0,9999999);
+    
 end

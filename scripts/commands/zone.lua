@@ -5,7 +5,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 0,
     parameters = "s"
 };
 
@@ -280,34 +280,72 @@ local zone_list =
 -- desc: Called when this command is invoked.
 ---------------------------------------------------------------------------------------------------
 function onTrigger(player, zoneId)
+    -- Blocked zones includes Abyssea, Dynamis, and ALL instances
+    -- Can be modded for any set of zones.
+    local blockedZones =
+    {
+   15,16,18,22,27,39,40,41,42,45,55,56,60,63,66,69,73,74,75,76,77,86,93,129,183,
+   132,134,135,215,216,217,218,253,254,255,258,259,260,262,
+   263,264,264,267,268,269,270,271,272,273,274,275,276,277,
+   278,279,280,281,282,283,284,285,185,186,187,188,0,214
+
+    }
     local word  = "";
     local i     = 0;
     local zone  = zoneId;
+    local blocked = false;
 
     -- Ensure a zone was given..
+    if (player:getVar("inJail") ~= 0) then
+        player:PrintToPlayer( string.format( "You've been bad." ) );
+else
     if (zoneId == nil) then
-        player:PrintToPlayer("You must enter a zone id.");
+        player:PrintToPlayer("You must enter a VALID zone id. (MAX Zone ID is 285)");
         return;
     end
-    
+
+    for _, v in ipairs(blockedZones) do
+        if(tonumber(zoneId) == v) then
+            player:PrintToPlayer(string.format("You cannot enter this zone!"));
+            blocked = true;
+            return;
+        end
+    end
+
     -- Was the zone auto-translated..
     if (string.sub(zoneId, 1, 2) == '\253\02' and string.byte(zoneId, 5) ~= nil and string.byte(zoneId, 6) == 0xFD) then
         -- Pull the group and message id from the translated string..
         local groupId = string.byte(zoneId, 4);
         local messageId = string.byte(zoneId, 5);
-    
+
         -- Attempt to lookup this zone..
         for k, v in pairs(zone_list) do
             if (v[1] == groupId and v[2] == messageId) then
-                player:setPos(0, 0, 0, 0, v[3]);
+                for _, id in ipairs(blockedZones) do
+                    if (tonumber(v[3]) == id) then
+                        player:PrintToPlayer(string.format("You cannot enter this zone!"));
+                        blocked = true;
+                        return;
+                    end
+                end
+                if(not blocked) then
+                    if (v[3] < 286) then
+                        player:setPos(0, 0, 0, 0, v[3]);
+                    end
+                end;
                 return;
             end
         end
-    
+
         -- Zone was not found, allow the user to know..
         player:PrintToPlayer('Unknown zone, could not teleport.');
         return;
     end
-    
-    player:setPos(0, 0, 0, 0, zoneId);
+
+    if(not blocked) then
+        if (zoneId < "286") then
+            player:setPos(0, 0, 0, 0, zoneId);
+            end
+        end
+    end
 end
