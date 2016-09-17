@@ -4401,8 +4401,15 @@ inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
 inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, m_PBaseEntity->loc.zone->CanUseMisc(MISC_PET));
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+
+    if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
+        lua_pushboolean(L, true);
+    else
+        lua_pushboolean(L, false);
+
     return 1;
 }
 
