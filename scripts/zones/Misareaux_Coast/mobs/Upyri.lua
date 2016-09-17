@@ -11,6 +11,13 @@
 -- Earring may or may not drop only if the ToD was at night.
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

@@ -13,21 +13,10 @@ function onMobSpawn(mob)
 end;
 
 -----------------------------------
--- onMobDeath
------------------------------------
-
-function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
 -- onMonsterMagicPrepare
 -----------------------------------
 
 function onMonsterMagicPrepare(mob,target)
-
-    -- For some reason, this returns false even when Hundred Fists is active, so... yeah.
-    -- Core does this:
-    -- m_PMob->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_HUNDRED_FISTS,0,1,0,45));
     if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS,0) == false) then
         local rnd = math.random();
         if (rnd < 0.5) then
@@ -40,5 +29,12 @@ function onMonsterMagicPrepare(mob,target)
             return 237; -- choke
         end
     end
+    return 0; -- Still need a return, so use 0 when not casting
+end;
 
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
 end;

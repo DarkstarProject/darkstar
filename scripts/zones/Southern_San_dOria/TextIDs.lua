@@ -10,10 +10,10 @@ FULL_INVENTORY_AFTER_TRADE = 6427; -- Try trading again after sorting your inven
              HOMEPOINT_SET = 24; -- Home point set!
        NOT_HAVE_ENOUGH_GIL = 6433; -- You do not have enough gil.
            LEATHER_SUPPORT = 6769; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ?Multiple Choice (Parameter 2)?[a little/ever so slightly/ever so slightly].?Prompt?
-  GUILD_TERMINATE_CONTRACT = 6783; -- You have terminated your trading contract with the ?Multiple Choice (Parameter 1)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
-        GUILD_NEW_CONTRACT = 6791; -- You have formed a new trading contract with the ?Multiple Choice (Parameter 0)?[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild.?Prompt?
+  GUILD_TERMINATE_CONTRACT = 6783; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+        GUILD_NEW_CONTRACT = 6791; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
        NO_MORE_GP_ELIGIBLE = 6798; -- You are not eligible to receive guild points at this time
-               GP_OBTAINED = 6803; -- Obtained <<<Numeric Parameter 0>>> guild points.
+               GP_OBTAINED = 6803; -- Obtained: ?Numeric Parameter 0? guild points.
         NOT_HAVE_ENOUGH_GP = 6804; -- You do not have enough guild points.
    NOTHING_OUT_OF_ORDINARY = 6442; -- There is nothing out of the ordinary here.<Prompt>
 

@@ -7,6 +7,13 @@
 require("scripts/zones/Riverne-Site_B01/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

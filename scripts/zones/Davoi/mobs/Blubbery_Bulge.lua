@@ -8,6 +8,13 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

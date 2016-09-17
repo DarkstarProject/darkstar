@@ -32,4 +32,4 @@ RUNITOMONITO_SHOP_DIALOG = 7157; -- Hi! Welcome! I'm Runito-Monito, and weapons 
 CONQUEST_BASE = 6533; -- Tallying conquest results...
 
 -- Porter Moogle
-RETRIEVE_DIALOG_ID = 7790; -- You retrieve a <item> from the porter moogle's care.
+    RETRIEVE_DIALOG_ID = 7790; -- You retrieve$ from the porter moogle's care.
