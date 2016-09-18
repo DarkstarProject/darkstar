@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Misareaux Coast
---  NPC: Storage Compartment 
+--  NPC: Storage Compartment
 --  COP spawn Boggelmann.
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
       player:startEvent(0x000D);
     else
        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-    end    
+    end
 end;
 
 -----------------------------------
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
    if (csid == 0x000D) then
       player:setVar("COP_Boggelmann_KILL",2);
-      player:addKeyItem(VESSEL_OF_LIGHT);
-      player:messageSpecial(KEYITEM_OBTAINED,VESSEL_OF_LIGHT);
+      player:addKeyItem(VESSEL_OF_LIGHT_KI);
+      player:messageSpecial(KEYITEM_OBTAINED,VESSEL_OF_LIGHT_KI);
    end
 end;

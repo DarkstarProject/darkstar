@@ -658,7 +658,7 @@ NINJAS_GARB_CLAIM_SLIP                   = 666;
 DRACHEN_ARMOR_CLAIM_SLIP                 = 667;
 EVOKERS_ATTIRE_CLAIM_SLIP                = 668;
 
-VESSEL_OF_LIGHT                          = 669;
+VESSEL_OF_LIGHT_KI                       = 669;
 CENSER_OF_ABANDONMENT                    = 670;
 CENSER_OF_ANTIPATHY                      = 671;
 CENSER_OF_ANIMUS                         = 672;
