@@ -1446,7 +1446,7 @@ namespace luautils
         auto ret = luaL_loadfile(LuaHandle, File);
         if (ret)
         {
-            ShowError("luautils::%s: %s\n", "onTrigger", lua_tostring(LuaHandle, -1));
+            ShowWarning("luautils::%s: %s\n", "onTrigger", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
         }
@@ -3114,7 +3114,7 @@ namespace luautils
             CLuaBaseEntity LuaTrickAttackEntity(taChar);
             Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTrickAttackEntity);
         }
-        
+
 
         if (lua_pcall(LuaHandle, 7, LUA_MULTRET, 0))
         {
