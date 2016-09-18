@@ -227,7 +227,7 @@ function npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     local npc = GetNPCByID(id);
     local respawnTime = math.random(minTime, maxTime);
     local newPosition = npcUtil.pickNewPosition(npc:getID(), posTable, true);
-    serverVar = serverVar or null; -- serverVar is optional
+    serverVar = serverVar or nil; -- serverVar is optional
 
     if serverVar then
         if (GetServerVariable(serverVar) <= os.time(t)) then
