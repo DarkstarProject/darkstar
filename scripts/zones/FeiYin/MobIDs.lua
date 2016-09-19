@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Northern Shadow (WAR)
-Northern_Shadow=17613131;
+Northern_Shadow=17613103;
 Northern_Shadow_PH={
     [17613099] = '1', -- -159.000, -16.000, 146.000
 };
