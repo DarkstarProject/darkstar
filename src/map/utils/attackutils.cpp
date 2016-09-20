@@ -26,6 +26,7 @@
 #include "battleutils.h"
 #include "../attack.h"
 #include "../items/item_weapon.h"
+#include "../status_effect_container.h"
 
 namespace attackutils
 {
@@ -132,7 +133,7 @@ namespace attackutils
     ************************************************************************/
     bool IsBlocked(CBattleEntity* PAttacker, CBattleEntity* PDefender)
     {
-        if (isFaceing(PDefender->loc.p, PAttacker->loc.p, 40))
+        if (isFaceing(PDefender->loc.p, PAttacker->loc.p, 40) && !PDefender->StatusEffectContainer->HasPreventActionEffect())
         {
             return(dsprand::GetRandomNumber(100) < battleutils::GetBlockRate(PAttacker, PDefender));
         }
