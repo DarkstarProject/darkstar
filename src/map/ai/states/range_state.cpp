@@ -26,8 +26,6 @@ This file is part of DarkStar-server source code.
 #include "../../entities/charentity.h"
 #include "../../packets/action.h"
 #include "../../utils/battleutils.h"
-#include "../../mobskill.h"
-#include "../../weapon_skill.h"
 #include "../../items/item_weapon.h"
 #include "../../status_effect_container.h"
 #include "../../utils/charutils.h"
