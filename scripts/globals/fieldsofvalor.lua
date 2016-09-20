@@ -1,14 +1,11 @@
 -------------------------------------------------
-
+require("scripts/globals/utils")
+require("scripts/globals/common");
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
--- require("scripts/globals/teleports");
-require("scripts/globals/status");
 require("scripts/globals/regimereward");
 require("scripts/globals/regimeinfo");
-require("scripts/globals/common");
-
--- require("scripts/globals/spell_definitions");
 
 -------------------------------------------------
 
@@ -45,11 +42,6 @@ FOV_MENU_INSTANT_NOODLES  = 165;
 FOV_MENU_RERAISE         = 37;
 FOV_MENU_HOME_NATION     = 21;
 FOV_MENU_CANCEL_REGIME   = 3;
-FOV_MENU_REPEAT_REGIME1  = -2147483630; -- 2147483666;
-FOV_MENU_REPEAT_REGIME2  = -2147483614; -- 2147483682;
-FOV_MENU_REPEAT_REGIME3  = -2147483598; -- 2147483698;
-FOV_MENU_REPEAT_REGIME4  = -2147483582; -- 2147483714;
-FOV_MENU_REPEAT_REGIME5  = -2147483566; -- 2147483730;
 FOV_MENU_ELITE_INTRO     = 36;
 FOV_MENU_ELITE_CHAP1     = 52;
 FOV_MENU_ELITE_CHAP2     = 68;
@@ -174,18 +166,18 @@ function updateFov(player, csid, menuchoice, r1, r2, r3, r4, r5)
         -- get regime id and numbers killed...
         local regid = player:getVar("fov_regimeid");
         local info = getRegimeInfo(regid);
-        
+
         if (info[1] ~= 0) then n1 = player:getVar("fov_numkilled1"); else n1 = 0; end;
         if (info[2] ~= 0) then n2 = player:getVar("fov_numkilled2"); else n2 = 0; end;
         if (info[3] ~= 0) then n3 = player:getVar("fov_numkilled3"); else n3 = 0; end;
         if (info[4] ~= 0) then n4 = player:getVar("fov_numkilled4"); else n4 = 0; end;
-        
+
         player:updateEvent(info[1], info[2], info[3], info[4], n1, n2, n3, n4);
 
     elseif (menuchoice == FOV_MENU_LEVEL_RANGE) then -- Level range and training area on View Regime...
         local regid = player:getVar("fov_regimeid");
         local info = getRegimeInfo(regid);
-        
+
         player:updateEvent(0, 0, 0, 0, 0, info[5], info[6], 0);
     end
 
@@ -210,7 +202,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     end
 
     option = bit.band(option, 0x7FFFFFFF);
-    
+
     -- ================= FIELD SUPPORT ===============================================
     if (option == FOV_MENU_REGEN) then -- Chose Regen. Regen from FoV removes all forms of regen.
         -- Decrease tabs
@@ -221,7 +213,6 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- Adds regen
             player:addStatusEffect(EFFECT_REGEN, 1, 3, 3600);
         end
-        
 
     elseif (option == FOV_MENU_REFRESH) then -- Chose Refresh, removes all other refresh.
         -- Decrease tabs
@@ -234,7 +225,6 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- Add refresh
             player:addStatusEffect(EFFECT_REFRESH, 1, 3, 3600, 0, 3);
         end
-        
 
     elseif (option == FOV_MENU_PROTECT) then -- Chose Protect, removes all other protect.
         -- Decrease tabs
@@ -256,7 +246,6 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- Add protect
             player:addStatusEffect(EFFECT_PROTECT, def, 0, 1800);
         end
-        
 
     elseif (option == FOV_MENU_SHELL) then -- Chose Shell, removes all other shell.
         -- Decrease tabs
@@ -279,7 +268,6 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
             -- Add shell
             player:addStatusEffect(EFFECT_SHELL, def, 0, 1800);
         end
-        
 
     elseif (option == FOV_MENU_RERAISE) then -- Reraise chosen.
         -- Decrease tabs
@@ -345,23 +333,22 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         player:setVar("fov_numkilled3", 0);
         player:setVar("fov_numkilled4", 0);
         player:showText(player, msg_cancel);
-        
 
     elseif (option == FOV_MENU_PAGE_1) then -- Page 1
         writeRegime(player, r1, msg_accept, msg_jobs, fov_repeat);
-        
+
     elseif (option == FOV_MENU_PAGE_2) then -- Page 2
         writeRegime(player, r2, msg_accept, msg_jobs, fov_repeat);
-        
+
     elseif (option == FOV_MENU_PAGE_3) then -- Page 3
         writeRegime(player, r3, msg_accept, msg_jobs, fov_repeat);
-        
+
     elseif (option == FOV_MENU_PAGE_4) then -- Page 4
         writeRegime(player, r4, msg_accept, msg_jobs, fov_repeat);
-        
+
     elseif (option == FOV_MENU_PAGE_5) then -- Page 5
         writeRegime(player, r5, msg_accept, msg_jobs, fov_repeat);
-        
+
     elseif (option == FOV_MENU_ELITE_INTRO) then -- Want elite, 100tabs
         -- giveEliteRegime(player, ELITE_TRAINING_CHAPTER_7, 100);
 
@@ -400,7 +387,7 @@ function giveEliteRegime(player, keyitem, cost)
         player:delCurrency("valor_point", cost);
         player:addKeyItem(keyitem);
     end
-    
+
 end
 
 -----------------------------------
@@ -410,18 +397,18 @@ end
 function writeRegime(player, rid, msg_accept, msg_jobs, regrepeat)
 
     local info = getRegimeInfo(rid);
-    
+
     player:setVar("fov_regimeid", rid);
     player:setVar("fov_repeat", regrepeat);
-    
+
     for i = 1, 4 do
         player:setVar("fov_numkilled"..i, 0);
         player:setVar("fov_numneeded"..i, info[i]);
     end;
-    
+
     player:showText(player, msg_accept);
     player:showText(player, msg_jobs);
-    
+
 end
 
 -----------------------------------
@@ -443,7 +430,7 @@ function checkRegime(player, mob, rid, index)
     if (player:getVar("fov_regimeid") == rid) then -- player is doing this regime
         -- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
         local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
-        
+
         if (partyType < 2 and (mob:getBaseExp() > 0 or LOW_LEVEL_REGIME == 1) and difference <= 15 and (player:checkDistance(mob) < 100 or player:checkFovDistancePenalty() == 0)) then
             -- get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
@@ -470,13 +457,17 @@ function checkRegime(player, mob, rid, index)
 
                         -- Award gil and tabs once per day.
                         if (player:getVar("fov_LastReward") < VanadielEpoch) then
-                           player:messageBasic(FOV_MSG_GET_GIL, reward);
-                           player:addGil(reward);
-                           player:addCurrency("valor_point", tabs);
-                           player:messageBasic(FOV_MSG_GET_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
-                           if (REGIME_WAIT == 1) then
-                              player:setVar("fov_LastReward", VanadielEpoch);
-                           end
+                            local CAP = 50000; -- Retail caps it at 50k
+                            if (tabs + player:getCurrency("valor_point") > CAP) then
+                                tabs = utils.clamp(CAP - player:getCurrency("valor_point"),0,CAP);
+                            end
+                            player:messageBasic(FOV_MSG_GET_GIL, reward);
+                            player:addGil(reward);
+                            player:addCurrency("valor_point", tabs);
+                            player:messageBasic(FOV_MSG_GET_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
+                            if (REGIME_WAIT == 1) then
+                                player:setVar("fov_LastReward", VanadielEpoch);
+                            end
                         end
 
                         -- TODO: display msgs (based on zone annoyingly, so will need player:getZoneID() then a lookup)
@@ -485,7 +476,7 @@ function checkRegime(player, mob, rid, index)
                         if (k2 ~= 0) then player:setVar("fov_numkilled2", 0); end
                         if (k3 ~= 0) then player:setVar("fov_numkilled3", 0); end
                         if (k4 ~= 0) then player:setVar("fov_numkilled4", 0); end
-                        
+
                         if (player:getVar("fov_repeat") ~= 1) then
                             player:setVar("fov_regimeid", 0);
                             player:setVar("fov_numneeded1", 0);
