@@ -6,14 +6,14 @@
 --   http://wiki.ffxiclopedia.org/wiki/Grounds_Tome
 --
 -------------------------------------------------
-
+require("scripts/globals/utils")
+require("scripts/globals/common");
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
 require("scripts/globals/teleports");
-require("scripts/globals/status");
 require("scripts/globals/regimereward");
 require("scripts/globals/regimeinfo");
-require("scripts/globals/common");
 
 -----------------------------------
 -- onEventUpdate params
@@ -56,16 +56,6 @@ GOV_MENU_DRIED_AGARICUS  = 260;
 GOV_MENU_INSTANT_RICE    = 276;
 GOV_MENU_CIPHER_SAKURA   = 292;
 GOV_MENU_CANCEL_REGIME   = 3;
-GOV_MENU_REPEAT_REGIME1  = -2147483630; -- 2147483666;
-GOV_MENU_REPEAT_REGIME2  = -2147483614; -- 2147483682;
-GOV_MENU_REPEAT_REGIME3  = -2147483598; -- 2147483698;
-GOV_MENU_REPEAT_REGIME4  = -2147483582; -- 2147483714;
-GOV_MENU_REPEAT_REGIME5  = -2147483566; -- 2147483730;
-GOV_MENU_REPEAT_REGIME6  = -2147483550; -- 2147483746;
-GOV_MENU_REPEAT_REGIME7  = -2147483534; -- 2147483762;
-GOV_MENU_REPEAT_REGIME8  = -2147483518; -- 2147483778;
-GOV_MENU_REPEAT_REGIME9  = -2147483502; -- 2147483794;
-GOV_MENU_REPEAT_REGIME10 = -2147483486; -- 2147483810;
 
 -----------------------------------
 -- Message IDs
@@ -529,7 +519,7 @@ function checkGoVregime(player,mob,rid,index)
                                     power = 22;
                                 end
                             else
-                                power = 4 + player:getStatusEffect(RandomProwess):getPower(); 
+                                power = 4 + player:getStatusEffect(RandomProwess):getPower();
                                 if (power > 44) then
                                     power = 44;
                                 end
@@ -567,6 +557,10 @@ function checkGoVregime(player,mob,rid,index)
 
                         -- Award gil and tabs once per day.
                         if (player:getVar("fov_LastReward") < VanadielEpoch) then
+                            local CAP = 50000; -- Retail caps it at 50k
+                            if (tabs + player:getCurrency("valor_point") > CAP) then
+                                tabs = utils.clamp(CAP - player:getCurrency("valor_point"),0,CAP);
+                            end
                             player:messageBasic(GOV_MSG_GET_GIL,reward);
                             player:addGil(reward);
                             player:addCurrency("valor_point", tabs);
@@ -579,7 +573,7 @@ function checkGoVregime(player,mob,rid,index)
                         -- Give player the candy and inform which Prowess they got.
                         player:addExp(reward);
                         player:messageBasic(ProwessMessage);
-                        
+
                         -- Debugging crap.
                         -- player:PrintToPlayer( string.format( "ProwessID: '%u' ", RandomProwess ) );
                         -- player:PrintToPlayer( string.format( "reward: '%u' ", reward ) );
@@ -591,7 +585,7 @@ function checkGoVregime(player,mob,rid,index)
                                 player:setVar("fov_numkilled"..i, 0);
                             end
                         end
-                        
+
                         if (player:getVar("fov_repeat") ~= 1) then
                             player:setVar("fov_regimeid",0);
                             player:setVar("fov_numneeded1",0);
