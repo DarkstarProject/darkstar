@@ -15,7 +15,7 @@ g_mixins.families.aern = function(mob)
         local reraises = mob:getLocalVar("AERN_RERAISE_MAX")
         local curr_reraise = mob:getLocalVar("AERN_RERAISES")
         if reraises == 0 then
-            if math.random() < 1 then
+            if math.random() < 0.4 then
                 reraises = 1
             end
         end
