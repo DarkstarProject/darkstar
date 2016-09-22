@@ -6,9 +6,12 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "iiii"
+    parameters = "iiiii"
 };
 
-function onTrigger(player, actionId, animationId, speceffect, reaction)
-    player:injectActionPacket( actionId, animationId, speceffect, reaction );
+function onTrigger(player, actionId, animationId, speceffect, reaction, message)
+    if (message == nil) then
+        message = 185; -- Default message
+    end
+    player:injectActionPacket(actionId, animationId, speceffect, reaction, message);
 end
