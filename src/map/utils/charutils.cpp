@@ -2755,7 +2755,7 @@ namespace charutils
     bool seenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
     {
         auto table = KeyItemID / 512;
-        return PChar->keys.tables[table].keyList[KeyItemID % 512];
+        return PChar->keys.tables[table].seenList[KeyItemID % 512];
     }
 
     void unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
