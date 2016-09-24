@@ -372,14 +372,14 @@ inline int32 CLuaBaseEntity::getCharmChance(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    
+
     auto PCharmer = static_cast<CBattleEntity*>(m_PBaseEntity);
     auto PTarget = static_cast<CBattleEntity*>(PLuaBaseEntity->GetBaseEntity());
-    
+
     bool includeCharmAffinityAndChanceMods = true;
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         includeCharmAffinityAndChanceMods = lua_toboolean(L, 2);;
-    
+
     float charmChance = battleutils::GetCharmChance(PCharmer, PTarget, includeCharmAffinityAndChanceMods);
     lua_pushnumber(L, charmChance);
 
@@ -7758,6 +7758,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     uint16 anim = (uint16)lua_tointeger(L, 2);
     SPECEFFECT speceffect = (SPECEFFECT)lua_tointeger(L, 3);
     REACTION reaction = (REACTION)lua_tointeger(L, 4);
+    uint16 message = (REACTION)lua_tointeger(L, 5);
 
     ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
     switch (action)
@@ -7792,7 +7793,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
         actionTarget_t& target = list.getNewActionTarget();
         target.animation = anim;
         target.param = 10;
-        target.messageID = 185;
+        target.messageID = message;
         PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(Action));
         return 0;
     }
@@ -7803,7 +7804,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     actionTarget_t& target = list.getNewActionTarget();
     target.animation = anim;
     target.param = 10;
-    target.messageID = 185;
+    target.messageID = message;
     target.speceffect = speceffect;
     target.reaction = reaction;
 
@@ -10754,7 +10755,7 @@ inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
 
     lua_newtable(L);
     int newTable = lua_gettop(L);
-    
+
     for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
     {
         for (auto&& entity : list)
