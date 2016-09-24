@@ -372,14 +372,14 @@ inline int32 CLuaBaseEntity::getCharmChance(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    
+
     auto PCharmer = static_cast<CBattleEntity*>(m_PBaseEntity);
     auto PTarget = static_cast<CBattleEntity*>(PLuaBaseEntity->GetBaseEntity());
-    
+
     bool includeCharmAffinityAndChanceMods = true;
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         includeCharmAffinityAndChanceMods = lua_toboolean(L, 2);;
-    
+
     float charmChance = battleutils::GetCharmChance(PCharmer, PTarget, includeCharmAffinityAndChanceMods);
     lua_pushnumber(L, charmChance);
 
@@ -7758,6 +7758,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     uint16 anim = (uint16)lua_tointeger(L, 2);
     SPECEFFECT speceffect = (SPECEFFECT)lua_tointeger(L, 3);
     REACTION reaction = (REACTION)lua_tointeger(L, 4);
+    uint16 message = (REACTION)lua_tointeger(L, 5);
 
     ACTIONTYPE actiontype = ACTION_MAGIC_FINISH;
     switch (action)
@@ -7792,7 +7793,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
         actionTarget_t& target = list.getNewActionTarget();
         target.animation = anim;
         target.param = 10;
-        target.messageID = 185;
+        target.messageID = message;
         PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(Action));
         return 0;
     }
@@ -7803,7 +7804,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     actionTarget_t& target = list.getNewActionTarget();
     target.animation = anim;
     target.param = 10;
-    target.messageID = 185;
+    target.messageID = message;
     target.speceffect = speceffect;
     target.reaction = reaction;
 
@@ -10112,7 +10113,6 @@ inline int32 CLuaBaseEntity::setAllegiance(lua_State* L)
 inline int32 CLuaBaseEntity::stun(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     m_PBaseEntity->PAI->Inactive(std::chrono::milliseconds(lua_tointeger(L, 1)), false);
@@ -10755,7 +10755,7 @@ inline int32 CLuaBaseEntity::getNearbyEntities(lua_State* L)
 
     lua_newtable(L);
     int newTable = lua_gettop(L);
-    
+
     for (auto&& list : {iterTarget->SpawnMOBList, iterTarget->SpawnPCList, iterTarget->SpawnPETList})
     {
         for (auto&& entity : list)
@@ -10790,6 +10790,56 @@ int32 CLuaBaseEntity::getAutomatonHead(lua_State* L)
 
     lua_pushinteger(L, static_cast<CAutomatonEntity*>(m_PBaseEntity)->getHead());
 
+    return 1;
+}
+
+int32 CLuaBaseEntity::getDropID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    lua_pushinteger(L, static_cast<CMobEntity*>(m_PBaseEntity)->m_DropID);
+    return 1;
+}
+
+int32 CLuaBaseEntity::setDropID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    static_cast<CMobEntity*>(m_PBaseEntity)->m_DropID = lua_tointeger(L, 1);
+    return 0;
+}
+
+int32 CLuaBaseEntity::resetAI(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    m_PBaseEntity->PAI->Reset();
+    return 0;
+}
+
+//get another entity by targid (using instance and zone of this entity)
+int32 CLuaBaseEntity::getEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    
+    auto PEntity {m_PBaseEntity->GetEntity(lua_tointeger(L,1))};
+    if (PEntity)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)PEntity);
+        lua_pcall(L, 2, 1, 0);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
     return 1;
 }
 
@@ -11265,5 +11315,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkImbuedItems),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDropID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetAI),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEntity),
     {nullptr,nullptr}
 };

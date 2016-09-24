@@ -636,7 +636,7 @@ DEATH_CARES_NOT                 = 178;
 NO_TIME_LIKE_THE_FUTURE         = 180;
 SIN                             = 184;
 PENANCE                         = 188;
-VESSEL_OF_LIGHT                 = 190;
+VESSEL_OF_LIGHT_ROV             = 190;
 THE_LIFESTREAM_OF_REISENJIMA    = 192;
 FROM_WEST_TO_EAST               = 194;
 GOOD_THINGS_COME_IN_THREES      = 196;
@@ -1108,7 +1108,8 @@ function finishMissionTimeline(player,guard,csid,option)
                 timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}}};
             end
         else
-            timeline = {
+            timeline =
+            {
                  -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
                  0,{0x03e8,0},{0x07d0,0},{0,0},        {0,0},{{1},{2}},                                                     -- MISSION 1-1 (First Mission [START])
                  0,{0x03fc,0},{0x07e4,0},{0,0},        {0,0},{{4},{5,150},{12},{14,0}},                                     -- MISSION 1-1
@@ -1141,13 +1142,14 @@ function finishMissionTimeline(player,guard,csid,option)
                 22,{0,0},      {0,0},     {0x004c,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}                    -- MISSION 9-1 (Finish (Door: Great Hall))
                 --[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
                 0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
-                        };
+            };
         end
     elseif (nation == NATION_BASTOK) then
         if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
         else
-            timeline = {
+            timeline =
+            {
                  0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},                                                                 -- MISSION 1-1 (First Mission [START])
                  1,{0x01f8,0},{0,0},{0,0},{0,0},{{9,4},{12}},                                                             -- MISSION 1-2 (Finish Mission)
                  2,{0x03F0,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},                                             -- MISSION 1-3
@@ -1168,16 +1170,16 @@ function finishMissionTimeline(player,guard,csid,option)
                 18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}},                                             -- MISSION 7-1 (Finish (Cid))
                 19,{0x02fe,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}},             -- MISSION 7-2 (Finish (Karst))
                 20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}},                                                 -- MISSION 8-1 (Finish (Iron Eater))
-                21,{0x00b0,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))            
-                
-                        };
+                21,{0x00b0,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))
+            };
         end
     elseif (nation == NATION_WINDURST) then
         guardlist = {0x0072,0x006f,0x004e,0x005d};
         if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};
         else
-            timeline = {
+            timeline =
+            {
                  0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},                                                 -- MISSION 1-1 (First Mission [START])
                  0,{0x005e,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,150},{9,28},{12}},                             -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
                  1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}},                                                 -- MISSION 1-2 [START]
@@ -1206,7 +1208,7 @@ function finishMissionTimeline(player,guard,csid,option)
                 21,{0,0},      {0,0},     {0x0261,0},{0,0},       {{14,0},{11,9},{8,80000},{6},{0,0},{12}},                    -- MISSION 8-2 (Finish (Apururu))
                 22,{0,0},     {0,0},     {0x003D,0},{0,0},     {{14,0},{5,800},{13,293},{0},{0,0},{12}},                    -- MISSION 9-1 (Finish (Zone: Full Moon Fountain))
                 23,{0,0},      {0,0},     {0x0197,0},{0,0},       {{13,294},{11,10},{8,100000},{6},{0,0},{12}}                    -- MISSION 9-2 (Finish (Vestal Chamber))
-                         };
+            };
         end
     end
 

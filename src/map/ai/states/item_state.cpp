@@ -28,7 +28,6 @@ This file is part of DarkStar-server source code.
 #include "../../entities/charentity.h"
 
 #include "../../item_container.h"
-#include "../../recast_container.h"
 #include "../../status_effect_container.h"
 #include "../../universal_container.h"
 
@@ -39,7 +38,6 @@ This file is part of DarkStar-server source code.
 
 #include "../../utils/battleutils.h"
 #include "../../utils/charutils.h"
-#include "../../../common/utils.h"
 
 
 CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slotid) :
@@ -106,7 +104,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
     m_PEntity->UContainer->SetType(UCONTAINER_USEITEM);
     m_PEntity->UContainer->SetItem(0, m_PItem);
 
-    UpdateTarget(m_targid);
+    CState::UpdateTarget(m_targid);
 
     m_startPos = m_PEntity->loc.p;
     m_castTime = std::chrono::milliseconds(m_PItem->getActivationTime());
@@ -143,7 +141,7 @@ bool CItemState::Update(time_point tick)
     {
         m_interrupted = false;
         m_interruptable = false;
-        auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg);
+        UpdateTarget(m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg));
 
         action_t action;
 

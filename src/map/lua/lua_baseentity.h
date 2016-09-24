@@ -603,6 +603,12 @@ public:
     int32 getNearbyEntities(lua_State* L);
     int32 getAutomatonFrame(lua_State* L);
     int32 getAutomatonHead(lua_State* L);
+
+    int32 getDropID(lua_State* L);
+    int32 setDropID(lua_State* L);
+
+    int32 resetAI(lua_State* L);
+    int32 getEntity(lua_State* L);
 };
 
 #endif

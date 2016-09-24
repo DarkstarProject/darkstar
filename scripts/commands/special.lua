@@ -47,6 +47,12 @@ function onTrigger(player)
            13606, 1, -- Judge Cape
         }
     	showShop(player, STATIC, stock);
+    elseif(player:getName() == "Ava") then -- Xu qinggui
+        local stock =
+        {
+           20646, 1, -- Excalibur
+        }
+    	showShop(player, STATIC, stock);
     -- elseif(player:getName() == "Colette") then -- Colette
         -- local stock =
         -- {
