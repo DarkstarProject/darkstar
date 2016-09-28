@@ -821,7 +821,6 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     {
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_TOO_FAR_AWAY));
     }
-    PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PBattleTarget, PWeaponSkill->getID());
 }
 
 void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
