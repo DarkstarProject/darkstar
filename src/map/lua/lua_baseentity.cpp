@@ -4404,12 +4404,12 @@ inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
-        lua_pushboolean(L, true);
-    else
-        lua_pushboolean(L, false);
+        if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
+            lua_pushboolean(L, true);
+        else
+            lua_pushboolean(L, false);
     }
     else
     {
