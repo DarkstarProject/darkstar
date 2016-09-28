@@ -49,3 +49,10 @@ function onMobEngaged(mob,target)
         end
     end
 end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
