@@ -332,7 +332,7 @@ typedef char bool;
 
 #include <chrono>
 
-using namespace std::chrono_literals;
+using namespace std::literals::chrono_literals;
 using server_clock = std::chrono::steady_clock;
 using time_point = server_clock::time_point;
 using duration = server_clock::duration;
