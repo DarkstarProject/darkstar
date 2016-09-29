@@ -1,18 +1,12 @@
--- Abyssea mixin
--- Customization:
+-- Abyssea NM mixin base
+-- Don't require this one - use abyssea_nm for regular spawned NMs and abyssea_nm_forced for force pops
 
 require("scripts/globals/mixins")
 require("scripts/globals/abyssea")
 
 g_mixins = g_mixins or {}
 
-g_mixins.abyssea = function(mob)
-    mob:addListener("ENGAGE", "ABYSSEA_ENGAGE", function(mob)
-        mob:setLocalVar("abyssea_magic_weak", getNewYellowWeakness(mob))
-        mob:setLocalVar("abyssea_ele_ws_weak", getNewRedWeakness(mob))
-        mob:setLocalVar("abyssea_phys_ws_weak", getNewBlueWeakness(mob))
-    end)
-
+g_mixins.abyssea_nm_base = function(mob)
     mob:addListener("MAGIC_TAKE", "ABYSSEA_MAGIC_PROC_CHECK", function(mob, caster, spell, action)
         if spell:getID() == mob:getLocalVar("abyssea_magic_weak") then
             --TODO: weakness trigger effects
@@ -31,4 +25,4 @@ g_mixins.abyssea = function(mob)
     end)
 end
 
-return g_mixins.abyssea
+return g_mixins.abyssea_nm_base
