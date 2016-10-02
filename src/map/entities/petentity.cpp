@@ -35,7 +35,9 @@
 #include "../ai/states/ability_state.h"
 #include "../utils/battleutils.h"
 #include "../utils/petutils.h"
+#include "../utils/mobutils.h"
 #include "../../common/utils.h"
+#include "../mob_modifier.h"
 
 CPetEntity::CPetEntity(PETTYPE petType)
 {
@@ -166,6 +168,14 @@ void CPetEntity::Die()
 void CPetEntity::Spawn()
 {
     //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
+
+    if (PMaster && PMaster->objtype == TYPE_PC && m_EcoSystem == SYSTEM_ELEMENTAL)
+    {
+        this->defaultMobMod(MOBMOD_MAGIC_DELAY, 12);
+        this->defaultMobMod(MOBMOD_MAGIC_COOL, 48);
+        mobutils::GetAvailableSpells(this);
+    }
+
     CBattleEntity::Spawn();
     luautils::OnMobSpawn(this);
 }
