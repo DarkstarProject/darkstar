@@ -5,7 +5,6 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/globals/magic");
 
 -- weaponskills for red weakness
 local red_weakness = {
