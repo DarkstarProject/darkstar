@@ -609,6 +609,8 @@ public:
 
     int32 resetAI(lua_State* L);
     int32 getEntity(lua_State* L);
+
+    int32 canChangeState(lua_State* L);
 };
 
 #endif
