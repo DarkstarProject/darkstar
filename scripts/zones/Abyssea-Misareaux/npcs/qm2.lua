@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Misereaux
---  NPC: ???
--- Spawns: Sobek
+-- Zone: Abyssea-Misareaux
+--  NPC: qm2 (???)
+-- Spawns Sobek
+-- @pos ? ? ? 216
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

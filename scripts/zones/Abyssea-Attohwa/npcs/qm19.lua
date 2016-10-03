@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
---  NPC: ???
--- Spawns: Ulhuadshi
+--  NPC: qm19 (???)
+-- Spawns Ulhuadshi
+-- @pos ? ? ? 215
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

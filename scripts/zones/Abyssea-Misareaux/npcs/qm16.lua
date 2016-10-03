@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Misereaux
---  NPC: ???
--- Spawns: Ironclad Pulverizor
+-- Zone: Abyssea-Misareaux
+--  NPC: qm16 (???)
+-- Spawns Ironclad Pulverizor
+-- @pos ? ? ? 216
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

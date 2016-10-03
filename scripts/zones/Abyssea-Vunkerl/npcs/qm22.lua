@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Vunkeral
---  NPC: ???
--- Spawns: Durinn
+-- Zone: Abyssea-Vunkerl
+--  NPC: qm22 (???)
+-- Spawns Durinn
+-- @pos ? ? ? 217
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

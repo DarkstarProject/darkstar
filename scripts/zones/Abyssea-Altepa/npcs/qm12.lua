@@ -1,12 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Altepa
---  NPC: ???
--- Spawns: Dragua
+--  NPC: qm12 (???)
+-- Spawns Dragua
+-- @pos ? ? ? 218
 -----------------------------------
-
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

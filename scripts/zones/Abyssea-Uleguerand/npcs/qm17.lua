@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Ullegrand
---  NPC: ???
--- Spawns: Isgebind
+-- Zone: Abyssea-Uleguerand
+--  NPC: qm17 (???)
+-- Spawns Isgebind
+-- @pos ? ? ? 253
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action
