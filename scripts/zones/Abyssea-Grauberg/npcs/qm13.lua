@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Grauberg
---  NPC: ???
--- Spawns: Azdaja
+--  NPC: qm13 (???)
+-- Spawns Azdaja
+-- @pos ? ? ? 254
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

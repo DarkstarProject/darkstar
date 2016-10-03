@@ -1,7 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
---  NPC: ???
--- Spawns: Bloodeye Vileberry
+--  NPC: qm16 (???)
+-- Spawns Bloodeye Vileberry
+-- @pos ? ? ? 15
 -----------------------------------
 
 require("scripts/globals/status");
