@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Grauberg
---  NPC: ???
--- Spawns: Amphitrite
+--  NPC: qm18 (???)
+-- Spawns Amphitrite
+-- @pos ? ? ? 254
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action
