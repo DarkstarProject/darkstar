@@ -46,6 +46,68 @@ stock = {
         10533, 10000000, -- Nares Cuffs
         10564, 10000000, -- Nares Trews
         10630, 10000000, -- Nares Clogs
+        -- Ares'
+        16084,10000000, -- Ares' Mask
+        14546,10000000, -- Ares' Cuirass
+        14961,10000000, -- Ares' Gauntlets
+        15625,10000000, -- Ares' Flanchard
+        15711,10000000, -- Ares' Sollerets
+        -- Ares' +1
+        27648,10000000, -- Ares' Mask
+        27788,10000000, -- Ares' Cuirass
+        27928,10000000, -- Ares' Gauntlets
+        28071,10000000, -- Ares' Flanchard
+        28208,10000000, -- Ares' Sollerets
+
+        -- Skadi's
+        16088,10000000, -- Skadi's Visor
+        14550,10000000, -- Skadi's Cuirie
+        14965,10000000, -- Skadi's Bazubands
+        15629,10000000, -- Skadi's Chausses
+        15715,10000000, -- Skadi's Jambeaux
+        -- Skadi's +1
+        27649,10000000, -- Skadi's Visor
+        27789,10000000, -- Skadi's Cuirie
+        27929,10000000, -- Skadi's Bazubands
+        28072,10000000, -- Skadi's Chausses
+        28209,10000000, -- Skadi's Jambeaux
+        -- Usukane
+        16092,10000000, -- Usukane Somen
+        14554,10000000, -- Usukane Haramaki
+        14969,10000000, -- Usukane Gote
+        15633,10000000, -- Usukane Hizayoroi
+        15719,10000000, -- Usukane Sune-Ate
+        -- Usukane +1
+        27650,10000000, -- Usukane Somen
+        27790,10000000, -- Usukane Haramaki
+        27930,10000000, -- Usukane Gote
+        28073,10000000, -- Usukane Hizayoroi
+        28210,10000000, -- Usukane Sune-Ate
+
+        -- Marduk's
+        16096,10000000, -- Marduk's Tiara
+        14558,10000000, -- Marduk's Jubbah
+        14973,10000000, -- Marduk's Dastanas
+        15637,10000000, -- Marduk's Shalwar
+        15723,10000000, -- Marduk's Crackows
+        -- Marduk's +1
+        27651,10000000, -- Marduk's Tiara
+        27791,10000000, -- Marduk's Jubbah
+        27931,10000000, -- Marduk's Dastanas
+        28074,10000000, -- Marduk's Shalwar
+        28211,10000000, -- Marduk's Crackows
+        -- Morrigan
+        16100,10000000, -- Morrigan Coronal
+        14562,10000000, -- Morrigan Robe
+        14977,10000000, -- Morrigan Cuffs
+        15641,10000000, -- Morrigan Slops
+        15727,10000000, -- Morrigan Pigaches
+        -- Morrigan +1
+        27652,10000000, -- Morrigan Coronal
+        27792,10000000, -- Morrigan Robe
+        27932,10000000, -- Morrigan Cuffs
+        28075,10000000, -- Morrigan Slops
+        28212,10000000, -- Morrigan Pigaches
 		-- 15015, 15000000, -- Hachiryu Kote
 		-- 11281, 5000000, -- Hachiryu Haramaki
 		-- 16337, 5000000, -- Hachiryu Haidate

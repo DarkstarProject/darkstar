@@ -613,7 +613,6 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
 
     auto PSkill = state.GetSkill();
     auto PBattleTarget = static_cast<CBattleEntity*>(state.GetTarget());
-    PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PSkill->getID());
 
     static_cast<CMobController*>(PAI->GetController())->TapDeaggroTime();
 }
