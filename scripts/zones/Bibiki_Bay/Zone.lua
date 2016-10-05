@@ -63,6 +63,9 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
+    local rifts = {16793963,16793964,16793965};
+    SetRifts(rifts);
+
     zone:registerRegion(1,481,-7,602,503,5,701);
     zone:registerRegion(2,-410,-7,-385,-383,5,-354);
     zone:registerRegion(3,487,-6,708,491,-1,717);

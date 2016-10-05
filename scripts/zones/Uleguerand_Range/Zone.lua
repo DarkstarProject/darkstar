@@ -16,6 +16,9 @@ require("scripts/globals/missions");
 
 function onInitialize(zone)
 
+    local rifts = {16798140,16798141,16798142};
+    SetRifts(rifts);
+
     -- Jormungand
     SetRespawnTime(16797969, 86400, 259200);
 

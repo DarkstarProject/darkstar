@@ -14,6 +14,10 @@ require("scripts/zones/Rolanberry_Fields_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local rifts = {17150832,17150833,17150834};
+    SetRifts(rifts);
+
 end;
 
 -----------------------------------

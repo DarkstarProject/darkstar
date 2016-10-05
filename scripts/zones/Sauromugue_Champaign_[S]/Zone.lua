@@ -14,6 +14,10 @@ require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local rifts = {17179512,17179513,17179514};
+    SetRifts(rifts);
+
 end;
 
 -----------------------------------
@@ -27,7 +31,7 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 91 and player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 2) then
         cs = 0x0003;
-    end    
+    end
     return cs;
 end;
 

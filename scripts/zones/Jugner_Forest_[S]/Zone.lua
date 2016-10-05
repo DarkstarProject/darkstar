@@ -14,6 +14,10 @@ require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local rifts = {17114036,17114037,17114038};
+    SetRifts(rifts);
+
 end;
 
 -----------------------------------     
