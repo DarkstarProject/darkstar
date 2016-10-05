@@ -10682,7 +10682,7 @@ INSERT INTO `mob_groups` VALUES (10789,1637,166,330,0,0,0,0,86,90,0); -- Goblin 
 INSERT INTO `mob_groups` VALUES (10790,1664,166,330,0,0,0,0,88,90,0); -- Goblin Artificer (88-90) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10791,1637,166,330,0,0,0,0,88,90,0); -- Goblin Chaser (88-90) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10792,1695,166,330,0,0,0,0,88,90,0); -- Goblin Tanner (88-90) FFXIwiki
-INSERT INTO `mob_groups` VALUES (10793,3946,190,330,0,0,0,0,78,80,0); -- Ossuary Worm (78-80) FFXIwiki 
+INSERT INTO `mob_groups` VALUES (10793,3946,190,330,0,0,0,0,78,80,0); -- Ossuary Worm (78-80) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10794,1044,190,330,0,0,0,0,80,83,0); -- Ogre Bat (80-83) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10795,871,190,330,0,614,0,0,82,84,0); -- Barrow Scorpion (82-84) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10796,244,190,330,0,178,0,0,80,83,0); -- Bonnet Beetle (~80) FFXIwiki [Estimated to match Ogre Bat]
@@ -10891,7 +10891,7 @@ INSERT INTO `mob_groups` VALUES (11011,5315,222,0,128,0,180000,9999,99,99,0);
 -- provenance crystal fetter
 INSERT INTO `mob_groups` VALUES (11012,5314,222,0,128,0,0,9999,99,99,0);
 
-INSERT INTO `mob_groups` VALUES(11135,5106,36,0,128,0,0,12000,75,75,0);
+INSERT INTO `mob_groups` VALUES (11135,5106,36,0,128,0,0,12000,75,75,0); -- Promathia
 
 -- dyna Valkurm
 INSERT INTO `mob_groups` VALUES (11136,1716,39,0,128,1434,1000,1000,78,80,0); -- Goblin_Statue
@@ -12349,6 +12349,8 @@ INSERT INTO `mob_groups` VALUES (14545,5741,118,3600,0,4578,750,0,22,23,0);
 
 -- draugar model 2 assault deserter
 INSERT INTO `mob_groups` VALUES (14546,5743,55,0,128,0,0,0,75,77,0);
+
+INSERT INTO `mob_groups` VALUES (14547,4662,215,0,0,0,0,0,0,0,0); -- Svarbhanu
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
