@@ -15,6 +15,9 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onInitialize(zone)
+    local rifts = {16999056,16999057,16999058};
+    SetRifts(rifts);
+
     zone:registerRegion(1,-462,-4,-420,-455,-1,-392);
 end;
 

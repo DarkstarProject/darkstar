@@ -16,6 +16,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local rifts = {17142614,17142615,17142616};
+    SetRifts(rifts);
+
 end;
 
 -----------------------------------

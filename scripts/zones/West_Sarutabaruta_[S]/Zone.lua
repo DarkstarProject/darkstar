@@ -14,6 +14,10 @@ require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local rifts = {17167315,17167316,17167317};
+    SetRifts(rifts);
+
 end;
 
 -----------------------------------

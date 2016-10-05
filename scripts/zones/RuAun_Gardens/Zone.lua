@@ -21,6 +21,9 @@ function onInitialize(zone)
 
     SetFieldManual(manuals);
 
+    local rifts = {17310107,17310108,17310109};
+    SetRifts(rifts);
+
     -- Blue portal timers (2 minutes)
     -- counterclockwise
     SetServerVariable("Main-to-Seiryu-BlueTeleport",0);
