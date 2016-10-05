@@ -928,8 +928,10 @@ void SetupNMMob(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob)
 {
-    // Should swing normally when not a mnk
-    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
+    // I arrived at this attack speed value by comparing his attacks to
+    // videos of retail Maat.  I believe it's base attack rate of 480
+    // minus six levels of martial arts (-20 each)
+    PMob->m_Weapons[SLOT_MAIN]->setDelay((360*1000)/60);
 
     switch(PMob->GetMJob()){
         case JOB_NIN:
