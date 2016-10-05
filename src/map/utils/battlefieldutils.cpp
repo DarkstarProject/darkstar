@@ -109,8 +109,6 @@ namespace battlefieldutils {
                     {
                         if (!PMob->PAI->IsSpawned())
                         {
-                            PMob->Spawn();
-
                             if (strcmp(PMob->GetName(), "Maat") == 0) {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
@@ -121,6 +119,8 @@ namespace battlefieldutils {
                                 battlefield->m_RuleMask &= ~(1 << RULES_ALLOW_SUBJOBS);
 
                             }
+                            PMob->Spawn();
+
                             //ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
                             battlefield->addEnemy(PMob, condition);
                         }
