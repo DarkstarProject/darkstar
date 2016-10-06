@@ -6,7 +6,7 @@
 require("scripts/globals/groundsofvalor");
 
 -----------------------------------
--- onMobDeath
+-- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
