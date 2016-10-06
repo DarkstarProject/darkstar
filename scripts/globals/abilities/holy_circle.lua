@@ -22,5 +22,19 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_HOLY_CIRCLE,1,0,60);
+    local power = 5;			--when cast as Subjob
+    local duration = 180;
+
+    if (player:getMainJob() == JOBS.PLD) then
+        local sFeet = player:getEquipID(SLOT_FEET);
+
+        if (sFeet == 14095 or sFeet == 15358 or sFeet == 28229 or sFeet == 28250) then
+            power = 17;			--when cast as Mainjob w/ equipment
+            duration = 240;		--Leggings increase duration by 50%
+        else
+            power = 15;			--when cast as Mainjob w/o equipment
+        end
+    end
+    
+    target:addStatusEffect(EFFECT_HOLY_CIRCLE,power,0,duration);
 end;

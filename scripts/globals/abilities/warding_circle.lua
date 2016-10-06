@@ -22,5 +22,19 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_WARDING_CIRCLE,1,0,60);
+    local power = 5;			--when cast as Subjob
+    local duration = 180;
+
+    if (player:getMainJob() == JOBS.SAM) then
+        local sHead = player:getEquipID(SLOT_HEAD);
+
+        if (sHead == 13868 or sHead == 15236 or sHead == 27674 or sHead = 27695) then
+            power = 17;			--when cast as Mainjob w/ equipment
+            duration = 240;		--Kabutos increase duration by 50%
+        else
+            power = 15;			--when cast as Mainjob w/o equipment
+        end
+    end    
+
+    target:addStatusEffect(EFFECT_WARDING_CIRCLE,power,0,duration);
 end;

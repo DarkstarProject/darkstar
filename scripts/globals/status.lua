@@ -1297,17 +1297,25 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 831 -- Percentage increase to QD damage
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
+-- Damage/resistance bonus from Circle Effects
+MOD_DRAGON_DAMAGE_BONUS       = 64 -- Increases/decreases damage against/from dragons
+MOD_ARCANA_DAMAGE_BONUS       = 65 -- Increases/decreases damage against/from arcana
+MOD_UNDEAD_DAMAGE_BONUS       = 67 -- Increases/decreases damage against/from undead
+MOD_DEMON_DAMAGE_BONUS        = 92 -- Increases/decreases damage against/from demons
+
+-- Damage/resistance bonus from Beast Strenght boni and BST's Killer Effect
+MOD_LIZARD_DAMAGE_BONUS       = 93
+MOD_VERMIN_DAMAGE_BONUS       = 94
+MOD_BIRD_DAMAGE_BONUS         = 95
+MOD_AMORPH_DAMAGE_BONUS       = 96
+MOD_AQUAN_DAMAGE_BONUS        = 97
+MOD_PLANTOID_DAMAGE_BONUS     = 98
+MOD_BEAST_DAMAGE_BONUS        = 99
+
+
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 92 -- stuff
--- MOD_SPARE = 93 -- stuff
--- MOD_SPARE = 94 -- stuff
--- MOD_SPARE = 95 -- stuff
--- MOD_SPARE = 96 -- stuff
--- MOD_SPARE = 97 -- stuff
--- MOD_SPARE = 98 -- stuff
--- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
 -- MOD_SPARE = 834 -- stuff
 -- MOD_SPARE = 835 -- stuff
