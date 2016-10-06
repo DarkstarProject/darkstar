@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 15838
--- Item: Protect Ring
--- Item Effect: Protect II
+-- ID: 15170
+-- Item: Spartan Hoplon
+-- Item Effect: Phalanx
 -----------------------------------------
 
 require("scripts/globals/settings");
@@ -19,8 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_PROTECT, 40, 0, 1800)) then
-        target:messageBasic(205,EFFECT_PROTECT);
+    if (target:addStatusEffect(EFFECT_PHALANX,10,0,180)) then -- Retail potency unknown, 10 is a guess. (someone 1000 needles test this thing!)
+        target:messageBasic(205,EFFECT_PHALANX);
     else
         target:messageBasic(423); -- no effect
     end
