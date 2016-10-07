@@ -1,10 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Misereaux
---  NPC: ???
--- Spawns: Cirein-Croin
+-- Zone: Abyssea-Misareaux
+--  NPC: qm13 (???)
+-- Spawns Cirein-Croin
+-- @pos ? ? ? 216
 -----------------------------------
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

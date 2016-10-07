@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Misereaux
---  NPC: ???
--- Spawns: Amhuluk
+-- Zone: Abyssea-Misareaux
+--  NPC: qm18 (???)
+-- Spawns Amhuluk
+-- @pos ? ? ? 216
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

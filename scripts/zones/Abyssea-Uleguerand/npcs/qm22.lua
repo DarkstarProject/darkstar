@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Ullegrand
---  NPC: ???
--- Spawns: Resheph
+-- Zone: Abyssea-Uleguerand
+--  NPC: qm22 (???)
+-- Spawns Resheph
+-- @pos ? ? ? 253
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

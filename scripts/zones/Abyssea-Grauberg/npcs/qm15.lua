@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Grauberg
---  NPC: ???
--- Spawns: Raja
+--  NPC: qm15 (???)
+-- Spawns Raja
+-- @pos ? ? ? 254
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

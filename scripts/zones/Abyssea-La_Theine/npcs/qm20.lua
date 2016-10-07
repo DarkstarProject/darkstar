@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-LaTheine
---  NPC: ???
--- Spawns: Carabosse
+--  NPC: qm20 (???)
+-- Spawns Carabosse
+-- @pos ? ? ? 132
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action
@@ -28,8 +28,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Vunkeral
---  NPC: ???
--- Spawns: Bukhis
+-- Zone: Abyssea-Vunkerl
+--  NPC: qm13 (???)
+-- Spawns Bukhis
+-- @pos ? ? ? 217
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

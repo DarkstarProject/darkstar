@@ -928,9 +928,6 @@ void SetupNMMob(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob)
 {
-    // Should swing normally when not a mnk
-    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
-
     switch(PMob->GetMJob()){
         case JOB_NIN:
             PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);

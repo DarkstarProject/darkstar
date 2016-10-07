@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
---  NPC: ???
--- Spawns: Smok
+--  NPC: qm13 (???)
+-- Spawns Smok
+-- @pos ? ? ? 215
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

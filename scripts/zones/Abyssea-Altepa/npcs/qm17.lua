@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Altepa
---  NPC: ???
--- Spawns: Orthrus
+--  NPC: qm17 (???)
+-- Spawns Orthrus
+-- @pos ? ? ? 218
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

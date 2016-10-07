@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-LaTheine
---  NPC: ???
+--  NPC: qm13 (???)
 -- Spawns Briareus
+-- @pos ? ? ? 132
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
