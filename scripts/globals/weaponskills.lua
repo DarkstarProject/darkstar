@@ -218,7 +218,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     end
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
@@ -252,7 +252,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
         dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     dmg = dmg * WEAPON_SKILL_POWER
-    dmg = takeWeaponskillDamage(target, attacker, params, dmg, SLOT_MAIN, 1, bonusTP, nil)
+    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
     return dmg, false, 1, 0;
 end
 
@@ -775,7 +775,7 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
@@ -878,9 +878,9 @@ function getFlourishAnimation(skill)
     end    
 end
 
-function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
     local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, targetTPMult)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
