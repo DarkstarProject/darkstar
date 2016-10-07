@@ -1300,7 +1300,7 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 92 -- stuff
+MOD_RAMPART_DURATION = 92 -- stuff
 -- MOD_SPARE = 93 -- stuff
 -- MOD_SPARE = 94 -- stuff
 -- MOD_SPARE = 95 -- stuff

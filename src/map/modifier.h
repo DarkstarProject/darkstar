@@ -619,7 +619,7 @@ enum MODIFIER
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
-
+    MOD_RAMPART_DURATION          = 92,
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
