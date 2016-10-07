@@ -890,6 +890,8 @@ MOD_KATANA            = 88
 MOD_GKATANA           = 89
 MOD_CLUB              = 90
 MOD_STAFF             = 91
+MOD_RAMPART_DURATION  = 92  -- Rampart duration bonus from gear
+MOD_FLEE_DURATION     = 93  -- Flee duration bonus from gear
 MOD_AUTO_MELEE_SKILL  = 101
 MOD_AUTO_RANGED_SKILL = 102
 MOD_AUTO_MAGIC_SKILL  = 103
@@ -1300,8 +1302,6 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
-MOD_RAMPART_DURATION = 92 -- stuff
--- MOD_SPARE = 93 -- stuff
 -- MOD_SPARE = 94 -- stuff
 -- MOD_SPARE = 95 -- stuff
 -- MOD_SPARE = 96 -- stuff

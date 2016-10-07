@@ -303,12 +303,14 @@ enum MODIFIER
     MOD_PHALANX                   = 301, // Tracks direct damage reduction
 
     // Thief
+    MOD_FLEE_DURATION             = 93,  // Flee duration bonus from gear
     MOD_STEAL                     = 298, // Increase/Decrease THF Steal chance
     MOD_TRIPLE_ATTACK             = 302, // Percent chance
     MOD_TREASURE_HUNTER           = 303, // Percent chance
     MOD_TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
 
     // Paladin
+    MOD_RAMPART_DURATION          = 92,  // Rampart duration bonus from gear
     MOD_ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     MOD_ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
@@ -619,12 +621,10 @@ enum MODIFIER
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
-    MOD_RAMPART_DURATION          = 92,
+
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 92, // stuff
-    // MOD_SPARE = 93, // stuff
     // MOD_SPARE = 94, // stuff
     // MOD_SPARE = 95, // stuff
     // MOD_SPARE = 96, // stuff
