@@ -21,7 +21,7 @@ local itemMap = {
                     { 880, 224, DIGREQ_NONE },
                     { 887, 39, DIGREQ_NONE },
                     { 645, 14, DIGREQ_NONE },
-                    { 893, 105, DIGREQ_NONE }, 
+                    { 893, 105, DIGREQ_NONE },
                     { 737, 17, DIGREQ_NONE },
                     { 643, 64, DIGREQ_NONE },
                     { 17296, 122, DIGREQ_NONE },
@@ -64,8 +64,10 @@ end;
 
 function onInitialize(zone)
     local manuals = {17289795,17289796,17289797};
-
     SetFieldManual(manuals);
+
+    local vwnpc = {17289804,17289805,17289806};
+    SetVoidwatchNPC(vwnpc);
 
     -- King Vinegarroon
     SetRespawnTime(17289575, 900, 10800);

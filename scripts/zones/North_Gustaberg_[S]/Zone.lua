@@ -14,6 +14,10 @@ require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local vwnpc = {17138602,17138603,17138604};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
 -----------------------------------
@@ -27,7 +31,7 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 87 and player:getCampaignAllegiance() > 0 and player:getQuestStatus(CRYSTAL_WAR,BETTER_PART_OF_VALOR) == QUEST_AVAILABLE) then
         cs = 0x0001;
-    end     
+    end
     return cs;
 end;
 

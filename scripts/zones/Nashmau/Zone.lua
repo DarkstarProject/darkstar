@@ -13,6 +13,8 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {16994434};
+    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------
@@ -22,8 +24,8 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then 
-        if (prevZone == 58) then 
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        if (prevZone == 58) then
             cs = 0x00C9;
             player:setPos(11,2,-102,128);
         else

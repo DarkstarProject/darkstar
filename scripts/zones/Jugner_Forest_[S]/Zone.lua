@@ -14,50 +14,54 @@ require("scripts/zones/Jugner_Forest_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local vwnpc = {17114036,17114037,17114038};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
------------------------------------     
--- onZoneIn     
------------------------------------     
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)      
-    local cs = -1;  
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then   
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(621.865,-6.665,300.264,149);
-    end 
-    
+    end
+
     if (player:getQuestStatus(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("ClawsOfGriffonProg") == 0) then
         cs = 0x00C8;
-    
+
     elseif (player:getVar("roadToDivadomCS") == 1) then
         cs = 0x0069;
     end;
-    
+
     return cs;
 
-end;        
+end;
 
------------------------------------     
--- onRegionEnter        
------------------------------------     
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)   
-end;    
+function onRegionEnter(player,region)
+end;
 
------------------------------------ 
--- onEventUpdate    
------------------------------------ 
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)  
+function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-end;    
+end;
 
------------------------------------ 
--- onEventFinish    
------------------------------------ 
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)  
+function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x00C8) then
@@ -66,4 +70,4 @@ function onEventFinish(player,csid,option)
         player:setVar("roadToDivadomCS", 2);
     end;
 
-end;    
+end;
