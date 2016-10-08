@@ -66,7 +66,7 @@ function onInitialize(zone)
 
     SetFieldManual(manuals);
 
-    local vwnpc = {17269268,17269269,17269270};
+    local vwnpc = {17269268,17269269,17269270,17269274,17269275};
     SetVoidwatchNPC(vwnpc);
 
     -- Roc

@@ -15,9 +15,10 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {17780974};
+    SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
-
 end;
 
 -----------------------------------
