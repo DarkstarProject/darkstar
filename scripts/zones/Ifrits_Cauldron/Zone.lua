@@ -19,8 +19,8 @@ function onInitialize(zone)
     local tomes = {17617263,17617264,17617265,17617266,17617267,17617268,17617269,17617270};
     SetGroundsTome(tomes);
 
-    local rifts = {17617257,17617258,17617259};
-    SetRifts(rifts);
+    local vwnpc = {17617257,17617258,17617259};
+    SetVoidwatchNPC(vwnpc);
 
     -- Ash Dragon
     SetRespawnTime(17617147, 900, 10800);

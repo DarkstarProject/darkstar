@@ -66,8 +66,8 @@ function onInitialize(zone)
 
     SetFieldManual(manuals);
 
-    local rifts = {17269268,17269269,17269270};
-    SetRifts(rifts);
+    local vwnpc = {17269268,17269269,17269270};
+    SetVoidwatchNPC(vwnpc);
 
     -- Roc
     SetRespawnTime(17269106, 900, 10800);

@@ -59,8 +59,8 @@ function onInitialize(zone)
     local manuals = {17187570,17187571};
     SetFieldManual(manuals);
 
-    local rifts = {17187550,17187551,17187552};
-    SetRifts(rifts);
+    local vwnpc = {17187550,17187551,17187552};
+    SetVoidwatchNPC(vwnpc);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

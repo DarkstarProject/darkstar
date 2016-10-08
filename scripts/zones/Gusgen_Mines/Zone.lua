@@ -21,8 +21,8 @@ function onInitialize(zone)
 
     UpdateTreasureSpawnPoint(17580399);
 
-    local rifts = {17580406,17580407,17580408};
-    SetRifts(rifts);
+    local vwnpc = {17580406,17580407,17580408};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

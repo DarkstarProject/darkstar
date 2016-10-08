@@ -20,8 +20,8 @@ function onInitialize(zone)
     local tomes = {17531228,17531229,17531230};
     SetGroundsTome(tomes);
 
-    local rifts = {17531222,17531223,17531224};
-    SetRifts(rifts);
+    local vwnpc = {17531222,17531223,17531224};
+    SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1, 403, -34, 83, 409, -33, 89); -- Third Floor G-6 porter to Middle Delkfutt's Tower
     zone:registerRegion(2, 390, -34, -49, 397, -33, -43); -- Third Floor F-10 porter to Middle Delkfutt's Tower "1"

@@ -23,7 +23,7 @@ local itemMap = {
                     { 880, 224, DIGREQ_NONE },
                     { 887, 39, DIGREQ_NONE },
                     { 645, 14, DIGREQ_NONE },
-                    { 893, 105, DIGREQ_NONE }, 
+                    { 893, 105, DIGREQ_NONE },
                     { 737, 17, DIGREQ_NONE },
                     { 643, 64, DIGREQ_NONE },
                     { 17296, 122, DIGREQ_NONE },
@@ -68,8 +68,8 @@ function onInitialize(zone)
     local manuals = {17199751,17199752,17199753};
     SetFieldManual(manuals);
 
-    local rifts = {17199760,17199761,17199762};
-    SetRifts(rifts);
+    local vwnpc = {17199760,17199761,17199762};
+    SetVoidwatchNPC(vwnpc);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

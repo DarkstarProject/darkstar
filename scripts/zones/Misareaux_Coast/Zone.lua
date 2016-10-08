@@ -15,8 +15,8 @@ require("scripts/zones/Misareaux_Coast/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {16879985,16879986,16879987};
-    SetRifts(rifts);
+    local vwnpc = {16879985,16879986,16879987};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

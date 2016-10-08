@@ -21,8 +21,8 @@ function onInitialize(zone)
 
     SetFieldManual(manuals);
 
-    local rifts = {17310107,17310108,17310109};
-    SetRifts(rifts);
+    local vwnpc = {17310107,17310108,17310109};
+    SetVoidwatchNPC(vwnpc);
 
     -- Blue portal timers (2 minutes)
     -- counterclockwise

@@ -59,8 +59,8 @@ function onInitialize(zone)
     local manuals = {17228375,17228376};
     SetFieldManual(manuals);
 
-    local rifts = {17228383,17228384,17228385};
-    SetRifts(rifts);
+    local vwnpc = {17228383,17228384,17228385};
+    SetVoidwatchNPC(vwnpc);
 
     -- Simurgh
     SetRespawnTime(17228242, 900, 10800);

@@ -15,8 +15,8 @@ require("scripts/zones/Mamook/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {17044048,17044049,17044050};
-    SetRifts(rifts);
+    local vwnpc = {17044048,17044049,17044050};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

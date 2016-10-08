@@ -21,8 +21,8 @@ function onInitialize(zone)
                    17502710,17502711};
     SetGroundsTome(tomes);
 
-    local rifts = {17502696,17502697,17502698};
-    SetRifts(rifts);
+    local vwnpc = {17502696,17502697,17502698};
+    SetVoidwatchNPC(vwnpc);
 
 
     UpdateTreasureSpawnPoint(17502695);

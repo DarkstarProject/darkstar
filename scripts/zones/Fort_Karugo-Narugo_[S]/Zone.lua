@@ -17,8 +17,8 @@ require("scripts/globals/status");
 
 function onInitialize(zone)
 
-    local rifts = {17171276,17171277,17171278};
-    SetRifts(rifts);
+    local vwnpc = {17171276,17171277,17171278};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 
