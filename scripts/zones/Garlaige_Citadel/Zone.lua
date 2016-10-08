@@ -21,8 +21,8 @@ function onInitialize(zone)
     local tomes = {17596852,17596853,17596854};
     SetGroundsTome(tomes);
 
-    local rifts = {17596855,17596856,17596857};
-    SetRifts(rifts);
+    local vwnpc = {17596855,17596856,17596857};
+    SetVoidwatchNPC(vwnpc);
 
     -- Banishing Gate #1...
     zone:registerRegion(1,-208,-1,224,-206,1,227);

@@ -16,8 +16,8 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {17101341,17101342,17101343};
-    SetRifts(rifts);
+    local vwnpc = {17101341,17101342,17101343};
+    SetVoidwatchNPC(vwnpc);
 
     -- Aynu-kasey
     SetRespawnTime(17101099, 900, 10800);

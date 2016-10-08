@@ -15,8 +15,8 @@ require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {17449559,17449560,17449561};
-    SetRifts(rifts);
+    local vwnpc = {17449559,17449560,17449561};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

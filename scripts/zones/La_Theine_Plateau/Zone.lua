@@ -127,8 +127,8 @@ function onInitialize(zone)
     local manuals = {17195678,17195679};
     SetFieldManual(manuals);
 
-    local rifts = {17195686,17195687,17195688};
-    SetRifts(rifts);
+    local vwnpc = {17195686,17195687,17195688};
+    SetVoidwatchNPC(vwnpc);
 
     local fallenEgg = GetNPCByID(17195583);
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);

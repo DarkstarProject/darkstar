@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local rifts = {16793963,16793964,16793965};
-    SetRifts(rifts);
+    local vwnpc = {16793963,16793964,16793965};
+    SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1,481,-7,602,503,5,701);
     zone:registerRegion(2,-410,-7,-385,-383,5,-354);

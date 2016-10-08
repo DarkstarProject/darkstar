@@ -15,8 +15,8 @@ require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {17478158,17478159,17478160};
-    SetRifts(rifts);
+    local vwnpc = {17478158,17478159,17478160};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

@@ -58,8 +58,8 @@ function onInitialize(zone)
     local manuals = {17191535,17191536};
     SetFieldManual(manuals);
 
-    local rifts = {17191571,17191572,17191573};
-    SetRifts(rifts);
+    local vwnpc = {17191571,17191572,17191573};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

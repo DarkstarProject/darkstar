@@ -14,6 +14,8 @@ require("scripts/zones/Al_Zahbi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {16974376,16974377};
+    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------

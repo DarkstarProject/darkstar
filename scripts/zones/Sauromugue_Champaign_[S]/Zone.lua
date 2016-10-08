@@ -15,8 +15,8 @@ require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 
 function onInitialize(zone)
 
-    local rifts = {17179512,17179513,17179514};
-    SetRifts(rifts);
+    local vwnpc = {17179512,17179513,17179514};
+    SetVoidwatchNPC(vwnpc);
 
 end;
 

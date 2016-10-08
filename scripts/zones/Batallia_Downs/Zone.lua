@@ -59,8 +59,8 @@ function onInitialize(zone)
     local manuals = {17207865,17207866};
     SetFieldManual(manuals);
 
-    local rifts = {17207926,17207927,17207928};
-    SetRifts(rifts);
+    local vwnpc = {17207926,17207927,17207928};
+    SetVoidwatchNPC(vwnpc);
 
     -- Ahtu
     SetRespawnTime(17207657, 900, 10800);

@@ -30,8 +30,8 @@ function onInitialize(zone)
     local tomes = {17629766,17629767,17629768,17629769,17629770,17629771};
     SetGroundsTome(tomes);
 
-    local rifts = {17629760,17629761,17629762};
-    SetRifts(rifts);
+    local vwnpc = {17629760,17629761,17629762};
+    SetVoidwatchNPC(vwnpc);
 
     -- Weight Door System (RegionID, X, Radius, Z)
     zone:registerRegion(1,   -15, 5, -60, 0,0,0); -- 0x010D01EF Door

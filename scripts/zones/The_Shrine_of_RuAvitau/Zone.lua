@@ -21,8 +21,8 @@ function onInitialize(zone)
     local tomes = {17506822,17506823,17506824,17506825,17506826,17506827,17506828};
     SetGroundsTome(tomes);
 
-    local rifts = {17506816,17506817,17506818};
-    SetRifts(rifts);
+    local vwnpc = {17506816,17506817,17506818};
+    SetVoidwatchNPC(vwnpc);
 
     -- MAP 1 ------------------------
     zone:registerRegion(1, -21, 29, -61, -16, 31, -57);     --> F (H-10)

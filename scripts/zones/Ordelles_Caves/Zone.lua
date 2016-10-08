@@ -19,8 +19,8 @@ function onInitialize(zone)
     local tomes = {17568200,17568201};
     SetGroundsTome(tomes);
 
-    local rifts = {17568194,17568195,17568196};
-    SetRifts(rifts);
+    local vwnpc = {17568194,17568195,17568196};
+    SetVoidwatchNPC(vwnpc);
 
     -- Morbolger
     SetRespawnTime(17568127, 900, 10800);
