@@ -64,7 +64,8 @@ enum EFFECTFLAG
     EFFECTFLAG_SYNTH_SUPPORT    = 0x40000,  // Synthesis Image Support
     EFFECTFLAG_CONFRONTATION    = 0x80000,
     EFFECTFLAG_LOGOUT           = 0x100000,
-    EFFECTFLAG_BLOODPACT        = 0x200000
+    EFFECTFLAG_BLOODPACT        = 0x200000,
+    EFFECTFLAG_ON_JOBCHANGE     = 0x400000  // Removes effect when you change jobs
 };
 
 enum EFFECT
@@ -648,14 +649,14 @@ enum EFFECT
 
     // Purchased from Cruor Prospector
     EFFECT_ABYSSEA_STR              = 768,
-    EFFECT_ABYSSEA_DEX              = 769, 
-    EFFECT_ABYSSEA_VIT              = 770, 
-    EFFECT_ABYSSEA_AGI              = 771, 
-    EFFECT_ABYSSEA_INT              = 772, 
-    EFFECT_ABYSSEA_MND              = 773, 
-    EFFECT_ABYSSEA_CHR              = 774, 
-    EFFECT_ABYSSEA_HP               = 775, 
-    EFFECT_ABYSSEA_MP               = 776, 
+    EFFECT_ABYSSEA_DEX              = 769,
+    EFFECT_ABYSSEA_VIT              = 770,
+    EFFECT_ABYSSEA_AGI              = 771,
+    EFFECT_ABYSSEA_INT              = 772,
+    EFFECT_ABYSSEA_MND              = 773,
+    EFFECT_ABYSSEA_CHR              = 774,
+    EFFECT_ABYSSEA_HP               = 775,
+    EFFECT_ABYSSEA_MP               = 776,
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474
