@@ -6,7 +6,7 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "i"
+    parameters = "is"
 };
 
 function onTrigger(player, spellId, target)
