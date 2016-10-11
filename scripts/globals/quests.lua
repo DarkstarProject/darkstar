@@ -1,3 +1,5 @@
+require("scripts/globals/log_ids");
+
 -----------------------------------
 --  Nation IDs
 -----------------------------------
@@ -15,22 +17,6 @@ NATION_WINDURST = 2;
 QUEST_AVAILABLE = 0;
 QUEST_ACCEPTED  = 1;
 QUEST_COMPLETED = 2;
-
------------------------------------
---  Areas ID
------------------------------------
-
-SANDORIA    = 0;
-BASTOK      = 1;
-WINDURST    = 2;
-JEUNO       = 3;
-OTHER_AREAS = 4;
-OUTLANDS    = 5;
-AHT_URHGAN  = 6;
-CRYSTAL_WAR = 7;
-ABYSSEA     = 8;
-ADOULIN     = 9;
-COALITION   = 10;
 
 -----------------------------------
 --  San d'Oria - 0

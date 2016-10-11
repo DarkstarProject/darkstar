@@ -1,3 +1,5 @@
+require("scripts/globals/log_ids");
+
 -----------------------------------
 --  Nation IDs
 -----------------------------------
@@ -5,25 +7,6 @@
 NATION_SANDORIA = 0;
 NATION_BASTOK   = 1;
 NATION_WINDURST = 2;
-
------------------------------------
--- Areas  ID     mission step var
------------------------------------
-
-SANDORIA = 0;  -- MissionStatus
-BASTOK   = 1;  -- MissionStatus
-WINDURST = 2;  -- MissionStatus
-ZILART   = 3;  -- ZilartStatus
-TOAU     = 4;  -- AhtUrganStatus
-WOTG     = 5;  -- AltanaStatus
-COP      = 6;  -- PromathiaStatus
-ASSAULT  = 7;  -- n/a
-CAMPAIGN = 8;  -- n/a
-ACP      = 9;  -- n/a
-AMK      = 10; -- n/a
-ASA      = 11; -- n/a
-SOA      = 12; -- AdoulinStatus
-ROV      = 13; -- RhapsodiesStatus
 
 -----------------------------------
 --  San d'Oria (0)
