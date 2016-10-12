@@ -21,17 +21,24 @@ function onTrigger(player, keyId, target)
         return;
     end
 
+    local targ;
     if (target == nil) then
-        player:delKeyItem( keyId );
-        player:PrintToPlayer( string.format( "Keyitem ID '%u' deleted from self!", keyId ) );
+        targ = player;
     else
-        local targ = GetPlayerByName(target);
-        if (targ ~= nil) then
-            targ:delKeyItem( keyId );
-            player:PrintToPlayer( string.format( "Keyitem ID '%u' deleted from player!", keyId ) );
-        else
-            player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@delkeyitem <ID> <player>" );
-        end
+        targ = GetPlayerByName(target);
+    end
+
+    if (targ ~= nil) then
+        -- Load needed text ids for players current zone..
+        local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
+        package.loaded[TextIDs] = nil;
+        require(TextIDs);
+
+        targ:delKeyItem( keyId );
+        targ:messageSpecial(KEYITEM_OBTAINED + 1, keyId);
+        player:PrintToPlayer( string.format( "Keyitem ID '%s' deleted from player '%s'.", keyId, target));
+    else
+        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+        player:PrintToPlayer( "@delkeyitem <ID> <player>" );
     end
 end;
