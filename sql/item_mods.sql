@@ -22341,7 +22341,7 @@ INSERT INTO `item_mods` VALUES (18999,355,74); -- Aymur 75 - Primal Rend
 INSERT INTO `item_mods` VALUES (19000,30,10);
 INSERT INTO `item_mods` VALUES (19000,355,28); -- Carnwenhan 75 - Mordant Rime
 INSERT INTO `item_mods` VALUES (19000,454,40);
-INSERT INTO `item_mods` VALUES (19001,355,28); -- Gastraphetes 75 - Trueflight
+INSERT INTO `item_mods` VALUES (19001,355,217); -- Gastraphetes 75 - Trueflight
 INSERT INTO `item_mods` VALUES (19001,365,5);
 INSERT INTO `item_mods` VALUES (19001,420,10);
 INSERT INTO `item_mods` VALUES (19002,288,15);
@@ -22465,7 +22465,7 @@ INSERT INTO `item_mods` VALUES (19067,521,25);
 INSERT INTO `item_mods` VALUES (19068,355,74); -- Aymur 80 - Primal Rend
 INSERT INTO `item_mods` VALUES (19069,355,28); -- Carnwenhan 80 - Mordant Rime
 INSERT INTO `item_mods` VALUES (19070,365,5);
-INSERT INTO `item_mods` VALUES (19070,355,28); -- Gastraphetes 80 - Trueflight
+INSERT INTO `item_mods` VALUES (19070,355,217); -- Gastraphetes 80 - Trueflight
 INSERT INTO `item_mods` VALUES (19070,450,15);
 INSERT INTO `item_mods` VALUES (19071,355,154); -- Kogarasumaru 80 - Tachi: Rana
 INSERT INTO `item_mods` VALUES (19072,355,138); -- Nagi 80 - Blade: Kamu
@@ -22508,7 +22508,7 @@ INSERT INTO `item_mods` VALUES (19088,355,74); -- Aymur 85 - Primal Rend
 INSERT INTO `item_mods` VALUES (19089,30,15);
 INSERT INTO `item_mods` VALUES (19089,355,28); -- Carnwenhan 85 - Mordant Rime
 INSERT INTO `item_mods` VALUES (19089,454,50);
-INSERT INTO `item_mods` VALUES (19090,355,28); -- Gastraphetes 85 - Trueflight
+INSERT INTO `item_mods` VALUES (19090,355,217); -- Gastraphetes 85 - Trueflight
 INSERT INTO `item_mods` VALUES (19090,365,5);
 INSERT INTO `item_mods` VALUES (19090,450,20);
 INSERT INTO `item_mods` VALUES (19091,288,20);
@@ -22877,7 +22877,7 @@ INSERT INTO `item_mods` VALUES (19619,355,106); -- Liberator 90 - Insurgency
 INSERT INTO `item_mods` VALUES (19619,521,40);
 INSERT INTO `item_mods` VALUES (19620,355,74); -- Aymur 90 - Primal Rend
 INSERT INTO `item_mods` VALUES (19621,355,28); -- Carnwenhan 90 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19622,355,28); -- Gastraphetes 90 - Trueflight
+INSERT INTO `item_mods` VALUES (19622,355,217); -- Gastraphetes 90 - Trueflight
 INSERT INTO `item_mods` VALUES (19622,365,5);
 INSERT INTO `item_mods` VALUES (19622,420,25);
 INSERT INTO `item_mods` VALUES (19623,355,154); -- Kogarasumaru 90 - Tachi: Rana
@@ -22958,7 +22958,7 @@ INSERT INTO `item_mods` VALUES (19718,355,74); -- Aymur 95 - Primal Rend
 INSERT INTO `item_mods` VALUES (19719,30,20);
 INSERT INTO `item_mods` VALUES (19719,355,28); -- Carnwenhan 95 - Mordant Rime
 INSERT INTO `item_mods` VALUES (19719,454,25);
-INSERT INTO `item_mods` VALUES (19720,355,28); -- Gastraphetes 95 - Trueflight
+INSERT INTO `item_mods` VALUES (19720,355,217); -- Gastraphetes 95 - Trueflight
 INSERT INTO `item_mods` VALUES (19720,365,5);
 INSERT INTO `item_mods` VALUES (19720,420,30);
 INSERT INTO `item_mods` VALUES (19721,288,25);
@@ -23214,7 +23214,7 @@ INSERT INTO `item_mods` VALUES (19827,355,74); -- Aymur 99 - Primal Rend
 INSERT INTO `item_mods` VALUES (19828,30,25);
 INSERT INTO `item_mods` VALUES (19828,355,28); -- Carnwenhan 99 - Mordant Rime
 INSERT INTO `item_mods` VALUES (19828,454,70);
-INSERT INTO `item_mods` VALUES (19829,355,28); -- Gastraphetes 99 - Trueflight
+INSERT INTO `item_mods` VALUES (19829,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19829,365,5);
 INSERT INTO `item_mods` VALUES (19829,420,35);
 INSERT INTO `item_mods` VALUES (19830,288,30);
@@ -23372,7 +23372,7 @@ INSERT INTO `item_mods` VALUES (19955,355,106); -- Liberator 99 - Insurgency
 INSERT INTO `item_mods` VALUES (19955,521,50);
 INSERT INTO `item_mods` VALUES (19956,355,74); -- Aymur 99 - Primal Rend
 INSERT INTO `item_mods` VALUES (19957,355,28); -- Carnwenhan 99 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19958,355,28); -- Gastraphetes 99 - Trueflight
+INSERT INTO `item_mods` VALUES (19958,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19958,365,5);
 INSERT INTO `item_mods` VALUES (19958,450,35);
 INSERT INTO `item_mods` VALUES (19959,355,154); -- Kogarasumaru 99 - Tachi: Rana
@@ -24134,8 +24134,8 @@ INSERT INTO `item_mods` VALUES (21228,227,5);
 INSERT INTO `item_mods` VALUES (21229,11,3);
 INSERT INTO `item_mods` VALUES (21229,26,6);
 INSERT INTO `item_mods` VALUES (21237,26,15);
-INSERT INTO `item_mods` VALUES (21246,355,28); -- Gastraphetes iLvL 119 - Trueflight
-INSERT INTO `item_mods` VALUES (21247,355,28); -- Gastraphetes iLvL 119 - Trueflight
+INSERT INTO `item_mods` VALUES (21246,355,217); -- Gastraphetes iLvL 119 - Trueflight
+INSERT INTO `item_mods` VALUES (21247,355,217); -- Gastraphetes iLvL 119 - Trueflight
 INSERT INTO `item_mods` VALUES (21247,365,20);
 INSERT INTO `item_mods` VALUES (21247,420,40);
 INSERT INTO `item_mods` VALUES (21252,26,12);
@@ -24163,7 +24163,7 @@ INSERT INTO `item_mods` VALUES (21264,11,20);
 INSERT INTO `item_mods` VALUES (21264,355,220); -- Armageddon iLvL 119 - Wildfire
 INSERT INTO `item_mods` VALUES (21265,11,20);
 INSERT INTO `item_mods` VALUES (21265,355,220); -- Armageddon iLvL 119 - Wildfire
-INSERT INTO `item_mods` VALUES (21266,355,28); -- Gastraphetes iLvL 119 - Trueflight
+INSERT INTO `item_mods` VALUES (21266,355,217); -- Gastraphetes iLvL 119 - Trueflight
 INSERT INTO `item_mods` VALUES (21267,355,216); -- Annihilator iLvL 119 - Coronach
 INSERT INTO `item_mods` VALUES (21268,355,218); -- Death Penalty iLvL 119 - Leaden Salute
 INSERT INTO `item_mods` VALUES (21269,355,220); -- Armageddon iLvL 119 - Wildfire
