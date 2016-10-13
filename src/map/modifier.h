@@ -366,6 +366,8 @@ enum MODIFIER
     MOD_SHARPSHOT                 = 314, //
 
     // Samurai
+    MOD_MEDITATE_DURATION         = 94, // Meditate duration from gear
+    MOD_WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration from gear
     MOD_ZANSHIN                   = 306, // Zanshin percent chance
 
     // Ninja
@@ -625,8 +627,6 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 94, // stuff
-    // MOD_SPARE = 95, // stuff
     // MOD_SPARE = 96, // stuff
     // MOD_SPARE = 97, // stuff
     // MOD_SPARE = 98, // stuff
