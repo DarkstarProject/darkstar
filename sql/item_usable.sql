@@ -736,6 +736,7 @@ INSERT INTO `item_usable` VALUES (4818,'scroll_of_quake',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4820,'scroll_of_burst',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4822,'scroll_of_flood',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4824,'scroll_of_gravity',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4825,'scroll_of_gravity_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4827,'scroll_of_comet',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4828,'scroll_of_poison',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4829,'scroll_of_poison_ii',1,1,12,5,0,0,0,0);
