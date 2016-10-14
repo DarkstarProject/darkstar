@@ -1163,6 +1163,7 @@ MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
 MOD_MUG_EFFECT               = 571 -- Mug effect as multiplier
 MOD_REVERSE_FLOURISH_EFFECT  = 572 -- Reverse Flourish effect in tenths of squared term multiplier
+MOD_SENTINEL_EFFECT          = 573 -- Sentinel effect in percents
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
