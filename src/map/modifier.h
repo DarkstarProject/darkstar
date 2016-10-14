@@ -319,6 +319,7 @@ enum MODIFIER
     MOD_ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     MOD_ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
+    MOD_SENTINEL_EFFECT           = 573, // Sentinel effect in percents
 
     // Dark Knight
     MOD_SOULEATER_EFFECT          = 96,  // Souleater power in percents
@@ -636,7 +637,6 @@ enum MODIFIER
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 573, // stuff
     // MOD_SPARE = 574, // stuff
     // MOD_SPARE = 575, // stuff
     // MOD_SPARE = 576, // stuff
