@@ -1,7 +1,7 @@
 -----------------------------------------
--- ID: 4824
--- Scroll of Gravity
--- Teaches the black magic Gravity
+-- ID: 4825
+-- Scroll of Gravity II
+-- Teaches the black magic Gravity II
 -----------------------------------------
 
 -----------------------------------------
@@ -9,7 +9,7 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(216);
+    return target:canLearnSpell(217);
 end;
 
 -----------------------------------------
@@ -17,5 +17,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addSpell(216);
+    target:addSpell(217);
 end;
