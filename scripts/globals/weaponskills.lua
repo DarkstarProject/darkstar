@@ -260,7 +260,7 @@ function souleaterBonus(attacker, numhits)
     if attacker:hasStatusEffect(EFFECT_SOULEATER) then
         local damage = 0;
         local percent = 0.1;
-        if attacker:getMainJob() ~= 8 then
+        if attacker:getMainJob() ~= JOBS.DRK then
             percent = percent / 2;
         end
         if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
