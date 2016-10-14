@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability)
     local power = 0;
     local duration = 30;
 
-    if player:getMainJob() == 1 then
+    if player:getMainJob() == JOBS.WAR then
         power = math.floor((player:getMainLvl()/4)+4.75)/256;
     else
         power = math.floor((player:getSubLvl()/4)+4.75)/256;

@@ -8,6 +8,7 @@
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -45,63 +46,63 @@ end;
 function onTrigger(player,npc)
     
     if (player:getMainLvl() >= 50 and player:getVar("BorghertzAlreadyActiveWithJob") == 0) then
-        if (player:getMainJob() == 1 and 
+        if (player:getMainJob() == JOBS.WAR and 
            player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and 
            player:getQuestStatus(JEUNO,BORGHERTZ_S_WARRING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for WAR
-        elseif (player:getMainJob() == 2 and 
+        elseif (player:getMainJob() == JOBS.MNK and 
                player:getQuestStatus(BASTOK,THE_FIRST_MEETING) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STRIKING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for MNK
-        elseif (player:getMainJob() == 3 and 
+        elseif (player:getMainJob() == JOBS.WHM and 
                player:getQuestStatus(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_HEALING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for WHM
-        elseif (player:getMainJob() == 4 and 
+        elseif (player:getMainJob() == JOBS.BLM and 
                player:getQuestStatus(WINDURST,RECOLLECTIONS) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SORCEROUS_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for BLM
-        elseif (player:getMainJob() == 5 and 
+        elseif (player:getMainJob() == JOBS.RDM and 
                player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_VERMILLION_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for RDM
-        elseif (player:getMainJob() == 6 and 
+        elseif (player:getMainJob() == JOBS.THF and 
                player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SNEAKY_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for THF
-        elseif (player:getMainJob() == 7 and 
+        elseif (player:getMainJob() == JOBS.PLD and 
                player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STALWART_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for PLD
-        elseif (player:getMainJob() == 8 and 
+        elseif (player:getMainJob() == JOBS.DRK and 
                player:getQuestStatus(BASTOK,DARK_PUPPET) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SHADOWY_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for DRK
-        elseif (player:getMainJob() == 9 and 
+        elseif (player:getMainJob() == JOBS.BST and 
                player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_WILD_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for BST
-        elseif (player:getMainJob() == 10 and 
+        elseif (player:getMainJob() == JOBS.BRD and 
                player:getQuestStatus(JEUNO,THE_REQUIEM) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_HARMONIOUS_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for BRD
-        elseif (player:getMainJob() == 11 and 
+        elseif (player:getMainJob() == JOBS.RNG and 
                player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_CHASING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for RNG
-        elseif (player:getMainJob() == 12 and 
+        elseif (player:getMainJob() == JOBS.SAM and 
                player:getQuestStatus(OUTLANDS,YOMI_OKURI) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_LOYAL_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for SAM
-        elseif (player:getMainJob() == 13 and 
+        elseif (player:getMainJob() == JOBS.NIN and 
                player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for NIN
-        elseif (player:getMainJob() == 14 and 
+        elseif (player:getMainJob() == JOBS.DRG and 
                player:getQuestStatus(SANDORIA,CHASING_QUOTAS) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for DRG
-        elseif (player:getMainJob() == 15 and 
+        elseif (player:getMainJob() == JOBS.SMN and 
                player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_AVAILABLE and 
                player:getQuestStatus(JEUNO,BORGHERTZ_S_CALLING_HANDS) == QUEST_AVAILABLE) then 
             player:startEvent(0x009b); -- Start Quest for SMN

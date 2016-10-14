@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0018);
 
     -- Chasing Quotas (DRG AF2)
-    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == 14 and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
+    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == JOBS.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
         player:startEvent(18); -- Long version of quest start
     elseif (Quotas_No == 1) then
         player:startEvent(14); -- Short version for those that said no.

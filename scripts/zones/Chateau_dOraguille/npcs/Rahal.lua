@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
@@ -45,7 +46,7 @@ function onTrigger(player,npc)
     elseif (CrestProgress == 5 and RemedyKI == true) then
         player:startEvent(122); -- Reminder to go to Gelsba
      -- Completed AF2, AF3 available, and currently on DRG.  No level check, since they cleared AF2.
-    elseif (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == 14) then
+    elseif (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == JOBS.DRG) then
         if (player:getVar("KnightStalker_Declined") == 0) then
             player:startEvent(121); -- Start AF3
         else

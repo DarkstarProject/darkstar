@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -45,7 +46,7 @@ function onZoneIn(player,prevZone)
             cs = 0x0079;
         elseif (player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1) then
             cs = 0x0078;
-        elseif (player:getMainJob() == 8 and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
+        elseif (player:getMainJob() == JOBS.DRK and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_AVAILABLE) then
             cs = 0x007a;
         end
     end
