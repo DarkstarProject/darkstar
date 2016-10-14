@@ -263,9 +263,8 @@ function souleaterBonus(attacker, numhits)
         if attacker:getMainJob() ~= 8 then
             percent = percent / 2;
         end
-        if attacker:getMod(MOD_SOULEATER_EFFECT) >= 2 then
-            percent = percent + 0.02;
-        end
+        percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));
+
         local hitscounted = 0;
         while (hitscounted < numhits) do
             local health = attacker:getHP();
