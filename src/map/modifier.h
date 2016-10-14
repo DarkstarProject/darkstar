@@ -312,6 +312,7 @@ enum MODIFIER
     MOD_TRIPLE_ATTACK             = 302, // Percent chance
     MOD_TREASURE_HUNTER           = 303, // Percent chance
     MOD_TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
+    MOD_MUG_EFFECT                = 571, // Mug effect as multiplier
 
     // Paladin
     MOD_RAMPART_DURATION          = 92,  // Rampart duration in seconds
@@ -634,6 +635,15 @@ enum MODIFIER
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
+    // MOD_SPARE = 572, // stuff
+    // MOD_SPARE = 573, // stuff
+    // MOD_SPARE = 574, // stuff
+    // MOD_SPARE = 575, // stuff
+    // MOD_SPARE = 576, // stuff
+    // MOD_SPARE = 577, // stuff
+    // MOD_SPARE = 578, // stuff
+    // MOD_SPARE = 579, // stuff
+    // MOD_SPARE = 580, // stuff
     // MOD_SPARE = 834, // stuff
     // MOD_SPARE = 835, // stuff
 
