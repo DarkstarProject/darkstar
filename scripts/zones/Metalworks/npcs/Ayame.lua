@@ -7,6 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -41,7 +42,7 @@ function onTrigger(player,npc)
         player:startEvent(0x03a7);
     elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
         player:startEvent(0x02c8);
-    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == 2 and player:getMainLvl() >= 50) then
+    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 50) then
         player:startEvent(0x02ec); -- Start Quest "True Strength"
     else
         player:startEvent(0x02bd); -- Standard dialog

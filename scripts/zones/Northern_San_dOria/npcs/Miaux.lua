@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -27,7 +28,7 @@ function onTrigger(player,npc)
     local aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
     
-    if (player:getMainJob() == 14 and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
+    if (player:getMainJob() == JOBS.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
         if (player:getVar("has_seen_drgaf1_quest_already") == 0) then
             player:startEvent(0x0049);
         else -- If player has seen the big cut scene, give them a smaller one.
