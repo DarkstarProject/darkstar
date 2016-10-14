@@ -338,7 +338,7 @@ function ItemToBCNMID(player, zone, trade)
                     local questTimelineOK = 0;
 
                     -- Job/lvl condition for smn battle lvl20
-                    if (item >= 1544 and item <= 1549 and player:getMainJob() == 15 and player:getMainLvl() >= 20) then
+                    if (item >= 1544 and item <= 1549 and player:getMainJob() == JOBS.SMN and player:getMainLvl() >= 20) then
                         questTimelineOK = 1;
                     elseif (item == 1166 and player:getVar("aThiefinNorgCS") == 6) then -- AF3 SAM condition
                         questTimelineOK = 1;

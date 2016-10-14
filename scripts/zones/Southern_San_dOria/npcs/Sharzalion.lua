@@ -8,6 +8,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
     peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
     OrcishDriedFood = player:hasKeyItem(ORCISH_DRIED_FOOD);
 
-    if (player:getMainJob() == 5 and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
+    if (player:getMainJob() == JOBS.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
         if (player:getVar("has_seen_rdmaf1_quest_already") == 0) then
             player:startEvent(0x0046);
         else
