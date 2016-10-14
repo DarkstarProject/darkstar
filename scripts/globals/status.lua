@@ -1158,6 +1158,7 @@ MOD_NULL_PHYSICAL_DAMAGE     = 416 -- Chance to null physical damage.
 MOD_QUICK_DRAW_TRIPLE_DAMAGE = 417 -- Chance to do triple damage with quick draw.
 MOD_BAR_ELEMENT_NULL_CHANCE  = 418 -- Bar Elemental spells will occasionally nullify damage of the same element.
 MOD_GRIMOIRE_INSTANT_CAST    = 419 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_COUNTERSTANCE_EFFECT     = 543 -- Counterstance effect in percents
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
@@ -1313,7 +1314,6 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
--- MOD_SPARE = 543 -- stuff
 -- MOD_SPARE = 552 -- stuff
 -- MOD_SPARE = 561 -- stuff
 -- MOD_SPARE = 834 -- stuff

@@ -287,6 +287,7 @@ enum MODIFIER
     MOD_KICK_ATTACK               = 292, // Percent chance to kick
     MOD_PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
     MOD_FOOTWORK_ATT_BONUS        = 429, // TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+    MOD_COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
 
     // White Mage
     MOD_AFFLATUS_SOLACE           = 293, // Pool of HP accumulated during Afflatus Solace
@@ -631,7 +632,6 @@ enum MODIFIER
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 543, // stuff
     // MOD_SPARE = 552, // stuff
     // MOD_SPARE = 561, // stuff
     // MOD_SPARE = 834, // stuff
