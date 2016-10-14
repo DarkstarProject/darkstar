@@ -440,6 +440,7 @@ enum MODIFIER
     MOD_SPECTRAL_JIG              = 495, // Spectral Jig duration modifier (percent increase)
     MOD_WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
     MOD_SAMBA_PDURATION           = 498, // Samba percent duration bonus
+    MOD_REVERSE_FLOURISH_EFFECT   = 572, // Reverse Flourish effect in tenths of squared term multiplier
 
     //Scholar
     MOD_BLACK_MAGIC_COST          = 393, // MP cost for black magic (light/dark arts)
@@ -635,7 +636,6 @@ enum MODIFIER
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 572, // stuff
     // MOD_SPARE = 573, // stuff
     // MOD_SPARE = 574, // stuff
     // MOD_SPARE = 575, // stuff
