@@ -3602,8 +3602,7 @@ namespace battleutils
 
             //at most 2% bonus from gear
             uint8 gearBonusPercent = m_PChar->getMod(MOD_SOULEATER_EFFECT);
-            if (gearBonusPercent >= 2)
-                drainPercent = 0.12;
+            drainPercent = drainPercent + std::min(0.02, 0.01 * gearBonusPercent);
 
             damage = damage + m_PChar->health.hp*drainPercent;
             m_PChar->addHP(-drainPercent*m_PChar->health.hp);
