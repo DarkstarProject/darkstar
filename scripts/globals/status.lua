@@ -892,6 +892,8 @@ MOD_CLUB              = 90
 MOD_STAFF             = 91
 MOD_RAMPART_DURATION  = 92  -- Rampart duration bonus from gear
 MOD_FLEE_DURATION     = 93  -- Flee duration bonus from gear
+MOD_MEDITATE_DURATION       = 94  -- Meditate duration from gear
+MOD_WARDING_CIRCLE_DURATION = 95  -- Warding Circle duration from gear
 MOD_AUTO_MELEE_SKILL  = 101
 MOD_AUTO_RANGED_SKILL = 102
 MOD_AUTO_MAGIC_SKILL  = 103
@@ -1302,13 +1304,17 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 94 -- stuff
--- MOD_SPARE = 95 -- stuff
+-- MOD_SPARE = 64 -- stuff
+-- MOD_SPARE = 65 -- stuff
+-- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 96 -- stuff
 -- MOD_SPARE = 97 -- stuff
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
+-- MOD_SPARE = 543 -- stuff
+-- MOD_SPARE = 552 -- stuff
+-- MOD_SPARE = 561 -- stuff
 -- MOD_SPARE = 834 -- stuff
 -- MOD_SPARE = 835 -- stuff
 

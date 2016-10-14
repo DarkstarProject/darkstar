@@ -5,16 +5,20 @@
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
+
+    local vwnpc = {17175418,17175419,17175420};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
 -----------------------------------
@@ -41,7 +45,6 @@ end;
 -----------------------------------
 
 function onGameHour()
-
     local GameHour = 150; -- Seconds per VanadielHour
     local npc = GetNPCByID(17175338); -- Indescript Markings
     if (npc ~= nil) then
