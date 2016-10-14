@@ -1319,7 +1319,6 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
--- MOD_SPARE = 573 -- stuff
 -- MOD_SPARE = 574 -- stuff
 -- MOD_SPARE = 575 -- stuff
 -- MOD_SPARE = 576 -- stuff
