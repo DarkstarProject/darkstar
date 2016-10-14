@@ -316,7 +316,7 @@ enum MODIFIER
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
 
     // Dark Knight
-    // Nothing here yet..
+    MOD_SOULEATER_EFFECT          = 96,  // Enhances Souleater effect from gear
 
     // Beastmaster
     MOD_TAME                      = 304, // Additional percent chance to charm
@@ -627,7 +627,6 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 96, // stuff
     // MOD_SPARE = 97, // stuff
     // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
