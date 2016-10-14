@@ -281,7 +281,7 @@ enum MODIFIER
     MOD_WARCRY_DURATION           = 483, // Warcy duration bonus from gear
 
     // Monk
-	MOD_BOOST_EFFECT              = 97,  // Boost power effect from gear
+	MOD_BOOST_EFFECT              = 97,  // Boost power in tenths
     MOD_SUBTLE_BLOW               = 289, // How much TP to reduce.
     MOD_COUNTER                   = 291, // Percent chance to counter
     MOD_KICK_ATTACK               = 292, // Percent chance to kick
@@ -304,20 +304,20 @@ enum MODIFIER
     MOD_PHALANX                   = 301, // Tracks direct damage reduction
 
     // Thief
-    MOD_FLEE_DURATION             = 93,  // Flee duration bonus from gear
+    MOD_FLEE_DURATION             = 93,  // Flee duration in seconds
     MOD_STEAL                     = 298, // Increase/Decrease THF Steal chance
     MOD_TRIPLE_ATTACK             = 302, // Percent chance
     MOD_TREASURE_HUNTER           = 303, // Percent chance
     MOD_TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
 
     // Paladin
-    MOD_RAMPART_DURATION          = 92,  // Rampart duration bonus from gear
+    MOD_RAMPART_DURATION          = 92,  // Rampart duration in seconds
     MOD_ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     MOD_ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
 
     // Dark Knight
-    MOD_SOULEATER_EFFECT          = 96,  // Enhances Souleater effect from gear
+    MOD_SOULEATER_EFFECT          = 96,  // Souleater power in percents
 
     // Beastmaster
     MOD_TAME                      = 304, // Additional percent chance to charm
@@ -354,6 +354,7 @@ enum MODIFIER
     MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time (in milliseconds).
 
     // Ranger
+    MOD_CAMOUFLAGE_DURATION       = 98,  // Camouflage duration in percents
     MOD_RECYCLE                   = 305, // Percent chance to recycle
     MOD_SNAP_SHOT                 = 365, // Percent reduction to range attack delay
     MOD_RAPID_SHOT                = 359, // Percent chance to proc rapid shot
@@ -367,8 +368,8 @@ enum MODIFIER
     MOD_SHARPSHOT                 = 314, //
 
     // Samurai
-    MOD_MEDITATE_DURATION         = 94, // Meditate duration from gear
-    MOD_WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration from gear
+    MOD_MEDITATE_DURATION         = 94, // Meditate duration in seconds
+    MOD_WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration in seconds
     MOD_ZANSHIN                   = 306, // Zanshin percent chance
 
     // Ninja
@@ -628,7 +629,6 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
     // MOD_SPARE = 543, // stuff
