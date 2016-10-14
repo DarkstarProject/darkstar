@@ -1161,6 +1161,7 @@ MOD_GRIMOIRE_INSTANT_CAST    = 419 -- Spells that match your current Arts will o
 MOD_COUNTERSTANCE_EFFECT     = 543 -- Counterstance effect in percents
 MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
+MOD_MUG_EFFECT               = 571 -- Mug effect as multiplier
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
@@ -1316,6 +1317,15 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
+-- MOD_SPARE = 572 -- stuff
+-- MOD_SPARE = 573 -- stuff
+-- MOD_SPARE = 574 -- stuff
+-- MOD_SPARE = 575 -- stuff
+-- MOD_SPARE = 576 -- stuff
+-- MOD_SPARE = 577 -- stuff
+-- MOD_SPARE = 578 -- stuff
+-- MOD_SPARE = 579 -- stuff
+-- MOD_SPARE = 580 -- stuff
 -- MOD_SPARE = 834 -- stuff
 -- MOD_SPARE = 835 -- stuff
 
