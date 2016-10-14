@@ -263,7 +263,7 @@ function souleaterBonus(attacker, numhits)
         if attacker:getMainJob() ~= 8 then
             percent = percent / 2;
         end
-        if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
+        if attacker:getMod(MOD_SOULEATER_EFFECT) >= 2 then
             percent = percent + 0.02;
         end
         local hitscounted = 0;

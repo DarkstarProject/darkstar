@@ -1540,7 +1540,7 @@ namespace battleutils
         return dsprand::GetRandomNumber(minPdif, maxPdif);
     }
 
-    int16 CalculateBaseTP(int delay){ 
+    int16 CalculateBaseTP(int delay){
         int16 x = 1;
         if (delay <= 180) {
             x = 61 + ((delay - 180)*63.f) / 360;
@@ -2055,12 +2055,12 @@ namespace battleutils
             damage = dsp_max(damage - PDefender->getMod(MOD_PHALANX), 0);
             damage = HandleStoneskin(PDefender, damage);
         }
-        
+
         if (!isRanged)
         {
             damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
         }
-        
+
         HandleAfflatusMiseryDamage(PDefender, damage);
         damage = dsp_cap(damage, -99999, 99999);
 
@@ -3599,10 +3599,10 @@ namespace battleutils
         {
             //lost 10% current hp, converted to damage (displayed as just a strong regular hit)
             float drainPercent = 0.1;
-            CItem* PItemHead = ((CCharEntity*)m_PChar)->getEquip(SLOT_HEAD);
-            CItem* PItemBody = ((CCharEntity*)m_PChar)->getEquip(SLOT_BODY);
-            CItem* PItemLegs = ((CCharEntity*)m_PChar)->getEquip(SLOT_LEGS);
-            if ((PItemHead && (PItemHead->getID() == 12516 || PItemHead->getID() == 15232)) || (PItemBody && PItemBody->getID() == 14409) || (PItemLegs && PItemLegs->getID() == 15370))
+
+            //at most 2% bonus from gear
+            uint8 gearBonusPercent = m_PChar->getMod(MOD_SOULEATER_EFFECT);
+            if (gearBonusPercent >= 2)
                 drainPercent = 0.12;
 
             damage = damage + m_PChar->health.hp*drainPercent;
@@ -4051,36 +4051,36 @@ namespace battleutils
         //  -75 with a BST SJ lvl10 will struggle on EP
         //	-75 with a BST SJ lvl75 will not - this player has bst leveled to 75 and is using it as SJ
         //---------------------------------------------------------
-        
+
         float charmChance = 0.0f;
-        
+
         if (PCharmer == nullptr || PTarget == nullptr)
             return charmChance;
-            
+
         // Can the target even be charmed?
         auto PTargetAsMob = dynamic_cast<CMobEntity*>(PTarget);
         if (PTargetAsMob)
         {
-            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS || 
+            if (PTargetAsMob->m_Type & MOBTYPE_NOTORIOUS ||
                 PTargetAsMob->getMobMod(MOBMOD_CHARMABLE) == 0 ||
-                PTargetAsMob->PMaster != nullptr) 
+                PTargetAsMob->PMaster != nullptr)
             {
                 // 0% chance to charm an NM, non-charmable mob, or pet
                 return charmChance;
             }
         }
-        
+
         uint8 charmerLvl = PCharmer->GetMLevel();
         uint8 targetLvl = PTarget->GetMLevel();
-        
+
         //printf("Charmer = %s, Lvl. %u\n", PCharmer->name.c_str(), charmerLvl);
         //printf("Target = %s, Lvl. %u\n", PTarget->name.c_str(), targetLvl);
-        
+
         uint32 base = 0;
         uint16 baseExp = charutils::GetRealExp(charmerLvl, targetLvl);
-    
+
         //printf("baseExp = %u\n", baseExp);
-        if (baseExp >= 400) // IT 
+        if (baseExp >= 400) // IT
             base = 90;
         else if (baseExp >= 240) // VT
             base = 75;
@@ -4094,46 +4094,46 @@ namespace battleutils
             base = 20;
         else if (baseExp == 0) // TW
             base = 10;
-        
+
         uint8 charmerBSTlevel = 0;
-    
+
         if (PCharmer->objtype == TYPE_PC)
             charmerBSTlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BST];
         else if (PCharmer->objtype == TYPE_MOB)
             charmerBSTlevel = charmerLvl;
-    
+
         //printf("base = %u\n", base);
         charmChance = base;
-    
+
         float levelRatio = float(targetLvl) / charmerBSTlevel;
         charmChance *= levelRatio;
         //printf("levelRatio = %f\n", levelRatio);
-    
+
         float chrRatio = float(PTarget->CHR()) / PCharmer->CHR();
         charmChance *= chrRatio;
         //printf("chrRatio = %f\n", chrRatio);
-    
+
         // Retail doesn't take light/apollo into account for Gauge
         if (includeCharmAffinityAndChanceMods)
         {
             // NQ elemental staves have 2 affinity, HQ have 3 affinity. Boost is 10/15% respectively so multiply by 5.
             float charmAffintyMods = 5 * (PCharmer->getMod(MOD_LIGHT_AFFINITY_ACC));
             float charmChanceMods = PCharmer->getMod(MOD_CHARM_CHANCE);
-        
+
             charmChance *= ((float)((100.0f - charmChanceMods - charmAffintyMods) / 100.0f));
         }
-    
+
         // Cap chance at 95%
-        if (charmChance < 5) 
+        if (charmChance < 5)
             charmChance = 5;
-            
+
         charmChance = 100 - charmChance;
-        
+
         if (charmChance < 0)
             charmChance = 0;
         else if (charmChance > 100)
             charmChance = 100;
-            
+
         return charmChance;
     }
 
@@ -4146,10 +4146,10 @@ namespace battleutils
     bool TryCharm(CBattleEntity* PCharmer, CBattleEntity* PVictim)
     {
         float charmChance = GetCharmChance(PCharmer, PVictim);
-        
-        if (charmChance >= dsprand::GetRandomNumber(100)) 
+
+        if (charmChance >= dsprand::GetRandomNumber(100))
             return true;
-        
+
         return false;
     }
 
@@ -5172,7 +5172,7 @@ namespace battleutils
         int16 haste = PEntity->getMod(MOD_HASTE_MAGIC) + PEntity->getMod(MOD_HASTE_GEAR);
 
         recast *= ((float)(1024 - haste) / 1024);
-		
+
         if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
         {
             if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_NIGHTINGALE))
