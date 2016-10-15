@@ -21,10 +21,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    local sLegs = player:getEquipID(SLOT_LEGS);
-    local power = 20
-    if (sLegs == 14090 or sLegs == 15353) then
-        power = power + 10;
-    end
+    local power = 20 + player:getMod(MOD_DODGE_EFFECT);
     player:addStatusEffect(EFFECT_DODGE,power,0,120);
 end;
