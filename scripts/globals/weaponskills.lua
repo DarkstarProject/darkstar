@@ -263,9 +263,8 @@ function souleaterBonus(attacker, numhits)
         if attacker:getMainJob() ~= JOBS.DRK then
             percent = percent / 2;
         end
-        if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
-            percent = percent + 0.02;
-        end
+        percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));
+
         local hitscounted = 0;
         while (hitscounted < numhits) do
             local health = attacker:getHP();

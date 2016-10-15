@@ -298,9 +298,10 @@ enum SUBEFFECT
     SUBEFFECT_CURSE_SPIKES = 4,  // 01-0010   18
     SUBEFFECT_SHOCK_SPIKES = 5,  // 01-1010   22
     SUBEFFECT_REPRISAL = 6,      // 01-0110   26
+    // SUBEFFECT_GLINT_SPIKES = 6,
     SUBEFFECT_GALE_SPIKES = 7,   // Used by enchantment "Cool Breeze" http://www.ffxiah.com/item/22018/
-    SUBEFFECT_STONE_SPIKES = 8,  // Present in client but currently unused.
-    SUBEFFECT_DELUGE_SPIKES = 9, // Present in client but currently unused.
+    SUBEFFECT_CLOD_SPIKES = 8,
+    SUBEFFECT_DELUGE_SPIKES = 9,
     SUBEFFECT_DEATH_SPIKES = 10, // yes really: http://www.ffxiah.com/item/26944/
     SUBEFFECT_COUNTER = 63,      // Also used by Retaliation
     // There are no spikes effect animations beyond 63. Some effects share subeffect/animations.
