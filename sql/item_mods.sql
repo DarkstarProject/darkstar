@@ -31397,23 +31397,23 @@ INSERT INTO `item_mods` VALUES (27687,68,36);
 INSERT INTO `item_mods` VALUES (27687,115,13);
 INSERT INTO `item_mods` VALUES (27687,384,61);
 INSERT INTO `item_mods` VALUES (27687,407,12);
-INSERT INTO `item_mods` VALUES (27688,1,93);
+INSERT INTO `item_mods` VALUES (27688,1,96);
 INSERT INTO `item_mods` VALUES (27688,2,36);
-INSERT INTO `item_mods` VALUES (27688,5,32);
+INSERT INTO `item_mods` VALUES (27688,5,35);
 INSERT INTO `item_mods` VALUES (27688,8,19);
 INSERT INTO `item_mods` VALUES (27688,9,19);
 INSERT INTO `item_mods` VALUES (27688,10,19);
 INSERT INTO `item_mods` VALUES (27688,11,19);
 INSERT INTO `item_mods` VALUES (27688,12,27);
-INSERT INTO `item_mods` VALUES (27688,13,24);
+INSERT INTO `item_mods` VALUES (27688,13,27);
 INSERT INTO `item_mods` VALUES (27688,14,24);
-INSERT INTO `item_mods` VALUES (27688,27,-4);
-INSERT INTO `item_mods` VALUES (27688,28,13);
-INSERT INTO `item_mods` VALUES (27688,29,5);
+INSERT INTO `item_mods` VALUES (27688,30,15);
+INSERT INTO `item_mods` VALUES (27688,65,36);
 INSERT INTO `item_mods` VALUES (27688,31,75);
-INSERT INTO `item_mods` VALUES (27688,68,36);
-INSERT INTO `item_mods` VALUES (27688,296,4);
-INSERT INTO `item_mods` VALUES (27688,384,51);
+INSERT INTO `item_mods` VALUES (27688,29,5);
+INSERT INTO `item_mods` VALUES (27688,115,13);
+INSERT INTO `item_mods` VALUES (27688,384,61);
+INSERT INTO `item_mods` VALUES (27688,170,12);
 INSERT INTO `item_mods` VALUES (27689,1,101);
 INSERT INTO `item_mods` VALUES (27689,2,36);
 INSERT INTO `item_mods` VALUES (27689,5,23);
@@ -33577,6 +33577,7 @@ INSERT INTO `item_mods` VALUES (27947,31,25);
 INSERT INTO `item_mods` VALUES (27947,68,10);
 INSERT INTO `item_mods` VALUES (27947,110,17);
 INSERT INTO `item_mods` VALUES (27947,384,31);
+-- INSERT INTO `item_mods` VALUES (27947,0,0); -- Increases enhancing magic effect duration not yet coded in DSP
 INSERT INTO `item_mods` VALUES (27948,1,63);
 INSERT INTO `item_mods` VALUES (27948,2,11);
 INSERT INTO `item_mods` VALUES (27948,8,7);
@@ -33867,22 +33868,24 @@ INSERT INTO `item_mods` VALUES (27967,31,37);
 INSERT INTO `item_mods` VALUES (27967,68,22);
 INSERT INTO `item_mods` VALUES (27967,110,17);
 INSERT INTO `item_mods` VALUES (27967,384,31);
-INSERT INTO `item_mods` VALUES (27968,1,81);
-INSERT INTO `item_mods` VALUES (27968,2,22);
-INSERT INTO `item_mods` VALUES (27968,5,64);
-INSERT INTO `item_mods` VALUES (27968,8,6);
-INSERT INTO `item_mods` VALUES (27968,9,28);
-INSERT INTO `item_mods` VALUES (27968,10,25);
-INSERT INTO `item_mods` VALUES (27968,11,5);
-INSERT INTO `item_mods` VALUES (27968,12,27);
-INSERT INTO `item_mods` VALUES (27968,13,33);
-INSERT INTO `item_mods` VALUES (27968,14,19);
-INSERT INTO `item_mods` VALUES (27968,29,3);
-INSERT INTO `item_mods` VALUES (27968,30,8);
-INSERT INTO `item_mods` VALUES (27968,31,37);
-INSERT INTO `item_mods` VALUES (27968,68,22);
-INSERT INTO `item_mods` VALUES (27968,111,17);
-INSERT INTO `item_mods` VALUES (27968,384,31);
+INSERT INTO `item_mods` VALUES (27968,1,81); -- def
+INSERT INTO `item_mods` VALUES (27968,2,22); -- hp
+INSERT INTO `item_mods` VALUES (27968,5,64); -- mp
+INSERT INTO `item_mods` VALUES (27968,8,11); -- str
+INSERT INTO `item_mods` VALUES (27968,9,33); -- dex
+INSERT INTO `item_mods` VALUES (27968,10,25); -- vit
+INSERT INTO `item_mods` VALUES (27968,11,5); -- agi
+INSERT INTO `item_mods` VALUES (27968,12,19); -- int
+INSERT INTO `item_mods` VALUES (27968,13,33); -- mnd
+INSERT INTO `item_mods` VALUES (27968,14,19); -- chr
+INSERT INTO `item_mods` VALUES (27968,25,10); -- acc
+INSERT INTO `item_mods` VALUES (27968,23,10); -- att
+INSERT INTO `item_mods` VALUES (27968,68,22); -- eva
+INSERT INTO `item_mods` VALUES (27968,31,37); -- meva
+INSERT INTO `item_mods` VALUES (27968,29,3); -- mdef
+INSERT INTO `item_mods` VALUES (27968,110,17); -- parry
+INSERT INTO `item_mods` VALUES (27968,384,31); -- haste
+-- INSERT INTO `item_mods` VALUES (27968,0,16); -- Enhancing magic effect duration +16 not yet coded in DSP
 INSERT INTO `item_mods` VALUES (27969,1,89);
 INSERT INTO `item_mods` VALUES (27969,2,25);
 INSERT INTO `item_mods` VALUES (27969,8,11);
@@ -34685,22 +34688,22 @@ INSERT INTO `item_mods` VALUES (28093,29,3);
 INSERT INTO `item_mods` VALUES (28093,31,73);
 INSERT INTO `item_mods` VALUES (28093,68,12);
 INSERT INTO `item_mods` VALUES (28093,384,41);
-INSERT INTO `item_mods` VALUES (28094,1,77);
-INSERT INTO `item_mods` VALUES (28094,2,20);
-INSERT INTO `item_mods` VALUES (28094,5,24);
-INSERT INTO `item_mods` VALUES (28094,8,16);
-INSERT INTO `item_mods` VALUES (28094,10,11);
-INSERT INTO `item_mods` VALUES (28094,11,11);
-INSERT INTO `item_mods` VALUES (28094,12,21);
-INSERT INTO `item_mods` VALUES (28094,13,20);
-INSERT INTO `item_mods` VALUES (28094,14,12);
-INSERT INTO `item_mods` VALUES (28094,29,3);
-INSERT INTO `item_mods` VALUES (28094,31,73);
-INSERT INTO `item_mods` VALUES (28094,68,12);
-INSERT INTO `item_mods` VALUES (28094,112,13);
-INSERT INTO `item_mods` VALUES (28094,113,17);
-INSERT INTO `item_mods` VALUES (28094,374,9);
-INSERT INTO `item_mods` VALUES (28094,384,41);
+INSERT INTO `item_mods` VALUES (28094,1,77); -- def
+INSERT INTO `item_mods` VALUES (28094,2,20); -- hp
+INSERT INTO `item_mods` VALUES (28094,5,24); -- mp
+INSERT INTO `item_mods` VALUES (28094,8,16); -- str
+INSERT INTO `item_mods` VALUES (28094,10,8); -- vit
+INSERT INTO `item_mods` VALUES (28094,11,11); -- agi
+INSERT INTO `item_mods` VALUES (28094,12,21); -- int
+INSERT INTO `item_mods` VALUES (28094,13,20); -- mnd
+INSERT INTO `item_mods` VALUES (28094,14,12); -- chr
+INSERT INTO `item_mods` VALUES (28094,29,3); -- mdef
+INSERT INTO `item_mods` VALUES (28094,31,73); -- meva
+INSERT INTO `item_mods` VALUES (28094,68,12); -- eva
+INSERT INTO `item_mods` VALUES (28094,112,13); -- healing magic
+INSERT INTO `item_mods` VALUES (28094,113,17); -- enhancing magic
+INSERT INTO `item_mods` VALUES (28094,374,9); -- cure potentcy
+INSERT INTO `item_mods` VALUES (28094,384,41); -- haste
 INSERT INTO `item_mods` VALUES (28095,1,80);
 INSERT INTO `item_mods` VALUES (28095,2,22);
 INSERT INTO `item_mods` VALUES (28095,8,18);
@@ -34998,21 +35001,22 @@ INSERT INTO `item_mods` VALUES (28114,112,13);
 INSERT INTO `item_mods` VALUES (28114,113,17);
 INSERT INTO `item_mods` VALUES (28114,374,10);
 INSERT INTO `item_mods` VALUES (28114,384,51);
-INSERT INTO `item_mods` VALUES (28115,1,105);
-INSERT INTO `item_mods` VALUES (28115,2,43);
-INSERT INTO `item_mods` VALUES (28115,5,99);
-INSERT INTO `item_mods` VALUES (28115,8,25);
-INSERT INTO `item_mods` VALUES (28115,10,12);
-INSERT INTO `item_mods` VALUES (28115,11,17);
-INSERT INTO `item_mods` VALUES (28115,12,34);
-INSERT INTO `item_mods` VALUES (28115,13,24);
-INSERT INTO `item_mods` VALUES (28115,14,19);
-INSERT INTO `item_mods` VALUES (28115,27,-4);
-INSERT INTO `item_mods` VALUES (28115,28,20);
-INSERT INTO `item_mods` VALUES (28115,29,6);
-INSERT INTO `item_mods` VALUES (28115,31,107);
-INSERT INTO `item_mods` VALUES (28115,68,27);
-INSERT INTO `item_mods` VALUES (28115,384,51);
+INSERT INTO `item_mods` VALUES (28115,1,108); -- def
+INSERT INTO `item_mods` VALUES (28115,2,43); -- hp
+INSERT INTO `item_mods` VALUES (28115,5,29); -- mp
+INSERT INTO `item_mods` VALUES (28115,8,25); -- str
+INSERT INTO `item_mods` VALUES (28115,10,12); -- vit
+INSERT INTO `item_mods` VALUES (28115,11,17); -- agi
+INSERT INTO `item_mods` VALUES (28115,12,34); -- int
+INSERT INTO `item_mods` VALUES (28115,13,29); -- mnd
+INSERT INTO `item_mods` VALUES (28115,14,19); -- chr
+INSERT INTO `item_mods` VALUES (28115,68,27); -- eva
+INSERT INTO `item_mods` VALUES (28115,31,107); -- meva
+INSERT INTO `item_mods` VALUES (28115,29,6); -- mdef
+INSERT INTO `item_mods` VALUES (28115,112,13); -- healing magic
+INSERT INTO `item_mods` VALUES (28115,113,17); -- enhancing magic
+INSERT INTO `item_mods` VALUES (28115,384,51); -- haste
+INSERT INTO `item_mods` VALUES (28115,374,10); -- Cure Potency 
 INSERT INTO `item_mods` VALUES (28116,1,113);
 INSERT INTO `item_mods` VALUES (28116,2,47);
 INSERT INTO `item_mods` VALUES (28116,8,29);
@@ -36104,22 +36108,22 @@ INSERT INTO `item_mods` VALUES (28247,29,5);
 INSERT INTO `item_mods` VALUES (28247,31,107);
 INSERT INTO `item_mods` VALUES (28247,68,55);
 INSERT INTO `item_mods` VALUES (28247,109,13);
-INSERT INTO `item_mods` VALUES (28248,1,63);
-INSERT INTO `item_mods` VALUES (28248,2,21);
-INSERT INTO `item_mods` VALUES (28248,5,22);
-INSERT INTO `item_mods` VALUES (28248,8,10);
-INSERT INTO `item_mods` VALUES (28248,9,11);
-INSERT INTO `item_mods` VALUES (28248,10,10);
-INSERT INTO `item_mods` VALUES (28248,11,33);
-INSERT INTO `item_mods` VALUES (28248,12,22);
-INSERT INTO `item_mods` VALUES (28248,13,19);
-INSERT INTO `item_mods` VALUES (28248,14,34);
-INSERT INTO `item_mods` VALUES (28248,28,16);
-INSERT INTO `item_mods` VALUES (28248,29,5);
-INSERT INTO `item_mods` VALUES (28248,30,16);
-INSERT INTO `item_mods` VALUES (28248,31,107);
-INSERT INTO `item_mods` VALUES (28248,68,55);
-INSERT INTO `item_mods` VALUES (28248,384,31);
+INSERT INTO `item_mods` VALUES (28248,1,66); -- def
+INSERT INTO `item_mods` VALUES (28248,2,48); -- hp
+INSERT INTO `item_mods` VALUES (28248,5,49); -- mp
+INSERT INTO `item_mods` VALUES (28248,8,10); -- str
+INSERT INTO `item_mods` VALUES (28248,9,11); -- dex
+INSERT INTO `item_mods` VALUES (28248,10,10); -- vit
+INSERT INTO `item_mods` VALUES (28248,11,33); -- agi
+INSERT INTO `item_mods` VALUES (28248,12,17); -- int
+INSERT INTO `item_mods` VALUES (28248,13,19); -- mnd
+INSERT INTO `item_mods` VALUES (28248,14,34); -- chr
+INSERT INTO `item_mods` VALUES (28248,25,20); -- acc
+INSERT INTO `item_mods` VALUES (28248,68,55); -- eva
+INSERT INTO `item_mods` VALUES (28248,31,107); -- meva
+INSERT INTO `item_mods` VALUES (28248,29,5); -- mdef
+INSERT INTO `item_mods` VALUES (28248,109,13); -- shield
+INSERT INTO `item_mods` VALUES (28248,384,41); -- haste %
 INSERT INTO `item_mods` VALUES (28249,1,71);
 INSERT INTO `item_mods` VALUES (28249,2,13);
 INSERT INTO `item_mods` VALUES (28249,8,12);
@@ -36832,6 +36836,10 @@ INSERT INTO `item_mods` VALUES (28351,25,5);
 INSERT INTO `item_mods` VALUES (28351,29,5);
 INSERT INTO `item_mods` VALUES (28351,57,15);
 INSERT INTO `item_mods` VALUES (28351,60,15);
+INSERT INTO `item_mods` VALUES (28354,5,20);
+INSERT INTO `item_mods` VALUES (28354,25,5);
+INSERT INTO `item_mods` VALUES (28354,30,7);
+INSERT INTO `item_mods` VALUES (28354,170,4);
 INSERT INTO `item_mods` VALUES (28366,24,5);
 INSERT INTO `item_mods` VALUES (28366,26,10);
 INSERT INTO `item_mods` VALUES (28366,73,4);
