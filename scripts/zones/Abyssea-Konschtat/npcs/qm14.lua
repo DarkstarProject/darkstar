@@ -1,12 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
 --  NPC: qm14 (???)
--- Spawns: Eccentric Eve
+-- Spawns Eccentric Eve
 -- @pos ? ? ? 15
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

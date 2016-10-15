@@ -15,7 +15,7 @@
 -- Common functions
 require("scripts/globals/common");
 
--- Enable Extension (1= yes 0= no)
+-- Enable Expansion (1= yes 0= no)
 ENABLE_COP     = 1;
 ENABLE_TOAU    = 1;
 ENABLE_WOTG    = 1;
@@ -32,14 +32,16 @@ ENABLE_ROV     = 1;
 -- This feature correlates to the required_expansion column in the SQL files
 RESTRICT_BY_EXPANSION = 0;
 
+ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
+
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 99; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 99; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
 NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 0; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 0; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-START_GIL = 50000; --Amount of gil given to newly created characters.
+START_GIL = 50000; -- Amount of gil given to newly created characters.
 START_INVENTORY = 80; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
-OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
+OPENING_CUTSCENE_ENABLE = 0; -- Set to 1 to enable opening cutscenes, 0 to disable.
 SUBJOB_QUEST_LEVEL = 0; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
 ADVANCED_JOB_LEVEL = 0; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
 ALL_MAPS = 1; -- Set to 1 to give starting characters all the maps.
@@ -64,11 +66,11 @@ USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Ad
 HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
 LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100. 
+MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100.
 HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
 EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
 LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100. 
+MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
 
 HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
 
@@ -107,7 +109,7 @@ DEBUG_MODE = 0; -- Set to 1 to activate auto-warping to the next location (only 
 QM_RESET_TIME = 300; -- Default time (in seconds) you have from killing ???-pop mission NMs to click again and get key item, until ??? resets.
 OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
-FrigiciteDuration = 300; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
+FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
 
 -- FIELDS OF VALOR/Grounds of Valor SETTINGS
 REGIME_WAIT = 0; --Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
@@ -153,7 +155,7 @@ HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outsid
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 1200; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 12000; -- time in seconds that lanterns in the Den of Rancor stay lit.
-ENABLE_COP_ZONE_CAP=0; -- enable or disable lvl cap
+ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap
 TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" is for the server.  Default is JST (+9.0).
 ALLOW_MULTIPLE_EXP_RINGS = 1; -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
 BYPASS_EXP_RING_ONE_PER_WEEK = 1; -- -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.

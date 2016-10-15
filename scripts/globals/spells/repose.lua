@@ -27,9 +27,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(75); -- No effect
     end
 
-    if (caster:isPC()) then
-        target:updateEnmity(caster,320,1);
-    end
-
     return EFFECT_SLEEP_II;
 end;

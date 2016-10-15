@@ -14,6 +14,10 @@ require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local vwnpc = {17478158,17478159,17478160};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
 -----------------------------------

@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Ullegrand
---  NPC: ???
--- Spawns: Pantokrator
+-- Zone: Abyssea-Uleguerand
+--  NPC: qm15 (???)
+-- Spawns Pantokrator
+-- @pos ? ? ? 253
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

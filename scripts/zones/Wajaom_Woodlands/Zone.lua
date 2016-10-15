@@ -63,6 +63,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {16986813,16986817};
+    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------

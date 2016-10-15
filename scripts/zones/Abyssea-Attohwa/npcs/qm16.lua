@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
---  NPC: ???
--- Spawns: Itzpapalotl
+--  NPC: qm16 (???)
+-- Spawns Itzpapalotl
+-- @pos ? ? ? 215
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

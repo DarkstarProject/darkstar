@@ -17,73 +17,75 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 function onInitialize(zone)
 
     local tomes = {17555963,17555964,17555965,17555966};
-    
     SetGroundsTome(tomes);
 
+    local vwnpc = {17555957,17555958,17555959};
+    SetVoidwatchNPC(vwnpc);
+
+
     zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
-    
+
     -- Vrtra
     SetRespawnTime(17555890, 86400, 259200);
-    
-    UpdateTreasureSpawnPoint(17555951);
 
+    UpdateTreasureSpawnPoint(17555951);
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(242.012,5.305,340.059,121);
-    end    
-    return cs;    
-end;        
+    end
+    return cs;
+end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
 function onRegionEnter(player,region)
     if (region:GetRegionID() == 1) then
         player:startEvent(0x0009);
-    end    
-end;    
+    end
+end;
 
------------------------------------        
+-----------------------------------
 -- onRegionLeave
------------------------------------    
+-----------------------------------
 
 function onRegionLeave(player,region)
 end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)    
+function onEventUpdate(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;
 
------------------------------------    
--- onEventFinish    
------------------------------------    
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;

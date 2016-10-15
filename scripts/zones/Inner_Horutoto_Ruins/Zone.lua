@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 
@@ -70,7 +71,7 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == 5 and region:AddCount(1) == 1) then
+            if (player:getMainJob() == JOBS.RDM and region:AddCount(1) == 1) then
                 red:setAnimation(8);
                 if (white:getAnimation() == 8 and black:getAnimation() == 8) then
                     GetNPCByID(circle+3):openDoor(30);
@@ -79,7 +80,7 @@ function onRegionEnter(player,region)
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == 3 and region:AddCount(1) == 1) then
+            if (player:getMainJob() == JOBS.WHM and region:AddCount(1) == 1) then
                 white:setAnimation(8);
                 if (red:getAnimation() == 8 and black:getAnimation() == 8) then
                     GetNPCByID(circle+3):openDoor(30);
@@ -88,7 +89,7 @@ function onRegionEnter(player,region)
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == 4 and region:AddCount(1) == 1) then
+            if (player:getMainJob() == JOBS.BLM and region:AddCount(1) == 1) then
                 black:setAnimation(8);
                 if (red:getAnimation() == 8 and white:getAnimation() == 8) then
                     GetNPCByID(circle+3):openDoor(30);
@@ -116,17 +117,17 @@ function onRegionLeave(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == 5 and region:DelCount(1) == 0) then
+            if (player:getMainJob() == JOBS.RDM and region:DelCount(1) == 0) then
                 red:setAnimation(9);
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == 3 and region:DelCount(1) == 0) then
+            if (player:getMainJob() == JOBS.WHM and region:DelCount(1) == 0) then
                 white:setAnimation(9);
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == 4 and region:DelCount(1) == 0) then
+            if (player:getMainJob() == JOBS.BLM and region:DelCount(1) == 0) then
                 black:setAnimation(9);
             end
         end,

@@ -19,11 +19,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-
-    local power = 15;
-
-    if (target:addStatusEffect(EFFECT_PROTECT, power, 0, 1800)) then
-        target:messageBasic(205);
+    if (target:addStatusEffect(EFFECT_PROTECT, 15, 0, 1800)) then
+        target:messageBasic(205,EFFECT_PROTECT);
     else
         target:messageBasic(423); -- no effect
     end

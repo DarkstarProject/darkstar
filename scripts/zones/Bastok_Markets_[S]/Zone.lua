@@ -14,6 +14,8 @@ require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {17134272,17134273,17134274};
+    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------        

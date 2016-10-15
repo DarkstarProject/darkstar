@@ -1,7 +1,8 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
---  NPC: ???
--- Spawns: Kukulkan
+--  NPC: qm18 (???)
+-- Spawns Kukulkan
+-- @pos ? ? ? 15
 -----------------------------------
 
 require("scripts/globals/status");
