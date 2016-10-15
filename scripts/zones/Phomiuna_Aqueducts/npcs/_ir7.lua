@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 
@@ -19,7 +20,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1660,1) and trade:getItemCount() == 1) then -- Bronze Key
             player:tradeComplete();
             npc:openDoor(15);
-        elseif ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == 6) then
+        elseif ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == JOBS.THF) then
             -- thief's tool/living key/skeleton key as THF main
             player:tradeComplete();
             npc:openDoor(15);

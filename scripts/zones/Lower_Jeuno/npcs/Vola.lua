@@ -8,6 +8,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(0x00D8); -- Start Quest "Fistful of Fury" 
     elseif (FistfulOfFury == QUEST_ACCEPTED) then 
         player:startEvent(0x00D7); -- During Quest "Fistful of Fury"
-    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == 2 and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then 
+    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then 
         player:startEvent(0x00a0); -- Start Quest "Beat Around the Bushin"
     elseif (BeatAroundTheBushin ~= QUEST_AVAILABLE) then 
         player:startEvent(0x00D6); -- During & After Quest "Beat Around the Bushin"
