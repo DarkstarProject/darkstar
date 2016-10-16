@@ -312,14 +312,14 @@ enum MODIFIER
     MOD_TRIPLE_ATTACK             = 302, // Percent chance
     MOD_TREASURE_HUNTER           = 303, // Percent chance
     MOD_TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
-    MOD_MUG_EFFECT                = 571, // Mug effect as multiplier
+    MOD_MUG_EFFECT                = 835, // Mug effect as multiplier
 
     // Paladin
     MOD_RAMPART_DURATION          = 92,  // Rampart duration in seconds
     MOD_ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     MOD_ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
-    MOD_SENTINEL_EFFECT           = 573, // Sentinel effect in percents
+    MOD_SENTINEL_EFFECT           = 837, // Sentinel effect in percents
 
     // Dark Knight
     MOD_SOULEATER_EFFECT          = 96,  // Souleater power in percents
@@ -424,7 +424,7 @@ enum MODIFIER
     MOD_ROLL_SCHOLARS             = 331, // Tracks totals
     MOD_BUST                      = 332, // # of busts
     MOD_QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
-    MOD_QUICK_DRAW_DMG_PERCENT    = 831, // Percentage increase to QD damage
+    MOD_QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
 
     // Puppetmaster
     MOD_MANEUVER_BONUS            = 504, // Maneuver Stat Bonus
@@ -441,7 +441,7 @@ enum MODIFIER
     MOD_SPECTRAL_JIG              = 495, // Spectral Jig duration modifier (percent increase)
     MOD_WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
     MOD_SAMBA_PDURATION           = 498, // Samba percent duration bonus
-    MOD_REVERSE_FLOURISH_EFFECT   = 572, // Reverse Flourish effect in tenths of squared term multiplier
+    MOD_REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
 
     //Scholar
     MOD_BLACK_MAGIC_COST          = 393, // MP cost for black magic (light/dark arts)
@@ -637,15 +637,10 @@ enum MODIFIER
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 574, // stuff
-    // MOD_SPARE = 575, // stuff
-    // MOD_SPARE = 576, // stuff
-    // MOD_SPARE = 577, // stuff
-    // MOD_SPARE = 578, // stuff
-    // MOD_SPARE = 579, // stuff
-    // MOD_SPARE = 580, // stuff
-    // MOD_SPARE = 834, // stuff
-    // MOD_SPARE = 835, // stuff
+    // 570 through 825 used by WS DMG mods these are not spares.
+    // MOD_SPARE = 839, // stuff
+    // MOD_SPARE = 838, // stuff
+    // MOD_SPARE = 840, // stuff
 
 };
 

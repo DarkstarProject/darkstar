@@ -1672,7 +1672,7 @@ INSERT INTO `item_mods` VALUES (10655,8,7);
 INSERT INTO `item_mods` VALUES (10655,9,7);
 INSERT INTO `item_mods` VALUES (10655,25,6);
 INSERT INTO `item_mods` VALUES (10655,27,4);
-INSERT INTO `item_mods` VALUES (10655,571,1);
+INSERT INTO `item_mods` VALUES (10655,835,1);
 INSERT INTO `item_mods` VALUES (10656,1,36);
 INSERT INTO `item_mods` VALUES (10656,2,25);
 INSERT INTO `item_mods` VALUES (10656,5,25);
@@ -2126,7 +2126,7 @@ INSERT INTO `item_mods` VALUES (10736,1,25);
 INSERT INTO `item_mods` VALUES (10736,2,25);
 INSERT INTO `item_mods` VALUES (10736,27,4);
 INSERT INTO `item_mods` VALUES (10736,163,-4);
-INSERT INTO `item_mods` VALUES (10736,573,10);
+INSERT INTO `item_mods` VALUES (10736,837,10);
 INSERT INTO `item_mods` VALUES (10737,1,22);
 INSERT INTO `item_mods` VALUES (10737,8,6);
 INSERT INTO `item_mods` VALUES (10737,23,6);
@@ -3306,7 +3306,7 @@ INSERT INTO `item_mods` VALUES (11122,1,25);
 INSERT INTO `item_mods` VALUES (11122,9,9);
 INSERT INTO `item_mods` VALUES (11122,11,9);
 INSERT INTO `item_mods` VALUES (11122,25,8);
-INSERT INTO `item_mods` VALUES (11122,572,10);
+INSERT INTO `item_mods` VALUES (11122,836,10);
 INSERT INTO `item_mods` VALUES (11123,1,23);
 INSERT INTO `item_mods` VALUES (11123,5,20);
 INSERT INTO `item_mods` VALUES (11123,12,9);
@@ -3750,7 +3750,7 @@ INSERT INTO `item_mods` VALUES (11222,1,23);
 INSERT INTO `item_mods` VALUES (11222,9,6);
 INSERT INTO `item_mods` VALUES (11222,11,6);
 INSERT INTO `item_mods` VALUES (11222,25,5);
-INSERT INTO `item_mods` VALUES (11222,572,5);
+INSERT INTO `item_mods` VALUES (11222,836,5);
 INSERT INTO `item_mods` VALUES (11224,1,52);
 INSERT INTO `item_mods` VALUES (11224,23,10);
 INSERT INTO `item_mods` VALUES (11224,288,3);
@@ -15366,7 +15366,7 @@ INSERT INTO `item_mods` VALUES (15077,1,24);
 INSERT INTO `item_mods` VALUES (15077,2,16);
 INSERT INTO `item_mods` VALUES (15077,9,5);
 INSERT INTO `item_mods` VALUES (15077,27,2);
-INSERT INTO `item_mods` VALUES (15077,571,1);
+INSERT INTO `item_mods` VALUES (15077,835,1);
 INSERT INTO `item_mods` VALUES (15078,1,28);
 INSERT INTO `item_mods` VALUES (15078,2,18);
 INSERT INTO `item_mods` VALUES (15078,27,3);
@@ -15644,7 +15644,7 @@ INSERT INTO `item_mods` VALUES (15138,1,19);
 INSERT INTO `item_mods` VALUES (15138,2,18);
 INSERT INTO `item_mods` VALUES (15138,13,3);
 INSERT INTO `item_mods` VALUES (15138,27,1);
-INSERT INTO `item_mods` VALUES (15138,573,10);
+INSERT INTO `item_mods` VALUES (15138,837,10);
 INSERT INTO `item_mods` VALUES (15139,1,17);
 INSERT INTO `item_mods` VALUES (15139,5,12);
 INSERT INTO `item_mods` VALUES (15139,114,5);
@@ -16121,7 +16121,7 @@ INSERT INTO `item_mods` VALUES (15250,1,25);
 INSERT INTO `item_mods` VALUES (15250,2,16);
 INSERT INTO `item_mods` VALUES (15250,9,6);
 INSERT INTO `item_mods` VALUES (15250,27,3);
-INSERT INTO `item_mods` VALUES (15250,571,1);
+INSERT INTO `item_mods` VALUES (15250,835,1);
 INSERT INTO `item_mods` VALUES (15251,1,29);
 INSERT INTO `item_mods` VALUES (15251,2,18);
 INSERT INTO `item_mods` VALUES (15251,5,18);
@@ -17421,7 +17421,7 @@ INSERT INTO `item_mods` VALUES (15671,1,20);
 INSERT INTO `item_mods` VALUES (15671,2,18);
 INSERT INTO `item_mods` VALUES (15671,13,4);
 INSERT INTO `item_mods` VALUES (15671,27,2);
-INSERT INTO `item_mods` VALUES (15671,573,10);
+INSERT INTO `item_mods` VALUES (15671,837,10);
 INSERT INTO `item_mods` VALUES (15672,1,18);
 INSERT INTO `item_mods` VALUES (15672,5,12);
 INSERT INTO `item_mods` VALUES (15672,25,2);
@@ -22395,7 +22395,7 @@ INSERT INTO `item_mods` VALUES (19006,30,10);
 INSERT INTO `item_mods` VALUES (19006,288,15);
 INSERT INTO `item_mods` VALUES (19006,355,46); -- Tizona 75 - Expiacion
 INSERT INTO `item_mods` VALUES (19007,355,218); -- Death Penalty 75 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19007,831,20);
+INSERT INTO `item_mods` VALUES (19007,580,20);
 INSERT INTO `item_mods` VALUES (19008,173,20);
 INSERT INTO `item_mods` VALUES (19008,288,15);
 INSERT INTO `item_mods` VALUES (19008,355,12); -- Kenkonken 75 - Stringing Pummel
@@ -22506,7 +22506,7 @@ INSERT INTO `item_mods` VALUES (19073,355,122); -- Ryunohige 80 - Drakesbane
 INSERT INTO `item_mods` VALUES (19074,355,187); -- Nirvana 80 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19075,355,46); -- Tizona 80 - Expiacion
 INSERT INTO `item_mods` VALUES (19076,355,218); -- Death Penalty 80 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19076,831,30);
+INSERT INTO `item_mods` VALUES (19076,580,30);
 INSERT INTO `item_mods` VALUES (19077,355,12); -- Kenkonken 80 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (19078,355,29); -- Terpsichore 80 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19079,355,188); -- Tupsimati 80 - Omniscience
@@ -22562,7 +22562,7 @@ INSERT INTO `item_mods` VALUES (19095,30,15);
 INSERT INTO `item_mods` VALUES (19095,288,20);
 INSERT INTO `item_mods` VALUES (19095,355,46); -- Tizona 85 - Expiacion
 INSERT INTO `item_mods` VALUES (19096,355,218); -- Death Penalty 85 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19096,831,40);
+INSERT INTO `item_mods` VALUES (19096,580,40);
 INSERT INTO `item_mods` VALUES (19097,173,20);
 INSERT INTO `item_mods` VALUES (19097,288,20);
 INSERT INTO `item_mods` VALUES (19097,355,12); -- Kenkonken 85 - Stringing Pummel
@@ -22919,7 +22919,7 @@ INSERT INTO `item_mods` VALUES (19625,355,122); -- Ryunohige 90 - Drakesbane
 INSERT INTO `item_mods` VALUES (19626,355,187); -- Nirvana 90 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19627,355,46); -- Tizona 90 - Expiacion
 INSERT INTO `item_mods` VALUES (19628,355,218); -- Death Penalty 90 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19628,831,40);
+INSERT INTO `item_mods` VALUES (19628,580,40);
 INSERT INTO `item_mods` VALUES (19629,355,12); -- Kenkonken 90 - Stringing Pummel
 INSERT INTO `item_mods` VALUES (19630,355,29); -- Terpsichore 90 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19631,355,188); -- Tupsimati 90 - Omniscience
@@ -23017,7 +23017,7 @@ INSERT INTO `item_mods` VALUES (19725,288,25);
 INSERT INTO `item_mods` VALUES (19725,302,5);
 INSERT INTO `item_mods` VALUES (19725,355,46); -- Tizona 95 - Expiacion
 INSERT INTO `item_mods` VALUES (19726,355,218); -- Death Penalty 95 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19726,831,40);
+INSERT INTO `item_mods` VALUES (19726,580,40);
 INSERT INTO `item_mods` VALUES (19727,173,20);
 INSERT INTO `item_mods` VALUES (19727,288,25);
 INSERT INTO `item_mods` VALUES (19727,302,5);
@@ -23272,7 +23272,7 @@ INSERT INTO `item_mods` VALUES (19834,30,25);
 INSERT INTO `item_mods` VALUES (19834,288,30);
 INSERT INTO `item_mods` VALUES (19834,302,10);
 INSERT INTO `item_mods` VALUES (19834,355,46); -- Tizona 99 - Expiacion
-INSERT INTO `item_mods` VALUES (19835,831,50);
+INSERT INTO `item_mods` VALUES (19835,580,50);
 INSERT INTO `item_mods` VALUES (19836,173,20);
 INSERT INTO `item_mods` VALUES (19836,302,10);
 INSERT INTO `item_mods` VALUES (19836,355,12); -- Kenkonken 99 - Stringing Pummel
@@ -24191,7 +24191,7 @@ INSERT INTO `item_mods` VALUES (21261,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (21261,786,40); -- Coronach DMG +40%
 INSERT INTO `item_mods` VALUES (21262,355,218); -- Death Penalty iLvL 119 - Leaden Salute
 INSERT INTO `item_mods` VALUES (21263,355,218); -- Death Penalty iLvL 119 - Leaden Salute
-INSERT INTO `item_mods` VALUES (21263,831,35);
+INSERT INTO `item_mods` VALUES (21263,580,35);
 INSERT INTO `item_mods` VALUES (21264,11,20);
 INSERT INTO `item_mods` VALUES (21264,355,220); -- Armageddon iLvL 119 - Wildfire
 INSERT INTO `item_mods` VALUES (21265,11,20);
@@ -24513,7 +24513,7 @@ INSERT INTO `item_mods` VALUES (26634,29,1);
 INSERT INTO `item_mods` VALUES (26634,31,36);
 INSERT INTO `item_mods` VALUES (26634,68,20);
 INSERT INTO `item_mods` VALUES (26634,384,72);
-INSERT INTO `item_mods` VALUES (26634,571,2);
+INSERT INTO `item_mods` VALUES (26634,835,2);
 INSERT INTO `item_mods` VALUES (26635,1,102);
 INSERT INTO `item_mods` VALUES (26635,2,36);
 INSERT INTO `item_mods` VALUES (26635,5,23);
@@ -24530,7 +24530,7 @@ INSERT INTO `item_mods` VALUES (26635,29,2);
 INSERT INTO `item_mods` VALUES (26635,31,53);
 INSERT INTO `item_mods` VALUES (26635,68,44);
 INSERT INTO `item_mods` VALUES (26635,384,82);
-INSERT INTO `item_mods` VALUES (26635,571,3);
+INSERT INTO `item_mods` VALUES (26635,835,3);
 INSERT INTO `item_mods` VALUES (26636,1,87);
 INSERT INTO `item_mods` VALUES (26636,2,59);
 INSERT INTO `item_mods` VALUES (26636,5,59);
@@ -28386,7 +28386,7 @@ INSERT INTO `item_mods` VALUES (27088,31,29);
 INSERT INTO `item_mods` VALUES (27088,68,16);
 INSERT INTO `item_mods` VALUES (27088,174,10);
 INSERT INTO `item_mods` VALUES (27088,384,40);
-INSERT INTO `item_mods` VALUES (27088,572,10);
+INSERT INTO `item_mods` VALUES (27088,836,10);
 INSERT INTO `item_mods` VALUES (27089,1,91);
 INSERT INTO `item_mods` VALUES (27089,2,27);
 INSERT INTO `item_mods` VALUES (27089,8,13);
@@ -28402,7 +28402,7 @@ INSERT INTO `item_mods` VALUES (27089,31,43);
 INSERT INTO `item_mods` VALUES (27089,68,36);
 INSERT INTO `item_mods` VALUES (27089,174,11);
 INSERT INTO `item_mods` VALUES (27089,384,50);
-INSERT INTO `item_mods` VALUES (27089,572,12);
+INSERT INTO `item_mods` VALUES (27089,836,12);
 INSERT INTO `item_mods` VALUES (27090,1,58);
 INSERT INTO `item_mods` VALUES (27090,2,8);
 INSERT INTO `item_mods` VALUES (27090,5,37);
@@ -29883,7 +29883,7 @@ INSERT INTO `item_mods` VALUES (27340,31,43);
 INSERT INTO `item_mods` VALUES (27340,68,23);
 INSERT INTO `item_mods` VALUES (27340,162,-4);
 INSERT INTO `item_mods` VALUES (27340,384,31);
-INSERT INTO `item_mods` VALUES (27340,573,10);
+INSERT INTO `item_mods` VALUES (27340,837,10);
 INSERT INTO `item_mods` VALUES (27341,1,89);
 INSERT INTO `item_mods` VALUES (27341,2,43);
 INSERT INTO `item_mods` VALUES (27341,8,16);
@@ -29898,7 +29898,7 @@ INSERT INTO `item_mods` VALUES (27341,31,64);
 INSERT INTO `item_mods` VALUES (27341,68,49);
 INSERT INTO `item_mods` VALUES (27341,162,-5);
 INSERT INTO `item_mods` VALUES (27341,384,31);
-INSERT INTO `item_mods` VALUES (27341,573,15);
+INSERT INTO `item_mods` VALUES (27341,837,15);
 INSERT INTO `item_mods` VALUES (27342,1,64);
 INSERT INTO `item_mods` VALUES (27342,2,8);
 INSERT INTO `item_mods` VALUES (27342,8,14);
