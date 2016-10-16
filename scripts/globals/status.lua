@@ -1189,9 +1189,9 @@ MOD_GRIMOIRE_INSTANT_CAST    = 419 -- Spells that match your current Arts will o
 MOD_COUNTERSTANCE_EFFECT     = 543 -- Counterstance effect in percents
 MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
 MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
-MOD_MUG_EFFECT               = 571 -- Mug effect as multiplier
-MOD_REVERSE_FLOURISH_EFFECT  = 572 -- Reverse Flourish effect in tenths of squared term multiplier
-MOD_SENTINEL_EFFECT          = 573 -- Sentinel effect in percents
+MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
+MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
+MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
@@ -1334,7 +1334,7 @@ MOD_AUGMENTS_SA               = 526 -- Adds Critical Attack Bonus to Sneak Attac
 MOD_AUGMENTS_TA               = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_JUG_LEVEL_RANGE           = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 MOD_FORCE_JUMP_CRIT           = 828 -- Critical hit rate bonus for jump and high jump
-MOD_QUICK_DRAW_DMG_PERCENT    = 831 -- Percentage increase to QD damage
+MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
@@ -1347,15 +1347,10 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
--- MOD_SPARE = 574 -- stuff
--- MOD_SPARE = 575 -- stuff
--- MOD_SPARE = 576 -- stuff
--- MOD_SPARE = 577 -- stuff
--- MOD_SPARE = 578 -- stuff
--- MOD_SPARE = 579 -- stuff
--- MOD_SPARE = 580 -- stuff
--- MOD_SPARE = 834 -- stuff
--- MOD_SPARE = 835 -- stuff
+-- 570 - 825 used by WS DMG mods these are not spares.
+-- MOD_SPARE = 839 -- stuff
+-- MOD_SPARE = 838 -- stuff
+-- MOD_SPARE = 840 -- stuff
 
 ------------------------------------
 -- Merit Definitions
