@@ -3029,6 +3029,10 @@ INSERT INTO `item_mods` VALUES (11042,9,-1);
 INSERT INTO `item_mods` VALUES (11042,11,-1);
 INSERT INTO `item_mods` VALUES (11043,2,10);
 INSERT INTO `item_mods` VALUES (11043,8,1);
+INSERT INTO `item_mods` VALUES (11058,25,-16); -- acc 
+INSERT INTO `item_mods` VALUES (11058,26,16); -- racc
+INSERT INTO `item_mods` VALUES (11059,25,-15); -- acc
+INSERT INTO `item_mods` VALUES (11059,26,17); -- racc
 INSERT INTO `item_mods` VALUES (11064,1,38);
 INSERT INTO `item_mods` VALUES (11064,8,8);
 INSERT INTO `item_mods` VALUES (11064,10,8);
@@ -5954,9 +5958,9 @@ INSERT INTO `item_mods` VALUES (11925,26,9);
 INSERT INTO `item_mods` VALUES (11926,1,40);
 INSERT INTO `item_mods` VALUES (11926,10,25);
 INSERT INTO `item_mods` VALUES (11926,426,35);
-INSERT INTO `item_mods` VALUES (11927,1,40);
-INSERT INTO `item_mods` VALUES (11927,385,250);
-INSERT INTO `item_mods` VALUES (11927,831,-50);
+INSERT INTO `item_mods` VALUES (11927,1,40); -- def
+INSERT INTO `item_mods` VALUES (11927,385,250); -- shield bash
+INSERT INTO `item_mods` VALUES (11927,831,-50); -- Aegis (lv99 no afterglow) -50% Magic Damage Taken
 INSERT INTO `item_mods` VALUES (11928,1,29);
 INSERT INTO `item_mods` VALUES (11928,24,6);
 INSERT INTO `item_mods` VALUES (11928,26,-3);
@@ -21599,6 +21603,12 @@ INSERT INTO `item_mods` VALUES (18457,14,12);
 INSERT INTO `item_mods` VALUES (18459,8,5);
 INSERT INTO `item_mods` VALUES (18459,23,10);
 INSERT INTO `item_mods` VALUES (18459,73,5);
+INSERT INTO `item_mods` VALUES (18462,23,7); -- atk
+INSERT INTO `item_mods` VALUES (18462,25,4); -- acc
+INSERT INTO `item_mods` VALUES (18462,68,4); -- eva
+INSERT INTO `item_mods` VALUES (18463,23,8); -- atk
+INSERT INTO `item_mods` VALUES (18463,25,5); -- acc
+INSERT INTO `item_mods` VALUES (18463,68,5); -- eva
 INSERT INTO `item_mods` VALUES (18473,8,2);
 INSERT INTO `item_mods` VALUES (18473,54,10);
 INSERT INTO `item_mods` VALUES (18473,459,3);
@@ -21653,6 +21663,12 @@ INSERT INTO `item_mods` VALUES (18517,25,4);
 INSERT INTO `item_mods` VALUES (18518,10,5);
 INSERT INTO `item_mods` VALUES (18518,25,5);
 INSERT INTO `item_mods` VALUES (18520,165,4);
+INSERT INTO `item_mods` VALUES (18522,10,5); -- vit
+INSERT INTO `item_mods` VALUES (18522,16,15); -- ice element
+INSERT INTO `item_mods` VALUES (18522,25,5); -- acc
+INSERT INTO `item_mods` VALUES (18523,10,6); -- vit
+INSERT INTO `item_mods` VALUES (18523,16,20); -- ice element
+INSERT INTO `item_mods` VALUES (18523,25,6); -- acc
 INSERT INTO `item_mods` VALUES (18524,8,10);
 INSERT INTO `item_mods` VALUES (18525,8,15);
 INSERT INTO `item_mods` VALUES (18531,24,4);
@@ -21671,6 +21687,10 @@ INSERT INTO `item_mods` VALUES (18540,10,7);
 INSERT INTO `item_mods` VALUES (18541,384,20);
 INSERT INTO `item_mods` VALUES (18542,1,10);
 INSERT INTO `item_mods` VALUES (18542,8,10);
+INSERT INTO `item_mods` VALUES (18543,27,4); -- enmity 
+INSERT INTO `item_mods` VALUES (18543,8,5); -- str
+INSERT INTO `item_mods` VALUES (18544,27,5); -- enmity
+INSERT INTO `item_mods` VALUES (18544,8,6); -- str
 INSERT INTO `item_mods` VALUES (18551,8,8);
 INSERT INTO `item_mods` VALUES (18551,431,1);
 INSERT INTO `item_mods` VALUES (18553,8,6);
@@ -21685,6 +21705,10 @@ INSERT INTO `item_mods` VALUES (18557,30,5);
 INSERT INTO `item_mods` VALUES (18557,170,5);
 INSERT INTO `item_mods` VALUES (18558,8,7);
 INSERT INTO `item_mods` VALUES (18558,421,5);
+INSERT INTO `item_mods` VALUES (18561,23,5); -- att
+INSERT INTO `item_mods` VALUES (18561,48,8); -- ws acc
+INSERT INTO `item_mods` VALUES (18562,23,6); -- att
+INSERT INTO `item_mods` VALUES (18562,48,9); -- ws acc
 INSERT INTO `item_mods` VALUES (18571,453,2);
 INSERT INTO `item_mods` VALUES (18571,454,30);
 INSERT INTO `item_mods` VALUES (18572,452,4);
@@ -21750,8 +21774,16 @@ INSERT INTO `item_mods` VALUES (18622,11,5);
 INSERT INTO `item_mods` VALUES (18622,28,5);
 INSERT INTO `item_mods` VALUES (18624,5,45);
 INSERT INTO `item_mods` VALUES (18624,71,14);
-INSERT INTO `item_mods` VALUES (18630,374,14);
-INSERT INTO `item_mods` VALUES (18631,374,15);
+INSERT INTO `item_mods` VALUES (18628,23,7); -- att
+INSERT INTO `item_mods` VALUES (18628,384,20); -- haste %
+INSERT INTO `item_mods` VALUES (18629,23,8); -- att
+INSERT INTO `item_mods` VALUES (18629,384,30); -- haste %
+INSERT INTO `item_mods` VALUES (18630,374,14); -- cure potency
+INSERT INTO `item_mods` VALUES (18630,5,100); -- mp
+INSERT INTO `item_mods` VALUES (18630,519,-6); -- cure cast time
+INSERT INTO `item_mods` VALUES (18631,5,110); -- mp
+INSERT INTO `item_mods` VALUES (18631,519,-7); -- cure cast time
+INSERT INTO `item_mods` VALUES (18631,374,15); -- cure potency
 INSERT INTO `item_mods` VALUES (18632,8,4);
 INSERT INTO `item_mods` VALUES (18632,9,4);
 INSERT INTO `item_mods` VALUES (18632,10,4);
@@ -21836,6 +21868,14 @@ INSERT INTO `item_mods` VALUES (18633,558,3);
 INSERT INTO `item_mods` VALUES (18633,559,3);
 INSERT INTO `item_mods` VALUES (18633,560,3);
 INSERT INTO `item_mods` VALUES (18633,566,1);
+INSERT INTO `item_mods` VALUES (18634,32,25); -- fire macc
+INSERT INTO `item_mods` VALUES (18634,34,25); -- wind macc
+INSERT INTO `item_mods` VALUES (18634,40,25); -- fire mab
+INSERT INTO `item_mods` VALUES (18634,42,25); -- wind mab
+INSERT INTO `item_mods` VALUES (18635,32,28); -- fire macc
+INSERT INTO `item_mods` VALUES (18635,34,28); -- wind macc
+INSERT INTO `item_mods` VALUES (18635,40,28); -- fire mab
+INSERT INTO `item_mods` VALUES (18635,42,28); -- wind mab
 INSERT INTO `item_mods` VALUES (18637,23,30); -- Spharai LV85 - ATT +30
 INSERT INTO `item_mods` VALUES (18637,291,9); -- Counter +9
 INSERT INTO `item_mods` VALUES (18637,355,10); -- Final Heaven
@@ -22205,6 +22245,10 @@ INSERT INTO `item_mods` VALUES (18810,431,1);
 INSERT INTO `item_mods` VALUES (18811,370,1);
 INSERT INTO `item_mods` VALUES (18812,55,10);
 INSERT INTO `item_mods` VALUES (18820,288,3);
+INSERT INTO `item_mods` VALUES (18827,11,7); -- agi
+INSERT INTO `item_mods` VALUES (18827,25,10); -- acc
+INSERT INTO `item_mods` VALUES (18827,289,5); -- subtle blow
+INSERT INTO `item_mods` VALUES (18827,8,7); -- str
 INSERT INTO `item_mods` VALUES (18828,8,10);
 INSERT INTO `item_mods` VALUES (18828,11,10);
 INSERT INTO `item_mods` VALUES (18828,25,15);
@@ -22316,6 +22360,46 @@ INSERT INTO `item_mods` VALUES (18907,13,-2);
 INSERT INTO `item_mods` VALUES (18907,14,-2);
 INSERT INTO `item_mods` VALUES (18909,374,13);
 INSERT INTO `item_mods` VALUES (18909,375,10);
+INSERT INTO `item_mods` VALUES (18910,13,8); -- mnd
+INSERT INTO `item_mods` VALUES (18910,519,-10); -- cure spellcasting time
+INSERT INTO `item_mods` VALUES (18911,13,9); -- mnd
+INSERT INTO `item_mods` VALUES (18911,519,-13); -- cure spellcasting time
+INSERT INTO `item_mods` VALUES (18914,10,2); -- dex
+INSERT INTO `item_mods` VALUES (18914,224,5); -- killer effect
+INSERT INTO `item_mods` VALUES (18914,225,5);
+INSERT INTO `item_mods` VALUES (18914,226,5);
+INSERT INTO `item_mods` VALUES (18914,227,5);
+INSERT INTO `item_mods` VALUES (18914,228,5);
+INSERT INTO `item_mods` VALUES (18914,229,5);
+INSERT INTO `item_mods` VALUES (18914,230,5);
+INSERT INTO `item_mods` VALUES (18914,231,5);
+INSERT INTO `item_mods` VALUES (18914,232,5);
+INSERT INTO `item_mods` VALUES (18914,233,5);
+INSERT INTO `item_mods` VALUES (18914,234,5);
+INSERT INTO `item_mods` VALUES (18914,235,5);
+INSERT INTO `item_mods` VALUES (18914,236,5);
+INSERT INTO `item_mods` VALUES (18914,237,5);
+INSERT INTO `item_mods` VALUES (18914,238,5);
+INSERT INTO `item_mods` VALUES (18914,5,30); -- mp
+INSERT INTO `item_mods` VALUES (18914,9,2); -- vit
+INSERT INTO `item_mods` VALUES (18915,10,3); -- dex
+INSERT INTO `item_mods` VALUES (18915,224,5); -- killer effect
+INSERT INTO `item_mods` VALUES (18915,225,5);
+INSERT INTO `item_mods` VALUES (18915,226,5);
+INSERT INTO `item_mods` VALUES (18915,227,5);
+INSERT INTO `item_mods` VALUES (18915,228,5);
+INSERT INTO `item_mods` VALUES (18915,229,5);
+INSERT INTO `item_mods` VALUES (18915,230,5);
+INSERT INTO `item_mods` VALUES (18915,231,5);
+INSERT INTO `item_mods` VALUES (18915,232,5);
+INSERT INTO `item_mods` VALUES (18915,233,5);
+INSERT INTO `item_mods` VALUES (18915,234,5);
+INSERT INTO `item_mods` VALUES (18915,235,5);
+INSERT INTO `item_mods` VALUES (18915,236,5);
+INSERT INTO `item_mods` VALUES (18915,237,5);
+INSERT INTO `item_mods` VALUES (18915,238,5);
+INSERT INTO `item_mods` VALUES (18915,5,35); -- mp
+INSERT INTO `item_mods` VALUES (18915,9,3); -- dex
 INSERT INTO `item_mods` VALUES (18946,25,7);
 INSERT INTO `item_mods` VALUES (18946,242,2);
 INSERT INTO `item_mods` VALUES (18947,8,3);
