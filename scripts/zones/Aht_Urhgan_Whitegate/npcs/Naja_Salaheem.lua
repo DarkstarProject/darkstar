@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         player:startEvent(3002,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(73,0,0,0,0,0,0,0,0,0);
-    elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 2 and TOAUM3_DAY ~= realday and needToZone == true) then
+    elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 2 and TOAUM3_DAY ~= realday and needToZone == false) then
         player:startEvent(3020,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(3021,0,0,0,0,0,0,0,0,0);
