@@ -130,6 +130,12 @@ Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, ui
             {
                 recast->TimeStamp = time(nullptr);
             }
+            else if (recast->RecastTime + duration > recast->chargeTime * recast->maxCharges)
+            {
+                auto diff = (recast->chargeTime * recast->maxCharges) - recast->RecastTime + duration;
+                recast->TimeStamp += diff;
+                duration -= diff;
+            }
             recast->RecastTime += duration;
         }
         return recast;
