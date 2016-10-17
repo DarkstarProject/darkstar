@@ -99,6 +99,7 @@ function onEventFinish(player,csid,option)
             player:completeMission(TOAU,WESTERLY_WINDS);
             player:addMission(TOAU,A_MERCENARY_LIFE);
             player:messageSpecial(ITEM_OBTAINED,2185);
+            player:needToZone(true);
         end
     elseif (csid == 3052) then
         player:completeMission(TOAU,ASTRAL_WAVES);

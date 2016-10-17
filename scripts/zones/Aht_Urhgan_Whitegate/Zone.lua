@@ -78,7 +78,7 @@ function onRegionEnter(player,region)
         [3] = function (x) -- TOAU Mission 1
             if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE) then
+            elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE and player:needToZone() == false) then
                 if (prevZone ~= 50) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
