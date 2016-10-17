@@ -174,7 +174,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                         }
                         else {
                             // BCNMs that ends before killing mobs exits immediately.
-                            if (!PBattlefield->allEnemiesDefeated()) {
+                            if (!PBattlefield->allEnemiesDefeated() && !PBattlefield->cleared()) {
                                 ShowDebug("BCNM %i battlefield %i : Winning conditions met.\n",
                                     PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                                 PBattlefield->winBcnm();

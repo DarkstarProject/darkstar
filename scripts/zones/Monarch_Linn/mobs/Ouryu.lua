@@ -20,6 +20,13 @@ end;
 
 function onMobFight(mob,target)
 
+    local bf = mob:getBattlefield()
+    print(bf:getBcnmID())
+    if bf:getBcnmID() == 961 and mob:getHPP() < 30 then
+        bf:win()
+        return
+    end
+
     if (mob:hasStatusEffect(EFFECT_INVINCIBLE) == false and mob:actionQueueEmpty() == true) then
         local changeTime = mob:getLocalVar("changeTime");
         local twohourTime = mob:getLocalVar("twohourTime");
