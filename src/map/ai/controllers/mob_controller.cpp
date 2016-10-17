@@ -26,7 +26,6 @@ This file is part of DarkStar-server source code.
 #include "../helpers/targetfind.h"
 #include "../states/ability_state.h"
 #include "../states/magic_state.h"
-#include "../states/death_state.h"
 #include "../states/weaponskill_state.h"
 #include "../../mobskill.h"
 #include "../../party.h"
@@ -35,7 +34,6 @@ This file is part of DarkStar-server source code.
 #include "../../mob_modifier.h"
 #include "../../mob_spell_container.h"
 #include "../../entities/mobentity.h"
-#include "../../packets/entity_update.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
 
@@ -518,7 +516,19 @@ void CMobController::DoCombatTick(time_point tick)
     }
 
     Move();
-    return;
+}
+
+void CMobController::FaceTarget(uint16 targid)
+{
+    CBaseEntity* targ = PTarget;
+    if (targid != 0 && ((targ && targid != targ->targid ) || !targ))
+    {
+        targ = PMob->GetEntity(targid);
+    }
+    if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN) && targ)
+    {
+        PMob->PAI->PathFind->LookAt(targ->loc.p);
+    }
 }
 
 void CMobController::Move()
@@ -623,14 +633,15 @@ void CMobController::Move()
                     }
                 }
             }
+            else
+            {
+                FaceTarget();
+            }
         }
     }
     else
     {
-        if (!(PMob->m_Behaviour & BEHAVIOUR_NO_TURN))
-        {
-            PMob->PAI->PathFind->LookAt(PTarget->loc.p);
-        }
+        FaceTarget();
     }
 }
 
@@ -897,6 +908,7 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
 {
     if (POwner)
     {
+        FaceTarget(targid);
         return POwner->PAI->Internal_MobSkill(targid, wsid);
     }
 
@@ -977,6 +989,12 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 void CMobController::TapDeaggroTime()
 {
     m_DeaggroTime = m_Tick;
+}
+
+void CMobController::Cast(uint16 targid, uint16 spellid)
+{
+    FaceTarget(targid);
+    CController::Cast(targid, spellid);
 }
 
 bool CMobController::CanMoveForward(float currentDistance)

@@ -195,46 +195,6 @@ namespace battlefieldutils {
     bool meetsWinningConditions(CBattlefield* battlefield, time_point tick)
     {
         return battlefield->won() || battlefield->allEnemiesDefeated();
-        /*
-        //handle odd cases e.g. stop fight @ x% HP
-
-        //handle Maat fights
-        if (battlefield->locked && (battlefield->m_RuleMask & RULES_MAAT))
-        {
-            // survive for 5 mins
-            if (battlefield->getPlayerMainJob() == JOB_WHM && (tick - battlefield->fightTick) > 5min)
-                return true;
-
-            if (battlefield->isEnemyBelowHPP(10))
-                return true;
-
-
-            if (battlefield->getPlayerMainJob() == JOB_THF && battlefield->m_EnemyList.at(0)->m_ItemStolen) //thf can win by stealing from maat only if maat not previously defeated
-            {
-                const int8* fmtQuery = "SELECT value FROM char_vars WHERE charid = %u AND varname = '%s' LIMIT 1;";
-                int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->m_PlayerList.at(0)->id, "maatDefeated");
-                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
-                    return true;
-                else if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                {
-                    int16 value = (int16)Sql_GetIntData(SqlHandle, 0);
-                    if (value <= 0)
-                        return true;
-                }
-            }
-        }
-
-        // savage
-        if (battlefield->getID() == 961 && battlefield->isEnemyBelowHPP(30)) {
-            return true;
-        }
-
-        //generic cases, kill all mobs
-        if (battlefield->allEnemiesDefeated()) {
-            return true;
-        }
-        return false;
-        */
     }
 
     /**************************************************************
