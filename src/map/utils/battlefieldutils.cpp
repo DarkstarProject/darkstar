@@ -192,10 +192,10 @@ namespace battlefieldutils {
     is usually when all the monsters are defeated but can be other things
     (e.g. mob below X% HP, successful Steal, etc)
     ***************************************************************/
-    bool meetsWinningConditions(CBattlefield* battlefield, time_point tick) {
-
-        if (battlefield->won()) return true;
-
+    bool meetsWinningConditions(CBattlefield* battlefield, time_point tick)
+    {
+        return battlefield->won();
+        /*
         //handle odd cases e.g. stop fight @ x% HP
 
         //handle Maat fights
@@ -234,6 +234,7 @@ namespace battlefieldutils {
             return true;
         }
         return false;
+        */
     }
 
     /**************************************************************
