@@ -38,11 +38,7 @@ function onUseAbility(player,target,ability)
         strBoost = (1 + target:getSubLvl()/5);  -- Use Subjob Lvl
     end
 
-    -- Spirit Surge lasts 60 seconds, or 20 more if Wyrm Mail+2 is equipped
     local duration = 60;
-    if (target:getEquipID(SLOT_BODY)==10683) then
-        duration = duration + 20;
-    end
 
     target:despawnPet();
     -- All Jump recast times are reset

@@ -20,7 +20,7 @@ local itemMap = {
                     { 880, 224, DIGREQ_NONE },
                     { 887, 39, DIGREQ_NONE },
                     { 645, 14, DIGREQ_NONE },
-                    { 893, 105, DIGREQ_NONE }, 
+                    { 893, 105, DIGREQ_NONE },
                     { 737, 17, DIGREQ_NONE },
                     { 643, 64, DIGREQ_NONE },
                     { 17296, 122, DIGREQ_NONE },
@@ -63,8 +63,11 @@ end;
 
 function onInitialize(zone)
     local manuals = {17257075,17257076,17257077};
-
     SetFieldManual(manuals);
+
+    local vwnpc = {17257084,17257085,17257086};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
 -----------------------------------
@@ -81,7 +84,7 @@ function onZoneIn( player, prevZone)
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0023;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0025; 
+        cs = 0x0025;
     end
 
     return cs;

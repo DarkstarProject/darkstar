@@ -14,41 +14,45 @@ require("scripts/zones/Batallia_Downs_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+
+    local vwnpc = {17122251,17122252,17122253,17122257,17122258};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(-500.451,-39.71,504.894,39);
-    end    
-    return cs;    
-end;        
+    end
+    return cs;
+end;
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)    
-end;    
+function onRegionEnter(player,region)
+end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)    
+function onEventUpdate(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;
 
------------------------------------    
--- onEventFinish    
------------------------------------    
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;

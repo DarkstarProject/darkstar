@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4824
---    Scroll of Gravity
---    Teaches the black magic Gravity
+-- ID: 4824
+-- Scroll of Gravity
+-- Teaches the black magic Gravity
 -----------------------------------------
 
 -----------------------------------------

@@ -6,6 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -48,7 +49,7 @@ function onTrigger(player,npc)
     
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(0x01f8);
-    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == 1 and player:getMainLvl() >= 50) then
+    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == JOBS.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
             player:startEvent(0x00a0);
             player:setVar("theTalekeeperTruthCS",2);
@@ -63,7 +64,7 @@ function onTrigger(player,npc)
         player:startEvent(0x00a5); -- Finish Quest "The Talekeeper's Truth"
     elseif (theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == Wait1DayForAF3))) then
         player:startEvent(0x00a6); -- New standard dialog after "The Talekeeper's Truth"
-    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == 1) then
+    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == JOBS.WAR) then
         player:startEvent(0x00aa);
         player:setVar("theTalekeeperGiftCS",1);
         player:setVar("DeidoggWait1DayForAF3",0);

@@ -20,7 +20,7 @@ local itemMap = {
                     { 880, 224, DIGREQ_NONE },
                     { 887, 39, DIGREQ_NONE },
                     { 645, 14, DIGREQ_NONE },
-                    { 893, 105, DIGREQ_NONE }, 
+                    { 893, 105, DIGREQ_NONE },
                     { 737, 17, DIGREQ_NONE },
                     { 643, 64, DIGREQ_NONE },
                     { 17296, 122, DIGREQ_NONE },
@@ -65,6 +65,9 @@ function onInitialize(zone)
     local manuals = {17269257,17269258};
 
     SetFieldManual(manuals);
+
+    local vwnpc = {17269268,17269269,17269270,17269274,17269275};
+    SetVoidwatchNPC(vwnpc);
 
     -- Roc
     SetRespawnTime(17269106, 900, 10800);

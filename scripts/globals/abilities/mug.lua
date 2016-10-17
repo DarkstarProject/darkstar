@@ -49,10 +49,7 @@ function onUseAbility(player,target,ability)
         if (gil <= 0) then
             ability:setMsg(244);
         else
-            if (player:getEquipID(SLOT_HEAD) == 15077) then
-                gil = gil * 2;
-            end
-
+            gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
             player:addGil(gil);
             target:setMobMod(MOBMOD_MUG_GIL, target:getMobMod(MOBMOD_MUG_GIL) - gil);
             ability:setMsg(129);

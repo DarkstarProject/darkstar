@@ -7,6 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -96,7 +97,7 @@ function onTrigger(player,npc)
             player:startEvent(0x034D); -- COP event
     elseif (currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
             player:startEvent(0x034F); -- COP event 3.3
-    elseif (player:getMainJob() == 8 and player:getMainLvl() >= AF2_QUEST_LEVEL and 
+    elseif (player:getMainJob() == JOBS.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and 
        player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
         player:startEvent(0x02f8); -- Start Quest "Dark Puppet"
     elseif (currentMission == GEOLOGICAL_SURVEY) then

@@ -121,6 +121,22 @@ function SetGroundsTome(tome)
 end;
 
 -----------------------------------
+-- SetVoidwatchNPC
+----------------------------------
+
+function SetVoidwatchNPC(vwnpc)
+    if (ENABLE_VOIDWATCH == 1) then
+        for i,id in ipairs(vwnpc) do
+            local npc = GetNPCByID(id);
+            if (npc ~= nil) then
+                npc:setStatus(0);
+            end
+        end
+    end
+end;
+
+
+-----------------------------------
 -- SetRespawnTime
 ----------------------------------
 

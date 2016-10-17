@@ -42,12 +42,8 @@ end;
 function onUseAbility(player,target,ability)
 
     local TPGain = 0;
-    local STM = 0.5;
-    if player:getEquipID(SLOT_HANDS) == 11222 then
-        STM = 1.0;
-    elseif player:getEquipID(SLOT_HANDS) == 11122 then
-        STM = 1.5;
-    end
+    local STM = 0.5 + (0.1 * player:getMod(MOD_REVERSE_FLOURISH_EFFECT));
+
     local Merits = player:getMerit(MERIT_REVERSE_FLOURISH_EFFECT);
 
     if (player:hasStatusEffect(EFFECT_FINISHING_MOVE_1)) then
