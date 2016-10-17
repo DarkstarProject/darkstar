@@ -184,8 +184,12 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",9);
     elseif (csid == 546) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 507 or csid == 533 or csid == 534 or csid == 548) then
+    elseif (csid == 507 or csid == 534 or csid == 548) then
         finishMissionTimeline(player,3,csid,option);
+    elseif (csid == 533) then
+        player:addKeyItem(NEW_FEIYIN_SEAL);
+        player:setVar("MissionStatus",10);
+        player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
     elseif (csid == 25) then
         player:setVar("MissionStatus",1);
     elseif (csid == 22) then
