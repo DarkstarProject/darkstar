@@ -194,7 +194,7 @@ namespace battlefieldutils {
     ***************************************************************/
     bool meetsWinningConditions(CBattlefield* battlefield, time_point tick)
     {
-        return battlefield->won();
+        return battlefield->won() || battlefield->allEnemiesDefeated();
         /*
         //handle odd cases e.g. stop fight @ x% HP
 
