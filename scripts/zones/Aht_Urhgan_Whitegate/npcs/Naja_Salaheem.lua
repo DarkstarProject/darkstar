@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         player:startEvent(3051,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == ASTRAL_WAVES) then
         player:startEvent(3052,0,0,0,0,0,0,0,0,0);
-    elseif (player:getCurrentMission(TOAU) == IMPERIAL_SCHEMES) then
+    elseif (player:getCurrentMission(TOAU) == IMPERIAL_SCHEMES and player:getVar("TOAUM11_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
         player:startEvent(3070,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == ROYAL_PUPPETEER) then
         player:startEvent(3071,0,0,0,0,0,0,0,0,0);
@@ -103,9 +103,12 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 3052) then
         player:completeMission(TOAU,ASTRAL_WAVES);
+        player:needToZone(true);
+        player:setVar("TOAUM11_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,IMPERIAL_SCHEMES);
     elseif (csid == 3070) then
         player:completeMission(TOAU,IMPERIAL_SCHEMES);
+        player:setVar("TOAUM11_STARTDAY", 0);
         player:addMission(TOAU,ROYAL_PUPPETEER);
     elseif (csid == 3072) then
         player:completeMission(TOAU,THE_DOLPHIN_CREST);
