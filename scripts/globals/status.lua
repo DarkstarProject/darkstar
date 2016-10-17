@@ -2171,8 +2171,9 @@ SPELLAOE_DIFFUSION   = 6; -- AOE when under Diffusion
 -- Spell flag bits
 ------------------------------------
 
-SPELLFLAG_NONE    = 0;
-SPELLFLAG_HIT_ALL = 1; -- hit all targets in range regardless of party
+SPELLFLAG_NONE          = 0x00;
+SPELLFLAG_HIT_ALL       = 0x01; -- Hit all targets in range regardless of party
+SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 
 ------------------------------------
 -- Behaviour bits

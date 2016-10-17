@@ -1214,8 +1214,8 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         auto ce = PSpell->getCE();
         auto ve = PSpell->getVE();
 
-        // take all shadows
-        if (PSpell->canTargetEnemy() && aoeType > 0)
+        // Take all shadows
+        if (PSpell->canTargetEnemy() && (aoeType > 0 || (PSpell->getFlag() & SPELLFLAG_WIPE_SHADOWS)))
         {
             PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
             PTarget->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
