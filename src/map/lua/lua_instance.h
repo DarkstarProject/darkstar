@@ -70,6 +70,7 @@ public:
     int32 completed(lua_State*);
 
     int32 insertAlly(lua_State*);
+    int32 startAllyAssist(lua_State*);
 };
 
 #endif

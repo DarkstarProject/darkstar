@@ -1,3 +1,5 @@
+ALLY_ASSIST_PLAYER = 1;
+ALLY_ASSIST_RANDOM = 2;
 
 function updateInstanceTime(instance, elapsed, texttable)
     local players = instance:getChars();
