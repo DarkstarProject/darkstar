@@ -4042,13 +4042,13 @@ namespace battleutils
     float GetCharmChance(CBattleEntity* PCharmer, CBattleEntity* PTarget, bool includeCharmAffinityAndChanceMods)
     {
         //---------------------------------------------------------
-        //	chance of charm is based on:
-        //	-CHR - both entities
-        //	-Victims M level
-        //  -charmers BST level (not main level)
+        // chance of charm is based on:
+        //  CHR - both entities
+        //  Victims M level
+        //  charmers BST level (not main level)
         //
-        //  -75 with a BST SJ lvl10 will struggle on EP
-        //	-75 with a BST SJ lvl75 will not - this player has bst leveled to 75 and is using it as SJ
+        //  75 with a BST SJ Lvl l0 will struggle on EP
+        //  75 with a BST SJ Lvl 75 will not - this player has bst leveled to 75 and is using it as SJ
         //---------------------------------------------------------
 
         float charmChance = 0.0f;
@@ -4097,9 +4097,18 @@ namespace battleutils
         uint8 charmerBSTlevel = 0;
 
         if (PCharmer->objtype == TYPE_PC)
+        {
+            uint8 charmerBRDlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BRD];
             charmerBSTlevel = static_cast<CCharEntity*>(PCharmer)->jobs.job[JOB_BST];
+            if (PCharmer->GetMJob() == JOB_BRD && charmerBRDlevel > charmerBSTlevel)
+            {
+                charmerBSTlevel = charmerBRDlevel;
+            }
+        }
         else if (PCharmer->objtype == TYPE_MOB)
+        {
             charmerBSTlevel = charmerLvl;
+        }
 
         //printf("base = %u\n", base);
         charmChance = base;
