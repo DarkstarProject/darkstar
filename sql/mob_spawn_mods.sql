@@ -227,8 +227,11 @@ INSERT INTO `mob_spawn_mods` VALUES (16904202,49,1,1); -- Ouryu (CoP 4-2) script
 INSERT INTO `mob_spawn_mods` VALUES (17506670,49,1,1); -- Kirin's scripted Astral Flow
 INSERT INTO `mob_spawn_mods` VALUES (16926464,49,1,1); -- Prishe in CoP 8-4
 INSERT INTO `mob_spawn_mods` VALUES (16916815,49,1,1); -- Ix'Aern MNK and helpers
+INSERT INTO `mob_spawn_mods` VALUES (16916815,55,300,1);
 INSERT INTO `mob_spawn_mods` VALUES (16916816,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16916816,55,300,1);
 INSERT INTO `mob_spawn_mods` VALUES (16916817,49,1,1);
+INSERT INTO `mob_spawn_mods` VALUES (16916817,55,300,1);
 
 INSERT INTO `mob_spawn_mods` VALUES (17326081,50,25,1); -- Angra_Mainyu chainspell at 25%
 
@@ -572,10 +575,14 @@ INSERT INTO `mob_spawn_mods` VALUES (17490231,55,180,1);
 
 INSERT INTO `mob_spawn_mods` VALUES (16806242,55,120,1);
 
--- Ix'Aern (MNK)
-INSERT INTO `mob_spawn_mods` VALUES (16916815,55,300,1);
-INSERT INTO `mob_spawn_mods` VALUES (16916816,55,300,1);
-INSERT INTO `mob_spawn_mods` VALUES (16916817,55,300,1);
+-- Ix'Aern (DRG)
+INSERT INTO `mob_spawn_mods` VALUES (16921022,55,300,1);
+
+-- Ix'Aern (DRG)'s Wynavs
+INSERT INTO `mob_spawn_mods` VALUES (16921023,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16921024,55,300,1);
+INSERT INTO `mob_spawn_mods` VALUES (16921025,55,300,1);
+
 
 -- Cryptonberry Executor + Assasins
 INSERT INTO `mob_spawn_mods` VALUES (16785710,55,180,1);
