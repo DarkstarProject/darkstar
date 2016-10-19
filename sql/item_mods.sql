@@ -31001,15 +31001,14 @@ INSERT INTO `item_mods` VALUES (27507,25,5);
 INSERT INTO `item_mods` VALUES (27507,27,-5);
 INSERT INTO `item_mods` VALUES (27507,28,10);
 INSERT INTO `item_mods` VALUES (27507,296,2);
-INSERT INTO `item_mods` VALUES (27563,5,40);
-INSERT INTO `item_mods` VALUES (27563,7,60);
-INSERT INTO `item_mods` VALUES (27563,11,6);
-INSERT INTO `item_mods` VALUES (27563,12,6);
-INSERT INTO `item_mods` VALUES (27563,13,6);
-INSERT INTO `item_mods` VALUES (27563,29,-5);
-INSERT INTO `item_mods` VALUES (27563,30,15);
-INSERT INTO `item_mods` VALUES (27563,170,2);
-INSERT INTO `item_mods` VALUES (27563,374,3);
+INSERT INTO `item_mods` VALUES (27562,7,50); -- Metamorph Ring - Converts 50 HP to MP
+INSERT INTO `item_mods` VALUES (27562,12,5); -- INT +5
+INSERT INTO `item_mods` VALUES (27562,13,5); -- MND +5
+INSERT INTO `item_mods` VALUES (27562,14,5); -- CHA +5
+INSERT INTO `item_mods` VALUES (27563,7,60); -- Metamorph Ring +1 - Converts 60 HP to MP
+INSERT INTO `item_mods` VALUES (27563,12,6); -- INT +6
+INSERT INTO `item_mods` VALUES (27563,13,6); -- MND +6
+INSERT INTO `item_mods` VALUES (27563,14,6); -- CHA +6
 INSERT INTO `item_mods` VALUES (27565,8,9);
 INSERT INTO `item_mods` VALUES (27565,23,5);
 INSERT INTO `item_mods` VALUES (27565,54,16);
