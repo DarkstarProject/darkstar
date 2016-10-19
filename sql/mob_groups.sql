@@ -12090,7 +12090,7 @@ INSERT INTO `mob_groups` VALUES (14312,5535,195,0,128,0,0,0,75,75,0);
 -- Ix'Aern (DRG Placeholder: Aw'Aern)
 INSERT INTO `mob_groups` VALUES (14313,5353,35,0,128,881,0,0,81,84,0);
 
--- Ix'Aern's Pets: Aern's Wynav
+-- Ix'Aern (DRG)'s Pets: Aern's Wynav
 INSERT INTO `mob_groups` VALUES (14314,5536,35,0,128,0,0,0,78,79,0);
 
 -- Sekhmet
