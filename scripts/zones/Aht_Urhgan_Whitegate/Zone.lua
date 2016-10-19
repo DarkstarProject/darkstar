@@ -94,6 +94,8 @@ function onRegionEnter(player,region)
                 player:startEvent(3026,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == WESTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);
+            elseif (player:getCurrentMission(TOAU) == SWEETS_FOR_THE_SOUL) then
+                player:startEvent(3092);
             end
         end,
     }
@@ -190,5 +192,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3050) then
         player:completeMission(TOAU,A_MERCENARY_LIFE);
         player:addMission(TOAU,UNDERSEA_SCOUTING);
+    elseif (csid == 3092) then
+        player:completeMission(TOAU,SWEETS_FOR_THE_SOUL);
+        player:addMission(TOAU,TEAHOUSE_TUMULT);
     end
 end;
