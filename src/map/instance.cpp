@@ -25,6 +25,7 @@ This file is part of DarkStar-server source code.
 
 #include "instance.h"
 
+#include "enmity_container.h"
 #include "zone.h"
 #include "ai/ai_container.h"
 #include "entities/charentity.h"
@@ -257,6 +258,44 @@ bool CInstance::CheckFirstEntry(uint32 id)
 {
     //insert returns a pair (iterator,inserted)
     return m_enteredChars.insert(id).second;
+}
+
+void CInstance::DisengageAll()
+{
+    for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
+    {
+        CCharEntity* PCurrentChar = (CCharEntity*)it->second;
+
+        if(PCurrentChar->isAlive() && PCurrentChar->GetBattleTargetID() > 0)
+        {
+            PCurrentChar->PAI->Disengage();
+        }
+    }
+
+    for (EntityList_t::const_iterator it = m_allyList.begin(); it != m_allyList.end(); ++it)
+    {
+        CMobEntity* PCurrentAlly = (CMobEntity*)it->second;
+
+        if(PCurrentAlly->isAlive() && PCurrentAlly->GetBattleTargetID() > 0)
+        {
+            PCurrentAlly->PEnmityContainer->Clear();
+            PCurrentAlly->PAI->Disengage();
+            PCurrentAlly->PAI->Inactive(std::chrono::milliseconds(10000), false);
+        }
+    }
+
+    for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+    {
+        CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+
+        if(PCurrentMob->isAlive() && PCurrentMob->GetBattleTargetID() > 0)
+        {
+            PCurrentMob->m_Aggro = false;
+            PCurrentMob->PEnmityContainer->Clear();
+            PCurrentMob->PAI->Disengage();
+            PCurrentMob->PAI->Inactive(std::chrono::milliseconds(10000), false);
+        }
+    }
 }
 
 void CInstance::StartAllyAssist(ALLY_ASSIST_MODE mode)

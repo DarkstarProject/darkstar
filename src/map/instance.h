@@ -74,6 +74,7 @@ public:
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
     bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
 
+    void DisengageAll();
     void StartAllyAssist(ALLY_ASSIST_MODE mode);
 
     CInstance(CZone*, uint8 instanceid);
