@@ -1160,7 +1160,7 @@ MOD_LIGHT_ARTS_EFFECT   = 334
 MOD_DARK_ARTS_EFFECT    = 335
 MOD_LIGHT_ARTS_SKILL    = 336
 MOD_DARK_ARTS_SKILL     = 337
-MOD_REGEN_EFFECT        = 338
+MOD_LIGHT_ARTS_REGEN    = 338 -- Regen bonus HP from Light Arts and Tabula Rasa
 MOD_REGEN_DURATION      = 339
 MOD_HELIX_EFFECT        = 478
 MOD_HELIX_DURATION      = 477
@@ -1192,6 +1192,7 @@ MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
 MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
 MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
 MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
+MOD_REGEN_MULTIPLIER         = 838 -- Regen base multiplier
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
@@ -1349,8 +1350,17 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 100 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
 -- MOD_SPARE = 839 -- stuff
--- MOD_SPARE = 838 -- stuff
 -- MOD_SPARE = 840 -- stuff
+-- MOD_SPARE = 841 -- stuff
+-- MOD_SPARE = 842 -- stuff
+-- MOD_SPARE = 843 -- stuff
+-- MOD_SPARE = 844 -- stuff
+-- MOD_SPARE = 845 -- stuff
+-- MOD_SPARE = 846 -- stuff
+-- MOD_SPARE = 847 -- stuff
+-- MOD_SPARE = 848 -- stuff
+-- MOD_SPARE = 849 -- stuff
+-- MOD_SPARE = 850 -- stuff
 
 ------------------------------------
 -- Merit Definitions

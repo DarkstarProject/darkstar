@@ -296,6 +296,7 @@ enum MODIFIER
     MOD_AFFLATUS_MISERY           = 294, // Pool of HP accumulated during Afflatus Misery
     MOD_AUSPICE_EFFECT            = 484, // Bonus to Auspice Subtle Blow Effect.
     MOD_AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
+    MOD_REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
 
     // Black Mage
     MOD_CLEAR_MIND                = 295, // Used in conjunction with MOD_HEALMP to increase amount between tics
@@ -455,7 +456,7 @@ enum MODIFIER
     MOD_DARK_ARTS_EFFECT          = 335, //
     MOD_LIGHT_ARTS_SKILL          = 336, //
     MOD_DARK_ARTS_SKILL           = 337, //
-    MOD_REGEN_EFFECT              = 338, //
+    MOD_LIGHT_ARTS_REGEN          = 338, // Regen bonus flat HP amount from Light Arts and Tabula Rasa
     MOD_REGEN_DURATION            = 339, //
     MOD_HELIX_EFFECT              = 478, //
     MOD_HELIX_DURATION            = 477, //
@@ -639,8 +640,17 @@ enum MODIFIER
     // MOD_SPARE = 100, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
     // MOD_SPARE = 839, // stuff
-    // MOD_SPARE = 838, // stuff
     // MOD_SPARE = 840, // stuff
+    // MOD_SPARE = 841, // stuff
+    // MOD_SPARE = 842, // stuff
+    // MOD_SPARE = 843, // stuff
+    // MOD_SPARE = 844, // stuff
+    // MOD_SPARE = 845, // stuff
+    // MOD_SPARE = 846, // stuff
+    // MOD_SPARE = 847, // stuff
+    // MOD_SPARE = 848, // stuff
+    // MOD_SPARE = 849, // stuff
+    // MOD_SPARE = 850, // stuff
 
 };
 

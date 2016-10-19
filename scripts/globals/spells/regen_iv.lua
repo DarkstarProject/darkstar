@@ -2,7 +2,6 @@
 -- Spell: Regen IV
 -- Gradually restores target's HP.
 -----------------------------------------
--- Cleric's Briault enhances the effect
 -- Scale down duration based on level
 -- Composure increases duration 3x
 -----------------------------------------
@@ -20,17 +19,9 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local hp = 30;
-    local meritBonus = caster:getMerit(MERIT_REGEN_EFFECT);
-
-    --printf("Regen IV: Merit Bonus = Extra +%d", meritBonus);    
-
-    local body = caster:getEquipID(SLOT_BODY);
-    if (body == 15089 or body == 14502) then
-        hp = hp+4;
-    end
-
-    hp = hp + caster:getMod(MOD_REGEN_EFFECT) + meritBonus;
+    local hp = math.ceil(30 * (1 + 0.01 * caster:getMod(MOD_REGEN_MULTIPLIER))); -- spell base times gear multipliers
+    hp = hp + caster:getMerit(MERIT_REGEN_EFFECT); -- bonus hp from merits
+    hp = hp + caster:getMod(MOD_LIGHT_ARTS_REGEN); -- bonus hp from light arts
 
     local duration = 60;
 
