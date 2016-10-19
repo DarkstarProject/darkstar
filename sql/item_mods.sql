@@ -24410,7 +24410,6 @@ INSERT INTO `item_mods` VALUES (21810,355,108); -- Redemption iLvL 119 - Quietus
 INSERT INTO `item_mods` VALUES (21857,355,121); -- Gungnir iLvL 119 - Geirskogul
 INSERT INTO `item_mods` VALUES (21858,355,122); -- Ryunohige iLvL 119 - Drakesbane
 INSERT INTO `item_mods` VALUES (21859,355,124); -- Rhongomiant iLvL 119 -- Camlann's Torment
-INSERT INTO `item_mods` VALUES (21869,14,10);
 INSERT INTO `item_mods` VALUES (21906,355,137); -- Kikoku iLvL 119 - Blade: Metsu
 INSERT INTO `item_mods` VALUES (21907,355,138); -- Nagi iLvL 119 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (21908,355,140); -- Kannagi iLvL 119 - Blade Hi
@@ -37392,8 +37391,6 @@ INSERT INTO `item_mods` VALUES (28665,29,6);
 INSERT INTO `item_mods` VALUES (28665,109,106);
 INSERT INTO `item_mods` VALUES (28665,161,-8);
 INSERT INTO `item_mods` VALUES (28670,1,1);
-INSERT INTO `item_mods` VALUES (28757,23,14);
-INSERT INTO `item_mods` VALUES (28757,27,-3);
 /*!40000 ALTER TABLE `item_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
