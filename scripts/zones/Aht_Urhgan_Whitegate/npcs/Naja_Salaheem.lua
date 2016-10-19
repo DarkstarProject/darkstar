@@ -71,6 +71,8 @@ function onTrigger(player,npc)
                 player:startEvent(3077,0,0,0,0,0,0,0,0,0);
             end
         end
+    elseif (player:getCurrentMission(TOAU) == PASSING_GLORY and player:getVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
+        player:startEvent(3090,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -83,8 +85,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -92,8 +94,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 73) then
         player:setVar("AhtUrganStatus",2);
         player:setVar("TOAUM3_DAY", os.date("%j")); -- %M for next minute, %j for next day
@@ -138,8 +140,12 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,GUESTS_OF_THE_EMPIRE);
    
         if(option == 2) then
-            player:setVar("AhtUrganStatus", 1);            
+            player:setVar("AhtUrganStatus", 1);
         end
+    elseif (csid == 3090) then
+        player:completeMission(TOAU,PASSING_GLORY);
+        player:setVar("TOAUM18_STARTDAY", 0);
+        player:addMission(TOAU,SWEETS_FOR_THE_SOUL);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     end
