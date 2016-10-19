@@ -5200,7 +5200,7 @@ namespace battleutils
                     recast -= ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_LULLABY_RECAST, (CCharEntity*)PEntity) * 1000;
                 }
             }
-            recast -= PEntity->getMod(MOD_SONG_RECAST_DELAY);
+            recast -= PEntity->getMod(MOD_SONG_RECAST_DELAY) * 1000;
             // ShowDebug("Recast after merit reduction: %u\n", recast);
         }
 
