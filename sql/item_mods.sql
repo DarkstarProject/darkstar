@@ -2711,7 +2711,7 @@ INSERT INTO `item_mods` VALUES (10911,12,12);     -- INT +12
 INSERT INTO `item_mods` VALUES (10911,28,5);      -- Magic Atk. Bonus +5
 INSERT INTO `item_mods` VALUES (10911,170,10);    -- Fast Cast +10%
 INSERT INTO `item_mods` VALUES (10911,296,5);     -- Conserve MP +5
-INSERT INTO `item_mods` VALUES (10910,562,5);     -- Magic critical hit rate +5%
+INSERT INTO `item_mods` VALUES (10911,562,5);     -- Magic critical hit rate +5%
 INSERT INTO `item_mods` VALUES (10912,1,47);      -- Drachenhorn: DEF 47
 INSERT INTO `item_mods` VALUES (10912,8,12);      -- STR +12
 INSERT INTO `item_mods` VALUES (10912,9,12);      -- DEX +12
