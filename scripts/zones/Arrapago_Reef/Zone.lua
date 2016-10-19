@@ -27,9 +27,19 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
+
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-180.028,-10.335,-559.987,182);
+        if (prevZone == 60) then
+            if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2) then
+                cs = 9;
+            else
+                player:setPos(-456, -3, -405, 64);
+            end
+        else
+            player:setPos(-180.028,-10.335,-559.987,182);
+        end
     end
+
     return cs;
 end;
 
@@ -70,8 +80,10 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 8) then
         player:setVar("AhtUrganStatus",1);
-        player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
         player:startEvent(34,1,1,1,1,1,1,1,1);
+    elseif (csid == 9) then
+        player:setVar("AhtUrganStatus",3);
+        player:setPos(0,0,0,0,53);
     elseif (csid == 34 and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(35);
     end

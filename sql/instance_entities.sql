@@ -142,6 +142,22 @@ INSERT INTO `instance_entities` VALUES (41,17002514);
 INSERT INTO `instance_entities` VALUES (41,17002515);
 INSERT INTO `instance_entities` VALUES (41,17002516);
 
+-- Ashu Talif
+-- npc
+INSERT INTO `instance_entities` VALUES (53,17022979);
+-- mobs
+INSERT INTO `instance_entities` VALUES (53,17022980);
+INSERT INTO `instance_entities` VALUES (53,17022981);
+INSERT INTO `instance_entities` VALUES (53,17022982);
+INSERT INTO `instance_entities` VALUES (53,17022983);
+INSERT INTO `instance_entities` VALUES (53,17022984);
+
+INSERT INTO `instance_entities` VALUES (53,17022985);
+INSERT INTO `instance_entities` VALUES (53,17022986);
+INSERT INTO `instance_entities` VALUES (53,17022987);
+INSERT INTO `instance_entities` VALUES (53,17022988);
+INSERT INTO `instance_entities` VALUES (53,17022989);
+
 -- Arrapago Remnants
 -- npc
 INSERT INTO `instance_entities` VALUES (65,17080598);

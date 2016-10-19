@@ -14,6 +14,7 @@ MEMBER_NO_REQS = 8446; -- Not all of your party members meet the requirements fo
 MEMBER_TOO_FAR = 8450; -- One or more party members are too far away from the entrance.  Unable to enter area.
 
 -- Other Texts
+   YOU_NO_REQS = 7580; -- You do not meet the requirements to enter the battlefield
 NOTHING_HAPPENS = 119; -- Nothing happens...
        RESPONSE = 7325; -- There is no response...
 
