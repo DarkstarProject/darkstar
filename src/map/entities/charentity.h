@@ -35,23 +35,6 @@ This file is part of DarkStar-server source code.
 #include "battleentity.h"
 #include "petentity.h"
 
-// Quest Areas
-
-enum QUESTAREA
-{
-    QUESTS_SANDORIA = 0,
-    QUESTS_BASTOK = 1,
-    QUESTS_WINDURST = 2,
-    QUESTS_JEUNO = 3,
-    QUESTS_OTHER = 4,
-    QUESTS_OUTLANDS = 5,
-    QUESTS_AHTURHGAN = 6,
-    QUESTS_CRYSTALWAR = 7,
-    QUESTS_ABYSSEA = 8,
-    QUESTS_ADOULIN = 9,
-    QUESTS_COALITION = 10
-};
-
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
