@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         player:startEvent(3072,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN) then
         player:startEvent(3073,0,0,0,0,0,0,0,0,0);
-    elseif (player:getCurrentMission(TOAU) == GHOSTS_OF_THE_PAST) then
+    elseif (player:getCurrentMission(TOAU) == GHOSTS_OF_THE_PAST_TOAU) then
         player:startEvent(3074,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
@@ -114,7 +114,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,THE_DOLPHIN_CREST);
         player:addMission(TOAU,THE_BLACK_COFFIN);
     elseif (csid == 3074) then
-        player:completeMission(TOAU,GHOSTS_OF_THE_PAST);
+        player:completeMission(TOAU,GHOSTS_OF_THE_PAST_TOAU);
         player:addMission(TOAU,GUESTS_OF_THE_EMPIRE);
     end
 end;
