@@ -670,7 +670,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             PAI->TargetFind->findSingleTarget(PTarget, findFlags);
         }
     }
-    else
+
+    uint16 targets = PAI->TargetFind->m_targets.size();
+
+    if (!PTarget || targets == 0)
     {
         action.actiontype = ACTION_MOBABILITY_INTERRUPT;
         actionList_t& actionList = action.getNewActionList();
@@ -681,9 +684,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         return;
     }
 
-    uint16 actionsLength = PAI->TargetFind->m_targets.size();
-
-    PSkill->setTotalTargets(actionsLength);
+    PSkill->setTotalTargets(targets);
     PSkill->setTP(state.GetSpentTP());
     PSkill->setHPP(GetHPP());
 
