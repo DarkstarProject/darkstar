@@ -177,8 +177,8 @@ INSERT INTO `item_mods` VALUES (10287,162,-5); -- Breath Damage Taken -5%
 INSERT INTO `item_mods` VALUES (10288,1,55); -- Baalmuian Robe - DEF +55
 INSERT INTO `item_mods` VALUES (10288,12,10); -- INT +10
 INSERT INTO `item_mods` VALUES (10288,13,10); -- MND +10
+INSERT INTO `item_mods` VALUES (10288,28,8); -- MATT +8
 INSERT INTO `item_mods` VALUES (10288,30,8); -- MACC +8
-INSERT INTO `item_mods` VALUES (10288,28,55); -- MATT +8
 INSERT INTO `item_mods` VALUES (10288,487,5); -- MB Bonus +5?
 INSERT INTO `item_mods` VALUES (10288,369,2); -- Auto Refresh +2
 INSERT INTO `item_mods` VALUES (10289,1,60); -- Sublime Breastplate - DEF +60
@@ -23661,10 +23661,13 @@ INSERT INTO `item_mods` VALUES (20686,355,44); -- Murgleis iLvL 119 - Death Blos
 INSERT INTO `item_mods` VALUES (20687,355,45); -- Burtgang iLvL 119 - Atonement
 INSERT INTO `item_mods` VALUES (20688,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20689,355,225); -- Almace iLvL 119 - Chant du Cygne
-INSERT INTO `item_mods` VALUES (20715,25,15);
-INSERT INTO `item_mods` VALUES (20715,28,45);
-INSERT INTO `item_mods` VALUES (20715,30,15);
-INSERT INTO `item_mods` VALUES (20715,174,10);
+INSERT INTO `item_mods` VALUES (20715,25,15); -- Acclimator: Accuracy +15
+INSERT INTO `item_mods` VALUES (20715,30,15); -- Magic Accuracy +15
+INSERT INTO `item_mods` VALUES (20715,82,242); -- Sword skill +242
+INSERT INTO `item_mods` VALUES (20715,110,242); -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20715,174,10); -- Chain Affinity +10
+INSERT INTO `item_mods` VALUES (20715,175,10); -- Skillchain Bonus +10
+INSERT INTO `item_mods` VALUES (20715,311,96); -- Magic Damage +96
 INSERT INTO `item_mods` VALUES (20717,25,27);
 INSERT INTO `item_mods` VALUES (20717,30,15);
 INSERT INTO `item_mods` VALUES (20717,68,13);
