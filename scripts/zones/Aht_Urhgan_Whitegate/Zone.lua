@@ -82,6 +82,8 @@ function onRegionEnter(player,region)
                 if (prevZone ~= 50) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
+            elseif (player:getCurrentMission(TOAU) == FINDERS_KEEPERS) then
+                player:startEvent(3093);
             end
         end,
         [4] = function (x) -- AH mission
@@ -195,5 +197,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3092) then
         player:completeMission(TOAU,SWEETS_FOR_THE_SOUL);
         player:addMission(TOAU,TEAHOUSE_TUMULT);
+    elseif (csid == 3093) then
+        player:completeMission(TOAU,FINDERS_KEEPERS);
+        player:setTitle(KARABABAS_BODYGUARD);
+        player:addMission(TOAU,SHIELD_OF_DIPLOMACY);    
     end
 end;
