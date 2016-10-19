@@ -5,7 +5,9 @@
 -- @pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+
 -----------------------------------
+require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -50,7 +52,25 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN) then
         player:startEvent(3073,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == GHOSTS_OF_THE_PAST_TOAU) then
-        player:startEvent(3074,0,0,0,0,0,0,0,0,0);
+        if (doRoyalPalaceArmorCheck(player) == true) then
+            player:startEvent(3074,1,0,0,0,0,0,0,1,0);
+        else
+            player:startEvent(3074,0,0,0,0,0,0,0,0,0);
+        end
+    elseif (player:getCurrentMission(TOAU) == GUESTS_OF_THE_EMPIRE) then
+        if (doRoyalPalaceArmorCheck(player) == true) then
+            if (player:getVar("AhtUrganStatus") == 0) then
+                player:startEvent(3076,1,0,0,0,0,0,0,1,0);
+            else
+                player:startEvent(3077,1,0,0,0,0,0,0,1,0);     
+            end
+        else
+            if (player:getVar("AhtUrganStatus") == 0) then
+                player:startEvent(3076,0,0,0,0,0,0,0,0,0);
+            else
+                player:startEvent(3077,0,0,0,0,0,0,0,0,0);
+            end
+        end
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -63,8 +83,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    printf("CSID: %u",csid);
+    printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,8 +92,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    printf("CSID: %u",csid);
+    printf("RESULT: %u",option);
     if (csid == 73) then
         player:setVar("AhtUrganStatus",2);
         player:setVar("TOAUM3_DAY", os.date("%j")); -- %M for next minute, %j for next day
@@ -116,5 +136,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3074) then
         player:completeMission(TOAU,GHOSTS_OF_THE_PAST_TOAU);
         player:addMission(TOAU,GUESTS_OF_THE_EMPIRE);
+   
+        if(option == 2) then
+            player:setVar("AhtUrganStatus", 1);            
+        end
+    elseif (csid == 3076 and option == 0) then
+        player:setVar("AhtUrganStatus", 1);
     end
 end;
