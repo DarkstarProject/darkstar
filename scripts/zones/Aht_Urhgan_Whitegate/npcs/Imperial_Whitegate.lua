@@ -24,11 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == GUESTS_OF_THE_EMPIRE and player:getVar("AhtUrganStatus") == 1 and
-            doRoyalPalaceArmorCheck(player) == true and player:getEquipID(SLOT_MAIN) == 0 and 
-            player:getEquipID(SLOT_SUB) == 0 and player:getEquipID(SLOT_RANGE) == 0 and
-            player:getEquipID(SLOT_AMMO) == 0) then
-        player:startEvent(3078,0,1,0,0,0,0,0,1,0);
+    if (player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and 
+            player:getEquipID(SLOT_RANGE) == 0 and player:getEquipID(SLOT_AMMO) == 0) then
+        if (player:getCurrentMission(TOAU) == GUESTS_OF_THE_EMPIRE and player:getVar("AhtUrganStatus") == 1 and
+                doRoyalPalaceArmorCheck(player) == true) then
+            player:startEvent(3078,0,1,0,0,0,0,0,1,0);
+        elseif (player:getCurrentMission(TOAU) == SEAL_OF_THE_SERPENT) then
+            player:startEvent(3111);
+        end
     end
 end; 
 
@@ -49,7 +52,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if(csid == 3078) then
+    if (csid == 3078) then
         player:completeMission(TOAU,GUESTS_OF_THE_EMPIRE);
         player:setVar("AhtUrganStatus",0);
         player:addTitle(OVJANGS_ERRAND_RUNNER);
@@ -57,6 +60,9 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         player:setVar("TOAUM18_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,PASSING_GLORY);
+    elseif (csid == 3111) then
+        player:completeMission(TOAU,SEAL_OF_THE_SERPENT);
+        player:addMission(TOAU,MISPLACED_NOBILITY);
     end
 end;
 
