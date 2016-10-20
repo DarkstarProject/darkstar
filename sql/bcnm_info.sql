@@ -257,7 +257,7 @@ INSERT INTO `bcnm_info` VALUES ('1120', '64', 'tough_nut_to_crack', null, null, 
 INSERT INTO `bcnm_info` VALUES ('1121', '64', 'happy_caster', null, null, '1800', '75', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('1122', '64', 'omens', null, null, '1800', '75', '18', '0', '7');
 INSERT INTO `bcnm_info` VALUES ('1123', '64', 'achieving_true_power', null, null, '600', '75', '1', '0', '6');
-INSERT INTO `bcnm_info` VALUES ('1124', '64', 'shield_of_diplomacy', null, null, '1800', '75', '6', '0', '5');
+INSERT INTO `bcnm_info` VALUES ('1124', '64', 'shield_of_diplomacy', null, null, '1800', '99', '6', '0', '5');
 INSERT INTO `bcnm_info` VALUES ('1152', '67', 'making_a_mockery', null, null, '1800', '60', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('1153', '67', 'shadows_of_the_mind', null, null, '1800', '90', '6', '0', '15');
 INSERT INTO `bcnm_info` VALUES ('1154', '67', 'beast_within', null, null, '600', '90', '1', '0', '6');

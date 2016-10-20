@@ -755,6 +755,8 @@ INSERT INTO `bcnm_battlefield` VALUES ('1056','2','16924675','1');
 INSERT INTO `bcnm_battlefield` VALUES ('1056','2','16924676','2');
 INSERT INTO `bcnm_battlefield` VALUES ('1056','3','16924677','1');
 INSERT INTO `bcnm_battlefield` VALUES ('1056','3','16924678','2');
+INSERT INTO `bcnm_battlefield` VALUES ('1124','1','17039400','3');
+INSERT INTO `bcnm_battlefield` VALUES ('1124','1','17039401','0');
 INSERT INTO `bcnm_battlefield` VALUES ('1280', '1', '17539350', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('1280', '1', '17539351', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('1280', '1', '17539352', '3');
