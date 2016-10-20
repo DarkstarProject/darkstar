@@ -408,7 +408,7 @@ bool CMobController::TryCastSpell()
 bool CMobController::CanCastSpells()
 {
 
-    if (!PMob->SpellContainer->HasSpells())
+    if (!PMob->SpellContainer->HasSpells() && !PMob->m_HasSpellScript)
     {
         return false;
     }
