@@ -84,6 +84,8 @@ function onRegionEnter(player,region)
                 end
             elseif (player:getCurrentMission(TOAU) == FINDERS_KEEPERS) then
                 player:startEvent(3093);
+            elseif (player:getCurrentMission(TOAU) == SOCIAL_GRACES) then
+                player:startEvent(3095)
             end
         end,
         [4] = function (x) -- AH mission
@@ -201,5 +203,10 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,FINDERS_KEEPERS);
         player:setTitle(KARABABAS_BODYGUARD);
         player:addMission(TOAU,SHIELD_OF_DIPLOMACY);    
+    elseif (csid == 3095) then
+        player:completeMission(TOAU,SOCIAL_GRACES);
+        player:needToZone(true);
+        player:setVar("TOAUM23_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,FOILED_AMBITION);
     end
 end;
