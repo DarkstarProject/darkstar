@@ -95,6 +95,8 @@ function onRegionEnter(player,region)
         [4] = function (x) -- AH mission
             if (player:getCurrentMission(TOAU)== KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 2) then
                 player:startEvent(3024,0,0,0,0,0,0,0,0,0);
+            elseif (player:getCurrentMission(TOAU)== BASTION_OF_KNOWLEDGE) then
+                player:startEvent(3112);
             end
         end,
         [5] = function (x) -- AH mission
@@ -224,5 +226,9 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,PLAYING_THE_PART);
         player:setVar("TOAUM24_STARTDAY", 0);
         player:addMission(TOAU,SEAL_OF_THE_SERPENT);
+    elseif (csid == 3112) then
+        player:completeMission(TOAU,BASTION_OF_KNOWLEDGE);
+        player:setTitle(APHMAUS_MERCENARY);
+        player:addMission(TOAU,PUPPET_IN_PERIL);
     end
 end;
