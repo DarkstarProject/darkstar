@@ -116,6 +116,7 @@ public:
     //mob related functions
     //bool		spawnAllEnemies();
     //bool		resetAllEnemySpawnPositions();
+    void		StartAllyAssist();
     void		addEnemy(CMobEntity* PMob, uint8 condition);
     bool		allEnemiesDefeated();
     bool		isEnemyBelowHPP(uint8 hpp);
