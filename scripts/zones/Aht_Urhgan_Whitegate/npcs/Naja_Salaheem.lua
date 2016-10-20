@@ -75,6 +75,12 @@ function onTrigger(player,npc)
         player:startEvent(3090,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == IN_THE_BLOOD) then
         player:startEvent(3113,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == SENTINELS_HONOR) then
+        if(player:getVar("TOAUM18_STARTDAY") ~= VanadielDayOfTheYear() and needToZone == false) then
+            player:startEvent(3130,0,0,0,0,0,0,0,0,0);
+        else
+            player:startEvent(3120,0,0,0,0,0,0,0,0,0);
+        end
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -155,6 +161,10 @@ function onEventFinish(player,csid,option)
         player:addItem(2187);
         player:messageSpecial(ITEM_OBTAINED,2187);
         player:addMission(TOAU,SENTINELS_HONOR);
+    elseif (csid == 3130) then
+        player:completeMission(TOAU,SENTINELS_HONOR);
+        player:setVar("TOAUM33_STARTDAY", 0);        
+        player:addMission(TOAU,TESTING_THE_WATERS);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     end
