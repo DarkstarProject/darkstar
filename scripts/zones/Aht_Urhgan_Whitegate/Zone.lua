@@ -88,6 +88,8 @@ function onRegionEnter(player,region)
                 player:startEvent(3095)
             elseif (player:getCurrentMission(TOAU) == FOILED_AMBITION and player:getVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3097,0,0,0,0,0,0,0,0,0)
+            elseif (player:getCurrentMission(TOAU) == PLAYING_THE_PART and player:getVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+                player:startEvent(3110);
             end
         end,
         [4] = function (x) -- AH mission
@@ -218,5 +220,9 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         player:setVar("TOAUM24_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,PLAYING_THE_PART);
+    elseif (csid == 3110) then
+        player:completeMission(TOAU,PLAYING_THE_PART);
+        player:setVar("TOAUM24_STARTDAY", 0);
+        player:addMission(TOAU,SEAL_OF_THE_SERPENT);
     end
 end;
