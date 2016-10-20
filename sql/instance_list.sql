@@ -111,6 +111,7 @@ INSERT INTO `instance_list` VALUES (53,'the_black_coffin',54,30,0,-22,26,64);
 -- INSERT INTO `instance_list` VALUES (70,'bhaflau_remnants_ii',72,100,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (71,'silver_sea_remnants',72,100,340.000,12.000,-165.500,63);
 -- INSERT INTO `instance_list` VALUES (73,'silver_sea_remnants_ii',72,100,340.000,12.000,-165.500,63);
+INSERT INTO `instance_list` VALUES (79,'shades_of_vengeance',79,30,127,-15,-303,0);
 /*!40000 ALTER TABLE `instance_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
