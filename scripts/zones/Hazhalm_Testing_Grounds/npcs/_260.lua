@@ -1,44 +1,31 @@
 -----------------------------------
---
--- Zone: Hazhalm_Testing_Grounds (78)
---
+-- Area: Hazhalm Testing Grounds
+-- NPC: Entry Gate (TOAU-36)
 -----------------------------------
 package.loaded["scripts/zones/Hazhalm_Testing_Grounds/TextIDs"] = nil;
+
 -----------------------------------
 
-require("scripts/globals/missions");
-require("scripts/globals/settings");
 require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/globals/titles");
 
 -----------------------------------
--- onInitialize
+-- onTrade Action
 -----------------------------------
 
-function onInitialize(zone)
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
--- onZoneIn
+-- onTrigger Action
 -----------------------------------
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(652.174,-272.632,-104.92,148);
+function onTrigger(player,npc)
+    if (player:getCurrentMission(TOAU) == GAZE_OF_THE_SABOTEUR and player:getVar("AhtUrganStatus") == 1) then
+        player:startEvent(7);
     end
-
-    if (player:getCurrentMission(TOAU) == GAZE_OF_THE_SABOTEUR and player:getVar("AhtUrganStatus") == 0) then
-        cs = 6;
-    end
-
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
-
-function onRegionEnter(player,region)
 end;
 
 -----------------------------------
@@ -48,6 +35,7 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
+
 end;
 
 -----------------------------------
@@ -58,7 +46,13 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 6) then
-        player:setVar("AhtUrganStatus",1);
+    if (csid == 7) then
+        player:completeMission(TOAU,GAZE_OF_THE_SABOTEUR);
+        player:setVar("AhtUrganStatus",0);
+        player:setTitle(EMISSARY_OF_THE_EMPRESS);
+        player:addKeyItem(LUMINIAN_DAGGER);
+        player:messageSpecial(KEYITEM_OBTAINED,LUMINIAN_DAGGER);
+        player:addMission(TOAU,PATH_OF_BLOOD);
     end
+
 end;
