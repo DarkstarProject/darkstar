@@ -59,8 +59,11 @@ end;
 
 function onInitialize(zone)
     local manuals = {17224350,17224351};
-
     SetFieldManual(manuals);
+
+    local vwnpc = {17224365,17224366,17224367};
+    SetVoidwatchNPC(vwnpc);
+
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
@@ -85,8 +88,8 @@ function onZoneIn( player, prevZone)
         end
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x000d;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then    
-        cs = 0x000f; 
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+        cs = 0x000f;
     end
 
     return cs;

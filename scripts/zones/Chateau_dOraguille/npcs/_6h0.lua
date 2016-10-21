@@ -7,6 +7,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -37,7 +38,7 @@ function onTrigger(player,npc)
     
     if (player:getVar("aBoysDreamCS") == 8) then 
         player:startEvent(0x0058);
-    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == 7) then
+    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == JOBS.PLD) then
         player:startEvent(0x005A);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(0x0059);
@@ -90,7 +91,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then 
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
         else
-            if (player:getMainJob() == 7) then 
+            if (player:getMainJob() == JOBS.PLD) then 
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
             player:delKeyItem(KNIGHTS_BOOTS);

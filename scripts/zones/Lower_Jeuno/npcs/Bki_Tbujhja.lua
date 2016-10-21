@@ -8,6 +8,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
+require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(0x00b5); -- For the quest "The Old Monument"
     elseif (player:getQuestStatus(JEUNO,A_MINSTREL_IN_DESPAIR) == QUEST_COMPLETED and player:getVar("PathOfTheBard_Event") == 0) then
         player:startEvent(0x00b6); -- Start Quest "Path of the Bard" (with var)
-    elseif (player:getMainJob() == 10 and player:getMainLvl() >= 50 and PainfulMemory == QUEST_COMPLETED and TheRequiem == QUEST_AVAILABLE) then 
+    elseif (player:getMainJob() == JOBS.BRD and player:getMainLvl() >= 50 and PainfulMemory == QUEST_COMPLETED and TheRequiem == QUEST_AVAILABLE) then 
         if (player:getVar("TheRequiemCS") == 0) then
             player:startEvent(0x0091); -- Long dialog & Start Quest "The Requiem"
         else

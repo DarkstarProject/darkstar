@@ -7,6 +7,7 @@
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
 
+require("scripts/globals/status");
 require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/keyitems");
 
@@ -17,7 +18,7 @@ require("scripts/globals/keyitems");
 function onTrade(player,npc,trade)
 
     -- thief's tool/living key/skeleton key as THF main
-    if ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == 6) then
+    if ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == JOBS.THF) then
 
         local X=player:getXPos();
     

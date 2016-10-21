@@ -15,6 +15,9 @@ require("scripts/zones/Tavnazian_Safehold/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    local vwnpc = {16883886,16883888};
+    SetVoidwatchNPC(vwnpc);
+	
     zone:registerRegion(1, -5, -24, 18, 5, -20, 27);
     zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;

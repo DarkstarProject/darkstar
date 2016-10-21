@@ -25,9 +25,6 @@ end;
 function onUseAbility(player,target,ability)
 
     local baseDuration = 180;
-    local legs = target:getEquipID(SLOT_LEGS);
-    local feet = target:getEquipID(SLOT_FEET);
-
     local durationMultiplier = 1.0 + (player:getMod(MOD_SPECTRAL_JIG)/100);
     local finalDuration = math.floor(baseDuration * durationMultiplier); 
 

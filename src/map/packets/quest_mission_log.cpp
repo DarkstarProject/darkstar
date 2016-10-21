@@ -28,211 +28,125 @@
 #include "quest_mission_log.h"
 #include "../entities/charentity.h"
 
-
-CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, uint8 status)
+CQuestMissionLogPacket::CQuestMissionLogPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE logType)
 {
     this->type = 0x56;
     this->size = 0x14;
 
-    // настоятельно советую в switch(logID) ничего не менять,
-    // если вы НЕ УВЕРЕНЫ в том, что делаете
-    // даже простая перестановка case местами может привести к логическим ошибкам
+    uint16 packetType = 0x00;
 
-    uint16 logType = 0x0000;
-    switch (logID) {
-    case QUESTS_SANDORIA:
-        generateQuestPacket(PChar, QUESTS_SANDORIA, status);
-        if (status == 0x01)
-            logType = SAN_CURRENT;
-        if (status == 0x02)
-            logType = SAN_COMPLETE;
-        break;
-    case QUESTS_BASTOK:
-        generateQuestPacket(PChar, QUESTS_BASTOK, status);
-        if (status == 0x01)
-            logType = BAS_CURRENT;
-        if (status == 0x02)
-            logType = BAS_COMPLETE;
-        break;
-    case QUESTS_WINDURST:
-        generateQuestPacket(PChar, QUESTS_WINDURST, status);
-        if (status == 0x01)
-            logType = WIN_CURRENT;
-        if (status == 0x02)
-            logType = WIN_COMPLETE;
-        break;
-    case QUESTS_JEUNO:
-        generateQuestPacket(PChar, QUESTS_JEUNO, status);
-        if (status == 0x01)
-            logType = JEU_CURRENT;
-        if (status == 0x02)
-            logType = JEU_COMPLETE;
-        break;
-    case QUESTS_OTHER:
-        generateQuestPacket(PChar, QUESTS_OTHER, status);
-        if (status == 0x01)
-            logType = OTH_CURRENT;
-        if (status == 0x02)
-            logType = OTH_COMPLETE;
-        break;
-    case QUESTS_OUTLANDS:
-        generateQuestPacket(PChar, QUESTS_OUTLANDS, status);
-        if (status == 0x01)
-            logType = OUT_CURRENT;
-        if (status == 0x02)
-            logType = OUT_COMPLETE;
-        break;
-    case QUESTS_CRYSTALWAR:
-        generateQuestPacket(PChar, QUESTS_CRYSTALWAR, status);
-        if (status == 0x01)
-            logType = WAR_CURRENT;
-        if (status == 0x02)
-            logType = WAR_COMPLETE;
-        break;
-    case QUESTS_ABYSSEA:
-        generateQuestPacket(PChar, QUESTS_ABYSSEA, status);
-        if (status == 0x01)
-            logType = ABY_CURRENT;
-        if (status == 0x02)
-            logType = ABY_COMPLETE;
-        break;
-    case QUESTS_ADOULIN:
-        generateQuestPacket(PChar, QUESTS_ADOULIN, status);
-        if (status == 0x01)
-            logType = ADO_CURRENT;
-        if (status == 0x02)
-            logType = ADO_COMPLETE;
-        break;
-    case QUESTS_COALITION:
-        generateQuestPacket(PChar, QUESTS_COALITION, status);
-        if (status == 0x01)
-            logType = COA_CURRENT;
-        if (status == 0x02)
-            logType = COA_COMPLETE;
-        break;
-    case QUESTS_AHTURHGAN:
-    case MISSION_ASSAULT:
-        if (status == 0x02) {
-            generateQuestPacket(PChar, QUESTS_AHTURHGAN, status);
-            generateAssaultMissionPacket(PChar);
-            logType = EXP_COMPLETE;
-            break;
-        }
-    case MISSION_TOAU:
-    case MISSION_WOTG:
-        if (status == 0x02) {
-            generateCompleteExpMissionPacket(PChar);
-            logType = EXP_MISS_COMPLETE;
-            break;
-        }
-    case MISSION_CAMPAIGN:
-        if (status == 0x02) {
-            generateFirstCampaignMissionPacket(PChar);
-            logType = CAMPAIGN_MISSION_UN;
-            break;
-        }
-    case MISSION_CAMPAIGN2:
-        if (status == 0x01) {
-            generateQuestPacket(PChar, QUESTS_AHTURHGAN, status);
-            generateCurrentExpMissionPacket(PChar);
-            logType = EXP_CURRENT;
-            break;
-        }
-        if (status == 0x02) {
-            generateSecondCampaignMissionPacket(PChar);
-            logType = CAMPAIGN_MISSION_DEUX;
-            break;
-        }
-    case MISSION_SANDORIA:
-        if (status == 0x01) {
-            generateCurrentMissionPacket(PChar);
-            logType = MISS_CURRENT;
-            break;
-        }
-        if (status == 0x02) {
-            generateCompleteMissionPacket(PChar);
-            logType = MISS_COMPLETE;
-            break;
-        }
-    case MISSION_BASTOK:
-        if (status == 0x01) {
-            generateCurrentMissionPacket(PChar);
-            logType = MISS_CURRENT;
-            break;
-        }
-        if (status == 0x02) {
-            generateCompleteMissionPacket(PChar);
-            logType = MISS_COMPLETE;
-            break;
-        }
-    case MISSION_WINDURST:
-        if (status == 0x01) {
-            generateCurrentMissionPacket(PChar);
-            logType = MISS_CURRENT;
-            break;
-        }
-        if (status == 0x02) {
-            generateCompleteMissionPacket(PChar);
-            logType = MISS_COMPLETE;
-            break;
-        }
-
-    case MISSION_ZILART:
-        if (status == 0x01) {
-            generateCurrentMissionPacket(PChar);
-            logType = MISS_CURRENT;
-            break;
-        }
-        if (status == 0x02) {
-            generateCompleteMissionPacket(PChar);
-            logType = MISS_COMPLETE;
-            break;
-        }
-    case MISSION_COP:
-    case MISSION_ACP:
-    case MISSION_AMK:
-    case MISSION_ASA:
-    case MISSION_SOA:
-    case MISSION_ROV:
-        if (status == 0x01)
+    // FFXI packs different TOAU information in the same packet as certain other content, so we'll have to work around it.
+    // First, deal with all quest areas which aren't TOAU:
+    if ((logType <= LOG_QUEST_COMPLETE) && (logID != QUESTS_TOAU))
+    {
+        // We're updating any non-TOAU quest log
+        generateQuestPacket(PChar, logID, logType);
+        packetType = (logType == LOG_QUEST_CURRENT ? questPacketBytes.at(logID).first : questPacketBytes.at(logID).second);
+    }
+    // Then get our mission log updates out of the way
+    else if (logType >= LOG_MISSION_CURRENT)
+    {
+        if ((logID <= MISSION_ZILART) && (logType == LOG_MISSION_COMPLETE))
         {
+            // Completed Nation and Zilart missions are updated in the same packet
+            generateCompleteMissionPacket(PChar);
+            packetType = MISSION_COMPLETE;
+        }
+        else if ((logID >= MISSION_TOAU) && (logID <= MISSION_CAMPAIGN) && (logID != MISSION_COP))
+        {
+            // Deal with compound TOAU/WOTG quest/mission packets
+            switch (logType) {
+                case LOG_MISSION_CURRENT:
+                    // Current TOAU Quests, TOAU Mission, WOTG, Assault, and Campaign Mission all share a packet
+                    generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_CURRENT); // "Base" of the packet
+                    generateCurrentExpMissionPacket(PChar);                     // Writes 12 bytes in same packet
+                    packetType = TOAU_WOTG_MISSION_CURRENT;
+                    break;
+                case LOG_MISSION_COMPLETE:
+                    switch (logID)
+                    {
+                        case MISSION_TOAU:
+                        case MISSION_WOTG:
+                            // Completed TOAU and WOTG missions share a packet
+                            generateCompleteExpMissionPacket(PChar);
+                            packetType = TOAU_WOTG_MISSION_COMPLETE;
+                            break;
+                        case MISSION_ASSAULT:
+                            // Completed Assault Missions share a packet with completed TOAU quests
+                            generateQuestPacket(PChar, QUESTS_TOAU, LOG_QUEST_COMPLETE);
+                            generateAssaultMissionPacket(PChar);
+                            packetType = ASSAULT_COMPLETE;
+                            break;
+                        case MISSION_CAMPAIGN:
+                            // Completed Campaign missions take up two packets. Second half will come in a follow-up packet.
+                            generateCampaignMissionPacket(PChar, 0);
+                            packetType = CAMPAIGN_MISSION_ONE;
+                            break;
+                    }
+                    break;
+                case LOG_CAMPAIGN_TWO:
+                    // Second Campaign packet, summoned through logType
+                    generateCampaignMissionPacket(PChar, 256);
+                    packetType = CAMPAIGN_MISSION_TWO;
+                    break;
+            }
+        }
+        else {
+            // All other mission logs update current / completed with a standard "current mission" update
             generateCurrentMissionPacket(PChar);
-            logType = MISS_CURRENT;
-            break;
+            packetType = MISSION_CURRENT;
+        }
+    }
+    else
+    {
+        // Now all that remains is TOAU quests.
+        generateQuestPacket(PChar, QUESTS_TOAU, logType);  // "Base" of the packet
+        if (logType == LOG_QUEST_CURRENT) {
+            // As before, current TOAU Quests share with TOAU Mission, WOTG, Assault, and Campaign Missions
+            generateCurrentExpMissionPacket(PChar); // Writes 12 bytes in same packet
+            packetType = questPacketBytes.at(logID).first;
+        }
+        else {
+            // Completed TOAU Quests share a packet with completed Assault Missions
+            generateAssaultMissionPacket(PChar); // Writes in same packet
+            packetType = questPacketBytes.at(logID).second;
         }
     }
 
-    WBUFW(data, (0x24)) = logType;
+    // Write the byte that informs FFXI client what kind of Quest/Mission log update this packet is.
+    WBUFW(data, (0x24)) = packetType;
 }
 
-void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, uint8 status)
+void CQuestMissionLogPacket::generateQuestPacket(CCharEntity * PChar, uint8 logID, LOG_TYPE status)
 {
-    if (status == 0x01)
+    if (status == LOG_QUEST_CURRENT)
         memcpy(data + 4, PChar->m_questLog[logID].current, 32);
-    else if (status == 0x02)
+    else if (status == LOG_QUEST_COMPLETE)
         memcpy(data + 4, PChar->m_questLog[logID].complete, 32);
 }
 
 void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 {
     uint16 add_on_scenarios = 0;
-
-    add_on_scenarios += PChar->m_missionLog[MISSION_ACP - 12].current;
-    add_on_scenarios += PChar->m_missionLog[MISSION_AMK - 12].current << 0x04;
-    add_on_scenarios += PChar->m_missionLog[MISSION_ASA - 12].current << 0x08;
+    
+    add_on_scenarios += PChar->m_missionLog[MISSION_ACP].current;
+    add_on_scenarios += PChar->m_missionLog[MISSION_AMK].current << 0x04;
+    add_on_scenarios += PChar->m_missionLog[MISSION_ASA].current << 0x08;
     // Not perfect, but they display and missions DO progress. Can fix properly later. There is a delay before when the menu updates. Zoning will force it.
 
     uint32 chains = 0;
-    chains = PChar->m_missionLog[MISSION_COP - 11].current + 1;
+    chains = PChar->m_missionLog[MISSION_COP].current + 1;
     chains = ((chains * 0x08) + 0x60);
 
-    uint32 soa = (PChar->m_missionLog[MISSION_SOA - 12].current * 2) + 0x6E;
-    uint32 rov = PChar->m_missionLog[MISSION_ROV - 12].current + 0x6C;
+    uint32 soa = (PChar->m_missionLog[MISSION_SOA].current * 2) + 0x6E;
+    uint32 rov = PChar->m_missionLog[MISSION_ROV].current + 0x6C;
 
-    WBUFB(data, (0x04)) = PChar->profile.nation;								// Nation
-    WBUFW(data, (0x08)) = PChar->m_missionLog[PChar->profile.nation].current;	// National Missions
-    WBUFW(data, (0x0C)) = PChar->m_missionLog[MISSION_ZILART - 11].current;		// Rise of the Zilart
+    // While current National Missions + Zilart Mission are updated in this packet, completed missions are sent in a separate one.
+    WBUFB(data, (0x04)) = PChar->profile.nation;                                // Nation
+    WBUFW(data, (0x08)) = PChar->m_missionLog[PChar->profile.nation].current;   // National Missions
+    WBUFW(data, (0x0C)) = PChar->m_missionLog[MISSION_ZILART].current;          // Rise of the Zilart
 
+    // But for COP, Add-On Scenarios, SOA, and ROV, sending the current mission will also update that log's completed missions.
     WBUFL(data, (0x10)) = chains;												// Chains of Promathia Missions
     //WBUFB(data,(0x16)) = 0x30;                                                // назначение неизвестно
     WBUFW(data, (0x18)) = add_on_scenarios;                                     // A Crystalline Prophecy, A Moogle Kupo d'Etat, A Shantotto Ascension
@@ -242,35 +156,38 @@ void CQuestMissionLogPacket::generateCurrentMissionPacket(CCharEntity * PChar)
 
 void CQuestMissionLogPacket::generateCompleteMissionPacket(CCharEntity * PChar)
 {
-    for (uint8 logID = 0x00; logID <= 0x03; logID++)
+    // This packet simultaneously updates completed mission logs for Nation and Zilart missions.
+    for (uint8 logID = MISSION_SANDORIA; logID <= MISSION_ZILART; logID++) {
         for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
             data[(questMissionID / 8) + (logID * 0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
+    }
 }
 
 void CQuestMissionLogPacket::generateCurrentExpMissionPacket(CCharEntity * PChar)
 {
-    WBUFW(data, (0x14)) = PChar->m_assaultLog.current;							// Assault Missions
-    WBUFW(data, (0x18)) = PChar->m_missionLog[MISSION_TOAU - 11].current;		// Treasures of Aht Urhgan
-    WBUFW(data, (0x1C)) = PChar->m_missionLog[MISSION_WOTG - 11].current;		// Wings of the Goddess
-    WBUFW(data, (0x20)) = PChar->m_campaignLog.current;						// Campaign Operations
+    // This function writes the current Assault, TOAU, WOTG, and Campaign mission onto a packet already
+    // being prepared by generateQuestPacket for TOAU quests, since they're all updated simultaneously.
+    WBUFW(data, (0x14)) = PChar->m_assaultLog.current;                  // Assault Missions
+    WBUFW(data, (0x18)) = PChar->m_missionLog[MISSION_TOAU].current;    // Treasures of Aht Urhgan
+    WBUFW(data, (0x1C)) = PChar->m_missionLog[MISSION_WOTG].current;    // Wings of the Goddess
+    WBUFW(data, (0x20)) = PChar->m_campaignLog.current;                 // Campaign Operations
 }
 
 void CQuestMissionLogPacket::generateCompleteExpMissionPacket(CCharEntity * PChar)
 {
-    for (uint8 logID = 0x04; logID <= 0x05; logID++)
-        for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
-            data[(questMissionID / 8) + ((logID - 0x04) * 0x08) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
+    // This packet simultaenously updates completed mission logs for TOAU and WOTG missions.
+    uint8 logID = MISSION_TOAU;
+    for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
+        data[(questMissionID / 8) + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
+
+    logID = MISSION_WOTG;
+    for (uint8 questMissionID = 0; questMissionID < 64; questMissionID++)
+        data[(questMissionID / 8) + 0x08 + 4] ^= ((PChar->m_missionLog[logID].complete[questMissionID]) << (questMissionID % 8));
 }
 
-void CQuestMissionLogPacket::generateFirstCampaignMissionPacket(CCharEntity * PChar)
+void CQuestMissionLogPacket::generateCampaignMissionPacket(CCharEntity * PChar, uint8 startQMID)
 {
-    for (uint16 questMissionID = 0; questMissionID < 256; questMissionID++)
-        data[(questMissionID / 8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
-}
-
-void CQuestMissionLogPacket::generateSecondCampaignMissionPacket(CCharEntity * PChar)
-{
-    for (uint16 questMissionID = 256; questMissionID < 512; questMissionID++)
+    for (uint16 questMissionID = startQMID; questMissionID < (startQMID + 256); questMissionID++)
         data[(questMissionID / 8) + 4] ^= ((PChar->m_campaignLog.complete[questMissionID]) << (questMissionID % 8));
 }
 

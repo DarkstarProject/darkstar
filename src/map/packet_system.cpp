@@ -5074,7 +5074,7 @@ void SmallPacket0x100(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         charutils::BuildingCharAbilityTable(PChar);
         charutils::BuildingCharWeaponSkills(PChar);
 
-        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_JOBCHANGE);
 
         PChar->ForParty([](CBattleEntity* PMember)
         {

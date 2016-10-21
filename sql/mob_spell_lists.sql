@@ -1499,6 +1499,11 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
 -- Wake Warder Wanda
 INSERT INTO `mob_spell_lists` VALUES ('Wake_Warder_Wanda', 151, 240, 1, 255);  -- Drown
 
+-- Lord of Onzozo
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterga III
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
+INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

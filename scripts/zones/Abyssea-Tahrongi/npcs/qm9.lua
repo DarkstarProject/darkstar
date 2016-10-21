@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(2923,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+    if (trade:hasItemQty(2923,1) and trade:hasItemQty(2949,1) and trade:getItemCount() == 2) then -- Player has all the required items.
         if (GetMobAction(16961925) == ACTION_NONE) then -- Mob not already spawned from this
             SpawnMob(16961925):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 2923); -- Inform payer what items they need.
+    player:startEvent(1010, 2923 ,2949); -- Inform payer what items they need.
 end;
 
 -----------------------------------

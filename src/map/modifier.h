@@ -281,17 +281,22 @@ enum MODIFIER
     MOD_WARCRY_DURATION           = 483, // Warcy duration bonus from gear
 
     // Monk
+	MOD_BOOST_EFFECT              = 97,  // Boost power in tenths
     MOD_SUBTLE_BLOW               = 289, // How much TP to reduce.
     MOD_COUNTER                   = 291, // Percent chance to counter
     MOD_KICK_ATTACK               = 292, // Percent chance to kick
     MOD_PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
     MOD_FOOTWORK_ATT_BONUS        = 429, // TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+    MOD_COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
+    MOD_DODGE_EFFECT              = 552, // Dodge effect in percents
+    MOD_FOCUS_EFFECT              = 561, // Focus effect in percents
 
     // White Mage
     MOD_AFFLATUS_SOLACE           = 293, // Pool of HP accumulated during Afflatus Solace
     MOD_AFFLATUS_MISERY           = 294, // Pool of HP accumulated during Afflatus Misery
     MOD_AUSPICE_EFFECT            = 484, // Bonus to Auspice Subtle Blow Effect.
     MOD_AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
+    MOD_REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
 
     // Black Mage
     MOD_CLEAR_MIND                = 295, // Used in conjunction with MOD_HEALMP to increase amount between tics
@@ -303,18 +308,22 @@ enum MODIFIER
     MOD_PHALANX                   = 301, // Tracks direct damage reduction
 
     // Thief
+    MOD_FLEE_DURATION             = 93,  // Flee duration in seconds
     MOD_STEAL                     = 298, // Increase/Decrease THF Steal chance
     MOD_TRIPLE_ATTACK             = 302, // Percent chance
     MOD_TREASURE_HUNTER           = 303, // Percent chance
     MOD_TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
+    MOD_MUG_EFFECT                = 835, // Mug effect as multiplier
 
     // Paladin
+    MOD_RAMPART_DURATION          = 92,  // Rampart duration in seconds
     MOD_ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     MOD_ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     MOD_SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
+    MOD_SENTINEL_EFFECT           = 837, // Sentinel effect in percents
 
     // Dark Knight
-    // Nothing here yet..
+    MOD_SOULEATER_EFFECT          = 96,  // Souleater power in percents
 
     // Beastmaster
     MOD_TAME                      = 304, // Additional percent chance to charm
@@ -351,6 +360,7 @@ enum MODIFIER
     MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time (in milliseconds).
 
     // Ranger
+    MOD_CAMOUFLAGE_DURATION       = 98,  // Camouflage duration in percents
     MOD_RECYCLE                   = 305, // Percent chance to recycle
     MOD_SNAP_SHOT                 = 365, // Percent reduction to range attack delay
     MOD_RAPID_SHOT                = 359, // Percent chance to proc rapid shot
@@ -364,6 +374,8 @@ enum MODIFIER
     MOD_SHARPSHOT                 = 314, //
 
     // Samurai
+    MOD_MEDITATE_DURATION         = 94, // Meditate duration in seconds
+    MOD_WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration in seconds
     MOD_ZANSHIN                   = 306, // Zanshin percent chance
 
     // Ninja
@@ -413,7 +425,7 @@ enum MODIFIER
     MOD_ROLL_SCHOLARS             = 331, // Tracks totals
     MOD_BUST                      = 332, // # of busts
     MOD_QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
-    MOD_QUICK_DRAW_DMG_PERCENT    = 831, // Percentage increase to QD damage
+    MOD_QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
 
     // Puppetmaster
     MOD_MANEUVER_BONUS            = 504, // Maneuver Stat Bonus
@@ -430,6 +442,7 @@ enum MODIFIER
     MOD_SPECTRAL_JIG              = 495, // Spectral Jig duration modifier (percent increase)
     MOD_WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
     MOD_SAMBA_PDURATION           = 498, // Samba percent duration bonus
+    MOD_REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
 
     //Scholar
     MOD_BLACK_MAGIC_COST          = 393, // MP cost for black magic (light/dark arts)
@@ -443,7 +456,7 @@ enum MODIFIER
     MOD_DARK_ARTS_EFFECT          = 335, //
     MOD_LIGHT_ARTS_SKILL          = 336, //
     MOD_DARK_ARTS_SKILL           = 337, //
-    MOD_REGEN_EFFECT              = 338, //
+    MOD_LIGHT_ARTS_REGEN          = 338, // Regen bonus flat HP amount from Light Arts and Tabula Rasa
     MOD_REGEN_DURATION            = 339, //
     MOD_HELIX_EFFECT              = 478, //
     MOD_HELIX_DURATION            = 477, //
@@ -623,20 +636,21 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 92, // stuff
-    // MOD_SPARE = 93, // stuff
-    // MOD_SPARE = 94, // stuff
-    // MOD_SPARE = 95, // stuff
-    // MOD_SPARE = 96, // stuff
-    // MOD_SPARE = 97, // stuff
-    // MOD_SPARE = 98, // stuff
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
-    // MOD_SPARE = 543, // stuff
-    // MOD_SPARE = 552, // stuff
-    // MOD_SPARE = 561, // stuff
-    // MOD_SPARE = 834, // stuff
-    // MOD_SPARE = 835, // stuff
+    // 570 through 825 used by WS DMG mods these are not spares.
+    // MOD_SPARE = 839, // stuff
+    // MOD_SPARE = 840, // stuff
+    // MOD_SPARE = 841, // stuff
+    // MOD_SPARE = 842, // stuff
+    // MOD_SPARE = 843, // stuff
+    // MOD_SPARE = 844, // stuff
+    // MOD_SPARE = 845, // stuff
+    // MOD_SPARE = 846, // stuff
+    // MOD_SPARE = 847, // stuff
+    // MOD_SPARE = 848, // stuff
+    // MOD_SPARE = 849, // stuff
+    // MOD_SPARE = 850, // stuff
 
 };
 

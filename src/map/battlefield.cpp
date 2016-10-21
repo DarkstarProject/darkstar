@@ -611,8 +611,11 @@ void CBattlefield::lose()
 
 void CBattlefield::win(time_point tick)
 {
-    m_WinTime = tick;
-    m_won = true;
+    if (!m_won)
+    {
+        m_WinTime = tick;
+        m_won = true;
+    }
 }
 
 bool CBattlefield::cleared()

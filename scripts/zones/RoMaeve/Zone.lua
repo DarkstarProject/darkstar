@@ -16,8 +16,11 @@ require("scripts/globals/zone");
 
 function onInitialize(zone)
     local manuals = {17277227,17277228};
-    
     SetFieldManual(manuals);
+
+    local vwnpc = {17277245,17277246,17277247};
+    SetVoidwatchNPC(vwnpc);
+
 end;
 
 -----------------------------------
@@ -26,7 +29,7 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -49,10 +52,10 @@ end;
 
 -----------------------------------
 -- onRegionEnter
------------------------------------        
+-----------------------------------
 
 function onRegionEnter(player,region)
-end;    
+end;
 
 -----------------------------------
 -- onGameDay
@@ -63,7 +66,7 @@ function onGameDay()
     -- Full moon + "clear" weather stuff (actually "sunshine" weather, widespread misconception since Ro'Maeve does not have "clear" weather ever)
     local Moongate_Offset = 17277195; -- _3e0 in npc_list
     local hour = VanadielHour();
-    
+
     if (IsMoonFull() == true and GetNPCByID(Moongate_Offset):getWeather() == WEATHER_SUNSHINE) then
         GetNPCByID(Moongate_Offset):openDoor(432); -- 3 game hours worth of seconds
         GetNPCByID(Moongate_Offset+1):openDoor(432);

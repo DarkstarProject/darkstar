@@ -49,6 +49,7 @@ struct login_config_t
     const char* login_view_ip;
 
     uint16 expansions;
+    uint16 features;
 
     const char* servername;
 

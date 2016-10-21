@@ -359,6 +359,10 @@ int32 login_config_read(const char *cfgName)
         {
             login_config.expansions = atoi(w2);
         }
+        else if (strcmp(w1, "features") == 0)
+        {
+            login_config.features = atoi(w2);
+        }
         else if (strcmp(w1, "servername") == 0)
         {
             login_config.servername = aStrdup(w2);

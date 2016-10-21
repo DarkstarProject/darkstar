@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.21-log
+-- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -736,6 +736,7 @@ INSERT INTO `item_usable` VALUES (4818,'scroll_of_quake',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4820,'scroll_of_burst',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4822,'scroll_of_flood',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4824,'scroll_of_gravity',1,1,12,5,0,0,0,0);
+INSERT INTO `item_usable` VALUES (4825,'scroll_of_gravity_ii',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4827,'scroll_of_comet',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4828,'scroll_of_poison',1,1,12,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (4829,'scroll_of_poison_ii',1,1,12,5,0,0,0,0);
@@ -1693,13 +1694,13 @@ INSERT INTO `item_usable` VALUES (6061,'adloquium_schema',1,1,11,5,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6063,'fruit_parfait',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6064,'queens_crown',1,1,26,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6260,'akamochi',1,1,28,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (6261,'akamochi+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6261,'akamochi_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6262,'kusamochi',1,1,28,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (6263,'kusamochi+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6263,'kusamochi_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6265,'toolbag_(ranka)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6266,'toolbag_(furu)',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6343,'grape_daifuku',1,1,28,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (6344,'grape_daifuku+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6344,'grape_daifuku_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (10250,'moogle_suit',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10264,'marine_gilet_+1',1,8,0,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (10265,'marine_top_+1',1,8,0,0,1,30,86400,0);

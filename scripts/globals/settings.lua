@@ -15,7 +15,7 @@
 -- Common functions
 require("scripts/globals/common");
 
--- Enable Extension (1= yes 0= no)
+-- Enable Expansion (1= yes 0= no)
 ENABLE_COP     = 0;
 ENABLE_TOAU    = 0;
 ENABLE_WOTG    = 0;
@@ -32,14 +32,16 @@ ENABLE_ROV     = 0;
 -- This feature correlates to the required_expansion column in the SQL files
 RESTRICT_BY_EXPANSION = 0;
 
+ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
+
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
 NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-START_GIL = 10; --Amount of gil given to newly created characters.
+START_GIL = 10; -- Amount of gil given to newly created characters.
 START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
-OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
+OPENING_CUTSCENE_ENABLE = 0; -- Set to 1 to enable opening cutscenes, 0 to disable.
 SUBJOB_QUEST_LEVEL = 18; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
 ADVANCED_JOB_LEVEL = 30; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
 ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
@@ -64,11 +66,11 @@ USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Ad
 HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
 LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100. 
+MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100.
 HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
 EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
 LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100. 
+MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
 
 HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
 
