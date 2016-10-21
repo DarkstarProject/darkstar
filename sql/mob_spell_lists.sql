@@ -1504,6 +1504,118 @@ INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterg
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
 
+-- Arimaspi
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,257,1,255); -- curse
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,168,1,255); -- thunder v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,259,1,255); -- sleep II
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,148,1,255); -- fire v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,147,1,255); -- fire iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,153,1,255); -- blizzard v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,158,1,255); -- aero v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,157,1,255); -- aero iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,163,1,255); -- stone v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,152,1,255); -- stone iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,173,1,255); -- water v
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Arimaspi',153,252,1,255); -- stun
+
+-- Lesser Arimaspi
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,255,1,255); -- break
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,153,1,255); -- blizzard v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,168,1,255); -- thunder v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,148,1,255); -- fire v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,158,1,255); -- aero v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,173,1,255); -- water v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,163,1,255); -- stone v
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,147,1,255); -- fire iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,157,1,255); -- aero iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,162,1,255); -- stone iv
+INSERT INTO `mob_spell_lists` VALUES ('Lesser_Arimaspi',154,259,1,255); -- sleep II
+
+-- Ashtaerh_the_Gallvexed
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,196,1,255); -- thundaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,197,1,255); -- thundaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,202,1,255); -- waterga iv
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Ashtaerh_the_Gallvexed',155,168,1,255); -- thunder v
+
+-- Bakka
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,236,1,255); -- frost
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,206,1,255); -- freeze
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,362,1,255); -- bindga
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,182,1,255); -- blizzaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Bakka',156,153,1,255); -- blizzard v
+
+-- Bloodeye_Vileberry
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,362,1,255); -- bindga
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,366,1,255); -- graviga
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,367,1,255); -- death
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,255,1,255); -- break
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,176,1,255); -- firga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,186,1,255); -- aeroga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,191,1,255); -- stonega iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,196,1,255); -- thundaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Bloodeye_Vileberry',157,227,1,255); -- poisonga iii
+
+-- Gangly_Gean
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,196,1,255); -- thundga iii
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,274,1,255); -- sleepga ii
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,226,1,255); -- poisonga ii
+INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,252,1,255); -- stun
+
+-- Guimauve
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,0,1,255); -- 
+
+-- Lentor
+INSERT INTO `mob_spell_lists` VALUES ('Lentor',160,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Lentor',160,202,1,255); -- waterga iv
+INSERT INTO `mob_spell_lists` VALUES ('Lentor',160,173,1,255); -- water v
+
+-- Siranpa-kamuy
+INSERT INTO `mob_spell_lists` VALUES ('Siranpa-kamuy',161,157,1,255); -- aero iv
+INSERT INTO `mob_spell_lists` VALUES ('Siranpa-kamuy',161,162,1,255); -- stone iv
+INSERT INTO `mob_spell_lists` VALUES ('Siranpa-kamuy',161,186,1,255); -- aeroga iii
+INSERT INTO `mob_spell_lists` VALUES ('Siranpa-kamuy',161,191,1,255); -- stonega iii
+INSERT INTO `mob_spell_lists` VALUES ('Siranpa-kamuy',161,359,1,255); -- silencega
+
+-- Tonberry_Lieje
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,147,1,255); -- fire iv
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,176,1,255); -- firaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,204,1,255); -- flare
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,148,1,255); -- fire v
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,177,1,255); -- firaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Tonberry_Lieje',162,205,1,255); -- flare ii
+
+-- Turul
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,157,1,255); -- aero iv
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,186,1,255); -- aeroga iii
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,168,1,255); -- thunder v
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,196,1,255); -- thundaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,197,1,255); -- thundaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,158,1,255); -- aero v
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,187,1,255); -- aeroga iv
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,212,1,255); -- burst
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Turul',163,252,1,255); -- stun
+
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
