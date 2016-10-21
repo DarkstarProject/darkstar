@@ -63,6 +63,8 @@ function onRegionEnter(player,region)
         player:startEvent(8);
     elseif (player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(14);
+    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
+        player:startEvent(15);
     end
 end;
 
@@ -96,6 +98,9 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
         player:messageSpecial(KEYITEM_OBTAINED,PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
         player:addMission(TOAU,SHADES_OF_VENGEANCE);
+    elseif (csid == 15) then
+        player:setVar("AhtUrganStatus",1);
+        player:setPos(0,0,0,0,57);
     elseif (csid == 34 and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(35);
     end
