@@ -84,6 +84,8 @@ function onRegionEnter(player,region)
             end
         elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
             player:startEvent(10094);
+        elseif (player:getCurrentMission(TOAU) == ALLIED_RUMBLINGS) then
+            player:startEvent(10097);
         end
     end
 end;
@@ -153,6 +155,11 @@ function onEventFinish(player,csid,option)
             player:addMission(TOAU,WESTERLY_WINDS);
             player:setVar("AhtUrganStatus", 0);
         end
+    elseif (csid == 10097) then
+        player:completeMission(TOAU,ALLIED_RUMBLINGS);
+        player:needToZone(true);
+        player:setVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,UNRAVELING_REASON);
     elseif (csid == 142) then
         player:addQuest(JEUNO,STORMS_OF_FATE);
     elseif (csid == 143) then
