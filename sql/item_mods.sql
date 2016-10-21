@@ -3176,12 +3176,12 @@ INSERT INTO `item_mods` VALUES (11092,25,18);
 INSERT INTO `item_mods` VALUES (11092,68,18);
 INSERT INTO `item_mods` VALUES (11092,84,7);
 INSERT INTO `item_mods` VALUES (11092,384,20);
-INSERT INTO `item_mods` VALUES (11093,1,51);
-INSERT INTO `item_mods` VALUES (11093,14,10);
-INSERT INTO `item_mods` VALUES (11093,119,10);
-INSERT INTO `item_mods` VALUES (11093,121,10);
-INSERT INTO `item_mods` VALUES (11093,434,1);
-INSERT INTO `item_mods` VALUES (11093,454,10);
+INSERT INTO `item_mods` VALUES (11093,1,51);      -- Aoidos' Hongreline +2: DEF 51
+INSERT INTO `item_mods` VALUES (11093,14,10);     -- CHR +10
+INSERT INTO `item_mods` VALUES (11093,119,10);    -- Singing skill +10
+INSERT INTO `item_mods` VALUES (11093,121,10);    -- Wind instrument skill +10
+INSERT INTO `item_mods` VALUES (11093,434,1);     -- Minuet +1
+INSERT INTO `item_mods` VALUES (11093,454,10);    -- Increases song effect duration +10%
 INSERT INTO `item_mods` VALUES (11094,1,61);
 INSERT INTO `item_mods` VALUES (11094,8,12);
 INSERT INTO `item_mods` VALUES (11094,11,12);
@@ -3619,11 +3619,11 @@ INSERT INTO `item_mods` VALUES (11192,23,15);
 INSERT INTO `item_mods` VALUES (11192,25,15);
 INSERT INTO `item_mods` VALUES (11192,68,15);
 INSERT INTO `item_mods` VALUES (11192,84,5);
-INSERT INTO `item_mods` VALUES (11193,1,48);
-INSERT INTO `item_mods` VALUES (11193,14,8);
-INSERT INTO `item_mods` VALUES (11193,119,8);
-INSERT INTO `item_mods` VALUES (11193,121,8);
-INSERT INTO `item_mods` VALUES (11193,454,5);
+INSERT INTO `item_mods` VALUES (11193,1,48);      -- Aoidos' Hongreline +1: DEF 48
+INSERT INTO `item_mods` VALUES (11193,14,8);      -- CHR +8
+INSERT INTO `item_mods` VALUES (11193,119,8);     -- Singing skill +8
+INSERT INTO `item_mods` VALUES (11193,121,8);     -- Wind instrument skill +8
+INSERT INTO `item_mods` VALUES (11193,454,5);     -- Increases song effect duration +5%
 INSERT INTO `item_mods` VALUES (11194,1,58);
 INSERT INTO `item_mods` VALUES (11194,8,8);
 INSERT INTO `item_mods` VALUES (11194,11,8);
@@ -6246,8 +6246,8 @@ INSERT INTO `item_mods` VALUES (12036,1,61);
 INSERT INTO `item_mods` VALUES (12036,23,5);
 INSERT INTO `item_mods` VALUES (12036,25,5);
 INSERT INTO `item_mods` VALUES (12036,68,5);
-INSERT INTO `item_mods` VALUES (12037,1,45);
-INSERT INTO `item_mods` VALUES (12037,14,3);
+INSERT INTO `item_mods` VALUES (12037,1,45);      -- Aoidos' Hongreline: DEF 45
+INSERT INTO `item_mods` VALUES (12037,14,3);      -- CHR +3
 INSERT INTO `item_mods` VALUES (12038,1,55);
 INSERT INTO `item_mods` VALUES (12038,8,3);
 INSERT INTO `item_mods` VALUES (12038,11,3);
@@ -21723,19 +21723,21 @@ INSERT INTO `item_mods` VALUES (18561,23,5); -- att
 INSERT INTO `item_mods` VALUES (18561,48,8); -- ws acc
 INSERT INTO `item_mods` VALUES (18562,23,6); -- att
 INSERT INTO `item_mods` VALUES (18562,48,9); -- ws acc
-INSERT INTO `item_mods` VALUES (18571,453,2);
-INSERT INTO `item_mods` VALUES (18571,454,30);
+INSERT INTO `item_mods` VALUES (18571,119,20);    -- Daurdabla (Level 99): Singing skill +20
+INSERT INTO `item_mods` VALUES (18571,120,20);    -- String instrument skill +20
+INSERT INTO `item_mods` VALUES (18571,453,2);     -- Grants two additional song effects
+INSERT INTO `item_mods` VALUES (18571,454,30);    -- Increases song effect duration +30%
 INSERT INTO `item_mods` VALUES (18572,452,4);
-INSERT INTO `item_mods` VALUES (18574,119,5);
-INSERT INTO `item_mods` VALUES (18574,120,5);
-INSERT INTO `item_mods` VALUES (18575,119,20);
-INSERT INTO `item_mods` VALUES (18575,120,20);
-INSERT INTO `item_mods` VALUES (18575,453,1);
-INSERT INTO `item_mods` VALUES (18575,454,25);
-INSERT INTO `item_mods` VALUES (18576,119,20);
-INSERT INTO `item_mods` VALUES (18576,120,20);
-INSERT INTO `item_mods` VALUES (18576,453,1);
-INSERT INTO `item_mods` VALUES (18576,454,30);
+INSERT INTO `item_mods` VALUES (18574,119,5);     -- Daurdabla (Level 85): Singing skill +5
+INSERT INTO `item_mods` VALUES (18574,120,5);     -- String instrument skill +5
+INSERT INTO `item_mods` VALUES (18575,119,20);    -- Daurdabla (Level 90): Singing skill +20
+INSERT INTO `item_mods` VALUES (18575,120,20);    -- String instrument skill +20
+INSERT INTO `item_mods` VALUES (18575,453,1);     -- Grants an additional song effect
+INSERT INTO `item_mods` VALUES (18575,454,25);    -- Increases song effect duration +25%
+INSERT INTO `item_mods` VALUES (18576,119,20);    -- Daurdabla (Level 95): Singing skill +20
+INSERT INTO `item_mods` VALUES (18576,120,20);    -- String instrument skill +20
+INSERT INTO `item_mods` VALUES (18576,453,1);     -- Grants an additional song effect
+INSERT INTO `item_mods` VALUES (18576,454,30);    -- Increases song effect duration +30%
 INSERT INTO `item_mods` VALUES (18577,452,2);
 INSERT INTO `item_mods` VALUES (18578,452,2);
 INSERT INTO `item_mods` VALUES (18579,452,3);
@@ -22273,10 +22275,10 @@ INSERT INTO `item_mods` VALUES (18833,438,3);
 INSERT INTO `item_mods` VALUES (18833,448,3);
 INSERT INTO `item_mods` VALUES (18834,439,3);
 INSERT INTO `item_mods` VALUES (18834,446,3);
-INSERT INTO `item_mods` VALUES (18839,119,20);
-INSERT INTO `item_mods` VALUES (18839,120,20);
-INSERT INTO `item_mods` VALUES (18839,453,2);
-INSERT INTO `item_mods` VALUES (18839,454,30);
+INSERT INTO `item_mods` VALUES (18839,119,20);    -- Daurdabla (Level 99 II): Singing skill +20
+INSERT INTO `item_mods` VALUES (18839,120,20);    -- String instrument skill +20
+INSERT INTO `item_mods` VALUES (18839,453,2);     -- Grants two additional song effects
+INSERT INTO `item_mods` VALUES (18839,454,30);    -- Increases song effect duration +30%
 INSERT INTO `item_mods` VALUES (18840,452,4);
 INSERT INTO `item_mods` VALUES (18841,13,5);
 INSERT INTO `item_mods` VALUES (18841,231,2);
@@ -22469,9 +22471,9 @@ INSERT INTO `item_mods` VALUES (18998,355,106); -- Liberator 75 - Insurgency
 INSERT INTO `item_mods` VALUES (18998,521,20);
 INSERT INTO `item_mods` VALUES (18999,288,15);
 INSERT INTO `item_mods` VALUES (18999,355,74); -- Aymur 75 - Primal Rend
-INSERT INTO `item_mods` VALUES (19000,30,10);
-INSERT INTO `item_mods` VALUES (19000,355,28); -- Carnwenhan 75 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19000,454,40);
+INSERT INTO `item_mods` VALUES (19000,30,10);     -- Carnwenhan (Level 75): Magic Accuracy +10
+INSERT INTO `item_mods` VALUES (19000,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19000,454,10);    -- Increases song effect duration +10%
 INSERT INTO `item_mods` VALUES (19001,355,217); -- Gastraphetes 75 - Trueflight
 INSERT INTO `item_mods` VALUES (19001,365,5);
 INSERT INTO `item_mods` VALUES (19001,420,10);
@@ -22594,7 +22596,9 @@ INSERT INTO `item_mods` VALUES (19067,30,20);
 INSERT INTO `item_mods` VALUES (19067,355,106); -- Liberator 80 - Insurgency
 INSERT INTO `item_mods` VALUES (19067,521,25);
 INSERT INTO `item_mods` VALUES (19068,355,74); -- Aymur 80 - Primal Rend
-INSERT INTO `item_mods` VALUES (19069,355,28); -- Carnwenhan 80 - Mordant Rime
+INSERT INTO `item_mods` VALUES (19069,30,10);     -- Carnwenhan (Level 80): Magic Accuracy +10
+INSERT INTO `item_mods` VALUES (19069,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19069,454,20);    -- Increases song effect duration +20%
 INSERT INTO `item_mods` VALUES (19070,365,5);
 INSERT INTO `item_mods` VALUES (19070,355,217); -- Gastraphetes 80 - Trueflight
 INSERT INTO `item_mods` VALUES (19070,450,15);
@@ -22636,9 +22640,9 @@ INSERT INTO `item_mods` VALUES (19087,355,106); -- Liberator 85 - Insurgency
 INSERT INTO `item_mods` VALUES (19087,521,30);
 INSERT INTO `item_mods` VALUES (19088,288,20);
 INSERT INTO `item_mods` VALUES (19088,355,74); -- Aymur 85 - Primal Rend
-INSERT INTO `item_mods` VALUES (19089,30,15);
-INSERT INTO `item_mods` VALUES (19089,355,28); -- Carnwenhan 85 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19089,454,50);
+INSERT INTO `item_mods` VALUES (19089,30,15);     -- Carnwenhan (Level 85): Magic Accuracy +15
+INSERT INTO `item_mods` VALUES (19089,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19089,454,30);    -- Increases song effect duration +30%
 INSERT INTO `item_mods` VALUES (19090,355,217); -- Gastraphetes 85 - Trueflight
 INSERT INTO `item_mods` VALUES (19090,365,5);
 INSERT INTO `item_mods` VALUES (19090,450,20);
@@ -23007,7 +23011,9 @@ INSERT INTO `item_mods` VALUES (19619,30,30);
 INSERT INTO `item_mods` VALUES (19619,355,106); -- Liberator 90 - Insurgency
 INSERT INTO `item_mods` VALUES (19619,521,40);
 INSERT INTO `item_mods` VALUES (19620,355,74); -- Aymur 90 - Primal Rend
-INSERT INTO `item_mods` VALUES (19621,355,28); -- Carnwenhan 90 - Mordant Rime
+INSERT INTO `item_mods` VALUES (19621,30,20);     -- Carnwenhan (Level 90): Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (19621,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19621,454,40);    -- Increases song effect duration +40%
 INSERT INTO `item_mods` VALUES (19622,355,217); -- Gastraphetes 90 - Trueflight
 INSERT INTO `item_mods` VALUES (19622,365,5);
 INSERT INTO `item_mods` VALUES (19622,420,25);
@@ -23086,9 +23092,9 @@ INSERT INTO `item_mods` VALUES (19717,521,40);
 INSERT INTO `item_mods` VALUES (19718,288,25);
 INSERT INTO `item_mods` VALUES (19718,302,5);
 INSERT INTO `item_mods` VALUES (19718,355,74); -- Aymur 95 - Primal Rend
-INSERT INTO `item_mods` VALUES (19719,30,20);
-INSERT INTO `item_mods` VALUES (19719,355,28); -- Carnwenhan 95 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19719,454,25);
+INSERT INTO `item_mods` VALUES (19719,30,20);     -- Carnwenhan (Level 95): Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (19719,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19719,454,40);    -- Increases song effect duration +40%
 INSERT INTO `item_mods` VALUES (19720,355,217); -- Gastraphetes 95 - Trueflight
 INSERT INTO `item_mods` VALUES (19720,365,5);
 INSERT INTO `item_mods` VALUES (19720,420,30);
@@ -23342,9 +23348,9 @@ INSERT INTO `item_mods` VALUES (19826,521,50);
 INSERT INTO `item_mods` VALUES (19827,288,30);
 INSERT INTO `item_mods` VALUES (19827,302,10);
 INSERT INTO `item_mods` VALUES (19827,355,74); -- Aymur 99 - Primal Rend
-INSERT INTO `item_mods` VALUES (19828,30,25);
-INSERT INTO `item_mods` VALUES (19828,355,28); -- Carnwenhan 99 - Mordant Rime
-INSERT INTO `item_mods` VALUES (19828,454,70);
+INSERT INTO `item_mods` VALUES (19828,30,25);     -- Carnwenhan (Level 99): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (19828,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19828,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (19829,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19829,365,5);
 INSERT INTO `item_mods` VALUES (19829,420,35);
@@ -23502,7 +23508,9 @@ INSERT INTO `item_mods` VALUES (19955,30,35);
 INSERT INTO `item_mods` VALUES (19955,355,106); -- Liberator 99 - Insurgency
 INSERT INTO `item_mods` VALUES (19955,521,50);
 INSERT INTO `item_mods` VALUES (19956,355,74); -- Aymur 99 - Primal Rend
-INSERT INTO `item_mods` VALUES (19957,355,28); -- Carnwenhan 99 - Mordant Rime
+INSERT INTO `item_mods` VALUES (19957,30,25);     -- Carnwenhan (Level 99 II): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (19957,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (19957,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (19958,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19958,365,5);
 INSERT INTO `item_mods` VALUES (19958,450,35);
@@ -23579,10 +23587,16 @@ INSERT INTO `item_mods` VALUES (20559,527,30);
 INSERT INTO `item_mods` VALUES (20560,355,27); -- Vajra iLvL 119 - Mandalic Stab
 INSERT INTO `item_mods` VALUES (20560,526,30);
 INSERT INTO `item_mods` VALUES (20560,527,30);
-INSERT INTO `item_mods` VALUES (20561,355,28); -- Carnwenhan iLvL 119 - Mordant Rime
-INSERT INTO `item_mods` VALUES (20561,454,70);
-INSERT INTO `item_mods` VALUES (20562,355,28); -- Carnwenhan iLvL 119 - Mordant Rime
-INSERT INTO `item_mods` VALUES (20562,454,90);
+INSERT INTO `item_mods` VALUES (20561,30,25);     -- Carnwenhan (Level 119): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (20561,81,242);    -- Dagger skill +242
+INSERT INTO `item_mods` VALUES (20561,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20561,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (20561,454,50);    -- Increases song effect duration +50%
+INSERT INTO `item_mods` VALUES (20562,30,25);     -- Carnwenhan (Level 119 II): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (20562,81,242);    -- Dagger skill +242
+INSERT INTO `item_mods` VALUES (20562,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20562,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (20562,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (20563,9,20);
 INSERT INTO `item_mods` VALUES (20563,355,31); -- Twashtar iLvL 119 - Rudra's Storm
 INSERT INTO `item_mods` VALUES (20564,9,20);
@@ -23590,7 +23604,12 @@ INSERT INTO `item_mods` VALUES (20564,355,31); -- Twashtar iLvL 119 - Rudra's St
 INSERT INTO `item_mods` VALUES (20583,355,26); -- Mandau iLvL 119 - Mercy Stroke
 INSERT INTO `item_mods` VALUES (20584,355,29); -- Terpsichore iLvL 119 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (20585,355,27); -- Vajra iLvL 119 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (20586,355,28); -- Carnwenhan iLvL 119 - Mordant Rime
+INSERT INTO `item_mods` VALUES (20586,30,40);     -- Carnwenhan (Level 119 III): Magic Accuracy +40
+INSERT INTO `item_mods` VALUES (20586,81,269);    -- Dagger skill +269
+INSERT INTO `item_mods` VALUES (20586,110,269);   -- Parrying skill +269
+INSERT INTO `item_mods` VALUES (20586,311,155);   -- Magic Damage +155
+INSERT INTO `item_mods` VALUES (20586,355,28);    -- Mordant Rime
+INSERT INTO `item_mods` VALUES (20586,454,50);    -- Increases song effect duration +50%
 INSERT INTO `item_mods` VALUES (20587,355,31); -- Twashtar iLvL 119 - Rudra's Storm
 INSERT INTO `item_mods` VALUES (20604,2,45);
 INSERT INTO `item_mods` VALUES (20604,11,15);
@@ -23623,6 +23642,11 @@ INSERT INTO `item_mods` VALUES (20620,68,27);
 INSERT INTO `item_mods` VALUES (20624,23,10);
 INSERT INTO `item_mods` VALUES (20624,25,63);
 INSERT INTO `item_mods` VALUES (20624,68,48);
+INSERT INTO `item_mods` VALUES (20629,25,12);     -- Legato Dagger: Accuracy +12
+INSERT INTO `item_mods` VALUES (20629,68,12);     -- Evasion +12
+INSERT INTO `item_mods` VALUES (20629,81,102);    -- Dagger skill +102
+INSERT INTO `item_mods` VALUES (20629,110,102);   -- Parrying skill +102
+INSERT INTO `item_mods` VALUES (20629,454,5);     -- Increases song effect duration +5%
 INSERT INTO `item_mods` VALUES (20634,68,15);
 INSERT INTO `item_mods` VALUES (20635,25,15);
 INSERT INTO `item_mods` VALUES (20635,68,8);
@@ -26973,42 +26997,42 @@ INSERT INTO `item_mods` VALUES (26915,31,59);
 INSERT INTO `item_mods` VALUES (26915,68,69);
 INSERT INTO `item_mods` VALUES (26915,84,11);
 INSERT INTO `item_mods` VALUES (26915,384,31);
-INSERT INTO `item_mods` VALUES (26916,1,90);
-INSERT INTO `item_mods` VALUES (26916,2,25);
-INSERT INTO `item_mods` VALUES (26916,5,58);
-INSERT INTO `item_mods` VALUES (26916,8,12);
-INSERT INTO `item_mods` VALUES (26916,9,14);
-INSERT INTO `item_mods` VALUES (26916,10,13);
-INSERT INTO `item_mods` VALUES (26916,11,13);
-INSERT INTO `item_mods` VALUES (26916,12,18);
-INSERT INTO `item_mods` VALUES (26916,13,17);
-INSERT INTO `item_mods` VALUES (26916,14,25);
-INSERT INTO `item_mods` VALUES (26916,29,3);
-INSERT INTO `item_mods` VALUES (26916,31,58);
-INSERT INTO `item_mods` VALUES (26916,68,20);
-INSERT INTO `item_mods` VALUES (26916,119,12);
-INSERT INTO `item_mods` VALUES (26916,121,12);
-INSERT INTO `item_mods` VALUES (26916,384,21);
-INSERT INTO `item_mods` VALUES (26916,434,1);
-INSERT INTO `item_mods` VALUES (26916,454,11);
-INSERT INTO `item_mods` VALUES (26917,1,125);
-INSERT INTO `item_mods` VALUES (26917,2,54);
-INSERT INTO `item_mods` VALUES (26917,5,70);
-INSERT INTO `item_mods` VALUES (26917,8,19);
-INSERT INTO `item_mods` VALUES (26917,9,23);
-INSERT INTO `item_mods` VALUES (26917,10,21);
-INSERT INTO `item_mods` VALUES (26917,11,21);
-INSERT INTO `item_mods` VALUES (26917,12,29);
-INSERT INTO `item_mods` VALUES (26917,13,28);
-INSERT INTO `item_mods` VALUES (26917,14,37);
-INSERT INTO `item_mods` VALUES (26917,29,7);
-INSERT INTO `item_mods` VALUES (26917,31,86);
-INSERT INTO `item_mods` VALUES (26917,68,44);
-INSERT INTO `item_mods` VALUES (26917,119,14);
-INSERT INTO `item_mods` VALUES (26917,121,14);
-INSERT INTO `item_mods` VALUES (26917,384,31);
-INSERT INTO `item_mods` VALUES (26917,434,1);
-INSERT INTO `item_mods` VALUES (26917,454,12);
+INSERT INTO `item_mods` VALUES (26916,1,90);      -- Fili Hongreline: DEF 90
+INSERT INTO `item_mods` VALUES (26916,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (26916,5,58);      -- MP +58
+INSERT INTO `item_mods` VALUES (26916,8,12);      -- STR +12
+INSERT INTO `item_mods` VALUES (26916,9,14);      -- DEX +14
+INSERT INTO `item_mods` VALUES (26916,10,13);     -- VIT +13
+INSERT INTO `item_mods` VALUES (26916,11,13);     -- AGI +13
+INSERT INTO `item_mods` VALUES (26916,12,18);     -- INT +18
+INSERT INTO `item_mods` VALUES (26916,13,17);     -- MND +17
+INSERT INTO `item_mods` VALUES (26916,14,25);     -- CHR +25
+INSERT INTO `item_mods` VALUES (26916,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (26916,31,58);     -- Magic Evasion +58
+INSERT INTO `item_mods` VALUES (26916,68,20);     -- Evasion +20
+INSERT INTO `item_mods` VALUES (26916,119,12);    -- Singing skill +12
+INSERT INTO `item_mods` VALUES (26916,121,12);    -- Wind instrument skill +12
+INSERT INTO `item_mods` VALUES (26916,384,21);    -- Haste +2%
+INSERT INTO `item_mods` VALUES (26916,434,1);     -- Minuet +1
+INSERT INTO `item_mods` VALUES (26916,454,11);    -- Increases song effect duration +11%
+INSERT INTO `item_mods` VALUES (26917,1,125);     -- Fili Hongreline +1: DEF 125
+INSERT INTO `item_mods` VALUES (26917,2,54);      -- HP +54
+INSERT INTO `item_mods` VALUES (26917,5,70);      -- MP +70
+INSERT INTO `item_mods` VALUES (26917,8,19);      -- STR +19
+INSERT INTO `item_mods` VALUES (26917,9,23);      -- DEX +23
+INSERT INTO `item_mods` VALUES (26917,10,21);     -- VIT +21
+INSERT INTO `item_mods` VALUES (26917,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (26917,12,29);     -- INT +29
+INSERT INTO `item_mods` VALUES (26917,13,28);     -- MND +28
+INSERT INTO `item_mods` VALUES (26917,14,37);     -- CHR +37
+INSERT INTO `item_mods` VALUES (26917,29,7);      -- Magic Def. Bonus +7
+INSERT INTO `item_mods` VALUES (26917,31,86);     -- Magic Evasion +86
+INSERT INTO `item_mods` VALUES (26917,68,44);     -- Evasion +44
+INSERT INTO `item_mods` VALUES (26917,119,14);    -- Singing skill +14
+INSERT INTO `item_mods` VALUES (26917,121,14);    -- Wind instrument skill +14
+INSERT INTO `item_mods` VALUES (26917,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (26917,434,1);     -- Minuet +1
+INSERT INTO `item_mods` VALUES (26917,454,12);    -- Increases song effect duration +12%
 INSERT INTO `item_mods` VALUES (26918,1,94);
 INSERT INTO `item_mods` VALUES (26918,2,27);
 INSERT INTO `item_mods` VALUES (26918,8,21);
@@ -34802,7 +34826,7 @@ INSERT INTO `item_mods` VALUES (28074,14,15);     -- CHR +15
 INSERT INTO `item_mods` VALUES (28074,112,11);    -- Healing magic skill +11
 INSERT INTO `item_mods` VALUES (28074,117,11);    -- Summoning magic skill +11
 INSERT INTO `item_mods` VALUES (28074,121,11);    -- Wind instrument skill +11
-INSERT INTO `item_mods` VALUES (28074,454,10);    -- Increases song duration +10%
+INSERT INTO `item_mods` VALUES (28074,454,10);    -- Increases song effect duration +10%
 INSERT INTO `item_mods` VALUES (28075,1,44);      -- Morrigan's Slops +1
 INSERT INTO `item_mods` VALUES (28075,5,50);      -- MP +50
 INSERT INTO `item_mods` VALUES (28075,8,10);      -- STR +10
@@ -36112,22 +36136,22 @@ INSERT INTO `item_mods` VALUES (28231,31,47);
 INSERT INTO `item_mods` VALUES (28231,68,33);
 INSERT INTO `item_mods` VALUES (28231,304,3);
 INSERT INTO `item_mods` VALUES (28231,384,41);
-INSERT INTO `item_mods` VALUES (28232,1,46);
-INSERT INTO `item_mods` VALUES (28232,2,36);
-INSERT INTO `item_mods` VALUES (28232,5,42);
-INSERT INTO `item_mods` VALUES (28232,8,4);
-INSERT INTO `item_mods` VALUES (28232,9,7);
-INSERT INTO `item_mods` VALUES (28232,10,4);
-INSERT INTO `item_mods` VALUES (28232,11,21);
-INSERT INTO `item_mods` VALUES (28232,12,11);
-INSERT INTO `item_mods` VALUES (28232,13,11);
-INSERT INTO `item_mods` VALUES (28232,14,24);
-INSERT INTO `item_mods` VALUES (28232,29,2);
-INSERT INTO `item_mods` VALUES (28232,31,73);
-INSERT INTO `item_mods` VALUES (28232,68,26);
-INSERT INTO `item_mods` VALUES (28232,121,10);
-INSERT INTO `item_mods` VALUES (28232,384,31);
-INSERT INTO `item_mods` VALUES (28232,454,10);
+INSERT INTO `item_mods` VALUES (28232,1,46);      -- Brioso Slippers: DEF 46
+INSERT INTO `item_mods` VALUES (28232,2,36);      -- HP +36
+INSERT INTO `item_mods` VALUES (28232,5,42);      -- MP +42
+INSERT INTO `item_mods` VALUES (28232,8,4);       -- STR +4
+INSERT INTO `item_mods` VALUES (28232,9,7);       -- DEX +7
+INSERT INTO `item_mods` VALUES (28232,10,4);      -- VIT +4
+INSERT INTO `item_mods` VALUES (28232,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (28232,12,11);     -- INT +11
+INSERT INTO `item_mods` VALUES (28232,13,11);     -- MND +11
+INSERT INTO `item_mods` VALUES (28232,14,24);     -- CHR +24
+INSERT INTO `item_mods` VALUES (28232,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (28232,31,73);     -- Magic Evasion +73
+INSERT INTO `item_mods` VALUES (28232,68,26);     -- Evasion +26
+INSERT INTO `item_mods` VALUES (28232,121,10);    -- Wind instrument skill +10
+INSERT INTO `item_mods` VALUES (28232,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (28232,454,10);    -- Increases song effect duration +10%
 INSERT INTO `item_mods` VALUES (28233,1,51);
 INSERT INTO `item_mods` VALUES (28233,2,6);
 INSERT INTO `item_mods` VALUES (28233,8,8);
@@ -36400,22 +36424,22 @@ INSERT INTO `item_mods` VALUES (28252,68,72);
 INSERT INTO `item_mods` VALUES (28252,304,3);
 INSERT INTO `item_mods` VALUES (28252,364,32);
 INSERT INTO `item_mods` VALUES (28252,384,41);
-INSERT INTO `item_mods` VALUES (28253,1,65);
-INSERT INTO `item_mods` VALUES (28253,2,43);
-INSERT INTO `item_mods` VALUES (28253,5,44);
-INSERT INTO `item_mods` VALUES (28253,8,7);
-INSERT INTO `item_mods` VALUES (28253,9,11);
-INSERT INTO `item_mods` VALUES (28253,10,7);
-INSERT INTO `item_mods` VALUES (28253,11,33);
-INSERT INTO `item_mods` VALUES (28253,12,17);
-INSERT INTO `item_mods` VALUES (28253,13,17);
-INSERT INTO `item_mods` VALUES (28253,14,38);
-INSERT INTO `item_mods` VALUES (28253,29,5);
-INSERT INTO `item_mods` VALUES (28253,31,107);
-INSERT INTO `item_mods` VALUES (28253,68,58);
-INSERT INTO `item_mods` VALUES (28253,121,10);
-INSERT INTO `item_mods` VALUES (28253,384,31);
-INSERT INTO `item_mods` VALUES (28253,454,11);
+INSERT INTO `item_mods` VALUES (28253,1,65);      -- Brioso Slippers +1: DEF 65
+INSERT INTO `item_mods` VALUES (28253,2,43);      -- HP +43
+INSERT INTO `item_mods` VALUES (28253,5,44);      -- MP +44
+INSERT INTO `item_mods` VALUES (28253,8,7);       -- STR +7
+INSERT INTO `item_mods` VALUES (28253,9,11);      -- DEX +11
+INSERT INTO `item_mods` VALUES (28253,10,7);      -- VIT +7
+INSERT INTO `item_mods` VALUES (28253,11,33);     -- AGI +33
+INSERT INTO `item_mods` VALUES (28253,12,17);     -- INT +17
+INSERT INTO `item_mods` VALUES (28253,13,17);     -- MND +17
+INSERT INTO `item_mods` VALUES (28253,14,38);     -- CHR +38
+INSERT INTO `item_mods` VALUES (28253,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28253,31,107);    -- Magic Evasion +107
+INSERT INTO `item_mods` VALUES (28253,68,58);     -- Evasion +58
+INSERT INTO `item_mods` VALUES (28253,121,10);    -- Wind instrument skill +10
+INSERT INTO `item_mods` VALUES (28253,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (28253,454,11);    -- Increases song effect duration +11%
 INSERT INTO `item_mods` VALUES (28254,1,69);
 INSERT INTO `item_mods` VALUES (28254,2,13);
 INSERT INTO `item_mods` VALUES (28254,8,12);
