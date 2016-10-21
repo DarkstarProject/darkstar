@@ -1579,7 +1579,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,226,1,255); -- poisonga 
 INSERT INTO `mob_spell_lists` VALUES ('Gangly_Gean',158,252,1,255); -- stun
 
 -- Guimauve
-INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,0,1,255); -- 
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,357,1,255); -- slowga
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,184,1,255); -- aeroga iii
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Guimauve',159,191,1,255); -- stonega iii
 
 -- Lentor
 INSERT INTO `mob_spell_lists` VALUES ('Lentor',160,201,1,255); -- waterga iii
@@ -1615,6 +1620,44 @@ INSERT INTO `mob_spell_lists` VALUES ('Turul',163,212,1,255); -- burst
 INSERT INTO `mob_spell_lists` VALUES ('Turul',163,208,1,255); -- tornado
 INSERT INTO `mob_spell_lists` VALUES ('Turul',163,252,1,255); -- stun
 
+-- Baba_Yaga
+INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',164,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',164,366,1,255); -- graviga
+INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',164,186,1,255); -- aeroga iii
+
+-- Carabosse
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,47,1,255); -- protect v
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,52,1,255); -- shell v
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,54,1,255); -- stoneskin
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,365,1,255); -- breakga
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,5,1,255); -- cure v
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,6,1,255); -- cure vi
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,158,1,255); -- aero v
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,157,1,255); -- aero iv 
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,184,1,255); -- aeroga iii
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',165,209,1,255); -- tornado ii
+
+-- Irrlicht
+INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',166,360,1,255); -- dispelga
+INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',166,362,1,255); -- bindga
+INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',166,180,1,255); -- blizzaga ii
+INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',166,274,1,255); -- sleepga ii
+
+-- La_Theine_Liege
+INSERT INTO `mob_spell_lists` VALUES ('La_Theine_Liege',167,184,1,255); -- aeroga iii
+
+-- Megamaw_Mikey
+INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',168,163,1,255); -- stone v
+INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',168,210,1,255); -- quake
+INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',168,191,1,255); -- stonega iii
+
+-- Piasa
+INSERT INTO `mob_spell_lists` VALUES ('Piasa',169,102,1,255); -- enaero
+
+-- Poroggo_Dom_Juan
+INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',170,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',170,226,1,255); -- poisonga ii 
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
