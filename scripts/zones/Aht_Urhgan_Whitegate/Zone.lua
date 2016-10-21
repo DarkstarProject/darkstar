@@ -47,6 +47,11 @@ function onZoneIn(player,prevZone)
         end
     end
 
+    if (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 0 and
+            player:getVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+        cs = 3220;
+    end
+
     return cs;
 end;
 
@@ -108,6 +113,8 @@ function onRegionEnter(player,region)
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == SWEETS_FOR_THE_SOUL) then
                 player:startEvent(3092);
+            elseif (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 1) then
+                player:startEvent(3136,0,0,0,0,0,0,0,0,0);
             end
         end,
     }
@@ -237,5 +244,14 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
         player:setVar("TOAUM38_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,STIRRINGS_OF_WAR);
+    elseif (csid == 3220) then
+        player:setVar("TOAUM38_STARTDAY", 0);
+        player:setVar("AhtUrganStatus", 1);
+    elseif (csid == 3136) then
+        player:completeMission(TOAU,STIRRINGS_OF_WAR);
+        player:setVar("AhtUrganStatus", 0);
+        player:addKeyItem(ALLIED_COUNCIL_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,ALLIED_COUNCIL_SUMMONS);
+        player:addMission(TOAU,ALLIED_RUMBLINGS);
     end
 end;
