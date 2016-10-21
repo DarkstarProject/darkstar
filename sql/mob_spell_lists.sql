@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `mob_spell_lists`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `mob_spell_lists` (
-  `spell_list_name` char(20) DEFAULT NULL,
+  `spell_list_name` varchar(30) DEFAULT NULL,
   `spell_list_id` smallint(5) unsigned NOT NULL,
   `spell_id` smallint(3) unsigned NOT NULL,
   `min_level` tinyint(3) unsigned NOT NULL,
@@ -1658,6 +1658,139 @@ INSERT INTO `mob_spell_lists` VALUES ('Piasa',169,102,1,255); -- enaero
 -- Poroggo_Dom_Juan
 INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',170,201,1,255); -- waterga iii
 INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',170,226,1,255); -- poisonga ii 
+
+-- Abas
+INSERT INTO `mob_spell_lists` VALUES ('Abas',171,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Abas',171,226,1,255); -- poisonga ii
+INSERT INTO `mob_spell_lists` VALUES ('Abas',171,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Abas',171,214,1,255); -- flood
+
+-- Cannered_Noz
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,206,1,255); -- freeze
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,274,1,255); -- sleepga ii
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,366,1,255); -- graviga
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,153,1,255); -- blizzard v
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,182,1,255); -- blizzaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,207,1,255); -- freeze ii
+INSERT INTO `mob_spell_lists` VALUES ('Cannered_Noz',172,367,1,255); -- death
+
+-- Chukwa
+INSERT INTO `mob_spell_lists` VALUES ('Chukwa',173,211,1,255); -- quake ii
+INSERT INTO `mob_spell_lists` VALUES ('Chukwa',173,192,1,255); -- stonega iv
+INSERT INTO `mob_spell_lists` VALUES ('Chukwa',173,215,1,255); -- flood ii
+INSERT INTO `mob_spell_lists` VALUES ('Chukwa',173,202,1,255); -- waterga iv
+
+-- Cuelebre
+INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',174,357,1,255); -- slowga
+INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',174,54,1,255); -- stoneskin 
+INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',174,365,1,255); -- breakga
+
+-- Glavoid
+INSERT INTO `mob_spell_lists` VALUES ('Glavoid',175,357,1,255); -- slowga
+INSERT INTO `mob_spell_lists` VALUES ('Glavoid',175,192,1,255); -- stonega iv
+INSERT INTO `mob_spell_lists` VALUES ('Glavoid',175,211,1,255); -- quake ii
+
+-- Iratham
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,204,1,255); -- flare
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,176,1,255); -- firaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,177,1,255); -- firaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,207,1,255); -- freeze ii
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,182,1,255); -- blizzaga iv
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,219,1,255); -- comet
+INSERT INTO `mob_spell_lists` VALUES ('Iratham',176,274,1,255); -- sleepga ii
+
+-- Lachrymater
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,231,1,255); -- bio ii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,245,1,255); -- drain
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,247,1,255); -- aspir
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,273,1,255); -- sleepga
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,147,1,255); -- fire iv
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,162,1,255); -- stone iv
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,176,1,255); -- firaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,191,1,255); -- stonega iii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,196,1,255); -- thundaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,204,1,255); -- flare
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,212,1,255); -- burst
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,210,1,255); -- quake
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,214,1,255); -- flood
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,206,1,255); -- freeze
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,239,1,255); -- shock
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,238,1,255); -- rasp
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,235,1,255); -- burn
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,237,1,255); -- choke
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,236,1,255); -- frost
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,240,1,255); -- drown
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,249,1,255); -- blaze spikes
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,250,1,255); -- ice spikes
+INSERT INTO `mob_spell_lists` VALUES ('Lachrymater',177,251,1,255); -- shock spikes
+
+-- Lacovie
+INSERT INTO `mob_spell_lists` VALUES ('Lacovie',178,163,1,255); -- stone v
+INSERT INTO `mob_spell_lists` VALUES ('Lacovie',178,210,1,255); -- quake
+INSERT INTO `mob_spell_lists` VALUES ('Lacovie',178,79,1,255); -- slow ii
+INSERT INTO `mob_spell_lists` VALUES ('Lacovie',178,255,1,255); -- break
+
+-- Manananggal
+INSERT INTO `mob_spell_lists` VALUES ('Manananggal',179,267,1,255); -- absorb-dex
+INSERT INTO `mob_spell_lists` VALUES ('Manananggal',179,268,1,255); -- absorb vit
+INSERT INTO `mob_spell_lists` VALUES ('Manananggal',179,275,1,255); -- absorb tp
+INSERT INTO `mob_spell_lists` VALUES ('Manananggal',179,231,1,255); -- bio ii
+INSERT INTO `mob_spell_lists` VALUES ('Manananggal',179,150,1,255); -- blizzard ii
+
+-- Mictlantecuhtli
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,245,1,255); -- drain
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,147,1,255); -- fire iv
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,152,1,255); -- blizzard iv
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,162,1,255); -- stone iv
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,167,1,255); -- thunder iv
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,172,1,255); -- water iv
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,176,1,255); -- firaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,191,1,255); -- stonega iii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,196,1,255); -- thundaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,204,1,255); -- flare
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,212,1,255); -- burst
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,210,1,255); -- quake
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,214,1,255); -- flood
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,206,1,255); -- freeze
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,259,1,255); -- sleep ii
+INSERT INTO `mob_spell_lists` VALUES ('Mictlantecuhtli',180,274,1,255); -- sleepga ii
+
+-- Quetzalli
+INSERT INTO `mob_spell_lists` VALUES ('Quetzalli',181,204,1,255); -- flare
+INSERT INTO `mob_spell_lists` VALUES ('Quetzalli',181,148,1,255); -- fire v
+INSERT INTO `mob_spell_lists` VALUES ('Quetzalli',181,177,1,255); -- firaga iv
+
+-- Ophanim
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,249,1,255); -- blaze spikes
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,247,1,255); -- aspir
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,245,1,255); -- drain
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,231,1,255); -- bio ii
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,176,1,255); -- firaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,181,1,255); -- blizzaga iii
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,191,1,255); -- stonega iii
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Ophanim',182,196,1,255); -- thundaga iii
+
+-- Halimede
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,356,1,255); -- paralyga
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,226,1,255); -- poisonga ii
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,214,1,255); -- flood
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,206,1,255); -- freeze
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,201,1,255); -- waterga iii
+INSERT INTO `mob_spell_lists` VALUES ('Halimede',183,181,1,255); -- blizzaga iii
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
