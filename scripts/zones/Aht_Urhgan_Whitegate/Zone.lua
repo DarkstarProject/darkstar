@@ -90,6 +90,8 @@ function onRegionEnter(player,region)
                 player:startEvent(3097,0,0,0,0,0,0,0,0,0)
             elseif (player:getCurrentMission(TOAU) == PLAYING_THE_PART and player:getVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
                 player:startEvent(3110);
+            elseif (player:getCurrentMission(TOAU) == PATH_OF_BLOOD) then
+                player:startEvent(3131,1,1,1,1,1,1,1,1);
             end
         end,
         [4] = function (x) -- AH mission
@@ -230,5 +232,10 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,BASTION_OF_KNOWLEDGE);
         player:setTitle(APHMAUS_MERCENARY);
         player:addMission(TOAU,PUPPET_IN_PERIL);
+    elseif (csid == 3131) then
+        player:completeMission(TOAU,PATH_OF_BLOOD);
+        player:needToZone(true);
+        player:setVar("TOAUM38_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,STIRRINGS_OF_WAR);
     end
 end;
