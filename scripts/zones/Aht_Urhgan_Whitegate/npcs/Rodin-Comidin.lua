@@ -24,7 +24,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == LIGHT_OF_JUDGMENT) then
+    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) == false) then
+        player:startEvent(3141,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == LIGHT_OF_JUDGMENT) then
         player:startEvent(3137,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(0x0299);
@@ -50,9 +52,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 3137) then
         player:completeMission(TOAU,LIGHT_OF_JUDGMENT);
+        player:addMission(TOAU,PATH_OF_DARKNESS);
+    end
+
+    if (csid == 3137 or csid == 3141) then
         player:addKeyItem(NYZUL_ISLE_ROUTE);
         player:messageSpecial(KEYITEM_OBTAINED,NYZUL_ISLE_ROUTE);
-        player:addMission(TOAU,PATH_OF_DARKNESS);
     end
 
 end;

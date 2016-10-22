@@ -158,6 +158,20 @@ INSERT INTO `instance_entities` VALUES (53,17022987);
 INSERT INTO `instance_entities` VALUES (53,17022988);
 INSERT INTO `instance_entities` VALUES (53,17022989);
 
+-- Path of Darkness
+-- mobs
+INSERT INTO `instance_entities` VALUES (58,17093132);
+INSERT INTO `instance_entities` VALUES (58,17093133);
+INSERT INTO `instance_entities` VALUES (58,17093134);
+INSERT INTO `instance_entities` VALUES (58,17093135);
+INSERT INTO `instance_entities` VALUES (58,17093136);
+INSERT INTO `instance_entities` VALUES (58,17093137);
+INSERT INTO `instance_entities` VALUES (58,17093142);
+-- npc
+INSERT INTO `instance_entities` VALUES (58,17093355);
+INSERT INTO `instance_entities` VALUES (58,17093357);
+INSERT INTO `instance_entities` VALUES (58,17093419);
+
 -- Arrapago Remnants
 -- npc
 INSERT INTO `instance_entities` VALUES (65,17080598);
