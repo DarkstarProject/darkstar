@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onInstanceTimeUpdate(instance, elapsed)
-    updateInstanceTime(instance, elapsed, TheAshuTalif.text)
+    updateInstanceTime(instance, elapsed, NyzulIsle.text)
 end;
 
 -----------------------------------

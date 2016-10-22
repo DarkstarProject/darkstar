@@ -62,7 +62,7 @@ function onTrigger(player,npc)
             if (player:getVar("AhtUrganStatus") == 0) then
                 player:startEvent(3076,1,0,0,0,0,0,0,1,0);
             else
-                player:startEvent(3077,1,0,0,0,0,0,0,1,0);     
+                player:startEvent(3077,1,0,0,0,0,0,0,1,0);
             end
         else
             if (player:getVar("AhtUrganStatus") == 0) then
@@ -81,11 +81,13 @@ function onTrigger(player,npc)
         else
             player:startEvent(3120,0,0,0,0,0,0,0,0,0);
         end
+    elseif (player:getCurrentMission(TOAU) == FANGS_OF_THE_LION) then
+        player:startEvent(3138,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
     end
-    
+
 end;
 
 -----------------------------------
@@ -121,7 +123,7 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,KNIGHT_OF_GOLD);
         player:setVar("TOAUM3_DAY", 0);
     elseif (csid == 3028) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:addItem(2185,2);
@@ -146,7 +148,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3074) then
         player:completeMission(TOAU,GHOSTS_OF_THE_PAST_TOAU);
         player:addMission(TOAU,GUESTS_OF_THE_EMPIRE);
-   
+
         if(option == 2) then
             player:setVar("AhtUrganStatus", 1);
         end
@@ -163,8 +165,14 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,SENTINELS_HONOR);
     elseif (csid == 3130) then
         player:completeMission(TOAU,SENTINELS_HONOR);
-        player:setVar("TOAUM33_STARTDAY", 0);        
+        player:setVar("TOAUM33_STARTDAY", 0);
         player:addMission(TOAU,TESTING_THE_WATERS);
+    elseif (csid == 3138) then
+        player:completeMission(TOAU,FANGS_OF_THE_LION);
+        player:addKeyItem(MYTHRIL_MIRROR);
+        player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
+        player:setTitle(NASHMEIRAS_LOYALIST);
+        player:addMission(TOAU,NASHMEIRAS_PLEA);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     end
