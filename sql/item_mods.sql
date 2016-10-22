@@ -3133,12 +3133,12 @@ INSERT INTO `item_mods` VALUES (11082,23,8);
 INSERT INTO `item_mods` VALUES (11082,25,8);
 INSERT INTO `item_mods` VALUES (11082,73,7);
 INSERT INTO `item_mods` VALUES (11082,384,61);
-INSERT INTO `item_mods` VALUES (11083,1,30);
-INSERT INTO `item_mods` VALUES (11083,5,45);
-INSERT INTO `item_mods` VALUES (11083,113,10);
-INSERT INTO `item_mods` VALUES (11083,568,10);
-INSERT INTO `item_mods` VALUES (11083,569,10);
-INSERT INTO `item_mods` VALUES (11083,838,12);
+INSERT INTO `item_mods` VALUES (11083,1,30);      -- Savant's Bonnet +2: DEF 30
+INSERT INTO `item_mods` VALUES (11083,5,45);      -- MP +45
+INSERT INTO `item_mods` VALUES (11083,113,10);    -- Enhancing magic skill +10
+INSERT INTO `item_mods` VALUES (11083,568,10);    -- Enhances Rapture effect +10%
+INSERT INTO `item_mods` VALUES (11083,569,10);    -- Enhances Ebullience effect +10%
+INSERT INTO `item_mods` VALUES (11083,838,10);    -- Enhances Regen potency +10%
 INSERT INTO `item_mods` VALUES (11084,1,68);
 INSERT INTO `item_mods` VALUES (11084,23,20);
 INSERT INTO `item_mods` VALUES (11084,25,20);
@@ -3580,11 +3580,11 @@ INSERT INTO `item_mods` VALUES (11182,23,3);
 INSERT INTO `item_mods` VALUES (11182,25,3);
 INSERT INTO `item_mods` VALUES (11182,73,4);
 INSERT INTO `item_mods` VALUES (11182,384,51);
-INSERT INTO `item_mods` VALUES (11183,1,28);
-INSERT INTO `item_mods` VALUES (11183,5,35);
-INSERT INTO `item_mods` VALUES (11183,113,8);
-INSERT INTO `item_mods` VALUES (11183,568,5);
-INSERT INTO `item_mods` VALUES (11183,569,5);
+INSERT INTO `item_mods` VALUES (11183,1,28);      -- Savant's Bonnet +1: DEF 28
+INSERT INTO `item_mods` VALUES (11183,5,35);      -- MP +35
+INSERT INTO `item_mods` VALUES (11183,113,8);     -- Enhancing magic skill +8
+INSERT INTO `item_mods` VALUES (11183,568,5);     -- Enhances Rapture effect +5%
+INSERT INTO `item_mods` VALUES (11183,569,5);     -- Enhances Ebullience effect +5%
 INSERT INTO `item_mods` VALUES (11184,1,65);
 INSERT INTO `item_mods` VALUES (11184,23,15);
 INSERT INTO `item_mods` VALUES (11184,25,15);
@@ -25862,41 +25862,42 @@ INSERT INTO `item_mods` VALUES (26777,31,59);
 INSERT INTO `item_mods` VALUES (26777,68,49);
 INSERT INTO `item_mods` VALUES (26777,73,8);
 INSERT INTO `item_mods` VALUES (26777,384,80);
-INSERT INTO `item_mods` VALUES (26778,1,66);
-INSERT INTO `item_mods` VALUES (26778,2,15);
-INSERT INTO `item_mods` VALUES (26778,5,46);
-INSERT INTO `item_mods` VALUES (26778,8,10);
-INSERT INTO `item_mods` VALUES (26778,9,10);
-INSERT INTO `item_mods` VALUES (26778,10,10);
-INSERT INTO `item_mods` VALUES (26778,11,2);
-INSERT INTO `item_mods` VALUES (26778,12,20);
-INSERT INTO `item_mods` VALUES (26778,13,18);
-INSERT INTO `item_mods` VALUES (26778,14,13);
-INSERT INTO `item_mods` VALUES (26778,29,3);
-INSERT INTO `item_mods` VALUES (26778,31,58);
-INSERT INTO `item_mods` VALUES (26778,68,15);
-INSERT INTO `item_mods` VALUES (26778,113,12);
-INSERT INTO `item_mods` VALUES (26778,370,10);
-INSERT INTO `item_mods` VALUES (26778,384,50);
-INSERT INTO `item_mods` VALUES (26778,568,12);
-INSERT INTO `item_mods` VALUES (26778,569,12);
-INSERT INTO `item_mods` VALUES (26779,1,93);
-INSERT INTO `item_mods` VALUES (26779,2,31);
-INSERT INTO `item_mods` VALUES (26779,5,56);
-INSERT INTO `item_mods` VALUES (26779,8,14);
-INSERT INTO `item_mods` VALUES (26779,9,14);
-INSERT INTO `item_mods` VALUES (26779,10,14);
-INSERT INTO `item_mods` VALUES (26779,11,3);
-INSERT INTO `item_mods` VALUES (26779,12,28);
-INSERT INTO `item_mods` VALUES (26779,13,24);
-INSERT INTO `item_mods` VALUES (26779,14,19);
-INSERT INTO `item_mods` VALUES (26779,29,6);
-INSERT INTO `item_mods` VALUES (26779,31,86);
-INSERT INTO `item_mods` VALUES (26779,68,33);
-INSERT INTO `item_mods` VALUES (26779,113,14);
-INSERT INTO `item_mods` VALUES (26779,384,60);
-INSERT INTO `item_mods` VALUES (26779,568,15);
-INSERT INTO `item_mods` VALUES (26779,569,15);
+INSERT INTO `item_mods` VALUES (26778,1,66);      -- Arbatel Bonnet: DEF 66
+INSERT INTO `item_mods` VALUES (26778,2,15);      -- HP +15
+INSERT INTO `item_mods` VALUES (26778,5,46);      -- MP +46
+INSERT INTO `item_mods` VALUES (26778,8,10);      -- STR +10
+INSERT INTO `item_mods` VALUES (26778,9,10);      -- DEX +10
+INSERT INTO `item_mods` VALUES (26778,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (26778,11,2);      -- AGI +2
+INSERT INTO `item_mods` VALUES (26778,12,20);     -- INT +20
+INSERT INTO `item_mods` VALUES (26778,13,18);     -- MND +18
+INSERT INTO `item_mods` VALUES (26778,14,13);     -- CHR +13
+INSERT INTO `item_mods` VALUES (26778,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (26778,31,58);     -- Magic Evasion +58
+INSERT INTO `item_mods` VALUES (26778,68,15);     -- Evasion +15
+INSERT INTO `item_mods` VALUES (26778,113,12);    -- Enhancing magic skill +12
+INSERT INTO `item_mods` VALUES (26778,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (26778,568,12);    -- Enhances Rapture effect +12%
+INSERT INTO `item_mods` VALUES (26778,569,12);    -- Enhances Ebullience effect +12%
+INSERT INTO `item_mods` VALUES (26778,838,10);    -- Regen potency +10%
+INSERT INTO `item_mods` VALUES (26779,1,93);      -- Arbatel Bonnet +1: DEF 93
+INSERT INTO `item_mods` VALUES (26779,2,31);      -- HP +31
+INSERT INTO `item_mods` VALUES (26779,5,56);      -- MP +56
+INSERT INTO `item_mods` VALUES (26779,8,14);      -- STR +14
+INSERT INTO `item_mods` VALUES (26779,9,14);      -- DEX +14
+INSERT INTO `item_mods` VALUES (26779,10,14);     -- VIT +14
+INSERT INTO `item_mods` VALUES (26779,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (26779,12,28);     -- INT +28
+INSERT INTO `item_mods` VALUES (26779,13,24);     -- MND +24
+INSERT INTO `item_mods` VALUES (26779,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (26779,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (26779,31,86);     -- Magic Evasion +86
+INSERT INTO `item_mods` VALUES (26779,68,33);     -- Evasion +33
+INSERT INTO `item_mods` VALUES (26779,113,14);    -- Enhancing magic skill +14
+INSERT INTO `item_mods` VALUES (26779,384,61);    -- Haste +6%
+INSERT INTO `item_mods` VALUES (26779,568,15);    -- Enhances Rapture effect +15%
+INSERT INTO `item_mods` VALUES (26779,569,15);    -- Enhances Ebullience effect +15%
+INSERT INTO `item_mods` VALUES (26779,838,15);    -- Regen potency +15%
 INSERT INTO `item_mods` VALUES (26785,1,96);
 INSERT INTO `item_mods` VALUES (26785,2,36);
 INSERT INTO `item_mods` VALUES (26785,5,32);
