@@ -24594,7 +24594,7 @@ INSERT INTO `item_mods` VALUES (26629,29,5);      -- Magic Def. Bonus +5
 INSERT INTO `item_mods` VALUES (26629,31,75);     -- Magic Evasion +75
 INSERT INTO `item_mods` VALUES (26629,68,36);     -- Evasion +36
 INSERT INTO `item_mods` VALUES (26629,384,61);    -- Haste +6%
-INSERT INTO `item_mods` VALUES (26628,519,13);    -- Cure spellcasting time -13%
+INSERT INTO `item_mods` VALUES (26629,519,13);    -- Cure spellcasting time -13%
 INSERT INTO `item_mods` VALUES (26630,1,70);
 INSERT INTO `item_mods` VALUES (26630,2,17);
 INSERT INTO `item_mods` VALUES (26630,5,26);
