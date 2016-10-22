@@ -13273,20 +13273,20 @@ INSERT INTO `item_mods` VALUES (14434,26,3);
 INSERT INTO `item_mods` VALUES (14434,61,2);
 INSERT INTO `item_mods` VALUES (14435,1,25);
 INSERT INTO `item_mods` VALUES (14435,11,3);
-INSERT INTO `item_mods` VALUES (14436,1,41);
-INSERT INTO `item_mods` VALUES (14436,6,7);
-INSERT INTO `item_mods` VALUES (14436,13,5);
-INSERT INTO `item_mods` VALUES (14436,27,-5);
-INSERT INTO `item_mods` VALUES (14436,827,5);
+INSERT INTO `item_mods` VALUES (14436,1,41);      -- Blessed Briault: DEF 41
+INSERT INTO `item_mods` VALUES (14436,6,7);       -- MP +7%
+INSERT INTO `item_mods` VALUES (14436,13,5);      -- MND +5
+INSERT INTO `item_mods` VALUES (14436,27,-5);     -- Enmity -5
+INSERT INTO `item_mods` VALUES (14436,827,5);     -- Barspell Magic Def. Bonus +5
 INSERT INTO `item_mods` VALUES (14437,1,47);      -- Hachiman Domaru: DEF 47
 INSERT INTO `item_mods` VALUES (14437,8,8);       -- STR +8
 INSERT INTO `item_mods` VALUES (14437,48,8);      -- Weapon Skill Accuracy +8
 INSERT INTO `item_mods` VALUES (14437,73,6);      -- Store TP +6
-INSERT INTO `item_mods` VALUES (14438,1,42);
-INSERT INTO `item_mods` VALUES (14438,6,8);
-INSERT INTO `item_mods` VALUES (14438,13,6);
-INSERT INTO `item_mods` VALUES (14438,27,-6);
-INSERT INTO `item_mods` VALUES (14438,827,5);
+INSERT INTO `item_mods` VALUES (14438,1,42);      -- Blessed Briault +1: DEF 42
+INSERT INTO `item_mods` VALUES (14438,6,8);       -- MP +8%
+INSERT INTO `item_mods` VALUES (14438,13,6);      -- MND +6
+INSERT INTO `item_mods` VALUES (14438,27,-6);     -- Enmity -6
+INSERT INTO `item_mods` VALUES (14438,827,5);     -- Barspell Magic Def. Bonus +5
 INSERT INTO `item_mods` VALUES (14439,1,48);      -- Hachiman Domaru +1: DEF 48
 INSERT INTO `item_mods` VALUES (14439,8,9);       -- STR +9
 INSERT INTO `item_mods` VALUES (14439,48,10);     -- Weapon Skill Accuracy +10
@@ -19812,8 +19812,9 @@ INSERT INTO `item_mods` VALUES (17073,13,10);
 INSERT INTO `item_mods` VALUES (17074,511,30);
 INSERT INTO `item_mods` VALUES (17075,2,27);
 INSERT INTO `item_mods` VALUES (17076,431,1);
-INSERT INTO `item_mods` VALUES (17077,112,15);
-INSERT INTO `item_mods` VALUES (17077,113,15);
+INSERT INTO `item_mods` VALUES (17077,112,15);    -- Beneficus: Healing magic skill +15
+INSERT INTO `item_mods` VALUES (17077,113,15);    -- Enhancing magic skill +15
+INSERT INTO `item_mods` VALUES (17077,827,5);     -- Barspell Magic Def. Bonus +5
 INSERT INTO `item_mods` VALUES (17078,28,8);
 INSERT INTO `item_mods` VALUES (17078,30,8);
 INSERT INTO `item_mods` VALUES (17078,401,1);
@@ -28740,38 +28741,40 @@ INSERT INTO `item_mods` VALUES (27155,68,33);
 INSERT INTO `item_mods` VALUES (27155,289,8);
 INSERT INTO `item_mods` VALUES (27155,384,61);
 INSERT INTO `item_mods` VALUES (27155,482,13);
-INSERT INTO `item_mods` VALUES (27156,1,76);
-INSERT INTO `item_mods` VALUES (27156,2,50);
-INSERT INTO `item_mods` VALUES (27156,5,54);
-INSERT INTO `item_mods` VALUES (27156,8,16);
-INSERT INTO `item_mods` VALUES (27156,10,8);
-INSERT INTO `item_mods` VALUES (27156,11,11);
-INSERT INTO `item_mods` VALUES (27156,12,21);
-INSERT INTO `item_mods` VALUES (27156,13,15);
-INSERT INTO `item_mods` VALUES (27156,14,12);
-INSERT INTO `item_mods` VALUES (27156,27,-5);
-INSERT INTO `item_mods` VALUES (27156,29,3);
-INSERT INTO `item_mods` VALUES (27156,31,73);
-INSERT INTO `item_mods` VALUES (27156,68,12);
-INSERT INTO `item_mods` VALUES (27156,112,20);
-INSERT INTO `item_mods` VALUES (27156,113,20);
-INSERT INTO `item_mods` VALUES (27156,384,41);
-INSERT INTO `item_mods` VALUES (27157,1,107);
-INSERT INTO `item_mods` VALUES (27157,2,73);
-INSERT INTO `item_mods` VALUES (27157,5,59);
-INSERT INTO `item_mods` VALUES (27157,8,25);
-INSERT INTO `item_mods` VALUES (27157,10,12);
-INSERT INTO `item_mods` VALUES (27157,11,17);
-INSERT INTO `item_mods` VALUES (27157,12,34);
-INSERT INTO `item_mods` VALUES (27157,13,24);
-INSERT INTO `item_mods` VALUES (27157,14,19);
-INSERT INTO `item_mods` VALUES (27157,27,-6);
-INSERT INTO `item_mods` VALUES (27157,29,6);
-INSERT INTO `item_mods` VALUES (27157,31,107);
-INSERT INTO `item_mods` VALUES (27157,68,27);
-INSERT INTO `item_mods` VALUES (27157,112,22);
-INSERT INTO `item_mods` VALUES (27157,113,22);
-INSERT INTO `item_mods` VALUES (27157,384,51);
+INSERT INTO `item_mods` VALUES (27156,1,76);      -- Piety Pantaloons: DEF 76
+INSERT INTO `item_mods` VALUES (27156,2,50);      -- HP +50
+INSERT INTO `item_mods` VALUES (27156,5,54);      -- MP +54
+INSERT INTO `item_mods` VALUES (27156,8,16);      -- STR +16
+INSERT INTO `item_mods` VALUES (27156,10,8);      -- VIT +8
+INSERT INTO `item_mods` VALUES (27156,11,11);     -- AGI +11
+INSERT INTO `item_mods` VALUES (27156,12,21);     -- INT +21
+INSERT INTO `item_mods` VALUES (27156,13,15);     -- MND +15
+INSERT INTO `item_mods` VALUES (27156,14,12);     -- CHR +12
+INSERT INTO `item_mods` VALUES (27156,27,-5);     -- Enmity -5
+INSERT INTO `item_mods` VALUES (27156,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (27156,31,73);     -- Magic Evasion +73
+INSERT INTO `item_mods` VALUES (27156,68,12);     -- Evasion +12
+INSERT INTO `item_mods` VALUES (27156,112,20);    -- Healing magic skill +20
+INSERT INTO `item_mods` VALUES (27156,113,20);    -- Enhancing magic skill +20
+INSERT INTO `item_mods` VALUES (27156,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27156,567,27);    -- Elemental resistance spells +27
+INSERT INTO `item_mods` VALUES (27157,1,107);     -- Piety Pantaloons +1: DEF 107
+INSERT INTO `item_mods` VALUES (27157,2,73);      -- HP +73
+INSERT INTO `item_mods` VALUES (27157,5,59);      -- MP +59
+INSERT INTO `item_mods` VALUES (27157,8,25);      -- STR +25
+INSERT INTO `item_mods` VALUES (27157,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (27157,11,17);     -- AGI +17
+INSERT INTO `item_mods` VALUES (27157,12,34);     -- INT +34
+INSERT INTO `item_mods` VALUES (27157,13,24);     -- MND +24
+INSERT INTO `item_mods` VALUES (27157,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (27157,27,-6);     -- Enmity -6
+INSERT INTO `item_mods` VALUES (27157,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (27157,31,107);    -- Magic Evasion +107
+INSERT INTO `item_mods` VALUES (27157,68,27);     -- Evasion +27
+INSERT INTO `item_mods` VALUES (27157,112,22);    -- Healing magic skill +22
+INSERT INTO `item_mods` VALUES (27157,113,22);    -- Enhancing magic skill +22
+INSERT INTO `item_mods` VALUES (27157,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (27157,567,30);    -- Elemental resistance spells +30
 INSERT INTO `item_mods` VALUES (27158,1,74);
 INSERT INTO `item_mods` VALUES (27158,2,20);
 INSERT INTO `item_mods` VALUES (27158,5,50);
