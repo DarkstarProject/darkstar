@@ -83,6 +83,8 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(TOAU) == FANGS_OF_THE_LION) then
         player:startEvent(3138,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) == false) then
+        player:startEvent(3149,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -173,6 +175,9 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
         player:setTitle(NASHMEIRAS_LOYALIST);
         player:addMission(TOAU,NASHMEIRAS_PLEA);
+    elseif (csid == 3149) then
+        player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
+        player:addKeyItem(MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     end

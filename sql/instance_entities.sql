@@ -172,6 +172,26 @@ INSERT INTO `instance_entities` VALUES (58,17093355);
 INSERT INTO `instance_entities` VALUES (58,17093357);
 INSERT INTO `instance_entities` VALUES (58,17093419);
 
+-- Nashmeira's Plea
+-- mobs
+INSERT INTO `instance_entities` VALUES (59,17093143);
+INSERT INTO `instance_entities` VALUES (59,17093144);
+INSERT INTO `instance_entities` VALUES (59,17093145);
+
+-- npc
+INSERT INTO `instance_entities` VALUES (59,17093419);
+INSERT INTO `instance_entities` VALUES (59,17093468);
+INSERT INTO `instance_entities` VALUES (59,17093469);
+INSERT INTO `instance_entities` VALUES (59,17093470);
+INSERT INTO `instance_entities` VALUES (59,17093471);
+INSERT INTO `instance_entities` VALUES (59,17093472);
+INSERT INTO `instance_entities` VALUES (59,17093473);
+INSERT INTO `instance_entities` VALUES (59,17093474);
+INSERT INTO `instance_entities` VALUES (59,17093475);
+INSERT INTO `instance_entities` VALUES (59,17093476);
+INSERT INTO `instance_entities` VALUES (59,17093477);
+INSERT INTO `instance_entities` VALUES (59,17093478);
+
 -- Arrapago Remnants
 -- npc
 INSERT INTO `instance_entities` VALUES (65,17080598);

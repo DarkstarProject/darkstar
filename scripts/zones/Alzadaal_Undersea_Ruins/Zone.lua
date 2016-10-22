@@ -53,6 +53,8 @@ function onZoneIn(player,prevZone)
 
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 2) then
         cs = 7;
+    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:getVar("AhtUrganStatus") == 2) then
+        cs = 10;
     end
 
     return cs;
@@ -194,5 +196,10 @@ function onEventFinish(player,csid,option)
         player:setTitle(NAJAS_COMRADEINARMS);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,FANGS_OF_THE_LION);
+    elseif (csid == 10) then
+        player:completeMission(TOAU,NASHMEIRAS_PLEA);
+        player:setTitle(PREVENTER_OF_RAGNAROK);
+        player:setVar("AhtUrganStatus",0);
+        player:addMission(TOAU,RAGNAROK);
     end
 end;

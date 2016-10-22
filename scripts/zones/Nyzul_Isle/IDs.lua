@@ -14,7 +14,7 @@ NyzulIsle = {
         TIME_REMAINING_SECONDS = 7305, -- second/seconds
         PARTY_FALLEN = 7307 -- party members have fallen in battle. Mission failure in
     },
-    
+
     mobs = {
         -- Path of Darkness
         [58] = {
@@ -25,13 +25,29 @@ NyzulIsle = {
             IMPERIAL_GEAR3 = 17093136,
             IMPERIAL_GEAR4 = 17093137,
             NAJA = 17093142,
+        },
+        [59] = {
+            RAZFAHD = 17093143,
+            ALEXANDER = 17093144,
+            RAUBAHN = 17093145,
         }
     },
-    
+
     npcs = {
-        _257 = 17093355;
-        _259 = 17093357;
-        WEATHER = 17093419;
+        _257 = 17093355,
+        _259 = 17093357,
+        QM1 = 17093468,
+        BLANK1 = 17093469,
+        BLANK2 = 17093470,
+        BLANK3 = 17093471,
+        NASHMEIRA1 = 17093472,
+        NASHMEIRA2 = 17093473,
+        RAZFAHD = 17093474,
+        CSNPC1 = 17093475,
+        GHATSAD = 17093476,
+        ALEXANDER = 17093477,
+        CSNPC2 = 17093478,
+        WEATHER = 17093419,
     }
 
 }

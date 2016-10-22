@@ -100,7 +100,7 @@ INSERT INTO `instance_list` VALUES (53,'the_black_coffin',54,30,0,-22,26,64);
 -- INSERT INTO `instance_list` VALUES (56,'royal_painter_escort',54,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (57,'targeting_the_captain',54,30,0.000,0.000,0.000,0);
 INSERT INTO `instance_list` VALUES (58,'path_of_darkness',72,30,500,0,-572,192);
--- INSERT INTO `instance_list` VALUES (59,'nashmeira\'s_plea',72,30,0.000,0.000,0.000,0);
+INSERT INTO `instance_list` VALUES (59,'nashmeira\'s_plea',72,45,-444,-4,420,127);
 -- INSERT INTO `instance_list` VALUES (60,'forging_a_new_myth',72,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (61,'waking_the_colossus',72,30,0.000,0.000,0.000,0);
 -- INSERT INTO `instance_list` VALUES (62,'zhayolm_remnants',72,100,0.000,0.000,0.000,0);

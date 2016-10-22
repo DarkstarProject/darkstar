@@ -31,6 +31,9 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("PathOfDarkness",1);
         player:startEvent(0x0195, 58, -6, 0, 99, 5, 0);
+    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1) then
+        player:setVar("NashmeirasPlea",1);
+        player:startEvent(0x0195, 59, -10, 0, 99, 5, 0);
     elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
@@ -94,6 +97,7 @@ function onEventUpdate(player,csid,option,target)
     player:setVar("AssaultCap", cap);
 
     local pathOfDarkness = player:getVar("PathOfDarkness");
+    local nashmeirasPlea = player:getVar("NashmeirasPlea");
 
     if(pathOfDarkness == 1) then
         local party = player:getParty();
@@ -115,6 +119,26 @@ function onEventUpdate(player,csid,option,target)
         end
 
         player:createInstance(58, 77);
+    elseif(nashmeirasPlea == 1) then
+        local party = player:getParty();
+
+        if (party ~= nil) then
+            for i,v in ipairs(party) do
+                if (v:getID() ~= player:getID()) then
+                    if (v:hasKeyItem(MYTHRIL_MIRROR) == false and v:hasCompletedMission(TOAU, NASHMEIRAS_PLEA) == false) then
+                        player:messageText(target,MEMBER_NO_REQS, false);
+                        player:instanceEntry(target,1);
+                        return;
+                    elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                        player:messageText(target,MEMBER_TOO_FAR, false);
+                        player:instanceEntry(target,1);
+                        return;
+                    end
+                end
+            end
+        end
+
+        player:createInstance(59, 77);
     else
         local party = player:getParty();
 
@@ -161,11 +185,15 @@ end;
 
 function onInstanceCreated(player,target,instance)
     local pathOfDarkness = player:getVar("PathOfDarkness");
+    local nashmeirasPlea = player:getVar("NashmeirasPlea");
 
     if (instance) then
         if (pathOfDarkness == 1) then
             player:setVar("PathOfDarkness", 0);
             player:delKeyItem(NYZUL_ISLE_ROUTE);
+        elseif (nashmeirasPlea == 1) then
+            player:setVar("NashmeirasPlea", 0);
+            player:delKeyItem(MYTHRIL_MIRROR);
         else
             instance:setLevelCap(player:getVar("AssaultCap"));
             player:setVar("AssaultCap", 0);
@@ -184,6 +212,8 @@ function onInstanceCreated(player,target,instance)
 
                     if (pathOfDarkness == 1) then
                         v:delKeyItem(NYZUL_ISLE_ROUTE);
+                    elseif (nashmeirasPlea == 1) then
+                        v:delKeyItem(MYTHRIL_MIRROR);
                     else
                         v:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
                     end
