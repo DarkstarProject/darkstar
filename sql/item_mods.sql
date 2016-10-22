@@ -630,19 +630,19 @@ INSERT INTO `item_mods` VALUES (10437,13,8);
 INSERT INTO `item_mods` VALUES (10437,14,8);
 INSERT INTO `item_mods` VALUES (10437,27,-6);
 INSERT INTO `item_mods` VALUES (10437,28,6);
-INSERT INTO `item_mods` VALUES (10438,1,49);
-INSERT INTO `item_mods` VALUES (10438,2,35);
-INSERT INTO `item_mods` VALUES (10438,5,35);
-INSERT INTO `item_mods` VALUES (10438,23,7);
-INSERT INTO `item_mods` VALUES (10438,25,7);
-INSERT INTO `item_mods` VALUES (10438,30,7);
-INSERT INTO `item_mods` VALUES (10438,384,51);
-INSERT INTO `item_mods` VALUES (10439,1,38);
-INSERT INTO `item_mods` VALUES (10439,27,-6);
-INSERT INTO `item_mods` VALUES (10439,28,7);
-INSERT INTO `item_mods` VALUES (10439,30,7);
-INSERT INTO `item_mods` VALUES (10439,168,20);
-INSERT INTO `item_mods` VALUES (10439,384,30);
+INSERT INTO `item_mods` VALUES (10438,1,49);      -- Enif Zucchetto: DEF 49
+INSERT INTO `item_mods` VALUES (10438,2,35);      -- HP +35
+INSERT INTO `item_mods` VALUES (10438,5,35);      -- MP +35
+INSERT INTO `item_mods` VALUES (10438,23,7);      -- Attack +7
+INSERT INTO `item_mods` VALUES (10438,25,7);      -- Accuracy +7
+INSERT INTO `item_mods` VALUES (10438,30,7);      -- Magic Accuracy +7
+INSERT INTO `item_mods` VALUES (10438,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (10439,1,38);      -- Adhara Turban: DEF 38
+INSERT INTO `item_mods` VALUES (10439,27,-6);     -- Enmity -6
+INSERT INTO `item_mods` VALUES (10439,28,7);      -- Magic Atk. Bonus +7
+INSERT INTO `item_mods` VALUES (10439,30,7);      -- Magic Accuracy +7
+INSERT INTO `item_mods` VALUES (10439,168,20);    -- Spell interruption rate down 20%
+INSERT INTO `item_mods` VALUES (10439,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (10440,1,46);
 INSERT INTO `item_mods` VALUES (10440,2,42);
 INSERT INTO `item_mods` VALUES (10440,5,42);
@@ -1163,9 +1163,9 @@ INSERT INTO `item_mods` VALUES (10541,12,9);
 INSERT INTO `item_mods` VALUES (10541,13,9);
 INSERT INTO `item_mods` VALUES (10541,30,6);
 INSERT INTO `item_mods` VALUES (10541,122,8);
-INSERT INTO `item_mods` VALUES (10542,1,29);
-INSERT INTO `item_mods` VALUES (10542,5,60);
-INSERT INTO `item_mods` VALUES (10542,168,20);
+INSERT INTO `item_mods` VALUES (10542,1,29);      -- Spurrina Gages: DEF 29
+INSERT INTO `item_mods` VALUES (10542,5,60);      -- MP +60
+INSERT INTO `item_mods` VALUES (10542,168,20);    -- Spell interruption rate down 20%
 INSERT INTO `item_mods` VALUES (10543,1,27);
 INSERT INTO `item_mods` VALUES (10543,14,12);
 INSERT INTO `item_mods` VALUES (10543,27,-6);
@@ -2012,12 +2012,12 @@ INSERT INTO `item_mods` VALUES (10715,8,5);
 INSERT INTO `item_mods` VALUES (10715,9,5);
 INSERT INTO `item_mods` VALUES (10715,25,10);
 INSERT INTO `item_mods` VALUES (10715,27,6);
-INSERT INTO `item_mods` VALUES (10716,1,56);
-INSERT INTO `item_mods` VALUES (10716,2,28);
-INSERT INTO `item_mods` VALUES (10716,8,7);
-INSERT INTO `item_mods` VALUES (10716,10,7);
-INSERT INTO `item_mods` VALUES (10716,27,6);
-INSERT INTO `item_mods` VALUES (10716,161,-4);
+INSERT INTO `item_mods` VALUES (10716,1,56);      -- Valor Breeches +2: DEF 56
+INSERT INTO `item_mods` VALUES (10716,2,28);      -- HP +28
+INSERT INTO `item_mods` VALUES (10716,8,7);       -- STR +7
+INSERT INTO `item_mods` VALUES (10716,10,7);      -- VIT +7
+INSERT INTO `item_mods` VALUES (10716,27,6);      -- Enmity +6
+INSERT INTO `item_mods` VALUES (10716,161,-4);    -- Physical damage taken -4%
 INSERT INTO `item_mods` VALUES (10717,1,49);
 INSERT INTO `item_mods` VALUES (10717,2,25);
 INSERT INTO `item_mods` VALUES (10717,5,25);
@@ -2450,10 +2450,10 @@ INSERT INTO `item_mods` VALUES (10838,1,8); -- PATENTIA SASH, DEF:8 Attack+8 Enh
 INSERT INTO `item_mods` VALUES (10838,23,8); -- ATT
 INSERT INTO `item_mods` VALUES (10838,259,1);  -- EN DUAL WIELD
 INSERT INTO `item_mods` VALUES (10838,73,5); -- STORETP
-INSERT INTO `item_mods` VALUES (10839,1,6);
-INSERT INTO `item_mods` VALUES (10839,27,-2);
-INSERT INTO `item_mods` VALUES (10839,28,6);
-INSERT INTO `item_mods` VALUES (10839,168,10);
+INSERT INTO `item_mods` VALUES (10839,1,6);       -- Othila Sash: DEF 6
+INSERT INTO `item_mods` VALUES (10839,27,-2);     -- Enmity -2
+INSERT INTO `item_mods` VALUES (10839,28,6);      -- Magic Atk. Bonus +6
+INSERT INTO `item_mods` VALUES (10839,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (10840,1,5); -- ASWANG SASH, DEF:5 MP+20 Magic Accuracy+3 "Magic Atk. Bonus"+3 Magic critical hit rate +5%
 INSERT INTO `item_mods` VALUES (10840,5,20); -- MP
 INSERT INTO `item_mods` VALUES (10840,30,3); -- MACC
@@ -4161,9 +4161,9 @@ INSERT INTO `item_mods` VALUES (11341,1,33);
 INSERT INTO `item_mods` VALUES (11341,5,8);
 INSERT INTO `item_mods` VALUES (11341,68,2);
 INSERT INTO `item_mods` VALUES (11341,71,2);
-INSERT INTO `item_mods` VALUES (11342,1,42);
-INSERT INTO `item_mods` VALUES (11342,168,10);
-INSERT INTO `item_mods` VALUES (11342,374,3);
+INSERT INTO `item_mods` VALUES (11342,1,42);      -- Restorer Cloak: DEF 42
+INSERT INTO `item_mods` VALUES (11342,168,10);    -- Spell interruption rate down 10%
+INSERT INTO `item_mods` VALUES (11342,374,3);     -- Cure potency +3%
 INSERT INTO `item_mods` VALUES (11343,1,39);
 INSERT INTO `item_mods` VALUES (11343,8,3);
 INSERT INTO `item_mods` VALUES (11343,9,3);
@@ -4248,9 +4248,9 @@ INSERT INTO `item_mods` VALUES (11364,1,30);
 INSERT INTO `item_mods` VALUES (11364,11,10);
 INSERT INTO `item_mods` VALUES (11364,68,5);
 INSERT INTO `item_mods` VALUES (11364,306,1);
-INSERT INTO `item_mods` VALUES (11365,1,18);
-INSERT INTO `item_mods` VALUES (11365,12,3);
-INSERT INTO `item_mods` VALUES (11365,168,15);
+INSERT INTO `item_mods` VALUES (11365,1,18);      -- Karasutengu Kogake: DEF 18
+INSERT INTO `item_mods` VALUES (11365,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (11365,168,15);    -- Spell interruption rate down 15%
 INSERT INTO `item_mods` VALUES (11366,1,16);
 INSERT INTO `item_mods` VALUES (11366,27,-3);
 INSERT INTO `item_mods` VALUES (11366,71,3);
@@ -5402,10 +5402,10 @@ INSERT INTO `item_mods` VALUES (11750,29,4);
 INSERT INTO `item_mods` VALUES (11751,1,6);
 INSERT INTO `item_mods` VALUES (11751,9,6);
 INSERT INTO `item_mods` VALUES (11751,384,60);
-INSERT INTO `item_mods` VALUES (11753,1,5);
-INSERT INTO `item_mods` VALUES (11753,5,20);
-INSERT INTO `item_mods` VALUES (11753,168,12);
-INSERT INTO `item_mods` VALUES (11753,832,1);
+INSERT INTO `item_mods` VALUES (11753,1,5);       -- Emphatikos Rope: DEF 5
+INSERT INTO `item_mods` VALUES (11753,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (11753,168,12);    -- Spell interruption rate down 12%
+INSERT INTO `item_mods` VALUES (11753,832,1);     -- Enhances Aquaveil effect
 INSERT INTO `item_mods` VALUES (11754,1,8);
 INSERT INTO `item_mods` VALUES (11754,8,5);
 INSERT INTO `item_mods` VALUES (11754,11,5);
@@ -5417,14 +5417,14 @@ INSERT INTO `item_mods` VALUES (11763,9,-8);
 INSERT INTO `item_mods` VALUES (11764,1,10);
 INSERT INTO `item_mods` VALUES (11764,8,9);
 INSERT INTO `item_mods` VALUES (11764,9,-7);
-INSERT INTO `item_mods` VALUES (11765,1,5);
-INSERT INTO `item_mods` VALUES (11765,12,5);
-INSERT INTO `item_mods` VALUES (11765,27,-3);
-INSERT INTO `item_mods` VALUES (11765,168,8);
-INSERT INTO `item_mods` VALUES (11766,1,6);
-INSERT INTO `item_mods` VALUES (11766,12,6);
-INSERT INTO `item_mods` VALUES (11766,27,-4);
-INSERT INTO `item_mods` VALUES (11766,168,10);
+INSERT INTO `item_mods` VALUES (11765,1,5);       -- Sanctuary Obi: DEF 5
+INSERT INTO `item_mods` VALUES (11765,12,5);      -- INT +5
+INSERT INTO `item_mods` VALUES (11765,27,-3);     -- Enmity -3
+INSERT INTO `item_mods` VALUES (11765,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (11766,1,6);       -- Sanctuary Obi +1: DEF 6
+INSERT INTO `item_mods` VALUES (11766,12,6);      -- INT +6
+INSERT INTO `item_mods` VALUES (11766,27,-4);     -- Enmity -4
+INSERT INTO `item_mods` VALUES (11766,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (11770,2,-10);
 INSERT INTO `item_mods` VALUES (11770,5,-10);
 INSERT INTO `item_mods` VALUES (11770,384,71);
@@ -7752,10 +7752,10 @@ INSERT INTO `item_mods` VALUES (12488,60,14);     -- Light resistance +14
 INSERT INTO `item_mods` VALUES (12488,289,4);     -- Subtle Blow +4
 INSERT INTO `item_mods` VALUES (12489,2,-30);
 INSERT INTO `item_mods` VALUES (12489,5,75);
-INSERT INTO `item_mods` VALUES (12490,1,22);
-INSERT INTO `item_mods` VALUES (12490,12,7);
-INSERT INTO `item_mods` VALUES (12490,27,2);
-INSERT INTO `item_mods` VALUES (12490,168,5);
+INSERT INTO `item_mods` VALUES (12490,1,22);      -- Yasha Jinpachi: DEF 22
+INSERT INTO `item_mods` VALUES (12490,12,7);      -- INT +7
+INSERT INTO `item_mods` VALUES (12490,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (12490,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (12492,1,27);
 INSERT INTO `item_mods` VALUES (12492,68,12);
 INSERT INTO `item_mods` VALUES (12492,161,-1);
@@ -8091,11 +8091,11 @@ INSERT INTO `item_mods` VALUES (12617,8,-2);
 INSERT INTO `item_mods` VALUES (12617,11,2);
 INSERT INTO `item_mods` VALUES (12617,106,10);
 INSERT INTO `item_mods` VALUES (12617,370,1);
-INSERT INTO `item_mods` VALUES (12618,1,43);
-INSERT INTO `item_mods` VALUES (12618,12,3);
-INSERT INTO `item_mods` VALUES (12618,27,4);
-INSERT INTO `item_mods` VALUES (12618,110,3);
-INSERT INTO `item_mods` VALUES (12618,168,10);
+INSERT INTO `item_mods` VALUES (12618,1,43);      -- Yasha Samue: DEF 43
+INSERT INTO `item_mods` VALUES (12618,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (12618,27,4);      -- Enmity +4
+INSERT INTO `item_mods` VALUES (12618,110,3);     -- Parrying skill +3
+INSERT INTO `item_mods` VALUES (12618,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (12620,1,65);
 INSERT INTO `item_mods` VALUES (12620,8,16);
 INSERT INTO `item_mods` VALUES (12620,23,32);
@@ -8149,11 +8149,11 @@ INSERT INTO `item_mods` VALUES (12641,5,16);
 INSERT INTO `item_mods` VALUES (12641,10,5);
 INSERT INTO `item_mods` VALUES (12641,27,-3);
 INSERT INTO `item_mods` VALUES (12641,114,10);
-INSERT INTO `item_mods` VALUES (12642,1,44);
-INSERT INTO `item_mods` VALUES (12642,5,14);
-INSERT INTO `item_mods` VALUES (12642,14,5);
-INSERT INTO `item_mods` VALUES (12642,114,15);
-INSERT INTO `item_mods` VALUES (12642,168,10);
+INSERT INTO `item_mods` VALUES (12642,1,44);      -- Warlock's Tabard: DEF 44
+INSERT INTO `item_mods` VALUES (12642,5,14);      -- MP +14
+INSERT INTO `item_mods` VALUES (12642,14,5);      -- CHR +5
+INSERT INTO `item_mods` VALUES (12642,114,15);    -- Enfeebling magic skill +15
+INSERT INTO `item_mods` VALUES (12642,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (12643,1,44);
 INSERT INTO `item_mods` VALUES (12643,2,20);
 INSERT INTO `item_mods` VALUES (12643,8,3);
@@ -8641,11 +8641,11 @@ INSERT INTO `item_mods` VALUES (12846,1,33);
 INSERT INTO `item_mods` VALUES (12846,8,3);
 INSERT INTO `item_mods` VALUES (12846,25,12);
 INSERT INTO `item_mods` VALUES (12846,27,3);
-INSERT INTO `item_mods` VALUES (12847,1,31);
-INSERT INTO `item_mods` VALUES (12847,2,25);
-INSERT INTO `item_mods` VALUES (12847,12,2);
-INSERT INTO `item_mods` VALUES (12847,27,2);
-INSERT INTO `item_mods` VALUES (12847,168,2);
+INSERT INTO `item_mods` VALUES (12847,1,31);      -- Yasha Hakama: DEF 31
+INSERT INTO `item_mods` VALUES (12847,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (12847,12,2);      -- INT +2
+INSERT INTO `item_mods` VALUES (12847,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (12847,168,2);     -- Spell interruption rate down 2%
 INSERT INTO `item_mods` VALUES (12848,1,7);
 INSERT INTO `item_mods` VALUES (12849,1,12);
 INSERT INTO `item_mods` VALUES (12850,1,17);
@@ -8989,11 +8989,11 @@ INSERT INTO `item_mods` VALUES (13001,12,8);      -- INT +8
 INSERT INTO `item_mods` VALUES (13001,115,3);     -- Elemental magic skill +3
 INSERT INTO `item_mods` VALUES (13001,116,3);     -- Dark magic skill +3
 INSERT INTO `item_mods` VALUES (13001,170,3);     -- Fast Cast +3%
-INSERT INTO `item_mods` VALUES (13002,1,13);
-INSERT INTO `item_mods` VALUES (13002,2,10);
-INSERT INTO `item_mods` VALUES (13002,12,3);
-INSERT INTO `item_mods` VALUES (13002,27,2);
-INSERT INTO `item_mods` VALUES (13002,168,5);
+INSERT INTO `item_mods` VALUES (13002,1,13);      -- Yasha Sune-Ate: DEF 13
+INSERT INTO `item_mods` VALUES (13002,2,10);      -- HP +10
+INSERT INTO `item_mods` VALUES (13002,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (13002,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (13002,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (13003,1,2);
 INSERT INTO `item_mods` VALUES (13003,56,3);
 INSERT INTO `item_mods` VALUES (13003,57,3);
@@ -9357,7 +9357,7 @@ INSERT INTO `item_mods` VALUES (13172,1,2);
 INSERT INTO `item_mods` VALUES (13172,71,1);
 INSERT INTO `item_mods` VALUES (13172,72,1);
 INSERT INTO `item_mods` VALUES (13173,1,4);
-INSERT INTO `item_mods` VALUES (13174,168,5);
+INSERT INTO `item_mods` VALUES (13174,168,5);     -- Willpower Torque: Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (13175,11,2);
 INSERT INTO `item_mods` VALUES (13175,13,6);
 INSERT INTO `item_mods` VALUES (13176,12,3);
@@ -9377,12 +9377,12 @@ INSERT INTO `item_mods` VALUES (13186,161,-5);
 INSERT INTO `item_mods` VALUES (13186,289,5);
 INSERT INTO `item_mods` VALUES (13186,384,122);
 INSERT INTO `item_mods` VALUES (13187,1,6);
-INSERT INTO `item_mods` VALUES (13188,1,8);
-INSERT INTO `item_mods` VALUES (13188,5,15);
-INSERT INTO `item_mods` VALUES (13188,168,8);
+INSERT INTO `item_mods` VALUES (13188,1,8);       -- Star Sash: DEF 8
+INSERT INTO `item_mods` VALUES (13188,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (13188,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (13189,384,61);
-INSERT INTO `item_mods` VALUES (13190,1,2);
-INSERT INTO `item_mods` VALUES (13190,168,8);
+INSERT INTO `item_mods` VALUES (13190,1,2);       -- Heko Obi +1: DEF 2
+INSERT INTO `item_mods` VALUES (13190,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (13191,1,3);
 INSERT INTO `item_mods` VALUES (13192,1,1);
 INSERT INTO `item_mods` VALUES (13193,1,2);
@@ -9422,9 +9422,9 @@ INSERT INTO `item_mods` VALUES (13211,5,5);
 INSERT INTO `item_mods` VALUES (13211,13,1);
 INSERT INTO `item_mods` VALUES (13211,60,2);
 INSERT INTO `item_mods` VALUES (13211,61,2);
-INSERT INTO `item_mods` VALUES (13212,1,7);
-INSERT INTO `item_mods` VALUES (13212,5,10);
-INSERT INTO `item_mods` VALUES (13212,168,6);
+INSERT INTO `item_mods` VALUES (13212,1,7);       -- Tarutaru Sash: DEF 7
+INSERT INTO `item_mods` VALUES (13212,5,10);      -- MP +10
+INSERT INTO `item_mods` VALUES (13212,168,6);     -- Spell interruption rate down 6%
 INSERT INTO `item_mods` VALUES (13213,1,4);
 INSERT INTO `item_mods` VALUES (13214,1,5);
 INSERT INTO `item_mods` VALUES (13215,1,40);
@@ -9454,8 +9454,8 @@ INSERT INTO `item_mods` VALUES (13222,1,3);
 INSERT INTO `item_mods` VALUES (13222,2,3);
 INSERT INTO `item_mods` VALUES (13222,5,3);
 INSERT INTO `item_mods` VALUES (13223,1,4);
-INSERT INTO `item_mods` VALUES (13224,1,3);
-INSERT INTO `item_mods` VALUES (13224,168,8);
+INSERT INTO `item_mods` VALUES (13224,1,3);       -- Silver Obi +1: DEF 3
+INSERT INTO `item_mods` VALUES (13224,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (13225,1,3);
 INSERT INTO `item_mods` VALUES (13225,8,2);
 INSERT INTO `item_mods` VALUES (13225,9,-1);
@@ -9475,23 +9475,23 @@ INSERT INTO `item_mods` VALUES (13230,5,8);
 INSERT INTO `item_mods` VALUES (13231,25,10);
 INSERT INTO `item_mods` VALUES (13232,1,5);
 INSERT INTO `item_mods` VALUES (13232,23,12);
-INSERT INTO `item_mods` VALUES (13233,1,4);
-INSERT INTO `item_mods` VALUES (13233,168,8);
-INSERT INTO `item_mods` VALUES (13234,1,5);
-INSERT INTO `item_mods` VALUES (13234,168,8);
-INSERT INTO `item_mods` VALUES (13235,1,6);
-INSERT INTO `item_mods` VALUES (13235,168,8);
+INSERT INTO `item_mods` VALUES (13233,1,4);       -- Gold Obi +1: DEF 4
+INSERT INTO `item_mods` VALUES (13233,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (13234,1,5);       -- Brocade Obi +1: DEF 5
+INSERT INTO `item_mods` VALUES (13234,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (13235,1,6);       -- Prism Obi: DEF 6
+INSERT INTO `item_mods` VALUES (13235,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (13236,1,6);
 INSERT INTO `item_mods` VALUES (13236,23,5);
 INSERT INTO `item_mods` VALUES (13236,25,5);
 INSERT INTO `item_mods` VALUES (13237,1,3);
 INSERT INTO `item_mods` VALUES (13237,2,17);
 INSERT INTO `item_mods` VALUES (13237,68,5);
-INSERT INTO `item_mods` VALUES (13238,1,3);
-INSERT INTO `item_mods` VALUES (13238,12,1);
-INSERT INTO `item_mods` VALUES (13238,13,1);
-INSERT INTO `item_mods` VALUES (13238,14,1);
-INSERT INTO `item_mods` VALUES (13238,168,10);
+INSERT INTO `item_mods` VALUES (13238,1,3);       -- Druid's Rope: DEF 3
+INSERT INTO `item_mods` VALUES (13238,12,1);      -- INT +1
+INSERT INTO `item_mods` VALUES (13238,13,1);      -- MND +1
+INSERT INTO `item_mods` VALUES (13238,14,1);      -- CHR +1
+INSERT INTO `item_mods` VALUES (13238,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (13239,1,8);
 INSERT INTO `item_mods` VALUES (13239,2,25);
 INSERT INTO `item_mods` VALUES (13239,14,4);
@@ -9627,17 +9627,17 @@ INSERT INTO `item_mods` VALUES (13272,14,6);
 INSERT INTO `item_mods` VALUES (13273,1,4);
 INSERT INTO `item_mods` VALUES (13273,13,2);
 INSERT INTO `item_mods` VALUES (13273,241,2);
-INSERT INTO `item_mods` VALUES (13274,1,5);
-INSERT INTO `item_mods` VALUES (13274,13,3);
-INSERT INTO `item_mods` VALUES (13274,168,8);
-INSERT INTO `item_mods` VALUES (13274,241,2);
+INSERT INTO `item_mods` VALUES (13274,1,5);       -- Twinthread Obi +1: DEF 5
+INSERT INTO `item_mods` VALUES (13274,13,3);      -- MND +3
+INSERT INTO `item_mods` VALUES (13274,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (13274,241,2);     -- Enhances Resist Poison effect
 INSERT INTO `item_mods` VALUES (13275,1,4);
 INSERT INTO `item_mods` VALUES (13275,12,2);
 INSERT INTO `item_mods` VALUES (13275,250,2);
-INSERT INTO `item_mods` VALUES (13276,1,5);
-INSERT INTO `item_mods` VALUES (13276,12,3);
-INSERT INTO `item_mods` VALUES (13276,168,8);
-INSERT INTO `item_mods` VALUES (13276,250,3);
+INSERT INTO `item_mods` VALUES (13276,1,5);       -- Arachne Obi +1: DEF 5
+INSERT INTO `item_mods` VALUES (13276,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (13276,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (13276,250,3);     -- Enhances Resist Slow effect
 INSERT INTO `item_mods` VALUES (13277,1,6);
 INSERT INTO `item_mods` VALUES (13277,8,2);
 INSERT INTO `item_mods` VALUES (13277,9,2);
@@ -11551,10 +11551,10 @@ INSERT INTO `item_mods` VALUES (13956,2,4);
 INSERT INTO `item_mods` VALUES (13956,55,-2);
 INSERT INTO `item_mods` VALUES (13956,59,7);
 INSERT INTO `item_mods` VALUES (13956,61,7);
-INSERT INTO `item_mods` VALUES (13957,1,16);
-INSERT INTO `item_mods` VALUES (13957,27,2);
-INSERT INTO `item_mods` VALUES (13957,110,7);
-INSERT INTO `item_mods` VALUES (13957,168,3);
+INSERT INTO `item_mods` VALUES (13957,1,16);      -- Yasha Tekko: DEF 16
+INSERT INTO `item_mods` VALUES (13957,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (13957,110,7);     -- Parrying skill +7
+INSERT INTO `item_mods` VALUES (13957,168,3);     -- Spell interruption rate down 3%
 INSERT INTO `item_mods` VALUES (13958,1,14);
 INSERT INTO `item_mods` VALUES (13958,12,1);
 INSERT INTO `item_mods` VALUES (13958,54,-1);
@@ -11979,15 +11979,15 @@ INSERT INTO `item_mods` VALUES (14090,2,12);
 INSERT INTO `item_mods` VALUES (14090,9,3);
 INSERT INTO `item_mods` VALUES (14090,60,10);
 INSERT INTO `item_mods` VALUES (14090,552,10);
-INSERT INTO `item_mods` VALUES (14091,1,12);
-INSERT INTO `item_mods` VALUES (14091,5,10);
-INSERT INTO `item_mods` VALUES (14091,11,3);
-INSERT INTO `item_mods` VALUES (14091,168,20);
-INSERT INTO `item_mods` VALUES (14092,1,11);
-INSERT INTO `item_mods` VALUES (14092,5,10);
-INSERT INTO `item_mods` VALUES (14092,11,3);
-INSERT INTO `item_mods` VALUES (14092,27,-1);
-INSERT INTO `item_mods` VALUES (14092,168,20);
+INSERT INTO `item_mods` VALUES (14091,1,12);      -- Healer's Duckbills: DEF 12
+INSERT INTO `item_mods` VALUES (14091,5,10);      -- MP +10
+INSERT INTO `item_mods` VALUES (14091,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (14091,168,20);    -- Spell interruption rate down 20%
+INSERT INTO `item_mods` VALUES (14092,1,11);      -- Wizard's Sabots: DEF 11
+INSERT INTO `item_mods` VALUES (14092,5,10);      -- MP +10
+INSERT INTO `item_mods` VALUES (14092,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (14092,27,-1);     -- Enmity -1
+INSERT INTO `item_mods` VALUES (14092,168,20);    -- Spell interruption rate down 20%
 INSERT INTO `item_mods` VALUES (14093,1,13);
 INSERT INTO `item_mods` VALUES (14093,5,11);
 INSERT INTO `item_mods` VALUES (14093,11,3);
@@ -13292,11 +13292,11 @@ INSERT INTO `item_mods` VALUES (14441,5,25);
 INSERT INTO `item_mods` VALUES (14441,25,6);
 INSERT INTO `item_mods` VALUES (14441,27,-3);
 INSERT INTO `item_mods` VALUES (14441,30,6);
-INSERT INTO `item_mods` VALUES (14442,1,44);
-INSERT INTO `item_mods` VALUES (14442,12,4);
-INSERT INTO `item_mods` VALUES (14442,27,5);
-INSERT INTO `item_mods` VALUES (14442,110,4);
-INSERT INTO `item_mods` VALUES (14442,168,11);
+INSERT INTO `item_mods` VALUES (14442,1,44);      -- Yasha Samue +1: DEF 44
+INSERT INTO `item_mods` VALUES (14442,12,4);      -- INT +4
+INSERT INTO `item_mods` VALUES (14442,27,5);      -- Enmity +5
+INSERT INTO `item_mods` VALUES (14442,110,4);     -- Parrying skill +4
+INSERT INTO `item_mods` VALUES (14442,168,11);    -- Spell interruption rate down 11%
 INSERT INTO `item_mods` VALUES (14443,1,65);
 INSERT INTO `item_mods` VALUES (14444,1,30);
 INSERT INTO `item_mods` VALUES (14445,1,30);
@@ -13392,11 +13392,11 @@ INSERT INTO `item_mods` VALUES (14476,5,36);
 INSERT INTO `item_mods` VALUES (14476,27,-5);
 INSERT INTO `item_mods` VALUES (14476,71,5);
 INSERT INTO `item_mods` VALUES (14476,114,12);
-INSERT INTO `item_mods` VALUES (14477,1,44);
-INSERT INTO `item_mods` VALUES (14477,5,34);
-INSERT INTO `item_mods` VALUES (14477,71,5);
-INSERT INTO `item_mods` VALUES (14477,114,15);
-INSERT INTO `item_mods` VALUES (14477,168,12);
+INSERT INTO `item_mods` VALUES (14477,1,44);      -- Warlock's Tabard +1: DEF 44
+INSERT INTO `item_mods` VALUES (14477,5,34);      -- MP +34
+INSERT INTO `item_mods` VALUES (14477,71,5);      -- MP recovered while healing +5
+INSERT INTO `item_mods` VALUES (14477,114,15);    -- Enfeebling magic skill +15
+INSERT INTO `item_mods` VALUES (14477,168,12);    -- Spell interruption rate down 12%
 INSERT INTO `item_mods` VALUES (14478,1,45);
 INSERT INTO `item_mods` VALUES (14478,2,20);
 INSERT INTO `item_mods` VALUES (14478,8,6);
@@ -14264,8 +14264,9 @@ INSERT INTO `item_mods` VALUES (14754,233,-2);
 INSERT INTO `item_mods` VALUES (14754,234,2);
 INSERT INTO `item_mods` VALUES (14756,25,2);
 INSERT INTO `item_mods` VALUES (14757,1,1);
-INSERT INTO `item_mods` VALUES (14758,168,9);
-INSERT INTO `item_mods` VALUES (14758,385,10);
+INSERT INTO `item_mods` VALUES (14758,168,9);     -- Knightly Earring: Spell interruption rate down 9%
+INSERT INTO `item_mods` VALUES (14758,385,10);    -- Shield Bash +10
+INSERT INTO `item_mods` VALUES (14758,392,10);    -- Weapon Bash +10
 INSERT INTO `item_mods` VALUES (14760,12,1);
 INSERT INTO `item_mods` VALUES (14761,1,1);
 INSERT INTO `item_mods` VALUES (14761,68,5);
@@ -14604,10 +14605,10 @@ INSERT INTO `item_mods` VALUES (14881,13,5);
 INSERT INTO `item_mods` VALUES (14881,25,4);
 INSERT INTO `item_mods` VALUES (14881,26,3);
 INSERT INTO `item_mods` VALUES (14881,27,-3);
-INSERT INTO `item_mods` VALUES (14882,1,17);
-INSERT INTO `item_mods` VALUES (14882,27,3);
-INSERT INTO `item_mods` VALUES (14882,110,8);
-INSERT INTO `item_mods` VALUES (14882,168,4);
+INSERT INTO `item_mods` VALUES (14882,1,17);      -- Yasha Tekko +1: DEF 17
+INSERT INTO `item_mods` VALUES (14882,27,3);      -- Enmity +3
+INSERT INTO `item_mods` VALUES (14882,110,8);     -- Parrying skill +8
+INSERT INTO `item_mods` VALUES (14882,168,4);     -- Spell interruption rate down 4%
 INSERT INTO `item_mods` VALUES (14883,1,19);
 INSERT INTO `item_mods` VALUES (14883,2,20);
 INSERT INTO `item_mods` VALUES (14883,10,3);
@@ -15096,11 +15097,11 @@ INSERT INTO `item_mods` VALUES (15003,2,12);
 INSERT INTO `item_mods` VALUES (15003,9,2);
 INSERT INTO `item_mods` VALUES (15003,11,2);
 INSERT INTO `item_mods` VALUES (15003,403,10);
-INSERT INTO `item_mods` VALUES (15004,1,13);
-INSERT INTO `item_mods` VALUES (15004,5,15);
-INSERT INTO `item_mods` VALUES (15004,13,3);
-INSERT INTO `item_mods` VALUES (15004,27,-2);
-INSERT INTO `item_mods` VALUES (15004,168,20);
+INSERT INTO `item_mods` VALUES (15004,1,13);      -- Scholar's Bracers: DEF 13
+INSERT INTO `item_mods` VALUES (15004,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (15004,13,3);      -- MND +3
+INSERT INTO `item_mods` VALUES (15004,27,-2);     -- Enmity -2
+INSERT INTO `item_mods` VALUES (15004,168,20);    -- Spell interruption rate down 20%
 INSERT INTO `item_mods` VALUES (15005,1,9);
 INSERT INTO `item_mods` VALUES (15005,25,3);
 INSERT INTO `item_mods` VALUES (15006,1,13);
@@ -15234,11 +15235,11 @@ INSERT INTO `item_mods` VALUES (15036,9,4);
 INSERT INTO `item_mods` VALUES (15036,11,4);
 INSERT INTO `item_mods` VALUES (15036,23,5);
 INSERT INTO `item_mods` VALUES (15036,403,10);
-INSERT INTO `item_mods` VALUES (15037,1,14);
-INSERT INTO `item_mods` VALUES (15037,5,20);
-INSERT INTO `item_mods` VALUES (15037,13,5);
-INSERT INTO `item_mods` VALUES (15037,27,-3);
-INSERT INTO `item_mods` VALUES (15037,168,20);
+INSERT INTO `item_mods` VALUES (15037,1,14);      -- Scholar's Bracers +1: DEF 14
+INSERT INTO `item_mods` VALUES (15037,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15037,13,5);      -- MND +5
+INSERT INTO `item_mods` VALUES (15037,27,-3);     -- Enmity -3
+INSERT INTO `item_mods` VALUES (15037,168,20);    -- Spell interruption rate down 20%
 INSERT INTO `item_mods` VALUES (15038,1,17);
 INSERT INTO `item_mods` VALUES (15038,2,15);
 INSERT INTO `item_mods` VALUES (15038,10,3);
@@ -15591,11 +15592,11 @@ INSERT INTO `item_mods` VALUES (15122,1,34);
 INSERT INTO `item_mods` VALUES (15122,2,19);
 INSERT INTO `item_mods` VALUES (15122,27,4);
 INSERT INTO `item_mods` VALUES (15122,298,5);
-INSERT INTO `item_mods` VALUES (15123,1,43);
-INSERT INTO `item_mods` VALUES (15123,2,20);
-INSERT INTO `item_mods` VALUES (15123,8,5);
-INSERT INTO `item_mods` VALUES (15123,27,3);
-INSERT INTO `item_mods` VALUES (15123,168,10);
+INSERT INTO `item_mods` VALUES (15123,1,43);      -- Valor Breeches: DEF 43
+INSERT INTO `item_mods` VALUES (15123,2,20);      -- HP +20
+INSERT INTO `item_mods` VALUES (15123,8,5);       -- STR +5
+INSERT INTO `item_mods` VALUES (15123,27,3);      -- Enmity +3
+INSERT INTO `item_mods` VALUES (15123,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (15124,1,38);
 INSERT INTO `item_mods` VALUES (15124,5,18);
 INSERT INTO `item_mods` VALUES (15124,13,5);
@@ -15833,10 +15834,10 @@ INSERT INTO `item_mods` VALUES (15191,5,15);
 INSERT INTO `item_mods` VALUES (15191,25,3);
 INSERT INTO `item_mods` VALUES (15191,26,4);
 INSERT INTO `item_mods` VALUES (15191,30,6);
-INSERT INTO `item_mods` VALUES (15192,1,23);
-INSERT INTO `item_mods` VALUES (15192,12,8);
-INSERT INTO `item_mods` VALUES (15192,27,3);
-INSERT INTO `item_mods` VALUES (15192,168,6);
+INSERT INTO `item_mods` VALUES (15192,1,23);      -- Yasha Jinpachi +1: DEF 23
+INSERT INTO `item_mods` VALUES (15192,12,8);      -- INT +8
+INSERT INTO `item_mods` VALUES (15192,27,3);      -- Enmity +3
+INSERT INTO `item_mods` VALUES (15192,168,6);     -- Spell interruption rate down 6%
 INSERT INTO `item_mods` VALUES (15193,1,27);
 INSERT INTO `item_mods` VALUES (15193,2,15);
 INSERT INTO `item_mods` VALUES (15193,10,3);
@@ -16072,11 +16073,11 @@ INSERT INTO `item_mods` VALUES (15240,5,22);
 INSERT INTO `item_mods` VALUES (15240,25,4);
 INSERT INTO `item_mods` VALUES (15240,30,4);
 INSERT INTO `item_mods` VALUES (15240,384,30);
-INSERT INTO `item_mods` VALUES (15241,1,19);
-INSERT INTO `item_mods` VALUES (15241,27,-5);
-INSERT INTO `item_mods` VALUES (15241,30,5);
-INSERT INTO `item_mods` VALUES (15241,168,10);
-INSERT INTO `item_mods` VALUES (15241,384,20);
+INSERT INTO `item_mods` VALUES (15241,1,19);      -- Nashira Turban: DEF 19
+INSERT INTO `item_mods` VALUES (15241,27,-5);     -- Enmity -5
+INSERT INTO `item_mods` VALUES (15241,30,5);      -- Magic Accuracy +5
+INSERT INTO `item_mods` VALUES (15241,168,10);    -- Spell interruption rate down 10%
+INSERT INTO `item_mods` VALUES (15241,384,21);    -- Haste +2%
 INSERT INTO `item_mods` VALUES (15242,1,15);
 INSERT INTO `item_mods` VALUES (15242,27,-7);
 INSERT INTO `item_mods` VALUES (15242,68,4);
@@ -16372,11 +16373,11 @@ INSERT INTO `item_mods` VALUES (15335,12,5);
 INSERT INTO `item_mods` VALUES (15335,25,3);
 INSERT INTO `item_mods` VALUES (15335,26,4);
 INSERT INTO `item_mods` VALUES (15335,27,-2);
-INSERT INTO `item_mods` VALUES (15336,1,14);
-INSERT INTO `item_mods` VALUES (15336,2,12);
-INSERT INTO `item_mods` VALUES (15336,12,4);
-INSERT INTO `item_mods` VALUES (15336,27,3);
-INSERT INTO `item_mods` VALUES (15336,168,6);
+INSERT INTO `item_mods` VALUES (15336,1,14);      -- Yasha Sune-ate +1: DEF 14
+INSERT INTO `item_mods` VALUES (15336,2,12);      -- HP +12
+INSERT INTO `item_mods` VALUES (15336,12,4);      -- INT +4
+INSERT INTO `item_mods` VALUES (15336,27,3);      -- Enmity +3
+INSERT INTO `item_mods` VALUES (15336,168,6);     -- Spell interruption rate down 6%
 INSERT INTO `item_mods` VALUES (15337,1,17);
 INSERT INTO `item_mods` VALUES (15337,2,10);
 INSERT INTO `item_mods` VALUES (15337,10,2);
@@ -16410,11 +16411,11 @@ INSERT INTO `item_mods` VALUES (15346,1,26);
 INSERT INTO `item_mods` VALUES (15346,2,34);
 INSERT INTO `item_mods` VALUES (15346,8,4);
 INSERT INTO `item_mods` VALUES (15347,1,9);
-INSERT INTO `item_mods` VALUES (15348,1,7);
-INSERT INTO `item_mods` VALUES (15348,8,1);
-INSERT INTO `item_mods` VALUES (15348,12,2);
-INSERT INTO `item_mods` VALUES (15348,68,2);
-INSERT INTO `item_mods` VALUES (15348,168,5);
+INSERT INTO `item_mods` VALUES (15348,1,7);       -- Mountain Gaiters: DEF 7
+INSERT INTO `item_mods` VALUES (15348,8,1);       -- STR +1
+INSERT INTO `item_mods` VALUES (15348,12,2);      -- INT +2
+INSERT INTO `item_mods` VALUES (15348,68,2);      -- Evasion +2
+INSERT INTO `item_mods` VALUES (15348,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (15349,1,16);
 INSERT INTO `item_mods` VALUES (15349,8,3);
 INSERT INTO `item_mods` VALUES (15349,10,2);
@@ -16441,18 +16442,18 @@ INSERT INTO `item_mods` VALUES (15353,9,5);
 INSERT INTO `item_mods` VALUES (15353,13,5);
 INSERT INTO `item_mods` VALUES (15353,68,10);
 INSERT INTO `item_mods` VALUES (15353,552,10);
-INSERT INTO `item_mods` VALUES (15354,1,12);
-INSERT INTO `item_mods` VALUES (15354,5,15);
-INSERT INTO `item_mods` VALUES (15354,11,5);
-INSERT INTO `item_mods` VALUES (15354,12,5);
-INSERT INTO `item_mods` VALUES (15354,71,1);
-INSERT INTO `item_mods` VALUES (15354,168,25);
-INSERT INTO `item_mods` VALUES (15355,1,11);
-INSERT INTO `item_mods` VALUES (15355,5,15);
-INSERT INTO `item_mods` VALUES (15355,11,5);
-INSERT INTO `item_mods` VALUES (15355,13,5);
-INSERT INTO `item_mods` VALUES (15355,71,1);
-INSERT INTO `item_mods` VALUES (15355,168,20);
+INSERT INTO `item_mods` VALUES (15354,1,12);      -- Healer's Duckbills +1: DEF 12
+INSERT INTO `item_mods` VALUES (15354,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (15354,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (15354,12,5);      -- INT +5
+INSERT INTO `item_mods` VALUES (15354,71,1);      -- MP recovered while healing +1
+INSERT INTO `item_mods` VALUES (15354,168,25);    -- Spell interruption rate down 25%
+INSERT INTO `item_mods` VALUES (15355,1,11);      -- Wizard's Sabots +1: DEF 11
+INSERT INTO `item_mods` VALUES (15355,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (15355,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (15355,13,5);      -- MND +5
+INSERT INTO `item_mods` VALUES (15355,71,1);      -- MP recovered while healing +1
+INSERT INTO `item_mods` VALUES (15355,168,20);    -- Spell interruption rate down 20%
 INSERT INTO `item_mods` VALUES (15356,1,15);
 INSERT INTO `item_mods` VALUES (15356,5,16);
 INSERT INTO `item_mods` VALUES (15356,11,3);
@@ -16596,11 +16597,11 @@ INSERT INTO `item_mods` VALUES (15397,5,20);
 INSERT INTO `item_mods` VALUES (15397,25,2);
 INSERT INTO `item_mods` VALUES (15397,27,-5);
 INSERT INTO `item_mods` VALUES (15397,30,3);
-INSERT INTO `item_mods` VALUES (15398,1,32);
-INSERT INTO `item_mods` VALUES (15398,2,30);
-INSERT INTO `item_mods` VALUES (15398,12,3);
-INSERT INTO `item_mods` VALUES (15398,27,3);
-INSERT INTO `item_mods` VALUES (15398,168,3);
+INSERT INTO `item_mods` VALUES (15398,1,32);      -- Yasha Hakama +1: DEF 32
+INSERT INTO `item_mods` VALUES (15398,2,30);      -- HP +30
+INSERT INTO `item_mods` VALUES (15398,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15398,27,3);      -- Enmity +3
+INSERT INTO `item_mods` VALUES (15398,168,3);     -- Spell interruption rate down 3%
 INSERT INTO `item_mods` VALUES (15399,1,39);
 INSERT INTO `item_mods` VALUES (15399,2,12);
 INSERT INTO `item_mods` VALUES (15399,10,3);
@@ -16728,11 +16729,11 @@ INSERT INTO `item_mods` VALUES (15456,27,2);
 INSERT INTO `item_mods` VALUES (15457,23,-5);
 INSERT INTO `item_mods` VALUES (15457,25,3);
 INSERT INTO `item_mods` VALUES (15457,384,40);
-INSERT INTO `item_mods` VALUES (15458,1,6);
-INSERT INTO `item_mods` VALUES (15458,23,6);
-INSERT INTO `item_mods` VALUES (15458,168,6);
-INSERT INTO `item_mods` VALUES (15458,289,6);
-INSERT INTO `item_mods` VALUES (15458,384,61);
+INSERT INTO `item_mods` VALUES (15458,1,6);       -- Ninurta's Sash: DEF 6
+INSERT INTO `item_mods` VALUES (15458,23,6);      -- Attack +6
+INSERT INTO `item_mods` VALUES (15458,168,6);     -- Spell interruption rate down 6%
+INSERT INTO `item_mods` VALUES (15458,289,6);     -- Subtle Blow +6
+INSERT INTO `item_mods` VALUES (15458,384,61);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (15459,1,3);
 INSERT INTO `item_mods` VALUES (15460,1,3);
 INSERT INTO `item_mods` VALUES (15461,1,3);
@@ -17088,11 +17089,11 @@ INSERT INTO `item_mods` VALUES (15585,1,35);
 INSERT INTO `item_mods` VALUES (15585,2,25);
 INSERT INTO `item_mods` VALUES (15585,27,5);
 INSERT INTO `item_mods` VALUES (15585,298,5);
-INSERT INTO `item_mods` VALUES (15586,1,44);
-INSERT INTO `item_mods` VALUES (15586,2,20);
-INSERT INTO `item_mods` VALUES (15586,8,6);
-INSERT INTO `item_mods` VALUES (15586,27,4);
-INSERT INTO `item_mods` VALUES (15586,168,10);
+INSERT INTO `item_mods` VALUES (15586,1,44);      -- Valor Breeches +1: DEF 44
+INSERT INTO `item_mods` VALUES (15586,2,20);      -- HP +20
+INSERT INTO `item_mods` VALUES (15586,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (15586,27,4);      -- Enmity +4
+INSERT INTO `item_mods` VALUES (15586,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (15587,1,39);
 INSERT INTO `item_mods` VALUES (15587,2,18);
 INSERT INTO `item_mods` VALUES (15587,5,18);
@@ -17142,11 +17143,11 @@ INSERT INTO `item_mods` VALUES (15598,1,35);
 INSERT INTO `item_mods` VALUES (15599,1,31);
 INSERT INTO `item_mods` VALUES (15599,162,-5);
 INSERT INTO `item_mods` VALUES (15599,292,6);
-INSERT INTO `item_mods` VALUES (15600,1,33);
-INSERT INTO `item_mods` VALUES (15600,2,20);
-INSERT INTO `item_mods` VALUES (15600,10,3);
-INSERT INTO `item_mods` VALUES (15600,11,3);
-INSERT INTO `item_mods` VALUES (15600,168,10);
+INSERT INTO `item_mods` VALUES (15600,1,33);      -- Magus Shalwar: DEF 33
+INSERT INTO `item_mods` VALUES (15600,2,20);      -- HP +20
+INSERT INTO `item_mods` VALUES (15600,10,3);      -- VIT +3
+INSERT INTO `item_mods` VALUES (15600,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (15600,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (15601,1,28);
 INSERT INTO `item_mods` VALUES (15601,2,20);
 INSERT INTO `item_mods` VALUES (15601,12,3);
@@ -18008,10 +18009,10 @@ INSERT INTO `item_mods` VALUES (15873,12,4);
 INSERT INTO `item_mods` VALUES (15873,13,4);
 INSERT INTO `item_mods` VALUES (15873,71,4);
 INSERT INTO `item_mods` VALUES (15873,72,4);
-INSERT INTO `item_mods` VALUES (15874,1,4);
-INSERT INTO `item_mods` VALUES (15874,2,20);
-INSERT INTO `item_mods` VALUES (15874,12,6);
-INSERT INTO `item_mods` VALUES (15874,168,8);
+INSERT INTO `item_mods` VALUES (15874,1,4);       -- Sorcerer's Belt: DEF 4
+INSERT INTO `item_mods` VALUES (15874,2,20);      -- HP +20
+INSERT INTO `item_mods` VALUES (15874,12,6);      -- INT +6
+INSERT INTO `item_mods` VALUES (15874,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (15875,1,5);
 INSERT INTO `item_mods` VALUES (15875,14,6);
 INSERT INTO `item_mods` VALUES (15875,25,7);
@@ -18050,9 +18051,9 @@ INSERT INTO `item_mods` VALUES (15885,27,-4);
 INSERT INTO `item_mods` VALUES (15886,1,5);
 INSERT INTO `item_mods` VALUES (15886,25,5);
 INSERT INTO `item_mods` VALUES (15886,26,5);
-INSERT INTO `item_mods` VALUES (15887,1,5);
-INSERT INTO `item_mods` VALUES (15887,29,2);
-INSERT INTO `item_mods` VALUES (15887,168,8);
+INSERT INTO `item_mods` VALUES (15887,1,5);       -- Resolute Belt: DEF 5
+INSERT INTO `item_mods` VALUES (15887,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (15887,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (15888,1,5);
 INSERT INTO `item_mods` VALUES (15888,26,4);
 INSERT INTO `item_mods` VALUES (15888,106,5);
@@ -18062,18 +18063,18 @@ INSERT INTO `item_mods` VALUES (15890,2,22);
 INSERT INTO `item_mods` VALUES (15890,9,2);
 INSERT INTO `item_mods` VALUES (15890,10,5);
 INSERT INTO `item_mods` VALUES (15890,72,1);
-INSERT INTO `item_mods` VALUES (15891,1,4);
-INSERT INTO `item_mods` VALUES (15891,5,15);
-INSERT INTO `item_mods` VALUES (15891,12,2);
-INSERT INTO `item_mods` VALUES (15891,13,2);
-INSERT INTO `item_mods` VALUES (15891,14,2);
-INSERT INTO `item_mods` VALUES (15891,168,6);
-INSERT INTO `item_mods` VALUES (15892,1,5);
-INSERT INTO `item_mods` VALUES (15892,5,17);
-INSERT INTO `item_mods` VALUES (15892,12,3);
-INSERT INTO `item_mods` VALUES (15892,13,3);
-INSERT INTO `item_mods` VALUES (15892,14,3);
-INSERT INTO `item_mods` VALUES (15892,168,8);
+INSERT INTO `item_mods` VALUES (15891,1,4);       -- Al Zahbi Sash: DEF 4
+INSERT INTO `item_mods` VALUES (15891,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (15891,12,2);      -- INT +2
+INSERT INTO `item_mods` VALUES (15891,13,2);      -- MND +2
+INSERT INTO `item_mods` VALUES (15891,14,2);      -- CHR +2
+INSERT INTO `item_mods` VALUES (15891,168,6);     -- Spell interruption rate down 6%
+INSERT INTO `item_mods` VALUES (15892,1,5);       -- Moon Sash: DEF 5
+INSERT INTO `item_mods` VALUES (15892,5,17);      -- MP +17
+INSERT INTO `item_mods` VALUES (15892,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15892,13,3);      -- MND +3
+INSERT INTO `item_mods` VALUES (15892,14,3);      -- CHR +3
+INSERT INTO `item_mods` VALUES (15892,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (15893,1,8);
 INSERT INTO `item_mods` VALUES (15893,2,24);
 INSERT INTO `item_mods` VALUES (15893,9,3);
@@ -18095,8 +18096,8 @@ INSERT INTO `item_mods` VALUES (15897,1,2);
 INSERT INTO `item_mods` VALUES (15897,5,22);
 INSERT INTO `item_mods` VALUES (15897,11,3);
 INSERT INTO `item_mods` VALUES (15897,13,3);
-INSERT INTO `item_mods` VALUES (15898,1,7);
-INSERT INTO `item_mods` VALUES (15898,168,8);
+INSERT INTO `item_mods` VALUES (15898,1,7);       -- Volunteer's Belt: DEF 7
+INSERT INTO `item_mods` VALUES (15898,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (15899,384,61);
 INSERT INTO `item_mods` VALUES (15900,1,6);
 INSERT INTO `item_mods` VALUES (15900,25,10);
@@ -18244,10 +18245,10 @@ INSERT INTO `item_mods` VALUES (15961,121,5);
 INSERT INTO `item_mods` VALUES (15962,13,2);
 INSERT INTO `item_mods` VALUES (15962,29,2);
 INSERT INTO `item_mods` VALUES (15962,487,5);
-INSERT INTO `item_mods` VALUES (15963,5,20);
-INSERT INTO `item_mods` VALUES (15963,71,1);
-INSERT INTO `item_mods` VALUES (15963,168,8);
-INSERT INTO `item_mods` VALUES (15963,296,5);
+INSERT INTO `item_mods` VALUES (15963,5,20);      -- Magnetic Earring: MP +20
+INSERT INTO `item_mods` VALUES (15963,71,1);      -- MP recovered while healing +1
+INSERT INTO `item_mods` VALUES (15963,168,8);     -- Spell interruption rate down 8%
+INSERT INTO `item_mods` VALUES (15963,296,5);     -- Conserve MP +5%
 INSERT INTO `item_mods` VALUES (15964,9,2);
 INSERT INTO `item_mods` VALUES (15964,25,3);
 INSERT INTO `item_mods` VALUES (15964,26,3);
@@ -18728,10 +18729,10 @@ INSERT INTO `item_mods` VALUES (16172,68,3);
 INSERT INTO `item_mods` VALUES (16173,1,20);
 INSERT INTO `item_mods` VALUES (16173,364,5);
 INSERT INTO `item_mods` VALUES (16174,1,21);
-INSERT INTO `item_mods` VALUES (16175,1,15);
-INSERT INTO `item_mods` VALUES (16175,13,7);
-INSERT INTO `item_mods` VALUES (16175,14,7);
-INSERT INTO `item_mods` VALUES (16175,168,10);
+INSERT INTO `item_mods` VALUES (16175,1,15);      -- Muse Tariqah: DEF 15
+INSERT INTO `item_mods` VALUES (16175,13,7);      -- MND +7
+INSERT INTO `item_mods` VALUES (16175,14,7);      -- CHR +7
+INSERT INTO `item_mods` VALUES (16175,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (16176,1,24);
 INSERT INTO `item_mods` VALUES (16176,2,10);
 INSERT INTO `item_mods` VALUES (16176,5,10);
@@ -18904,10 +18905,10 @@ INSERT INTO `item_mods` VALUES (16237,26,4);
 INSERT INTO `item_mods` VALUES (16237,68,4);
 INSERT INTO `item_mods` VALUES (16238,1,7);
 INSERT INTO `item_mods` VALUES (16238,5,20);
-INSERT INTO `item_mods` VALUES (16239,1,6);
-INSERT INTO `item_mods` VALUES (16239,2,-20);
-INSERT INTO `item_mods` VALUES (16239,28,2);
-INSERT INTO `item_mods` VALUES (16239,168,8);
+INSERT INTO `item_mods` VALUES (16239,1,6);       -- Solitaire Cape: DEF 6
+INSERT INTO `item_mods` VALUES (16239,2,-20);     -- HP -20
+INSERT INTO `item_mods` VALUES (16239,28,2);      -- Magic Atk. Bonus +2
+INSERT INTO `item_mods` VALUES (16239,168,8);     -- Spell interruption rate down 8%
 INSERT INTO `item_mods` VALUES (16240,1,6);
 INSERT INTO `item_mods` VALUES (16240,5,18);
 INSERT INTO `item_mods` VALUES (16240,120,4);
@@ -19142,12 +19143,12 @@ INSERT INTO `item_mods` VALUES (16344,11,5);
 INSERT INTO `item_mods` VALUES (16344,25,5);
 INSERT INTO `item_mods` VALUES (16344,26,5);
 INSERT INTO `item_mods` VALUES (16344,169,-12);
-INSERT INTO `item_mods` VALUES (16345,1,34);
-INSERT INTO `item_mods` VALUES (16345,2,25);
-INSERT INTO `item_mods` VALUES (16345,9,5);
-INSERT INTO `item_mods` VALUES (16345,10,5);
-INSERT INTO `item_mods` VALUES (16345,11,5);
-INSERT INTO `item_mods` VALUES (16345,168,12);
+INSERT INTO `item_mods` VALUES (16345,1,34);      -- Magus Shalwar +1: DEF 34
+INSERT INTO `item_mods` VALUES (16345,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (16345,9,5);       -- DEX +5
+INSERT INTO `item_mods` VALUES (16345,10,5);      -- VIT +5
+INSERT INTO `item_mods` VALUES (16345,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (16345,168,12);    -- Spell interruption rate down 12%
 INSERT INTO `item_mods` VALUES (16346,1,31);
 INSERT INTO `item_mods` VALUES (16346,2,10);
 INSERT INTO `item_mods` VALUES (16346,5,10);
@@ -19294,10 +19295,10 @@ INSERT INTO `item_mods` VALUES (16381,1,31);
 INSERT INTO `item_mods` VALUES (16381,9,5);
 INSERT INTO `item_mods` VALUES (16381,14,5);
 INSERT INTO `item_mods` VALUES (16381,23,18);
-INSERT INTO `item_mods` VALUES (16382,1,25);
-INSERT INTO `item_mods` VALUES (16382,2,-30);
-INSERT INTO `item_mods` VALUES (16382,5,75);
-INSERT INTO `item_mods` VALUES (16382,168,5);
+INSERT INTO `item_mods` VALUES (16382,1,25);      -- Adapa's Slacks: DEF 25
+INSERT INTO `item_mods` VALUES (16382,2,-30);     -- HP -30
+INSERT INTO `item_mods` VALUES (16382,5,75);      -- MP +75
+INSERT INTO `item_mods` VALUES (16382,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (16383,1,44);
 INSERT INTO `item_mods` VALUES (16383,8,6);
 INSERT INTO `item_mods` VALUES (16383,11,6);
@@ -20100,9 +20101,9 @@ INSERT INTO `item_mods` VALUES (17410,2,13);
 INSERT INTO `item_mods` VALUES (17410,61,3);
 INSERT INTO `item_mods` VALUES (17412,2,20);
 INSERT INTO `item_mods` VALUES (17412,5,-20);
-INSERT INTO `item_mods` VALUES (17413,12,2);
-INSERT INTO `item_mods` VALUES (17413,13,2);
-INSERT INTO `item_mods` VALUES (17413,168,25);
+INSERT INTO `item_mods` VALUES (17413,12,2);      -- Hermit's Wand: INT +2
+INSERT INTO `item_mods` VALUES (17413,13,2);      -- MND +2
+INSERT INTO `item_mods` VALUES (17413,168,25);    -- Spell interruption rate down 25%
 INSERT INTO `item_mods` VALUES (17414,25,5);
 INSERT INTO `item_mods` VALUES (17414,60,3);
 INSERT INTO `item_mods` VALUES (17414,61,3);
@@ -20146,14 +20147,14 @@ INSERT INTO `item_mods` VALUES (17437,13,5);
 INSERT INTO `item_mods` VALUES (17437,14,5);
 INSERT INTO `item_mods` VALUES (17438,10,3);
 INSERT INTO `item_mods` VALUES (17439,13,3);
-INSERT INTO `item_mods` VALUES (17441,5,5);
-INSERT INTO `item_mods` VALUES (17441,12,2);
-INSERT INTO `item_mods` VALUES (17441,13,2);
-INSERT INTO `item_mods` VALUES (17441,168,25);
-INSERT INTO `item_mods` VALUES (17442,5,6);
-INSERT INTO `item_mods` VALUES (17442,12,2);
-INSERT INTO `item_mods` VALUES (17442,13,2);
-INSERT INTO `item_mods` VALUES (17442,168,25);
+INSERT INTO `item_mods` VALUES (17441,5,5);       -- Eremite's Wand: MP +5
+INSERT INTO `item_mods` VALUES (17441,12,2);      -- INT +2
+INSERT INTO `item_mods` VALUES (17441,13,2);      -- MND +2
+INSERT INTO `item_mods` VALUES (17441,168,25);    -- Spell interruption rate down 25%
+INSERT INTO `item_mods` VALUES (17442,5,6);       -- Eremite's Wand +1: MP +6
+INSERT INTO `item_mods` VALUES (17442,12,2);      -- INT +2
+INSERT INTO `item_mods` VALUES (17442,13,2);      -- MND +2
+INSERT INTO `item_mods` VALUES (17442,168,25);    -- Spell interruption rate down 25%
 INSERT INTO `item_mods` VALUES (17443,3,1);
 INSERT INTO `item_mods` VALUES (17443,6,1);
 INSERT INTO `item_mods` VALUES (17444,2,2);
@@ -20834,7 +20835,7 @@ INSERT INTO `item_mods` VALUES (17790,9,4);
 INSERT INTO `item_mods` VALUES (17790,11,-1);
 INSERT INTO `item_mods` VALUES (17790,289,1);
 INSERT INTO `item_mods` VALUES (17791,165,5);
-INSERT INTO `item_mods` VALUES (17792,168,25);
+INSERT INTO `item_mods` VALUES (17792,168,25);    -- Nikkariaoe: Spell interruption rate down 25%
 INSERT INTO `item_mods` VALUES (17793,377,13);
 INSERT INTO `item_mods` VALUES (17794,288,1);
 INSERT INTO `item_mods` VALUES (17795,110,3);
@@ -20948,8 +20949,8 @@ INSERT INTO `item_mods` VALUES (17936,360,1);
 INSERT INTO `item_mods` VALUES (17937,8,3);
 INSERT INTO `item_mods` VALUES (17937,13,-1);
 INSERT INTO `item_mods` VALUES (17937,14,3);
-INSERT INTO `item_mods` VALUES (17938,8,4);
-INSERT INTO `item_mods` VALUES (17938,168,5);
+INSERT INTO `item_mods` VALUES (17938,8,4);       -- Woodville's Axe: STR +4
+INSERT INTO `item_mods` VALUES (17938,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (17939,11,5);
 INSERT INTO `item_mods` VALUES (17939,24,8);
 INSERT INTO `item_mods` VALUES (17939,26,4);
@@ -22536,8 +22537,8 @@ INSERT INTO `item_mods` VALUES (19026,2,10);
 INSERT INTO `item_mods` VALUES (19026,5,10);
 INSERT INTO `item_mods` VALUES (19026,9,3);
 INSERT INTO `item_mods` VALUES (19027,165,3);
-INSERT INTO `item_mods` VALUES (19028,5,23);
-INSERT INTO `item_mods` VALUES (19028,168,5);
+INSERT INTO `item_mods` VALUES (19028,5,23);      -- Magic Strap: MP +23
+INSERT INTO `item_mods` VALUES (19028,168,5);     -- Spell interruption rate down 5%
 INSERT INTO `item_mods` VALUES (19030,562,3);
 INSERT INTO `item_mods` VALUES (19031,7,20);
 INSERT INTO `item_mods` VALUES (19031,40,2);
@@ -23243,7 +23244,7 @@ INSERT INTO `item_mods` VALUES (19759,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (19759,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19759,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (19759,770,40); -- Namas Arrow DMG +40%
-INSERT INTO `item_mods` VALUES (19761,168,10);
+INSERT INTO `item_mods` VALUES (19761,168,10);    -- Impatiens: Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (19762,84,2);
 INSERT INTO `item_mods` VALUES (19764,9,4);
 INSERT INTO `item_mods` VALUES (19765,5,20);
@@ -26509,22 +26510,38 @@ INSERT INTO `item_mods` VALUES (26839,384,31);
 INSERT INTO `item_mods` VALUES (26839,401,3);
 INSERT INTO `item_mods` VALUES (26852,541,2);
 INSERT INTO `item_mods` VALUES (26853,541,3);
-INSERT INTO `item_mods` VALUES (26869,1,125);
-INSERT INTO `item_mods` VALUES (26869,2,139);
-INSERT INTO `item_mods` VALUES (26869,5,144);
-INSERT INTO `item_mods` VALUES (26869,8,21);
-INSERT INTO `item_mods` VALUES (26869,9,21);
-INSERT INTO `item_mods` VALUES (26869,10,21);
-INSERT INTO `item_mods` VALUES (26869,11,21);
-INSERT INTO `item_mods` VALUES (26869,12,29);
-INSERT INTO `item_mods` VALUES (26869,13,29);
-INSERT INTO `item_mods` VALUES (26869,14,29);
-INSERT INTO `item_mods` VALUES (26869,27,-13);
-INSERT INTO `item_mods` VALUES (26869,29,6);
-INSERT INTO `item_mods` VALUES (26869,31,80);
-INSERT INTO `item_mods` VALUES (26869,68,41);
-INSERT INTO `item_mods` VALUES (26869,168,25);
-INSERT INTO `item_mods` VALUES (26869,384,30);
+INSERT INTO `item_mods` VALUES (26868,1,124);     -- Rosette Jaseran +1: DEF 124
+INSERT INTO `item_mods` VALUES (26868,2,134);     -- HP +134
+INSERT INTO `item_mods` VALUES (26868,5,139);     -- MP +139
+INSERT INTO `item_mods` VALUES (26868,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (26868,9,21);      -- DEX +21
+INSERT INTO `item_mods` VALUES (26868,10,21);     -- VIT +21
+INSERT INTO `item_mods` VALUES (26868,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (26868,12,29);     -- INT +29
+INSERT INTO `item_mods` VALUES (26868,13,29);     -- MND +29
+INSERT INTO `item_mods` VALUES (26868,14,29);     -- CHR +29
+INSERT INTO `item_mods` VALUES (26868,27,-12);    -- Enmity -12
+INSERT INTO `item_mods` VALUES (26868,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (26868,31,80);     -- Magic Evasion +80
+INSERT INTO `item_mods` VALUES (26868,68,41);     -- Evasion +41
+INSERT INTO `item_mods` VALUES (26868,168,20);    -- Spell interruption rate down 20%
+INSERT INTO `item_mods` VALUES (26868,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (26869,1,125);     -- Rosette Jaseran +1: DEF 125
+INSERT INTO `item_mods` VALUES (26869,2,139);     -- HP +139
+INSERT INTO `item_mods` VALUES (26869,5,144);     -- MP +144
+INSERT INTO `item_mods` VALUES (26869,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (26869,9,21);      -- DEX +21
+INSERT INTO `item_mods` VALUES (26869,10,21);     -- VIT +21
+INSERT INTO `item_mods` VALUES (26869,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (26869,12,29);     -- INT +29
+INSERT INTO `item_mods` VALUES (26869,13,29);     -- MND +29
+INSERT INTO `item_mods` VALUES (26869,14,29);     -- CHR +29
+INSERT INTO `item_mods` VALUES (26869,27,-13);    -- Enmity -13
+INSERT INTO `item_mods` VALUES (26869,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (26869,31,80);     -- Magic Evasion +80
+INSERT INTO `item_mods` VALUES (26869,68,41);     -- Evasion +41
+INSERT INTO `item_mods` VALUES (26869,168,25);    -- Spell interruption rate down 25%
+INSERT INTO `item_mods` VALUES (26869,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (26871,1,131);
 INSERT INTO `item_mods` VALUES (26871,2,61);
 INSERT INTO `item_mods` VALUES (26871,8,25);
@@ -35104,20 +35121,20 @@ INSERT INTO `item_mods` VALUES (28104,29,3);
 INSERT INTO `item_mods` VALUES (28104,31,73);
 INSERT INTO `item_mods` VALUES (28104,68,12);
 INSERT INTO `item_mods` VALUES (28104,384,41);
-INSERT INTO `item_mods` VALUES (28105,1,80);
-INSERT INTO `item_mods` VALUES (28105,2,37);
-INSERT INTO `item_mods` VALUES (28105,5,15);
-INSERT INTO `item_mods` VALUES (28105,8,21);
-INSERT INTO `item_mods` VALUES (28105,10,10);
-INSERT INTO `item_mods` VALUES (28105,11,12);
-INSERT INTO `item_mods` VALUES (28105,12,22);
-INSERT INTO `item_mods` VALUES (28105,13,11);
-INSERT INTO `item_mods` VALUES (28105,14,7);
-INSERT INTO `item_mods` VALUES (28105,29,2);
-INSERT INTO `item_mods` VALUES (28105,31,47);
-INSERT INTO `item_mods` VALUES (28105,68,17);
-INSERT INTO `item_mods` VALUES (28105,168,20);
-INSERT INTO `item_mods` VALUES (28105,384,61);
+INSERT INTO `item_mods` VALUES (28105,1,80);      -- Assimilator's Shalwar: DEF 80
+INSERT INTO `item_mods` VALUES (28105,2,37);      -- HP +37
+INSERT INTO `item_mods` VALUES (28105,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (28105,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (28105,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (28105,11,12);     -- AGI +12
+INSERT INTO `item_mods` VALUES (28105,12,22);     -- INT +22
+INSERT INTO `item_mods` VALUES (28105,13,11);     -- MND +11
+INSERT INTO `item_mods` VALUES (28105,14,7);      -- CHR +7
+INSERT INTO `item_mods` VALUES (28105,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (28105,31,47);     -- Magic Evasion +47
+INSERT INTO `item_mods` VALUES (28105,68,17);     -- Evasion +17
+INSERT INTO `item_mods` VALUES (28105,168,20);    -- Spell interruption rate down 20%
+INSERT INTO `item_mods` VALUES (28105,384,61);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (28106,1,76);
 INSERT INTO `item_mods` VALUES (28106,2,62);
 INSERT INTO `item_mods` VALUES (28106,5,59);
@@ -35417,20 +35434,20 @@ INSERT INTO `item_mods` VALUES (28125,29,6);
 INSERT INTO `item_mods` VALUES (28125,31,107);
 INSERT INTO `item_mods` VALUES (28125,68,27);
 INSERT INTO `item_mods` VALUES (28125,384,51);
-INSERT INTO `item_mods` VALUES (28126,1,114);
-INSERT INTO `item_mods` VALUES (28126,2,62);
-INSERT INTO `item_mods` VALUES (28126,5,15);
-INSERT INTO `item_mods` VALUES (28126,8,32);
-INSERT INTO `item_mods` VALUES (28126,10,16);
-INSERT INTO `item_mods` VALUES (28126,11,20);
-INSERT INTO `item_mods` VALUES (28126,12,33);
-INSERT INTO `item_mods` VALUES (28126,13,17);
-INSERT INTO `item_mods` VALUES (28126,14,11);
-INSERT INTO `item_mods` VALUES (28126,29,5);
-INSERT INTO `item_mods` VALUES (28126,31,69);
-INSERT INTO `item_mods` VALUES (28126,68,38);
-INSERT INTO `item_mods` VALUES (28126,168,20);
-INSERT INTO `item_mods` VALUES (28126,384,61);
+INSERT INTO `item_mods` VALUES (28126,1,114);     -- Assimilator's Shalwar +1: DEF 114
+INSERT INTO `item_mods` VALUES (28126,2,62);      -- HP +62
+INSERT INTO `item_mods` VALUES (28126,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (28126,8,32);      -- STR +32
+INSERT INTO `item_mods` VALUES (28126,10,16);     -- VIT +16
+INSERT INTO `item_mods` VALUES (28126,11,20);     -- AGI +20
+INSERT INTO `item_mods` VALUES (28126,12,33);     -- INT +33
+INSERT INTO `item_mods` VALUES (28126,13,17);     -- MND +17
+INSERT INTO `item_mods` VALUES (28126,14,11);     -- CHR +11
+INSERT INTO `item_mods` VALUES (28126,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28126,31,69);     -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (28126,68,38);     -- Evasion +38
+INSERT INTO `item_mods` VALUES (28126,168,20);    -- Spell interruption rate down 20%
+INSERT INTO `item_mods` VALUES (28126,384,61);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (28127,1,112);
 INSERT INTO `item_mods` VALUES (28127,2,87);
 INSERT INTO `item_mods` VALUES (28127,5,63);
@@ -35505,6 +35522,21 @@ INSERT INTO `item_mods` VALUES (28137,31,80);
 INSERT INTO `item_mods` VALUES (28137,68,37);
 INSERT INTO `item_mods` VALUES (28137,296,7);
 INSERT INTO `item_mods` VALUES (28137,384,40);
+INSERT INTO `item_mods` VALUES (28144,1,104);     -- Adapa's Slacks +1: DEF 104
+INSERT INTO `item_mods` VALUES (28144,2,11);      -- HP +11
+INSERT INTO `item_mods` VALUES (28144,5,104);     -- MP +104
+INSERT INTO `item_mods` VALUES (28144,8,24);      -- STR +24
+INSERT INTO `item_mods` VALUES (28144,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (28144,11,17);     -- AGI +17
+INSERT INTO `item_mods` VALUES (28144,12,33);     -- INT +33
+INSERT INTO `item_mods` VALUES (28144,13,23);     -- MND +23
+INSERT INTO `item_mods` VALUES (28144,14,18);     -- CHR +18
+INSERT INTO `item_mods` VALUES (28144,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28144,31,104);    -- Magic Evasion +104
+INSERT INTO `item_mods` VALUES (28144,68,26);     -- Evasion +26
+INSERT INTO `item_mods` VALUES (28144,117,14);    -- Summoning magic skill +14
+INSERT INTO `item_mods` VALUES (28144,168,10);    -- Spell interruption rate down 10%
+INSERT INTO `item_mods` VALUES (28144,384,51);    -- Haste +5%
 INSERT INTO `item_mods` VALUES (28151,1,106);
 INSERT INTO `item_mods` VALUES (28151,2,43);
 INSERT INTO `item_mods` VALUES (28151,5,69);
@@ -36029,23 +36061,23 @@ INSERT INTO `item_mods` VALUES (28224,68,37);
 INSERT INTO `item_mods` VALUES (28224,384,41);
 INSERT INTO `item_mods` VALUES (28224,386,65);
 INSERT INTO `item_mods` VALUES (28224,552,15);
-INSERT INTO `item_mods` VALUES (28225,1,46);
-INSERT INTO `item_mods` VALUES (28225,2,36);
-INSERT INTO `item_mods` VALUES (28225,5,42);
-INSERT INTO `item_mods` VALUES (28225,8,6);
-INSERT INTO `item_mods` VALUES (28225,9,7);
-INSERT INTO `item_mods` VALUES (28225,10,6);
-INSERT INTO `item_mods` VALUES (28225,11,26);
-INSERT INTO `item_mods` VALUES (28225,12,16);
-INSERT INTO `item_mods` VALUES (28225,13,17);
-INSERT INTO `item_mods` VALUES (28225,14,21);
-INSERT INTO `item_mods` VALUES (28225,29,2);
-INSERT INTO `item_mods` VALUES (28225,31,73);
-INSERT INTO `item_mods` VALUES (28225,68,25);
-INSERT INTO `item_mods` VALUES (28225,113,15);
-INSERT INTO `item_mods` VALUES (28225,114,15);
-INSERT INTO `item_mods` VALUES (28225,168,25);
-INSERT INTO `item_mods` VALUES (28225,384,31);
+INSERT INTO `item_mods` VALUES (28225,1,46);      -- Theophany Duckbills: DEF 46
+INSERT INTO `item_mods` VALUES (28225,2,36);      -- HP +36
+INSERT INTO `item_mods` VALUES (28225,5,42);      -- MP +42
+INSERT INTO `item_mods` VALUES (28225,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (28225,9,7);       -- DEX +7
+INSERT INTO `item_mods` VALUES (28225,10,6);      -- VIT +6
+INSERT INTO `item_mods` VALUES (28225,11,26);     -- AGI +26
+INSERT INTO `item_mods` VALUES (28225,12,16);     -- INT +16
+INSERT INTO `item_mods` VALUES (28225,13,17);     -- MND +17
+INSERT INTO `item_mods` VALUES (28225,14,21);     -- CHR +21
+INSERT INTO `item_mods` VALUES (28225,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (28225,31,73);     -- Magic Evasion +73
+INSERT INTO `item_mods` VALUES (28225,68,25);     -- Evasion +25
+INSERT INTO `item_mods` VALUES (28225,113,15);    -- Enhancing magic skill +15
+INSERT INTO `item_mods` VALUES (28225,114,15);    -- Enfeebling magic skill +15
+INSERT INTO `item_mods` VALUES (28225,168,25);    -- Spell interruption rate down 25%
+INSERT INTO `item_mods` VALUES (28225,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (28226,1,46);
 INSERT INTO `item_mods` VALUES (28226,2,14);
 INSERT INTO `item_mods` VALUES (28226,5,12);
@@ -36314,23 +36346,23 @@ INSERT INTO `item_mods` VALUES (28245,68,74);
 INSERT INTO `item_mods` VALUES (28245,384,42);
 INSERT INTO `item_mods` VALUES (28245,386,80);
 INSERT INTO `item_mods` VALUES (28245,552,15);
-INSERT INTO `item_mods` VALUES (28246,1,65);
-INSERT INTO `item_mods` VALUES (28246,2,43);
-INSERT INTO `item_mods` VALUES (28246,5,44);
-INSERT INTO `item_mods` VALUES (28246,8,10);
-INSERT INTO `item_mods` VALUES (28246,9,11);
-INSERT INTO `item_mods` VALUES (28246,10,10);
-INSERT INTO `item_mods` VALUES (28246,11,38);
-INSERT INTO `item_mods` VALUES (28246,12,22);
-INSERT INTO `item_mods` VALUES (28246,13,24);
-INSERT INTO `item_mods` VALUES (28246,14,34);
-INSERT INTO `item_mods` VALUES (28246,29,5);
-INSERT INTO `item_mods` VALUES (28246,31,107);
-INSERT INTO `item_mods` VALUES (28246,68,55);
-INSERT INTO `item_mods` VALUES (28246,113,17);
-INSERT INTO `item_mods` VALUES (28246,114,17);
-INSERT INTO `item_mods` VALUES (28246,168,25);
-INSERT INTO `item_mods` VALUES (28246,384,31);
+INSERT INTO `item_mods` VALUES (28246,1,65);      -- Theophany Duckbills +1: DEF 65
+INSERT INTO `item_mods` VALUES (28246,2,43);      -- HP +43
+INSERT INTO `item_mods` VALUES (28246,5,44);      -- MP +44
+INSERT INTO `item_mods` VALUES (28246,8,10);      -- STR +10
+INSERT INTO `item_mods` VALUES (28246,9,11);      -- DEX +11
+INSERT INTO `item_mods` VALUES (28246,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (28246,11,38);     -- AGI +38
+INSERT INTO `item_mods` VALUES (28246,12,22);     -- INT +22
+INSERT INTO `item_mods` VALUES (28246,13,24);     -- MND +24
+INSERT INTO `item_mods` VALUES (28246,14,34);     -- CHR +34
+INSERT INTO `item_mods` VALUES (28246,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28246,31,107);    -- Magic Evasion +107
+INSERT INTO `item_mods` VALUES (28246,68,55);     -- Evasion +55
+INSERT INTO `item_mods` VALUES (28246,113,17);    -- Enhancing magic skill +17
+INSERT INTO `item_mods` VALUES (28246,114,17);    -- Enfeebling magic skill +17
+INSERT INTO `item_mods` VALUES (28246,168,25);    -- Spell interruption rate down 25%
+INSERT INTO `item_mods` VALUES (28246,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (28247,1,66);
 INSERT INTO `item_mods` VALUES (28247,2,48);
 INSERT INTO `item_mods` VALUES (28247,5,49);
