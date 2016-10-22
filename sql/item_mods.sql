@@ -331,11 +331,11 @@ INSERT INTO `item_mods` VALUES (10328,5,36); -- MP +36
 INSERT INTO `item_mods` VALUES (10328,24,7); -- RATT +7
 INSERT INTO `item_mods` VALUES (10328,26,16); -- RACC +16
 INSERT INTO `item_mods` VALUES (10328,359,5); -- Rapid Shot -increase
-INSERT INTO `item_mods` VALUES (10329,1,40); -- Shedir Seraweels - DEF +40
-INSERT INTO `item_mods` VALUES (10329,539,35); -- Stoneskin +35
-INSERT INTO `item_mods` VALUES (10329,113,15); -- Enhancing Magic Skill +15
-INSERT INTO `item_mods` VALUES (10329,567,15); -- Barspell potency +15
-INSERT INTO `item_mods` VALUES (10329,832,1); -- Aquaveil count +1
+INSERT INTO `item_mods` VALUES (10329,1,40);      -- Shedir Seraweels: DEF 40
+INSERT INTO `item_mods` VALUES (10329,113,15);    -- Enhancing magic skill +15
+INSERT INTO `item_mods` VALUES (10329,539,35);    -- Enhances Stoneskin effect +35
+INSERT INTO `item_mods` VALUES (10329,567,15);    -- Elemental resistance spells +15
+INSERT INTO `item_mods` VALUES (10329,832,1);     -- Enhances Aquaveil effect +1
 INSERT INTO `item_mods` VALUES (10330,1,1); -- Marine Boxers - DEF +1
 INSERT INTO `item_mods` VALUES (10331,1,1); -- Marine Shorts - DEF +1
 INSERT INTO `item_mods` VALUES (10332,1,1); -- Woodsy Boxers - DEF +1
@@ -5414,7 +5414,7 @@ INSERT INTO `item_mods` VALUES (11751,384,60);
 INSERT INTO `item_mods` VALUES (11753,1,5);       -- Emphatikos Rope: DEF 5
 INSERT INTO `item_mods` VALUES (11753,5,20);      -- MP +20
 INSERT INTO `item_mods` VALUES (11753,168,12);    -- Spell interruption rate down 12%
-INSERT INTO `item_mods` VALUES (11753,832,1);     -- Enhances Aquaveil effect
+INSERT INTO `item_mods` VALUES (11753,832,1);     -- Enhances Aquaveil effect +1
 INSERT INTO `item_mods` VALUES (11754,1,8);
 INSERT INTO `item_mods` VALUES (11754,8,5);
 INSERT INTO `item_mods` VALUES (11754,11,5);
@@ -24137,6 +24137,14 @@ INSERT INTO `item_mods` VALUES (21065,355,173); -- Gambanteinn iLvL 119 - Dagan
 INSERT INTO `item_mods` VALUES (21077,355,170); -- Mjollnir iLvL 119 - Randgrith
 INSERT INTO `item_mods` VALUES (21078,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21079,355,173); -- Gambanteinn iLvL 119 - Dagan
+INSERT INTO `item_mods` VALUES (21103,12,6);      -- Vadose Rod: INT +6
+INSERT INTO `item_mods` VALUES (21103,13,21);     -- MND +21
+INSERT INTO `item_mods` VALUES (21103,28,16);     -- Magic Atk. Bonus +16
+INSERT INTO `item_mods` VALUES (21103,90,242);    -- Club skill +242
+INSERT INTO `item_mods` VALUES (21103,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (21103,311,124);   -- Magic Damage +124
+INSERT INTO `item_mods` VALUES (21103,374,16);    -- Cure potency +16%
+INSERT INTO `item_mods` VALUES (21103,832,1);     -- Aquaveil +1
 INSERT INTO `item_mods` VALUES (21104,12,6);
 INSERT INTO `item_mods` VALUES (21104,13,6);
 INSERT INTO `item_mods` VALUES (21104,30,10);
