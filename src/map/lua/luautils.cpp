@@ -1515,27 +1515,61 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
+        bool luaFileFound = false;
+        bool luaHandlerFound = false;
+
         int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+
+        // Try to find the handler in the current event target first
+        luaFileFound = !(luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0));
+
+        if(luaFileFound)
+        {
+            lua_getglobal(LuaHandle, "onEventUpdate");
+            luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+        }
+
+        // If it wasn't found and the player is in an instance, offer processing to the instance script first as a fallback.
+        if ((!luaFileFound || !luaHandlerFound) && PChar->PInstance && PChar->loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED)
         {
             lua_pop(LuaHandle, 1);
             memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+            snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
             {
-                ShowError("luautils::onEventUpdate %s\n", lua_tostring(LuaHandle, -1));
-                ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
+                lua_getglobal(LuaHandle, "onEventUpdate");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
             }
         }
 
-        lua_getglobal(LuaHandle, "onEventUpdate");
-        if (lua_isnil(LuaHandle, -1))
+        // If there was no instance, or no event handling in the instance, fall back to the zone file
+        if (!luaFileFound || !luaHandlerFound)
+        {
+            lua_pop(LuaHandle, 1);
+            memset(File, 0, sizeof(File));
+
+            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
+            {
+                lua_getglobal(LuaHandle, "onEventUpdate");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+            }
+            else {
+                lua_pop(LuaHandle, 1);
+            }
+        }
+
+        // We failed to find a handler....
+        if (!luaFileFound || !luaHandlerFound)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
@@ -1570,27 +1604,61 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
+        bool luaFileFound = false;
+        bool luaHandlerFound = false;
+
         int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+
+        // Try to find the handler in the current event target first
+        luaFileFound = !(luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0));
+
+        if(luaFileFound)
+        {
+            lua_getglobal(LuaHandle, "onEventUpdate");
+            luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+        }
+
+        // If it wasn't found and the player is in an instance, offer processing to the instance script first as a fallback.
+        if ((!luaFileFound || !luaHandlerFound) && PChar->PInstance && PChar->loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED)
         {
             lua_pop(LuaHandle, 1);
             memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+            snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
             {
-                ShowError("luautils::onEventUpdate %s\n", lua_tostring(LuaHandle, -1));
-                ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
+                lua_getglobal(LuaHandle, "onEventUpdate");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
             }
         }
 
-        lua_getglobal(LuaHandle, "onEventUpdate");
-        if (lua_isnil(LuaHandle, -1))
+        // If there was no instance, or no event handling in the instance, fall back to the zone file
+        if (!luaFileFound || !luaHandlerFound)
+        {
+            lua_pop(LuaHandle, 1);
+            memset(File, 0, sizeof(File));
+
+            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
+            {
+                lua_getglobal(LuaHandle, "onEventUpdate");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+            }
+            else {
+                lua_pop(LuaHandle, 1);
+            }
+        }
+
+        // We failed to find a handler....
+        if (!luaFileFound || !luaHandlerFound)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
@@ -1636,26 +1704,61 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventFinish");
 
+        bool luaFileFound = false;
+        bool luaHandlerFound = false;
+
         int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
+
+        // Try to find the handler in the current event target first
+        luaFileFound = !(luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0));
+
+        if(luaFileFound)
+        {
+            lua_getglobal(LuaHandle, "onEventFinish");
+            luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+        }
+
+        // If it wasn't found and the player is in an instance, offer processing to the instance script first as a fallback.
+        if ((!luaFileFound || !luaHandlerFound) && PChar->PInstance && PChar->loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED)
         {
             lua_pop(LuaHandle, 1);
             memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+            snprintf(File, sizeof(File), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
             {
-                ShowError("luautils::onEventFinish %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
+                lua_getglobal(LuaHandle, "onEventFinish");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
             }
         }
 
-        lua_getglobal(LuaHandle, "onEventFinish");
-        if (lua_isnil(LuaHandle, -1))
+        // If there was no instance, or no event handling in the instance, fall back to the zone file
+        if (!luaFileFound || !luaHandlerFound)
+        {
+            lua_pop(LuaHandle, 1);
+            memset(File, 0, sizeof(File));
+
+            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+            luaFileFound = !(luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0));
+
+            if(luaFileFound)
+            {
+                lua_getglobal(LuaHandle, "onEventFinish");
+                luaHandlerFound = !(lua_isnil(LuaHandle, -1));
+            }
+            else {
+                lua_pop(LuaHandle, 1);
+            }
+        }
+
+        // We failed to find a handler....
+        if (!luaFileFound || !luaHandlerFound)
         {
             ShowError("luautils::onEventFinish: undefined procedure onEventFinish\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
