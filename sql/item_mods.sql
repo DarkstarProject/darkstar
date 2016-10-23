@@ -14069,8 +14069,8 @@ INSERT INTO `item_mods` VALUES (14644,13,1);
 INSERT INTO `item_mods` VALUES (14644,14,1);
 INSERT INTO `item_mods` VALUES (14645,5,30);
 INSERT INTO `item_mods` VALUES (14645,60,-30);
-INSERT INTO `item_mods` VALUES (14646,255,5);
-INSERT INTO `item_mods` VALUES (14646,476,13);
+INSERT INTO `item_mods` VALUES (14646,255,5);     -- Shadow Ring: Enhances resistance against Death +5 ?
+INSERT INTO `item_mods` VALUES (14646,476,13);    -- Occasionally annuls magic damage taken +13%
 INSERT INTO `item_mods` VALUES (14649,58,20);
 INSERT INTO `item_mods` VALUES (14650,1,2);
 INSERT INTO `item_mods` VALUES (14650,26,6);
@@ -24516,6 +24516,11 @@ INSERT INTO `item_mods` VALUES (22063,355,187); -- Nirvana iLvL 119 - Garland of
 INSERT INTO `item_mods` VALUES (22064,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (22115,355,200); -- Yoichinoyumi iLvL 119 - Namas Arrow
 INSERT INTO `item_mods` VALUES (22116,355,202); -- Gandiva iLvL 119 - Jishnu's Raidance
+INSERT INTO `item_mods` VALUES (25758,1,1);       -- Rhapsody Shirt: DEF 1
+INSERT INTO `item_mods` VALUES (25759,1,2);       -- Rhapsody Shirt +1: DEF 2
+INSERT INTO `item_mods` VALUES (25759,416,1);     -- Occasionally nullifies physical damage +1% ?
+INSERT INTO `item_mods` VALUES (25759,476,1);     -- Occasionally nullifies magic damage +1% ?
+INSERT INTO `item_mods` VALUES (25759,530,1);     -- MP not depleted when magic used +1%
 INSERT INTO `item_mods` VALUES (25853,1,105);     -- Querkening Brais: DEF 105
 INSERT INTO `item_mods` VALUES (25853,2,43);      -- HP +43
 INSERT INTO `item_mods` VALUES (25853,5,29);      -- MP +29
@@ -24533,6 +24538,15 @@ INSERT INTO `item_mods` VALUES (25853,302,2);     -- Triple Attack +2%
 INSERT INTO `item_mods` VALUES (25853,384,51);    -- Haste +5%
 INSERT INTO `item_mods` VALUES (25853,168,15);    -- Spell interruption rate down 15%
 INSERT INTO `item_mods` VALUES (25853,455,10);    -- Song spellcasting time -10%
+INSERT INTO `item_mods` VALUES (26016,111,10);    -- Incanter's Torque: Divine magic skill +10
+INSERT INTO `item_mods` VALUES (26016,112,10);    -- Healing magic skill +10
+INSERT INTO `item_mods` VALUES (26016,113,10);    -- Enhancing magic skill +10
+INSERT INTO `item_mods` VALUES (26016,114,10);    -- Enfeebling magic skill +10
+INSERT INTO `item_mods` VALUES (26016,115,10);    -- Elemental magic skill +10
+INSERT INTO `item_mods` VALUES (26016,116,10);    -- Dark magic skill +10
+INSERT INTO `item_mods` VALUES (26016,117,10);    -- Summoning magic skill +10
+INSERT INTO `item_mods` VALUES (26016,122,10);    -- Blue magic skill +10
+INSERT INTO `item_mods` VALUES (26016,530,1);     -- MP not depleted when magic used +1%
 INSERT INTO `item_mods` VALUES (26171,8,6);       -- Rufescent Ring: STR +6
 INSERT INTO `item_mods` VALUES (26171,13,6);      -- MND +6
 INSERT INTO `item_mods` VALUES (26171,48,7);      -- Weapon Skill Accuracy +7
@@ -37270,16 +37284,16 @@ INSERT INTO `item_mods` VALUES (28404,68,15);
 INSERT INTO `item_mods` VALUES (28405,25,16);
 INSERT INTO `item_mods` VALUES (28405,26,16);
 INSERT INTO `item_mods` VALUES (28405,68,16);
-INSERT INTO `item_mods` VALUES (28419,1,7);
-INSERT INTO `item_mods` VALUES (28419,530,1); -- hachirin-no-obi no MP cost %
-INSERT INTO `item_mods` VALUES (28419,531,1); -- start day/weather bonus forcing
-INSERT INTO `item_mods` VALUES (28419,532,1);
-INSERT INTO `item_mods` VALUES (28419,533,1);
-INSERT INTO `item_mods` VALUES (28419,534,1);
-INSERT INTO `item_mods` VALUES (28419,535,1);
-INSERT INTO `item_mods` VALUES (28419,536,1);
-INSERT INTO `item_mods` VALUES (28419,537,1);
-INSERT INTO `item_mods` VALUES (28419,538,1); -- end day/weather bonus forcing
+INSERT INTO `item_mods` VALUES (28419,1,7);       -- Hachirin-no-Obi: DEF 7
+INSERT INTO `item_mods` VALUES (28419,530,1);     -- MP not depleted when magic used +1%
+INSERT INTO `item_mods` VALUES (28419,531,1);     -- Fire day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,532,1);     -- Earth day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,533,1);     -- Water day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,534,1);     -- Wind day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,535,1);     -- Ice day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,536,1);     -- Thunder day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,537,1);     -- Light day and weather bonus
+INSERT INTO `item_mods` VALUES (28419,538,1);     -- Dark day and weather bonus
 INSERT INTO `item_mods` VALUES (28439,1,11);      -- Prosilio Belt +1: DEF 11
 INSERT INTO `item_mods` VALUES (28439,8,10);      -- STR +10
 INSERT INTO `item_mods` VALUES (28439,23,28);     -- Attack +28
