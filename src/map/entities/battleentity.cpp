@@ -27,7 +27,6 @@
 #include "battleentity.h"
 
 #include "../lua/luautils.h"
-#include "../alliance.h"
 #include "../utils/battleutils.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
@@ -38,6 +37,7 @@
 #include "../ai/states/raise_state.h"
 #include "../ai/states/inactive_state.h"
 #include "../ai/states/weaponskill_state.h"
+#include "../ai/states/despawn_state.h"
 #include "../attack.h"
 #include "../attackround.h"
 #include "../weapon_skill.h"
@@ -1611,6 +1611,14 @@ void CBattleEntity::TryHitInterrupt(CBattleEntity* PAttacker)
         PAI->GetCurrentState()->TryInterrupt(PAttacker);
 }
 
+void CBattleEntity::OnDespawn(CDespawnState&)
+{
+    FadeOut();
+    //#event despawn
+    PAI->EventHandler.triggerListener("DESPAWN", this);
+    PAI->Internal_Respawn(0s);
+}
+
 void CBattleEntity::SetBattleStartTime(time_point time)
 {
     m_battleStartTime = time;
@@ -1627,7 +1635,8 @@ void CBattleEntity::Tick(time_point)
 
 void CBattleEntity::PostTick()
 {
-    if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>() && !PAI->IsCurrentState<CRaiseState>())
+    if (health.hp == 0 && PAI->IsSpawned() && !PAI->IsCurrentState<CDeathState>() &&
+        !PAI->IsCurrentState<CRaiseState>() && !PAI->IsCurrentState<CDespawnState>())
     {
         Die();
     }
