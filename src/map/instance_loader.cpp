@@ -216,7 +216,16 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
             PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
-            PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+
+            uint32 aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+            PMob->m_Aggro = aggro;
+
+            // If a special instanced mob aggros, it should always aggro regardless of level.
+            if(PMob->m_Type & MOBTYPE_EVENT)
+            {
+                PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, aggro);
+            }
+
             PMob->m_MobSkillList = Sql_GetUIntData(SqlInstanceHandle, 62);
             PMob->m_TrueDetection = Sql_GetUIntData(SqlInstanceHandle, 63);
             PMob->m_Detects = Sql_GetUIntData(SqlInstanceHandle, 64);
