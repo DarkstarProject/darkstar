@@ -3345,12 +3345,12 @@ INSERT INTO `item_mods` VALUES (11127,1,41);
 INSERT INTO `item_mods` VALUES (11127,5,55);
 INSERT INTO `item_mods` VALUES (11127,28,7);
 INSERT INTO `item_mods` VALUES (11127,30,7);
-INSERT INTO `item_mods` VALUES (11128,1,42);
-INSERT INTO `item_mods` VALUES (11128,5,65);
-INSERT INTO `item_mods` VALUES (11128,12,9);
-INSERT INTO `item_mods` VALUES (11128,28,6);
-INSERT INTO `item_mods` VALUES (11128,30,6);
-INSERT INTO `item_mods` VALUES (11128,529,1);
+INSERT INTO `item_mods` VALUES (11128,1,42);      -- Estoqueur's Fuseau +2: DEF 42
+INSERT INTO `item_mods` VALUES (11128,5,65);      -- MP +65
+INSERT INTO `item_mods` VALUES (11128,12,9);      -- INT +9
+INSERT INTO `item_mods` VALUES (11128,28,6);      -- Magic Atk. Bonus +6
+INSERT INTO `item_mods` VALUES (11128,30,6);      -- Magic Accuracy +6
+INSERT INTO `item_mods` VALUES (11128,529,1);     -- Enhances Refresh potency +1
 INSERT INTO `item_mods` VALUES (11129,1,48);
 INSERT INTO `item_mods` VALUES (11129,9,7);
 INSERT INTO `item_mods` VALUES (11129,165,4);
@@ -17913,7 +17913,7 @@ INSERT INTO `item_mods` VALUES (15808,23,4);
 INSERT INTO `item_mods` VALUES (15808,25,4);
 INSERT INTO `item_mods` VALUES (15809,24,6);
 INSERT INTO `item_mods` VALUES (15809,26,6);
-INSERT INTO `item_mods` VALUES (15810,528,8);
+INSERT INTO `item_mods` VALUES (15810,528,8);     -- Luzaf's Ring: Increases Phantom Roll area of effect +8
 INSERT INTO `item_mods` VALUES (15811,2,15);
 INSERT INTO `item_mods` VALUES (15811,68,2);
 INSERT INTO `item_mods` VALUES (15812,2,17);
@@ -22472,9 +22472,9 @@ INSERT INTO `item_mods` VALUES (18994,355,186); -- Laevateinn 75 - Vidohunir
 INSERT INTO `item_mods` VALUES (18995,30,10);
 INSERT INTO `item_mods` VALUES (18995,355,44); -- Murgleis 75 - Death Blossom
 INSERT INTO `item_mods` VALUES (18995,525,2);
-INSERT INTO `item_mods` VALUES (18996,355,27); -- Vajra 75 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (18996,526,10);
-INSERT INTO `item_mods` VALUES (18996,527,10);
+INSERT INTO `item_mods` VALUES (18996,355,27);    -- Vajra (Level 75): Mandalic Stab
+INSERT INTO `item_mods` VALUES (18996,526,10);    -- Enhances Sneak Attack effect +10%
+INSERT INTO `item_mods` VALUES (18996,527,10);    -- Enhances Trick Attack effect +10%
 INSERT INTO `item_mods` VALUES (18997,27,10);
 INSERT INTO `item_mods` VALUES (18997,161,-10);
 INSERT INTO `item_mods` VALUES (18997,288,15);
@@ -22601,9 +22601,9 @@ INSERT INTO `item_mods` VALUES (19063,355,186); -- Laevateinn 80 - Vidohunir
 INSERT INTO `item_mods` VALUES (19064,30,15);
 INSERT INTO `item_mods` VALUES (19064,355,44); -- Murgleis 80 - Death Blossom
 INSERT INTO `item_mods` VALUES (19064,525,2);
-INSERT INTO `item_mods` VALUES (19065,355,27); -- Vajra 80 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19065,526,15);
-INSERT INTO `item_mods` VALUES (19065,527,15);
+INSERT INTO `item_mods` VALUES (19065,355,27);    -- Vajra (Level 80): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19065,526,15);    -- Enhances Sneak Attack effect +15%
+INSERT INTO `item_mods` VALUES (19065,527,15);    -- Enhances Trick Attack effect +15%
 INSERT INTO `item_mods` VALUES (19066,355,45); -- Burtgang 80 - Atonement
 INSERT INTO `item_mods` VALUES (19067,30,20);
 INSERT INTO `item_mods` VALUES (19067,355,106); -- Liberator 80 - Insurgency
@@ -22641,9 +22641,9 @@ INSERT INTO `item_mods` VALUES (19083,355,186); -- Laevateinn 85 - Vidohunir
 INSERT INTO `item_mods` VALUES (19084,30,20);
 INSERT INTO `item_mods` VALUES (19084,355,44); -- Murgleis 85 - Death Blossom
 INSERT INTO `item_mods` VALUES (19084,525,2);
-INSERT INTO `item_mods` VALUES (19085,355,27); -- Vajra 85 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19085,526,20);
-INSERT INTO `item_mods` VALUES (19085,527,20);
+INSERT INTO `item_mods` VALUES (19085,355,27);    -- Vajra (Level 85): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19085,526,20);    -- Enhances Sneak Attack effect +20%
+INSERT INTO `item_mods` VALUES (19085,527,20);    -- Enhances Trick Attack effect +20%
 INSERT INTO `item_mods` VALUES (19086,27,14);
 INSERT INTO `item_mods` VALUES (19086,161,-14);
 INSERT INTO `item_mods` VALUES (19086,288,20);
@@ -23016,9 +23016,9 @@ INSERT INTO `item_mods` VALUES (19615,355,186); -- Laevateinn 90 - Vidohunir
 INSERT INTO `item_mods` VALUES (19616,30,25);
 INSERT INTO `item_mods` VALUES (19616,355,44); -- Murgleis 90 - Death Blossom
 INSERT INTO `item_mods` VALUES (19616,525,2);
-INSERT INTO `item_mods` VALUES (19617,355,27); -- Vajra 90 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19617,526,25);
-INSERT INTO `item_mods` VALUES (19617,527,25);
+INSERT INTO `item_mods` VALUES (19617,355,27);    -- Vajra (Level 90): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19617,526,25);    -- Enhances Sneak Attack effect +25%
+INSERT INTO `item_mods` VALUES (19617,527,25);    -- Enhances Trick Attack effect +25%
 INSERT INTO `item_mods` VALUES (19618,355,45); -- Burtgang 90 - Atonement
 INSERT INTO `item_mods` VALUES (19619,30,30);
 INSERT INTO `item_mods` VALUES (19619,355,106); -- Liberator 90 - Insurgency
@@ -23091,9 +23091,9 @@ INSERT INTO `item_mods` VALUES (19713,355,186); -- Laevateinn 95 - Vidohunir
 INSERT INTO `item_mods` VALUES (19714,30,25);
 INSERT INTO `item_mods` VALUES (19714,355,44); -- Murgleis 95 - Death Blossom
 INSERT INTO `item_mods` VALUES (19714,525,2);
-INSERT INTO `item_mods` VALUES (19715,355,27); -- Vajra 95 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19715,526,25);
-INSERT INTO `item_mods` VALUES (19715,527,25);
+INSERT INTO `item_mods` VALUES (19715,355,27);    -- Vajra (Level 95): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19715,526,25);    -- Enhances Sneak Attack effect +25%
+INSERT INTO `item_mods` VALUES (19715,527,25);    -- Enhances Trick Attack effect +25%
 INSERT INTO `item_mods` VALUES (19716,27,16);
 INSERT INTO `item_mods` VALUES (19716,161,-16);
 INSERT INTO `item_mods` VALUES (19716,288,25);
@@ -23347,9 +23347,9 @@ INSERT INTO `item_mods` VALUES (19822,355,186); -- Laevateinn 99 - Vidohunir
 INSERT INTO `item_mods` VALUES (19823,30,30);
 INSERT INTO `item_mods` VALUES (19823,355,44); -- Murgleis 99 - Death Blossom
 INSERT INTO `item_mods` VALUES (19823,525,3);
-INSERT INTO `item_mods` VALUES (19824,355,27); -- Vajra 99 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19824,526,30);
-INSERT INTO `item_mods` VALUES (19824,527,30);
+INSERT INTO `item_mods` VALUES (19824,355,27);    -- Vajra (Level 99): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19824,526,30);    -- Enhances Sneak Attack effect +30%
+INSERT INTO `item_mods` VALUES (19824,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (19825,27,18);
 INSERT INTO `item_mods` VALUES (19825,161,-18);
 INSERT INTO `item_mods` VALUES (19825,288,30);
@@ -23513,9 +23513,9 @@ INSERT INTO `item_mods` VALUES (19951,355,186); -- Laevateinn 99 - Vidohunir
 INSERT INTO `item_mods` VALUES (19952,30,30);
 INSERT INTO `item_mods` VALUES (19952,355,44); -- Murgleis 99 - Death Blossom
 INSERT INTO `item_mods` VALUES (19952,525,3);
-INSERT INTO `item_mods` VALUES (19953,355,27); -- Vajra 99 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (19953,526,30);
-INSERT INTO `item_mods` VALUES (19953,527,30);
+INSERT INTO `item_mods` VALUES (19953,355,27);    -- Vajra (Level 99 II): Mandalic Stab
+INSERT INTO `item_mods` VALUES (19953,526,30);    -- Enhances Sneak Attack effect +30%
+INSERT INTO `item_mods` VALUES (19953,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (19954,355,45); -- Burtgang 99 - Atonement
 INSERT INTO `item_mods` VALUES (19955,30,35);
 INSERT INTO `item_mods` VALUES (19955,355,106); -- Liberator 99 - Insurgency
@@ -23594,12 +23594,16 @@ INSERT INTO `item_mods` VALUES (20558,203,15);
 INSERT INTO `item_mods` VALUES (20558,355,29); -- Terpsichore iLvL 119 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (20558,403,30);
 INSERT INTO `item_mods` VALUES (20558,494,2);
-INSERT INTO `item_mods` VALUES (20559,355,27); -- Vajra iLvL 119 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (20559,526,30);
-INSERT INTO `item_mods` VALUES (20559,527,30);
-INSERT INTO `item_mods` VALUES (20560,355,27); -- Vajra iLvL 119 - Mandalic Stab
-INSERT INTO `item_mods` VALUES (20560,526,30);
-INSERT INTO `item_mods` VALUES (20560,527,30);
+INSERT INTO `item_mods` VALUES (20559,81,242);    -- Vajra (Level 119): Dagger skill +242
+INSERT INTO `item_mods` VALUES (20559,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20559,355,27);    -- Mandalic Stab
+INSERT INTO `item_mods` VALUES (20559,526,30);    -- Enhances Sneak Attack effect +30%
+INSERT INTO `item_mods` VALUES (20559,527,30);    -- Enhances Trick Attack effect +30%
+INSERT INTO `item_mods` VALUES (20560,81,242);    -- Vajra (Level 119 II): Dagger skill +242
+INSERT INTO `item_mods` VALUES (20560,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20560,355,27);    -- Mandalic Stab
+INSERT INTO `item_mods` VALUES (20560,526,30);    -- Enhances Sneak Attack effect +30%
+INSERT INTO `item_mods` VALUES (20560,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (20561,30,25);     -- Carnwenhan (Level 119): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (20561,81,242);    -- Dagger skill +242
 INSERT INTO `item_mods` VALUES (20561,110,242);   -- Parrying skill +242
@@ -33209,6 +33213,45 @@ INSERT INTO `item_mods` VALUES (27848,68,41);
 INSERT INTO `item_mods` VALUES (27848,335,20);
 INSERT INTO `item_mods` VALUES (27848,369,2);
 INSERT INTO `item_mods` VALUES (27848,384,31);
+INSERT INTO `item_mods` VALUES (27849,1,127);     -- Geomancy Tunic +1: DEF 127
+INSERT INTO `item_mods` VALUES (27849,2,54);      -- HP +54
+INSERT INTO `item_mods` VALUES (27849,5,85);      -- MP +85
+INSERT INTO `item_mods` VALUES (27849,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (27849,9,21);      -- DEX +21
+INSERT INTO `item_mods` VALUES (27849,10,21);     -- VIT +21
+INSERT INTO `item_mods` VALUES (27849,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (27849,12,29);     -- INT +29
+INSERT INTO `item_mods` VALUES (27849,13,29);     -- MND +29
+INSERT INTO `item_mods` VALUES (27849,14,29);     -- CHR +29
+INSERT INTO `item_mods` VALUES (27849,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (27849,31,80);     -- Magic Evasion +80
+INSERT INTO `item_mods` VALUES (27849,68,41);     -- Evasion +41
+INSERT INTO `item_mods` VALUES (27849,116,17);    -- Dark magic skill +17
+INSERT INTO `item_mods` VALUES (27849,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (27849,529,2);     -- Enhances Refresh effect +2
+INSERT INTO `item_mods` VALUES (27850,1,135);     -- Runeist Coat +1: DEF 135
+INSERT INTO `item_mods` VALUES (27850,2,139);     -- HP +139
+INSERT INTO `item_mods` VALUES (27850,5,44);      -- MP +44
+INSERT INTO `item_mods` VALUES (27850,8,24);      -- STR +24
+INSERT INTO `item_mods` VALUES (27850,9,29);      -- DEX +29
+INSERT INTO `item_mods` VALUES (27850,10,24);     -- VIT +24
+INSERT INTO `item_mods` VALUES (27850,11,28);     -- AGI +28
+INSERT INTO `item_mods` VALUES (27850,12,23);     -- INT +23
+INSERT INTO `item_mods` VALUES (27850,13,23);     -- MND +23
+INSERT INTO `item_mods` VALUES (27850,14,23);     -- CHR +23
+INSERT INTO `item_mods` VALUES (27850,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (27850,31,64);     -- Magic Evasion +64
+INSERT INTO `item_mods` VALUES (27850,54,33);     -- Fire resistance +33
+INSERT INTO `item_mods` VALUES (27850,55,33);     -- Ice resistance +33
+INSERT INTO `item_mods` VALUES (27850,56,33);     -- Wind resistance +33
+INSERT INTO `item_mods` VALUES (27850,57,33);     -- Earth resistance +33
+INSERT INTO `item_mods` VALUES (27850,58,33);     -- Thunder resistance +33
+INSERT INTO `item_mods` VALUES (27850,59,33);     -- Water resistance +33
+INSERT INTO `item_mods` VALUES (27850,60,33);     -- Light resistance +33
+INSERT INTO `item_mods` VALUES (27850,61,33);     -- Dark resistance +33
+INSERT INTO `item_mods` VALUES (27850,68,49);     -- Evasion +49
+INSERT INTO `item_mods` VALUES (27850,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27850,529,2);     -- Enhances Refresh effect +2
 INSERT INTO `item_mods` VALUES (27856,1,133);
 INSERT INTO `item_mods` VALUES (27856,2,59);
 INSERT INTO `item_mods` VALUES (27856,5,44);
@@ -33750,6 +33793,45 @@ INSERT INTO `item_mods` VALUES (27925,23,25);
 INSERT INTO `item_mods` VALUES (27925,31,18);
 INSERT INTO `item_mods` VALUES (27925,288,2);
 INSERT INTO `item_mods` VALUES (27925,384,20);
+INSERT INTO `item_mods` VALUES (27926,1,91);      -- Geomancy Tunic: DEF 91
+INSERT INTO `item_mods` VALUES (27926,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (27926,5,75);      -- MP +75
+INSERT INTO `item_mods` VALUES (27926,8,13);      -- STR +13
+INSERT INTO `item_mods` VALUES (27926,9,13);      -- DEX +13
+INSERT INTO `item_mods` VALUES (27926,10,13);     -- VIT +13
+INSERT INTO `item_mods` VALUES (27926,11,13);     -- AGI +13
+INSERT INTO `item_mods` VALUES (27926,12,18);     -- INT +18
+INSERT INTO `item_mods` VALUES (27926,13,18);     -- MND +18
+INSERT INTO `item_mods` VALUES (27926,14,18);     -- CHR +18
+INSERT INTO `item_mods` VALUES (27926,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (27926,31,54);     -- Magic Evasion +54
+INSERT INTO `item_mods` VALUES (27926,68,19);     -- Evasion +19
+INSERT INTO `item_mods` VALUES (27926,116,15);    -- Dark magic skill +15
+INSERT INTO `item_mods` VALUES (27926,384,21);    -- Haste +2%
+INSERT INTO `item_mods` VALUES (27926,529,2);     -- Enhances Refresh effect +2
+INSERT INTO `item_mods` VALUES (27927,1,104);     -- Runeist Coat: DEF 104
+INSERT INTO `item_mods` VALUES (27927,2,108);     -- HP +108
+INSERT INTO `item_mods` VALUES (27927,5,36);      -- MP +36
+INSERT INTO `item_mods` VALUES (27927,8,15);      -- STR +15
+INSERT INTO `item_mods` VALUES (27927,9,18);      -- DEX +18
+INSERT INTO `item_mods` VALUES (27927,10,15);     -- VIT +15
+INSERT INTO `item_mods` VALUES (27927,11,17);     -- AGI +17
+INSERT INTO `item_mods` VALUES (27927,12,14);     -- INT +14
+INSERT INTO `item_mods` VALUES (27927,13,14);     -- MND +14
+INSERT INTO `item_mods` VALUES (27927,14,14);     -- CHR +14
+INSERT INTO `item_mods` VALUES (27927,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (27927,31,43);     -- Magic Evasion +43
+INSERT INTO `item_mods` VALUES (27927,54,30);     -- Fire resistance +30
+INSERT INTO `item_mods` VALUES (27927,55,30);     -- Ice resistance +30
+INSERT INTO `item_mods` VALUES (27927,56,30);     -- Wind resistance +30
+INSERT INTO `item_mods` VALUES (27927,57,30);     -- Earth resistance +30
+INSERT INTO `item_mods` VALUES (27927,58,30);     -- Thunder resistance +30
+INSERT INTO `item_mods` VALUES (27927,59,30);     -- Water resistance +30
+INSERT INTO `item_mods` VALUES (27927,60,30);     -- Light resistance +30
+INSERT INTO `item_mods` VALUES (27927,61,30);     -- Dark resistance +30
+INSERT INTO `item_mods` VALUES (27927,68,23);     -- Evasion +23
+INSERT INTO `item_mods` VALUES (27927,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (27927,529,2);     -- Enhances Refresh effect +2
 INSERT INTO `item_mods` VALUES (27928,1,35);
 INSERT INTO `item_mods` VALUES (27928,3,3);
 INSERT INTO `item_mods` VALUES (27928,6,3);
