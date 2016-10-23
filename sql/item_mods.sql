@@ -3033,8 +3033,8 @@ INSERT INTO `item_mods` VALUES (11034,68,3);
 INSERT INTO `item_mods` VALUES (11034,289,3);
 INSERT INTO `item_mods` VALUES (11036,14,4);
 INSERT INTO `item_mods` VALUES (11036,30,2);
-INSERT INTO `item_mods` VALUES (11037,57,10);
-INSERT INTO `item_mods` VALUES (11037,300,10);
+INSERT INTO `item_mods` VALUES (11037,57,10);     -- Earthcry Earring: Earth resistance +10
+INSERT INTO `item_mods` VALUES (11037,539,10);    -- Enhances Stoneskin effect +10
 INSERT INTO `item_mods` VALUES (11038,23,7);
 INSERT INTO `item_mods` VALUES (11039,5,20);
 INSERT INTO `item_mods` VALUES (11042,8,2);
@@ -6030,11 +6030,10 @@ INSERT INTO `item_mods` VALUES (11948,1,55);
 INSERT INTO `item_mods` VALUES (11948,10,5);
 INSERT INTO `item_mods` VALUES (11948,27,3);
 INSERT INTO `item_mods` VALUES (11948,68,-5);
-INSERT INTO `item_mods` VALUES (11949,1,40);
-INSERT INTO `item_mods` VALUES (11949,5,10);
-INSERT INTO `item_mods` VALUES (11949,13,5);
-INSERT INTO `item_mods` VALUES (11949,300,20);
-INSERT INTO `item_mods` VALUES (11949,539,20);
+INSERT INTO `item_mods` VALUES (11949,1,40);      -- Haven Hose: DEF 40
+INSERT INTO `item_mods` VALUES (11949,5,10);      -- MP +10
+INSERT INTO `item_mods` VALUES (11949,13,5);      -- MND +5
+INSERT INTO `item_mods` VALUES (11949,539,20);    -- Enhances Stoneskin effect +20
 INSERT INTO `item_mods` VALUES (11950,1,43);
 INSERT INTO `item_mods` VALUES (11950,10,-6);
 INSERT INTO `item_mods` VALUES (11950,23,8);
@@ -9370,8 +9369,8 @@ INSERT INTO `item_mods` VALUES (13174,168,5);     -- Willpower Torque: Spell int
 INSERT INTO `item_mods` VALUES (13175,11,2);
 INSERT INTO `item_mods` VALUES (13175,13,6);
 INSERT INTO `item_mods` VALUES (13176,12,3);
-INSERT INTO `item_mods` VALUES (13177,1,4);
-INSERT INTO `item_mods` VALUES (13177,539,30);
+INSERT INTO `item_mods` VALUES (13177,1,4);       -- Stone Gorget: DEF 4
+INSERT INTO `item_mods` VALUES (13177,539,30);    -- Enhances Stoneskin effect +30
 INSERT INTO `item_mods` VALUES (13178,1,5);
 INSERT INTO `item_mods` VALUES (13182,14,-9);
 INSERT INTO `item_mods` VALUES (13183,11,1);
@@ -15227,11 +15226,11 @@ INSERT INTO `item_mods` VALUES (15032,14,3);
 INSERT INTO `item_mods` VALUES (15032,384,30);
 INSERT INTO `item_mods` VALUES (15033,1,21);
 INSERT INTO `item_mods` VALUES (15033,291,2);
-INSERT INTO `item_mods` VALUES (15034,1,28);
-INSERT INTO `item_mods` VALUES (15034,2,10);
-INSERT INTO `item_mods` VALUES (15034,5,10);
-INSERT INTO `item_mods` VALUES (15034,57,20);
-INSERT INTO `item_mods` VALUES (15034,539,30);
+INSERT INTO `item_mods` VALUES (15034,1,28);      -- Stone Mufflers: DEF 28
+INSERT INTO `item_mods` VALUES (15034,2,10);      -- HP +10
+INSERT INTO `item_mods` VALUES (15034,5,10);      -- MP +10
+INSERT INTO `item_mods` VALUES (15034,57,20);     -- Earth resistance +20
+INSERT INTO `item_mods` VALUES (15034,539,30);    -- Enhances Stoneskin effect +30
 INSERT INTO `item_mods` VALUES (15035,1,16);
 INSERT INTO `item_mods` VALUES (15035,2,17);
 INSERT INTO `item_mods` VALUES (15035,9,4);
@@ -15588,11 +15587,11 @@ INSERT INTO `item_mods` VALUES (15119,5,17);      -- MP +17
 INSERT INTO `item_mods` VALUES (15119,27,-2);     -- Enmity -2
 INSERT INTO `item_mods` VALUES (15119,112,15);    -- Healing magic skill +15
 INSERT INTO `item_mods` VALUES (15119,567,20);    -- Elemental resistance spells +20
-INSERT INTO `item_mods` VALUES (15120,1,30);
-INSERT INTO `item_mods` VALUES (15120,5,13);
-INSERT INTO `item_mods` VALUES (15120,12,3);
-INSERT INTO `item_mods` VALUES (15120,27,-2);
-INSERT INTO `item_mods` VALUES (15120,565,5);
+INSERT INTO `item_mods` VALUES (15120,1,30);      -- Sorcerer's Tonban: DEF 30
+INSERT INTO `item_mods` VALUES (15120,5,13);      -- MP +13
+INSERT INTO `item_mods` VALUES (15120,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15120,27,-2);     -- Enmity -2
+INSERT INTO `item_mods` VALUES (15120,565,5);     -- Elemental magic affected by day +5%
 INSERT INTO `item_mods` VALUES (15121,1,33);
 INSERT INTO `item_mods` VALUES (15121,5,16);
 INSERT INTO `item_mods` VALUES (15121,9,5);
@@ -17085,11 +17084,11 @@ INSERT INTO `item_mods` VALUES (15582,5,17);      -- MP +17
 INSERT INTO `item_mods` VALUES (15582,27,-3);     -- Enmity -3
 INSERT INTO `item_mods` VALUES (15582,112,15);    -- Healing magic skill +15
 INSERT INTO `item_mods` VALUES (15582,567,22);    -- Elemental resistance spells +22
-INSERT INTO `item_mods` VALUES (15583,1,31);
-INSERT INTO `item_mods` VALUES (15583,5,20);
-INSERT INTO `item_mods` VALUES (15583,12,3);
-INSERT INTO `item_mods` VALUES (15583,27,-3);
-INSERT INTO `item_mods` VALUES (15583,565,5);
+INSERT INTO `item_mods` VALUES (15583,1,31);      -- Sorcerer's Tonban +1: DEF 31
+INSERT INTO `item_mods` VALUES (15583,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15583,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15583,27,-3);     -- Enmity -3
+INSERT INTO `item_mods` VALUES (15583,565,5);     -- Elemental magic affected by day +5%
 INSERT INTO `item_mods` VALUES (15584,1,34);
 INSERT INTO `item_mods` VALUES (15584,5,16);
 INSERT INTO `item_mods` VALUES (15584,9,6);
@@ -17967,8 +17966,8 @@ INSERT INTO `item_mods` VALUES (15854,8,4);
 INSERT INTO `item_mods` VALUES (15854,25,2);
 INSERT INTO `item_mods` VALUES (15854,27,-1);
 INSERT INTO `item_mods` VALUES (15855,1,20);
-INSERT INTO `item_mods` VALUES (15858,5,25);
-INSERT INTO `item_mods` VALUES (15858,565,3);
+INSERT INTO `item_mods` VALUES (15858,5,25);      -- Zodiac Ring: MP +25
+INSERT INTO `item_mods` VALUES (15858,565,3);     -- Elemental magic affected by day +3%
 INSERT INTO `item_mods` VALUES (15859,5,30);
 INSERT INTO `item_mods` VALUES (15859,160,-3);
 INSERT INTO `item_mods` VALUES (15861,1,5);
@@ -18248,7 +18247,8 @@ INSERT INTO `item_mods` VALUES (15955,25,4);
 INSERT INTO `item_mods` VALUES (15959,1,8);
 INSERT INTO `item_mods` VALUES (15959,288,2);
 INSERT INTO `item_mods` VALUES (15959,384,71);
-INSERT INTO `item_mods` VALUES (15960,539,20);
+INSERT INTO `item_mods` VALUES (15960,1,5);       -- Siegel Sash: DEF 5
+INSERT INTO `item_mods` VALUES (15960,539,20);    -- Enhances Stoneskin effect: 20
 INSERT INTO `item_mods` VALUES (15961,68,5);
 INSERT INTO `item_mods` VALUES (15961,120,5);
 INSERT INTO `item_mods` VALUES (15961,121,5);
@@ -21812,90 +21812,90 @@ INSERT INTO `item_mods` VALUES (18630,519,6);     -- Cure spellcasting time -6%
 INSERT INTO `item_mods` VALUES (18631,5,110);     -- Nathushne +1: MP +110
 INSERT INTO `item_mods` VALUES (18631,374,15);    -- Cure potency +15%
 INSERT INTO `item_mods` VALUES (18631,519,7);     -- Cure spellcasting time -7%
-INSERT INTO `item_mods` VALUES (18632,8,4);
-INSERT INTO `item_mods` VALUES (18632,9,4);
-INSERT INTO `item_mods` VALUES (18632,10,4);
-INSERT INTO `item_mods` VALUES (18632,11,4);
-INSERT INTO `item_mods` VALUES (18632,12,4);
-INSERT INTO `item_mods` VALUES (18632,13,4);
-INSERT INTO `item_mods` VALUES (18632,14,4);
-INSERT INTO `item_mods` VALUES (18632,54,15);
-INSERT INTO `item_mods` VALUES (18632,55,15);
-INSERT INTO `item_mods` VALUES (18632,56,15);
-INSERT INTO `item_mods` VALUES (18632,57,15);
-INSERT INTO `item_mods` VALUES (18632,58,15);
-INSERT INTO `item_mods` VALUES (18632,59,15);
-INSERT INTO `item_mods` VALUES (18632,60,15);
-INSERT INTO `item_mods` VALUES (18632,61,15);
-INSERT INTO `item_mods` VALUES (18632,71,10);
-INSERT INTO `item_mods` VALUES (18632,374,10);
-INSERT INTO `item_mods` VALUES (18632,347,2);
-INSERT INTO `item_mods` VALUES (18632,348,2);
-INSERT INTO `item_mods` VALUES (18632,349,2);
-INSERT INTO `item_mods` VALUES (18632,350,2);
-INSERT INTO `item_mods` VALUES (18632,351,2);
-INSERT INTO `item_mods` VALUES (18632,352,2);
-INSERT INTO `item_mods` VALUES (18632,353,2);
-INSERT INTO `item_mods` VALUES (18632,354,2);
-INSERT INTO `item_mods` VALUES (18632,544,2);
-INSERT INTO `item_mods` VALUES (18632,545,2);
-INSERT INTO `item_mods` VALUES (18632,546,2);
-INSERT INTO `item_mods` VALUES (18632,547,2);
-INSERT INTO `item_mods` VALUES (18632,548,2);
-INSERT INTO `item_mods` VALUES (18632,549,2);
-INSERT INTO `item_mods` VALUES (18632,550,2);
-INSERT INTO `item_mods` VALUES (18632,551,2);
-INSERT INTO `item_mods` VALUES (18632,553,2);
-INSERT INTO `item_mods` VALUES (18632,554,2);
-INSERT INTO `item_mods` VALUES (18632,555,2);
-INSERT INTO `item_mods` VALUES (18632,556,2);
-INSERT INTO `item_mods` VALUES (18632,557,2);
-INSERT INTO `item_mods` VALUES (18632,558,2);
-INSERT INTO `item_mods` VALUES (18632,559,2);
-INSERT INTO `item_mods` VALUES (18632,560,2);
-INSERT INTO `item_mods` VALUES (18632,566,1);
-INSERT INTO `item_mods` VALUES (18633,8,5);
-INSERT INTO `item_mods` VALUES (18633,9,5);
-INSERT INTO `item_mods` VALUES (18633,10,5);
-INSERT INTO `item_mods` VALUES (18633,11,5);
-INSERT INTO `item_mods` VALUES (18633,12,5);
-INSERT INTO `item_mods` VALUES (18633,13,5);
-INSERT INTO `item_mods` VALUES (18633,14,5);
-INSERT INTO `item_mods` VALUES (18633,54,20);
-INSERT INTO `item_mods` VALUES (18633,55,20);
-INSERT INTO `item_mods` VALUES (18633,56,20);
-INSERT INTO `item_mods` VALUES (18633,57,20);
-INSERT INTO `item_mods` VALUES (18633,58,20);
-INSERT INTO `item_mods` VALUES (18633,59,20);
-INSERT INTO `item_mods` VALUES (18633,60,20);
-INSERT INTO `item_mods` VALUES (18633,61,20);
-INSERT INTO `item_mods` VALUES (18633,71,10);
-INSERT INTO `item_mods` VALUES (18633,374,10);
-INSERT INTO `item_mods` VALUES (18633,347,3);
-INSERT INTO `item_mods` VALUES (18633,348,3);
-INSERT INTO `item_mods` VALUES (18633,349,3);
-INSERT INTO `item_mods` VALUES (18633,350,3);
-INSERT INTO `item_mods` VALUES (18633,351,3);
-INSERT INTO `item_mods` VALUES (18633,352,3);
-INSERT INTO `item_mods` VALUES (18633,353,3);
-INSERT INTO `item_mods` VALUES (18633,354,3);
-INSERT INTO `item_mods` VALUES (18633,544,3);
-INSERT INTO `item_mods` VALUES (18633,545,3);
-INSERT INTO `item_mods` VALUES (18633,546,3);
-INSERT INTO `item_mods` VALUES (18633,547,3);
-INSERT INTO `item_mods` VALUES (18633,548,3);
-INSERT INTO `item_mods` VALUES (18633,549,3);
-INSERT INTO `item_mods` VALUES (18633,550,3);
-INSERT INTO `item_mods` VALUES (18633,551,3);
-INSERT INTO `item_mods` VALUES (18633,553,3);
-INSERT INTO `item_mods` VALUES (18633,554,3);
-INSERT INTO `item_mods` VALUES (18633,555,3);
-INSERT INTO `item_mods` VALUES (18633,556,3);
-INSERT INTO `item_mods` VALUES (18633,557,3);
-INSERT INTO `item_mods` VALUES (18633,558,3);
-INSERT INTO `item_mods` VALUES (18633,559,3);
-INSERT INTO `item_mods` VALUES (18633,560,3);
-INSERT INTO `item_mods` VALUES (18633,566,1);
+INSERT INTO `item_mods` VALUES (18632,8,4);       -- Iridal Staff: STR +4
+INSERT INTO `item_mods` VALUES (18632,9,4);       -- DEX +4
+INSERT INTO `item_mods` VALUES (18632,10,4);      -- VIT +4
+INSERT INTO `item_mods` VALUES (18632,11,4);      -- AGI +4
+INSERT INTO `item_mods` VALUES (18632,12,4);      -- INT +4
+INSERT INTO `item_mods` VALUES (18632,13,4);      -- MND +4
+INSERT INTO `item_mods` VALUES (18632,14,4);      -- CHR +4
+INSERT INTO `item_mods` VALUES (18632,54,15);     -- Fire resistance +15
+INSERT INTO `item_mods` VALUES (18632,55,15);     -- Ice resistance +15
+INSERT INTO `item_mods` VALUES (18632,56,15);     -- Wind resistance +15
+INSERT INTO `item_mods` VALUES (18632,57,15);     -- Earth resistance +15
+INSERT INTO `item_mods` VALUES (18632,58,15);     -- Thunder resistance +15
+INSERT INTO `item_mods` VALUES (18632,59,15);     -- Water resistance +15
+INSERT INTO `item_mods` VALUES (18632,60,15);     -- Light resistance +15
+INSERT INTO `item_mods` VALUES (18632,61,15);     -- Dark resistance +15
+INSERT INTO `item_mods` VALUES (18632,71,10);     -- MP recovered while healing +10
+INSERT INTO `item_mods` VALUES (18632,374,10);    -- Cure potency +10%
+INSERT INTO `item_mods` VALUES (18632,347,2);     -- Fire affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,348,2);     -- Earth affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,349,2);     -- Water affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,350,2);     -- Ice affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,351,2);     -- Thunder affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,352,2);     -- Wind affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,353,2);     -- Light affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,354,2);     -- Dark affinity damage +10%
+INSERT INTO `item_mods` VALUES (18632,544,2);     -- Fire affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,545,2);     -- Earth affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,546,2);     -- Water affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,547,2);     -- Ice affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,548,2);     -- Thunder affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,549,2);     -- Wind affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,550,2);     -- Light affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,551,2);     -- Dark affinity accuracy +20
+INSERT INTO `item_mods` VALUES (18632,553,2);     -- Fire affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,554,2);     -- Earth affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,555,2);     -- Water affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,556,2);     -- Ice affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,557,2);     -- Thunder affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,558,2);     -- Wind affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,559,2);     -- Light affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,560,2);     -- Dark affinity perpetuation cost -2
+INSERT INTO `item_mods` VALUES (18632,566,1);     -- Iridescence
+INSERT INTO `item_mods` VALUES (18633,8,5);       -- Chatoyant Staff: STR +5
+INSERT INTO `item_mods` VALUES (18633,9,5);       -- DEX +5
+INSERT INTO `item_mods` VALUES (18633,10,5);      -- VIT +5
+INSERT INTO `item_mods` VALUES (18633,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (18633,12,5);      -- INT +5
+INSERT INTO `item_mods` VALUES (18633,13,5);      -- MND +5
+INSERT INTO `item_mods` VALUES (18633,14,5);      -- CHR +5
+INSERT INTO `item_mods` VALUES (18633,54,20);     -- Fire resistance +20
+INSERT INTO `item_mods` VALUES (18633,55,20);     -- Ice resistance +20
+INSERT INTO `item_mods` VALUES (18633,56,20);     -- Wind resistance +20
+INSERT INTO `item_mods` VALUES (18633,57,20);     -- Earth resistance +20
+INSERT INTO `item_mods` VALUES (18633,58,20);     -- Thunder resistance +20
+INSERT INTO `item_mods` VALUES (18633,59,20);     -- Water resistance +20
+INSERT INTO `item_mods` VALUES (18633,60,20);     -- Light resistance +20
+INSERT INTO `item_mods` VALUES (18633,61,20);     -- Dark resistance +20
+INSERT INTO `item_mods` VALUES (18633,71,10);     -- MP recovered while healing +10
+INSERT INTO `item_mods` VALUES (18633,374,10);    -- Cure potency +10%
+INSERT INTO `item_mods` VALUES (18633,347,3);     -- Fire affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,348,3);     -- Earth affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,349,3);     -- Water affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,350,3);     -- Ice affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,351,3);     -- Thunder affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,352,3);     -- Wind affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,353,3);     -- Light affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,354,3);     -- Dark affinity damage +15%
+INSERT INTO `item_mods` VALUES (18633,544,3);     -- Fire affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,545,3);     -- Earth affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,546,3);     -- Water affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,547,3);     -- Ice affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,548,3);     -- Thunder affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,549,3);     -- Wind affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,550,3);     -- Light affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,551,3);     -- Dark affinity accuracy +30
+INSERT INTO `item_mods` VALUES (18633,553,3);     -- Fire affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,554,3);     -- Earth affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,555,3);     -- Water affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,556,3);     -- Ice affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,557,3);     -- Thunder affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,558,3);     -- Wind affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,559,3);     -- Light affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,560,3);     -- Dark affinity perpetuation cost -3
+INSERT INTO `item_mods` VALUES (18633,566,1);     -- Iridescence
 INSERT INTO `item_mods` VALUES (18634,32,25); -- fire macc
 INSERT INTO `item_mods` VALUES (18634,34,25); -- wind macc
 INSERT INTO `item_mods` VALUES (18634,40,25); -- fire mab
@@ -23636,14 +23636,16 @@ INSERT INTO `item_mods` VALUES (20610,25,13);
 INSERT INTO `item_mods` VALUES (20610,31,20);
 INSERT INTO `item_mods` VALUES (20610,68,22);
 INSERT INTO `item_mods` VALUES (20610,491,7);
-INSERT INTO `item_mods` VALUES (20612,8,7);
-INSERT INTO `item_mods` VALUES (20612,23,26);
-INSERT INTO `item_mods` VALUES (20612,288,3);
-INSERT INTO `item_mods` VALUES (20612,302,3);
-INSERT INTO `item_mods` VALUES (20612,431,1);
-INSERT INTO `item_mods` VALUES (20614,113,11);
-INSERT INTO `item_mods` VALUES (20614,300,-11);
-INSERT INTO `item_mods` VALUES (20614,341,11);
+INSERT INTO `item_mods` VALUES (20612,23,26);     -- Sangarius +1: Attack +26
+INSERT INTO `item_mods` VALUES (20612,82,228);    -- Sword skill +228
+INSERT INTO `item_mods` VALUES (20612,110,228);   -- Parrying skill +228
+INSERT INTO `item_mods` VALUES (20612,288,3);     -- Double Attack +3%
+INSERT INTO `item_mods` VALUES (20612,302,3);     -- Triple Attack +3%
+INSERT INTO `item_mods` VALUES (20612,431,1);     -- Additional effect
+INSERT INTO `item_mods` VALUES (20614,82,242);    -- Pukulatmuj +1: Sword skill +242
+INSERT INTO `item_mods` VALUES (20614,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20614,113,11);    -- Enhancing magic skill +11
+INSERT INTO `item_mods` VALUES (20614,432,11);    -- Enspell damage bonus +11
 INSERT INTO `item_mods` VALUES (20616,68,22);
 INSERT INTO `item_mods` VALUES (20618,11,10);
 INSERT INTO `item_mods` VALUES (20618,27,-10);
@@ -31153,6 +31155,10 @@ INSERT INTO `item_mods` VALUES (27507,25,5);
 INSERT INTO `item_mods` VALUES (27507,27,-5);
 INSERT INTO `item_mods` VALUES (27507,28,10);
 INSERT INTO `item_mods` VALUES (27507,296,2);
+INSERT INTO `item_mods` VALUES (27524,2,25);      -- Nodens Gorget: HP +25
+INSERT INTO `item_mods` VALUES (27524,5,25);      -- MP +25
+INSERT INTO `item_mods` VALUES (27524,374,5);     -- Cure potency +5%
+INSERT INTO `item_mods` VALUES (27524,539,30);    -- Enhances Stoneskin effect +30
 INSERT INTO `item_mods` VALUES (27562,7,50);      -- Metamorph Ring: Converts 50 HP to MP
 INSERT INTO `item_mods` VALUES (27562,12,5);      -- INT +5
 INSERT INTO `item_mods` VALUES (27562,13,5);      -- MND +5
