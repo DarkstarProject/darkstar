@@ -22469,9 +22469,9 @@ INSERT INTO `item_mods` VALUES (18994,28,20);
 INSERT INTO `item_mods` VALUES (18994,30,10);
 INSERT INTO `item_mods` VALUES (18994,288,15);
 INSERT INTO `item_mods` VALUES (18994,355,186); -- Laevateinn 75 - Vidohunir
-INSERT INTO `item_mods` VALUES (18995,30,10);
-INSERT INTO `item_mods` VALUES (18995,355,44); -- Murgleis 75 - Death Blossom
-INSERT INTO `item_mods` VALUES (18995,525,2);
+INSERT INTO `item_mods` VALUES (18995,30,10);     -- Murgleis (Level 75): Magic Accuracy +10
+INSERT INTO `item_mods` VALUES (18995,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (18995,525,2);     -- Augments Convert 1:2
 INSERT INTO `item_mods` VALUES (18996,355,27);    -- Vajra (Level 75): Mandalic Stab
 INSERT INTO `item_mods` VALUES (18996,526,10);    -- Enhances Sneak Attack effect +10%
 INSERT INTO `item_mods` VALUES (18996,527,10);    -- Enhances Trick Attack effect +10%
@@ -22598,9 +22598,9 @@ INSERT INTO `item_mods` VALUES (19060,355,90); -- Conqueror 80 - King's Justice
 INSERT INTO `item_mods` VALUES (19061,355,11); -- Glanzfaust 80 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19062,355,171); -- Yagrush 80 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19063,355,186); -- Laevateinn 80 - Vidohunir
-INSERT INTO `item_mods` VALUES (19064,30,15);
-INSERT INTO `item_mods` VALUES (19064,355,44); -- Murgleis 80 - Death Blossom
-INSERT INTO `item_mods` VALUES (19064,525,2);
+INSERT INTO `item_mods` VALUES (19064,30,15);     -- Murgleis (Level 80): Magic Accuracy +15
+INSERT INTO `item_mods` VALUES (19064,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19064,525,2);     -- Augments Convert 1:2
 INSERT INTO `item_mods` VALUES (19065,355,27);    -- Vajra (Level 80): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19065,526,15);    -- Enhances Sneak Attack effect +15%
 INSERT INTO `item_mods` VALUES (19065,527,15);    -- Enhances Trick Attack effect +15%
@@ -22638,9 +22638,9 @@ INSERT INTO `item_mods` VALUES (19083,28,40);
 INSERT INTO `item_mods` VALUES (19083,30,10);
 INSERT INTO `item_mods` VALUES (19083,288,20);
 INSERT INTO `item_mods` VALUES (19083,355,186); -- Laevateinn 85 - Vidohunir
-INSERT INTO `item_mods` VALUES (19084,30,20);
-INSERT INTO `item_mods` VALUES (19084,355,44); -- Murgleis 85 - Death Blossom
-INSERT INTO `item_mods` VALUES (19084,525,2);
+INSERT INTO `item_mods` VALUES (19084,30,20);     -- Murgleis (Level 85): Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (19084,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19084,525,2);     -- Augments Convert 1:2
 INSERT INTO `item_mods` VALUES (19085,355,27);    -- Vajra (Level 85): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19085,526,20);    -- Enhances Sneak Attack effect +20%
 INSERT INTO `item_mods` VALUES (19085,527,20);    -- Enhances Trick Attack effect +20%
@@ -23013,9 +23013,9 @@ INSERT INTO `item_mods` VALUES (19612,355,90); -- Conqueror 90 - King's Justice
 INSERT INTO `item_mods` VALUES (19613,355,11); -- Glanzfaust 90 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19614,355,171); -- Yagrush 90 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19615,355,186); -- Laevateinn 90 - Vidohunir
-INSERT INTO `item_mods` VALUES (19616,30,25);
-INSERT INTO `item_mods` VALUES (19616,355,44); -- Murgleis 90 - Death Blossom
-INSERT INTO `item_mods` VALUES (19616,525,2);
+INSERT INTO `item_mods` VALUES (19616,30,25);     -- Murgleis (Level 90): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (19616,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19616,525,2);     -- Augments Convert 1:2
 INSERT INTO `item_mods` VALUES (19617,355,27);    -- Vajra (Level 90): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19617,526,25);    -- Enhances Sneak Attack effect +25%
 INSERT INTO `item_mods` VALUES (19617,527,25);    -- Enhances Trick Attack effect +25%
@@ -23088,9 +23088,9 @@ INSERT INTO `item_mods` VALUES (19713,30,10);
 INSERT INTO `item_mods` VALUES (19713,288,25);
 INSERT INTO `item_mods` VALUES (19713,302,5);
 INSERT INTO `item_mods` VALUES (19713,355,186); -- Laevateinn 95 - Vidohunir
-INSERT INTO `item_mods` VALUES (19714,30,25);
-INSERT INTO `item_mods` VALUES (19714,355,44); -- Murgleis 95 - Death Blossom
-INSERT INTO `item_mods` VALUES (19714,525,2);
+INSERT INTO `item_mods` VALUES (19714,30,25);     -- Murgleis (Level 95): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (19714,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19714,525,2);     -- Augments Convert 1:2
 INSERT INTO `item_mods` VALUES (19715,355,27);    -- Vajra (Level 95): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19715,526,25);    -- Enhances Sneak Attack effect +25%
 INSERT INTO `item_mods` VALUES (19715,527,25);    -- Enhances Trick Attack effect +25%
@@ -23344,9 +23344,9 @@ INSERT INTO `item_mods` VALUES (19822,30,10);
 INSERT INTO `item_mods` VALUES (19822,288,30);
 INSERT INTO `item_mods` VALUES (19822,302,10);
 INSERT INTO `item_mods` VALUES (19822,355,186); -- Laevateinn 99 - Vidohunir
-INSERT INTO `item_mods` VALUES (19823,30,30);
-INSERT INTO `item_mods` VALUES (19823,355,44); -- Murgleis 99 - Death Blossom
-INSERT INTO `item_mods` VALUES (19823,525,3);
+INSERT INTO `item_mods` VALUES (19823,30,30);     -- Murgleis (Level 99): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (19823,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19823,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (19824,355,27);    -- Vajra (Level 99): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19824,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (19824,527,30);    -- Enhances Trick Attack effect +30%
@@ -23510,9 +23510,9 @@ INSERT INTO `item_mods` VALUES (19948,355,90); -- Conqueror 99 - King's Justice
 INSERT INTO `item_mods` VALUES (19949,355,11); -- Glanzfaust 99 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19950,355,171); -- Yagrush 99 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19951,355,186); -- Laevateinn 99 - Vidohunir
-INSERT INTO `item_mods` VALUES (19952,30,30);
-INSERT INTO `item_mods` VALUES (19952,355,44); -- Murgleis 99 - Death Blossom
-INSERT INTO `item_mods` VALUES (19952,525,3);
+INSERT INTO `item_mods` VALUES (19952,30,30);     -- Murgleis (Level 99 II): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (19952,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (19952,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (19953,355,27);    -- Vajra (Level 99 II): Mandalic Stab
 INSERT INTO `item_mods` VALUES (19953,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (19953,527,30);    -- Enhances Trick Attack effect +30%
@@ -23688,12 +23688,16 @@ INSERT INTO `item_mods` VALUES (20646,431,1); -- Additional Effect - scripts\glo
 INSERT INTO `item_mods` VALUES (20646,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20646,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (20646,613,40); -- Knights of the Round DMG +40%
-INSERT INTO `item_mods` VALUES (20647,30,30);
-INSERT INTO `item_mods` VALUES (20647,355,44); -- Murgleis iLvL 119 - Death Blossom
-INSERT INTO `item_mods` VALUES (20647,525,3);
-INSERT INTO `item_mods` VALUES (20648,30,30);
-INSERT INTO `item_mods` VALUES (20648,355,44); -- Murgleis iLvL 119 - Death Blossom
-INSERT INTO `item_mods` VALUES (20648,525,3);
+INSERT INTO `item_mods` VALUES (20647,30,30);     -- Murgleis (Level 119): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (20647,82,242);    -- Sword skill +242
+INSERT INTO `item_mods` VALUES (20647,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20647,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (20647,525,3);     -- Augments Convert 1:3
+INSERT INTO `item_mods` VALUES (20648,30,30);     -- Murgleis (Level 119 II): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (20648,82,242);    -- Sword skill +242
+INSERT INTO `item_mods` VALUES (20648,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20648,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (20648,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20649,27,18);
 INSERT INTO `item_mods` VALUES (20649,161,-18);
 INSERT INTO `item_mods` VALUES (20649,302,15);
@@ -23711,7 +23715,12 @@ INSERT INTO `item_mods` VALUES (20653,355,225); -- Almace iLvL 119 - Chant du Cy
 INSERT INTO `item_mods` VALUES (20654,9,20);
 INSERT INTO `item_mods` VALUES (20654,355,225); -- Almace iLvL 119 - Chant du Cygne
 INSERT INTO `item_mods` VALUES (20685,355,43); -- Excalibur iLvL 119 - Knights of the Round
-INSERT INTO `item_mods` VALUES (20686,355,44); -- Murgleis iLvL 119 - Death Blossom
+INSERT INTO `item_mods` VALUES (20686,30,40);     -- Murgleis (Level 119 III): Magic Accuracy +40
+INSERT INTO `item_mods` VALUES (20686,82,269);    -- Sword skill +269
+INSERT INTO `item_mods` VALUES (20686,110,269);   -- Parrying skill +269
+INSERT INTO `item_mods` VALUES (20686,311,217);   -- Magic Damage +217
+INSERT INTO `item_mods` VALUES (20686,355,44);    -- Death Blossom
+INSERT INTO `item_mods` VALUES (20686,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20687,355,45); -- Burtgang iLvL 119 - Atonement
 INSERT INTO `item_mods` VALUES (20688,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20689,355,225); -- Almace iLvL 119 - Chant du Cygne
