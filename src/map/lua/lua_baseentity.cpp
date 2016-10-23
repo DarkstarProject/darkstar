@@ -118,7 +118,7 @@
 #include "../ai/ai_container.h"
 #include "../ai/controllers/mob_controller.h"
 #include "../ai/states/weaponskill_state.h"
-#include "../ai/states/despawn_state.h"
+#include "../ai/states/respawn_state.h"
 #include "../ai/states/inactive_state.h"
 #include "../ai/states/item_state.h"
 #include "../ai/states/death_state.h"
@@ -7525,7 +7525,7 @@ inline int32 CLuaBaseEntity::setRespawnTime(lua_State* L)
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
         PMob->m_RespawnTime = lua_tointeger(L, 1) * 1000;
-        if (PMob->PAI->IsCurrentState<CDespawnState>())
+        if (PMob->PAI->IsCurrentState<CRespawnState>())
         {
             PMob->PAI->GetCurrentState()->ResetEntryTime();
         }
@@ -10047,7 +10047,7 @@ inline int32 CLuaBaseEntity::getCurrentAction(lua_State* L)
     {
         lua_pushinteger(L, 16);
     }
-    else if (m_PBaseEntity->PAI->IsCurrentState<CDespawnState>())
+    else if (m_PBaseEntity->PAI->IsCurrentState<CRespawnState>())
     {
         lua_pushinteger(L, 0);
     }

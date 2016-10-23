@@ -35,7 +35,7 @@ void CController::Despawn()
 {
     if (POwner)
     {
-        POwner->PAI->Internal_Despawn(0s);
+        POwner->PAI->Internal_Despawn();
     }
 }
 

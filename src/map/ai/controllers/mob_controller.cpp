@@ -52,7 +52,7 @@ void CMobController::Tick(time_point tick)
         {
             DoCombatTick(tick);
         }
-        else if (PMob->PAI->IsSpawned())
+        else if (!PMob->isDead())
         {
             DoRoamTick(tick);
         }
@@ -889,7 +889,7 @@ void CMobController::Despawn()
 {
     if (PMob)
     {
-        PMob->PAI->Internal_Despawn(std::chrono::milliseconds(PMob->m_RespawnTime));
+        PMob->PAI->Internal_Despawn();
     }
 }
 

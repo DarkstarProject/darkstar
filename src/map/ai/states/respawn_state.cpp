@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -21,42 +21,51 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "despawn_state.h"
+#include "respawn_state.h"
 #include "../../entities/baseentity.h"
 #include "../../entities/mobentity.h"
-#include "../../packets/entity_animation.h"
 #include "../ai_container.h"
-#include "../../zone.h"
 
-CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
+CRespawnState::CRespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     CState(_PEntity, _PEntity->targid),
     m_spawnTime(spawnTime)
 {
-    if (_PEntity->status != STATUS_DISAPPEAR && !(static_cast<CMobEntity*>(_PEntity)->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
-    {
-        _PEntity->loc.zone->PushPacket(_PEntity, CHAR_INRANGE, new CEntityAnimationPacket(_PEntity, CEntityAnimationPacket::Fade_Out));
-    }
 }
 
-CDespawnState::CDespawnState(CBaseEntity* _PEntity) :
-    CDespawnState(_PEntity, 0s)
-{}
-
-bool CDespawnState::Update(time_point tick)
+bool CRespawnState::Update(time_point tick)
 {
-    if (tick > GetEntryTime() + 3s && !IsCompleted() && !(static_cast<CMobEntity*>(m_PEntity)->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
+    //make sure that the respawn time is up to date
+    auto PMob = dynamic_cast<CMobEntity*>(m_PEntity);
+    if (PMob)
     {
-        static_cast<CMobEntity*>(m_PEntity)->OnDespawn(*this);
-        Complete();
+        if (!PMob->m_AllowRespawn)
+        {
+            if (m_spawnTime > 0s)
+            {
+                m_spawnTime = 0s;
+            }
+        }
+        else
+        {
+            if (std::chrono::milliseconds(PMob->m_RespawnTime) != m_spawnTime)
+            {
+                m_spawnTime = std::chrono::milliseconds(PMob->m_RespawnTime);
+            }
+        }
     }
-    return IsCompleted();
+    if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)
+    {
+        m_PEntity->Spawn();
+        return true;
+    }
+    return false;
 }
 
-void CDespawnState::Cleanup(time_point tick)
+void CRespawnState::Cleanup(time_point tick)
 {
 }
 
-bool CDespawnState::CanChangeState()
+bool CRespawnState::CanChangeState()
 {
     return false;
 }

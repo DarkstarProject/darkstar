@@ -450,6 +450,7 @@ class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
+class CDespawnState;
 struct action_t;
 
 class CBattleEntity : public CBaseEntity
@@ -602,6 +603,7 @@ public:
     virtual void OnDeathTimer();
     virtual void OnRaise() {}
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
+    virtual void OnDespawn(CDespawnState&);
 
     void SetBattleStartTime(time_point);
     duration GetBattleTime();
