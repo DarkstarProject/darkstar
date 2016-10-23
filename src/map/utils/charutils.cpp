@@ -1029,49 +1029,35 @@ namespace charutils
 
     void SendQuestMissionLog(CCharEntity* PChar)
     {
-        // в нижележащем цикле загружаются все квесты, текущие и выполненные
-        // в одном пакете с текущими квестами Aht Urhgan отправляется информация о текущих миссиях
-        // Treasures of Aht Urhgan
-        // Wings of the Goddess Missions
-        // Assault Missions
-        // Campaign Operations
-        // пакет с завершенными квестами Aht Urhgan содержит завершенные миссии Assault Missions
-
-        for (uint8 status = 0x01; status <= 0x02; ++status)
+        // Quests (Current + Completed):
+        // --------------------------------
+        for (int8 areaID = 0; areaID <= QUESTS_COALITION; areaID++)
         {
-            for (uint8 areaID = 0; areaID <= QUESTS_CRYSTALWAR; ++areaID)
-            {
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
-            }
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_CURRENT));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_COMPLETE));
         }
 
-        // Treasures of Aht Urhgan
-        // Wings of the Goddess Missions
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, 0x02));
+        // Completed Missions:
+        // --------------------------------
+        // Completed missions for Nation + Zilart Missions are all sent in single packet
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_COMPLETE));
 
-        // Campaign Operations
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, 0x02));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN2, 0x02));
+        // Completed missions for TOAU and WOTG are sent in the same packet
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, LOG_MISSION_COMPLETE));
 
-        for (uint8 status = 0x01; status <= 0x02; ++status)
-        {
-            for (uint8 areaID = QUESTS_ABYSSEA; areaID < MAX_QUESTAREA; ++areaID)
-            {
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
-            }
-        }
+        // Completed Assaults were sent in the same packet as completed TOAU quests
 
-        // обновляем статус миссий
-        // National Missions
-        // Rise of the Zilart and Chains of Promathia Missions
-        // Add-on Scenarios
-        // так как все эти миссии обновляются вместе,
-        // то достаточно выполнить обновление для MISSION_ZILART
+        // Completed Campaign Operations
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_MISSION_COMPLETE));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_CAMPAIGN_TWO));
 
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x01));
+        // Current Missions:
+        // --------------------------------
+        // Current TOAU, Assault, WOTG, and Campaign mission were sent in the same packet as current TOAU quests
 
-
+        // Current Nation, Zilart, COP, Add-On, SOA, and ROV missions are all sent in a shared, single packet.
+        // So sending this packet updates multiple Mission logs at once.
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_CURRENT));
     }
 
     /************************************************************************

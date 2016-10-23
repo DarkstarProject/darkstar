@@ -5,22 +5,7 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/conquest");
-
------------------------------------
--- Nations
------------------------------------
-
-SANDORIA     = 0;
-  BASTOK     = 1;
-WINDURST     = 2;
-  KAZHAM     = 2;
-   JEUNO     = 3;
- SELBINA     = 4;
-   RABAO     = 4;
-    NORG     = 5;
-TAVNAZIA     = 6;
-  STATIC     = 7;
-FAME_ADOULIN = 15;
+require("scripts/globals/log_ids");
 
 -----------------------------------
 -- function showShop
