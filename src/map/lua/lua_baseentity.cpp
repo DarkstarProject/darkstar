@@ -4249,7 +4249,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
 
     uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint16 fame = (uint16)lua_tointeger(L, 2);
-    
+
     if (fameArea <= 15)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -9018,6 +9018,16 @@ inline int32 CLuaBaseEntity::setLocalVar(lua_State* L)
 
     const char* var = lua_tostring(L, 1);
     uint32 val = lua_tointeger(L, 2);
+
+    // Hack: Setting variables on a dead mob will cause a crash
+    // in the STL. I haven't figured out why, so I'm ignoring dead
+    // mobs here. In BCNMs/Instances, Mobs may broadcast local var
+    // signals to each other. If the mob dies while this is occurring,
+    // a crash would happen here.
+    if(((CBattleEntity*)m_PBaseEntity)->isDead())
+    {
+        return 0;
+    }
 
     m_PBaseEntity->SetLocalVar(var, val);
 
