@@ -87,6 +87,8 @@ function onTrigger(player,npc)
         player:startEvent(3149,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == RAGNAROK) then
         player:startEvent(3139,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == IMPERIAL_CORONATION) then
+        player:startEvent(3150,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
