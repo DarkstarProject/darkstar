@@ -89,6 +89,10 @@ function onTrigger(player,npc)
         player:startEvent(3139,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == IMPERIAL_CORONATION) then
         player:startEvent(3150,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == THE_EMPRESS_CROWNED) then
+        player:startEvent(3144,0,0,0,0,0,0,0,0,0);
+    elseif (player:getCurrentMission(TOAU) == ETERNAL_MERCENARY) then
+        player:startEvent(3154,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
         -- player:messageSpecial(0);--  need to find correct normal chat CS..
@@ -182,6 +186,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3139) then
         player:completeMission(TOAU,RAGNAROK);
         player:addMission(TOAU,IMPERIAL_CORONATION);
+    elseif (csid == 3144) then
+        player:completeMission(TOAU,THE_EMPRESS_CROWNED);
+        player:addItem(16070);
+        player:messageSpecial(ITEM_OBTAINED,16070);
+        player:addMission(TOAU,ETERNAL_MERCENARY);
     elseif (csid == 3149) then
         player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
         player:addKeyItem(MYTHRIL_MIRROR);
