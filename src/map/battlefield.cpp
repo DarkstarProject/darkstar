@@ -36,6 +36,7 @@
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
 #include "enmity_container.h"
+#include "mob_modifier.h"
 #include "ai/states/death_state.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type) {
@@ -335,6 +336,10 @@ void CBattlefield::init() {
 void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition) {
     m_EnemyList.push_back(PMob);
     PMob->PBCNM = this;
+
+    // If a BCNM mob aggros, it should always aggro regardless of level
+    PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, PMob->m_Aggro);
+
     if (condition & CONDITION_WIN_REQUIREMENT)
     {
         MobVictoryCondition_t mobCondition = {PMob, false};
