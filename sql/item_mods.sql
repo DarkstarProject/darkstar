@@ -2930,9 +2930,9 @@ INSERT INTO `item_mods` VALUES (10993,1,18); -- DRACHENBLUT CAPE, DEF:18 HP+30 [
 INSERT INTO `item_mods` VALUES (10993,2,30); -- HP
 INSERT INTO `item_mods` VALUES (10993,54,30); -- ELEFIRE
 INSERT INTO `item_mods` VALUES (10993,459,1); -- OCC AB FIRE
-INSERT INTO `item_mods` VALUES (10994,1,10); -- CHUPARROSA MANTLE, DEF:10 Magic Accuracy+5 Augments "Absorb" spells Enhances "Absorb" effects
-INSERT INTO `item_mods` VALUES (10994,30,5); -- MACC
--- INSERT INTO `item_mods` VALUES (10994,AUGMENTS ABSORB SPELLS,1);
+INSERT INTO `item_mods` VALUES (10994,1,10);      -- Chuparrosa Mantle: DEF 10
+INSERT INTO `item_mods` VALUES (10994,30,5);      -- Magic Accuracy +5
+INSERT INTO `item_mods` VALUES (10994,521,10);    -- Absorb spell potency +10%
 -- INSERT INTO `item_mods` VALUES (10994,ENHANCE ABSORB EFFECTS,1);
 INSERT INTO `item_mods` VALUES (10995,1,9); -- ZAFFRE CAPE, DEF:9 STR+3 DEX+3 VIT+3 Blue magic skill +3
 INSERT INTO `item_mods` VALUES (10995,8,3); -- STR
@@ -5966,9 +5966,10 @@ INSERT INTO `item_mods` VALUES (11921,161,-4);
 INSERT INTO `item_mods` VALUES (11921,499,5);
 INSERT INTO `item_mods` VALUES (11921,500,20);
 INSERT INTO `item_mods` VALUES (11921,501,15);
-INSERT INTO `item_mods` VALUES (11922,1,33);
-INSERT INTO `item_mods` VALUES (11922,5,33);
-INSERT INTO `item_mods` VALUES (11922,116,10);
+INSERT INTO `item_mods` VALUES (11922,1,33);      -- Pavor Gauntlets: DEF 33
+INSERT INTO `item_mods` VALUES (11922,5,33);      -- MP +33
+INSERT INTO `item_mods` VALUES (11922,116,10);    -- Dark magic skill +10
+INSERT INTO `item_mods` VALUES (11922,521,10);    -- Absorb spell potency +10%
 INSERT INTO `item_mods` VALUES (11923,1,30);
 INSERT INTO `item_mods` VALUES (11923,27,8);
 INSERT INTO `item_mods` VALUES (11923,163,-4);
@@ -22479,9 +22480,9 @@ INSERT INTO `item_mods` VALUES (18997,27,10);
 INSERT INTO `item_mods` VALUES (18997,161,-10);
 INSERT INTO `item_mods` VALUES (18997,288,15);
 INSERT INTO `item_mods` VALUES (18997,355,45); -- Burtgang 75 - Atonement
-INSERT INTO `item_mods` VALUES (18998,30,20);
-INSERT INTO `item_mods` VALUES (18998,355,106); -- Liberator 75 - Insurgency
-INSERT INTO `item_mods` VALUES (18998,521,20);
+INSERT INTO `item_mods` VALUES (18998,30,20);     -- Liberator (Level 75): Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (18998,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (18998,521,20);    -- Absorb spell potency +20%
 INSERT INTO `item_mods` VALUES (18999,288,15);
 INSERT INTO `item_mods` VALUES (18999,355,74); -- Aymur 75 - Primal Rend
 INSERT INTO `item_mods` VALUES (19000,30,10);     -- Carnwenhan (Level 75): Magic Accuracy +10
@@ -22605,9 +22606,9 @@ INSERT INTO `item_mods` VALUES (19065,355,27);    -- Vajra (Level 80): Mandalic 
 INSERT INTO `item_mods` VALUES (19065,526,15);    -- Enhances Sneak Attack effect +15%
 INSERT INTO `item_mods` VALUES (19065,527,15);    -- Enhances Trick Attack effect +15%
 INSERT INTO `item_mods` VALUES (19066,355,45); -- Burtgang 80 - Atonement
-INSERT INTO `item_mods` VALUES (19067,30,20);
-INSERT INTO `item_mods` VALUES (19067,355,106); -- Liberator 80 - Insurgency
-INSERT INTO `item_mods` VALUES (19067,521,25);
+INSERT INTO `item_mods` VALUES (19067,30,20);     -- Liberator (Level 80): Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (19067,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19067,521,25);    -- Absorb spell potency +25%
 INSERT INTO `item_mods` VALUES (19068,355,74); -- Aymur 80 - Primal Rend
 INSERT INTO `item_mods` VALUES (19069,30,10);     -- Carnwenhan (Level 80): Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (19069,355,28);    -- Mordant Rime
@@ -22648,9 +22649,9 @@ INSERT INTO `item_mods` VALUES (19086,27,14);
 INSERT INTO `item_mods` VALUES (19086,161,-14);
 INSERT INTO `item_mods` VALUES (19086,288,20);
 INSERT INTO `item_mods` VALUES (19086,355,45); -- Burtgang 85 - Atonement
-INSERT INTO `item_mods` VALUES (19087,30,25);
-INSERT INTO `item_mods` VALUES (19087,355,106); -- Liberator 85 - Insurgency
-INSERT INTO `item_mods` VALUES (19087,521,30);
+INSERT INTO `item_mods` VALUES (19087,30,25);     -- Liberator (Level 85): Magic Accuracy +25
+INSERT INTO `item_mods` VALUES (19087,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19087,521,30);    -- Absorb spell potency +30%
 INSERT INTO `item_mods` VALUES (19088,288,20);
 INSERT INTO `item_mods` VALUES (19088,355,74); -- Aymur 85 - Primal Rend
 INSERT INTO `item_mods` VALUES (19089,30,15);     -- Carnwenhan (Level 85): Magic Accuracy +15
@@ -23020,9 +23021,9 @@ INSERT INTO `item_mods` VALUES (19617,355,27);    -- Vajra (Level 90): Mandalic 
 INSERT INTO `item_mods` VALUES (19617,526,25);    -- Enhances Sneak Attack effect +25%
 INSERT INTO `item_mods` VALUES (19617,527,25);    -- Enhances Trick Attack effect +25%
 INSERT INTO `item_mods` VALUES (19618,355,45); -- Burtgang 90 - Atonement
-INSERT INTO `item_mods` VALUES (19619,30,30);
-INSERT INTO `item_mods` VALUES (19619,355,106); -- Liberator 90 - Insurgency
-INSERT INTO `item_mods` VALUES (19619,521,40);
+INSERT INTO `item_mods` VALUES (19619,30,30);     -- Liberator (Level 90): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (19619,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19619,521,40);    -- Absorb spell potency +40%
 INSERT INTO `item_mods` VALUES (19620,355,74); -- Aymur 90 - Primal Rend
 INSERT INTO `item_mods` VALUES (19621,30,20);     -- Carnwenhan (Level 90): Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19621,355,28);    -- Mordant Rime
@@ -23099,9 +23100,9 @@ INSERT INTO `item_mods` VALUES (19716,161,-16);
 INSERT INTO `item_mods` VALUES (19716,288,25);
 INSERT INTO `item_mods` VALUES (19716,302,5);
 INSERT INTO `item_mods` VALUES (19716,355,45); -- Burtgang 95 - Atonement
-INSERT INTO `item_mods` VALUES (19717,30,30);
-INSERT INTO `item_mods` VALUES (19717,355,106); -- Liberator 95 - Insurgency
-INSERT INTO `item_mods` VALUES (19717,521,40);
+INSERT INTO `item_mods` VALUES (19717,30,30);     -- Liberator (Level 95): Magic Accuracy +30
+INSERT INTO `item_mods` VALUES (19717,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19717,521,40);    -- Absorb spell potency +40%
 INSERT INTO `item_mods` VALUES (19718,288,25);
 INSERT INTO `item_mods` VALUES (19718,302,5);
 INSERT INTO `item_mods` VALUES (19718,355,74); -- Aymur 95 - Primal Rend
@@ -23355,9 +23356,9 @@ INSERT INTO `item_mods` VALUES (19825,161,-18);
 INSERT INTO `item_mods` VALUES (19825,288,30);
 INSERT INTO `item_mods` VALUES (19825,302,10);
 INSERT INTO `item_mods` VALUES (19825,355,45); -- Burtgang 99 - Atonement
-INSERT INTO `item_mods` VALUES (19826,30,35);
-INSERT INTO `item_mods` VALUES (19826,355,106); -- Liberator 99 - Insurgency
-INSERT INTO `item_mods` VALUES (19826,521,50);
+INSERT INTO `item_mods` VALUES (19826,30,35);     -- Liberator (Level 99): Magic Accuracy+35
+INSERT INTO `item_mods` VALUES (19826,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19826,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (19827,288,30);
 INSERT INTO `item_mods` VALUES (19827,302,10);
 INSERT INTO `item_mods` VALUES (19827,355,74); -- Aymur 99 - Primal Rend
@@ -23517,9 +23518,9 @@ INSERT INTO `item_mods` VALUES (19953,355,27);    -- Vajra (Level 99 II): Mandal
 INSERT INTO `item_mods` VALUES (19953,526,30);    -- Enhances Sneak Attack effect +30%
 INSERT INTO `item_mods` VALUES (19953,527,30);    -- Enhances Trick Attack effect +30%
 INSERT INTO `item_mods` VALUES (19954,355,45); -- Burtgang 99 - Atonement
-INSERT INTO `item_mods` VALUES (19955,30,35);
-INSERT INTO `item_mods` VALUES (19955,355,106); -- Liberator 99 - Insurgency
-INSERT INTO `item_mods` VALUES (19955,521,50);
+INSERT INTO `item_mods` VALUES (19955,30,35);     -- Liberator (Level 99 II): Magic Accuracy +35
+INSERT INTO `item_mods` VALUES (19955,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (19955,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (19956,355,74); -- Aymur 99 - Primal Rend
 INSERT INTO `item_mods` VALUES (19957,30,25);     -- Carnwenhan (Level 99 II): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19957,355,28);    -- Mordant Rime
@@ -23937,12 +23938,16 @@ INSERT INTO `item_mods` VALUES (20881,431,1); -- Additional Effect - scripts\gob
 INSERT INTO `item_mods` VALUES (20881,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (20881,507,200); -- Extra DMG X2
 INSERT INTO `item_mods` VALUES (20881,675,40); -- Catastrophe DMG +40%
-INSERT INTO `item_mods` VALUES (20882,30,35);
-INSERT INTO `item_mods` VALUES (20882,355,106); -- Liberator iLvL 119 - Insurgency
-INSERT INTO `item_mods` VALUES (20882,521,50);
-INSERT INTO `item_mods` VALUES (20883,30,35);
-INSERT INTO `item_mods` VALUES (20883,355,106); -- Liberator iLvL 119 - Insurgency
-INSERT INTO `item_mods` VALUES (20883,521,50);
+INSERT INTO `item_mods` VALUES (20882,30,35);     -- Liberator (Level 119): Magic Accuracy +35
+INSERT INTO `item_mods` VALUES (20882,86,242);    -- Scythe skill +242
+INSERT INTO `item_mods` VALUES (20882,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20882,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (20882,521,50);    -- Absorb spell potency +50%
+INSERT INTO `item_mods` VALUES (20883,30,35);     -- Liberator (Level 119 II): Magic Accuracy +35
+INSERT INTO `item_mods` VALUES (20883,86,242);    -- Scythe skill +242
+INSERT INTO `item_mods` VALUES (20883,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20883,355,106);   -- Insurgency
+INSERT INTO `item_mods` VALUES (20883,521,50);    -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (20884,8,13);
 INSERT INTO `item_mods` VALUES (20884,13,13);
 INSERT INTO `item_mods` VALUES (20884,355,108); -- Redemption iLvL 119 - Quietus
@@ -24511,7 +24516,12 @@ INSERT INTO `item_mods` VALUES (21756,355,89); -- Bravura iLvL 119 - Metatron To
 INSERT INTO `item_mods` VALUES (21757,355,90); -- Conqueror iLvL 119 - King's Justice
 INSERT INTO `item_mods` VALUES (21758,355,92); -- Ukonvasara iLvL 119 - Ukko's Fury
 INSERT INTO `item_mods` VALUES (21808,355,105); -- Apocalypse iLvL 119 - Catastrophe
-INSERT INTO `item_mods` VALUES (21809,355,106); -- Liberator iLvL 119 - Insurgency
+INSERT INTO `item_mods` VALUES (21809,30,50);   -- Liberator (Level 119 III): Magic Accuracy +50
+INSERT INTO `item_mods` VALUES (21809,86,269);  -- Scythe skill +269
+INSERT INTO `item_mods` VALUES (21809,110,269); -- Parrying skill +269
+INSERT INTO `item_mods` VALUES (21809,311,217); -- Magic Damage +217
+INSERT INTO `item_mods` VALUES (21809,355,106); -- Insurgency
+INSERT INTO `item_mods` VALUES (21809,521,50);  -- Absorb spell potency +50%
 INSERT INTO `item_mods` VALUES (21810,355,108); -- Redemption iLvL 119 - Quietus
 INSERT INTO `item_mods` VALUES (21857,355,121); -- Gungnir iLvL 119 - Geirskogul
 INSERT INTO `item_mods` VALUES (21858,355,122); -- Ryunohige iLvL 119 - Drakesbane
