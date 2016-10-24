@@ -162,7 +162,10 @@ function EventUpdateBCNM(player, csid, option, entrance)
     print("UPDATE csid "..csid.." option "..option);
     -- seen: option 2, 3, 0 in that order
     if (csid == 0x7d03 and option == 2) then -- leaving a BCNM the player is currently in.
-        player:bcnmLeave(1);
+        player:updateEvent(3);
+        return true;
+    elseif (csid == 0x7d03 and option == 3) then -- leaving a BCNM the player is currently in.
+        player:updateEvent(0);
         return true;
     end
     if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
@@ -317,7 +320,7 @@ function GetBattleBitmask(id, zone, mode)
     -- normal sweep for NON MAAT FIGHTS
     local ret = -1;
     local mask = 0;
-    
+
     for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
         if (zone==bcnmid_param_map[zoneindex]) then -- matched zone
             for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do -- loop bcnms in this zone
@@ -331,7 +334,7 @@ function GetBattleBitmask(id, zone, mode)
             end
         end
     end
-    
+
     return ret;
 end;
 

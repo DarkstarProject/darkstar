@@ -1595,7 +1595,7 @@ namespace luautils
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         //#TODO: move this to BCNM stuff when it's rewritten
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost()))
+        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 and result == 4))) // 32003 is the run away event
         {
             PChar->PBCNM->delPlayerFromBcnm(PChar);
         }
