@@ -67,11 +67,17 @@ class CZone;
 struct action_t;
 struct actionList_t;
 struct actionTarget_t;
+
 enum ConquestUpdate : uint8;
 
 namespace luautils
 {
     extern struct lua_State* LuaHandle;
+
+    typedef struct {
+        bool functionFound;
+        int8* file;
+    } loadLuaFunctionResult_t;
 
     int32 init();
     int32 free();
@@ -268,6 +274,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
+    loadLuaFunctionResult_t LoadFunctionFromLua(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function
 };
 
 #endif //- _LUAUTILS_H -
