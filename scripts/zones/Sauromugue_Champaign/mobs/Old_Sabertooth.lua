@@ -22,17 +22,17 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    if (killer == nil) then
+    if (player == nil) then
     
         local players = mob:getZone():getPlayers();
-        for i, player in pairs(players) do
+        for i, person in pairs(players) do -- can't use the variable name "player" because it's already being used
 
-            if (player:getQuestStatus(WINDURST,THE_FANGED_ONE) == QUEST_ACCEPTED) then
+            if (person:getQuestStatus(WINDURST,THE_FANGED_ONE) == QUEST_ACCEPTED) then
 
-            local playerDistance = player:checkDistance(mob);
+            local playerDistance = person:checkDistance(mob);
                 if (playerDistance < 32) then
 
-                    player:setVar("TheFangedOneCS", 2);
+                    person:setVar("TheFangedOneCS", 2);
                 end;
             end;
         end;
