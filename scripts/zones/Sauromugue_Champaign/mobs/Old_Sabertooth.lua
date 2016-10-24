@@ -22,7 +22,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    if (killer == nil) then
+    if (player == nil) then
     
         local players = mob:getZone():getPlayers();
         for i, player in pairs(players) do
