@@ -4818,10 +4818,9 @@ INSERT INTO `item_mods` VALUES (11513,1,12);
 INSERT INTO `item_mods` VALUES (11513,56,10);
 INSERT INTO `item_mods` VALUES (11513,25,12);
 INSERT INTO `item_mods` VALUES (11513,85,5);
-INSERT INTO `item_mods` VALUES (11515,1,12);
-INSERT INTO `item_mods` VALUES (11515,25,12);
-INSERT INTO `item_mods` VALUES (11515,87,5);
-INSERT INTO `item_mods` VALUES (11515,345,5);
+INSERT INTO `item_mods` VALUES (11515,1,12);      -- Shitotsu Hachimaki: DEF 12
+INSERT INTO `item_mods` VALUES (11515,25,12);     -- Accuracy +12
+INSERT INTO `item_mods` VALUES (11515,87,5);      -- Polearm skill +5
 INSERT INTO `item_mods` VALUES (11515,58,10);
 INSERT INTO `item_mods` VALUES (11516,1,12);
 INSERT INTO `item_mods` VALUES (11516,56,10);
@@ -19982,8 +19981,8 @@ INSERT INTO `item_mods` VALUES (17206,11,3);
 INSERT INTO `item_mods` VALUES (17206,26,3);
 INSERT INTO `item_mods` VALUES (17207,26,9);
 INSERT INTO `item_mods` VALUES (17207,379,13);
-INSERT INTO `item_mods` VALUES (17209,345,1000);
-INSERT INTO `item_mods` VALUES (17210,345,1000);
+INSERT INTO `item_mods` VALUES (17209,345,1000);  -- Martial Bow: TP Bonus +1000
+INSERT INTO `item_mods` VALUES (17210,345,1000);  -- Martial Gun: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17211,24,4);
 INSERT INTO `item_mods` VALUES (17212,8,2);
 INSERT INTO `item_mods` VALUES (17213,11,4);
@@ -20217,9 +20216,9 @@ INSERT INTO `item_mods` VALUES (17464,8,3);
 INSERT INTO `item_mods` VALUES (17464,13,3);
 INSERT INTO `item_mods` VALUES (17465,12,1);
 INSERT INTO `item_mods` VALUES (17465,13,1);
-INSERT INTO `item_mods` VALUES (17466,313,1);
-INSERT INTO `item_mods` VALUES (17466,374,1);
-INSERT INTO `item_mods` VALUES (17467,345,1000);
+INSERT INTO `item_mods` VALUES (17466,313,1);     -- Dia Wand: Enhances Dia effect +1
+INSERT INTO `item_mods` VALUES (17466,374,1);     -- Cure potency +1%
+INSERT INTO `item_mods` VALUES (17467,345,1000);  -- Martial Wand: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17468,13,2);
 INSERT INTO `item_mods` VALUES (17469,13,4);
 INSERT INTO `item_mods` VALUES (17470,5,10);
@@ -20579,7 +20578,7 @@ INSERT INTO `item_mods` VALUES (17588,5,5);
 INSERT INTO `item_mods` VALUES (17590,165,5);
 INSERT INTO `item_mods` VALUES (17591,165,7);
 INSERT INTO `item_mods` VALUES (17592,165,5);
-INSERT INTO `item_mods` VALUES (17593,345,1000);
+INSERT INTO `item_mods` VALUES (17593,345,1000);  -- Martial Staff: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17594,72,4);
 INSERT INTO `item_mods` VALUES (17595,11,7);
 INSERT INTO `item_mods` VALUES (17595,826,2);
@@ -20725,7 +20724,7 @@ INSERT INTO `item_mods` VALUES (17703,2,10);
 INSERT INTO `item_mods` VALUES (17703,9,2);
 INSERT INTO `item_mods` VALUES (17703,10,2);
 INSERT INTO `item_mods` VALUES (17704,431,1);
-INSERT INTO `item_mods` VALUES (17707,345,1000);
+INSERT INTO `item_mods` VALUES (17707,345,1000);  -- Martial Anelace: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17708,25,2);
 INSERT INTO `item_mods` VALUES (17709,11,-4);
 INSERT INTO `item_mods` VALUES (17709,14,4);
@@ -20859,7 +20858,7 @@ INSERT INTO `item_mods` VALUES (17794,288,1);
 INSERT INTO `item_mods` VALUES (17795,110,3);
 INSERT INTO `item_mods` VALUES (17796,110,5);
 INSERT INTO `item_mods` VALUES (17797,431,1);
-INSERT INTO `item_mods` VALUES (17798,345,1000);
+INSERT INTO `item_mods` VALUES (17798,345,1000);  -- Shamo: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17799,27,2);
 INSERT INTO `item_mods` VALUES (17801,8,5);
 INSERT INTO `item_mods` VALUES (17801,73,6);
@@ -20891,7 +20890,7 @@ INSERT INTO `item_mods` VALUES (17823,12,-1);
 INSERT INTO `item_mods` VALUES (17824,8,2);
 INSERT INTO `item_mods` VALUES (17826,14,2);
 INSERT INTO `item_mods` VALUES (17828,431,1);
-INSERT INTO `item_mods` VALUES (17829,345,1000);
+INSERT INTO `item_mods` VALUES (17829,345,1000);  -- Hagun: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17832,2,20);
 INSERT INTO `item_mods` VALUES (17832,436,3);
 INSERT INTO `item_mods` VALUES (17833,435,2);
@@ -20976,7 +20975,7 @@ INSERT INTO `item_mods` VALUES (17940,25,1);
 INSERT INTO `item_mods` VALUES (17941,10,1);
 INSERT INTO `item_mods` VALUES (17941,14,1);
 INSERT INTO `item_mods` VALUES (17944,377,13);
-INSERT INTO `item_mods` VALUES (17945,345,1000);
+INSERT INTO `item_mods` VALUES (17945,345,1000);  -- Martial Axe: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (17948,14,7);
 INSERT INTO `item_mods` VALUES (17948,826,1);
 INSERT INTO `item_mods` VALUES (17949,2,10);
@@ -21044,7 +21043,7 @@ INSERT INTO `item_mods` VALUES (18004,26,14);
 INSERT INTO `item_mods` VALUES (18005,377,15);
 INSERT INTO `item_mods` VALUES (18007,26,12);
 INSERT INTO `item_mods` VALUES (18008,431,1);
-INSERT INTO `item_mods` VALUES (18009,345,1000);
+INSERT INTO `item_mods` VALUES (18009,345,1000);  -- Martial Knife: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18010,431,1);
 INSERT INTO `item_mods` VALUES (18011,431,1);
 INSERT INTO `item_mods` VALUES (18012,431,1);
@@ -21109,7 +21108,7 @@ INSERT INTO `item_mods` VALUES (18054,7,10);
 INSERT INTO `item_mods` VALUES (18054,12,1);
 INSERT INTO `item_mods` VALUES (18055,7,15);
 INSERT INTO `item_mods` VALUES (18055,12,2);
-INSERT INTO `item_mods` VALUES (18056,345,1000);
+INSERT INTO `item_mods` VALUES (18056,345,1000);  -- Martial Scythe: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18057,3,-5);
 INSERT INTO `item_mods` VALUES (18057,25,5);
 INSERT INTO `item_mods` VALUES (18057,353,-2);
@@ -21149,7 +21148,7 @@ INSERT INTO `item_mods` VALUES (18089,110,6);
 INSERT INTO `item_mods` VALUES (18090,8,1);
 INSERT INTO `item_mods` VALUES (18091,10,2);
 INSERT INTO `item_mods` VALUES (18097,377,13);
-INSERT INTO `item_mods` VALUES (18098,345,1000);
+INSERT INTO `item_mods` VALUES (18098,345,1000);  -- Martial Lance: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18100,9,7);
 INSERT INTO `item_mods` VALUES (18100,826,2);
 INSERT INTO `item_mods` VALUES (18104,431,1);
@@ -21305,7 +21304,7 @@ INSERT INTO `item_mods` VALUES (18212,11,1);
 INSERT INTO `item_mods` VALUES (18213,10,1);
 INSERT INTO `item_mods` VALUES (18213,11,1);
 INSERT INTO `item_mods` VALUES (18220,431,1);
-INSERT INTO `item_mods` VALUES (18221,345,1000);
+INSERT INTO `item_mods` VALUES (18221,345,1000);  -- Martial Bhuj: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18222,10,7);
 INSERT INTO `item_mods` VALUES (18222,826,2);
 INSERT INTO `item_mods` VALUES (18223,2,10);
@@ -21514,7 +21513,7 @@ INSERT INTO `item_mods` VALUES (18353,107,2);
 INSERT INTO `item_mods` VALUES (18354,10,2);
 INSERT INTO `item_mods` VALUES (18354,107,3);
 INSERT INTO `item_mods` VALUES (18355,431,1);
-INSERT INTO `item_mods` VALUES (18356,345,1000);
+INSERT INTO `item_mods` VALUES (18356,345,1000);  -- Martial Knuckles: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18357,431,1);
 INSERT INTO `item_mods` VALUES (18359,431,1);
 INSERT INTO `item_mods` VALUES (18360,13,7);
@@ -21538,7 +21537,7 @@ INSERT INTO `item_mods` VALUES (18374,8,1);
 INSERT INTO `item_mods` VALUES (18374,9,1);
 INSERT INTO `item_mods` VALUES (18378,377,13);
 INSERT INTO `item_mods` VALUES (18379,431,1);
-INSERT INTO `item_mods` VALUES (18380,345,1000);
+INSERT INTO `item_mods` VALUES (18380,345,1000);  -- Martial Sword: TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18381,431,1);
 INSERT INTO `item_mods` VALUES (18385,23,3);
 INSERT INTO `item_mods` VALUES (18385,302,3);
@@ -21761,7 +21760,8 @@ INSERT INTO `item_mods` VALUES (18577,452,2);
 INSERT INTO `item_mods` VALUES (18578,452,2);
 INSERT INTO `item_mods` VALUES (18579,452,3);
 INSERT INTO `item_mods` VALUES (18580,452,3);
-INSERT INTO `item_mods` VALUES (18581,14,4);
+INSERT INTO `item_mods` VALUES (18581,14,4);      -- CHR +4
+INSERT INTO `item_mods` VALUES (18581,345,1000);  -- TP Bonus +1000
 INSERT INTO `item_mods` VALUES (18584,71,9);
 INSERT INTO `item_mods` VALUES (18585,2,25);
 INSERT INTO `item_mods` VALUES (18585,5,25);
@@ -23659,11 +23659,12 @@ INSERT INTO `item_mods` VALUES (20614,110,242);   -- Parrying skill +242
 INSERT INTO `item_mods` VALUES (20614,113,11);    -- Enhancing magic skill +11
 INSERT INTO `item_mods` VALUES (20614,432,11);    -- Enspell damage bonus +11
 INSERT INTO `item_mods` VALUES (20616,68,22);
-INSERT INTO `item_mods` VALUES (20618,11,10);
-INSERT INTO `item_mods` VALUES (20618,27,-10);
-INSERT INTO `item_mods` VALUES (20618,68,22);
-INSERT INTO `item_mods` VALUES (20618,303,1);
-INSERT INTO `item_mods` VALUES (20618,345,50);
+INSERT INTO `item_mods` VALUES (20618,11,10);     -- Sandung: AGI +10
+INSERT INTO `item_mods` VALUES (20618,27,-10);    -- Enmity -10
+INSERT INTO `item_mods` VALUES (20618,68,22);     -- Evasion +22
+INSERT INTO `item_mods` VALUES (20618,81,242);    -- Dagger skill +242
+INSERT INTO `item_mods` VALUES (20618,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (20618,303,1);     -- Treasure Hunter +1
 INSERT INTO `item_mods` VALUES (20620,11,4);
 INSERT INTO `item_mods` VALUES (20620,68,27);
 INSERT INTO `item_mods` VALUES (20624,23,10);
@@ -24058,6 +24059,12 @@ INSERT INTO `item_mods` VALUES (20974,11,20);
 INSERT INTO `item_mods` VALUES (20974,355,140); -- Kannagi iLvL 119 - Blade Hi
 INSERT INTO `item_mods` VALUES (20975,11,20);
 INSERT INTO `item_mods` VALUES (20975,355,140); -- Kannagi iLvL 119 - Blade Hi
+INSERT INTO `item_mods` VALUES (20977,73,10);     -- Heishi Shorinken: Store TP +10
+INSERT INTO `item_mods` VALUES (20977,88,269);    -- Katana skill +269
+INSERT INTO `item_mods` VALUES (20977,110,269);   -- Parrying skill +269
+INSERT INTO `item_mods` VALUES (20977,311,186);   -- Magic Damage +186
+INSERT INTO `item_mods` VALUES (20977,345,500);   -- TP Bonus +500
+INSERT INTO `item_mods` VALUES (20977,487,5);     -- Magic burst potency +5% ?
 INSERT INTO `item_mods` VALUES (20986,25,34);
 INSERT INTO `item_mods` VALUES (20986,68,27);
 INSERT INTO `item_mods` VALUES (20986,73,5);
@@ -24137,8 +24144,9 @@ INSERT INTO `item_mods` VALUES (21031,23,10);     -- Attack +10
 INSERT INTO `item_mods` VALUES (21031,48,15);     -- Weapon Skill Accuracy +15
 INSERT INTO `item_mods` VALUES (21031,89,242);    -- Great Katana skill +242
 INSERT INTO `item_mods` VALUES (21031,110,242);   -- Parrying skill +242
-INSERT INTO `item_mods` VALUES (21038,25,24);
-INSERT INTO `item_mods` VALUES (21038,345,1000);
+INSERT INTO `item_mods` VALUES (21038,25,24);     -- Senkuto: Accuracy +24
+INSERT INTO `item_mods` VALUES (21038,89,203);    -- Great Katana skill +203
+INSERT INTO `item_mods` VALUES (21038,110,203);   -- Parrying skill +203
 INSERT INTO `item_mods` VALUES (21040,8,4);
 INSERT INTO `item_mods` VALUES (21040,23,4);
 INSERT INTO `item_mods` VALUES (21044,23,10);
@@ -24391,10 +24399,10 @@ INSERT INTO `item_mods` VALUES (21221,11,10);
 INSERT INTO `item_mods` VALUES (21221,25,20);
 INSERT INTO `item_mods` VALUES (21221,26,20);
 INSERT INTO `item_mods` VALUES (21221,289,5);
-INSERT INTO `item_mods` VALUES (21227,24,25);
-INSERT INTO `item_mods` VALUES (21227,26,15);
-INSERT INTO `item_mods` VALUES (21227,345,1000);
-INSERT INTO `item_mods` VALUES (21227,359,1);
+INSERT INTO `item_mods` VALUES (21227,24,25);     -- Hangaku-no-Yumi: Ranged Attack +25
+INSERT INTO `item_mods` VALUES (21227,26,15);     -- Ranged Accuracy +15
+INSERT INTO `item_mods` VALUES (21227,104,242);   -- Archery skill +242
+INSERT INTO `item_mods` VALUES (21227,345,1000);  -- TP Bonus +1000
 INSERT INTO `item_mods` VALUES (21228,4,80);
 INSERT INTO `item_mods` VALUES (21228,26,30);
 INSERT INTO `item_mods` VALUES (21228,227,5);
