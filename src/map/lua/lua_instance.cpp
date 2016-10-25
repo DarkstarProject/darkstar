@@ -371,15 +371,6 @@ inline int32 CLuaInstance::completed(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaInstance::disengageAll(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
-
-    m_PLuaInstance->DisengageAll();
-
-    return 0;
-}
-
 inline int32 CLuaInstance::insertAlly(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
@@ -438,7 +429,6 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance, failed),
     LUNAR_DECLARE_METHOD(CLuaInstance, complete),
     LUNAR_DECLARE_METHOD(CLuaInstance, completed),
-    LUNAR_DECLARE_METHOD(CLuaInstance, disengageAll),
     LUNAR_DECLARE_METHOD(CLuaInstance, insertAlly),
     { nullptr, nullptr }
 };
