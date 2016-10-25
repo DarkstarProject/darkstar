@@ -1595,7 +1595,8 @@ namespace luautils
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         //#TODO: move this to BCNM stuff when it's rewritten
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 and result == 4))) // 32003 is the run away event
+        // 32003 is the run away event
+        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 && result == 4)))
         {
             PChar->PBCNM->delPlayerFromBcnm(PChar);
         }
@@ -2241,7 +2242,7 @@ namespace luautils
 
     int32 OnMonsterSkillPrepare(CBattleEntity* PMob, uint16 skillId)
     {
-        DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
+        DSP_DEBUG_BREAK_IF(PMob == nullptr);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
