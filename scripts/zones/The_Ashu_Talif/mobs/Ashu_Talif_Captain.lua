@@ -3,6 +3,7 @@
 --  MOB: Ashu Talif Crew
 -----------------------------------
 
+require("scripts/globals/instance");
 local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
 
 -----------------------------------
@@ -31,8 +32,7 @@ function onMobFight(mob, target)
         end)
 
         -- Time to give up, let's disengage
-        local mobs = mob:getInstance():getMobs();
-        instance:disengageAll();
+        disengageAll(instance);
 
         mob:setLocalVar("disengage", 1);
     end

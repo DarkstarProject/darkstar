@@ -97,7 +97,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     -- Signal loss if Naja dies. Disengage everyone while failure message plays
     local instance = mob:getInstance();
-    instance:disengageAll();
+    disengageAll(instance);
 
     local chars = instance:getChars();
 
