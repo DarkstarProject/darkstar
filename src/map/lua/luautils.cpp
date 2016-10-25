@@ -1627,7 +1627,7 @@ namespace luautils
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         //#TODO: move this to BCNM stuff when it's rewritten
-        if (PChar->PBCNM && PChar->PBCNM->won())
+        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost()))
         {
             PChar->PBCNM->delPlayerFromBcnm(PChar);
         }
