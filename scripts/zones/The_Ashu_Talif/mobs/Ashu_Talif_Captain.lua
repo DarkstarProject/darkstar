@@ -26,7 +26,7 @@ function onMobFight(mob, target)
         local instance = mob:getInstance();
 
         -- Give disengage time to happen
-        mob:timer(7500, function(mob)
+        mob:timer(3000, function(mob)
             local instance = mob:getInstance();
             instance:setProgress(instance:getProgress() + 10);
         end)
@@ -51,12 +51,17 @@ function onMobRoam(mob)
 
     -- Becomes ready when the Crew is engaged. Jump down!
     if (ready == 1 and jumped == 0) then
+        mob:showText(mob,TheAshuTalif.text.OVERPOWERED_CREW);
+
         mob:hideName(true);
         mob:entityAnimationPacket("jmp0");
 
         mob:timer(2000, function(mob)
             mob:setPos(0,-22,13,192);
             mob:entityAnimationPacket("jmp1");
+
+            mob:showText(mob,TheAshuTalif.text.TEST_YOUR_BLADES);
+
             mob:timer(2000, function(mob)
                 mob:hideName(false);
                 mob:untargetable(false);
@@ -66,6 +71,23 @@ function onMobRoam(mob)
         mob:setLocalVar("jump", 1);
     end
 
+end;
+
+-----------------------------------
+-- onMonsterPrepareSkill Action
+-----------------------------------
+
+function onMonsterPrepareSkill(mob, skillId)
+    -- Vulcan Shot
+    if(skillId == 254) then
+        mob:showText(mob,TheAshuTalif.text.FOR_EPHRAMAD);
+        mob:timer(3000, function(mob)
+            mob:showText(mob,TheAshuTalif.text.TROUBLESOME_SQUABS);
+        end)
+    -- Circle Blade
+    elseif(skillId == 938) then
+        mob:showText(mob,TheAshuTalif.text.FOR_THE_BLACK_COFFIN);
+    end
 end;
 
 -----------------------------------

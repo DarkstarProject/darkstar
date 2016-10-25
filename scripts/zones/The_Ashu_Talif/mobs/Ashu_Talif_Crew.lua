@@ -20,12 +20,16 @@ end;
 function onMobEngaged(mob,target)
     local allies = mob:getInstance():getAllies();
     for i,v in pairs(allies) do
-        v:setLocalVar("ready",1);
+        if (v:isAlive()) then
+            v:setLocalVar("ready",1);
+        end
     end
 
     local mobs = mob:getInstance():getMobs();
     for i,v in pairs(mobs) do
-        v:setLocalVar("ready",1);
+        if(v:isAlive()) then
+            v:setLocalVar("ready",1);
+        end
     end
 end;
 
@@ -34,6 +38,8 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+    local instance = mob:getInstance();
+    instance:setProgress(instance:getProgress() + 1);
 end;
 
 -----------------------------------
@@ -41,6 +47,4 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    local instance = mob:getInstance();
-    instance:setProgress(instance:getProgress() + 1);
 end;

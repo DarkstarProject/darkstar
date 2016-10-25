@@ -4,6 +4,8 @@
 -- TOAU-15 Mission Battle
 -----------------------------------
 
+local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
+
 require("scripts/globals/allyassist");
 require("scripts/globals/instance");
 require("scripts/globals/status");
@@ -35,6 +37,12 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, target)
+    local dialog = mob:getLocalVar("dialog");
+
+    if(dialog == 0) then
+        mob:showText(mob,TheAshuTalif.text.BATTLE_HIGH_SEAS);
+        mob:setLocalVar("dialog",1);
+    end
 end;
 
 -----------------------------------
@@ -44,20 +52,29 @@ end;
 function onMobRoam(mob)
     local ready = mob:getLocalVar("ready");
 
-    -- Becomes Ready State 2 on 2nd Wave
-    if(ready == 2) then
-        mob:timer(60000, function(mob)
-            if(mob:getLocalVar("ready") == 3 and not(mob:getTarget())) then
-                startAllyAssist(mob, ALLY_ASSIST_RANDOM);
-            end
-        end)
-
-        mob:setLocalVar("ready", 3);
-    end
-
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
         startAllyAssist(mob, ALLY_ASSIST_PLAYER);
+    end
+end;
+
+-----------------------------------
+-- onMonsterPrepareSkill Action
+-----------------------------------
+
+function onMonsterPrepareSkill(mob, skillId)
+    -- Hane Fubuki
+    if(skillId == 1998) then
+        mob:showText(mob,TheAshuTalif.text.UNNATURAL_CURS);
+    -- Hiden Sokyaku
+    elseif(skillId == 1999) then
+        mob:showText(mob,TheAshuTalif.text.STING_OF_MY_BLADE);
+    -- Happobarai
+    elseif(skillId == 2001) then
+        mob:showText(mob,TheAshuTalif.text.HARNESS_THE_WHIRLWIND);
+    -- Rinpyotosha
+    elseif(skillId == 2002) then
+        mob:showText(mob,TheAshuTalif.text.SWIFT_AS_LIGHTNING);
     end
 end;
 
@@ -66,6 +83,12 @@ end;
 -----------------------------------
 
 function onMobFight(mob, target)
+    local dialog = mob:getLocalVar("dialog");
+
+    if(mob:getHPP() <= 20 and dialog == 1) then
+        mob:showText(mob,TheAshuTalif.text.TIME_IS_NEAR);
+        mob:setLocalVar("dialog",2);
+    end
 end;
 
 -----------------------------------
@@ -73,4 +96,5 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+    mob:showText(mob,TheAshuTalif.text.SO_I_FALL);
 end;

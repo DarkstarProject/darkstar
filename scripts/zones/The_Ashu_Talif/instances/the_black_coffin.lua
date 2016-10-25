@@ -63,17 +63,17 @@ function onInstanceProgressUpdate(instance, progress)
 
     if (progress == 5) then
         local allies = instance:getAllies();
-        for i,v in pairs(allies) do
-            v:setLocalVar("ready",2);
-        end
 
         for i,v in pairs(TheAshuTalif.mobs[2]) do
             SpawnMob(v, instance);
         end
     elseif (progress >= 10 and instance:completed() == false) then
         local allies = instance:getAllies();
+
         for i,v in pairs(allies) do
-            v:setLocalVar("ready",4);
+            if(v:isAlive()) then
+                v:setLocalVar("ready",2);
+            end
         end
 
         local chars = instance:getChars();
