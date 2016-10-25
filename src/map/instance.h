@@ -28,12 +28,6 @@ This file is part of DarkStar-server source code.
 
 #include <set>
 
-enum ALLY_ASSIST_MODE
-{
-    ALLY_ASSIST_PLAYER,
-    ALLY_ASSIST_RANDOM
-};
-
 enum INSTANCE_STATUS
 {
     INSTANCE_NORMAL,
@@ -75,7 +69,6 @@ public:
     bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
 
     void DisengageAll();
-    void StartAllyAssist(ALLY_ASSIST_MODE mode);
 
     CInstance(CZone*, uint8 instanceid);
     ~CInstance();

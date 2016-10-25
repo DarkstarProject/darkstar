@@ -23,9 +23,9 @@ This file is part of DarkStar-server source code.
 
 #include <thread>
 
+#include "enmity_container.h"
 #include "instance.h"
 
-#include "enmity_container.h"
 #include "zone.h"
 #include "ai/ai_container.h"
 #include "entities/charentity.h"
@@ -294,95 +294,6 @@ void CInstance::DisengageAll()
             PCurrentMob->PEnmityContainer->Clear();
             PCurrentMob->PAI->Disengage();
             PCurrentMob->PAI->Inactive(std::chrono::milliseconds(10000), false);
-        }
-    }
-}
-
-void CInstance::StartAllyAssist(ALLY_ASSIST_MODE mode)
-{
-    // If there's no mobs, we can't assist. Don't waste time.
-    if (m_mobList.size() == 0)
-    {
-        return;
-    }
-
-    // In this mode, find a player with a battle target, and assist that player
-    if (mode == ALLY_ASSIST_PLAYER)
-    {
-        uint16 assistTarget = 0;
-
-        // Find a battling player to assist
-        for (EntityList_t::const_iterator it = m_charList.begin(); it != m_charList.end(); ++it)
-        {
-            CCharEntity* PCurrentChar = (CCharEntity*)it->second;
-            uint16 battleTarget = PCurrentChar->GetBattleTargetID();
-
-            if (battleTarget > 0)
-            {
-                assistTarget = battleTarget;
-                break;
-            }
-        }
-
-        ShowError(CL_RED"CInstance::StartAllyAssist: assistTarget = %u\n" CL_RESET, assistTarget);
-
-        // Attack their target if found. If none found, we'll fall to ALLY_ASSIST_RANDOM.
-        // A variety of reasons could cause this - players have hate but are not engaged is one.
-        if (assistTarget > 0)
-        {
-            for (EntityList_t::const_iterator it = m_allyList.begin(); it != m_allyList.end(); ++it)
-            {
-                CMobEntity* PCurrentAlly = (CMobEntity*)it->second;
-                PCurrentAlly->PAI->Engage(assistTarget);
-            }
-
-            return;
-        }
-    }
-
-    // ALLY_ASSIST RANDOM - also a fallback for ALLY_ASSIST_PLAYER
-    // Pick an enemy to attack. Some allies do this intentionally. Some allies start to attack on their own if
-    // a player stalls too long. This can be used to set a target in both cases.
-    for (EntityList_t::const_iterator it = m_allyList.begin(); it != m_allyList.end(); ++it)
-    {
-        uint8 foundTarget = 0;
-
-        while (foundTarget == 0)
-        {
-            uint32 mobCount = m_mobList.size();
-            uint32 rand = dsprand::GetRandomNumber(mobCount);
-            uint32 seek = 0;
-
-            uint8 atLeastOneMobAlive = 0;
-
-            for (EntityList_t::const_iterator it2 = m_mobList.begin(); it2 != m_mobList.end(); ++it2)
-            {
-                CMobEntity* PRandomMob = (CMobEntity*)it2->second;
-
-                if (PRandomMob->PAI->IsSpawned() && PRandomMob->isAlive())
-                {
-                    atLeastOneMobAlive = 1;
-                }
-
-                if(seek < rand)
-                {
-                    seek++;
-                    continue;
-                }
-
-                if (PRandomMob->PAI->IsSpawned() && PRandomMob->isAlive())
-                {
-                    uint16 assistTarget = PRandomMob->id & 0xFFF;
-                    CMobEntity* PCurrentAlly = (CMobEntity*)it->second;
-                    PCurrentAlly->PAI->Engage(assistTarget);
-                    foundTarget = 1;
-                }
-            }
-
-            if (atLeastOneMobAlive == 0)
-            {
-                break;
-            }
         }
     }
 }

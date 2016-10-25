@@ -407,29 +407,6 @@ inline int32 CLuaInstance::insertAlly(lua_State* L)
     return 1;
 }
 
-inline int32 CLuaInstance::startAllyAssist(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
-
-    uint32 assistMode = 1;
-
-    if(!lua_isnil(L, 1))
-    {
-        assistMode = lua_tointeger(L, 1);
-    }
-
-    if (assistMode == 2)
-    {
-        m_PLuaInstance->StartAllyAssist(ALLY_ASSIST_RANDOM);
-    }
-    else
-    {
-        m_PLuaInstance->StartAllyAssist(ALLY_ASSIST_PLAYER);
-    }
-
-    return 0;
-}
-
 /************************************************************************
 *																		*
 *  declare lua function													*
@@ -463,6 +440,5 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
     LUNAR_DECLARE_METHOD(CLuaInstance, completed),
     LUNAR_DECLARE_METHOD(CLuaInstance, disengageAll),
     LUNAR_DECLARE_METHOD(CLuaInstance, insertAlly),
-    LUNAR_DECLARE_METHOD(CLuaInstance, startAllyAssist),
     { nullptr, nullptr }
 };

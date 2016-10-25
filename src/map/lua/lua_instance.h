@@ -71,7 +71,6 @@ public:
 
     int32 disengageAll(lua_State*);
     int32 insertAlly(lua_State*);
-    int32 startAllyAssist(lua_State*);
 };
 
 #endif
