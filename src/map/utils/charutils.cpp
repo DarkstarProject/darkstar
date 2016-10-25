@@ -1681,11 +1681,44 @@ namespace charutils
 
         if (PItem->getEquipSlotId() & (1 << equipSlotID))
         {
-            uint8 removeSlotID = PItem->getRemoveSlotId();
+            auto removeSlotID = PItem->getRemoveSlotId();
 
-            if (removeSlotID > 0)
+            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
             {
-                UnequipItem(PChar, removeSlotID, false);
+                if (removeSlotID & (1 << i))
+                {
+                    UnequipItem(PChar, i, false);
+                    if (i >= SLOT_HEAD && i <= SLOT_FEET)
+                    {
+                        switch (i)
+                        {
+                            case SLOT_HEAD:
+                                PChar->look.head = PItem->getModelId();
+                                break;
+                            case SLOT_BODY:
+                                PChar->look.body = PItem->getModelId();
+                                break;
+                            case SLOT_HANDS:
+                                PChar->look.hands = PItem->getModelId();
+                                break;
+                            case SLOT_LEGS:
+                                PChar->look.legs = PItem->getModelId();
+                                break;
+                            case SLOT_FEET:
+                                PChar->look.feet = PItem->getModelId();
+                                break;
+                        }
+                    }
+                }
+            }
+
+            for (uint8 i = 0; i < SLOT_BACK; ++i)
+            {
+                CItemArmor* armor = PChar->getEquip((SLOTTYPE)i);
+                if (armor && armor->isType(ITEM_ARMOR) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
+                {
+                    UnequipItem(PChar, i, false);
+                }
             }
 
             switch (equipSlotID)
@@ -1840,60 +1873,26 @@ namespace charutils
                 break;
                 case SLOT_HEAD:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_HEAD) {
-                            UnequipItem(PChar, SLOT_BODY, false);
-                        }
-                    }
                     PChar->look.head = PItem->getModelId();
                 }
                 break;
                 case SLOT_BODY:
                 {
-                    if (PItem->getRemoveSlotId() == SLOT_HANDS)
-                    {
-                        PChar->look.hands = 157;
-                    }
                     PChar->look.body = PItem->getModelId();
                 }
                 break;
                 case SLOT_HANDS:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_HANDS)
-                        {
-                            UnequipItem(PChar, SLOT_BODY, false);
-                        }
-                    }
                     PChar->look.hands = PItem->getModelId();
                 }
                 break;
                 case SLOT_LEGS:
                 {
-                    if (PItem->getRemoveSlotId() == SLOT_FEET)
-                    {
-                        PChar->look.feet = 157;
-                    }
                     PChar->look.legs = PItem->getModelId();
                 }
                 break;
                 case SLOT_FEET:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_LEGS);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_FEET)
-                        {
-                            UnequipItem(PChar, SLOT_LEGS, false);
-                        }
-                    }
                     PChar->look.feet = PItem->getModelId();
                 }
                 break;
