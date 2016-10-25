@@ -4583,7 +4583,7 @@ namespace luautils
         int8 luaFile[255];
 
         // Reduce copy/paste lambda templates
-        auto searchLuaFileForFunction = [functionName, &luaFileFound, &luaFunctionFound, &luaFile]() mutable {
+        auto searchLuaFileForFunction = [functionName, &luaFileFound, &luaFunctionFound, &luaFile]() {
             luaFileFound = !(luaL_loadfile(LuaHandle, luaFile) || lua_pcall(LuaHandle, 0, 0, 0));
 
             if(luaFileFound)
@@ -4593,7 +4593,7 @@ namespace luautils
             }
         };
 
-        auto resetState = [&luaFile]() mutable {
+        auto resetState = [&luaFile]() {
             lua_pop(LuaHandle, 1);
             memset(luaFile, 0, sizeof(luaFile));
         };
