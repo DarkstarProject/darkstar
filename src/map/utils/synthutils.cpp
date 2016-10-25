@@ -388,21 +388,25 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 					if(chance > 0)
 					{
-						chance *= 1.0 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
-						if (crystalElement == WeekDay)
-							chance *= 1.0 - ((double)1/3);
-						else if (strongElement[crystalElement] == WeekDay)
-							chance *= 1.0 + ((double)1/3);
-						else if (strongElement[WeekDay] == crystalElement)
-							chance *= 1.0 - ((double)1/3);
-						else if (WeekDay == LIGHTSDAY)
-							chance *= 1.0 - ((double)1/3);
-						else if (WeekDay == DARKSDAY)
-							chance *= 1.0 + ((double)1/3);
-					}
+                        if (map_config.craft_moonphase_matters)
+                            chance *= 1.0 - (MoonPhase - 50)/150;  //new moon +33% of base rate bonus to hq chance, full moon -33%, corresponding/weakday/lightsday -33%, opposing/darksday +33%
+						
+                        if (map_config.craft_day_matters)
+                        {
+                            if (crystalElement == WeekDay)
+                                chance *= 1.0 - ((double)1 / 3);
+                            else if (strongElement[crystalElement] == WeekDay)
+                                chance *= 1.0 + ((double)1 / 3);
+                            else if (strongElement[WeekDay] == crystalElement)
+                                chance *= 1.0 - ((double)1 / 3);
+                            else if (WeekDay == LIGHTSDAY)
+                                chance *= 1.0 - ((double)1 / 3);
+                            else if (WeekDay == DARKSDAY)
+                                chance *= 1.0 + ((double)1 / 3);
+                        }
 
-					if(chance > 0.500)
-					    chance = 0.500;
+                        dsp_cap(chance, 0., 0.500);
+					}
 
 					#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
 					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
