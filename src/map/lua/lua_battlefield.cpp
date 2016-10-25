@@ -245,15 +245,6 @@ inline int32 CLuaBattlefield::win(lua_State* L)
     return 0;
 }
 
-inline int32 CLuaBattlefield::startAllyAssist(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
-
-    m_PLuaBattlefield->StartAllyAssist();
-
-    return 0;
-}
-
 /************************************************************************
 *																		*
 *  declare lua function													*
@@ -272,7 +263,6 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getEntrance),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setEntrance),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,insertAlly),
-    LUNAR_DECLARE_METHOD(CLuaBattlefield,startAllyAssist),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getAllies),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getEnemies),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getPlayers),
