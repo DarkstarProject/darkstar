@@ -2239,6 +2239,47 @@ namespace luautils
         return retVal;
     }
 
+    int32 OnMonsterSkillPrepare(CBattleEntity* PMob, uint16 skillId)
+    {
+        DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
+
+        lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+        if (prepFile(File, "onMonsterSkillPrepare"))
+        {
+            return -1;
+        }
+
+        lua_getglobal(LuaHandle, "onMonsterSkillPrepare");
+
+        if(lua_isnil(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        CLuaBaseEntity LuaMobEntity(PMob);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+        lua_pushinteger(LuaHandle, skillId);
+
+        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onMonsterSkillPrepare: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+
+        if (returns > 0)
+        {
+            lua_pop(LuaHandle, returns);
+        }
+
+        return 0;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Called when mob is targeted by a spell.                              *
