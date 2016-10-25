@@ -3,6 +3,8 @@
 -- MOB: Khimaira 13
 -----------------------------------
 
+require("scripts/globals/allyassist");
+
 -----------------------------------
 -- onMobInitialize Action
 -----------------------------------
@@ -22,7 +24,12 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-    mob:getBattlefield():startAllyAssist();
+    local assist = mob:getLocalVar("assist");
+
+    if (assist == 0) then
+        startAllyAssist(mob);
+        mob:setLocalVar("assist", 1);
+    end
 end;
 
 -----------------------------------

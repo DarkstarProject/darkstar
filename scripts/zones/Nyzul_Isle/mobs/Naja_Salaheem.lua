@@ -3,6 +3,7 @@
 -- MOB: Naja Salaheem
 -----------------------------------
 
+require("scripts/globals/allyassist");
 require("scripts/globals/instance");
 require("scripts/zones/Nyzul_Isle/IDs");
 
@@ -50,7 +51,7 @@ function onMobDisengaged(mob, target)
     local ready = mob:getLocalVar("ready");
 
     if (ready == 1) then
-        mob:getInstance():startAllyAssist(ALLY_ASSIST_RANDOM);
+        startAllyAssist(mob, ALLY_ASSIST_RANDOM);
     end
 end;
 
@@ -78,7 +79,7 @@ function onMobRoam(mob)
     -- Path must finish before Ally Asisst (no wallhacking!)
     elseif (ready == 1) then
         mob:setMobMod(MOBMOD_NO_MOVE, 0);
-        mob:getInstance():startAllyAssist(ALLY_ASSIST_RANDOM);
+        startAllyAssist(mob, ALLY_ASSIST_RANDOM);
     end
 end;
 

@@ -4,6 +4,7 @@
 -- TOAU-15 Mission Battle
 -----------------------------------
 
+require("scripts/globals/allyassist");
 require("scripts/globals/instance");
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -24,7 +25,7 @@ function onMobSpawn(mob)
     -- Give a little buffer for while the instance loads
     mob:timer(80000, function(mob)
         if(mob:getLocalVar("ready") == 0 and not(mob:getTarget())) then
-            mob:getInstance():startAllyAssist(ALLY_ASSIST_RANDOM);
+            startAllyAssist(mob, ALLY_ASSIST_RANDOM);
         end
     end)
 end;
@@ -47,7 +48,7 @@ function onMobRoam(mob)
     if(ready == 2) then
         mob:timer(60000, function(mob)
             if(mob:getLocalVar("ready") == 3 and not(mob:getTarget())) then
-                mob:getInstance():startAllyAssist(ALLY_ASSIST_RANDOM);
+                startAllyAssist(mob, ALLY_ASSIST_RANDOM);
             end
         end)
 
@@ -56,7 +57,7 @@ function onMobRoam(mob)
 
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
-        mob:getInstance():startAllyAssist(ALLY_ASSIST_PLAYER);
+        startAllyAssist(mob, ALLY_ASSIST_PLAYER);
     end
 end;
 
