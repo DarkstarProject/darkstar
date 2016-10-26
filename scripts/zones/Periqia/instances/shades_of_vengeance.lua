@@ -25,7 +25,6 @@ end;
 -----------------------------------
 
 function onInstanceCreated(instance)
-    local superLinkID = 0;
     for i,v in pairs(Periqia.mobs[79]) do
         SpawnMob(v, instance);
     end

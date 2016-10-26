@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 require("scripts/globals/missions");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
@@ -33,7 +34,7 @@ function onTrigger(player,npc)
             player:startEvent(3111);
         elseif (player:getCurrentMission(TOAU) == IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true) then
-            player:startEvent(3140,0,0,0,0,0,0,0,0,0);
+            player:startEvent(3140,getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0);
         elseif (player:getCurrentMission(TOAU) >= IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true) then
             local ring = player:getVar("TOAU_RINGTIME");
