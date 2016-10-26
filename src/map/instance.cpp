@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "instance.h"
 
 #include "zone.h"
+#include "ai/ai_container.h"
 #include "entities/charentity.h"
 #include "lua/luautils.h"
 

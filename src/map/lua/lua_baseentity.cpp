@@ -6357,6 +6357,21 @@ inline int32 CLuaBaseEntity::resetEnmity(lua_State *L)
 }
 
 /************************************************************************
+    Clears all enmity
+    Example:
+    mob:clearAllEnmity()
+************************************************************************/
+
+inline int32 CLuaBaseEntity::clearAllEnmity(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    static_cast<CMobEntity*>(m_PBaseEntity)->PEnmityContainer->Clear();
+
+    return 0;
+}
+
+/************************************************************************
 Lowers enmity of player on mob
 Example:
 mob:lowerEnmity(target, 50)
@@ -8748,6 +8763,14 @@ inline int32 CLuaBaseEntity::isPet(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::isAlly(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    lua_pushboolean(L, m_PBaseEntity->objtype == TYPE_MOB && m_PBaseEntity->allegiance == ALLEGIANCE_PLAYER);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10106,6 +10129,17 @@ inline int32 CLuaBaseEntity::getEnmityList(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::isSpawned(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+    lua_pushboolean(L, static_cast<CMobEntity*>(m_PBaseEntity)->PAI->IsSpawned());
+
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::spawn(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -10960,6 +10994,46 @@ int32 CLuaBaseEntity::canChangeState(lua_State* L)
     return 1;
 }
 
+int32 CLuaBaseEntity::isAlive(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    lua_pushboolean(L, static_cast<CBattleEntity*>(m_PBaseEntity)->isAlive());
+    return 1;
+}
+
+int32 CLuaBaseEntity::isDead(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    lua_pushboolean(L, static_cast<CBattleEntity*>(m_PBaseEntity)->isDead());
+    return 1;
+}
+
+int32 CLuaBaseEntity::engage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CBattleEntity* battleEntity = static_cast<CBattleEntity*>(m_PBaseEntity);
+    uint16 requestedTarget = lua_tointeger(L,1);
+
+    if (requestedTarget > 0)
+    {
+        battleEntity->PAI->Engage(requestedTarget);
+    }
+
+    return 0;
+}
+
+int32 CLuaBaseEntity::disengage(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* battleEntity = static_cast<CBattleEntity*>(m_PBaseEntity);
+    battleEntity->PAI->Disengage();
+
+    return 0;
+}
+
 //==========================================================//
 
 const int8 CLuaBaseEntity::className[] = "CBaseEntity";
@@ -11175,6 +11249,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateClaim),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearAllEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,transferEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
@@ -11312,6 +11387,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMob),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isPet),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlly),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,injectActionPacket),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasTrait),
@@ -11357,6 +11433,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isFollowingPath),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wait),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,pathTo),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setSpawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setRespawnTime),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,unlockAttachment),
@@ -11437,5 +11514,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetAI),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canChangeState),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isAlive),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,isDead),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,engage),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,disengage),
     {nullptr,nullptr}
 };

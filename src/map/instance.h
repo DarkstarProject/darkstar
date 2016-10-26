@@ -68,6 +68,7 @@ public:
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
     bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
 
+
     CInstance(CZone*, uint8 instanceid);
     ~CInstance();
 
