@@ -22,5 +22,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-   player:addStatusEffect(EFFECT_FOOTWORK,1,0,300);
+   player:addStatusEffect(EFFECT_FOOTWORK,1,0,60);
 end;

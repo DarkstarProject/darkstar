@@ -226,10 +226,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
     if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
     {
-        if (!StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-        {
-            WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
-        }
+        WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
     }
     else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
              m_Weapons[SLOT_SUB]->getDmgType() < 4)
@@ -661,10 +658,10 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 
 uint16 CBattleEntity::DEF()
 {
-    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0)) {
-        return VIT() / 2 + 1;
-    }
     int32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
+    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0)) {
+	return DEF / 2;
+    }
 
     return DEF + (DEF * m_modStat[MOD_DEFP] / 100) +
         dsp_min((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
