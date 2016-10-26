@@ -209,12 +209,6 @@ uint8 CAttack::GetWeaponSlot()
 ************************************************************************/
 uint8 CAttack::GetAnimationID()
 {
-    // Footwork
-    if (m_attacker->GetMJob() == JOB_MNK && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-    {
-        return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
-    }
-
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
