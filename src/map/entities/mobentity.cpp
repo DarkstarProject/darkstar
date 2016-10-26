@@ -968,10 +968,10 @@ void CMobEntity::OnDeathTimer()
 void CMobEntity::OnDespawn(CDespawnState&)
 {
     FadeOut();
+    PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
     luautils::OnMobDespawn(this);
     //#event despawn
     PAI->EventHandler.triggerListener("DESPAWN", this);
-    PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
 }
 
 void CMobEntity::Die()
