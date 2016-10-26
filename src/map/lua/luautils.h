@@ -67,11 +67,17 @@ class CZone;
 struct action_t;
 struct actionList_t;
 struct actionTarget_t;
+
 enum ConquestUpdate : uint8;
 
 namespace luautils
 {
     extern struct lua_State* LuaHandle;
+
+    typedef struct {
+        bool functionFound;
+        int8* file;
+    } loadLuaFunctionResult_t;
 
     int32 init();
     int32 free();
@@ -208,6 +214,7 @@ namespace luautils
     int32 OnSpellCast(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);		// triggered when casting a spell
     int32 OnSpellPrecast(CBattleEntity* PCaster, CSpell* PSpell);				            // triggered just before casting a spell
     int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget);            // triggered when monster wants to use a spell on target
+    int32 OnMonsterSkillPrepare(CBattleEntity* PMob, uint16 );                              // triggered before a monster users a skill
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell);       // triggered when spell cast on monster
     int32 OnWeaponskillHit(CBattleEntity* PMob, CBaseEntity* PAttacker, uint16 PWeaponskill); // Triggered when Weaponskill strikes monster
 
@@ -268,6 +275,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
+    loadLuaFunctionResult_t LoadFunctionFromLua(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function
 };
 
 #endif //- _LUAUTILS_H -

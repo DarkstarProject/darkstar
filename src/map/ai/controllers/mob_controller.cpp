@@ -109,7 +109,7 @@ bool CMobController::CheckHide(CBattleEntity* PTarget)
 
 bool CMobController::CheckDetection(CBattleEntity* PTarget)
 {
-    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || 
+    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) ||
         PMob->StatusEffectContainer->HasStatusEffect({EFFECT_BIND, EFFECT_SLEEP, EFFECT_SLEEP_II, EFFECT_LULLABY}))
     {
         TapDeaggroTime();
@@ -408,7 +408,7 @@ bool CMobController::TryCastSpell()
 bool CMobController::CanCastSpells()
 {
 
-    if (!PMob->SpellContainer->HasSpells())
+    if (!PMob->SpellContainer->HasSpells() && !PMob->m_HasSpellScript)
     {
         return false;
     }
@@ -909,6 +909,7 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
     if (POwner)
     {
         FaceTarget(targid);
+        luautils::OnMonsterSkillPrepare(POwner, wsid);
         return POwner->PAI->Internal_MobSkill(targid, wsid);
     }
 
