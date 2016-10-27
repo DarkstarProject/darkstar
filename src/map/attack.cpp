@@ -408,7 +408,7 @@ void CAttack::ProcessDamage()
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = m_attacker->GetMainWeaponDmg();
+        m_baseDamage = dsp_max(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
             m_baseDamage = m_attacker->getMod(MOD_KICK_DMG) + 3;
