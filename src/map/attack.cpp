@@ -318,12 +318,12 @@ bool CAttack::CheckAnticipated()
     else
     { //do have seigan, decay anticipations correctly (guesstimated)
         //5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
-        if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15)))
+        if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15) + m_victim->getMod(MOD_THIRD_EYE_ANTICIPATE_RATE)))
         {
             //increment power and don't remove
             effect->SetPower(effect->GetPower() + 1);
             //chance to counter - 25% base
-            if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(MOD_AUGMENTS_THIRD_EYE))
+            if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(MOD_THIRD_EYE_COUNTER_RATE))
             {
                 m_isCountered = true;
                 m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
