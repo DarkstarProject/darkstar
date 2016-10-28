@@ -2043,12 +2043,12 @@ INSERT INTO `item_mods` VALUES (10720,11,4);
 INSERT INTO `item_mods` VALUES (10720,24,11);
 INSERT INTO `item_mods` VALUES (10720,26,11);
 INSERT INTO `item_mods` VALUES (10720,27,-4);
-INSERT INTO `item_mods` VALUES (10721,1,52);
-INSERT INTO `item_mods` VALUES (10721,8,6);
-INSERT INTO `item_mods` VALUES (10721,11,6);
-INSERT INTO `item_mods` VALUES (10721,23,8);
-INSERT INTO `item_mods` VALUES (10721,68,8);
-INSERT INTO `item_mods` VALUES (10721,508,25);
+INSERT INTO `item_mods` VALUES (10721,1,52);      -- Saotome Haidate +2: DEF 52
+INSERT INTO `item_mods` VALUES (10721,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (10721,11,6);      -- AGI +6
+INSERT INTO `item_mods` VALUES (10721,23,8);      -- Attack +8
+INSERT INTO `item_mods` VALUES (10721,68,8);      -- Evasion +8
+INSERT INTO `item_mods` VALUES (10721,508,25);    -- Augments Third Eye Counter rate +25%
 INSERT INTO `item_mods` VALUES (10722,1,40);
 INSERT INTO `item_mods` VALUES (10722,2,56);
 INSERT INTO `item_mods` VALUES (10722,11,6);
@@ -15628,11 +15628,11 @@ INSERT INTO `item_mods` VALUES (15127,2,18);
 INSERT INTO `item_mods` VALUES (15127,26,7);
 INSERT INTO `item_mods` VALUES (15127,27,-2);
 INSERT INTO `item_mods` VALUES (15127,110,10);
-INSERT INTO `item_mods` VALUES (15128,1,40);
-INSERT INTO `item_mods` VALUES (15128,2,18);
-INSERT INTO `item_mods` VALUES (15128,11,3);
-INSERT INTO `item_mods` VALUES (15128,27,1);
-INSERT INTO `item_mods` VALUES (15128,508,15);
+INSERT INTO `item_mods` VALUES (15128,1,40);      -- Saotome Haidate: DEF 40
+INSERT INTO `item_mods` VALUES (15128,2,18);      -- HP +18
+INSERT INTO `item_mods` VALUES (15128,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (15128,27,1);      -- Enmity +1
+INSERT INTO `item_mods` VALUES (15128,508,15);    -- Augments Third Eye Counter rate +15%
 INSERT INTO `item_mods` VALUES (15129,1,31);
 INSERT INTO `item_mods` VALUES (15129,2,40);
 INSERT INTO `item_mods` VALUES (15129,259,5);
@@ -17126,11 +17126,11 @@ INSERT INTO `item_mods` VALUES (15590,2,18);
 INSERT INTO `item_mods` VALUES (15590,26,9);
 INSERT INTO `item_mods` VALUES (15590,27,-3);
 INSERT INTO `item_mods` VALUES (15590,110,10);
-INSERT INTO `item_mods` VALUES (15591,1,41);
-INSERT INTO `item_mods` VALUES (15591,2,33);
-INSERT INTO `item_mods` VALUES (15591,11,4);
-INSERT INTO `item_mods` VALUES (15591,27,1);
-INSERT INTO `item_mods` VALUES (15591,508,15);
+INSERT INTO `item_mods` VALUES (15591,1,41);      -- Saotome Haidate +1: DEF 41
+INSERT INTO `item_mods` VALUES (15591,2,33);      -- HP +33
+INSERT INTO `item_mods` VALUES (15591,11,4);      -- AGI +4
+INSERT INTO `item_mods` VALUES (15591,27,1);      -- Enmity +1
+INSERT INTO `item_mods` VALUES (15591,508,15);    -- Augments Third Eye Counter rate +15%
 INSERT INTO `item_mods` VALUES (15592,1,32);
 INSERT INTO `item_mods` VALUES (15592,2,40);
 INSERT INTO `item_mods` VALUES (15592,259,5);
@@ -22500,9 +22500,8 @@ INSERT INTO `item_mods` VALUES (19000,454,10);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19001,355,217); -- Gastraphetes 75 - Trueflight
 INSERT INTO `item_mods` VALUES (19001,365,5);
 INSERT INTO `item_mods` VALUES (19001,420,10);
-INSERT INTO `item_mods` VALUES (19002,288,15);
-INSERT INTO `item_mods` VALUES (19002,355,154); -- Kogarasumaru 75 - Tachi: Rana
-INSERT INTO `item_mods` VALUES (19002,508,15);
+INSERT INTO `item_mods` VALUES (19002,355,154);   -- Kogarasumaru (Level 75): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19002,839,15);    -- Third Eye anticipation rate +15%
 INSERT INTO `item_mods` VALUES (19003,27,10);
 INSERT INTO `item_mods` VALUES (19003,30,10);
 INSERT INTO `item_mods` VALUES (19003,288,15);
@@ -22626,7 +22625,9 @@ INSERT INTO `item_mods` VALUES (19069,454,20);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19070,365,5);
 INSERT INTO `item_mods` VALUES (19070,355,217); -- Gastraphetes 80 - Trueflight
 INSERT INTO `item_mods` VALUES (19070,450,15);
-INSERT INTO `item_mods` VALUES (19071,355,154); -- Kogarasumaru 80 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19071,355,154);   -- Kogarasumaru (Level 80): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19071,508,10);    -- Third Eye Counter rate +10%
+INSERT INTO `item_mods` VALUES (19071,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19072,355,138); -- Nagi 80 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19073,355,122); -- Ryunohige 80 - Drakesbane
 INSERT INTO `item_mods` VALUES (19074,355,187); -- Nirvana 80 - Garland of Bliss
@@ -22671,8 +22672,9 @@ INSERT INTO `item_mods` VALUES (19089,454,30);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19090,355,217); -- Gastraphetes 85 - Trueflight
 INSERT INTO `item_mods` VALUES (19090,365,5);
 INSERT INTO `item_mods` VALUES (19090,450,20);
-INSERT INTO `item_mods` VALUES (19091,288,20);
-INSERT INTO `item_mods` VALUES (19091,355,154); -- Kogarasumaru 85 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19091,355,154);   -- Kogarasumaru (Level 85): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19091,508,15);    -- Third Eye Counter rate +15%
+INSERT INTO `item_mods` VALUES (19091,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19092,27,20);
 INSERT INTO `item_mods` VALUES (19092,30,20);
 INSERT INTO `item_mods` VALUES (19092,288,20);
@@ -23045,7 +23047,9 @@ INSERT INTO `item_mods` VALUES (19621,454,40);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19622,355,217); -- Gastraphetes 90 - Trueflight
 INSERT INTO `item_mods` VALUES (19622,365,5);
 INSERT INTO `item_mods` VALUES (19622,420,25);
-INSERT INTO `item_mods` VALUES (19623,355,154); -- Kogarasumaru 90 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19623,355,154);   -- Kogarasumaru (Level 90): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19623,508,20);    -- Third Eye Counter rate +20%
+INSERT INTO `item_mods` VALUES (19623,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19624,355,138); -- Nagi 90 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19625,355,122); -- Ryunohige 90 - Drakesbane
 INSERT INTO `item_mods` VALUES (19626,355,187); -- Nirvana 90 - Garland of Bliss
@@ -23127,9 +23131,9 @@ INSERT INTO `item_mods` VALUES (19719,454,40);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19720,355,217); -- Gastraphetes 95 - Trueflight
 INSERT INTO `item_mods` VALUES (19720,365,5);
 INSERT INTO `item_mods` VALUES (19720,420,30);
-INSERT INTO `item_mods` VALUES (19721,288,25);
-INSERT INTO `item_mods` VALUES (19721,302,5);
-INSERT INTO `item_mods` VALUES (19721,355,154); -- Kogarasumaru 95 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19721,355,154);   -- Kogarasumaru (Level 95): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19721,508,20);    -- Third Eye Counter rate +20%
+INSERT INTO `item_mods` VALUES (19721,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19722,27,25);
 INSERT INTO `item_mods` VALUES (19722,30,25);
 INSERT INTO `item_mods` VALUES (19722,288,25);
@@ -23384,9 +23388,9 @@ INSERT INTO `item_mods` VALUES (19828,454,50);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19829,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19829,365,5);
 INSERT INTO `item_mods` VALUES (19829,420,35);
-INSERT INTO `item_mods` VALUES (19830,288,30);
-INSERT INTO `item_mods` VALUES (19830,302,10);
-INSERT INTO `item_mods` VALUES (19830,355,154); -- Kogarasumaru 99 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19830,355,154);   -- Kogarasumaru (Level 99): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19830,508,25);    -- Third Eye Counter rate +25%
+INSERT INTO `item_mods` VALUES (19830,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19831,27,30);
 INSERT INTO `item_mods` VALUES (19831,30,30);
 INSERT INTO `item_mods` VALUES (19831,288,30);
@@ -23547,7 +23551,9 @@ INSERT INTO `item_mods` VALUES (19957,454,50);    -- Increases song effect durat
 INSERT INTO `item_mods` VALUES (19958,355,217); -- Gastraphetes 99 - Trueflight
 INSERT INTO `item_mods` VALUES (19958,365,5);
 INSERT INTO `item_mods` VALUES (19958,450,35);
-INSERT INTO `item_mods` VALUES (19959,355,154); -- Kogarasumaru 99 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (19959,355,154);   -- Kogarasumaru (Level 99 II): Tachi: Rana
+INSERT INTO `item_mods` VALUES (19959,508,25);    -- Third Eye Counter rate +25%
+INSERT INTO `item_mods` VALUES (19959,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (19960,355,138); -- Nagi 99 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (19961,355,122); -- Ryunohige 99 - Drakesbane
 INSERT INTO `item_mods` VALUES (19962,355,187); -- Nirvana 99 - Garland of Bliss
@@ -24131,10 +24137,16 @@ INSERT INTO `item_mods` VALUES (21016,431,1); -- Additional Effect - scripts\glo
 INSERT INTO `item_mods` VALUES (21016,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21016,507,250); -- Extra DMG X2.5
 INSERT INTO `item_mods` VALUES (21016,723,40); -- Tachi: Kaiten DMG +40%
-INSERT INTO `item_mods` VALUES (21017,302,15);
-INSERT INTO `item_mods` VALUES (21017,355,154); -- Kogarasumaru iLvL 119 - Tachi: Rana
-INSERT INTO `item_mods` VALUES (21018,302,15);
-INSERT INTO `item_mods` VALUES (21018,355,154); -- Kogarasumaru iLvL 119 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (21017,89,242);    -- Kogarasumaru (Level 119): Great Katana skill +242
+INSERT INTO `item_mods` VALUES (21017,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (21017,355,154);   -- Tachi: Rana
+INSERT INTO `item_mods` VALUES (21017,508,25);    -- Third Eye Counter rate +25%
+INSERT INTO `item_mods` VALUES (21017,839,15);    -- Third Eye Anticipate rate +15%
+INSERT INTO `item_mods` VALUES (21018,89,242);    -- Kogarasumaru (Level 119 II): Great Katana skill +242
+INSERT INTO `item_mods` VALUES (21018,110,242);   -- Parrying skill +242
+INSERT INTO `item_mods` VALUES (21018,355,154);   -- Tachi: Rana
+INSERT INTO `item_mods` VALUES (21018,508,25);    -- Third Eye Counter rate +25%
+INSERT INTO `item_mods` VALUES (21018,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (21019,8,20);
 INSERT INTO `item_mods` VALUES (21019,355,156); -- Masamune iLvL 119 - Tachi Fudo
 INSERT INTO `item_mods` VALUES (21020,8,20);
@@ -24618,7 +24630,11 @@ INSERT INTO `item_mods` VALUES (21906,355,137); -- Kikoku iLvL 119 - Blade: Mets
 INSERT INTO `item_mods` VALUES (21907,355,138); -- Nagi iLvL 119 - Blade: Kamu
 INSERT INTO `item_mods` VALUES (21908,355,140); -- Kannagi iLvL 119 - Blade Hi
 INSERT INTO `item_mods` VALUES (21954,355,153); -- Amanomurakumo iLvL 119 - Tachi: Kaiten
-INSERT INTO `item_mods` VALUES (21955,355,154); -- Kogarasumaru iLvL 119 - Tachi: Rana
+INSERT INTO `item_mods` VALUES (21955,89,269);    -- Kogarasumaru (Level 119 III): Great Katana skill +269
+INSERT INTO `item_mods` VALUES (21955,110,269);   -- Parrying skill +269
+INSERT INTO `item_mods` VALUES (21955,355,154);   -- Tachi: Rana
+INSERT INTO `item_mods` VALUES (21955,508,25);    -- Third Eye Counter rate +25%
+INSERT INTO `item_mods` VALUES (21955,839,15);    -- Third Eye Anticipate rate +15%
 INSERT INTO `item_mods` VALUES (21956,355,156); -- Masamune iLvL 119 - Tachi Fudo
 INSERT INTO `item_mods` VALUES (22060,355,185); -- Claustrum iLvL 119 - Gate of Tartarus
 INSERT INTO `item_mods` VALUES (22061,355,188); -- Tupsimati iLvL 119 - Omniscience
@@ -29201,20 +29217,34 @@ INSERT INTO `item_mods` VALUES (27173,31,69);
 INSERT INTO `item_mods` VALUES (27173,68,38);
 INSERT INTO `item_mods` VALUES (27173,167,60);
 INSERT INTO `item_mods` VALUES (27173,365,5);
-INSERT INTO `item_mods` VALUES (27174,1,89);
-INSERT INTO `item_mods` VALUES (27174,2,23);
-INSERT INTO `item_mods` VALUES (27174,8,21);
-INSERT INTO `item_mods` VALUES (27174,10,12);
-INSERT INTO `item_mods` VALUES (27174,11,9);
-INSERT INTO `item_mods` VALUES (27174,12,17);
-INSERT INTO `item_mods` VALUES (27174,13,10);
-INSERT INTO `item_mods` VALUES (27174,14,8);
-INSERT INTO `item_mods` VALUES (27174,23,15);
-INSERT INTO `item_mods` VALUES (27174,29,1);
-INSERT INTO `item_mods` VALUES (27174,31,51);
-INSERT INTO `item_mods` VALUES (27174,68,25);
-INSERT INTO `item_mods` VALUES (27174,384,51);
-INSERT INTO `item_mods` VALUES (27174,508,35);
+INSERT INTO `item_mods` VALUES (27174,1,89);      -- Sakonji Haidate: DEF 89
+INSERT INTO `item_mods` VALUES (27174,2,23);      -- HP +23
+INSERT INTO `item_mods` VALUES (27174,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (27174,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (27174,11,9);      -- AGI +9
+INSERT INTO `item_mods` VALUES (27174,12,17);     -- INT +17
+INSERT INTO `item_mods` VALUES (27174,13,10);     -- MND +10
+INSERT INTO `item_mods` VALUES (27174,14,8);      -- CHR +8
+INSERT INTO `item_mods` VALUES (27174,23,15);     -- Attack +15
+INSERT INTO `item_mods` VALUES (27174,29,1);      -- Magic Def. Bonus +1
+INSERT INTO `item_mods` VALUES (27174,31,51);     -- Magic Evasion +51
+INSERT INTO `item_mods` VALUES (27174,68,25);     -- Evasion +25
+INSERT INTO `item_mods` VALUES (27174,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (27174,508,35);    -- Third Eye Counter rate +35%
+INSERT INTO `item_mods` VALUES (27175,1,125);     -- Sakonji Haidate +1: DEF 125
+INSERT INTO `item_mods` VALUES (27175,2,50);      -- HP +50
+INSERT INTO `item_mods` VALUES (27175,8,33);      -- STR +33
+INSERT INTO `item_mods` VALUES (27175,10,19);     -- VIT +19
+INSERT INTO `item_mods` VALUES (27175,11,15);     -- AGI +15
+INSERT INTO `item_mods` VALUES (27175,12,26);     -- INT +26
+INSERT INTO `item_mods` VALUES (27175,13,16);     -- MND +16
+INSERT INTO `item_mods` VALUES (27175,14,12);     -- CHR +12
+INSERT INTO `item_mods` VALUES (27175,23,18);     -- Attack +18
+INSERT INTO `item_mods` VALUES (27175,29,3);      -- Magic Def. Bonus +3
+INSERT INTO `item_mods` VALUES (27175,31,75);     -- Magic Evasion +75
+INSERT INTO `item_mods` VALUES (27175,68,40);     -- Evasion +40
+INSERT INTO `item_mods` VALUES (27175,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (27175,508,35);    -- Third Eye Counter rate +35%
 INSERT INTO `item_mods` VALUES (27176,1,80);
 INSERT INTO `item_mods` VALUES (27176,2,37);
 INSERT INTO `item_mods` VALUES (27176,8,20);

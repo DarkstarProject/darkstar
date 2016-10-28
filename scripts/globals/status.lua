@@ -1283,7 +1283,8 @@ MOD_EAT_RAW_FISH       = 412 --
 MOD_EAT_RAW_MEAT       = 413 --
 MOD_ENHANCES_CURSNA    = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
 MOD_RETALIATION        = 414 -- Increases damage of Retaliation hits
-MOD_AUGMENTS_THIRD_EYE = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
+MOD_THIRD_EYE_COUNTER_RATE    = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
+MOD_THIRD_EYE_ANTICIPATE_RATE = 839 -- Adds anticipate rate in percents
 
 MOD_CLAMMING_IMPROVED_RESULTS  = 509 --
 MOD_CLAMMING_REDUCED_INCIDENTS = 510 --
@@ -1349,7 +1350,6 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 839 -- stuff
 -- MOD_SPARE = 840 -- stuff
 -- MOD_SPARE = 841 -- stuff
 -- MOD_SPARE = 842 -- stuff
