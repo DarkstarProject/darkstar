@@ -1290,7 +1290,7 @@ MOD_CLAMMING_REDUCED_INCIDENTS = 510 --
 MOD_CHOCOBO_RIDING_TIME = 511 -- Increases chocobo riding time
 MOD_HARVESTING_RESULT   = 513 -- Improves harvesting results
 MOD_LOGGING_RESULT      = 514 -- Improves logging results
-MOD_MINNING_RESULT      = 515 -- Improves mining results
+MOD_MINING_RESULT       = 515 -- Improves mining results
 MOD_EGGHELM             = 517 -- Egg Helm (Chocobo Digging)
 
 MOD_SHIELDBLOCKRATE           = 518 -- Affects shield block rate, percent based
