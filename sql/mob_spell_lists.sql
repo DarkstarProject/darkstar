@@ -1504,6 +1504,17 @@ INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,201,1,255); -- Waterg
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,362,1,255); -- Bindaga
 INSERT INTO `mob_spell_lists` VALUES ('Lord_of_Onzozo',152,214,1,255); -- Flood
 
+-- Mindertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',153,5,1,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',153,29,1,255); -- Banish II
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',153,112,1,255); -- Flash
+
+-- Eldertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',154,5,1,255); --  Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',154,46,1,255); -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',154,50,1,255); -- Shell III
+
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
