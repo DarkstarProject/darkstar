@@ -596,7 +596,7 @@ enum MODIFIER
 
     MOD_HARVESTING_RESULT         = 513, // Improves harvesting results
     MOD_LOGGING_RESULT            = 514, // Improves logging results
-    MOD_MINNING_RESULT            = 515, // Improves mining results
+    MOD_MINING_RESULT             = 515, // Improves mining results
 
     MOD_EGGHELM                   = 517,
 
