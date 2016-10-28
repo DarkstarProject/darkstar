@@ -227,3 +227,14 @@ INSERT INTO `item_mods_pet` VALUES (10664,28,4); -- AVATAR:MAB
 -- -------------------------------------------------------
 -- INSERT INTO `item_mods_pet` VALUES (10744,AVATAR:ENHANCES ATTACK,1);
 INSERT INTO `item_mods_pet` VALUES (10744,165,5); -- AVATAR MCR
+
+-- -------------------------------------------------------
+-- Denouements - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20516,370,4); -- Regen +4
+INSERT INTO `item_mods_pet` VALUES (20516,369,4); -- "Refresh"+4
+
+-- -------------------------------------------------------
+-- Gelai Earring - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28518,289,5); -- Subtle Blow +9
