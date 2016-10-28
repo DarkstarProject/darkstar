@@ -209,12 +209,6 @@ uint8 CAttack::GetWeaponSlot()
 ************************************************************************/
 uint8 CAttack::GetAnimationID()
 {
-    // Footwork
-    if (m_attacker->GetMJob() == JOB_MNK && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_FOOTWORK))
-    {
-        return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
-    }
-
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
@@ -414,10 +408,10 @@ void CAttack::ProcessDamage()
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
         m_naturalH2hDamage = (float)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
-        m_baseDamage = m_attacker->GetMainWeaponDmg();
+        m_baseDamage = dsp_max(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
-            m_baseDamage = m_attacker->getMod(MOD_KICK_DMG);
+            m_baseDamage = m_attacker->getMod(MOD_KICK_DMG) + 3;
         }
         m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
             battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));

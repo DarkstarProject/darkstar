@@ -1325,7 +1325,7 @@ MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
 MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering healing breath
 MOD_AQUAVEIL_COUNT            = 832 -- Modifies the amount of hits that Aquaveil absorbs before being removed
-MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time (in milliseconds).
+MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time in seconds.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)

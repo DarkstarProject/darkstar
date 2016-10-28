@@ -965,6 +965,15 @@ void CMobEntity::OnDeathTimer()
         PAI->Despawn();
 }
 
+void CMobEntity::OnDespawn(CDespawnState&)
+{
+    FadeOut();
+    PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
+    luautils::OnMobDespawn(this);
+    //#event despawn
+    PAI->EventHandler.triggerListener("DESPAWN", this);
+}
+
 void CMobEntity::Die()
 {
     m_THLvl = PEnmityContainer->GetHighestTH();

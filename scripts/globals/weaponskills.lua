@@ -14,7 +14,7 @@ require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
 
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
 
     local criticalHit = false;
@@ -30,9 +30,14 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local weaponDamage = attacker:getWeaponDmg();
     local weaponType = attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
-        weaponDamage = attacker:getWeaponDmg()-3;
+        
+        if (params.kick and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
+            weaponDamage = attacker:getMod(MOD_KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
+        else
+            weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0);
+        end
 
         weaponDamage = weaponDamage + h2hSkill;
     end
