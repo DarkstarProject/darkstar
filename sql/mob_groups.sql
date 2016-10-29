@@ -10967,6 +10967,65 @@ INSERT INTO `mob_groups` VALUES (11196,1720,12,0,128,1469,0,0,71,73,0);
 -- gnoletrap Jugner S missing group
 INSERT INTO `mob_groups` VALUES (11197,5155,82,300,0,4481,0,0,89,91,0);
 
+-- Legion
+-- mul
+INSERT INTO `mob_groups` VALUES (11250,5744,183,0,128,0,90000,9999,99,99,0); -- lofty behemoth
+INSERT INTO `mob_groups` VALUES (11251,5745,183,0,128,0,90000,9999,99,99,0); -- lofty Wyrm
+INSERT INTO `mob_groups` VALUES (11252,5746,183,0,128,0,90000,9999,99,99,0); -- lofty Adamantoise
+INSERT INTO `mob_groups` VALUES (11253,5747,183,0,128,0,90000,9999,99,99,0); -- lofty Elasmoth
+INSERT INTO `mob_groups` VALUES (11254,5748,183,0,128,0,90000,9999,99,99,0); -- lofty Zilant
+INSERT INTO `mob_groups` VALUES (11255,5749,183,0,128,0,90000,9999,99,99,0); -- lofty Ferrotoise
+INSERT INTO `mob_groups` VALUES (11256,5750,183,0,128,0,90000,9999,99,99,0); -- lofty harpeia
+-- Ki
+INSERT INTO `mob_groups` VALUES (11257,5789,183,0,128,0,90000,9999,99,99,0); -- Mired Hydra
+INSERT INTO `mob_groups` VALUES (11258,5790,183,0,128,0,90000,9999,99,99,0); -- Mired Khimaira
+INSERT INTO `mob_groups` VALUES (11259,5791,183,0,128,0,90000,9999,99,99,0); -- Mired Cerberus
+INSERT INTO `mob_groups` VALUES (11260,5792,183,0,128,0,90000,9999,99,99,0); -- Mired Alfard
+INSERT INTO `mob_groups` VALUES (11261,5793,183,0,128,0,90000,9999,99,99,0); -- Mired Khrysokhim
+INSERT INTO `mob_groups` VALUES (11262,5794,183,0,128,0,90000,9999,99,99,0); -- Mired Orthrus
+INSERT INTO `mob_groups` VALUES (11263,5783,183,0,128,0,90000,9999,99,99,0); -- Mired Mantis
+-- Im
+INSERT INTO `mob_groups` VALUES (11264,5797,183,0,128,0,90000,9999,99,99,0); -- Soaring Corse
+INSERT INTO `mob_groups` VALUES (11265,5796,183,0,128,0,90000,9999,99,99,0); -- Soaring Dvergr
+INSERT INTO `mob_groups` VALUES (11266,5795,183,0,128,0,90000,9999,99,99,0); -- Soaring Vampyr
+INSERT INTO `mob_groups` VALUES (11267,5800,183,0,128,0,90000,9999,99,99,0); -- Soaring kumakatok
+INSERT INTO `mob_groups` VALUES (11268,5799,183,0,128,0,90000,9999,99,99,0); -- Soaring Dweorg
+INSERT INTO `mob_groups` VALUES (11269,5798,183,0,128,0,90000,9999,99,99,0); -- Soaring Strigoi
+INSERT INTO `mob_groups` VALUES (11270,5784,183,0,128,0,90000,9999,99,99,0); -- Soaring Naraka
+-- Muru
+INSERT INTO `mob_groups` VALUES (11271,5801,183,0,128,0,90000,9999,99,99,0); -- Veiled sandworm
+INSERT INTO `mob_groups` VALUES (11272,5802,183,0,128,0,90000,9999,99,99,0); -- Veiled sanguipter
+INSERT INTO `mob_groups` VALUES (11273,5803,183,0,128,0,90000,9999,99,99,0); -- Veiled Alicorn
+INSERT INTO `mob_groups` VALUES (11274,5804,183,0,128,0,90000,9999,99,99,0); -- Veiled Gigaworm
+INSERT INTO `mob_groups` VALUES (11275,5782,183,0,128,0,90000,9999,99,99,0); -- Veiled Ironclad
+INSERT INTO `mob_groups` VALUES (11276,5805,183,0,128,0,90000,9999,99,99,0); -- Veiled Amphiptere
+INSERT INTO `mob_groups` VALUES (11277,5806,183,0,128,0,90000,9999,99,99,0); -- Veiled Ixion
+-- Mul
+INSERT INTO `mob_groups` VALUES (11278,5776,183,0,128,0,90000,9999,99,99,0); -- Paramount Botulus
+INSERT INTO `mob_groups` VALUES (11279,5777,183,0,128,0,90000,9999,99,99,0); -- Paramount Gallu
+INSERT INTO `mob_groups` VALUES (11280,5778,183,0,128,0,90000,9999,99,99,0); -- ParamountIronclad
+INSERT INTO `mob_groups` VALUES (11281,5779,183,0,128,0,90000,9999,99,99,0); -- Paramount Mantis
+INSERT INTO `mob_groups` VALUES (11282,5780,183,0,128,0,90000,9999,99,99,0); -- Paramount Harpeia
+INSERT INTO `mob_groups` VALUES (11283,5781,183,0,128,0,90000,9999,99,99,0); -- Paramount Naraka
+-- all halls
+INSERT INTO `mob_groups` VALUES (11284,5807,183,0,128,0,5000,9999,99,99,0); -- element Ice
+INSERT INTO `mob_groups` VALUES (11285,5808,183,0,128,0,5000,9999,99,99,0); -- element wind
+INSERT INTO `mob_groups` VALUES (11286,5809,183,0,128,0,5000,9999,99,99,0); -- element ice2
+INSERT INTO `mob_groups` VALUES (11287,5810,183,0,128,0,5000,9999,99,99,0); -- element dark
+INSERT INTO `mob_groups` VALUES (11288,5811,183,0,128,0,5000,9999,99,99,0); -- element earth
+INSERT INTO `mob_groups` VALUES (11289,5812,183,0,128,0,5000,9999,99,99,0); -- element ice3
+
+
+-- Face of the Future
+INSERT INTO `mob_groups` VALUES (11350,5785,86,0,128,3765,12000,0,78,80,0); -- no Hp info
+INSERT INTO `mob_groups` VALUES (11351,5786,86,0,128,0,0,0,75,75,1); 
+INSERT INTO `mob_groups` VALUES (11352,5787,86,0,128,0,0,0,75,75,1); 
+INSERT INTO `mob_groups` VALUES (11353,5788,86,0,128,0,0,0,75,75,1); 
+INSERT INTO `mob_groups` VALUES (11354,3458,86,0,128,0,1000,9999,75,77,0); 
+
+
+
+-- available up to 12948
 
 
 INSERT INTO `mob_groups` VALUES (12949,3083,24,86400,128,4478,0,0,45,46,0); -- True Padfoot spawn
@@ -12349,8 +12408,9 @@ INSERT INTO `mob_groups` VALUES (14545,5741,118,3600,0,4578,750,0,22,23,0);
 
 -- draugar model 2 assault deserter
 INSERT INTO `mob_groups` VALUES (14546,5743,55,0,128,0,0,0,75,77,0);
-
 INSERT INTO `mob_groups` VALUES (14547,4662,215,0,0,0,0,0,0,0,0); -- Svarbhanu
+INSERT INTO `mob_groups` VALUES (14548,5757,182,0,128,0,0,9999,75,75,0); -- cait sith mob
+
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
