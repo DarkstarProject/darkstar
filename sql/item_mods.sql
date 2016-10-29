@@ -27557,25 +27557,25 @@ INSERT INTO `item_mods` VALUES (26943,31,64);
 INSERT INTO `item_mods` VALUES (26943,68,49);
 INSERT INTO `item_mods` VALUES (26943,227,6);
 INSERT INTO `item_mods` VALUES (26943,384,40);
-INSERT INTO `item_mods` VALUES (26944,1,158);
-INSERT INTO `item_mods` VALUES (26944,2,63);
-INSERT INTO `item_mods` VALUES (26944,5,35);
-INSERT INTO `item_mods` VALUES (26944,8,29);
-INSERT INTO `item_mods` VALUES (26944,9,19);
-INSERT INTO `item_mods` VALUES (26944,10,29);
-INSERT INTO `item_mods` VALUES (26944,11,19);
-INSERT INTO `item_mods` VALUES (26944,12,19);
-INSERT INTO `item_mods` VALUES (26944,13,19);
-INSERT INTO `item_mods` VALUES (26944,14,19);
-INSERT INTO `item_mods` VALUES (26944,25,40);
-INSERT INTO `item_mods` VALUES (26944,29,6);
-INSERT INTO `item_mods` VALUES (26944,31,80);
-INSERT INTO `item_mods` VALUES (26944,68,41);
-INSERT INTO `item_mods` VALUES (26944,160,-10);
-INSERT INTO `item_mods` VALUES (26944,384,30);
-INSERT INTO `item_mods` VALUES (26944,480,5);
-INSERT INTO `item_mods` VALUES (26944,499,10);
-INSERT INTO `item_mods` VALUES (26944,501,90);
+INSERT INTO `item_mods` VALUES (26944,1,158);     -- Tartarus Platemail: DEF 158
+INSERT INTO `item_mods` VALUES (26944,2,63);      -- HP +63
+INSERT INTO `item_mods` VALUES (26944,5,35);      -- MP +35
+INSERT INTO `item_mods` VALUES (26944,8,29);      -- STR +29
+INSERT INTO `item_mods` VALUES (26944,9,19);      -- DEX +19
+INSERT INTO `item_mods` VALUES (26944,10,29);     -- VIT +29
+INSERT INTO `item_mods` VALUES (26944,11,19);     -- AGI +19
+INSERT INTO `item_mods` VALUES (26944,12,19);     -- INT +19
+INSERT INTO `item_mods` VALUES (26944,13,19);     -- MND +19
+INSERT INTO `item_mods` VALUES (26944,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (26944,25,40);     -- Accuracy +40
+INSERT INTO `item_mods` VALUES (26944,29,6);      -- Magic Def. Bonus +6
+INSERT INTO `item_mods` VALUES (26944,31,80);     -- Magic Evasion +80
+INSERT INTO `item_mods` VALUES (26944,68,41);     -- Evasion +41
+INSERT INTO `item_mods` VALUES (26944,160,-10);   -- Damage taken -10%
+INSERT INTO `item_mods` VALUES (26944,384,31);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (26944,475,5);     -- Absorbs magic damage taken +5%
+INSERT INTO `item_mods` VALUES (26944,499,10);    -- Death spikes
+INSERT INTO `item_mods` VALUES (26944,501,1);     -- Spikes chance +1%
 INSERT INTO `item_mods` VALUES (26945,1,130);
 INSERT INTO `item_mods` VALUES (26945,2,54);
 INSERT INTO `item_mods` VALUES (26945,5,59);
