@@ -31,7 +31,7 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-    if (mob:getHPP < 50) then
+    if (mob:getHPP() < 50) then
         mob:setMobMod(MOBMOD_SPELL_LIST, 159);
     else
         -- I'm assuming that if it heals up, it goes back to the its original spell list.
