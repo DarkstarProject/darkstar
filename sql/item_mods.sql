@@ -7289,11 +7289,11 @@ INSERT INTO `item_mods` VALUES (12316,1,3);
 INSERT INTO `item_mods` VALUES (12316,54,2);
 INSERT INTO `item_mods` VALUES (12316,55,2);
 INSERT INTO `item_mods` VALUES (12316,58,-4);
-INSERT INTO `item_mods` VALUES (12317,1,12);
-INSERT INTO `item_mods` VALUES (12317,54,20);
-INSERT INTO `item_mods` VALUES (12317,499,1);
-INSERT INTO `item_mods` VALUES (12317,500,20);
-INSERT INTO `item_mods` VALUES (12317,501,20);
+INSERT INTO `item_mods` VALUES (12317,1,12);      -- Flame Shield: DEF 12
+INSERT INTO `item_mods` VALUES (12317,54,20);     -- Fire resistance +20
+INSERT INTO `item_mods` VALUES (12317,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (12317,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (12317,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (12318,1,25);
 INSERT INTO `item_mods` VALUES (12318,54,25);
 INSERT INTO `item_mods` VALUES (12318,55,25);
@@ -8050,12 +8050,12 @@ INSERT INTO `item_mods` VALUES (12594,1,23);
 INSERT INTO `item_mods` VALUES (12595,1,31);
 INSERT INTO `item_mods` VALUES (12596,1,36);
 INSERT INTO `item_mods` VALUES (12596,9,1);
-INSERT INTO `item_mods` VALUES (12597,1,38);
-INSERT INTO `item_mods` VALUES (12597,2,25);
-INSERT INTO `item_mods` VALUES (12597,9,4);
-INSERT INTO `item_mods` VALUES (12597,499,1);
-INSERT INTO `item_mods` VALUES (12597,500,25);
-INSERT INTO `item_mods` VALUES (12597,501,25);
+INSERT INTO `item_mods` VALUES (12597,1,38);      -- War Aketon: DEF 38
+INSERT INTO `item_mods` VALUES (12597,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (12597,9,4);       -- DEX +4
+INSERT INTO `item_mods` VALUES (12597,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (12597,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (12597,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (12598,1,20);
 INSERT INTO `item_mods` VALUES (12598,9,1);
 INSERT INTO `item_mods` VALUES (12598,11,1);
@@ -8665,12 +8665,12 @@ INSERT INTO `item_mods` VALUES (12850,1,17);
 INSERT INTO `item_mods` VALUES (12851,1,22);
 INSERT INTO `item_mods` VALUES (12852,1,25);
 INSERT INTO `item_mods` VALUES (12852,11,1);
-INSERT INTO `item_mods` VALUES (12853,1,27);
-INSERT INTO `item_mods` VALUES (12853,2,25);
-INSERT INTO `item_mods` VALUES (12853,11,4);
-INSERT INTO `item_mods` VALUES (12853,499,1);
-INSERT INTO `item_mods` VALUES (12853,500,15);
-INSERT INTO `item_mods` VALUES (12853,501,20);
+INSERT INTO `item_mods` VALUES (12853,1,27);      -- War Brais: DEF 27
+INSERT INTO `item_mods` VALUES (12853,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (12853,11,4);      -- AGI +4
+INSERT INTO `item_mods` VALUES (12853,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (12853,500,15);    -- Spikes damage +15
+INSERT INTO `item_mods` VALUES (12853,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (12854,1,14);
 INSERT INTO `item_mods` VALUES (12854,68,2);
 INSERT INTO `item_mods` VALUES (12855,1,11);
@@ -8870,12 +8870,12 @@ INSERT INTO `item_mods` VALUES (12943,1,7);
 INSERT INTO `item_mods` VALUES (12943,11,1);
 INSERT INTO `item_mods` VALUES (12944,1,3);
 INSERT INTO `item_mods` VALUES (12945,1,6);
-INSERT INTO `item_mods` VALUES (12946,1,30);
-INSERT INTO `item_mods` VALUES (12946,13,15);
-INSERT INTO `item_mods` VALUES (12946,54,50);
-INSERT INTO `item_mods` VALUES (12946,499,1);
-INSERT INTO `item_mods` VALUES (12946,500,20);
-INSERT INTO `item_mods` VALUES (12946,501,20);
+INSERT INTO `item_mods` VALUES (12946,1,30);      -- Suzaku's Sune-Ate: DEF 30
+INSERT INTO `item_mods` VALUES (12946,13,15);     -- MND +15
+INSERT INTO `item_mods` VALUES (12946,54,50);     -- Fire resistance +50
+INSERT INTO `item_mods` VALUES (12946,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (12946,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (12946,501,20);    -- Spikes chance +20%13771
 INSERT INTO `item_mods` VALUES (12947,1,12);
 INSERT INTO `item_mods` VALUES (12947,58,-3);
 INSERT INTO `item_mods` VALUES (12947,59,3);
@@ -10877,12 +10877,12 @@ INSERT INTO `item_mods` VALUES (13770,8,-1);
 INSERT INTO `item_mods` VALUES (13770,11,3);
 INSERT INTO `item_mods` VALUES (13770,106,12);
 INSERT INTO `item_mods` VALUES (13770,370,1);
-INSERT INTO `item_mods` VALUES (13771,1,39);
-INSERT INTO `item_mods` VALUES (13771,2,27);
-INSERT INTO `item_mods` VALUES (13771,9,5);
-INSERT INTO `item_mods` VALUES (13771,499,1);
-INSERT INTO `item_mods` VALUES (13771,500,30);
-INSERT INTO `item_mods` VALUES (13771,501,30);
+INSERT INTO `item_mods` VALUES (13771,1,39);      -- War Aketon +1: DEF 39
+INSERT INTO `item_mods` VALUES (13771,2,27);      -- HP +27
+INSERT INTO `item_mods` VALUES (13771,9,5);       -- DEX +5
+INSERT INTO `item_mods` VALUES (13771,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (13771,500,30);    -- Spikes damage +30
+INSERT INTO `item_mods` VALUES (13771,501,30);    -- Spikes chance +30%
 INSERT INTO `item_mods` VALUES (13772,1,40);
 INSERT INTO `item_mods` VALUES (13772,2,20);
 INSERT INTO `item_mods` VALUES (13772,4,50);
@@ -10965,13 +10965,13 @@ INSERT INTO `item_mods` VALUES (13781,1,41);
 INSERT INTO `item_mods` VALUES (13781,2,10);
 INSERT INTO `item_mods` VALUES (13781,10,3);
 INSERT INTO `item_mods` VALUES (13781,61,15);
-INSERT INTO `item_mods` VALUES (13782,1,41);
-INSERT INTO `item_mods` VALUES (13782,2,15);
-INSERT INTO `item_mods` VALUES (13782,10,3);
-INSERT INTO `item_mods` VALUES (13782,259,5);
-INSERT INTO `item_mods` VALUES (13782,499,1);
-INSERT INTO `item_mods` VALUES (13782,500,25);
-INSERT INTO `item_mods` VALUES (13782,501,25);
+INSERT INTO `item_mods` VALUES (13782,1,41);      -- Ninja Chainmail: DEF 41
+INSERT INTO `item_mods` VALUES (13782,2,15);      -- HP +15
+INSERT INTO `item_mods` VALUES (13782,10,3);      -- VIT +3
+INSERT INTO `item_mods` VALUES (13782,259,5);     -- Dual Wield +5%
+INSERT INTO `item_mods` VALUES (13782,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (13782,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (13782,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (13783,1,28);
 INSERT INTO `item_mods` VALUES (13784,1,29);
 INSERT INTO `item_mods` VALUES (13785,1,36);
@@ -11396,20 +11396,20 @@ INSERT INTO `item_mods` VALUES (13919,2,21);
 INSERT INTO `item_mods` VALUES (13919,10,6);
 INSERT INTO `item_mods` VALUES (13919,68,-6);
 INSERT INTO `item_mods` VALUES (13919,107,6);
-INSERT INTO `item_mods` VALUES (13920,1,30);
-INSERT INTO `item_mods` VALUES (13920,2,30);
-INSERT INTO `item_mods` VALUES (13920,8,5);
-INSERT INTO `item_mods` VALUES (13920,54,10);
-INSERT INTO `item_mods` VALUES (13920,499,1);
-INSERT INTO `item_mods` VALUES (13920,500,20);
-INSERT INTO `item_mods` VALUES (13920,501,15);
-INSERT INTO `item_mods` VALUES (13921,1,31);
-INSERT INTO `item_mods` VALUES (13921,2,31);
-INSERT INTO `item_mods` VALUES (13921,8,6);
-INSERT INTO `item_mods` VALUES (13921,54,11);
-INSERT INTO `item_mods` VALUES (13921,499,1);
-INSERT INTO `item_mods` VALUES (13921,500,25);
-INSERT INTO `item_mods` VALUES (13921,501,20);
+INSERT INTO `item_mods` VALUES (13920,1,30);      -- Wyvern Helm: DEF 30
+INSERT INTO `item_mods` VALUES (13920,2,30);      -- HP +30
+INSERT INTO `item_mods` VALUES (13920,8,5);       -- STR +5
+INSERT INTO `item_mods` VALUES (13920,54,10);     -- Fire resistance +10
+INSERT INTO `item_mods` VALUES (13920,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (13920,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (13920,501,15);    -- Spikes chance +15%
+INSERT INTO `item_mods` VALUES (13921,1,31);      -- Wyvern Helm +1: DEF 31
+INSERT INTO `item_mods` VALUES (13921,2,31);      -- HP +31
+INSERT INTO `item_mods` VALUES (13921,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (13921,54,11);     -- Fire resistance +11
+INSERT INTO `item_mods` VALUES (13921,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (13921,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (13921,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (13922,1,25);
 INSERT INTO `item_mods` VALUES (13922,12,5);
 INSERT INTO `item_mods` VALUES (13922,13,-5);
@@ -11425,17 +11425,17 @@ INSERT INTO `item_mods` VALUES (13924,2,-21);
 INSERT INTO `item_mods` VALUES (13924,23,9);
 INSERT INTO `item_mods` VALUES (13924,25,6);
 INSERT INTO `item_mods` VALUES (13924,68,-9);
-INSERT INTO `item_mods` VALUES (13925,1,31);
-INSERT INTO `item_mods` VALUES (13925,23,2);
-INSERT INTO `item_mods` VALUES (13925,499,1);
-INSERT INTO `item_mods` VALUES (13925,500,20);
-INSERT INTO `item_mods` VALUES (13925,501,15);
-INSERT INTO `item_mods` VALUES (13926,1,32);
-INSERT INTO `item_mods` VALUES (13926,23,3);
-INSERT INTO `item_mods` VALUES (13926,291,1);
-INSERT INTO `item_mods` VALUES (13926,499,1);
-INSERT INTO `item_mods` VALUES (13926,500,25);
-INSERT INTO `item_mods` VALUES (13926,501,20);
+INSERT INTO `item_mods` VALUES (13925,1,31);      -- Rasetsu Jinpachi: DEF 31
+INSERT INTO `item_mods` VALUES (13925,23,2);      -- Attack +2
+INSERT INTO `item_mods` VALUES (13925,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (13925,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (13925,501,15);    -- Spikes chance +15%
+INSERT INTO `item_mods` VALUES (13926,1,32);      -- Rasetsu Jinpachi +1: DEF 32
+INSERT INTO `item_mods` VALUES (13926,23,3);      -- Attack +3
+INSERT INTO `item_mods` VALUES (13926,291,1);     -- Counter +1%
+INSERT INTO `item_mods` VALUES (13926,499,1);     -- Blaze spikes 
+INSERT INTO `item_mods` VALUES (13926,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (13926,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (13927,1,33);
 INSERT INTO `item_mods` VALUES (13927,2,12);
 INSERT INTO `item_mods` VALUES (13927,8,11);
@@ -12562,12 +12562,12 @@ INSERT INTO `item_mods` VALUES (14235,163,-3);
 INSERT INTO `item_mods` VALUES (14236,1,22);
 INSERT INTO `item_mods` VALUES (14237,1,26);
 INSERT INTO `item_mods` VALUES (14237,11,2);
-INSERT INTO `item_mods` VALUES (14238,1,28);
-INSERT INTO `item_mods` VALUES (14238,2,27);
-INSERT INTO `item_mods` VALUES (14238,11,5);
-INSERT INTO `item_mods` VALUES (14238,499,1);
-INSERT INTO `item_mods` VALUES (14238,500,25);
-INSERT INTO `item_mods` VALUES (14238,501,25);
+INSERT INTO `item_mods` VALUES (14238,1,28);      -- War Brais +1: DEF 28
+INSERT INTO `item_mods` VALUES (14238,2,27);      -- HP +27
+INSERT INTO `item_mods` VALUES (14238,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (14238,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (14238,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (14238,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (14239,1,31);
 INSERT INTO `item_mods` VALUES (14239,5,18);
 INSERT INTO `item_mods` VALUES (14239,10,3);
@@ -18583,13 +18583,13 @@ INSERT INTO `item_mods` VALUES (16121,1,21);
 INSERT INTO `item_mods` VALUES (16122,1,23);
 INSERT INTO `item_mods` VALUES (16123,1,21);
 INSERT INTO `item_mods` VALUES (16124,1,21);
-INSERT INTO `item_mods` VALUES (16125,1,22);
-INSERT INTO `item_mods` VALUES (16125,25,4);
-INSERT INTO `item_mods` VALUES (16125,27,-3);
-INSERT INTO `item_mods` VALUES (16125,384,11);
-INSERT INTO `item_mods` VALUES (16125,499,1);
-INSERT INTO `item_mods` VALUES (16125,500,20);
-INSERT INTO `item_mods` VALUES (16125,501,15);
+INSERT INTO `item_mods` VALUES (16125,1,22);      -- Breeder Mask: DEF 22
+INSERT INTO `item_mods` VALUES (16125,25,4);      -- Accuracy +4
+INSERT INTO `item_mods` VALUES (16125,27,-3);     -- Enmity -3
+INSERT INTO `item_mods` VALUES (16125,384,11);    -- Haste +1%
+INSERT INTO `item_mods` VALUES (16125,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (16125,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (16125,501,15);    -- Spikes chance +15%
 INSERT INTO `item_mods` VALUES (16126,1,25);
 INSERT INTO `item_mods` VALUES (16126,9,4);
 INSERT INTO `item_mods` VALUES (16126,26,10);
@@ -18729,12 +18729,12 @@ INSERT INTO `item_mods` VALUES (16167,1,1);
 INSERT INTO `item_mods` VALUES (16168,1,10);
 INSERT INTO `item_mods` VALUES (16168,8,3);
 INSERT INTO `item_mods` VALUES (16168,384,11);
-INSERT INTO `item_mods` VALUES (16169,1,21);
-INSERT INTO `item_mods` VALUES (16169,27,2);
-INSERT INTO `item_mods` VALUES (16169,29,2);
-INSERT INTO `item_mods` VALUES (16169,499,1);
-INSERT INTO `item_mods` VALUES (16169,500,28);
-INSERT INTO `item_mods` VALUES (16169,501,25);
+INSERT INTO `item_mods` VALUES (16169,1,21);      -- Caballero Shield: DEF 21
+INSERT INTO `item_mods` VALUES (16169,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (16169,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (16169,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (16169,500,28);    -- Spikes damage +28
+INSERT INTO `item_mods` VALUES (16169,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (16170,1,12);
 INSERT INTO `item_mods` VALUES (16170,27,5);
 INSERT INTO `item_mods` VALUES (16171,1,13);
