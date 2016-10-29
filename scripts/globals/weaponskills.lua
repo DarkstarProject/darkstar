@@ -98,9 +98,6 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         critrate = critrate + nativecrit;
     end
 
-
-    local dmg = 0;
-
     -- Applying pDIF
     local pdif = generatePdif (cratio[1], cratio[2], true);
 
@@ -114,10 +111,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         hitrate = hr;
     end
 
+    local dmg = base * ftp;
     local tpHitsLanded = 0;
     if ((firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
             not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
-        dmg = base * ftp;
         if (params.canCrit or isSneakValid or isAssassinValid) then
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
@@ -702,7 +699,6 @@ end;
         end
         critrate = critrate + nativecrit;
     end
-
 
     local dmg = base * ftp;
 
