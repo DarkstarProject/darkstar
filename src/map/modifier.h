@@ -357,7 +357,7 @@ enum MODIFIER
     MOD_MAXIMUM_SONGS_BONUS       = 453, //
     MOD_SONG_DURATION_BONUS       = 454, //
     MOD_SONG_SPELLCASTING_TIME    = 455, //
-    MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time (in milliseconds).
+    MOD_SONG_RECAST_DELAY         = 833, // Reduces song recast time in seconds.
 
     // Ranger
     MOD_CAMOUFLAGE_DURATION       = 98,  // Camouflage duration in percents

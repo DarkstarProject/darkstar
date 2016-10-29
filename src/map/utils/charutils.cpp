@@ -2544,13 +2544,13 @@ namespace charutils
 
             if (MaxMSkill != 0)
             {
-                auto cap {PChar->RealSkills.skill[i] / 10 > MaxMSkill};
+                auto cap {PChar->RealSkills.skill[i] / 10 >= MaxMSkill};
                 PChar->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxMSkill : skillBonus + PChar->RealSkills.skill[i] / 10);
                 if (cap) PChar->WorkingSkills.skill[i] |= 0x8000;
             }
             else if (MaxSSkill != 0)
             {
-                auto cap {PChar->RealSkills.skill[i] / 10 > MaxSSkill};
+                auto cap {PChar->RealSkills.skill[i] / 10 >= MaxSSkill};
                 PChar->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxSSkill : skillBonus + PChar->RealSkills.skill[i] / 10);
                 if (cap) PChar->WorkingSkills.skill[i] |= 0x8000;
             }

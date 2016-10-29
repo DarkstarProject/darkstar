@@ -5,26 +5,23 @@
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Crawlers_Nest/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Crawlers_Nest/TextIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-
     local tomes = {17584492,17584493};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17478158,17478159,17478160};
+    local vwnpc = {17584494,17584495,17584496};
     SetVoidwatchNPC(vwnpc);
 
     UpdateTreasureSpawnPoint(17584471);
     UpdateTreasureSpawnPoint(17584472);
-
 end;
 
 -----------------------------------
@@ -33,7 +30,7 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(380.617,-34.61,4.581,59);
     end
     return cs;
@@ -64,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -73,6 +70,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
