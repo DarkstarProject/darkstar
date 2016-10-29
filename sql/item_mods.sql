@@ -4381,10 +4381,10 @@ INSERT INTO `item_mods` VALUES (11390,6,4);
 INSERT INTO `item_mods` VALUES (11391,1,18);
 INSERT INTO `item_mods` VALUES (11391,108,5);
 INSERT INTO `item_mods` VALUES (11391,110,5);
-INSERT INTO `item_mods` VALUES (11392,1,14);
-INSERT INTO `item_mods` VALUES (11392,499,4);
-INSERT INTO `item_mods` VALUES (11392,500,0);
-INSERT INTO `item_mods` VALUES (11392,501,20);
+INSERT INTO `item_mods` VALUES (11392,1,14);      -- Koschei Crackows: DEF 14
+INSERT INTO `item_mods` VALUES (11392,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (11392,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (11392,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (11393,1,15);
 INSERT INTO `item_mods` VALUES (11393,2,12);
 INSERT INTO `item_mods` VALUES (11393,8,3);
@@ -12865,18 +12865,18 @@ INSERT INTO `item_mods` VALUES (14319,27,-2);
 INSERT INTO `item_mods` VALUES (14320,1,30);
 INSERT INTO `item_mods` VALUES (14320,5,16);
 INSERT INTO `item_mods` VALUES (14320,27,-3);
-INSERT INTO `item_mods` VALUES (14321,1,30);
-INSERT INTO `item_mods` VALUES (14321,68,10);
-INSERT INTO `item_mods` VALUES (14321,114,10);
-INSERT INTO `item_mods` VALUES (14321,499,4);
-INSERT INTO `item_mods` VALUES (14321,500,0);
-INSERT INTO `item_mods` VALUES (14321,501,10);
-INSERT INTO `item_mods` VALUES (14322,1,31);
-INSERT INTO `item_mods` VALUES (14322,68,11);
-INSERT INTO `item_mods` VALUES (14322,114,11);
-INSERT INTO `item_mods` VALUES (14322,499,4);
-INSERT INTO `item_mods` VALUES (14322,500,0);
-INSERT INTO `item_mods` VALUES (14322,501,11);
+INSERT INTO `item_mods` VALUES (14321,1,30);      -- Igqira Lappas: DEF 30
+INSERT INTO `item_mods` VALUES (14321,68,10);     -- Evasion +10
+INSERT INTO `item_mods` VALUES (14321,114,10);    -- Enfeebling magic skill +10
+INSERT INTO `item_mods` VALUES (14321,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14321,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14321,501,10);    -- Spikes chance +10%
+INSERT INTO `item_mods` VALUES (14322,1,31);      -- Genie Lappas: DEF 31
+INSERT INTO `item_mods` VALUES (14322,68,11);     -- Evasion +11
+INSERT INTO `item_mods` VALUES (14322,114,11);    -- Enfeebling magic skill +11
+INSERT INTO `item_mods` VALUES (14322,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14322,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14322,501,11);    -- Spikes chance +11%
 INSERT INTO `item_mods` VALUES (14323,1,12);
 INSERT INTO `item_mods` VALUES (14323,9,1);
 INSERT INTO `item_mods` VALUES (14323,26,1);
@@ -13239,20 +13239,20 @@ INSERT INTO `item_mods` VALUES (14419,1,45);
 INSERT INTO `item_mods` VALUES (14419,5,22);
 INSERT INTO `item_mods` VALUES (14419,14,5);
 INSERT INTO `item_mods` VALUES (14419,27,-3);
-INSERT INTO `item_mods` VALUES (14420,1,35);
-INSERT INTO `item_mods` VALUES (14420,28,6);
-INSERT INTO `item_mods` VALUES (14420,115,5);
-INSERT INTO `item_mods` VALUES (14420,296,2);
-INSERT INTO `item_mods` VALUES (14420,499,4);
-INSERT INTO `item_mods` VALUES (14420,500,0);
-INSERT INTO `item_mods` VALUES (14420,501,15);
-INSERT INTO `item_mods` VALUES (14421,1,36);
-INSERT INTO `item_mods` VALUES (14421,28,7);
-INSERT INTO `item_mods` VALUES (14421,115,6);
-INSERT INTO `item_mods` VALUES (14421,296,2);
-INSERT INTO `item_mods` VALUES (14421,499,4);
-INSERT INTO `item_mods` VALUES (14421,500,0);
-INSERT INTO `item_mods` VALUES (14421,501,16);
+INSERT INTO `item_mods` VALUES (14420,1,35);      -- Igqira Weskit: DEF 35
+INSERT INTO `item_mods` VALUES (14420,28,6);      -- Magic Atk. Bonus +6
+INSERT INTO `item_mods` VALUES (14420,115,5);     -- Elemental magic skill +5
+INSERT INTO `item_mods` VALUES (14420,296,2);     -- Conserve MP +2%
+INSERT INTO `item_mods` VALUES (14420,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14420,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14420,501,15);    -- Spikes chance +15%
+INSERT INTO `item_mods` VALUES (14421,1,36);      -- Genie Weskit: DEF 36
+INSERT INTO `item_mods` VALUES (14421,28,7);      -- Magic Atk. Bonus +7
+INSERT INTO `item_mods` VALUES (14421,115,6);     -- Elemental magic skill +6
+INSERT INTO `item_mods` VALUES (14421,296,2);     -- Conserve MP +2%
+INSERT INTO `item_mods` VALUES (14421,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14421,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14421,501,16);    -- Spikes chance +16%
 INSERT INTO `item_mods` VALUES (14422,1,18);
 INSERT INTO `item_mods` VALUES (14422,26,2);
 INSERT INTO `item_mods` VALUES (14422,61,1);
@@ -14521,18 +14521,18 @@ INSERT INTO `item_mods` VALUES (14851,1,14);
 INSERT INTO `item_mods` VALUES (14851,5,14);
 INSERT INTO `item_mods` VALUES (14851,25,5);
 INSERT INTO `item_mods` VALUES (14851,27,-2);
-INSERT INTO `item_mods` VALUES (14852,1,11);
-INSERT INTO `item_mods` VALUES (14852,28,2);
-INSERT INTO `item_mods` VALUES (14852,115,5);
-INSERT INTO `item_mods` VALUES (14852,499,4);
-INSERT INTO `item_mods` VALUES (14852,500,0);
-INSERT INTO `item_mods` VALUES (14852,501,10);
-INSERT INTO `item_mods` VALUES (14853,1,12);
-INSERT INTO `item_mods` VALUES (14853,28,3);
-INSERT INTO `item_mods` VALUES (14853,115,6);
-INSERT INTO `item_mods` VALUES (14853,499,4);
-INSERT INTO `item_mods` VALUES (14853,500,0);
-INSERT INTO `item_mods` VALUES (14853,501,11);
+INSERT INTO `item_mods` VALUES (14852,1,11);      -- Igqira Manillas: DEF 11
+INSERT INTO `item_mods` VALUES (14852,28,2);      -- Magic Atk. Bonus +2
+INSERT INTO `item_mods` VALUES (14852,115,5);     -- Elemental magic skill +5
+INSERT INTO `item_mods` VALUES (14852,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14852,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14852,501,10);    -- Spikes chance +10%
+INSERT INTO `item_mods` VALUES (14853,1,12);      -- Genie Manillas: DEF 12
+INSERT INTO `item_mods` VALUES (14853,28,3);      -- Magic Atk. Bonus +2
+INSERT INTO `item_mods` VALUES (14853,115,6);     -- Elemental magic skill +6
+INSERT INTO `item_mods` VALUES (14853,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (14853,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (14853,501,11);    -- Spikes chance +11%
 INSERT INTO `item_mods` VALUES (14854,1,5);
 INSERT INTO `item_mods` VALUES (14854,26,1);
 INSERT INTO `item_mods` VALUES (14854,61,1);
@@ -15768,18 +15768,18 @@ INSERT INTO `item_mods` VALUES (15157,27,-1);
 INSERT INTO `item_mods` VALUES (15158,1,26);
 INSERT INTO `item_mods` VALUES (15158,5,9);
 INSERT INTO `item_mods` VALUES (15158,27,-2);
-INSERT INTO `item_mods` VALUES (15159,1,20);
-INSERT INTO `item_mods` VALUES (15159,68,10);
-INSERT INTO `item_mods` VALUES (15159,114,10);
-INSERT INTO `item_mods` VALUES (15159,499,4);
-INSERT INTO `item_mods` VALUES (15159,500,0);
-INSERT INTO `item_mods` VALUES (15159,501,10);
-INSERT INTO `item_mods` VALUES (15160,1,21);
-INSERT INTO `item_mods` VALUES (15160,68,11);
-INSERT INTO `item_mods` VALUES (15160,114,11);
-INSERT INTO `item_mods` VALUES (15160,499,4);
-INSERT INTO `item_mods` VALUES (15160,500,0);
-INSERT INTO `item_mods` VALUES (15160,501,11);
+INSERT INTO `item_mods` VALUES (15159,1,20);      -- Igqira Tiara: DEF 20
+INSERT INTO `item_mods` VALUES (15159,68,10);     -- Evasion +10
+INSERT INTO `item_mods` VALUES (15159,114,10);    -- Enfeebling magic skill +10
+INSERT INTO `item_mods` VALUES (15159,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (15159,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (15159,501,10);    -- Spikes chance +10%
+INSERT INTO `item_mods` VALUES (15160,1,21);      -- Genie Tiara: DEF 21
+INSERT INTO `item_mods` VALUES (15160,68,11);     -- Evasion +11
+INSERT INTO `item_mods` VALUES (15160,114,11);    -- Enfeebling magic skill +11
+INSERT INTO `item_mods` VALUES (15160,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (15160,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (15160,501,11);    -- Spikes chance +11%
 INSERT INTO `item_mods` VALUES (15161,1,9);
 INSERT INTO `item_mods` VALUES (15161,11,1);
 INSERT INTO `item_mods` VALUES (15161,61,1);
@@ -18816,12 +18816,12 @@ INSERT INTO `item_mods` VALUES (16199,426,35);
 INSERT INTO `item_mods` VALUES (16200,1,40);
 INSERT INTO `item_mods` VALUES (16200,385,250);
 INSERT INTO `item_mods` VALUES (16200,831,-50);
-INSERT INTO `item_mods` VALUES (16201,1,21);
-INSERT INTO `item_mods` VALUES (16201,60,30);
-INSERT INTO `item_mods` VALUES (16201,302,1);
-INSERT INTO `item_mods` VALUES (16201,499,4);
-INSERT INTO `item_mods` VALUES (16201,500,0);
-INSERT INTO `item_mods` VALUES (16201,501,20);
+INSERT INTO `item_mods` VALUES (16201,1,21);      -- Genesis Shield: DEF 21
+INSERT INTO `item_mods` VALUES (16201,58,30);     -- Thunder resistance +30
+INSERT INTO `item_mods` VALUES (16201,302,1);     -- Triple Attack +1%
+INSERT INTO `item_mods` VALUES (16201,499,4);     -- Curse spikes
+INSERT INTO `item_mods` VALUES (16201,500,0);     -- Spikes damage +0
+INSERT INTO `item_mods` VALUES (16201,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (16202,1,29);
 INSERT INTO `item_mods` VALUES (16202,27,6);
 INSERT INTO `item_mods` VALUES (16202,374,5);
