@@ -4548,13 +4548,13 @@ INSERT INTO `item_mods` VALUES (11432,23,8);
 INSERT INTO `item_mods` VALUES (11432,25,-4);
 INSERT INTO `item_mods` VALUES (11432,73,5);
 INSERT INTO `item_mods` VALUES (11432,384,30);
-INSERT INTO `item_mods` VALUES (11433,1,28);
-INSERT INTO `item_mods` VALUES (11433,2,45);
-INSERT INTO `item_mods` VALUES (11433,5,45);
-INSERT INTO `item_mods` VALUES (11433,27,6);
-INSERT INTO `item_mods` VALUES (11433,499,5);
-INSERT INTO `item_mods` VALUES (11433,500,20);
-INSERT INTO `item_mods` VALUES (11433,501,25);
+INSERT INTO `item_mods` VALUES (11433,1,28);      -- Dornen Schuhs: DEF 28
+INSERT INTO `item_mods` VALUES (11433,2,45);      -- HP +45
+INSERT INTO `item_mods` VALUES (11433,5,45);      -- MP +45
+INSERT INTO `item_mods` VALUES (11433,27,6);      -- Enmity +6
+INSERT INTO `item_mods` VALUES (11433,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (11433,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (11433,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (11444,1,20);
 INSERT INTO `item_mods` VALUES (11444,11,5);
 INSERT INTO `item_mods` VALUES (11444,68,5);
@@ -5964,12 +5964,12 @@ INSERT INTO `item_mods` VALUES (11920,1,19);
 INSERT INTO `item_mods` VALUES (11920,13,3);
 INSERT INTO `item_mods` VALUES (11920,161,-3);
 INSERT INTO `item_mods` VALUES (11920,225,5);
-INSERT INTO `item_mods` VALUES (11921,1,34);
-INSERT INTO `item_mods` VALUES (11921,54,30);
-INSERT INTO `item_mods` VALUES (11921,161,-4);
-INSERT INTO `item_mods` VALUES (11921,499,5);
-INSERT INTO `item_mods` VALUES (11921,500,20);
-INSERT INTO `item_mods` VALUES (11921,501,15);
+INSERT INTO `item_mods` VALUES (11921,1,34);      -- Magma Gauntlets: DEF 34
+INSERT INTO `item_mods` VALUES (11921,54,30);     -- Fire resistance +30
+INSERT INTO `item_mods` VALUES (11921,161,-4);    -- Physical damage taken -4%
+INSERT INTO `item_mods` VALUES (11921,499,1);     -- Blaze spikes
+INSERT INTO `item_mods` VALUES (11921,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (11921,501,15);    -- Spikes chance +15%
 INSERT INTO `item_mods` VALUES (11922,1,33);      -- Pavor Gauntlets: DEF 33
 INSERT INTO `item_mods` VALUES (11922,5,33);      -- MP +33
 INSERT INTO `item_mods` VALUES (11922,116,10);    -- Dark magic skill +10
@@ -13062,17 +13062,17 @@ INSERT INTO `item_mods` VALUES (14375,1,12);
 INSERT INTO `item_mods` VALUES (14375,513,73);
 INSERT INTO `item_mods` VALUES (14375,514,73);
 INSERT INTO `item_mods` VALUES (14375,515,73);
-INSERT INTO `item_mods` VALUES (14376,1,50);
-INSERT INTO `item_mods` VALUES (14376,23,2);
-INSERT INTO `item_mods` VALUES (14376,499,5);
-INSERT INTO `item_mods` VALUES (14376,500,15);
-INSERT INTO `item_mods` VALUES (14376,501,25);
-INSERT INTO `item_mods` VALUES (14377,1,51);
-INSERT INTO `item_mods` VALUES (14377,23,3);
-INSERT INTO `item_mods` VALUES (14377,291,1);
-INSERT INTO `item_mods` VALUES (14377,499,5);
-INSERT INTO `item_mods` VALUES (14377,500,20);
-INSERT INTO `item_mods` VALUES (14377,501,30);
+INSERT INTO `item_mods` VALUES (14376,1,50);      -- Rasetsu Samue: DEF 50
+INSERT INTO `item_mods` VALUES (14376,23,2);      -- Attack +2
+INSERT INTO `item_mods` VALUES (14376,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (14376,500,15);    -- Spikes damage +15
+INSERT INTO `item_mods` VALUES (14376,501,25);    -- Spikes chance +25%
+INSERT INTO `item_mods` VALUES (14377,1,51);      -- Rasetsu Samue +1: DEF 51
+INSERT INTO `item_mods` VALUES (14377,23,3);      -- Attack +3
+INSERT INTO `item_mods` VALUES (14377,291,1);     -- Counter +1%
+INSERT INTO `item_mods` VALUES (14377,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (14377,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (14377,501,30);    -- Spikes chance +30%
 INSERT INTO `item_mods` VALUES (14378,1,50);
 INSERT INTO `item_mods` VALUES (14378,2,16);
 INSERT INTO `item_mods` VALUES (14378,8,12);
@@ -13450,14 +13450,14 @@ INSERT INTO `item_mods` VALUES (14484,2,10);
 INSERT INTO `item_mods` VALUES (14484,8,6);
 INSERT INTO `item_mods` VALUES (14484,10,6);
 INSERT INTO `item_mods` VALUES (14484,25,12);
-INSERT INTO `item_mods` VALUES (14485,1,46);
-INSERT INTO `item_mods` VALUES (14485,2,15);
-INSERT INTO `item_mods` VALUES (14485,9,5);
-INSERT INTO `item_mods` VALUES (14485,10,5);
-INSERT INTO `item_mods` VALUES (14485,259,5);
-INSERT INTO `item_mods` VALUES (14485,499,5);
-INSERT INTO `item_mods` VALUES (14485,500,25);
-INSERT INTO `item_mods` VALUES (14485,501,25);
+INSERT INTO `item_mods` VALUES (14485,1,46);      -- Ninja Chainmail +1: DEF 46
+INSERT INTO `item_mods` VALUES (14485,2,15);      -- HP +15
+INSERT INTO `item_mods` VALUES (14485,9,5);       -- DEX +5
+INSERT INTO `item_mods` VALUES (14485,10,5);      -- VIT +5
+INSERT INTO `item_mods` VALUES (14485,259,5);     -- Dual Wield +5%
+INSERT INTO `item_mods` VALUES (14485,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (14485,500,25);    -- Spikes damage +25
+INSERT INTO `item_mods` VALUES (14485,501,25);    -- Spikes chance +25%
 INSERT INTO `item_mods` VALUES (14486,1,49);
 INSERT INTO `item_mods` VALUES (14486,2,15);
 INSERT INTO `item_mods` VALUES (14486,8,6);
@@ -33000,21 +33000,24 @@ INSERT INTO `item_mods` VALUES (27818,31,36);
 INSERT INTO `item_mods` VALUES (27818,68,19);
 INSERT INTO `item_mods` VALUES (27818,73,6);
 INSERT INTO `item_mods` VALUES (27818,384,31);
-INSERT INTO `item_mods` VALUES (27819,1,93);
-INSERT INTO `item_mods` VALUES (27819,2,28);
-INSERT INTO `item_mods` VALUES (27819,8,20);
-INSERT INTO `item_mods` VALUES (27819,9,16);
-INSERT INTO `item_mods` VALUES (27819,10,18);
-INSERT INTO `item_mods` VALUES (27819,11,16);
-INSERT INTO `item_mods` VALUES (27819,12,15);
-INSERT INTO `item_mods` VALUES (27819,13,15);
-INSERT INTO `item_mods` VALUES (27819,14,15);
-INSERT INTO `item_mods` VALUES (27819,29,2);
-INSERT INTO `item_mods` VALUES (27819,31,36);
-INSERT INTO `item_mods` VALUES (27819,68,24);
-INSERT INTO `item_mods` VALUES (27819,259,7);
-INSERT INTO `item_mods` VALUES (27819,289,7);
-INSERT INTO `item_mods` VALUES (27819,384,41);
+INSERT INTO `item_mods` VALUES (27819,1,93);      -- Hachiya chainmail: DEF 93
+INSERT INTO `item_mods` VALUES (27819,2,28);      -- HP +28
+INSERT INTO `item_mods` VALUES (27819,8,20);      -- STR +20
+INSERT INTO `item_mods` VALUES (27819,9,16);      -- DEX +16
+INSERT INTO `item_mods` VALUES (27819,10,18);     -- VIT +18
+INSERT INTO `item_mods` VALUES (27819,11,16);     -- AGI +16
+INSERT INTO `item_mods` VALUES (27819,12,15);     -- INT +15
+INSERT INTO `item_mods` VALUES (27819,13,15);     -- MND +15
+INSERT INTO `item_mods` VALUES (27819,14,15);     -- CHR +15
+INSERT INTO `item_mods` VALUES (27819,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (27819,31,36);     -- Magic Evasion +26
+INSERT INTO `item_mods` VALUES (27819,68,24);     -- Evasion +24
+INSERT INTO `item_mods` VALUES (27819,259,7);     -- Dual Wield +7%
+INSERT INTO `item_mods` VALUES (27819,289,7);     -- Subtle Blow +7
+INSERT INTO `item_mods` VALUES (27819,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27819,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (27819,500,20);    -- Spikes damage +20 ?
+INSERT INTO `item_mods` VALUES (27819,501,30);    -- Spikes chance +30% ?
 INSERT INTO `item_mods` VALUES (27820,1,104);
 INSERT INTO `item_mods` VALUES (27820,2,29);
 INSERT INTO `item_mods` VALUES (27820,5,36);
@@ -33329,24 +33332,24 @@ INSERT INTO `item_mods` VALUES (27839,31,53);
 INSERT INTO `item_mods` VALUES (27839,68,41);
 INSERT INTO `item_mods` VALUES (27839,73,7);
 INSERT INTO `item_mods` VALUES (27839,384,31);
-INSERT INTO `item_mods` VALUES (27840,1,132);
-INSERT INTO `item_mods` VALUES (27840,5,59);
-INSERT INTO `item_mods` VALUES (27840,8,29);
-INSERT INTO `item_mods` VALUES (27840,9,25);
-INSERT INTO `item_mods` VALUES (27840,10,26);
-INSERT INTO `item_mods` VALUES (27840,11,25);
-INSERT INTO `item_mods` VALUES (27840,12,24);
-INSERT INTO `item_mods` VALUES (27840,13,24);
-INSERT INTO `item_mods` VALUES (27840,14,24);
-INSERT INTO `item_mods` VALUES (27840,29,4);
-INSERT INTO `item_mods` VALUES (27840,31,53);
-INSERT INTO `item_mods` VALUES (27840,68,52);
-INSERT INTO `item_mods` VALUES (27840,259,8);
-INSERT INTO `item_mods` VALUES (27840,289,7);
-INSERT INTO `item_mods` VALUES (27840,384,40);
-INSERT INTO `item_mods` VALUES (27840,499,5);
-INSERT INTO `item_mods` VALUES (27840,500,20);
-INSERT INTO `item_mods` VALUES (27840,501,35);
+INSERT INTO `item_mods` VALUES (27840,1,132);     -- Hachiya chainmail +1: DEF 132
+INSERT INTO `item_mods` VALUES (27840,5,59);      -- HP +59
+INSERT INTO `item_mods` VALUES (27840,8,29);      -- STR +29
+INSERT INTO `item_mods` VALUES (27840,9,25);      -- DEX +25
+INSERT INTO `item_mods` VALUES (27840,10,26);     -- VIT +26
+INSERT INTO `item_mods` VALUES (27840,11,25);     -- AGI +25
+INSERT INTO `item_mods` VALUES (27840,12,24);     -- INT +24
+INSERT INTO `item_mods` VALUES (27840,13,24);     -- MND +24
+INSERT INTO `item_mods` VALUES (27840,14,24);     -- CHR +24
+INSERT INTO `item_mods` VALUES (27840,29,4);      -- Magic Def. Bonus +4
+INSERT INTO `item_mods` VALUES (27840,31,53);     -- Magic Evasion +53
+INSERT INTO `item_mods` VALUES (27840,68,52);     -- Evasion +52
+INSERT INTO `item_mods` VALUES (27840,259,8);     -- Dual Wield +8%
+INSERT INTO `item_mods` VALUES (27840,289,7);     -- Subtle Blow +7%
+INSERT INTO `item_mods` VALUES (27840,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27840,499,5);     -- Shock spikes
+INSERT INTO `item_mods` VALUES (27840,500,20);    -- Spikes damage +20
+INSERT INTO `item_mods` VALUES (27840,501,35);    -- Spikes chance +35%
 INSERT INTO `item_mods` VALUES (27841,1,139);
 INSERT INTO `item_mods` VALUES (27841,2,61);
 INSERT INTO `item_mods` VALUES (27841,5,44);
