@@ -377,6 +377,8 @@ enum MODIFIER
     MOD_MEDITATE_DURATION         = 94, // Meditate duration in seconds
     MOD_WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration in seconds
     MOD_ZANSHIN                   = 306, // Zanshin percent chance
+    MOD_THIRD_EYE_COUNTER_RATE    = 508, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
+    MOD_THIRD_EYE_ANTICIPATE_RATE = 839, // Adds anticipate rate in percents
 
     // Ninja
     MOD_UTSUSEMI                  = 307, // Everyone's favorite --tracks shadows.
@@ -587,7 +589,6 @@ enum MODIFIER
 
     MOD_ENHANCES_CURSNA           = 310, // Used by gear with the "Enhances Cursna" attribute
     MOD_RETALIATION               = 414, // Increases damage of Retaliation hits
-    MOD_AUGMENTS_THIRD_EYE        = 508, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
 
     MOD_CLAMMING_IMPROVED_RESULTS = 509, //
     MOD_CLAMMING_REDUCED_INCIDENTS= 510, //
@@ -596,7 +597,7 @@ enum MODIFIER
 
     MOD_HARVESTING_RESULT         = 513, // Improves harvesting results
     MOD_LOGGING_RESULT            = 514, // Improves logging results
-    MOD_MINNING_RESULT            = 515, // Improves mining results
+    MOD_MINING_RESULT             = 515, // Improves mining results
 
     MOD_EGGHELM                   = 517,
 
@@ -639,7 +640,6 @@ enum MODIFIER
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // MOD_SPARE = 839, // stuff
     // MOD_SPARE = 840, // stuff
     // MOD_SPARE = 841, // stuff
     // MOD_SPARE = 842, // stuff
