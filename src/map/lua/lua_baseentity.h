@@ -300,7 +300,6 @@ public:
     int32 updateEnmityFromDamage(lua_State*); // Adds Enmity to player for specified mob for the damage specified
     int32 updateEnmityFromCure(lua_State*);
     int32 addEnmity(lua_State*);            // Add specified amount of enmity (target, CE, VE)
-    int32 clearAllEnmity(lua_State*);       // Clears all enmity on the target
     int32 resetEnmity(lua_State*);          //resets enmity to player for specificed mob
     int32 lowerEnmity(lua_State*);          //lower enmity to player for specificed mob
     int32 transferEnmity(lua_State*);

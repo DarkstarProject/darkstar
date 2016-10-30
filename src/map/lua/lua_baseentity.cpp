@@ -6357,21 +6357,6 @@ inline int32 CLuaBaseEntity::resetEnmity(lua_State *L)
 }
 
 /************************************************************************
-    Clears all enmity
-    Example:
-    mob:clearAllEnmity()
-************************************************************************/
-
-inline int32 CLuaBaseEntity::clearAllEnmity(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-
-    static_cast<CMobEntity*>(m_PBaseEntity)->PEnmityContainer->Clear();
-
-    return 0;
-}
-
-/************************************************************************
 Lowers enmity of player on mob
 Example:
 mob:lowerEnmity(target, 50)
@@ -11249,7 +11234,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateClaim),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetEnmity),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,clearAllEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,lowerEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,transferEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
