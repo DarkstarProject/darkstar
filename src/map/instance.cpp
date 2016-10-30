@@ -228,6 +228,19 @@ void CInstance::Fail()
 {
     Cancel();
 
+    for (auto entity : m_mobList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
+    for (auto entity : m_charList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
+    for (auto entity : m_petList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
+    
     luautils::OnInstanceFailure(this);
 }
 
@@ -239,6 +252,19 @@ bool CInstance::Failed()
 void CInstance::Complete()
 {
     m_status = INSTANCE_COMPLETE;
+
+    for (auto entity : m_mobList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
+    for (auto entity : m_charList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
+    for (auto entity : m_petList)
+    {
+        entity.second->PAI->ClearStateStack();
+    }
 
     luautils::OnInstanceComplete(this);
 }

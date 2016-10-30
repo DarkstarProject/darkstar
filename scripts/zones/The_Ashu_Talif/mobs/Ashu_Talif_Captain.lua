@@ -19,22 +19,10 @@ end;
 -----------------------------------
 
 function onMobFight(mob, target)
-    local disengage = mob:getLocalVar("disengage");
-
     -- The captain gives up at <= 20% HP. Everyone disengages
-    if (mob:getHPP() <= 20 and disengage == 0) then
+    if (mob:getHPP() <= 20 and instance:completed() == false) then
         local instance = mob:getInstance();
-
-        -- Give disengage time to happen
-        mob:timer(3000, function(mob)
-            local instance = mob:getInstance();
-            instance:setProgress(instance:getProgress() + 10);
-        end)
-
-        -- Time to give up, let's disengage
-        disengageAll(instance);
-
-        mob:setLocalVar("disengage", 1);
+        instance:complete();
     end
 
 end;
@@ -44,8 +32,6 @@ end;
 -----------------------------------
 
 function onMobRoam(mob)
-    local disengage = mob:getLocalVar("disengage");
-    local disengageTime = mob:getLocalVar("disengageTime")
     local jumped = mob:getLocalVar("jump");
     local ready = mob:getLocalVar("ready");
 

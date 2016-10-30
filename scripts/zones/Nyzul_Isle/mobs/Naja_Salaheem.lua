@@ -95,15 +95,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    -- Signal loss if Naja dies. Disengage everyone while failure message plays
+    -- Loss if Naja dies
     local instance = mob:getInstance();
-    disengageAll(instance);
-
-    local chars = instance:getChars();
-
-    for i,v in pairs(chars) do
-        v:messageSpecial(NyzulIsle.text.MISSION_FAILED,10,10);
-    end
+    instance:fail();
 end;
 
 -----------------------------------
@@ -111,7 +105,4 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    -- Fail out as she despawns
-    local instance = mob:getInstance();
-    instance:fail();
 end;

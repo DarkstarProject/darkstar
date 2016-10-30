@@ -45,6 +45,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
+        v:messageSpecial(NyzulIsle.text.MISSION_FAILED,10,10);
         v:setPos(0,0,0,0,72);
     end
 end;
