@@ -20,8 +20,8 @@ end;
 
 function onMobFight(mob, target)
     -- The captain gives up at <= 20% HP. Everyone disengages
+    local instance = mob:getInstance();
     if (mob:getHPP() <= 20 and instance:completed() == false) then
-        local instance = mob:getInstance();
         instance:complete();
     end
 
