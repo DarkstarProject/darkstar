@@ -61,6 +61,7 @@ public:
 
     void CheckTime(time_point tick);							// Check time limit (run instance time script)
     bool CharRegistered(CCharEntity* PChar);				// Check if PChar is registered to this instance
+    void ClearEntities();
     void Fail();											// Fails the instance (onInstanceFailure)
     bool Failed();											// Checks if instance is failed
     void Complete();										// Completes the instance (onInstanceComplete)

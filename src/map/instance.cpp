@@ -224,22 +224,25 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
     return false;
 }
 
+void CInstance::ClearEntities()
+{
+    auto clearStates = [](auto& entity)
+    {
+        if (static_cast<CBattleEntity*>(entity.second)->isAlive())
+        {
+            entity.second->PAI->ClearStateStack();
+        }
+    };
+    std::for_each(m_charList.cbegin(), m_charList.cend(), clearStates);
+    std::for_each(m_mobList.cbegin(), m_mobList.cend(), clearStates);
+    std::for_each(m_petList.cbegin(), m_petList.cend(), clearStates);
+}
+
 void CInstance::Fail()
 {
     Cancel();
 
-    for (auto entity : m_mobList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
-    for (auto entity : m_charList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
-    for (auto entity : m_petList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
+    ClearEntities();
     
     luautils::OnInstanceFailure(this);
 }
@@ -253,18 +256,7 @@ void CInstance::Complete()
 {
     m_status = INSTANCE_COMPLETE;
 
-    for (auto entity : m_mobList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
-    for (auto entity : m_charList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
-    for (auto entity : m_petList)
-    {
-        entity.second->PAI->ClearStateStack();
-    }
+    ClearEntities();
 
     luautils::OnInstanceComplete(this);
 }
