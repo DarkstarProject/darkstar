@@ -32,19 +32,9 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity, duration spawnTime) :
     CState(_PEntity, _PEntity->targid),
     m_spawnTime(spawnTime)
 {
-    //TODO: BEHAVIOUR_NO_DESPAWN
-    if (_PEntity->status != STATUS_DISAPPEAR)
+    if (_PEntity->status != STATUS_DISAPPEAR && !(static_cast<CMobEntity*>(_PEntity)->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
     {
         _PEntity->loc.zone->PushPacket(_PEntity, CHAR_INRANGE, new CEntityAnimationPacket(_PEntity, CEntityAnimationPacket::Fade_Out));
-        _PEntity->PAI->QueueAction(queueAction_t(3s, false, [](CBaseEntity* PEntity) {
-            if (PEntity->PAI->IsCurrentState<CDespawnState>())
-            {
-                PEntity->FadeOut();
-                //#event despawn
-                luautils::OnMobDespawn(PEntity);
-                PEntity->PAI->EventHandler.triggerListener("DESPAWN", PEntity);
-            }
-        }));
     }
 }
 
@@ -54,31 +44,12 @@ CDespawnState::CDespawnState(CBaseEntity* _PEntity) :
 
 bool CDespawnState::Update(time_point tick)
 {
-    //make sure that the respawn time is up to date
-    auto PMob = dynamic_cast<CMobEntity*>(m_PEntity);
-    if (PMob)
+    if (tick > GetEntryTime() + 3s && !IsCompleted() && !(static_cast<CMobEntity*>(m_PEntity)->m_Behaviour & BEHAVIOUR_NO_DESPAWN))
     {
-        if (!PMob->m_AllowRespawn)
-        {
-            if (m_spawnTime > 0s)
-            {
-                m_spawnTime = 0s;
-            }
-        }
-        else
-        {
-            if (std::chrono::milliseconds(PMob->m_RespawnTime) != m_spawnTime)
-            {
-                m_spawnTime = std::chrono::milliseconds(PMob->m_RespawnTime);
-            }
-        }
+        static_cast<CMobEntity*>(m_PEntity)->OnDespawn(*this);
+        Complete();
     }
-    if (m_spawnTime > 0s && tick > GetEntryTime() + m_spawnTime)
-    {
-        m_PEntity->Spawn();
-        return true;
-    }
-    return false;
+    return IsCompleted();
 }
 
 void CDespawnState::Cleanup(time_point tick)

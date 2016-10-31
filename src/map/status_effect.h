@@ -64,7 +64,8 @@ enum EFFECTFLAG
     EFFECTFLAG_SYNTH_SUPPORT    = 0x40000,  // Synthesis Image Support
     EFFECTFLAG_CONFRONTATION    = 0x80000,
     EFFECTFLAG_LOGOUT           = 0x100000,
-    EFFECTFLAG_BLOODPACT        = 0x200000
+    EFFECTFLAG_BLOODPACT        = 0x200000,
+    EFFECTFLAG_ON_JOBCHANGE     = 0x400000  // Removes effect when you change jobs
 };
 
 enum EFFECT
@@ -616,7 +617,7 @@ enum EFFECT
     EFFECT_ACCURACY_BOOST_II        = 553,
     EFFECT_EVASION_BOOST_II         = 554,
     EFFECT_MAGIC_ACC_BOOST_II       = 555,
-    EFFECT_MAGIC_EVASION_BOOST_II   = 556,
+    EFFECT_MAGIC_EVASION_BOOST      = 556,
     EFFECT_ATTACK_DOWN_II           = 557,
     EFFECT_DEFENSE_DOWN_II          = 558,
     EFFECT_MAGIC_ATK_DOWN_II        = 559,
@@ -633,7 +634,7 @@ enum EFFECT
     EFFECT_BATTUTA                  = 570,
     EFFECT_RAYKE                    = 571,
     EFFECT_AVOIDANCE_DOWN           = 572,
-    EFFECT_DELUGE_SPIKES            = 573, // Exists in client, unused on retail?
+    EFFECT_DELUGE_SPIKES            = 573,
     EFFECT_FAST_CAST                = 574,
     EFFECT_GESTATION                = 575,
     EFFECT_DOUBT                    = 576, // Bully: Intimidation Enfeeble status
@@ -643,19 +644,47 @@ enum EFFECT
     EFFECT_HASTE_II                 = 580,
     EFFECT_FLURRY_II                = 581,
     EFFECT_APOGEE                   = 583,
+    EFFECT_ENTRUST                  = 584,
+    EFFECT_COSTUME_II               = 585,
+    EFFECT_CURING_CONDUIT           = 586,
+    EFFECT_TP_BONUS                 = 587,
+    EFFECT_FINISHING_MOVE_6         = 588,
+    EFFECT_FIRESTORM_II             = 589,
+    EFFECT_HAILSTORM_II             = 590,
+    EFFECT_WINDSTORM_II             = 591,
+    EFFECT_SANDSTORM_II             = 592,
+    EFFECT_THUNDERSTORM_II          = 593,
+    EFFECT_RAINSTORM_II             = 594,
+    EFFECT_AURORASTORM_II           = 595,
+    EFFECT_VOIDSTORM_II             = 596,
+    EFFECT_INUNDATION               = 597,
+    EFFECT_CASCADE                  = 598,
+    EFFECT_CONSUME_MANA             = 599,
+    EFFECT_RUNEIST_S_ROLL           = 600,
+    EFFECT_CROOKED_CARDS            = 601,
+    EFFECT_VORSEAL                  = 602,
+    EFFECT_ELVORSEAL                = 603,
+    EFFECT_MIGHTY_GUARD             = 604,
+    EFFECT_GALE_SPIKES              = 605,
+    EFFECT_CLOD_SPIKES              = 606,
+    EFFECT_GLINT_SPIKES             = 607,
+    EFFECT_NEGATE_VIRUS             = 608,
+    EFFECT_NEGATE_CURSE             = 609,
+    EFFECT_NEGATE_CHARM             = 610,
+    EFFECT_MAGIC_EVASION_BOOST_II   = 611,
 
     // Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
     // Purchased from Cruor Prospector
     EFFECT_ABYSSEA_STR              = 768,
-    EFFECT_ABYSSEA_DEX              = 769, 
-    EFFECT_ABYSSEA_VIT              = 770, 
-    EFFECT_ABYSSEA_AGI              = 771, 
-    EFFECT_ABYSSEA_INT              = 772, 
-    EFFECT_ABYSSEA_MND              = 773, 
-    EFFECT_ABYSSEA_CHR              = 774, 
-    EFFECT_ABYSSEA_HP               = 775, 
-    EFFECT_ABYSSEA_MP               = 776, 
+    EFFECT_ABYSSEA_DEX              = 769,
+    EFFECT_ABYSSEA_VIT              = 770,
+    EFFECT_ABYSSEA_AGI              = 771,
+    EFFECT_ABYSSEA_INT              = 772,
+    EFFECT_ABYSSEA_MND              = 773,
+    EFFECT_ABYSSEA_CHR              = 774,
+    EFFECT_ABYSSEA_HP               = 775,
+    EFFECT_ABYSSEA_MP               = 776,
 
     // *Prowess increases not currently retail accurate.
     // GoV Prowess bonus effects, real effect at ID 474

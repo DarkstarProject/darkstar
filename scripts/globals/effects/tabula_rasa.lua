@@ -16,7 +16,7 @@ function onEffectGain(target,effect)
         target:addMod(MOD_BLACK_MAGIC_COST, -30);
         target:addMod(MOD_BLACK_MAGIC_CAST, -30);
         target:addMod(MOD_BLACK_MAGIC_RECAST, -30);
-        target:addMod(MOD_REGEN_EFFECT, math.ceil(regen/1.5));
+        target:addMod(MOD_LIGHT_ARTS_REGEN, math.ceil(regen/1.5));
         target:addMod(MOD_REGEN_DURATION, math.ceil((regen*2)/1.5));
         target:addMod(MOD_HELIX_EFFECT, helix);
         target:addMod(MOD_HELIX_DURATION, 108);
@@ -24,7 +24,7 @@ function onEffectGain(target,effect)
         target:addMod(MOD_WHITE_MAGIC_COST, -30);
         target:addMod(MOD_WHITE_MAGIC_CAST, -30);
         target:addMod(MOD_WHITE_MAGIC_RECAST, -30);
-        target:addMod(MOD_REGEN_EFFECT, regen);
+        target:addMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:addMod(MOD_REGEN_DURATION, regen*2);
         target:addMod(MOD_HELIX_EFFECT, math.ceil(helix/1.5));
         target:addMod(MOD_HELIX_DURATION, 36);
@@ -35,7 +35,7 @@ function onEffectGain(target,effect)
         target:addMod(MOD_WHITE_MAGIC_COST, -10);
         target:addMod(MOD_WHITE_MAGIC_CAST, -10);
         target:addMod(MOD_WHITE_MAGIC_RECAST, -10);
-        target:addMod(MOD_REGEN_EFFECT, regen);
+        target:addMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:addMod(MOD_REGEN_DURATION, regen*2);
         target:addMod(MOD_HELIX_EFFECT, helix);
         target:addMod(MOD_HELIX_DURATION, 108);
@@ -61,7 +61,7 @@ function onEffectLose(target,effect)
         target:delMod(MOD_BLACK_MAGIC_COST, -30);
         target:delMod(MOD_BLACK_MAGIC_CAST, -30);
         target:delMod(MOD_BLACK_MAGIC_RECAST, -30);
-        target:delMod(MOD_REGEN_EFFECT, math.ceil(regen/1.5));
+        target:delMod(MOD_LIGHT_ARTS_REGEN, math.ceil(regen/1.5));
         target:delMod(MOD_REGEN_DURATION, math.ceil((regen*2)/1.5));
         target:delMod(MOD_HELIX_EFFECT, helix);
         target:delMod(MOD_HELIX_DURATION, 108);
@@ -69,7 +69,7 @@ function onEffectLose(target,effect)
         target:delMod(MOD_WHITE_MAGIC_COST, -30);
         target:delMod(MOD_WHITE_MAGIC_CAST, -30);
         target:delMod(MOD_WHITE_MAGIC_RECAST, -30);
-        target:delMod(MOD_REGEN_EFFECT, regen);
+        target:delMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:delMod(MOD_REGEN_DURATION, regen*2);
         target:delMod(MOD_HELIX_EFFECT, math.ceil(helix/1.5));
         target:delMod(MOD_HELIX_DURATION, 36);
@@ -80,7 +80,7 @@ function onEffectLose(target,effect)
         target:delMod(MOD_WHITE_MAGIC_COST, -10);
         target:delMod(MOD_WHITE_MAGIC_CAST, -10);
         target:delMod(MOD_WHITE_MAGIC_RECAST, -10);
-        target:delMod(MOD_REGEN_EFFECT, regen);
+        target:delMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:delMod(MOD_REGEN_DURATION, regen*2);
         target:delMod(MOD_HELIX_EFFECT, helix);
         target:delMod(MOD_HELIX_DURATION, 108);

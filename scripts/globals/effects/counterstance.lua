@@ -6,7 +6,6 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     target:addMod(MOD_COUNTER,effect:getPower());
-    target:addMod(MOD_ENMITY,effect:getPower()/5);
 end;
 
 -----------------------------------
@@ -22,5 +21,4 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_COUNTER,effect:getPower());
-    target:delMod(MOD_ENMITY,effect:getPower()/5);
 end;

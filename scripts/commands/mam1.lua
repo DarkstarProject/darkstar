@@ -7,7 +7,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 2,
     parameters = "iiii"
 };
 function onTrigger(player)                                                   --@pos

@@ -1029,49 +1029,35 @@ namespace charutils
 
     void SendQuestMissionLog(CCharEntity* PChar)
     {
-        // в нижележащем цикле загружаются все квесты, текущие и выполненные
-        // в одном пакете с текущими квестами Aht Urhgan отправляется информация о текущих миссиях
-        // Treasures of Aht Urhgan
-        // Wings of the Goddess Missions
-        // Assault Missions
-        // Campaign Operations
-        // пакет с завершенными квестами Aht Urhgan содержит завершенные миссии Assault Missions
-
-        for (uint8 status = 0x01; status <= 0x02; ++status)
+        // Quests (Current + Completed):
+        // --------------------------------
+        for (int8 areaID = 0; areaID <= QUESTS_COALITION; areaID++)
         {
-            for (uint8 areaID = 0; areaID <= QUESTS_CRYSTALWAR; ++areaID)
-            {
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
-            }
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_CURRENT));
+            PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, LOG_QUEST_COMPLETE));
         }
 
-        // Treasures of Aht Urhgan
-        // Wings of the Goddess Missions
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x02));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, 0x02));
+        // Completed Missions:
+        // --------------------------------
+        // Completed missions for Nation + Zilart Missions are all sent in single packet
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_COMPLETE));
 
-        // Campaign Operations
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, 0x02));
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN2, 0x02));
+        // Completed missions for TOAU and WOTG are sent in the same packet
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_TOAU, LOG_MISSION_COMPLETE));
 
-        for (uint8 status = 0x01; status <= 0x02; ++status)
-        {
-            for (uint8 areaID = QUESTS_ABYSSEA; areaID < MAX_QUESTAREA; ++areaID)
-            {
-                PChar->pushPacket(new CQuestMissionLogPacket(PChar, areaID, status));
-            }
-        }
+        // Completed Assaults were sent in the same packet as completed TOAU quests
 
-        // обновляем статус миссий
-        // National Missions
-        // Rise of the Zilart and Chains of Promathia Missions
-        // Add-on Scenarios
-        // так как все эти миссии обновляются вместе,
-        // то достаточно выполнить обновление для MISSION_ZILART
+        // Completed Campaign Operations
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_MISSION_COMPLETE));
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_CAMPAIGN, LOG_CAMPAIGN_TWO));
 
-        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, 0x01));
+        // Current Missions:
+        // --------------------------------
+        // Current TOAU, Assault, WOTG, and Campaign mission were sent in the same packet as current TOAU quests
 
-
+        // Current Nation, Zilart, COP, Add-On, SOA, and ROV missions are all sent in a shared, single packet.
+        // So sending this packet updates multiple Mission logs at once.
+        PChar->pushPacket(new CQuestMissionLogPacket(PChar, MISSION_ZILART, LOG_MISSION_CURRENT));
     }
 
     /************************************************************************
@@ -1695,11 +1681,44 @@ namespace charutils
 
         if (PItem->getEquipSlotId() & (1 << equipSlotID))
         {
-            uint8 removeSlotID = PItem->getRemoveSlotId();
+            auto removeSlotID = PItem->getRemoveSlotId();
 
-            if (removeSlotID > 0)
+            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
             {
-                UnequipItem(PChar, removeSlotID, false);
+                if (removeSlotID & (1 << i))
+                {
+                    UnequipItem(PChar, i, false);
+                    if (i >= SLOT_HEAD && i <= SLOT_FEET)
+                    {
+                        switch (i)
+                        {
+                            case SLOT_HEAD:
+                                PChar->look.head = PItem->getModelId();
+                                break;
+                            case SLOT_BODY:
+                                PChar->look.body = PItem->getModelId();
+                                break;
+                            case SLOT_HANDS:
+                                PChar->look.hands = PItem->getModelId();
+                                break;
+                            case SLOT_LEGS:
+                                PChar->look.legs = PItem->getModelId();
+                                break;
+                            case SLOT_FEET:
+                                PChar->look.feet = PItem->getModelId();
+                                break;
+                        }
+                    }
+                }
+            }
+
+            for (uint8 i = 0; i < SLOT_BACK; ++i)
+            {
+                CItemArmor* armor = PChar->getEquip((SLOTTYPE)i);
+                if (armor && armor->isType(ITEM_ARMOR) && armor->getRemoveSlotId() & PItem->getEquipSlotId())
+                {
+                    UnequipItem(PChar, i, false);
+                }
             }
 
             switch (equipSlotID)
@@ -1854,60 +1873,26 @@ namespace charutils
                 break;
                 case SLOT_HEAD:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_HEAD) {
-                            UnequipItem(PChar, SLOT_BODY, false);
-                        }
-                    }
                     PChar->look.head = PItem->getModelId();
                 }
                 break;
                 case SLOT_BODY:
                 {
-                    if (PItem->getRemoveSlotId() == SLOT_HANDS)
-                    {
-                        PChar->look.hands = 157;
-                    }
                     PChar->look.body = PItem->getModelId();
                 }
                 break;
                 case SLOT_HANDS:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_BODY);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_HANDS)
-                        {
-                            UnequipItem(PChar, SLOT_BODY, false);
-                        }
-                    }
                     PChar->look.hands = PItem->getModelId();
                 }
                 break;
                 case SLOT_LEGS:
                 {
-                    if (PItem->getRemoveSlotId() == SLOT_FEET)
-                    {
-                        PChar->look.feet = 157;
-                    }
                     PChar->look.legs = PItem->getModelId();
                 }
                 break;
                 case SLOT_FEET:
                 {
-                    CItemArmor* armor = PChar->getEquip(SLOT_LEGS);
-                    if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
-                    {
-                        uint8 removeSlotID = armor->getRemoveSlotId();
-                        if (removeSlotID == SLOT_FEET)
-                        {
-                            UnequipItem(PChar, SLOT_LEGS, false);
-                        }
-                    }
                     PChar->look.feet = PItem->getModelId();
                 }
                 break;
@@ -2559,15 +2544,19 @@ namespace charutils
 
             if (MaxMSkill != 0)
             {
-                PChar->WorkingSkills.skill[i] = skillBonus + (PChar->RealSkills.skill[i] / 10 >= MaxMSkill ? MaxMSkill + 0x8000 : PChar->RealSkills.skill[i] / 10);
+                auto cap {PChar->RealSkills.skill[i] / 10 >= MaxMSkill};
+                PChar->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxMSkill : skillBonus + PChar->RealSkills.skill[i] / 10);
+                if (cap) PChar->WorkingSkills.skill[i] |= 0x8000;
             }
             else if (MaxSSkill != 0)
             {
-                PChar->WorkingSkills.skill[i] = skillBonus + (PChar->RealSkills.skill[i] / 10 >= MaxSSkill ? MaxSSkill + 0x8000 : PChar->RealSkills.skill[i] / 10);
+                auto cap {PChar->RealSkills.skill[i] / 10 >= MaxSSkill};
+                PChar->WorkingSkills.skill[i] = std::max(0, cap ? skillBonus + MaxSSkill : skillBonus + PChar->RealSkills.skill[i] / 10);
+                if (cap) PChar->WorkingSkills.skill[i] |= 0x8000;
             }
             else
             {
-                PChar->WorkingSkills.skill[i] = skillBonus + 0x8000;
+                PChar->WorkingSkills.skill[i] = std::max<uint16>(0, skillBonus) | 0x8000;
             }
         }
 

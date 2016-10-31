@@ -670,7 +670,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             PAI->TargetFind->findSingleTarget(PTarget, findFlags);
         }
     }
-    else
+
+    uint16 targets = PAI->TargetFind->m_targets.size();
+
+    if (!PTarget || targets == 0)
     {
         action.actiontype = ACTION_MOBABILITY_INTERRUPT;
         actionList_t& actionList = action.getNewActionList();
@@ -681,9 +684,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         return;
     }
 
-    uint16 actionsLength = PAI->TargetFind->m_targets.size();
-
-    PSkill->setTotalTargets(actionsLength);
+    PSkill->setTotalTargets(targets);
     PSkill->setTP(state.GetSpentTP());
     PSkill->setHPP(GetHPP());
 
@@ -962,6 +963,15 @@ void CMobEntity::OnDeathTimer()
 {
     if (!(m_Behaviour & BEHAVIOUR_RAISABLE))
         PAI->Despawn();
+}
+
+void CMobEntity::OnDespawn(CDespawnState&)
+{
+    FadeOut();
+    PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
+    luautils::OnMobDespawn(this);
+    //#event despawn
+    PAI->EventHandler.triggerListener("DESPAWN", this);
 }
 
 void CMobEntity::Die()

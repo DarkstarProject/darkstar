@@ -31,6 +31,6 @@ function onTrigger(player)
 	player:addItem(13606); -- GM Cape
 	player:addItem(17174); -- GM Bow
 	player:addItem(13215); -- GM Belt
-	player:addItem(17326); -- GMArrow
+	player:addItem(17326); -- GM Arrow
 	player:addItem(13074); -- GM Neck
 end

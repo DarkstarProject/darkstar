@@ -176,7 +176,9 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&);
 
     virtual void OnDisengage(CAttackState&) override;
-    virtual void OnDeathTimer() override;
+    virtual void OnDeathTimer() override;public:
+
+    virtual void OnDespawn(CDespawnState&) override;
 
     virtual void Spawn() override;
     virtual void FadeOut() override;
@@ -258,6 +260,7 @@ public:
 protected:
 
     void DropItems();
+
 
 
 private:

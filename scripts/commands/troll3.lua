@@ -6,7 +6,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 2,
     parameters = "iiii"
 };
 function onTrigger(player)
@@ -19,7 +19,7 @@ function onTrigger(player)
    SpawnMob('16974007'); -- Vorporlor               GrpId=1589------PoolId=922      75,0,39,3
    SpawnMob('16974008'); -- Vorjirzur-------------------GrpId=1588      PoolId=4255      82,0,32,243
    SpawnMob('16974009'); -- Worbordor               GrpId=1595------PoolId=4373      93,-1,40,251
-       SpawnMob('16974010'); -- Cobalt sentinel         GrpId=1498      PoolId=754      35,0,48,66      DropID=4510
+   SpawnMob('16974010'); -- Cobalt sentinel         GrpId=1498      PoolId=754      35,0,48,66      DropID=4510
    SpawnMob('16974011'); -- White sentinel   ------------GrpId=1594------PoolId=4335      43,0,47,66      DropID=4510
    SpawnMob('16974012'); -- Hazel Sentinel            GrpId-1519      PoolId=1904      31,0,27,113      DropID=4510
    SpawnMob('16974013'); -- Carmine Sentinel------------GrpId=1497------PoolId=643      72,0,29,235      DropID=4510
