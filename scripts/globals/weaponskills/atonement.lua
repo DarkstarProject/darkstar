@@ -79,7 +79,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
             extraHits = 1; -- for whatever reason, Atonement always yields the a TP return of a 2 hit WS, unless it does 0 damage.
         end
 
-        damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, tpHits, extraHits, 1);
+        damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, primary, tpHits, extraHits, 1);
         target:updateEnmityFromDamage(player, damage * enmityMult);
     end
 
