@@ -2383,9 +2383,9 @@ INSERT INTO `item_mods` VALUES (10817,384,51);
 INSERT INTO `item_mods` VALUES (10818,1,8); -- TJUKURRPA BELT, DEF:8 STR+5 "Double Attack"+3%
 INSERT INTO `item_mods` VALUES (10818,8,5); -- STR
 INSERT INTO `item_mods` VALUES (10818,288,3); -- DATT
-INSERT INTO `item_mods` VALUES (10819,1,12);
-INSERT INTO `item_mods` VALUES (10819,161,-4);
-INSERT INTO `item_mods` VALUES (10819,516,2);
+INSERT INTO `item_mods` VALUES (10819,1,12);      -- Flume Belt: DEF 12
+INSERT INTO `item_mods` VALUES (10819,161,-4);    -- Physical damage taken -4%
+INSERT INTO `item_mods` VALUES (10819,516,2);     -- Converts 2% of damage taken to MP
 INSERT INTO `item_mods` VALUES (10820,1,5);
 INSERT INTO `item_mods` VALUES (10820,111,5);
 INSERT INTO `item_mods` VALUES (10820,112,5);
@@ -18273,10 +18273,10 @@ INSERT INTO `item_mods` VALUES (15964,9,2);
 INSERT INTO `item_mods` VALUES (15964,25,3);
 INSERT INTO `item_mods` VALUES (15964,26,3);
 INSERT INTO `item_mods` VALUES (15964,432,3);
-INSERT INTO `item_mods` VALUES (15965,2,15);
-INSERT INTO `item_mods` VALUES (15965,23,5);
-INSERT INTO `item_mods` VALUES (15965,68,5);
-INSERT INTO `item_mods` VALUES (15965,516,3);
+INSERT INTO `item_mods` VALUES (15965,2,15);      -- Ethereal Earring: HP +15
+INSERT INTO `item_mods` VALUES (15965,23,5);      -- Attack +5
+INSERT INTO `item_mods` VALUES (15965,68,5);      -- Evasion +5
+INSERT INTO `item_mods` VALUES (15965,516,3);     -- Converts 3% of damage taken to MP
 INSERT INTO `item_mods` VALUES (15966,24,2);
 INSERT INTO `item_mods` VALUES (15967,46,1);
 INSERT INTO `item_mods` VALUES (15968,23,5);
@@ -37633,6 +37633,9 @@ INSERT INTO `item_mods` VALUES (28434,1,10);      -- Austerity Belt +1: DEF 10
 INSERT INTO `item_mods` VALUES (28434,71,6);      -- MP recovered while healing +6
 INSERT INTO `item_mods` VALUES (28434,296,9);     -- Conserve MP +9%
 INSERT INTO `item_mods` VALUES (28434,315,5);     -- Drain and Aspir potency +5%
+INSERT INTO `item_mods` VALUES (28437,1,15);      -- Flume Belt +1: DEF 15
+INSERT INTO `item_mods` VALUES (28437,161,-4);    -- Physical damage taken -4%
+INSERT INTO `item_mods` VALUES (28437,516,2);     -- Converts 2% of damage taken to MP
 INSERT INTO `item_mods` VALUES (28439,1,11);      -- Prosilio Belt +1: DEF 11
 INSERT INTO `item_mods` VALUES (28439,8,10);      -- STR +10
 INSERT INTO `item_mods` VALUES (28439,23,28);     -- Attack +28
