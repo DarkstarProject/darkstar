@@ -550,14 +550,14 @@ enum MODIFIER
     MOD_RERAISE_III               = 458, // Reraise III.
 
     //Elemental Absorb Chance
-    MOD_FIRE_ABSORB               = 459, //
-    MOD_EARTH_ABSORB              = 460, //
-    MOD_WATER_ABSORB              = 461, //
-    MOD_WIND_ABSORB               = 462, //
-    MOD_ICE_ABSORB                = 463, //
-    MOD_LTNG_ABSORB               = 464, //
-    MOD_LIGHT_ABSORB              = 465, //
-    MOD_DARK_ABSORB               = 466, //
+    MOD_FIRE_ABSORB               = 459, // Occasionally absorbs fire elemental damage, in percents
+    MOD_EARTH_ABSORB              = 460, // Occasionally absorbs earth elemental damage, in percents
+    MOD_WATER_ABSORB              = 461, // Occasionally absorbs water elemental damage, in percents
+    MOD_WIND_ABSORB               = 462, // Occasionally absorbs wind elemental damage, in percents
+    MOD_ICE_ABSORB                = 463, // Occasionally absorbs ice elemental damage, in percents
+    MOD_LTNG_ABSORB               = 464, // Occasionally absorbs thunder elemental damage, in percents
+    MOD_LIGHT_ABSORB              = 465, // Occasionally absorbs light elemental damage, in percents
+    MOD_DARK_ABSORB               = 466, // Occasionally absorbs dark elemental damage, in percents
 
     //Elemental Null Chance
     MOD_FIRE_NULL                 = 467, //
