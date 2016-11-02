@@ -4758,13 +4758,13 @@ INSERT INTO `item_mods` VALUES (11498,1,20);
 INSERT INTO `item_mods` VALUES (11498,23,3);
 INSERT INTO `item_mods` VALUES (11498,25,3);
 INSERT INTO `item_mods` VALUES (11498,384,20);
-INSERT INTO `item_mods` VALUES (11501,1,24);
-INSERT INTO `item_mods` VALUES (11501,8,6);
-INSERT INTO `item_mods` VALUES (11501,9,6);
-INSERT INTO `item_mods` VALUES (11501,11,6);
-INSERT INTO `item_mods` VALUES (11501,23,8);
-INSERT INTO `item_mods` VALUES (11501,288,2);
-INSERT INTO `item_mods` VALUES (11501,512,5);
+INSERT INTO `item_mods` VALUES (11501,1,24);      -- Nocturnus Helm: DEF 24
+INSERT INTO `item_mods` VALUES (11501,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (11501,9,6);       -- DEX +6
+INSERT INTO `item_mods` VALUES (11501,11,6);      -- AGI +6
+INSERT INTO `item_mods` VALUES (11501,23,8);      -- Attack +8
+INSERT INTO `item_mods` VALUES (11501,288,2);     -- Double Attack +2%
+INSERT INTO `item_mods` VALUES (11501,512,5);     -- Occasionally absorbs physical damage taken +5%
 INSERT INTO `item_mods` VALUES (11502,1,28);
 INSERT INTO `item_mods` VALUES (11502,25,-10);
 INSERT INTO `item_mods` VALUES (11502,58,-15);
