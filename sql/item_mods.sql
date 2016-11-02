@@ -10477,8 +10477,8 @@ INSERT INTO `item_mods` VALUES (13656,27,-5);
 INSERT INTO `item_mods` VALUES (13657,1,10);
 INSERT INTO `item_mods` VALUES (13657,5,32);
 INSERT INTO `item_mods` VALUES (13657,27,-6);
-INSERT INTO `item_mods` VALUES (13658,1,15);
-INSERT INTO `item_mods` VALUES (13658,416,6);
+INSERT INTO `item_mods` VALUES (13658,1,15);      -- Shadow Mantle: DEF 15
+INSERT INTO `item_mods` VALUES (13658,416,6);     -- Occasionally annuls physical damage taken +6%
 INSERT INTO `item_mods` VALUES (13659,1,2);
 INSERT INTO `item_mods` VALUES (13660,1,2);
 INSERT INTO `item_mods` VALUES (13661,1,2);
