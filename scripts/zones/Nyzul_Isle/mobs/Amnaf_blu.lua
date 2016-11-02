@@ -2,9 +2,8 @@
 -- Area: Nyzul Isle (Path of Darkness)
 --  MOB: Amnaf (BLU)
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/zones/Nyzul_Isle/IDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onMobSpawn Action
@@ -14,7 +13,7 @@ function onMobSpawn(mob)
     local instance = mob:getInstance();
 
     -- Stage 2 Adjustments
-    if(instance:getProgress() >= 10) then
+    if (instance:getProgress() >= 10) then
         -- Don't let Amnaf wander back to the original spawn position
         mob:setMobMod(MOBMOD_NO_MOVE, 1);
 
@@ -48,6 +47,7 @@ function onMobEngaged(mob,target)
 
     -- 4 gears spawn on Stage 1 of the Fight
     if (form1Gears == 0) then
+        mob:showText(mob,NyzulIsle.text.FORMATION_GELINCIK);
         local instance = mob:getInstance();
         SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR1,instance):updateEnmity(target);
         SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR2,instance):updateEnmity(target);
@@ -58,6 +58,7 @@ function onMobEngaged(mob,target)
 
     -- 4 more gears spawn on Stage 2 of the Fight
     if (form == 1 and form2Gears == 0) then
+        mob:showText(mob,NyzulIsle.text.SURRENDER);
         local gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR1,instance)
         gear:updateEnmity(target);
         gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR2,instance);
@@ -76,14 +77,49 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
+    local segment = mob:getLocalVar("SegmentChanged");
+    if (mob:getHPP() <= 30 and mob:getLocalVar("RenameThisVar") == 0) then
+        mob:showText(mob,NyzulIsle.text.CURSED_ESSENCES);
+        -- Azure Lore (or Chain Affinity?) needs to happen here followed by ws+cast. https://youtu.be/7jsXnwkqMM4?t=4m4s
+        mob:setLocalVar("RenameThisVar", 1)
     -- At 50% and 20% respectively, Amnaf disappears and the fight advances to the next stage
-    if ((mob:getHPP() <= 50 and mob:getLocalVar("SegmentChanged") == 0) or
-        (mob:getHPP() <= 20 and mob:getLocalVar("SegmentChanged") == 1)) then
+    elseif ((mob:getHPP() <= 50 and segment == 0) or (mob:getHPP() <= 20 and segment == 1)) then
+        if (segment == 0) then -- It was less duplicate code to just check segment again.
+            mob:showText(mob,NyzulIsle.text.UGH);
+        elseif (segment == 1) then
+            mob:showText(mob,NyzulIsle.text.CANNOT_WIN);
+        end
+
         if (mob:getLocalVar("DespawnSignal") == 0) then
             mob:setLocalVar("DespawnSignal", 1);
             local instance = mob:getInstance();
             instance:setProgress(instance:getProgress() + 10);
         end
+    end
+end;
+
+-----------------------------------
+-- onMonsterPrepareSkill Action
+-----------------------------------
+
+function onMonsterPrepareSkill(mob, skillId)
+    -- Circle Blade
+    if (skillId == 38) then
+        mob:showText(mob,NyzulIsle.text.I_WILL_SINK_YOUR_CORPSES);
+    end
+end;
+
+-----------------------------------
+-- onSpellPrecast
+-----------------------------------
+
+function onSpellPrecast(mob, spell)
+    -- Hysteric Barrage
+    if (spell == 641) then
+        mob:showText(mob,NyzulIsle.text.AWAKEN);
+    -- Tail Slap
+    elseif (spell == 640) then
+        mob:showText(mob,NyzulIsle.text.MANIFEST);
     end
 end;
 

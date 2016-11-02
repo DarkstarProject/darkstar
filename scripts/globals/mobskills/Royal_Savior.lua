@@ -1,11 +1,10 @@
 ---------------------------------------------------
--- Protect V
+-- Royal Savior
+-- Grants effect of Protect
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -13,8 +12,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-skill:setMsg(0);
-
     local power = 175;
     local duration = 300;
 

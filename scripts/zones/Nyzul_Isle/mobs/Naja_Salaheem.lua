@@ -2,10 +2,9 @@
 -- Area: Nyzul Isle (Path of Darkness)
 -- MOB: Naja Salaheem
 -----------------------------------
-
+require("scripts/zones/Nyzul_Isle/IDs");
 require("scripts/globals/allyassist");
 require("scripts/globals/instance");
-require("scripts/zones/Nyzul_Isle/IDs");
 
 -- Path to Stage 2 Position
 local stage2Position = {
@@ -41,6 +40,23 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, target)
+    -- localVar because we don't want it to repeat she engages a new target.
+    if (mob:getLocalVar("started") == 0) then
+        mob:showText(mob,NyzulIsle.text.ALRRRIGHTY);
+        mob:setLocalVar("started", 1);
+    end
+end;
+-----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight(mob,target)
+    if (mob:getHPP() <= 50 and mob:getLocalVar("lowHPmsg") == 0) then
+        mob:showText(mob,NyzulIsle.text.OW);
+        mob:setLocalVar("lowHPmsg", 1)
+    elseif (mob:getHPP() > 50 and mob:getLocalVar("lowHPmsg") == 1) then
+        mob:setLocalVar("lowHPmsg", 0)
+    end
 end;
 
 -----------------------------------
@@ -62,10 +78,12 @@ end;
 function onMobRoam(mob)
     -- Advance to Stage 2 area
     if (mob:getLocalVar("Stage") == 2) then
+        mob:showText(mob,NyzulIsle.text.OH_ARE_WE_DONE);
         mob:pathThrough(stage2Position, PATHFLAG_SCRIPT);
         mob:setMobMod(MOBMOD_NO_MOVE, 1);
     -- Advance to Stage 3 area
     elseif (mob:getLocalVar("Stage") == 3) then
+        mob:showText(mob,NyzulIsle.text.NOW_WERE_TALKIN);
         mob:pathThrough(stage3Position, PATHFLAG_SCRIPT);
         mob:setMobMod(MOBMOD_NO_MOVE, 1);
     end
@@ -91,11 +109,34 @@ function onMobFight(mob, target)
 end;
 
 -----------------------------------
+-- onMonsterPrepareSkill Action
+-----------------------------------
+
+function onMonsterPrepareSkill(mob, skillId)
+    if (skillID == 165) then
+        mob:showText(mob,NyzulIsle.text.CHA_CHING);
+    elseif (skillID == 166) then
+        mob:showText(mob,NyzulIsle.text.TWELVE_GOLD_COINS);
+    elseif (skillID == 167) then
+        mob:showText(mob,NyzulIsle.text.NINETY_NINE_SILVER_COINS);
+    end
+end
+
+-----------------------------------
+-- onCriticalHit
+-----------------------------------
+
+function onCriticalHit(mob)
+    mob:showText(mob,NyzulIsle.text.OW);
+end;
+
+-----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    -- Loss if Naja dies
+    -- Loss if Naja dies. Since player will be nil here, it'll only show once.
+    mob:showText(mob,NyzulIsle.text.ABQUHBAH);
     local instance = mob:getInstance();
     instance:fail();
 end;

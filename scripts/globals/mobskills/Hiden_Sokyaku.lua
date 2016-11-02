@@ -1,10 +1,11 @@
 ---------------------------------------------
--- Circle Blade
+-- Hiden Sokyaku
 --
--- Description: Delivers an area of effect attack. Attack radius varies with TP.
+-- Description: Deals damage to a single target. Additional effect: Stun
 -- Type: Physical
--- Utsusemi/Blink absorb: ???
--- Range: Melee range radial
+-- Utsusemi/Blink absorb: 1 shadow
+-- Range: Melee
+-- Notes: Stun may or may not take effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -12,20 +13,20 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    mob:messageBasic(43, 0, 38);
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
     local numhits = 1;
     local accmod = 1;
-    local dmgmod = 2.5;
+    local dmgmod = 3;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW);
-
-    skill:setSkillchain(38);
-
-    -- About 200-300
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
     target:delHP(dmg);
+
+    local typeEffect = EFFECT_STUN;
+
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
+
     return dmg;
 end;
