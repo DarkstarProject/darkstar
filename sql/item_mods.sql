@@ -2919,8 +2919,9 @@ INSERT INTO `item_mods` VALUES (10988,288,2);
 INSERT INTO `item_mods` VALUES (10989,1,9);
 INSERT INTO `item_mods` VALUES (10989,112,4);
 INSERT INTO `item_mods` VALUES (10989,374,4);
-INSERT INTO `item_mods` VALUES (10990,1,10);
-INSERT INTO `item_mods` VALUES (10990,5,30);
+INSERT INTO `item_mods` VALUES (10990,1,10);      -- Engulfer Cape: DEF 10
+INSERT INTO `item_mods` VALUES (10990,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (10990,475,5);     -- Occasionally absorbs magic damage taken +5%
 INSERT INTO `item_mods` VALUES (10991,1,15);
 INSERT INTO `item_mods` VALUES (10991,23,17);
 INSERT INTO `item_mods` VALUES (10992,1,17); -- VASSAL'S MANTLE, DEF:17 Attack+25 Evasion+5
@@ -4217,13 +4218,13 @@ INSERT INTO `item_mods` VALUES (11353,1,39);
 INSERT INTO `item_mods` VALUES (11353,2,12);
 INSERT INTO `item_mods` VALUES (11353,5,12);
 INSERT INTO `item_mods` VALUES (11353,14,5);
-INSERT INTO `item_mods` VALUES (11354,1,49);
-INSERT INTO `item_mods` VALUES (11354,8,10);
-INSERT INTO `item_mods` VALUES (11354,9,10);
-INSERT INTO `item_mods` VALUES (11354,10,10);
-INSERT INTO `item_mods` VALUES (11354,25,12);
-INSERT INTO `item_mods` VALUES (11354,302,1);
-INSERT INTO `item_mods` VALUES (11354,475,5);
+INSERT INTO `item_mods` VALUES (11354,1,49);      -- Nocturnus Mail: DEF 49
+INSERT INTO `item_mods` VALUES (11354,8,10);      -- STR +10
+INSERT INTO `item_mods` VALUES (11354,9,10);      -- DEX +10
+INSERT INTO `item_mods` VALUES (11354,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (11354,25,12);     -- Accuracy +12
+INSERT INTO `item_mods` VALUES (11354,302,1);     -- Triple Attack +1%
+INSERT INTO `item_mods` VALUES (11354,475,5);     -- Occasionally absorbs magic damage taken +5%
 INSERT INTO `item_mods` VALUES (11355,1,1);
 INSERT INTO `item_mods` VALUES (11356,1,1);
 INSERT INTO `item_mods` VALUES (11357,1,1);
@@ -31357,6 +31358,52 @@ INSERT INTO `item_mods` VALUES (27450,31,118);
 INSERT INTO `item_mods` VALUES (27450,68,60);
 INSERT INTO `item_mods` VALUES (27450,115,23);
 INSERT INTO `item_mods` VALUES (27450,384,30);
+INSERT INTO `item_mods` VALUES (27453,1,62);      -- Erilaz Greaves: DEF 62
+INSERT INTO `item_mods` VALUES (27453,2,8);       -- HP +8
+INSERT INTO `item_mods` VALUES (27453,5,24);      -- MP +24
+INSERT INTO `item_mods` VALUES (27453,8,11);      -- STR +11
+INSERT INTO `item_mods` VALUES (27453,9,17);      -- DEX +17
+INSERT INTO `item_mods` VALUES (27453,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (27453,11,24);     -- AGI +24
+INSERT INTO `item_mods` VALUES (27453,13,10);     -- MND +10
+INSERT INTO `item_mods` VALUES (27453,14,20);     -- CHR +20
+INSERT INTO `item_mods` VALUES (27453,27,5);      -- Enmity +5
+INSERT INTO `item_mods` VALUES (27453,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (27453,31,73);     -- Magic Evasion +73
+INSERT INTO `item_mods` VALUES (27453,54,20);     -- Fire resistance +20
+INSERT INTO `item_mods` VALUES (27453,55,20);     -- Ice resistance +20
+INSERT INTO `item_mods` VALUES (27453,56,20);     -- Wind resistance +20
+INSERT INTO `item_mods` VALUES (27453,57,20);     -- Earth resistance +20
+INSERT INTO `item_mods` VALUES (27453,58,20);     -- Thunder resistance +20
+INSERT INTO `item_mods` VALUES (27453,59,20);     -- Water resistance +20
+INSERT INTO `item_mods` VALUES (27453,60,20);     -- Light resistance +20
+INSERT INTO `item_mods` VALUES (27453,61,20);     -- Dark resistance +20
+INSERT INTO `item_mods` VALUES (27453,68,35);     -- Evasion +35
+INSERT INTO `item_mods` VALUES (27453,161,-4);    -- Physical damage taken -4%
+INSERT INTO `item_mods` VALUES (27453,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (27454,1,75);      -- Erilaz Greaves +1: DEF 75
+INSERT INTO `item_mods` VALUES (27454,2,18);      -- HP +18
+INSERT INTO `item_mods` VALUES (27454,5,29);      -- MP +29
+INSERT INTO `item_mods` VALUES (27454,8,17);      -- STR +17
+INSERT INTO `item_mods` VALUES (27454,9,26);      -- DEX +26
+INSERT INTO `item_mods` VALUES (27454,10,16);     -- VIT +16
+INSERT INTO `item_mods` VALUES (27454,11,38);     -- AGI +38
+INSERT INTO `item_mods` VALUES (27454,13,16);     -- MND +16
+INSERT INTO `item_mods` VALUES (27454,14,32);     -- CHR +32
+INSERT INTO `item_mods` VALUES (27454,27,6);      -- Enmity +6
+INSERT INTO `item_mods` VALUES (27454,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (27454,31,107);    -- Magic Evasion +107
+INSERT INTO `item_mods` VALUES (27454,54,25);     -- Fire resistance +25
+INSERT INTO `item_mods` VALUES (27454,55,25);     -- Ice resistance +25
+INSERT INTO `item_mods` VALUES (27454,56,25);     -- Wind resistance +25
+INSERT INTO `item_mods` VALUES (27454,57,25);     -- Earth resistance +25
+INSERT INTO `item_mods` VALUES (27454,58,25);     -- Thunder resistance +25
+INSERT INTO `item_mods` VALUES (27454,59,25);     -- Water resistance +25
+INSERT INTO `item_mods` VALUES (27454,60,25);     -- Light resistance +25
+INSERT INTO `item_mods` VALUES (27454,61,25);     -- Dark resistance +25
+INSERT INTO `item_mods` VALUES (27454,68,77);     -- Evasion +77
+INSERT INTO `item_mods` VALUES (27454,161,-5);    -- Physical damage taken -5%
+INSERT INTO `item_mods` VALUES (27454,384,41);    -- Haste +4%
 INSERT INTO `item_mods` VALUES (27463,1,70);      -- Vanya Clogs: DEF 70
 INSERT INTO `item_mods` VALUES (27463,2,13);      -- HP +13
 INSERT INTO `item_mods` VALUES (27463,5,14);      -- MP +14
@@ -31392,12 +31439,20 @@ INSERT INTO `item_mods` VALUES (27497,170,5);     -- Fast Cast +5%
 INSERT INTO `item_mods` VALUES (27497,296,4);     -- Conserve MP +4%
 INSERT INTO `item_mods` VALUES (27497,315,7);     -- Drain and Aspir potency +7%
 INSERT INTO `item_mods` VALUES (27497,384,31);    -- Haste +3%
-INSERT INTO `item_mods` VALUES (27505,54,20);
-INSERT INTO `item_mods` VALUES (27505,55,20);
-INSERT INTO `item_mods` VALUES (27505,56,20);
-INSERT INTO `item_mods` VALUES (27505,57,20);
-INSERT INTO `item_mods` VALUES (27505,58,20);
-INSERT INTO `item_mods` VALUES (27505,59,20);
+INSERT INTO `item_mods` VALUES (27504,54,15);     -- Warder's Charm: Fire resistance +15
+INSERT INTO `item_mods` VALUES (27504,55,15);     -- Ice resistance +15
+INSERT INTO `item_mods` VALUES (27504,56,15);     -- Wind resistance +15
+INSERT INTO `item_mods` VALUES (27504,57,15);     -- Earth resistance +15
+INSERT INTO `item_mods` VALUES (27504,58,15);     -- Thunder resistance +15
+INSERT INTO `item_mods` VALUES (27504,59,15);     -- Water resistance +15
+INSERT INTO `item_mods` VALUES (27504,475,5);     -- Occasionally absorbs magic damage taken +5%
+INSERT INTO `item_mods` VALUES (27505,54,20);     -- Warder's Charm +1: Fire resistance +20
+INSERT INTO `item_mods` VALUES (27505,55,20);     -- Ice resistance +20
+INSERT INTO `item_mods` VALUES (27505,56,20);     -- Wind resistance +20
+INSERT INTO `item_mods` VALUES (27505,57,20);     -- Earth resistance +20
+INSERT INTO `item_mods` VALUES (27505,58,20);     -- Thunder resistance +20
+INSERT INTO `item_mods` VALUES (27505,59,20);     -- Water resistance +20
+INSERT INTO `item_mods` VALUES (27505,475,5);     -- Occasionally absorbs magic damage taken +5%
 INSERT INTO `item_mods` VALUES (27506,25,8);
 INSERT INTO `item_mods` VALUES (27506,289,3);
 INSERT INTO `item_mods` VALUES (27506,302,1);
@@ -37800,8 +37855,8 @@ INSERT INTO `item_mods` VALUES (28552,11,2);
 INSERT INTO `item_mods` VALUES (28552,24,9);
 INSERT INTO `item_mods` VALUES (28553,13,2);
 INSERT INTO `item_mods` VALUES (28553,30,6);
-INSERT INTO `item_mods` VALUES (28565,54,20);
-INSERT INTO `item_mods` VALUES (28565,480,1);
+INSERT INTO `item_mods` VALUES (28565,54,20);     -- Zanhi Ring: Fire resistance +20
+INSERT INTO `item_mods` VALUES (28565,461,1);     -- Occasionally absorbs water elemental damage +1% ?
 INSERT INTO `item_mods` VALUES (28571,1,10);
 INSERT INTO `item_mods` VALUES (28571,56,20);
 INSERT INTO `item_mods` VALUES (28571,59,20);
@@ -37857,6 +37912,11 @@ INSERT INTO `item_mods` VALUES (28596,1,10);      -- Oretania's Cape +1: DEF 10
 INSERT INTO `item_mods` VALUES (28596,2,30);      -- HP +30
 INSERT INTO `item_mods` VALUES (28596,310,5);     -- Cursna effect +5%
 INSERT INTO `item_mods` VALUES (28596,374,6);     -- Cure potency +6%
+INSERT INTO `item_mods` VALUES (28599,1,16);      -- Engulfer Cape +1: DEF 16
+INSERT INTO `item_mods` VALUES (28599,2,30);      -- HP +30
+INSERT INTO `item_mods` VALUES (28599,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (28599,163,-4);    -- Magic damage taken -4%
+INSERT INTO `item_mods` VALUES (28599,475,5);     -- Occasionally absorbs magic damage taken +5%
 INSERT INTO `item_mods` VALUES (28603,1,13);
 INSERT INTO `item_mods` VALUES (28603,54,15);
 INSERT INTO `item_mods` VALUES (28603,30,7);

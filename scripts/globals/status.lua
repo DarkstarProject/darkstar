@@ -1251,7 +1251,7 @@ MOD_LTNG_NULL  = 472 --
 MOD_LIGHT_NULL = 473 --
 MOD_DARK_NULL  = 474 --
 
-MOD_MAGIC_ABSORB     = 475 --
+MOD_MAGIC_ABSORB     = 475 -- Occasionally absorbs magic damage taken, in percents
 MOD_MAGIC_NULL       = 476 -- Occasionally annuls magic damage taken, in percents
 MOD_PHYS_ABSORB      = 512 -- Occasionally absorbs physical damage taken, in percents
 MOD_ABSORB_DMG_TO_MP = 516 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring)
