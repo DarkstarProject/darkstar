@@ -371,12 +371,17 @@ end;
 -------------------------------------------------
 
 function pickaxeBreak(player,trade)
-    local broken = 0;
-    if (math.random(0,100) <= MINING_BREAK_CHANCE) then
-        broken = 1;
+    local broke = 0;
+    local pickbreak = math.random();
+
+    pickbreak = pickbreak + (player:getMod(MOD_MINING_RESULT) / 1000);
+
+    if (pickbreak < MINING_BREAK_CHANCE) then
+        broke = 1;
         player:tradeComplete();
-    end;
-    return broken;
+    end
+
+    return broke;
 end;
 
 -------------------------------------------------
