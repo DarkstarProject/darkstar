@@ -30,7 +30,7 @@ function onMobRoam(mob)
     local Voluptuous_Vilma_ToD = GetMobByID(Voluptuous_Vilma):getLocalVar("1");
 
     if (Voluptuous_Vilma_ToD <= os.time()) then
-        Voluptuous_Vilma_PH = math.random((0), (table.getn(Voluptuous_Vilma_PH_Table)));
+        Voluptuous_Vilma_PH = math.random((0), (#Voluptuous_Vilma_PH_Table));
         if (Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH] ~= nil) then
             if (GetMobAction(Voluptuous_Vilma) == 0) then
                 SetServerVariable("Voluptuous_Vilma_PH", Voluptuous_Vilma_PH_Table[Voluptuous_Vilma_PH]);

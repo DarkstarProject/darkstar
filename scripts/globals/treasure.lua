@@ -45,7 +45,7 @@ function spawnMimic(zone,npc,player)
              169,17469761,
              177,17502567};
     
-    for nb = 1, table.getn(mimic), 2 do
+    for nb = 1, #mimic, 2 do
         if (zone == mimic[nb]) then
             SpawnMob(mimic[nb + 1]):updateEnmity(player);
             setMobPos(mimic[nb + 1],npc:getXPos(),npc:getYPos(),npc:getZPos(),npc:getRotPos());
@@ -418,7 +418,7 @@ gil = {147,{0.152,3440,9000},
     rand = math.random();
     rand = math.random();
     rand = math.random();
-    for u = 1, table.getn(gil), 2 do
+    for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then
                 reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};
@@ -583,7 +583,7 @@ Any update should be here with the date which was modified as well as an URL whe
     rand = math.random();
     rand = math.random();
     
-    for u = 1, table.getn(gil), 2 do
+    for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then
                 reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};

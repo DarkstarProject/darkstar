@@ -98,9 +98,9 @@ function getExcavationItem(player,zone)
 
     Rate = math.random();
 
-    for zon = 1, table.getn(drop), 2 do
+    for zon = 1, #drop, 2 do
         if (drop[zon] == zone) then
-            for itemlist = 1, table.getn(drop[zon + 1]), 2 do
+            for itemlist = 1, #drop[zon + 1], 2 do
                 if (Rate <= drop[zon + 1][itemlist + 1]) then
                     item = drop[zon + 1][itemlist];
                     break;
@@ -142,9 +142,9 @@ function getNewExcavationPositionNPC(player,npc,zone)
 
     local newnpcid = npc:getID();
 
-    for u = 1, table.getn(npcid), 2 do
+    for u = 1, #npcid, 2 do
         if (npcid[u] == zone) then
-            nbNPC = table.getn(npcid[u + 1]);
+            nbNPC = #npcid[u + 1];
             while newnpcid == npc:getID() do
                 newnpcid = math.random(1,nbNPC);
                 newnpcid = npcid[u + 1][newnpcid];

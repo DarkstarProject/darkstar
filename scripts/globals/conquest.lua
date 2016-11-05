@@ -153,7 +153,7 @@ function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
     if (player:getNation() == guardnation or guardnation == OTHER) then
         if (guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
             if (item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
-                for Crystal = 1,table.getn(DonateCrys),1 do
+                for Crystal = 1,#DonateCrys,1 do
                     local tcount = trade:getItemQty(DonateCrys[Crystal])
 
                     if (tcount > 0 and trade:hasItemQty(DonateCrys[Crystal],tcount)) then
@@ -1159,7 +1159,7 @@ function SetRegionalConquestOverseers(region)
     local npclist = getRegionalConquestOverseers(region);
     local nation  = GetRegionOwner(region);
 
-    for i = 1, table.getn(npclist), 2 do
+    for i = 1, #npclist, 2 do
         local npc = GetNPCByID(npclist[i]);
         
         if (npc ~= nil) then

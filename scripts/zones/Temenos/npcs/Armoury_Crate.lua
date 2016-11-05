@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     local Y = npc:getYPos();
     local Z = npc:getZPos();
 
-    for coffer = 1,table.getn (ARMOURY_CRATES_LIST_TEMENOS),2 do
+    for coffer = 1,#ARMOURY_CRATES_LIST_TEMENOS,2 do
         if (ARMOURY_CRATES_LIST_TEMENOS[coffer] == CofferID-16928768) then
             CofferType=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][1];
             InstanceRegion=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][2];
@@ -70,7 +70,7 @@ function onTrigger(player,npc)
                 player:getBCNMloot();
             end
             -- despawn les coffer du meme groupe
-            for coffer = 1, table.getn (ARMOURY_CRATES_LIST_TEMENOS), 2 do
+            for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
                 if (ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID) then
                     GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
                 end      

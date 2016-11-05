@@ -43,10 +43,10 @@ function onMobFight(mob)
             mob:setMod(MOD_SLASHRES,2000);
             mob:setMod(MOD_PIERCERES,2000);
             mob:setMod(MOD_IMPACTRES,2000);
-            for n =1,table.getn (resistMod),1 do
+            for n =1,#resistMod,1 do
                 mob:setMod(resistMod[n],2000); 
             end
-            for n =1,table.getn (defenseMod),1 do
+            for n =1,#defenseMod,1 do
                 mob:setMod(defenseMod[n],-1000);
             end 
         else -- Reset all damage types
@@ -54,10 +54,10 @@ function onMobFight(mob)
             mob:setMod(MOD_SLASHRES,1000);
             mob:setMod(MOD_PIERCERES,1000);
             mob:setMod(MOD_IMPACTRES,1000);
-            for n =1,table.getn (resistMod),1 do
+            for n =1,#resistMod,1 do
                 mob:setMod(resistMod[n],1000); 
             end
-            for n =1,table.getn (defenseMod),1 do
+            for n =1,#defenseMod,1 do
                 mob:setMod(defenseMod[n],1000);
             end 
         end
