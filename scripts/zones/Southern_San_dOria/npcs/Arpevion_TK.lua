@@ -17,7 +17,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(SandInv);
+local size        = #SandInv;
 local inventory   = SandInv;
 
 -----------------------------------

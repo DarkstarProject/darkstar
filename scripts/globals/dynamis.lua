@@ -809,9 +809,9 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
 
     if (mob:getStatPoppedMobs() == false) then
         mob:setStatPoppedMobs(true);
-        for nb = 1, table.getn(spawnList), 2 do
+        for nb = 1, #spawnList, 2 do
             if (mobID == spawnList[nb]) then
-                for nbi = 1, table.getn(spawnList[nb + 1]), 1 do
+                for nbi = 1, #spawnList[nb + 1], 1 do
                     if ((nbi % 2) == 0) then X=X+2; Z=Z+2; else X=X-2; Z=Z-2; end
                     local mobNBR = spawnList[nb + 1][nbi];
 

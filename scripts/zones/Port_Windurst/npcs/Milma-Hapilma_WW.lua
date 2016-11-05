@@ -18,7 +18,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 
 local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(WindInv);
+local size        = #WindInv;
 local inventory   = WindInv;
 
 -----------------------------------

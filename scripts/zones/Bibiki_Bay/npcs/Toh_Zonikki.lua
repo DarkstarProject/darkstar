@@ -52,7 +52,7 @@ local clammingItems = { 1311,  -- Oxblood
 
 local function giveClammedItems(player)
     
-    for item = 1, table.getn(clammingItems) do
+    for item = 1, #clammingItems do
         local clammedItemQty = player:getVar("ClammedItem_" ..  clammingItems[item]);
 
         if (clammedItemQty > 0) then
@@ -70,7 +70,7 @@ end;
 
 local function owePlayerClammedItems(player)
 
-    for item = 1, table.getn(clammingItems) do
+    for item = 1, #clammingItems do
         if (player:getVar("ClammedItem_" ..  clammingItems[item]) > 0) then
             return true;
         end
