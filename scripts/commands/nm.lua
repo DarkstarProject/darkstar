@@ -6,7 +6,7 @@
 
 cmdprops =
 {
-    permission = 2,
+    permission = 1,
     parameters = "iiii"
 };
 function onTrigger(player)
