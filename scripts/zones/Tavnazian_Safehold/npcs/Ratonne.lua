@@ -12,7 +12,7 @@ require("scripts/zones/Tavnazian_Safehold/TextIDs");
 
 Deposit = 0x01fe;
 Withdrawl = 0x01ff;
-ArraySize = table.getn(StorageArray);
+ArraySize = #StorageArray;
 G1 = 0;
 G2 = 0;
 G3 = 0;

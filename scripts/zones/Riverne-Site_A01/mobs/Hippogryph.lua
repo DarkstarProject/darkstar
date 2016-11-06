@@ -26,7 +26,7 @@ function onMobRoam(mob)
 
 
     if (Heliodromos_ToD <= os.time()) then
-        for i=1, table.getn(Heliodromos_Table), 1 do
+        for i=1, #Heliodromos_Table, 1 do
             if (Heliodromos_PH_Table[i] ~= nil) then
                 if (GetMobAction(Heliodromos_Table[i]) == 0) then
                     DeterMob(Heliodromos_PH_Table[i], true);
@@ -62,7 +62,7 @@ function onMobDespawn(mob)
         16900109
     };
 
-    for i = 1, table.getn(Heliodromos_PH_Table), 1 do
+    for i = 1, #Heliodromos_PH_Table, 1 do
         if (Heliodromos_PH_Table[i] ~= nil) then
             if (Hippogryph == Heliodromos_PH_Table[i]) then
                 SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));

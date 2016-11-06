@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
     local time = os.date("*t");
 
     if (CurrentAFupgrade == 0 and count == 4) then -- RELIC Armor +1 ???
-        for nb = 2, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the relic armor
+        for nb = 2, #Relic_Armor_Plus_one, 2 do  --looking for the relic armor
             --trade base relic armor                                                                                    --trade temenos Item                                       --trade Apollyon item                                                          --trade craft item                                                                                     have enought ancien beastcoin ctore ?
             if (trade:hasItemQty(Relic_Armor_Plus_one[nb][2],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][3],1) and  trade:hasItemQty(Relic_Armor_Plus_one[nb][4],1)  and  trade:hasItemQty(Relic_Armor_Plus_one[nb][5],1) and Relic_Armor_Plus_one[nb][6] <= StoreAncientBeastcoins) then 
                 AvailableCombinationDetected = Relic_Armor_Plus_one[nb-1];
@@ -37,7 +37,7 @@ function onTrade(player,npc,trade)
             end
         end
     elseif (CurrentAFupgrade == 0 and AvailableCombinationDetected == 0) then -- Artfact Armor +1 ???
-        for nb = 2, table.getn(Artifact_Armor_Plus_one), 2 do  --looking for the Artifact armor
+        for nb = 2, #Artifact_Armor_Plus_one, 2 do  --looking for the Artifact armor
             --trade base Artfact armor                                                                  --- trade Artfact armor -1                                                                       trade craft item
             if (trade:hasItemQty(Artifact_Armor_Plus_one[nb][2],1) and  trade:hasItemQty(Artifact_Armor_Plus_one[nb][3],1) and  trade:hasItemQty(Artifact_Armor_Plus_one[nb][4],1) and trade:hasItemQty(Artifact_Armor_Plus_one[nb][5],Artifact_Armor_Plus_one[nb][6])) then 
                 if (count == 3 + Artifact_Armor_Plus_one[nb][6]) then  --check the total number of item trade (base af + af-1 + craft item + number of curency)
@@ -116,7 +116,7 @@ function onEventUpdate(player,csid,option)
     local option8 = 0; 
     
     if (csid == 0x0136 and option > 0 and option <101) then
-        for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor
+        for nb = 1, #Relic_Armor_Plus_one, 2 do  --looking for the  relic armor
             if (Relic_Armor_Plus_one[nb] == option) then               
                 option1  =Relic_Armor_Plus_one[nb+1][1];  --relic +1
                 option2 = Relic_Armor_Plus_one[nb+1][2];  --relic base
@@ -129,7 +129,7 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(option1, option2, option3, option4, option5, option6, option7, option8); 
         -- print("relic");
     elseif (csid == 0x0136 and option > 200) then
-        for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  --looking for the  relic armor
+        for nb = 1, #Relic_Armor_Plus_one, 2 do  --looking for the  relic armor
             if (Relic_Armor_Plus_one[nb] == option) then               
                 option1  =Relic_Armor_Plus_one[nb+1][1];  --relic +1
                 option2 = Relic_Armor_Plus_one[nb+1][2];  --relic base
@@ -142,7 +142,7 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(option1, option2, option3, option4, option5, option6, option7, option8); 
         -- print("relic");
     elseif (csid == 0x0136 and option > 100 and option <201) then
-        for nb = 1, table.getn(Artifact_Armor_Plus_one), 2 do  --looking for the  artifact armor
+        for nb = 1, #Artifact_Armor_Plus_one, 2 do  --looking for the  artifact armor
             if (Artifact_Armor_Plus_one[nb] == option) then      
                 option1 = Artifact_Armor_Plus_one[nb+1][1];  --af +1
                 option2 = Artifact_Armor_Plus_one[nb+1][2];  --af base    
@@ -189,13 +189,13 @@ function onEventFinish(player,csid,option)
         ugrade_armor_Type = player:getVar("AFupgrade");
         --printf("detect type: %u",ugrade_armor);
         if (ugrade_armor_Type < 101 or ugrade_armor_Type >200) then  
-            for nb = 1, table.getn(Relic_Armor_Plus_one), 2 do  -- looking for the  relic armor 
+            for nb = 1, #Relic_Armor_Plus_one, 2 do  -- looking for the  relic armor 
                 if (Relic_Armor_Plus_one[nb] == ugrade_armor_Type) then               
                     ugrade_armor_ID= Relic_Armor_Plus_one[nb+1][1];    
                 end
             end
         else
-            for nb = 1, table.getn(Artifact_Armor_Plus_one), 2 do  -- looking for the  Artifact armor
+            for nb = 1, #Artifact_Armor_Plus_one, 2 do  -- looking for the  Artifact armor
                 if (Artifact_Armor_Plus_one[nb] == ugrade_armor_Type) then               
                     ugrade_armor_ID= Artifact_Armor_Plus_one[nb+1][1];   
                 end

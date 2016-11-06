@@ -297,9 +297,9 @@ function CheckMaatFights(player, zone, trade, npc)
                     168, {1437, 12, 4, 194, 1438, 13, 8, 195, 1439, 14, 16, 196},    -- Chamber of Oracles [SAM NIN DRG]
                     206, {1432, 7, 32, 517, 1433, 8, 64, 518, 1435, 10, 128, 519} };-- Qu'Bia Arena [PLD DRK BRD]
 
-        for nb = 1, table.getn(maatList), 2 do
+        for nb = 1, #maatList, 2 do
             if (maatList[nb] == zone) then
-                for nbi = 1, table.getn(maatList[nb + 1]), 4 do
+                for nbi = 1, #maatList[nb + 1], 4 do
                     if (itemid == maatList[nb + 1][nbi] and job == maatList[nb + 1][nbi + 1]) then
                         player:startEvent(0x7d00, 0, 0, 0, maatList[nb + 1][nbi + 2], 0, 0, 0, 0);
                         player:setVar("trade_bcnmid", maatList[nb + 1][nbi + 3]);
@@ -320,10 +320,9 @@ function GetBattleBitmask(id, zone, mode)
     -- normal sweep for NON MAAT FIGHTS
     local ret = -1;
     local mask = 0;
-
-    for zoneindex = 1, table.getn(bcnmid_param_map), 2 do
+    for zoneindex = 1, #bcnmid_param_map, 2 do
         if (zone==bcnmid_param_map[zoneindex]) then -- matched zone
-            for bcnmindex = 1, table.getn(bcnmid_param_map[zoneindex + 1]), 2 do -- loop bcnms in this zone
+            for bcnmindex = 1, #bcnmid_param_map[zoneindex + 1], 2 do -- loop bcnms in this zone
                 if (id==bcnmid_param_map[zoneindex+1][bcnmindex]) then -- found bcnmid
                     if (mode == 1) then
                         ret = mask + (2^bcnmid_param_map[zoneindex+1][bcnmindex+1]); -- for trigger (mode 1): 1, 2, 4, 8, 16, 32, ...
@@ -339,9 +338,9 @@ function GetBattleBitmask(id, zone, mode)
 end;
 
 function ItemToBCNMID(player, zone, trade)
-    for zoneindex = 1, table.getn(itemid_bcnmid_map), 2 do
+    for zoneindex = 1, #itemid_bcnmid_map, 2 do
         if (zone==itemid_bcnmid_map[zoneindex]) then -- matched zone
-            for bcnmindex = 1, table.getn(itemid_bcnmid_map[zoneindex + 1]), 2 do -- loop bcnms in this zone
+            for bcnmindex = 1, #itemid_bcnmid_map[zoneindex + 1], 2 do -- loop bcnms in this zone
                 if (trade:getItemId()==itemid_bcnmid_map[zoneindex+1][bcnmindex]) then
                     local item = trade:getItemId();
                     local questTimelineOK = 0;
