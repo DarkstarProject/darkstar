@@ -538,7 +538,7 @@ enum MODIFIER
     MOD_EXTRA_DUAL_WIELD_ATTACK   = 481, // Chance to land an extra attack when dual wielding
     MOD_EXTRA_KICK_ATTACK         = 482, // Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
     MOD_SAMBA_DOUBLE_DAMAGE       = 415, // Double damage chance when samba is up.
-    MOD_NULL_PHYSICAL_DAMAGE      = 416, // Chance to NULL physical damage.
+    MOD_NULL_PHYSICAL_DAMAGE      = 416, // Occasionally annuls damage from physical attacks, in percents
     MOD_QUICK_DRAW_TRIPLE_DAMAGE  = 417, // Chance to do triple damage with quick draw.
     MOD_BAR_ELEMENT_NULL_CHANCE   = 418, // Bar Elemental spells will occasionally NULLify damage of the same element.
     MOD_GRIMOIRE_INSTANT_CAST     = 419, // Spells that match your current Arts will occasionally cast instantly, without recast.
@@ -550,14 +550,14 @@ enum MODIFIER
     MOD_RERAISE_III               = 458, // Reraise III.
 
     //Elemental Absorb Chance
-    MOD_FIRE_ABSORB               = 459, //
-    MOD_EARTH_ABSORB              = 460, //
-    MOD_WATER_ABSORB              = 461, //
-    MOD_WIND_ABSORB               = 462, //
-    MOD_ICE_ABSORB                = 463, //
-    MOD_LTNG_ABSORB               = 464, //
-    MOD_LIGHT_ABSORB              = 465, //
-    MOD_DARK_ABSORB               = 466, //
+    MOD_FIRE_ABSORB               = 459, // Occasionally absorbs fire elemental damage, in percents
+    MOD_EARTH_ABSORB              = 460, // Occasionally absorbs earth elemental damage, in percents
+    MOD_WATER_ABSORB              = 461, // Occasionally absorbs water elemental damage, in percents
+    MOD_WIND_ABSORB               = 462, // Occasionally absorbs wind elemental damage, in percents
+    MOD_ICE_ABSORB                = 463, // Occasionally absorbs ice elemental damage, in percents
+    MOD_LTNG_ABSORB               = 464, // Occasionally absorbs thunder elemental damage, in percents
+    MOD_LIGHT_ABSORB              = 465, // Occasionally absorbs light elemental damage, in percents
+    MOD_DARK_ABSORB               = 466, // Occasionally absorbs dark elemental damage, in percents
 
     //Elemental Null Chance
     MOD_FIRE_NULL                 = 467, //
@@ -569,9 +569,9 @@ enum MODIFIER
     MOD_LIGHT_NULL                = 473, //
     MOD_DARK_NULL                 = 474, //
 
-    MOD_MAGIC_ABSORB              = 475, //
-    MOD_MAGIC_NULL                = 476, //
-    MOD_PHYS_ABSORB               = 512, //
+    MOD_MAGIC_ABSORB              = 475, // Occasionally absorbs magic damage taken, in percents
+    MOD_MAGIC_NULL                = 476, // Occasionally annuls magic damage taken, in percents
+    MOD_PHYS_ABSORB               = 512, // Occasionally absorbs physical damage taken, in percents
     MOD_ABSORB_DMG_TO_MP          = 516, // Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
     MOD_ADDITIONAL_EFFECT         = 431, //
