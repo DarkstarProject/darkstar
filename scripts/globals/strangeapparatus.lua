@@ -149,7 +149,7 @@ function getStrAppDrop(player,zone)
     local item = nil;
     local qty  = nil;
     
-    for drop = 1, table.getn(strAppDrop[zone]), 3 do
+    for drop = 1, #strAppDrop[zone], 3 do
         if (rate <= strAppDrop[zone][drop + 1]) then
             item = strAppDrop[zone][drop];
             qty  = strAppDrop[zone][drop + 2];

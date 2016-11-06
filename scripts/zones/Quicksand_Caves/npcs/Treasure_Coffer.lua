@@ -42,7 +42,7 @@ function onTrade(player,npc,trade)
         
         local listAF = getAFbyZone(zone);
             
-        for nb = 1,table.getn(listAF),3 do
+        for nb = 1,#listAF,3 do
             if (player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
                 questItemNeeded = 2;
                 break
@@ -70,7 +70,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(MAP_OF_THE_QUICKSAND_CAVES);
                     player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_QUICKSAND_CAVES); -- Map of the Quicksand Caves (KI)
                 elseif (questItemNeeded == 2) then
-                    for nb = 1,table.getn(listAF),3 do
+                    for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
                             player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);

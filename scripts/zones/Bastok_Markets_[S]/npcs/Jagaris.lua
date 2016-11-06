@@ -12,7 +12,7 @@ require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 Deposit = 0x0148;
 Withdrawl = 0x0149;
-ArraySize = table.getn(StorageArray);
+ArraySize = #StorageArray;
 G1 = 0;
 G2 = 0;
 G3 = 0;

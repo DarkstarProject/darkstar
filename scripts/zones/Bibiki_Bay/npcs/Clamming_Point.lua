@@ -120,7 +120,7 @@ function onEventUpdate(player,csid,option)
             local dropRate = math.random();
             local improvedResults = giveImprovedResults(player);
 
-            for itemDrop = 3, table.getn(clammingItems), 4 do
+            for itemDrop = 3, #clammingItems, 4 do
                 if (dropRate <= clammingItems[itemDrop + improvedResults]) then
                     
                     player:setLocalVar("ClammedItem", clammingItems[itemDrop - 2]);
@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option)
 
             player:setVar("ClammingKitBroken", 1);
 
-            for item = 1, table.getn(clammingItems), 4 do -- Remove items from bucket
+            for item = 1, #clammingItems, 4 do -- Remove items from bucket
                 player:setVar("ClammedItem_" ..  clammingItems[item], 0);
             end
         else
@@ -164,7 +164,7 @@ function onEventFinish(player,csid,option)
                 if (player:getVar("ClammingKitBroken") > 0) then --Broken bucket
                     player:messageSpecial(THE_WEIGHT_IS_TOO_MUCH, clammedItem);
 
-                    for item = 1, table.getn(clammingItems), 4 do -- Remove items from bucket
+                    for item = 1, #clammingItems, 4 do -- Remove items from bucket
                         player:setVar("ClammedItem_" ..  clammingItems[item], 0);
                     end
                 else

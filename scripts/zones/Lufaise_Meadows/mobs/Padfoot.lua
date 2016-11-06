@@ -23,12 +23,12 @@ function onMobSpawn(mob)
     }
 
     if (mob:getID() == 16875578) then
-        local random = math.random(table.getn(PadfootCloneSpawn));
+        local random = math.random(#PadfootCloneSpawn);
         -- pick random padfoot to spawn as
         local myPadfoot = PadfootCloneSpawn[random];
 
         local i = 1;
-        while i <= (table.getn(PadfootCloneSpawn)) do
+        while i <= (#PadfootCloneSpawn) do
 
             local padfoot = PadfootCloneSpawn[i]
             UpdateNMSpawnPoint(padfoot);
@@ -84,7 +84,7 @@ function onMobDespawn(mob)
     if (mob:getID() == 16875578) then
         local i = 1;
 
-        while i <= (table.getn(PadfootClone)) do
+        while i <= (#PadfootClone) do
             if (GetMobAction(PadfootClone[i]) ~= 0) then
                 DespawnMob(PadfootClone[i]);
             end

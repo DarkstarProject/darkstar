@@ -335,13 +335,13 @@ end
 
 function HideArmouryCrates(Region, Zone)
     if (Zone == APPOLLYON_SE_NE or Zone == APPOLLYON_NW_SW) then
-        for X = 1, table.getn (ARMOURY_CRATES_LIST_APPOLLYON), 2 do
+        for X = 1, #ARMOURY_CRATES_LIST_APPOLLYON, 2 do
             if (ARMOURY_CRATES_LIST_APPOLLYON[X+1][2] == Region) then
                 GetNPCByID((ARMOURY_CRATES_LIST_APPOLLYON[X])+16932864):setStatus(STATUS_DISAPPEAR)
             end
         end
     elseif (Zone == TEMENOS) then
-        for X = 1, table.getn (ARMOURY_CRATES_LIST_TEMENOS), 2 do
+        for X = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
             if (ARMOURY_CRATES_LIST_TEMENOS[X+1][2] == Region) then
                 GetNPCByID((ARMOURY_CRATES_LIST_TEMENOS[X])+16928768):setStatus(STATUS_DISAPPEAR)
             end
@@ -494,7 +494,7 @@ function IsKeyExist(Key)  --  return true if Key already exist for another linbu
         GetServerVariable("[C_Temenos_4th_II]UniqueID"),
     }
 
-    for nl = 1, table.getn (KeyAlreadyExist), 1 do
+    for nl = 1, #KeyAlreadyExist, 1 do
         if (KeyAlreadyExist[nl] == Key) then
             H = true
             break
@@ -837,19 +837,19 @@ end
 function GetInstanceRegion(instanceID)
     local region = 0
 
-    for K = 1, table.getn (APPOLLYON_SE_NE_BCNM_LIST), 2 do
+    for K = 1, #APPOLLYON_SE_NE_BCNM_LIST, 2 do
         if (APPOLLYON_SE_NE_BCNM_LIST[K] == instanceID) then
             region =APPOLLYON_SE_NE_BCNM_LIST[K+1][5]
         end
     end
 
-    for L = 1, table.getn (APPOLLYON_NW_SW_BCNM_LIST), 2 do
+    for L = 1, #APPOLLYON_NW_SW_BCNM_LIST, 2 do
         if (APPOLLYON_NW_SW_BCNM_LIST[L] == instanceID) then
             region =APPOLLYON_NW_SW_BCNM_LIST[L+1][5]
         end
     end
 
-    for M = 1, table.getn (TEMENOS_LIST), 2 do
+    for M = 1, #TEMENOS_LIST, 2 do
         if (TEMENOS_LIST[M] == instanceID) then
             region = TEMENOS_LIST[M+1][5]
         end

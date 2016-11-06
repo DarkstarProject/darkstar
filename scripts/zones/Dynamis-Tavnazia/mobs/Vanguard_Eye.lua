@@ -34,7 +34,7 @@ function onMobEngaged(mob,target)
         local NBRtaurusadd = 0;    
         
         if (list == 2) then
-            for nt = 1, table.getn(TavnaziaTautusList), 2 do              
+            for nt = 1, #TavnaziaTautusList, 2 do              
                 if (mob:getID() == TavnaziaTautusList[nt] and TavnaziaTautusList[nt+1][1] ~= 0) then
                     for nf = 1 ,TavnaziaTautusList[nt+1][1] , 1 do
                         for TauruslistID = 16949307 , 16949316 , 1 do

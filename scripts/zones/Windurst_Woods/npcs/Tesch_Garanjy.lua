@@ -12,7 +12,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 
 Deposit = 0x272b;
 Withdrawl = 0x272c;
-ArraySize = table.getn(StorageArray);
+ArraySize = #StorageArray;
 G1 = 0;
 G2 = 0;
 G3 = 0;
