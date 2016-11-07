@@ -92,8 +92,8 @@ function onZoneWeatherChange(weather)
         if (waterfall:getAnimation() ~= 9) then
             waterfall:setAnimation(9);
         end
-    elseif (weather ~= WEATHER_SNOW or weather ~= WEATHER_BLIZZARDS) then
-        if (waterfall:getAnimation() == 9) then
+    else
+        if (waterfall:getAnimation() ~= 8) then
             waterfall:setAnimation(8);
         end
     end
