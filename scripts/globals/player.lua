@@ -22,7 +22,7 @@ function onGameIn(player, firstlogin, zoning)
         if (firstlogin) then
             CharCreate(player);
         end
-   -- player:PrintToServer(string.format("The character %s has logged in...", player:getName()), 0x1C);
+    player:PrintToServer(string.format("The character %s has logged in...", player:getName()), 0x1C);
 	player:addStatusEffect(EFFECT_REFRESH,25,0,0);
     player:addStatusEffect(EFFECT_REGEN,28,0,0);
 	player:addStatusEffect(EFFECT_REGAIN,15,1,0);
