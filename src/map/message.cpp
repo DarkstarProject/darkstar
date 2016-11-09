@@ -171,6 +171,26 @@ namespace message
             });
             break;
         }
+        case MSG_CHAT_UNITY:
+        {
+            zoneutils::ForEachZone([&packet, &extra](CZone* PZone)
+            {
+                {
+                    PZone->ForEachChar([&packet, &extra](CCharEntity* PChar)
+                    {
+                        // don't push to sender
+                        if (PChar->id != RBUFL(extra->data(), 0))
+                        {
+                            CBasicPacket* newPacket = new CBasicPacket();
+                            memcpy(*newPacket, packet->data(), dsp_min(packet->size(), PACKET_SIZE));
+
+                            PChar->pushPacket(newPacket);
+                        }
+                    });
+                }
+            });
+            break;
+        }
         case MSG_CHAT_SERVMES:
         {
             zoneutils::ForEachZone([&packet](CZone* PZone)

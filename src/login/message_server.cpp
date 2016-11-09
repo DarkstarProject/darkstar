@@ -128,6 +128,13 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
         ipstring = true;
         break;
     }
+    case MSG_CHAT_UNITY:
+    {
+        int8* query = "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport;";
+        ret = Sql_Query(ChatSqlHandle, query);
+        ipstring = true;
+        break;
+    }
     case MSG_CHAT_SERVMES:
     {
         int8* query = "SELECT zoneip, zoneport FROM zone_settings GROUP BY zoneip, zoneport;";
