@@ -57,7 +57,7 @@ printf("currentlimbus: %u",currentlimbus);
    if (player:hasKeyItem(COSMOCLEANSE)) then  
        if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then  
          local LimbusTradeItem = player:getVar("Limbus_Trade_Item");
-           for nt = 1,table.getn (instancelist),2 do
+           for nt = 1,#instancelist,2 do
                  --   printf("list d'instance: %u",instancelist[nt]);       
                if (instancelist[nt+1][1]==true and player:hasKeyItem(WHITE_CARD)) then
                 --   print("player_have_white_card");
@@ -81,7 +81,7 @@ printf("currentlimbus: %u",currentlimbus);
              local    status = player:getStatusEffect(EFFECT_BATTLEFIELD);
             local    playerbcnmid = status:getPower();
            -- check if the player has the key item for the current battlefield
-           for nt = 1,table.getn (instancelist),2 do
+           for nt = 1,#instancelist,2 do
                --     printf("list d'instance: %u",instancelist[nt]);       
                     if (instancelist[nt] == playerbcnmid) then
                         if (instancelist[nt+1][1]== true and player:hasKeyItem(WHITE_CARD) == false) then
@@ -116,7 +116,7 @@ printf("currentlimbus: %u",currentlimbus);
         end    
         
   elseif (currentlimbus~=0) then    
-           for nt = 1,table.getn (instancelist),2 do
+           for nt = 1,#instancelist,2 do
                --     printf("list d'instance: %u",instancelist[nt]);       
                     if (instancelist[nt] == currentlimbus) then
                            limbusbitmap = instancelist[nt+1][4];

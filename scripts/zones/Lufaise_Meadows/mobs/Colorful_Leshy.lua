@@ -27,7 +27,7 @@ function onMobRoam(mob)
     local Defoliate_Leshy_ToD = GetMobByID(Defoliate_Leshy):getLocalVar("1");
 
     if (Defoliate_Leshy_ToD <= os.time()) then
-        Defoliate_Leshy_PH = math.random((0), (table.getn(Defoliate_Leshy_PH_Table)));
+        Defoliate_Leshy_PH = math.random((0), (#Defoliate_Leshy_PH_Table));
         if (Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH] ~= nil) then
             if (GetMobAction(Defoliate_Leshy) == 0) then
                 SetServerVariable("Defoliate_Leshy_PH", Defoliate_Leshy_PH_Table[Defoliate_Leshy_PH]);

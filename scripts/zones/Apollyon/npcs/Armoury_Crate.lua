@@ -31,7 +31,7 @@ function onTrigger(player,npc)
  local  DespawnOtherCoffer=false;
  local  MimicID=0;
  
-  for coffer = 1,table.getn (ARMOURY_CRATES_LIST_APPOLLYON),2 do
+  for coffer = 1,#ARMOURY_CRATES_LIST_APPOLLYON,2 do
       if (ARMOURY_CRATES_LIST_APPOLLYON[coffer]== CofferID-16932864) then      
          CofferType=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][1];
          InstanceRegion=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][2];

@@ -78,7 +78,7 @@ function npcUtil.giveItem(player, items)
         items = {items}
     end
 
-    if (freeSlots < table.getn(items)) then
+    if (freeSlots < #items) then
 
         local msg = nil;
 
@@ -185,7 +185,7 @@ function npcUtil.tradeHas(trade, items, gil)
         end
 
         -- given different amount of items
-        if (trade:getItemCount() ~= table.getn(items)) then
+        if (trade:getItemCount() ~= #items) then
             return false;
         end
 

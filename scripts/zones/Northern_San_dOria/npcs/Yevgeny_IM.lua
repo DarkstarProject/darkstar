@@ -18,7 +18,7 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 2;      -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(BastInv);
+local size        = #BastInv;
 local inventory   = BastInv;
 
 -----------------------------------

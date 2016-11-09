@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 
 local Deposit = 0x0304;
 local Withdrawl = 0x0305;
-local ArraySize = table.getn(StorageArray);
+local ArraySize = #StorageArray;
 local G1 = 0;
 local G2 = 0;
 local G3 = 0;

@@ -14,7 +14,7 @@ require("scripts/globals/armor_upgrade");
 function onTrade(player,npc,trade)
     local armor = 0;
     if (trade:getItemCount() == 1) then
-        for n = 1,table.getn (LIMBUSARMOR),2 do
+        for n = 1,#LIMBUSARMOR,2 do
             if (trade:hasItemQty( LIMBUSARMOR[n] ,1) ) then
                 armor=LIMBUSARMOR[n+1][1];
             end
