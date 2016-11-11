@@ -36,6 +36,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/mobentity.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
+#include "../../utils/petutils.h"
 
 CMobController::CMobController(CMobEntity* PEntity) :
     CController(PEntity),
@@ -135,7 +136,7 @@ void CMobController::TryLink()
     {
         if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
         {
-            PTarget->PPet->PAI->Engage(PMob->id);
+			petutils::AttackTarget(PTarget, PMob);
         }
     }
 
@@ -500,6 +501,15 @@ void CMobController::DoCombatTick(time_point tick)
     float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
 
     luautils::OnMobFight(PMob, PTarget);
+
+	//Check for SMN pet and sets pet to auto attack
+	if (PTarget->PPet != nullptr && PTarget->PPet->GetBattleTargetID() == 0)
+	{
+		if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
+		{
+			petutils::AttackTarget(PTarget, PMob);
+		}
+	}
 
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
     if (IsSpecialSkillReady(currentDistance) && TrySpecialSkill())
@@ -978,11 +988,10 @@ bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
         return false;
     }
 
-    if (PMob->PMaster == nullptr && PMob->PAI->IsSpawned() && !PMob->PAI->IsEngaged() && CanDetectTarget(PTarget))
-    {
-        return true;
-    }
-
+	if (PMob->PMaster == nullptr && PMob->PAI->IsSpawned() && !PMob->PAI->IsEngaged() && CanDetectTarget(PTarget))
+	{
+		return true;
+	}
     return false;
 }
 

@@ -79,6 +79,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
+#include "../utils/petutils.h"
 
 namespace luautils
 {
@@ -1853,6 +1854,54 @@ namespace luautils
     {
         lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
 
+		CCharEntity* PChar = (CCharEntity*)PEntity;  
+		//if effect is chocobo, pets despawn and pet info saved
+		if (PStatusEffect->GetStatusID() == EFFECT_CHOCOBO) 
+		{
+			// if pet exists save pet info and despawn
+			if (PChar->PPet != nullptr)
+			{
+				CPetEntity* PPet = (CPetEntity*)PChar->PPet;
+
+				if (PPet->objtype == TYPE_MOB)
+				{
+					// uncharm a charmed mob
+					petutils::DespawnPet(PChar);
+				}
+				else if (PPet->objtype == TYPE_PET)
+				{
+					switch (PPet->getPetType())
+					{
+					case PETTYPE_JUG_PET:
+					case PETTYPE_AUTOMATON:
+					case PETTYPE_WYVERN:
+					case PETTYPE_AVATAR:
+						PChar->petZoningInfo.petHP = PPet->health.hp;
+						PChar->petZoningInfo.petTP = PPet->health.tp;
+						PChar->petZoningInfo.respawnPet = true;
+						PChar->petZoningInfo.petType = PPet->getPetType();
+						PChar->petZoningInfo.petID = PPet->m_PetID;
+						charutils::SaveCharStats(PChar);
+						petutils::DespawnPet(PChar);
+						break;
+
+					default:
+						break;
+					}
+				}
+			}
+			//On zone when gaining back EFFECT_CHOCOBO from prior zone
+			else
+			{
+				charutils::LoadCharPetStats(PChar);
+				if (PChar->petZoningInfo.petHP == 0) {
+					//reset pet info
+					PChar->resetPetZoningInfo();
+					charutils::SaveCharStats(PChar);
+				}
+			}
+		}
+
         if (prepFile(File, "onEffectGain"))
         {
             return -1;
@@ -1926,6 +1975,34 @@ namespace luautils
     {
         lua_prepscript("scripts/%s.lua", PStatusEffect->GetName());
 
+		CCharEntity* PChar = (CCharEntity*)PEntity;
+
+		if (PStatusEffect->GetStatusID() == EFFECT_CHOCOBO)
+		{
+			// respawn any pets needed since mounting chocobo
+			charutils::LoadCharPetStats(PChar);
+			if (PChar->petZoningInfo.petHP)
+			{
+				// only repawn pet in valid zones
+				if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
+				{
+					switch (PChar->petZoningInfo.petType)
+					{
+					case PETTYPE_AUTOMATON:
+					case PETTYPE_JUG_PET:
+					case PETTYPE_WYVERN:
+					case PETTYPE_AVATAR:
+						petutils::SpawnPet(PChar, PChar->petZoningInfo.petID, true);
+						break;
+
+					default:
+						break;
+					}
+					// reset the petZoning info
+					PChar->resetPetZoningInfo();
+				}
+			}
+		}
         if (prepFile(File, "onEffectLose"))
         {
             return -1;
