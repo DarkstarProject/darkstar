@@ -343,8 +343,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // respawn any pets from last zone
     if (PChar->petZoningInfo.respawnPet == true)
     {
-        // only repawn pet in valid zones and if not on chocobo
-        if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHOCOBO))
+        // only repawn pet in valid zones
+        if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
         {
             switch (PChar->petZoningInfo.petType)
             {
