@@ -4298,36 +4298,6 @@ namespace charutils
         return false;
     }
 
-	/************************************************************************
-	*                                                                       *
-	*     Load CharStats to get pet info for respawning after dismount      *
-	*                                                                       *
-	************************************************************************/
-
-	void LoadCharPetStats(CCharEntity* PChar)
-	{
-
-		const int8* fmtQuery = "SELECT nameflags, mjob, sjob, hp, mp, mhflag, title, bazaar_message, zoning, "
-			"pet_id, pet_type, pet_hp, pet_mp "
-			"FROM char_stats WHERE charid = %u;";
-		int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-		//uint8 zoning = Sql_GetUIntData(SqlHandle, 8);
-
-		if (ret != SQL_ERROR &&
-			Sql_NumRows(SqlHandle) != 0 &&
-			Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			int16 petHP = Sql_GetUIntData(SqlHandle, 11);
-			if (petHP) {
-				PChar->petZoningInfo.petHP = petHP;
-				PChar->petZoningInfo.petID = Sql_GetUIntData(SqlHandle, 9);
-				PChar->petZoningInfo.petMP = Sql_GetIntData(SqlHandle, 12);
-				PChar->petZoningInfo.petType = (PETTYPE)Sql_GetUIntData(SqlHandle, 10);
-				PChar->petZoningInfo.respawnPet = true;
-			}
-		}
-	}
-
     /************************************************************************
     *                                                                       *
     *                                                                       *
