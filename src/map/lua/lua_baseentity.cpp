@@ -6280,6 +6280,7 @@ inline int32 CLuaBaseEntity::despawnPet(lua_State *L)
     if (((CBattleEntity*)m_PBaseEntity)->PPet != nullptr)
     {
         petutils::DespawnPet((CBattleEntity*)m_PBaseEntity);
+		charutils::SaveCharStats((CCharEntity*)m_PBaseEntity);
     }
     return 0;
 }
