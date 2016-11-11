@@ -502,15 +502,6 @@ void CMobController::DoCombatTick(time_point tick)
 
     luautils::OnMobFight(PMob, PTarget);
 
-	//Check for SMN pet and sets pet to auto attack
-	if (PTarget->PPet != nullptr && PTarget->PPet->GetBattleTargetID() == 0)
-	{
-		if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
-		{
-			petutils::AttackTarget(PTarget, PMob);
-		}
-	}
-
     // Try to spellcast (this is done first so things like Chainspell spam is prioritised over TP moves etc.
     if (IsSpecialSkillReady(currentDistance) && TrySpecialSkill())
     {
