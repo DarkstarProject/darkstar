@@ -161,7 +161,7 @@ void CMobController::TryLink()
                 {
                     // force into attack action
                     //#TODO
-                    PPartyMember->PAI->Engage(PTarget->id);
+                    PPartyMember->PAI->Engage(PTarget->targid);
                 }
             }
         }
