@@ -423,7 +423,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
         float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
 
-        if (PCurrentMob->status == STATUS_MOB &&
+        if (PCurrentMob->status != STATUS_DISAPPEAR &&
             CurrentDistance < 50)
         {
             if (MOB == PChar->SpawnMOBList.end() ||

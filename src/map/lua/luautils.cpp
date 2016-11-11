@@ -386,10 +386,24 @@ namespace luautils
         if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
         {
             uint32 mobid = (uint32)lua_tointeger(L, -1);
+            CInstance* PInstance {nullptr};
+            CBaseEntity* PMob {nullptr};
 
-            CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
+            if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+            {
+                CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+                PInstance = PLuaInstance->GetInstance();
+            }
+            if (PInstance)
+            {
+                PInstance->GetEntity(mobid, TYPE_MOB | TYPE_PET);
+            }
+            else
+            {
+                PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
+            }
 
-            if (PMob == nullptr)
+            if (!PMob)
             {
                 ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
                 lua_pushnil(L);

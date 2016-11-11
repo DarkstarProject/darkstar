@@ -32,6 +32,7 @@ TheAshuTalif = {
 
     mobs = {
         -- The Black Coffin - Wave 1
+        GESSHO = 17022979,
         [1] = {
             ASHU_TALIF_CREW_1 = 17022980,
             ASHU_TALIF_CREW_2 = 17022981,
@@ -48,10 +49,6 @@ TheAshuTalif = {
             ASHU_TALIF_CREW_9 = 17022989,
         }
     },
-
-    npcs = {
-        GESSHO = 17022979,
-    }
 }
 
 return TheAshuTalif
