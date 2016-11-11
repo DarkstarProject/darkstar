@@ -152,6 +152,7 @@ namespace charutils
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.
+	void    LoadCharPetStats(CCharEntity* PChar);                       // For Loading Pet status  
 
     uint32  AddExpBonus(CCharEntity* PChar, uint32 exp);
 

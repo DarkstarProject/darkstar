@@ -343,8 +343,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // respawn any pets from last zone
     if (PChar->petZoningInfo.respawnPet == true)
     {
-        // only repawn pet in valid zones
-        if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
+        // only repawn pet in valid zones and if not on chocobo
+        if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHOCOBO))
         {
             switch (PChar->petZoningInfo.petType)
             {
@@ -436,6 +436,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->loc.zone->DecreaseZoneCounter(PChar);
     }
 
+	charutils::LoadCharPetStats(PChar);
     charutils::SaveCharStats(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());
     charutils::SaveCharPoints(PChar);
@@ -2629,7 +2630,7 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     // handle pets on zone
-    if (PChar->PPet != nullptr)
+    if (PChar->PPet != nullptr && !PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CHOCOBO))
     {
         CPetEntity* PPet = (CPetEntity*)PChar->PPet;
 
@@ -2645,17 +2646,18 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             case PETTYPE_JUG_PET:
             case PETTYPE_AUTOMATON:
             case PETTYPE_WYVERN:
+			case PETTYPE_AVATAR:
                 PChar->petZoningInfo.petHP = PPet->health.hp;
                 PChar->petZoningInfo.petTP = PPet->health.tp;
                 PChar->petZoningInfo.respawnPet = true;
                 PChar->petZoningInfo.petType = PPet->getPetType();
+				PChar->petZoningInfo.petID = PPet->m_PetID;
+				charutils::SaveCharStats(PChar);
                 petutils::DespawnPet(PChar);
                 break;
 
-            case PETTYPE_AVATAR:
-                petutils::DespawnPet(PChar);
-
             default:
+				petutils::DespawnPet(PChar);
                 break;
             }
         }
