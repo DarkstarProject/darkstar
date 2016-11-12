@@ -36,6 +36,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/mobentity.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
+#include "../../utils/petutils.h"
 
 CMobController::CMobController(CMobEntity* PEntity) :
     CController(PEntity),
@@ -135,7 +136,7 @@ void CMobController::TryLink()
     {
         if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
         {
-            PTarget->PPet->PAI->Engage(PMob->id);
+            petutils::AttackTarget(PTarget, PMob);
         }
     }
 
