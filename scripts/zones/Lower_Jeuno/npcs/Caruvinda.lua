@@ -14,7 +14,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 
 Deposit = 0x273e;
 Withdrawl = 0x273d;
-ArraySize = table.getn(StorageArray);
+ArraySize = #StorageArray;
 G1 = 0;
 G2 = 0;
 G3 = 0;

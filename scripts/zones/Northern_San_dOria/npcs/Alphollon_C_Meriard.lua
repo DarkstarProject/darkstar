@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
         item = 0;
         reward = 0;
 
-        for i = 1,table.getn(abjuList),5 do
+        for i = 1,#abjuList,5 do
             if (trade:hasItemQty(abjuList[i],1)) then
                 if (trade:hasItemQty(abjuList[i + 1],1)) then
                     item = abjuList[i + 1];

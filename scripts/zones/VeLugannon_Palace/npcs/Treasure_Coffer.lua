@@ -57,7 +57,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(MAP_OF_THE_VELUGANNON_PALACE);
                     player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_VELUGANNON_PALACE); -- Map of the Ve'Lugannon Palace (KI)
                 elseif (questItemNeeded == 2) then
-                    for nb = 1,table.getn(listAF),3 do
+                    for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
                             player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);

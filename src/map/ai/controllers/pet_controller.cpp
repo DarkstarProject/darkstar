@@ -48,7 +48,7 @@ void CPetController::Tick(time_point tick)
 
 void CPetController::DoRoamTick(time_point tick)
 {
-    if (PPet->PMaster == nullptr || PPet->PMaster->isDead()) {
+    if ((PPet->PMaster == nullptr || PPet->PMaster->isDead()) && PPet->isAlive()) {
         PPet->Die();
         return;
     }

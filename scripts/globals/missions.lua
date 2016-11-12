@@ -1081,7 +1081,7 @@ function finishMissionTimeline(player,guard,csid,option)
         if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
             if (option > 100) then
                 badoption = {101,1,102,2,104,4,110,10,111,11};
-                for op = 1, table.getn(badoption), 2 do
+                for op = 1, #badoption, 2 do
                     if (option == badoption[op]) then
                     timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
                 end
@@ -1195,9 +1195,9 @@ function finishMissionTimeline(player,guard,csid,option)
         end
     end
 
-    for cs = 1, table.getn(timeline), 6 do
+    for cs = 1, #timeline, 6 do
         if (csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
-            for nb = 1, table.getn(timeline[cs + 5]), 1 do
+            for nb = 1, #timeline[cs + 5], 1 do
                 messList = timeline[cs + 5][nb];
 
                 switch (messList[1]) : caseof {

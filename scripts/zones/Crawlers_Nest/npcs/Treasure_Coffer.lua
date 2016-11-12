@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
         if ((AFHandsActivated == 2 or AFHandsActivated == 9) and player:hasKeyItem(OLD_GAUNTLETS) == false) then 
             questItemNeeded = 1;
         else
-            for nb = 1,table.getn(listAF),3 do
+            for nb = 1,#listAF,3 do
                 if (player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
                     questItemNeeded = 2;
                     break
@@ -66,7 +66,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(OLD_GAUNTLETS);
                     player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
-                    for nb = 1,table.getn(listAF),3 do
+                    for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
                             player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);

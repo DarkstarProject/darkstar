@@ -37,7 +37,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.agi_wsc = 0.7 + (player:getMerit(MERIT_APEX_ARROW) / 100);
     end
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, wsID, params, tp, primary);
     return tpHits, extraHits, criticalHit, damage;
 
 end;
