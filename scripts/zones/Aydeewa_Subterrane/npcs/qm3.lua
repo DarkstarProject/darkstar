@@ -14,9 +14,10 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
     local mobID = 17056186;
-    if (trade:hasItemQty(2602,1) and trade:getItemCount() == 1) then -- Trade Spoilt Blood
+    if (trade:hasItemQty(1292,1) and trade:hasItemQty(1288,1) and trade:hasItemQty(1289,1) and trade:hasItemQty(1290,1) and trade:hasItemQty(1291,1) and trade:getItemCount() == 5) then -- Trade Spoilt Blood
         player:tradeComplete();
         SpawnMob(mobID):updateClaim(player);
+        player:PrintToServer("*** A terrible beast has been spawned in the land... ***", 0x1C);
     end
 end;
 

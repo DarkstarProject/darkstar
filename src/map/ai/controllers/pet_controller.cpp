@@ -49,11 +49,11 @@ void CPetController::Tick(time_point tick)
 void CPetController::DoRoamTick(time_point tick)
 {
     if (PPet->PMaster == nullptr || PPet->PMaster->isDead()) {
-    if ((PPet->PMaster == nullptr || PPet->PMaster->isDead()) && PPet->isAlive()) {
-        PPet->Die();
-        return;
-    }
-
+        if ((PPet->PMaster == nullptr || PPet->PMaster->isDead()) && PPet->isAlive()) {
+            PPet->Die();
+            return;
+        }
+}
     //automaton, wyvern
     if (PPet->getPetType() == PETTYPE_WYVERN || PPet->getPetType() == PETTYPE_AUTOMATON) {
         if (PetIsHealing()) {
