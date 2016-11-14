@@ -78,7 +78,7 @@ stock = {
         15194, 20000000, -- Maat's Cap
         28515, 7000000, -- Trux Earring
         28516, 7000000, -- Sanare Earring
-        28517, 7000000, -- Crematio Earring
+        -- 28517, 7000000, -- Crematio Earring
         28518, 7000000, -- Gelai Earring
         28519, 7000000, -- Tripudio Earring
         28578, 7000000, -- Patricius Ring
