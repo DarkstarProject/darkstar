@@ -2021,9 +2021,14 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
-            PSpell->getName());
+        auto scriptPath = "scripts/globals/spells";
 
+        if (PSpell->getSpellGroup() == SPELLGROUP_BLUE)
+            scriptPath = "scripts/globals/spells/bluemagic";
+        else if (PSpell->getSpellGroup() == SPELLGROUP_TRUST)
+            scriptPath = "scripts/globals/spells/trust";
+
+        lua_prepscript("%s/%s.lua", scriptPath, PSpell->getName());
         if (prepFile(File, "onSpellCast"))
         {
             return 0;
@@ -3023,10 +3028,18 @@ namespace luautils
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
+        auto scriptPath = "scripts/globals/spells";
+
+        if (PSpell->getSpellGroup() == SPELLGROUP_BLUE)
+            scriptPath = "scripts/globals/spells/bluemagic";
+        else if (PSpell->getSpellGroup() == SPELLGROUP_TRUST)
+            scriptPath = "scripts/globals/spells/trust";
+
+        lua_prepscript("%s/%s.lua", scriptPath, PSpell->getName());
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
+            //ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
             return 47;
         }
 
