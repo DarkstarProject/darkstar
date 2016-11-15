@@ -1750,17 +1750,22 @@ INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',176,359,1,255); -- Silencega
 INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',176,366,1,255); -- Graviga
 
 -- Carabosse
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV 
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,158,1,255); -- Aero V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,184,1,255); -- Aeroga III
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,208,1,255); -- Tornado
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,209,1,255); -- Tornado II
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,365,1,255); -- Breakga
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,47,1,255);  -- Protect V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,5,1,255);   -- Cure V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,52,1,255);  -- Shell V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,54,1,255);  -- Stoneskin
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,6,1,255);   -- Cure Vi
+-- Mob changes casting habits mid fight. Starts as whm/cure AI. Begins mode changes after Benediction.
+-- Also has rdm (enhancing), blm (nuking), and warrior (melee) "mode" that it switches to.
+-- (see MOBMOD_BUFF_CHANCE and its relatives, as well as the setSpellList function)
+-- Uncertain if actual full on job change, but DOES gain the traits (double attack, magic attack..)
+-- http://ffxiclopedia.wikia.com/wiki/Carabosse
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,5,1,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,6,1,255); -- Cure Vi
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,47,1,255); -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,52,1,255); -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,54,1,255); -- Stoneskin
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV 
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,158,1,255); -- Aero V
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,184,1,255); -- Aeroga III
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,208,1,255); -- Tornado
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,209,1,255); -- Tornado II
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,365,1,255); -- Breakga
 
 -- Irrlicht
 INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',178,180,1,255); -- Blizzaga II
@@ -1776,8 +1781,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,163,1,255); -- Stone V
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,191,1,255); -- Stonega III
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,210,1,255); -- Quake
 
--- Piasa
-INSERT INTO `mob_spell_lists` VALUES ('Piasa',181,102,1,255); -- Enaero
+-- Free ID to use: 181
 
 -- Poroggo_Dom_Juan
 INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',182,201,1,255); -- Waterga III
