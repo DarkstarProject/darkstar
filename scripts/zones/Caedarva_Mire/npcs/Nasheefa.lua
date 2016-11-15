@@ -30,7 +30,7 @@ end;
 function onTrigger(player,npc)
     
     if (player:getXPos() < -440) then
-        player:startEvent(0x00be);
+        player:startEvent(0x00b8);
     else
         player:startEvent(0x00b6);
     end
