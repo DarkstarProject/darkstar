@@ -958,7 +958,38 @@ function onTrigger(player)
     elseif(player:getMainJob() == 17) then -- COR
         local stock =
         {
-			-- AF1
+			-- Die's
+            5502,100, -- Allies' Die
+            5505,100, -- Avenger's Die
+            5486,100, -- Bard Die
+            5485,100, -- Beastmaster Die
+            5480,100, -- Black Mage Die
+            5500,100, -- Blitzer's Die
+            5492,100, -- Blue Mage Die
+            5497,100, -- Bolter's Die
+            5498,100, -- Caster's Die
+            5504,100, -- Companion's Die
+            5493,100, -- Corsair Die
+            5499,100, -- Courser's Die
+            5495,100, -- Dancer Die
+            5484,100, -- Dark Knight Die
+            5490,100, -- Dragoon Die
+            6368,100, -- Geomancer Die
+            5503,100, -- Miser's Die
+            5478,100, -- Monk Die
+            5489,100, -- Ninja Die
+            5483,100, -- Paladin Die
+            5494,100, -- Puppetmaster Die
+            5487,100, -- Ranger Die
+            5481,100, -- Red Mage Die
+            5488,100, -- Samurai Die
+            5496,100, -- Scholar Die
+            5491,100, -- Summoner Die
+            5501,100, -- Tactician's Die
+            5482,100, -- Thief Die
+            5477,100, -- Warrior Die
+            5479,100, -- White Mage Die
+            -- AF1
 			12004,35000, -- Corsair's Torque
 			18702,35000, -- Trump Gun
 			15266,45000, -- Corsair's Tricorne
