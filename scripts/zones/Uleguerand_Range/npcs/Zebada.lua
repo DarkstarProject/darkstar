@@ -34,7 +34,7 @@ function onTrigger(player,npc)
             -- Both Vanadiel time and unix timestamps are based on seconds. Add the difference to the event.
             player:startEvent(15, VanadielTime()+(ZephyrFanCD-os.time(t)));
         else
-            if (player:hasItem(1780)==true or player:hasItem(1779)==true) then -- Chamnaet Ice -- Cotton Pouch
+            if (player:hasItem(1780) or player:hasItem(1779)) then -- Chamnaet Ice -- Cotton Pouch
                 player:startEvent(16); 
             else
                 player:startEvent(14); 

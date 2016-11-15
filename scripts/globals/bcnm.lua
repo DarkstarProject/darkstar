@@ -398,7 +398,7 @@ function checkNonTradeBCNM(player, npc)
            if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then -- flames_for_the_dead
              mask = GetBattleBitmask(640, Zone, 1);
              player:setVar("trade_bcnmid", 640);
-	    elseif (player:hasKeyItem(ZEPHYR_FAN)==true) then -- Brothers ENM
+	    elseif (player:hasKeyItem(ZEPHYR_FAN)) then -- Brothers ENM
             mask = GetBattleBitmask(643, Zone, 1);
             player:setVar("trade_bcnmid", 643);		 
         end
