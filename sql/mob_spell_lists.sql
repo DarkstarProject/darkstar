@@ -1931,6 +1931,17 @@ INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,214,1,255); -- Flood
 INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,226,1,255); -- Poisonga II
 INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,356,1,255); -- Paralyga
 
+
+-- Mindertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,5,1,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,29,1,255); -- Banish II
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,112,1,255); -- Flash
+
+-- Eldertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,5,1,255); --  Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,46,1,255); -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,50,1,255); -- Shell III
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
