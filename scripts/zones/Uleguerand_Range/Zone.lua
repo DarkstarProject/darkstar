@@ -7,7 +7,7 @@ package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/global/weather");
+require("scripts/globals/weather");
 require("scripts/globals/zone");
 require("scripts/zones/Uleguerand_Range/TextIDs");
 require("scripts/globals/missions");
