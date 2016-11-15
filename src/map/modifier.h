@@ -629,6 +629,10 @@ enum MODIFIER
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
     MOD_AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
 
+    // Crafting food effects
+    MOD_SYNTH_SUCCESS             = 851, // Rate of synthesis success
+    MOD_SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
+
     // Weaponskill %damage modifiers
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)

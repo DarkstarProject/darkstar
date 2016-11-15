@@ -355,11 +355,26 @@ uint8 calcSynthResult(CCharEntity* PChar)
 				#endif
 			}
 
+			// Apply synthesis success rate modifier
+			int16 modSynthSuccess = PChar->getMod(MOD_SYNTH_SUCCESS);
+			success += (double)modSynthSuccess * 0.01;
+
             if(!canSynthesizeHQ(PChar,skillID))
             {
                 success += 0.01; //the crafting rings that block HQ synthesis all also increase their respective craft's success rate by 1%
                 canHQ = false; //assuming here that if a crafting ring is used matching a recipe's subsynth, overall HQ will still be blocked
             }
+
+			if (success > 0.99)
+			{
+				// Clamp success rate to 0.99
+				// Even if using kitron macaron, breaks can still happen
+				// https://www.bluegartr.com/threads/120352-CraftyMath
+				//   "I get a 99% success rate, so Kitron is doing something and it's not small."
+				// http://www.ffxiah.com/item/5781/kitron-macaron
+				//   "According to one of the Japanese wikis, it is said to decrease the minimum break rate from ~5% to 0.5%-2%."
+				success = 0.99;
+			}
 
 			double random = dsprand::GetRandomNumber(1.);
 			#ifdef _DSP_SYNTH_DEBUG_MESSAGES_
@@ -515,6 +530,11 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 		if (charSkill < maxSkill)
 		{
 			double skillUpChance = ((double)baseDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
+
+			// Apply synthesis skill gain rate modifier before synthesis fail modifier
+			int16 modSynthSkillGain = PChar->getMod(MOD_SYNTH_SKILL_GAIN);
+			skillUpChance += (double)modSynthSkillGain * 0.01;
+
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки
 
             double random = dsprand::GetRandomNumber(1.);

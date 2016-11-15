@@ -1338,6 +1338,10 @@ MOD_JUG_LEVEL_RANGE           = 564 -- Decreases the level range of spawned jug 
 MOD_FORCE_JUMP_CRIT           = 828 -- Critical hit rate bonus for jump and high jump
 MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 
+-- Crafting food effects
+MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
+MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
+
 MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 
 -- The entire mod list is in desperate need of kind of some organizing.
