@@ -909,7 +909,6 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
     if (POwner)
     {
         FaceTarget(targid);
-        luautils::OnMonsterSkillPrepare(POwner, wsid);
         return POwner->PAI->Internal_MobSkill(targid, wsid);
     }
 
