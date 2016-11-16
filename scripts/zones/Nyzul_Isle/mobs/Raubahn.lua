@@ -10,11 +10,15 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        mob:showText(mob,NyzulIsle.text.CARVE);
+    end);
+
     --[[ Todo:
-        1. missing reraise animations
-        2. logic for resist change is off (during test, 1st rr gained no resist..)
-        3. need a tracking var/thing on taking damage for the resist instead of that job check
-        4. find out why sometimes showText() is firing mutliple times and sometimes not at all..
+        1. Missing reraise animations
+        2. Logic for resist change is off (during test, 1st rr gained no resist..)
+        3. Need a tracking var/thing on taking damage for the resist instead of that job check
+        4. Find out why sometimes showText() is firing multiple times and sometimes not at all..
     ]]
 
     mob:addListener("DEATH", "RAUBAHN_DEATH", function(mob)
@@ -117,14 +121,6 @@ function onMobFight(mob,target)
         end
     end
     ]]
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    mob:showText(mob,NyzulIsle.text.CARVE);
 end;
 
 -----------------------------------

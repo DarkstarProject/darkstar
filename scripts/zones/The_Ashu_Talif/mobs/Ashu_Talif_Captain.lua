@@ -25,6 +25,18 @@ function onMobFight(mob, target)
         instance:complete();
     end
 
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        -- Vulcan Shot
+        if(skillId == 254) then
+            mob:showText(mob,TheAshuTalif.text.FOR_EPHRAMAD);
+            mob:timer(3000, function(mob)
+                mob:showText(mob,TheAshuTalif.text.TROUBLESOME_SQUABS);
+            end)
+        -- Circle Blade
+        elseif(skillId == 938) then
+            mob:showText(mob,TheAshuTalif.text.FOR_THE_BLACK_COFFIN);
+        end
+    end);
 end;
 
 -----------------------------------
@@ -57,23 +69,6 @@ function onMobRoam(mob)
         mob:setLocalVar("jump", 1);
     end
 
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    -- Vulcan Shot
-    if(skillId == 254) then
-        mob:showText(mob,TheAshuTalif.text.FOR_EPHRAMAD);
-        mob:timer(3000, function(mob)
-            mob:showText(mob,TheAshuTalif.text.TROUBLESOME_SQUABS);
-        end)
-    -- Circle Blade
-    elseif(skillId == 938) then
-        mob:showText(mob,TheAshuTalif.text.FOR_THE_BLACK_COFFIN);
-    end
 end;
 
 -----------------------------------

@@ -20,6 +20,18 @@ end
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        -- Red Lotus Blade
+        if (skillID == 973) then
+            mob:showText(mob,NO_HIDE_AWAY);
+        -- Spirits Within
+        elseif (skillID == 974) then
+            mob:showText(mob,YOUR_ANSWER);
+        -- Vorpal Blade
+        elseif (skillID == 975) then
+            mob:showText(mob,CANT_UNDERSTAND);
+        end
+    );
 end;
 
 -----------------------------------
@@ -37,23 +49,6 @@ function onMobRoam(mob)
         mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZoneID(), 12) + 0x1000000),0,1);
     else
         mob:setLocalVar("wait", wait+3);
-    end
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    -- Red Lotus Blade
-    if (skillId == 973) then
-        mob:showText(mob,NO_HIDE_AWAY);
-    -- Spirits Within
-    elseif (skillId == 974) then
-        mob:showText(mob,YOUR_ANSWER);
-    -- Vorpal Blade
-    elseif (skillId == 975) then
-        mob:showText(mob,CANT_UNDERSTAND);
     end
 end;
 

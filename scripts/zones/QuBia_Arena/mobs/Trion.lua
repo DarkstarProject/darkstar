@@ -21,6 +21,18 @@ end
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        -- Red Lotus Blade
+        if (skillID == 968) then
+            mob:showText(mob,RLB_PREPARE);
+        -- Flat Blade
+        elseif (skillID == 969) then
+            mob:showText(mob,FLAT_PREPARE);
+        -- Savage Blade
+        elseif (skillID == 970) then
+            mob:showText(mob,SAVAGE_PREPARE);
+        end
+    );
 end;
 
 -----------------------------------
@@ -38,23 +50,6 @@ function onMobRoam(mob)
         mob:addEnmity(GetMobByID(ready + bit.lshift(mob:getZoneID(), 12) + 0x1000000),0,1);
     else
         mob:setLocalVar("wait", wait+3);
-    end
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    -- Red Lotus Blade
-    if (skillId == 968) then
-        mob:showText(mob,RLB_PREPARE);
-    -- Flat Blade
-    elseif (skillId == 969) then
-        mob:showText(mob,FLAT_PREPARE);
-    -- Savage Blade
-    elseif (skillId == 970) then
-        mob:showText(mob,SAVAGE_PREPARE);
     end
 end;
 

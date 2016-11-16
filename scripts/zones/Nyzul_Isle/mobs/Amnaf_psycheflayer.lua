@@ -18,6 +18,9 @@ end;
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        mob:showText(mob,NyzulIsle.text.WHEEZE);
+    end);
 end;
 
 -----------------------------------
@@ -61,14 +64,6 @@ function onSpikesDamage(mob,target,damage)
     end
 end;
 ]]
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    mob:showText(mob,NyzulIsle.text.WHEEZE);
-end
 
 -----------------------------------
 -- onSpellPrecast

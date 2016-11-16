@@ -30,6 +30,13 @@ function onMobSpawn(mob)
 
     mob:setLocalVar("DespawnSignal",0);
     mob:setUnkillable(true);
+
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        -- Circle Blade
+        if (skillID == 38) then
+            mob:showText(mob,NyzulIsle.text.I_WILL_SINK_YOUR_CORPSES);
+        end
+    end);
 end;
 
 -----------------------------------
@@ -95,17 +102,6 @@ function onMobFight(mob,target)
             local instance = mob:getInstance();
             instance:setProgress(instance:getProgress() + 10);
         end
-    end
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    -- Circle Blade
-    if (skillId == 38) then
-        mob:showText(mob,NyzulIsle.text.I_WILL_SINK_YOUR_CORPSES);
     end
 end;
 
