@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/weather");
 require("scripts/globals/zone");
 require("scripts/zones/Uleguerand_Range/TextIDs");
 require("scripts/globals/missions");
@@ -76,5 +77,24 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 0x0011) then
         player:setVar("COP_louverance_story",2);
+    end
+end;
+
+-----------------------------------
+-- onZoneWeatherChange
+-----------------------------------
+
+function onZoneWeatherChange(weather)
+
+    local waterfall = GetNPCByID(16798112);
+
+    if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
+        if (waterfall:getAnimation() ~= 9) then
+            waterfall:setAnimation(9);
+        end
+    else
+        if (waterfall:getAnimation() ~= 8) then
+            waterfall:setAnimation(8);
+        end
     end
 end;
