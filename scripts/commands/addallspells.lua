@@ -56,7 +56,7 @@ local function AddAllSpells(player)
         if i == #ValidSpells then
             silent = false;
         end
-
+        print("fuq");
         player:addSpell(ValidSpells[i], silent, save);
     end
 end;
