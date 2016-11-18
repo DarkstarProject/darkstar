@@ -2660,11 +2660,16 @@ INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2099); -- Batter
 INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2100); -- Clobber - Targeted AoE physical damage
 INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2103); -- Granite Skin - Parry/Guard skill increase, cannot be dispelled
 
-INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,165); -- Skullbreaker
-INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,166); -- True Strike
+INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,165); -- Skullbreaker (Mission version uses skull
 INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,168); -- Hexa Strike
 INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,169); -- Black Halo
--- INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,3503); -- Justicebreaker
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,2140); -- Peacebreaker
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,168); -- Hexa Strike
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,169); -- Black Halo
+-- Confirmed on retail, each version of her uses a different "breaker" ws.
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,3503); -- Justicebreaker
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,168); -- Hexa Strike
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,169); -- Black Halo
 
 INSERT INTO `mob_skill_lists` VALUES ('Amnaf_blu',782,38); -- Circle Blade
 -- Flayer version of Amnaf uses standard soulflayer skills.

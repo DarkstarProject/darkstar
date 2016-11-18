@@ -36,9 +36,9 @@ function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         if (skillID == 165) then
             mob:showText(mob,NyzulIsle.text.CHA_CHING);
-        elseif (skillID == 166) then
+        elseif (skillID == 168) then
             mob:showText(mob,NyzulIsle.text.TWELVE_GOLD_COINS);
-        elseif (skillID == 167) then
+        elseif (skillID == 169) then
             mob:showText(mob,NyzulIsle.text.NINETY_NINE_SILVER_COINS);
         end
     end);
