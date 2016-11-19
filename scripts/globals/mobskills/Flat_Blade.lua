@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Flat Blade
 --
--- Description: Delivers a four-hit attack. Chance of critical varies with TP.
+-- Description: Stuns enemy. Chance of stunning varies with TP.
 -- Type: Physical
 -- Utsusemi/Blink absorb: Shadow per hit
 -- Range: Melee
@@ -25,13 +25,17 @@ function onMobWeaponSkill(target, mob, skill)
         target:showText(mob,FLAT_LAND);
     end
 
-    local numhits = 4;
+    local numhits = 1;
     local accmod = 1;
     local dmgmod = 1.25;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1.1,1.2,1.3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
     skill:setSkillchain(35);
+
+    if (math.random(1,100) < skill:getTP()/3) then
+        MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);
+    end
 
     -- AA EV: Approx 900 damage to 75 DRG/35 THF.  400 to a NIN/WAR in Arhat, but took shadows.
     target:delHP(dmg);
