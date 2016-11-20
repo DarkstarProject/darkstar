@@ -4,7 +4,7 @@ local homepoints = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,2
         26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,
         51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,
         76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,
-        101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116};
+        101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121};
 
 --paramNum bit x y z rotation zone cost
 homepoints[0]   = { 1,  1, -85.554,      1, -64.554,  45, 230,  500}; -- Southern San d'Oria #1
@@ -74,7 +74,7 @@ homepoints[63]  = { 2, 32,     305,    -42,    -427,   0, 130, 1000}; -- Ru'Aun 
 homepoints[64]  = { 3,  1,      -1,    -27,     107,   0,  26,  500}; -- Tavnazian Safehold #1     
 homepoints[65]  = { 3,  2,     -21,      0,     -21,   0,  50,  500}; -- Aht Urhgan Whitegate #1   
 homepoints[66]  = { 3,  3,     -20,      0,     -25,   0,  53,  500}; -- Nashmau #1                
--- homepoints[67]  = { 3,  4,       0,      0,       0,   0,  48,  500}; -- Al Zahbi #1    // Doesn't exist related to BG Wiki
+homepoints[67]  = { 3,  4,       0,      0,       0,   0,  48,  500}; -- Al Zahbi #1    // Doesn't exist related to BG Wiki
 homepoints[68]  = { 3,  5,     -85,      1,     -66,   0,  80,  500}; -- Southern San d'Oria [S] #1
 homepoints[69]  = { 3,  6,    -293,    -10,    -102,   0,  87,  500}; -- Bastok Markets [S] #1     
 homepoints[70]  = { 3,  7,     -32,     -5,     131,   0,  94,  500}; -- Windurst Waters [S] #1    
@@ -119,23 +119,30 @@ homepoints[108] = { 4, 13,     -99,      0,     -68,   0,  50,  500}; -- Aht Urh
 homepoints[109] = { 4, 14,      32,      0,    -164,  32, 256,  500}; -- Western Adoulin #2      
 homepoints[110] = { 4, 15,     -51,      0,     -96,  96, 257,  500}; -- Eastern Adoulin #2      
 homepoints[111] = { 4, 16,     223,    -13,    -254,   0, 137, 1000}; -- Xarcabard [S] #1
-homepoints[112] = { 4, 17,       5.539,      -0.434,       8.133,   73, 281, 1000}; -- Leafallia #1  // on your right when you enter.
-homepoints[113] = { 4, 18,       66,      -70,       -554,   128, 155, 1000}; -- *Castle Zvahl Keep [S] #1  // same location as in the present
-homepoints[114] = { 4, 19,       -65,     -17.5, 563,   224, 25, 1000}; -- Misareaux Coast #1 
-homepoints[115] = { 4, 20,       -212,     -21,  93,    64, 126, 500}; -- Qufim Island #1
--- homepoints[116]  = { 4,  21,       0,      0,       0,   0,  276,  1000}; -- Inner Ra'Kaznar #1    // next to the Sinister Reign NPC and Ra'Kaznar Turris
+homepoints[112] = { 4, 17,   5.539, -0.434,   8.133,  73, 281, 1000}; -- Leafallia #1  // on your right when you enter.
+homepoints[113] = { 4, 18,    -554,    -70,      66, 128, 155, 1000}; -- *Castle Zvahl Keep [S] #1  // same location as in the present
+homepoints[114] = { 4, 19,    -212,    -21,      93,  64, 126,  500}; -- Qufim Island #1
+homepoints[115] = { 4, 20,  -257.5,     24,      82, 192, 169,  500}; -- Toraimorai Canal #1
+homepoints[116] = { 4, 21,     757,    120,    17.5, 128, 276, 1000}; -- Ra'Kaznar Inner Court #1
+homepoints[117] = { 4, 22,     -65,  -17.5,     563, 224,  25, 1000}; -- Misareaux Coast #1
+homepoints[118] = { 4, 23,     -92,     -2,      54, 155, 238,  500}; -- Windurst Waters #4
+homepoints[119] = { 4, 24,   -43.5,      0,    -145,   0, 241,  500}; -- Windurst Woods #5
+homepoints[120] = { 4, 25,      14,  -9.96,      -5,   0,  26,  500}; -- Tavnazian Safehold #2
+homepoints[121] = { 4, 26,   73.59,  -36.149,  38.87,   0,  26,  500}; -- Tavnazian Safehold #3
 
 
-local freeHpTeleGroups = { 1, 2, 3, 4, 5, 6, 7, 8};
+
+local freeHpTeleGroups = { 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 freeHpTeleGroups[1] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 97, 98}; --San d'Oria
 freeHpTeleGroups[2] = { 9, 10, 11, 12 ,13, 14, 15, 16, 99, 100, 101, 102}; -- Bastok
-freeHpTeleGroups[3] = { 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ,27 ,28, 103}; -- Windurst
+freeHpTeleGroups[3] = { 17, 18, 19, 20, 21, 22, 23, 24, 25, 26 ,27 ,28, 103, 118, 119}; -- Windurst
 freeHpTeleGroups[4] = { 29, 30, 31, 32, 33, 34, 35, 36, 37, 38}; -- Jueno
 freeHpTeleGroups[5] = { 65, 106, 107, 108}; -- Aht Urghan
 freeHpTeleGroups[6] = { 44, 45, 109, 110}; -- Adoulin
 freeHpTeleGroups[7] = { 41, 104}; -- Norg
 freeHpTeleGroups[8] = { 42, 105}; -- Rabao
+freeHpTeleGroups[9] = { 64, 120, 121}; -- Tavnazian Safehold
 
 function homepointMenu( player, csid, hpIndex)
     
@@ -154,7 +161,7 @@ function homepointMenu( player, csid, hpIndex)
         local HpTeleportMask2 = bit.bor( bit.lshift( player:getVar("HpTeleportMask2a"), 16), player:getVar("HpTeleportMask2b"));
         local HpTeleportMask3 = bit.bor( bit.lshift( player:getVar("HpTeleportMask3a"), 16), player:getVar("HpTeleportMask3b"));
         local HpTeleportMask4 = bit.bor( bit.lshift( player:getVar("HpTeleportMask4a"), 16), player:getVar("HpTeleportMask4b"));
-
+		
         -- Register new homepoint?
         local newHp = 0;
         if ( homepoints[hpIndex][1] == 1) then
@@ -195,6 +202,7 @@ function homepointMenu( player, csid, hpIndex)
                 player:setVar("HpTeleportMask4a", bit.rshift( HpTeleportMask4, 16));
                 player:setVar("HpTeleportMask4b", bit.rshift( bit.lshift( HpTeleportMask4, 16), 16));
             end
+        elseif (  homepoints[hpIndex][1] == 5) then
         end
 
         player:startEvent( csid, 0, HpTeleportMask1, HpTeleportMask2, HpTeleportMask3, HpTeleportMask4, player:getGil(), 4095, hpIndex + newHp);
