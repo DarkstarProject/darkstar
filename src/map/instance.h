@@ -69,6 +69,11 @@ public:
     void Cancel();											// Sets instance to fail without calling onInstanceFailure
     bool CheckFirstEntry(uint32 id);                             // Checks if this is the first time a char is entering
 
+    uint8           GetSoloBattleMusic();
+    uint8           GetPartyBattleMusic();
+    uint8           GetBackgroundMusicDay();
+    uint8           GetBackgroundMusicNight();
+
     CInstance(CZone*, uint8 instanceid);
     ~CInstance();
 
@@ -88,6 +93,7 @@ private:
     uint32 m_progress {0};
     uint32 m_stage {0};
     position_t m_entryloc {};
+    zoneMusic_t m_zone_music_override {};
     INSTANCE_STATUS m_status {INSTANCE_NORMAL};
     std::vector<uint32> m_registeredChars;
     std::set<uint32> m_enteredChars;
