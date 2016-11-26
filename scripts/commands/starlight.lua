@@ -6,7 +6,7 @@
 
 cmdprops =
 {
-    permission = 0,
+    permission = 3, -- Modded 11/24 to prep for the event. 
     parameters = "iiii"
 };
 function onTrigger(player)
