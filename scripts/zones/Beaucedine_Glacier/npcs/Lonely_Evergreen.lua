@@ -1,43 +1,36 @@
 -----------------------------------
---  Area: Bastok Mines
---   NPC: Ranpi-Pappi
---  Type: Standard NPC
--- @zone 234
--- @pos -4.535 -1.044 49.881
---
--- Auto-Script: Requires Verification (Verified by Brando)
+--  Area: Beaucedine Glacier
+--  NPC:  Lonely Evergreen
 -----------------------------------
-
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
+package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
+-----------------------------------
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-	if trade:hasItemQty(15178,1) then -- HAT
+	if trade:hasItemQty(10382,1) then -- Mittens
 	-- Remove old item traded
 		for i = LOC_INVENTORY, LOC_WARDROBE4 do -- inventory locations enums
-			itemId = 15178 -- HAT
+			itemId = 10382 -- Mittens
             if (player:hasItem(itemId, i)) then
                 player:delItem(itemId, 1, i);
                 break;
             end
         end
 		-- END remove old item
-		itemId = 15179; -- HAT +1
+		itemId = 10383; -- Mittens +1
 		quantity = 1;
-		player:PrintToPlayer("Ranpi-Pappi : Whaa?", 0x1F);
-		player:PrintToPlayer("Ranpi-Pappi : Wow this hat is just like my great grandfather's...", 0x1F);
-		player:PrintToPlayer("Ranpi-Pappi : I think I have it here somewhere...", 0x1F);
-		player:PrintToPlayer("<Ranpi-Pappi hands you something>", 0xE);
+		player:PrintToPlayer("places the mittens on the tree...", 8);
+		player:PrintToPlayer("<The tree begins to glow....>", 0xE);
 		player:addItem(itemId, quantity);
-		player:PrintToPlayer("You obtained the Dream Hat +1.", 0xF);
-		player:PrintToPlayer("Ranpi-Pappi : Now we can match Adventurer! Show it off to your friends and Smile Helpers!", 0x1F);
+		player:PrintToPlayer("You obtained the Dream Mittens +1.", 0xF);
+		player:PrintToPlayer("<You sense a feeling to take the gloves back...>", 0xE);
+		player:PrintToPlayer("Maybe you should show the Smile Helper what happened...", 0xE);
 	else
-		player:PrintToPlayer("<Ranpi-Pappi sighs>", 0xE);
-		player:PrintToPlayer("(This must not be the item he's looking for...)", 0xF);
+		player:PrintToPlayer("<The tree farts>", 0xE);
+		player:PrintToPlayer("(Try again...)", 0xF);
 	end
 end;
 
@@ -46,7 +39,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x004d);
 end;
 
 -----------------------------------

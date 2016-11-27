@@ -15,6 +15,28 @@ package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
+	if trade:hasItemQty(18863,1) then -- DREAM BELL 
+	-- Remove old item traded
+		for i = LOC_INVENTORY, LOC_WARDROBE4 do -- inventory locations enums
+			itemId = 18863 -- DREAM BELL REMOVAL
+            if (player:hasItem(itemId, i)) then
+                player:delItem(itemId, 1, i);
+                break;
+            end
+        end
+		-- END remove old item
+		itemId = 18864; -- Dream Bell + 1
+		quantity = 1;
+		player:PrintToPlayer("Dancing Wolf : A bell for me?", 0x1F);
+		player:PrintToPlayer("Dancing Wolf : Here, I'll take yours but I want you to have mine.", 0x1F);
+		player:PrintToPlayer("Dancing Wolf : Show that to the Smile Helper, thank you so much adventurer!", 0x1F);
+		player:PrintToPlayer("<Dancing Wolf dances happily>", 0xE);
+		player:addItem(itemId, quantity);
+		player:PrintToPlayer("You obtained the Dream Bell +1.", 0xF);
+	else
+		player:PrintToPlayer("<Dancing Wolf sighs>", 0xE);
+		player:PrintToPlayer("(This must not be the item he's looking for...)", 0xF);
+	end
 end;
 
 -----------------------------------
