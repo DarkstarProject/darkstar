@@ -29,6 +29,26 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight(mob, target)
+    local bf = mob:getBattlefield();
+
+    if (mob:getHPP() <20) then
+        bf:win();
+        return;
+    -- THF's Maat additionally gives up if stolen from
+    elseif (target:getMainJob() == JOBS.THF and mob:getStealItem() == 0) then
+        -- Todo: move this to a listener for steal?
+        -- Steal JA is coded stupidly, getStealItem() is used to check itemID and itemStolen()
+        -- returns a bool yet is always set true instead of checking if mob even has an item right there..
+        bf:win();
+        return;
+    end
+end;
+
+-----------------------------------
 -- onMobDeath Action
 -----------------------------------
 
