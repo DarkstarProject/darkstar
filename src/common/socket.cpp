@@ -215,7 +215,6 @@ int32 makeConnection(uint32 ip, uint16 port, int32 type)
 	return fd;
 }
 
-//функци€, закрывающа€ сокет
 void do_close(int32 fd)
 {
 	sFD_CLR(fd, &readfds);// this needs to be done before closing the socket
@@ -313,7 +312,6 @@ int socket_getips(uint32* ips, int max)
 
 
 
-//»нициализаци€ основных настроек сокета 
 bool _vsocket_init(void)
 {
 #ifdef WIN32
@@ -369,7 +367,6 @@ bool _vsocket_init(void)
 	return true;
 }
 
-//завершение работы сокета
 bool _vsocket_final(void){
 	return true;
 }
@@ -1069,7 +1066,6 @@ void socket_final_tcp(void)
 		if(session[i])
 			do_close_tcp(i);
 
-	// session[0] ВћГ_Г~Б[ГfБ[Г^ВрНнПЬ
 	aFree(session[0]->rdata);
 	aFree(session[0]->wdata);
 	aFree(session[0]);

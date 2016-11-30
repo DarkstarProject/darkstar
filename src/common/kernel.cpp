@@ -92,7 +92,7 @@ sigfunc *compat_signal(int signo, sigfunc *func)
 
 /************************************************************************
 *                                                                       *
-*  CORE : Magical backtrace dump procedure (ﾉ◕‿◕)ﾉ*:･ﾟ✧                 *
+*  CORE : Magical backtrace dump procedure                              *
 *                                                                       *
 ************************************************************************/
 
