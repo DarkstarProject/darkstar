@@ -152,16 +152,12 @@ extern time_t stall_time;
 
 int32 makeConnection(uint32 ip, uint16 port, int32 type);
 
-// function interface, connection processing
 int32 do_sockets(fd_set* rfd,duration next);
 
-// function closes a socket
 void do_close(int32 fd);
 
-// Initialize the main socket settings
 bool socket_init(void);
 
-// socket work completion
 bool socket_final(void);
 
 // hostname/ip conversion functions
