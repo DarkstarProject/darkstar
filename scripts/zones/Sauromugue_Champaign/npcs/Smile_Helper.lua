@@ -69,7 +69,7 @@ local sex = "NO";
 		itemId = 15752; -- Dream Boots
 		quantity = 1;
 		player:PrintToPlayer("Smile Helper : Time for the second quest!", 0x1F);
-		player:PrintToPlayer("Smile Helper : There's a mithra tossing fish into the water.. she needs shoes!", 0x1F);
+		player:PrintToPlayer("Smile Helper : There's a mithra feeding fish near the water.. she needs shoes!", 0x1F);
 		player:addItem(itemId, quantity);
 		player:PrintToPlayer("You obtained the Dream Boots.", 0xF);
 		-- PART 3 Boots to HAT
@@ -88,6 +88,7 @@ local sex = "NO";
 		player:PrintToPlayer("Smile Helper : This reminds me of a story I heard a while ago...", 0x1F);
 		player:PrintToPlayer("Smile Helper : There was an elvaan named Claus. He had a hat like that...", 0x1F);
 		player:PrintToPlayer("Smile Helper : He was from the past, and liked to spend time near a magical tree in the glacier.", 0x1F);
+		player:PrintToPlayer("Smile Helper : Now the tree is alone..", 0x1F);
 		player:PrintToPlayer("Smile Helper : Its said if you hang some mittens on the tree it will enhance them. Go find it!", 0x1F);
 		player:addItem(itemId, quantity);
 		player:PrintToPlayer("You obtained the Dream Mittens.", 0xF);

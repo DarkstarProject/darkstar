@@ -52,7 +52,7 @@ function onZoneIn( player, prevZone)
         cs = 0x000b; 
     end
     -- temp fix for not triggering dyna properly. 
-    player:setVar( "Dynamis_Status", 1);
+    -- player:setVar( "Dynamis_Status", 1);
     return cs;
 end;
 
