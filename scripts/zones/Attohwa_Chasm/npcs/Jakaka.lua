@@ -30,7 +30,7 @@ end;
 function onTrigger(player,npc)
 
     local MiasmaFilterCD = player:getVar("[ENM]MiasmaFilter");
-    
+
     if (player:hasKeyItem(MIASMA_FILTER)) then
         player:startEvent(11);
     else
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
             player:startEvent(14, VanadielTime()+(MiasmaFilterCD-os.time(t)));
         else
             if (player:hasItem(1778)==true or player:hasItem(1777)==true) then -- Parradamo Stones, Flaxen Pouch
-                player:startEvent(15); 
+                player:startEvent(15);
             else
-                player:startEvent(13); 
+                player:startEvent(13);
             end;
         end;
     end;
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 12) then
         player:addKeyItem(MIASMA_FILTER);
         player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
-        player:setVar("[ENM]MiasmaFilter",os.time(t)+86400*MIASMA_FILTER_COOLDOWN); -- Current time + 1dayInSeconds*MIASMA_FILTER_COOLDOWN
+        player:setVar("[ENM]MiasmaFilter",os.time(t)+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
