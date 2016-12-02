@@ -57,8 +57,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     
     if (csid == 0x01b2) then
-        player:setVar("NoStringsAttachedProgress",1);
-        player:addQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
+        player:PrintToPlayer("I told you no pup. read the damn forums. Or login msg..")
+        --player:setVar("NoStringsAttachedProgress",1);
+        --player:addQuest(AHT_URHGAN,NO_STRINGS_ATTACHED);
     end;
 end;
 
