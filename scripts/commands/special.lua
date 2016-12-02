@@ -20,7 +20,7 @@ function onTrigger(player)
     elseif(player:getName() == "Belial") then -- Inkult
         local stock =
         {
-           26905, 1, --
+           27120, 1, --
         }
 		showShop(player, STATIC, stock);
     elseif(player:getName() == "Topace") then -- TOPACE

@@ -306,7 +306,7 @@ INSERT INTO `item_mods` VALUES (10323,114,10); -- Enfeebling magic skill+10
 INSERT INTO `item_mods` VALUES (10324,1,39); -- Leoht Gloves: DEF+39
 INSERT INTO `item_mods` VALUES (10324,11,10); -- AGI+10
 INSERT INTO `item_mods` VALUES (10324,24,15); -- Ranged Attack+15
-INSERT INTO `item_mods` VALUES (10324,108,5); -- Evasion+5
+INSERT INTO `item_mods` VALUES (10324,68,5); -- Evasion+5
 INSERT INTO `item_mods` VALUES (10324,289,4); -- Subtle Blow+4
 INSERT INTO `item_mods` VALUES (10325,1,22); -- Hieros Mittens: DEF+22
 INSERT INTO `item_mods` VALUES (10325,5,30); -- MP+30
@@ -487,7 +487,7 @@ INSERT INTO `item_mods` VALUES (10396,23,5); -- Attack+5
 INSERT INTO `item_mods` VALUES (10396,288,2); -- Double Attack+2%
 INSERT INTO `item_mods` VALUES (10397,25,8); -- Ishtar's Collar - Accuracy+8
 INSERT INTO `item_mods` VALUES (10397,23,8); -- Attack+8
-INSERT INTO `item_mods` VALUES (10397,108,5); -- Evasion+5
+INSERT INTO `item_mods` VALUES (10397,68,5); -- Evasion+5
 INSERT INTO `item_mods` VALUES (10398,5,25); -- Weike Torque - MP+25
 INSERT INTO `item_mods` VALUES (10398,13,2); -- MND+2
 INSERT INTO `item_mods` VALUES (10398,30,2); -- Magic Accuracy+2
@@ -28381,6 +28381,23 @@ INSERT INTO `item_mods` VALUES (27015,68,22);
 INSERT INTO `item_mods` VALUES (27015,112,15);
 INSERT INTO `item_mods` VALUES (27015,114,15);
 INSERT INTO `item_mods` VALUES (27015,384,51);
+INSERT INTO `item_mods` VALUES (27120,1,82); -- Amalric Gages +1: DEF+82
+INSERT INTO `item_mods` VALUES (27120,2,13); -- HP+13
+INSERT INTO `item_mods` VALUES (27120,5,26); -- MP+26
+INSERT INTO `item_mods` VALUES (27120,8,3); -- STR+3
+INSERT INTO `item_mods` VALUES (27120,9,23); -- DEX+23
+INSERT INTO `item_mods` VALUES (27120,10,20); -- VIT+20
+INSERT INTO `item_mods` VALUES (27120,11,2); -- AGI+2
+INSERT INTO `item_mods` VALUES (27120,12,24); -- INT+24
+INSERT INTO `item_mods` VALUES (27120,13,34); -- MND+34
+INSERT INTO `item_mods` VALUES (27120,14,19); -- CHR+19
+INSERT INTO `item_mods` VALUES (27120,68,19); -- Evasion+19
+INSERT INTO `item_mods` VALUES (27120,28,33); -- Magic Atk. Bonus+33
+INSERT INTO `item_mods` VALUES (27120,29,3); -- Magic Def. Bonus+3
+INSERT INTO `item_mods` VALUES (27120,115,14); -- Elemental magic skill+14
+INSERT INTO `item_mods` VALUES (27120,384,30); -- Haste+3%
+-- INSERT INTO `item_mods` VALUES (27120,0,6); -- Magic Burst Damage II+6
+INSERT INTO `item_mods` VALUES (27120,168,11); -- Spell interruption rate down 11%
 INSERT INTO `item_mods` VALUES (27044,1,143);
 INSERT INTO `item_mods` VALUES (27044,2,29);
 INSERT INTO `item_mods` VALUES (27044,8,10);
