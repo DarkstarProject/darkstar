@@ -742,19 +742,25 @@ inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     if (PChar->PTreasurePool != nullptr)
     {
-        PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PChar);
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            // The specified PEntity can be a Mob or NPC
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+            CBaseEntity* PEntity = PLuaBaseEntity->GetBaseEntity();
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PEntity);
+        }
+        else // Entity can be nullptr - this is intentional
+        {
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), nullptr);
+        }
     }
-    else
-    {
-        ShowError(CL_RED"Lua::addTreasure: Tried to add item to a treasure pool that was nullptr! \n" CL_RESET);
-    }
+
     return 0;
 }
 
@@ -4249,7 +4255,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
 
     uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint16 fame = (uint16)lua_tointeger(L, 2);
-    
+
     if (fameArea <= 15)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
