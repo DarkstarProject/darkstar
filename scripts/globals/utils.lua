@@ -44,6 +44,25 @@ function utils.stoneskin(target, dmg)
     return dmg;
 end;
 
+function utils.magicShield(target, dmg)
+    --handling magic_shield
+    if (dmg > 0) then
+        shield = target:getMod(MOD_MAGIC_SHIELD);
+        if (shield > 0) then
+            if (shield > dmg) then --absorb all damage
+                target:delMod(MOD_MAGIC_SHIELD,dmg);
+                return 0;
+            else --absorbs some damage then wear
+                target:delStatusEffect(EFFECT_MAGIC_SHIELD);
+                target:setMod(MOD_MAGIC_SHIELD, 0);
+                return dmg - shield;
+            end
+        end
+    end
+
+    return dmg;
+end;
+
 function utils.takeShadows(target, dmg, shadowbehav)
     if (shadowbehav == nil) then
         shadowbehav = 1;
