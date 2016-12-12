@@ -628,7 +628,8 @@ enum MODIFIER
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
     MOD_AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
-
+    MOD_MAGIC_SHIELD			  = 840, // Magical Stoneskin effect from rampart
+    
     // Crafting food effects
     MOD_SYNTH_SUCCESS             = 851, // Rate of synthesis success
     MOD_SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
@@ -644,7 +645,6 @@ enum MODIFIER
     // MOD_SPARE = 99, // stuff
     // MOD_SPARE = 100, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // MOD_SPARE = 840, // stuff
     // MOD_SPARE = 841, // stuff
     // MOD_SPARE = 842, // stuff
     // MOD_SPARE = 843, // stuff
