@@ -23,5 +23,8 @@ end;
 
 function onUseAbility(player,target,ability)
     local duration = 30 + player:getMod(MOD_RAMPART_DURATION);
-    target:addStatusEffect(EFFECT_MAGIC_SHIELD, 1, 0, duration);
+    local vit = player:getStat(MOD_VIT);
+	power = vit*2
+	
+	target:addStatusEffect(EFFECT_MAGIC_SHIELD, power, 0, duration);
 end;
