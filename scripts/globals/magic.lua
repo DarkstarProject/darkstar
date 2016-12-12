@@ -641,6 +641,17 @@ end;
             target:addTP(100);
         end
     end
+	
+	--handling magic shield
+    dmg = utils.magicShield(target, dmg);
+    dmg = utils.clamp(dmg, -99999, 99999);
+
+    if (dmg < 0) then
+        dmg = target:addHP(-dmg);
+    else
+        target:delHP(dmg);
+        target:updateEnmityFromDamage(caster,dmg);
+    end
 
     return dmg;
  end;
@@ -657,7 +668,6 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
     --handling stoneskin
     dmg = utils.stoneskin(target, dmg);
-
     dmg = utils.clamp(dmg, -99999, 99999);
 
     if (dmg < 0) then
@@ -665,6 +675,19 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     else
         target:delHP(dmg);
     end
+	
+
+    --handling magic shield
+    dmg = utils.magicShield(target, dmg);
+    dmg = utils.clamp(dmg, -99999, 99999);
+
+    if (dmg < 0) then
+        dmg = -(target:addHP(-dmg));
+    else
+        target:delHP(dmg);
+    end
+	
+	
     --Not updating enmity from damage, as this is primarily used for additional effects (which don't generate emnity)
     -- in the case that updating enmity is needed, do it manually after calling this
     --target:updateEnmityFromDamage(caster,dmg);
