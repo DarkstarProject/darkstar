@@ -2,6 +2,7 @@
 -- ID: 5704
 -- Item: Anglers Cassoulet
 -- Item Effect: Restores 60 HP over 1 hour,  / 3600 seconds.
+-- VIT -1, AGI +5, Ranged Accuracy +5
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -31,9 +32,9 @@ end;
 ----------------------------------------
 function onEffectGain(target,effect)
     target:addStatusEffect(EFFECT_REGEN,1,3,3600);
-    target:addMod(MOD_VIT, -1)
-    target:addMod(MOD_AGI, 5)
-    
+    target:addMod(MOD_VIT, -1);
+    target:addMod(MOD_AGI, 5);
+    target:addMod(MOD_RACC, 5);
 end
 -----------------------------------------
 -- onEffectLose Action
@@ -42,5 +43,5 @@ end
 function onEffectLose(target,effect)
     target:delMod(MOD_VIT, -1);
     target:delMod(MOD_AGI, 5);
-
+    target:delMod(MOD_RACC, 5);
 end;

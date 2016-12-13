@@ -5,7 +5,7 @@
 -----------------------------------------
 -- Dexterity -3
 -- Vitality 1
--- defense 10
+-- defense +10% (unknown cap)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -43,7 +43,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, -3);
     target:addMod(MOD_VIT, 1);
-    target:addMod(MOD_DEF, 10);
+    target:addMod(MOD_FOOD_DEFP, 10);
 end;
 
 -----------------------------------------
@@ -53,5 +53,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, -3);
     target:delMod(MOD_VIT, 1);
-    target:delMod(MOD_DEF, 10);
+    target:delMod(MOD_FOOD_DEFP, 10);
 end;

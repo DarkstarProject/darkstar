@@ -9,7 +9,7 @@
 -- Mind -1
 -- Accuracy % 15
 -- Ranged ACC % 15
--- Sleep Resist 5
+-- Sleep Resist 1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -44,8 +44,10 @@ function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 5);
     target:addMod(MOD_MND, -1);
     target:addMod(MOD_FOOD_ACCP, 15);
+    target:addMod(MOD_FOOD_ACC_CAP, 72);
     target:addMod(MOD_FOOD_RACCP, 15);
-    target:addMod(MOD_SLEEPRES, 5);
+    target:addMod(MOD_FOOD_RACC_CAP, 72);
+    target:addMod(MOD_SLEEPRES, 1);
 end;
 
 -----------------------------------------
@@ -58,6 +60,8 @@ function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 5);
     target:delMod(MOD_MND, -1);
     target:delMod(MOD_FOOD_ACCP, 15);
+    target:delMod(MOD_FOOD_ACC_CAP, 72);
     target:delMod(MOD_FOOD_RACCP, 15);
-    target:delMod(MOD_SLEEPRES, 5);
+    target:delMod(MOD_FOOD_RACC_CAP, 72);
+    target:delMod(MOD_SLEEPRES, 1);
 end;
