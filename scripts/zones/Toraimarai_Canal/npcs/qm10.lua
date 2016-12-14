@@ -2,8 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  ???
 -- Involved In Quest: Wild Card
--- @zone 169 // not accurate
--- @pos 220 16 -50 // not accurate
+-- @pos -95 16 -31 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
