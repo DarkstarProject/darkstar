@@ -20,23 +20,23 @@ end;
 
 function onTrigger(player,npc)
 
-    if (npc:getID() == 17248823) or (npc:getID() == 17248824) then
+    if (npc:getID() == 17248844) or (npc:getID() == 17248845) then
         player:messageSpecial(SIGN_1);
-    elseif (npc:getID() == 17248825) or (npc:getID() == 17248826) then
+    elseif (npc:getID() == 17248846) or (npc:getID() == 17248847) then
         player:messageSpecial(SIGN_3);
-    elseif (npc:getID() == 17248827) or (npc:getID() == 17248828) then
+    elseif (npc:getID() == 17248848) or (npc:getID() == 17248849) then
         player:messageSpecial(SIGN_5);
-    elseif (npc:getID() == 17248829) or (npc:getID() == 17248830) then
+    elseif (npc:getID() == 17248850) or (npc:getID() == 17248851) then
         player:messageSpecial(SIGN_7);
-    elseif (npc:getID() == 17248831) or (npc:getID() == 17248832) then
+    elseif (npc:getID() == 17248852) or (npc:getID() == 17248853) then
         player:messageSpecial(SIGN_9);
-    elseif (npc:getID() == 17248833) or (npc:getID() == 17248834) then
+    elseif (npc:getID() == 17248854) or (npc:getID() == 17248855) then
         player:messageSpecial(SIGN_11);
-    elseif (npc:getID() == 17248835) or (npc:getID() == 17248836) then
+    elseif (npc:getID() == 17248856) or (npc:getID() == 17248857) then
         player:messageSpecial(SIGN_13);
-    elseif (npc:getID() == 17248837) or (npc:getID() == 17248838) then
+    elseif (npc:getID() == 17248858) or (npc:getID() == 17248859) then
         player:messageSpecial(SIGN_15);
-    elseif (npc:getID() == 17248839) or (npc:getID() == 17248840) then
+    elseif (npc:getID() == 17248860) or (npc:getID() == 17248861) then
         player:messageSpecial(SIGN_17);
     end
 end;
