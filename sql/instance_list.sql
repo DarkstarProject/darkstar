@@ -31,10 +31,10 @@ CREATE TABLE `instance_list` (
   `start_y` float(7,3) NOT NULL DEFAULT '0.000',
   `start_z` float(7,3) NOT NULL DEFAULT '0.000',
   `start_rot` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `music_day` tinyint(3) NOT NULL DEFAULT '-1',
-  `music_night` tinyint(3) NOT NULL DEFAULT '-1',
-  `battlesolo` tinyint(3) NOT NULL DEFAULT '-1',
-  `battlemulti` tinyint(3) NOT NULL DEFAULT '-1',
+  `music_day` smallint(3) NOT NULL DEFAULT '-1',
+  `music_night` smallint(3) NOT NULL DEFAULT '-1',
+  `battlesolo` smallint(3) NOT NULL DEFAULT '-1',
+  `battlemulti` smallint(3) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`instanceid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

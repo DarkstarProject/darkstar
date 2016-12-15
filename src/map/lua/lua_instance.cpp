@@ -253,7 +253,7 @@ inline int32 CLuaInstance::getEntity(lua_State* L)
     uint16 targid = lua_tointeger(L, 1);
 
     uint8 filter = -1;
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
         filter = lua_tointeger(L, 2);
     }

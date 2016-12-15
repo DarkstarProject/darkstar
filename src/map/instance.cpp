@@ -287,20 +287,20 @@ bool CInstance::CheckFirstEntry(uint32 id)
 
 uint8 CInstance::GetSoloBattleMusic()
 {
-    return m_zone_music_override.m_bSongS != -1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
+    return m_zone_music_override.m_bSongS != (uint8)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
 }
 
 uint8 CInstance::GetPartyBattleMusic()
 {
-    return m_zone_music_override.m_bSongM != -1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
+    return m_zone_music_override.m_bSongM != (uint8)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
 }
 
 uint8 CInstance::GetBackgroundMusicDay()
 {
-    return m_zone_music_override.m_songDay != -1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
+    return m_zone_music_override.m_songDay != (uint8)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
 }
 
 uint8 CInstance::GetBackgroundMusicNight()
 {
-    return m_zone_music_override.m_songNight != -1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
+    return m_zone_music_override.m_songNight != (uint8)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
 }

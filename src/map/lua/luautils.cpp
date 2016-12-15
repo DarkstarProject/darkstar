@@ -383,9 +383,9 @@ namespace luautils
 
     int32 GetMobByID(lua_State* L)
     {
-        if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            uint32 mobid = (uint32)lua_tointeger(L, -1);
+            uint32 mobid = (uint32)lua_tointeger(L, 1);
             CInstance* PInstance {nullptr};
             CBaseEntity* PMob {nullptr};
 
@@ -396,7 +396,7 @@ namespace luautils
             }
             if (PInstance)
             {
-                PInstance->GetEntity(mobid, TYPE_MOB | TYPE_PET);
+                PInstance->GetEntity(mobid & 0xFFF, TYPE_MOB | TYPE_PET);
             }
             else
             {
