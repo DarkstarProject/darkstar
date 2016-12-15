@@ -619,7 +619,6 @@ end;
     end
 
     dmg = target:magicDmgTaken(dmg);
-	printf("fuck>: %u",dmg);
 	
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);
@@ -644,9 +643,7 @@ end;
     if (dmg < 0) then
         dmg = target:addHP(-dmg);
         spell:setMsg(7);
-		printf("dmg<0: %u",dmg);	
     else
-		printf("dmg>: %u",dmg);
         target:delHP(dmg);
         target:handleAfflatusMiseryDamage(dmg);
         target:updateEnmityFromDamage(caster,dmg);
@@ -676,10 +673,8 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 
     if (dmg < 0) then
         dmg = -(target:addHP(-dmg));
-		printf("dmgsec<: %u",dmg);
     else
         target:delHP(dmg);
-		printf("dmgdel: %u",dmg);
     end
 
     --handling stoneskin
