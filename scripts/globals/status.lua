@@ -1172,6 +1172,7 @@ MOD_REGEN_DOWN            = 404 -- poison
 MOD_REFRESH_DOWN          = 405 -- plague, reduce mp
 MOD_REGAIN_DOWN           = 406 -- plague, reduce tp
 MOD_MAGIC_DAMAGE          = 311 --  Magic damage added directly to the spell's base damage
+MOD_MAGIC_SHIELD          = 840 -- Added for Rampart
 
 -- Gear set modifiers
 MOD_DA_DOUBLE_DAMAGE         = 408 -- Double attack's double damage chance %.
@@ -1354,7 +1355,6 @@ MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
 -- MOD_SPARE = 99 -- stuff
 -- MOD_SPARE = 100 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 840 -- stuff
 -- MOD_SPARE = 841 -- stuff
 -- MOD_SPARE = 842 -- stuff
 -- MOD_SPARE = 843 -- stuff
