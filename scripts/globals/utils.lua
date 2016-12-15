@@ -45,7 +45,7 @@ function utils.stoneskin(target, dmg)
 end;
 
 function utils.magicShield(target, dmg)
-    --handling magic_shield
+    --handling magic shield
     if (dmg > 0) then
         shield = target:getMod(MOD_MAGIC_SHIELD);
         if (shield > 0) then
