@@ -1172,7 +1172,7 @@ MOD_REGEN_DOWN            = 404 -- poison
 MOD_REFRESH_DOWN          = 405 -- plague, reduce mp
 MOD_REGAIN_DOWN           = 406 -- plague, reduce tp
 MOD_MAGIC_DAMAGE          = 311 --  Magic damage added directly to the spell's base damage
-MOD_MAGIC_SHIELD		  = 840 -- Added for Rampart
+MOD_MAGIC_SHIELD          = 840 -- Added for Rampart
 
 -- Gear set modifiers
 MOD_DA_DOUBLE_DAMAGE         = 408 -- Double attack's double damage chance %.
