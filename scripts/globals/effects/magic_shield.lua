@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    if (effect:getPower() > 3) then
+    if (target:getObjType() == TYPE_PC) then
 		target:setMod(MOD_MAGIC_SHIELD, effect:getPower());
 		target:setVar("Rampart", 1);
 	elseif (effect:getPower() == 3) then -- arcane stomp
@@ -43,7 +43,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    if (effect:getPower() > 3) then
+    if (target:getObjType() == TYPE_PC) then
 		target:delMod(MOD_MAGIC_SHIELD, 0);
 		target:setVar("Rampart", 0);
     elseif (target:getVar("Rampart") == 0) then
