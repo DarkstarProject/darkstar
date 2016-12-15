@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -281,7 +281,7 @@ enum MODIFIER
     MOD_WARCRY_DURATION           = 483, // Warcy duration bonus from gear
 
     // Monk
-	MOD_BOOST_EFFECT              = 97,  // Boost power in tenths
+    MOD_BOOST_EFFECT              = 97,  // Boost power in tenths
     MOD_SUBTLE_BLOW               = 289, // How much TP to reduce.
     MOD_COUNTER                   = 291, // Percent chance to counter
     MOD_KICK_ATTACK               = 292, // Percent chance to kick
@@ -628,7 +628,7 @@ enum MODIFIER
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     MOD_EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
     MOD_AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
-    MOD_MAGIC_SHIELD			  = 840, // Magical Stoneskin effect from rampart
+    MOD_MAGIC_SHIELD              = 840, // Added for Rampart
     
     // Crafting food effects
     MOD_SYNTH_SUCCESS             = 851, // Rate of synthesis success
