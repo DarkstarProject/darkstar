@@ -365,10 +365,10 @@ function applyResistanceAddEffect(player,target,element,bonus)
     return getMagicResist(p);
 end;
 
-function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
-    -- resist everything if magic shield is active
-    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-        return 0;
+	function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
+		-- resist everything if magic shield is active
+		if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
+			return 0;
     end
 
     local magiceva = 0;
@@ -619,29 +619,13 @@ end;
     end
 
     dmg = target:magicDmgTaken(dmg);
-
+	printf("fuck>: %u",dmg);
+	
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);
         dmg = utils.clamp(dmg, 0, 99999);
     end
-
-    --handling stoneskin
-    dmg = utils.stoneskin(target, dmg);
-    dmg = utils.clamp(dmg, -99999, 99999);
-
-    if (dmg < 0) then
-        dmg = target:addHP(-dmg);
-        spell:setMsg(7);
-    else
-        target:delHP(dmg);
-        target:handleAfflatusMiseryDamage(dmg);
-        target:updateEnmityFromDamage(caster,dmg);
-        -- Only add TP if the target is a mob
-        if (target:getObjType() ~= TYPE_PC) then
-            target:addTP(100);
-        end
-    end
-	
+		
 	--handling magic shield
     dmg = utils.magicShield(target, dmg);
     dmg = utils.clamp(dmg, -99999, 99999);
@@ -652,6 +636,26 @@ end;
         target:delHP(dmg);
         target:updateEnmityFromDamage(caster,dmg);
     end
+
+    --handling stoneskin
+    dmg = utils.stoneskin(target, dmg);
+    dmg = utils.clamp(dmg, -99999, 99999);
+
+    if (dmg < 0) then
+        dmg = target:addHP(-dmg);
+        spell:setMsg(7);
+		printf("dmg<0: %u",dmg);	
+    else
+		printf("dmg>: %u",dmg);
+        target:delHP(dmg);
+        target:handleAfflatusMiseryDamage(dmg);
+        target:updateEnmityFromDamage(caster,dmg);
+        -- Only add TP if the target is a mob
+        if (target:getObjType() ~= TYPE_PC) then
+            target:addTP(100);
+        end
+    end
+
 
     return dmg;
  end;
@@ -665,20 +669,21 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
         dmg = dmg - target:getMod(MOD_PHALANX);
         dmg = utils.clamp(dmg, 0, 99999);
     end
-
-    --handling stoneskin
-    dmg = utils.stoneskin(target, dmg);
+	
+	    --handling magic shield
+    dmg = utils.magicShield(target, dmg);
     dmg = utils.clamp(dmg, -99999, 99999);
 
     if (dmg < 0) then
         dmg = -(target:addHP(-dmg));
+		printf("dmgsec<: %u",dmg);
     else
         target:delHP(dmg);
+		printf("dmgdel: %u",dmg);
     end
-	
 
-    --handling magic shield
-    dmg = utils.magicShield(target, dmg);
+    --handling stoneskin
+    dmg = utils.stoneskin(target, dmg);
     dmg = utils.clamp(dmg, -99999, 99999);
 
     if (dmg < 0) then
