@@ -365,13 +365,12 @@ function applyResistanceAddEffect(player,target,element,bonus)
     return getMagicResist(p);
 end;
 
-    function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
-        -- resist everything if magic shield is active
-        if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
-                return 0;
-            end
-        end
-
+function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
+    -- resist everything if magic shield is active
+    if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
+        return 0;
+    end
+    
     local magiceva = 0;
 
     if (bonusAcc == nil) then
