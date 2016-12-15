@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     if (effect:getPower() == 4) then
-        target:setMod(MOD_MAGIC_SHIELD, effect:getPower());
+        target:setMod(MOD_MAGIC_SHIELD, effect:getSubpower());
     elseif (effect:getPower() == 3) then -- arcane stomp
         target:addMod(MOD_FIRE_ABSORB, 100);
         target:addMod(MOD_EARTH_ABSORB, 100);
@@ -43,7 +43,7 @@ end;
 
 function onEffectLose(target,effect)
     if (effect:getPower()== 4) then
-        target:delMod(MOD_MAGIC_SHIELD, 0);
+        target:setMod(MOD_MAGIC_SHIELD, 0);
     elseif (effect:getPower() == 3) then -- arcane stomp
         target:delMod(MOD_FIRE_ABSORB, 100);
         target:delMod(MOD_EARTH_ABSORB, 100);
