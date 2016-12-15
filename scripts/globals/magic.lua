@@ -367,8 +367,7 @@ end;
 
 	function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
 		-- resist everything if magic shield is active
-		if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
-			if (target:getVar("rampart") == 0) then
+		if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
 				return 0;
 			end
 		end
