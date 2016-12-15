@@ -74,11 +74,6 @@ namespace luautils
 {
     extern struct lua_State* LuaHandle;
 
-    typedef struct {
-        bool functionFound;
-        int8* file;
-    } loadLuaFunctionResult_t;
-
     int32 init();
     int32 free();
     int32 garbageCollect(); // performs a full garbage collecting cycle
@@ -274,7 +269,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
-    loadLuaFunctionResult_t LoadFunctionFromLua(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function
+    bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 };
 
 #endif //- _LUAUTILS_H -

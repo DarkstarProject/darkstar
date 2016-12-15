@@ -1529,9 +1529,9 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
-        loadLuaFunctionResult_t loadResult = LoadFunctionFromLua(PChar, "onEventUpdate");
+        auto loadResult = LoadEventScript(PChar, "onEventUpdate");
 
-        if (!loadResult.functionFound)
+        if (!loadResult)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
             return -1;
@@ -1546,17 +1546,11 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventUpdate (%s): 0 returns expected, got %d\n", loadResult.file, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -1568,9 +1562,9 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
-        loadLuaFunctionResult_t loadResult = LoadFunctionFromLua(PChar, "onEventUpdate");
+        bool loadResult = LoadEventScript(PChar, "onEventUpdate");
 
-        if (!loadResult.functionFound)
+        if (!loadResult)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
             return -1;
@@ -1585,17 +1579,11 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventUpdate (%s): 0 returns expected, got %d\n", loadResult.file, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -1619,9 +1607,9 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventFinish");
 
-        loadLuaFunctionResult_t loadResult = LoadFunctionFromLua(PChar, "onEventFinish");
+        bool loadResult = LoadEventScript(PChar, "onEventFinish");
 
-        if (!loadResult.functionFound)
+        if (!loadResult)
         {
             ShowError("luautils::onEventFinish: undefined procedure onEventFinish\n");
             return -1;
@@ -1636,7 +1624,7 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventFinish %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
@@ -1647,11 +1635,6 @@ namespace luautils
             PChar->animation = ANIMATION_DEATH;
             PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_HOMEPOINT));
             PChar->updatemask |= UPDATE_HP;
-        }
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", loadResult.file, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -4548,62 +4531,21 @@ namespace luautils
     *   3) 3rd try: The zone script for the zone the player is in           *
     *                                                                       *
     ************************************************************************/
-    loadLuaFunctionResult_t LoadFunctionFromLua(CCharEntity* PChar, const char* functionName)
+    bool LoadEventScript(CCharEntity* PChar, const char* functionName)
     {
-        bool luaFileFound = false;
-        bool luaFunctionFound = false;
-
-        int8 luaFile[255];
-
-        // Reduce copy/paste lambda templates
-        auto searchLuaFileForFunction = [functionName, &luaFileFound, &luaFunctionFound, &luaFile]() {
-            luaFileFound = !(luaL_loadfile(LuaHandle, luaFile) || lua_pcall(LuaHandle, 0, 0, 0));
-
-            if(luaFileFound)
+        auto searchLuaFileForFunction = [&functionName](std::string filename)
+    	{
+            if(!(luaL_loadfile(LuaHandle, filename.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)))
             {
                 lua_getglobal(LuaHandle, functionName);
-                luaFunctionFound = !(lua_isnil(LuaHandle, -1));
+                return !(lua_isnil(LuaHandle, -1));
             }
+			return false;
         };
 
-        auto resetState = [&luaFile]() {
-            lua_pop(LuaHandle, 1);
-            memset(luaFile, 0, sizeof(luaFile));
-        };
-
-        // Try to find the handler in the current event target first
-        memset(luaFile, 0, sizeof(luaFile));
-        memcpy(luaFile, PChar->m_event.Script.c_str(), PChar->m_event.Script.length());
-        searchLuaFileForFunction();
-
-        // If it wasn't found and the player is in an instance, offer processing to the instance script first as a fallback.
-        if ((!luaFileFound || !luaFunctionFound) && PChar->PInstance && PChar->loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED)
-        {
-            resetState();
-            snprintf(luaFile, sizeof(luaFile), "scripts/zones/%s/instances/%s.lua", PChar->loc.zone->GetName(), PChar->PInstance->GetName());
-            searchLuaFileForFunction();
-        }
-
-        // If there was no instance, or no event handling in the instance, fall back to the zone file
-        if (!luaFileFound || !luaFunctionFound)
-        {
-            resetState();
-            snprintf(luaFile, sizeof(luaFile), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
-            searchLuaFileForFunction();
-        }
-
-        // Report Results
-        loadLuaFunctionResult_t result;
-
-        if (luaFunctionFound)
-        {
-            result = {true, luaFile};
-        }
-        else {
-            result = {false, luaFile};
-        }
-
-        return result;
+		return searchLuaFileForFunction(PChar->m_event.Script) ||
+			(PChar->PInstance && searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName())) ||
+			(searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua"));
     }
 
 }; // namespace luautils
