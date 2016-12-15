@@ -269,7 +269,7 @@ namespace luautils
     void pushFunc(int lua_func, int index)
     {
         lua_rawgeti(LuaHandle, LUA_REGISTRYINDEX, lua_func);
-        lua_insert(LuaHandle, -(index+1));
+        lua_insert(LuaHandle, -(index + 1));
     }
 
     void callFunc(int nargs)
@@ -4534,18 +4534,22 @@ namespace luautils
     bool LoadEventScript(CCharEntity* PChar, const char* functionName)
     {
         auto searchLuaFileForFunction = [&functionName](std::string filename)
-    	{
-            if(!(luaL_loadfile(LuaHandle, filename.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)))
+        {
+            if (!(luaL_loadfile(LuaHandle, filename.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)))
             {
                 lua_getglobal(LuaHandle, functionName);
-                return !(lua_isnil(LuaHandle, -1));
+                if (!(lua_isnil(LuaHandle, -1)))
+                {
+                    return true;
+                }
             }
-			return false;
+            lua_pop(LuaHandle, 1);
+            return false;
         };
 
-		return searchLuaFileForFunction(PChar->m_event.Script) ||
-			(PChar->PInstance && searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName())) ||
-			(searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua"));
+        return searchLuaFileForFunction(PChar->m_event.Script) ||
+            (PChar->PInstance && searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName())) ||
+            (searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua"));
     }
 
 }; // namespace luautils
