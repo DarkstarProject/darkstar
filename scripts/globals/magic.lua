@@ -365,12 +365,12 @@ function applyResistanceAddEffect(player,target,element,bonus)
     return getMagicResist(p);
 end;
 
-	function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
-		-- resist everything if magic shield is active
-		if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
-				return 0;
-			end
-		end
+    function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
+        -- resist everything if magic shield is active
+        if (target:getMod(MOD_MAGIC_SHIELD) <= 3) then
+                return 0;
+            end
+        end
 
     local magiceva = 0;
 
@@ -620,13 +620,13 @@ end;
     end
 
     dmg = target:magicDmgTaken(dmg);
-	
+    
     if (dmg > 0) then
         dmg = dmg - target:getMod(MOD_PHALANX);
         dmg = utils.clamp(dmg, 0, 99999);
     end
-		
-	--handling magic shield
+        
+    --handling magic shield
     dmg = utils.magicShield(target, dmg);
     dmg = utils.clamp(dmg, -99999, 99999);
 
@@ -667,8 +667,8 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
         dmg = dmg - target:getMod(MOD_PHALANX);
         dmg = utils.clamp(dmg, 0, 99999);
     end
-	
-	    --handling magic shield
+    
+        --handling magic shield
     dmg = utils.magicShield(target, dmg);
     dmg = utils.clamp(dmg, -99999, 99999);
 
@@ -687,8 +687,8 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
     else
         target:delHP(dmg);
     end
-	
-	
+    
+    
     --Not updating enmity from damage, as this is primarily used for additional effects (which don't generate emnity)
     -- in the case that updating enmity is needed, do it manually after calling this
     --target:updateEnmityFromDamage(caster,dmg);
