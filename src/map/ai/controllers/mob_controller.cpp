@@ -775,8 +775,14 @@ void CMobController::DoRoamTick(time_point tick)
                     // cast buff
                     CastSpell(PMob->SpellContainer->GetBuffSpell());
                 }
-                else if ((PMob->m_roamFlags & ROAMFLAG_AMBUSH))
+                else if ((PMob->m_roamFlags & ROAMFLAG_AMBUSH) && PMob->m_Aggro)
                 {
+                    // Workaround here until this logic is moved to scripts
+                    // Only applying to aggressive mobs
+                    // Not applying to non-aggresive mobs
+                    // Otherwise non-aggresive mobs get stuck spawned underground until server restart
+                    // For example, Alastor Antlion and Executioner Antlion are non-aggressive
+
                     //#TODO: #AIToScript move to scripts
                     // stay underground
                     PMob->HideName(true);
