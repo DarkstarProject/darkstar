@@ -1524,7 +1524,6 @@ namespace luautils
 
             if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
             {
-                ShowError("luautils::onEventUpdate %s\n", lua_tostring(LuaHandle, -1));
                 ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);
                 return -1;
@@ -1579,7 +1578,6 @@ namespace luautils
 
             if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
             {
-                ShowError("luautils::onEventUpdate %s\n", lua_tostring(LuaHandle, -1));
                 ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);
                 return -1;

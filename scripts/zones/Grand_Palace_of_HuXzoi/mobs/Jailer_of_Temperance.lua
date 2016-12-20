@@ -2,9 +2,8 @@
 -- Area: Grand Palace of Hu'Xzoi
 --  NM:  Jailer of Temperance
 -----------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
+require("scripts/globals/magic");
 
 -----------------------------------
 -- OnMobSpawn Action
@@ -105,13 +104,20 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
-function onMobDeath(mob, player, isKiller)
-    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time(t) + 900); -- 15 mins
-    DeterMob(mob:getID(), true);
 
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     -- Set PH back to normal, then set respawn time
     local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
-    SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
+    DeterMob(mob:getID(), true);
     DeterMob(PH, false);
+    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time(t) + 900); -- 15 mins
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
+    SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
 end;
