@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -59,7 +60,7 @@ end;
 function onMobDespawn(mob)
     -- Set Nidhogg's Window Open Time
     if (LandKingSystem_HQ ~= 1) then
-        local wait = 72 * 3600;
+        local wait = fafnir_timer[4];
         SetServerVariable("[POP]Nidhogg", os.time(t) + wait); -- 3 days
         if (LandKingSystem_HQ == 0) then -- Is time spawn only
             DeterMob(mob:getID(), true);
@@ -72,7 +73,7 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]Nidhogg", 0);
         DeterMob(Fafnir, false);
         UpdateNMSpawnPoint(Fafnir);
-        GetMobByID(Fafnir):setRespawnTime(math.random(75600,86400));
+        GetMobByID(Fafnir):setRespawnTime(math.random(fafnir_timer[2],fafnir_timer[2]+fafnir_timer[3]));
     end
 
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then

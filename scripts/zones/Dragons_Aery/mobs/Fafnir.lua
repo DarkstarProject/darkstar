@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -51,11 +52,11 @@ function onMobDespawn(mob)
 
         DeterMob(Nidhogg, false);
         UpdateNMSpawnPoint(Nidhogg);
-        GetMobByID(Nidhogg):setRespawnTime(math.random(75600,86400));
+        GetMobByID(Nidhogg):setRespawnTime(math.random(fafnir_timer[2],fafnir_timer[2]+fafnir_timer[3]));
     else
         if (LandKingSystem_NQ ~= 1) then
             UpdateNMSpawnPoint(Fafnir);
-            mob:setRespawnTime(math.random(75600,86400));
+            mob:setRespawnTime(math.random(fafnir_timer[2],fafnir_timer[2]+fafnir_timer[3]));
             SetServerVariable("[PH]Nidhogg", kills + 1);
         end
     end

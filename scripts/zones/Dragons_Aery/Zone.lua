@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/zone");
 require("scripts/zones/Dragons_Aery/TextIDs");
 
@@ -16,7 +17,7 @@ require("scripts/zones/Dragons_Aery/TextIDs");
 
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17408018, 900, 10800); -- Fafnir
+        SetRespawnTime(17408018, fafnir_timer[1], fafnir_timer[3]); -- Fafnir
     end
 end;
 

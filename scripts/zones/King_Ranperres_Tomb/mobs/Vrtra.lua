@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 
 local offsets = {1, 3, 5, 2, 4, 6};
@@ -36,12 +37,12 @@ function onMobFight(mob, target)
         twohourTime = math.random(4, 6);
         mob:setLocalVar("twohourTime", twohourTime);
     end
-    
+
     if (spawnTime == 0) then
         spawnTime = math.random(3, 5);
         mob:setLocalVar("spawnTime", spawnTime);
     end
-    
+
     if (mob:getBattleTime()/15 > twohourTime) then
         mob:useMobAbility(710);
         mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
@@ -82,9 +83,8 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    
     -- Set Vrtra's spawnpoint and respawn time (3-5 days)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(259200,432000));
-    
+    mob:setRespawnTime(math.random(vrtra_timer[2], vrtra_timer[3]));
+
 end;

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
 require("scripts/zones/Uleguerand_Range/TextIDs");
@@ -21,7 +22,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Jormungand
-    SetRespawnTime(16797969, 86400, 259200);
+    SetRespawnTime(16797969, jormungand_timer[1], jormungand_timer[2]);
 
 end;
 

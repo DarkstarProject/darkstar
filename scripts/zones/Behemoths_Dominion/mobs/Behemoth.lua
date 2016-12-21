@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -51,11 +52,11 @@ function onMobDespawn(mob)
 
         DeterMob(King_Behemoth, false);
         UpdateNMSpawnPoint(King_Behemoth);
-        GetMobByID(King_Behemoth):setRespawnTime(math.random(75600,86400));
+        GetMobByID(King_Behemoth):setRespawnTime(math.random(behemoth_timer[2],behemoth_timer[2]+behemoth_timer[3]));
     else
         if (LandKingSystem_NQ ~= 1) then
             UpdateNMSpawnPoint(Behemoth);
-            mob:setRespawnTime(math.random(75600,86400));
+            mob:setRespawnTime(math.random(behemoth_timer[2],behemoth_timer[2]+behemoth_timer[3]));
             SetServerVariable("[PH]King_Behemoth", kills + 1);
         end
     end

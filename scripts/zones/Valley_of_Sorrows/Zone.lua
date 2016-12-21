@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/zone");
 require("scripts/zones/Valley_of_Sorrows/TextIDs");
 
@@ -20,7 +21,7 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17301537, 900, 10800); -- Adamantoise
+        SetRespawnTime(17301537, adamantoise_timer[1], adamantoise_timer[3]); -- Adamantoise
     end
 end;
 

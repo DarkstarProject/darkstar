@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -40,7 +41,7 @@ function onMobDespawn(mob)
 
     -- Set Aspidochelone's Window Open Time
     if (LandKingSystem_HQ ~= 1) then
-        local wait = 72 * 3600;
+        local wait = adamantoise_timer[4];
         SetServerVariable("[POP]Aspidochelone", os.time(t) + wait); -- 3 days
         if (LandKingSystem_HQ == 0) then -- Is time spawn only
             DeterMob(mob:getID(), true);
@@ -53,7 +54,7 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]Aspidochelone", 0);
         DeterMob(Adamantoise, false);
         UpdateNMSpawnPoint(Adamantoise);
-        GetMobByID(Adamantoise):setRespawnTime(math.random(75600,86400));
+        GetMobByID(Adamantoise):setRespawnTime(math.random(adamantoise_timer[2],adamantoise_timer[2]+adamantoise_timer[3]));
     end
 
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
