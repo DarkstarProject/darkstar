@@ -15,10 +15,10 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17297490};
+    local manuals = {17297494};
     SetFieldManual(manuals);
 
-    local vwnpc = {17297497,17297498,17297499};
+    local vwnpc = {17297501,17297502,17297503};
     SetVoidwatchNPC(vwnpc);
 
     if (LandKingSystem_NQ ~= 1) then

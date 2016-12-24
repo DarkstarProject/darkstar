@@ -14,7 +14,7 @@ require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17163014,17163015,17163016};
+    local vwnpc = {17163018,17163019,17163020};
     SetVoidwatchNPC(vwnpc);
 end;
 

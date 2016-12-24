@@ -15,10 +15,10 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17277227,17277228};
+    local manuals = {17277231,17277232};
     SetFieldManual(manuals);
 
-    local vwnpc = {17277245,17277246,17277247};
+    local vwnpc = {17277249,17277250,17277251};
     SetVoidwatchNPC(vwnpc);
 
 end;

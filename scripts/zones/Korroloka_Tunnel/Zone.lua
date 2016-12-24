@@ -15,7 +15,7 @@ require("scripts/zones/Korroloka_Tunnel/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17486258,17486259,17486260,17486261};
+    local tomes = {17486262,17486263,17486264,17486265};
 
     SetGroundsTome(tomes);
     

@@ -60,10 +60,10 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17281653,17281654,17281655,17281656};
+    local manuals = {17281657,17281658,17281659,17281660};
     SetFieldManual(manuals);
 
-    local vwnpc = {17281663,17281664,17281665};
+    local vwnpc = {17281667,17281668,17281669};
     SetVoidwatchNPC(vwnpc);
 
     local Rose_Garden = 17281357;

@@ -17,7 +17,7 @@ require("scripts/zones/Selbina/TextIDs");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17793127);
+    SetExplorerMoogles(17793131);
 
 end;
 

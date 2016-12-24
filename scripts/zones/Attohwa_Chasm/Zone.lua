@@ -15,7 +15,7 @@ require("scripts/zones/Attohwa_Chasm/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {16806372,16806373,16806374};
+    local vwnpc = {16806376,16806377,16806378};
     SetVoidwatchNPC(vwnpc);
 
     -- Poison Flowers!

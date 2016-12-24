@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17772786};
+    local vwnpc = {17772790};
     SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1,-4,-2,40,4,3,50);

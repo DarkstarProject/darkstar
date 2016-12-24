@@ -18,8 +18,8 @@ function onInitialize(zone)
     -- Yagudo Avatar
     SetRespawnTime(17396134, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17396206);
-    UpdateTreasureSpawnPoint(17396207);
+    UpdateTreasureSpawnPoint(17396210);
+    UpdateTreasureSpawnPoint(17396211);
 end;
 
 -----------------------------------

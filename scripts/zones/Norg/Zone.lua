@@ -16,7 +16,7 @@ require("scripts/zones/Norg/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17809525,17809530};
+    local vwnpc = {17809529,17809534};
     SetVoidwatchNPC(vwnpc);
 end;
 

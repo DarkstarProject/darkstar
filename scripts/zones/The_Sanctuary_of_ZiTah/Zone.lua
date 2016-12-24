@@ -59,10 +59,10 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17273417,17273418};
+    local manuals = {17273421,17273422};
     SetFieldManual(manuals);
 
-    local vwnpc = {17273425,17273426,17273427};
+    local vwnpc = {17273429,17273430,17273431};
     SetVoidwatchNPC(vwnpc);
 
     local Noble_Mold = 17273278;

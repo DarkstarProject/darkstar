@@ -16,14 +16,14 @@ require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17649898,17649899,17649900};
+    local tomes = {17649902,17649903,17649904};
     
     SetGroundsTome(tomes);
 
     -- Mysticmaker Profblix
     SetRespawnTime(17649693, 900, 10800);
     
-    UpdateTreasureSpawnPoint(17649896);
+    UpdateTreasureSpawnPoint(17649900);
     
 end;
 

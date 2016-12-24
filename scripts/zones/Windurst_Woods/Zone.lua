@@ -16,7 +16,7 @@ require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17764598};
+    local vwnpc = {17764602};
     SetVoidwatchNPC(vwnpc);
 
     applyHalloweenNpcCostumes(zone:getID())

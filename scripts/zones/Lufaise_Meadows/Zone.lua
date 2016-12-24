@@ -17,7 +17,7 @@ require("scripts/globals/conquest");
 
 function onInitialize(zone)
 
-    local vwnpc = {16875906,16875907,16875908};
+    local vwnpc = {16875910,16875911,16875912};
     SetVoidwatchNPC(vwnpc);
 
     local Colorful_Leshy = 16875762;

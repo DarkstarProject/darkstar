@@ -15,7 +15,7 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17301591,17301592};
+    local manuals = {17301595,17301596};
 
     SetFieldManual(manuals);
 
