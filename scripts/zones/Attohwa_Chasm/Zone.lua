@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/zone");
 require("scripts/zones/Attohwa_Chasm/TextIDs");
 
@@ -51,7 +52,7 @@ function onInitialize(zone)
     zone:registerRegion(30, -385.349, 5, -173.973, 0,0,0);
 
     -- Tiamat
-    SetRespawnTime(16806227, 86400, 259200);
+    SetRespawnTime(16806227, tiamat_timer[1], tiamat_timer[2]);
 end;
 
 -----------------------------------

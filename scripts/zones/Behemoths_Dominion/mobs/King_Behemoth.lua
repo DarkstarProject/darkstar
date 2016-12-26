@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -63,7 +64,7 @@ end;
 function onMobDespawn(mob)
     -- Set King_Behemoth's Window Open Time
     if (LandKingSystem_HQ ~= 1) then
-        local wait = 72 * 3600;
+        local wait = behemoth_timer[4];
         SetServerVariable("[POP]King_Behemoth", os.time(t) + wait); -- 3 days
         if (LandKingSystem_HQ == 0) then -- Is time spawn only
             DeterMob(mob:getID(), true);
@@ -76,7 +77,7 @@ function onMobDespawn(mob)
         local Behemoth = mob:getID()-1;
         DeterMob(Behemoth, false);
         UpdateNMSpawnPoint(Behemoth);
-        GetMobByID(Behemoth):setRespawnTime(math.random(75600,86400));
+        GetMobByID(Behemoth):setRespawnTime(math.random(behemoth_timer[2],behemoth_timer[2]+behemoth_timer[3]));
     end
 
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then

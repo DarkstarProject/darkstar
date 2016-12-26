@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/zone");
 require("scripts/zones/Behemoths_Dominion/TextIDs");
 
@@ -22,7 +23,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17297440, 900, 10800); -- Behemoth
+        SetRespawnTime(17297440, behemoth_timer[1], behemoth_timer[3]); -- Behemoth
     end
 end;
 

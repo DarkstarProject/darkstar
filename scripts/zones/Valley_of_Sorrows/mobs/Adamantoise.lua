@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/timedspawns");
 require("scripts/globals/titles");
 require("scripts/globals/status");
 
@@ -51,11 +52,11 @@ function onMobDespawn(mob)
 
         DeterMob(Aspidochelone, false);
         UpdateNMSpawnPoint(Aspidochelone);
-        GetMobByID(Aspidochelone):setRespawnTime(math.random(75600,86400));
+        GetMobByID(Aspidochelone):setRespawnTime(math.random(adamantoise_timer[2],adamantoise_timer[2]+adamantoise_timer[3]));
     else
         if (LandKingSystem_NQ ~= 1) then
             UpdateNMSpawnPoint(Adamantoise);
-            mob:setRespawnTime(math.random(75600,86400));
+            mob:setRespawnTime(math.random(adamantoise_timer[2],adamantoise_timer[2]+adamantoise_timer[3]));
             SetServerVariable("[PH]Aspidochelone", kills + 1);
         end
     end
