@@ -16,7 +16,7 @@ require("scripts/globals/zone");
 
 function onInitialize(zone)
 
-    local tomes = {17563919,17563920,17563921};
+    local tomes = {17563923,17563924,17563925};
 
     SetGroundsTome(tomes);
 
@@ -25,7 +25,7 @@ function onInitialize(zone)
     zone:registerRegion(3, -258, -1, -26, -254, 1, -22); -- Black
     zone:registerRegion(4, -261, -3, 182, -257, -1, 186); -- Teleport at H-6
 
-    UpdateTreasureSpawnPoint(17563910);
+    UpdateTreasureSpawnPoint(17563914);
 
 end;
 

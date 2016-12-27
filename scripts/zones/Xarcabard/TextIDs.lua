@@ -17,9 +17,9 @@ NOTHING_OUT_OF_ORDINARY = 6411; -- There is nothing out of the ordinary here.
           BLOCKS_OF_ICE = 7714; -- You can hear blocks of ice moving from deep within the cave.
 
 -- Dynamis dialogs
-       YOU_CANNOT_ENTER_DYNAMIS = 7840; -- You cannot enter Dynamis
- PLAYERS_HAVE_NOT_REACHED_LEVEL = 7842; -- Players who have not reached levelare prohibited from entering Dynamis
- UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7853; -- There is an unusual arrangement of pebbles here.
+       YOU_CANNOT_ENTER_DYNAMIS = 7839; -- You cannot enter Dynamis
+ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7841; -- Players who have not reached levelare prohibited from entering Dynamis
+ UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7852; -- There is an unusual arrangement of pebbles here.
 
 -- conquest Base
 CONQUEST_BASE = 7058; -- Tallying conquest results...

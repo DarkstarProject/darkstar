@@ -56,10 +56,10 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17207865,17207866};
+    local manuals = {17207869,17207870};
     SetFieldManual(manuals);
 
-    local vwnpc = {17207926,17207927,17207928,17207932,17207933};
+    local vwnpc = {17207930,17207931,17207932,17207936,17207937};
     SetVoidwatchNPC(vwnpc);
 
     -- Ahtu

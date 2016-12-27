@@ -17,16 +17,16 @@ require("scripts/globals/weather");
 
 function onInitialize(zone)
 
-    local tomes = {17490321,17490322,17490323,17490324};
+    local tomes = {17490325,17490326,17490327,17490328};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17490315,17490316,17490317};
+    local vwnpc = {17490319,17490320,17490321};
     SetVoidwatchNPC(vwnpc);
 
     -- Guivre
     SetRespawnTime(17490234, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17490300);
+    UpdateTreasureSpawnPoint(17490304);
 
 end;
 

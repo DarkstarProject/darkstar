@@ -38,7 +38,7 @@ function onMobDespawn(mob)
     SetServerVariable("BastokFight8_1",mobsup - 1);
 
     if (GetServerVariable("BastokFight8_1") == 0) then
-        local npc = GetNPCByID(17629734); -- qm6
+        local npc = GetNPCByID(17629738); -- qm6
         npc:setStatus(0); -- Reappear
     end
 end;

@@ -63,7 +63,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {16793963,16793964,16793965};
+    local vwnpc = {16793967,16793968,16793969};
     SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1,481,-7,602,503,5,701);

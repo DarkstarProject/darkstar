@@ -8,9 +8,9 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7045; -- You can't fish here.
 
 -- Fields of Valor Texts
-REGIME_ACCEPTED = 10180; -- New training regime registered!
- DONT_SWAP_JOBS = 10181; -- your job will result in the cancellation of your current training regime.
-REGIME_CANCELED = 10182; -- Training regime canceled.
+REGIME_ACCEPTED = 10179; -- New training regime registered!
+ DONT_SWAP_JOBS = 10180; -- your job will result in the cancellation of your current training regime.
+REGIME_CANCELED = 10181; -- Training regime canceled.
 
 -- Conquest
 CONQUEST = 7450; -- You've earned conquest points!

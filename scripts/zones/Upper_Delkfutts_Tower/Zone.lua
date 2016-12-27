@@ -18,14 +18,14 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17424560,17424561,17424562};
+    local tomes = {17424564,17424565,17424566};
     
     SetGroundsTome(tomes);    
 
     zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower    
     zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum    
     
-    UpdateTreasureSpawnPoint(17424559);
+    UpdateTreasureSpawnPoint(17424563);
 
 end;        
 

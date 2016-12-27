@@ -16,16 +16,16 @@ require("scripts/zones/Ordelles_Caves/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17568200,17568201};
+    local tomes = {17568204,17568205};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17568194,17568195,17568196};
+    local vwnpc = {17568198,17568199,17568200};
     SetVoidwatchNPC(vwnpc);
 
     -- Morbolger
     SetRespawnTime(17568127, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17568188);
+    UpdateTreasureSpawnPoint(17568192);
 
 end;
 

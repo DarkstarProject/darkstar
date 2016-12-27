@@ -14,10 +14,10 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17760462};
+    local vwnpc = {17760466};
     SetVoidwatchNPC(vwnpc);
 
-    SetExplorerMoogles(17760446);
+    SetExplorerMoogles(17760450);
 
 end;
 

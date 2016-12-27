@@ -60,10 +60,10 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17265291,17265292,17265293};
+    local manuals = {17265295,17265296,17265297};
     SetFieldManual(manuals);
 
-    local vwnpc = {17265309,17265310,17265311};
+    local vwnpc = {17265313,17265314,17265315};
     SetVoidwatchNPC(vwnpc);
 
     -- Waraxe Beak
