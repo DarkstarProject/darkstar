@@ -17,9 +17,9 @@ CONQUEST = 7479; -- You've earned conquest points!
 NOTHING_OUT_OF_ORDINARY = 6579; -- There is nothing out of the ordinary here.
 
 -- Dynamis dialogs
-       YOU_CANNOT_ENTER_DYNAMIS = 7860; -- You cannot enter Dynamis
- PLAYERS_HAVE_NOT_REACHED_LEVEL = 7862; -- Players who have not reached levelare prohibited from entering Dynamis.
-UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7872; -- There is an unusual arrangement of branches here.
+       YOU_CANNOT_ENTER_DYNAMIS = 7859; -- You cannot enter Dynamis
+ PLAYERS_HAVE_NOT_REACHED_LEVEL = 7861; -- Players who have not reached levelare prohibited from entering Dynamis.
+UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7871; -- There is an unusual arrangement of branches here.
 
 -- conquest Base
 CONQUEST_BASE = 0;

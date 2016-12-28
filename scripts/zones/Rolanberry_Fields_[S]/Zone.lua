@@ -15,7 +15,7 @@ require("scripts/zones/Rolanberry_Fields_[S]/TextIDs");
 
 function onInitialize(zone)
 
-    local vwnpc = {17150832,17150833,17150834,17150838,17150839};
+    local vwnpc = {17150836,17150837,17150838,17150842,17150843};
     SetVoidwatchNPC(vwnpc);
 
 end;

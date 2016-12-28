@@ -124,10 +124,10 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17195678,17195679};
+    local manuals = {17195682,17195683};
     SetFieldManual(manuals);
 
-    local vwnpc = {17195686,17195687,17195688};
+    local vwnpc = {17195690,17195691,17195692};
     SetVoidwatchNPC(vwnpc);
 
     local fallenEgg = GetNPCByID(17195583);

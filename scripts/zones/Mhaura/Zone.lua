@@ -17,7 +17,7 @@ require("scripts/globals/missions");
 
 function onInitialize(zone)
 
-    SetExplorerMoogles(17797249);
+    SetExplorerMoogles(17797253);
 
 end;
 

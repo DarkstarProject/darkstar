@@ -20,11 +20,11 @@ SIGNPOST2 = 7355; -- Northeast: La Theine Plateau Southeast: Konschtat Highlands
 SIGNPOST1 = 7356; -- Northeast: La Theine Plateau Southeast: Konschtat Highlands Southwest: Selbina
 
 -- Other Dialog
-     AN_EMPTY_LIGHT_SWIRLS = 7745; -- An empty light swirls about the cave, eating away at the surroundings..
-   MONSTERS_KILLED_ADVENTURERS = 7821; -- Long ago, monsters killed many adventurers and merchants just off the coast here. If you find any vestige of the victims and return it to the sea, perhaps it would appease the spirits of the dead.
-              MYSTERIOUS_VOICE = 7847; -- You hear a mysterious, floating voice: Bring forth the
-      YOU_CANNOT_ENTER_DYNAMIS = 7859; -- You cannot enter Dynamis
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7861; -- Players who have not reached levelare prohibited from entering Dynamis.
+         AN_EMPTY_LIGHT_SWIRLS = 7744; -- An empty light swirls about the cave, eating away at the surroundings..
+   MONSTERS_KILLED_ADVENTURERS = 7820; -- Long ago, monsters killed many adventurers and merchants just off the coast here. If you find any vestige of the victims and return it to the sea, perhaps it would appease the spirits of the dead.
+              MYSTERIOUS_VOICE = 7846; -- You hear a mysterious, floating voice: Bring forth the
+      YOU_CANNOT_ENTER_DYNAMIS = 7858; -- You cannot enter Dynamis
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7860; -- Players who have not reached levelare prohibited from entering Dynamis.
 
 -- conquest Base
 CONQUEST_BASE = 7067; -- Tallying conquest results...

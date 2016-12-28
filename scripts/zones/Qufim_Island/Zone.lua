@@ -17,10 +17,10 @@ require("scripts/zones/Qufim_Island/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17293777,17293778};
+    local manuals = {17293781,17293782};
     SetFieldManual(manuals);
 
-    local vwnpc = {17293798,17293799,17293800};
+    local vwnpc = {17293802,17293803,17293804};
     SetVoidwatchNPC(vwnpc);
 
     SetRegionalConquestOverseers(zone:getRegionID())

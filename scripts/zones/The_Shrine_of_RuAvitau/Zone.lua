@@ -18,10 +18,10 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17506822,17506823,17506824,17506825,17506826,17506827,17506828};
+    local tomes = {17506826,17506827,17506828,17506829,17506830,17506831,17506832};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17506816,17506817,17506818};
+    local vwnpc = {17506820,17506821,17506822};
     SetVoidwatchNPC(vwnpc);
 
     -- MAP 1 ------------------------

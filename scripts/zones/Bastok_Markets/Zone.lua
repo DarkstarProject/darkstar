@@ -17,7 +17,7 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17739946,17739947,17739948};
+    local vwnpc = {17739950,17739951,17739952};
     SetVoidwatchNPC(vwnpc);
 
     applyHalloweenNpcCostumes(zone:getID())

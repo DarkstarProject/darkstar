@@ -16,7 +16,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {16982632};
+    local vwnpc = {16982636};
     SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1,57,-1,-70,62,1,-65); -- Sets Mark for "Got It All" Quest cutscene.

@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 
 function onMobSpawn(mob)
     -- Failsafe to make sure NPC is down when NM is up
-    local npc = GetNPCByID(17236306);
+    local npc = GetNPCByID(17236310);
     if (OldSchoolG2 == true) then
         npc:showNPC(1);
     end
@@ -26,7 +26,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    local npc = GetNPCByID(17236306);
+    local npc = GetNPCByID(17236310);
     if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(TRIANGULAR_FRIGICITE) == false) then
         player:messageSpecial(BLOCKS_OF_ICE);
     end

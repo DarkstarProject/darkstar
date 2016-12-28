@@ -15,7 +15,7 @@ require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
 
 function onInitialize(zone)
 
-    local vwnpc = {17449559,17449560,17449561};
+    local vwnpc = {17449563,17449564,17449565};
     SetVoidwatchNPC(vwnpc);
 
 end;

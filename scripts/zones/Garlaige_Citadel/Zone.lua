@@ -18,10 +18,10 @@ banishing_gates_base = 17596761; -- _5k0 (First banishing gate)
 
 function onInitialize(zone)
 
-    local tomes = {17596852,17596853,17596854};
+    local tomes = {17596856,17596857,17596858};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17596855,17596856,17596857};
+    local vwnpc = {17596859,17596860,17596861};
     SetVoidwatchNPC(vwnpc);
 
     -- Banishing Gate #1...
@@ -49,9 +49,9 @@ function onInitialize(zone)
     -- Serket
     SetRespawnTime(17596720, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17596808);
+    UpdateTreasureSpawnPoint(17596812);
 
-    UpdateTreasureSpawnPoint(17596809);
+    UpdateTreasureSpawnPoint(17596813);
 
 end;
 

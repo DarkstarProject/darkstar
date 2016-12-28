@@ -16,16 +16,16 @@ require("scripts/zones/VeLugannon_Palace/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17502702,17502703,17502704,17502705,
-                   17502706,17502707,17502708,17502709,
-                   17502710,17502711};
+    local tomes = {17502706,17502707,17502708,17502709,
+                   17502710,17502711,17502712,17502713,
+                   17502714,17502715};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17502696,17502697,17502698};
+    local vwnpc = {17502700,17502701,17502702};
     SetVoidwatchNPC(vwnpc);
 
 
-    UpdateTreasureSpawnPoint(17502695);
+    UpdateTreasureSpawnPoint(17502699);
 end;
 
 -----------------------------------

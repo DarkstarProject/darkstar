@@ -15,7 +15,7 @@ require("scripts/zones/Mount_Zhayolm/TextIDs");
 
 function onInitialize(zone)
 
-    local vwnpc = {17027615,17027616,17027617};
+    local vwnpc = {17027619,17027620,17027621};
     SetVoidwatchNPC(vwnpc);
 
    -- Cerberus

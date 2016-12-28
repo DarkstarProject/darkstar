@@ -25,8 +25,8 @@ function onInitialize(zone)
     zone:registerRegion(5,  340, 10,  100, 0,0,0); -- 17379802 The Afflictor
     zone:registerRegion(6,  380, 10,   60, 0,0,0); -- 17379803 The Afflictor
     
-    UpdateTreasureSpawnPoint(17379838);
-    UpdateTreasureSpawnPoint(17379839);
+    UpdateTreasureSpawnPoint(17379842);
+    UpdateTreasureSpawnPoint(17379843);
 
 end;
 

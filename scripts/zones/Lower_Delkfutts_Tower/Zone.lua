@@ -17,10 +17,10 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 
 function onInitialize(zone)
 
-    local tomes = {17531228,17531229,17531230};
+    local tomes = {17531232,17531233,17531234};
     SetGroundsTome(tomes);
 
-    local vwnpc = {17531222,17531223,17531224};
+    local vwnpc = {17531226,17531227,17531228};
     SetVoidwatchNPC(vwnpc);
 
     zone:registerRegion(1, 403, -34, 83, 409, -33, 89); -- Third Floor G-6 porter to Middle Delkfutt's Tower
