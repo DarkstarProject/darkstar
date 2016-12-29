@@ -1,13 +1,13 @@
 -----------------------------------
--- Area: Misareaux Coast
--- NPC:  HomePoint#1
--- @pos -65 -17.5 563 25
+-- Area: Tavnazian_Safehold
+-- NPC:  HomePoint#3
+-- @pos 73.59 -36.149 38.87 26
 -----------------------------------
 
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21fd, 117);
+    homepointMenu( player, 0x21fe, 121);
 end; 
 
 -----------------------------------
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 
-    if (csid == 0x21fd) then
+    if (csid == 0x21fe) then
 
         if (option == 1) then    
             player:setHomePoint();

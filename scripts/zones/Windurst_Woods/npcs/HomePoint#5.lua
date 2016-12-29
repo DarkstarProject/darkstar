@@ -1,13 +1,13 @@
 -----------------------------------
--- Area: Misareaux Coast
--- NPC:  HomePoint#1
--- @pos -65 -17.5 563 25
+-- Area: Windurst Woods
+-- NPC:  HomePoint#5
+-- @pos -43.5 0 -145 241
 -----------------------------------
 
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 
 require("scripts/globals/settings");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    homepointMenu( player, 0x21fd, 117);
+    homepointMenu( player, 0x2200, 119);
 end; 
 
 -----------------------------------
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 
-    if (csid == 0x21fd) then
+    if (csid == 0x2200) then
 
         if (option == 1) then    
             player:setHomePoint();
