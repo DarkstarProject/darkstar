@@ -4,7 +4,7 @@
 -- Food Effect: 4 Hrs, All Races
 -----------------------------------------
 -- TODO: Group Effect
--- HP +10%
+-- HP +10% (cap 200)
 -- MP +20
 -- Dexterity 4
 -- Agility 2
@@ -43,6 +43,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HPP, 10);
+    target:addMod(MOD_FOOD_HP_CAP, 200);
     target:addMod(MOD_MP, 20);
     target:addMod(MOD_DEX, 4);
     target:addMod(MOD_AGI, 2);
@@ -61,6 +62,7 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_HPP, 10);
+    target:delMod(MOD_FOOD_HP_CAP, 200);
     target:delMod(MOD_MP, 20);
     target:delMod(MOD_DEX, 4);
     target:delMod(MOD_AGI, 2);

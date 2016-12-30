@@ -5,6 +5,7 @@
 -----------------------------------------
 -- Strength 6
 -- Intelligence -8
+-- Demon Killer +2 (?)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -42,6 +43,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_STR, 6);
     target:addMod(MOD_INT, -8);
+    target:addMod(MOD_DEMON_KILLER,2);
 end;
 
 -----------------------------------------
@@ -51,4 +53,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_INT, -8);
+    target:delMod(MOD_DEMON_KILLER,2);
 end;
