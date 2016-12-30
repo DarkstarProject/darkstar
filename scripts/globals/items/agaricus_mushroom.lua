@@ -1,11 +1,10 @@
 -----------------------------------------
--- ID: 4484
--- Item: shall_shell
--- Food Effect: 5Min, Mithra only
+-- ID: 5680
+-- Item: agaricus mushroom
+-- Food Effect: 5 Min, All Races
 -----------------------------------------
--- Dexterity -5
--- Vitality 4
--- Defense % 16.4
+-- STR -4
+-- MND +2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -15,13 +14,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
-    if (target:getRace() ~= 7) then
-        result = 247;
-    elseif (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    local result = 0;
+    if (target:hasStatusEffect(EFFECT_FOOD) or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD)) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -29,7 +26,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,4484);
+    target:addStatusEffect(EFFECT_FOOD,0,0,300,5680);
 end;
 
 -----------------------------------
@@ -37,9 +34,8 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, -5);
-    target:addMod(MOD_VIT, 4);
-    target:addMod(MOD_FOOD_DEFP, 16.4);
+    target:addMod(MOD_STR, -4)
+    target:addMod(MOD_MND, 2)
 end;
 
 -----------------------------------------
@@ -47,7 +43,6 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_DEX, -5);
-    target:delMod(MOD_VIT, 4);
-    target:delMod(MOD_FOOD_DEFP, 16.4);
+    target:delMod(MOD_STR, -4)
+    target:delMod(MOD_MND, 2)
 end;
