@@ -840,6 +840,47 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
 //==========================================================//
 
+inline int32 CLuaBaseEntity::addUsedItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 SlotID = ERROR_SLOTID;
+
+    if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+    {
+        CItem* PItem = itemutils::GetItem(itemID);
+
+        if (PItem != nullptr)
+        {
+            if (PItem->isSubType(ITEM_CHARGED))
+            {
+                // Add charged item with use timer already on full cooldown
+                auto PUsable = static_cast<CItemUsable*>(PItem);
+                PUsable->setQuantity(1);
+                PUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
+                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PUsable, false);
+            }
+            else
+            {
+                ShowWarning(CL_YELLOW"addUsedItem: tried to setLastUseTime but itemID <%i> is not type ITEM_CHARGED\n" CL_RESET, itemID);
+            }
+        }
+        else
+        {
+            ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+        }
+    }
+    lua_pushboolean(L, (SlotID != ERROR_SLOTID));
+    return 1;
+}
+
+//==========================================================//
+
 inline int32 CLuaBaseEntity::addTempItem(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -11003,6 +11044,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addUsedItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
