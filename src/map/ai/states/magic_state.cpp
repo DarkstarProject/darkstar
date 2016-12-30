@@ -182,7 +182,7 @@ bool CMagicState::CanCastSpell(CBattleEntity* PTarget)
     {
         return false;
     }
-    if (distance(m_PEntity->loc.p, PTarget->loc.p) > 40)
+    if (distance(m_PEntity->loc.p, PTarget->loc.p) > 27)
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, m_PSpell->getID(), 0, MSGBASIC_TOO_FAR_AWAY);
         return false;
