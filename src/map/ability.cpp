@@ -149,7 +149,7 @@ duration CAbility::getCastTime()
 
 void CAbility::setRecastTime(uint16 recastTime)
 {
-    m_recastTime = recastTime;
+    m_recastTime = recastTime * map_config.ability_recast_multiplier;
 }
 
 uint16 CAbility::getRecastTime()
