@@ -9,7 +9,7 @@
 -- Agility 3
 -- Vitality -1
 -- Charisma -5
--- Defense % 9
+-- Defense % 9 (cap 100)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -45,7 +45,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 3);
     target:addMod(MOD_VIT, -1);
     target:addMod(MOD_CHR, -5);
-    target:addMod(MOD_DEFP, 9);
+    target:addMod(MOD_FOOD_DEFP, 9);
+    target:addMod(MOD_FOOD_DEF_CAP, 100);
 end;
 
 -----------------------------------------
@@ -59,5 +60,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 3);
     target:delMod(MOD_VIT, -1);
     target:delMod(MOD_CHR, -5);
-    target:delMod(MOD_DEFP, 9);
+    target:delMod(MOD_FOOD_DEFP, 9);
+    target:delMod(MOD_FOOD_DEF_CAP, 100);
 end;

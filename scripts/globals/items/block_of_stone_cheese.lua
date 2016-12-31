@@ -3,8 +3,7 @@
 -- Item: Block of Stone Cheese
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- Health % 5.5
--- Health Cap 40
+-- Health +6% (cap 40)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -34,7 +33,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 5.5);
+    target:addMod(MOD_FOOD_HPP, 6);
     target:addMod(MOD_FOOD_HP_CAP, 40);
 end;
 
@@ -43,6 +42,6 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_HPP, 5.5);
+    target:delMod(MOD_FOOD_HPP, 6);
     target:delMod(MOD_FOOD_HP_CAP, 40);
 end;

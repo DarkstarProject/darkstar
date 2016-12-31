@@ -7,6 +7,7 @@
 -- Strength 7
 -- Intelligence -3
 -- Health Regen While Healing 2
+-- MP recovered while healing +2
 -- Attack % 20
 -- Attack Cap 150
 -- Ranged ATT % 20
@@ -45,6 +46,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_STR, 7);
     target:addMod(MOD_INT, -3);
     target:addMod(MOD_HPHEAL, 2);
+    target:addMod(MOD_MPHEAL, 2);
     target:addMod(MOD_FOOD_ATTP, 20);
     target:addMod(MOD_FOOD_ATT_CAP, 150);
     target:addMod(MOD_FOOD_RATTP, 20);
@@ -61,6 +63,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_STR, 7);
     target:delMod(MOD_INT, -3);
     target:delMod(MOD_HPHEAL, 2);
+    target:delMod(MOD_MPHEAL, 2);
     target:delMod(MOD_FOOD_ATTP, 20);
     target:delMod(MOD_FOOD_ATT_CAP, 150);
     target:delMod(MOD_FOOD_RATTP, 20);

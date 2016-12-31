@@ -12,7 +12,7 @@
 -- HP Regeneration While Healing 2
 -- MP Regeneration While Healing 2
 -- Accuracy 5
--- Resist Paralyze
+-- Resist Paralyze +4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -53,7 +53,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 2);
     target:addMod(MOD_MPHEAL, 2);
     target:addMod(MOD_ACC, 5);
-    target:addMod(MOD_PARALYZERES, 5);
+    target:addMod(MOD_PARALYZERES, 4);
 end;
 
 -----------------------------------------
@@ -72,5 +72,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 2);
     target:delMod(MOD_MPHEAL, 2);
     target:delMod(MOD_ACC, 5);
-    target:delMod(MOD_PARALYZERES, 5);
+    target:delMod(MOD_PARALYZERES, 4);
 end;

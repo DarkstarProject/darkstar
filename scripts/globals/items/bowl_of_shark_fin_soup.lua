@@ -3,13 +3,12 @@
 -- Item: bowl_of_shark_fin_soup
 -- Food Effect: 3Hrs, All Races
 -----------------------------------------
--- HP % 5
+-- HP % 5 (cap 150)
 -- MP 5
 -- Dexterity 4
--- Mind -4
 -- HP Recovered While Healing 9
--- Attack % 14 (cap 60)
--- Ranged Attack % 14 (cap 60)
+-- Attack % 14 (cap 85)
+-- Ranged Attack % 14 (cap 85)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -40,14 +39,14 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HPP, 5);
-    target:addMod(MOD_FOOD_HP_CAP, 999);
+    target:addMod(MOD_FOOD_HP_CAP, 150);
     target:addMod(MOD_DEX, 4);
-    target:addMod(MOD_MND, -4);
+    target:addMod(MOD_MP, 5);
     target:addMod(MOD_HPHEAL, 9);
     target:addMod(MOD_FOOD_ATTP, 14);
-    target:addMod(MOD_FOOD_ATT_CAP, 60);
+    target:addMod(MOD_FOOD_ATT_CAP, 85);
     target:addMod(MOD_FOOD_RATTP, 14);
-    target:addMod(MOD_FOOD_RATT_CAP, 60);
+    target:addMod(MOD_FOOD_RATT_CAP, 85);
 end;
 
 -----------------------------------------
@@ -56,12 +55,12 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_HPP, 5);
-    target:delMod(MOD_FOOD_HP_CAP, 999);
+    target:delMod(MOD_FOOD_HP_CAP, 150);
     target:delMod(MOD_DEX, 4);
-    target:delMod(MOD_MND, -4);
+    target:delMod(MOD_MP, 5);
     target:delMod(MOD_HPHEAL, 9);
     target:delMod(MOD_FOOD_ATTP, 14);
-    target:delMod(MOD_FOOD_ATT_CAP, 60);
+    target:delMod(MOD_FOOD_ATT_CAP, 85);
     target:delMod(MOD_FOOD_RATTP, 14);
-    target:delMod(MOD_FOOD_RATT_CAP, 60);
+    target:delMod(MOD_FOOD_RATT_CAP, 85);
 end;

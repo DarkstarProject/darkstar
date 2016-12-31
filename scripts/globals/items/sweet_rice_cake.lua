@@ -10,7 +10,7 @@
 -- HP Recovered While Healing 2
 -- MP Recovered While Healing 2
 -- Evasion 5
--- Resist Silence 5
+-- Resist Silence 4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -47,7 +47,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 2);
     target:addMod(MOD_MPHEAL, 2);
     target:addMod(MOD_EVA, 5);
-    target:addMod(MOD_SILENCERES, 5);
+    target:addMod(MOD_SILENCERES, 4);
 end;
 
 -----------------------------------------
@@ -62,5 +62,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 2);
     target:delMod(MOD_MPHEAL, 2);
     target:delMod(MOD_EVA, 5);
-    target:delMod(MOD_SILENCERES, 5);
+    target:delMod(MOD_SILENCERES, 4);
 end;

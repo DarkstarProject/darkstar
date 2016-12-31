@@ -5,7 +5,8 @@
 -----------------------------------------
 -- Mind 10
 -- Charisma -5
--- Dark Resist 10
+-- Poison Resist 4
+-- Blind Resist 4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -37,7 +38,8 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_MND, 10);
     target:addMod(MOD_CHR, -5);
-    target:addMod(MOD_DARKRES, 10);
+    target:addMod(MOD_POISONRES, 4);
+    target:addMod(MOD_BLINDRES, 4);
 end;
 
 -----------------------------------------
@@ -47,5 +49,6 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_MND, 10);
     target:delMod(MOD_CHR, -5);
-    target:delMod(MOD_DARKRES, 10);
+    target:delMod(MOD_POISONRES, 4);
+    target:delMod(MOD_BLINDRES, 4);
 end;

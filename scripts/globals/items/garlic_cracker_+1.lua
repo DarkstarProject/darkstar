@@ -3,9 +3,9 @@
 -- Item: garlic_cracker_+1
 -- Food Effect: 5Min, All Races
 -----------------------------------------
--- Magic Regen While Healing 8
--- Undead Killer 5
--- Blind Resist 5
+-- HP recovered while healing +8
+-- Undead Killer +12
+-- Blind Resist +12
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -35,9 +35,9 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MPHEAL, 8);
-    target:addMod(MOD_UNDEAD_KILLER, 5);
-    target:addMod(MOD_BLINDRES, 5);
+    target:addMod(MOD_HPHEAL, 8);
+    target:addMod(MOD_UNDEAD_KILLER, 12);
+    target:addMod(MOD_BLINDRES, 12);
 end;
 
 -----------------------------------------
@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MPHEAL, 8);
-    target:delMod(MOD_UNDEAD_KILLER, 5);
-    target:delMod(MOD_BLINDRES, 5);
+    target:delMod(MOD_HPHEAL, 8);
+    target:delMod(MOD_UNDEAD_KILLER, 12);
+    target:delMod(MOD_BLINDRES, 12);
 end;

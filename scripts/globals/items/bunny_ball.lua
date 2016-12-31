@@ -7,10 +7,8 @@
 -- Strength 2
 -- Vitality 2
 -- Intelligence -1
--- Attack % 30
--- Attack Cap 25
--- Ranged ATT % 30
--- Ranged ATT Cap 25
+-- Attack % 30 (cap 30)
+-- Ranged ATT % 30 (cap 30)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -45,9 +43,9 @@ function onEffectGain(target,effect)
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_INT, -1);
     target:addMod(MOD_FOOD_ATTP, 30);
-    target:addMod(MOD_FOOD_ATT_CAP, 25);
+    target:addMod(MOD_FOOD_ATT_CAP, 30);
     target:addMod(MOD_FOOD_RATTP, 30);
-    target:addMod(MOD_FOOD_RATT_CAP, 25);
+    target:addMod(MOD_FOOD_RATT_CAP, 30);
 end;
 
 -----------------------------------------
@@ -60,7 +58,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_INT, -1);
     target:delMod(MOD_FOOD_ATTP, 30);
-    target:delMod(MOD_FOOD_ATT_CAP, 25);
+    target:delMod(MOD_FOOD_ATT_CAP, 30);
     target:delMod(MOD_FOOD_RATTP, 30);
-    target:delMod(MOD_FOOD_RATT_CAP, 25);
+    target:delMod(MOD_FOOD_RATT_CAP, 30);
 end;

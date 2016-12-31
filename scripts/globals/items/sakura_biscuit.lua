@@ -5,6 +5,7 @@
 -----------------------------------------
 -- Intelligence 3
 -- Charisma 2
+-- Evasion +2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,6 +37,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_INT, 3);
     target:addMod(MOD_CHR, 2);
+    target:addMod(MOD_EVA, 2);
 end;
 
 -----------------------------------------
@@ -45,4 +47,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_INT, 3);
     target:delMod(MOD_CHR, 2);
+    target:delMod(MOD_EVA, 2);
 end;

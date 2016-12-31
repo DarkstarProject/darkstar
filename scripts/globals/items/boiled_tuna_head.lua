@@ -8,7 +8,6 @@
 -- Intelligence 4
 -- Mind -3
 -- Magic Regen While Healing 2
--- Accuracy 5
 -- Evasion 5
 -----------------------------------------
 
@@ -44,7 +43,6 @@ function onEffectGain(target,effect)
     target:addMod(MOD_INT, 4);
     target:addMod(MOD_MND, -3);
     target:addMod(MOD_MPHEAL, 2);
-    target:addMod(MOD_ACC, 5);
     target:addMod(MOD_EVA, 5);
 end;
 
@@ -58,6 +56,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_INT, 4);
     target:delMod(MOD_MND, -3);
     target:delMod(MOD_MPHEAL, 2);
-    target:delMod(MOD_ACC, 5);
     target:delMod(MOD_EVA, 5);
 end;

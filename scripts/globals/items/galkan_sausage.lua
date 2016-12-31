@@ -6,7 +6,7 @@
 -- Multi-Race Effects
 -- Galka
 -- Strength 3
--- Intelligence -3
+-- Intelligence -1
 -- Attack % 25
 -- Attack Cap 30
 -- Ranged ATT % 25
