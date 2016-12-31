@@ -4,8 +4,8 @@
 -- Food Effect: 3Min, All Races
 -----------------------------------------
 -- Magic Regen While Healing 5
--- Plantoid Killer 5
--- Slow Resist 5
+-- Plantoid Killer 10
+-- Slow Resist 10
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,8 +36,8 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_MPHEAL, 5);
-    target:addMod(MOD_PLANTOID_KILLER, 5);
-    target:addMod(MOD_SLOWRES, 5);
+    target:addMod(MOD_PLANTOID_KILLER, 10);
+    target:addMod(MOD_SLOWRES, 10);
 end;
 
 -----------------------------------------
@@ -46,6 +46,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_MPHEAL, 5);
-    target:delMod(MOD_PLANTOID_KILLER, 5);
-    target:delMod(MOD_SLOWRES, 5);
+    target:delMod(MOD_PLANTOID_KILLER, 10);
+    target:delMod(MOD_SLOWRES, 10);
 end;

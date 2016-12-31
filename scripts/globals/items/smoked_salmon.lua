@@ -5,6 +5,7 @@
 -----------------------------------------
 -- Dexterity 2
 -- Mind -3
+-- Ranged Accuracy +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,6 +37,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 2);
     target:addMod(MOD_MND, -3);
+    target:addMod(MOD_RACC, 1);
 end;
 
 -----------------------------------------
@@ -45,4 +47,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 2);
     target:delMod(MOD_MND, -3);
+    target:delMod(MOD_RACC, 1);
 end;

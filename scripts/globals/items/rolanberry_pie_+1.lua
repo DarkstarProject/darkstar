@@ -5,7 +5,7 @@
 -----------------------------------------
 -- Magic 60
 -- Intelligence 3
--- Health Regen While Healing 1
+-- MP Regen While Healing 1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -37,7 +37,7 @@ end;
 function onEffectGain(target,effect)
         target:addMod(MOD_MP, 60);
         target:addMod(MOD_INT, 3);
-        target:addMod(MOD_HPHEAL, 1);
+        target:addMod(MOD_MPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -47,5 +47,5 @@ end;
 function onEffectLose(target,effect)
         target:delMod(MOD_MP, 60);
         target:delMod(MOD_INT, 3);
-        target:delMod(MOD_HPHEAL, 1);
+        target:delMod(MOD_MPHEAL, 1);
 end;

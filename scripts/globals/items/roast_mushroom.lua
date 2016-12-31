@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 4410
--- Item: witch_kabob
+-- Item: roast_mushroom
 -- Food Effect: 30minutes, All Races
 -----------------------------------------
 -- Magic Points 10

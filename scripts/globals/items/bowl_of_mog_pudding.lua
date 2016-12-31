@@ -4,6 +4,7 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- HP 7
+-- MP 7
 -- Vitality 3
 -----------------------------------------
 
@@ -35,6 +36,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 7);
+    target:addMod(MOD_MP, 7);
     target:addMod(MOD_VIT, 3);
 end;
 
@@ -44,5 +46,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_HP, 7);
+    target:delMod(MOD_MP, 7);
     target:delMod(MOD_VIT, 3);
 end;

@@ -4,8 +4,8 @@
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Health Regen While Healing 7
--- Lizard Killer 5
--- Petrify Resist 5
+-- Lizard Killer 12
+-- Petrify Resist 12
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,8 +36,8 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 7);
-    target:addMod(MOD_LIZARD_KILLER, 5);
-    target:addMod(MOD_PETRIFYRES, 5);
+    target:addMod(MOD_LIZARD_KILLER, 12);
+    target:addMod(MOD_PETRIFYRES, 12);
 end;
 
 -----------------------------------------
@@ -46,6 +46,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 7);
-    target:delMod(MOD_LIZARD_KILLER, 5);
-    target:delMod(MOD_PETRIFYRES, 5);
+    target:delMod(MOD_LIZARD_KILLER, 12);
+    target:delMod(MOD_PETRIFYRES, 12);
 end;

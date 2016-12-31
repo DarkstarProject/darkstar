@@ -3,7 +3,7 @@
 -- Item: Block of Rock Cheese
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- Health % 5.5
+-- Health % 6
 -- Health Cap 45
 -- HP Recovered while healing 1
 -----------------------------------------
@@ -35,7 +35,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 5.5);
+    target:addMod(MOD_FOOD_HPP, 6);
     target:addMod(MOD_FOOD_HP_CAP, 45);
     target:addMod(MOD_HPHEAL, 1);
 end;
@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_HPP, 5.5);
+    target:delMod(MOD_FOOD_HPP, 6);
     target:delMod(MOD_FOOD_HP_CAP, 45);
     target:delMod(MOD_HPHEAL, 1);
 end;

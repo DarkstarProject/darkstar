@@ -1,5 +1,5 @@
 -----------------------------------------
--- ID: 5708
+-- ID: 5709
 -- Item: Cotton Candy
 -- Food Effect: 5 Min, All Races
 -----------------------------------------
@@ -26,7 +26,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,5708);
+    target:addStatusEffect(EFFECT_FOOD,0,0,300,5709);
 end;
 
 -----------------------------------------

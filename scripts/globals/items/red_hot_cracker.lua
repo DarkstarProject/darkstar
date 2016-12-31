@@ -4,8 +4,8 @@
 -- Food Effect: 3Min, All Races
 -----------------------------------------
 -- HP Recovered While Healing 9
--- Beast Killer 5
--- Resist Sleep 5
+-- Beast Killer 12
+-- Resist Sleep 12
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,8 +36,8 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 9);
-    target:addMod(MOD_BEAST_KILLER, 5);
-    target:addMod(MOD_SLEEPRES, 5);
+    target:addMod(MOD_BEAST_KILLER, 12);
+    target:addMod(MOD_SLEEPRES, 12);
 end;
 
 -----------------------------------------
@@ -46,6 +46,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 9);
-    target:delMod(MOD_BEAST_KILLER, 5);
-    target:delMod(MOD_SLEEPRES, 5);
+    target:delMod(MOD_BEAST_KILLER, 12);
+    target:delMod(MOD_SLEEPRES, 12);
 end;

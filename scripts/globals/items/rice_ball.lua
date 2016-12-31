@@ -41,6 +41,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HP, 10);
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_DEX, -1);
+    target:addMod(MOD_HPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -51,4 +52,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HP, 10);
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_DEX, -1);
+    target:delMod(MOD_HPHEAL, 1);
 end;

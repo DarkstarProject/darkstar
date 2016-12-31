@@ -3,9 +3,9 @@
 -- Item: chunk_of_goblin_chocolate
 -- Food Effect: 3Min, All Races
 -----------------------------------------
--- Charisma -5
 -- Health Regen While Healing 5
--- Lizard Killer 5
+-- Lizard Killer 10
+-- Petrify resistance +10
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -35,9 +35,9 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_CHR, -5);
     target:addMod(MOD_HPHEAL, 5);
     target:addMod(MOD_LIZARD_KILLER, 5);
+    target:addMod(MOD_PETRIFYRES, 5);
 end;
 
 -----------------------------------------
@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_CHR, -5);
     target:delMod(MOD_HPHEAL, 5);
     target:delMod(MOD_LIZARD_KILLER, 5);
+    target:delMod(MOD_PETRIFYRES, 5);
 end;

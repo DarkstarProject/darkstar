@@ -4,7 +4,7 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Dexterity 2
--- Accuracy % 11
+-- Accuracy % 11 (cap 56)
 -- HP Recovered While Healing 2
 -----------------------------------------
 
@@ -37,7 +37,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 2);
     target:addMod(MOD_FOOD_ACCP, 11);
-    target:addMod(MOD_FOOD_ACC_CAP, 999);
+    target:addMod(MOD_FOOD_ACC_CAP, 56);
     target:addMod(MOD_HPHEAL, 2);
 end;
 
@@ -48,6 +48,6 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 2);
     target:delMod(MOD_FOOD_ACCP, 11);
-    target:delMod(MOD_FOOD_ACC_CAP, 999);
+    target:delMod(MOD_FOOD_ACC_CAP, 56);
     target:delMod(MOD_HPHEAL, 2);
 end;

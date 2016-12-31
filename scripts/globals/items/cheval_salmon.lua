@@ -4,7 +4,7 @@
 -- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Dexterity 2
--- Mind 4
+-- Charisma -4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -41,7 +41,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 2);
-    target:addMod(MOD_MND, 4);
+    target:addMod(MOD_CHA, -4);
 end;
 
 -----------------------------------------
@@ -50,5 +50,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 2);
-    target:delMod(MOD_MND, 4);
+    target:delMod(MOD_CHA, -4);
 end;

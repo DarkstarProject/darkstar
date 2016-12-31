@@ -227,3 +227,8 @@ INSERT INTO `item_mods_pet` VALUES (10664,28,4); -- AVATAR:MAB
 -- -------------------------------------------------------
 -- INSERT INTO `item_mods_pet` VALUES (10744,AVATAR:ENHANCES ATTACK,1);
 INSERT INTO `item_mods_pet` VALUES (10744,165,5); -- AVATAR MCR
+
+-- -------------------------------------------------------
+-- Murzim Zucchetto - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (10440,384,61); -- Automaton: Haste+6%

@@ -7,6 +7,7 @@
 -- Vitality -1
 -- Charisma 3
 -- Magic Regen While Healing 2
+-- Sleep resistance -40
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -40,6 +41,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_VIT, -1);
     target:addMod(MOD_CHR, 3);
     target:addMod(MOD_MPHEAL, 2);
+    target:addMod(MOD_SLEEPRES, -40);
 end;
 
 -----------------------------------------
@@ -51,4 +53,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_VIT, -1);
     target:delMod(MOD_CHR, 3);
     target:delMod(MOD_MPHEAL, 2);
+    target:delMod(MOD_SLEEPRES, -40);
 end;

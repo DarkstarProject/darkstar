@@ -5,8 +5,8 @@
 -----------------------------------------
 -- Dexterity 3
 -- Mind -3
--- Attack % 12
--- Ranged ATT % 12
+-- Attack % 12 (cap 70)
+-- Ranged ATT % 12 (cap 70)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -38,8 +38,10 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 3);
     target:addMod(MOD_MND, -3);
-    target:addMod(MOD_ATTP, 12);
-    target:addMod(MOD_RATTP, 12);
+    target:addMod(MOD_FOOD_ATTP, 12);
+    target:addMod(MOD_FOOD_ATT_CAP, 70);
+    target:addMod(MOD_FOOD_RATTP, 12);
+    target:addMod(MOD_FOOD_RATT_CAP, 70);
 end;
 
 -----------------------------------------
@@ -49,6 +51,8 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_MND, -3);
-    target:delMod(MOD_ATTP, 12);
-    target:delMod(MOD_RATTP, 12);
+    target:delMod(MOD_FOOD_ATTP, 12);
+    target:delMod(MOD_FOOD_ATT_CAP, 70);
+    target:delMod(MOD_FOOD_RATTP, 12);
+    target:delMod(MOD_FOOD_RATT_CAP, 70);
 end;

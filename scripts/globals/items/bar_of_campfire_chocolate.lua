@@ -4,6 +4,7 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Mind +1
+-- MP recovered while healing +2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -34,6 +35,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_MND, 1);
+    target:addMod(MOD_MPHEAL, 2);
 end;
 
 -----------------------------------------
@@ -42,4 +44,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_MND, 1);
+    target:delMod(MOD_MPHEAL, 2);
 end;
