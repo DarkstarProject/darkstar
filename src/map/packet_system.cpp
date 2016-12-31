@@ -3756,9 +3756,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+                        std::string qStr = ("INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += PChar->GetName();
                         qStr += "','LINKSHELL','";
+						qStr += PChar->PLinkshell1->getName();
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
@@ -3778,9 +3779,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
+                        std::string qStr = ("INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += PChar->GetName();
                         qStr += "','LINKSHELL','";
+						qStr += PChar->PLinkshell2->getName();
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         const char * cC = qStr.c_str();
