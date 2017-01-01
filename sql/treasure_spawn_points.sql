@@ -252,19 +252,19 @@ INSERT INTO `treasure_spawn_points` VALUES (17580403,8,154,-4.463,-20.000,125.08
 INSERT INTO `treasure_spawn_points` VALUES (17580403,9,128,47.060,-20.199,164.572); -- Gusgen Mines
 INSERT INTO `treasure_spawn_points` VALUES (17580403,10,128,56.098,-19.823,147.475); -- Gusgen Mines
 INSERT INTO `treasure_spawn_points` VALUES (17580403,11,153,50.596,-19.842,126.625); -- Gusgen Mines
-INSERT INTO `treasure_spawn_points` VALUES (17584471,0,13,39.767,-0.178,-313.865); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,1,255,98.913,-1.981,-344.437); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,2,65,-7.115,-0.562,-382.455); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,3,199,9.410,-0.930,-418.559); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,4,170,-93.078,-0.276,-393.625); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,5,255,-57.575,-0.238,-279.965); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,6,218,24.264,-0.439,165.450); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,7,20,11.445,-0.168,211.587); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,8,85,54.721,-0.346,233.897); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,9,148,35.373,-0.586,264.295); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,10,216,-15.799,-0.464,245.820); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,11,24,-32.961,-0.351,294.132); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584471,12,46,-89.586,-9.624,95.296); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,0,13,39.767,-0.178,-313.865); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,1,255,98.913,-1.981,-344.437); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,2,65,-7.115,-0.562,-382.455); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,3,199,9.410,-0.930,-418.559); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,4,170,-93.078,-0.276,-393.625); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,5,255,-57.575,-0.238,-279.965); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,6,218,24.264,-0.439,165.450); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,7,20,11.445,-0.168,211.587); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,8,85,54.721,-0.346,233.897); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,9,148,35.373,-0.586,264.295); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,10,216,-15.799,-0.464,245.820); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,11,24,-32.961,-0.351,294.132); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584475,12,46,-89.586,-9.624,95.296); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17588773,0,9,290.287,20.238,-138.060); -- Maze of Shakhrami
 INSERT INTO `treasure_spawn_points` VALUES (17588773,1,94,-36.474,0.063,-70.480); -- Maze of Shakhrami
 INSERT INTO `treasure_spawn_points` VALUES (17588773,2,135,260.698,-1.274,54.472); -- Maze of Shakhrami
@@ -397,18 +397,18 @@ INSERT INTO `treasure_spawn_points` VALUES (17429007,6,65,-126.637,-0.951,-86.83
 INSERT INTO `treasure_spawn_points` VALUES (17429007,7,255,-49.102,0.453,-100.020); -- Temple of Uggalepih
 INSERT INTO `treasure_spawn_points` VALUES (17429007,8,190,20.002,-2.011,-143.061); -- Temple of Uggalepih
 INSERT INTO `treasure_spawn_points` VALUES (17429007,9,65,-65.184,0.022,27.081); -- Temple of Uggalepih
-INSERT INTO `treasure_spawn_points` VALUES (17433081,0,95,371.199,-5.059,260.752); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,1,65,-17.924,36.239,-130.382); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,2,255,10.426,36.024,-83.844); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,3,130,-27.783,44.986,19.830); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,4,188,20.967,16.957,-37.771); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,5,23,-17.675,15.350,-69.098); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,6,95,59.457,15.435,-68.965); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,7,190,139.838,15.080,-131.904); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,8,62,122.006,15.312,-56.013); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,9,105,142.462,15.834,-21.777); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,10,125,372.407,-5.088,340.338); -- Den of Rancor
-INSERT INTO `treasure_spawn_points` VALUES (17433081,11,65,460.201,5.092,331.775); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,0,95,371.199,-5.059,260.752); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,1,65,-17.924,36.239,-130.382); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,2,255,10.426,36.024,-83.844); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,3,130,-27.783,44.986,19.830); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,4,188,20.967,16.957,-37.771); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,5,23,-17.675,15.350,-69.098); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,6,95,59.457,15.435,-68.965); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,7,190,139.838,15.080,-131.904); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,8,62,122.006,15.312,-56.013); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,9,105,142.462,15.834,-21.777); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,10,125,372.407,-5.088,340.338); -- Den of Rancor
+INSERT INTO `treasure_spawn_points` VALUES (17433077,11,65,460.201,5.092,331.775); -- Den of Rancor
 INSERT INTO `treasure_spawn_points` VALUES (17436998,0,125,-72.899,0.137,19.549); -- Castle Zvahl Baileys
 INSERT INTO `treasure_spawn_points` VALUES (17436998,1,0,-49.542,0.137,19.549); -- Castle Zvahl Baileys
 INSERT INTO `treasure_spawn_points` VALUES (17436998,2,190,-59.511,0.137,30.749); -- Castle Zvahl Baileys
@@ -474,13 +474,13 @@ INSERT INTO `treasure_spawn_points` VALUES (17576357,5,63,299.967,0.000,69.413);
 INSERT INTO `treasure_spawn_points` VALUES (17576357,6,194,300.082,0.000,-29.448); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576357,7,174,188.319,-0.590,128.702); -- The Eldieme Necropolis
 INSERT INTO `treasure_spawn_points` VALUES (17576357,8,2,-386.548,-3.000,335.046); -- The Eldieme Necropolis
-INSERT INTO `treasure_spawn_points` VALUES (17584472,0,211,-95.676,-0.436,205.557); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,1,229,-103.267,-1.766,-392.964); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,2,235,-185.774,-0.282,-379.022); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,3,150,-45.265,-0.477,224.265); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,4,22,-113.889,-0.449,255.583); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,5,74,-129.480,-0.945,378.933); -- Crawler's Nest
-INSERT INTO `treasure_spawn_points` VALUES (17584472,6,206,-150.126,-0.904,341.438); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,0,211,-95.676,-0.436,205.557); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,1,229,-103.267,-1.766,-392.964); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,2,235,-185.774,-0.282,-379.022); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,3,150,-45.265,-0.477,224.265); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,4,22,-113.889,-0.449,255.583); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,5,74,-129.480,-0.945,378.933); -- Crawler's Nest
+INSERT INTO `treasure_spawn_points` VALUES (17584476,6,206,-150.126,-0.904,341.438); -- Crawler's Nest
 INSERT INTO `treasure_spawn_points` VALUES (17596813,0,247,9.831,5.781,10.208); -- Garlaige Citadel
 INSERT INTO `treasure_spawn_points` VALUES (17596813,1,65,-20.193,5.144,85.064); -- Garlaige Citadel
 INSERT INTO `treasure_spawn_points` VALUES (17596813,2,65,100.057,-3.250,103.200); -- Garlaige Citadel
