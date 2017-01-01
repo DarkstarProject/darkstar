@@ -3758,9 +3758,10 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += PChar->GetName();
-                        qStr += "','LINKSHELL','";
-                        qStr += PChar->PLinkshell1->getName();
-                        qStr += "','";
+                        qStr += "','LINKSHELL',";
+						qStr += "(SELECT name FROM linkshells WHERE linkshellid =";
+						qStr += std::to_string(PChar->PLinkshell1->getID());
+                        qStr += "),'";
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         Sql_QueryStr(SqlHandle, qStr.c_str());
@@ -3782,8 +3783,9 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += PChar->PLinkshell2->getName();
-                        qStr += "','";
+						qStr += "(SELECT name FROM linkshells WHERE linkshellid =";
+						qStr += std::to_string(PChar->PLinkshell2->getID());
+						qStr += "),'";
                         qStr += escape(data[6]);
                         qStr += "',current_timestamp());";
                         Sql_QueryStr(SqlHandle, qStr.c_str());
