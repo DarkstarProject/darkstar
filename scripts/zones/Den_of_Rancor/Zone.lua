@@ -15,11 +15,11 @@ require("scripts/zones/Den_of_Rancor/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17433094,17433095,17433096,17433097,17433094,17433095};
+    local tomes = {17433090,17433091,17433092,17433093,17433094,17433095};
 
     SetGroundsTome(tomes);
 
-    UpdateTreasureSpawnPoint(17433081);
+    UpdateTreasureSpawnPoint(17433077);
 end;
 
 -----------------------------------
