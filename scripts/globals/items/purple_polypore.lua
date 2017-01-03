@@ -26,7 +26,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,5156);
+    target:addStatusEffect(EFFECT_FOOD,0,0,300,5682);
 end;
 
 -----------------------------------

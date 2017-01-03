@@ -11,7 +11,7 @@
 -- Mind +2
 -- HP Recovered while healing +9
 -- MP Recovered while healing +3
--- Attack 15% Cap 80
+-- Attack 18% Cap 80
 -- Evasion +7
 -----------------------------------------
 

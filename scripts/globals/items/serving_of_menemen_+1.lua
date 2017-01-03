@@ -41,7 +41,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HP, 35);
     target:addMod(MOD_MP, 35);
     target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_INT, -3);
+    target:addMod(MOD_INT, -2);
     target:addMod(MOD_HPHEAL, 2);
     target:addMod(MOD_MPHEAL, 2);
 end;

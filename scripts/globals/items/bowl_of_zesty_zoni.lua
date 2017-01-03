@@ -11,6 +11,8 @@
 -- Agility 2
 -- Accuracy +2
 -- Ranged Accuracy +2
+-- Attack +2
+-- Ranged Attack +2
 -- Evasion +2
 -- MP Recovered while healing 1
 -- HP Recovered while healing 1
@@ -51,6 +53,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 2);
     target:addMod(MOD_ACC, 2);
     target:addMod(MOD_RACC, 2);
+    target:addMod(MOD_ATT, 2);
+    target:addMod(MOD_RATT, 2);
     target:addMod(MOD_EVA, 2);
     target:addMod(MOD_HPHEAL, 1);
     target:addMod(MOD_MPHEAL, 1);
@@ -69,6 +73,8 @@ function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_ACC, 2);
     target:delMod(MOD_RACC, 2);
+    target:delMod(MOD_ATT, 2);
+    target:delMod(MOD_RATT, 2);
     target:delMod(MOD_EVA, 2);
     target:delMod(MOD_HPHEAL, 1);
     target:delMod(MOD_MPHEAL, 1);

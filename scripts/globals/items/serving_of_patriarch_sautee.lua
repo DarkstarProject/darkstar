@@ -3,7 +3,7 @@
 -- Item: Serving of Patriarch Sautee
 -- Food Effect: 4Hrs, All Races
 -----------------------------------------
--- MP 60
+-- MP 65
 -- Mind 7
 -- MP Recovered While Healing 7
 -----------------------------------------
@@ -35,7 +35,7 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MP, 60);
+    target:addMod(MOD_MP, 65);
     target:addMod(MOD_MND, 7);
     target:addMod(MOD_MPHEAL, 7);
 end;
@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MP, 60);
+    target:delMod(MOD_MP, 65);
     target:delMod(MOD_MND, 7);
     target:delMod(MOD_MPHEAL, 7);
 end;

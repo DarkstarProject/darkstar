@@ -5,6 +5,7 @@
 -----------------------------------------
 -- TODO: Group Effect
 -- Intelligence 2
+-- HP Recovered while healing 4
 -- MP Recovered while healing 7
 -----------------------------------------
 
@@ -36,6 +37,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_INT, 2);
+    target:addMod(MOD_HPHEAL, 4);
     target:addMod(MOD_MPHEAL, 7);
 end;
 
@@ -45,5 +47,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_INT, 2);
+    target:delMod(MOD_HPHEAL, 4);
     target:delMod(MOD_MPHEAL, 7);
 end;

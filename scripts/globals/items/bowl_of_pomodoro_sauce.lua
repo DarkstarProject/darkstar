@@ -5,6 +5,7 @@
 -----------------------------------------
 -- Intelligence 2
 -- Mind 2
+-- HP Recovered while healing +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,6 +37,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_INT, 2);
     target:addMod(MOD_MND, 2);
+    target:addMod(MOD_HPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -45,4 +47,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_INT, 2);
     target:delMod(MOD_MND, 2);
+    target:delMod(MOD_HPHEAL, 1);
 end;

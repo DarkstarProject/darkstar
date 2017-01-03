@@ -4,7 +4,7 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- HP 10
--- Agility 1
+-- Agility 2
 -----------------------------------------
 
 require("scripts/globals/status");

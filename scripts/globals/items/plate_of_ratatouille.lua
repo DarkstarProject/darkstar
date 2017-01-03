@@ -6,6 +6,7 @@
 -- Agility 5
 -- Evasion 5
 -- HP recovered while healing 2
+-- MP recovered while healing 2
 -- Undead Killer 5
 -----------------------------------------
 
@@ -39,6 +40,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 5);
     target:addMod(MOD_EVA, 5);
     target:addMod(MOD_HPHEAL, 2);
+    target:addMod(MOD_MPHEAL, 2);
     target:addMod(MOD_UNDEAD_KILLER, 5);
 end;
 
@@ -50,5 +52,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 5);
     target:delMod(MOD_EVA, 5);
     target:delMod(MOD_HPHEAL, 2);
+    target:delMod(MOD_MPHEAL, 2);
     target:delMod(MOD_UNDEAD_KILLER, 5);
 end;

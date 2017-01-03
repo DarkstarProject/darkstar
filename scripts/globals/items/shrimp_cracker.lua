@@ -4,8 +4,10 @@
 -- Food Effect: 3Min, All Races
 -----------------------------------------
 -- Vitality 1
+-- DEF +10
+-- Amorph Killer 10
+-- Resist Virus +10
 -- HP Recovered While Healing 8
--- Amorph Killer 5
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,8 +38,10 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_VIT, 1);
+    target:addMod(MOD_DEF, 10);
+    target:addMod(MOD_AMORPH_KILLER, 10);
+    target:addMod(MOD_VIRUSRES, 10);
     target:addMod(MOD_HPHEAL, 8);
-    target:addMod(MOD_AMORPH_KILLER, 5);
 end;
 
 -----------------------------------------
@@ -46,6 +50,8 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_VIT, 1);
+    target:delMod(MOD_DEF, 10);
+    target:delMod(MOD_AMORPH_KILLER, 10);
+    target:delMod(MOD_VIRUSRES, 10);
     target:delMod(MOD_HPHEAL, 8);
-    target:delMod(MOD_AMORPH_KILLER, 5);
 end;

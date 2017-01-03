@@ -5,7 +5,7 @@
 -----------------------------------------
 -- TODO: Group Effect
 -- HP Recovered while healing +2
--- MP Recovered while healing +4
+-- MP Recovered while healing +5
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,7 +36,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 2);
-    target:addMod(MOD_MPHEAL, 4);
+    target:addMod(MOD_MPHEAL, 5);
 end;
 
 -----------------------------------------
@@ -45,5 +45,5 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 2);
-    target:delMod(MOD_MPHEAL, 4);
+    target:delMod(MOD_MPHEAL, 5);
 end;

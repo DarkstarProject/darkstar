@@ -6,6 +6,8 @@
 -- HP 5
 -- MP 5
 -- Dexterity 1
+-- hHP +2
+-- hMP +2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -38,6 +40,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HP, 5);
     target:addMod(MOD_MP, 5);
     target:addMod(MOD_DEX, 1);
+    target:addMod(MOD_HPHEAL, 2);
+    target:addMod(MOD_MPHEAL, 2);
 end;
 
 -----------------------------------------
@@ -48,4 +52,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HP, 5);
     target:delMod(MOD_MP, 5);
     target:delMod(MOD_DEX, 1);
+    target:delMod(MOD_HPHEAL, 2);
+    target:delMod(MOD_MPHEAL, 2);
 end;

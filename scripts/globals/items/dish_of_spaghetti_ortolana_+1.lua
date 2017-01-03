@@ -7,6 +7,7 @@
 -- Vitality 2
 -- HP +30% Cap 75
 -- StoreTP +6
+-- Resist Blind +10
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -41,6 +42,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HPP, 30);
     target:addMod(MOD_FOOD_HP_CAP, 75);
     target:addMod(MOD_STORETP, 6);
+    target:addMod(MOD_BLINDRES, 10);
 end;
 
 -----------------------------------------
@@ -53,4 +55,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_HPP, 30);
     target:delMod(MOD_FOOD_HP_CAP, 75);
     target:delMod(MOD_STORETP, 6);
+    target:delMod(MOD_BLINDRES, 10);
 end;

@@ -6,7 +6,6 @@
 -- HP 20
 -- Dexterity 3
 -- Agility 3
--- Mind -1
 -- Accuracy % 20 (cap 20)
 -- Ranged Accuracy % 20 (cap 20)
 -- Double Attack 1

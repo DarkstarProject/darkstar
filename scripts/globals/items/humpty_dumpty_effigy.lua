@@ -1,12 +1,10 @@
 -----------------------------------------
 -- ID: 5683
 -- Item: humpty_dumpty_effigy
--- Food Effect: 30Min, All Races
+-- Food Effect: 3 hours, All Races
 -----------------------------------------
--- Max HP % 6
--- Max MP % 6
--- HP recovered while healing 10
--- MP recovered while healing 10 (unconfirmed)
+-- Max HP % 6 (cap 160)
+-- Max MP % 6 (cap 160)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -37,11 +35,9 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HPP, 6);
-    target:addMod(MOD_FOOD_HP_CAP, 999);
+    target:addMod(MOD_FOOD_HP_CAP, 160);
     target:addMod(MOD_FOOD_MPP, 6);
-    target:addMod(MOD_FOOD_MP_CAP, 999);
-    target:addMod(MOD_HPHEAL, 10);
-    target:addMod(MOD_MPHEAL, 10);
+    target:addMod(MOD_FOOD_MP_CAP, 160);
 end;
 
 -----------------------------------------
@@ -49,8 +45,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, 6);
-    target:delMod(MOD_MPP, 6);
-    target:delMod(MOD_HPHEAL, 10);
-    target:delMod(MOD_MPHEAL, 10);
+    target:delMod(MOD_FOOD_HPP, 6);
+    target:delMod(MOD_FOOD_HP_CAP, 160);
+    target:delMod(MOD_FOOD_MPP, 6);
+    target:delMod(MOD_FOOD_MP_CAP, 160);
 end;

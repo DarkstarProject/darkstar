@@ -10,6 +10,7 @@
 -- Dexterity -2
 -- Vitality 2
 -- Mind 4
+-- Store TP +6
 -- Magic Regen While Healing 1
 -----------------------------------------
 
@@ -47,6 +48,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DEX, -2);
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_MND, 4);
+    target:addMod(MOD_STORETP, 6);
     target:addMod(MOD_MPHEAL, 1);
 end;
 
@@ -62,5 +64,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_DEX, -2);
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_MND, 4);
+    target:delMod(MOD_STORETP, 6);
     target:delMod(MOD_MPHEAL, 1);
 end;

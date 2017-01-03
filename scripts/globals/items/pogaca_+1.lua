@@ -3,6 +3,8 @@
 -- Item: pogaca_+1
 -- Food Effect: 5Min, All Races
 -----------------------------------------
+-- Lizard Killer +12
+-- Resist Paralyze +12
 -- HP Recovered While Healing 6
 -- MP Recovered While Healing 6
 -----------------------------------------
@@ -34,6 +36,8 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_LIZARD_KILLER, 12);
+    target:addMod(MOD_PARALYZERES, 12);
     target:addMod(MOD_HPHEAL, 6);
     target:addMod(MOD_MPHEAL, 6);
 end;
@@ -43,6 +47,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_LIZARD_KILLER, 12);
+    target:delMod(MOD_PARALYZERES, 12);
     target:delMod(MOD_HPHEAL, 6);
     target:delMod(MOD_MPHEAL, 6);
 end;

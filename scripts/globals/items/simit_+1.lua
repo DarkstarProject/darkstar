@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-        target:delMod(MOD_MP, 18);
+        target:delMod(MOD_HP, 18);
         target:delMod(MOD_VIT, 4);
         target:delMod(MOD_DEF, 2);
 end;

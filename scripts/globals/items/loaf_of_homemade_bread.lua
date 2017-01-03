@@ -4,6 +4,10 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Agility 1
+-- Accuracy +12% (cap 80)
+-- Attack +10% (cap 40)
+-- Ranged Accuracy +12% (cap 80)
+-- Ranged Attack +10% (cap 40)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -34,6 +38,14 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 1);
+    target:addMod(MOD_FOOD_ACCP, 12);
+    target:addMod(MOD_FOOD_ACC_CAP, 80);
+    target:addMod(MOD_FOOD_ATTP, 10);
+    target:addMod(MOD_FOOD_ATT_CAP, 40);
+    target:addMod(MOD_FOOD_RACCP, 12);
+    target:addMod(MOD_FOOD_RACC_CAP, 80);
+    target:addMod(MOD_FOOD_RATTP, 10);
+    target:addMod(MOD_FOOD_RATT_CAP, 40);
 end;
 
 -----------------------------------------
@@ -42,4 +54,12 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 1);
+    target:delMod(MOD_FOOD_ACCP, 12);
+    target:delMod(MOD_FOOD_ACC_CAP, 80);
+    target:delMod(MOD_FOOD_ATTP, 10);
+    target:delMod(MOD_FOOD_ATT_CAP, 40);
+    target:delMod(MOD_FOOD_RACCP, 12);
+    target:delMod(MOD_FOOD_RACC_CAP, 80);
+    target:delMod(MOD_FOOD_RATTP, 10);
+    target:delMod(MOD_FOOD_RATT_CAP, 40);
 end;

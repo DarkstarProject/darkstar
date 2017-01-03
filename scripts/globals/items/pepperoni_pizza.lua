@@ -5,8 +5,8 @@
 -----------------------------------------
 -- Health Points 30
 -- Strength 1
--- Accuracy 5% (caps @ 10) **wiki doesnt have information on %, so guessed it to be 5%
--- Attack 10% (caps @ 25)
+-- Accuracy 9% (caps @ 10)
+-- Attack 10% (caps @ 15)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -39,8 +39,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HP, 30);
     target:addMod(MOD_STR, 1);
     target:addMod(MOD_FOOD_ATTP, 10);
-    target:addMod(MOD_FOOD_ATT_CAP, 25);
-    target:addMod(MOD_FOOD_ACCP, 5);
+    target:addMod(MOD_FOOD_ATT_CAP, 15);
+    target:addMod(MOD_FOOD_ACCP, 9);
     target:addMod(MOD_FOOD_ACC_CAP, 10);
 end;
 
@@ -52,7 +52,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HP, 30);
     target:delMod(MOD_STR, 1);
     target:delMod(MOD_FOOD_ATTP, 10);
-    target:delMod(MOD_FOOD_ATT_CAP, 25);
-    target:delMod(MOD_FOOD_ACCP, 5);
+    target:delMod(MOD_FOOD_ATT_CAP, 15);
+    target:delMod(MOD_FOOD_ACCP, 9);
     target:delMod(MOD_FOOD_ACC_CAP, 10);
 end;
