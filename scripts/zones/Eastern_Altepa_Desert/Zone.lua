@@ -19,8 +19,8 @@ require("scripts/globals/chocobo_digging");
 -----------------------------------
 local itemMap = {
                     -- itemid, abundance, requirement
-                    { 880, 167, DIGREQ_NONE }, 
-                    { 893, 88, DIGREQ_NONE }, 
+                    { 880, 167, DIGREQ_NONE },
+                    { 893, 88, DIGREQ_NONE },
                     { 17296, 135, DIGREQ_NONE },
                     { 736, 52, DIGREQ_NONE },
                     { 644, 22, DIGREQ_NONE },
@@ -67,10 +67,10 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
     -- Cactrot Rapido
-    SetRespawnTime(17244539, 900, 10800);
+    GetMobByID(17244539):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Centurio XII-I
-    SetRespawnTime(17244372, 900, 10800);
+    GetMobByID(17244372):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

@@ -20,7 +20,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Aynu-kasey
-    SetRespawnTime(17101099, 900, 10800);
+    GetMobByID(17101099):setRespawnTime((math.random(0,6) * 1800) + 900);
 
 end;
 

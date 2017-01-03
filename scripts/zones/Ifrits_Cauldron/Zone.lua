@@ -23,7 +23,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Ash Dragon
-    SetRespawnTime(17617147, 900, 10800);
+    GetMobByID(17617147):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17617224);
 

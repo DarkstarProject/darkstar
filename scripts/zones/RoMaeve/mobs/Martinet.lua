@@ -37,7 +37,7 @@ function onSpikesDamage(mob,target,damage)
 
     if (dmg < 0) then
         dmg = 0;
-    end    
+    end
 
     return SUBEFFECT_SHOCK_SPIKES,44,dmg;
 
@@ -55,6 +55,6 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    -- UpdateNMSpawnPoint(mob:getID());
-    -- mob:setRespawnTime(math.random((?),(?))); -- Uncertain repop time
+    UpdateNMSpawnPoint(mob:getID());
+    mob:setRespawnTime(7200);
 end;

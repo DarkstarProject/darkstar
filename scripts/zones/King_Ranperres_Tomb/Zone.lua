@@ -26,7 +26,7 @@ function onInitialize(zone)
     zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
 
     -- Vrtra
-    SetRespawnTime(17555890, 86400, 259200);
+    GetMobByID(17555890):setRespawnTime(math.random(48,144) * 1800);
 
     UpdateTreasureSpawnPoint(17555955);
 end;

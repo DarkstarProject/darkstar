@@ -64,7 +64,7 @@ function onInitialize(zone)
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
 
     -- Fraelissa
-    SetRespawnTime(17203447, 900, 10800);
+    GetMobByID(17203447):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID());
 end;

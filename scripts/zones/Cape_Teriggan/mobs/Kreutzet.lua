@@ -20,7 +20,7 @@ function onMobDespawn(mob)
 
     -- Set Kruetzet's spawnpoint and respawn time (9-12 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random((32400),(43200)));
+    mob:setRespawnTime(math.random(32400,43200));
 
 end;
 

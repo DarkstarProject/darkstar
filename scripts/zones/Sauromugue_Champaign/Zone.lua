@@ -70,7 +70,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Roc
-    SetRespawnTime(17269106, 900, 10800);
+    GetMobByID(17269106):setRespawnTime((math.random(0,6) * 1800) + 900);
 end;
 
 -----------------------------------

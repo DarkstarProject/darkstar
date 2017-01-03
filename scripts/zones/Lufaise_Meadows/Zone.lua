@@ -21,12 +21,12 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     local Colorful_Leshy = 16875762;
-    GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
+    GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random(43200, 86400));
 
     zone:registerRegion(1,179,-26,327,219,-18,347);
 
     -- Padfoot
-    SetRespawnTime(16875578, 900, 10800);
+    GetMobByID(16875578):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

@@ -41,13 +41,13 @@ function onInitialize(zone)
     zone:registerRegion(22,-130,-1,322,-128,1,324);
 
     -- Old Two-Wings
-    SetRespawnTime(17596506, 900, 10800);
+    GetMobByID(17596506):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Skewer Sam
-    SetRespawnTime(17596507, 900, 10800);
+    GetMobByID(17596507):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Serket
-    SetRespawnTime(17596720, 900, 10800);
+    GetMobByID(17596720):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17596812);
 

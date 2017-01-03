@@ -65,7 +65,7 @@ end;
 function onInitialize(zone)
 
     -- Harvestman
-    SetRespawnTime(16990252, 900, 10800);
+    GetMobByID(16990252):setRespawnTime((math.random(0,6) * 1800) + 900);
 
 end;
 

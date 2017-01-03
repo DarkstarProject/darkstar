@@ -16,7 +16,7 @@ require("scripts/zones/Castle_Oztroja/TextIDs");
 
 function onInitialize(zone)
     -- Yagudo Avatar
-    SetRespawnTime(17396134, 900, 10800);
+    GetMobByID(17396134):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17396210);
     UpdateTreasureSpawnPoint(17396211);

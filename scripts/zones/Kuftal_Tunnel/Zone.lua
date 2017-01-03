@@ -24,7 +24,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Guivre
-    SetRespawnTime(17490234, 900, 10800);
+    GetMobByID(17490234):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17490304);
 

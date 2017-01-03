@@ -64,13 +64,13 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
     -- Bright-handed Kunberry
-    SetRespawnTime(17285220, 900, 10800);
+    GetMobByID(17285220):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Bisque-heeled Sunberry
-    SetRespawnTime(17285460, 900, 10800);
+    GetMobByID(17285460):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Bright-handed Kunberry
-    SetRespawnTime(17285526, 900, 10800);
+    GetMobByID(17285526):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

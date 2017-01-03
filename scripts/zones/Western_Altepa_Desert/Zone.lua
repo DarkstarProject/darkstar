@@ -70,7 +70,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- King Vinegarroon
-    SetRespawnTime(17289575, 900, 10800);
+    GetMobByID(17289575):setRespawnTime((math.random(0,6) * 1800) + 900);
 end;
 
 -----------------------------------

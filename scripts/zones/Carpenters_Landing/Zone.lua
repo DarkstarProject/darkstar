@@ -59,7 +59,7 @@ end;
 function onInitialize(zone)
 
     -- Tempest Tigon
-    SetRespawnTime(16785593, 900, 10800);
+    GetMobByID(16785593):setRespawnTime((math.random(0,6) * 1800) + 900);
 
 end;
 

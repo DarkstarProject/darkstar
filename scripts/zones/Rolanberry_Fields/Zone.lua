@@ -63,7 +63,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Simurgh
-    SetRespawnTime(17228242, 900, 10800);
+    GetMobByID(17228242):setRespawnTime((math.random(0,6) * 1800) + 900);
 
 end;
 
