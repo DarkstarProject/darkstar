@@ -3,8 +3,10 @@
 -- Item: plate_of_patlican_salata_+1
 -- Food Effect: 4Hrs, All Races
 -----------------------------------------
--- Agility 4
--- Vitality -1
+-- Agility 5
+-- Vitality -2
+-- Evasion +7
+-- hHP +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -34,8 +36,10 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI, 4);
-    target:addMod(MOD_VIT, -1);
+    target:addMod(MOD_AGI, 5);
+    target:addMod(MOD_VIT, -2);
+    target:addMod(MOD_EVA, 7);
+    target:addMod(MOD_HPHEAL, 3);
 end;
 
 -----------------------------------------
@@ -43,6 +47,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_AGI, 4);
-    target:delMod(MOD_VIT, -1);
+    target:delMod(MOD_AGI, 5);
+    target:delMod(MOD_VIT, -2);
+    target:delMod(MOD_EVA, 7);
+    target:delMod(MOD_HPHEAL, 3);
 end;

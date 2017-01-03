@@ -5,6 +5,7 @@
 -----------------------------------------
 -- HP 20
 -- Intelligence 3
+-- hHP +3
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,6 +37,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_HP, 20);
     target:addMod(MOD_INT, 3);
+    target:addMod(MOD_HPHEAL, 3);
 end;
 
 -----------------------------------------
@@ -45,4 +47,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_HP, 20);
     target:delMod(MOD_INT, 3);
+    target:delMod(MOD_HPHEAL, 3);
 end;

@@ -5174,7 +5174,7 @@ INSERT INTO `item_basic` VALUES (5555,0,'serving_of_flurry_courante','flurry_cou
 INSERT INTO `item_basic` VALUES (5556,0,'cone_of_seraphs_kiss','seraphs_kiss',12,1548,57,0,477);
 INSERT INTO `item_basic` VALUES (5557,0,'serving_of_mont_blanc','mont_blanc',1,1580,57,0,390);
 INSERT INTO `item_basic` VALUES (5558,0,'serving_of_golden_royale','golden_royale',1,1580,57,0,487);
-INSERT INTO `item_basic` VALUES (5559,0,'serving_of_mille_feuille','mille_feuille',1,1580,57,0,129);
+INSERT INTO `item_basic` VALUES (5559,0,'serving_of_mille-feuille','mille-feuille',1,1580,57,0,129);
 INSERT INTO `item_basic` VALUES (5560,0,'serving_of_elysian_eclair','elysian_eclair',1,1580,57,0,161);
 INSERT INTO `item_basic` VALUES (5561,0,'moogle_pie','moogle_pie',1,30296,99,0,242);
 INSERT INTO `item_basic` VALUES (5562,0,'pot_of_white_honey','white_honey',12,1548,59,0,30);

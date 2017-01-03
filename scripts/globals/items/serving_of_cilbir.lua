@@ -3,8 +3,8 @@
 -- Item: serving_of_cilbir
 -- Food Effect: 3Hrs, All Races
 -----------------------------------------
--- HP % 5
--- MP % 5
+-- HP % 5 (cap 150)
+-- MP % 5 (cap 100)
 -- HP recovered while healing 3
 -- MP recovered while healing 3
 -----------------------------------------
@@ -37,9 +37,9 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HPP, 5);
-    target:addMod(MOD_FOOD_HP_CAP, 999);
+    target:addMod(MOD_FOOD_HP_CAP, 150);
     target:addMod(MOD_FOOD_MPP, 5);
-    target:addMod(MOD_FOOD_MP_CAP, 999);
+    target:addMod(MOD_FOOD_MP_CAP, 100);
     target:addMod(MOD_MPHEAL, 3);
     target:addMod(MOD_HPHEAL, 3);
 end;
@@ -50,9 +50,9 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_HPP, 5);
-    target:delMod(MOD_FOOD_HP_CAP, 999);
+    target:delMod(MOD_FOOD_HP_CAP, 150);
     target:delMod(MOD_FOOD_MPP, 5);
-    target:delMod(MOD_FOOD_MP_CAP, 999);
+    target:delMod(MOD_FOOD_MP_CAP, 100);
     target:delMod(MOD_MPHEAL, 3);
     target:delMod(MOD_HPHEAL, 3);
 end;

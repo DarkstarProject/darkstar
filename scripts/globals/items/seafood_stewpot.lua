@@ -7,7 +7,10 @@
 -- HP +10% Cap 50
 -- MP +10
 -- Accuracy 5
+-- Ranged Accuracy 5
 -- Evasion 5
+-- hHP 5
+-- hMP 1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -41,7 +44,10 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_HP_CAP, 50);
     target:addMod(MOD_MP, 10);
     target:addMod(MOD_ACC, 5);
+    target:addMod(MOD_RACC, 5);
     target:addMod(MOD_EVA, 5);
+    target:addMod(MOD_HPHEAL, 5);
+    target:addMod(MOD_MPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -53,5 +59,8 @@ function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_HP_CAP, 50);
     target:delMod(MOD_MP, 10);
     target:delMod(MOD_ACC, 5);
+    target:delMod(MOD_RACC, 5);
     target:delMod(MOD_EVA, 5);
+    target:delMod(MOD_HPHEAL, 5);
+    target:delMod(MOD_MPHEAL, 1);
 end;

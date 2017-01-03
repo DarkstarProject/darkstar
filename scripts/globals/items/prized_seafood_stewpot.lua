@@ -13,6 +13,7 @@
 -- HP Recovered while healing 9
 -- MP Recovered while healing 3
 -- Accuracy 7
+-- Ranged Accuracy 7
 -- Evasion 7
 -----------------------------------------
 
@@ -53,6 +54,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_HPHEAL, 9);
     target:addMod(MOD_MPHEAL, 3);
     target:addMod(MOD_ACC, 7);
+    target:addMod(MOD_RACC, 7);
     target:addMod(MOD_EVA, 7);
 end;
 
@@ -71,5 +73,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_HPHEAL, 9);
     target:delMod(MOD_MPHEAL, 3);
     target:delMod(MOD_ACC, 7);
+    target:delMod(MOD_RACC, 7);
     target:delMod(MOD_EVA, 7);
 end;

@@ -5,7 +5,6 @@
 -----------------------------------------
 -- Intelligence +7
 -- HP -10
--- Resist Slow
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -37,7 +36,6 @@ end;
 function onEffectGain(target,effect)
    target:addMod(MOD_INT, 7);
    target:addMod(MOD_HP, -10);
-   target:addMod(MOD_SLOWRES, 5);
 end;
 
 -----------------------------------------
@@ -47,5 +45,4 @@ end;
 function onEffectLose(target,effect)
    target:delMod(MOD_INT, 7);
    target:delMod(MOD_HP, -10);
-   target:delMod(MOD_SLOWRES, 5);
 end;

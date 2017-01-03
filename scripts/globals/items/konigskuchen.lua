@@ -7,6 +7,7 @@
 -- Magic % 3
 -- Magic Cap 13
 -- Intelligence 2
+-- hMP +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -40,6 +41,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_MPP, 3);
     target:addMod(MOD_FOOD_MP_CAP, 13);
     target:addMod(MOD_INT, 2);
+    target:addMod(MOD_MPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -51,4 +53,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_MPP, 3);
     target:delMod(MOD_FOOD_MP_CAP, 13);
     target:delMod(MOD_INT, 2);
+    target:delMod(MOD_MPHEAL, 1);
 end;

@@ -1339,7 +1339,7 @@ INSERT INTO `item_usable` VALUES (5555,'serving_of_flurry_courante',1,1,29,0,0,0
 INSERT INTO `item_usable` VALUES (5556,'cone_of_seraphs_kiss',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5557,'serving_of_mont_blanc',1,1,29,29,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5558,'serving_of_golden_royale',1,1,29,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5559,'serving_of_mille_feuille',1,1,29,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5559,'serving_of_mille-feuille',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5560,'serving_of_elysian_eclair',1,1,29,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5561,'moogle_pie',1,1,27,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5562,'pot_of_white_honey',1,1,24,0,0,0,0,0);

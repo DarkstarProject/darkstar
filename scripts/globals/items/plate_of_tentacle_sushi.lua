@@ -7,8 +7,8 @@
 -- Dexterity 3
 -- Agility 3
 -- Mind -1
--- Accuracy % 19 (cap 18)
--- Ranged Accuracy % 19 (cap 18)
+-- Accuracy % 20 (cap 18)
+-- Ranged Accuracy % 20 (cap 18)
 -- Double Attack 1
 -----------------------------------------
 

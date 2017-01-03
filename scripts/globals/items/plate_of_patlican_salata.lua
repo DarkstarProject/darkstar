@@ -5,6 +5,8 @@
 -----------------------------------------
 -- Agility 4
 -- Vitality -1
+-- Evasion +6
+-- hHP +2
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -36,6 +38,8 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 4);
     target:addMod(MOD_VIT, -1);
+    target:addMod(MOD_EVA, 6);
+    target:addMod(MOD_HPHEAL, 2);
 end;
 
 -----------------------------------------
@@ -45,4 +49,6 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 4);
     target:delMod(MOD_VIT, -1);
+    target:delMod(MOD_EVA, 6);
+    target:delMod(MOD_HPHEAL, 2);
 end;
