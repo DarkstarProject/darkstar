@@ -4754,7 +4754,7 @@ namespace charutils
                 "pos_y = %.3f,"
                 "pos_z = %.3f,"
                 "boundary = %u "
-                "WHERE charid = %u AND pos_zone = %u;";
+                "WHERE charid = %u;";
 
             Sql_Query(SqlHandle, Query,
                 PChar->loc.destination,
