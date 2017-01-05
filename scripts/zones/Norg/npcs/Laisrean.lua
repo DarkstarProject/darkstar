@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
             player:messageSpecial(ITEM_OBTAINED, 4946);
             player:addTitle(TREASUREHOUSE_RANSACKER);
-            player:addFame(OUTLANDS,75);
+            player:addFame(NORG,75);
             player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
         end
     end

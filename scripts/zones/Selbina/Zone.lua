@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,14226); -- Ninja Hakama
             player:setVar("Enagakure_Killed",0);
             player:setVar("illTakeTheBigBoxCS",0);
-            player:addFame(OUTLANDS,30);
+            player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,I_LL_TAKE_THE_BIG_BOX);
         end
     end
