@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-return 0;
+    return 0;
 end;
 
 -----------------------------------------

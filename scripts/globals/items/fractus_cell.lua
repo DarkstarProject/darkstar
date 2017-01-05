@@ -7,14 +7,14 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION)
+    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION);
     if (debilitation) then
         local power = debilitation:getPower()
         if bit.band(power, 0x002) > 0 then
             return 0;
         end
     end
-    return -1
+    return -1;
 end;
 
 -----------------------------------------
@@ -22,13 +22,13 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION)
-    local power = debilitation:getPower()
-    local newpower = bit.band(power, bit.bnot(0x002))
-    target:delStatusEffectSilent(EFFECT_DEBILITATION)
+    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION);
+    local power = debilitation:getPower();
+    local newpower = bit.band(power, bit.bnot(0x002));
+    target:delStatusEffectSilent(EFFECT_DEBILITATION);
     if (newpower > 0) then
-        target:addStatusEffectEx(EFFECT_DEBILITATION, EFFECT_DEBILITATION, newpower, 0, 0)
+        target:addStatusEffectEx(EFFECT_DEBILITATION, EFFECT_DEBILITATION, newpower, 0, 0);
     end
-    target:messageText(target, 7220)
+    target:messageText(target, 7220);
 end;
 
