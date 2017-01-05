@@ -74,14 +74,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x0288 and option == 1) then
-        local crystal = math.random(4096,4101);
+        local crystal = math.random(4096,4101); -- not sure which crystal you get for joining leathercraft guild
 
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player, SKILL_LEATHERCRAFT);
+            signupGuild(player, 128);
         end
     end
 end;
