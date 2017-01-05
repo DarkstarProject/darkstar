@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x0288 and option == 1) then
-        local crystal = math.random(4096,4101); -- not sure which crystal you get for joining leathercraft guild
+        local crystal = 4103; -- dark crystal
 
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
