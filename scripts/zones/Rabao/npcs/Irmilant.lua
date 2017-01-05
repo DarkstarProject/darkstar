@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
         player:addItem(17386); -- Lu Shang's Fishing Rod
         player:messageSpecial(ITEM_OBTAINED, 17386); 
         player:completeQuest(OUTLANDS,THE_IMMORTAL_LU_SHANG);
-        player:addFame(OUTLANDS,60);  
+        player:addFame(RABAO,60);  
     elseif (csid == 0x0083) then
         player:addQuest(OUTLANDS,201);
     elseif (csid == 0x0084) then
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17011); -- Ebisu Fishing Rod
             player:messageSpecial(ITEM_OBTAINED, 17011); 
             player:completeQuest(OUTLANDS,201);
-            player:addFame(OUTLANDS,100);  
+            player:addFame(RABAO,100);  
         end
     end
 end;
