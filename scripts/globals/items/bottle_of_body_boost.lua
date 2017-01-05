@@ -20,6 +20,6 @@ end;
 
 function onItemUse(target)
     local duration = 900;
-        target:delStatusEffect(EFFECT_MAX_HP_BOOST);
-        target:addStatusEffect(EFFECT_MAX_HP_BOOST,50,0,duration);
+    target:delStatusEffect(EFFECT_MAX_HP_BOOST);
+    target:addStatusEffect(EFFECT_MAX_HP_BOOST,50,0,duration);
 end;

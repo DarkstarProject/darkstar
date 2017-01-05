@@ -34,7 +34,7 @@ function onItemUse(target)
         target:delStatusEffect(EFFECT_PARALYSIS);
     end
     
-    rDisease = math.random(1,2) -- Disease is not garunteed to be cured, 1 means removed 2 means fail. 50% chance
+    local rDisease = math.random(1,2) -- Disease is not garunteed to be cured, 1 means removed 2 means fail. 50% chance
     if (rDisease == 1 and target:hasStatusEffect(EFFECT_DISEASE) == true) then
         target:delStatusEffect(EFFECT_DISEASE);
     end    
