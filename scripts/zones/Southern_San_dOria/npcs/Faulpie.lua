@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 
 require("scripts/globals/status");
 require("scripts/globals/crafting");
+require("scripts/globals/missions");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
