@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Port_Windurst/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -65,7 +64,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player,32);
+            signupGuild(player, guild.fishing);
         end
     end
 end;

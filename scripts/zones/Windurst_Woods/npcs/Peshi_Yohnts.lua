@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -65,7 +64,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player,4);
+            signupGuild(player, guild.bonecraft);
         end
     end
 end;

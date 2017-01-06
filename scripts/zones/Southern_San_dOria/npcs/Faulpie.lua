@@ -6,11 +6,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -82,7 +81,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player, 128);
+            signupGuild(player, guild.leathercraft);
         end
     end
 end;

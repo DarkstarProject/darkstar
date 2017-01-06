@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -65,7 +64,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player, 64);
+            signupGuild(player, guild.goldsmithing);
         end
     end
 end;

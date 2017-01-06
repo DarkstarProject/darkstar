@@ -7,10 +7,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -64,7 +63,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(4098);
             player:messageSpecial(ITEM_OBTAINED,4098); -- Wind Crystal
-            signupGuild(player,512);
+            signupGuild(player, guild.woodworking);
         end
     end
 end;

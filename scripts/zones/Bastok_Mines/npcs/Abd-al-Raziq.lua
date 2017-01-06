@@ -6,11 +6,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
+require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
-require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -81,7 +80,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player,2);
+            signupGuild(player, guild.alchemy);
         end
     end
 end;
