@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     local testItem = getTestItem(player,npc,SKILL_WOODWORKING);
     local guildMember = isGuildMember(player,9);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,SKILLID) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,SKILL_WOODWORKING) == 1) then getNewRank = 100; end
 
     player:startEvent(0x026d,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;

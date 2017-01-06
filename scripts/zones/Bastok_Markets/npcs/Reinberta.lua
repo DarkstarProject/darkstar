@@ -58,14 +58,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x012c and option == 1) then
-        local crystal = math.random(4096,4101);
+        local crystal = 4096; -- fire crystal
 
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player, SKILL_GOLDSMITHING);
+            signupGuild(player, 64);
         end
     end
 end;
