@@ -1631,10 +1631,10 @@ INSERT INTO `item_mods` VALUES (10646,1,19); -- OPIMA PIGACHES, DEF:19 MP+45 "Ma
 INSERT INTO `item_mods` VALUES (10646,5,45); -- MP
 INSERT INTO `item_mods` VALUES (10646,28,5); -- MAB
 INSERT INTO `item_mods` VALUES (10646,27,-7); -- ENMITY
-INSERT INTO `item_mods` VALUES (10664,1,23); -- SUMMONER'S HORN +2, DEF:23 MP+42 "Blood Pact" ability delay -5 Avatar:"Magic Atk. Bonus"+4 Perpetuation cost -3
-INSERT INTO `item_mods` VALUES (10664,5,42); -- MP
-INSERT INTO `item_mods` VALUES (10664,357,-5); -- BP DELAY
-INSERT INTO `item_mods` VALUES (10664,371,-3); -- AVATAR PREP COST
+INSERT INTO `item_mods` VALUES (10664,1,23);      -- Summoner's Horn +2: DEF 23
+INSERT INTO `item_mods` VALUES (10664,5,42);      -- MP +42
+INSERT INTO `item_mods` VALUES (10664,346,3);     -- Avatar perpetuation cost -3
+INSERT INTO `item_mods` VALUES (10664,357,5);     -- Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (10647,1,4);
 INSERT INTO `item_mods` VALUES (10647,11,2);
 INSERT INTO `item_mods` VALUES (10647,169,12);
@@ -1832,10 +1832,10 @@ INSERT INTO `item_mods` VALUES (10683,2,46);
 INSERT INTO `item_mods` VALUES (10683,23,8);
 INSERT INTO `item_mods` VALUES (10683,68,8);
 INSERT INTO `item_mods` VALUES (10683,384,30);
-INSERT INTO `item_mods` VALUES (10684,1,49); -- SUMMONER'S DOUBLET +2, DEF:49 MP+28 "Blood Pact" ability delay -6 Avatar perpetuation cost -3 Critical hit rate +6%
-INSERT INTO `item_mods` VALUES (10684,5,28); -- MP
-INSERT INTO `item_mods` VALUES (10684,357,-6); -- BE DELAY
-INSERT INTO `item_mods` VALUES (10684,371,-3); -- AVATAR PREP COST
+INSERT INTO `item_mods` VALUES (10684,1,49);      -- Summoner's Doublet +2: DEF 49
+INSERT INTO `item_mods` VALUES (10684,5,28);      -- MP +28
+INSERT INTO `item_mods` VALUES (10684,346,3);     -- Avatar perpetuation cost -3
+INSERT INTO `item_mods` VALUES (10684,357,6);     -- Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (10685,1,59);
 INSERT INTO `item_mods` VALUES (10685,5,28);
 INSERT INTO `item_mods` VALUES (10685,8,5);
@@ -1946,10 +1946,10 @@ INSERT INTO `item_mods` VALUES (10703,5,22);
 INSERT INTO `item_mods` VALUES (10703,9,6);
 INSERT INTO `item_mods` VALUES (10703,11,6);
 INSERT INTO `item_mods` VALUES (10703,25,9);
-INSERT INTO `item_mods` VALUES (10704,1,20); -- SUMMONER'S BRACERS +2, DEF:20 MP+42 Summoning magic skill +15 "Blood Pact" ability delay -4 Avatar:Enhances accuracy
-INSERT INTO `item_mods` VALUES (10704,5,42); -- MP
-INSERT INTO `item_mods` VALUES (10704,117,15); -- SUMMONING SKILL
-INSERT INTO `item_mods` VALUES (10704,357,-4); -- BP DELAY
+INSERT INTO `item_mods` VALUES (10704,1,20);      -- Summoner's Bracers +2: DEF 20
+INSERT INTO `item_mods` VALUES (10704,5,42);      -- MP +42
+INSERT INTO `item_mods` VALUES (10704,117,15);    -- Summoning magic skill +15
+INSERT INTO `item_mods` VALUES (10704,357,4);     -- Blood Pact ability delay -4
 INSERT INTO `item_mods` VALUES (10705,1,22);
 INSERT INTO `item_mods` VALUES (10705,2,17);
 INSERT INTO `item_mods` VALUES (10705,5,17);
@@ -2057,10 +2057,9 @@ INSERT INTO `item_mods` VALUES (10723,1,42);
 INSERT INTO `item_mods` VALUES (10723,2,18);
 INSERT INTO `item_mods` VALUES (10723,8,7);
 INSERT INTO `item_mods` VALUES (10723,9,7);
-INSERT INTO `item_mods` VALUES (10724,1,38); -- SUMMONER'S SPATS +2, DEF:38 MP+35 Shortens magic recast time for elemental avatars "Blood Pact" ability delay -4 Avatar:Enhances magic accuracy
-INSERT INTO `item_mods` VALUES (10724,5,35); -- MP
--- INSERT INTO `item_mods` VALUES (10724,SHORTEN RECAST TIME FOR ELEMENTAL AVATARS,1);
-INSERT INTO `item_mods` VALUES (10724,357,-4); -- BP DELAY
+INSERT INTO `item_mods` VALUES (10724,1,38);      -- Summoner's Spats +2: DEF 38
+INSERT INTO `item_mods` VALUES (10724,5,35);      -- MP +35
+INSERT INTO `item_mods` VALUES (10724,357,4);     -- Blood Pact ability delay -4
 INSERT INTO `item_mods` VALUES (10725,1,40);
 INSERT INTO `item_mods` VALUES (10725,2,21);
 INSERT INTO `item_mods` VALUES (10725,5,21);
@@ -2168,9 +2167,9 @@ INSERT INTO `item_mods` VALUES (10743,2,14);
 INSERT INTO `item_mods` VALUES (10743,8,7);
 INSERT INTO `item_mods` VALUES (10743,10,7);
 INSERT INTO `item_mods` VALUES (10743,23,7);
-INSERT INTO `item_mods` VALUES (10744,1,18); -- SUMMONER'S PIGACHES +2, DEF:18 MP+35 "Blood Pact" ability delay -4 Avatar:Enhances attack Magic critical hit rate +5%
-INSERT INTO `item_mods` VALUES (10744,5,35); -- MP
-INSERT INTO `item_mods` VALUES (10744,357,-4); -- BP DELAY
+INSERT INTO `item_mods` VALUES (10744,1,18);      -- Summoner's Pigaches +2: DEF 18
+INSERT INTO `item_mods` VALUES (10744,5,35);      -- MP +35
+INSERT INTO `item_mods` VALUES (10744,357,4);     -- Blood Pact ability delay -4
 INSERT INTO `item_mods` VALUES (10745,1,21);
 INSERT INTO `item_mods` VALUES (10745,5,21);
 INSERT INTO `item_mods` VALUES (10745,11,6);
@@ -3311,7 +3310,6 @@ INSERT INTO `item_mods` VALUES (11117,25,10);
 INSERT INTO `item_mods` VALUES (11117,288,4);
 INSERT INTO `item_mods` VALUES (11118,1,23);
 INSERT INTO `item_mods` VALUES (11118,5,50);
-INSERT INTO `item_mods` VALUES (11118,373,3);
 INSERT INTO `item_mods` VALUES (11119,1,26);
 INSERT INTO `item_mods` VALUES (11119,13,10);
 INSERT INTO `item_mods` VALUES (11119,27,-4);
@@ -3751,8 +3749,6 @@ INSERT INTO `item_mods` VALUES (11217,9,6);
 INSERT INTO `item_mods` VALUES (11217,25,7);
 INSERT INTO `item_mods` VALUES (11218,1,21);
 INSERT INTO `item_mods` VALUES (11218,5,40);
-INSERT INTO `item_mods` VALUES (11218,373,2);
-INSERT INTO `item_mods` VALUES (11218,540,25);
 INSERT INTO `item_mods` VALUES (11219,1,24);
 INSERT INTO `item_mods` VALUES (11219,13,7);
 INSERT INTO `item_mods` VALUES (11219,27,-3);
@@ -3916,6 +3912,7 @@ INSERT INTO `item_mods` VALUES (11257,384,40);
 INSERT INTO `item_mods` VALUES (11258,1,15);
 INSERT INTO `item_mods` VALUES (11258,5,20);
 INSERT INTO `item_mods` VALUES (11258,346,2);
+INSERT INTO `item_mods` VALUES (11258,540,25);    -- Enhances Elemental Siphon +25 MP
 INSERT INTO `item_mods` VALUES (11259,1,21);
 INSERT INTO `item_mods` VALUES (11259,12,7);
 INSERT INTO `item_mods` VALUES (11259,27,-4);
@@ -4967,8 +4964,8 @@ INSERT INTO `item_mods` VALUES (11562,289,-6);
 INSERT INTO `item_mods` VALUES (11563,1,8);
 INSERT INTO `item_mods` VALUES (11563,14,8);
 INSERT INTO `item_mods` VALUES (11563,30,4);
-INSERT INTO `item_mods` VALUES (11564,1,6);
-INSERT INTO `item_mods` VALUES (11564,357,-3);
+INSERT INTO `item_mods` VALUES (11564,1,6);       -- Tiresias' Cape: DEF 6
+INSERT INTO `item_mods` VALUES (11564,357,3);     -- Blood Pact ability delay -3
 INSERT INTO `item_mods` VALUES (11565,1,8);
 INSERT INTO `item_mods` VALUES (11565,23,20);
 INSERT INTO `item_mods` VALUES (11565,289,5);
@@ -5102,8 +5099,8 @@ INSERT INTO `item_mods` VALUES (11617,23,7);
 INSERT INTO `item_mods` VALUES (11617,25,7);
 INSERT INTO `item_mods` VALUES (11618,454,10);    -- Aoidos' Matinee: Increases song effect duration +10%
 INSERT INTO `item_mods` VALUES (11618,455,3);     -- Song spellcasting time -3%
-INSERT INTO `item_mods` VALUES (11619,117,9);
-INSERT INTO `item_mods` VALUES (11619,372,-1);
+INSERT INTO `item_mods` VALUES (11619,117,9);     -- Caller's Pendant: Summoning magic skill +9
+INSERT INTO `item_mods` VALUES (11619,372,1);     -- Weather: Avatar perpetuation cost -1
 INSERT INTO `item_mods` VALUES (11620,12,5);
 INSERT INTO `item_mods` VALUES (11620,13,5);
 INSERT INTO `item_mods` VALUES (11620,28,3);
@@ -5307,8 +5304,8 @@ INSERT INTO `item_mods` VALUES (11714,73,1);
 INSERT INTO `item_mods` VALUES (11715,68,5);
 INSERT INTO `item_mods` VALUES (11715,259,1);
 INSERT INTO `item_mods` VALUES (11716,25,4);
-INSERT INTO `item_mods` VALUES (11717,5,30);
-INSERT INTO `item_mods` VALUES (11717,357,-1);
+INSERT INTO `item_mods` VALUES (11717,5,30);      -- Caller's Earring: MP +30
+INSERT INTO `item_mods` VALUES (11717,357,1);     -- Blood Pact ability delay -1
 INSERT INTO `item_mods` VALUES (11718,2,20);
 INSERT INTO `item_mods` VALUES (11718,5,20);
 INSERT INTO `item_mods` VALUES (11718,30,2);
@@ -5365,8 +5362,6 @@ INSERT INTO `item_mods` VALUES (11738,1,6);       -- Aoidos' Belt: DEF 6
 INSERT INTO `item_mods` VALUES (11738,455,3);     -- Song spellcasting time -3%
 INSERT INTO `item_mods` VALUES (11739,1,4);
 INSERT INTO `item_mods` VALUES (11739,5,20);
-INSERT INTO `item_mods` VALUES (11739,27,-2);
-INSERT INTO `item_mods` VALUES (11739,312,2);
 INSERT INTO `item_mods` VALUES (11740,1,8);
 INSERT INTO `item_mods` VALUES (11740,8,-4);
 INSERT INTO `item_mods` VALUES (11740,9,7);
@@ -6174,12 +6169,12 @@ INSERT INTO `item_mods` VALUES (11980,384,30);
 INSERT INTO `item_mods` VALUES (11981,1,50);
 INSERT INTO `item_mods` VALUES (11981,8,5);
 INSERT INTO `item_mods` VALUES (11981,73,5);
-INSERT INTO `item_mods` VALUES (11982,1,43);
-INSERT INTO `item_mods` VALUES (11982,12,8);
-INSERT INTO `item_mods` VALUES (11982,13,8);
-INSERT INTO `item_mods` VALUES (11982,117,6);
-INSERT INTO `item_mods` VALUES (11982,357,-2);
-INSERT INTO `item_mods` VALUES (11982,374,4);
+INSERT INTO `item_mods` VALUES (11982,1,43);      -- Magavan Slops: DEF 43
+INSERT INTO `item_mods` VALUES (11982,12,8);      -- INT +8
+INSERT INTO `item_mods` VALUES (11982,13,8);      -- MND +8
+INSERT INTO `item_mods` VALUES (11982,117,6);     -- Summoning magic skill +6
+INSERT INTO `item_mods` VALUES (11982,357,2);     -- Blood Pact ability delay -2
+INSERT INTO `item_mods` VALUES (11982,374,4);     -- Cure potency +4%
 INSERT INTO `item_mods` VALUES (12008,1,33);
 INSERT INTO `item_mods` VALUES (12008,8,3);
 INSERT INTO `item_mods` VALUES (12008,10,3);
@@ -12529,7 +12524,6 @@ INSERT INTO `item_mods` VALUES (14227,2,15);
 INSERT INTO `item_mods` VALUES (14227,57,10);
 INSERT INTO `item_mods` VALUES (14228,1,25);
 INSERT INTO `item_mods` VALUES (14228,5,15);
-INSERT INTO `item_mods` VALUES (14228,27,-2);
 INSERT INTO `item_mods` VALUES (14228,108,10);
 INSERT INTO `item_mods` VALUES (14229,1,36);
 INSERT INTO `item_mods` VALUES (14229,5,10);
@@ -13576,10 +13570,10 @@ INSERT INTO `item_mods` VALUES (14513,1,50);
 INSERT INTO `item_mods` VALUES (14513,2,33);
 INSERT INTO `item_mods` VALUES (14513,110,15);
 INSERT INTO `item_mods` VALUES (14513,384,20);
-INSERT INTO `item_mods` VALUES (14514,1,39);
-INSERT INTO `item_mods` VALUES (14514,5,20);
-INSERT INTO `item_mods` VALUES (14514,357,3);
-INSERT INTO `item_mods` VALUES (14514,373,3);
+INSERT INTO `item_mods` VALUES (14514,1,39);      -- Summoner's Doublet +1: DEF 39
+INSERT INTO `item_mods` VALUES (14514,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (14514,357,4);     -- Blood Pact ability delay -4
+INSERT INTO `item_mods` VALUES (14514,373,3);     -- Depending on day: Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (14515,1,43);
 INSERT INTO `item_mods` VALUES (14515,5,40);
 INSERT INTO `item_mods` VALUES (14515,25,10);
@@ -14821,10 +14815,10 @@ INSERT INTO `item_mods` VALUES (14922,2,16);
 INSERT INTO `item_mods` VALUES (14922,5,16);
 INSERT INTO `item_mods` VALUES (14922,11,4);
 INSERT INTO `item_mods` VALUES (14922,25,7);
-INSERT INTO `item_mods` VALUES (14923,1,16);
-INSERT INTO `item_mods` VALUES (14923,5,30);
-INSERT INTO `item_mods` VALUES (14923,117,12);
-INSERT INTO `item_mods` VALUES (14923,357,2);
+INSERT INTO `item_mods` VALUES (14923,1,16);      -- Summoner's Bracers +1: DEF 16
+INSERT INTO `item_mods` VALUES (14923,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (14923,117,12);    -- Summoning magic skill +12
+INSERT INTO `item_mods` VALUES (14923,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (14924,1,16);
 INSERT INTO `item_mods` VALUES (14924,25,6);
 INSERT INTO `item_mods` VALUES (14924,27,-5);
@@ -15441,11 +15435,11 @@ INSERT INTO `item_mods` VALUES (15085,2,16);
 INSERT INTO `item_mods` VALUES (15085,8,4);
 INSERT INTO `item_mods` VALUES (15085,56,10);
 INSERT INTO `item_mods` VALUES (15085,402,30);
-INSERT INTO `item_mods` VALUES (15086,1,18);
-INSERT INTO `item_mods` VALUES (15086,5,25);
-INSERT INTO `item_mods` VALUES (15086,12,3);
-INSERT INTO `item_mods` VALUES (15086,356,3);
-INSERT INTO `item_mods` VALUES (15086,372,3);
+INSERT INTO `item_mods` VALUES (15086,1,18);      -- Summoner's Horn: DEF 18
+INSERT INTO `item_mods` VALUES (15086,5,25);      -- MP +25
+INSERT INTO `item_mods` VALUES (15086,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15086,357,3);     -- Blood Pact ability delay -3
+INSERT INTO `item_mods` VALUES (15086,372,3);     -- Weather: Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (15087,1,50);
 INSERT INTO `item_mods` VALUES (15087,2,10);
 INSERT INTO `item_mods` VALUES (15087,23,10);
@@ -15510,10 +15504,10 @@ INSERT INTO `item_mods` VALUES (15100,1,49);
 INSERT INTO `item_mods` VALUES (15100,2,24);
 INSERT INTO `item_mods` VALUES (15100,110,15);
 INSERT INTO `item_mods` VALUES (15100,243,2);
-INSERT INTO `item_mods` VALUES (15101,1,38);
-INSERT INTO `item_mods` VALUES (15101,5,20);
-INSERT INTO `item_mods` VALUES (15101,357,3);
-INSERT INTO `item_mods` VALUES (15101,373,3);
+INSERT INTO `item_mods` VALUES (15101,1,38);      -- Summoner's Doublet: DEF 38
+INSERT INTO `item_mods` VALUES (15101,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15101,357,3);     -- Blood Pact ability delay -3
+INSERT INTO `item_mods` VALUES (15101,373,3);     -- Depending on day: Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (15102,1,22);
 INSERT INTO `item_mods` VALUES (15102,2,20);
 INSERT INTO `item_mods` VALUES (15102,10,5);
@@ -15578,10 +15572,10 @@ INSERT INTO `item_mods` VALUES (15115,1,19);
 INSERT INTO `item_mods` VALUES (15115,2,16);
 INSERT INTO `item_mods` VALUES (15115,11,3);
 INSERT INTO `item_mods` VALUES (15115,25,5);
-INSERT INTO `item_mods` VALUES (15116,1,15);
-INSERT INTO `item_mods` VALUES (15116,5,25);
-INSERT INTO `item_mods` VALUES (15116,117,10);
-INSERT INTO `item_mods` VALUES (15116,357,2);
+INSERT INTO `item_mods` VALUES (15116,1,15);      -- Summoner's Bracers: DEF 15
+INSERT INTO `item_mods` VALUES (15116,5,25);      -- MP +25
+INSERT INTO `item_mods` VALUES (15116,117,10);    -- Summoning magic skill +10
+INSERT INTO `item_mods` VALUES (15116,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (15117,1,39);
 INSERT INTO `item_mods` VALUES (15117,8,5);
 INSERT INTO `item_mods` VALUES (15117,27,3);
@@ -15644,10 +15638,10 @@ INSERT INTO `item_mods` VALUES (15130,1,32);
 INSERT INTO `item_mods` VALUES (15130,2,13);
 INSERT INTO `item_mods` VALUES (15130,9,5);
 INSERT INTO `item_mods` VALUES (15130,363,10);
-INSERT INTO `item_mods` VALUES (15131,1,29);
-INSERT INTO `item_mods` VALUES (15131,5,20);
-INSERT INTO `item_mods` VALUES (15131,13,3);
-INSERT INTO `item_mods` VALUES (15131,357,2);
+INSERT INTO `item_mods` VALUES (15131,1,29);      -- Summoner's Spats: DEF 29
+INSERT INTO `item_mods` VALUES (15131,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15131,13,3);      -- MND +3
+INSERT INTO `item_mods` VALUES (15131,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (15132,1,19);
 INSERT INTO `item_mods` VALUES (15132,2,10);
 INSERT INTO `item_mods` VALUES (15132,11,5);
@@ -15712,10 +15706,10 @@ INSERT INTO `item_mods` VALUES (15145,1,16);
 INSERT INTO `item_mods` VALUES (15145,2,10);
 INSERT INTO `item_mods` VALUES (15145,10,4);
 INSERT INTO `item_mods` VALUES (15145,55,10);
-INSERT INTO `item_mods` VALUES (15146,1,14);
-INSERT INTO `item_mods` VALUES (15146,5,20);
-INSERT INTO `item_mods` VALUES (15146,10,3);
-INSERT INTO `item_mods` VALUES (15146,357,2);
+INSERT INTO `item_mods` VALUES (15146,1,14);      -- Summoner's Pigaches: DEF 14
+INSERT INTO `item_mods` VALUES (15146,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15146,10,3);      -- VIT +3
+INSERT INTO `item_mods` VALUES (15146,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (15147,1,5);
 INSERT INTO `item_mods` VALUES (15147,13,1);
 INSERT INTO `item_mods` VALUES (15147,14,1);
@@ -16199,11 +16193,11 @@ INSERT INTO `item_mods` VALUES (15258,2,16);
 INSERT INTO `item_mods` VALUES (15258,8,5);
 INSERT INTO `item_mods` VALUES (15258,23,2);
 INSERT INTO `item_mods` VALUES (15258,402,30);
-INSERT INTO `item_mods` VALUES (15259,1,19);
-INSERT INTO `item_mods` VALUES (15259,5,30);
-INSERT INTO `item_mods` VALUES (15259,12,4);
-INSERT INTO `item_mods` VALUES (15259,356,3);
-INSERT INTO `item_mods` VALUES (15259,372,3);
+INSERT INTO `item_mods` VALUES (15259,1,19);      -- Summoner's Horn +1: DEF 19
+INSERT INTO `item_mods` VALUES (15259,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (15259,12,4);      -- INT +4
+INSERT INTO `item_mods` VALUES (15259,357,3);     -- Blood Pact ability delay -3
+INSERT INTO `item_mods` VALUES (15259,372,3);     -- Weather: Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (15260,1,24);
 INSERT INTO `item_mods` VALUES (15260,25,3);
 INSERT INTO `item_mods` VALUES (15260,27,-8);
@@ -17142,9 +17136,9 @@ INSERT INTO `item_mods` VALUES (15593,1,33);
 INSERT INTO `item_mods` VALUES (15593,2,13);
 INSERT INTO `item_mods` VALUES (15593,9,6);
 INSERT INTO `item_mods` VALUES (15593,363,10);
-INSERT INTO `item_mods` VALUES (15594,1,30);
-INSERT INTO `item_mods` VALUES (15594,5,25);
-INSERT INTO `item_mods` VALUES (15594,357,2);
+INSERT INTO `item_mods` VALUES (15594,1,30);      -- Summoner's Spats +1: DEF 30
+INSERT INTO `item_mods` VALUES (15594,5,25);      -- MP +25
+INSERT INTO `item_mods` VALUES (15594,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (15595,1,32);
 INSERT INTO `item_mods` VALUES (15595,25,10);
 INSERT INTO `item_mods` VALUES (15595,27,-6);
@@ -17489,9 +17483,9 @@ INSERT INTO `item_mods` VALUES (15678,1,17);
 INSERT INTO `item_mods` VALUES (15678,2,10);
 INSERT INTO `item_mods` VALUES (15678,10,5);
 INSERT INTO `item_mods` VALUES (15678,55,10);
-INSERT INTO `item_mods` VALUES (15679,1,15);
-INSERT INTO `item_mods` VALUES (15679,5,25);
-INSERT INTO `item_mods` VALUES (15679,357,2);
+INSERT INTO `item_mods` VALUES (15679,1,15);      -- Summoner's Pigaches +1: DEF 15
+INSERT INTO `item_mods` VALUES (15679,5,25);      -- MP +25
+INSERT INTO `item_mods` VALUES (15679,357,2);     -- Blood Pact ability delay -2
 INSERT INTO `item_mods` VALUES (15680,1,14);
 INSERT INTO `item_mods` VALUES (15680,25,6);
 INSERT INTO `item_mods` VALUES (15680,27,-5);
@@ -20552,8 +20546,8 @@ INSERT INTO `item_mods` VALUES (17570,9,3);
 INSERT INTO `item_mods` VALUES (17570,72,4);
 INSERT INTO `item_mods` VALUES (17572,5,22);
 INSERT INTO `item_mods` VALUES (17572,116,3);
-INSERT INTO `item_mods` VALUES (17573,5,63);
-INSERT INTO `item_mods` VALUES (17573,357,-3);
+INSERT INTO `item_mods` VALUES (17573,5,63);      -- Himmel Stock: MP +63
+INSERT INTO `item_mods` VALUES (17573,357,3);     -- Blood Pact ability delay +3
 INSERT INTO `item_mods` VALUES (17574,12,4);
 INSERT INTO `item_mods` VALUES (17574,13,4);
 INSERT INTO `item_mods` VALUES (17575,8,6);
@@ -25180,38 +25174,38 @@ INSERT INTO `item_mods` VALUES (26651,29,2);
 INSERT INTO `item_mods` VALUES (26651,31,43);
 INSERT INTO `item_mods` VALUES (26651,68,33);
 INSERT INTO `item_mods` VALUES (26651,384,71);
-INSERT INTO `item_mods` VALUES (26652,1,69);
-INSERT INTO `item_mods` VALUES (26652,2,15);
-INSERT INTO `item_mods` VALUES (26652,5,80);
-INSERT INTO `item_mods` VALUES (26652,8,8);
-INSERT INTO `item_mods` VALUES (26652,9,8);
-INSERT INTO `item_mods` VALUES (26652,10,8);
-INSERT INTO `item_mods` VALUES (26652,11,8);
-INSERT INTO `item_mods` VALUES (26652,12,12);
-INSERT INTO `item_mods` VALUES (26652,13,12);
-INSERT INTO `item_mods` VALUES (26652,14,12);
-INSERT INTO `item_mods` VALUES (26652,29,2);
-INSERT INTO `item_mods` VALUES (26652,31,51);
-INSERT INTO `item_mods` VALUES (26652,68,16);
-INSERT INTO `item_mods` VALUES (26652,346,-4);
-INSERT INTO `item_mods` VALUES (26652,357,-7);
-INSERT INTO `item_mods` VALUES (26652,384,51);
-INSERT INTO `item_mods` VALUES (26653,1,93);
-INSERT INTO `item_mods` VALUES (26653,2,31);
-INSERT INTO `item_mods` VALUES (26653,5,95);
-INSERT INTO `item_mods` VALUES (26653,8,12);
-INSERT INTO `item_mods` VALUES (26653,9,14);
-INSERT INTO `item_mods` VALUES (26653,10,14);
-INSERT INTO `item_mods` VALUES (26653,11,14);
-INSERT INTO `item_mods` VALUES (26653,12,19);
-INSERT INTO `item_mods` VALUES (26653,13,19);
-INSERT INTO `item_mods` VALUES (26653,14,19);
-INSERT INTO `item_mods` VALUES (26653,29,5);
-INSERT INTO `item_mods` VALUES (26653,31,75);
-INSERT INTO `item_mods` VALUES (26653,68,36);
-INSERT INTO `item_mods` VALUES (26653,346,-4);
-INSERT INTO `item_mods` VALUES (26653,357,-8);
-INSERT INTO `item_mods` VALUES (26653,384,61);
+INSERT INTO `item_mods` VALUES (26652,1,69);      -- Glyphic Horn: DEF 69
+INSERT INTO `item_mods` VALUES (26652,2,15);      -- HP +15
+INSERT INTO `item_mods` VALUES (26652,5,80);      -- MP +80
+INSERT INTO `item_mods` VALUES (26652,8,8);       -- STR +8
+INSERT INTO `item_mods` VALUES (26652,9,8);       -- DEX +8
+INSERT INTO `item_mods` VALUES (26652,10,8);      -- VIT +8
+INSERT INTO `item_mods` VALUES (26652,11,8);      -- AGI +8
+INSERT INTO `item_mods` VALUES (26652,12,12);     -- INT +12
+INSERT INTO `item_mods` VALUES (26652,13,12);     -- MND +12
+INSERT INTO `item_mods` VALUES (26652,14,12);     -- CHR +12
+INSERT INTO `item_mods` VALUES (26652,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (26652,31,51);     -- Magic Evasion +51
+INSERT INTO `item_mods` VALUES (26652,68,16);     -- Evasion +16
+INSERT INTO `item_mods` VALUES (26652,346,4);     -- Avatar perpetuation cost -4
+INSERT INTO `item_mods` VALUES (26652,357,7);     -- Blood Pact ability delay -7
+INSERT INTO `item_mods` VALUES (26652,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (26653,1,93);      -- Glyphic Horn +1: DEF 93
+INSERT INTO `item_mods` VALUES (26653,2,31);      -- HP +31
+INSERT INTO `item_mods` VALUES (26653,5,95);      -- MP +95
+INSERT INTO `item_mods` VALUES (26653,8,12);      -- STR +12
+INSERT INTO `item_mods` VALUES (26653,9,14);      -- DEX +14
+INSERT INTO `item_mods` VALUES (26653,10,14);     -- VIT +14
+INSERT INTO `item_mods` VALUES (26653,11,14);     -- AGI +14
+INSERT INTO `item_mods` VALUES (26653,12,19);     -- INT +19
+INSERT INTO `item_mods` VALUES (26653,13,19);     -- MND +19
+INSERT INTO `item_mods` VALUES (26653,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (26653,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (26653,31,75);     -- Magic Evasion +75
+INSERT INTO `item_mods` VALUES (26653,68,36);     -- Evasion +36
+INSERT INTO `item_mods` VALUES (26653,346,4);     -- Avatar perpetuation cost -4
+INSERT INTO `item_mods` VALUES (26653,357,8);     -- Blood Pact ability delay -8
+INSERT INTO `item_mods` VALUES (26653,384,61);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (26654,1,71);
 INSERT INTO `item_mods` VALUES (26654,2,37);
 INSERT INTO `item_mods` VALUES (26654,5,39);
@@ -26601,7 +26595,7 @@ INSERT INTO `item_mods` VALUES (26828,29,3);
 INSERT INTO `item_mods` VALUES (26828,31,54);
 INSERT INTO `item_mods` VALUES (26828,68,19);
 INSERT INTO `item_mods` VALUES (26828,346,4);
-INSERT INTO `item_mods` VALUES (26828,384,31);
+INSERT INTO `item_mods` VALUES (26828,384,20);    -- Haste +2%
 INSERT INTO `item_mods` VALUES (26828,541,1);
 INSERT INTO `item_mods` VALUES (26829,1,123);
 INSERT INTO `item_mods` VALUES (26829,2,50);
@@ -26856,7 +26850,7 @@ INSERT INTO `item_mods` VALUES (26888,14,29);
 INSERT INTO `item_mods` VALUES (26888,29,6);
 INSERT INTO `item_mods` VALUES (26888,31,80);
 INSERT INTO `item_mods` VALUES (26888,68,41);
-INSERT INTO `item_mods` VALUES (26888,357,-8);
+INSERT INTO `item_mods` VALUES (26888,357,8);     -- Shomonjijoe +1: Blood Pact ability delay -8 
 INSERT INTO `item_mods` VALUES (26888,369,3);
 INSERT INTO `item_mods` VALUES (26888,384,30);
 INSERT INTO `item_mods` VALUES (26891,1,142);
@@ -28078,7 +28072,7 @@ INSERT INTO `item_mods` VALUES (27004,29,1);
 INSERT INTO `item_mods` VALUES (27004,31,25);
 INSERT INTO `item_mods` VALUES (27004,68,10);
 INSERT INTO `item_mods` VALUES (27004,117,17);
-INSERT INTO `item_mods` VALUES (27004,357,-5);
+INSERT INTO `item_mods` VALUES (27004,357,5);     -- Glyphic Bracers: Blood Pact ability delay -5 
 INSERT INTO `item_mods` VALUES (27004,384,31);
 INSERT INTO `item_mods` VALUES (27005,1,81);
 INSERT INTO `item_mods` VALUES (27005,2,18);
@@ -28094,7 +28088,7 @@ INSERT INTO `item_mods` VALUES (27005,29,3);
 INSERT INTO `item_mods` VALUES (27005,31,37);
 INSERT INTO `item_mods` VALUES (27005,68,22);
 INSERT INTO `item_mods` VALUES (27005,117,19);
-INSERT INTO `item_mods` VALUES (27005,357,-6);
+INSERT INTO `item_mods` VALUES (27005,357,6);     -- Glyphic Bracers +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27005,384,31);
 INSERT INTO `item_mods` VALUES (27006,1,62);
 INSERT INTO `item_mods` VALUES (27006,2,28);
@@ -29338,7 +29332,7 @@ INSERT INTO `item_mods` VALUES (27180,14,12);
 INSERT INTO `item_mods` VALUES (27180,29,3);
 INSERT INTO `item_mods` VALUES (27180,31,73);
 INSERT INTO `item_mods` VALUES (27180,68,12);
-INSERT INTO `item_mods` VALUES (27180,357,-5);
+INSERT INTO `item_mods` VALUES (27180,357,5);     -- Glyphic Spats: Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (27180,384,41);
 INSERT INTO `item_mods` VALUES (27181,1,103);
 INSERT INTO `item_mods` VALUES (27181,2,38);
@@ -29352,7 +29346,7 @@ INSERT INTO `item_mods` VALUES (27181,14,19);
 INSERT INTO `item_mods` VALUES (27181,29,6);
 INSERT INTO `item_mods` VALUES (27181,31,107);
 INSERT INTO `item_mods` VALUES (27181,68,27);
-INSERT INTO `item_mods` VALUES (27181,357,-6);
+INSERT INTO `item_mods` VALUES (27181,357,6);     -- Glyphic Spats +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27181,384,51);
 INSERT INTO `item_mods` VALUES (27182,1,79);
 INSERT INTO `item_mods` VALUES (27182,2,37);
@@ -30600,21 +30594,21 @@ INSERT INTO `item_mods` VALUES (27355,29,2);
 INSERT INTO `item_mods` VALUES (27355,31,75);
 INSERT INTO `item_mods` VALUES (27355,68,52);
 INSERT INTO `item_mods` VALUES (27355,384,31);
-INSERT INTO `item_mods` VALUES (27356,1,60);
-INSERT INTO `item_mods` VALUES (27356,2,22);
-INSERT INTO `item_mods` VALUES (27356,5,15);
-INSERT INTO `item_mods` VALUES (27356,8,12);
-INSERT INTO `item_mods` VALUES (27356,9,11);
-INSERT INTO `item_mods` VALUES (27356,10,9);
-INSERT INTO `item_mods` VALUES (27356,11,20);
-INSERT INTO `item_mods` VALUES (27356,12,6);
-INSERT INTO `item_mods` VALUES (27356,13,6);
-INSERT INTO `item_mods` VALUES (27356,14,17);
-INSERT INTO `item_mods` VALUES (27356,29,1);
-INSERT INTO `item_mods` VALUES (27356,31,51);
-INSERT INTO `item_mods` VALUES (27356,68,24);
-INSERT INTO `item_mods` VALUES (27356,357,-5);
-INSERT INTO `item_mods` VALUES (27356,384,31);
+INSERT INTO `item_mods` VALUES (27356,1,44);      -- Glyphic Pigaches: DEF 44
+INSERT INTO `item_mods` VALUES (27356,2,4);       -- HP +4
+INSERT INTO `item_mods` VALUES (27356,5,60);      -- MP +60
+INSERT INTO `item_mods` VALUES (27356,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (27356,9,7);       -- DEX +7
+INSERT INTO `item_mods` VALUES (27356,10,6);      -- VIT +6
+INSERT INTO `item_mods` VALUES (27356,11,20);     -- AGI +20
+INSERT INTO `item_mods` VALUES (27356,12,11);     -- INT +11
+INSERT INTO `item_mods` VALUES (27356,13,12);     -- MND +12
+INSERT INTO `item_mods` VALUES (27356,14,21);     -- CHR +21
+INSERT INTO `item_mods` VALUES (27356,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (27356,31,73);     -- Magic Evasion +73
+INSERT INTO `item_mods` VALUES (27356,68,25);     -- Evasion +25
+INSERT INTO `item_mods` VALUES (27356,357,5);     -- Blood Pact ability delay -5
+INSERT INTO `item_mods` VALUES (27356,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (27357,1,60);
 INSERT INTO `item_mods` VALUES (27357,2,9);
 INSERT INTO `item_mods` VALUES (27357,5,75);
@@ -31840,7 +31834,7 @@ INSERT INTO `item_mods` VALUES (27677,29,2);
 INSERT INTO `item_mods` VALUES (27677,31,51);
 INSERT INTO `item_mods` VALUES (27677,68,16);
 INSERT INTO `item_mods` VALUES (27677,117,15);
-INSERT INTO `item_mods` VALUES (27677,357,-7);
+INSERT INTO `item_mods` VALUES (27677,357,7);     -- Convoker's Horn: Blood Pact ability delay -7
 INSERT INTO `item_mods` VALUES (27677,369,2);
 INSERT INTO `item_mods` VALUES (27677,384,51);
 INSERT INTO `item_mods` VALUES (27678,1,72);
@@ -32146,7 +32140,7 @@ INSERT INTO `item_mods` VALUES (27698,29,5);
 INSERT INTO `item_mods` VALUES (27698,31,75);
 INSERT INTO `item_mods` VALUES (27698,68,36);
 INSERT INTO `item_mods` VALUES (27698,117,15);
-INSERT INTO `item_mods` VALUES (27698,357,-8);
+INSERT INTO `item_mods` VALUES (27698,357,8);     -- Convoker's Horn +1: Blood Pact ability delay -8
 INSERT INTO `item_mods` VALUES (27698,369,2);
 INSERT INTO `item_mods` VALUES (27698,384,61);
 INSERT INTO `item_mods` VALUES (27699,1,102);
@@ -33126,7 +33120,7 @@ INSERT INTO `item_mods` VALUES (27821,14,18);
 INSERT INTO `item_mods` VALUES (27821,29,3);
 INSERT INTO `item_mods` VALUES (27821,31,54);
 INSERT INTO `item_mods` VALUES (27821,68,19);
-INSERT INTO `item_mods` VALUES (27821,357,-6);
+INSERT INTO `item_mods` VALUES (27821,357,6);     -- Convoker's Doublet: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27821,384,21);
 INSERT INTO `item_mods` VALUES (27822,1,93);
 INSERT INTO `item_mods` VALUES (27822,2,38);
@@ -33458,7 +33452,7 @@ INSERT INTO `item_mods` VALUES (27842,14,29);
 INSERT INTO `item_mods` VALUES (27842,29,6);
 INSERT INTO `item_mods` VALUES (27842,31,80);
 INSERT INTO `item_mods` VALUES (27842,68,41);
-INSERT INTO `item_mods` VALUES (27842,357,-6);
+INSERT INTO `item_mods` VALUES (27842,357,6);     -- Convoker's Doublet +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27842,384,31);
 INSERT INTO `item_mods` VALUES (27843,1,132);
 INSERT INTO `item_mods` VALUES (27843,2,69);
@@ -34432,7 +34426,7 @@ INSERT INTO `item_mods` VALUES (27957,14,12);
 INSERT INTO `item_mods` VALUES (27957,29,1);
 INSERT INTO `item_mods` VALUES (27957,31,25);
 INSERT INTO `item_mods` VALUES (27957,68,10);
-INSERT INTO `item_mods` VALUES (27957,357,-5);
+INSERT INTO `item_mods` VALUES (27957,357,5);     -- Convoker's Bracers: Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (27957,384,31);
 INSERT INTO `item_mods` VALUES (27958,1,63);
 INSERT INTO `item_mods` VALUES (27958,2,11);
@@ -34741,7 +34735,7 @@ INSERT INTO `item_mods` VALUES (27978,14,19);
 INSERT INTO `item_mods` VALUES (27978,29,3);
 INSERT INTO `item_mods` VALUES (27978,31,37);
 INSERT INTO `item_mods` VALUES (27978,68,22);
-INSERT INTO `item_mods` VALUES (27978,357,-6);
+INSERT INTO `item_mods` VALUES (27978,357,6);     -- Convoker's Bracers +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27978,384,31);
 INSERT INTO `item_mods` VALUES (27979,1,90);
 INSERT INTO `item_mods` VALUES (27979,2,25);
@@ -36739,7 +36733,7 @@ INSERT INTO `item_mods` VALUES (28237,14,21);
 INSERT INTO `item_mods` VALUES (28237,29,2);
 INSERT INTO `item_mods` VALUES (28237,31,73);
 INSERT INTO `item_mods` VALUES (28237,68,25);
-INSERT INTO `item_mods` VALUES (28237,346,-4);
+INSERT INTO `item_mods` VALUES (28237,346,4);     -- Convoker's pigaches: Avatar perpetuation cost -4
 INSERT INTO `item_mods` VALUES (28237,384,31);
 INSERT INTO `item_mods` VALUES (28238,1,51);
 INSERT INTO `item_mods` VALUES (28238,2,26);
@@ -37015,7 +37009,7 @@ INSERT INTO `item_mods` VALUES (28257,68,34);
 INSERT INTO `item_mods` VALUES (28257,362,22);
 INSERT INTO `item_mods` VALUES (28257,384,31);
 INSERT INTO `item_mods` VALUES (28258,1,62);
-INSERT INTO `item_mods` VALUES (28258,2,41);
+INSERT INTO `item_mods` VALUES (28258,2,9);       -- Convoker's Pigaches +1: HP +9
 INSERT INTO `item_mods` VALUES (28258,5,41);
 INSERT INTO `item_mods` VALUES (28258,8,10);
 INSERT INTO `item_mods` VALUES (28258,9,11);
@@ -37027,7 +37021,7 @@ INSERT INTO `item_mods` VALUES (28258,14,34);
 INSERT INTO `item_mods` VALUES (28258,29,5);
 INSERT INTO `item_mods` VALUES (28258,31,107);
 INSERT INTO `item_mods` VALUES (28258,68,55);
-INSERT INTO `item_mods` VALUES (28258,346,-5);
+INSERT INTO `item_mods` VALUES (28258,346,4);     -- Avatar perpetuation cost -4
 INSERT INTO `item_mods` VALUES (28258,384,31);
 INSERT INTO `item_mods` VALUES (28259,1,72);
 INSERT INTO `item_mods` VALUES (28259,2,33);
@@ -37278,7 +37272,7 @@ INSERT INTO `item_mods` VALUES (28296,14,24);
 INSERT INTO `item_mods` VALUES (28296,29,5);
 INSERT INTO `item_mods` VALUES (28296,31,107);
 INSERT INTO `item_mods` VALUES (28296,68,55);
-INSERT INTO `item_mods` VALUES (28296,346,-3);
+INSERT INTO `item_mods` VALUES (28296,346,3);     -- Artsieq Boots: Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (28296,384,31);
 INSERT INTO `item_mods` VALUES (28297,1,82);
 INSERT INTO `item_mods` VALUES (28297,2,18);
@@ -38142,7 +38136,7 @@ INSERT INTO `item_mods` VALUES (28415,28,7);      -- Magic Atk. Bonus +7
 INSERT INTO `item_mods` VALUES (28415,30,7);      -- Magic Accuracy +7
 INSERT INTO `item_mods` VALUES (28416,1,5);       -- Lucidity Sash: DEF 5
 INSERT INTO `item_mods` VALUES (28416,117,7);     -- Summoning magic skill +7
-INSERT INTO `item_mods` VALUES (28416,371,-2);    -- Avatar perpetuation cost -2
+INSERT INTO `item_mods` VALUES (28416,371,2);     -- Avatar perpetuation cost -2
 INSERT INTO `item_mods` VALUES (28417,1,7);       -- Sinew Belt: DEF 7
 INSERT INTO `item_mods` VALUES (28417,8,5);       -- STR +5
 INSERT INTO `item_mods` VALUES (28417,23,20);     -- Attack +20
@@ -38643,8 +38637,8 @@ INSERT INTO `item_mods` VALUES (28604,1,18);
 INSERT INTO `item_mods` VALUES (28604,27,5);
 INSERT INTO `item_mods` VALUES (28604,31,10);
 INSERT INTO `item_mods` VALUES (28604,163,-6);    -- Magic damage taken -6%
-INSERT INTO `item_mods` VALUES (28605,1,10);
-INSERT INTO `item_mods` VALUES (28605,357,-3);
+INSERT INTO `item_mods` VALUES (28605,1,10);      -- Samanisi Cape: DEF 10
+INSERT INTO `item_mods` VALUES (28605,357,3);     -- Blood Pact ability delay -3
 INSERT INTO `item_mods` VALUES (28606,1,20);      -- Aput Mantle: DEF 20
 INSERT INTO `item_mods` VALUES (28606,5,25);      -- MP +25
 INSERT INTO `item_mods` VALUES (28606,30,8);      -- Magic Accuracy +8
