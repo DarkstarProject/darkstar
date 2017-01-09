@@ -54,9 +54,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     damage = damage * WEAPON_SKILL_POWER
-    -- use the takeWeaponskillDamage binding, NOT the same named function in the global lua (which itself calls the binding).
-    damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, primary, tpHits, 0, 1);
-    target:updateEnmityFromDamage(player, damage);
+
+    damage = takeWeaponskillDamage(target, player, {}, primary, damage, SLOT_MAIN, tpHits, 0, nil)
+
     return tpHits, 0, false, damage;
 
 end
