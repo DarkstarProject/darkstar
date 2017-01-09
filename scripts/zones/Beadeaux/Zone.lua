@@ -75,6 +75,9 @@ function onRegionEnter(player,region)
     if (region:GetRegionID() <= 6) then
         if (player:hasStatusEffect(EFFECT_CURSE_I) == false and player:hasStatusEffect(EFFECT_SILENCE) == false) then
             player:addStatusEffect(EFFECT_CURSE_I,50,0,300);
+            if (player:getQuestStatus(BASTOK,THE_CURSE_COLLECTOR) == QUEST_ACCEPTED and player:getVar("cCollectCurse") == 0) then 
+                player:setVar("cCollectCurse",1);
+            end
         end
     end
 end;

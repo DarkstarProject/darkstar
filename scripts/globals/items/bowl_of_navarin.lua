@@ -3,7 +3,7 @@
 -- Item: Bowl of Navarin
 -- Food Effect: 180Min, All Races
 -----------------------------------------
--- Health % 3
+-- Health % 3 (cap 130)
 -- Strength 3
 -- Agility 1
 -- Vitality 1
@@ -22,11 +22,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -42,7 +42,8 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPP, 3);
+    target:addMod(MOD_FOOD_HPP, 3);
+    target:addMod(MOD_FOOD_HP_CAP, 130);
     target:addMod(MOD_STR, 3);
     target:addMod(MOD_AGI, 1);
     target:addMod(MOD_VIT, 1);
@@ -59,7 +60,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, 3);
+    target:delMod(MOD_FOOD_HPP, 3);
+    target:delMod(MOD_FOOD_HP_CAP, 130);
     target:delMod(MOD_STR, 3);
     target:delMod(MOD_AGI, 1);
     target:delMod(MOD_VIT, 1);

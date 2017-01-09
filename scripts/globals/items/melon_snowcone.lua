@@ -3,7 +3,7 @@
 -- Item: Melon Snowcone
 -- Food Effect: 5 Min, All Races
 -----------------------------------------
--- MP % 10 Cap 200
+-- HP % 10 Cap 200
 -- HP Healing 3
 -----------------------------------------
 
@@ -14,11 +14,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD)) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_MPP, 10);
-    target:addMod(MOD_FOOD_MP_CAP, 200);
+    target:addMod(MOD_FOOD_HPP, 10);
+    target:addMod(MOD_FOOD_HP_CAP, 200);
     target:addMod(MOD_HPHEAL, 3);
 end;
 
@@ -44,7 +44,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_MPP, 10);
-    target:delMod(MOD_FOOD_MP_CAP, 200);
+    target:delMod(MOD_FOOD_HPP, 10);
+    target:delMod(MOD_FOOD_HP_CAP, 200);
     target:delMod(MOD_HPHEAL, 3);
 end;

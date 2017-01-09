@@ -16,7 +16,7 @@ function onItemCheck(target)
     if (target:hasStatusEffect(EFFECT_MEDICINE)) then
             result = 111;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -24,6 +24,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_AGI_BOOST,7,0,180);
-        target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
+    target:addStatusEffect(EFFECT_AGI_BOOST,7,0,180);
+    target:addStatusEffect(EFFECT_MEDICINE,0,0,900);
 end;

@@ -7,8 +7,8 @@
 -- Dexterity 2
 -- Intelligence -3
 -- Mind 4
--- Attack % 22
--- Attack Cap 65
+-- Attack % 20 (cap 65)
+-- Ranged Attack % 20 (cap 65)
 -----------------------------------------
 -- IF ELVAAN ONLY
 -- HP 20
@@ -31,11 +31,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -68,9 +68,9 @@ function onEffectGain(target,effect)
         target:addMod(MOD_DEX, 2);
         target:addMod(MOD_INT, -3);
         target:addMod(MOD_MND, 4);
-        target:addMod(MOD_FOOD_ATTP, 22);
+        target:addMod(MOD_FOOD_ATTP, 20);
         target:addMod(MOD_FOOD_ATT_CAP, 65);
-        target:addMod(MOD_FOOD_RATTP, 22);
+        target:addMod(MOD_FOOD_RATTP, 20);
         target:addMod(MOD_FOOD_RATT_CAP, 65);
     end
 end;

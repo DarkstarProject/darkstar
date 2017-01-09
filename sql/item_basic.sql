@@ -4814,11 +4814,11 @@ INSERT INTO `item_basic` VALUES (5194,0,'bowl_of_pomodoro_sauce','pomodoro_sauce
 INSERT INTO `item_basic` VALUES (5195,0,'sprig_of_misareaux_parsley','misx._parsley',12,1548,59,0,539);
 INSERT INTO `item_basic` VALUES (5196,0,'strip_of_buffalo_jerky','buffalo_jerky',12,1548,52,0,299);
 INSERT INTO `item_basic` VALUES (5197,0,'dish_of_spaghetti_peperoncino_+1','peperoncino_+1',12,1548,56,0,575);
-INSERT INTO `item_basic` VALUES (5198,0,'dish_of_spag._vongole_rosso_+1','vongole_r._+1',12,1548,56,0,477);
+INSERT INTO `item_basic` VALUES (5198,0,'dish_of_spaghetti_vongole_rosso_+1','vongole_r._+1',12,1548,56,0,477);
 INSERT INTO `item_basic` VALUES (5199,0,'dish_of_spaghetti_carbonara_+1','carbonara_+1',12,1548,56,0,1198);
 INSERT INTO `item_basic` VALUES (5200,0,'dish_of_spaghetti_pescatora_+1','pescatora_+1',12,1548,56,0,1171);
 INSERT INTO `item_basic` VALUES (5201,0,'dish_of_spaghetti_boscaiola_+1','boscaiola_+1',12,1548,56,0,893);
-INSERT INTO `item_basic` VALUES (5202,0,'dish_of_spag._nero_di_seppia_+1','nero_seppia_+1',12,1548,56,0,685);
+INSERT INTO `item_basic` VALUES (5202,0,'dish_of_spaghetti_nero_di_seppia_+1','nero_seppia_+1',12,1548,56,0,685);
 INSERT INTO `item_basic` VALUES (5203,0,'piece_of_hume_mochi','hume_mochi',99,5708,99,1,0);
 INSERT INTO `item_basic` VALUES (5204,0,'piece_of_elvaan_mochi','elvaan_mochi',99,5708,99,1,0);
 INSERT INTO `item_basic` VALUES (5205,0,'piece_of_tarutaru_mochi','tarutaru_mochi',99,5708,99,1,0);
@@ -5174,7 +5174,7 @@ INSERT INTO `item_basic` VALUES (5555,0,'serving_of_flurry_courante','flurry_cou
 INSERT INTO `item_basic` VALUES (5556,0,'cone_of_seraphs_kiss','seraphs_kiss',12,1548,57,0,477);
 INSERT INTO `item_basic` VALUES (5557,0,'serving_of_mont_blanc','mont_blanc',1,1580,57,0,390);
 INSERT INTO `item_basic` VALUES (5558,0,'serving_of_golden_royale','golden_royale',1,1580,57,0,487);
-INSERT INTO `item_basic` VALUES (5559,0,'serving_of_mille_feuille','mille_feuille',1,1580,57,0,129);
+INSERT INTO `item_basic` VALUES (5559,0,'serving_of_mille-feuille','mille-feuille',1,1580,57,0,129);
 INSERT INTO `item_basic` VALUES (5560,0,'serving_of_elysian_eclair','elysian_eclair',1,1580,57,0,161);
 INSERT INTO `item_basic` VALUES (5561,0,'moogle_pie','moogle_pie',1,30296,99,0,242);
 INSERT INTO `item_basic` VALUES (5562,0,'pot_of_white_honey','white_honey',12,1548,59,0,30);
@@ -5325,9 +5325,9 @@ INSERT INTO `item_basic` VALUES (5706,0,'dish_of_homemade_carbonara','hmd._carbo
 INSERT INTO `item_basic` VALUES (5707,0,'homemade_omelette','hmd._omelette',1,30296,99,1,0);
 INSERT INTO `item_basic` VALUES (5708,0,'mihgo_mithkabob','mihgo_mithkabob',1,58968,99,0,4888);
 INSERT INTO `item_basic` VALUES (5709,0,'stick_of_cotton_candy','cotton_candy',12,13900,99,1,0);
-INSERT INTO `item_basic` VALUES (5710,0,'berry_snow_cone','b._snow_cone',12,13900,99,1,0);
+INSERT INTO `item_basic` VALUES (5710,0,'berry_snowcone','b._snowcone',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5711,0,'kitron_snow_cone','k._snow_cone',12,13900,99,0,0);
-INSERT INTO `item_basic` VALUES (5712,0,'melon_snow_cone','m._snow_cone',12,13900,99,1,0);
+INSERT INTO `item_basic` VALUES (5712,0,'melon_snowcone','m._snowcone',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5713,0,'orange_snow_cone','o._snow_cone',12,13900,99,1,0);
 INSERT INTO `item_basic` VALUES (5714,0,'pearlscale','pearlscale',1,1544,51,0,12);
 INSERT INTO `item_basic` VALUES (5715,0,'calico_comet','calico_comet',1,1544,51,0,12);
