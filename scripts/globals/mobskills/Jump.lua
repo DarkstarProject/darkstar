@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Jump
--- Jumping Attack, only used by dragoo orcs.
+-- Jumping Attack, only used by dragoon orcs.
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
 ---------------------------------------------------
 

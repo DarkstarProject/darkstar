@@ -1,10 +1,10 @@
 ---------------------------------------------
---  Roar
+--  Death Trap
 --
---  Description: Paralyzes targets in an area of effect.
+--  Description: Attempts to stun or poison any players in a large trap. Resets hate.
 --  Type: Enfeebling
 --  Utsusemi/Blink absorb: Ignores shadows
---  Range: 10' radial
+--  Range: 30' radial
 --  Notes:
 ---------------------------------------------
 require("scripts/globals/settings");

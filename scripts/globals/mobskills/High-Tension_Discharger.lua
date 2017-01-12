@@ -1,8 +1,9 @@
 ---------------------------------------------------
 --  High-Tension_Discharger
---  Description:
---  Type: Magical
---  additional effect : Stun
+--  Description: Discharges a powerful current that deals Lightning damage to players in a fan-shaped area. 
+--  Additional effect: Stun
+--  Type: Magical 
+
 ---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

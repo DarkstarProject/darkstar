@@ -6,7 +6,7 @@
 --  Can be dispelled: N/A
 --  Utsusemi/Blink absorb: 2 shadows
 --  Range: Melee
---  Notes:
+--  Notes: Double attacks a single target. Additional effect: Stun
 ---------------------------------------------
 
 require("scripts/globals/settings");

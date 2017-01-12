@@ -23,8 +23,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,MOBPARAM_3_SHADOW);
     target:delHP(dmg);
 
-    -- KNOCKBACK
-
     local typeEffect = EFFECT_WEIGHT;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 300);

@@ -1,7 +1,7 @@
 ---------------------------------------------
---  Earth Pounder
+--  Earthbreaker
 --
---  Description: Deals Earth damage to enemies within area of effect. Additional effect: Dexterity Down
+--  Description: Deals Earth damage to enemies within area of effect. Additional effect: Stun
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: 15' radial

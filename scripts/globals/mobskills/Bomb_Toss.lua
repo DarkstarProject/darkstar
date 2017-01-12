@@ -1,3 +1,7 @@
+---------------------------------------------------
+-- Bomb Toss
+-- Throws a bomb at an enemy.
+---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");

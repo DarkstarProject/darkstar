@@ -1,5 +1,5 @@
 ---------------------------------------------
---  Chains of Apathy
+--  Chains of Envy
 --
 ---------------------------------------------
 require("scripts/globals/settings");

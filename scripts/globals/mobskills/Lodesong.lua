@@ -1,10 +1,7 @@
 ---------------------------------------------
---  Mysterious Light
+--  Lodesong
 --
---  Description: Deals wind damage to enemies within range. Additional effect: Weight.
---  Type: Magical (Wind)
---
---
+--  Description: Weighs down targets in an area of effect.
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

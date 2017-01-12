@@ -5,7 +5,7 @@
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown cone, backwards
---  Notes:  Only used when the Behemoth is attacking with it's tail.
+--  Notes:  Only used when the Behemoth is attacking with its tail.
 ---------------------------------------------
 
 require("scripts/globals/settings");

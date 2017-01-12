@@ -1,3 +1,7 @@
+---------------------------------------------------
+-- Condemnation
+-- Deals damage in a threefold attack to enemies within a fan-shaped area of effect.
+---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");

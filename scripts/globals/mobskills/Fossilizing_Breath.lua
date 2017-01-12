@@ -1,5 +1,5 @@
 ---------------------------------------------
---  Fossilizaing Breath
+--  Fossilizing Breath
 --
 --  Description: Petrifies targets within a fan-shaped area.
 --  Type: Breath
