@@ -1,11 +1,11 @@
 ---------------------------------------------
---  Sharp Strike
+--  Evasion
 --
---  Description: Scorpion goes crazy
+--  Description: Increases evasion
 --  Type: Enhancing
 --  Utsusemi/Blink absorb: N/A
 --  Range: Self
---  Notes: 50% Attack Boost.
+--  Notes: 25% Evasion Boost.
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

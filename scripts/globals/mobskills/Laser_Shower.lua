@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Laser_Shower
 --
---  Description: Deals Darkness damage to enemies within a fan-shaped area.
+--  Description: Fires several lasers into a fan-shaped area of effect. Additional effect: Defense Down
 --  Type: Breath
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone
@@ -25,14 +25,17 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_DARK, 1600);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_LIGHT, 1600);
     local dis = ((mob:checkDistance(target)*2) / 20);
 
     dmgmod = dmgmod * dis;
     dmgmod = utils.clamp(dmgmod, 50, 1600);
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
 
+    local typeEffect = EFFECT_DEFENSE_DOWN;
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 25, 0, 60);
+    
     target:delHP(dmg);
     return dmg;
 end;

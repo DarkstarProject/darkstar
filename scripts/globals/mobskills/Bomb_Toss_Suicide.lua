@@ -1,3 +1,7 @@
+---------------------------------------------------
+-- Bomb Toss - Suicide
+-- Throws a bomb at an enemy. Sometimes backfires.
+---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");

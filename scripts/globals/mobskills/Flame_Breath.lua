@@ -1,10 +1,7 @@
 ---------------------------------------------
---  Cold Breath
---
---  Description: Deals ice damage to enemies within a fan-shaped area originating from the caster. Additional effect: Bind.
---  Type: Magical Ice (Element)
---
---
+--  Flame Breath
+--  Description: Deals fire damage to enemies within a fan-shaped area originating from the caster.
+--  Type: Magical Fire (Element)
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

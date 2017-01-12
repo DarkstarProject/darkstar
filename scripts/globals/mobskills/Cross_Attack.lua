@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Cross Attack
--- Single target attack, 2-hits.
+-- Hits a single target twice in a cross motion.
 ---------------------------------------------------
 
 require("scripts/globals/settings");
@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    -- Needs Knockback added
+
     local numhits = 2;
     local accmod = 1;
     local dmgmod = 1.5;

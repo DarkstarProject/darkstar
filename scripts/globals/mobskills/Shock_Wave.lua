@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    -- Needs Knockback added
+
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 3.2;

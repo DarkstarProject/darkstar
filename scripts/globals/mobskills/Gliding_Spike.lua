@@ -1,10 +1,8 @@
 ---------------------------------------------
 --  Gliding Spike
 --
---  Description: Damage varies with TP. Additional effect: "Stun."
---  Type: Physical (Blunt)
---
---
+--  Description: Damage varies with TP. Strikes a single target with a spike. Additional effect: Knockback + Stun
+--  Type: Physical (Piercing)
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

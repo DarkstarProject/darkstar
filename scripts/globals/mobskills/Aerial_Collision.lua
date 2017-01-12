@@ -1,5 +1,5 @@
 ---------------------------------------------
---  Aerial Collusion
+--  Aerial Collision
 --  Description: Cone Attack damage and Defense Down, strips Utsusemi (MOBPARAM_WIPE_SHADOWS)
 ---------------------------------------------
 
