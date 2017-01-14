@@ -17570,6 +17570,7 @@ INSERT INTO `item_basic` VALUES (26175,0,'hetairoi_ring','hetairoi_ring',1,63568
 INSERT INTO `item_basic` VALUES (26176,0,'dimensional_ring_(holla)','dim._ring_(holla)',1,64584,99,0,0);
 INSERT INTO `item_basic` VALUES (26177,0,'dimensional_ring_(dem)','dim._ring_(dem)',1,64584,99,0,0);
 INSERT INTO `item_basic` VALUES (26178,0,'dimensional_ring_(mea)','dim._ring_(mea)',1,64584,99,0,0);
+INSERT INTO `item_basic` VALUES (26185,0,'niqmaddu_ring','niqmaddu_ring',1,63572,99,0,0);
 INSERT INTO `item_basic` VALUES (26240,0,'tantalic_cape','tantalic_cape',1,63572,99,0,0);
 INSERT INTO `item_basic` VALUES (26241,0,'scintillating_cape','scintillating_cape',1,63572,99,0,0);
 INSERT INTO `item_basic` VALUES (26242,0,'phalangite_mantle','phalangite_mantle',1,63568,99,0,0);
