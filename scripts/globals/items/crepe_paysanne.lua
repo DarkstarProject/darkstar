@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5772
 -- Item: crepe_paysanne
--- Food Effect: 60 Min, All Races
+-- Food Effect: 30 Min, All Races
 -----------------------------------------
 -- HP +10% (cap 30)
 -- STR +2
@@ -30,7 +30,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5772);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5772);
 end;
 
 -----------------------------------------
