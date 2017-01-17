@@ -10,15 +10,15 @@
 
 guild =
 {
-    alchemy = 2,
-    bonecraft = 4,
-    clothcraft = 8,
-    cooking = 16,
-    fishing = 32,
-    goldsmithing = 64,
-    leathercraft = 128,
-    smithingGuild = 256,
-    woodworking = 512
+    ["alchemy"]      = 2,
+    ["bonecraft"]    = 4,
+    ["clothcraft"]   = 8,
+    ["cooking"]      = 16,
+    ["fishing"]      = 32,
+    ["goldsmithing"] = 64,
+    ["leathercraft"] = 128,
+    ["smithing"]     = 256,
+    ["woodworking"]  = 512
     -- Synergy not implemented yet
 }
 
