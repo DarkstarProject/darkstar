@@ -82,6 +82,8 @@ INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
 INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
 
+INSERT INTO `item_latents` VALUES(28256,169,25,26,2);      -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
+
 -- -------------------------------------------------------
 -- Uggalepih Pendant
 -- -------------------------------------------------------
