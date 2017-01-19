@@ -61,7 +61,7 @@ uint16 CItemArmor::getEquipSlotId()
 	return m_equipSlotID;
 }
 
-uint8 CItemArmor::getRemoveSlotId()
+uint16 CItemArmor::getRemoveSlotId()
 {
 	return m_removeSlotID;
 }
@@ -111,7 +111,7 @@ void CItemArmor::setEquipSlotId(uint16 equipSlot)
 	m_equipSlotID = equipSlot;
 }
 
-void CItemArmor::setRemoveSlotId(uint8 removSlot)
+void CItemArmor::setRemoveSlotId(uint16 removSlot)
 {
 	m_removeSlotID = removSlot;
 }
