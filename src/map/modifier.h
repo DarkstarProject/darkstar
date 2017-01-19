@@ -236,6 +236,8 @@ enum MODIFIER
     MOD_FOOD_RATT_CAP             = 187, //
     MOD_FOOD_RACCP                = 188, //
     MOD_FOOD_RACC_CAP             = 189, //
+    MOD_FOOD_MACCP                =  99, // Macc% see https://www.bg-wiki.com/bg/Category:Magic_Accuracy_Food
+    MOD_FOOD_MACC_CAP             = 100, // Sets Upper limit for MOD_FOOD_MACCP
 
     // Killer-Effects - (Most by Traits/JobAbility)
     MOD_VERMIN_KILLER             = 224, // Enhances "Vermin Killer" effect
@@ -622,7 +624,7 @@ enum MODIFIER
     MOD_FORCE_DARK_DWBONUS        = 538, // Set to above 0 to force dark day/weather spell bonus/penalty.
     MOD_STONESKIN_BONUS_HP        = 539, // Bonus "HP" granted to Stoneskin spell.
     MOD_DAY_NUKE_BONUS            = 565, // Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
-    MOD_IRIDESCENCE               = 566, // Iridesecnce trait (additional weather damage/penalty)
+    MOD_IRIDESCENCE               = 566, // Iridescence trait (additional weather damage/penalty)
     MOD_BARSPELL_AMOUNT           = 567, // Additional elemental resistance granted by bar- spells
     MOD_BARSPELL_MDEF_BONUS       = 827, // Extra magic defense bonus granted to the bar- spell effect
     MOD_RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
@@ -641,8 +643,6 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
-    // MOD_SPARE = 99, // stuff
-    // MOD_SPARE = 100, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
     // MOD_SPARE = 840, // stuff
     // MOD_SPARE = 841, // stuff
