@@ -4,6 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+local MobIDs = require("scripts/zones/Ranguemont_Pass/MobIDs");
 
 -----------------------------------
 -- onMobDeath
@@ -19,8 +20,7 @@ end;
 
 function onMobDespawn(mob)
 
-    local Taisaijin = 17457216;
-    local Taisaijin_PH = GetServerVariable("Taisaijin_PH");
+    local ph = GetServerVariable("Taisaijin_PH");
 
     -- time to spawn
     local tts = os.time() + math.random(86400, 259200);
@@ -28,9 +28,9 @@ function onMobDespawn(mob)
 
     -- reset ph and nm
     SetServerVariable("Taisaijin_PH", 0);
-    DeterMob(Taisaijin_PH, false);
+    DeterMob(ph, false);
 
-    DeterMob(Taisaijin, true);
-    SpawnMob(Taisaijin_PH, "", GetMobRespawnTime(Taisaijin_PH));
+    DeterMob(MobIDs.Taisaijin, true);
+    SpawnMob(ph, "", GetMobRespawnTime(ph));
 
 end;
