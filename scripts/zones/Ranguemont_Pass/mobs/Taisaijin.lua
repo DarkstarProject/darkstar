@@ -22,10 +22,15 @@ function onMobDespawn(mob)
     local Taisaijin = 17457216;
     local Taisaijin_PH = GetServerVariable("Taisaijin_PH");
 
-    GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random(86400, 259200));
+    -- time to spawn
+    local tts = os.time() + math.random(86400, 259200);
+    SetServerVariable("Taisaijin_TTS", tts);
+
+    -- reset ph and nm
     SetServerVariable("Taisaijin_PH", 0);
-    DeterMob(Taisaijin, true);
     DeterMob(Taisaijin_PH, false);
+
+    DeterMob(Taisaijin, true);
     SpawnMob(Taisaijin_PH, "", GetMobRespawnTime(Taisaijin_PH));
 
 end;
