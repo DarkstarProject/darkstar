@@ -41,6 +41,8 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
 	WBUFW(data,(0x0E)) = RBUFW(buff,(0x08));		// target's zone mobList index (?)
 
 	uint8 emoteID = RBUFB(buff,(0x0A));
+	uint8 motion = RBUFB(buff,(0x0B));
+
 	if (emoteID == 0x4A) { 							// [jobemote] sends job id as extra value
 		uint8 offset = RBUFB(buff,(0x0C)) - 0x1F;
 		WBUFB(data,(0x10)) = emoteID + offset;		// emote Id
@@ -54,4 +56,6 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
 	}else{											// [any other emote] no extra value
 		WBUFB(data,(0x10)) = emoteID;				// emote Id
 	}
+
+	WBUFB(data,(0x16)) = motion;					// motion
 }
