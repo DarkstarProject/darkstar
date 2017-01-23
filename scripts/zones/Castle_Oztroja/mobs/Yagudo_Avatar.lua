@@ -45,7 +45,7 @@ function onMobDespawn(mob)
     if (ToD <= os.time(t) and GetMobAction(Tzee_Xicu_the_Manifest) == 0) then
         if (math.random(1,5) == 3 or kills > 6) then
             UpdateNMSpawnPoint(Tzee_Xicu_the_Manifest);
-            GetMobByID(Tzee_Xicu_the_Manifest):setRespawnTime(math.random((75600),(86400)));
+            GetMobByID(Tzee_Xicu_the_Manifest):setRespawnTime(math.random(75600,86400));
             DeterMob(Yagudo_Avatar, true);
         end
     else

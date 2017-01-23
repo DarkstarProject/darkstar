@@ -67,10 +67,10 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Waraxe Beak
-    SetRespawnTime(17264828, 900, 10800);
+    GetMobByID(17264828):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Coo Keja the Unseen
-    SetRespawnTime(17264946, 900, 10800);
+    GetMobByID(17264946):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

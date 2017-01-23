@@ -20,7 +20,7 @@ function onInitialize(zone)
     SetGroundsTome(tomes);
 
     -- Bune
-    SetRespawnTime(17645578, 900, 10800);
+    GetMobByID(17645578):setRespawnTime((math.random(0,6) * 1800) + 900);
 
 end;
 

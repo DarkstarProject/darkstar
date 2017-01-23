@@ -20,7 +20,7 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17301537, 900, 10800); -- Adamantoise
+        GetMobByID(17301537):setRespawnTime((math.random(0,6) * 1800) + 900); -- Adamantoise
     end
 end;
 

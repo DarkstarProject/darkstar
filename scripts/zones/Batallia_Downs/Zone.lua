@@ -63,7 +63,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Ahtu
-    SetRespawnTime(17207657, 900, 10800);
+    GetMobByID(17207657):setRespawnTime((math.random(0,4) * 1800) + 900); -- Window is 0-2 hours, since no source shows the window intervals, setting to 30 mins
 end;
 
 -----------------------------------

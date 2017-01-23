@@ -63,7 +63,8 @@ function onInitialize(zone)
     local vwnpc = {17253085,17253086,17253087};
     SetVoidwatchNPC(vwnpc);
 
-    SetRespawnTime(17252725, 3600, 4200);
+    -- Duke Decapod
+    GetMobByID(17252725):setRespawnTime(math.random(6,7) * 600);
 end;
 
 -----------------------------------

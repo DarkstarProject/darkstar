@@ -20,13 +20,13 @@ function onInitialize(zone)
     SetGroundsTome(tomes);
 
     -- Drexerion the Condemned
-    SetRespawnTime(17461338, 900, 10800);
+    GetMobByID(17461338):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Phanduron the Condemned
-    SetRespawnTime(17461343, 900, 10800);
+    GetMobByID(17461343):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Bloodsucker
-    SetRespawnTime(17461478, 3600, 3600);
+    GetMobByID(17461478):setRespawnTime(3600);
 end;
 
 -----------------------------------

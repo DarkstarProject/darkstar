@@ -27,9 +27,9 @@ function onInitialize(zone)
     UpdateTreasureSpawnPoint(17588773);
     local whichNM = math.random(0,19);
     if (whichNM < 10) then
-        SetRespawnTime(Argus, 900, 43200); -- 0-12 hours
+        GetMobByID(17588674):setRespawnTime((math.random(0,12) * 3600) + 900); -- 0-12 hours
     else
-        SetRespawnTime(Leech_King, 900, 43200); -- 0-12 hours
+        GetMobByID(17588685):setRespawnTime((math.random(0,12) * 3600) + 900); -- 0-12 hours
     end
 end;
 

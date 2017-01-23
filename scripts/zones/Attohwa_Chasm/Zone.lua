@@ -51,7 +51,7 @@ function onInitialize(zone)
     zone:registerRegion(30, -385.349, 5, -173.973, 0,0,0);
 
     -- Tiamat
-    SetRespawnTime(16806227, 86400, 259200);
+    GetMobByID(16806227):setRespawnTime(math.random(48,144) * 1800);
 end;
 
 -----------------------------------

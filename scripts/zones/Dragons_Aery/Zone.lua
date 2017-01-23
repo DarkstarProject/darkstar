@@ -16,7 +16,7 @@ require("scripts/zones/Dragons_Aery/TextIDs");
 
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17408018, 900, 10800); -- Fafnir
+        GetMobByID(17408018):setRespawnTime((math.random(0,6) * 1800) + 900); -- Fafnir
     end
 end;
 

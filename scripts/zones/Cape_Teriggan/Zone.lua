@@ -22,7 +22,7 @@ function onInitialize(zone)
     SetFieldManual(manuals);
 
     -- Kreutzet
-    SetRespawnTime(17240413, 900, 10800);
+    GetMobByID(17240413):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

@@ -41,10 +41,10 @@ function onMobDespawn(mob)
     if (ToD <= os.time(t) + 172800 and GetMobAction(Za_Dha_Adamantking) == 0) then -- -- From wikia:  A 3-5 day spawn; however it can spawn as early as 2 days from previous kill or as late as 10 days.
         if (math.random((1),(5)) == 3 or os.time(t) >= 777600) then
             UpdateNMSpawnPoint(Za_Dha_Adamantking);
-            GetMobByID(Za_Dha_Adamantking):setRespawnTime(math.random((75600),(86400))); -- 21 to 24 hours
+            GetMobByID(Za_Dha_Adamantking):setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
         end
     else
         UpdateNMSpawnPoint(Diamond_Quadav);
-        mob:setRespawnTime(math.random((75600),(86400)));
+        mob:setRespawnTime(math.random(75600,86400));
     end
 end;

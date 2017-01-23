@@ -23,7 +23,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Morbolger
-    SetRespawnTime(17568127, 900, 10800);
+    GetMobByID(17568127):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17568192);
 

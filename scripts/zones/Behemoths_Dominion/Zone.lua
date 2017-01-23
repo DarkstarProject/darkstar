@@ -22,7 +22,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     if (LandKingSystem_NQ ~= 1) then
-        SetRespawnTime(17297440, 900, 10800); -- Behemoth
+        GetMobByID(17297440):setRespawnTime((math.random(0,6) * 1800) + 900); -- Behemoth
     end
 end;
 

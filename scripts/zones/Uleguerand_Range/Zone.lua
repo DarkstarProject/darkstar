@@ -21,7 +21,7 @@ function onInitialize(zone)
     SetVoidwatchNPC(vwnpc);
 
     -- Jormungand
-    SetRespawnTime(16797969, 86400, 259200);
+    GetMobByID(16797969):setRespawnTime(math.random(48,144) * 1800);
 
 end;
 

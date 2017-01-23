@@ -22,16 +22,16 @@ function onInitialize(zone)
     zone:registerRegion(4, -34,17,45, -30,18,51);  -- map 4 NE porter
 
     -- Marquis Allocen
-    SetRespawnTime(17436913, 900, 10800);
+    GetMobByID(17436913):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Marquis Amon
-    SetRespawnTime(17436918, 900, 10800);
+    GetMobByID(17436918):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Duke Haborym
-    SetRespawnTime(17436923, 900, 10800);
+    GetMobByID(17436923):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     -- Grand Duke Batym
-    SetRespawnTime(17436927, 900, 10800);
+    GetMobByID(17436927):setRespawnTime((math.random(0,6) * 1800) + 900);
 
     UpdateTreasureSpawnPoint(17436997);
     UpdateTreasureSpawnPoint(17436998);
