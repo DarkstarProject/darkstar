@@ -639,13 +639,14 @@ enum MODIFIER
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     MOD_WEAPONSKILL_DAMAGE_BASE   = 570,
+    MOD_ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
+    // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
+    MOD_ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // MOD_SPARE = 840, // stuff
-    // MOD_SPARE = 841, // stuff
     // MOD_SPARE = 842, // stuff
     // MOD_SPARE = 843, // stuff
     // MOD_SPARE = 844, // stuff
@@ -655,7 +656,6 @@ enum MODIFIER
     // MOD_SPARE = 848, // stuff
     // MOD_SPARE = 849, // stuff
     // MOD_SPARE = 850, // stuff
-
 };
 
 /************************************************************************
