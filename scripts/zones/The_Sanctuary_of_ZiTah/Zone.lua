@@ -59,12 +59,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17273421,17273422};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17273429,17273430,17273431};
-    SetVoidwatchNPC(vwnpc);
-
     local Noble_Mold = 17273278;
     GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
 

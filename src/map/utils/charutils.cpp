@@ -809,16 +809,16 @@ namespace charutils
         // disable all spells
         PChar->m_SpellList.reset();
 
-        std::string enabledExpansions = "\"\"";
+        std::string enabledContent = "\"\"";
 
         // Compile a string of all enabled expansions
         for (auto&& expan : {"COP", "TOAU", "WOTG", "ACP", "AMK", "ASA", "ABYSSEA", "SOA"})
         {
-            if (luautils::IsExpansionEnabled(expan))
+            if (luautils::IsContentEnabled(expan))
             {
-                enabledExpansions += ",\"";
-                enabledExpansions += expan;
-                enabledExpansions += "\"";
+                enabledContent += ",\"";
+                enabledContent += expan;
+                enabledContent += "\"";
             }
         }
 
@@ -829,10 +829,10 @@ namespace charutils
             "JOIN spell_list "
             "ON spell_list.spellid = char_spells.spellid "
             "WHERE charid = %u AND "
-            "(spell_list.required_expansion IN (%s) OR "
-            "spell_list.required_expansion IS NULL);";
+            "(spell_list.content_tag IN (%s) OR "
+            "spell_list.content_tag IS NULL);";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, enabledExpansions.c_str());
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, enabledContent.c_str());
 
         if (ret != SQL_ERROR &&
             Sql_NumRows(SqlHandle) != 0)

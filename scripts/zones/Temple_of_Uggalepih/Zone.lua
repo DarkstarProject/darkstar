@@ -15,13 +15,6 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17429028,17429029,17429030,17429031,17429032};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17429022,17429023,17429024};
-    SetVoidwatchNPC(vwnpc);
-
-
     UpdateTreasureSpawnPoint(17429007);
 end;
 

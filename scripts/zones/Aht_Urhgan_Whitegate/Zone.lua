@@ -16,9 +16,6 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {16982636};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1,57,-1,-70,62,1,-65); -- Sets Mark for "Got It All" Quest cutscene.
     zone:registerRegion(2,-96,-7,121,-64,-5,137); -- Sets Mark for "Vanishing Act" Quest cutscene.
     zone:registerRegion(3,14,-7,-65,37,-2,-41); -- TOAU Mission 1 CS area

@@ -14,9 +14,6 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17772790};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1,-4,-2,40,4,3,50);
 end;
 
@@ -60,10 +57,10 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
-    
+
     local regionID = region:GetRegionID();
     -- printf("regionID: %u",regionID);
-    
+
     if (regionID == 1) then
         if (player:getCurrentMission(COP) == A_VESSEL_WITHOUT_A_CAPTAIN and player:getVar("PromathiaStatus") == 1) then
             player:startEvent(65,player:getNation());
@@ -139,7 +136,7 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_jabbos_story",0);
     elseif (csid == 10094) then
         if (option == 1) then
-            if (player:getFreeSlotsCount() == 0) then 
+            if (player:getFreeSlotsCount() == 0) then
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
             else
                 player:completeMission(TOAU,EASTERLY_WINDS);

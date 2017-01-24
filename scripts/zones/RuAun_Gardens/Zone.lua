@@ -17,13 +17,6 @@ require("scripts/zones/RuAun_Gardens/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17310104,17310105,17310106,17310107,17310108,17310109};
-
-    SetFieldManual(manuals);
-
-    local vwnpc = {17310111,17310112,17310113};
-    SetVoidwatchNPC(vwnpc);
-
     -- Blue portal timers (2 minutes)
     -- counterclockwise
     SetServerVariable("Main-to-Seiryu-BlueTeleport",0);

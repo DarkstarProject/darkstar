@@ -55,12 +55,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17203887,17203888};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17203937,17203938,17203939};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
 
     -- Fraelissa

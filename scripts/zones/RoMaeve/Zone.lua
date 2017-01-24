@@ -15,12 +15,6 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17277231,17277232};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17277249,17277250,17277251};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

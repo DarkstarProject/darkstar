@@ -86,8 +86,8 @@ namespace luautils
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
     lua_State*  LuaHandle = nullptr;
 
-    bool expansionRestrictionEnabled;
-    std::unordered_map<std::string, bool> expansionEnabledMap;
+    bool contentRestrictionEnabled;
+    std::unordered_map<std::string, bool> contentEnabledMap;
 
     /************************************************************************
     *                                                                       *
@@ -170,7 +170,7 @@ namespace luautils
         lua_rawset(LuaHandle, -3);
         lua_pop(LuaHandle, 1);
 
-        expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
+        contentRestrictionEnabled = (GetSettingsVariable("RESTRICT_CONTENT") != 0);
 
         ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
         return 0;
@@ -1158,31 +1158,33 @@ namespace luautils
 
     /************************************************************************
     *                                                                       *
-    *  Check if an Expansion Is Enabled In Settings.lua                     *
+    *  Check if an something is restricted in Settings.lua                  *
+    *  ENABLE_ is subject to RESTRICT_BY_EXPANSION                          *
+    *  ALLOW_ is NOT subject to RESTRICT_BY_EXPANSION                       *
     *                                                                       *
     ************************************************************************/
 
-    bool IsExpansionEnabled(const char* expansionCode)
+    bool IsContentEnabled(const char* contentTag)
     {
-        if (expansionCode != nullptr)
+        if (contentTag != nullptr)
         {
-            std::string expansionVariable("ENABLE_");
-            expansionVariable.append(expansionCode);
+            std::string contentVariable("ENABLE_");
+            contentVariable.append(contentTag);
 
-            bool expansionEnabled;
+            bool contentEnabled;
 
             try
             {
-                expansionEnabled = expansionEnabledMap.at(expansionVariable);
+                contentEnabled = contentEnabledMap.at(contentVariable);
             }
             catch (std::out_of_range)
             {
-                // Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
-                expansionEnabled = (GetSettingsVariable(expansionVariable.c_str()) != 0);
-                expansionEnabledMap[expansionVariable] = expansionEnabled;
+                // Cache contentTag lookups in a map so that we don't re-hit the Lua file every time
+                contentEnabled = (GetSettingsVariable(contentVariable.c_str()) != 0);
+                contentEnabledMap[contentVariable] = contentEnabled;
             }
 
-            if (expansionEnabled == false && expansionRestrictionEnabled == true)
+            if (contentEnabled == false && contentRestrictionEnabled == true)
             {
                 return false;
             }

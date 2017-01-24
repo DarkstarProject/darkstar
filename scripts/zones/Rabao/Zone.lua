@@ -14,8 +14,6 @@ require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17789012,17789016};
-    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------

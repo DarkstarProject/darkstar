@@ -63,12 +63,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17289799,17289800,17289801};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17289808,17289809,17289810};
-    SetVoidwatchNPC(vwnpc);
-
     -- King Vinegarroon
     SetRespawnTime(17289575, 900, 10800);
 end;

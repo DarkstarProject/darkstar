@@ -15,15 +15,7 @@ require("scripts/zones/The_Boyahda_Tree/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17404410,17404411,17404412,17404413};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17404404,17404405,17404406};
-    SetVoidwatchNPC(vwnpc);
-
     UpdateTreasureSpawnPoint(17404394);
-
 end;
 
 -----------------------------------

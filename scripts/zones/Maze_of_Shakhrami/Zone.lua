@@ -16,14 +16,6 @@ require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17588788,17588789,17588790,17588791};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17588782,17588783,17588784};
-    SetVoidwatchNPC(vwnpc);
-
-
     UpdateTreasureSpawnPoint(17588773);
     local whichNM = math.random(0,19);
     if (whichNM < 10) then

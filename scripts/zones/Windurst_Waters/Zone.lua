@@ -16,9 +16,6 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17752373,17752374,17752375};
-    SetVoidwatchNPC(vwnpc);
-
     -- Check if we are on Windurst Mission 1-3
     zone:registerRegion(1, 23,-12,-208, 31,-8,-197);
 

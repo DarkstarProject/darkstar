@@ -15,18 +15,10 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17617267,17617268,17617269,17617270,17617271,17617272,17617273,17617274};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17617261,17617262,17617263};
-    SetVoidwatchNPC(vwnpc);
-
     -- Ash Dragon
     SetRespawnTime(17617147, 900, 10800);
 
     UpdateTreasureSpawnPoint(17617224);
-
 end;
 
 -----------------------------------

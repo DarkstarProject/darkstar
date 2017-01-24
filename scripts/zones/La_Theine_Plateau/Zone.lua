@@ -124,12 +124,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17195682,17195683};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17195690,17195691,17195692};
-    SetVoidwatchNPC(vwnpc);
-
     local fallenEgg = GetNPCByID(17195583);
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);
 

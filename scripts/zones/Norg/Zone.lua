@@ -16,17 +16,15 @@ require("scripts/zones/Norg/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17809529,17809534};
-    SetVoidwatchNPC(vwnpc);
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end

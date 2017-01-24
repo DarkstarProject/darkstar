@@ -39,7 +39,7 @@ CREATE TABLE `abilities` (
   `VE` smallint(5) NOT NULL DEFAULT '0',
   `meritModID` smallint(4) NOT NULL DEFAULT '0',
   `addType` smallint(2) NOT NULL DEFAULT '0',
-  `required_expansion` VARCHAR(7) NULL DEFAULT NULL,
+  `content_tag` VARCHAR(7) NULL DEFAULT NULL,
   PRIMARY KEY (`abilityId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 

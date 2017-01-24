@@ -26,13 +26,6 @@ anticanTagPositions = {
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17629770,17629771,17629772,17629773,17629774,17629775};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17629764,17629765,17629766};
-    SetVoidwatchNPC(vwnpc);
-
     -- Weight Door System (RegionID, X, Radius, Z)
     zone:registerRegion(1,   -15, 5, -60, 0,0,0); -- 0x010D01EF Door
     zone:registerRegion(3,       15, 5,-180, 0,0,0); -- 0x010D01F1 Door

@@ -14,12 +14,6 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17584496,17584497};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17584498,17584499,17584500};
-    SetVoidwatchNPC(vwnpc);
-
     UpdateTreasureSpawnPoint(17584475);
     UpdateTreasureSpawnPoint(17584476);
 end;

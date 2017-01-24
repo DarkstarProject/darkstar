@@ -56,15 +56,8 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17228379,17228380};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17228387,17228388,17228389,17228393,17228394};
-    SetVoidwatchNPC(vwnpc);
-
     -- Simurgh
     SetRespawnTime(17228242, 900, 10800);
-
 end;
 
 -----------------------------------

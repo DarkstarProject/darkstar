@@ -17,10 +17,6 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17236350,17236351};
-
-    SetFieldManual(manuals);
-
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
@@ -49,7 +45,7 @@ function onZoneIn( player, prevZone)
     elseif (UnbridledPassionCS == 3) then
         cs = 0x0004;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x000b; 
+        cs = 0x000b;
     end
 
     return cs;

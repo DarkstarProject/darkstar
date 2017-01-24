@@ -14,10 +14,6 @@ require("scripts/zones/Mamook/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17044052,17044053,17044054};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

@@ -14,8 +14,6 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17776885};
-    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------

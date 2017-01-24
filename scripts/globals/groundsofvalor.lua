@@ -141,12 +141,14 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 ----------------------------------
 
 function startGov(eventid,player)
-    if (GROUNDS_TOMES == 1) then
-       local hasRegime = player:getVar("fov_regimeid");
-       local tabs = player:getCurrency("valor_point");
-       player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
-	end;
-end
+    if (ENABLE_GROUNDS_TOMES == 1) then
+        local hasRegime = player:getVar("fov_regimeid");
+        local tabs = player:getCurrency("valor_point");
+        player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+    else
+        player:PrintToPlayer("Disabled.");
+    end
+end;
 
 ----------------------------------
 -- GoV onEventUpdate
