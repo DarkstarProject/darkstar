@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5774
 -- Item: crepe_forestiere
--- Food Effect: 60Min, All Races
+-- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Mind 2
 -- MP % 10 (cap 35)
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5774);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5774);
 end;
 
 -----------------------------------------
