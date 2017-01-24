@@ -122,6 +122,7 @@ public:
     int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
+    int32 addUsedItem(lua_State*);          // Add charged item with timer already on full cooldown
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
     int32 delItem(lua_State*);
     int32 getFreeSlotsCount(lua_State*);    // Gets value of free slots in Entity inventory
@@ -227,7 +228,6 @@ public:
     int32 getBCNMloot(lua_State*);                   //triggers if the player opens the chest inside bcnm
     int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
 
-    int32 isSpawned(lua_State*);
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
     int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
@@ -464,7 +464,6 @@ public:
     int32 isNPC(lua_State*);
     int32 isMob(lua_State*);
     int32 isPet(lua_State*);
-    int32 isAlly(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
@@ -614,12 +613,6 @@ public:
     int32 getEntity(lua_State* L);
 
     int32 canChangeState(lua_State* L);
-
-    int32 isAlive(lua_State* L);
-    int32 isDead(lua_State* L);
-
-    int32 engage(lua_State* L);
-    int32 disengage(lua_State* L);
 };
 
 #endif
