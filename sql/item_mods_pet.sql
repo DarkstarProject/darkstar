@@ -485,11 +485,22 @@ INSERT INTO `item_mods_pet` VALUES (28237,68,20);     -- Evasion +20
 -- INSERT INTO `item_mods_pet` VALUES (28237,???,5);      -- Increases Blood Pact damage +5%
 
 -- -------------------------------------------------------
+-- Totemic Gaiters +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28252,23,10);     -- Attack +10
+INSERT INTO `item_mods_pet` VALUES (28252,25,10);     -- Accuracy +10
+
+-- -------------------------------------------------------
 -- Convoker's Pigaches +1
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (28258,27,5);      -- Enmity +5
 INSERT INTO `item_mods_pet` VALUES (28258,68,20);     -- Evasion +20
 -- INSERT INTO `item_mods_pet` VALUES (28258,???,6);      -- Increases Blood Pact damage +6%
+
+-- -------------------------------------------------------
+-- Foire Babouches +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28261,384,31);    -- Haste +3%
 
 -- -------------------------------------------------------
 -- Eidolon Pendant + 1 - LVL 99
