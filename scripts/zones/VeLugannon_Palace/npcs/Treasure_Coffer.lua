@@ -32,6 +32,9 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1060,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
         
         -- IMPORTANT ITEM: Map -----------
+        local mJob = player:getMainJob();
+        local zone = player:getZoneID();
+        local listAF = getAFbyZone(zone);
         if (player:hasKeyItem(MAP_OF_THE_VELUGANNON_PALACE) == false) then
             questItemNeeded = 3;
         end

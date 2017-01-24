@@ -343,8 +343,6 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            do_close_tcp(sd->login_lobbyview_fd);
-
             if (login_config.log_user_ip == true)
             {
                 // Log clients IP info when player spawns into map server
@@ -365,6 +363,8 @@ int32 lobbydata_parse(int32 fd)
                     ShowError("lobbyview_parse: Could not write info to account_ip_record.\n");
                 }
             }
+
+            do_close_tcp(sd->login_lobbyview_fd);
 
             ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n", ip2str(sd->client_addr, nullptr));
             break;

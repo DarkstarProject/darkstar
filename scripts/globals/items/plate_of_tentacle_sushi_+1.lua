@@ -6,7 +6,6 @@
 -- HP 20
 -- Dexterity 3
 -- Agility 3
--- Mind -1
 -- Accuracy % 20 (cap 20)
 -- Ranged Accuracy % 20 (cap 20)
 -- Double Attack 1
@@ -19,11 +18,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

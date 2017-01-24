@@ -15,7 +15,7 @@ require("scripts/globals/status");
 -- OnItemCheck
 -----------------------------------------
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:getRace() ~= 8) then
         result = 247;
     end

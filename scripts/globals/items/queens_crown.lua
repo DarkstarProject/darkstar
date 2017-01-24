@@ -8,6 +8,7 @@
 -- MND+3
 -- CHR+2
 -- STR-2
+-- MACC+4
 -- MAB+7
 -----------------------------------------
 
@@ -44,6 +45,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MND, 3);
     target:addMod(MOD_CHR, 2);
     target:addMod(MOD_STR, -2);
+    target:addMod(MOD_MACC, 4);
     target:addMod(MOD_MATT, 7);
 end;
 
@@ -58,5 +60,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_MND, 3);
     target:delMod(MOD_CHR, 2);
     target:delMod(MOD_STR, -2);
+    target:delMod(MOD_MACC, 4);
     target:delMod(MOD_MATT, 7);
 end;

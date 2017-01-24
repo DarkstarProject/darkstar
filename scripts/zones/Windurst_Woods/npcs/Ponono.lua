@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -61,9 +60,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4099);
         else
-            player:addItem(4099);
+            player:addItem(4099); -- earth crystal
             player:messageSpecial(ITEM_OBTAINED,4099);
-            signupGuild(player,8);
+            signupGuild(player, guild.clothcraft);
         end
     end
 end;
