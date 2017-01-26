@@ -30,6 +30,22 @@ function onMobSpawn(mob)
             startAllyAssist(mob, ALLY_ASSIST_RANDOM);
         end
     end)
+
+    mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
+        -- Hane Fubuki
+        if(skillId == 1998) then
+            mob:showText(mob,TheAshuTalif.text.UNNATURAL_CURS);
+        -- Hiden Sokyaku
+        elseif(skillId == 1999) then
+            mob:showText(mob,TheAshuTalif.text.STING_OF_MY_BLADE);
+        -- Happobarai
+        elseif(skillId == 2001) then
+            mob:showText(mob,TheAshuTalif.text.HARNESS_THE_WHIRLWIND);
+        -- Rinpyotosha
+        elseif(skillId == 2002) then
+            mob:showText(mob,TheAshuTalif.text.SWIFT_AS_LIGHTNING);
+        end
+    );
 end;
 
 -----------------------------------
@@ -55,26 +71,6 @@ function onMobRoam(mob)
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
         startAllyAssist(mob, ALLY_ASSIST_PLAYER);
-    end
-end;
-
------------------------------------
--- onMonsterPrepareSkill Action
------------------------------------
-
-function onMonsterPrepareSkill(mob, skillId)
-    -- Hane Fubuki
-    if(skillId == 1998) then
-        mob:showText(mob,TheAshuTalif.text.UNNATURAL_CURS);
-    -- Hiden Sokyaku
-    elseif(skillId == 1999) then
-        mob:showText(mob,TheAshuTalif.text.STING_OF_MY_BLADE);
-    -- Happobarai
-    elseif(skillId == 2001) then
-        mob:showText(mob,TheAshuTalif.text.HARNESS_THE_WHIRLWIND);
-    -- Rinpyotosha
-    elseif(skillId == 2002) then
-        mob:showText(mob,TheAshuTalif.text.SWIFT_AS_LIGHTNING);
     end
 end;
 

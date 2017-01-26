@@ -2040,6 +2040,19 @@ INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,273,31,55); -- Sleepga
 INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,274,56,255); -- Sleepga II
 INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,275,45,255); -- Absorb-TP
 
+-- Blue Mage Amnaf uses only 2 spells. Flayer Amnaf has the typical compliment of blm flayer spells.
+INSERT INTO `mob_spell_lists` VALUES ('Amnaf_blu',212,640,1,255); -- Tail Slap
+INSERT INTO `mob_spell_lists` VALUES ('Amnaf_blu',212,641,1,255); -- Hysteric Barrage
+
+INSERT INTO `mob_spell_lists` VALUES ('Raubahn',213,557,1,255); -- Raubahn uses only "Eyes on Me" and nothing else.
+
+-- Razfahd and Alexander have identical spell lists during ToAU 44
+INSERT INTO `mob_spell_lists` VALUES ('Alexander',214,22,1,255); -- Holy II
+INSERT INTO `mob_spell_lists` VALUES ('Alexander',214,25,1,255); -- Dia III
+INSERT INTO `mob_spell_lists` VALUES ('Alexander',214,31,1,255); -- Banish IV
+INSERT INTO `mob_spell_lists` VALUES ('Alexander',214,35,1,255); -- Diaga III
+INSERT INTO `mob_spell_lists` VALUES ('Alexander',214,40,1,255); -- Banishga III
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

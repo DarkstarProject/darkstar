@@ -371,6 +371,7 @@
 371 - The <player> gains 0 limit points.
 372 - Limit chain #..! The <player> gains 0 limit points.
 373 - The <player> hits <target>. <target> recovers .. hit points!
+374 - Striking <target>'s armor causes <player> to become <status effect>.
 
 378 - The <player> uses .. <target>'s stun effect disappears! -- Probably item related)
 379 - The <player> uses .. Magic Burst! <target> takes .. points of damage.

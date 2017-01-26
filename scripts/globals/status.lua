@@ -1908,16 +1908,21 @@ MSGBASIC_CANNOT_SEE             = 217 -- You cannot see <target>.
 MSGBASIC_MOVE_AND_INTERRUPT     = 218 -- You move and interrupt your aim.
 
 -- Additional effects and spike effects
+MSGBASIC_SPIKES_EFFECT_DMG      = 44  -- <Defender>'s spikes deal <number> points of damage to the <Attacker>.
+MSGBASIC_SPIKES_EFFECT_HP_DRAIN = 132 -- <Defender>'s spikes drain <number> HP from the <Attacker>.
+MSGBASIC_ADD_EFFECT_MP_HEAL     = 152 -- Additional effect: The <player> recovers <number> MP.
 MSGBASIC_ADD_EFFECT_STATUS      = 160 -- Additional effect: <Status Effect>.
 MSGBASIC_ADD_EFFECT_HP_DRAIN    = 161 -- Additional effect: <number> HP drained from <target>.
 MSGBASIC_ADD_EFFECT_MP_DRAIN    = 162 -- Additional effect: <number> MP drained from <target>.
 MSGBASIC_ADD_EFFECT_DMG         = 163 -- Additional effect: <number> points of damage.
-MSGBASIC_ADD_EFFECT_STATUS2     = 164 -- Additional effect: <Status Effect>. (Duplicate?)
+MSGBASIC_ADD_EFFECT_STATUS_2    = 164 -- Additional effect: <Status Effect>. (Duplicate?)
 MSGBASIC_ADD_EFFECT_TP_DRAIN    = 165 -- Additional effect: <number> TP drained from <target>.
-MSGBASIC_ADD_EFFECT_STATUS3     = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
-MSGBASIC_ADD_EFFECT_HEAL        = 167 -- Additional effect: The <target> recovers <number> HP. (used when target absorbs element)
-MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s KO effect disappears!
-MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by holloween staves)
+MSGBASIC_ADD_EFFECT_STATUS_3    = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
+MSGBASIC_ADD_EFFECT_HP_HEAL     = 167 -- Additional effect: The <player> recovers <number> HP.
+MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status Effect> effect disappears!
+MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
+MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
+MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!
