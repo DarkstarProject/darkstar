@@ -578,6 +578,8 @@ INSERT INTO `bcnm_battlefield` VALUES ('532', '3', '17621301', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '1', '16801793', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '2', '16801794', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('640', '3', '16801795', '3');
+INSERT INTO `bcnm_battlefield` VALUES ('643', '1', '16801842', '3'); -- mindertaur
+INSERT INTO `bcnm_battlefield` VALUES ('643', '1', '16801841', '3'); -- eldertaur
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809987', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809986', '3');
 INSERT INTO `bcnm_battlefield` VALUES ('672', '1', '16809985', '3');

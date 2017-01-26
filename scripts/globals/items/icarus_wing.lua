@@ -11,11 +11,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_MEDICINE) == true) then
         result = 111;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

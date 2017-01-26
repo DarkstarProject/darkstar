@@ -14,10 +14,6 @@ require("scripts/zones/Misareaux_Coast/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {16879985,16879986,16879987};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

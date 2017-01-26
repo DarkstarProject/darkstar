@@ -16,7 +16,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(16822527);
+    UpdateTreasureSpawnPoint(16822531);
     
     SetRegionalConquestOverseers(zone:getRegionID())
 end;

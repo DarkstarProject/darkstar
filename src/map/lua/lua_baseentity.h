@@ -122,6 +122,7 @@ public:
     int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
+    int32 addUsedItem(lua_State*);          // Add charged item with timer already on full cooldown
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
     int32 delItem(lua_State*);
     int32 getFreeSlotsCount(lua_State*);    // Gets value of free slots in Entity inventory
@@ -446,6 +447,7 @@ public:
     int32 delAssaultPoint(lua_State*);      // Delete points for an assault area
 
     int32 isJailed(lua_State *L);           // Is the player jailed
+    int32 jail(lua_State* L);
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)

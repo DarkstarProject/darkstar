@@ -14,7 +14,7 @@ require("scripts/zones/Palborough_Mines/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17363367);
+    UpdateTreasureSpawnPoint(17363371);
 end;
 
 -----------------------------------

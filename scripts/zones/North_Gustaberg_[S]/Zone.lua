@@ -14,10 +14,6 @@ require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17138602,17138603,17138604};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

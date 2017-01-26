@@ -149,7 +149,7 @@ duration CAbility::getCastTime()
 
 void CAbility::setRecastTime(uint16 recastTime)
 {
-    m_recastTime = recastTime;
+    m_recastTime = recastTime * map_config.ability_recast_multiplier;
 }
 
 uint16 CAbility::getRecastTime()
@@ -346,7 +346,7 @@ namespace ability
             "VE, "
             "meritModID, "
             "addType, "
-            "required_expansion "
+            "content_tag "
             "FROM abilities LEFT JOIN (SELECT mob_skill_name, MIN(mob_skill_id) AS min_id "
             "FROM mob_skills GROUP BY mob_skill_name) mob_skills_1 ON "
             "abilities.name = mob_skills_1.mob_skill_name "
@@ -359,10 +359,10 @@ namespace ability
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* expansionCode;
-                Sql_GetData(SqlHandle, 20, &expansionCode, nullptr);
+                int8* contentTag;
+                Sql_GetData(SqlHandle, 20, &contentTag, nullptr);
 
-                if (luautils::IsExpansionEnabled(expansionCode) == false) {
+                if (luautils::IsContentEnabled(contentTag) == false) {
                     continue;
                 }
 

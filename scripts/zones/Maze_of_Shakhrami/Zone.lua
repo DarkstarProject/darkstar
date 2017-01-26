@@ -16,15 +16,7 @@ require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17588784,17588785,17588786,17588787};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17588778,17588779,17588780};
-    SetVoidwatchNPC(vwnpc);
-
-
-    UpdateTreasureSpawnPoint(17588769);
+    UpdateTreasureSpawnPoint(17588773);
     local whichNM = math.random(0,19);
     if (whichNM < 10) then
         SetRespawnTime(Argus, 900, 43200); -- 0-12 hours

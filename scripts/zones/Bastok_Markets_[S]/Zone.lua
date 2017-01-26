@@ -14,43 +14,41 @@ require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17134272,17134273,17134274};
-    SetVoidwatchNPC(vwnpc);
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(-233.879,-2,94,61);
-    end    
-    return cs;    
-end;        
+    end
+    return cs;
+end;
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)    
-end;    
+function onRegionEnter(player,region)
+end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)    
+function onEventUpdate(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;
 
------------------------------------    
--- onEventFinish    
------------------------------------    
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;

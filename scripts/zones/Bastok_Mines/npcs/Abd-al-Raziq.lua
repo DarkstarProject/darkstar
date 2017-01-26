@@ -6,10 +6,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/missions");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -38,8 +38,7 @@ function onTrigger(player,npc)
 
     if (canGetNewRank(player,craftSkill,SKILL_ALCHEMY) == 1) then getNewRank = 100; end
 
-    if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD
-    and guildMember == 150995375 and getNewRank ~= 100) then
+    if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and getNewRank ~= 100) then
         local item = 0;
         local asaStatus = player:getVar("ASA_Status");
 
@@ -74,14 +73,14 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x0078 and option == 1) then
-        local crystal = math.random(4096,4101);
+        local crystal = 4101; -- water crystal
 
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
             player:messageSpecial(ITEM_OBTAINED,crystal);
-            signupGuild(player,SKILL_ALCHEMY);
+            signupGuild(player, guild.alchemy);
         end
     end
 end;

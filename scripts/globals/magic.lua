@@ -377,9 +377,9 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
         bonusAcc = 0;
     end
 
-    -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
     local magicacc = caster:getMod(MOD_MACC) + caster:getILvlMacc();
 
+    -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
     if (skillType ~= 0) then
         magicacc = magicacc + caster:getSkillLevel(skillType) + caster:getMod(79 + skillType);
     else
@@ -402,6 +402,10 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     local magiceva = target:getMod(MOD_MEVA) + resMod;
 
     magicacc = magicacc + bonusAcc;
+
+    -- Add macc% from food
+    local maccFood = magicacc * (caster:getMod(MOD_FOOD_MACCP)/100);
+    magicacc = magicacc + utils.clamp(maccFood, 0, caster:getMod(MOD_FOOD_MACC_CAP));
 
     return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getMainLvl(), target:getMainLvl());
 end

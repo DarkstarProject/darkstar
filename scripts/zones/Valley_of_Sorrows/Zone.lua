@@ -15,10 +15,6 @@ require("scripts/zones/Valley_of_Sorrows/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17301591,17301592};
-
-    SetFieldManual(manuals);
-
     if (LandKingSystem_NQ ~= 1) then
         SetRespawnTime(17301537, 900, 10800); -- Adamantoise
     end

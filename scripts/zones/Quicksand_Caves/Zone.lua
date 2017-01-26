@@ -26,13 +26,6 @@ anticanTagPositions = {
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17629766,17629767,17629768,17629769,17629770,17629771};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17629760,17629761,17629762};
-    SetVoidwatchNPC(vwnpc);
-
     -- Weight Door System (RegionID, X, Radius, Z)
     zone:registerRegion(1,   -15, 5, -60, 0,0,0); -- 0x010D01EF Door
     zone:registerRegion(3,       15, 5,-180, 0,0,0); -- 0x010D01F1 Door
@@ -74,9 +67,9 @@ function onInitialize(zone)
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(17629735);
+    UpdateTreasureSpawnPoint(17629739);
 
-    npcUtil.UpdateNPCSpawnPoint(17629757, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
 -----------------------------------

@@ -17,10 +17,6 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17232279,17232280,17232281,17232282};
-
-    SetFieldManual(manuals);
-
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
@@ -43,7 +39,7 @@ function onZoneIn( player, prevZone)
         cs = 0x00CE;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x0072;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then    
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 0x0074;
     end
 

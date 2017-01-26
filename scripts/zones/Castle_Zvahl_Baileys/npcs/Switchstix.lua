@@ -99,7 +99,7 @@ function hasRelic(entity,checktype)
    -- Type 2 == Player is trading an item
 
    if checktype == 1 then
-      for i=1, #relics), 2 do -- Step through the array grabbing every second (2 value, and see if it matches that itemid.
+      for i=1, #relics, 2 do -- Step through the array grabbing every second (2 value, and see if it matches that itemid.
          if (entity:hasItem(relics[i],LOC_INVENTORY)) then -- Specifically checks inventory, so that items in other containers (mog safe, satchel, etc) will be ignored.
             return relics[i];
          end

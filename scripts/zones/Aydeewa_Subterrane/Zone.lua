@@ -18,9 +18,6 @@ require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17056466,17056467,17056468};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1,378,-3,338,382,3,342);
 end;
 

@@ -36,6 +36,7 @@ This file is part of DarkStar-server source code.
 #include "../../entities/mobentity.h"
 #include "../../utils/battleutils.h"
 #include "../../../common/utils.h"
+#include "../../utils/petutils.h"
 
 CMobController::CMobController(CMobEntity* PEntity) :
     CController(PEntity),
@@ -135,7 +136,7 @@ void CMobController::TryLink()
     {
         if (PTarget->PPet->objtype == TYPE_PET && ((CPetEntity*)PTarget->PPet)->getPetType() == PETTYPE_AVATAR)
         {
-            PTarget->PPet->PAI->Engage(PMob->id);
+            petutils::AttackTarget(PTarget, PMob);
         }
     }
 
@@ -160,7 +161,7 @@ void CMobController::TryLink()
                 {
                     // force into attack action
                     //#TODO
-                    PPartyMember->PAI->Engage(PTarget->id);
+                    PPartyMember->PAI->Engage(PTarget->targid);
                 }
             }
         }
@@ -757,6 +758,7 @@ void CMobController::DoRoamTick(time_point tick)
             }
             else
             {
+                // No longer including conditional for ROAMFLAG_AMBUSH now that using mixin to handle mob hiding
                 if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 &&
                     m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) &&
                     TrySpecialSkill())
@@ -773,16 +775,6 @@ void CMobController::DoRoamTick(time_point tick)
                 {
                     // cast buff
                     CastSpell(PMob->SpellContainer->GetBuffSpell());
-                }
-                else if ((PMob->m_roamFlags & ROAMFLAG_AMBUSH))
-                {
-                    //#TODO: #AIToScript move to scripts
-                    // stay underground
-                    PMob->HideName(true);
-                    PMob->HideModel(true);
-                    PMob->animationsub = 0;
-
-                    PMob->updatemask |= UPDATE_HP;
                 }
                 else if ((PMob->m_roamFlags & ROAMFLAG_STEALTH))
                 {

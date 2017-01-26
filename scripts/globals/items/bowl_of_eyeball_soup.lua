@@ -3,6 +3,7 @@
 -- Item: Bowl of Eyeball Soup
 -- Food Effect: 180Min, All Races
 -----------------------------------------
+-- HP +6% (cap 70)
 -- Charisma -10
 -- Health Regen While Healing 4
 -- Accuracy 12
@@ -16,11 +17,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -36,6 +37,8 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
+    target:addMod(MOD_FOOD_HPP, 6);
+    target:addMod(MOD_FOOD_HP_CAP, 70);
     target:addMod(MOD_CHR, -10);
     target:addMod(MOD_HPHEAL, 4);
     target:addMod(MOD_ACC, 12);
@@ -47,6 +50,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
+    target:delMod(MOD_FOOD_HPP, 6);
+    target:delMod(MOD_FOOD_HP_CAP, 70);
     target:delMod(MOD_CHR, -10);
     target:delMod(MOD_HPHEAL, 4);
     target:delMod(MOD_ACC, 12);

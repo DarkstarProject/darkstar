@@ -14,10 +14,10 @@ ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back a
 MINING_IS_POSSIBLE_HERE = 7428; -- Mining is possible here if you have
 
 -- ??? that spawns NM Yara Ma Yha Who
-     SPROUT_LOOKS_WITHERED = 7546; -- There is something sprouting from the ground here. It looks a little withered.
-REPULSIVE_CREATURE_EMERGES = 7547; -- A repulsive creature emerges from the ground!
-SPROUT_DOES_NOT_NEED_WATER = 7548; -- The sprout does not need any more water now.
-     SPROUT_LOOKING_BETTER = 7550; -- The sprout is looking better.
+     SPROUT_LOOKS_WITHERED = 7545; -- There is something sprouting from the ground here. It looks a little withered.
+REPULSIVE_CREATURE_EMERGES = 7546; -- A repulsive creature emerges from the ground!
+SPROUT_DOES_NOT_NEED_WATER = 7547; -- The sprout does not need any more water now.
+     SPROUT_LOOKING_BETTER = 7549; -- The sprout is looking better.
 
 -- Tahrongi Cactus
             BUD_BREAKS_OFF = 7405; -- The bud breaks off. You obtain
@@ -28,7 +28,7 @@ SPROUT_DOES_NOT_NEED_WATER = 7548; -- The sprout does not need any more water no
 NOTHING_OUT_OF_THE_ORDINARY = 6579;  -- There is nothing out of the ordinary here.
 
 -- Other Texts
-TELEPOINT_HAS_BEEN_SHATTERED = 7503; -- The telepoint has been shattered into a thousand pieces...
+TELEPOINT_HAS_BEEN_SHATTERED = 7502; -- The telepoint has been shattered into a thousand pieces...
        TELEPOINT_DISAPPEARED = 7327; -- The telepoint has disappeared...
 
 -- Signs

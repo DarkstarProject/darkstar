@@ -6,10 +6,10 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "is"
+    parameters = "isi"
 };
 
-function onTrigger(player, itemId, target)
+function onTrigger(player, itemId, target, dropper)
     local targ;
     if (target == nil) then
         targ = player
@@ -27,6 +27,10 @@ function onTrigger(player, itemId, target)
         return;
     end
 
-    targ:addTreasure(itemId);
+    if (dropper ~= nil) then
+        dropper = GetNPCByID(dropper);
+    end
+
+    targ:addTreasure(itemId, dropper);
     player:PrintToPlayer(string.format("Item of ID %d was added to the treasure pool of %s or their party/alliance.", itemId, targ:getName()));
 end

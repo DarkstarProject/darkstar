@@ -1750,17 +1750,22 @@ INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',176,359,1,255); -- Silencega
 INSERT INTO `mob_spell_lists` VALUES ('Baba_Yaga',176,366,1,255); -- Graviga
 
 -- Carabosse
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV 
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,158,1,255); -- Aero V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,184,1,255); -- Aeroga III
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,208,1,255); -- Tornado
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,209,1,255); -- Tornado II
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,365,1,255); -- Breakga
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,47,1,255);  -- Protect V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,5,1,255);   -- Cure V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,52,1,255);  -- Shell V
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,54,1,255);  -- Stoneskin
-INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,6,1,255);   -- Cure Vi
+-- Mob changes casting habits mid fight. Starts as whm/cure AI. Begins mode changes after Benediction.
+-- Also has rdm (enhancing), blm (nuking), and warrior (melee) "mode" that it switches to.
+-- (see MOBMOD_BUFF_CHANCE and its relatives, as well as the setSpellList function)
+-- Uncertain if actual full on job change, but DOES gain the traits (double attack, magic attack..)
+-- http://ffxiclopedia.wikia.com/wiki/Carabosse
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,5,1,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,6,1,255); -- Cure Vi
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,47,1,255); -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,52,1,255); -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,54,1,255); -- Stoneskin
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV 
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,158,1,255); -- Aero V
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,184,1,255); -- Aeroga III
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,208,1,255); -- Tornado
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,209,1,255); -- Tornado II
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,365,1,255); -- Breakga
 
 -- Irrlicht
 INSERT INTO `mob_spell_lists` VALUES ('Irrlicht',178,180,1,255); -- Blizzaga II
@@ -1776,8 +1781,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,163,1,255); -- Stone V
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,191,1,255); -- Stonega III
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,210,1,255); -- Quake
 
--- Piasa
-INSERT INTO `mob_spell_lists` VALUES ('Piasa',181,102,1,255); -- Enaero
+-- Free ID to use: 181
 
 -- Poroggo_Dom_Juan
 INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',182,201,1,255); -- Waterga III
@@ -1926,6 +1930,115 @@ INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,206,1,255); -- Freeze
 INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,214,1,255); -- Flood
 INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,226,1,255); -- Poisonga II
 INSERT INTO `mob_spell_lists` VALUES ('Halimede',201,356,1,255); -- Paralyga
+
+-- Mindertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,5,1,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,29,1,255); -- Banish II
+INSERT INTO `mob_spell_lists` VALUES ('Mindertaur',202,112,1,255); -- Flash
+
+-- Eldertaur ENM Brothers
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,5,1,255); --  Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,46,1,255); -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('Eldertaur',203,50,1,255); -- Shell III
+
+-- SMN Spirits
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,144,13,37); -- Fire
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,145,38,61); -- Fire II
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,146,62,72); -- Fire III
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,147,73,85); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,148,86,255); -- Fire V
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,204,60,255); -- Flare
+INSERT INTO `mob_spell_lists` VALUES ('FireSpirit',204,235,24,255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,58,4,255); -- Paralyze
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,149,17,41); -- Blizzard
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,150,42,63); -- Blizzard II
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,151,64,73); -- Blizzard III
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,152,74,88); -- Blizzard IV
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,153,89,255); -- Blizzard V
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,236,22,255); -- Frost
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,206,50,255); -- Freeze
+INSERT INTO `mob_spell_lists` VALUES ('IceSpirit',205,258,7,255); -- Bind
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,216,21,255); -- Gravity
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,59,15,255); -- Silence
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,154,9,33); -- Aero
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,155,34,58); -- Aero II
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,156,59,71); -- Aero III
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,157,72,82); -- Aero IV
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,158,83,255); -- Aero V
+INSERT INTO `mob_spell_lists` VALUES ('AirSpirit',206,237,20,255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,56,13,255); -- Slow
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,238,18,255); -- Rasp
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,159,1,25); -- Stone
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,160,26,50); -- Stone II
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,161,51,67); -- Stone III
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,162,68,76); -- Stone IV
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,163,77,255); -- Stone V
+INSERT INTO `mob_spell_lists` VALUES ('EarthSpirit',207,210,54,255); -- Quake
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,164,21,45); -- Thunder
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,165,46,65); -- Thunder II
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,166,66,74); -- Thunder III
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,167,75,91); -- Thunder IV
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,168,92,255); -- Thunder V
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,239,16,50); -- Shock
+INSERT INTO `mob_spell_lists` VALUES ('ThunderSpirit',208,212,56,255); -- Burst
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,169,5,29); -- Water
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,170,30,54); -- Water II
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,171,55,69); -- Water III
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,172,70,79); -- Water IV
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,173,80,255); -- Water V
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,240,27,255); -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,220,3,41); -- Poison
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,221,42,255); -- Poison II
+INSERT INTO `mob_spell_lists` VALUES ('WaterSpirit',209,214,58,255); -- Flood
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,1,1,10); -- Cure
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,2,11,20); -- Cure II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,3,21,40); -- Cure III
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,4,41,60); -- Cure IV
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,5,61,255); -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,21,50,94); -- Holy
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,22,95,255); -- Holy II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,23,1,30); -- Dia
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,24,31,255); -- Dia II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,28,5,29); -- Banish
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,29,30,64); -- Banish II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,30,65,89); -- Banish III
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,31,90,255); -- Banish IV
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,43,7,26); -- Protect
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,44,27,46); -- Protect II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,45,47,62); -- Protect III
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,46,63,75); -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,47,76,255); -- Protect V
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,48,17,36); -- Shell
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,49,37,56); -- Shell II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,50,57,67); -- Shell III
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,51,68,75); -- Shell IV
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,52,76,255); -- Shell V
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,108,21,255); -- Regen
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,112,37,255); -- Flash
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,57,40,255); -- Haste
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,7,16,30); -- Curaga
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,8,31,50); -- Curaga II
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,9,51,70); -- Curaga III
+INSERT INTO `mob_spell_lists` VALUES ('LightSpirit',210,10,71,255); -- Curaga IV
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,254,1,255); -- Blind
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,230,10,34); -- Bio
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,231,35,255); -- Bio II
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,245,10,255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,247,20,255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,252,37,255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,253,20,255); -- Sleep
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,259,41,255); -- Sleep II
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,260,32,255); -- Dispel
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,266,43,255); -- Absorb-STR
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,267,41,255); -- Absorb-DEX
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,268,35,255); -- Absorb-VIT
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,269,37,255); -- Absorb-AGI
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,270,39,255); -- Absorb-INT
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,271,31,255); -- Absorb-MND
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,272,33,255); -- Absorb-CHR
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,273,31,55); -- Sleepga
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,274,56,255); -- Sleepga II
+INSERT INTO `mob_spell_lists` VALUES ('DarkSpirit',211,275,45,255); -- Absorb-TP
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

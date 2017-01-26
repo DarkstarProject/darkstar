@@ -16,10 +16,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17735867};
-    SetVoidwatchNPC(vwnpc);
-
-    SetExplorerMoogles(17735852);
+    SetExplorerMoogles(17735856);
 
     applyHalloweenNpcCostumes(zone:getID())
 end;

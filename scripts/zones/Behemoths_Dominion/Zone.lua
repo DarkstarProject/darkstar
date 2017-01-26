@@ -15,12 +15,6 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17297490};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17297497,17297498,17297499};
-    SetVoidwatchNPC(vwnpc);
-
     if (LandKingSystem_NQ ~= 1) then
         SetRespawnTime(17297440, 900, 10800); -- Behemoth
     end

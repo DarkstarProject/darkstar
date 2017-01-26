@@ -742,19 +742,25 @@ inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     if (PChar->PTreasurePool != nullptr)
     {
-        PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PChar);
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+        {
+            // The specified PEntity can be a Mob or NPC
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+            CBaseEntity* PEntity = PLuaBaseEntity->GetBaseEntity();
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PEntity);
+        }
+        else // Entity can be nullptr - this is intentional
+        {
+            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), nullptr);
+        }
     }
-    else
-    {
-        ShowError(CL_RED"Lua::addTreasure: Tried to add item to a treasure pool that was nullptr! \n" CL_RESET);
-    }
+
     return 0;
 }
 
@@ -831,6 +837,48 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     lua_pushboolean(L, (SlotID != ERROR_SLOTID));
     return 1;
 }
+
+//==========================================================//
+
+inline int32 CLuaBaseEntity::addUsedItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 itemID = (uint16)lua_tointeger(L, 1);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    uint8 SlotID = ERROR_SLOTID;
+
+    if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+    {
+        CItem* PItem = itemutils::GetItem(itemID);
+
+        if (PItem != nullptr)
+        {
+            if (PItem->isSubType(ITEM_CHARGED))
+            {
+                // Add charged item with use timer already on full cooldown
+                auto PUsable = static_cast<CItemUsable*>(PItem);
+                PUsable->setQuantity(1);
+                PUsable->setLastUseTime(CVanaTime::getInstance()->getVanaTime());
+                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PUsable, false);
+            }
+            else
+            {
+                ShowWarning(CL_YELLOW"addUsedItem: tried to setLastUseTime but itemID <%i> is not type ITEM_CHARGED\n" CL_RESET, itemID);
+            }
+        }
+        else
+        {
+            ShowWarning(CL_YELLOW"charplugin::AddItem: Item <%i> is not found in a database\n" CL_RESET, itemID);
+        }
+    }
+    lua_pushboolean(L, (SlotID != ERROR_SLOTID));
+    return 1;
+}
+
 //==========================================================//
 
 inline int32 CLuaBaseEntity::addTempItem(lua_State *L)
@@ -4249,7 +4297,7 @@ inline int32 CLuaBaseEntity::addFame(lua_State *L)
 
     uint8 fameArea = (uint8)lua_tointeger(L, lua_isnumber(L, 1) ? 1 : -1);
     uint16 fame = (uint16)lua_tointeger(L, 2);
-    
+
     if (fameArea <= 15)
     {
         CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
@@ -5566,6 +5614,15 @@ inline int32 CLuaBaseEntity::isJailed(lua_State *L)
 
     lua_pushboolean(L, (jailutils::InPrison((CCharEntity*)m_PBaseEntity)));
     return 1;
+}
+
+inline int32 CLuaBaseEntity::jail(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    jailutils::Add(static_cast<CCharEntity*>(m_PBaseEntity));
+    return 0;
 }
 
 /************************************************************************
@@ -9895,6 +9952,7 @@ inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
 
     if (PChar->PParty && PChar->PParty->m_PAlliance)
     {
+        size = 0;
         for (auto PParty : PChar->PParty->m_PAlliance->partyList)
         {
             size += PParty->MemberCount(m_PBaseEntity->getZone());
@@ -9906,7 +9964,7 @@ inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
     }
 
     lua_createtable(L, size, 0);
-    int i = 0;
+    int i = 1;
 
     PChar->ForAlliance([this, &L, &i](CBattleEntity* PMember)
     {
@@ -11054,6 +11112,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaxMP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addUsedItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTempItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSpawnPos),
@@ -11272,6 +11331,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removePartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasPartyEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJailed),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,jail),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setsLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,changeJob),

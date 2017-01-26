@@ -14,14 +14,8 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17645906,17645907,17645908,17645909};
-
-    SetGroundsTome(tomes);
-
     -- Bune
     SetRespawnTime(17645578, 900, 10800);
-
 end;
 
 -----------------------------------

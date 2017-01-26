@@ -26,13 +26,19 @@ ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
 ENABLE_ROV     = 0;
 
--- Setting to lock content more accurately to the expansions you have defined above
+ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
+
+-- FIELDS OF VALOR/Grounds of Valor settings
+ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
+ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
+REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
+LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
+
+-- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
 -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
--- This feature correlates to the required_expansion column in the SQL files
-RESTRICT_BY_EXPANSION = 0;
-
-ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
+-- This feature correlates to the content_tag column in the SQL files
+RESTRICT_CONTENT = 0;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
@@ -111,12 +117,6 @@ OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, 
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
 FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
 
--- FIELDS OF VALOR/Grounds of Valor SETTINGS
-REGIME_WAIT = 1; --Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
-FIELD_MANUALS = 1; -- Enables Fields of Valor manuals
-LOW_LEVEL_REGIME = 0; --Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
-GROUNDS_TOMES = 1; -- Enables Grounds of Valor tomes
-
 -- JOB ABILITY/TRAIT SPECIFIC SETTINGS
 CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
 KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits.
@@ -163,7 +163,7 @@ NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own 
 HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
 DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
-MIASMA_FILTER_COOLDOWN = 5;  -- Number of days a player can obtain a Miasma Filter KI for any of the Boneyard Gully ENMs (Minimum:1)
+ENM_COOLDOWN = 120;  -- Number of hours before a player can obtain same KI for ENMs (default: 5 days)
 FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
 
 -- LIMBUS

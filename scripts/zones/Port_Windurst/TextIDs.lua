@@ -70,4 +70,4 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
 CONQUEST_BASE = 4424;
 
 -- Porter Moogle
-            RETRIEVE_DIALOG_ID = 15866; -- You retrieve$ from the porter moogle's care.
+            RETRIEVE_DIALOG_ID = 15867; -- You retrieve$ from the porter moogle's care.

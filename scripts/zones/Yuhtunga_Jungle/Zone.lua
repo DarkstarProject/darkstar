@@ -60,12 +60,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17281653,17281654,17281655,17281656};
-    SetFieldManual(manuals);
-
-    local vwnpc = {17281663,17281664,17281665};
-    SetVoidwatchNPC(vwnpc);
-
     local Rose_Garden = 17281357;
     GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random((36000), (37800)));
 

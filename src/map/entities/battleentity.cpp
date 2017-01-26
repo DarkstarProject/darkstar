@@ -89,7 +89,8 @@ CBattleEntity::~CBattleEntity()
 
 bool CBattleEntity::isDead()
 {
-    return (health.hp <= 0 || status == STATUS_DISAPPEAR || PAI->IsCurrentState<CDeathState>());
+    return (health.hp <= 0 || status == STATUS_DISAPPEAR ||
+        PAI->IsCurrentState<CDeathState>() || PAI->IsCurrentState<CDespawnState>());
 }
 
 bool CBattleEntity::isAlive()

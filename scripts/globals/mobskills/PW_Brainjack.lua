@@ -23,9 +23,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.3;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
-    local typeEffect = EFFECT_CHARM;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 0, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_CHARM_I, 0, 0, 60);
     target:delHP(dmg);
 
     return dmg;

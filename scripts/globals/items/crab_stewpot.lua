@@ -8,7 +8,7 @@
 -- MP +10
 -- HP Recoverd while healing 5
 -- MP Recovered while healing 1
--- Defense +15% Cap 50
+-- Defense +20% Cap 50
 -- Evasion +5
 -----------------------------------------
 
@@ -19,11 +19,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -44,7 +44,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MP, 10);
     target:addMod(MOD_HPHEAL, 5);
     target:addMod(MOD_MPHEAL, 1);
-    target:addMod(MOD_FOOD_DEFP, 15);
+    target:addMod(MOD_FOOD_DEFP, 20);
     target:addMod(MOD_FOOD_DEF_CAP, 50);
     target:addMod(MOD_EVA, 5);
 end;
@@ -59,7 +59,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_MP, 10);
     target:delMod(MOD_HPHEAL, 5);
     target:delMod(MOD_MPHEAL, 1);
-    target:delMod(MOD_FOOD_DEFP, 15);
+    target:delMod(MOD_FOOD_DEFP, 20);
     target:delMod(MOD_FOOD_DEF_CAP, 50);
     target:delMod(MOD_EVA, 5);
 end;

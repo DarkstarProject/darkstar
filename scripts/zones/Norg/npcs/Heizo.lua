@@ -81,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addItem(4958); -- Scroll of Dokumori: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
-        player:addFame(OUTLANDS,100);
+        player:addFame(NORG,100);
         player:addTitle(LOOKS_GOOD_IN_LEGGINGS);
         player:setVar("shiningLeggings_nb",0);
         player:completeQuest(OUTLANDS,LIKE_A_SHINING_LEGGINGS);

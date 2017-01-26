@@ -22,5 +22,5 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    GetNPCByID(16875886):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(16875890):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;
