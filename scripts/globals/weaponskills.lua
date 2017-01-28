@@ -165,6 +165,9 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         end
     end
 
+    -- Store first hit bonus for use after other calcs are done..
+    local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
+
     local numHits = getMultiAttacks(attacker, params.numHits);
     local extraHitsLanded = 0;
 
@@ -222,6 +225,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
+    finaldmg = finaldmg + firstHitBonus;
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
@@ -256,6 +260,9 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     dmg = target:magicDmgTaken(dmg);
     dmg = adjustForTarget(target,dmg,params.ele);
 
+    -- Add first hit bonus..No such thing as multihit magic ws is there?
+    local firstHitBonus = ((dmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
+
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
 
@@ -266,6 +273,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
 
     -- Add in bonusdmg
     dmg = dmg * ((100 + bonusdmg)/100);
+    dmg = dmg + firstHitBonus;
 
     dmg = dmg * WEAPON_SKILL_POWER
     dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
@@ -394,7 +402,6 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 
     hitrate = hitrate+hitdiff;
     hitrate = hitrate/100;
-
 
     -- Applying hitrate caps
     if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
@@ -747,6 +754,9 @@ end;
         tpHitsLanded = 1;
     end
 
+    -- Store first hit bonus for use after other calcs are done..
+    local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
+
     local numHits = params.numHits;
 
     if not multiHitfTP then dmg = base end
@@ -793,6 +803,7 @@ end;
 
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
+    finaldmg = finaldmg + firstHitBonus;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
