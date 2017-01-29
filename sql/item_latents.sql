@@ -2789,3 +2789,9 @@ INSERT INTO `item_latents` VALUES (10962,169,-12,13,14); -- CHARMED:DECREASES MO
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES (10975, 25, 13, 52, 8); -- DARK WEATHER:ACC
 INSERT INTO `item_latents` VALUES (10975, 23, 13, 52, 8); -- DARK WEATHER:ATT
+
+-- -------------------------------------------------------
+-- Hachiya Kyahan +2/+3
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (23320,169,25,26,2); -- Dusk to dawn: Movement speed +25%
+INSERT INTO `item_latents` VALUES (23655,169,25,26,2); -- Dusk to dawn: Movement speed +25%
