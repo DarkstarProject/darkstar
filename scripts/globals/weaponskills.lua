@@ -203,17 +203,6 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
     -- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
-    finaldmg = target:physicalDmgTaken(finaldmg);
-
-    if (weaponType == SKILL_H2H) then
-        finaldmg = finaldmg * target:getMod(MOD_HTHRES) / 1000;
-    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
-        finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
-    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
-        finaldmg = finaldmg * target:getMod(MOD_IMPACTRES) / 1000;
-    else
-        finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
-    end
 
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
@@ -226,6 +215,20 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
     finaldmg = finaldmg + firstHitBonus;
+
+    -- Check for reductions from PDT
+    finaldmg = target:physicalDmgTaken(finaldmg);
+
+    -- Check for reductions from phys resistances
+    if (weaponType == SKILL_H2H) then
+        finaldmg = finaldmg * target:getMod(MOD_HTHRES) / 1000;
+    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+        finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
+    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+        finaldmg = finaldmg * target:getMod(MOD_IMPACTRES) / 1000;
+    else
+        finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
+    end
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
@@ -790,9 +793,6 @@ end;
     end
     -- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
-    finaldmg = target:rangedDmgTaken(finaldmg);
-    finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
-
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
 
@@ -804,6 +804,10 @@ end;
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
     finaldmg = finaldmg + firstHitBonus;
+
+    -- Check for reductions
+    finaldmg = target:rangedDmgTaken(finaldmg);
+    finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
