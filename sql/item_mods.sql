@@ -29461,7 +29461,6 @@ INSERT INTO `item_mods` VALUES (25818,13,24);     -- MND+24
 INSERT INTO `item_mods` VALUES (25818,14,17);     -- CHR+17
 INSERT INTO `item_mods` VALUES (25818,25,25);     -- Accuracy+25
 INSERT INTO `item_mods` VALUES (25818,29,2);      -- Magic Defense+2
-INSERT INTO `item_mods` VALUES (25818,31,25);     -- Magic Evasion+25
 INSERT INTO `item_mods` VALUES (25818,31,48);     -- Magic Evasion+48
 INSERT INTO `item_mods` VALUES (25818,68,36);     -- Evasion+36
 INSERT INTO `item_mods` VALUES (25818,73,3);      -- Store TP+3
@@ -29479,7 +29478,6 @@ INSERT INTO `item_mods` VALUES (25819,13,24);     -- MND+24
 INSERT INTO `item_mods` VALUES (25819,14,17);     -- CHR+17
 INSERT INTO `item_mods` VALUES (25819,25,37);     -- Accuracy+37
 INSERT INTO `item_mods` VALUES (25819,29,2);      -- Magic Defense+2
-INSERT INTO `item_mods` VALUES (25819,31,37);     -- Magic Evasion+37
 INSERT INTO `item_mods` VALUES (25819,31,48);     -- Magic Evasion+48
 INSERT INTO `item_mods` VALUES (25819,68,36);     -- Evasion+36
 INSERT INTO `item_mods` VALUES (25819,73,5);      -- Store TP+5
