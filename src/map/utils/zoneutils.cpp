@@ -270,7 +270,7 @@ void LoadNPCList()
           animationsub,\
           namevis,\
           status,\
-          flags,\
+          entityFlags,\
           look,\
           name_prefix, \
           content_tag, \
@@ -360,7 +360,7 @@ void LoadMOBList()
             STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
             Slash, Pierce, H2H, Impact, \
             Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-            mob_pools.familyid, name_prefix, flags, animationsub, \
+            mob_pools.familyid, name_prefix, entityFlags, animationsub, \
             (mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
             allegiance, namevis, aggro, roamflag, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects, \
             mob_family_system.charmable \
