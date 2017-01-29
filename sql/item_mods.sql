@@ -2080,11 +2080,12 @@ INSERT INTO `item_mods` VALUES (10727,1,42);
 INSERT INTO `item_mods` VALUES (10727,8,4);
 INSERT INTO `item_mods` VALUES (10727,10,4);
 INSERT INTO `item_mods` VALUES (10727,25,9);
-INSERT INTO `item_mods` VALUES (10728,1,36);
-INSERT INTO `item_mods` VALUES (10728,8,6);
-INSERT INTO `item_mods` VALUES (10728,14,6);
-INSERT INTO `item_mods` VALUES (10728,25,6);
-INSERT INTO `item_mods` VALUES (10728,384,40);
+INSERT INTO `item_mods` VALUES (10728,1,36);      -- Etoile Tights +2: DEF 36
+INSERT INTO `item_mods` VALUES (10728,8,6);       -- STR +6
+INSERT INTO `item_mods` VALUES (10728,14,6);      -- CHR +6
+INSERT INTO `item_mods` VALUES (10728,25,6);      -- Accuracy +6
+INSERT INTO `item_mods` VALUES (10728,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (10728,492,35);    -- Jig duration +35%
 INSERT INTO `item_mods` VALUES (10729,1,35);
 INSERT INTO `item_mods` VALUES (10729,2,24);
 INSERT INTO `item_mods` VALUES (10729,5,24);
@@ -4385,22 +4386,20 @@ INSERT INTO `item_mods` VALUES (11392,1,14);      -- Koschei Crackows: DEF 14
 INSERT INTO `item_mods` VALUES (11392,499,4);     -- Curse spikes
 INSERT INTO `item_mods` VALUES (11392,500,0);     -- Spikes damage +0
 INSERT INTO `item_mods` VALUES (11392,501,20);    -- Spikes chance +20%
-INSERT INTO `item_mods` VALUES (11393,1,15);
-INSERT INTO `item_mods` VALUES (11393,2,12);
-INSERT INTO `item_mods` VALUES (11393,8,3);
-INSERT INTO `item_mods` VALUES (11393,11,3);
-INSERT INTO `item_mods` VALUES (11393,23,5);
-INSERT INTO `item_mods` VALUES (11393,68,5);
-INSERT INTO `item_mods` VALUES (11393,492,30);
-INSERT INTO `item_mods` VALUES (11393,495,100);
-INSERT INTO `item_mods` VALUES (11394,1,15);
-INSERT INTO `item_mods` VALUES (11394,2,12);
-INSERT INTO `item_mods` VALUES (11394,8,3);
-INSERT INTO `item_mods` VALUES (11394,11,3);
-INSERT INTO `item_mods` VALUES (11394,23,5);
-INSERT INTO `item_mods` VALUES (11394,68,5);
-INSERT INTO `item_mods` VALUES (11394,492,30);
-INSERT INTO `item_mods` VALUES (11394,495,100);
+INSERT INTO `item_mods` VALUES (11393,1,15);      -- Dancer's Toe Shoes +1 (male): DEF 15
+INSERT INTO `item_mods` VALUES (11393,2,12);      -- HP +12
+INSERT INTO `item_mods` VALUES (11393,8,3);       -- STR +3
+INSERT INTO `item_mods` VALUES (11393,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (11393,23,5);      -- Attack +5
+INSERT INTO `item_mods` VALUES (11393,68,5);      -- Evasion +5
+INSERT INTO `item_mods` VALUES (11393,492,25);    -- Jig duration +25%
+INSERT INTO `item_mods` VALUES (11394,1,15);      -- Dancer's Toe Shoes +1 (female): DEF 15
+INSERT INTO `item_mods` VALUES (11394,2,12);      -- HP +12
+INSERT INTO `item_mods` VALUES (11394,8,3);       -- STR +3
+INSERT INTO `item_mods` VALUES (11394,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (11394,23,5);      -- Attack +5
+INSERT INTO `item_mods` VALUES (11394,68,5);      -- Evasion +5
+INSERT INTO `item_mods` VALUES (11394,492,25);    -- Jig duration +25%
 INSERT INTO `item_mods` VALUES (11395,1,11);
 INSERT INTO `item_mods` VALUES (11395,5,20);
 INSERT INTO `item_mods` VALUES (11395,11,3);
@@ -17766,18 +17765,16 @@ INSERT INTO `item_mods` VALUES (15745,54,15);     -- Fire resistance +15
 INSERT INTO `item_mods` VALUES (15745,55,15);     -- Ice resistance +15
 INSERT INTO `item_mods` VALUES (15745,56,15);     -- Wind resistance +15
 INSERT INTO `item_mods` VALUES (15745,384,11);    -- Haste +1%
-INSERT INTO `item_mods` VALUES (15746,1,14);
-INSERT INTO `item_mods` VALUES (15746,2,7);
-INSERT INTO `item_mods` VALUES (15746,23,5);
-INSERT INTO `item_mods` VALUES (15746,68,5);
-INSERT INTO `item_mods` VALUES (15746,492,30);
-INSERT INTO `item_mods` VALUES (15746,495,100);
-INSERT INTO `item_mods` VALUES (15747,1,14);
-INSERT INTO `item_mods` VALUES (15747,2,7);
-INSERT INTO `item_mods` VALUES (15747,23,5);
-INSERT INTO `item_mods` VALUES (15747,68,5);
-INSERT INTO `item_mods` VALUES (15747,492,30);
-INSERT INTO `item_mods` VALUES (15747,495,100);
+INSERT INTO `item_mods` VALUES (15746,1,14);      -- Dancer's Shoes (male): DEF 14
+INSERT INTO `item_mods` VALUES (15746,2,7);       -- HP +7
+INSERT INTO `item_mods` VALUES (15746,23,5);      -- Attack +5
+INSERT INTO `item_mods` VALUES (15746,68,5);      -- Evasion +5
+INSERT INTO `item_mods` VALUES (15746,492,25);    -- Jig duration +25%
+INSERT INTO `item_mods` VALUES (15747,1,14);      -- Dancer's Shoes (female): DEF 14
+INSERT INTO `item_mods` VALUES (15747,2,7);       -- HP +7
+INSERT INTO `item_mods` VALUES (15747,23,5);      -- Attack +5
+INSERT INTO `item_mods` VALUES (15747,68,5);      -- Evasion +5
+INSERT INTO `item_mods` VALUES (15747,492,25);    -- Jig duration +25%
 INSERT INTO `item_mods` VALUES (15748,1,10);
 INSERT INTO `item_mods` VALUES (15748,5,15);
 INSERT INTO `item_mods` VALUES (15748,27,-2);
@@ -19238,18 +19235,16 @@ INSERT INTO `item_mods` VALUES (16359,10,3);
 INSERT INTO `item_mods` VALUES (16359,13,3);
 INSERT INTO `item_mods` VALUES (16359,27,-2);
 INSERT INTO `item_mods` VALUES (16359,336,15);
-INSERT INTO `item_mods` VALUES (16360,1,28);
-INSERT INTO `item_mods` VALUES (16360,8,3);
-INSERT INTO `item_mods` VALUES (16360,14,3);
-INSERT INTO `item_mods` VALUES (16360,384,30);
-INSERT INTO `item_mods` VALUES (16360,492,30);
-INSERT INTO `item_mods` VALUES (16360,495,100);
-INSERT INTO `item_mods` VALUES (16361,1,29);
-INSERT INTO `item_mods` VALUES (16361,8,4);
-INSERT INTO `item_mods` VALUES (16361,14,4);
-INSERT INTO `item_mods` VALUES (16361,384,30);
-INSERT INTO `item_mods` VALUES (16361,492,30);
-INSERT INTO `item_mods` VALUES (16361,495,100);
+INSERT INTO `item_mods` VALUES (16360,1,28);      -- Etoile Tights: DEF 28
+INSERT INTO `item_mods` VALUES (16360,8,3);       -- STR +3
+INSERT INTO `item_mods` VALUES (16360,14,3);      -- CHR +3
+INSERT INTO `item_mods` VALUES (16360,384,30);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (16360,492,25);    -- Jig duration +25%
+INSERT INTO `item_mods` VALUES (16361,1,29);      -- Etoile Tights +1: DEF 29
+INSERT INTO `item_mods` VALUES (16361,8,4);       -- STR +4
+INSERT INTO `item_mods` VALUES (16361,14,4);      -- CHR +4
+INSERT INTO `item_mods` VALUES (16361,384,30);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (16361,492,25);    -- Jig duration +25%
 INSERT INTO `item_mods` VALUES (16362,1,27);
 INSERT INTO `item_mods` VALUES (16362,2,15);
 INSERT INTO `item_mods` VALUES (16362,5,15);
@@ -26607,7 +26602,7 @@ INSERT INTO `item_mods` VALUES (23325,29,3);      -- Magic Defense+3
 INSERT INTO `item_mods` VALUES (23325,31,74);     -- Magic Evasion+74
 INSERT INTO `item_mods` VALUES (23325,68,89);     -- Evasion+89
 INSERT INTO `item_mods` VALUES (23325,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23326,1,82);      -- maxixi_toeshoes_+2 DEF:82
+INSERT INTO `item_mods` VALUES (23326,1,82);      -- Maxixi Toe Shoes +2 (male): DEF:82
 INSERT INTO `item_mods` VALUES (23326,2,49);      -- HP+49
 INSERT INTO `item_mods` VALUES (23326,8,17);      -- STR+17
 INSERT INTO `item_mods` VALUES (23326,9,29);      -- DEX+29
@@ -26620,11 +26615,10 @@ INSERT INTO `item_mods` VALUES (23326,25,36);     -- Accuracy+36
 INSERT INTO `item_mods` VALUES (23326,29,5);      -- Magic Defense+5
 INSERT INTO `item_mods` VALUES (23326,31,79);     -- Magic Evasion+79
 INSERT INTO `item_mods` VALUES (23326,68,92);     -- Evasion+92
-INSERT INTO `item_mods` VALUES (23326,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23326,491,12);    -- Waltz Potency+12
-INSERT INTO `item_mods` VALUES (23326,492,45);    -- Chocobo Jig Duration+45
-INSERT INTO `item_mods` VALUES (23326,495,45);    -- Spectral Jig Duration+45
-INSERT INTO `item_mods` VALUES (23327,1,82);      -- maxixi_toeshoes_+2 DEF:82
+INSERT INTO `item_mods` VALUES (23326,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (23326,491,12);    -- Waltz Potency +12%
+INSERT INTO `item_mods` VALUES (23326,492,45);    -- Jig Duration +45%
+INSERT INTO `item_mods` VALUES (23327,1,82);      -- Maxixi Toe Shoes +2 (female): DEF:82
 INSERT INTO `item_mods` VALUES (23327,2,49);      -- HP+49
 INSERT INTO `item_mods` VALUES (23327,8,17);      -- STR+17
 INSERT INTO `item_mods` VALUES (23327,9,29);      -- DEX+29
@@ -26637,10 +26631,9 @@ INSERT INTO `item_mods` VALUES (23327,25,36);     -- Accuracy+36
 INSERT INTO `item_mods` VALUES (23327,29,5);      -- Magic Defense+5
 INSERT INTO `item_mods` VALUES (23327,31,79);     -- Magic Evasion+79
 INSERT INTO `item_mods` VALUES (23327,68,92);     -- Evasion+92
-INSERT INTO `item_mods` VALUES (23327,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23327,491,12);    -- Waltz Potency+12
-INSERT INTO `item_mods` VALUES (23327,492,45);    -- Chocobo Jig Duration+45
-INSERT INTO `item_mods` VALUES (23327,495,45);    -- Spectral Jig Duration+45
+INSERT INTO `item_mods` VALUES (23327,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (23327,491,12);    -- Waltz Potency +12%
+INSERT INTO `item_mods` VALUES (23327,492,45);    -- Jig Duration +45%
 INSERT INTO `item_mods` VALUES (23328,1,73);      -- acad._loafers_+2 DEF:73
 INSERT INTO `item_mods` VALUES (23328,2,19);      -- HP+19
 INSERT INTO `item_mods` VALUES (23328,5,21);      -- MP+21
@@ -28578,7 +28571,7 @@ INSERT INTO `item_mods` VALUES (23660,29,4);      -- Magic Defense+4
 INSERT INTO `item_mods` VALUES (23660,31,87);     -- Magic Evasion+87
 INSERT INTO `item_mods` VALUES (23660,68,99);     -- Evasion+99
 INSERT INTO `item_mods` VALUES (23660,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23661,1,92);      -- maxixi_toeshoes_+3 DEF:92
+INSERT INTO `item_mods` VALUES (23661,1,92);      -- Maxixi Toe Shoes +3 (male): DEF 92
 INSERT INTO `item_mods` VALUES (23661,2,59);      -- HP+59
 INSERT INTO `item_mods` VALUES (23661,8,22);      -- STR+22
 INSERT INTO `item_mods` VALUES (23661,9,34);      -- DEX+34
@@ -28591,11 +28584,10 @@ INSERT INTO `item_mods` VALUES (23661,25,46);     -- Accuracy+46
 INSERT INTO `item_mods` VALUES (23661,29,6);      -- Magic Defense+6
 INSERT INTO `item_mods` VALUES (23661,31,89);     -- Magic Evasion+89
 INSERT INTO `item_mods` VALUES (23661,68,102);    -- Evasion+102
-INSERT INTO `item_mods` VALUES (23661,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23661,491,15);    -- Waltz Potency+15
-INSERT INTO `item_mods` VALUES (23661,492,50);    -- Chocobo Jig Duration+50
-INSERT INTO `item_mods` VALUES (23661,495,50);    -- Spectral Jig Duration+50
-INSERT INTO `item_mods` VALUES (23662,1,92);      -- maxixi_toeshoes_+3 DEF:92
+INSERT INTO `item_mods` VALUES (23661,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (23661,491,15);    -- Waltz Potency +15%
+INSERT INTO `item_mods` VALUES (23661,492,50);    -- Jig duration +50%
+INSERT INTO `item_mods` VALUES (23662,1,92);      -- Maxixi Toe Shoes +3 (female): DEF 92
 INSERT INTO `item_mods` VALUES (23662,2,59);      -- HP+59
 INSERT INTO `item_mods` VALUES (23662,8,22);      -- STR+22
 INSERT INTO `item_mods` VALUES (23662,9,34);      -- DEX+34
@@ -28608,10 +28600,9 @@ INSERT INTO `item_mods` VALUES (23662,25,46);     -- Accuracy+46
 INSERT INTO `item_mods` VALUES (23662,29,6);      -- Magic Defense+6
 INSERT INTO `item_mods` VALUES (23662,31,89);     -- Magic Evasion+89
 INSERT INTO `item_mods` VALUES (23662,68,102);    -- Evasion+102
-INSERT INTO `item_mods` VALUES (23662,384,40);    -- Haste+40
-INSERT INTO `item_mods` VALUES (23662,491,15);    -- Waltz Potency+15
-INSERT INTO `item_mods` VALUES (23662,492,50);    -- Chocobo Jig Duration+50
-INSERT INTO `item_mods` VALUES (23662,495,50);    -- Spectral Jig Duration+50
+INSERT INTO `item_mods` VALUES (23662,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (23662,491,15);    -- Waltz Potency +15%
+INSERT INTO `item_mods` VALUES (23662,492,50);    -- Jig duration +50%
 INSERT INTO `item_mods` VALUES (23663,1,83);      -- acad._loafers_+3 DEF:83
 INSERT INTO `item_mods` VALUES (23663,2,29);      -- HP+29
 INSERT INTO `item_mods` VALUES (23663,5,31);      -- MP+31
@@ -34896,36 +34887,36 @@ INSERT INTO `item_mods` VALUES (27185,31,69);
 INSERT INTO `item_mods` VALUES (27185,68,72);
 INSERT INTO `item_mods` VALUES (27185,384,6);
 INSERT INTO `item_mods` VALUES (27185,423,6);
-INSERT INTO `item_mods` VALUES (27188,1,79);
-INSERT INTO `item_mods` VALUES (27188,2,22);
-INSERT INTO `item_mods` VALUES (27188,8,21);
-INSERT INTO `item_mods` VALUES (27188,10,10);
-INSERT INTO `item_mods` VALUES (27188,11,12);
-INSERT INTO `item_mods` VALUES (27188,12,19);
-INSERT INTO `item_mods` VALUES (27188,13,11);
-INSERT INTO `item_mods` VALUES (27188,14,10);
-INSERT INTO `item_mods` VALUES (27188,25,9);
-INSERT INTO `item_mods` VALUES (27188,29,4);
-INSERT INTO `item_mods` VALUES (27188,30,9);
-INSERT INTO `item_mods` VALUES (27188,31,47);
-INSERT INTO `item_mods` VALUES (27188,68,17);
-INSERT INTO `item_mods` VALUES (27188,384,61);
-INSERT INTO `item_mods` VALUES (27188,492,40);
-INSERT INTO `item_mods` VALUES (27189,1,113);
-INSERT INTO `item_mods` VALUES (27189,2,47);
-INSERT INTO `item_mods` VALUES (27189,8,32);
-INSERT INTO `item_mods` VALUES (27189,10,16);
-INSERT INTO `item_mods` VALUES (27189,11,20);
-INSERT INTO `item_mods` VALUES (27189,12,30);
-INSERT INTO `item_mods` VALUES (27189,13,17);
-INSERT INTO `item_mods` VALUES (27189,14,14);
-INSERT INTO `item_mods` VALUES (27189,25,12);
-INSERT INTO `item_mods` VALUES (27189,29,8);
-INSERT INTO `item_mods` VALUES (27189,30,12);
-INSERT INTO `item_mods` VALUES (27189,31,69);
-INSERT INTO `item_mods` VALUES (27189,68,38);
-INSERT INTO `item_mods` VALUES (27189,384,61);
-INSERT INTO `item_mods` VALUES (27189,492,45);
+INSERT INTO `item_mods` VALUES (27188,1,79);      -- Horos Tights: DEF 79
+INSERT INTO `item_mods` VALUES (27188,2,22);      -- HP +22
+INSERT INTO `item_mods` VALUES (27188,8,21);      -- STR +21
+INSERT INTO `item_mods` VALUES (27188,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (27188,11,12);     -- AGI +12
+INSERT INTO `item_mods` VALUES (27188,12,19);     -- INT +19
+INSERT INTO `item_mods` VALUES (27188,13,11);     -- MND +11
+INSERT INTO `item_mods` VALUES (27188,14,10);     -- CHR +10
+INSERT INTO `item_mods` VALUES (27188,25,9);      -- Accuracy +9
+INSERT INTO `item_mods` VALUES (27188,29,4);      -- Magic Def. Bonus +4
+INSERT INTO `item_mods` VALUES (27188,30,9);      -- Magic Accuracy +9
+INSERT INTO `item_mods` VALUES (27188,31,47);     -- Magic Evasion +47
+INSERT INTO `item_mods` VALUES (27188,68,17);     -- Evasion +17
+INSERT INTO `item_mods` VALUES (27188,384,61);    -- Haste +6%
+INSERT INTO `item_mods` VALUES (27188,492,40);    -- Jig duration +40%
+INSERT INTO `item_mods` VALUES (27189,1,113);     -- Horos Tights +1: DEF 113
+INSERT INTO `item_mods` VALUES (27189,2,47);      -- HP +47
+INSERT INTO `item_mods` VALUES (27189,8,32);      -- STR +32
+INSERT INTO `item_mods` VALUES (27189,10,16);     -- VIT +16
+INSERT INTO `item_mods` VALUES (27189,11,20);     -- AGI +20
+INSERT INTO `item_mods` VALUES (27189,12,30);     -- INT +30
+INSERT INTO `item_mods` VALUES (27189,13,17);     -- MND +17
+INSERT INTO `item_mods` VALUES (27189,14,14);     -- CHR +14
+INSERT INTO `item_mods` VALUES (27189,25,12);     -- Accuracy +12
+INSERT INTO `item_mods` VALUES (27189,29,8);      -- Magic Def. Bonus +8
+INSERT INTO `item_mods` VALUES (27189,30,12);     -- Magic Accuracy +12
+INSERT INTO `item_mods` VALUES (27189,31,69);     -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (27189,68,38);     -- Evasion +38
+INSERT INTO `item_mods` VALUES (27189,384,61);    -- Haste +6%
+INSERT INTO `item_mods` VALUES (27189,492,45);    -- Jig duration +45%
 INSERT INTO `item_mods` VALUES (27190,1,77);
 INSERT INTO `item_mods` VALUES (27190,2,40);
 INSERT INTO `item_mods` VALUES (27190,5,44);
@@ -42275,21 +42266,36 @@ INSERT INTO `item_mods` VALUES (28239,29,2);
 INSERT INTO `item_mods` VALUES (28239,31,47);
 INSERT INTO `item_mods` VALUES (28239,68,33);
 INSERT INTO `item_mods` VALUES (28239,384,41);
-INSERT INTO `item_mods` VALUES (28241,1,51);
-INSERT INTO `item_mods` VALUES (28241,2,26);
-INSERT INTO `item_mods` VALUES (28241,8,8);
-INSERT INTO `item_mods` VALUES (28241,9,15);
-INSERT INTO `item_mods` VALUES (28241,10,8);
-INSERT INTO `item_mods` VALUES (28241,11,23);
-INSERT INTO `item_mods` VALUES (28241,13,8);
-INSERT INTO `item_mods` VALUES (28241,14,19);
-INSERT INTO `item_mods` VALUES (28241,23,10);
-INSERT INTO `item_mods` VALUES (28241,29,2);
-INSERT INTO `item_mods` VALUES (28241,31,47);
-INSERT INTO `item_mods` VALUES (28241,68,33);
-INSERT INTO `item_mods` VALUES (28241,384,41);
-INSERT INTO `item_mods` VALUES (28241,491,10);
-INSERT INTO `item_mods` VALUES (28241,492,40);
+INSERT INTO `item_mods` VALUES (28241,1,51);      -- Maxixi Toe Shoes (male): DEF 51
+INSERT INTO `item_mods` VALUES (28241,2,26);      -- HP +26
+INSERT INTO `item_mods` VALUES (28241,8,8);       -- STR +8
+INSERT INTO `item_mods` VALUES (28241,9,15);      -- DEX +15
+INSERT INTO `item_mods` VALUES (28241,10,8);      -- VIT +8
+INSERT INTO `item_mods` VALUES (28241,11,23);     -- AGI +23
+INSERT INTO `item_mods` VALUES (28241,13,8);      -- MND +8
+INSERT INTO `item_mods` VALUES (28241,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (28241,23,10);     -- Attack +10
+INSERT INTO `item_mods` VALUES (28241,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (28241,31,47);     -- Magic Evasion +47
+INSERT INTO `item_mods` VALUES (28241,68,33);     -- Evasion +33
+INSERT INTO `item_mods` VALUES (28241,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (28241,491,10);    -- Waltz potency +10%
+INSERT INTO `item_mods` VALUES (28241,492,35);    -- Jig duration +35%
+INSERT INTO `item_mods` VALUES (28242,1,51);      -- Maxixi Toe Shoes (female): DEF 51
+INSERT INTO `item_mods` VALUES (28242,2,26);      -- HP +26
+INSERT INTO `item_mods` VALUES (28242,8,8);       -- STR +8
+INSERT INTO `item_mods` VALUES (28242,9,15);      -- DEX +15
+INSERT INTO `item_mods` VALUES (28242,10,8);      -- VIT +8
+INSERT INTO `item_mods` VALUES (28242,11,23);     -- AGI +23
+INSERT INTO `item_mods` VALUES (28242,13,8);      -- MND +8
+INSERT INTO `item_mods` VALUES (28242,14,19);     -- CHR +19
+INSERT INTO `item_mods` VALUES (28242,23,10);     -- Attack +10
+INSERT INTO `item_mods` VALUES (28242,29,2);      -- Magic Def. Bonus +2
+INSERT INTO `item_mods` VALUES (28242,31,47);     -- Magic Evasion +47
+INSERT INTO `item_mods` VALUES (28242,68,33);     -- Evasion +33
+INSERT INTO `item_mods` VALUES (28242,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (28242,491,10);    -- Waltz potency +10%
+INSERT INTO `item_mods` VALUES (28242,492,35);    -- Jig duration +35%
 INSERT INTO `item_mods` VALUES (28243,1,46);
 INSERT INTO `item_mods` VALUES (28243,2,6);
 INSERT INTO `item_mods` VALUES (28243,5,12);
@@ -42351,21 +42357,22 @@ INSERT INTO `item_mods` VALUES (28246,113,17);    -- Enhancing magic skill +17
 INSERT INTO `item_mods` VALUES (28246,114,17);    -- Enfeebling magic skill +17
 INSERT INTO `item_mods` VALUES (28246,168,25);    -- Spell interruption rate down 25%
 INSERT INTO `item_mods` VALUES (28246,384,31);    -- Haste +3%
-INSERT INTO `item_mods` VALUES (28247,1,66);
-INSERT INTO `item_mods` VALUES (28247,2,48);
-INSERT INTO `item_mods` VALUES (28247,5,49);
-INSERT INTO `item_mods` VALUES (28247,8,10);
-INSERT INTO `item_mods` VALUES (28247,9,11);
-INSERT INTO `item_mods` VALUES (28247,10,10);
-INSERT INTO `item_mods` VALUES (28247,11,33);
-INSERT INTO `item_mods` VALUES (28247,12,17);
-INSERT INTO `item_mods` VALUES (28247,13,19);
-INSERT INTO `item_mods` VALUES (28247,14,34);
-INSERT INTO `item_mods` VALUES (28247,25,20);
-INSERT INTO `item_mods` VALUES (28247,29,5);
-INSERT INTO `item_mods` VALUES (28247,31,107);
-INSERT INTO `item_mods` VALUES (28247,68,55);
-INSERT INTO `item_mods` VALUES (28247,109,13);
+INSERT INTO `item_mods` VALUES (28247,1,63);      -- Spaekona's Sabots +1: DEF 63
+INSERT INTO `item_mods` VALUES (28247,2,21);      -- HP +21
+INSERT INTO `item_mods` VALUES (28247,5,22);      -- MP +22
+INSERT INTO `item_mods` VALUES (28247,8,10);      -- STR +10
+INSERT INTO `item_mods` VALUES (28247,9,11);      -- DEX +11
+INSERT INTO `item_mods` VALUES (28247,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (28247,11,33);     -- AGI +33
+INSERT INTO `item_mods` VALUES (28247,12,22);     -- INT +22
+INSERT INTO `item_mods` VALUES (28247,13,19);     -- MND +19
+INSERT INTO `item_mods` VALUES (28247,14,34);     -- CHR +34
+INSERT INTO `item_mods` VALUES (28247,28,16);     -- Magic Atk. Bonus +16
+INSERT INTO `item_mods` VALUES (28247,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28247,30,16);     -- Magic Accuracy +16
+INSERT INTO `item_mods` VALUES (28247,31,107);    -- Magic Evasion +107
+INSERT INTO `item_mods` VALUES (28247,68,55);     -- Evasion +55
+INSERT INTO `item_mods` VALUES (28247,384,31);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (28248,1,66); -- def
 INSERT INTO `item_mods` VALUES (28248,2,48); -- hp
 INSERT INTO `item_mods` VALUES (28248,5,49); -- mp
@@ -42581,36 +42588,36 @@ INSERT INTO `item_mods` VALUES (28261,29,3);      -- Magic Def. Bonus +3
 INSERT INTO `item_mods` VALUES (28261,31,64);     -- Magic Evasion +64
 INSERT INTO `item_mods` VALUES (28261,68,69);     -- Evasion +69
 INSERT INTO `item_mods` VALUES (28261,384,41);    -- Haste +4%
-INSERT INTO `item_mods` VALUES (28262,1,72);
-INSERT INTO `item_mods` VALUES (28262,2,33);
-INSERT INTO `item_mods` VALUES (28262,8,12);
-INSERT INTO `item_mods` VALUES (28262,9,24);
-INSERT INTO `item_mods` VALUES (28262,10,12);
-INSERT INTO `item_mods` VALUES (28262,11,37);
-INSERT INTO `item_mods` VALUES (28262,13,12);
-INSERT INTO `item_mods` VALUES (28262,14,30);
-INSERT INTO `item_mods` VALUES (28262,23,10);
-INSERT INTO `item_mods` VALUES (28262,29,5);
-INSERT INTO `item_mods` VALUES (28262,31,69);
-INSERT INTO `item_mods` VALUES (28262,68,72);
-INSERT INTO `item_mods` VALUES (28262,384,41);
-INSERT INTO `item_mods` VALUES (28262,491,10);
-INSERT INTO `item_mods` VALUES (28262,492,40);
-INSERT INTO `item_mods` VALUES (28263,1,72);      -- Maxixi Toe Shoes +1 (female, same stats)
-INSERT INTO `item_mods` VALUES (28263,2,33);
-INSERT INTO `item_mods` VALUES (28263,8,12);
-INSERT INTO `item_mods` VALUES (28263,9,24);
-INSERT INTO `item_mods` VALUES (28263,10,12);
-INSERT INTO `item_mods` VALUES (28263,11,37);
-INSERT INTO `item_mods` VALUES (28263,13,12);
-INSERT INTO `item_mods` VALUES (28263,14,30);
-INSERT INTO `item_mods` VALUES (28263,23,10);
-INSERT INTO `item_mods` VALUES (28263,29,5);
-INSERT INTO `item_mods` VALUES (28263,31,69);
-INSERT INTO `item_mods` VALUES (28263,68,72);
-INSERT INTO `item_mods` VALUES (28263,384,41);
-INSERT INTO `item_mods` VALUES (28263,491,10);
-INSERT INTO `item_mods` VALUES (28263,492,40);
+INSERT INTO `item_mods` VALUES (28262,1,72);      -- Maxixi Toe Shoes +1 (male): DEF 72
+INSERT INTO `item_mods` VALUES (28262,2,33);      -- HP +33
+INSERT INTO `item_mods` VALUES (28262,8,12);      -- STR +12
+INSERT INTO `item_mods` VALUES (28262,9,24);      -- DEX +24
+INSERT INTO `item_mods` VALUES (28262,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (28262,11,37);     -- AGI +37
+INSERT INTO `item_mods` VALUES (28262,13,12);     -- MND +12
+INSERT INTO `item_mods` VALUES (28262,14,30);     -- CHR +30
+INSERT INTO `item_mods` VALUES (28262,23,10);     -- Attack +10
+INSERT INTO `item_mods` VALUES (28262,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28262,31,69);     -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (28262,68,72);     -- Evasion +72
+INSERT INTO `item_mods` VALUES (28262,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (28262,491,10);    -- Waltz potency +10%
+INSERT INTO `item_mods` VALUES (28262,492,40);    -- Jig duration +40%
+INSERT INTO `item_mods` VALUES (28263,1,72);      -- Maxixi Toe Shoes +1 (female): DEF 72
+INSERT INTO `item_mods` VALUES (28263,2,33);      -- HP +33
+INSERT INTO `item_mods` VALUES (28263,8,12);      -- STR +12
+INSERT INTO `item_mods` VALUES (28263,9,24);      -- DEX +24
+INSERT INTO `item_mods` VALUES (28263,10,12);     -- VIT +12
+INSERT INTO `item_mods` VALUES (28263,11,37);     -- AGI +37
+INSERT INTO `item_mods` VALUES (28263,13,12);     -- MND +12
+INSERT INTO `item_mods` VALUES (28263,14,30);     -- CHR +30
+INSERT INTO `item_mods` VALUES (28263,23,10);     -- Attack +10
+INSERT INTO `item_mods` VALUES (28263,29,5);      -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (28263,31,69);     -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (28263,68,72);     -- Evasion +72
+INSERT INTO `item_mods` VALUES (28263,384,41);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (28263,491,10);    -- Waltz potency +10%
+INSERT INTO `item_mods` VALUES (28263,492,40);    -- Jig duration +40%
 INSERT INTO `item_mods` VALUES (28264,1,63);
 INSERT INTO `item_mods` VALUES (28264,2,13);
 INSERT INTO `item_mods` VALUES (28264,5,14);
