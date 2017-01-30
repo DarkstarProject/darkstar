@@ -2635,6 +2635,18 @@ namespace charutils
                 SkillUpChance = 0.5;
             }
 
+            // Check for skillup% bonus. https://www.bg-wiki.com/bg/Category:Skill_Up_Food
+            // Assuming multiplicative even though rate is already a % because 0.5 + 0.8 would be > 1.
+            if ((SkillID >= 1 && SkillID <= 12) || (SkillID >= 25 && SkillID <= 31))
+            // if should effect automaton replace the above with: (SkillID >= 1 && SkillID <= 31)
+            {
+                SkillUpChance * ((100 + MOD_COMBAT_SKILLUP_RATE) /100);
+            }
+            if (SkillID >= 32 && SkillID <= 44)
+            {
+                SkillUpChance * ((100 + MOD_MAGIC_SKILLUP_RATE) /100);
+            }
+
             if (Diff > 0 && random < SkillUpChance)
             {
                 double chance = 0;

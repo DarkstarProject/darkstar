@@ -113,6 +113,10 @@ enum MODIFIER
 
     MOD_ATTP                      = 62, // % Attack
     MOD_DEFP                      = 63, // % Defense
+
+    MOD_COMBAT_SKILLUP_RATE       = 64, // % increase in skillup combat rate
+    MOD_MAGIC_SKILLUP_RATE        = 65, // % increase in skillup magic rate
+
     MOD_RATTP                     = 66, // % Ranged Attack
 
     MOD_EVA                       = 68, // Evasion
@@ -642,8 +646,6 @@ enum MODIFIER
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     MOD_ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
-    // MOD_SPARE = 64, // stuff
-    // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
     // MOD_SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.

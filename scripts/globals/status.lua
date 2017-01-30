@@ -899,6 +899,8 @@ MOD_LIGHTRES          = 60
 MOD_DARKRES           = 61
 MOD_ATTP              = 62
 MOD_DEFP              = 63
+MOD_COMBAT_SKILLUP_RATE = 64 -- % increase in skillup combat rate
+MOD_MAGIC_SKILLUP_RATE  = 65 -- % increase in skillup magic rate
 MOD_RATTP             = 66
 MOD_EVA               = 68
 MOD_RDEF              = 69
@@ -1351,8 +1353,6 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 64 -- stuff
--- MOD_SPARE = 65 -- stuff
 -- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 495 -- stuff
