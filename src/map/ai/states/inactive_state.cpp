@@ -36,7 +36,7 @@ CInactiveState::CInactiveState(CBaseEntity* PEntity, duration _duration, bool ca
 
 bool CInactiveState::Update(time_point tick)
 {
-    auto PBattleEntity {dynamic_cast<CBattleEntity*>(m_PEntity)};
+    auto PBattleEntity = dynamic_cast<CBattleEntity*>(m_PEntity);
     if (PBattleEntity && m_duration == 0ms)
     {
         if (PBattleEntity->isDead())

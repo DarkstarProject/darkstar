@@ -4529,7 +4529,7 @@ namespace battleutils
             else if (PlayerToAssist->GetBattleTargetID() != 0)
             {
                 // lock on to the new target!
-                auto PTarget {static_cast<CBattleEntity*>(PChar->GetEntity(TargID))};
+                auto PTarget = static_cast<CBattleEntity*>(PChar->GetEntity(TargID));
                 PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
             }
         }
@@ -4860,7 +4860,7 @@ namespace battleutils
     ************************************************************************/
     int16 GetSnapshotReduction(CCharEntity* m_PChar, int16 delay)
     {
-        auto SnapShotReductionPercent {m_PChar->getMod(MOD_SNAP_SHOT)};
+        auto SnapShotReductionPercent = m_PChar->getMod(MOD_SNAP_SHOT);
 
         if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
         {

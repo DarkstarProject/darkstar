@@ -266,7 +266,7 @@ bool CMobController::MobSkill(int wsList)
 {
     /* #TODO: mob 2 hours, etc */
     if (!wsList) wsList = PMob->getMobMod(MOBMOD_SKILL_LIST);
-    auto skillList {battleutils::GetMobSkillList(wsList)};
+    auto skillList = battleutils::GetMobSkillList(wsList);
 
     if (skillList.empty())
     {
@@ -278,7 +278,7 @@ bool CMobController::MobSkill(int wsList)
 
     for (auto skillid : skillList)
     {
-        auto PMobSkill {battleutils::GetMobSkill(skillid)};
+        auto PMobSkill = battleutils::GetMobSkill(skillid);
         if (!PMobSkill)
         {
             continue;
@@ -565,11 +565,11 @@ void CMobController::Move()
 
     if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST) > 0)
     {
-        auto skillList {battleutils::GetMobSkillList(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST))};
+        auto skillList = battleutils::GetMobSkillList(PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST));
 
         if (!skillList.empty())
         {
-            auto skill {battleutils::GetMobSkill(skillList.front())};
+            auto skill = battleutils::GetMobSkill(skillList.front());
             if (skill)
             {
                 attack_range = skill->getDistance();
@@ -655,13 +655,13 @@ void CMobController::HandleEnmity()
 
         if (!PMob->GetBattleTargetID())
         {
-            auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+            auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
             ChangeTarget(PTarget ? PTarget->targid : 0);
         }
     }
     else
     {
-        auto PTarget {PMob->PEnmityContainer->GetHighestEnmity()};
+        auto PTarget = PMob->PEnmityContainer->GetHighestEnmity();
         if (PTarget) ChangeTarget(PTarget->targid);
     }
 }

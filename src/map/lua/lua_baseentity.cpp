@@ -8880,7 +8880,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto spellid {lua_tointeger(L, 1)};
+        auto spellid = lua_tointeger(L, 1);
         CBattleEntity* PTarget {nullptr};
 
         if (!lua_isnil(L, 1) && lua_isuserdata(L, 1))
@@ -8912,7 +8912,7 @@ inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto skillid {lua_tointeger(L, 1)};
+        auto skillid = lua_tointeger(L, 1);
         CBattleEntity* PTarget {nullptr};
         auto PMobSkill {battleutils::GetMobSkill(skillid)};
 
@@ -8956,7 +8956,7 @@ inline int32 CLuaBaseEntity::useJobAbility(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto skillid {lua_tointeger(L, 1)};
+        auto skillid = lua_tointeger(L, 1);
         CBattleEntity* PTarget {nullptr};
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
@@ -9041,7 +9041,7 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    auto PTarget {((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity()};
+    auto PTarget = ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->GetHighestEnmity();
 
     if (PTarget)
     {
@@ -9155,7 +9155,7 @@ inline int32 CLuaBaseEntity::getTarget(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
 
-    auto PBattleTarget {m_PBaseEntity->GetEntity(static_cast<CBattleEntity*>(m_PBaseEntity)->GetBattleTargetID())};
+    auto PBattleTarget = m_PBaseEntity->GetEntity(static_cast<CBattleEntity*>(m_PBaseEntity)->GetBattleTargetID());
     if (PBattleTarget)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
@@ -10836,7 +10836,7 @@ int32 CLuaBaseEntity::setEquipBlock(lua_State* L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
         PChar->m_EquipBlock = lua_tointeger(L, 1);
         PChar->pushPacket(new CCharJobsPacket(PChar));
     }
@@ -10849,7 +10849,7 @@ int32 CLuaBaseEntity::setStatDebilitation(lua_State* L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
         PChar->m_StatsDebilitation = lua_tointeger(L, 1);
         PChar->pushPacket(new CCharJobsPacket(PChar));
     }
@@ -10862,7 +10862,7 @@ int32 CLuaBaseEntity::unequipItem(lua_State* L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
         charutils::UnequipItem(PChar, lua_tointeger(L, 1));
     }
     return 0;
@@ -10874,7 +10874,7 @@ int32 CLuaBaseEntity::recalculateStats(lua_State* L)
 
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
         charutils::BuildingCharSkillsTable(PChar);
         charutils::CalculateStats(PChar);
         charutils::CheckValidEquipment(PChar);
@@ -10900,7 +10900,7 @@ int32 CLuaBaseEntity::checkImbuedItems(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    auto PChar {static_cast<CCharEntity*>(m_PBaseEntity)};
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
 
     for (uint8 LocID = 0; LocID < MAX_CONTAINER_ID; ++LocID)
     {

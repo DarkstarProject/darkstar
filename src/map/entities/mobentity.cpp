@@ -925,14 +925,14 @@ void CMobEntity::DropItems()
 
 bool CMobEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
-    auto skill_list_id {getMobMod(MOBMOD_ATTACK_SKILL_LIST)};
+    auto skill_list_id = getMobMod(MOBMOD_ATTACK_SKILL_LIST);
     if (skill_list_id)
     {
-        auto attack_range {m_ModelSize};
-        auto skillList {battleutils::GetMobSkillList(skill_list_id)};
+        auto attack_range = m_ModelSize;
+        auto skillList = battleutils::GetMobSkillList(skill_list_id);
         if (!skillList.empty())
         {
-            auto skill {battleutils::GetMobSkill(skillList.front())};
+            auto skill = battleutils::GetMobSkill(skillList.front());
             if (skill)
             {
                 attack_range = skill->getDistance();

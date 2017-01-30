@@ -576,7 +576,7 @@ bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasi
 
 bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
 {
-    auto controller {static_cast<CPlayerController*>(PAI->GetController())};
+    auto controller = static_cast<CPlayerController*>(PAI->GetController());
     controller->setLastAttackTime(server_clock::now());
     auto ret = CBattleEntity::OnAttack(state, action);
 
@@ -1604,7 +1604,7 @@ void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
 
 bool CCharEntity::OnAttackError(CAttackState& state)
 {
-    auto controller {static_cast<CPlayerController*>(PAI->GetController())};
+    auto controller = static_cast<CPlayerController*>(PAI->GetController());
     if (controller->getLastErrMsgTime() + std::chrono::milliseconds(this->GetWeaponDelay(false)) < PAI->getTick())
     {
         controller->setLastErrMsgTime(PAI->getTick());
