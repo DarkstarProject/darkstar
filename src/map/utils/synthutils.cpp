@@ -307,7 +307,7 @@ uint8 getGeneralCraft(CCharEntity* PChar)
 
 uint8 calcSynthResult(CCharEntity* PChar)
 {
-	uint8 result = 1;
+	uint8 result = SYNTHESIS_SUCCESS;
 	uint8 hqtier = 0;
 	uint8 mainID = getGeneralCraft(PChar);
 	bool canHQ = true;
@@ -383,17 +383,12 @@ uint8 calcSynthResult(CCharEntity* PChar)
 
 			if(random < success)
 			{
-				for(uint8 i = 0; i < 3; ++i)
+                if(mainID == skillID)
 				{
-					if(mainID != skillID)
-					    break;
-
                     random = dsprand::GetRandomNumber(1.);
 
 					switch(hqtier)
 					{
-						//case 5:  chance = 0.700; break;
-						//Removed - HQ rate caps at 50%
 						case 4:  chance = 0.500; break;
 						case 3:  chance = 0.300; break;
 						case 2:  chance = 0.100; break;
@@ -427,23 +422,30 @@ uint8 calcSynthResult(CCharEntity* PChar)
 					ShowDebug(CL_CYAN"HQ Tier: %i HQ Chance: %g Random: %g SkillID: %u\n" CL_RESET, hqtier, chance, random, skillID);
 					#endif
 
-					if(chance < random)
-						break;
-					result += 1;
-					hqtier -= 1;
+                    if (random < chance && canHQ)
+                    {
+                        random = dsprand::GetRandomNumber(0, 16);
+
+                        if (random == 0)
+                            result = SYNTHESIS_HQ3;
+                        else if (random < 4)
+                            result = SYNTHESIS_HQ2;
+                        else
+                            result = SYNTHESIS_HQ;
+
+                    }
 				}
-			}else{
+			}
+            else
+            {
 				// сохраняем умение, из-за которого синтез провалился.
 				// используем slotID ячейки кристалла, т.к. он был удален еще в начале синтеза
 				PChar->CraftContainer->setInvSlotID(0,skillID);
-				result = 0;
+				result = SYNTHESIS_FAIL;
 				break;
 			}
 		}
 	}
-
-	if(result > SYNTHESIS_SUCCESS && !canHQ)
-		result = SYNTHESIS_SUCCESS;
 
 	// результат синтеза записываем в поле quantity ячейки кристалла.
 	PChar->CraftContainer->setQuantity(0, result);
