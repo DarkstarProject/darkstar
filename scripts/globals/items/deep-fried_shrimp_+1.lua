@@ -1,15 +1,13 @@
 -----------------------------------------
--- ID: 4235
--- Item: Bowl of Cursed Soup
--- Food Effect: 240Min, All Races
+-- ID: 6277
+-- Item: deep-fried_shrimp
+-- Food Effect: 60Min, All Races
 -----------------------------------------
--- Strength -7
--- Dexterity -7
--- Agility -7
--- Vitality -7
--- Intelligence -7
--- Mind -7
--- Charisma -7
+-- VIT +4
+-- Fire resistance +21
+-- Accuracy +21% (cap 75)
+-- Ranged Accuracy +21% (cap 75)
+-- Subtle Blow +9
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -31,7 +29,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4235);
+    target:addStatusEffect(EFFECT_FOOD,0,0,3600,6277);
 end;
 
 -----------------------------------------
@@ -39,13 +37,13 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, -7);
-    target:addMod(MOD_DEX, -7);
-    target:addMod(MOD_AGI, -7);
-    target:addMod(MOD_VIT, -7);
-    target:addMod(MOD_INT, -7);
-    target:addMod(MOD_MND, -7);
-    target:addMod(MOD_CHR, -7);
+    target:addMod(MOD_VIT, 4);
+    target:addMod(MOD_FIRERES, 21);
+    target:addMod(MOD_FOOD_ACCP, 21);
+    target:addMod(MOD_FOOD_ACC_CAP, 75);
+    target:addMod(MOD_FOOD_RACCP, 21);
+    target:addMod(MOD_FOOD_RACC_CAP, 75);
+    target:addMod(MOD_SUBTLE_BLOW, 9);
 end;
 
 -----------------------------------------
@@ -53,11 +51,11 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_STR, -7);
-    target:delMod(MOD_DEX, -7);
-    target:delMod(MOD_AGI, -7);
-    target:delMod(MOD_VIT, -7);
-    target:delMod(MOD_INT, -7);
-    target:delMod(MOD_MND, -7);
-    target:delMod(MOD_CHR, -7);
+    target:delMod(MOD_VIT, 4);
+    target:delMod(MOD_FIRERES, 21);
+    target:delMod(MOD_FOOD_ACCP, 21);
+    target:delMod(MOD_FOOD_ACC_CAP, 75);
+    target:delMod(MOD_FOOD_RACCP, 21);
+    target:delMod(MOD_FOOD_RACC_CAP, 75);
+    target:delMod(MOD_SUBTLE_BLOW, 9);
 end;
