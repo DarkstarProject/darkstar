@@ -110,7 +110,11 @@ local GearSets =  {
              {id = 104, items = {26713,27853,27999,28140,28279},  matches = 2, matchType = matchtype.any, mods = {{MOD_FASTCAST, 4, 2, 0}} }, -- Teal Set +1: Fast Cast +4-10%
              {id = 105, items = {26712,27852,27998,28139,28278},  matches = 2, matchType = matchtype.any, mods = {{MOD_STORETP, 2, 2, 0}} }, -- Aurore Set +1: Sore TP +2-8%
              {id = 106, items = {26711,27851,27997,28138,28277},  matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 20, 10, 0}} }, -- Perle Set +1: Haste +2-5%
-
+             {id = 107, items = {27652,27792,27932,28075,28212},  matches = 2, matchType = matchtype.any, mods = {{MOD_MATT, 3, 2, 0}} }, -- Morrigan's Attire Set +1: Magic Atk. Bonus +3-9%
+             {id = 108, items = {27651,27791,27931,28074,28211},  matches = 2, matchType = matchtype.any, mods = {{MOD_FASTCAST, 3, 2, 0}} }, -- Marduk's Attire Set +1: Fast Cast +3-9%
+             {id = 109, items = {27650,27790,27930,28073,28210},  matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 30, 20, 0}} }, -- Usukane Armor Set +1: Haste +3-9%
+             {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
+             {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
         }
              -- increment id by (number of mods in previous gearset - 1)
 
