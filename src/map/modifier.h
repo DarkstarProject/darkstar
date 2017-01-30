@@ -439,11 +439,10 @@ enum MODIFIER
     MOD_FINISHING_MOVES           = 333, // Tracks # of finishing moves
     MOD_SAMBA_DURATION            = 490, // Samba duration bonus
     MOD_WALTZ_POTENTCY            = 491, // Waltz Potentcy Bonus
-    MOD_CHOCO_JIG_DURATION        = 492, // Jig duration bonus
+    MOD_JIG_DURATION              = 492, // Jig duration bonus in percents
     MOD_VFLOURISH_MACC            = 493, // Violent Flourish accuracy bonus
     MOD_STEP_FINISH               = 494, // Bonus finishing moves from steps
     MOD_STEP_ACCURACY             = 403, // Bonus accuracy for Dancer's steps
-    MOD_SPECTRAL_JIG              = 495, // Spectral Jig duration modifier (percent increase)
     MOD_WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
     MOD_SAMBA_PDURATION           = 498, // Samba percent duration bonus
     MOD_REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
@@ -646,6 +645,7 @@ enum MODIFIER
     // MOD_SPARE = 64, // stuff
     // MOD_SPARE = 65, // stuff
     // MOD_SPARE = 67, // stuff
+    // MOD_SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
     // MOD_SPARE = 842, // stuff
     // MOD_SPARE = 843, // stuff
