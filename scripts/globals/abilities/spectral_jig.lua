@@ -23,14 +23,13 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-
     local baseDuration = 180;
-    local durationMultiplier = 1.0 + (player:getMod(MOD_SPECTRAL_JIG)/100);
-    local finalDuration = math.floor(baseDuration * durationMultiplier); 
+    local durationMultiplier = 1.0 + utils.clamp(player:getMod(MOD_JIG_DURATION), 0, 50) / 100;
+    local finalDuration = math.floor(baseDuration * durationMultiplier * SNEAK_INVIS_DURATION_MULTIPLIER);
 
     if (player:hasStatusEffect(EFFECT_SNEAK) == false) then
-        player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration * SNEAK_INVIS_DURATION_MULTIPLIER);
-        player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration * SNEAK_INVIS_DURATION_MULTIPLIER);
+        player:addStatusEffect(EFFECT_SNEAK,0,10,finalDuration);
+        player:addStatusEffect(EFFECT_INVISIBLE,0,10,finalDuration);
         ability:setMsg(532); -- Gains the effect of sneak and invisible
     else
         ability:setMsg(283); -- no effect on player.
