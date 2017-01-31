@@ -145,16 +145,19 @@ INSERT INTO `bcnm_info` VALUES (417,201,'carbuncle_debacle',NULL,NULL,1800,99,18
 INSERT INTO `bcnm_info` VALUES (418,201,'trial-size_trial_by_wind',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (419,201,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (420,201,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 421 : High-tier Trial by Wind
 INSERT INTO `bcnm_info` VALUES (448,202,'trial_by_lightning',NULL,NULL,1800,0,6,0,5);
 INSERT INTO `bcnm_info` VALUES (449,202,'carbuncle_debacle',NULL,NULL,1800,99,18,0,5);
 INSERT INTO `bcnm_info` VALUES (450,202,'trial-size_trial_by_lightning',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (451,202,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (452,202,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 453 : High-tier Trial by Lightning
 INSERT INTO `bcnm_info` VALUES (480,203,'trial_by_ice',NULL,NULL,1800,0,6,0,5);
 INSERT INTO `bcnm_info` VALUES (481,203,'class_reunion',NULL,NULL,1800,99,18,0,5);
 INSERT INTO `bcnm_info` VALUES (482,203,'trial-size_trial_by_ice',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (483,203,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (484,203,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 485 : High-tier Trial by Ice
 INSERT INTO `bcnm_info` VALUES (512,206,'rank_5_mission',NULL,NULL,900,50,6,0,5);
 INSERT INTO `bcnm_info` VALUES (513,206,'come_into_my_parlor',NULL,NULL,1800,0,6,0,15);
 INSERT INTO `bcnm_info` VALUES (514,206,'e-vase-ive_action',NULL,NULL,1800,0,6,0,15);
@@ -181,15 +184,18 @@ INSERT INTO `bcnm_info` VALUES (544,207,'trial_by_fire',NULL,NULL,1800,0,6,0,5);
 INSERT INTO `bcnm_info` VALUES (545,207,'trial-size_trial_by_fire',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (546,207,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (547,207,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 548 : High-tier Trial by Fire
 INSERT INTO `bcnm_info` VALUES (576,209,'trial_by_earth',NULL,NULL,1800,0,6,0,5);
 INSERT INTO `bcnm_info` VALUES (577,209,'puppet_master',NULL,NULL,1800,99,18,0,5);
 INSERT INTO `bcnm_info` VALUES (578,209,'trial-size_trial_by_earth',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (579,209,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (580,209,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 581 : High-tier Trial by Earth
 INSERT INTO `bcnm_info` VALUES (608,211,'trial_by_water',NULL,NULL,1800,0,6,0,5);
 INSERT INTO `bcnm_info` VALUES (609,211,'trial-size_trial_by_water',NULL,NULL,900,20,1,0,5);
 INSERT INTO `bcnm_info` VALUES (610,211,'waking_the_beast',NULL,NULL,1800,0,18,0,5);
 INSERT INTO `bcnm_info` VALUES (611,211,'sugar-coated_directive',NULL,NULL,1800,80,6,0,5);
+-- 612 : High-tier Trial by Earth
 INSERT INTO `bcnm_info` VALUES (640,6,'flames_for_the_dead',NULL,NULL,1800,60,6,0,5);
 INSERT INTO `bcnm_info` VALUES (641,6,'follow_the_white_rabbit',NULL,NULL,1800,75,18,0,15);
 INSERT INTO `bcnm_info` VALUES (642,6,'when_hell_freezes_over',NULL,NULL,900,75,18,0,15);
@@ -287,5 +293,7 @@ INSERT INTO `bcnm_info` VALUES (1304,37,'Central_Temenos_2nd_Floor',NULL,NULL,27
 INSERT INTO `bcnm_info` VALUES (1305,37,'Central_Temenos_3rd_Floor',NULL,NULL,2700,0,18,0,7);
 INSERT INTO `bcnm_info` VALUES (1306,37,'Central_Temenos_4th_Floor',NULL,NULL,3600,0,18,0,7);
 INSERT INTO `bcnm_info` VALUES (1307,37,'Central_Temenos_4th_Floor_II',NULL,NULL,3600,0,18,0,7);
+
+-- INSERT INTO `bcnm_info` VALUES (1308,255,'The_Wyrm_God',null,null,1800,0,18,0,7);
 
 -- Dump completed on 2017-01-31 10:38:18
