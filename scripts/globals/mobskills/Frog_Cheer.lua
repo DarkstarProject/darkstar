@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Memento Mori
--- Enhances Magic Attack.
+-- Frog Cheer
+-- Increases magical attack and grants Elemental Seal effect.
 ---------------------------------------------------
 
 require("scripts/globals/settings");

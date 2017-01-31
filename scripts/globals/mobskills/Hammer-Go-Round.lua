@@ -19,8 +19,6 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    -- KNOCKBACK
-
     local numhits = math.random(2,3);
     local accmod = 1;
     local dmgmod = 1;

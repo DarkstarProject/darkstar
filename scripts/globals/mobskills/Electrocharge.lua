@@ -2,7 +2,7 @@
 --  Electrocharge
 --
 --  Description: Deals thunder damage.
---  Type: Magical (Water)
+--  Type: Magical (thunder)
 --
 --
 ---------------------------------------------

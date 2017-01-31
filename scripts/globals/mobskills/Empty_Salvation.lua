@@ -1,5 +1,6 @@
 ---------------------------------------------
 --  Empty Salvation
+--  Damages all targets in range with the salvation of emptiness. Additional effect: Dispels 3 effects
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

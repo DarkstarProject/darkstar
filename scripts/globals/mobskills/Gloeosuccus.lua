@@ -1,15 +1,11 @@
 ---------------------------------------------
 --  Gloeosuccus
---
---  Description: Additional effect: Slow.  Duration of effect varies with TP.
---  Type: Physical (Blunt)
---
---
+--  Enfeebling
+--  Description: Slows down a single target.
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     return 0;

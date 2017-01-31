@@ -2,7 +2,7 @@
 --  Kartstrahl
 --
 --  Description: Single target damage with sleep.
---  Type: Magical Water (Element)
+--  Type: Physical
 --
 --
 ---------------------------------------------

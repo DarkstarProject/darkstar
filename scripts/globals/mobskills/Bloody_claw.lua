@@ -1,5 +1,5 @@
 ---------------------------------------------
---  Terror Eye
+--  Bloody Claw
 --  Family: Gargouille
 --  Description: Steals an enemy's HP. Additional effect: Reduces a random stat.
 --  Type: Physical

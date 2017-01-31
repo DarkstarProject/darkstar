@@ -26,7 +26,11 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
--- TODO: Add EFFECT_TERROR once it actually does something.
+    local typeEffect = EFFECT_TERROR;
+    local duration = 10;
+    
+	  skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));
+
 
     local dmgmod = 2.5;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,ELE_DARK,dmgmod,TP_MAB_BONUS,1);

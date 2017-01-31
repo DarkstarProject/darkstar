@@ -1,5 +1,5 @@
 ---------------------------------------------
---  Domionion Slash
+--  Dominion Slash
 --
 --  Description: Performs an area of effect slashing weaponskill. Additional effect: Silence
 --  Type: Physical

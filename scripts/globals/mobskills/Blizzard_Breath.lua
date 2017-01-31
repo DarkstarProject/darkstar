@@ -2,7 +2,7 @@
 --  Blizzard Breath
 --
 --  Description: Deals ice damage to enemies within a fan-shaped area originating from the caster.
---  Type: Magical (Fire)
+--  Type: Magical (Ice)
 --
 --
 ---------------------------------------------
