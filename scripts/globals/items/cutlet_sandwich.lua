@@ -1,15 +1,14 @@
 -----------------------------------------
--- ID: 4235
--- Item: Bowl of Cursed Soup
--- Food Effect: 240Min, All Races
+-- ID: 6396
+-- Item: cutlet_sandwich
+-- Food Effect: 30Min, All Races
 -----------------------------------------
--- Strength -7
--- Dexterity -7
--- Agility -7
--- Vitality -7
--- Intelligence -7
--- Mind -7
--- Charisma -7
+-- HP +40
+-- STR +7
+-- INT -7
+-- Fire resistance +20
+-- Attack +20% (cap 120)
+-- Ranged Attack +20% (cap 120)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -31,7 +30,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4235);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,6396);
 end;
 
 -----------------------------------------
@@ -39,13 +38,14 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, -7);
-    target:addMod(MOD_DEX, -7);
-    target:addMod(MOD_AGI, -7);
-    target:addMod(MOD_VIT, -7);
+    target:addMod(MOD_HP, 40);
+    target:addMod(MOD_STR, 7);
     target:addMod(MOD_INT, -7);
-    target:addMod(MOD_MND, -7);
-    target:addMod(MOD_CHR, -7);
+    target:addMod(MOD_FIRERES, 20);
+    target:addMod(MOD_FOOD_ATTP, 20);
+    target:addMod(MOD_FOOD_ATT_CAP, 120);
+    target:addMod(MOD_FOOD_RATTP, 20);
+    target:addMod(MOD_FOOD_RATT_CAP, 120);
 end;
 
 -----------------------------------------
@@ -53,11 +53,12 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_STR, -7);
-    target:delMod(MOD_DEX, -7);
-    target:delMod(MOD_AGI, -7);
-    target:delMod(MOD_VIT, -7);
+    target:delMod(MOD_HP, 40);
+    target:delMod(MOD_STR, 7);
     target:delMod(MOD_INT, -7);
-    target:delMod(MOD_MND, -7);
-    target:delMod(MOD_CHR, -7);
+    target:delMod(MOD_FIRERES, 20);
+    target:delMod(MOD_FOOD_ATTP, 20);
+    target:delMod(MOD_FOOD_ATT_CAP, 120);
+    target:delMod(MOD_FOOD_RATTP, 20);
+    target:delMod(MOD_FOOD_RATT_CAP, 120);
 end;

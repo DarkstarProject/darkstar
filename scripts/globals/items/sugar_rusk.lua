@@ -1,10 +1,10 @@
 -----------------------------------------
--- ID: 5892
--- Item: b.e.w._pitaru
+-- ID: 5782
+-- Item: sugar_rusk
 -- Food Effect: 30 Min, All Races
 -----------------------------------------
--- MP +9% (cap 130)
--- Increases rate of magic skill gains by 80%
+-- Increases rate of high-quality synthesis. (?)
+-- Reduces chance of synthesis material loss. (?)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -26,17 +26,16 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5892);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5782);
 end;
 
------------------------------------
+-----------------------------------------
 -- onEffectGain Action
------------------------------------
+-----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_MPP, 9);
-    target:addMod(MOD_FOOD_MP_CAP, 130);
-    target:addMod(MOD_MAGIC_SKILLUP_RATE, 80);
+    -- target:addMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 1);
+    -- target:addMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 1);
 end;
 
 -----------------------------------------
@@ -44,7 +43,6 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_MPP, 9);
-    target:delMod(MOD_FOOD_MP_CAP, 130);
-    target:delMod(MOD_MAGIC_SKILLUP_RATE, 80);
+    -- target:delMod(MOD_INCREASES_RATE_OF_HQ_SYNTHESIS, 1);
+    -- target:delMod(MOD_REDUCES_CHANCE_OF_MATERIAL_LOSS, 1);
 end;
