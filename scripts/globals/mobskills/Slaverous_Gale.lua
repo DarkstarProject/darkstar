@@ -1,15 +1,14 @@
 ---------------------------------------------
---  Slaverous Gale
+-- Slaverous Gale
 --
---  Description: Deals earth damage that inflicts Plague and Slow effects on targets in front of the caster
---  Type: Magical (Earth)
+-- Description: Deals earth damage that inflicts Plague and Slow effects on targets in front of the caster
+-- Type: Magical (Earth)
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

@@ -1,20 +1,17 @@
 ---------------------------------------------------
 -- Barracuda Dive
 -- Leviathan delivers a single-hit attack on target.
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local numhits = 1;
     local accmod = 2;
     local dmgmod = 2;

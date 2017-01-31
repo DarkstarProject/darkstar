@@ -1,18 +1,15 @@
 ---------------------------------------------
---  Laser_Shower
+-- Laser_Shower
 --
---  Description: Fires several lasers into a fan-shaped area of effect. Additional effect: Defense Down
---  Type: Breath
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown cone
---  Notes:
+-- Description: Fires several lasers into a fan-shaped area of effect. Additional effect: Defense Down
+-- Type: Breath
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Unknown cone
+-- Notes:
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/utils");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -33,9 +30,8 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
 
-    local typeEffect = EFFECT_DEFENSE_DOWN;
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 25, 0, 60);
-    
+    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 25, 0, 60);
+
     target:delHP(dmg);
     return dmg;
 end;

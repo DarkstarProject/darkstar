@@ -1,11 +1,11 @@
----------------------------------------------------
+---------------------------------------------
 -- Astral Flow
 -- Will make existing pet use astral flow skill
----------------------------------------------------
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- need a pet to use astral flow

@@ -7,11 +7,12 @@
 --  Range: 30' radial.
 --  Notes: Used only by Ouryu and Cuelebre while flying.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
+function onMobSkillCheck(target,mob,skill)
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() ~= 1) then
         return 1;

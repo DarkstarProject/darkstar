@@ -2,13 +2,11 @@
 -- Impact Roar
 -- Emits the roar of an impact event, dealing damage in a fan-shaped area of effect.
 -- Ignores Shadows
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

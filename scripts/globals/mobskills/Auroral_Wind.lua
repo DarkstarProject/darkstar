@@ -1,19 +1,18 @@
 ---------------------------------------------
---  Auroral Wind
+-- Auroral Wind
 --
---  Family: Aern
---  Type: Magical
---  Can be dispelled: N/A
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown cone
---  Notes:
+-- Family: Aern
+-- Type: Magical
+-- Can be dispelled: N/A
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Unknown cone
+-- Notes:
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

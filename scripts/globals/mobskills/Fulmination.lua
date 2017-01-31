@@ -1,16 +1,16 @@
 ---------------------------------------------
---  Fulmination
+-- Fulmination
 --
---  Description: Deals heavy magical damage in an area of effect. Additional effect: Paralysis + Stun
---  Type: Magical
---  Utsusemi/Blink absorb: Wipes Shadows
---  Range: 30 yalms
+-- Description: Deals heavy magical damage in an area of effect. Additional effect: Paralysis + Stun
+-- Type: Magical
+-- Utsusemi/Blink absorb: Wipes Shadows
+-- Range: 30 yalms
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if(mob:getFamily() == 316) then
         local mobSkin = mob:getModelId();
