@@ -2642,7 +2642,7 @@ namespace charutils
             {
                 SkillUpChance * ((100 + MOD_COMBAT_SKILLUP_RATE) /100);
             }
-            if (SkillID >= 32 && SkillID <= 44)
+            else if (SkillID >= 32 && SkillID <= 44)
             {
                 SkillUpChance * ((100 + MOD_MAGIC_SKILLUP_RATE) /100);
             }
