@@ -16,7 +16,7 @@ CREATE TABLE `bcnm_battlefield` (
   `conditions` tinyint(2) NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=56;
 
--
+--
 -- Dumping data for table `bcnm_battlefield`
 --
 
@@ -2073,8 +2073,8 @@ INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945626,3); -- statue
 
 INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945480,3); -- statue  timer +10
 INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945509,3); -- statue  timer +10
-INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945530,3);-- statue  timer +20
-INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945193', '3);-- statue  timer +10
+INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945530,3); -- statue  timer +20
+INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945193,3); -- statue  timer +10
 INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945243,3); -- statue  timer +10
 -- 'Nightmare_Kraken'
 INSERT INTO `bcnm_battlefield` VALUES (1288,1,16945274,3); 
