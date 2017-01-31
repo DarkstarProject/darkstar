@@ -2640,11 +2640,11 @@ namespace charutils
             if ((SkillID >= 1 && SkillID <= 12) || (SkillID >= 25 && SkillID <= 31))
             // if should effect automaton replace the above with: (SkillID >= 1 && SkillID <= 31)
             {
-                SkillUpChance * ((100 + PChar->getMod(MOD_COMBAT_SKILLUP_RATE) /100);
+                SkillUpChance * ((100 + PChar->getMod(MOD_COMBAT_SKILLUP_RATE)) /100);
             }
             else if (SkillID >= 32 && SkillID <= 44)
             {
-                SkillUpChance * ((100 + PChar->getMod(MOD_MAGIC_SKILLUP_RATE) /100);
+                SkillUpChance * ((100 + PChar->getMod(MOD_MAGIC_SKILLUP_RATE)) /100);
             }
 
             if (Diff > 0 && random < SkillUpChance)
