@@ -1359,7 +1359,7 @@ INSERT INTO `item_weapon` VALUES (17715,'storm_tulwar',3,0,0,0,0,2,1,236,40,0);
 INSERT INTO `item_weapon` VALUES (17716,'macuahuitl_-1',3,0,0,0,0,2,1,233,10,0);
 INSERT INTO `item_weapon` VALUES (17717,'immortals_scimitar',3,0,0,0,0,2,1,236,26,0);
 INSERT INTO `item_weapon` VALUES (17718,'leech_scimitar',3,0,0,0,0,2,1,236,38,0);
-INSERT INTO `item_weapon` VALUES (17719,'mensur_epee',3,0,0,0,0,1,1,224,39,0);
+INSERT INTO `item_weapon` VALUES (17719,'mensur_epee',3,0,0,0,0,1,1,224,47,0); -- Base Dmg 47 instead of 39 because of -2 dmg per party member handled in item_latents
 INSERT INTO `item_weapon` VALUES (17720,'company_fleuret',3,0,0,0,0,1,1,224,36,0);
 INSERT INTO `item_weapon` VALUES (17721,'sanguine_sword',3,0,0,0,0,2,1,240,41,0);
 INSERT INTO `item_weapon` VALUES (17722,'phantom_fleuret',3,0,0,0,0,1,1,224,36,0);

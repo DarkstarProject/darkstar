@@ -815,14 +815,17 @@ INSERT INTO `item_mods` VALUES (10472,1,69);
 INSERT INTO `item_mods` VALUES (10472,8,12);
 INSERT INTO `item_mods` VALUES (10472,28,3);
 INSERT INTO `item_mods` VALUES (10472,62,3);
+INSERT INTO `item_mods` VALUES (10472,841,4);    -- Weapon Skill Damage+3%
 INSERT INTO `item_mods` VALUES (10473,1,69);
 INSERT INTO `item_mods` VALUES (10473,8,14);
 INSERT INTO `item_mods` VALUES (10473,28,5);
 INSERT INTO `item_mods` VALUES (10473,62,4);
+INSERT INTO `item_mods` VALUES (10473,841,5);    -- Weapon Skill Damage+5%
 INSERT INTO `item_mods` VALUES (10474,1,70);
 INSERT INTO `item_mods` VALUES (10474,8,16);
 INSERT INTO `item_mods` VALUES (10474,28,7);
 INSERT INTO `item_mods` VALUES (10474,62,5);
+INSERT INTO `item_mods` VALUES (10474,841,7);    -- Weapon Skill Damage+7%
 INSERT INTO `item_mods` VALUES (10475,1,61);
 INSERT INTO `item_mods` VALUES (10475,25,10);
 INSERT INTO `item_mods` VALUES (10475,384,20);
@@ -6575,6 +6578,7 @@ INSERT INTO `item_mods` VALUES (11969,1,55);
 INSERT INTO `item_mods` VALUES (11969,23,20);
 INSERT INTO `item_mods` VALUES (11969,25,20);
 INSERT INTO `item_mods` VALUES (11969,161,-5);
+INSERT INTO `item_mods` VALUES (11969,841,3);    -- Weapon Skill Damage+3%
 INSERT INTO `item_mods` VALUES (11970,1,50);
 INSERT INTO `item_mods` VALUES (11970,9,5);
 INSERT INTO `item_mods` VALUES (11970,384,40);
@@ -18887,6 +18891,7 @@ INSERT INTO `item_mods` VALUES (16009,11,2);
 INSERT INTO `item_mods` VALUES (16010,2,17);
 INSERT INTO `item_mods` VALUES (16010,11,3);
 INSERT INTO `item_mods` VALUES (16011,30,1);
+INSERT INTO `item_mods` VALUES (16011,432,2);    -- Sword enhancement spell damage +2
 INSERT INTO `item_mods` VALUES (16012,13,3);
 INSERT INTO `item_mods` VALUES (16013,24,1);
 INSERT INTO `item_mods` VALUES (16013,106,1);
@@ -21275,6 +21280,7 @@ INSERT INTO `item_mods` VALUES (17695,8,3);
 INSERT INTO `item_mods` VALUES (17695,13,3);
 INSERT INTO `item_mods` VALUES (17695,431,1);
 INSERT INTO `item_mods` VALUES (17696,9,1);
+INSERT INTO `item_mods` VALUES (17696,432,2);    -- Sword enhancement spell damage +2
 INSERT INTO `item_mods` VALUES (17697,9,2);
 INSERT INTO `item_mods` VALUES (17698,8,4);
 INSERT INTO `item_mods` VALUES (17698,10,-6);

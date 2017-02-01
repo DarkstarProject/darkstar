@@ -715,7 +715,6 @@ INSERT INTO `item_latents` VALUES(17719, 366, -2, 15, 2); -- DMG 47~39, decrease
 INSERT INTO `item_latents` VALUES(17719, 366, -2, 15, 3); -- DMG 47~39, decreases by 2 for every person in party (excl. wearer)
 INSERT INTO `item_latents` VALUES(17719, 366, -2, 15, 4); -- DMG 47~39, decreases by 2 for every person in party (excl. wearer)
 INSERT INTO `item_latents` VALUES(17719, 366, -2, 15, 5); -- DMG 47~39, decreases by 2 for every person in party (excl. wearer)
-INSERT INTO `item_latents` VALUES(17719, 366, -2, 15, 6); -- DMG 47~39, decreases by 2 for every person in party (excl. wearer)
 
 -- -------------------------------------------------------
 -- Garuda's Sickle
@@ -1544,11 +1543,9 @@ INSERT INTO `item_latents` VALUES(13288, 374, 10, 2, 75); -- "Cure" potency +10%
 
 -- -------------------------------------------------------
 -- Fencer's Ring
-/*
-    [NOT CODED] Latent effect: Sword enhancement spell damage +5
-*/
+-- Latent effect: Sword enhancement spell damage +5
 -- -------------------------------------------------------
--- INSERT INTO `item_latents` VALUES(13290, ???, 5, 2, 75); -- Sword enhancement spell damage +5 while HP <=75% and TP <=100%
+INSERT INTO `item_latents` VALUES(13290, 432, 5, 2, 75); -- Sword enhancement spell damage +5 while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
 -- Guardian's Ring
@@ -2706,8 +2703,8 @@ INSERT INTO `item_latents` VALUES(17814, 23, 10, 52, 6); -- Attack +10 in Thunde
 -- -------------------------------------------------------
 -- Desert Boots
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(14166, 169, 12, 52, 2); -- movement speed +12% in Earth weather
-INSERT INTO `item_latents` VALUES(14167, 169, 12, 52, 2); -- Desert Boots +1
+INSERT INTO `item_latents` VALUES (14166, 169, 12, 52, 2); -- movement speed +12% in Earth weather
+INSERT INTO `item_latents` VALUES (14167, 169, 12, 52, 2); -- Desert Boots +1
 
 -- -------------------------------------------------------
 -- Marabout Sandals
@@ -2776,25 +2773,25 @@ INSERT INTO `item_latents` VALUES(14646, 29, 10, 32, 0); -- Darksday: MDB+10
 -- -------------------------------------------------------
 -- LAVALIER
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(10961,60,-40,13,14); -- CHARMED:LIGHTRES
-INSERT INTO `item_latents` VALUES(10961,61,-40,13,14); -- CHARMED:DARKRES
+INSERT INTO `item_latents` VALUES (10961,60,-40,13,14); -- CHARMED:LIGHTRES
+INSERT INTO `item_latents` VALUES (10961,61,-40,13,14); -- CHARMED:DARKRES
 -- -------------------------------------------------------
 -- LAVALIER +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(10962,60,-50,13,14); -- CHARMED:LIGHTRES
-INSERT INTO `item_latents` VALUES(10962,61,-50,13,14); -- CHARMED:DARKRES
-INSERT INTO `item_latents` VALUES(10962,169,-12,13,14); -- CHARMED:DECREASES MOV SPEED - https://www.bg-wiki.com/bg/Movement_Speed
+INSERT INTO `item_latents` VALUES (10962,60,-50,13,14); -- CHARMED:LIGHTRES
+INSERT INTO `item_latents` VALUES (10962,61,-50,13,14); -- CHARMED:DARKRES
+INSERT INTO `item_latents` VALUES (10962,169,-12,13,14); -- CHARMED:DECREASES MOV SPEED - https://www.bg-wiki.com/bg/Movement_Speed
 -- -------------------------------------------------------
 -- Archon Cape +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(10975, 25, 13, 52, 8); -- DARK WEATHER:ACC
-INSERT INTO `item_latents` VALUES(10975, 23, 13, 52, 8); -- DARK WEATHER:ATT
+INSERT INTO `item_latents` VALUES (10975, 25, 13, 52, 8); -- DARK WEATHER:ACC
+INSERT INTO `item_latents` VALUES (10975, 23, 13, 52, 8); -- DARK WEATHER:ATT
 
 -- -------------------------------------------------------
 -- Hachiya Kyahan +2/+3
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(23320,169,25,26,2); -- Dusk to dawn: Movement speed +25%
-INSERT INTO `item_latents` VALUES(23655,169,25,26,2); -- Dusk to dawn: Movement speed +25%
+INSERT INTO `item_latents` VALUES (23320,169,25,26,2); -- Dusk to dawn: Movement speed +25%
+INSERT INTO `item_latents` VALUES (23655,169,25,26,2); -- Dusk to dawn: Movement speed +25%
 
 -- -------------------------------------------------------
 -- Lunette ring  
@@ -2802,7 +2799,6 @@ INSERT INTO `item_latents` VALUES(23655,169,25,26,2); -- Dusk to dawn: Movement 
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(10766,29,5,10,0); -- MDEF+7
 INSERT INTO `item_latents` VALUES(10766,369,-2,10,0);
-
 
 -- -------------------------------------------------------
 -- Eerie cloak +1 
@@ -2836,7 +2832,6 @@ INSERT INTO `item_latents` VALUES(11727,68,1,16,3);
 INSERT INTO `item_latents` VALUES(11727,68,1,16,4);
 INSERT INTO `item_latents` VALUES(11727,68,1,16,5);
 INSERT INTO `item_latents` VALUES(11727,68,1,16,6);
-
 
 -- -------------------------------------------------------
 -- Variable Mantle
@@ -3071,3 +3066,9 @@ INSERT INTO `item_latents` VALUES(16604,25,20,13,114);
 -- Windsdays: Evasion+20
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16756,68,20,31,0);
+
+-- -------------------------------------------------------
+-- Futsuno Mitama
+-- Latent effect: STR+8
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(17810,8,8,6,1);
