@@ -3,7 +3,7 @@
 -- Item: loaf_of_homemade_bread
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- Agility 1
+-- hMP +1
 -- Accuracy +12% (cap 80)
 -- Attack +10% (cap 40)
 -- Ranged Accuracy +12% (cap 80)
@@ -37,7 +37,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI, 1);
+    target:addMod(MOD_MPHEAL, 1);
     target:addMod(MOD_FOOD_ACCP, 12);
     target:addMod(MOD_FOOD_ACC_CAP, 80);
     target:addMod(MOD_FOOD_ATTP, 10);
@@ -53,7 +53,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_AGI, 1);
+    target:delMod(MOD_MPHEAL, 1);
     target:delMod(MOD_FOOD_ACCP, 12);
     target:delMod(MOD_FOOD_ACC_CAP, 80);
     target:delMod(MOD_FOOD_ATTP, 10);

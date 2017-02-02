@@ -210,7 +210,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
     elseif (csid == 0x026D) then
         player:setVar("MissionStatus",7);
-        player:messageSpecial(KEYITEM_REMOVED,LETTER_FROM_ZONPAZIPPA);
+        player:messageSpecial(KEYITEM_LOST,LETTER_FROM_ZONPAZIPPA);
         player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
     end
 end;
