@@ -1,7 +1,11 @@
+---------------------------------------------------
+-- Bomb Toss - Suicide
+-- Throws a bomb at an enemy. Sometimes backfires.
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- notorious monsters shouldn't explode, nor dynamis

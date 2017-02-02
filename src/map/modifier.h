@@ -113,6 +113,10 @@ enum class Mod
 
     ATTP                      = 62, // % Attack
     DEFP                      = 63, // % Defense
+
+    COMBAT_SKILLUP_RATE       = 64, // % increase in skillup combat rate
+    MAGIC_SKILLUP_RATE        = 65, // % increase in skillup magic rate
+
     RATTP                     = 66, // % Ranged Attack
 
     EVA                       = 68, // Evasion
@@ -439,11 +443,10 @@ enum class Mod
     FINISHING_MOVES           = 333, // Tracks # of finishing moves
     SAMBA_DURATION            = 490, // Samba duration bonus
     WALTZ_POTENTCY            = 491, // Waltz Potentcy Bonus
-    CHOCO_JIG_DURATION        = 492, // Jig duration bonus
+    JIG_DURATION              = 492, // Jig duration bonus in percents
     VFLOURISH_MACC            = 493, // Violent Flourish accuracy bonus
     STEP_FINISH               = 494, // Bonus finishing moves from steps
     STEP_ACCURACY             = 403, // Bonus accuracy for Dancer's steps
-    SPECTRAL_JIG              = 495, // Spectral Jig duration modifier (percent increase)
     WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
     SAMBA_PDURATION           = 498, // Samba percent duration bonus
     REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
@@ -640,12 +643,13 @@ enum class Mod
     // For example, +10% damage to Chant du Cygne would be ID 570 + 225 (795)
     WEAPONSKILL_DAMAGE_BASE   = 570,
 
-    // SPARE = 64, // stuff
-    // SPARE = 65, // stuff
+    ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
+    // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
+    ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
+
     // SPARE = 67, // stuff
+    // SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 840, // stuff
-    // SPARE = 841, // stuff
     // SPARE = 842, // stuff
     // SPARE = 843, // stuff
     // SPARE = 844, // stuff
@@ -655,7 +659,6 @@ enum class Mod
     // SPARE = 848, // stuff
     // SPARE = 849, // stuff
     // SPARE = 850, // stuff
-
 };
 
 /************************************************************************

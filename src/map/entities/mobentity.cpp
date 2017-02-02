@@ -126,9 +126,14 @@ CMobEntity::CMobEntity()
         std::make_unique<CTargetFind>(this));
 }
 
-void CMobEntity::setMobFlags(uint32 MobFlags)
+uint32 CMobEntity::getEntityFlags()
 {
-    m_flags = MobFlags;
+    return m_flags;
+}
+
+void CMobEntity::setEntityFlags(uint32 EntityFlags)
+{
+    m_flags = EntityFlags;
 }
 
 CMobEntity::~CMobEntity()

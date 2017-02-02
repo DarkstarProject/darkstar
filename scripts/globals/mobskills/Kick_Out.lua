@@ -1,17 +1,15 @@
 ---------------------------------------------
---  Kick Out
+-- Kick Out
 --
---  Description: Deals heavy damage and inflicts blind to any target behind user.
---  Type: Physical
---  Utsusemi/Blink absorb: 2-3 shadows
---  Range: Unknown cone, backwards
---  Notes:  Only used when the Behemoth is attacking with it's tail.
+-- Description: Deals heavy damage and inflicts blind to any target behind user.
+-- Type: Physical
+-- Utsusemi/Blink absorb: 2-3 shadows
+-- Range: Unknown cone, backwards
+-- Notes:  Only used when the Behemoth is attacking with its tail.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,7 +20,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local numhits = math.random(2,3);
     local accmod = 1;
     local dmgmod = 3;
@@ -35,5 +32,4 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:delHP(dmg);
     return dmg;
-
 end;

@@ -899,6 +899,8 @@ MOD_LIGHTRES          = 60
 MOD_DARKRES           = 61
 MOD_ATTP              = 62
 MOD_DEFP              = 63
+MOD_COMBAT_SKILLUP_RATE = 64 -- % increase in skillup combat rate
+MOD_MAGIC_SKILLUP_RATE  = 65 -- % increase in skillup magic rate
 MOD_RATTP             = 66
 MOD_EVA               = 68
 MOD_RDEF              = 69
@@ -1082,11 +1084,10 @@ MOD_BUST               = 332
 MOD_FINISHING_MOVES    = 333
 MOD_SAMBA_DURATION     = 490 -- Samba duration bonus
 MOD_WALTZ_POTENTCY     = 491 -- Waltz Potentcy Bonus
-MOD_CHOCO_JIG_DURATION = 492 -- Chocobo Jig duration bonus
+MOD_JIG_DURATION       = 492 -- Jig duration bonus in percents
 MOD_VFLOURISH_MACC     = 493 -- Violent Flourish accuracy bonus
 MOD_STEP_FINISH        = 494 -- Bonus finishing moves from steps
 MOD_STEP_ACCURACY      = 403 -- Accuracy bonus for steps
-MOD_SPECTRAL_JIG       = 495 -- Spectral Jig duration modifier (percent increase)
 MOD_WALTZ_RECAST       = 497 -- Waltz recast modifier (percent)
 MOD_SAMBA_PDURATION    = 498 -- Samba percent duration bonus
 MOD_WIDESCAN           = 340
@@ -1344,18 +1345,18 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
 MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
 
-MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
+MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
+-- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
+MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hit only.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 64 -- stuff
--- MOD_SPARE = 65 -- stuff
 -- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 98 -- stuff
+-- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 840 -- stuff
--- MOD_SPARE = 841 -- stuff
 -- MOD_SPARE = 842 -- stuff
 -- MOD_SPARE = 843 -- stuff
 -- MOD_SPARE = 844 -- stuff

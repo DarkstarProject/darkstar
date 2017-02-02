@@ -7980,7 +7980,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
 
 /************************************************************************
 *                                                                       *
-* Used to manipulate the mob's flags for testing.                       *
+* Used to manipulate a MOB's entityFlags for testing. TODO: NPC's too   *
 *                                                                       *
 ************************************************************************/
 
@@ -8008,7 +8008,7 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
         {
             if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
             {
-                ((CMobEntity*)PMob)->setMobFlags((uint32)(lua_tointeger(L, 1)));
+                ((CMobEntity*)PMob)->setEntityFlags((uint32)(lua_tointeger(L, 1)));
                 PMob->updatemask |= UPDATE_HP;
             }
         }
@@ -8030,7 +8030,7 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
         }
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            ((CMobEntity*)PTarget)->setMobFlags((uint32)(lua_tointeger(L, 1)));
+            ((CMobEntity*)PTarget)->setEntityFlags((uint32)(lua_tointeger(L, 1)));
             PTarget->updatemask |= UPDATE_HP;
         }
     }

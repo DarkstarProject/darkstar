@@ -1561,7 +1561,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                 if (PItem->getFlag() & ITEM_FLAG_NODELIVERY)
                 {
-                    if (!(PItem->getFlag() & ITEM_FLAG_DELIVERYINNER))
+                    if (!(PItem->getFlag() & ITEM_FLAG_MAIL2ACCOUNT))
                         return;
 
                     uint32 accid = Sql_GetUIntData(SqlHandle, 1);

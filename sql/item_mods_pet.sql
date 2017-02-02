@@ -478,6 +478,33 @@ INSERT INTO `item_mods_pet` VALUES (28125,25,20);     -- Accuracy +20
 INSERT INTO `item_mods_pet` VALUES (28125,27,4);      -- Enmity +4
 
 -- -------------------------------------------------------
+-- Marduk's Crackows +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28211,23,15);     -- Attack +15
+INSERT INTO `item_mods_pet` VALUES (28211,384,2);     -- Haste +2%
+
+-- -------------------------------------------------------
+-- Ker's Sollerets
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28213,23,13);     -- Attack +13
+
+-- -------------------------------------------------------
+-- Sigyn's Jambeaux
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28214,68,5);      -- Evasion +5
+
+-- -------------------------------------------------------
+-- Idi's Ledelsens
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28219,68,2);      -- Evasion +2
+
+-- -------------------------------------------------------
+-- Totemic Gaiters
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28231,23,10);     -- Attack +10
+INSERT INTO `item_mods_pet` VALUES (28231,25,10);     -- Accuracy +10
+
+-- -------------------------------------------------------
 -- Convoker's Pigaches
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (28237,27,5);      -- Enmity +5

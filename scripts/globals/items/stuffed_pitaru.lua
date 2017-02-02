@@ -36,6 +36,7 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_MPP, 6);
     target:addMod(MOD_FOOD_MP_CAP, 100);
+    target:addMod(MOD_MAGIC_SKILLUP_RATE, 20);
 end;
 
 -----------------------------------------
@@ -45,4 +46,5 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_MPP, 6);
     target:delMod(MOD_FOOD_MP_CAP, 100);
+    target:delMod(MOD_MAGIC_SKILLUP_RATE, 20);
 end;

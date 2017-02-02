@@ -109,7 +109,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, flags, animationsub, \
+		mob_pools.familyid, name_prefix, entityFlags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, detects, \
 		mob_family_system.charmable \
@@ -242,7 +242,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         Query =
             "SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
 			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, flags, look, name_prefix, widescan \
+			status, entityFlags, look, name_prefix, widescan \
 			FROM instance_entities INNER JOIN npc_list ON \
 			(instance_entities.id = npc_list.npcid) \
 			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";

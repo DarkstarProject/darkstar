@@ -59,13 +59,13 @@ enum ITEM_FLAG
 {
     ITEM_FLAG_WALLHANGING   = 0x0001,
     ITEM_FLAG_01            = 0x0002,
-    ITEM_FLAG_02            = 0x0004,
-    ITEM_FLAG_03            = 0x0008,
-    ITEM_FLAG_DELIVERYINNER = 0x0010,  // CanSendPOL Polutils Value
+    ITEM_FLAG_MYSTERY_BOX   = 0x0004, // Can be gained from Gobbie Mystery Box
+    ITEM_FLAG_MOG_GARDEN    = 0x0008, // Can use in Mog Garden
+    ITEM_FLAG_MAIL2ACCOUNT  = 0x0010, // CanSendPOL Polutils Value
     ITEM_FLAG_INSCRIBABLE   = 0x0020,
     ITEM_FLAG_NOAUCTION     = 0x0040,
     ITEM_FLAG_SCROLL        = 0x0080,
-    ITEM_FLAG_LINKSHELL     = 0x0100,  // Linkshell Polutils Value
+    ITEM_FLAG_LINKSHELL     = 0x0100, // Linkshell Polutils Value
     ITEM_FLAG_CANUSE        = 0x0200,
     ITEM_FLAG_CANTRADENPC   = 0x0400,
     ITEM_FLAG_CANEQUIP      = 0x0800,
