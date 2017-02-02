@@ -282,7 +282,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         else {
             PChar->PPet->status = STATUS_DISAPPEAR;
             if (((CPetEntity*)(PChar->PPet))->getPetType() == PETTYPE_AVATAR)
-                PChar->setModifier(MOD_AVATAR_PERPETUATION, 0);
+                PChar->setModifier(Mod::AVATAR_PERPETUATION, 0);
         }
         // It may have been nullptred by DespawnPet
         if (PChar->PPet != nullptr) {

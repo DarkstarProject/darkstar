@@ -72,10 +72,10 @@ CBattleEntity::CBattleEntity()
 
     StatusEffectContainer = new CStatusEffectContainer(this);
 
-    m_modStat[MOD_SLASHRES] = 1000;
-    m_modStat[MOD_PIERCERES] = 1000;
-    m_modStat[MOD_HTHRES] = 1000;
-    m_modStat[MOD_IMPACTRES] = 1000;
+    m_modStat[Mod::SLASHRES] = 1000;
+    m_modStat[Mod::PIERCERES] = 1000;
+    m_modStat[Mod::HTHRES] = 1000;
+    m_modStat[Mod::IMPACTRES] = 1000;
 
     m_Immunity = 0;
     isCharmed = false;
@@ -129,10 +129,10 @@ bool CBattleEntity::isAsleep()
 
 void CBattleEntity::UpdateHealth()
 {
-    int32 dif = (getMod(MOD_CONVMPTOHP) - getMod(MOD_CONVHPTOMP));
+    int32 dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
 
-    health.modmp = ((health.maxmp) * (100 + getMod(MOD_MPP)) / 100) + dsp_min((health.maxmp * m_modStat[MOD_FOOD_MPP] / 100), m_modStat[MOD_FOOD_MP_CAP]) + getMod(MOD_MP);
-    health.modhp = ((health.maxhp) * (100 + getMod(MOD_HPP)) / 100) + dsp_min((health.maxhp * m_modStat[MOD_FOOD_HPP] / 100), m_modStat[MOD_FOOD_HP_CAP]) + getMod(MOD_HP);
+    health.modmp = ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) + dsp_min((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP);
+    health.modhp = ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) + dsp_min((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP);
 
     dif = (health.modmp - 0) < dif ? (health.modmp - 0) : dif;
     dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
@@ -192,12 +192,12 @@ int32 CBattleEntity::GetMaxMP()
 
 uint8 CBattleEntity::GetSpeed()
 {
-    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(MOD_MOVE)) / 100, UINT8_MIN, UINT8_MAX));
+    return (animation == ANIMATION_CHOCOBO ? 40 + map_config.speed_mod : dsp_cap(speed * (100 + getMod(Mod::MOVE)) / 100, UINT8_MIN, UINT8_MAX));
 }
 
 bool CBattleEntity::CanRest()
 {
-    return !getMod(MOD_REGEN_DOWN) && !StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST);
+    return !getMod(Mod::REGEN_DOWN) && !StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_NO_REST);
 }
 
 bool CBattleEntity::Rest(float rate)
@@ -223,11 +223,11 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     {
         return 1700;
     }
-    uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  MOD_DELAY is ignored for now.
-    uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(MOD_DELAY);
+    uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
+    uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(Mod::DELAY);
     if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
     {
-        WeaponDelay -= getMod(MOD_MARTIAL_ARTS) * 1000 / 60;
+        WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
     }
     else if (m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
              m_Weapons[SLOT_SUB]->getDmgType() < 4)
@@ -235,19 +235,19 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
         MinimumDelay += m_Weapons[SLOT_SUB]->getDelay();
         WeaponDelay += m_Weapons[SLOT_SUB]->getDelay();
         //apply dual wield delay reduction
-        WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(MOD_DUAL_WIELD)) / 100.0f);
+        WeaponDelay = WeaponDelay * ((100.0f - (float)getMod(Mod::DUAL_WIELD)) / 100.0f);
     }
 
     //apply haste and delay reductions that don't affect tp
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = (getMod(MOD_HASTE_MAGIC) > 448) ? 448 : getMod(MOD_HASTE_MAGIC);
-        int16 hasteAbility = (getMod(MOD_HASTE_ABILITY) > 256) ? 256 : getMod(MOD_HASTE_ABILITY);
-        int16 hasteGear = (getMod(MOD_HASTE_GEAR) > 256) ? 256 : getMod(MOD_HASTE_GEAR);
+        int16 hasteMagic = (getMod(Mod::HASTE_MAGIC) > 448) ? 448 : getMod(Mod::HASTE_MAGIC);
+        int16 hasteAbility = (getMod(Mod::HASTE_ABILITY) > 256) ? 256 : getMod(Mod::HASTE_ABILITY);
+        int16 hasteGear = (getMod(Mod::HASTE_GEAR) > 256) ? 256 : getMod(Mod::HASTE_GEAR);
         WeaponDelay = WeaponDelay * ((float)(1024 - hasteMagic - hasteAbility - hasteGear) / 1024);
     }
-    WeaponDelay = WeaponDelay * ((float)(100 + getMod(MOD_DELAYP)) / 100);
+    WeaponDelay = WeaponDelay * ((float)(100 + getMod(Mod::DELAYP)) / 100);
 
     // Global delay reduction cap of "about 80%" being enforced.
     // This should be enforced on -delay equipment, martial arts, dual wield, and haste, hence MinimumDelay * 0.2.
@@ -269,12 +269,12 @@ int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
         delay = ((PRange->getDelay() * 60) / 1000);
     }
 
-    delay = (((delay - getMod(MOD_RANGED_DELAY)) * 1000) / 120);
+    delay = (((delay - getMod(Mod::RANGED_DELAY)) * 1000) / 120);
 
     //apply haste and delay reductions that don't affect tp
     if (!tp)
     {
-        delay = delay * ((float)(100 + getMod(MOD_RANGED_DELAYP)) / 100);
+        delay = delay * ((float)(100 + getMod(Mod::RANGED_DELAYP)) / 100);
     }
     else if (PAmmo)
     {
@@ -305,10 +305,10 @@ uint16 CBattleEntity::GetMainWeaponDmg()
             dmg *= GetMLevel() * 3;
             dmg /= 4;
             dmg /= m_Weapons[SLOT_MAIN]->getReqLvl();
-            return dmg + getMod(MOD_MAIN_DMG_RATING);
+            return dmg + getMod(Mod::MAIN_DMG_RATING);
         }
         else
-            return m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RATING);
+            return m_Weapons[SLOT_MAIN]->getDamage() + getMod(Mod::MAIN_DMG_RATING);
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -325,10 +325,10 @@ uint16 CBattleEntity::GetSubWeaponDmg()
             dmg *= GetMLevel() * 3;
             dmg /= 4;
             dmg /= m_Weapons[SLOT_SUB]->getReqLvl();
-            return dmg + getMod(MOD_SUB_DMG_RATING);
+            return dmg + getMod(Mod::SUB_DMG_RATING);
         }
         else
-            return m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RATING);
+            return m_Weapons[SLOT_SUB]->getDamage() + getMod(Mod::SUB_DMG_RATING);
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -364,14 +364,14 @@ uint16 CBattleEntity::GetRangedWeaponDmg()
         else
             dmg += m_Weapons[SLOT_AMMO]->getDamage();
     }
-    return dmg + getMod(MOD_RANGED_DMG_RATING);
+    return dmg + getMod(Mod::RANGED_DMG_RATING);
 }
 
 uint16 CBattleEntity::GetMainWeaponRank()
 {
     if (m_Weapons[SLOT_MAIN])
     {
-        return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(MOD_MAIN_DMG_RANK)) / 9;
+        return (m_Weapons[SLOT_MAIN]->getDamage() + getMod(Mod::MAIN_DMG_RANK)) / 9;
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -382,7 +382,7 @@ uint16 CBattleEntity::GetSubWeaponRank()
 {
     if (m_Weapons[SLOT_SUB])
     {
-        return (m_Weapons[SLOT_SUB]->getDamage() + getMod(MOD_SUB_DMG_RANK)) / 9;
+        return (m_Weapons[SLOT_SUB]->getDamage() + getMod(Mod::SUB_DMG_RANK)) / 9;
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -393,7 +393,7 @@ uint16 CBattleEntity::GetRangedWeaponRank()
 {
     if (m_Weapons[SLOT_RANGED])
     {
-        return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(MOD_RANGED_DMG_RANK)) / 9;
+        return (m_Weapons[SLOT_RANGED]->getDamage() + getMod(Mod::RANGED_DMG_RANK)) / 9;
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -411,7 +411,7 @@ int16 CBattleEntity::addTP(int16 tp)
     // When adding TP, we must adjust for Inhibit TP effect, which reduces TP gain.
     if (tp > 0)
     {
-        float tpReducePercent = this->getMod(MOD_INHIBIT_TP) / 100;
+        float tpReducePercent = this->getMod(Mod::INHIBIT_TP) / 100;
         tp = tp - (tp * tpReducePercent);
 
         float TPMulti = 1.0;
@@ -497,43 +497,43 @@ int32 CBattleEntity::addMP(int32 mp)
 
 uint16 CBattleEntity::STR()
 {
-    return dsp_cap(stats.STR + m_modStat[MOD_STR], 0, 999);
+    return dsp_cap(stats.STR + m_modStat[Mod::STR], 0, 999);
 }
 
 uint16 CBattleEntity::DEX()
 {
-    return dsp_cap(stats.DEX + m_modStat[MOD_DEX], 0, 999);
+    return dsp_cap(stats.DEX + m_modStat[Mod::DEX], 0, 999);
 }
 
 uint16 CBattleEntity::VIT()
 {
-    return dsp_cap(stats.VIT + m_modStat[MOD_VIT], 0, 999);
+    return dsp_cap(stats.VIT + m_modStat[Mod::VIT], 0, 999);
 }
 
 uint16 CBattleEntity::AGI()
 {
-    return dsp_cap(stats.AGI + m_modStat[MOD_AGI], 0, 999);
+    return dsp_cap(stats.AGI + m_modStat[Mod::AGI], 0, 999);
 }
 
 uint16 CBattleEntity::INT()
 {
-    return dsp_cap(stats.INT + m_modStat[MOD_INT], 0, 999);
+    return dsp_cap(stats.INT + m_modStat[Mod::INT], 0, 999);
 }
 
 uint16 CBattleEntity::MND()
 {
-    return dsp_cap(stats.MND + m_modStat[MOD_MND], 0, 999);
+    return dsp_cap(stats.MND + m_modStat[Mod::MND], 0, 999);
 }
 
 uint16 CBattleEntity::CHR()
 {
-    return dsp_cap(stats.CHR + m_modStat[MOD_CHR], 0, 999);
+    return dsp_cap(stats.CHR + m_modStat[Mod::CHR], 0, 999);
 }
 
 uint16 CBattleEntity::ATT()
 {
     //TODO: consider which weapon!
-    int32 ATT = 8 + m_modStat[MOD_ATT];
+    int32 ATT = 8 + m_modStat[Mod::ATT];
     if (m_Weapons[SLOT_MAIN]->isTwoHanded())
     {
         ATT += (STR() * 3) / 4;
@@ -543,7 +543,7 @@ uint16 CBattleEntity::ATT()
     }
 
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
-        ATT += this->getMod(MOD_ENSPELL_DMG);
+        ATT += this->getMod(Mod::ENSPELL_DMG);
 
     if (this->objtype & TYPE_PC) {
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
@@ -551,11 +551,11 @@ uint16 CBattleEntity::ATT()
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
         ATT += PMaster->GetSkill(SKILL_AME);
-        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
     }
-    return ATT + (ATT * m_modStat[MOD_ATTP] / 100) +
-        dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+    return ATT + (ATT * m_modStat[Mod::ATTP] / 100) +
+        dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
 }
 
 uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
@@ -565,16 +565,16 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
     {
         return 0;
     }
-    int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[MOD_RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
+    int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
 
     if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        return ATT + (ATT * (m_modStat[MOD_ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[MOD_FOOD_ATTP] / 100), m_modStat[MOD_FOOD_ATT_CAP]);
+        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
+            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
     }
 
-    return ATT + (ATT * m_modStat[MOD_RATTP] / 100) +
-        dsp_min((ATT * m_modStat[MOD_FOOD_RATTP] / 100), m_modStat[MOD_FOOD_RATT_CAP]);
+    return ATT + (ATT * m_modStat[Mod::RATTP] / 100) +
+        dsp_min((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
 
 uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
@@ -590,7 +590,7 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     {
         acc = 200 + (skill_level - 200)*0.9;
     }
-    acc += getMod(MOD_RACC);
+    acc += getMod(Mod::RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
     acc += AGI() / 2;
     if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
@@ -598,7 +598,7 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
         acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
     }
 
-    return acc + dsp_min(((100 + getMod(MOD_FOOD_RACCP)) * acc) / 100, getMod(MOD_FOOD_RACC_CAP));
+    return acc + dsp_min(((100 + getMod(Mod::FOOD_RACCP)) * acc) / 100, getMod(Mod::FOOD_RACC_CAP));
 }
 
 uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
@@ -636,8 +636,8 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
         {
             ACC += DEX() * 0.5;
         }
-        ACC = (ACC + m_modStat[MOD_ACC] + offsetAccuracy);
-        ACC = ACC + dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
+        ACC = (ACC + m_modStat[Mod::ACC] + offsetAccuracy);
+        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
         return dsp_max(0, ACC);
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
@@ -645,27 +645,27 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
         int16 ACC = PMaster->GetSkill(SKILL_AME);
         ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
         ACC += DEX() * 0.5;
-        ACC += m_modStat[MOD_ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
-        ACC = ACC + dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]);
+        ACC += m_modStat[Mod::ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
         return dsp_max(0, ACC);
     }
     else
     {
-        int16 ACC = m_modStat[MOD_ACC];
-        ACC = ACC + dsp_min((ACC * m_modStat[MOD_FOOD_ACCP] / 100), m_modStat[MOD_FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
+        int16 ACC = m_modStat[Mod::ACC];
+        ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]) + DEX() / 2; //food mods here for Snatch Morsel
         return dsp_max(0, ACC);
     }
 }
 
 uint16 CBattleEntity::DEF()
 {
-    int32 DEF = 8 + m_modStat[MOD_DEF] + VIT() / 2;
+    int32 DEF = 8 + m_modStat[Mod::DEF] + VIT() / 2;
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0)) {
 	return DEF / 2;
     }
 
-    return DEF + (DEF * m_modStat[MOD_DEFP] / 100) +
-        dsp_min((DEF * m_modStat[MOD_FOOD_DEFP] / 100), m_modStat[MOD_FOOD_DEF_CAP]);
+    return DEF + (DEF * m_modStat[Mod::DEFP] / 100) +
+        dsp_min((DEF * m_modStat[Mod::FOOD_DEFP] / 100), m_modStat[Mod::FOOD_DEF_CAP]);
 }
 
 uint16 CBattleEntity::EVA()
@@ -675,7 +675,7 @@ uint16 CBattleEntity::EVA()
     if (evasion > 200) { //Evasion skill is 0.9 evasion post-200
         evasion = 200 + (evasion - 200)*0.9;
     }
-    return dsp_max(0, (m_modStat[MOD_EVA] + evasion + AGI() / 2));
+    return dsp_max(0, (m_modStat[Mod::EVA] + evasion + AGI() / 2));
 }
 
 /************************************************************************
@@ -721,9 +721,9 @@ void CBattleEntity::SetSJob(uint8 sjob)
 
 void CBattleEntity::SetMLevel(uint8 mlvl)
 {
-    m_modStat[MOD_DEF] -= m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
+    m_modStat[Mod::DEF] -= m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
     m_mlvl = (mlvl == 0 ? 1 : mlvl);
-    m_modStat[MOD_DEF] += m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
+    m_modStat[Mod::DEF] += m_mlvl + dsp_cap(m_mlvl - 50, 0, 10);
 
     if (this->objtype & TYPE_PC)
         Sql_Query(SqlHandle, "UPDATE char_stats SET mlvl = %u WHERE charid = %u LIMIT 1;", m_mlvl, this->id);
@@ -743,7 +743,7 @@ void CBattleEntity::SetSLevel(uint8 slvl)
 *																		*
 ************************************************************************/
 
-void CBattleEntity::addModifier(uint16 type, int16 amount)
+void CBattleEntity::addModifier(Mod type, int16 amount)
 {
     m_modStat[type] += amount;
 }
@@ -770,9 +770,9 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
         {
             if (slotid == SLOT_SUB)
             {
-                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                if (modList->at(i)->getModID() == Mod::MAIN_DMG_RANK)
                 {
-                    m_modStat[MOD_SUB_DMG_RANK] += modList->at(i)->getModAmount();
+                    m_modStat[Mod::SUB_DMG_RANK] += modList->at(i)->getModAmount();
                 }
                 else
                 {
@@ -792,30 +792,30 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
             int16 modAmount = GetMLevel() * modList->at(i)->getModAmount();
             switch (modList->at(i)->getModID())
             {
-                case MOD_DEF:
-                case MOD_MAIN_DMG_RATING:
-                case MOD_SUB_DMG_RATING:
-                case MOD_RANGED_DMG_RATING:
+                case Mod::DEF:
+                case Mod::MAIN_DMG_RATING:
+                case Mod::SUB_DMG_RATING:
+                case Mod::RANGED_DMG_RATING:
                     modAmount *= 3;
                     modAmount /= 4;
                     break;
-                case MOD_HP:
-                case MOD_MP:
+                case Mod::HP:
+                case Mod::MP:
                     modAmount /= 2;
                     break;
-                case MOD_STR:
-                case MOD_DEX:
-                case MOD_VIT:
-                case MOD_AGI:
-                case MOD_INT:
-                case MOD_MND:
-                case MOD_CHR:
-                case MOD_ATT:
-                case MOD_RATT:
-                case MOD_ACC:
-                case MOD_RACC:
-                case MOD_MATT:
-                case MOD_MACC:
+                case Mod::STR:
+                case Mod::DEX:
+                case Mod::VIT:
+                case Mod::AGI:
+                case Mod::INT:
+                case Mod::MND:
+                case Mod::CHR:
+                case Mod::ATT:
+                case Mod::RATT:
+                case Mod::ACC:
+                case Mod::RACC:
+                case Mod::MATT:
+                case Mod::MACC:
                     modAmount /= 3;
                     break;
                 default:
@@ -825,9 +825,9 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
             modAmount /= itemLevel;
             if (slotid == SLOT_SUB)
             {
-                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                if (modList->at(i)->getModID() == Mod::MAIN_DMG_RANK)
                 {
-                    m_modStat[MOD_SUB_DMG_RANK] += modAmount;
+                    m_modStat[Mod::SUB_DMG_RANK] += modAmount;
                 }
                 else
                 {
@@ -848,7 +848,7 @@ void CBattleEntity::addEquipModifiers(std::vector<CModifier*> *modList, uint8 it
 *																		*
 ************************************************************************/
 
-void CBattleEntity::setModifier(uint16 type, int16 amount)
+void CBattleEntity::setModifier(Mod type, int16 amount)
 {
     m_modStat[type] = amount;
 }
@@ -873,7 +873,7 @@ void CBattleEntity::setModifiers(std::vector<CModifier*> *modList)
 *																		*
 ************************************************************************/
 
-void CBattleEntity::delModifier(uint16 type, int16 amount)
+void CBattleEntity::delModifier(Mod type, int16 amount)
 {
     m_modStat[type] -= amount;
 }
@@ -910,9 +910,9 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
         {
             if (slotid == SLOT_SUB)
             {
-                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                if (modList->at(i)->getModID() == Mod::MAIN_DMG_RANK)
                 {
-                    m_modStat[MOD_SUB_DMG_RANK] -= modList->at(i)->getModAmount();
+                    m_modStat[Mod::SUB_DMG_RANK] -= modList->at(i)->getModAmount();
                 }
                 else
                 {
@@ -932,30 +932,30 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
             int16 modAmount = GetMLevel() * modList->at(i)->getModAmount();
             switch (modList->at(i)->getModID())
             {
-                case MOD_DEF:
-                case MOD_MAIN_DMG_RATING:
-                case MOD_SUB_DMG_RATING:
-                case MOD_RANGED_DMG_RATING:
+                case Mod::DEF:
+                case Mod::MAIN_DMG_RATING:
+                case Mod::SUB_DMG_RATING:
+                case Mod::RANGED_DMG_RATING:
                     modAmount *= 3;
                     modAmount /= 4;
                     break;
-                case MOD_HP:
-                case MOD_MP:
+                case Mod::HP:
+                case Mod::MP:
                     modAmount /= 2;
                     break;
-                case MOD_STR:
-                case MOD_DEX:
-                case MOD_VIT:
-                case MOD_AGI:
-                case MOD_INT:
-                case MOD_MND:
-                case MOD_CHR:
-                case MOD_ATT:
-                case MOD_RATT:
-                case MOD_ACC:
-                case MOD_RACC:
-                case MOD_MATT:
-                case MOD_MACC:
+                case Mod::STR:
+                case Mod::DEX:
+                case Mod::VIT:
+                case Mod::AGI:
+                case Mod::INT:
+                case Mod::MND:
+                case Mod::CHR:
+                case Mod::ATT:
+                case Mod::RATT:
+                case Mod::ACC:
+                case Mod::RACC:
+                case Mod::MATT:
+                case Mod::MACC:
                     modAmount /= 3;
                     break;
                 default:
@@ -965,9 +965,9 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
             modAmount /= itemLevel;
             if (slotid == SLOT_SUB)
             {
-                if (modList->at(i)->getModID() == MOD_MAIN_DMG_RANK)
+                if (modList->at(i)->getModID() == Mod::MAIN_DMG_RANK)
                 {
-                    m_modStat[MOD_SUB_DMG_RANK] -= modAmount;
+                    m_modStat[Mod::SUB_DMG_RANK] -= modAmount;
                 }
                 else
                 {
@@ -988,12 +988,12 @@ void CBattleEntity::delEquipModifiers(std::vector<CModifier*> *modList, uint8 it
 *																		*
 ************************************************************************/
 
-int16 CBattleEntity::getMod(uint16 modID)
+int16 CBattleEntity::getMod(Mod modID)
 {
     return m_modStat[modID];
 }
 
-void CBattleEntity::addPetModifier(uint16 type, int16 amount)
+void CBattleEntity::addPetModifier(Mod type, int16 amount)
 {
     m_petMod[type] += amount;
 
@@ -1003,7 +1003,7 @@ void CBattleEntity::addPetModifier(uint16 type, int16 amount)
     }
 }
 
-void CBattleEntity::setPetModifier(uint16 type, int16 amount)
+void CBattleEntity::setPetModifier(Mod type, int16 amount)
 {
     m_petMod[type] = amount;
 
@@ -1013,7 +1013,7 @@ void CBattleEntity::setPetModifier(uint16 type, int16 amount)
     }
 }
 
-void CBattleEntity::delPetModifier(uint16 type, int16 amount)
+void CBattleEntity::delPetModifier(Mod type, int16 amount)
 {
     m_petMod[type] -= amount;
 
@@ -1556,7 +1556,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         //if zanshin procs, the attack is repeated
         if (attack.IsFirstSwing() && attackRound.GetAttackSwingCount() == 1)
         {
-            uint16 zanshinChance = this->getMod(MOD_ZANSHIN) + battleutils::GetMeritValue(this, MERIT_ZASHIN_ATTACK_RATE);
+            uint16 zanshinChance = this->getMod(Mod::ZANSHIN) + battleutils::GetMeritValue(this, MERIT_ZASHIN_ATTACK_RATE);
             zanshinChance = dsp_cap(zanshinChance, 0, 100);
             //zanshin may only proc on a missed/guarded/countered swing or as SAM main with hasso up (at 25% of the base zanshin rate)
             if (((actionTarget.reaction == REACTION_EVADE || actionTarget.reaction == REACTION_GUARD ||

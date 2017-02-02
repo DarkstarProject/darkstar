@@ -2250,8 +2250,8 @@ namespace charutils
             {
                 PItem = PChar->m_Weapons[std::get<0>(slot)];
 
-                std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, MOD_ADDS_WEAPONSKILL);
-                std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, MOD_ADDS_WEAPONSKILL_DYN);
+                std::get<1>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL);
+                std::get<2>(slot) = battleutils::GetScaledItemModifier(PChar, PItem, Mod::ADDS_WEAPONSKILL_DYN);
             }
         }
 
@@ -2516,11 +2516,11 @@ namespace charutils
 
                 if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE}))
                 {
-                    skillBonus += PChar->getMod(MOD_LIGHT_ARTS_SKILL);
+                    skillBonus += PChar->getMod(Mod::LIGHT_ARTS_SKILL);
                 }
                 else
                 {
-                    skillBonus += PChar->getMod(MOD_DARK_ARTS_SKILL);
+                    skillBonus += PChar->getMod(Mod::DARK_ARTS_SKILL);
                 }
             }
             else if (i >= 22 && i <= 24)
@@ -2538,7 +2538,7 @@ namespace charutils
                 meritIndex++;
             }
 
-            skillBonus += PChar->getMod(i + 79);
+            skillBonus += PChar->getMod(static_cast<Mod>(i + 79));
 
             PChar->WorkingSkills.rank[i] = battleutils::GetSkillRank((SKILLTYPE)i, PChar->GetMJob());
 
@@ -2602,10 +2602,10 @@ namespace charutils
             blueutils::CalculateTraits(PChar);
         }
 
-        PChar->delModifier(MOD_MEVA, PChar->m_magicEvasion);
+        PChar->delModifier(Mod::MEVA, PChar->m_magicEvasion);
 
         PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
-        PChar->addModifier(MOD_MEVA, PChar->m_magicEvasion);
+        PChar->addModifier(Mod::MEVA, PChar->m_magicEvasion);
     }
 
     /************************************************************************
@@ -2691,8 +2691,8 @@ namespace charutils
                     /* ignoring this for now
                     if (SkillID >= 1 && SkillID <= 12)
                     {
-                    PChar->addModifier(MOD_ATT, 1);
-                    PChar->addModifier(MOD_ACC, 1);
+                    PChar->addModifier(Mod::ATT, 1);
+                    PChar->addModifier(Mod::ACC, 1);
                     }
                     */
                 }
@@ -4274,7 +4274,7 @@ namespace charutils
 
         }
 
-        bonus += exp * (PChar->getMod(MOD_EXP_BONUS) / 100.0f);
+        bonus += exp * (PChar->getMod(Mod::EXP_BONUS) / 100.0f);
 
         if (bonus + (int32)exp < 0)
             exp = 0;
@@ -4306,17 +4306,17 @@ namespace charutils
 
     uint16 AvatarPerpetuationReduction(CCharEntity* PChar)
     {
-        uint16 reduction = PChar->getMod(MOD_PERPETUATION_REDUCTION);
+        uint16 reduction = PChar->getMod(Mod::PERPETUATION_REDUCTION);
 
-        static const MODIFIER strong[8] = {
-            MOD_FIRE_AFFINITY_PERP,
-            MOD_EARTH_AFFINITY_PERP,
-            MOD_WATER_AFFINITY_PERP,
-            MOD_WIND_AFFINITY_PERP,
-            MOD_ICE_AFFINITY_PERP,
-            MOD_THUNDER_AFFINITY_PERP,
-            MOD_LIGHT_AFFINITY_PERP,
-            MOD_DARK_AFFINITY_PERP};
+        static const Mod strong[8] = {
+            Mod::FIRE_AFFINITY_PERP,
+            Mod::EARTH_AFFINITY_PERP,
+            Mod::WATER_AFFINITY_PERP,
+            Mod::WIND_AFFINITY_PERP,
+            Mod::ICE_AFFINITY_PERP,
+            Mod::THUNDER_AFFINITY_PERP,
+            Mod::LIGHT_AFFINITY_PERP,
+            Mod::DARK_AFFINITY_PERP};
 
         static const WEATHER weatherStrong[8] = {
             WEATHER_HOT_SPELL,
@@ -4336,14 +4336,14 @@ namespace charutils
 
         if (CVanaTime::getInstance()->getWeekday() == element)
         {
-            reduction = reduction + PChar->getMod(MOD_DAY_REDUCTION);
+            reduction = reduction + PChar->getMod(Mod::DAY_REDUCTION);
         }
 
         WEATHER weather = battleutils::GetWeather(PChar, false);
 
         if (weather == weatherStrong[element] || weather == weatherStrong[element] + 1)
         {
-            reduction = reduction + PChar->getMod(MOD_WEATHER_REDUCTION);
+            reduction = reduction + PChar->getMod(Mod::WEATHER_REDUCTION);
         }
 
         return reduction;

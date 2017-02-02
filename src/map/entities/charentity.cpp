@@ -761,7 +761,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
             {
                 if (PWeaponSkill->getID() >= 192 && PWeaponSkill->getID() <= 218)
                 {
-                    uint16 recycleChance = getMod(MOD_RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
+                    uint16 recycleChance = getMod(Mod::RECYCLE) + PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
 
                     if (StatusEffectContainer->HasStatusEffect(EFFECT_UNLIMITED_SHOT))
                     {
@@ -775,12 +775,12 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 }
                 if (actionTarget.reaction == REACTION_HIT)
                 {
-                    if (battleutils::GetScaledItemModifier(this, m_Weapons[damslot], MOD_ADDITIONAL_EFFECT))
+                    if (battleutils::GetScaledItemModifier(this, m_Weapons[damslot], Mod::ADDITIONAL_EFFECT))
                     {
                         actionTarget_t dummy;
                         luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(m_Weapons[damslot]), &dummy, damage);
                     }
-                    else if (damslot == SLOT_RANGED && m_Weapons[SLOT_AMMO] && battleutils::GetScaledItemModifier(this, m_Weapons[damslot], MOD_ADDITIONAL_EFFECT))
+                    else if (damslot == SLOT_RANGED && m_Weapons[SLOT_AMMO] && battleutils::GetScaledItemModifier(this, m_Weapons[damslot], Mod::ADDITIONAL_EFFECT))
                     {
                         actionTarget_t dummy;
                         luautils::OnAdditionalEffect(this, PTarget, static_cast<CItemWeapon*>(getEquip(SLOT_AMMO)), &dummy, damage);
@@ -894,11 +894,11 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
                 action.recast = 0;
             }
-            else if (this->getMod(MOD_BP_DELAY) > 15) {
+            else if (this->getMod(Mod::BP_DELAY) > 15) {
                 action.recast -= 15;
             }
             else {
-                action.recast -= getMod(MOD_BP_DELAY);
+                action.recast -= getMod(Mod::BP_DELAY);
             }
         }
 
@@ -918,7 +918,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         if (PAbility->getID() == ABILITY_REWARD) {
             CItem* PItem = getEquip(SLOT_HEAD);
             if (PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105)) {
-                //TODO: Transform this into an item MOD_REWARD_RECAST perhaps ?
+                //TODO: Transform this into an item Mod::REWARD_RECAST perhaps ?
                 //The Bison/Brave's Warbonnet & Khimaira/Stout Bonnet reduces recast time by 10 seconds.
                 action.recast -= 10;   // remove 10 seconds
             }
@@ -1144,7 +1144,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     else if (ammoThrowing && this->StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
     {
         isSange = true;
-        hitCount += getMod(MOD_UTSUSEMI);
+        hitCount += getMod(Mod::UTSUSEMI);
     }
 
     // loop for barrage hits, if a miss occurs, the loop will end
@@ -1172,7 +1172,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
                 {
                     pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(MOD_CRIT_DMG_INCREASE);
+                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
                     criticaldamage = dsp_cap(criticaldamage, 0, 100);
                     pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
@@ -1226,7 +1226,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         }
 
         // check for recycle chance
-        uint16 recycleChance = getMod(MOD_RECYCLE);
+        uint16 recycleChance = getMod(Mod::RECYCLE);
         if (charutils::hasTrait(this, TRAIT_RECYCLE))
         {
             recycleChance += PMeritPoints->GetMeritValue(MERIT_RECYCLE, this);
@@ -1280,8 +1280,8 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         //or else sleep effect won't work
         //battleutils::HandleRangedAdditionalEffect(this,PTarget,&Action);
         //TODO: move all hard coded additional effect ammo to scripts
-        if ((PAmmo != nullptr && battleutils::GetScaledItemModifier(this, PAmmo, MOD_ADDITIONAL_EFFECT) > 0) ||
-            (PItem != nullptr && battleutils::GetScaledItemModifier(this, PItem, MOD_ADDITIONAL_EFFECT) > 0)) {}
+        if ((PAmmo != nullptr && battleutils::GetScaledItemModifier(this, PAmmo, Mod::ADDITIONAL_EFFECT) > 0) ||
+            (PItem != nullptr && battleutils::GetScaledItemModifier(this, PItem, Mod::ADDITIONAL_EFFECT) > 0)) {}
         luautils::OnAdditionalEffect(this, PTarget, (PAmmo != nullptr ? PAmmo : PItem), &actionTarget, totalDamage);
     }
     else if (shadowsTaken > 0)
@@ -1319,7 +1319,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
     //#TODO: figure out the packet structure of double/triple shot
     //if (this->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBLE_SHOT, 0) && !this->secondDoubleShotTaken &&	!isBarrage && !isSange)
     //{
-    //    uint16 doubleShotChance = getMod(MOD_DOUBLE_SHOT_RATE);
+    //    uint16 doubleShotChance = getMod(Mod::DOUBLE_SHOT_RATE);
     //    if (dsprand::GetRandomNumber(100) < doubleShotChance)
     //    {
     //        this->secondDoubleShotTaken = true;
@@ -1558,13 +1558,13 @@ void CCharEntity::Die(duration _duration)
     pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
 
     // reraise modifiers
-    if (this->getMod(MOD_RERAISE_I) > 0)
+    if (this->getMod(Mod::RERAISE_I) > 0)
         m_hasRaise = 1;
 
-    if (this->getMod(MOD_RERAISE_II) > 0)
+    if (this->getMod(Mod::RERAISE_II) > 0)
         m_hasRaise = 2;
 
-    if (this->getMod(MOD_RERAISE_III) > 0)
+    if (this->getMod(Mod::RERAISE_III) > 0)
         m_hasRaise = 3;
     CBattleEntity::Die();
 }

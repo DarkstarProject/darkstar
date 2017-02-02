@@ -152,8 +152,8 @@ namespace attackutils
             return damage;
         }
         uint32 originalDamage = damage;
-        auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_OCC_DO_EXTRA_DMG);
-        auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, MOD_EXTRA_DMG_CHANCE);
+        auto occ_extra_dmg = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::OCC_DO_EXTRA_DMG);
+        auto occ_extra_dmg_chance = battleutils::GetScaledItemModifier(PChar, PWeapon, Mod::EXTRA_DMG_CHANCE);
         if (occ_extra_dmg > 0 && occ_extra_dmg_chance > 0)
         {
             if (dsprand::GetRandomNumber(100) <= (occ_extra_dmg_chance / 10))
@@ -164,11 +164,11 @@ namespace attackutils
 
         switch (attackType)
         {
-            case PHYSICAL_ATTACK_TYPE::ZANSHIN:	    if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::TRIPLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_TA_TRIPLE_DAMAGE))			return originalDamage * 3;
-            case PHYSICAL_ATTACK_TYPE::DOUBLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_DA_DOUBLE_DAMAGE))			return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:	if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
-            case PHYSICAL_ATTACK_TYPE::SAMBA:		if (dsprand::GetRandomNumber(100) < PChar->getMod(MOD_SAMBA_DOUBLE_DAMAGE))		    return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::ZANSHIN:	    if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::ZANSHIN_DOUBLE_DAMAGE))		return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::TRIPLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::TA_TRIPLE_DAMAGE))			return originalDamage * 3;
+            case PHYSICAL_ATTACK_TYPE::DOUBLE:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::DA_DOUBLE_DAMAGE))			return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::RAPID_SHOT:	if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::RAPID_SHOT_DOUBLE_DAMAGE))	return originalDamage * 2;
+            case PHYSICAL_ATTACK_TYPE::SAMBA:		if (dsprand::GetRandomNumber(100) < PChar->getMod(Mod::SAMBA_DOUBLE_DAMAGE))		    return originalDamage * 2;
             default: break;
         }
         return originalDamage;

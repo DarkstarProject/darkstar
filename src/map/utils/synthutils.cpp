@@ -174,18 +174,18 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 	uint8  crystalElement = PChar->CraftContainer->getType();
 	uint8  direction = (PChar->loc.p.rotation - 16)/32;
 	uint8  strongElement[8] = {2,3,5,4,0,1,7,6};
-	uint16 ModID = 0;
+	Mod ModID = Mod::NONE;
 
 	switch (skillID)
 	{
-		case SKILL_WOODWORKING:  ModID = MOD_WOOD;		break;
-		case SKILL_SMITHING:     ModID = MOD_SMITH;		break;
-		case SKILL_GOLDSMITHING: ModID = MOD_GOLDSMITH;	break;
-		case SKILL_CLOTHCRAFT:   ModID = MOD_CLOTH;		break;
-		case SKILL_LEATHERCRAFT: ModID = MOD_LEATHER;	break;
-		case SKILL_BONECRAFT:    ModID = MOD_BONE;		break;
-		case SKILL_ALCHEMY:      ModID = MOD_ALCHEMY;	break;
-		case SKILL_COOKING:      ModID = MOD_COOK;		break;
+		case SKILL_WOODWORKING:  ModID = Mod::WOOD;		break;
+		case SKILL_SMITHING:     ModID = Mod::SMITH;		break;
+		case SKILL_GOLDSMITHING: ModID = Mod::GOLDSMITH;	break;
+		case SKILL_CLOTHCRAFT:   ModID = Mod::CLOTH;		break;
+		case SKILL_LEATHERCRAFT: ModID = Mod::LEATHER;	break;
+		case SKILL_BONECRAFT:    ModID = Mod::BONE;		break;
+		case SKILL_ALCHEMY:      ModID = Mod::ALCHEMY;	break;
+		case SKILL_COOKING:      ModID = Mod::COOK;		break;
 	}
 
 	uint8 charSkill = PChar->RealSkills.skill[skillID]/10;  //player skill level is truncated before synth difficulty is calced
@@ -254,18 +254,18 @@ double getSynthDifficulty(CCharEntity* PChar, uint8 skillID)
 
 bool canSynthesizeHQ(CCharEntity* PChar, uint8 skillID)
 {
-	uint16 ModID = 0;
+	Mod ModID = Mod::NONE;
 
 	switch (skillID)
 	{
-		case SKILL_WOODWORKING:  ModID = MOD_ANTIHQ_WOOD;	  break;
-		case SKILL_SMITHING:     ModID = MOD_ANTIHQ_SMITH;	  break;
-		case SKILL_GOLDSMITHING: ModID = MOD_ANTIHQ_GOLDSMITH; break;
-		case SKILL_CLOTHCRAFT:   ModID = MOD_ANTIHQ_CLOTH;	  break;
-		case SKILL_LEATHERCRAFT: ModID = MOD_ANTIHQ_LEATHER;	  break;
-		case SKILL_BONECRAFT:    ModID = MOD_ANTIHQ_BONE;	  break;
-		case SKILL_ALCHEMY:      ModID = MOD_ANTIHQ_ALCHEMY;	  break;
-		case SKILL_COOKING:      ModID = MOD_ANTIHQ_COOK;	  break;
+		case SKILL_WOODWORKING:  ModID = Mod::ANTIHQ_WOOD;	  break;
+		case SKILL_SMITHING:     ModID = Mod::ANTIHQ_SMITH;	  break;
+		case SKILL_GOLDSMITHING: ModID = Mod::ANTIHQ_GOLDSMITH; break;
+		case SKILL_CLOTHCRAFT:   ModID = Mod::ANTIHQ_CLOTH;	  break;
+		case SKILL_LEATHERCRAFT: ModID = Mod::ANTIHQ_LEATHER;	  break;
+		case SKILL_BONECRAFT:    ModID = Mod::ANTIHQ_BONE;	  break;
+		case SKILL_ALCHEMY:      ModID = Mod::ANTIHQ_ALCHEMY;	  break;
+		case SKILL_COOKING:      ModID = Mod::ANTIHQ_COOK;	  break;
 	}
 
 	return (PChar->getMod(ModID) != 0 ? false : true);
@@ -356,7 +356,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			}
 
 			// Apply synthesis success rate modifier
-			int16 modSynthSuccess = PChar->getMod(MOD_SYNTH_SUCCESS);
+			int16 modSynthSuccess = PChar->getMod(Mod::SYNTH_SUCCESS);
 			success += (double)modSynthSuccess * 0.01;
 
             if(!canSynthesizeHQ(PChar,skillID))
@@ -503,19 +503,6 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			continue;
 		}
 
-		uint16 ModID = 0;
-		switch (skillID)
-		{
-			case SKILL_WOODWORKING:  ModID = MOD_WOOD;		break;
-			case SKILL_SMITHING:     ModID = MOD_SMITH;		break;
-			case SKILL_GOLDSMITHING: ModID = MOD_GOLDSMITH;	break;
-			case SKILL_CLOTHCRAFT:   ModID = MOD_CLOTH;		break;
-			case SKILL_LEATHERCRAFT: ModID = MOD_LEATHER;	break;
-			case SKILL_BONECRAFT:    ModID = MOD_BONE;		break;
-			case SKILL_ALCHEMY:      ModID = MOD_ALCHEMY;	break;
-			case SKILL_COOKING:      ModID = MOD_COOK;		break;
-		}
-
 		uint8  skillRank = PChar->RealSkills.rank[skillID];
 		uint16 maxSkill  = (skillRank+1)*100;
 
@@ -532,7 +519,7 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 			double skillUpChance = ((double)baseDiff*(map_config.craft_chance_multiplier - (log(1.2 + charSkill/100))))/10;
 
 			// Apply synthesis skill gain rate modifier before synthesis fail modifier
-			int16 modSynthSkillGain = PChar->getMod(MOD_SYNTH_SKILL_GAIN);
+			int16 modSynthSkillGain = PChar->getMod(Mod::SYNTH_SKILL_GAIN);
 			skillUpChance += (double)modSynthSkillGain * 0.01;
 
 			skillUpChance = skillUpChance/(1 + (PChar->CraftContainer->getQuantity(0) == SYNTHESIS_FAIL));		// результат синтеза хранится в quantity нулевой ячейки

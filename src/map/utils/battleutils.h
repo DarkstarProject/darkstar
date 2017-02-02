@@ -237,7 +237,7 @@ namespace battleutils
     bool                RemoveAmmo(CCharEntity*, int quantity = 1);
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 
-    int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, MODIFIER);
+    int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, Mod);
 };
 
 #endif

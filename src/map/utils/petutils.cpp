@@ -392,10 +392,10 @@ namespace petutils
         PMob->health.hp = PMob->GetMaxHP();
         PMob->health.mp = PMob->GetMaxMP();
 
-        PMob->setModifier(MOD_DEF, GetJugBase(PMob, petStats->defRank));
-        PMob->setModifier(MOD_EVA, GetJugBase(PMob, petStats->evaRank));
-        PMob->setModifier(MOD_ATT, GetJugBase(PMob, petStats->attRank));
-        PMob->setModifier(MOD_ACC, GetJugBase(PMob, petStats->accRank));
+        PMob->setModifier(Mod::DEF, GetJugBase(PMob, petStats->defRank));
+        PMob->setModifier(Mod::EVA, GetJugBase(PMob, petStats->evaRank));
+        PMob->setModifier(Mod::ATT, GetJugBase(PMob, petStats->attRank));
+        PMob->setModifier(Mod::ACC, GetJugBase(PMob, petStats->accRank));
 
         PMob->m_Weapons[SLOT_MAIN]->setDamage(GetJugWeaponDamage(PMob));
 
@@ -574,19 +574,19 @@ namespace petutils
         {
         case FRAME_HARLEQUIN:
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(2, PPet->GetMLevel());
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(10, PPet->GetMLevel()));
+            PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(10, PPet->GetMLevel()));
             break;
         case FRAME_VALOREDGE:
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(5, PPet->GetMLevel());
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(5, PPet->GetMLevel()));
+            PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(5, PPet->GetMLevel()));
             break;
         case FRAME_SHARPSHOT:
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(1, PPet->GetMLevel());
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(11, PPet->GetMLevel()));
+            PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(11, PPet->GetMLevel()));
             break;
         case FRAME_STORMWAKER:
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(10, PPet->GetMLevel());
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(12, PPet->GetMLevel()));
+            PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(12, PPet->GetMLevel()));
             break;
         }
     }
@@ -688,7 +688,7 @@ namespace petutils
         if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
             eva = 200 + (evaskill - 200)*0.9;
         }
-        PPet->setModifier(MOD_EVA, eva);
+        PPet->setModifier(Mod::EVA, eva);
 
 
         //Начало расчета характеристик
@@ -815,33 +815,33 @@ namespace petutils
         if (PPet->m_EcoSystem == SYSTEM_AVATAR || PPet->m_EcoSystem == SYSTEM_ELEMENTAL)
         {
             // assuming elemental spawn
-            PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+            PPet->setModifier(Mod::DMGPHYS, -50); //-50% PDT
         }
 
         PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(petData->spellList);
 
-        PPet->setModifier(MOD_SLASHRES, petData->slashres);
-        PPet->setModifier(MOD_PIERCERES, petData->pierceres);
-        PPet->setModifier(MOD_HTHRES, petData->hthres);
-        PPet->setModifier(MOD_IMPACTRES, petData->impactres);
+        PPet->setModifier(Mod::SLASHRES, petData->slashres);
+        PPet->setModifier(Mod::PIERCERES, petData->pierceres);
+        PPet->setModifier(Mod::HTHRES, petData->hthres);
+        PPet->setModifier(Mod::IMPACTRES, petData->impactres);
 
-        PPet->setModifier(MOD_FIREDEF, petData->firedef); // These are stored as floating percentages
-        PPet->setModifier(MOD_ICEDEF, petData->icedef); // and need to be adjusted into modifier units.
-        PPet->setModifier(MOD_WINDDEF, petData->winddef); // Higher DEF = lower damage.
-        PPet->setModifier(MOD_EARTHDEF, petData->earthdef); // Negatives signify increased damage.
-        PPet->setModifier(MOD_THUNDERDEF, petData->thunderdef); // Positives signify reduced damage.
-        PPet->setModifier(MOD_WATERDEF, petData->waterdef); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
-        PPet->setModifier(MOD_LIGHTDEF, petData->lightdef); // (1.25 - 1) * -1000 = -250 DEF
-        PPet->setModifier(MOD_DARKDEF, petData->darkdef); // (0.50 - 1) * -1000 = 500 DEF
+        PPet->setModifier(Mod::FIREDEF, petData->firedef); // These are stored as floating percentages
+        PPet->setModifier(Mod::ICEDEF, petData->icedef); // and need to be adjusted into modifier units.
+        PPet->setModifier(Mod::WINDDEF, petData->winddef); // Higher DEF = lower damage.
+        PPet->setModifier(Mod::EARTHDEF, petData->earthdef); // Negatives signify increased damage.
+        PPet->setModifier(Mod::THUNDERDEF, petData->thunderdef); // Positives signify reduced damage.
+        PPet->setModifier(Mod::WATERDEF, petData->waterdef); // Ex: 125% damage would be 1.25, 50% damage would be 0.50
+        PPet->setModifier(Mod::LIGHTDEF, petData->lightdef); // (1.25 - 1) * -1000 = -250 DEF
+        PPet->setModifier(Mod::DARKDEF, petData->darkdef); // (0.50 - 1) * -1000 = 500 DEF
 
-        PPet->setModifier(MOD_FIRERES, petData->fireres); // These are stored as floating percentages
-        PPet->setModifier(MOD_ICERES, petData->iceres); // and need to be adjusted into modifier units.
-        PPet->setModifier(MOD_WINDRES, petData->windres); // Higher RES = lower damage.
-        PPet->setModifier(MOD_EARTHRES, petData->earthres); // Negatives signify lower resist chance.
-        PPet->setModifier(MOD_THUNDERRES, petData->thunderres); // Positives signify increased resist chance.
-        PPet->setModifier(MOD_WATERRES, petData->waterres);
-        PPet->setModifier(MOD_LIGHTRES, petData->lightres);
-        PPet->setModifier(MOD_DARKRES, petData->darkres);
+        PPet->setModifier(Mod::FIRERES, petData->fireres); // These are stored as floating percentages
+        PPet->setModifier(Mod::ICERES, petData->iceres); // and need to be adjusted into modifier units.
+        PPet->setModifier(Mod::WINDRES, petData->windres); // Higher RES = lower damage.
+        PPet->setModifier(Mod::EARTHRES, petData->earthres); // Negatives signify lower resist chance.
+        PPet->setModifier(Mod::THUNDERRES, petData->thunderres); // Positives signify increased resist chance.
+        PPet->setModifier(Mod::WATERRES, petData->waterres);
+        PPet->setModifier(Mod::LIGHTRES, petData->lightres);
+        PPet->setModifier(Mod::DARKRES, petData->darkres);
     }
 
     void DetachPet(CBattleEntity* PMaster)
@@ -906,7 +906,7 @@ namespace petutils
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
 
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
-                PMaster->setModifier(MOD_AVATAR_PERPETUATION, 0);
+                PMaster->setModifier(Mod::AVATAR_PERPETUATION, 0);
 
             ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(-1);
             PMaster->ForParty([](CBattleEntity* PMember){
@@ -1080,10 +1080,10 @@ namespace petutils
         PPet->UpdateHealth();
 
         // boost stats by 10%
-        PPet->addModifier(MOD_ATTP, rate * 100.0f);
-        PPet->addModifier(MOD_ACC, rate * 100.0f);
-        PPet->addModifier(MOD_EVA, rate * 100.0f);
-        PPet->addModifier(MOD_DEFP, rate * 100.0f);
+        PPet->addModifier(Mod::ATTP, rate * 100.0f);
+        PPet->addModifier(Mod::ACC, rate * 100.0f);
+        PPet->addModifier(Mod::EVA, rate * 100.0f);
+        PPet->addModifier(Mod::DEFP, rate * 100.0f);
 
     }
 
@@ -1251,18 +1251,18 @@ namespace petutils
 
             PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(PPetData->spellList);
 
-            PPet->setModifier(MOD_DMGPHYS, -50); //-50% PDT
+            PPet->setModifier(Mod::DMGPHYS, -50); //-50% PDT
             if (PPet->GetMLevel() >= 70){
-                PPet->setModifier(MOD_MATT, 32);
+                PPet->setModifier(Mod::MATT, 32);
             }
             else if (PPet->GetMLevel() >= 50){
-                PPet->setModifier(MOD_MATT, 28);
+                PPet->setModifier(Mod::MATT, 28);
             }
             else if (PPet->GetMLevel() >= 30){
-                PPet->setModifier(MOD_MATT, 24);
+                PPet->setModifier(Mod::MATT, 24);
             }
             else if (PPet->GetMLevel() >= 10){
-                PPet->setModifier(MOD_MATT, 20);
+                PPet->setModifier(Mod::MATT, 20);
             }
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f)));
             if (PetID == PETID_FENRIR){
@@ -1275,11 +1275,11 @@ namespace petutils
 
             //Set B+ weapon skill (assumed capped for level derp)
             //attack is madly high for avatars (roughly x2)
-            PPet->setModifier(MOD_ATT, 2 * battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
-            PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
+            PPet->setModifier(Mod::ATT, 2 * battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
+            PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PPet->GetMLevel()));
             //Set E evasion and def
-            PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
-            PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
+            PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
+            PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PPet->GetMLevel()));
             // cap all magic skills so they play nice with spell scripts
             for (int i = SKILL_DIV; i <= SKILL_BLU; i++) {
                 uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i, PPet->GetMJob(), PPet->GetMLevel());
@@ -1302,13 +1302,13 @@ namespace petutils
             if (PMaster->objtype == TYPE_PC)
             {
                 CCharEntity* PChar = (CCharEntity*)PMaster;
-                PPet->addModifier(MOD_MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
-                PPet->addModifier(MOD_ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
-                PPet->addModifier(MOD_MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
-                PPet->addModifier(MOD_ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
+                PPet->addModifier(Mod::MATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ATTACK, PChar));
+                PPet->addModifier(Mod::ATT, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ATTACK, PChar));
+                PPet->addModifier(Mod::MACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_MAGICAL_ACCURACY, PChar));
+                PPet->addModifier(Mod::ACC, PChar->PMeritPoints->GetMeritValue(MERIT_AVATAR_PHYSICAL_ACCURACY, PChar));
             }
 
-            PMaster->addModifier(MOD_AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
+            PMaster->addModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
         else if (PPet->getPetType() == PETTYPE_JUG_PET){
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f / 60.0f)));
@@ -1327,7 +1327,7 @@ namespace petutils
 			}
 
             // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
-            highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(MOD_JUG_LEVEL_RANGE), 0, 2));
+            highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
 
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
@@ -1383,11 +1383,11 @@ namespace petutils
 		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
 		PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
 		//Set A+ weapon skill
-		PPet->setModifier(MOD_ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(MOD_ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
 		//Set D evasion and def
-		PPet->setModifier(MOD_EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(MOD_DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+		PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
 
 		if (finalize) {
 			FinalizePetStatistics(PMaster, PPet);
@@ -1396,7 +1396,7 @@ namespace petutils
 
 	void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
 		//set C magic evasion
-		PPet->setModifier(MOD_MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
+		PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
 		PPet->health.tp = 0;
 		PPet->UpdateHealth();
         PMaster->applyPetModifiers(PPet);

@@ -318,12 +318,12 @@ bool CAttack::CheckAnticipated()
     else
     { //do have seigan, decay anticipations correctly (guesstimated)
         //5-6 anticipates is a 'lucky' streak, going to assume 15% decay per proc, with a 100% base w/ Seigan
-        if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15) + m_victim->getMod(MOD_THIRD_EYE_ANTICIPATE_RATE)))
+        if (dsprand::GetRandomNumber(100) < (100 - (pastAnticipations * 15) + m_victim->getMod(Mod::THIRD_EYE_ANTICIPATE_RATE)))
         {
             //increment power and don't remove
             effect->SetPower(effect->GetPower() + 1);
             //chance to counter - 25% base
-            if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(MOD_THIRD_EYE_COUNTER_RATE))
+            if (dsprand::GetRandomNumber(100) < 25 + m_victim->getMod(Mod::THIRD_EYE_COUNTER_RATE))
             {
                 m_isCountered = true;
                 m_isCritical = (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(m_victim, m_attacker, false));
@@ -359,11 +359,11 @@ bool CAttack::CheckCounter()
     uint16 seiganChance = 0;
     if (m_victim->objtype == TYPE_PC && m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_SEIGAN))
     {
-        seiganChance = m_victim->getMod(MOD_ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
+        seiganChance = m_victim->getMod(Mod::ZANSHIN) + ((CCharEntity*)m_victim)->PMeritPoints->GetMeritValue(MERIT_ZASHIN_ATTACK_RATE, (CCharEntity*)m_victim);
         seiganChance = dsp_cap(seiganChance, 0, 100);
         seiganChance /= 4;
     }
-    if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(MOD_COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
+    if ((dsprand::GetRandomNumber(100) < (m_victim->getMod(Mod::COUNTER) + meritCounter) || dsprand::GetRandomNumber(100) < seiganChance) &&
         isFaceing(m_victim->loc.p, m_attacker->loc.p, 40) && dsprand::GetRandomNumber(100) < battleutils::GetHitRate(m_victim, m_attacker))
     {
         m_isCountered = true;
@@ -400,7 +400,7 @@ void CAttack::ProcessDamage()
         m_isFirstSwing &&
         m_attackRound->GetTAEntity() != nullptr)
     {
-        m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(MOD_TRICK_ATK_AGI) / 100);
+        m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(Mod::TRICK_ATK_AGI) / 100);
     }
 
     // H2H.
@@ -411,7 +411,7 @@ void CAttack::ProcessDamage()
         m_baseDamage = dsp_max(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
-            m_baseDamage = m_attacker->getMod(MOD_KICK_DMG) + 3;
+            m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;
         }
         m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
             battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
@@ -449,19 +449,19 @@ void CAttack::ProcessDamage()
     // Get critical bonus mods.
     if (m_isCritical)
     {
-        m_damage += (m_damage * (float)m_attacker->getMod(MOD_CRIT_DMG_INCREASE) / 100);
+        m_damage += (m_damage * (float)m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100);
     }
 
     // Apply Sneak Attack Augment Mod
-    if (m_attacker->getMod(MOD_AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
+    if (m_attacker->getMod(Mod::AUGMENTS_SA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))
     {
-        m_damage += (m_damage * ((100 + (m_attacker->getMod(MOD_AUGMENTS_SA))) / 100));
+        m_damage += (m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_SA))) / 100));
     }
 
     // Apply Trick Attack Augment Mod
-    if (m_attacker->getMod(MOD_AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
+    if (m_attacker->getMod(Mod::AUGMENTS_TA) > 0 && m_trickAttackDamage > 0 && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_TRICK_ATTACK))
     {
-        m_damage += (m_damage * ((100 + (m_attacker->getMod(MOD_AUGMENTS_TA))) / 100));
+        m_damage += (m_damage * ((100 + (m_attacker->getMod(Mod::AUGMENTS_TA))) / 100));
     }
 
     // Try skill up.

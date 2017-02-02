@@ -527,7 +527,7 @@ namespace spell
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
-                uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+                Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
                 if (PSpellList[spellId])

@@ -1232,10 +1232,10 @@ void CStatusEffectContainer::LoadStatusEffects()
 
             // load shadows left
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                m_POwner->setModifier(MOD_UTSUSEMI, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
-                m_POwner->setModifier(MOD_BLINK, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
             }
         }
     }
@@ -1276,13 +1276,13 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             // save power of utsusemi and blink
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::UTSUSEMI));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::BLINK));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_STONESKIN) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::STONESKIN));
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
@@ -1368,10 +1368,10 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
 
         m_RegenCheckTime = tick;
 
-        int16 regen = m_POwner->getMod(MOD_REGEN);
-        int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
-        int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
-        int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
+        int16 regen = m_POwner->getMod(Mod::REGEN);
+        int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);
+        int16 refresh = m_POwner->getMod(Mod::REFRESH) - m_POwner->getMod(Mod::REFRESH_DOWN);
+        int16 regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
         m_POwner->addHP(regen);
 
         if (poison)
@@ -1386,9 +1386,9 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
             }
         }
 
-        if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
+        if (m_POwner->getMod(Mod::AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
         {
-            int16 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
+            int16 perpetuation = m_POwner->getMod(Mod::AVATAR_PERPETUATION);
 
             if (m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
                 perpetuation = 0;

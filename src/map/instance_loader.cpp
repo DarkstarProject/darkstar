@@ -179,19 +179,19 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->attRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 56);
             PMob->accRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 57);
 
-            PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
-            PMob->setModifier(MOD_PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
-            PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
-            PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
+            PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
+            PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
+            PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
+            PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-            PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
-            PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
-            PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
-            PMob->setModifier(MOD_EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
-            PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
-            PMob->setModifier(MOD_WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
-            PMob->setModifier(MOD_LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
-            PMob->setModifier(MOD_DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
+            PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
+            PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
+            PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
+            PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
+            PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
+            PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
+            PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
+            PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
 
             PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
             PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
