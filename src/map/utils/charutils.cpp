@@ -1507,11 +1507,34 @@ namespace charutils
 
         if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
         {
-            switch (((CItemArmor*)PItem)->getRemoveSlotId())
+            auto removeSlotID = ((CItemArmor*)PItem)->getRemoveSlotId();
+
+            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
             {
-                case SLOT_HEAD:  PChar->look.head = 0; break;
-                case SLOT_HANDS: PChar->look.hands = 0; break;
-                case SLOT_FEET:  PChar->look.feet = 0; break;
+                if (removeSlotID & (1 << i))
+                {
+                    if (i >= SLOT_HEAD && i <= SLOT_FEET)
+                    {
+                        switch (i)
+                        {
+                        case SLOT_HEAD:
+                            PChar->look.head = 0;
+                            break;
+                        case SLOT_BODY:
+                            PChar->look.body = 0;
+                            break;
+                        case SLOT_HANDS:
+                            PChar->look.hands = 0;
+                            break;
+                        case SLOT_LEGS:
+                            PChar->look.legs = 0;
+                            break;
+                        case SLOT_FEET:
+                            PChar->look.feet = 0;
+                            break;
+                        }
+                    }
+                }
             }
 
             uint8 slotID = PChar->equip[equipSlotID];
