@@ -8,7 +8,6 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 

@@ -1680,6 +1680,8 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
             bool commit = false;
+            bool orphan = false;
+            CItem* PItem = PChar->UContainer->GetItem(slotID);
 
             if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
@@ -1692,7 +1694,6 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
                     {
-                        CItem* PItem = PChar->UContainer->GetItem(slotID);
                         int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE senderid = %u AND box = 1 AND charid = %u AND itemid = %u AND quantity = %u AND slot >= 8 LIMIT 1;",
                             PChar->id, charid, PItem->getID(), PItem->getQuantity());
 
@@ -1703,12 +1704,25 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x02));
                             PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x01));
                         }
+                        else
+                            orphan = true;
                     }
                 }
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
-                    ShowError("Could not finalize cancel send transaction. PlayerID: %d slotID: %d", PChar->id, slotID);
+                    ShowError("Could not finalize cancel send transaction. PlayerID: %d slotID: %d\n", PChar->id, slotID);
+                    if (orphan)
+                    {
+                        Sql_SetAutoCommit(SqlHandle, true);
+                        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE box = 2 AND charid = %u AND itemid = %u AND quantity = %u AND slot = %u LIMIT 1;",
+                            PChar->id, PItem->getID(), PItem->getQuantity(), slotID);
+                        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                        {
+                            ShowError("Deleting orphaned outbox record. PlayerID: %d slotID: %d itemID: %d\n", PChar->id, slotID, PItem->getID());
+                            PChar->pushPacket(new CDeliveryBoxPacket(0x0F, boxtype, 0, 1));
+                        }
+                    }
                     //error message: "Delivery orders are currently backlogged."
                     PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0, -1));
                 }
@@ -1916,15 +1930,10 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                             if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) > 0)
                             {
-                                ret = Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 LIMIT 1;", PChar->id, senderID);
-
-                                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
-                                {
-                                    PChar->UContainer->SetItem(slotID, nullptr);
-                                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
-                                    delete PItem;
-                                    commit = true;
-                                }
+                                PChar->UContainer->SetItem(slotID, nullptr);
+                                PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1));
+                                delete PItem;
+                                commit = true;
                             }
                         }
                     }
