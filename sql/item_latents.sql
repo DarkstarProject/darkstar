@@ -791,10 +791,10 @@ INSERT INTO `item_latents` VALUES(18508, 25, 2, 16, 6); -- ACC +2~8, party size 
 -- -------------------------------------------------------
 -- Lyft Scythe
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(18958, 8, 1, 16, 3); -- STR +1~4, party size 3+. Effect strengthens with more members
-INSERT INTO `item_latents` VALUES(18958, 8, 1, 16, 4); -- STR +1~4, party size 3+. Effect strengthens with more members
-INSERT INTO `item_latents` VALUES(18958, 8, 1, 16, 5); -- STR +1~4, party size 3+. Effect strengthens with more members
-INSERT INTO `item_latents` VALUES(18958, 8, 1, 16, 6); -- STR +1~4, party size 3+. Effect strengthens with more members
+INSERT INTO `item_latents` VALUES(18958, 8, 2, 16, 3); -- STR +2~8, party size 3+. Effect strengthens with more members
+INSERT INTO `item_latents` VALUES(18958, 8, 2, 16, 4); -- STR +2~8, party size 3+. Effect strengthens with more members
+INSERT INTO `item_latents` VALUES(18958, 8, 2, 16, 5); -- STR +2~8, party size 3+. Effect strengthens with more members
+INSERT INTO `item_latents` VALUES(18958, 8, 2, 16, 6); -- STR +2~8, party size 3+. Effect strengthens with more members
 
 -- -------------------------------------------------------
 -- Lyft Lance
@@ -3072,3 +3072,332 @@ INSERT INTO `item_latents` VALUES(16756,68,20,31,0);
 -- Latent effect: STR+8
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17810,8,8,6,1);
+
+-- -------------------------------------------------------
+-- Foolkiller
+-- Latent effect: STR+8 (Activates during WS)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18497,8,8,6,1);
+
+-- -------------------------------------------------------
+-- Numen Staff
+-- Latent effect: Adds "Refresh" effect (When weapon drawn)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18624,369,1,10,0);
+
+-- -------------------------------------------------------
+-- Mamoolbane
+-- Latent effect: Accuracy+6
+-- Latent effect active while in Mamook, Arrapago Reef, or Halvung.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18692,25,6,23,54);
+INSERT INTO `item_latents` VALUES (18692,25,6,23,62);
+INSERT INTO `item_latents` VALUES (18692,25,6,23,65);
+
+-- -------------------------------------------------------
+-- Lamiabane
+-- Latent effect: Enhances "Magic Atk. Bonus" (+2)
+-- Latent effect active while in Mamook, Arrapago Reef, or Halvung.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18693,28,2,23,54);
+INSERT INTO `item_latents` VALUES (18693,28,2,23,62);
+INSERT INTO `item_latents` VALUES (18693,28,2,23,65);
+
+-- -------------------------------------------------------
+-- Trollbane
+-- Latent effect: Increases rate of critical hits (+5%)
+-- Latent effect active while in Mamook, Arrapago Reef, or Halvung.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18694,165,5,23,54);
+INSERT INTO `item_latents` VALUES (18694,165,5,23,62);
+INSERT INTO `item_latents` VALUES (18694,165,5,23,65);
+
+-- -------------------------------------------------------
+-- Snakeeye/Snakeeye +1
+-- Latent effect: STR+5/+6 (When poisoned)
+-- Poison drains an additional 20HP/tick
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18708,8,5,13,3);
+INSERT INTO `item_latents` VALUES (18708,370,-20,13,3);
+INSERT INTO `item_latents` VALUES (18709,8,6,13,3);
+INSERT INTO `item_latents` VALUES (18709,370,-20,13,3);
+
+-- -------------------------------------------------------
+-- Cadushi Grip
+-- Nighttime: HP+25
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18810,2,25,26,1);
+
+-- -------------------------------------------------------
+-- Oneiros Grip
+-- Latent effect: Adds "Refresh" effect (1/tick, MP<75%)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18811,369,1,4,75);
+
+-- -------------------------------------------------------
+-- Ossa Grip
+-- Latent effect: Ice Elemental "Magic Atk. Bonus"+2
+-- Latent Effect is activated by Ice Spikes.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18812,33,2,13,35);
+
+-- -------------------------------------------------------
+-- Ankylosis Wand
+-- Bind: Magic Accuracy+20 "Magic Atk. Bonus"+20
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18888,30,20,13,11);
+INSERT INTO `item_latents` VALUES (18888,28,20,13,11);
+
+-- -------------------------------------------------------
+-- Hannibal's Sword
+-- Latent effect: "Regain"+10 (While MP>0, Drains 3MP/tick)
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18891,368,10,55,0);
+INSERT INTO `item_latents` VALUES (18891,369,-3,55,0);
+
+-- -------------------------------------------------------
+-- Chimeric Fleuret
+-- Latent effect: "Double Attack"+4% 
+-- Latent Effect is activated by having an Enspell active.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (18895,288,4,13,94);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,95);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,96);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,97);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,98);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,99);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,274);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,277);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,278);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,279);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,280);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,281);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,282);
+INSERT INTO `item_latents` VALUES (18895,288,4,13,288);
+
+-- -------------------------------------------------------
+-- Zareehkl Jambiya
+-- Latent effect: DMG:36
+-- Latent effect activate with Yellow (<75%) HP
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (19108,366,5,0,74);
+
+-- -------------------------------------------------------
+-- Cinquedea
+-- Latent effect: "Store TP"+5 
+-- Latent Effect is activated by having >100 TP.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (19123,73,5,7,100);
+
+-- -------------------------------------------------------
+-- Papilio Kirpan
+-- Latent effect: DMG:35
+-- Latent effect is active below 100% TP
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (19126,366,6,7,100);
+
+-- -------------------------------------------------------
+-- Irasya
+-- Latent effect: Damage taken +2% Enmity+10 
+-- Latent effect is enabled while Scarlet Delirium is active.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (19176,27,10,13,479);
+INSERT INTO `item_latents` VALUES (19176,160,2,13,479);
+INSERT INTO `item_latents` VALUES (19176,27,10,13,480);
+INSERT INTO `item_latents` VALUES (19176,160,2,13,480);
+
+-- -------------------------------------------------------
+-- Em. Baghnakhs
+-- Latent effect: DMG:+91 Accuracy+39 Attack+10 
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20540,25,39,6,1000);
+INSERT INTO `item_latents` VALUES (20540,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20540,366,4,6,1000);
+
+-- -------------------------------------------------------
+-- Polyhymnia
+-- Samba: "Regain"+10
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20619,370,10,13,368);
+INSERT INTO `item_latents` VALUES (20619,370,10,13,369);
+INSERT INTO `item_latents` VALUES (20619,370,10,13,370);
+
+-- -------------------------------------------------------
+-- Eminent Dagger
+-- Latent effect: DMG:89 Accuracy+39 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20624,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20624,25,39,6,1000);
+INSERT INTO `item_latents` VALUES (20624,366,4,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Scimitar
+-- Latent effect: DMG:128 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20726,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20726,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20726,366,6,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Sword
+-- Latent effect: DMG:209 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20766,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20766,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20766,366,10,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Axe
+-- Latent effect: DMG:141 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20817,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20817,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20817,366,7,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Voulge
+-- Latent effect: DMG:246 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20865,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20865,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20865,366,12,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Sickle
+-- Latent effect: DMG:244 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20908,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20908,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20908,366,12,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Lance
+-- Latent effect: DMG:239 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20954,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20954,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (20954,366,12,6,1000);
+
+-- -------------------------------------------------------
+-- Kaitsuburi
+-- Latent effect: DMG:92 Accuracy+39 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (20998,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (20998,25,39,6,1000);
+INSERT INTO `item_latents` VALUES (20998,366,4,6,1000);
+
+-- -------------------------------------------------------
+-- Magorokuhocho
+-- Latent Effect: DMG:101
+-- Latent effect is active while TP is below 1,000%
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21000,366,10,6,1000);
+
+-- -------------------------------------------------------
+--  Atakigiri
+-- Firesday: "Double Attack"+5%
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21036,288,5,28,0);
+
+-- -------------------------------------------------------
+-- Ichimonji-Yofusa
+-- DMG:219 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21044,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (21044,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (21044,366,9,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Wand
+-- Latent effect: DMG:141 Accuracy+15 Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21119,25,15,6,1000);
+INSERT INTO `item_latents` VALUES (21119,23,10,6,1000);
+INSERT INTO `item_latents` VALUES (21119,366,7,6,1000);
+
+-- -------------------------------------------------------
+-- Mindmelter
+-- Poison: INT+20 MND+20 Magic Accuracy+15 "Magic Atk. Bonus"+43 "Conserve MP"+4
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21161,12,20,13,3);
+INSERT INTO `item_latents` VALUES (21161,13,20,13,3);
+INSERT INTO `item_latents` VALUES (21161,30,15,13,3);
+INSERT INTO `item_latents` VALUES (21161,28,43,13,3);
+INSERT INTO `item_latents` VALUES (21161,296,4,13,3);
+INSERT INTO `item_latents` VALUES (21161,12,20,13,540);
+INSERT INTO `item_latents` VALUES (21161,13,20,13,540);
+INSERT INTO `item_latents` VALUES (21161,30,15,13,540);
+INSERT INTO `item_latents` VALUES (21161,28,43,13,540);
+INSERT INTO `item_latents` VALUES (21161,296,4,13,540);
+
+-- -------------------------------------------------------
+-- Eminent Staff
+-- Latent effect: Magic Accuracy+10 Magic Damage+185
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21182,30,10,6,1000);
+INSERT INTO `item_latents` VALUES (21182,311,185,6,1000);
+
+-- -------------------------------------------------------
+-- Mengado
+-- Daytime: "Regen"+2
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21222,370,2,26,0);
+
+-- -------------------------------------------------------
+-- Mengado +1
+-- Daytime: "Regen"+3
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21223,370,3,26,0);
+
+-- -------------------------------------------------------
+-- Eminent Bow
+-- Latent effect: DMG:277 Ranged Accuracy+15 Ranged Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21231,26,15,6,1000);
+INSERT INTO `item_latents` VALUES (21231,24,10,6,1000);
+INSERT INTO `item_latents` VALUES (21231,376,14,6,1000);
+
+-- -------------------------------------------------------
+-- Em. Crossbow
+-- Latent effect: DMG:93 Ranged Accuracy+15 Ranged Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21251,26,15,6,1000);
+INSERT INTO `item_latents` VALUES (21251,24,10,6,1000);
+INSERT INTO `item_latents` VALUES (21251,376,5,6,1000);
+
+-- -------------------------------------------------------
+-- Eminent Gun
+-- Latent effect: DMG:102 Ranged Accuracy+15 Ranged Attack+10
+-- Latent effect is active while TP is below 1,000% and during weaponskills.
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21281,26,15,6,1000);
+INSERT INTO `item_latents` VALUES (21281,24,10,6,1000);
+INSERT INTO `item_latents` VALUES (21281,376,5,6,1000);
+
+-- -------------------------------------------------------
+-- Tengu-no-Hane
+-- Daytime: Accuracy+15 Attack+15
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (21367,25,15,26,0);
+INSERT INTO `item_latents` VALUES (21367,23,15,26,0);
+
+-- -------------------------------------------------------
+-- Venery Bow
+-- Minuet: Ranged Attack+35 (Missing)["Conserve TP"+5] "Skillchain Bonus"+5
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES (22118,24,35,13,198);
+INSERT INTO `item_latents` VALUES (22118,175,5,13,198);
