@@ -1713,10 +1713,13 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x02));
                             PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PChar->UContainer->GetItem(slotID), slotID, PChar->UContainer->GetItemsCount(), 0x01));
                         }
-                        else
+                        else if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 0)
                             orphan = true;
                     }
                 }
+                else if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
+                    orphan = true;
+                
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
