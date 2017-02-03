@@ -1531,8 +1531,17 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         Sql_GetData(SqlHandle, 5, &extra, &length);
                         memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
-                        PItem->setSender(Sql_GetData(SqlHandle, 6));
-                        PItem->setReceiver(Sql_GetData(SqlHandle, 7));
+                        if (boxtype == 2)
+                        {
+                            PItem->setSender(Sql_GetData(SqlHandle, 7));
+                            PItem->setReceiver(Sql_GetData(SqlHandle, 6));
+                        }
+                        else
+                        {
+                            PItem->setSender(Sql_GetData(SqlHandle, 6));
+                            PItem->setReceiver(Sql_GetData(SqlHandle, 7));
+                        }
+
 
                         PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
                         ++items;
