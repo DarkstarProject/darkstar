@@ -1814,22 +1814,27 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             PItem->setSlotID(slotID);
 
                             //the result of this query doesn't really matter, it can be sent from the auction house which has no sender record
-                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 AND received = 0 AND quantity = %u LIMIT 1;",
-                                PChar->id, senderID, PItem->getQuantity());
+                            Sql_Query(SqlHandle, "UPDATE delivery_box SET received = 1 WHERE senderid = %u AND charid = %u AND box = 2 AND received = 0 AND quantity = %u AND sent = 1 AND itemid = %u LIMIT 1;",
+                                PChar->id, senderID, PItem->getQuantity(), PItem->getID());
 
-                            Query = "UPDATE delivery_box SET slot = %u WHERE charid = %u AND box = 1 AND slot = 8;";
-                            ret = Sql_Query(SqlHandle, Query.c_str(), slotID, PChar->id);
-                            if (ret != SQL_ERROR)
+                            Sql_Query(SqlHandle, "SELECT slot FROM delivery_box WHERE charid = %u AND box = 1 AND slot > 7 ORDER BY slot ASC;", PChar->id);
+                            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                             {
-                                Query = "UPDATE delivery_box SET slot = slot - 1 WHERE charid = %u AND box = 1 AND slot > 8;";
-                                ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id);
+                                uint8 queue = Sql_GetUIntData(SqlHandle, 0);
+                                Query = "UPDATE delivery_box SET slot = %u WHERE charid = %u AND box = 1 AND slot = %u;";
+                                ret = Sql_Query(SqlHandle, Query.c_str(), slotID, PChar->id, queue);
                                 if (ret != SQL_ERROR)
                                 {
-                                    PChar->UContainer->SetItem(slotID, PItem);
-                                    //TODO: increment "count" for every new item, if needed
-                                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, nullptr, slotID, 1, 2));
-                                    PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, 1, 1));
-                                    commit = true;
+                                    Query = "UPDATE delivery_box SET slot = slot - 1 WHERE charid = %u AND box = 1 AND slot > %u;";
+                                    ret = Sql_Query(SqlHandle, Query.c_str(), PChar->id, queue);
+                                    if (ret != SQL_ERROR)
+                                    {
+                                        PChar->UContainer->SetItem(slotID, PItem);
+                                        //TODO: increment "count" for every new item, if needed
+                                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, nullptr, slotID, 1, 2));
+                                        PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, 1, 1));
+                                        commit = true;
+                                    }
                                 }
                             }
                         }
