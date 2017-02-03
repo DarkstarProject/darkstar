@@ -1853,32 +1853,32 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case 0x07: //remove received items from send box
     {
         uint8 received_items = 0;
-        uint8 first_received = 0xFF;
-        for (int i = 0; i < 8; ++i)
+        uint8 slotID = 0;
+        
+        int32 ret = Sql_Query(SqlHandle, "SELECT slot FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2 ORDER BY slot ASC;", PChar->id);
+
+        if (ret != SQL_ERROR)
         {
-            if (!PChar->UContainer->IsSlotEmpty(i))
+            received_items = Sql_NumRows(SqlHandle);
+            if (received_items && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                CItem* PItem = PChar->UContainer->GetItem(i);
-                if (PItem->isSent())
+                slotID = Sql_GetUIntData(SqlHandle, 0);
+                if (!PChar->UContainer->IsSlotEmpty(slotID))
                 {
-                    if (first_received == 0xFF)
+                    CItem* PItem = PChar->UContainer->GetItem(slotID);
+                    if (PItem->isSent())
                     {
-                        first_received = i;
+                        ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, slotID);
+                        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
+                        {
+                            PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0, 0x02));
+                            PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, received_items, 0x01));
+                            PChar->UContainer->SetItem(slotID, nullptr);
+                            delete PItem;
+                        }
                     }
-                    received_items++;
                 }
             }
-        }
-        CItem* PItem = PChar->UContainer->GetItem(first_received);
-
-        int32 ret = Sql_Query(SqlHandle, "DELETE FROM delivery_box WHERE charid = %u AND box = 2 AND slot = %u LIMIT 1;", PChar->id, first_received);
-
-        if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle) == 1)
-        {
-            PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, 0, 0x02));
-            PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, first_received, received_items, 0x01));
-            PChar->UContainer->SetItem(first_received, nullptr);
-            delete PItem;
         }
         return;
     }
