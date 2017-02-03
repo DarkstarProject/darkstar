@@ -649,9 +649,9 @@ private:
     uint16      m_battleTarget {0};
     time_point  m_battleStartTime;
 
-    std::unordered_map<Mod, int16>		m_modStat;	// массив модификаторов
-    std::unordered_map<Mod, int16>		m_modStatSave;	// saved state
-    std::unordered_map<Mod, int16>       m_petMod;
+    std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
+    std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
+    std::unordered_map<Mod, int16, EnumClassHash>       m_petMod;
 };
 
 #endif

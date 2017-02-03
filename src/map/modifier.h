@@ -661,6 +661,16 @@ enum class Mod
     // SPARE = 850, // stuff
 };
 
+//temporary workaround for using enum class as unordered_map key until compilers support it
+struct EnumClassHash
+{
+    template <typename T>
+    std::size_t operator()(T t) const
+    {
+        return static_cast<std::size_t>(t);
+    }
+};
+
 /************************************************************************
 *  Modifier Class                                                       *
 ************************************************************************/
