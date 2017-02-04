@@ -205,6 +205,11 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
         potency = 1.5;
     end
 
+    potency = potency + (caster:getMod(MOD_CURE_POTENCY_II) / 100);
+    if (potency > 1.75) then
+        potency = 1.75;
+    end
+
     local dSeal = 1;
     if (caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
         dSeal = 2;
