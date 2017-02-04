@@ -1975,6 +1975,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
             bool commit = false;
+            bool invErr = false;
 
             CItem* PItem = PChar->UContainer->GetItem(slotID);
 
@@ -2006,13 +2007,16 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     {
                         commit = true;
                     }
+                    else
+                        invErr = true;
                 }
 
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
                     PChar->pushPacket(new CDeliveryBoxPacket(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA));
-                    ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
+                    if (!invErr)  //only display error in log if there's a database problem, not if inv is full or rare item conflict
+                        ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
                 }
                 else
                 {
@@ -2147,7 +2151,7 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CAuctionHousePacket(action));
 
             // A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
-            const int8* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 LIMIT 7;";
+            const int8* Query = "SELECT itemid, price, stack FROM auction_house WHERE seller = %u and sale=0 ORDER BY id ASC LIMIT 7;";
 
             int32 ret = Sql_Query(SqlHandle, Query, PChar->id);
 
@@ -2304,54 +2308,41 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x0C: // Removing item from AH
     {
-        // Check user has invent space
-        if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
+        if (slotid < PChar->m_ah_history.size())
         {
-            PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); //invent full, unable to remove msg
-            return;
-        }
-        else
-        {
-            const int8* delQuery = "DELETE FROM auction_house WHERE seller = %u AND id = %u AND sale = 0 LIMIT 1;";
+            bool isAutoCommitOn = Sql_GetAutoCommit(SqlHandle);
+            AuctionHistory_t canceledItem = PChar->m_ah_history[slotid];
 
-            const int8* fmtQuery = "SELECT itemid, stack, id FROM auction_house WHERE seller = %u and sale=0;";
-            int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
-            if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            if (Sql_SetAutoCommit(SqlHandle, false) && Sql_TransactionStart(SqlHandle))
             {
-                uint8 count = 0;
-                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                const int8* fmtQuery = "DELETE FROM auction_house WHERE seller = %u AND itemid = %u AND stack = %u AND price = %u AND sale = 0 LIMIT 1;";
+                int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id, canceledItem.itemid, canceledItem.stack, canceledItem.price);
+                if (ret != SQL_ERROR && Sql_AffectedRows(SqlHandle))
                 {
-                    if (count == slotid){
-                        uint16 delitemid = (uint16)Sql_GetUIntData(SqlHandle, 0);
-                        uint16 delitemstack = (uint16)Sql_GetUIntData(SqlHandle, 1);
-                        uint32 ahid = (uint32)Sql_GetUIntData(SqlHandle, 2);
-                        int32 delret = Sql_Query(SqlHandle, delQuery, PChar->id, ahid);
-                        if (delret != SQL_ERROR){
-                            //add the item back to the users invent
-                            CItem* PDelItem = itemutils::GetItemPointer(delitemid);
-                            if (PDelItem != nullptr){
-                                uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, delitemid,
-                                    (delitemstack != 0 ? PDelItem->getStackSize() : 1));
+                    CItem* PDelItem = itemutils::GetItemPointer(canceledItem.itemid);
+                    if (PDelItem)
+                    {
+                        uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, canceledItem.itemid, (canceledItem.stack != 0 ? PDelItem->getStackSize() : 1), true);
 
-                                if (SlotID != ERROR_SLOTID)
-                                {
-                                    PChar->pushPacket(new CAuctionHousePacket(action, 0, PChar, slotid, false));
-                                    PChar->pushPacket(new CInventoryFinishPacket());
-                                }
-                                else {
-                                    ShowError("Failed to return item id %u stack %u to char... \n", delitemid, delitemstack);
-                                }
-                                return;
-                            }
+                        if (SlotID != ERROR_SLOTID)
+                        {
+                            Sql_TransactionCommit(SqlHandle);
+                            PChar->pushPacket(new CAuctionHousePacket(action, 0, PChar, slotid, false));
+                            PChar->pushPacket(new CInventoryFinishPacket());
+                            Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
+                            return;
                         }
-                        break;
                     }
-                    count++;
                 }
+                else
+                    ShowError("Failed to return item id %u stack %u to char... \n", canceledItem.itemid, canceledItem.stack);
+                
+                Sql_TransactionRollback(SqlHandle);
+                Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
             }
-            // Let client know something went wrong
-            PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); // Inventory full, unable to remove msg
         }
+        // Let client know something went wrong
+        PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); // Inventory full, unable to remove msg        
     }
     break;
     case 0x0D:
