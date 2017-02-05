@@ -5374,7 +5374,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));
 
-        PTarget->pushPacket(new CBazaarConfirmationPacket(PChar, SlotID, Quantity));
+        PTarget->pushPacket(new CBazaarConfirmationPacket(PChar, PItem));
 
         charutils::UpdateItem(PTarget, LOC_INVENTORY, SlotID, -Quantity);
 
