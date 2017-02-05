@@ -2020,7 +2020,8 @@ namespace battleutils
             if (giveTPtoVictim)
             {
                 //account for attacker's subtle blow which reduces the baseTP gain for the defender
-                float sBlowMult = ((100.0f - (dsp_cap((float)PAttacker->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f) + dsp_cap((float)PAttacker->getMod(Mod::SUBTLE_BLOW_II), 0.0f, 25.0f))) / 100.0f);
+                float sBlowMod = dsp_cap((float)PAttacker->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f) + (float)PAttacker->getMod(Mod::SUBTLE_BLOW_II);
+                float sBlowMult = ((100.0f - dsp_cap(sBlowMod, 0.0f, 87.5f)) / 100.0f);
 
                 //mobs hit get basetp+30 whereas pcs hit get basetp/3
                 if (PDefender->objtype == TYPE_PC)
@@ -2138,7 +2139,8 @@ namespace battleutils
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
-            float sBlowMult = ((100.0f - (dsp_cap((float)PChar->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f) + dsp_cap((float)PChar->getMod(Mod::SUBTLE_BLOW_II), 0.0f, 25.0f))) / 100.0f);
+            float sBlowMod = dsp_cap((float)PChar->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f) + (float)PChar->getMod(Mod::SUBTLE_BLOW_II);
+            float sBlowMult = ((100.0f - dsp_cap(sBlowMod, 0.0f, 87.5f)) / 100.0f);
 
             //mobs hit get basetp+30 whereas pcs hit get basetp/3
             if (PDefender->objtype == TYPE_PC)
