@@ -1,14 +1,11 @@
 ---------------------------------------------------
 -- Lamb Chop
--- Deals critical damage. Chance of critical hit varies with TP.
--- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
----------------------------------------------------
-
+-- Deals critical damage. 
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

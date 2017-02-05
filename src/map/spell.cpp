@@ -396,9 +396,9 @@ void CSpell::setFlag(uint8 flag)
     m_flag = flag;
 }
 
-int8* CSpell::getExpansionCode()
+int8* CSpell::getContentTag()
 {
-    return m_expansionCode;
+    return m_contentTag;
 }
 
 float CSpell::getRange()
@@ -406,9 +406,9 @@ float CSpell::getRange()
     return m_range;
 }
 
-void CSpell::setExpansionCode(int8* expansionCode)
+void CSpell::setContentTag(int8* contentTag)
 {
-    m_expansionCode = expansionCode;
+    m_contentTag = contentTag;
 }
 
 void CSpell::setRange(float range)
@@ -426,7 +426,7 @@ namespace spell
     void LoadSpellList()
     {
         const int8* Query = "SELECT spellid, name, jobs, `group`, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, \
-                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, required_expansion, spell_range \
+                             AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range \
                              FROM spell_list;";
 
         int32 ret = Sql_Query(SqlHandle, Query);
@@ -435,7 +435,7 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* expansionCode;
+                int8* contentTag;
                 CSpell* PSpell = nullptr;
                 uint16 id = Sql_GetUIntData(SqlHandle,0);
 
@@ -469,8 +469,8 @@ namespace spell
                 PSpell->setVE(Sql_GetIntData(SqlHandle,19));
                 PSpell->setRequirements(Sql_GetIntData(SqlHandle,20));
 
-                Sql_GetData(SqlHandle, 21, &expansionCode, nullptr);
-                PSpell->setExpansionCode(expansionCode);
+                Sql_GetData(SqlHandle, 21, &contentTag, nullptr);
+                PSpell->setContentTag(contentTag);
 
                 PSpell->setRange(static_cast<float>(Sql_GetIntData(SqlHandle, 22)) / 10);
 
@@ -486,7 +486,7 @@ namespace spell
 
         const int8* blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, \
                                 blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, \
-                                blue_spell_list.secondary_sc, spell_list.required_expansion \
+                                blue_spell_list.secondary_sc, spell_list.content_tag \
                              FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid;";
 
         ret = Sql_Query(SqlHandle, blueQuery);
@@ -495,10 +495,10 @@ namespace spell
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* expansionCode;
-                Sql_GetData(SqlHandle, 7, &expansionCode, nullptr);
+                int8* contentTag;
+                Sql_GetData(SqlHandle, 7, &contentTag, nullptr);
 
-                if (luautils::IsExpansionEnabled(expansionCode) == false){
+                if (luautils::IsContentEnabled(contentTag) == false){
                     continue;
                 }
 
@@ -527,7 +527,7 @@ namespace spell
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 uint16 spellId = (uint16)Sql_GetUIntData(SqlHandle,0);
-                uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+                Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
                 int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
                 if (PSpellList[spellId])
@@ -537,16 +537,16 @@ namespace spell
             }
         }
 
-        ret = Sql_Query(SqlHandle,"SELECT spellId, meritId, required_expansion FROM spell_list INNER JOIN merits ON spell_list.name = merits.name;");
+        ret = Sql_Query(SqlHandle,"SELECT spellId, meritId, content_tag FROM spell_list INNER JOIN merits ON spell_list.name = merits.name;");
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                int8* expansionCode;
-                Sql_GetData(SqlHandle, 2, &expansionCode, nullptr);
+                int8* contentTag;
+                Sql_GetData(SqlHandle, 2, &contentTag, nullptr);
 
-                if (luautils::IsExpansionEnabled(expansionCode) == false){
+                if (luautils::IsContentEnabled(contentTag) == false){
                     continue;
                 }
 

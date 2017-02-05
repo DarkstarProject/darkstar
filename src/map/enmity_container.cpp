@@ -104,7 +104,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
             ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
     }
 
-    float bonus = (100.0f + dsp_cap(PEntity->getMod(MOD_ENMITY) + enmityBonus, -50, 100)) / 100.0f;
+    float bonus = (100.0f + dsp_cap(PEntity->getMod(Mod::ENMITY) + enmityBonus, -50, 100)) / 100.0f;
 
     return bonus;
 }
@@ -138,8 +138,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         enmity_obj->second.VE = dsp_cap(newVE, 0, 10000);
         enmity_obj->second.active = true;
 
-        if (CE + VE > 0 && PEntity->getMod(MOD_TREASURE_HUNTER) > enmity_obj->second.maxTH)
-            enmity_obj->second.maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
+        if (CE + VE > 0 && PEntity->getMod(Mod::TREASURE_HUNTER) > enmity_obj->second.maxTH)
+            enmity_obj->second.maxTH = (uint8)(PEntity->getMod(Mod::TREASURE_HUNTER));
     }
     else if (CE >= 0 && VE >= 0)
     {
@@ -159,7 +159,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
         VE = dsp_cap(VE * bonus, 0, 10000);
         auto maxTH = 0;
         if (CE + VE > 0)
-            maxTH = (uint8)(PEntity->getMod(MOD_TREASURE_HUNTER));
+            maxTH = (uint8)(PEntity->getMod(Mod::TREASURE_HUNTER));
 
         m_EnmityList.emplace(PEntity->id, EnmityObject_t {PEntity, CE, VE, true, (uint8)maxTH});
 
@@ -311,7 +311,7 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint16 Dam
     {
         return;
     }
-    float reduction = (100.f - dsp_min(PEntity->getMod(MOD_ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
+    float reduction = (100.f - dsp_min(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
     int16 CE = -(1800 * Damage / PEntity->GetMaxHP()) * reduction;
 
     auto enmity_obj = m_EnmityList.find(PEntity->id);

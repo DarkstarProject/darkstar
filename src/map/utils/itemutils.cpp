@@ -50,33 +50,33 @@ namespace itemutils
     *                                                                       *
     ************************************************************************/
 
-    CItem* CreateItem(uint16 ItemID) 
+    CItem* CreateItem(uint16 ItemID)
     {
-	    if( (ItemID >= 0x0200) && (ItemID <= 0x0206) ) 
+	    if( (ItemID >= 0x0200) && (ItemID <= 0x0206) )
 	    {
 		    return new CItemLinkshell(ItemID);
 	    }
-	    if( (ItemID >= 0x01D8) && (ItemID <= 0x0DFF) ) 
+	    if( (ItemID >= 0x01D8) && (ItemID <= 0x0DFF) )
 	    {
 		    return new CItemGeneral(ItemID);
 	    }
-	    if( (ItemID >= 0x0000) && (ItemID <= 0x0FFF) ) 
+	    if( (ItemID >= 0x0000) && (ItemID <= 0x0FFF) )
 	    {
 		    return new CItemFurnishing(ItemID);
 	    }
-	    if( (ItemID >= 0x1000) && (ItemID <= 0x18FF) ) 
+	    if( (ItemID >= 0x1000) && (ItemID <= 0x1FFF) )
 	    {
 		    return new CItemUsable(ItemID);
 	    }
-	    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) ) 
+	    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) )
 	    {
 		    return new CItemPuppet(ItemID);
 	    }
-	    if( (ItemID >= 0x2800) && (ItemID <= 0x3FFF) ) 
+	    if( (ItemID >= 0x2800) && (ItemID <= 0x3FFF) )
 	    {
 		    return new CItemArmor(ItemID);
 	    }
-	    if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) ) 
+	    if( (ItemID >= 0x4000) && (ItemID <= 0x5FFF) )
 	    {
 		    return new CItemWeapon(ItemID);
 	    }
@@ -101,33 +101,33 @@ namespace itemutils
 
     CItem* GetItem(uint16 ItemID)
     {
-	    if( (ItemID == 0xFFFF) ) 
+	    if( (ItemID == 0xFFFF) )
 	    {
 		    return new CItemCurrency(ItemID);
 	    }
 	    if (ItemID < MAX_ITEMID && g_pItemList[ItemID] != nullptr)
 	    {
-		    if( (ItemID >= 0x0200) && (ItemID <= 0x0206) ) 
+		    if( (ItemID >= 0x0200) && (ItemID <= 0x0206) )
 		    {
 			    return new CItemLinkshell(*((CItemLinkshell*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x01D8) && (ItemID <= 0x0DFF) ) 
+		    if( (ItemID >= 0x01D8) && (ItemID <= 0x0DFF) )
 		    {
 			    return new CItemGeneral(*((CItemGeneral*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x0000) && (ItemID <= 0x0FFF) ) 
+		    if( (ItemID >= 0x0000) && (ItemID <= 0x0FFF) )
 		    {
 			    return new CItemFurnishing(*((CItemFurnishing*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x1000) && (ItemID <= 0x18FF) ) 
+		    if( (ItemID >= 0x1000) && (ItemID <= 0x1FFF) )
 		    {
 			    return new CItemUsable(*((CItemUsable*)g_pItemList[ItemID]));
 		    }
-		    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) ) 
+		    if( (ItemID >= 0x2000) && (ItemID <= 0x27FF) )
 		    {
 			    return new CItemPuppet(*((CItemPuppet*)g_pItemList[ItemID]));
 		    }
-		    if( ((ItemID >= 0x2800) && (ItemID <= 0x3FFF))) 
+		    if( ((ItemID >= 0x2800) && (ItemID <= 0x3FFF)))
 		    {
 			    return new CItemArmor(*((CItemArmor*)g_pItemList[ItemID]));
 		    }
@@ -264,7 +264,7 @@ namespace itemutils
 
     void LoadItemList()
     {
-	    const int8* Query =    
+	    const int8* Query =
             "SELECT "
                 "b.itemId,"         //  0
                 "b.name,"           //  1
@@ -282,7 +282,7 @@ namespace itemutils
                 "u.useDelay,"       // 12
                 "u.reuseDelay,"     // 13
                 "u.aoe,"            // 14
-								       
+
                 "a.level,"          // 15
                 "a.ilevel,"         // 16
                 "a.jobs,"           // 17
@@ -302,7 +302,7 @@ namespace itemutils
                 "w.dmgType,"        // 30
                 "w.hit,"            // 31
                 "w.unlock_points,"  // 32
-								       
+
                 "f.storage,"        // 33
                 "f.moghancement,"   // 34
                 "f.element,"        // 35
@@ -322,7 +322,7 @@ namespace itemutils
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    CItem* PItem = CreateItem(Sql_GetUIntData(SqlHandle,0));
 
@@ -334,7 +334,7 @@ namespace itemutils
 				    PItem->setAHCat(Sql_GetUIntData(SqlHandle,4));
 				    PItem->setBasePrice(Sql_GetUIntData(SqlHandle,5));
 					PItem->setSubID(Sql_GetUIntData(SqlHandle,6));
-				
+
 				    if (PItem->isType(ITEM_GENERAL))
 				    {
 
@@ -396,15 +396,15 @@ namespace itemutils
 			    }
 		    }
 	    }
-	
+
 	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
-	    
+
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle,0);
-			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+			    Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 
 			    if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
@@ -421,7 +421,7 @@ namespace itemutils
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
                 uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
-                uint16 modID = (uint16)Sql_GetUIntData(SqlHandle, 1);
+                Mod modID = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 1));
                 int16  value = (int16)Sql_GetIntData(SqlHandle, 2);
 
                 if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
@@ -432,13 +432,13 @@ namespace itemutils
         }
 
 	    ret = Sql_Query(SqlHandle,"SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
-	    
+
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle,0);
-			    uint16 modID  = (uint16)Sql_GetUIntData(SqlHandle,1);
+			    Mod modID  = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
 			    int16  value  = (int16) Sql_GetIntData (SqlHandle,2);
 				uint16 latentId = (uint16) Sql_GetIntData(SqlHandle,3);
 				uint16 latentParam = (uint16) Sql_GetIntData(SqlHandle,4);
@@ -463,7 +463,7 @@ namespace itemutils
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    uint16 DropID  = (uint16)Sql_GetUIntData(SqlHandle,0);
 
@@ -477,7 +477,7 @@ namespace itemutils
                 DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
                 DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
-				
+
                 g_pDropList[DropID]->push_back(DropItem);
 		    }
 	    }
@@ -497,7 +497,7 @@ namespace itemutils
 
 	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 	    {
-		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS) 
+		    while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 		    {
 			    uint16 LootID  = (uint16)Sql_GetUIntData(SqlHandle,0);
 
@@ -511,7 +511,7 @@ namespace itemutils
                 LootItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 LootItem.Rolls = (uint16)Sql_GetIntData(SqlHandle,2);
 				LootItem.LootGroupId = (uint8)Sql_GetIntData(SqlHandle,3);
-				
+
                 g_pLootList[LootID]->push_back(LootItem);
 		    }
 		}

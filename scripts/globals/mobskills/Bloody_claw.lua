@@ -1,15 +1,15 @@
 ---------------------------------------------
---  Terror Eye
---  Family: Gargouille
---  Description: Steals an enemy's HP. Additional effect: Reduces a random stat.
---  Type: Physical
---  Utsusemi/Blink absorb: Ignores shadows 
---  Range: Melee
---  Notes: Despite the attack ignoring Utsusemi, it is physical, and therefore capable of missing entirely. 
+-- Bloody Claw
+-- Family: Gargouille
+-- Description: Steals an enemy's HP. Additional effect: Reduces a random stat.
+-- Type: Physical
+-- Utsusemi/Blink absorb: Ignores shadows 
+-- Range: Melee
+-- Notes: Despite the attack ignoring Utsusemi, it is physical, and therefore capable of missing entirely. 
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

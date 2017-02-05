@@ -14,10 +14,6 @@ require("scripts/zones/Batallia_Downs_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17122255,17122256,17122257,17122261,17122262};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

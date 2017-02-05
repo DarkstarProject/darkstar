@@ -86,8 +86,8 @@ namespace luautils
                               snprintf( File, sizeof(File), n, ##__VA_ARGS__);
     lua_State*  LuaHandle = nullptr;
 
-    bool expansionRestrictionEnabled;
-    std::unordered_map<std::string, bool> expansionEnabledMap;
+    bool contentRestrictionEnabled;
+    std::unordered_map<std::string, bool> contentEnabledMap;
 
     /************************************************************************
     *                                                                       *
@@ -170,7 +170,7 @@ namespace luautils
         lua_rawset(LuaHandle, -3);
         lua_pop(LuaHandle, 1);
 
-        expansionRestrictionEnabled = (GetSettingsVariable("RESTRICT_BY_EXPANSION") != 0);
+        contentRestrictionEnabled = (GetSettingsVariable("RESTRICT_CONTENT") != 0);
 
         ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
         return 0;
@@ -269,7 +269,7 @@ namespace luautils
     void pushFunc(int lua_func, int index)
     {
         lua_rawgeti(LuaHandle, LUA_REGISTRYINDEX, lua_func);
-        lua_insert(LuaHandle, -(index+1));
+        lua_insert(LuaHandle, -(index + 1));
     }
 
     void callFunc(int nargs)
@@ -383,13 +383,27 @@ namespace luautils
 
     int32 GetMobByID(lua_State* L)
     {
-        if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            uint32 mobid = (uint32)lua_tointeger(L, -1);
+            uint32 mobid = (uint32)lua_tointeger(L, 1);
+            CInstance* PInstance {nullptr};
+            CBaseEntity* PMob {nullptr};
 
-            CBaseEntity* PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
+            if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
+            {
+                CLuaInstance* PLuaInstance = Lunar<CLuaInstance>::check(L, 2);
+                PInstance = PLuaInstance->GetInstance();
+            }
+            if (PInstance)
+            {
+                PInstance->GetEntity(mobid & 0xFFF, TYPE_MOB | TYPE_PET);
+            }
+            else
+            {
+                PMob = zoneutils::GetEntity(mobid, TYPE_MOB | TYPE_PET);
+            }
 
-            if (PMob == nullptr)
+            if (!PMob)
             {
                 ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)\n", mobid);
                 lua_pushnil(L);
@@ -1158,31 +1172,33 @@ namespace luautils
 
     /************************************************************************
     *                                                                       *
-    *  Check if an Expansion Is Enabled In Settings.lua                     *
+    *  Check if an something is restricted in Settings.lua                  *
+    *  ENABLE_ is subject to RESTRICT_BY_EXPANSION                          *
+    *  ALLOW_ is NOT subject to RESTRICT_BY_EXPANSION                       *
     *                                                                       *
     ************************************************************************/
 
-    bool IsExpansionEnabled(const char* expansionCode)
+    bool IsContentEnabled(const char* contentTag)
     {
-        if (expansionCode != nullptr)
+        if (contentTag != nullptr)
         {
-            std::string expansionVariable("ENABLE_");
-            expansionVariable.append(expansionCode);
+            std::string contentVariable("ENABLE_");
+            contentVariable.append(contentTag);
 
-            bool expansionEnabled;
+            bool contentEnabled;
 
             try
             {
-                expansionEnabled = expansionEnabledMap.at(expansionVariable);
+                contentEnabled = contentEnabledMap.at(contentVariable);
             }
             catch (std::out_of_range)
             {
-                // Cache Expansion Lookups in a Map so that we don't re-hit the Lua file every time
-                expansionEnabled = (GetSettingsVariable(expansionVariable.c_str()) != 0);
-                expansionEnabledMap[expansionVariable] = expansionEnabled;
+                // Cache contentTag lookups in a map so that we don't re-hit the Lua file every time
+                contentEnabled = (GetSettingsVariable(contentVariable.c_str()) != 0);
+                contentEnabledMap[contentVariable] = contentEnabled;
             }
 
-            if (expansionEnabled == false && expansionRestrictionEnabled == true)
+            if (contentEnabled == false && contentRestrictionEnabled == true)
             {
                 return false;
             }
@@ -1515,26 +1531,11 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
-        int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
-        {
-            lua_pop(LuaHandle, 1);
-            memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        auto loadResult = LoadEventScript(PChar, "onEventUpdate");
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
-            {
-                ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
-            }
-        }
-
-        lua_getglobal(LuaHandle, "onEventUpdate");
-        if (lua_isnil(LuaHandle, -1))
+        if (!loadResult)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
@@ -1547,17 +1548,11 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventUpdate (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -1569,26 +1564,11 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventUpdate");
 
-        int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
-        {
-            lua_pop(LuaHandle, 1);
-            memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        bool loadResult = LoadEventScript(PChar, "onEventUpdate");
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
-            {
-                ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
-            }
-        }
-
-        lua_getglobal(LuaHandle, "onEventUpdate");
-        if (lua_isnil(LuaHandle, -1))
+        if (!loadResult)
         {
             ShowError("luautils::onEventUpdate: undefined procedure onEventUpdate\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
@@ -1601,17 +1581,11 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventUpdate: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventUpdate (%s): 0 returns expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -1625,7 +1599,8 @@ namespace luautils
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
         //#TODO: move this to BCNM stuff when it's rewritten
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost()))
+        // 32003 is the run away event
+        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 && result == 4)))
         {
             PChar->PBCNM->delPlayerFromBcnm(PChar);
         }
@@ -1634,26 +1609,11 @@ namespace luautils
         lua_pushnil(LuaHandle);
         lua_setglobal(LuaHandle, "onEventFinish");
 
-        int8 File[255];
-        if (luaL_loadfile(LuaHandle, PChar->m_event.Script.c_str()) || lua_pcall(LuaHandle, 0, 0, 0))
-        {
-            lua_pop(LuaHandle, 1);
-            memset(File, 0, sizeof(File));
-            snprintf(File, sizeof(File), "scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+        bool loadResult = LoadEventScript(PChar, "onEventFinish");
 
-            if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
-            {
-                ShowError("luautils::onEventFinish %s\n", lua_tostring(LuaHandle, -1));
-                lua_pop(LuaHandle, 1);
-                return -1;
-            }
-        }
-
-        lua_getglobal(LuaHandle, "onEventFinish");
-        if (lua_isnil(LuaHandle, -1))
+        if (!loadResult)
         {
             ShowError("luautils::onEventFinish: undefined procedure onEventFinish\n");
-            lua_pop(LuaHandle, 1);
             return -1;
         }
 
@@ -1666,7 +1626,7 @@ namespace luautils
         CLuaBaseEntity LuaTargetEntity(PChar->m_event.Target);
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
-        if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 4, 0, 0))
         {
             ShowError("luautils::onEventFinish %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
@@ -1677,11 +1637,6 @@ namespace luautils
             PChar->animation = ANIMATION_DEATH;
             PChar->pushPacket(new CRaiseTractorMenuPacket(PChar, TYPE_HOMEPOINT));
             PChar->updatemask |= UPDATE_HP;
-        }
-        if (returns > 0)
-        {
-            ShowError("luautils::onEventFinish (%s): 0 returns expected, got %d\n", PChar->m_event.Script.c_str(), returns);
-            lua_pop(LuaHandle, returns);
         }
         return 0;
     }
@@ -4568,6 +4523,35 @@ namespace luautils
         lua_pop(LuaHandle, 1);
 
         return canDig;
+    }
+
+    /************************************************************************
+    *   Loads a Lua function with a fallback hierarchy                      *
+    *                                                                       *
+    *   1) 1st try: PChar->m_event.Script                                   *
+    *   2) 2nd try: The instance script if the player is in one             *
+    *   3) 3rd try: The zone script for the zone the player is in           *
+    *                                                                       *
+    ************************************************************************/
+    bool LoadEventScript(CCharEntity* PChar, const char* functionName)
+    {
+        auto searchLuaFileForFunction = [&functionName](std::string filename)
+        {
+            if (!(luaL_loadfile(LuaHandle, filename.c_str()) || lua_pcall(LuaHandle, 0, 0, 0)))
+            {
+                lua_getglobal(LuaHandle, functionName);
+                if (!(lua_isnil(LuaHandle, -1)))
+                {
+                    return true;
+                }
+            }
+            lua_pop(LuaHandle, 1);
+            return false;
+        };
+
+        return searchLuaFileForFunction(PChar->m_event.Script) ||
+            (PChar->PInstance && searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/instances/" + PChar->PInstance->GetName())) ||
+            (searchLuaFileForFunction(std::string("scripts/zones/") + PChar->loc.zone->GetName() + "/Zone.lua"));
     }
 
 }; // namespace luautils

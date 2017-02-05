@@ -17,13 +17,6 @@ banishing_gates_base = 17596761; -- _5k0 (First banishing gate)
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17596856,17596857,17596858};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17596859,17596860,17596861};
-    SetVoidwatchNPC(vwnpc);
-
     -- Banishing Gate #1...
     zone:registerRegion(1,-208,-1,224,-206,1,227);
     zone:registerRegion(2,-208,-1,212,-206,1,215);

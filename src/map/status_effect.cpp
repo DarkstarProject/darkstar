@@ -196,7 +196,7 @@ void CStatusEffect::SetName(string_t name)
 	m_Name = name;
 }
 
-void CStatusEffect::addMod(uint16 modType, int16 amount)
+void CStatusEffect::addMod(Mod modType, int16 amount)
 {
 	for (uint32 i = 0; i < modList.size(); ++i)
 	{

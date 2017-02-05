@@ -16,9 +16,6 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17719634,17719635,17719636,17719637};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
 end;

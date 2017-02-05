@@ -16,10 +16,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17118042,17118043,17118044};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

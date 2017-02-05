@@ -23,14 +23,13 @@
 
 #include "../../common/socket.h"
 
-#include <string.h>
 
 #include "zone_in.h"
 
 #include "../entities/charentity.h"
-#include "../../common/timer.h"
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
+#include "../instance.h"
 
 /************************************************************************
 *                                                                       *
@@ -149,10 +148,10 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 		WBUFW(data, (0x54) ) = 0xFFFF;
 	}
 
-	WBUFB(data,(0x56)) = PChar->loc.zone->GetBackgroundMusicDay();
-	WBUFB(data,(0x58)) = PChar->loc.zone->GetBackgroundMusicNight();
-	WBUFB(data,(0x5A)) = PChar->loc.zone->GetSoloBattleMusic();
-	WBUFB(data,(0x5C)) = PChar->loc.zone->GetPartyBattleMusic();
+	WBUFB(data,(0x56)) = PChar->PInstance ? PChar->PInstance->GetBackgroundMusicDay() : PChar->loc.zone->GetBackgroundMusicDay();
+	WBUFB(data,(0x58)) = PChar->PInstance ? PChar->PInstance->GetBackgroundMusicNight() : PChar->loc.zone->GetBackgroundMusicNight();
+	WBUFB(data,(0x5A)) = PChar->PInstance ? PChar->PInstance->GetSoloBattleMusic() : PChar->loc.zone->GetSoloBattleMusic();
+	WBUFB(data,(0x5C)) = PChar->PInstance ? PChar->PInstance->GetPartyBattleMusic() : PChar->loc.zone->GetPartyBattleMusic();
     WBUFB(data,(0x5E)) = 0xD4; //default chocobo music for all zones
 
 	WBUFW(data,(0x60)) = PChar->loc.boundary;

@@ -26,7 +26,7 @@ Periqia = {
         TIME_REMAINING_MINUTES = 7482,
         TIME_REMAINING_SECONDS = 7483,
         PARTY_FALLEN = 7485,
-        
+
         -- Seagull Grounded
         EXCALIACE_START = 7494,
         EXCALIACE_END1 = 7495,
@@ -47,7 +47,7 @@ Periqia = {
         EXCALIACE_TIRED = 7510,
         EXCALIACE_CAUGHT = 7511,
     },
-    
+
     mobs = {
         -- Seagull Grounded
         [31] = {
@@ -68,9 +68,22 @@ Periqia = {
             PUGIL5 = 17006608,
             DEBAUCHER2 = 17006610,
             DEBAUCHER3 = 17006611,
+        },
+        -- Shades of Vengeance
+        [79] = {
+            K23H1LAMIA1 = 17006754,
+            K23H1LAMIA2 = 17006755,
+            K23H1LAMIA3 = 17006756,
+            K23H1LAMIA4 = 17006757,
+            K23H1LAMIA5 = 17006758,
+            K23H1LAMIA6 = 17006759,
+            K23H1LAMIA7 = 17006760,
+            K23H1LAMIA8 = 17006761,
+            K23H1LAMIA9 = 17006762,
+            K23H1LAMIA10 = 17006763,
         }
     },
-    
+
     npcs = {
         EXCALIACE = 17006593,
         ANCIENT_LOCKBOX = 17006809,

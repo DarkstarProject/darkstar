@@ -1,13 +1,16 @@
 ---------------------------------------------
---  Chains of Apathy
+-- Chains of Envy
 --
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
+---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/keyitems");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local targets = mob:getEnmityList();
     for i,v in pairs(targets) do
@@ -23,7 +26,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local typeEffect = EFFECT_TERROR;
     local power = 30;
     local duration = 30;
@@ -33,5 +35,6 @@ function onMobWeaponSkill(target, mob, skill)
     else
         skill:setMsg(MSG_NO_EFFECT);
     end
+
     return typeEffect;
 end;

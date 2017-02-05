@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 4235
 -- Item: Bowl of Cursed Soup
--- Food Effect: 180Min, All Races
+-- Food Effect: 240Min, All Races
 -----------------------------------------
 -- Strength -7
 -- Dexterity -7
@@ -31,7 +31,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,4235);
+    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4235);
 end;
 
 -----------------------------------------

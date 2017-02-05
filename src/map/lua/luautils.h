@@ -67,6 +67,7 @@ class CZone;
 struct action_t;
 struct actionList_t;
 struct actionTarget_t;
+
 enum ConquestUpdate : uint8;
 
 namespace luautils
@@ -167,7 +168,7 @@ namespace luautils
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable);               // загружаем значение переменной TextID указанной зоны
     uint8 GetSettingsVariable(const char* variable);                            // Gets a Variable Value from Settings.lua
-    bool IsExpansionEnabled(const char* expansionCode);                         // Check if an Expansion is Enabled In Settings.lua
+    bool IsContentEnabled(const char* content);                                 // Check if the content is enabled in settings.lua
 
     int32 OnGameDay(CZone* PZone);								                // Automatic action of NPC every game day
     int32 OnGameHour(CZone* PZone);								                // Automatic action of NPC every game hour
@@ -268,6 +269,7 @@ namespace luautils
     int32 OnPlayerLevelDown(CCharEntity* PChar);
 
     bool OnChocoboDig(CCharEntity* PChar, bool pre);                           // chocobo digging, pre = check
+    bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 };
 
 #endif //- _LUAUTILS_H -

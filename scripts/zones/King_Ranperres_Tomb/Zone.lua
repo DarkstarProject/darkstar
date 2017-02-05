@@ -15,14 +15,6 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17555967,17555968,17555969,17555970};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17555961,17555962,17555963};
-    SetVoidwatchNPC(vwnpc);
-
-
     zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
 
     -- Vrtra

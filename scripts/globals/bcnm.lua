@@ -23,6 +23,9 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
                    32, {0, 0}, -- Sealion's Den
                    35, {0, 0}, -- The Garden of RuHmet
                    36, {0, 0}, -- Empyreal Paradox
+                   57, {0, 0}, -- Talacca Cove
+                   64, {0, 0}, -- Navukgo Execution Chamber
+                   67, {0, 0}, -- Jade Sepulcher
                    139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
                    140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
                    144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
@@ -59,6 +62,9 @@ bcnmid_param_map = {6, {640, 0, 643, 3},
                   32, {992, 0, 993, 1},
                   35, {1024, 0},
                   36, {1056, 0},
+                  57, {1092, 4},
+                  64, {1124, 4},
+                  67, {1156, 4},
                   139, {0, 0, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 10, 10, 11, 11, 12, 12, 15, 15, 17, 17},
                   140, {32, 0, 33, 1, 34, 2, 35, 3, 36, 4},
                   144, {65, 1, 73, 9, 64, 0, 67, 3, 68, 4, 70, 6, 71, 7, 72, 8, 81, 17, 76, 12, 82, 18, 79, 15},
@@ -156,7 +162,10 @@ function EventUpdateBCNM(player, csid, option, entrance)
     print("UPDATE csid "..csid.." option "..option);
     -- seen: option 2, 3, 0 in that order
     if (csid == 0x7d03 and option == 2) then -- leaving a BCNM the player is currently in.
-        player:bcnmLeave(1);
+        player:updateEvent(3);
+        return true;
+    elseif (csid == 0x7d03 and option == 3) then -- leaving a BCNM the player is currently in.
+        player:updateEvent(0);
         return true;
     end
     if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
@@ -311,7 +320,6 @@ function GetBattleBitmask(id, zone, mode)
     -- normal sweep for NON MAAT FIGHTS
     local ret = -1;
     local mask = 0;
-    
     for zoneindex = 1, #bcnmid_param_map, 2 do
         if (zone==bcnmid_param_map[zoneindex]) then -- matched zone
             for bcnmindex = 1, #bcnmid_param_map[zoneindex + 1], 2 do -- loop bcnms in this zone
@@ -325,7 +333,7 @@ function GetBattleBitmask(id, zone, mode)
             end
         end
     end
-    
+
     return ret;
 end;
 
@@ -479,10 +487,29 @@ function checkNonTradeBCNM(player, npc)
             mask = GetBattleBitmask(1024, Zone, 1);
             player:setVar("trade_bcnmid", 1024);
         end
+
     elseif (Zone == 36) then -- Empyreal Paradox
         if (player:getCurrentMission(COP) ==  DAWN and player:getVar("PromathiaStatus")==2) then -- dawn
             mask = GetBattleBitmask(1056, Zone, 1);
             player:setVar("trade_bcnmid", 1056);
+        end
+
+    elseif (Zone == 57) then --  Talacca Cove
+        if (player:getCurrentMission(TOAU) ==  LEGACY_OF_THE_LOST) then -- TOAU-35 Legacy of the Lost
+            mask = GetBattleBitmask(1092, Zone, 1);
+            player:setVar("trade_bcnmid", 1092);
+        end
+
+    elseif (Zone == 64) then -- Navukgo Execution Chamber
+        if (player:getCurrentMission(TOAU) ==  SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus")==2) then -- TOAU-22 shield of diplomacy
+            mask = GetBattleBitmask(1124, Zone, 1);
+            player:setVar("trade_bcnmid", 1124);
+        end
+
+    elseif (Zone == 67) then -- Jade Sepulcher
+        if (player:getCurrentMission(TOAU) ==  PUPPET_IN_PERIL and player:getVar("AhtUrganStatus")==1) then -- TOAU-29 Puppet in Peril
+            mask = GetBattleBitmask(1156, Zone, 1);
+            player:setVar("trade_bcnmid", 1156);
         end
 
     elseif (Zone == 139) then -- Horlais Peak

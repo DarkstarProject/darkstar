@@ -228,6 +228,7 @@ public:
     int32 getBCNMloot(lua_State*);                   //triggers if the player opens the chest inside bcnm
     int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
 
+    int32 isSpawned(lua_State*);
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
     int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
@@ -446,6 +447,7 @@ public:
     int32 delAssaultPoint(lua_State*);      // Delete points for an assault area
 
     int32 isJailed(lua_State *L);           // Is the player jailed
+    int32 jail(lua_State* L);
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
@@ -463,6 +465,7 @@ public:
     int32 isNPC(lua_State*);
     int32 isMob(lua_State*);
     int32 isPet(lua_State*);
+    int32 isAlly(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
@@ -613,6 +616,12 @@ public:
     int32 getEntity(lua_State* L);
 
     int32 canChangeState(lua_State* L);
+
+    int32 isAlive(lua_State* L);
+    int32 isDead(lua_State* L);
+
+    int32 engage(lua_State* L);
+    int32 disengage(lua_State* L);
 };
 
 #endif

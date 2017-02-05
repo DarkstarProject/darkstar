@@ -51,7 +51,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
 
     if (charutils::hasTrait(m_PEntity, TRAIT_RAPID_SHOT))
     {
-        auto chance {m_PEntity->getMod(MOD_RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
+        auto chance {m_PEntity->getMod(Mod::RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
         if (dsprand::GetRandomNumber(100) < chance)
         {
             //reduce delay by 10%-50%

@@ -1,14 +1,12 @@
 ---------------------------------------------------
--- Whirl Claws
+-- Empty Beleaguer
 -- Deals damage in an area of effect.
 -- 100% TP: ??? / 200% TP: ??? / 300% TP: ???
----------------------------------------------------
-
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;

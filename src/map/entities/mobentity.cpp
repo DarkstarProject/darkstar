@@ -126,9 +126,14 @@ CMobEntity::CMobEntity()
         std::make_unique<CTargetFind>(this));
 }
 
-void CMobEntity::setMobFlags(uint32 MobFlags)
+uint32 CMobEntity::getEntityFlags()
 {
-    m_flags = MobFlags;
+    return m_flags;
+}
+
+void CMobEntity::setEntityFlags(uint32 EntityFlags)
+{
+    m_flags = EntityFlags;
 }
 
 CMobEntity::~CMobEntity()
@@ -504,13 +509,13 @@ void CMobEntity::PostTick()
     if (loc.zone && updatemask)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-        
+
         // If this mob is charmed, it should sync with its master
         if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
         {
             ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
         }
-        
+
         updatemask = 0;
     }
 }
@@ -602,7 +607,7 @@ void CMobEntity::Spawn()
             }
         }
     }
-    
+
     m_DespawnTimer = time_point::min();
     luautils::OnMobSpawn(this);
 }
@@ -851,7 +856,7 @@ void CMobEntity::DropItems()
                 if (dsprand::GetRandomNumber(100) < 20 && PChar->PTreasurePool->CanAddSeal() && !getMobMod(MOBMOD_NO_DROPS))
                 {
                     //RULES: Only 1 kind may drop per mob
-                    if (GetMLevel() >= 75 && luautils::IsExpansionEnabled("ABYSSEA")) //all 4 types
+                    if (GetMLevel() >= 75 && luautils::IsContentEnabled("ABYSSEA")) //all 4 types
                     {
                         switch (dsprand::GetRandomNumber(4))
                         {
@@ -869,7 +874,7 @@ void CMobEntity::DropItems()
                                 break;
                         }
                     }
-                    else if (GetMLevel() >= 70 && luautils::IsExpansionEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
+                    else if (GetMLevel() >= 70 && luautils::IsContentEnabled("ABYSSEA")) //b.seal & k.seal & k.crest
                     {
                         switch (dsprand::GetRandomNumber(3))
                         {

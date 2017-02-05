@@ -9,8 +9,6 @@
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17801352,17801354};
-    SetVoidwatchNPC(vwnpc);
 end;
 
 -----------------------------------

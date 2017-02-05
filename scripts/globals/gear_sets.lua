@@ -36,7 +36,7 @@ local GearSets =  {
              {id = 10, items = {16064,14527,14935,15606,15690},  matches = 5, matchType = matchtype.any, mods = {{MOD_REFRESH, 1, 0, 0}} },      --  Yigit Gomlek Set (1mp per tick) Adds "Refresh" effect
              {id = 11, items = {11503,13759,12745,14210,11413},  matches = 5, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 50, 0, 0}} },   --  Perle Hauberk Set 5% haste
              {id = 12, items = {11504,13760,12746,14257,11414},  matches = 5, matchType = matchtype.any, mods = {{MOD_STORETP, 8, 0, 0}} },      --  Aurore Doublet Set  store tp +8
-             {id = 13, items = {11505,13778,12747,14258,11415},  matches = 5, matchType = matchtype.any, mods = {{MOD_FASTCAST, 10, 0, 0}} },    --  Teal Saio Set  fastcast 10%
+             {id = 13, items = {11505,13778,12747,14258,11415},  matches = 2, matchType = matchtype.any, mods = {{MOD_FASTCAST, 4, 2, 0}} },    -- Teal Set: Fast Cast +4-10%
              {id = 14, items = {10890,10462,10512,11980,10610},  matches = 5, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 60, 0, 0}} },   --  Calma Armor Set haste%6
              {id = 15, items = {10892,10464,10514,11982,10612},  matches = 5, matchType = matchtype.any, mods = {{MOD_MACC, 5, 0, 0}} },        --  Magavan Armor Set  magic accuracy +5
              {id = 16, items = {10891,10463,10513,11981,10611},  matches = 5, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 5, 0, 0}} },  --  Mustela Harness Set  crit rate 5%
@@ -107,9 +107,14 @@ local GearSets =  {
              {id = 93, items = {16146,14588,15009,16315,15755},  matches = 2, matchType = matchtype.any, mods = {{MOD_FIRERES, 5, 5, 10},{MOD_ICERES, 5, 5, 10},{MOD_WINDRES, 5, 5, 10},{MOD_EARTHRES, 5, 5, 10},{MOD_THUNDERRES, 5, 5, 10},{MOD_WATERRES, 5, 5, 10},{MOD_LIGHTRES, 5, 5, 10},{MOD_DARKRES, 5, 5, 10}} }, --  Iron Ram Haubert Set
              {id = 101, items = {16035,16036}, matches = 2, matchType = matchtype.any, mods = {{MOD_AGI, 8, 0, 0}} }, -- Altdorf's/Wilhelm's earring: AGI+8
              {id = 102, items = {15042,11402}, matches = 2, matchType = matchtype.any, mods = {{MOD_ATT, 5, 0, 0},{MOD_RATT, 5, 0, 0}} }, -- Gothic Gauntlets/Sabatons: Atk/RAtk +5
-
-
-
+             {id = 104, items = {26713,27853,27999,28140,28279},  matches = 2, matchType = matchtype.any, mods = {{MOD_FASTCAST, 4, 2, 0}} }, -- Teal Set +1: Fast Cast +4-10%
+             {id = 105, items = {26712,27852,27998,28139,28278},  matches = 2, matchType = matchtype.any, mods = {{MOD_STORETP, 2, 2, 0}} }, -- Aurore Set +1: Sore TP +2-8%
+             {id = 106, items = {26711,27851,27997,28138,28277},  matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 20, 10, 0}} }, -- Perle Set +1: Haste +2-5%
+             {id = 107, items = {27652,27792,27932,28075,28212},  matches = 2, matchType = matchtype.any, mods = {{MOD_MATT, 3, 2, 0}} }, -- Morrigan's Attire Set +1: Magic Atk. Bonus +3-9%
+             {id = 108, items = {27651,27791,27931,28074,28211},  matches = 2, matchType = matchtype.any, mods = {{MOD_FASTCAST, 3, 2, 0}} }, -- Marduk's Attire Set +1: Fast Cast +3-9%
+             {id = 109, items = {27650,27790,27930,28073,28210},  matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 30, 20, 0}} }, -- Usukane Armor Set +1: Haste +3-9%
+             {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
+             {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
         }
              -- increment id by (number of mods in previous gearset - 1)
 

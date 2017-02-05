@@ -142,6 +142,56 @@ INSERT INTO `instance_entities` VALUES (41,17002514);
 INSERT INTO `instance_entities` VALUES (41,17002515);
 INSERT INTO `instance_entities` VALUES (41,17002516);
 
+-- Ashu Talif
+-- npc
+INSERT INTO `instance_entities` VALUES (53,17022979);
+-- mobs
+INSERT INTO `instance_entities` VALUES (53,17022980);
+INSERT INTO `instance_entities` VALUES (53,17022981);
+INSERT INTO `instance_entities` VALUES (53,17022982);
+INSERT INTO `instance_entities` VALUES (53,17022983);
+INSERT INTO `instance_entities` VALUES (53,17022984);
+
+INSERT INTO `instance_entities` VALUES (53,17022985);
+INSERT INTO `instance_entities` VALUES (53,17022986);
+INSERT INTO `instance_entities` VALUES (53,17022987);
+INSERT INTO `instance_entities` VALUES (53,17022988);
+INSERT INTO `instance_entities` VALUES (53,17022989);
+
+-- Path of Darkness
+-- mobs
+INSERT INTO `instance_entities` VALUES (58,17093132);
+INSERT INTO `instance_entities` VALUES (58,17093133);
+INSERT INTO `instance_entities` VALUES (58,17093134);
+INSERT INTO `instance_entities` VALUES (58,17093135);
+INSERT INTO `instance_entities` VALUES (58,17093136);
+INSERT INTO `instance_entities` VALUES (58,17093137);
+INSERT INTO `instance_entities` VALUES (58,17093142);
+-- npc
+INSERT INTO `instance_entities` VALUES (58,17093355);
+INSERT INTO `instance_entities` VALUES (58,17093357);
+INSERT INTO `instance_entities` VALUES (58,17093419);
+
+-- Nashmeira's Plea
+-- mobs
+INSERT INTO `instance_entities` VALUES (59,17093143);
+INSERT INTO `instance_entities` VALUES (59,17093144);
+INSERT INTO `instance_entities` VALUES (59,17093145);
+
+-- npc
+INSERT INTO `instance_entities` VALUES (59,17093419);
+INSERT INTO `instance_entities` VALUES (59,17093468);
+INSERT INTO `instance_entities` VALUES (59,17093469);
+INSERT INTO `instance_entities` VALUES (59,17093470);
+INSERT INTO `instance_entities` VALUES (59,17093471);
+INSERT INTO `instance_entities` VALUES (59,17093472);
+INSERT INTO `instance_entities` VALUES (59,17093473);
+INSERT INTO `instance_entities` VALUES (59,17093474);
+INSERT INTO `instance_entities` VALUES (59,17093475);
+INSERT INTO `instance_entities` VALUES (59,17093476);
+INSERT INTO `instance_entities` VALUES (59,17093477);
+INSERT INTO `instance_entities` VALUES (59,17093478);
+
 -- Arrapago Remnants
 -- npc
 INSERT INTO `instance_entities` VALUES (65,17080598);
@@ -408,6 +458,18 @@ INSERT INTO `instance_entities` VALUES (65,17080579);
 INSERT INTO `instance_entities` VALUES (65,17080580);
 INSERT INTO `instance_entities` VALUES (65,17080581);
 INSERT INTO `instance_entities` VALUES (65,17080582);
+
+-- Shades of Vengeance
+INSERT INTO `instance_entities` VALUES (79,17006754);
+INSERT INTO `instance_entities` VALUES (79,17006755);
+INSERT INTO `instance_entities` VALUES (79,17006756);
+INSERT INTO `instance_entities` VALUES (79,17006757);
+INSERT INTO `instance_entities` VALUES (79,17006758);
+INSERT INTO `instance_entities` VALUES (79,17006759);
+INSERT INTO `instance_entities` VALUES (79,17006760);
+INSERT INTO `instance_entities` VALUES (79,17006761);
+INSERT INTO `instance_entities` VALUES (79,17006762);
+INSERT INTO `instance_entities` VALUES (79,17006763);
 
 /*!40000 ALTER TABLE `instance_entities` ENABLE KEYS */;
 UNLOCK TABLES;

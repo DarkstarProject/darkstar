@@ -899,6 +899,8 @@ MOD_LIGHTRES          = 60
 MOD_DARKRES           = 61
 MOD_ATTP              = 62
 MOD_DEFP              = 63
+MOD_COMBAT_SKILLUP_RATE = 64 -- % increase in skillup combat rate
+MOD_MAGIC_SKILLUP_RATE  = 65 -- % increase in skillup magic rate
 MOD_RATTP             = 66
 MOD_EVA               = 68
 MOD_RDEF              = 69
@@ -1006,6 +1008,8 @@ MOD_FOOD_RATTP        = 186
 MOD_FOOD_RATT_CAP     = 187
 MOD_FOOD_RACCP        = 188
 MOD_FOOD_RACC_CAP     = 189
+MOD_FOOD_MACCP        =  99
+MOD_FOOD_MACC_CAP     = 100
 MOD_VERMIN_KILLER     = 224
 MOD_BIRD_KILLER       = 225
 MOD_AMORPH_KILLER     = 226
@@ -1080,11 +1084,10 @@ MOD_BUST               = 332
 MOD_FINISHING_MOVES    = 333
 MOD_SAMBA_DURATION     = 490 -- Samba duration bonus
 MOD_WALTZ_POTENTCY     = 491 -- Waltz Potentcy Bonus
-MOD_CHOCO_JIG_DURATION = 492 -- Chocobo Jig duration bonus
+MOD_JIG_DURATION       = 492 -- Jig duration bonus in percents
 MOD_VFLOURISH_MACC     = 493 -- Violent Flourish accuracy bonus
 MOD_STEP_FINISH        = 494 -- Bonus finishing moves from steps
 MOD_STEP_ACCURACY      = 403 -- Accuracy bonus for steps
-MOD_SPECTRAL_JIG       = 495 -- Spectral Jig duration modifier (percent increase)
 MOD_WALTZ_RECAST       = 497 -- Waltz recast modifier (percent)
 MOD_SAMBA_PDURATION    = 498 -- Samba percent duration bonus
 MOD_WIDESCAN           = 340
@@ -1319,7 +1322,7 @@ MOD_ENHANCES_ELEMENTAL_SIPHON = 540 -- Bonus Base MP added to Elemental Siphon s
 MOD_BP_DELAY_II               = 541 -- Blood Pact Delay Reduction II
 MOD_JOB_BONUS_CHANCE          = 542 -- Chance to apply job bonus to COR roll without having the job in the party.
 MOD_DAY_NUKE_BONUS            = 565 -- Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
-MOD_IRIDESCENCE               = 566 -- Iridesecnce trait (additional weather damage/penalty)
+MOD_IRIDESCENCE               = 566 -- Iridescence trait (additional weather damage/penalty)
 MOD_BARSPELL_AMOUNT           = 567 -- Additional elemental resistance granted by bar- spells
 MOD_BARSPELL_MDEF_BONUS       = 827 -- Extra magic defense bonus granted to the bar- spell effect
 MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
@@ -1342,20 +1345,18 @@ MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
 MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
 
-MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
+MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
+-- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
+MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hit only.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 64 -- stuff
--- MOD_SPARE = 65 -- stuff
 -- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 98 -- stuff
--- MOD_SPARE = 99 -- stuff
--- MOD_SPARE = 100 -- stuff
+-- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 840 -- stuff
--- MOD_SPARE = 841 -- stuff
 -- MOD_SPARE = 842 -- stuff
 -- MOD_SPARE = 843 -- stuff
 -- MOD_SPARE = 844 -- stuff
@@ -1908,16 +1909,21 @@ MSGBASIC_CANNOT_SEE             = 217 -- You cannot see <target>.
 MSGBASIC_MOVE_AND_INTERRUPT     = 218 -- You move and interrupt your aim.
 
 -- Additional effects and spike effects
+MSGBASIC_SPIKES_EFFECT_DMG      = 44  -- <Defender>'s spikes deal <number> points of damage to the <Attacker>.
+MSGBASIC_SPIKES_EFFECT_HP_DRAIN = 132 -- <Defender>'s spikes drain <number> HP from the <Attacker>.
+MSGBASIC_ADD_EFFECT_MP_HEAL     = 152 -- Additional effect: The <player> recovers <number> MP.
 MSGBASIC_ADD_EFFECT_STATUS      = 160 -- Additional effect: <Status Effect>.
 MSGBASIC_ADD_EFFECT_HP_DRAIN    = 161 -- Additional effect: <number> HP drained from <target>.
 MSGBASIC_ADD_EFFECT_MP_DRAIN    = 162 -- Additional effect: <number> MP drained from <target>.
 MSGBASIC_ADD_EFFECT_DMG         = 163 -- Additional effect: <number> points of damage.
-MSGBASIC_ADD_EFFECT_STATUS2     = 164 -- Additional effect: <Status Effect>. (Duplicate?)
+MSGBASIC_ADD_EFFECT_STATUS_2    = 164 -- Additional effect: <Status Effect>. (Duplicate?)
 MSGBASIC_ADD_EFFECT_TP_DRAIN    = 165 -- Additional effect: <number> TP drained from <target>.
-MSGBASIC_ADD_EFFECT_STATUS3     = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
-MSGBASIC_ADD_EFFECT_HEAL        = 167 -- Additional effect: The <target> recovers <number> HP. (used when target absorbs element)
-MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s KO effect disappears!
-MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by holloween staves)
+MSGBASIC_ADD_EFFECT_STATUS_3    = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
+MSGBASIC_ADD_EFFECT_HP_HEAL     = 167 -- Additional effect: The <player> recovers <number> HP.
+MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status Effect> effect disappears!
+MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
+MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
+MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!

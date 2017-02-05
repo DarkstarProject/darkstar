@@ -1,18 +1,17 @@
 ---------------------------------------------
---  Damnation Dive
+-- Damnation Dive
 --
---  Description: Dives into a single target. Additional effect: Knockback + Stun
---  Type: Physical
---  Utsusemi/Blink absorb: 3 shadow
---  Range: Melee
---  Notes: Used instead of Gliding Spike by certain notorious monsters.
+-- Description: Dives into a single target. Additional effect: Knockback + Stun
+-- Type: Physical
+-- Utsusemi/Blink absorb: 3 shadow
+-- Range: Melee
+-- Notes: Used instead of Gliding Spike by certain notorious monsters.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 ---------------------------------------------------
 -- onMobSkillCheck
 -- Check for Grah Family id 122,123,124
@@ -27,13 +26,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-
     local numhits = 3;
     local accmod = 1;
     local dmgmod = .8;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-
     local typeEffect = EFFECT_STUN;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);

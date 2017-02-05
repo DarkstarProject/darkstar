@@ -62,13 +62,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17269261,17269262};
-
-    SetFieldManual(manuals);
-
-    local vwnpc = {17269272,17269273,17269274,17269278,17269279};
-    SetVoidwatchNPC(vwnpc);
-
     -- Roc
     SetRespawnTime(17269106, 900, 10800);
 end;

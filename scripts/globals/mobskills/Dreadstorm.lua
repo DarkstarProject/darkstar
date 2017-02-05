@@ -1,16 +1,16 @@
 ---------------------------------------------
---  Dreadstorm
+-- Dreadstorm
 --
---  Description: Deals magical damage in an area of effect. Additional effect: Terror
---  Type: Magical
---  Wipes Shadows
---  Range: 13' radial
+-- Description: Deals magical damage in an area of effect. Additional effect: Terror
+-- Type: Magical
+-- Wipes Shadows
+-- Range: 13' radial
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
@@ -25,8 +25,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
+    local typeEffect = EFFECT_TERROR;
+    local duration = 10;
 
--- TODO: Add EFFECT_TERROR once it actually does something.
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));
 
     local dmgmod = 2.5;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 4,ELE_DARK,dmgmod,TP_MAB_BONUS,1);

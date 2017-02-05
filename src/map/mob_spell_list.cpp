@@ -56,7 +56,7 @@ namespace mobSpellList
                             mob_spell_lists.spell_id, \
                             mob_spell_lists.min_level, \
                             mob_spell_lists.max_level, \
-                            spell_list.required_expansion \
+                            spell_list.content_tag \
                             FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
                             WHERE spell_list_id < %u;";
 
@@ -81,7 +81,7 @@ namespace mobSpellList
         }
     }
 
-    //Get Spell By ID                                              
+    //Get Spell By ID
     CMobSpellList* GetMobSpellList(uint16 MobSpellListID)
     {
         if (MobSpellListID < MAX_MOBSPELLLIST_ID)

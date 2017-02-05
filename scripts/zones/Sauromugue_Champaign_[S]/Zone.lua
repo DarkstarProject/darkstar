@@ -14,10 +14,6 @@ require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17179516,17179517,17179518,17179522,17179523};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------

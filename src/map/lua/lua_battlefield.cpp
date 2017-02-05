@@ -183,6 +183,50 @@ inline int32 CLuaBattlefield::getAllies(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBattlefield::getEnemies(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+
+    lua_createtable(L, m_PLuaBattlefield->m_EnemyList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto enemy : m_PLuaBattlefield->m_EnemyList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)enemy);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaBattlefield::getPlayers(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
+
+    lua_createtable(L, m_PLuaBattlefield->m_PlayerList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto player : m_PLuaBattlefield->m_PlayerList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)player);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
 inline int32 CLuaBattlefield::lose(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
@@ -220,6 +264,8 @@ Lunar<CLuaBattlefield>::Register_t CLuaBattlefield::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBattlefield,setEntrance),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,insertAlly),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,getAllies),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,getEnemies),
+    LUNAR_DECLARE_METHOD(CLuaBattlefield,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,lose),
     LUNAR_DECLARE_METHOD(CLuaBattlefield,win),
     {nullptr,nullptr}

@@ -117,7 +117,8 @@ public:
     CMobEntity();
     ~CMobEntity();
 
-    void      setMobFlags(uint32 MobFlags);            // Change the current value in m_flags
+    uint32    getEntityFlags();                        // Returns the current value in m_flags
+    void      setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
 
     bool      hasRageMode();                           // If the mob has the rage mode: true
     void      addRageMode();                           // Rage mode ON:  stat x10
@@ -138,8 +139,8 @@ public:
     bool      CanLink(position_t* pos, int16 superLink = 0);
 
     bool      CanDropGil();                            // mob has gil to drop
-    bool      CanStealGil();                            // can steal gil from mob
-    void      ResetGilPurse();                          // reset total gil held
+    bool      CanStealGil();                           // can steal gil from mob
+    void      ResetGilPurse();                         // reset total gil held
 
     void      setMobMod(uint16 type, int16 value);
     int16     getMobMod(uint16 type);
@@ -248,6 +249,7 @@ public:
 
     uint32    m_flags;                                 // includes the CFH flag and whether the HP bar should be shown or not (e.g. Yilgeban doesnt)
     uint8     m_name_prefix;                           // The ding bats VS Ding bats
+    string_t  packetName;                              // Used for battle allies
 
     CEnmityContainer* PEnmityContainer;                // система ненависти монстров
 
