@@ -5257,7 +5257,7 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
-            if (PTarget->BazaarCustomers[i].id == PChar->targid)
+            if (PTarget->BazaarCustomers[i].id == PChar->id)
             {
                 PTarget->BazaarCustomers.erase(PTarget->BazaarCustomers.begin() + i--);
             }
