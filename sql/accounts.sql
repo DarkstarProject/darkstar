@@ -1,32 +1,28 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.6.35, for Win64 (x86_64)
 --
--- Serveur: localhost
--- Généré le : Jeu 05 Janvier 2012 à 05:50
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
+-- Host: localhost    Database: dspdb
+-- ------------------------------------------------------
+-- Server version	5.6.35-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de données: `dspdb`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `accounts`
+-- Table structure for table `accounts`
 --
 
 DROP TABLE IF EXISTS `accounts`;
-CREATE TABLE IF NOT EXISTS `accounts` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `accounts` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
   `login` varchar(16) NOT NULL DEFAULT '',
   `password` varchar(64) NOT NULL DEFAULT '',
@@ -39,3 +35,43 @@ CREATE TABLE IF NOT EXISTS `accounts` (
   `priv` tinyint(3) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `accounts`
+--
+
+LOCK TABLES `accounts` WRITE;
+/*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES (1000,'Nigg','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-07 11:51:56','2017-02-05 05:22:44',16,1,1),(1001,'d','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-07 23:56:25','2017-01-15 01:36:56',16,1,1),(1002,'Kolleh','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-08 20:10:30','2017-02-06 04:54:21',16,1,1),(1003,'umpa','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-10 23:50:50','2017-01-17 02:08:54',16,1,1),(1004,'Gym','*2F582B56F83484355C61ED4A17A826D629BB94CA','','','2017-01-12 17:39:06','2017-02-05 19:24:20',16,1,1),(1005,'Gymshady','*2F582B56F83484355C61ED4A17A826D629BB94CA','','','2017-01-12 17:39:49','2017-02-06 03:05:26',16,1,1),(1006,'Roland','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-13 18:02:14','2017-02-06 07:41:59',16,1,1),(1007,'Umpalumpa','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-13 18:19:26','2017-02-06 04:57:58',16,1,1),(1008,'cmlippin','*DD6A8E4E7D3B0CCE7AD5D208BFA43DDC61423EB1','','','2017-01-13 18:40:47','2017-02-06 00:32:05',16,1,1),(1009,'Davewesh','*5EC2FCA499EA58BF784529F4A53F70E8EA19931E','','','2017-01-13 22:23:28','2017-01-14 06:28:07',16,1,1),(1010,'Serly','*090D1B3D722239B9F16E24C34E4F771201650195','','','2017-01-15 22:29:06','2017-01-16 06:43:41',16,1,1),(1011,'1','*E6CC90B878B948C35E92B003C792C46C58C4AF40','','','2017-01-17 20:38:18','2017-01-18 04:38:18',16,1,1),(1012,'Demetriel23','*98511B9BD42C6B547CD2467474DE9052B6E58297','','','2017-01-17 20:41:29','2017-02-06 04:26:33',16,1,1),(1013,'F0xdi316','*DAEA9BCE6255AE8E8BB306E01FF6211A7DA121D4','','','2017-01-26 19:34:30','2017-01-27 01:44:48',16,1,1),(1014,'test','*94BDCEBE19083CE2A1F959FD02F964C7AF4CFC29','','','2017-01-26 19:38:01','2017-01-27 01:38:01',16,1,1),(1015,'foxdie','*2F582B56F83484355C61ED4A17A826D629BB94CA','','','2017-01-26 19:47:42','2017-01-27 03:44:16',16,1,1),(1016,'Xeno','*BD3B02CF07E2BC08BE522C750E6D54377AEC5A34','','','2017-01-26 21:42:04','2017-02-05 04:34:05',16,1,1),(1017,'Ironchoron','*D2C06EAFF91DA77103E880A02EA25CE46F254323','','','2017-01-28 23:41:08','2017-02-06 05:26:43',16,1,1);
+/*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `account_delete` BEFORE DELETE ON `accounts` FOR EACH ROW BEGIN
+	DELETE FROM `accounts_banned` WHERE `accid` = OLD.id;
+	DELETE FROM `chars` WHERE `accid` = OLD.id;     
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-02-06  2:07:30
