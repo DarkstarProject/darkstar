@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.29-76.2-log
+-- Server version   5.6.29-76.2-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -321,7 +321,7 @@ INSERT INTO `mob_family_system` VALUES (251,'Uragnite',2,'Aquan',1,40,120,90,2,5
 INSERT INTO `mob_family_system` VALUES (252,'Vampyr',19,'Undead',1,40,100,120,1,3,3,4,3,6,6,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,8,6,0);
 INSERT INTO `mob_family_system` VALUES (253,'Wamoura',20,'Vermin',1,40,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,0.5,1.125,1,1,1,1,1,1,1,35,0);
 INSERT INTO `mob_family_system` VALUES (254,'Wamouracampa',20,'Vermin',1,45,90,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,0.875,1.125,1,1,1,1,1,1,1,2,0);
-INSERT INTO `mob_family_system` VALUES (255,'Wanderer',12,'Empty',0,40,20,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
+INSERT INTO `mob_family_system` VALUES (255,'Wanderer',12,'Empty',0,40,110,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
 INSERT INTO `mob_family_system` VALUES (256,'Weeper',12,'Empty',0,50,110,90,2,2,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,257,0);
 INSERT INTO `mob_family_system` VALUES (257,'Wivre',14,'Lizard',3,40,140,90,2,5,1,6,6,3,3,3,3,3,3,1,1,1,1,1,1.125,1.125,1,1,1,1,1,4,259,0);
 INSERT INTO `mob_family_system` VALUES (258,'Worm',1,'Amorph',0,0,70,200,4,3,6,4,3,4,4,3,3,3,3,1,1,1,1,1,1,1.25,0.875,1,1,1.25,0.875,4,2,1);
@@ -533,6 +533,8 @@ INSERT INTO `mob_family_system` VALUES (495,'Astral_Flow_Pet',5,'Avatar',0,40,10
 INSERT INTO `mob_family_system` VALUES (496,'ChanequeMandragora',17,'Plantoid',0,40,107,120,3,3,4,5,4,4,2,3,3,3,3,1,1.25,1,1,1.25,1.25,1.25,1,1.25,1,0.875,1.25,4,6,0);
 INSERT INTO `mob_family_system` VALUES (497,'Cloud_of_Darkness',18,'Unclassified',3,40,120,140,1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,1,1,1,1,1,1,0,3,0);
 INSERT INTO `mob_family_system` VALUES (498,'Doll',3,'Arcana',1,40,108,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1.25,1,1,1,2,33,0);
+INSERT INTO `mob_family_system` VALUES (499,'Stray',12,'Empty',0,40,20,90,1,3,4,3,6,6,5,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
+
 /*!40000 ALTER TABLE `mob_family_system` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
