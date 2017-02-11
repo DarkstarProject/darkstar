@@ -416,6 +416,16 @@ INSERT INTO `item_mods_pet` VALUES (21183,28,108);    -- Magic Atk. Bonus +108
 INSERT INTO `item_mods_pet` VALUES (21361, 28, 6); -- Pet: MAB +6
 
 -- -------------------------------------------------------
+-- Thur. Ring +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (26201,23,23); -- Attack+23
+INSERT INTO `item_mods_pet` VALUES (26201,24,23); -- Ranged Attack+23
+INSERT INTO `item_mods_pet` VALUES (26201,25,22); -- Accuracy+22
+INSERT INTO `item_mods_pet` VALUES (26201,26,22); -- Ranged Accuract+22
+INSERT INTO `item_mods_pet` VALUES (26201,384,40); -- Haste+4%
+INSERT INTO `item_mods_pet` VALUES (26201,160,-4); -- Damage Taken-4%
+
+-- -------------------------------------------------------
 -- Glyphic Horn
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (26652,28,20);     -- Magic Attack Bonus +20
