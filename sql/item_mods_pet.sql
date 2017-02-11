@@ -375,6 +375,11 @@ INSERT INTO `item_mods_pet` VALUES (16654, 368, 10); -- Pet: "Regain"+10
 INSERT INTO `item_mods_pet` VALUES (17961, 1, 10); -- Pet: DEF +10
 
 -- -------------------------------------------------------
+-- Ravana's Axe
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18547, 370, 3); -- Pet: Adds "Regen" effect (3/tick)
+
+-- -------------------------------------------------------
 -- Aymur *Mythic* - LVL 75 - ignored the Aftermath acc, atk occ.attacks twice
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (18999, 23, 40); -- Pet: Attack +40
@@ -385,15 +390,131 @@ INSERT INTO `item_mods_pet` VALUES (18999, 23, 40); -- Pet: Attack +40
 INSERT INTO `item_mods_pet` VALUES (19005, 28, 20); -- Pet: MAB +20
 
 -- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 80
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19068, 23, 50); -- Pet: Attack +50
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 85
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19088, 23, 60); -- Pet: Attack +60
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 90
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19620, 23, 70); -- Pet: Attack +70
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 95
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19718, 23, 70); -- Pet: Attack +70
+
+-- -------------------------------------------------------
+-- Demonry Core
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19764, 25, 4); -- Pet: Accuracy+4
+
+-- -------------------------------------------------------
 -- Esper Stone - LVL 94
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (19772, 28, 1); -- Pet: MAB +1
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19827, 23, 80); -- Pet: Attack +80
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 99 II
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (19956, 23, 80); -- Pet: Attack +80
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 99 (iLvl 119)
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20792, 23, 80); -- Pet: Attack +80
+
+-- -------------------------------------------------------
+-- Aymur *Mythic* - LVL 99 (iLvl 119 II)
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20793, 23, 80); -- Pet: Attack +80
+
+-- -------------------------------------------------------
+-- Skullrender
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20797, 288, 5); -- Pet: Haste+8% "Double Attack"+5%
+INSERT INTO `item_mods_pet` VALUES (20797, 384, 81);
+
+-- -------------------------------------------------------
+-- Deacon Tabar
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20798, 28, 20); -- Pet: Magic Accuracy+10 "Magic Atk. Bonus"+20
+INSERT INTO `item_mods_pet` VALUES (20798, 30, 10);
+
+-- -------------------------------------------------------
+-- Mdomo Axe
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20799, 23, 20); -- Pet: Attack+20 Ranged Attack+20 "Magic Atk. Bonus"+15
+INSERT INTO `item_mods_pet` VALUES (20799, 25, 20);
+INSERT INTO `item_mods_pet` VALUES (20799, 28, 15);
+
+-- -------------------------------------------------------
+-- Mdomo Axe +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20800, 23, 20); -- Pet: Attack+21 Ranged Attack+21 "Magic Atk. Bonus"+16
+INSERT INTO `item_mods_pet` VALUES (20800, 25, 20);
+INSERT INTO `item_mods_pet` VALUES (20800, 28, 16);
+
+-- -------------------------------------------------------
+-- Nibiru Tabar
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20801, 27, 5); -- Pet: Enmity+5 "Double Attack"+2%
+INSERT INTO `item_mods_pet` VALUES (20801, 288, 2);
+
+-- -------------------------------------------------------
+-- Buramgh
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20806, 370, 2); -- Pet: "Regen"+2
+
+-- -------------------------------------------------------
+-- Buramgh +1
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20807, 370, 3); -- Pet: "Regen"+3
+
+-- -------------------------------------------------------
+-- Arktoi
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20811, 23, 20); -- Pet: Attack+20 "Double Attack"+3%
+INSERT INTO `item_mods_pet` VALUES (20811, 288, 3);
+
+-- -------------------------------------------------------
+-- Izizoeksi
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20812, 27, 7); -- Pet: Haste+2% Enmity+7 Damage taken -5%
+INSERT INTO `item_mods_pet` VALUES (20812, 160, -5);
+INSERT INTO `item_mods_pet` VALUES (20812, 384, 20);
+
+-- -------------------------------------------------------
+-- Emxgha
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20813, 68, 15); -- Pet: Evasion+15
 
 -- -------------------------------------------------------
 -- Anahera Tabar (iLvl 119)
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (20822,27,6);      -- Enmity +6
 INSERT INTO `item_mods_pet` VALUES (20822,68,40);     -- Evasion +40
+
+-- -------------------------------------------------------
+-- Hunahpu
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20826,25,30); -- Pet: Accuracy+30 Haste+3%
+INSERT INTO `item_mods_pet` VALUES (20826,384,30);
+
+-- -------------------------------------------------------
+-- Brethren Axe
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (20828,25,20); -- Pet: Accuracy+20
 
 -- -------------------------------------------------------
 -- Aalak' Axe (iLvl 100)
@@ -414,6 +535,11 @@ INSERT INTO `item_mods_pet` VALUES (21183,28,108);    -- Magic Atk. Bonus +108
 -- Esper Stone + 1 - LVL 99
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (21361, 28, 6); -- Pet: MAB +6
+
+-- -------------------------------------------------------
+-- Claustrum
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (22060, 25, 60); -- Pet: Accuracy+60
 
 -- -------------------------------------------------------
 -- Glyphic Horn
