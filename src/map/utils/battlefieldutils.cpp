@@ -44,8 +44,8 @@ namespace battlefieldutils {
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
         const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
-						    FROM bcnm_info \
-							WHERE bcnmId = %u";
+                            FROM bcnm_info \
+                            WHERE bcnmId = %u";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
 
@@ -83,8 +83,8 @@ namespace battlefieldutils {
 
         //get ids from DB
         const int8* fmtQuery = "SELECT monsterId, conditions \
-						    FROM bcnm_battlefield \
-							WHERE bcnmId = %u AND battlefieldNumber = %u";
+                            FROM bcnm_battlefield \
+                            WHERE bcnmId = %u AND battlefieldNumber = %u";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
@@ -151,8 +151,8 @@ namespace battlefieldutils {
 
         //get ids from DB
         const int8* fmtQuery = "SELECT npcId \
-						    FROM bcnm_treasure_chests \
-							WHERE bcnmId = %u AND battlefieldNumber = %u";
+                            FROM bcnm_treasure_chests \
+                            WHERE bcnmId = %u AND battlefieldNumber = %u";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
@@ -217,9 +217,9 @@ namespace battlefieldutils {
         //check for all dead for 3min (or whatever the rule mask says)
         if (battlefield->getDeadTime() != time_point::min()) {
             if (battlefield->m_RuleMask & RULES_REMOVE_3MIN) {
-                //	if(((tick - battlefield->getDeadTime())/1000) % 20 == 0){
-                //		battlefield->pushMessageToAllInBcnm(200,180 - (tick - battlefield->getDeadTime())/1000);
-                //	}
+                //  if(((tick - battlefield->getDeadTime())/1000) % 20 == 0){
+                //      battlefield->pushMessageToAllInBcnm(200,180 - (tick - battlefield->getDeadTime())/1000);
+                //  }
                 if (tick - battlefield->getDeadTime() > 3min) {
                     ShowDebug("All players from the battlefield %i inst:%i have fallen for 3mins. Removing.\n",
                         battlefield->getID(), battlefield->getBattlefieldNumber());
@@ -287,9 +287,9 @@ namespace battlefieldutils {
 
     uint8 getMaxLootGroups(CBattlefield* battlefield) {
         const int8* fmtQuery = "SELECT MAX(lootGroupId) \
-						FROM bcnm_loot \
-						JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
-						WHERE bcnm_info.LootDropId = %u LIMIT 1";
+                        FROM bcnm_loot \
+                        JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
+                        WHERE bcnm_info.LootDropId = %u LIMIT 1";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId());
         if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
@@ -303,11 +303,11 @@ namespace battlefieldutils {
 
     uint16 getRollsPerGroup(CBattlefield* battlefield, uint8 groupID) {
         const int8* fmtQuery = "SELECT SUM(CASE \
-			WHEN LootDropID = %u \
-			AND lootGroupId = %u \
-			THEN rolls  \
-			ELSE 0 END) \
-			FROM bcnm_loot;";
+            WHEN LootDropID = %u \
+            AND lootGroupId = %u \
+            THEN rolls  \
+            ELSE 0 END) \
+            FROM bcnm_loot;";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId(), groupID);
         if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
@@ -378,8 +378,8 @@ namespace battlefieldutils {
 
         //get ids from DB
         const int8* fmtQuery = "SELECT monsterId \
-								FROM bcnm_battlefield \
-								WHERE bcnmId = %u AND battlefieldNumber = 2";
+                                FROM bcnm_battlefield \
+                                WHERE bcnmId = %u AND battlefieldNumber = 2";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
 
