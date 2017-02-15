@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         player:messageSpecial(ITEM_OBTAINED,16575); -- Curtana
         
         -- ??? dissapears for 2 hours and reappears on new position
-        local hideTime = 7200;
+        local hideTime = 60;
     else
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16575); -- Curtana
         

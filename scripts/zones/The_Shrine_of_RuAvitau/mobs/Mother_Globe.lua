@@ -70,7 +70,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     local MotherGlobe = mob:getID();
 
-    mob:setRespawnTime(math.random(10800,21600)); -- respawn 3-6 hrs
+    mob:setRespawnTime(math.random(60,120)); -- respawn 5-10 min
 
     for i = MotherGlobe+1, MotherGlobe+6 do
         if (GetMobAction(i) ~= 0) then

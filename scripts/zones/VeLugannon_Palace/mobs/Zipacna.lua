@@ -121,5 +121,5 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-    mob:setRespawnTime(math.random((10800),(14400))); -- respawn 3-4 hrs
+    mob:setRespawnTime(math.random((60),(120))); -- respawn 5-10 min
 end;
