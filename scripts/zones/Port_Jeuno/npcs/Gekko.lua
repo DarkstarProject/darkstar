@@ -29,7 +29,7 @@ stock = {0x1036,2387,        -- Eye Drops
      0x1010,837,        -- Potion     
      0x1020,4445,        -- Ether     
      0x110d,120 ,        -- Rolanberry     
-     0x00bf,36000,        -- Autumn's End      
+     0x00bd,36000,        -- Autumn's End      
      0x00bc,31224,        -- Acolyte's Grief
      0x13dd,50400}        -- Scroll of Regen IV
  
