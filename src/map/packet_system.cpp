@@ -1167,7 +1167,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
-            PItem->setReserve(quantity);
+            PItem->setReserve(quantity + PItem->getReserve());
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {

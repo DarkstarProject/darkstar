@@ -1474,7 +1474,7 @@ namespace charutils
 
             if (PItem != nullptr)
             {
-                if (PItem->getStackSize() == 1)
+                if (PItem->getStackSize() == 1 && PItem->getReserve() == 1)
                 {
                     CItem* PNewItem = itemutils::GetItem(PItem);
                     ShowDebug(CL_CYAN"Adding %s to %s inventory stacksize 1\n" CL_RESET, PNewItem->getName(), PTarget->GetName());
