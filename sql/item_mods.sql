@@ -3187,7 +3187,7 @@ INSERT INTO `item_mods` VALUES (11056,68,-5);     -- Evasion-5
 INSERT INTO `item_mods` VALUES (11057,25,3);      -- ghillie_earring_+1 Accuracy+3
 INSERT INTO `item_mods` VALUES (11057,23,9);      -- Attack+9
 INSERT INTO `item_mods` VALUES (11057,68,-6);     -- Evasion-6
-INSERT INTO `item_mods` VALUES (11058,25,-16); -- acc 
+INSERT INTO `item_mods` VALUES (11058,25,-16); -- acc
 INSERT INTO `item_mods` VALUES (11058,26,16); -- racc
 INSERT INTO `item_mods` VALUES (11059,25,-15); -- acc
 INSERT INTO `item_mods` VALUES (11059,26,17); -- racc
@@ -11970,7 +11970,7 @@ INSERT INTO `item_mods` VALUES (13925,501,15);    -- Spikes chance +15%
 INSERT INTO `item_mods` VALUES (13926,1,32);      -- Rasetsu Jinpachi +1: DEF 32
 INSERT INTO `item_mods` VALUES (13926,23,3);      -- Attack +3
 INSERT INTO `item_mods` VALUES (13926,291,1);     -- Counter +1%
-INSERT INTO `item_mods` VALUES (13926,499,1);     -- Blaze spikes 
+INSERT INTO `item_mods` VALUES (13926,499,1);     -- Blaze spikes
 INSERT INTO `item_mods` VALUES (13926,500,25);    -- Spikes damage +25
 INSERT INTO `item_mods` VALUES (13926,501,20);    -- Spikes chance +20%
 INSERT INTO `item_mods` VALUES (13927,1,33);
@@ -22302,7 +22302,7 @@ INSERT INTO `item_mods` VALUES (18540,10,7);
 INSERT INTO `item_mods` VALUES (18541,384,20);
 INSERT INTO `item_mods` VALUES (18542,1,10);
 INSERT INTO `item_mods` VALUES (18542,8,10);
-INSERT INTO `item_mods` VALUES (18543,27,4); -- enmity 
+INSERT INTO `item_mods` VALUES (18543,27,4); -- enmity
 INSERT INTO `item_mods` VALUES (18543,8,5); -- str
 INSERT INTO `item_mods` VALUES (18544,27,5); -- enmity
 INSERT INTO `item_mods` VALUES (18544,8,6); -- str
@@ -33145,7 +33145,7 @@ INSERT INTO `item_mods` VALUES (26888,14,29);
 INSERT INTO `item_mods` VALUES (26888,29,6);
 INSERT INTO `item_mods` VALUES (26888,31,80);
 INSERT INTO `item_mods` VALUES (26888,68,41);
-INSERT INTO `item_mods` VALUES (26888,357,8);     -- Shomonjijoe +1: Blood Pact ability delay -8 
+INSERT INTO `item_mods` VALUES (26888,357,8);     -- Shomonjijoe +1: Blood Pact ability delay -8
 INSERT INTO `item_mods` VALUES (26888,369,3);
 INSERT INTO `item_mods` VALUES (26888,384,30);
 INSERT INTO `item_mods` VALUES (26891,1,142);
@@ -34367,7 +34367,7 @@ INSERT INTO `item_mods` VALUES (27004,29,1);
 INSERT INTO `item_mods` VALUES (27004,31,25);
 INSERT INTO `item_mods` VALUES (27004,68,10);
 INSERT INTO `item_mods` VALUES (27004,117,17);
-INSERT INTO `item_mods` VALUES (27004,357,5);     -- Glyphic Bracers: Blood Pact ability delay -5 
+INSERT INTO `item_mods` VALUES (27004,357,5);     -- Glyphic Bracers: Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (27004,384,31);
 INSERT INTO `item_mods` VALUES (27005,1,81);
 INSERT INTO `item_mods` VALUES (27005,2,18);
@@ -39176,7 +39176,7 @@ INSERT INTO `item_mods` VALUES (27807,12,14);
 INSERT INTO `item_mods` VALUES (27807,13,14);
 INSERT INTO `item_mods` VALUES (27807,14,14);
 INSERT INTO `item_mods` VALUES (27807,23,12);
-INSERT INTO `item_mods` VALUES (27807,24,9);
+INSERT INTO `item_mods` VALUES (27807,27,9);     -- Enmity +9
 INSERT INTO `item_mods` VALUES (27807,29,2);
 INSERT INTO `item_mods` VALUES (27807,31,43);
 INSERT INTO `item_mods` VALUES (27807,68,20);
@@ -39508,7 +39508,7 @@ INSERT INTO `item_mods` VALUES (27828,12,23);
 INSERT INTO `item_mods` VALUES (27828,13,23);
 INSERT INTO `item_mods` VALUES (27828,14,23);
 INSERT INTO `item_mods` VALUES (27828,23,12);
-INSERT INTO `item_mods` VALUES (27828,24,9);
+INSERT INTO `item_mods` VALUES (27828,27,9); -- Enmity +9
 INSERT INTO `item_mods` VALUES (27828,29,5);
 INSERT INTO `item_mods` VALUES (27828,31,64);
 INSERT INTO `item_mods` VALUES (27828,68,44);
@@ -41657,8 +41657,8 @@ INSERT INTO `item_mods` VALUES (28090,11,11);
 INSERT INTO `item_mods` VALUES (28090,12,18);
 INSERT INTO `item_mods` VALUES (28090,13,10);
 INSERT INTO `item_mods` VALUES (28090,14,10);
-INSERT INTO `item_mods` VALUES (28090,24,4);
 INSERT INTO `item_mods` VALUES (28090,25,15);
+INSERT INTO `item_mods` VALUES (28090,27,4);      -- Enmity+4
 INSERT INTO `item_mods` VALUES (28090,29,2);
 INSERT INTO `item_mods` VALUES (28090,31,54);
 INSERT INTO `item_mods` VALUES (28090,68,17);
@@ -41985,8 +41985,8 @@ INSERT INTO `item_mods` VALUES (28111,11,17);
 INSERT INTO `item_mods` VALUES (28111,12,29);
 INSERT INTO `item_mods` VALUES (28111,13,16);
 INSERT INTO `item_mods` VALUES (28111,14,16);
-INSERT INTO `item_mods` VALUES (28111,24,4);
 INSERT INTO `item_mods` VALUES (28111,25,15);
+INSERT INTO `item_mods` VALUES (28111,27,4); -- Enmity +4
 INSERT INTO `item_mods` VALUES (28111,29,4);
 INSERT INTO `item_mods` VALUES (28111,31,80);
 INSERT INTO `item_mods` VALUES (28111,68,32);
@@ -42054,7 +42054,7 @@ INSERT INTO `item_mods` VALUES (28115,29,6); -- mdef
 INSERT INTO `item_mods` VALUES (28115,112,13); -- healing magic
 INSERT INTO `item_mods` VALUES (28115,113,17); -- enhancing magic
 INSERT INTO `item_mods` VALUES (28115,384,51); -- haste
-INSERT INTO `item_mods` VALUES (28115,374,10); -- Cure Potency 
+INSERT INTO `item_mods` VALUES (28115,374,10); -- Cure Potency
 INSERT INTO `item_mods` VALUES (28116,1,113);
 INSERT INTO `item_mods` VALUES (28116,2,47);
 INSERT INTO `item_mods` VALUES (28116,8,29);
