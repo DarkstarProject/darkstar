@@ -15,6 +15,7 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back 
 ITEM_DELIVERY_DIALOG = 7774; -- Now offering quick and easy delivery of packages to residences everywhere!
 
           GUIDE_STONE = 7131; -- Up: Upper Jeuno (Selection Dialogfacing San d'Oria) Down: Port Jeuno (Selection Dialogfacing Windurst)
+  ZAUKO_IS_RECRUITING = 7248; -- Zauko is recruiting an adventurer to light the lamps.
    STREETLAMP_EXAMINE = 7245; -- You examine the lamp. It seems that it must be lit manually.
 PARIKE_PORANKE_DIALOG = 8945; -- All these people running back and forth... There have to be a few that have munched down more mithkabobs than they can manage.
     WAYPOINT_EXAMINE = 10336; -- An enigmatic contrivance hovers in silence...
