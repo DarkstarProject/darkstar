@@ -93,7 +93,7 @@ end;
 -- onGameHour        
 -----------------------------------          
 
-function onGameHour(npc, mob, player)
+function onGameHour(zone)
     
     local VanadielHour = VanadielHour();
     local qm2 = GetNPCByID(16921028); -- Ix'aern drk
