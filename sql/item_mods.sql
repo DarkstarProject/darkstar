@@ -39455,21 +39455,22 @@ INSERT INTO `item_mods` VALUES (27821,31,54);
 INSERT INTO `item_mods` VALUES (27821,68,19);
 INSERT INTO `item_mods` VALUES (27821,357,6);     -- Convoker's Doublet: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27821,384,20);
-INSERT INTO `item_mods` VALUES (27822,1,93);
-INSERT INTO `item_mods` VALUES (27822,2,38);
-INSERT INTO `item_mods` VALUES (27822,5,46);
-INSERT INTO `item_mods` VALUES (27822,8,20);
-INSERT INTO `item_mods` VALUES (27822,9,23);
-INSERT INTO `item_mods` VALUES (27822,10,15);
-INSERT INTO `item_mods` VALUES (27822,11,17);
-INSERT INTO `item_mods` VALUES (27822,12,14);
-INSERT INTO `item_mods` VALUES (27822,13,14);
-INSERT INTO `item_mods` VALUES (27822,14,14);
-INSERT INTO `item_mods` VALUES (27822,29,3);
-INSERT INTO `item_mods` VALUES (27822,31,43);
-INSERT INTO `item_mods` VALUES (27822,68,23);
-INSERT INTO `item_mods` VALUES (27822,369,2);
-INSERT INTO `item_mods` VALUES (27822,384,40);
+INSERT INTO `item_mods` VALUES (27822,1,93); -- Assimilator's Jubbah DEF 93
+INSERT INTO `item_mods` VALUES (27822,2,38); -- HP +38
+INSERT INTO `item_mods` VALUES (27822,5,46); -- MP +46
+INSERT INTO `item_mods` VALUES (27822,8,20); -- STR +20
+INSERT INTO `item_mods` VALUES (27822,9,23); -- DEX +23
+INSERT INTO `item_mods` VALUES (27822,10,15); -- VIT +15
+INSERT INTO `item_mods` VALUES (27822,11,17); -- AGI +17
+INSERT INTO `item_mods` VALUES (27822,12,14); -- INT +14
+INSERT INTO `item_mods` VALUES (27822,13,14); -- MND +14
+INSERT INTO `item_mods` VALUES (27822,14,14); -- CHR +14
+INSERT INTO `item_mods` VALUES (27822,29,3); -- "Magic Def. Bonus" +3
+INSERT INTO `item_mods` VALUES (27822,31,43); -- Magic Evasion +43
+INSERT INTO `item_mods` VALUES (27822,68,23); -- Evasion +23
+INSERT INTO `item_mods` VALUES (27822,369,2); -- Adds "Refresh" effect
+INSERT INTO `item_mods` VALUES (27822,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (27822,122,18); -- Blue magic skill +18
 INSERT INTO `item_mods` VALUES (27823,1,89);
 INSERT INTO `item_mods` VALUES (27823,2,28);
 INSERT INTO `item_mods` VALUES (27823,5,36);
@@ -39804,21 +39805,22 @@ INSERT INTO `item_mods` VALUES (27842,31,80);
 INSERT INTO `item_mods` VALUES (27842,68,41);
 INSERT INTO `item_mods` VALUES (27842,357,6);     -- Convoker's Doublet +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27842,384,30);
-INSERT INTO `item_mods` VALUES (27843,1,132);
-INSERT INTO `item_mods` VALUES (27843,2,69);
-INSERT INTO `item_mods` VALUES (27843,5,54);
-INSERT INTO `item_mods` VALUES (27843,8,29);
-INSERT INTO `item_mods` VALUES (27843,9,34);
-INSERT INTO `item_mods` VALUES (27843,10,24);
-INSERT INTO `item_mods` VALUES (27843,11,28);
-INSERT INTO `item_mods` VALUES (27843,12,23);
-INSERT INTO `item_mods` VALUES (27843,13,23);
-INSERT INTO `item_mods` VALUES (27843,14,23);
-INSERT INTO `item_mods` VALUES (27843,29,6);
-INSERT INTO `item_mods` VALUES (27843,31,64);
-INSERT INTO `item_mods` VALUES (27843,68,49);
-INSERT INTO `item_mods` VALUES (27843,369,2);
-INSERT INTO `item_mods` VALUES (27843,384,40);
+INSERT INTO `item_mods` VALUES (27843,1,132); -- Assimilator's Jubbah +1 DEF 132
+INSERT INTO `item_mods` VALUES (27843,2,69); -- HP +69
+INSERT INTO `item_mods` VALUES (27843,5,54); -- MP +54
+INSERT INTO `item_mods` VALUES (27843,8,29); -- STR +29
+INSERT INTO `item_mods` VALUES (27843,9,34); -- DEX +34
+INSERT INTO `item_mods` VALUES (27843,10,24); -- VIT +24
+INSERT INTO `item_mods` VALUES (27843,11,28); -- AGI +28
+INSERT INTO `item_mods` VALUES (27843,12,23); -- INT +23
+INSERT INTO `item_mods` VALUES (27843,13,23); -- MND +23
+INSERT INTO `item_mods` VALUES (27843,14,23); -- CHR +23
+INSERT INTO `item_mods` VALUES (27843,29,6); -- "Magic Def. Bonus" +6
+INSERT INTO `item_mods` VALUES (27843,31,64); -- Magic Evasion +64
+INSERT INTO `item_mods` VALUES (27843,68,49); -- Evasion +49
+INSERT INTO `item_mods` VALUES (27843,369,2); -- "Refresh" +2
+INSERT INTO `item_mods` VALUES (27843,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (27843,122,20); -- Blue magic skill +20
 INSERT INTO `item_mods` VALUES (27844,1,130);
 INSERT INTO `item_mods` VALUES (27844,2,59);
 INSERT INTO `item_mods` VALUES (27844,5,44);
@@ -40541,6 +40543,12 @@ INSERT INTO `item_mods` VALUES (27932,23,12);
 INSERT INTO `item_mods` VALUES (27932,25,12);
 INSERT INTO `item_mods` VALUES (27932,28,11);
 INSERT INTO `item_mods` VALUES (27932,30,11);
+INSERT INTO `item_mods` VALUES (27937,1,28); -- Fea's Cuffs DEF 28
+INSERT INTO `item_mods` VALUES (27937,8,7); -- STR +7
+INSERT INTO `item_mods` VALUES (27937,9,7); -- DEX +7
+INSERT INTO `item_mods` VALUES (27937,28,6); -- "Magic Atk. Bonus" +6
+INSERT INTO `item_mods` VALUES (27937,122,6); -- Blue magic skill +6
+INSERT INTO `item_mods` VALUES (27937,384,30); -- Haste +3%
 INSERT INTO `item_mods` VALUES (27938,1,12);
 INSERT INTO `item_mods` VALUES (27938,8,2);
 INSERT INTO `item_mods` VALUES (27938,23,2);
