@@ -209,9 +209,9 @@ enum class Mod
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
-    HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap)
-    HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?)
-    HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap)
+    HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
+    HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
+    HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap) Truncate at decimal, do not round.
     SPELLINTERRUPT            = 168, // % Spell Interruption Rate
     MOVE                      = 169, // % Movement Speed
     FASTCAST                  = 170, // Increases Spell Cast Time (TRAIT)
