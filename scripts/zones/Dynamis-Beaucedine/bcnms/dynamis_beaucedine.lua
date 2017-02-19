@@ -6,7 +6,7 @@
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     
-    SetServerVariable("[DynaBeaucedine]UniqueID",player:getDynamisUniqueID(1284));
+    SetServerVariable("[DynaBeaucedine]UniqueID",os.time());
     SetServerVariable("[DynaBeaucedine]Already_Received",0);
     
 end;

@@ -8,7 +8,7 @@
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     
-    SetServerVariable("[DynaValkurm]UniqueID",player:getDynamisUniqueID(1286));
+    SetServerVariable("[DynaValkurm]UniqueID",os.time());
     SetServerVariable("[DynaValkurm]Boss_Trigger",0);
     SetServerVariable("[DynaValkurm]Already_Received",0);
     
