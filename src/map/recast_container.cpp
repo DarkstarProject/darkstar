@@ -179,7 +179,7 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
     {
         for (auto&& recast : *PRecastList)
         {
-            recast.RecastTime = 0;
+            if (recast.ID == id) recast.RecastTime = 0;
         }
         Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
     }
@@ -194,7 +194,7 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 
 /************************************************************************
 *                                                                       *
-*  Deletes a recast by index				                            *
+*  Deletes a recast by index                                            *
 *                                                                       *
 ************************************************************************/
 
