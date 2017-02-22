@@ -177,9 +177,9 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 
     if (type == RECAST_ABILITY)
     {
-        for (auto&& recast : *PRecastList)
+        if (auto recast = GetRecast(RECAST_ABILITY, id))
         {
-            recast.RecastTime = 0;
+            recast->RecastTime = 0;
         }
         Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
     }
