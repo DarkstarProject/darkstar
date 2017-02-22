@@ -19,7 +19,7 @@ require("scripts/globals/chocobo_digging");
 -----------------------------------
 local itemMap = {
                     -- itemid, abundance, requirement
-                    { 4504, 224, DIGREQ_NONE },       
+                    { 4504, 224, DIGREQ_NONE },
                     { 688, 184, DIGREQ_NONE },
                     { 17396, 276, DIGREQ_NONE },
                     { 698, 69, DIGREQ_NONE },
@@ -55,9 +55,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17191535,17191536};
-
-    SetFieldManual(manuals);
 end;
 
 -----------------------------------
@@ -108,7 +105,7 @@ function onEventUpdate(player,csid,option)
     if (csid == 0x0015) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 0x0017) then
-        if (player:getYPos() >= -22) then    
+        if (player:getYPos() >= -22) then
             player:updateEvent(0,0,0,0,0,7);
         else
             player:updateEvent(0,0,0,0,0,6);

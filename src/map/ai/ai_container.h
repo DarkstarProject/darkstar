@@ -76,7 +76,8 @@ public:
     void Internal_Die(duration);
     void Internal_Raise();
     void Internal_UseItem(uint16 targetid, uint8 loc, uint8 slotid);
-    void Internal_Despawn(duration spawnTime);
+    void Internal_Despawn();
+    void Internal_Respawn(duration _duration);
 
     void Reset();
     void Tick(time_point _tick);

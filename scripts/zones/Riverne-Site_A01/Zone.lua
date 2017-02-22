@@ -30,8 +30,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
-
 -----------------------------------
 -- onZoneIn
 -----------------------------------
@@ -47,7 +45,7 @@ function onZoneIn(player,prevZone)
         player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,40,0,0);
     end    
     
-return cs;
+    return cs;
 end;
 
 -----------------------------------
@@ -62,8 +60,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -71,9 +69,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

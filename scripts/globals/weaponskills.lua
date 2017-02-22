@@ -14,7 +14,7 @@ require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
 
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
 
     local criticalHit = false;
@@ -30,9 +30,14 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local weaponDamage = attacker:getWeaponDmg();
     local weaponType = attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
-        weaponDamage = attacker:getWeaponDmg()-3;
+
+        if (params.kick and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
+            weaponDamage = attacker:getMod(MOD_KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
+        else
+            weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0);
+        end
 
         weaponDamage = weaponDamage + h2hSkill;
     end
@@ -71,7 +76,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     local critrate = 0;
     local nativecrit = 0;
-    
+
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
@@ -93,13 +98,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         critrate = critrate + nativecrit;
     end
 
-
-    local dmg = 0;
-
     -- Applying pDIF
     local pdif = generatePdif (cratio[1], cratio[2], true);
 
-    local firsthit = math.random();
+    local missChance = math.random();
     local finaldmg = 0;
     local hitrate = getHitRate(attacker,target,true,bonusacc);
     if (params.acc100~=0) then
@@ -109,30 +111,30 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         hitrate = hr;
     end
 
+    local dmg = base * ftp;
     local tpHitsLanded = 0;
-    if ((firsthit <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
+    if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
             not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
-        dmg = base * ftp;
         if (params.canCrit or isSneakValid or isAssassinValid) then
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
                 local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
                 finaldmg = dmg * cpdif;
-                if (isSneakValid and attacker:getMainJob()==6) then -- have to add on DEX bonus if on THF main
+                if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
                     finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
                 end
-                if (isTrickValid and attacker:getMainJob()==6) then
+                if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
                     finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                 end
             else
                 finaldmg = dmg * pdif;
-                if (isTrickValid and attacker:getMainJob()==6) then
+                if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
                     finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                 end
             end
         else
             finaldmg = dmg * pdif;
-            if (isTrickValid and attacker:getMainJob()==6) then
+            if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
                 finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
             end
         end
@@ -140,7 +142,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     end
 
     if not multiHitfTP then dmg = base end
-    
+
     if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
 
         local chance = math.random();
@@ -163,8 +165,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         end
     end
 
-    local numHits = getMultiAttacks(attacker, params.numHits);
+    -- Store first hit bonus for use after other calcs are done..
+    local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
+    local numHits = getMultiAttacks(attacker, params.numHits);
     local extraHitsLanded = 0;
 
     if (numHits > 1) then
@@ -199,8 +203,23 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
     -- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
+
+    -- DMG Bonus for any WS
+    local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
+
+    -- Ws Specific DMG Bonus
+    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
+    end
+
+    -- Add in bonusdmg
+    finaldmg = finaldmg * ((100 + bonusdmg)/100);
+    finaldmg = finaldmg + firstHitBonus;
+
+    -- Check for reductions from PDT
     finaldmg = target:physicalDmgTaken(finaldmg);
-    
+
+    -- Check for reductions from phys resistances
     if (weaponType == SKILL_H2H) then
         finaldmg = finaldmg * target:getMod(MOD_HTHRES) / 1000;
     elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
@@ -210,15 +229,11 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     else
         finaldmg = finaldmg * target:getMod(MOD_SLASHRES) / 1000;
     end
-    
-    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
-    end
 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     end
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
@@ -237,22 +252,34 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
          attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
-    
+
     -- Applying fTP multiplier
     local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
-    
+
     dmg = dmg * ftp;
-    
+
     dmg = addBonusesAbility(attacker, params.ele, target, dmg, params);
     dmg = dmg * applyResistanceAbility(attacker,target,params.ele,params.skill, bonusacc);
     dmg = target:magicDmgTaken(dmg);
     dmg = adjustForTarget(target,dmg,params.ele);
-    
+
+    -- Add first hit bonus..No such thing as multihit magic ws is there?
+    local firstHitBonus = ((dmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
+
+    -- DMG Bonus for any WS
+    local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
+
+    -- Ws Specific DMG Bonus
     if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        dmg = dmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
     end
+
+    -- Add in bonusdmg
+    dmg = dmg * ((100 + bonusdmg)/100);
+    dmg = dmg + firstHitBonus;
+
     dmg = dmg * WEAPON_SKILL_POWER
-    dmg = takeWeaponskillDamage(target, attacker, params, dmg, SLOT_MAIN, 1, bonusTP, nil)
+    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
     return dmg, false, 1, 0;
 end
 
@@ -260,12 +287,11 @@ function souleaterBonus(attacker, numhits)
     if attacker:hasStatusEffect(EFFECT_SOULEATER) then
         local damage = 0;
         local percent = 0.1;
-        if attacker:getMainJob() ~= 8 then
+        if attacker:getMainJob() ~= JOBS.DRK then
             percent = percent / 2;
         end
-        if attacker:getEquipID(SLOT_HEAD) == 12516 or attacker:getEquipID(SLOT_HEAD) == 15232 or attacker:getEquipID(SLOT_BODY) == 14409 or attacker:getEquipID(SLOT_LEGS) == 15370 then
-            percent = percent + 0.02;
-        end
+        percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));
+
         local hitscounted = 0;
         while (hitscounted < numhits) do
             local health = attacker:getHP();
@@ -317,7 +343,7 @@ function getHitRate(attacker,target,capHitRate,bonus)
     end
 
     acc = acc + bonus;
-    
+
     if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
         acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
     elseif (attacker:getMainLvl() < target:getMainLvl()) then -- acc penalty :(
@@ -380,7 +406,6 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
     hitrate = hitrate+hitdiff;
     hitrate = hitrate/100;
 
-
     -- Applying hitrate caps
     if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
         if (hitrate>0.95) then
@@ -394,14 +419,16 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
 end;
 
 function fTP(tp,ftp1,ftp2,ftp3)
-    if tp < 1000 then tp = 1000 end
-    if (tp>=1000 and tp<2000) then
+    if (tp < 1000) then
+        tp = 1000;
+    end
+    if (tp >= 1000 and tp < 2000) then
         return ftp1 + ( ((ftp2-ftp1)/1000) * (tp-1000));
-    elseif (tp>=2000 and tp<=3000) then
+    elseif (tp >= 2000 and tp <= 3000) then
         -- generate a straight line between ftp2 and ftp3 and find point @ tp
         return ftp2 + ( ((ftp3-ftp2)/1000) * (tp-2000));
     else
-        print("fTP error: TP value is not between 100-300!");
+        print("fTP error: TP value is not between 1000-3000!");
     end
     return 1; -- no ftp mod
 end;
@@ -510,7 +537,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
     critbonus = utils.clamp(critbonus, 0, 100);
     pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
     pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
-    
+
     return pdif, pdifcrit;
 end;
 
@@ -697,14 +724,13 @@ end;
         critrate = critrate + nativecrit;
     end
 
-
     local dmg = base * ftp;
 
     -- Applying pDIF
     local pdif = generatePdif (cratio[1],cratio[2], false);
 
     -- First hit has 95% acc always. Second hit + affected by hit rate.
-    local firsthit = math.random();
+    local missChance = math.random();
     local finaldmg = 0;
     local hitrate = getRangedHitRate(attacker,target,true,bonusacc);
     if (params.acc100~=0) then
@@ -715,7 +741,7 @@ end;
     end
 
     local tpHitsLanded = 0;
-    if (firsthit <= hitrate) then
+    if (missChance <= hitrate) then
         if (params.canCrit) then
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
@@ -730,6 +756,9 @@ end;
         end
         tpHitsLanded = 1;
     end
+
+    -- Store first hit bonus for use after other calcs are done..
+    local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
     local numHits = params.numHits;
 
@@ -764,16 +793,25 @@ end;
     end
     -- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
+    -- DMG Bonus for any WS
+    local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
+
+    -- Ws Specific DMG Bonus
+    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
+    end
+
+    -- Add in bonusdmg
+    finaldmg = finaldmg * ((100 + bonusdmg)/100);
+    finaldmg = finaldmg + firstHitBonus;
+
+    -- Check for reductions
     finaldmg = target:rangedDmgTaken(finaldmg);
     finaldmg = finaldmg * target:getMod(MOD_PIERCERES) / 1000;
 
-    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        finaldmg = finaldmg * (100 + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
-    end
-
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
@@ -847,7 +885,7 @@ function getStepAnimation(skill)
         return 23;
     else
         return 0;
-    end    
+    end
 end
 
 function getFlourishAnimation(skill)
@@ -873,12 +911,12 @@ function getFlourishAnimation(skill)
         return 33;
     else
         return 0;
-    end    
+    end
 end
 
-function takeWeaponskillDamage(defender, attacker, params, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
     local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, tpHitsLanded, bonusTP, targetTPMult)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
@@ -912,7 +950,7 @@ function applyAftermathEffect(player, tp, params)
 
     local apply_power = 0
     if (tp == 3000) then
-        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0, 
+        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
             params.duration.lv3, 0, params.subpower.lv3)
     elseif (tp >= 2000) then
         apply_power = params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc))

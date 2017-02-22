@@ -3,7 +3,7 @@
 -- Item: serving_of_bass_meuniere_+1
 -- Food Effect: 240Min, All Races
 -----------------------------------------
--- Health % 3
+-- Health % 3 (cap 130)
 -- Dexterity 3
 -- Agility 3
 -- Mind -3
@@ -18,11 +18,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -38,7 +38,8 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPP, 3);
+    target:addMod(MOD_FOOD_HPP, 3);
+    target:addMod(MOD_FOOD_HP_CAP, 130);
     target:addMod(MOD_DEX, 3);
     target:addMod(MOD_AGI, 3);
     target:addMod(MOD_MND, -3);
@@ -51,7 +52,8 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, 3);
+    target:delMod(MOD_FOOD_HPP, 3);
+    target:delMod(MOD_FOOD_HP_CAP, 130);
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_AGI, 3);
     target:delMod(MOD_MND, -3);

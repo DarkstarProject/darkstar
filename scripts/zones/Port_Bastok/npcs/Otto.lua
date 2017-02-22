@@ -3,7 +3,7 @@
 -- NPC:  Otto
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
--- @zone: 236
+-- @zone 236
 -- @pos -145.929 -7.48 -13.701
 -----------------------------------
 
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

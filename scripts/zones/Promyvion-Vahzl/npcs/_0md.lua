@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc) 
     if (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3) then
-        SpawnMob(16867333,240):updateClaim(player);
+        SpawnMob(16867333):updateClaim(player);
     elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==4) then
         player:startEvent(0x0034);   
     else
@@ -33,8 +33,8 @@ end;
 -- onEventUpdate
 -----------------------------------
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 -----------------------------------
 -- onEventFinish

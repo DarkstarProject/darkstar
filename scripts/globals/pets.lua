@@ -1176,11 +1176,6 @@ PET_ODIN                  = 18;
 PET_ATOMOS                = 19;
 PET_CAIT_SITH             = 20;
 
-PET_AUTOMATON     = 69;
-
-PET_WYVERN                = 48;
-
-
 -----------------------------------
 --  Beastmaster
 -----------------------------------
@@ -1212,3 +1207,15 @@ PET_LIFEDRINKER_LARS      = 44;
 PET_PANZER_GALAHAD        = 45;
 PET_CHOPSUEY_CHUCKY       = 46;
 PET_AMIGO_SABOTENDER      = 47;
+
+-----------------------------------
+--  Dragoon
+-----------------------------------
+
+PET_WYVERN                = 48;
+
+-----------------------------------
+--  Puppetmaster
+-----------------------------------
+
+PET_AUTOMATON             = 69;

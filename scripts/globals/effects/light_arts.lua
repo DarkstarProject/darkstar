@@ -24,7 +24,7 @@ function onEffectGain(target,effect)
         target:addMod(MOD_BLACK_MAGIC_COST, 20);
         target:addMod(MOD_BLACK_MAGIC_CAST, 20);
         target:addMod(MOD_BLACK_MAGIC_RECAST, 20);
-        target:addMod(MOD_REGEN_EFFECT, regen);
+        target:addMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:addMod(MOD_REGEN_DURATION, regen*2);
     end
     target:recalculateSkillsTable();
@@ -57,7 +57,7 @@ function onEffectLose(target,effect)
         target:delMod(MOD_BLACK_MAGIC_COST, 20);
         target:delMod(MOD_BLACK_MAGIC_CAST, 20);
         target:delMod(MOD_BLACK_MAGIC_RECAST, 20);
-        target:delMod(MOD_REGEN_EFFECT, regen);
+        target:delMod(MOD_LIGHT_ARTS_REGEN, regen);
         target:delMod(MOD_REGEN_DURATION, regen*2);
     end
     target:recalculateSkillsTable();

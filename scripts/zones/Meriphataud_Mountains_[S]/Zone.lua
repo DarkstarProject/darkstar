@@ -5,10 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- onInitialize
@@ -40,10 +40,9 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
-
+function onGameHour(zone)
     local GameHour = 150; -- Seconds per VanadielHour
-    local npc = GetNPCByID(17175338); -- Indescript Markings
+    local npc = GetNPCByID(17175342); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 17) then
             npc:setStatus(STATUS_DISAPPEAR);

@@ -55,11 +55,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17203883,17203884};
-
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
-
-    SetFieldManual(manuals);
 
     -- Fraelissa
     SetRespawnTime(17203447, 900, 10800);

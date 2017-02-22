@@ -48,7 +48,7 @@ function onUseAbility(player,target,ability)
         effects[counter] = bio;
         counter = counter + 1;
     end
-    local blind = target:getStatusEffect(EFFECT_BLIND);
+    local blind = target:getStatusEffect(EFFECT_BLINDNESS);
     if (blind ~= nil) then
         effects[counter] = blind;
         counter = counter + 1;

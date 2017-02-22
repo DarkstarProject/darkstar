@@ -18,8 +18,6 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 
 function onTrade(player,npc,trade)
 end; 
-
-
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
@@ -27,25 +25,21 @@ end;
 function onTrigger(player,npc)
     player:startEvent(0x000a);
 end;
-
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
-
-
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
     if (csid == 0x000a and option == 0) then
@@ -78,8 +72,6 @@ function onEventFinish(player,csid,option)
         end
     end 
 end;
-
-
 -----------------------------------
 -- Additional Functions
 -----------------------------------
@@ -98,8 +90,6 @@ function moveSirenTear(npc)
         [290000332] = function (x) npc:setPos(296,3+dispf,220,0); end,
     default = function (x) end }
 end;
-
-
 function resetSirenTear(npc)
     npcPos = math.floor(math.floor(npc:getXPos())*1000000 + math.floor(npc:getYPos())*1000 + npc:getZPos());
     disp = (npc:getYPos()*100 - math.floor(npc:getYPos()*100+0.5))*10;

@@ -27,6 +27,7 @@
 #include "../common/cbasetypes.h"
 
 #include <vector>
+#include "modifier.h"
 
 enum TRAITTYPE
 {
@@ -162,13 +163,13 @@ public:
     uint8   getID();
     uint8   getJob();
     uint8   getLevel();
-    uint16  getMod();
+    Mod     getMod();
     int16   getValue();
     uint8   getRank();
 
     void    setJob(int8 job);
     void    setLevel(uint8 level);
-    void    setMod(uint16 mod);
+    void    setMod(Mod mod);
     void    setValue(int16 value);
     void    setRank(uint8 rank);
 
@@ -177,7 +178,7 @@ private:
     uint8   m_id;
     uint8   m_job;
     uint8   m_level;
-    uint16  m_mod;
+    Mod     m_mod;
     int16   m_value;
     uint8   m_rank;
 };

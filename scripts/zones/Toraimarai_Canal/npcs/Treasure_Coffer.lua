@@ -42,7 +42,7 @@ function onTrade(player,npc,trade)
         local mJob = player:getMainJob();
         local zone = player:getZoneID();
         local listAF = getAFbyZone(zone);
-        for nb = 1,table.getn(listAF),3 do
+        for nb = 1,#listAF,3 do
             if (player:getQuestStatus(JEUNO,listAF[nb + 1]) ~= QUEST_AVAILABLE and mJob == listAF[nb] and player:hasItem(listAF[nb + 2]) == false) then
                 questItemNeeded = 2;
                 break
@@ -67,7 +67,7 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
                 
                 if (questItemNeeded == 2) then
-                    for nb = 1,table.getn(listAF),3 do
+                    for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
                             player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
@@ -115,8 +115,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 
 end;
 
@@ -125,11 +125,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
 end;
-
-
 
 

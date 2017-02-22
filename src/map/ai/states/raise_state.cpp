@@ -25,7 +25,6 @@ This file is part of DarkStar-server source code.
 
 #include "../../entities/battleentity.h"
 #include "../../entities/charentity.h"
-#include "../../packets/menu_raisetractor.h"
 
 CRaiseState::CRaiseState(CBattleEntity* PEntity) :
     CState(PEntity, PEntity->targid),

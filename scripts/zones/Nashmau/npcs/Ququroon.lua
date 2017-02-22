@@ -2,7 +2,7 @@
 --  Area: Nashmau
 --  NPC:  Ququroon
 --  Type: Standard NPC
---  @pos -2.400 -1 66.824 53
+-- @pos -2.400 -1 66.824 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

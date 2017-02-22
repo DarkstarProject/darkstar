@@ -25,9 +25,9 @@ function onTrigger(player,npc)
     
     if (player:getVar("theTalekeeperGiftCS") == 3 and player:getVar("theTalekeepersGiftKilledNM") < 3) then
         player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(17297446,180):updateClaim(player);
-        SpawnMob(17297447,180):updateClaim(player);
-        SpawnMob(17297448,180):updateClaim(player);
+        SpawnMob(17297446):updateClaim(player);
+        SpawnMob(17297447):updateClaim(player);
+        SpawnMob(17297448):updateClaim(player);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -48,6 +48,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

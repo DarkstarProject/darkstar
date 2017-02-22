@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --  NPC: Khonzon
 --  Type: Item Deliverer
---  @zone: 235
---  @pos -323.744 -16.001 -88.698
+--  @zone 235
+-- @pos -323.744 -16.001 -88.698
 --
 -----------------------------------
 

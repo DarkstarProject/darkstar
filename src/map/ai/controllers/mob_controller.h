@@ -46,6 +46,7 @@ public:
 
     bool CanAggroTarget(CBattleEntity*);
     void TapDeaggroTime();
+    virtual void Cast(uint16 targid, uint16 spellid) override;
 
 protected:
     virtual bool TryDeaggro();
@@ -62,7 +63,7 @@ protected:
     void Move();
 
     virtual void DoCombatTick(time_point tick);
-
+    void FaceTarget(uint16 targid = 0);
     virtual void HandleEnmity();
 
     virtual void DoRoamTick(time_point tick);

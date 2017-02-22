@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Attohwa
---  NPC: ???
--- Spawns: Titlacauan
+--  NPC: qm22 (???)
+-- Spawns Titlacauan
+-- @pos ? ? ? 215
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

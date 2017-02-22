@@ -43,8 +43,8 @@ function onTrade(player,npc,trade)
     
     -- "Flyers for Regine"
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
+        local count = trade:getItemCount();
+        local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

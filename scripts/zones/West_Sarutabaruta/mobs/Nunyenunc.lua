@@ -4,13 +4,20 @@
 -----------------------------------
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
 
     -- Set Nunyenunc's Window Open Time
-    local wait = math.random(720010800);
+    local wait = math.random(7200,10800);
     SetServerVariable("[POP]Nunyenunc", os.time(t) + wait); -- 2-3 hours
     DeterMob(mob:getID(), true);
 

@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --   NPC: Miiri-Wohri
 --  Type: Standard NPC
--- @zone: 241
---  @pos 106.766 -6 -30.492
+-- @zone 241
+-- @pos 106.766 -6 -30.492
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

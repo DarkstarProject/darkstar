@@ -2,8 +2,8 @@
 --  Area: Rabao
 --  NPC: Spirit Singer
 --  Type: Item Deliverer
---  @zone: 247
---  @pos 140.337    7.999    80.661
+--  @zone 247
+-- @pos 140.337    7.999    80.661
 --
 -----------------------------------
 

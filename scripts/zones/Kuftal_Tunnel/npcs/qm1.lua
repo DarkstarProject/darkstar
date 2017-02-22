@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
     -- Trade Darksteel ore
     if (GetMobAction(Phantom_Worm) == 0 and trade:hasItemQty(645,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(Phantom_Worm,180):updateClaim(player); -- Phantom Worm
+        SpawnMob(Phantom_Worm):updateClaim(player); -- Phantom Worm
         mob:setPos(x+1,y,z+1);
         npc:setStatus(STATUS_DISAPPEAR);
     end

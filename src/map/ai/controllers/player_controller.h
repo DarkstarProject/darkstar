@@ -47,13 +47,11 @@ public:
     virtual void UseItem(uint16 targid, uint8 loc, uint8 slotid);
 
     void setLastAttackTime(time_point);
-    void setNextRangedTime(time_point);
     void setLastErrMsgTime(time_point);
     time_point getLastErrMsgTime();
 
 protected:
     time_point m_LastAttackTime {server_clock::now()};
-    time_point m_NextRangedTime {server_clock::now()};
     time_point m_errMsgTime {server_clock::now()};
 };
 

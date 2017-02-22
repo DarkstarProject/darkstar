@@ -20,9 +20,9 @@ function onTrade(player,npc,trade)
     -- Trade Shrimp Lantern
     if (GetMobAction(Shen) == 0 and trade:hasItemQty(1823,1) and trade:getItemCount() == 1) then
           player:tradeComplete();
-        SpawnMob(Shen,180):updateClaim(player);
-        SpawnMob(Shen+1,180):updateClaim(player);
-        SpawnMob(Shen+2,180):updateClaim(player);
+        SpawnMob(Shen):updateClaim(player);
+        SpawnMob(Shen+1):updateClaim(player);
+        SpawnMob(Shen+2):updateClaim(player);
     end
     
 end;
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,6 +49,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

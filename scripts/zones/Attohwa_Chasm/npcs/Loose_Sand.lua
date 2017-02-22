@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         player:messageSpecial(KEYITEM_OBTAINED, MIMEO_JEWEL);
         player:setPos(322,-25,-12,30); -- tp to the cradle of rebirth (temporary solution, the road to the top of the mountain doesn't work)
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and (MEMORIESMAIDENStatus==7 or MEMORIESMAIDENStatus==8) and player:hasKeyItem(MIMEO_JEWEL)==false) then
-        SpawnMob(16806031,180):updateClaim(player);
+        SpawnMob(16806031):updateClaim(player);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         player:setVar("LioumereKilled",0);
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,6 +54,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

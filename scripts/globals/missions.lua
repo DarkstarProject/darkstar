@@ -1,21 +1,12 @@
+require("scripts/globals/log_ids");
+
 -----------------------------------
--- Areas  ID     mission step var
+--  Nation IDs
 -----------------------------------
 
-SANDORIA = 0;  -- MissionStatus
-BASTOK   = 1;  -- MissionStatus
-WINDURST = 2;  -- MissionStatus
-ZILART   = 3;  -- ZilartStatus
-TOAU     = 4;  -- AhtUrganStatus
-WOTG     = 5;  -- AltanaStatus
-COP      = 6;  -- PromathiaStatus
-ASSAULT  = 7;  -- n/a
-CAMPAIGN = 8;  -- n/a
-ACP      = 9;  -- n/a
-AMK      = 10; -- n/a
-ASA      = 11; -- n/a
-SOA      = 12; -- AdoulinStatus
-ROV      = 13; -- RhapsodiesStatus
+NATION_SANDORIA = 0;
+NATION_BASTOK   = 1;
+NATION_WINDURST = 2;
 
 -----------------------------------
 --  San d'Oria (0)
@@ -244,7 +235,7 @@ LIGHT_OF_JUDGMENT       = 40;
 PATH_OF_DARKNESS        = 41;
 FANGS_OF_THE_LION       = 42;
 NASHMEIRAS_PLEA         = 43;
-URHGAN_MISSION_44       = 44;
+RAGNAROK                = 44;
 IMPERIAL_CORONATION     = 45;
 THE_EMPRESS_CROWNED     = 46;
 ETERNAL_MERCENARY       = 47;
@@ -259,7 +250,7 @@ CAIT_SITH                  = 2;
 THE_QUEEN_OF_THE_DANCE     = 3;
 WHILE_THE_CAT_IS_AWAY      = 4;
 A_TIMESWEPT_BUTTERFLY      = 5;
-PURPLE,_THE_NEW_BLACK      = 6;
+PURPLE_THE_NEW_BLACK       = 6;
 IN_THE_NAME_OF_THE_FATHER  = 7;
 DANCERS_IN_DISTRESS        = 8;
 DAUGHTER_OF_A_KNIGHT       = 9;
@@ -628,7 +619,7 @@ DEATH_CARES_NOT                 = 178;
 NO_TIME_LIKE_THE_FUTURE         = 180;
 SIN                             = 184;
 PENANCE                         = 188;
-VESSEL_OF_LIGHT                 = 190;
+VESSEL_OF_LIGHT_ROV             = 190;
 THE_LIFESTREAM_OF_REISENJIMA    = 192;
 FROM_WEST_TO_EAST               = 194;
 GOOD_THINGS_COME_IN_THREES      = 196;
@@ -687,7 +678,7 @@ function getMissionMask(player)
     first_mission = 0;
     repeat_mission = 0;
 
-    if (nation == WINDURST) then
+    if (nation == NATION_WINDURST) then
         if (rank >= 1) then
             if (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
@@ -784,7 +775,7 @@ function getMissionMask(player)
                 first_mission = first_mission + 8388608;
             end
         end
-    elseif (nation == SANDORIA) then
+    elseif (nation == NATION_SANDORIA) then
         if (rank >= 1) then
             if (player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
                 -- 1-1
@@ -882,7 +873,7 @@ function getMissionMask(player)
 
             end
         end
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
         if (rank >= 1) then
             if (player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
@@ -992,7 +983,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
     offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
     nation = player:getNation();
 
-    if (nation == SANDORIA) then
+    if (nation == NATION_SANDORIA) then
 
             if (guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
         elseif (guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
@@ -1019,7 +1010,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
 
         switch (pMission) : caseof {
             [0] = function (x) offset = 0; end,
@@ -1044,7 +1035,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == WINDURST) then
+    elseif (nation == NATION_WINDURST) then
 
             if (guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
         elseif (guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
@@ -1086,11 +1077,11 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 13: player:addTitle(number);
     -- 14: player:setVar("MissionStatus",value);
 
-    if (nation == SANDORIA) then
+    if (nation == NATION_SANDORIA) then
         if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
             if (option > 100) then
                 badoption = {101,1,102,2,104,4,110,10,111,11};
-                for op = 1, table.getn(badoption), 2 do
+                for op = 1, #badoption, 2 do
                     if (option == badoption[op]) then
                     timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
                 end
@@ -1100,7 +1091,8 @@ function finishMissionTimeline(player,guard,csid,option)
                 timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}}};
             end
         else
-            timeline = {
+            timeline =
+            {
                  -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
                  0,{0x03e8,0},{0x07d0,0},{0,0},        {0,0},{{1},{2}},                                                     -- MISSION 1-1 (First Mission [START])
                  0,{0x03fc,0},{0x07e4,0},{0,0},        {0,0},{{4},{5,150},{12},{14,0}},                                     -- MISSION 1-1
@@ -1133,13 +1125,14 @@ function finishMissionTimeline(player,guard,csid,option)
                 22,{0,0},      {0,0},     {0x004c,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}                    -- MISSION 9-1 (Finish (Door: Great Hall))
                 --[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
                 0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
-                        };
+            };
         end
-    elseif (nation == BASTOK) then
+    elseif (nation == NATION_BASTOK) then
         if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
         else
-            timeline = {
+            timeline =
+            {
                  0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},                                                                 -- MISSION 1-1 (First Mission [START])
                  1,{0x01f8,0},{0,0},{0,0},{0,0},{{9,4},{12}},                                                             -- MISSION 1-2 (Finish Mission)
                  2,{0x03F0,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},                                             -- MISSION 1-3
@@ -1160,16 +1153,16 @@ function finishMissionTimeline(player,guard,csid,option)
                 18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}},                                             -- MISSION 7-1 (Finish (Cid))
                 19,{0x02fe,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}},             -- MISSION 7-2 (Finish (Karst))
                 20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}},                                                 -- MISSION 8-1 (Finish (Iron Eater))
-                21,{0x00b0,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))            
-                
-                        };
+                21,{0x00b0,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))
+            };
         end
-    elseif (nation == WINDURST) then
+    elseif (nation == NATION_WINDURST) then
         guardlist = {0x0072,0x006f,0x004e,0x005d};
         if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};
         else
-            timeline = {
+            timeline =
+            {
                  0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},                                                 -- MISSION 1-1 (First Mission [START])
                  0,{0x005e,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,150},{9,28},{12}},                             -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
                  1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}},                                                 -- MISSION 1-2 [START]
@@ -1198,13 +1191,13 @@ function finishMissionTimeline(player,guard,csid,option)
                 21,{0,0},      {0,0},     {0x0261,0},{0,0},       {{14,0},{11,9},{8,80000},{6},{0,0},{12}},                    -- MISSION 8-2 (Finish (Apururu))
                 22,{0,0},     {0,0},     {0x003D,0},{0,0},     {{14,0},{5,800},{13,293},{0},{0,0},{12}},                    -- MISSION 9-1 (Finish (Zone: Full Moon Fountain))
                 23,{0,0},      {0,0},     {0x0197,0},{0,0},       {{13,294},{11,10},{8,100000},{6},{0,0},{12}}                    -- MISSION 9-2 (Finish (Vestal Chamber))
-                         };
+            };
         end
     end
 
-    for cs = 1, table.getn(timeline), 6 do
+    for cs = 1, #timeline, 6 do
         if (csid == timeline[cs + guard][1] and option == timeline[cs + guard][2]) then
-            for nb = 1, table.getn(timeline[cs + 5]), 1 do
+            for nb = 1, #timeline[cs + 5], 1 do
                 messList = timeline[cs + 5][nb];
 
                 switch (messList[1]) : caseof {

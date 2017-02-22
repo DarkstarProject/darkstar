@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Mushayra
 --  Type: Standard NPC
---  @pos -111.551 -6.999 -61.720 50
+-- @pos -111.551 -6.999 -61.720 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

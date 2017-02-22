@@ -109,7 +109,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, flags, animationsub, \
+		mob_pools.familyid, name_prefix, entityFlags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
 		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, detects, \
 		mob_family_system.charmable \
@@ -179,19 +179,19 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->attRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 56);
             PMob->accRank = (uint8)Sql_GetIntData(SqlInstanceHandle, 57);
 
-            PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
-            PMob->setModifier(MOD_PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
-            PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
-            PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
+            PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 35) * 1000));
+            PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 36) * 1000));
+            PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 37) * 1000));
+            PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlInstanceHandle, 38) * 1000));
 
-            PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
-            PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
-            PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
-            PMob->setModifier(MOD_EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
-            PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
-            PMob->setModifier(MOD_WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
-            PMob->setModifier(MOD_LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
-            PMob->setModifier(MOD_DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
+            PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 39) - 1) * -100)); // These are stored as floating percentages
+            PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 40) - 1) * -100)); // and need to be adjusted into modifier units.
+            PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 41) - 1) * -100)); // Higher RES = lower damage.
+            PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 42) - 1) * -100)); // Negatives signify lower resist chance.
+            PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 43) - 1) * -100)); // Positives signify increased resist chance.
+            PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 44) - 1) * -100));
+            PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 45) - 1) * -100));
+            PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlInstanceHandle, 46) - 1) * -100));
 
             PMob->m_Element = (uint8)Sql_GetIntData(SqlInstanceHandle, 47);
             PMob->m_Family = (uint16)Sql_GetIntData(SqlInstanceHandle, 48);
@@ -216,7 +216,16 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 
             PMob->allegiance = Sql_GetUIntData(SqlInstanceHandle, 59);
             PMob->namevis = Sql_GetUIntData(SqlInstanceHandle, 60);
-            PMob->m_Aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+
+            uint32 aggro = Sql_GetUIntData(SqlInstanceHandle, 61);
+            PMob->m_Aggro = aggro;
+
+            // If a special instanced mob aggros, it should always aggro regardless of level.
+            if(PMob->m_Type & MOBTYPE_EVENT)
+            {
+                PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, aggro);
+            }
+
             PMob->m_MobSkillList = Sql_GetUIntData(SqlInstanceHandle, 62);
             PMob->m_TrueDetection = Sql_GetUIntData(SqlInstanceHandle, 63);
             PMob->m_Detects = Sql_GetUIntData(SqlInstanceHandle, 64);
@@ -233,7 +242,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         Query =
             "SELECT npcid, name, pos_rot, pos_x, pos_y, pos_z,\
 			flag, speed, speedsub, animation, animationsub, namevis,\
-			status, flags, look, name_prefix, widescan \
+			status, entityFlags, look, name_prefix, widescan \
 			FROM instance_entities INNER JOIN npc_list ON \
 			(instance_entities.id = npc_list.npcid) \
 			WHERE instanceid = %u AND npcid >= %u and npcid < %u;";

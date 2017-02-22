@@ -2,8 +2,8 @@
 --  Area: Lower Jeuno
 --   NPC: Yatniel
 --  Type: Standard NPC
--- @zone: 245
---  @pos -66.817 -7 -126.594
+-- @zone 245
+-- @pos -66.817 -7 -126.594
 -- 
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -2,7 +2,7 @@
 --  Area: West Ronfaure
 --  NPC:  Cerite
 --  Type: Standard NPC
---  @pos -263.577 -72.999 425.885 100
+-- @pos -263.577 -72.999 425.885 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

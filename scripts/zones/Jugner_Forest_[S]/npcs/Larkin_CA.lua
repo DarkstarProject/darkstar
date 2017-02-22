@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  Larkin, C.A.
 --  Type: Campaign Arbiter
---  @pos 50.217 -1.769 51.095 82
+-- @pos 50.217 -1.769 51.095 82
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------

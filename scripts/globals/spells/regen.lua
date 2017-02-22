@@ -2,7 +2,6 @@
 -- Spell: Regen
 -- Gradually restores target's HP.
 -----------------------------------------
--- Cleric's Briault enhances the effect
 -- Scale down duration based on level
 -- Composure increases duration 3x
 -----------------------------------------
@@ -20,22 +19,11 @@ end;
 
 function onSpellCast(caster,target,spell)
     
-    local hp = 5;
-    local meritBonus = caster:getMerit(MERIT_REGEN_EFFECT);
-
-    --printf("Regen: Merit Bonus = Extra +%d", meritBonus);
+    local hp = math.ceil(5 * (1 + 0.01 * caster:getMod(MOD_REGEN_MULTIPLIER))); -- spell base times gear multipliers
+    hp = hp + caster:getMerit(MERIT_REGEN_EFFECT); -- bonus hp from merits
+    hp = hp + caster:getMod(MOD_LIGHT_ARTS_REGEN); -- bonus hp from light arts
     
-    --TODO: put this into a mod? +1 hp PER TIER, would need a new mod
-    local body = caster:getEquipID(SLOT_BODY);
-    if (body == 15089 or body == 14502) then
-        hp = hp+1;
-    end
-
-    hp = hp + caster:getMod(MOD_REGEN_EFFECT) + meritBonus;
-
-    local duration = 75;
-
-    duration = duration + caster:getMod(MOD_REGEN_DURATION);
+    local duration = 75 + caster:getMod(MOD_REGEN_DURATION);
 
     if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;

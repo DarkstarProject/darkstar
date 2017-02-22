@@ -25,6 +25,7 @@
 #include "../items/item.h"
 
 #include "lua_trade_container.h"
+#include "lua_item.h"
 #include "../trade_container.h"
 
 //======================================================//
@@ -63,9 +64,35 @@ inline int32 CLuaTradeContainer::getGil(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaTradeContainer::getItem(lua_State *L)
+{
+    if(m_pMyTradeContainer != nullptr)
+    {
+        uint8 SlotID = 0;
+
+        if(!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            SlotID = (uint8)lua_tonumber(L, 1);
+        }
+        lua_getglobal(L, CLuaItem::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)m_pMyTradeContainer->getItem(SlotID));
+
+        if (lua_pcall(L, 2, 1, 0))
+        {
+            return 0;
+        }
+        return 1;
+    }
+    lua_pushnil(L);
+    return 1;
+}
+
 //======================================================//
 
-inline int32 CLuaTradeContainer::getItem(lua_State *L)
+inline int32 CLuaTradeContainer::getItemId(lua_State *L)
 {
     if (m_pMyTradeContainer != nullptr)
     {
@@ -203,15 +230,17 @@ inline int32 CLuaTradeContainer::confirmItem(lua_State *L)
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint8 slotID = (uint8)lua_tonumber(L, 1);
-            uint8 amount = -1;
+            uint8 amount = 1;
             if (lua_isnumber(L, 2))
             {
                 amount = (uint8)lua_tonumber(L, 2);
             }
-            m_pMyTradeContainer->setConfirmedStatus(slotID, amount);
+            lua_pushboolean(L, m_pMyTradeContainer->setConfirmedStatus(slotID, amount));
+            return 1;
         }
     }
-    return 0;
+    lua_pushnil(L);
+    return 1;
 }
 
 //======================================================//
@@ -221,6 +250,7 @@ Lunar<CLuaTradeContainer>::Register_t CLuaTradeContainer::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getGil),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItem),
+    LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemId),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemSubId),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getItemCount),
     LUNAR_DECLARE_METHOD(CLuaTradeContainer,getSlotCount),

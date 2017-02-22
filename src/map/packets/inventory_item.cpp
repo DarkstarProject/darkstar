@@ -49,7 +49,7 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
 		if (PItem->isSubType(ITEM_CHARGED))
 		{
-			WBUFB(data,(0x11)) = 0x01;    // флаг ITEM_CHARGED
+			WBUFB(data,(0x11)) = 0x01;
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
@@ -63,8 +63,8 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
 
                     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
 
-                    WBUFL(data,(0x15)) = ((CItemUsable*)PItem)->getNextUseTime();             // таймер следующего использования
-                    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;  // таймер задержки использования
+                    WBUFL(data,(0x15)) = ((CItemUsable*)PItem)->getNextUseTime();
+                    WBUFL(data,(0x19)) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;
                 }
             }
 		}

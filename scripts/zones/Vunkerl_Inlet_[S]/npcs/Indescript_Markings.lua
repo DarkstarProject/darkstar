@@ -2,7 +2,7 @@
 --  Area: Meriphataud_Mountains_[S]
 --  NPC: Indescript Markings
 --  Type: Quest
---  @pos -629.179 -49.002 -429.104 1 83
+-- @pos -629.179 -49.002 -429.104 1 83
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 -----------------------------------

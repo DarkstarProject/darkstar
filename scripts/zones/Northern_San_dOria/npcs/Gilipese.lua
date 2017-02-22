@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Gilipese
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -155.088 0.000 120.300
+--  @zone 231
+-- @pos -155.088 0.000 120.300
 --
 -----------------------------------
 

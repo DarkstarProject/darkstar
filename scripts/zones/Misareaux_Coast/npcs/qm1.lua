@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     -- Trade Hickory Shield OR Picaroon's Shield
     if (GetMobAction(16879899) == 0 and (trade:hasItemQty(12370,1) or trade:hasItemQty(12359,1)) and trade:getItemCount() == 1) then
           player:tradeComplete();
-        SpawnMob(16879899,900):updateClaim(player);
+        SpawnMob(16879899):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end;
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

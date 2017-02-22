@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             if (player:getVar("DabotzKilled") == 1) then
                 player:startEvent(0x0012);
             else
-                SpawnMob(17613129,300):updateClaim(player);
+                SpawnMob(17613129):updateClaim(player);
             end
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -59,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -68,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0015) then
         player:delKeyItem(AQUAFLORA1);

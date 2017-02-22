@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
-local guardnation = BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;      -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = DERFLAND;
 local csid        = 0x7ff8;

@@ -8,18 +8,18 @@ ITEM_CANNOT_BE_OBTAINED = 6401; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here.
 
 -- Standard Text
-       FIRE_GOOD = 7395; -- The fire seems to be good enough for cooking.
-        FIRE_PUT = 7396; -- You put$ in the fire.
-       FIRE_TAKE = 7397; -- You take$ out of the fire.
-     FIRE_LONGER = 7398; -- It may take a little while more to cook
-MEAT_ALREADY_PUT = 7399; -- is already in the fire
+       FIRE_GOOD = 7400; -- The fire seems to be good enough for cooking.
+        FIRE_PUT = 7401; -- You put$ in the fire.
+       FIRE_TAKE = 7402; -- You take$ out of the fire.
+     FIRE_LONGER = 7403; -- It may take a little while more to cook
+MEAT_ALREADY_PUT = 7404; -- is already in the fire
 
 -- Other dialog
         NOTHING_HAPPENS = 141;  -- Nothing happens...
 NOTHING_OUT_OF_ORDINARY = 6420; -- There is nothing out of the ordinary here.
 
-      MONSTER_TRACKS = 7391; -- You see monster tracks on the ground.
-MONSTER_TRACKS_FRESH = 7392; -- You see fresh monster tracks on the ground.
+      MONSTER_TRACKS = 7396; -- You see monster tracks on the ground.
+MONSTER_TRACKS_FRESH = 7397; -- You see fresh monster tracks on the ground.
 -- conquest Base
 CONQUEST_BASE = 7067; -- Tallying conquest results...
 

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(5210,1) and trade:getItemCount() == 1) then -- Adamantoise Soup 
         player:tradeComplete();
-        SpawnMob(16875778,120):updateClaim(player); -- Kurrea
+        SpawnMob(16875778):updateClaim(player); -- Kurrea
         npc:setStatus(STATUS_DISAPPEAR);
     end
 end; 

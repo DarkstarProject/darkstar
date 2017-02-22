@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Tebbad Wing
+-- Cyclone Wing
 --
---  Description: Deals darkness damage to enemies within a very wide area of effect. Additional effect: Sleep
---  Type: Magical
---  Utsusemi/Blink absorb: Wipes shadows
---  Range: 30' radial.
---  Notes: Used only by Vrtra and Azdaja
+-- Description: Deals darkness damage to enemies within a very wide area of effect. Additional effect: Sleep
+-- Type: Magical
+-- Utsusemi/Blink absorb: Wipes shadows
+-- Range: 30' radial.
+-- Notes: Used only by Vrtra and Azdaja
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() == 1) then
         return 1;

@@ -112,7 +112,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
     local npc = GetNPCByID(16806283);
     if (npc ~= nil) then
         npc:openDoor(); -- Attohwa Chasm miasma

@@ -1,4 +1,13 @@
-require("scripts/globals/npc_util");
+require("scripts/globals/log_ids");
+
+-----------------------------------
+--  Nation IDs
+-----------------------------------
+
+NATION_SANDORIA = 0;
+NATION_BASTOK   = 1;
+NATION_WINDURST = 2;
+
 -----------------------------------
 --
 --  QUESTS ID
@@ -8,22 +17,6 @@ require("scripts/globals/npc_util");
 QUEST_AVAILABLE = 0;
 QUEST_ACCEPTED  = 1;
 QUEST_COMPLETED = 2;
-
------------------------------------
---  Areas ID
------------------------------------
-
-SANDORIA    = 0;
-BASTOK      = 1;
-WINDURST    = 2;
-JEUNO       = 3;
-OTHER_AREAS = 4;
-OUTLANDS    = 5;
-AHT_URHGAN  = 6;
-CRYSTAL_WAR = 7;
-ABYSSEA     = 8;
-ADOULIN     = 9;
-COALITION   = 10;
 
 -----------------------------------
 --  San d'Oria - 0
@@ -1010,16 +1003,16 @@ DONT_EVER_LEAF_ME               = 70;
 KEEP_YOUR_BLOOMERS_ON_ERISA     = 71;
 SCAREDYCATS                     = 72;
 RAPTOR_RAPTURE                  = 73;
-EXOTIC_DELICACIES               = 74;
-A_PIONEERS_BEST_IMAGINARY_FRIEND= 75; 
-HUNGER_STRIKES                  = 76;
-THE_OLD_MAN_AND_THE_HARPOON     = 77;
-A_CERTAIN_SUBSTITUTE_PATROLMAN  = 78;
+EXOTIC_DELICACIES               = 74; -- + --
+A_PIONEERS_BEST_IMAGINARY_FRIEND= 75; -- + --
+HUNGER_STRIKES                  = 76; -- + --
+THE_OLD_MAN_AND_THE_HARPOON     = 77; -- + --
+A_CERTAIN_SUBSTITUTE_PATROLMAN  = 78; -- + --
 IT_SETS_MY_HEART_AFLUTTER       = 79;
 TRANSPORTING                    = 82;
-THE_STARVING                    = 84;
+THE_STARVING                    = 84; -- + --
 FERTILE_GROUND                  = 85;
-ALWAYS_MORE_QUOTH_THE_RAVENOUS  = 88;
+ALWAYS_MORE_QUOTH_THE_RAVENOUS  = 88; -- + --
 MEGALOMANIAC                    = 89;
 THE_LONGEST_WAY_ROUND           = 91;
 A_GOOD_PAIR_OF_CROCS            = 93;

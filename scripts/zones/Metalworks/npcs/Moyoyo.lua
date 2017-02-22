@@ -2,8 +2,8 @@
 --  Area: Metalworks
 --   NPC: Moyoyo
 --  Type: Standard NPC
--- @zone: 237
---  @pos 19.508 -17 26.870
+-- @zone 237
+-- @pos 19.508 -17 26.870
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

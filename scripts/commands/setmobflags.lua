@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
--- func: @mobflags <flags> <optional MobID>
--- desc: Used to manipulate a mob's flags for testing.
+-- func: mobflags <flags> <optional MobID>
+-- desc: Used to manipulate a mob's nameflags for testing.
 --       MUST either target a mob first or else specify a Mob ID.
 ---------------------------------------------------------------------------------------------------
 

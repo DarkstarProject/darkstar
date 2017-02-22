@@ -2,8 +2,8 @@
 -- Area: Bastok Markets
 --   NPC: Malene
 --  Type: Quest NPC
--- @zone: 235
---  @pos -173 -4 64
+-- @zone 235
+-- @pos -173 -4 64
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*500);
         player:messageSpecial(GIL_OBTAINED, GIL_RATE*500);    
         
-        if (TheColdLightofDay == QUEST_ACCEPTED) then 
+        if (player:getQuestStatus(BASTOK, THE_COLD_LIGHT_OF_DAY) == QUEST_ACCEPTED) then 
             player:addFame(BASTOK, 50);
             player:completeQuest(BASTOK, THE_COLD_LIGHT_OF_DAY);
         else

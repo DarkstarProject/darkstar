@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Ru'Lud Gardens
---    NPC:  Macchi Gazlitah
---    Standard Mechant NPC
+-- Area: Ru'Lud Gardens
+-- NPC:  Macchi Gazlitah
+-- Standard Mechant NPC
 -- Sells base items, then sells better items based 
 -- on a gil amount of what has been already purchased
 -- in a given timeframe.
@@ -23,8 +23,8 @@ end;
 
 function onTrigger(player,npc)
  -- TODO: The contents of her shop changes based on gil over time (resets on JP midnight)
- --          Right now only her first tier of stock is shown
- --          See WIKI for the shop tiers based on the amount sold
+ --       Right now only her first tier of stock is shown
+ --       See WIKI for the shop tiers based on the amount sold
     player:showText(npc,MACCHI_GAZLITAH_SHOP_DIALOG1);
 
 stock = {0x1647,100,  --Uleguerand Milk
@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -61,9 +61,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
-

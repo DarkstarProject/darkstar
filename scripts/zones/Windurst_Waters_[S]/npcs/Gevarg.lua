@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Gevarg
 --  Type: Past Event Watcher
--- @zone: 94
---  @pos -46.448 -6.312 212.384
+-- @zone 94
+-- @pos -46.448 -6.312 212.384
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

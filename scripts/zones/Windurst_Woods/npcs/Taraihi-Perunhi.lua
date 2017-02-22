@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(DERFLAND);
-    if (RegionOwner ~= WINDURST) then
+    if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);
     else
         player:showText(npc,TARAIHIPERUNHI_OPEN_DIALOG);
@@ -49,8 +49,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -58,6 +58,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

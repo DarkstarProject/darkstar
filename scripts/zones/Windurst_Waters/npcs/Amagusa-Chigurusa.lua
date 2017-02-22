@@ -2,7 +2,7 @@
 --  Area: Windurst Waters
 --  NPC:  Amagusa-Chigurusa
 --  Type: Standard NPC
---  @pos -28.746 -4.5 61.954 238
+-- @pos -28.746 -4.5 61.954 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

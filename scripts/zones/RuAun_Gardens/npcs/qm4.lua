@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     -- Trade Gem of the South and Summerstone
     if (GetMobAction(17309983) == 0 and trade:hasItemQty(1420,1) and trade:hasItemQty(1421,1) and trade:getItemCount() == 2) then
         player:tradeComplete();
-        SpawnMob(17309983,300):updateClaim(player); -- Spawn Suzaku
+        SpawnMob(17309983):updateClaim(player); -- Spawn Suzaku
         player:showText(npc,SKY_GOD_OFFSET + 7);
         npc:setStatus(STATUS_DISAPPEAR);
     end
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -8,6 +8,13 @@ require("scripts/globals/fieldsofvalor");
 require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 

@@ -2,9 +2,9 @@
 --  Area: Uleguerand Range
 --  NPC:  Fissure
 --  Teleports players from underground to surface
---  @pos 380.267 34.859 -179.655 5
---  @pos 460.339 -29.137 220.311 5
---  @pos 180.207 -77.147 500.276 5
+-- @pos 380.267 34.859 -179.655 5
+-- @pos 460.339 -29.137 220.311 5
+-- @pos 180.207 -77.147 500.276 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
@@ -45,8 +45,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if ((csid == 0x0002 or csid == 0x0003 or csid == 0x0004) and option == 2) then
         player:delKeyItem(MYSTIC_ICE);

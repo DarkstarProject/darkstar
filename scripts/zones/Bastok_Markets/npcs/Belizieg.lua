@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Belizieg
 --  Type: Item Deliverer
--- @zone: 235
---  @pos -323.673 -16.001 -49.930
+-- @zone 235
+-- @pos -323.673 -16.001 -49.930
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

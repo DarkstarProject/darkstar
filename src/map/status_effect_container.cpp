@@ -363,6 +363,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
         m_StatusEffectList.push_back(PStatusEffect);
 
         luautils::OnEffectGain(m_POwner, PStatusEffect);
+        m_POwner->PAI->EventHandler.triggerListener("EFFECT_GAIN", m_POwner, PStatusEffect);
 
         m_POwner->addModifiers(&PStatusEffect->modList);
 
@@ -425,6 +426,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
 
     m_StatusEffectList.erase(m_StatusEffectList.begin() + id);
     luautils::OnEffectLose(m_POwner, PStatusEffect);
+    m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
 
     m_POwner->delModifiers(&PStatusEffect->modList);
     m_POwner->UpdateHealth();
@@ -993,6 +995,20 @@ bool CStatusEffectContainer::HasStatusEffect(EFFECT StatusID, uint16 SubID)
     return false;
 }
 
+bool CStatusEffectContainer::HasStatusEffect(std::initializer_list<EFFECT> effects)
+{
+    for (auto&& effect_from_list : m_StatusEffectList)
+    {
+        for (auto&& effect_to_check : effects)
+        {
+            if (effect_to_check == effect_from_list->GetStatusID())
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID)
 {
@@ -1216,10 +1232,10 @@ void CStatusEffectContainer::LoadStatusEffects()
 
             // load shadows left
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                m_POwner->setModifier(MOD_UTSUSEMI, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
-                m_POwner->setModifier(MOD_BLINK, PStatusEffect->GetPower());
+                m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
             }
         }
     }
@@ -1260,13 +1276,13 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
 
             // save power of utsusemi and blink
             if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_UTSUSEMI));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::UTSUSEMI));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_BLINK));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::BLINK));
             }
             else if (PStatusEffect->GetStatusID() == EFFECT_STONESKIN) {
-                PStatusEffect->SetPower(m_POwner->getMod(MOD_STONESKIN));
+                PStatusEffect->SetPower(m_POwner->getMod(Mod::STONESKIN));
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
@@ -1352,10 +1368,10 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
 
         m_RegenCheckTime = tick;
 
-        int16 regen = m_POwner->getMod(MOD_REGEN);
-        int16 poison = m_POwner->getMod(MOD_REGEN_DOWN);
-        int16 refresh = m_POwner->getMod(MOD_REFRESH) - m_POwner->getMod(MOD_REFRESH_DOWN);
-        int16 regain = m_POwner->getMod(MOD_REGAIN) - m_POwner->getMod(MOD_REGAIN_DOWN);
+        int16 regen = m_POwner->getMod(Mod::REGEN);
+        int16 poison = m_POwner->getMod(Mod::REGEN_DOWN);
+        int16 refresh = m_POwner->getMod(Mod::REFRESH) - m_POwner->getMod(Mod::REFRESH_DOWN);
+        int16 regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
         m_POwner->addHP(regen);
 
         if (poison)
@@ -1370,9 +1386,9 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
             }
         }
 
-        if (m_POwner->getMod(MOD_AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
+        if (m_POwner->getMod(Mod::AVATAR_PERPETUATION) > 0 && (m_POwner->objtype == TYPE_PC))
         {
-            int16 perpetuation = m_POwner->getMod(MOD_AVATAR_PERPETUATION);
+            int16 perpetuation = m_POwner->getMod(Mod::AVATAR_PERPETUATION);
 
             if (m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_ASTRAL_FLOW))
                 perpetuation = 0;
@@ -1427,15 +1443,15 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
 
 bool CStatusEffectContainer::HasPreventActionEffect()
 {
-    return HasStatusEffect(EFFECT_SLEEP) ||
-        HasStatusEffect(EFFECT_SLEEP_II) ||
-        HasStatusEffect(EFFECT_PETRIFICATION) ||
-        HasStatusEffect(EFFECT_LULLABY) ||
-        HasStatusEffect(EFFECT_CHARM) ||
-        HasStatusEffect(EFFECT_CHARM_II) ||
-        HasStatusEffect(EFFECT_PENALTY) ||
-        HasStatusEffect(EFFECT_STUN) ||
-        HasStatusEffect(EFFECT_TERROR);
+    return HasStatusEffect({EFFECT_SLEEP,
+        EFFECT_SLEEP_II,
+        EFFECT_PETRIFICATION,
+        EFFECT_LULLABY,
+        EFFECT_CHARM,
+        EFFECT_CHARM_II,
+        EFFECT_PENALTY,
+        EFFECT_STUN,
+        EFFECT_TERROR});
 }
 
 uint16 CStatusEffectContainer::GetConfrontationEffect()
@@ -1477,9 +1493,9 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 
 bool CStatusEffectContainer::IsAsleep()
 {
-    return HasStatusEffect(EFFECT_SLEEP) ||
-        HasStatusEffect(EFFECT_SLEEP_II) ||
-        HasStatusEffect(EFFECT_LULLABY);
+    return HasStatusEffect({EFFECT_SLEEP,
+        EFFECT_SLEEP_II,
+        EFFECT_LULLABY});
 }
 
 void CStatusEffectContainer::WakeUp()

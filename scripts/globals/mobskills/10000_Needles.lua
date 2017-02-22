@@ -1,15 +1,15 @@
 ---------------------------------------------
---  1000 Needles
+-- 10000 Needles
 --
---  Description: Shoots multiple needles at enemies within range.
---  Type: Magical (Light)
---
+-- Description: Shoots multiple needles at enemies within range.
+-- Type: Magical (Light)
 --
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

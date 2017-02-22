@@ -19,30 +19,28 @@ function onInitialize(zone)
     zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
-
 -----------------------------------
 -- onZoneIn
 -----------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    
+
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(27.971,-14.068,43.735,66);
-    end    
-    
+    end
+
     if (player:getCurrentMission(COP) == AN_INVITATION_WEST) then
         if (player:getVar("PromathiaStatus") == 1) then
             cs = 0x0065;
@@ -52,7 +50,7 @@ function onZoneIn(player,prevZone)
     elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus") == 1) then
         cs = 0x0072;
     end
-    
+
     return cs;
 end;
 
@@ -74,7 +72,7 @@ function onRegionEnter(player,region)
                 player:startEvent(0x0070);
             end
         end,
-        
+
     }
 
 end;
@@ -89,8 +87,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -98,8 +96,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0065) then
         player:completeMission(COP,AN_INVITATION_WEST);
@@ -111,9 +109,9 @@ function onEventFinish(player,csid,option)
         player:addMission(COP,ANCIENT_VOWS);
     elseif (csid == 0x006B) then
         player:setVar("PromathiaStatus",1);
-    elseif (csid == 0x0070) then    
+    elseif (csid == 0x0070) then
         player:setVar("PromathiaStatus",1);
-    elseif (csid == 0x0072) then    
+    elseif (csid == 0x0072) then
         player:setVar("PromathiaStatus",2);
     end
 

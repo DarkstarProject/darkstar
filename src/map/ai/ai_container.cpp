@@ -35,6 +35,7 @@ This file is part of DarkStar-server source code.
 #include "states/trigger_state.h"
 #include "states/weaponskill_state.h"
 #include "states/range_state.h"
+#include "states/respawn_state.h"
 #include "controllers/player_controller.h"
 #include "controllers/mob_controller.h"
 #include "../entities/baseentity.h"
@@ -370,7 +371,7 @@ void CAIContainer::InterruptStates()
 
 bool CAIContainer::IsSpawned()
 {
-    return PEntity->status != STATUS_DISAPPEAR && !IsCurrentState<CDespawnState>();
+    return PEntity->status != STATUS_DISAPPEAR;
 }
 
 bool CAIContainer::IsRoaming()
@@ -401,7 +402,7 @@ void CAIContainer::Despawn()
     }
     else
     {
-        Internal_Despawn(0s);
+        Internal_Despawn();
     }
 }
 
@@ -415,12 +416,21 @@ bool CAIContainer::QueueEmpty()
     return ActionQueue.isEmpty();
 }
 
-void CAIContainer::Internal_Despawn(duration spawnTime)
+void CAIContainer::Internal_Despawn()
 {
     if (!IsCurrentState<CDespawnState>())
     {
-        ForceChangeState<CDespawnState>(PEntity, spawnTime);
+        ForceChangeState<CDespawnState>(PEntity);
     }
+}
+
+void CAIContainer::Internal_Respawn(duration _duration)
+{
+    if (!IsCurrentState<CRespawnState>())
+    {
+        ForceChangeState<CRespawnState>(PEntity, _duration);
+    }
+
 }
 
 void CAIContainer::CheckCompletedStates()

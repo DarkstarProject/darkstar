@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
--- @zone: 245
+-- @zone 245
 -- @pos -36.010 4.499 -139.714
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
@@ -29,9 +29,9 @@ function hasRSE(player)
     local rse = 0;
     local race = player:getRace();
 
-    for raceindex = 1, table.getn(rse_map), 2 do
+    for raceindex = 1, #rse_map, 2 do
         if (race == rse_map[raceindex]) then --matched race
-            for rseindex = 1, table.getn(rse_map[raceindex + 1]), 1 do --loop rse for this race
+            for rseindex = 1, #rse_map[raceindex + 1], 1 do --loop rse for this race
                 if (player:hasItem(rse_map[raceindex+1][rseindex])) then
                     rse = rse + (2 ^ (rseindex - 1));
                 end
@@ -45,7 +45,7 @@ end;
 function getRSE(player, option)
     local race = player:getRace();
 
-    for raceindex = 1, table.getn(rse_map), 2 do
+    for raceindex = 1, #rse_map, 2 do
         if (race == rse_map[raceindex]) then --matched race
             return rse_map[raceindex+1][option];
         end

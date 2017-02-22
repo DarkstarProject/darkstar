@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
-local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = LITELOR;
 local csid        = 0x7ffa;

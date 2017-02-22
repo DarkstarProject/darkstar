@@ -7,6 +7,13 @@
 require("scripts/zones/Carpenters_Landing/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
@@ -23,7 +30,6 @@ function onMobDespawn(mob)
 
         -- Check if Orctrap window is open, and there is not an Orctrap popped already(ACTION_NONE = 0)
         if (Orctrap_ToD <= os.time(t) and GetMobAction(Orctrap) == 0) then
-
             -- printf("Orctrap window open");
             -- Give Birdtrap 5 percent chance to pop Orctrap
             if (math.random(1,20) == 5) then

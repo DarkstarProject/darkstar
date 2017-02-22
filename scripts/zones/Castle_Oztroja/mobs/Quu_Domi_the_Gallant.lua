@@ -3,19 +3,33 @@
 --  MOB: Quu_Domi_the_Gallant
 -----------------------------------
 
+
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
+
+function onMobSpawn(mob)
+    if (math.random(1,100) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
+        SetDropRate(2916,15737,1000); -- Sarutobi Kyahan
+        SetDropRate(2916,16820,0);
+    else
+        SetDropRate(2916,15737,0);
+        SetDropRate(2916,16820,1000); -- Strider Sword
+    end
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
 -----------------------------------
 -- onMobDespawn
 -----------------------------------
 
 function onMobDespawn(mob)
-
-    if (math.random(1,100) <= 7) then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,15737,1000); -- Sarutobi Kyahan
-        SetDropRate(1936,16820,0);
-    else
-        SetDropRate(1936,15737,0);
-        SetDropRate(1936,16820,1000); -- Strider Sword
-    end
 
     -- Set Quu_Domi_the_Gallant's Window Open Time
     local wait = math.random(3600,10800);
@@ -29,4 +43,3 @@ function onMobDespawn(mob)
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;
-

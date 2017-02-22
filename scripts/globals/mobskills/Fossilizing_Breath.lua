@@ -1,16 +1,16 @@
 ---------------------------------------------
---  Fossilizaing Breath
+-- Fossilizing Breath
 --
---  Description: Petrifies targets within a fan-shaped area.
---  Type: Breath
---  Ignores Shadows
---  Range: Unknown cone
+-- Description: Petrifies targets within a fan-shaped area.
+-- Type: Breath
+-- Ignores Shadows
+-- Range: Unknown cone
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();

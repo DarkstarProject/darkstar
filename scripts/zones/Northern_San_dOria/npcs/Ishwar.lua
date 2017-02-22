@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Ishwar
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos -47.103 -1.999 -19.582
+--  @zone 231
+-- @pos -47.103 -1.999 -19.582
 --
 -----------------------------------
 

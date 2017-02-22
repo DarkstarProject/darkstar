@@ -20,9 +20,9 @@ function onMobFight(mob,target)
 
     if (mob:getBattleTime() % 45 == 0) then
         if (GetMobAction(Shen+1) == 0) then
-            SpawnMob(Shen+1,300):updateEnmity(target);
+            SpawnMob(Shen+1):updateEnmity(target);
         elseif (GetMobAction(Shen+2) == 0) then
-            SpawnMob(Shen+2,300):updateEnmity(target);
+            SpawnMob(Shen+2):updateEnmity(target);
         end
     end
 

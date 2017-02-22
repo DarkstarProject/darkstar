@@ -2,7 +2,7 @@
 --  Area: Bastok Mines
 --   NPC: Gonija
 --  Type: Chocobo Breeder
---  @pos 28 0 -105 234
+-- @pos 28 0 -105 234
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-        player:startEvent(0x0216);
+    player:startEvent(0x0216);
 end;
 
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-        -- printf("CSID: %u",csid);
-        -- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -38,6 +38,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-        -- printf("CSID: %u",csid);
-        -- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

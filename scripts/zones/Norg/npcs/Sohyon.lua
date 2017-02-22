@@ -2,8 +2,8 @@
 --  Area: Norg
 --   NPC: Sohyon
 --  Type: Standard NPC
--- @zone: 252
---  @pos 47.286 -7.282 13.873
+-- @zone 252
+-- @pos 47.286 -7.282 13.873
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

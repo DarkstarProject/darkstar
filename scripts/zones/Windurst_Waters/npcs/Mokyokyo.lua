@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Waters
---    NPC:  Mokyoko
---    Starts Windurst Missions
---    @pos -55 -8 227 238
+-- Area: Windurst Waters
+-- NPC:  Mokyoko
+-- Starts Windurst Missions
+-- @pos -55 -8 227 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -20,7 +20,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrigger(player,npc)
     
-    if (player:getNation() ~= WINDURST) then
+    if (player:getNation() ~= NATION_WINDURST) then
         player:startEvent(0x0067); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -66,7 +66,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
+    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     
     finishMissionTimeline(player,2,csid,option);

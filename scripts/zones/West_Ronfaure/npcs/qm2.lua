@@ -2,7 +2,7 @@
 --  Area: West Ronfaure
 --  NPC:  qm2 (???)
 --  Involved in Quest: The Dismayed Customer
---  @pos -550 -0 -542 100
+-- @pos -550 -0 -542 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,10 +49,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);    
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);    
 end;
-
-
 
 

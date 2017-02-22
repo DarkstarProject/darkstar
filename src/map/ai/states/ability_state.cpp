@@ -88,6 +88,8 @@ void CAbilityState::ApplyEnmity()
             mob->m_OwnerID.targid = m_PEntity->targid;
             mob->updatemask |= UPDATE_STATUS;
             mob->PEnmityContainer->UpdateEnmity(m_PEntity, m_PAbility->getCE(), m_PAbility->getVE());
+            if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
+                mob->m_HiPCLvl = m_PEntity->GetMLevel();
         }
     }
     else if (PTarget->allegiance == m_PEntity->allegiance)
@@ -135,7 +137,8 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
         }
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_AMNESIA) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_IMPAIRMENT)) {
+        if (PChar->StatusEffectContainer->HasStatusEffect({EFFECT_AMNESIA, EFFECT_IMPAIRMENT}))
+        {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
         }

@@ -7,8 +7,8 @@
 -- Mind -3
 -- Attack % 18
 -- Attack Cap 60
--- Virus Resist 5
--- Charm Resist 5
+-- Virus Resist 4
+-- Curse Resist 4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -18,11 +18,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -42,8 +42,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MND, -3);
     target:addMod(MOD_FOOD_ATTP, 18);
     target:addMod(MOD_FOOD_ATT_CAP, 60);
-    target:addMod(MOD_VIRUSRES, 5);
-    target:addMod(MOD_CHARMRES, 5);
+    target:addMod(MOD_VIRUSRES, 4);
+    target:addMod(MOD_CURSERES, 4);
 end;
 
 -----------------------------------------
@@ -55,6 +55,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_MND, -3);
     target:delMod(MOD_FOOD_ATTP, 18);
     target:delMod(MOD_FOOD_ATT_CAP, 60);
-    target:delMod(MOD_VIRUSRES, 5);
-    target:delMod(MOD_CHARMRES, 5);
+    target:delMod(MOD_VIRUSRES, 4);
+    target:delMod(MOD_CURSERES, 4);
 end;

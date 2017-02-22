@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  Rubious Crystal (West Tower) 
---  @pos -683.709 -6.250 -222.142 33
+-- @pos -683.709 -6.250 -222.142 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 0 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
         player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(WestTowerAern,180):updateClaim(player);
-        SpawnMob(WestTowerAern+1,180):updateClaim(player);
-        SpawnMob(WestTowerAern+2,180):updateClaim(player);
+        SpawnMob(WestTowerAern):updateClaim(player);
+        SpawnMob(WestTowerAern+1):updateClaim(player);
+        SpawnMob(WestTowerAern+2):updateClaim(player);
     elseif (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]WestTower") == 1 and player:getVar("[SEA][AlTieu]WestTowerCS") == 0) then
         player:startEvent(0x00A2);
     else
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

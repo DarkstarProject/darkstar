@@ -1,11 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea-Tahrongi
 --  NPC: ???
--- Spawns: Glavoid
+-- Spawns Glavoid
+-- @pos ? ? ? 45
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

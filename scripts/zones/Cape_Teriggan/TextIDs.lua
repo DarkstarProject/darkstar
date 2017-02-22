@@ -9,7 +9,7 @@ FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the #. Try trading again
             ITEMS_OBTAINED = 6393; -- You obtain
            BEASTMEN_BANNER = 7126; -- There is a beastmen's banner.
     FISHING_MESSAGE_OFFSET = 7546; -- You can't fish here.
-            HOMEPOINT_SET = 11244; -- Home point set!
+            HOMEPOINT_SET = 11249; -- Home point set!
 
 -- Other dialog
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
@@ -18,10 +18,10 @@ NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
 CONQUEST = 7213; -- You've earned conquest points!
 
 -- ZM4 Dialog
-   CANNOT_REMOVE_FRAG = 7656; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
-ALREADY_OBTAINED_FRAG = 7657; -- You have already obtained this monument's . Try searching for another.
-      FOUND_ALL_FRAGS = 7658; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-      ZILART_MONUMENT = 7660; -- It is an ancient Zilart monument.
+   CANNOT_REMOVE_FRAG = 7661; -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+ALREADY_OBTAINED_FRAG = 7662; -- You have already obtained this monument's . Try searching for another.
+      FOUND_ALL_FRAGS = 7663; -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+      ZILART_MONUMENT = 7665; -- It is an ancient Zilart monument.
 
 -- Other
 NOTHING_HAPPENS = 119; -- Nothing happens...?Possible Special Code: 00?

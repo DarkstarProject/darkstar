@@ -5,16 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------
-
+require("scripts/zones/Throne_Room/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Throne_Room/TextIDs");
-
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
-
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
@@ -30,8 +27,7 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
--- print("leave code "..leavecode);
-    
+    -- print("leave code "..leavecode);
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(player:getNation(),15)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -40,20 +36,18 @@ function onBcnmLeave(player,instance,leavecode)
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
-    end
-    
+    end    
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-    
+    -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 0x7d01) then
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
-            if (player:getCurrentMission(ZILART) < THE_NEW_FRONTIER) then
+            if ((not player:hasCompletedMission(ZILART, THE_NEW_FRONTIER)) and (player:getCurrentMission(ZILART) ~= THE_NEW_FRONTIER)) then
                 -- Don't add missions we already completed..Players who change nation will hit this.
                 player:addMission(ZILART,THE_NEW_FRONTIER);
             end
@@ -67,6 +61,5 @@ function onEventFinish(player,csid,option)
             -- You will be transported back to the entrance of Castle Zvahl Baileys
             player:setPos(378.222,-12,-20.299,125,0xA1);
         end
-    end
-    
+    end    
 end;

@@ -10,7 +10,8 @@
 -- Attack Cap 75
 -- Ranged ATT % 20
 -- Ranged ATT Cap 75
--- Stun Resist 5
+-- Stun Resist 4
+-- HP recovered while healing +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -20,11 +21,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -47,7 +48,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_FOOD_ATT_CAP, 75);
     target:addMod(MOD_FOOD_RATTP, 20);
     target:addMod(MOD_FOOD_RATT_CAP, 75);
-    target:addMod(MOD_STUNRES, 5);
+    target:addMod(MOD_STUNRES, 4);
+    target:addMod(MOD_HPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -62,5 +64,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_FOOD_ATT_CAP, 75);
     target:delMod(MOD_FOOD_RATTP, 20);
     target:delMod(MOD_FOOD_RATT_CAP, 75);
-    target:delMod(MOD_STUNRES, 5);
+    target:delMod(MOD_STUNRES, 4);
+    target:delMod(MOD_HPHEAL, 1);
 end;

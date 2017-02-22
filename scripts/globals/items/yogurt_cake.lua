@@ -5,6 +5,7 @@
 -----------------------------------------
 -- TODO: Group Effect
 -- Intelligence 1
+-- HP Recovered while healing 3
 -- MP Recovered while healing 6
 -----------------------------------------
 
@@ -15,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -36,6 +37,7 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_INT, 1);
+    target:addMod(MOD_HPHEAL, 3);
     target:addMod(MOD_MPHEAL, 6);
 end;
 
@@ -45,5 +47,6 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_INT, 1);
+    target:delMod(MOD_HPHEAL, 3);
     target:delMod(MOD_MPHEAL, 6);
 end;

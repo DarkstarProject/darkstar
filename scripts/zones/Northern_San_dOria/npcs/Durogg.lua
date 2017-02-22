@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --   NPC: Durogg
 --  Type: Past Event Watcher
--- @zone: 231
---  @pos: 15 0 -18
+-- @zone 231
+-- @pos 15 0 -18
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

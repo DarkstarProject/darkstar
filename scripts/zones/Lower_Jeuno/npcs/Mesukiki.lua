@@ -2,8 +2,8 @@
 --  Area: Lower Jeuno
 --  NPC: Mesukiki
 --  Type: Item Deliverer
---  @zone: 245
---  @pos -19.832    -0.101    -39.075
+--  @zone 245
+-- @pos -19.832    -0.101    -39.075
 --
 -----------------------------------
 

@@ -34,6 +34,7 @@
 #include "packets/char_skills.h"
 #include "packets/message_basic.h"
 #include "recast_container.h"
+#include "status_effect_container.h"
 
 CBattlefieldHandler::CBattlefieldHandler(uint16 zoneid)
 {
@@ -174,7 +175,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                         }
                         else {
                             // BCNMs that ends before killing mobs exits immediately.
-                            if (!PBattlefield->allEnemiesDefeated()) {
+                            if (!PBattlefield->allEnemiesDefeated() && !PBattlefield->cleared()) {
                                 ShowDebug("BCNM %i battlefield %i : Winning conditions met.\n",
                                     PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                                 PBattlefield->winBcnm();
@@ -195,7 +196,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                         }
                     }
                     //handle lose conditions
-                    else if (battlefieldutils::meetsLosingConditions(PBattlefield, tick)) {
+                    else if (battlefieldutils::meetsLosingConditions(PBattlefield, tick) && !PBattlefield->cleared()) {
                         ShowDebug("BCNM %i battlefield %i : Losing conditions met. Exiting battlefield.\n", PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                         PBattlefield->loseBcnm();
                     }
@@ -220,10 +221,20 @@ This removes the player from the active list and calls the warp/dc callback. Mus
 that this will be called if you warp BEFORE entering the bcnm (but still have battleifeld status)
 hence it doesn't check if you're "in" the BCNM, it just tries to remove you from the list.
 */
-bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) { //includes warping
-    for (int i = 0; i < m_MaxBattlefields; i++) {
-        if (m_Battlefields[i] != nullptr) {
-            if (m_Battlefields[i] == PChar->PBCNM) {
+bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warping
+{
+    if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
+        return false;
+    
+    uint16 effectid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+
+    for (int i = 0; i < m_MaxBattlefields; i++)
+    {
+        if (m_Battlefields[i] != nullptr)
+        {
+            if (m_Battlefields[i]->getID() == effectid)
+            //PChar->PBCNM will be nullptr if the player has not yet entered so we check their status effect instead
+            { 
                 luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_WARPDC);
                 m_Battlefields[i]->delPlayerFromBcnm(PChar);
                 return true;

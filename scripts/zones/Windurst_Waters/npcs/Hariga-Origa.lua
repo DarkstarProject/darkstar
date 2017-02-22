@@ -3,7 +3,7 @@
 --  NPC:  Hariga-Origa
 --  Starts & Finishes Quest: Glyph Hanger
 -- Involved in Mission 2-1
---  @pos -62 -6 105 238
+-- @pos -62 -6 105 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -65,8 +65,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -74,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x017d and option == 0) then
         player:addQuest(WINDURST,GLYPH_HANGER);

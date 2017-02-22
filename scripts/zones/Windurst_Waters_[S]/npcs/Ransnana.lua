@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Ransnana
 --  Type: Standard NPC
--- @zone: 94
---  @pos -22.008 -13.339 122.819
+-- @zone 94
+-- @pos -22.008 -13.339 122.819
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

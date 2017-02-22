@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             player:messageSpecial(KEYITEM_OBTAINED,YOMOTSU_FEATHER);
             player:setVar("yomiOkuriKilledNM",0);
         else
-            SpawnMob(17649860,300):updateClaim(player); -- Ubume
+            SpawnMob(17649860):updateClaim(player); -- Ubume
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

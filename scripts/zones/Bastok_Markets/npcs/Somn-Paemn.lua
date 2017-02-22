@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(SARUTABARUTA);
 
-    if (RegionOwner ~= BASTOK) then 
+    if (RegionOwner ~= NATION_BASTOK) then 
         player:showText(npc,SOMNPAEMN_CLOSED_DIALOG);
     else
         player:showText(npc,SOMNPAEMN_OPEN_DIALOG);
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(16826570) == 0 and trade:hasItemQty(1878,1) and trade:getItemCount() == 1) then -- Air tank 
         player:tradeComplete();
         player:showText(npc, SHOWMAN_ACCEPT); -- Moblin Showman's dialogue
-        SpawnMob(16826570,300):updateClaim(player); -- Bugbear Matman
+        SpawnMob(16826570):updateClaim(player); -- Bugbear Matman
         npc:setStatus(STATUS_DISAPPEAR);
     else
         player:showText(npc, SHOWMAN_DECLINE); -- Moblin Showman refuses your trade

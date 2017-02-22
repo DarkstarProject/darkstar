@@ -17,11 +17,6 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17506822,17506823,17506824,17506825,17506826,17506827,17506828};
-    
-    SetGroundsTome(tomes);
-
     -- MAP 1 ------------------------
     zone:registerRegion(1, -21, 29, -61, -16, 31, -57);     --> F (H-10)
     zone:registerRegion(2, 16, 29, 57, 21, 31, 61);         --> E (H-7)
@@ -83,13 +78,13 @@ function onZoneIn(player,prevZone)
    return cs;
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -131,7 +126,7 @@ function onRegionEnter(player,region)
             player:startEvent(10); --> L'
         end,
         [10] = function (x)
-            player:startEvent(11); 
+            player:startEvent(11);
         end,
         [11] = function (x)
             player:startEvent(8);
@@ -148,7 +143,7 @@ function onRegionEnter(player,region)
         [15] = function (x)
             player:startEvent(12); --> C
         end,
-        
+
         default = function (x)
         end,
     }

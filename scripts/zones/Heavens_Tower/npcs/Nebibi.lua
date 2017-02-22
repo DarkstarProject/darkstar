@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Nebibi
 --  Type: Standard NPC
---  @pos 23.539 -27.25 22.589 242
+-- @pos 23.539 -27.25 22.589 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

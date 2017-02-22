@@ -22,8 +22,9 @@ function onTrade(player,npc,trade)
                 if (player:unlockAttachment(subid)) then
                     player:setVar('TateeyaUnlock', subid);
                     player:startEventString(0x028B, automatonName, automatonName, automatonName, automatonName, subid); --unlock attachment event
-                    trade:confirmItem(i);
-                    player:confirmTrade();
+                    if trade:confirmItem(i) then
+                        player:confirmTrade();
+                    end
                 else
                     player:startEvent(0x028C); --already unlocked event
                 end
@@ -56,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -65,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x028A) then --unlocking attachments explanation
         player:setVar('TateeyaTradeStatus', 1);
     elseif (csid == 0x028B) then
@@ -75,6 +76,4 @@ function onEventFinish(player,csid,option)
         player:setVar('TateeyaUnlock',0);
     end
 end;
-
-
 

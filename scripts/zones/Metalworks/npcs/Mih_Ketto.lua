@@ -2,8 +2,8 @@
 --  Area: Metalworks
 --   NPC: Mih Ketto
 --  Type: Standard NPC
--- @zone: 237
---  @pos 24.046 -17 32.751
+-- @zone 237
+-- @pos 24.046 -17 32.751
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -6,7 +6,7 @@
 -------------------------------------------------
 
 require("scripts/globals/settings");
-
+require("scripts/globals/status");
 
 -------------------------------------------------
 -- THF tools/keys & their chance increment
@@ -45,9 +45,9 @@ function spawnMimic(zone,npc,player)
              169,17469761,
              177,17502567};
     
-    for nb = 1, table.getn(mimic), 2 do
+    for nb = 1, #mimic, 2 do
         if (zone == mimic[nb]) then
-            SpawnMob(mimic[nb + 1],120):updateEnmity(player);
+            SpawnMob(mimic[nb + 1]):updateEnmity(player);
             setMobPos(mimic[nb + 1],npc:getXPos(),npc:getYPos(),npc:getZPos(),npc:getRotPos());
             break;
         else
@@ -245,7 +245,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
         end
     elseif (not(isTHFKey(trade))) then                                       
         chance_answer = {1,nil}; -- Zone Key is always 100% success
-    elseif (player:getMainJob() == 6 and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
+    elseif (player:getMainJob() == JOBS.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
         success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
         chance_answer = {success,nil};
     else
@@ -418,7 +418,7 @@ gil = {147,{0.152,3440,9000},
     rand = math.random();
     rand = math.random();
     rand = math.random();
-    for u = 1, table.getn(gil), 2 do
+    for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then
                 reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};
@@ -583,7 +583,7 @@ Any update should be here with the date which was modified as well as an URL whe
     rand = math.random();
     rand = math.random();
     
-    for u = 1, table.getn(gil), 2 do
+    for u = 1, #gil, 2 do
         if (gil[u] == zone) then
             if (rand <= gil[u + 1][1]) then
                 reward = {"gil",math.random(gil[u + 1][2],gil[u + 1][3])};

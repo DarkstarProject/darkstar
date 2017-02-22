@@ -2,15 +2,14 @@
 --  Area: Southern San d`Oria
 --   NPC: Alaune
 --  Type: Tutorial NPC
---  @zone: 230
---  @pos -90 1 -56
+--  @zone 230
+-- @pos -90 1 -56
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action

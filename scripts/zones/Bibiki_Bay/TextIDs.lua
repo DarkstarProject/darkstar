@@ -12,11 +12,11 @@ ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back a
 NOTHING_OUT_OF_ORDINARY = 6398; -- There is nothing out of the ordinary here.
 
 -- Manaclipper
-  NO_BILLET = 7472; -- You were refused passage for failing to present
-HAVE_BILLET = 7477; -- You cannot buy morrre than one . Use the one you have now to ride the next ship.
-LEFT_BILLET = 7482; -- You use your
- END_BILLET = 7483; -- You use up your
-NEWS_BILLET = 7484; -- added to your
+  NO_BILLET = 7477; -- You were refused passage for failing to present
+HAVE_BILLET = 7482; -- You cannot buy morrre than one . Use the one you have now to ride the next ship.
+LEFT_BILLET = 7487; -- You use your
+ END_BILLET = 7488; -- You use up your
+NEWS_BILLET = 7489; -- added to your
 
 -- Conquest Base
 CONQUEST_BASE = 7045; -- Tallying conquest results...

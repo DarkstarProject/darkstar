@@ -1105,7 +1105,6 @@ INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1303);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1304);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1305);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1306);
-INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,2248);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,951);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,952);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,953);
@@ -1855,7 +1854,6 @@ INSERT INTO `mob_skill_lists` VALUES ('JormungandWyrm',392,1293);
 INSERT INTO `mob_skill_lists` VALUES ('JormungandWyrm',392,1294);
 INSERT INTO `mob_skill_lists` VALUES ('JormungandWyrm',392,1295);
 INSERT INTO `mob_skill_lists` VALUES ('JormungandWyrm',392,1296);
-INSERT INTO `mob_skill_lists` VALUES ('JormungandWyrm',392,2249);
 -- INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1277);
 INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1279);
 INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1280);
@@ -1865,7 +1863,6 @@ INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1283);
 INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1284);
 INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1285);
 INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,1286);
-INSERT INTO `mob_skill_lists` VALUES ('TiamatWyrm',393,2242);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',394,?);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',394,936);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',394,962);
@@ -2175,24 +2172,24 @@ INSERT INTO `mob_skill_lists` VALUES ('King_Behemoth',479,630);
 INSERT INTO `mob_skill_lists` VALUES ('King_Behemoth',479,631);
 INSERT INTO `mob_skill_lists` VALUES ('King_Behemoth',479,632);
 INSERT INTO `mob_skill_lists` VALUES ('King_Behemoth',479,633);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,979);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,980);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,981);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,982);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,983);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,695);
-INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,1002);
-INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,970);
-INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,971);
-INSERT INTO `mob_skill_lists` VALUES ('Volker',482,973);
-INSERT INTO `mob_skill_lists` VALUES ('Volker',482,974);
-INSERT INTO `mob_skill_lists` VALUES ('Volker',482,975);
-INSERT INTO `mob_skill_lists` VALUES ('Volker',482,976);
-INSERT INTO `mob_skill_lists` VALUES ('Trion',483,971);
-INSERT INTO `mob_skill_lists` VALUES ('Trion',483,972);
-INSERT INTO `mob_skill_lists` VALUES ('Trion',483,968);
-INSERT INTO `mob_skill_lists` VALUES ('Trion',483,969);
-INSERT INTO `mob_skill_lists` VALUES ('Trion',483,970);
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,979); -- Power Slash
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,980); -- Freeze Bite
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,981); -- GroundStrike
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,982); -- Abyssal Drain
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,983); -- Abyssal strike
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,695); -- Blood Weapon
+INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,1002); -- Summonshadows
+-- INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,970); -- Why is Savage Blade here? .. Wrong ID
+-- INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,971); -- Why is Royal Bash here?   .. Wrong ID
+INSERT INTO `mob_skill_lists` VALUES ('Volker',482,973); -- Red Lotus Blade
+INSERT INTO `mob_skill_lists` VALUES ('Volker',482,974); -- Spirits Within
+INSERT INTO `mob_skill_lists` VALUES ('Volker',482,975); -- Vorpal Blade
+INSERT INTO `mob_skill_lists` VALUES ('Volker',482,976); -- Berserk-Ruf
+INSERT INTO `mob_skill_lists` VALUES ('Trion',483,968); -- Red Lotus Blade
+INSERT INTO `mob_skill_lists` VALUES ('Trion',483,969); -- Flat blade
+INSERT INTO `mob_skill_lists` VALUES ('Trion',483,970); -- Savage blade
+INSERT INTO `mob_skill_lists` VALUES ('Trion',483,971); -- Royal Bash
+INSERT INTO `mob_skill_lists` VALUES ('Trion',483,972); -- Royal Savior
 INSERT INTO `mob_skill_lists` VALUES ('Lilisette',484,2447);
 INSERT INTO `mob_skill_lists` VALUES ('Lilisette',484,2446);
 INSERT INTO `mob_skill_lists` VALUES ('Lilisette',484,2445);
@@ -2616,3 +2613,82 @@ INSERT INTO `mob_skill_lists` VALUES ('Skirling_Liger',774,273);
 
 INSERT INTO `mob_skill_lists` VALUES ('Wake_Warder_Wanda',775,442);
 INSERT INTO `mob_skill_lists` VALUES ('Wake_Warder_Wanda',775,445);
+
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,32); -- Fast Blade (assumed)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,33); -- Burning Blade (assumed)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,36); -- Shining Blade (assumed)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,37); -- Seraph Blade (seen in video: https://youtu.be/kw_lhwEGSYs?t=5m35s)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,38); -- Circle Blade (assumed)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,34); -- Red Lotus Blade (seen in video: https://youtu.be/kw_lhwEGSYs?t=4m45s)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,35); -- Flat Blade (seen in video: https://youtu.be/kw_lhwEGSYs?t=4m20s)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,41); -- Swift Blade (seen in video: https://youtu.be/kw_lhwEGSYs?t=5m11s)
+INSERT INTO `mob_skill_lists` VALUES ('Ashu_Talif_Captain',776,254); -- Vulcan Shot
+-- Ashu Talif Crew use standard Fomor skills tied to their job.
+
+-- Gessho v1 (Aht Urhgan Mission 15: The Black Coffin)
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,1936); -- Shibaraku - 500-2000 AoE damage and knockback, blockable by shadows
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,1998); -- Hane Fubuki - Feather Storm; ranged attack and Poison
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,1999); -- Hiden Sokyaku - Double Kick; knockback and Stun
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,2000); -- Shiko no Mitate - Parry; Defense Boost on self
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,2001); -- Happobarai - Sweep; 300-1200 AoE damage and Stun, blockable by shadows
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_I',777,2002); -- Rinpyotosha - Warcry effect
+
+-- Gessho v2 (Aht Urhgan Mission 35: Legacy of the Lost)
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,1936); -- Shibaraku - 500-2000 AoE damage and knockback, blockable by shadows
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,1998); -- Hane Fubuki - Feather Storm; ranged attack and Poison
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,1999); -- Hiden Sokyaku - Double Kick; knockback and Stun
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,2000); -- Shiko no Mitate - Parry; Defense Boost on self
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,2001); -- Happobarai - Sweep; 300-1200 AoE damage and Stun, blockable by shadows
+INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,2002); -- Rinpyotosha - Warcry effect
+-- INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,2269) -- Kamaitachi (Below 50%): AoE physical damage + major knockback and dispel all. Dispel effect can be avoided by shield blocks and utsusemi.
+-- INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,3276) -- Kagedourou (Above 50%): Summons multiple clones.
+-- Clones will depop once sufficient damage is done to Gessho. Clones themselves can be defeated as well.
+-- INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,3277) -- Karakuridourou (Above 50%): Summons multiple clones.
+-- INSERT INTO `mob_skill_lists` VALUES ('Gessho_II',778,3278) -- Tsujikaze (Below 50%): AoE magical damage + silence, defense down, and magic defense down. ~14.9' range.
+
+INSERT INTO `mob_skill_lists` VALUES ('Khimaira_13',779,2022); -- Tenebrous Mist: TP is reset to 0.
+INSERT INTO `mob_skill_lists` VALUES ('Khimaira_13',779,2023); -- Thunderstrike: AoE DMG + Stun. Removes Utsusemi.
+INSERT INTO `mob_skill_lists` VALUES ('Khimaira_13',779,2024); -- Tourbillion: AoE DMG + Knockback. Removes Utsusemi.
+INSERT INTO `mob_skill_lists` VALUES ('Khimaira_13',779,2025); -- Dreadstorm: AoE DMG + terrorize. Removes Utsusemi.
+
+INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2094); -- Flame Angon - AoE fire damage (50-100)
+INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2098); -- Blazing Angon - AoE fire damage (150-300)
+INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2099); -- Batterhorn - 2-hit frontal AOE, absorbed by Utsusemi.
+INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2100); -- Clobber - Targeted AoE physical damage
+INSERT INTO `mob_skill_lists` VALUES ('Lancelord_Gaheel_Ja',780,2103); -- Granite Skin - Parry/Guard skill increase, cannot be dispelled
+
+INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,165); -- Skullbreaker (Mission version uses skull
+INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,168); -- Hexa Strike
+INSERT INTO `mob_skill_lists` VALUES ('Naja_Salaheem',781,169); -- Black Halo
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,2140); -- Peacebreaker
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,168); -- Hexa Strike
+-- INSERT INTO `mob_skill_lists` VALUES ('Trust_NajaSalaheem',?,169); -- Black Halo
+-- Confirmed on retail, each version of her uses a different "breaker" ws.
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,3503); -- Justicebreaker
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,168); -- Hexa Strike
+-- INSERT INTO `mob_skill_lists` VALUES ('UnityLeader_NajaSalaheem',?,169); -- Black Halo
+
+INSERT INTO `mob_skill_lists` VALUES ('Amnaf_blu',782,38); -- Circle Blade
+-- Flayer version of Amnaf uses standard soulflayer skills.
+
+-- While I never once saw any other WS from Raubahn, he may have others.
+INSERT INTO `mob_skill_lists` VALUES ('Raubahn',783,37); -- Seraph Blade
+INSERT INTO `mob_skill_lists` VALUES ('Raubahn',783,38); -- Circle Blade
+
+-- Razfahd uses only Perfect Defense, which is forced by mobscript at 50% HP so he needs no list.
+INSERT INTO `mob_skill_lists` VALUES ('Alexander',784,2141); -- Radiant Sacrament  "Offer thy worship..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander',784,2142); -- Mega Holy          "My radiance...shall guide thee..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander',784,2144); -- Divine Spear       "My divine flames...shall melt thy flesh...sear thy bones...unshackle thy soul..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander',784,2145); -- Gospel of the Lost "Bask in my Glory"
+INSERT INTO `mob_skill_lists` VALUES ('Alexander',784,2146); -- Void of Repentance "Repent thy irreverence..."
+-- Divine Judgement (2147) is forced once by mobscript at 50% HP.
+-- Per wiki, Alexander may use Perfect Defense (2143) as a regular skill at 10%
+-- From info on both wiki's, I am assuming this is also the case for Divine Judgement.
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2141); -- Radiant Sacrament  "Offer thy worship..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2142); -- Mega Holy          "My radiance...shall guide thee..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2143); -- Perfect Defense    "Cease thy struggles..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2144); -- Divine Spear       "My divine flames...shall melt thy flesh...sear thy bones...unshackle thy soul..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2145); -- Gospel of the Lost "Bask in my Glory"
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2146); -- Void of Repentance "Repent thy irreverence..."
+INSERT INTO `mob_skill_lists` VALUES ('Alexander_LowHP',785,2147); -- Divine Judgement   "Accept thy destruction..."
+

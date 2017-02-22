@@ -343,8 +343,6 @@ int32 lobbydata_parse(int32 fd)
                 return -1;
             }
 
-            do_close_tcp(sd->login_lobbyview_fd);
-
             if (login_config.log_user_ip == true)
             {
                 // Log clients IP info when player spawns into map server
@@ -365,6 +363,8 @@ int32 lobbydata_parse(int32 fd)
                     ShowError("lobbyview_parse: Could not write info to account_ip_record.\n");
                 }
             }
+
+            do_close_tcp(sd->login_lobbyview_fd);
 
             ShowStatus("lobbydata_parse: client %s finished work with " CL_GREEN"lobbyview" CL_RESET"\n", ip2str(sd->client_addr, nullptr));
             break;
@@ -494,6 +494,7 @@ int32 lobbyview_parse(int32 fd)
             {
                 LOBBY_026_RESERVEPACKET(ReservePacket);
                 WBUFW(ReservePacket, 32) = login_config.expansions; // BitMask for expansions;
+                WBUFW(ReservePacket, 36) = login_config.features; // Bitmask for account features
                 memcpy(MainReservePacket, ReservePacket, sendsize);
             }
             //Хеширование пакета, и запись значения Хеш функции в пакет

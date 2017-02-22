@@ -2,8 +2,8 @@
 --  Area: Bastok Mines
 --   NPC: Gregory
 --  Type: ENM
--- @zone: 234
---  @pos 51.530 -1 -83.940
+-- @zone 234
+-- @pos 51.530 -1 -83.940
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

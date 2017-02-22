@@ -17,7 +17,7 @@ require("scripts/globals/settings");
 function onTrade(player,npc,trade)
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
-    local offer = trade:getItem();
+    local offer = trade:getItemId();
     
     if (player:getVar("FLOWER_PROGRESS") == 2) then
         if (trade:hasItemQty(950, 1) and trade:getItemCount() == 1) then

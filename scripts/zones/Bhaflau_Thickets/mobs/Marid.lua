@@ -7,6 +7,13 @@
 require("scripts/zones/Bhaflau_Thickets/MobIDs");
 
 -----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
 -- onMobDespawn
 -----------------------------------
 
@@ -23,7 +30,6 @@ function onMobDespawn(mob)
 
         -- Check if Mahishasura window is open, and there is not an Mahishasura popped already(ACTION_NONE = 0)
         if (Mahishasura_ToD <= os.time(t) and GetMobAction(Mahishasura) == 0) then
-
             -- printf("Mahishasura window open");
             -- Give Marid 5 percent chance to pop Mahishasura
             if (math.random(1,20) == 5) then

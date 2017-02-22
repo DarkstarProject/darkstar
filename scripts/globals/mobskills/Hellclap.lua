@@ -1,10 +1,10 @@
 ---------------------------------------------------
 -- Hellclap
---
+-- Deals magical damage to enemies within a fan-shaped area. Additional effect: Weight
 ---------------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -37,10 +37,10 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 4.0;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded*math.random(2,3));
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = EFFECT_WEIGHT;
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
+    MobStatusEffectMove(mob, target, typeEffect, 40, 0, 60);
+
     target:delHP(dmg);
-
     return dmg;
 end;

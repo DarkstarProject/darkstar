@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
     
     target:showText(mob,ANIMATED_KUNAI_DIALOG);
     
-    SpawnMob(17330442,120):updateEnmity(target);
-    SpawnMob(17330443,120):updateEnmity(target);
-    SpawnMob(17330444,120):updateEnmity(target);
-    SpawnMob(17330454,120):updateEnmity(target);
-    SpawnMob(17330455,120):updateEnmity(target);
-    SpawnMob(17330456,120):updateEnmity(target);
+    SpawnMob(17330442):updateEnmity(target);
+    SpawnMob(17330443):updateEnmity(target);
+    SpawnMob(17330444):updateEnmity(target);
+    SpawnMob(17330454):updateEnmity(target);
+    SpawnMob(17330455):updateEnmity(target);
+    SpawnMob(17330456):updateEnmity(target);
 
 end;
 

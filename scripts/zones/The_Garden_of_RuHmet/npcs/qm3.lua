@@ -2,7 +2,7 @@
 -- Area: The_Garden_of_RuHmet
 -- NPC:  ??? (Jailer of Faith Spawn)
 -- Allows players to spawn the Jailer of Faith by trading 1 High-Quality Euvhi Organ to a ???.
--- @pos ,-260 0 -645 
+-- @pos -260 0 -645 
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
@@ -21,10 +21,10 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         -- Hide the ???
         qm3:setStatus(STATUS_DISAPPEAR);
-        -- Change MobSpawn to ???'s @pos.
+        -- Change MobSpawn to ???'s pos.
         GetMobByID(Jailer_of_Faith):setSpawn(qm3:getXPos(),qm3:getYPos(),qm3:getZPos());
         -- Spawn Jailer of Faith
-        SpawnMob(Jailer_of_Faith,900):updateClaim(player); 
+        SpawnMob(Jailer_of_Faith):updateClaim(player); 
     end
 end; 
 
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 end;

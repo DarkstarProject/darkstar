@@ -22,22 +22,29 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == LOST_KINGDOM and player:hasKeyItem(VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
-        player:startEvent(8);
-    elseif (player:getVar("AhtUrganStatus") == 1) then
-        if (GetMobAction(17101146) == 0) then
-            SpawnMob(17101146):updateEnmity(player);
+    if (player:hasCompletedMission(TOAU,LOST_KINGDOM)) then
+        if(player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) == false) then
+            player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
+            player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
         end
-    elseif (player:getVar("AhtUrganStatus") == 2) then
-        player:startEvent(9);
-    elseif (player:getVar("AhtUrganStatus") == 3) then
-        player:setVar("AhtUrganStatus", 0);
-        player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
-        player:completeMission(TOAU,LOST_KINGDOM);
-        player:addMission(TOAU,THE_DOLPHIN_CREST);
-        player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
-    else
-        player:messageSpecial(JAZARAATS_HEADSTONE);
+    elseif (player:getCurrentMission(TOAU) == LOST_KINGDOM) then
+        if (player:hasKeyItem(VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
+            player:startEvent(8);
+        elseif (player:getVar("AhtUrganStatus") == 1) then
+            if (GetMobAction(17101146) == 0) then
+                SpawnMob(17101146):updateEnmity(player);
+            end
+        elseif (player:getVar("AhtUrganStatus") == 2) then
+            player:startEvent(9);
+        elseif (player:getVar("AhtUrganStatus") == 3) then
+            player:setVar("AhtUrganStatus", 0);
+            player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
+            player:completeMission(TOAU,LOST_KINGDOM);
+            player:addMission(TOAU,THE_DOLPHIN_CREST);
+            player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
+        else
+            player:messageSpecial(JAZARAATS_HEADSTONE);
+        end
     end
 end;
 

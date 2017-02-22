@@ -28,7 +28,7 @@ stock = {0x4360,46836,2,        -- Arquebus
         0x43BC,90,3,        -- Bullet
         0x03A0,463,3}        -- Bomb Ash
  
-showNationShop(player, BASTOK, stock);
+showNationShop(player, NATION_BASTOK, stock);
 end; 
 
 -----------------------------------
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,9 +45,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

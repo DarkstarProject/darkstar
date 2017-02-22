@@ -2,7 +2,7 @@
 --  Area: Bastok Markets [S]
 --  NPC:  GentleTiger
 --  Type: Quest
---  @pos -203  -10  1
+-- @pos -203  -10  1
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x002E) then
         player:setVar("OnSabbatical", 2);
     elseif (csid == 0x00A0) then

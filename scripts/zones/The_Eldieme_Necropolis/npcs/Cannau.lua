@@ -2,7 +2,7 @@
 --  Area: The Eldieme Necropolis
 --  NPC:  Cannau
 --  Type: Escort NPC
---  @pos 419.838 -56.999 -114.870 195
+-- @pos 419.838 -56.999 -114.870 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

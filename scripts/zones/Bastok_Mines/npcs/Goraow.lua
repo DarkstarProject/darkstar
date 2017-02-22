@@ -52,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -82,7 +82,5 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",16,true);
     end
 end;
-
-
 
 

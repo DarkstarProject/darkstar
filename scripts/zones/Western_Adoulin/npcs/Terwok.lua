@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
 --  @zone 256
---  @pos 127 4 -81
+-- @pos 127 4 -81
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -21,9 +21,9 @@ end;
 
 function onTrigger(player,npc)
     local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
-    local Order_Terwok = bit.band(bit.rshift(player:getVar("Order_Up_NPCs"), 7), 1);
+    local Order_Terwok = player:getMaskBit(player:getVar("Order_Up_NPCs"), 7);
 
-    if ((Order_Up == QUEST_ACCEPTED) and (Order_Terwok < 1)) then
+    if ((Order_Up == QUEST_ACCEPTED) and (not Order_Terwok)) then
         -- Progresses Quest: 'Order Up'
         player:startEvent(0x0043);
     else
@@ -46,6 +46,6 @@ end;
 function onEventFinish(player,csid,option)    
     if (csid == 0x0043) then
         -- Progresses Quest: 'Order Up'
-        player:addVar("Order_Up_NPCs", bit.lshift(1, 7));
+        player:setMaskBit("Order_Up_NPCs", 7, true);
     end
 end;

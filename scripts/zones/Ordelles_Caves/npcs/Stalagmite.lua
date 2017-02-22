@@ -40,14 +40,14 @@ function onTrigger(player,npc)
                 player:setVar("Polevik_Timer",0);
                 player:setVar("sharpeningTheSwordCS",4)
             elseif (NMDespawned) then
-                SpawnMob(17568134,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+                SpawnMob(17568134):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
                 player:setVar("PolevikKilled",0);
                 player:setVar("Polevik_Spawned",os.time()+180);
             else
                 player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
             end
         elseif (canSpawn) then
-            SpawnMob(17568134,168):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
+            SpawnMob(17568134):updateClaim(player); -- Despawn after 3 minutes (-12 seconds for despawn delay).
             player:setVar("Polevik_Spawned",os.time()+180);
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -72,6 +72,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

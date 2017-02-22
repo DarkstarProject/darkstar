@@ -51,9 +51,9 @@ function onTrigger(player,npc)
         player:startEvent(0x0023);
     elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_BASTOK)) then
         player:startEvent(0x0037);
-    elseif (pNation == WINDURST) then
+    elseif (pNation == NATION_WINDURST) then
         player:startEvent(0x0004);
-    elseif (pNation == SANDORIA) then
+    elseif (pNation == NATION_SANDORIA) then
         player:startEvent(0x0002);
     else
         player:startEvent(0x0065);
@@ -66,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -75,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0029) then
         player:setVar("MissionStatus",2);

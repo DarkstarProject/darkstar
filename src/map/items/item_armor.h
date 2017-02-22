@@ -63,9 +63,9 @@ public:
 	uint16	getScriptType();
 	uint8	getShieldSize();
 	uint16	getEquipSlotId();
-	uint8	getRemoveSlotId();
+	uint16	getRemoveSlotId();
     uint8   getShieldAbsorption();
-	int16	getModifier(uint16 mod);
+	int16	getModifier(Mod mod);
     uint8   getSlotType();
     uint16  getAugment(uint8 slot);
 	uint16  getTrialNumber();
@@ -79,7 +79,7 @@ public:
 	void	setShieldSize(uint8 shield);
 	void	setScriptType(uint16 isScripted);
 	void	setEquipSlotId(uint16 equipSlot);
-	void	setRemoveSlotId(uint8 removSlot);
+	void	setRemoveSlotId(uint16 removSlot);
     void    setAugment(uint8 slot, uint16 type, uint8 value);
 	void    setTrialNumber(uint16);
 
@@ -104,7 +104,7 @@ private:
 	uint8	m_shieldSize;
     uint8   m_absorption;
 	uint16	m_equipSlotID;
-	uint8	m_removeSlotID;
+	uint16	m_removeSlotID;
 
     void    SetAugmentMod(uint16 type, uint8 value);
 };

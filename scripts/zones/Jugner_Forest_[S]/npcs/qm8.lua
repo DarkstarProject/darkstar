@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  ???
 --  Type: Quest NPC
---  @pos -6 0 -295
+-- @pos -6 0 -295
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x00CC) then
         player:setVar("WrathOfTheGriffon",1);
     elseif (csid == 0x00CD) then
-        SpawnMob(17113464,180):updateClaim(player);
+        SpawnMob(17113464):updateClaim(player);
     elseif (csid ==0x00CE) then
         player:setVar("WrathOfTheGriffon",2);
     end

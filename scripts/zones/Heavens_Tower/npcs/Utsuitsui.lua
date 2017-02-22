@@ -2,7 +2,7 @@
 --  Area: Heavens Tower
 --  NPC:  Utsuitsui
 --  Type: Standard NPC
---  @pos 6.379 -26.5 -4.043 242
+-- @pos 6.379 -26.5 -4.043 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------

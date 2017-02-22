@@ -1,9 +1,9 @@
 -----------------------------------
--- Zone: Abyssea-Misereaux
---  NPC: ???
--- Spawns: Nonno
+-- Zone: Abyssea-Misareaux
+--  NPC: qm10 (???)
+-- Spawns Nonno
+-- @pos ? ? ? 216
 -----------------------------------
-
 require("scripts/globals/status");
 
 -----------------------------------
@@ -12,13 +12,37 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(3095,1) == false) then -- Player is missing at least one required item.
-        player:startEvent(1010, 3095); -- Inform payer what items they need.
-    elseif (GetMobAction(17662473) == ACTION_NONE) then -- mob not already spawned from this
-        if (trade:hasItemQty(3095,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+    if (trade:hasItemQty(3095,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(17662473) == ACTION_NONE) then -- Mob not already spawned from this
             SpawnMob(17662473):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
 ]]
+end;
+
+-----------------------------------
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+    player:startEvent(1010, 3095); -- Inform player what items they need.
+end;
+
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
+
+function onEventUpdate(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+end;
+
+-----------------------------------
+-- onEventFinish
+-----------------------------------
+
+function onEventFinish(player,csid,option)
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

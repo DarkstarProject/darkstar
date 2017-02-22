@@ -2,7 +2,7 @@
 --  Area: Port Bastok
 --  NPC: Khel Pahlhama
 --  Linkshell merchant
---  @pos 21 -2 -20 240
+-- @pos 21 -2 -20 240
 -- Confirmed shop stock, August 2013
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
@@ -38,8 +38,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -47,6 +47,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

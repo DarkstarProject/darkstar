@@ -31,8 +31,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x0034 and player:getVar("miniQuestForORB_CS") == 1) then
         
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(BLOOD_ORB);
             player:addKeyItem(CURSED_ORB);
             player:messageSpecial(KEYITEM_OBTAINED, CURSED_ORB);
-            player:addStatusEffect(EFFECT_PLAGUE,0,0,900);
+            player:addStatusEffect(EFFECT_CURSE_I,50,0,900);
         end
     end
 

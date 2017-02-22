@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Grand Palace of Hu'Xzoi
 --  NPC:  HomePoint#3
---  @pos -12 0.5 -288 34
+-- @pos -12 0.5 -288 34
 -----------------------------------
 
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;

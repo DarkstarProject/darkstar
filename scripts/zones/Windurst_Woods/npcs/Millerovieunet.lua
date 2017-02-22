@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (GetRegionOwner(QUFIMISLAND) ~= WINDURST) then
+    if (GetRegionOwner(QUFIMISLAND) ~= NATION_WINDURST) then
         player:showText(npc,MILLEROVIEUNET_CLOSED_DIALOG);
     else
         player:showText(npc,MILLEROVIEUNET_OPEN_DIALOG);
@@ -44,8 +44,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -53,6 +53,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

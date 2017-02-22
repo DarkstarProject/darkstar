@@ -22,9 +22,9 @@ function onTrade(player,npc,trade)
         player:tradeComplete(); 
         
         if (math.random((1),(14)) <= 13) then
-            SpawnMob(17490232,180) -- Robber Crab
+            SpawnMob(17490232) -- Robber Crab
         else 
-            SpawnMob(Cancer,180) -- Cancer about 7% chance to pop per trade
+            SpawnMob(Cancer) -- Cancer about 7% chance to pop per trade
         end
         npc:setStatus(STATUS_DISAPPEAR);
     end

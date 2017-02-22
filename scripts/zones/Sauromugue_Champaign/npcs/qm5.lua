@@ -2,7 +2,7 @@
 --  Area: Sauromugue Champaign
 --  NPC: qm5 (???) (Tower 5) 
 --  Involved in Quest: THF AF "As Thick As Thieves"
---  @pos -117.713 15.237 45.929 120
+-- @pos -117.713 15.237 45.929 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         if (thickAsThievesGrapplingCS == 5) then
             player:messageSpecial(THF_AF_MOB);
             GetMobByID(17269107):setSpawn(-114,16,51); 
-            SpawnMob(17269107,120):updateClaim(player); -- Climbpix Highrise       
+            SpawnMob(17269107):updateClaim(player); -- Climbpix Highrise       
         elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
             thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
             thickAsThievesGrapplingCS == 4 or thickAsThievesGrapplingCS == 6 or

@@ -29,6 +29,8 @@
 #include <string>
 #include <time.h>
 #include <stdlib.h>
+#include <bitset>
+#include <array>
 
 #define FIFOSIZE_SERVERLINK	256*1024
 
@@ -141,10 +143,15 @@ struct skills_t
 	uint8 rank[64];
 };
 
+struct keyitems_table_t
+{
+    std::bitset<512> keyList;
+    std::bitset<512> seenList;
+};
+
 struct keyitems_t 
 {
-	 uint8 keysList[320];	// таблица ключевых предметов
-	 uint8 seenList[320];	// таблица ключевых предметов, отмеченных как "увиденные" 
+    std::array<keyitems_table_t, 7> tables;
 };
 
 struct position_t 

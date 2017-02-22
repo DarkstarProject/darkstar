@@ -5,7 +5,7 @@
 -----------------------------------------
 -- Dexterity 3
 -- Mind -1
--- Ranged ATT % 14
+-- Ranged ATT % 14 (cap 50)
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -15,11 +15,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -38,6 +38,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_DEX, 3);
     target:addMod(MOD_MND, -1);
     target:addMod(MOD_RATTP, 14);
+    target:addMod(MOD_RATT_CAP, 50);
 end;
 
 -----------------------------------------
@@ -48,4 +49,5 @@ function onEffectLose(target,effect)
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_MND, -1);
     target:delMod(MOD_RATTP, 14);
+    target:delMod(MOD_RATT_CAP, 50);
 end;

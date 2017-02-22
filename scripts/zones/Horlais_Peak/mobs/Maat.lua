@@ -29,6 +29,19 @@ function onMobEngaged(mob,target)
 end;
 
 -----------------------------------
+-- onMobFight Action
+-----------------------------------
+
+function onMobFight(mob, target)
+    local bf = mob:getBattlefield();
+
+    if (mob:getHPP() <20) then
+        bf:win();
+        return;
+    end
+end;
+
+-----------------------------------
 -- onMobDeath Action
 -----------------------------------
 

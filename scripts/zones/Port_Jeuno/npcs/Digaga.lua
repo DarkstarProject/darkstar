@@ -2,8 +2,8 @@
 --  Area: Port Jeuno
 --  NPC: Digaga
 --  Type: Item Deliverer
---  @zone: 246
---  @pos -52.865    7.999    1.134
+--  @zone 246
+-- @pos -52.865    7.999    1.134
 --
 -----------------------------------
 

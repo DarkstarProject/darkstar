@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    result = 0;
+    local result = 0;
     pet = target:getPet();
     if (pet:hasStatusEffect(EFFECT_MEDICINE)) then
         result = 111;

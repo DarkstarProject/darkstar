@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Prerivon
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 142.324 0.000 132.515
+--  @zone 231
+-- @pos 142.324 0.000 132.515
 --
 -----------------------------------
 

@@ -2,7 +2,7 @@
 -- Area: Mhaura
 --  NPC:  Orlando
 --  Type: Standard NPC
---  @pos -37.268 -9 58.047 249
+-- @pos -37.268 -9 58.047 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS, ORLANDO_S_ANTIQUES);
-    local itemID = trade:getItem();
+    local itemID = trade:getItemId();
     local itemList =
     {
         {564, 200},   -- Fingernail Sack

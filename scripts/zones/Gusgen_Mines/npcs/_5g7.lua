@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Gusgen Mines
 -- NPC: Strange Apparatus
--- @pos: 219 -39 255 196
+-- @pos 219 -39 255 196
 -----------------------------------
 
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;

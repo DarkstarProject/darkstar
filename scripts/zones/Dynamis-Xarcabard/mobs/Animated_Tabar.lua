@@ -20,12 +20,12 @@ function onMobEngaged(mob,target)
     
     target:showText(mob,ANIMATED_TABAR_DIALOG);
     
-    SpawnMob(17330380,120):updateEnmity(target);
-    SpawnMob(17330381,120):updateEnmity(target);
-    SpawnMob(17330382,120):updateEnmity(target);
-    SpawnMob(17330392,120):updateEnmity(target);
-    SpawnMob(17330393,120):updateEnmity(target);
-    SpawnMob(17330394,120):updateEnmity(target);
+    SpawnMob(17330380):updateEnmity(target);
+    SpawnMob(17330381):updateEnmity(target);
+    SpawnMob(17330382):updateEnmity(target);
+    SpawnMob(17330392):updateEnmity(target);
+    SpawnMob(17330393):updateEnmity(target);
+    SpawnMob(17330394):updateEnmity(target);
 
 end;
 

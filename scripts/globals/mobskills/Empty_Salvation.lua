@@ -1,10 +1,12 @@
 ---------------------------------------------
---  Empty Salvation
+-- Empty Salvation
+-- Damages all targets in range with the salvation of emptiness. Additional effect: Dispels 3 effects
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

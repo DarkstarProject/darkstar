@@ -2,7 +2,7 @@
 --  Area: Bastok Markets
 --  NPC: Visala
 --  Guild Merchant NPC: Goldsmithing Guild 
---  @pos -202.000 -7.814 -56.823 235
+-- @pos -202.000 -7.814 -56.823 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

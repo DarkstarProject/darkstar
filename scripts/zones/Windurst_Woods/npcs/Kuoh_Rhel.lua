@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 --  NPC: Kuoh Rhel
 --  Type: Standard NPC
---  @zone: 241
---  @pos 131.437 -6 -102.723
+--  @zone 241
+-- @pos 131.437 -6 -102.723
 -- Starts quests: Chocobilious, In a Stew
 --  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
 --        writing this quest. Once it is working please feel free to add it in ^^
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     IASvar = player:getVar("IASvar");
     
     -- In a Stew
-    if (IAS == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel (WINDURST) >= 3) then
+    if (IAS == QUEST_AVAILABLE and chocobilious == QUEST_COMPLETED and player:getFameLevel(WINDURST) >= 3) then
         if (player:needToZone()) then
             player:startEvent(0x00E8); -- Post quest dialog from Chocobilious
         else

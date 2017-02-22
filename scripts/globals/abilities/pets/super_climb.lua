@@ -1,8 +1,8 @@
 -----------------------------------
--- Ability: Super Jump
--- Performs a super jump.
+-- Ability: Super Climb
+-- Used by the Wyvern when the Dragoon uses Super Jump. 
+-- Does not shed hate, but allows the wyvern to dodge any attack like the Dragoon.
 -- Obtained: Dragoon Level 50
--- Recast Time: 3:00
 -- Duration: Instant
 -----------------------------------
 
@@ -22,4 +22,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
+
 end;

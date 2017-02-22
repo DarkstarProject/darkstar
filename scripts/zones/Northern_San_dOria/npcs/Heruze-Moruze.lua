@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -34,15 +33,15 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     currentMission = player:getCurrentMission(pNation);
     
-    if (pNation == WINDURST) then
+    if (pNation == NATION_WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
             player:startEvent(0x0246);
         else
             player:startEvent(0x022a);
         end
-    elseif (pNation == BASTOK) then
+    elseif (pNation == NATION_BASTOK) then
         player:startEvent(0x0242);
-    elseif (pNation == SANDORIA) then
+    elseif (pNation == NATION_SANDORIA) then
         player:startEvent(0x0241);
     end
     
@@ -53,8 +52,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +61,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0246) then
         player:setVar("MissionStatus",2);

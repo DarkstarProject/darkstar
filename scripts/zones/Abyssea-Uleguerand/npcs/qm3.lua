@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Ullegrand
---  NPC: ???
--- Spawns: Apademak
+-- Zone: Abyssea-Uleguerand
+--  NPC: qm3 (???)
+-- Spawns Apademak
+-- @pos ? ? ? 253
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

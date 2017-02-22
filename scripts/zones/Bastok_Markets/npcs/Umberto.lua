@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Umberto
 --  Type: Quest NPC
--- @zone: 235
---  @pos -56.896 -5 -134.267
+-- @zone 235
+-- @pos -56.896 -5 -134.267
 --
 -- Auto-Script: Requires Verification. Verified standard dialog - thrydwolf 12/18/2011
 -----------------------------------

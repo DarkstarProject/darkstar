@@ -23,8 +23,7 @@
 
 #include "modifier.h"
 
-
-CModifier::CModifier(uint16 type, int16 amount)
+CModifier::CModifier(Mod type, int16 amount)
 {
 	m_id	 = type;
 	m_amount = amount;
@@ -35,7 +34,7 @@ CModifier::~CModifier()
 
 }
 
-uint16 CModifier::getModID()
+Mod CModifier::getModID()
 {
 	return m_id;
 }

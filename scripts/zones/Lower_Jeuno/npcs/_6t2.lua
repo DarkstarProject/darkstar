@@ -1,7 +1,7 @@
 -----------------------------------
---    Area: Lower Jeuno
---     Door: Merchant's House
---     Starts & Finishes Quest: Save My Son
+-- Area: Lower Jeuno
+--  Door: Merchant's House
+--  Starts & Finishes Quest: Save My Son
 --  Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
@@ -89,8 +89,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -98,8 +98,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x00a4 and option == 0) then
         player:addQuest(JEUNO, SAVE_MY_SON);

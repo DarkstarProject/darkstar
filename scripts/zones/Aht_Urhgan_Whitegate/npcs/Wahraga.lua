@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC: Wahraga
 --  Guild Merchant: Alchemist Guild 
---  @pos -76.836 -6.000 140.331 50
+-- @pos -76.836 -6.000 140.331 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

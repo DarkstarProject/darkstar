@@ -2,7 +2,7 @@
 --  Area: Windurst Woods
 --  NPC:  Etsa Rhuyuli
 --  Type: Standard NPC
---  @pos 62.482 -8.499 -139.836 241
+-- @pos 62.482 -8.499 -139.836 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Attohwa Chasm
---  NPC:  ??? (qm1)
---  @pos -402.574 3.999 -202.750 7
+-- Area: Attohwa Chasm
+-- NPC:  ??? (qm1)
+-- @pos -402.574 3.999 -202.750 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 
     if (GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();        
-        SpawnMob(feelerID,120):updateClaim(player);
+        SpawnMob(feelerID):updateClaim(player);
     end
 end;
 
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -52,6 +52,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

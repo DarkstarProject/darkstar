@@ -1720,3 +1720,19 @@ INSERT INTO `bcnm_loot` VALUES ('179','17946','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','18358','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','16976','100','3');
 INSERT INTO `bcnm_loot` VALUES ('179','4990','230','3');
+
+-- ENM Brothers
+INSERT INTO `bcnm_loot` VALUES ('180','1767','271','0');
+INSERT INTO `bcnm_loot` VALUES ('180','1762','340','0');
+INSERT INTO `bcnm_loot` VALUES ('180','1771','330','0');
+INSERT INTO `bcnm_loot` VALUES ('180','1842','44','0');
+INSERT INTO `bcnm_loot` VALUES ('180','15302','123','1');
+INSERT INTO `bcnm_loot` VALUES ('180','17277','163','1');
+INSERT INTO `bcnm_loot` VALUES ('180','17707','167','1');
+INSERT INTO `bcnm_loot` VALUES ('180','18098','148','1');
+INSERT INTO `bcnm_loot` VALUES ('180','4748','281','1');
+INSERT INTO `bcnm_loot` VALUES ('180','15302','128','2');
+INSERT INTO `bcnm_loot` VALUES ('180','17277','163','2');
+INSERT INTO `bcnm_loot` VALUES ('180','17707','167','2');
+INSERT INTO `bcnm_loot` VALUES ('180','18098','153','2');
+INSERT INTO `bcnm_loot` VALUES ('180','4748','271','2');
