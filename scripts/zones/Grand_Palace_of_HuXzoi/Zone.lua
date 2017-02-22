@@ -127,7 +127,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour(npc, mob, player)
+function onGameHour(zone)
     local VanadielHour = VanadielHour();
     
     if (VanadielHour % 6 == 0) then    -- Change the Jailer of Temperance PH every 6 hours (~15 mins).

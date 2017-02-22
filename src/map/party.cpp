@@ -108,7 +108,7 @@ void CParty::DisbandParty(bool playerInitiated)
 {
     if (m_PAlliance)
     {
-        m_PAlliance->delParty(this);
+        m_PAlliance->removeParty(this);
     }
     m_PSyncTarget = nullptr;
     SetQuarterMaster(nullptr);

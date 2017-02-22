@@ -3167,9 +3167,9 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
             {
                 PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data[0x0C]));
-                ShowDebug(CL_CYAN"%s is trying to kick %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                 if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
                 {
+                    ShowDebug(CL_CYAN"%s is trying to kick %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                     //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
                     if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
                     {

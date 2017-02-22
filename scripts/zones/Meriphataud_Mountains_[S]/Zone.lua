@@ -40,7 +40,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
     local GameHour = 150; -- Seconds per VanadielHour
     local npc = GetNPCByID(17175342); -- Indescript Markings
     if (npc ~= nil) then
