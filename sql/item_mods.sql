@@ -4120,6 +4120,11 @@ INSERT INTO `item_mods` VALUES (11259,30,5);
 INSERT INTO `item_mods` VALUES (11260,1,20);
 INSERT INTO `item_mods` VALUES (11260,11,10);
 INSERT INTO `item_mods` VALUES (11260,30,8);
+INSERT INTO `item_mods` VALUES (11261,1,20);      -- Cirque Scarpe +1: DEF:20
+INSERT INTO `item_mods` VALUES (11261,8,5);       -- STR+5
+INSERT INTO `item_mods` VALUES (11261,9,5);       -- DEX+5
+INSERT INTO `item_mods` VALUES (11261,12,5);      -- INT+5
+INSERT INTO `item_mods` VALUES (11261,25,8);      -- Accuracy+8
 INSERT INTO `item_mods` VALUES (11262,1,19);
 INSERT INTO `item_mods` VALUES (11262,9,5);
 INSERT INTO `item_mods` VALUES (11262,14,5);
@@ -19344,6 +19349,7 @@ INSERT INTO `item_mods` VALUES (16189,1,31);
 INSERT INTO `item_mods` VALUES (16190,1,22);
 INSERT INTO `item_mods` VALUES (16190,2,15);
 INSERT INTO `item_mods` VALUES (16190,370,1);
+INSERT INTO `item_mods` VALUES (16191,1,1);       -- Utilis Shield: DEF:1
 INSERT INTO `item_mods` VALUES (16192,1,20);
 INSERT INTO `item_mods` VALUES (16192,10,10);
 INSERT INTO `item_mods` VALUES (16193,1,40);
