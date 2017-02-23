@@ -426,7 +426,7 @@ namespace itemutils
 
                 if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_ARMOR))
                 {
-                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(new CModifier(modID, value));
+                    ((CItemArmor*)g_pItemList[ItemID])->addPetModifier(new CPetModifier(modID, PetModType::All, value));
                 }
             }
         }

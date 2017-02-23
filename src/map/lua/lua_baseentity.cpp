@@ -5458,6 +5458,7 @@ inline int32 CLuaBaseEntity::addPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->addPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }
@@ -5472,6 +5473,7 @@ inline int32 CLuaBaseEntity::delPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->delPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }
@@ -5486,6 +5488,7 @@ inline int32 CLuaBaseEntity::setPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->setPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }

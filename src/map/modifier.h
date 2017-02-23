@@ -685,12 +685,29 @@ public:
     void    setModAmount(int16 amount);
 
      CModifier(Mod type, int16 amount = 0);
-    ~CModifier();
 
 private:
 
-    Mod     m_id;
-    int16   m_amount;
+    Mod     m_id {Mod::NONE};
+    int16   m_amount {0};
+};
+
+enum class PetModType
+{
+    All = 0,
+    Avatar = 1,
+    Wyvern = 2,
+    Automaton = 3
+};
+
+class CPetModifier : public CModifier
+{
+public:
+    CPetModifier(Mod type, PetModType pettype, int16 amount = 0);
+    PetModType getPetModType();
+
+private:
+    PetModType m_pettype {PetModType::All};
 };
 
 #endif
