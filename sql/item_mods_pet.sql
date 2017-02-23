@@ -365,9 +365,39 @@ INSERT INTO `item_mods_pet` VALUES (16368,25,10,0);       -- Pet: accuracy +10
 INSERT INTO `item_mods_pet` VALUES (16654,368,10,0);      -- Pet: "Regain"+10
 
 -- -------------------------------------------------------
+-- Draconis Lance - LVL 90
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (16843,25,10,2);       -- Wyvern: Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (16843,23,10,2);       -- Wyvern: Attack+10
+
+-- -------------------------------------------------------
+-- 	Wyvern Perch - LVL 73
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (17579,2,50,2);        -- Wyvern: HP+50
+
+-- -------------------------------------------------------
 -- Lion Tamer - LVL 74
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (17961,1,10,0);        -- Pet: DEF +10
+
+-- -------------------------------------------------------
+-- Ravana's Axe - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18547,370,3,0);       -- Pet: Adds "Regen" effect
+
+-- -------------------------------------------------------
+-- Buzbaz Sainti  - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18791,2,30,3);        -- Automaton: HP+30
+INSERT INTO `item_mods_pet` VALUES (18791,23,9,3);        -- Attack+9
+INSERT INTO `item_mods_pet` VALUES (18791,24,9,3);        -- Ranged Attack+9
+
+-- -------------------------------------------------------
+-- Buzbaz Sainti +1  - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18792,2,40,3);        -- Automaton: HP+40
+INSERT INTO `item_mods_pet` VALUES (18792,23,10,3);       -- Attack+10
+INSERT INTO `item_mods_pet` VALUES (18792,24,10,3);       -- Ranged Attack+10
 
 -- -------------------------------------------------------
 -- Aymur *Mythic* - LVL 75 - ignored the Aftermath acc,atk occ.attacks twice
