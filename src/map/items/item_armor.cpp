@@ -214,7 +214,7 @@ int16 CItemArmor::getModifier(Mod mod)
 	return 0;
 }
 
-void CItemArmor::addPetModifier(CModifier* modifier)
+void CItemArmor::addPetModifier(CPetModifier* modifier)
 {
     petModList.push_back(modifier);
 }
@@ -305,7 +305,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         if (!type)
             addModifier(new CModifier(modId, modValue));
         else
-            addPetModifier(new CModifier(modId, modValue));
+            addPetModifier(new CPetModifier(modId, PetModType::All, modValue));
     }
 }
 

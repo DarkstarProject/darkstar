@@ -23,16 +23,10 @@
 
 #include "modifier.h"
 
-CModifier::CModifier(Mod type, int16 amount)
-{
-	m_id	 = type;
-	m_amount = amount;
-}
-
-CModifier::~CModifier()
-{
-
-}
+CModifier::CModifier(Mod type, int16 amount) :
+    m_id(type),
+    m_amount(amount)
+{}
 
 Mod CModifier::getModID()
 {
@@ -47,4 +41,13 @@ int16 CModifier::getModAmount()
 void CModifier::setModAmount(int16 amount)
 {
 	m_amount = amount;
+}
+
+CPetModifier::CPetModifier(Mod type, PetModType pettype, int16 amount)
+    : CModifier(type, amount), m_pettype(pettype)
+{}
+
+PetModType CPetModifier::getPetModType()
+{
+    return m_pettype;
 }

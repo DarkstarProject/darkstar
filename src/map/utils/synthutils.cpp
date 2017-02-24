@@ -331,16 +331,16 @@ uint8 calcSynthResult(CCharEntity* PChar)
 			{
 				success = 0.95;
 
-				if((synthDiff <= 0) && (synthDiff >= -10))
+				if(synthDiff > -11) //0-10 levels over recipe
 				{
 					success -= (double)(PChar->CraftContainer->getType() == ELEMENT_LIGHTNING) * 0.2;
 					hqtier = 1;
 				}
-				else if((synthDiff <= -11) && (synthDiff >= -30))
+				else if(synthDiff > -31) //11-30 levels over recipe
 					hqtier = 2;
-				else if((synthDiff <= -31) && (synthDiff >= -50))
+				else if(synthDiff > -51) //31-50 levels over recipe
 					hqtier = 3;
-				else if(synthDiff <= -51)
+				else //51+ levels over recipe
 					hqtier = 4;
 			}
 			else

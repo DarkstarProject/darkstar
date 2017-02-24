@@ -50,7 +50,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
 
     local npc = GetNPCByID(17118008); -- Indescript Markings
     if (npc ~= nil) then

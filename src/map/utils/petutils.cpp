@@ -1402,4 +1402,29 @@ namespace petutils
         PMaster->applyPetModifiers(PPet);
 	}
 
+    bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)
+    {
+        if (petmod == PetModType::All)
+            return true;
+        if (auto PPetEntity = dynamic_cast<CPetEntity*>(PPet))
+        {
+            if (petmod == PetModType::Avatar && PPetEntity->getPetType() == PETTYPE_AVATAR)
+            {
+                return true;
+            }
+            if (petmod == PetModType::Wyvern && PPetEntity->getPetType() == PETTYPE_WYVERN)
+            {
+                return true;
+            }
+            if (petmod == PetModType::Automaton && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            return true;
+        }
+        return false;
+    }
 }; // namespace petutils

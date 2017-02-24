@@ -103,7 +103,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
 
     local vanadielHour = VanadielHour();
     local silkCaterpillarId = 17227782;

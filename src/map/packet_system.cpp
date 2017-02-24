@@ -1167,16 +1167,17 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
-            PItem->setReserve(quantity);
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
                 ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
+                PItem->setReserve(quantity + PItem->getReserve());
                 PChar->UContainer->SetItem(tradeSlotID, PItem);
             }
             else
             {
                 ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %d, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
             ShowDebug(CL_CYAN"%s->%s trade pushing packet to %s\n" CL_RESET, PChar->GetName(), PTarget->GetName(), PChar->GetName());
@@ -3167,9 +3168,9 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             for (uint8 i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
             {
                 PVictim = (CCharEntity*)(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(data[0x0C]));
-                ShowDebug(CL_CYAN"%s is trying to kick %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                 if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
                 {
+                    ShowDebug(CL_CYAN"%s is trying to kick %s party from alliance\n" CL_RESET, PChar->GetName(), PVictim->GetName());
                     //if using kick on yourself, or alliance leader using kick on another party leader - remove the party
                     if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
                     {
@@ -5251,7 +5252,7 @@ void SmallPacket0x104(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         for (uint16 i = 0; i < PTarget->BazaarCustomers.size(); ++i)
         {
-            if (PTarget->BazaarCustomers[i].id == PChar->targid)
+            if (PTarget->BazaarCustomers[i].id == PChar->id)
             {
                 PTarget->BazaarCustomers.erase(PTarget->BazaarCustomers.begin() + i--);
             }
@@ -5368,7 +5369,7 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         PChar->pushPacket(new CBazaarPurchasePacket(PTarget, true));
 
-        PTarget->pushPacket(new CBazaarConfirmationPacket(PChar, SlotID, Quantity));
+        PTarget->pushPacket(new CBazaarConfirmationPacket(PChar, PItem));
 
         charutils::UpdateItem(PTarget, LOC_INVENTORY, SlotID, -Quantity);
 

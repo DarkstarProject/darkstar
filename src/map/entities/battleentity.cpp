@@ -42,6 +42,7 @@
 #include "../attackround.h"
 #include "../weapon_skill.h"
 #include "../packets/action.h"
+#include "../utils/petutils.h"
 
 CBattleEntity::CBattleEntity()
 {
@@ -993,49 +994,49 @@ int16 CBattleEntity::getMod(Mod modID)
     return m_modStat[modID];
 }
 
-void CBattleEntity::addPetModifier(Mod type, int16 amount)
+void CBattleEntity::addPetModifier(Mod type, PetModType petmod, int16 amount)
 {
     m_petMod[type] += amount;
 
-    if (PPet)
+    if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->addModifier(type, amount);
     }
 }
 
-void CBattleEntity::setPetModifier(Mod type, int16 amount)
+void CBattleEntity::setPetModifier(Mod type, PetModType petmod, int16 amount)
 {
     m_petMod[type] = amount;
 
-    if (PPet)
+    if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->setModifier(type, amount);
     }
 }
 
-void CBattleEntity::delPetModifier(Mod type, int16 amount)
+void CBattleEntity::delPetModifier(Mod type, PetModType petmod, int16 amount)
 {
     m_petMod[type] -= amount;
 
-    if (PPet)
+    if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->delModifier(type, amount);
     }
 }
 
-void CBattleEntity::addPetModifiers(std::vector<CModifier*> *modList)
+void CBattleEntity::addPetModifiers(std::vector<CPetModifier*> *modList)
 {
     for (auto modifier : *modList)
     {
-        addPetModifier(modifier->getModID(), modifier->getModAmount());
+        addPetModifier(modifier->getModID(), modifier->getPetModType(), modifier->getModAmount());
     }
 }
 
-void CBattleEntity::delPetModifiers(std::vector<CModifier*> *modList)
+void CBattleEntity::delPetModifiers(std::vector<CPetModifier*> *modList)
 {
     for (auto modifier : *modList)
     {
-        delPetModifier(modifier->getModID(), modifier->getModAmount());
+        delPetModifier(modifier->getModID(), modifier->getPetModType(), modifier->getModAmount());
     }
 }
 
