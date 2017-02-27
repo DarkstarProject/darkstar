@@ -54,20 +54,18 @@
 
 // New Fishing Packet: Mini-Game Data.
 
-CFishingPacket::CFishingPacket(uint16 stamina, uint16 regen, uint16 response, uint16 max_dmg, uint16 miss_regen, uint16 game_time, uint16 rod, uint16 garw_perc)
+CFishingPacket::CFishingPacket(uint16 stamina, uint16 regen, uint16 response, uint16 hit_dmg, uint16 arrowdelay, uint16 miss_regen, uint16 game_time, uint8 sense, uint32 garw_perc)
 {
-    this->type = 0x115;
+    this->type = 0x15; //0x115
     this->size = 0x0D;
 
-    ref<uint8>(0x04) = 0x01;        // Unknown. Always changes even if same type of Fish.//
-    ref<uint16>(0x05) = stamina;    // Constant Per Fish, Changes Per Zone. //
-    ref<uint8>(0x07) = 0x00;        // Unknown. Always 0x00.//
-    ref<uint16>(0x08) = regen;      // Constant Per Fish, Doesn't Change Per Zone. //
-    ref<uint16>(0x0A) = response;   // Game's rod an arrow response speed. // Constant Per Fish, Doesn't Change Per Zone. //
-    ref<uint16>(0x0C) = max_dmg;    // Constant Per Fish, Changes Per Zone. //
-    ref<uint16>(0x0E) = miss_regen; // Constant Per Fish, Doesn't Change Per Zone. //
-    ref<uint16>(0x10) = game_time;
-    ref<uint16>(0x12) = rod;        // Rod Animation, 0x01 - Monster, 0x02 - Good Feeling & Sense Messages. //
-    ref<uint16>(0x14) = garw_perc;
-    ref<uint16>(0x16) = 0x0000;
+    ref<uint16>(0x04) = stamina;    // fish HP, generally in thousands - Constant Per Fish, Changes Per Zone.
+    ref<uint16>(0x06) = arrowdelay; // how long you have to hit the arrows, generally low 10's possible miliseconds
+    ref<uint16>(0x08) = regen;      // how much stamina fish regains/loses per frame.  base is 128, less = drain, more = regen - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0A) = response;   // fish movement, how active the fish is moving left to right (base 20) - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0C) = hit_dmg;    // fish attack, how much damage is caused to fishes stamina from successful arrows - Constant Per Fish, Changes Per Zone.
+    ref<uint16>(0x0E) = miss_regen; // fish heal, how much stamina fish heals from wrong arrow press - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x10) = game_time;  // how long you have to reel the fish in (base 60)
+    ref<uint8>(0x12)  = sense;      // 0 = fish/item, 1 = monster (battle music), 2 = fish/item (lightbulb), 3 = monster (lightbulb + fight music)
+    ref<uint32>(0x14) = garw_perc;  // % chance of getting gold arrows while fishing
 }

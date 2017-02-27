@@ -283,7 +283,6 @@ namespace fishingutils
         }
 
         CItem* PFish = PChar->UContainer->GetItem(0);
-        uint16 ModID = MOD_FISH;
 
         uint8 skillRank = PChar->RealSkills.rank[SKILL_FISHING];
         uint16 maxSkill = (skillRank + 1) * 100;
@@ -443,7 +442,7 @@ namespace fishingutils
                     PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
                     // Message: "Something clamps onto your line ferociously!" //
                     PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x34));
-                    PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 140, 30, 1, 12)); //monster values may need verification
+                    PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 0, 140, 30, 1, 12)); //monster values may need verification
                 }
                 else if (checkFisherLuck(PChar, WeaponItem->getID(), AmmoItem->getID()))
                 {
@@ -462,6 +461,7 @@ namespace fishingutils
                     uint16 gTime = 0;
                     uint16 rod = 0;
                     uint16 arrowLuck = 0;
+                    uint16 arrowDelay = 0;
                     uint16 damage = 0;
                     uint16 miss = 0;
 
@@ -542,7 +542,7 @@ namespace fishingutils
                     //New system does not use this animation
                     //PChar->animation = ANIMATION_FISHING_FISH;
                     //PChar->updatemask |= UPDATE_HP;
-                    PChar->pushPacket(new CFishingPacket(stamina, regen, response, damage, miss, gTime, rod, arrowLuck));
+                    PChar->pushPacket(new CFishingPacket(stamina, regen, response, damage, arrowDelay, miss, gTime, rod, arrowLuck));
                 }
                 else
                 {
