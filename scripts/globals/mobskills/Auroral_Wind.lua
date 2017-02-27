@@ -1,19 +1,18 @@
 ---------------------------------------------
---  Auroral Wind
+-- Auroral Wind
 --
---  Family: Aern
---  Type: Magical
---  Can be dispelled: N/A
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: Unknown cone
---  Notes:
+-- Family: Aern
+-- Type: Magical
+-- Can be dispelled: N/A
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: Unknown cone
+-- Notes:
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
@@ -26,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local accmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WIND,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
 

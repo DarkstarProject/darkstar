@@ -1,29 +1,27 @@
 -----------------------------------
--- Area: Northern San d'Oria
+-- Area: Southern San d'Oria
 -- NPC:  Endracion
 -- @pos -110 1 -34 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
     CurrentMission = player:getCurrentMission(SANDORIA);
     OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
     BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
     TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
     MissionStatus = player:getVar("MissionStatus");
     Count = trade:getItemCount();
-    
+
     if (CurrentMission ~= 255) then
         if (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
             player:startEvent(0x03fc); -- Finish Mission "Smash the Orcish scouts" (First Time)
@@ -43,7 +41,7 @@ function onTrade(player,npc,trade)
     else
         player:startEvent(0x03f2); -- Mission not activated
     end
-    
+
 end;
 
 -----------------------------------
@@ -54,7 +52,7 @@ function onTrigger(player,npc)
 
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 
-    if (player:getNation() ~= SANDORIA) then
+    if (player:getNation() ~= NATION_SANDORIA) then
         player:startEvent(0x03F3); -- for Non-San d'Orians
     else
         CurrentMission = player:getCurrentMission(SANDORIA);
@@ -91,7 +89,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
             player:startEvent(0x03f1,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -99,8 +97,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdateCSID: %u",csid);
---printf("onUpdateOPTION: %u",option);
+    -- printf("onUpdateCSID: %u",csid);
+    -- printf("onUpdateOPTION: %u",option);
 end;
 
 -----------------------------------
@@ -108,9 +106,9 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinishCSID: %u",csid);
---printf("onFinishOPTION: %u",option);
-    
+    -- printf("onFinishCSID: %u",csid);
+    -- printf("onFinishOPTION: %u",option);
+
     finishMissionTimeline(player,1,csid,option);
     if (csid == 0x040b) then
        player:setVar("MissionStatus",4);

@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
                 player:getQuestStatus(CRYSTAL_WAR, BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
             cs = 0x0043;
         end
-    end    
+    end
     return cs;
 end;
 

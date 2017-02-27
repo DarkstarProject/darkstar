@@ -7,20 +7,19 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/titles");
+require("scripts/globals/quests");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) ==QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeRosel") == 0) then
             player:messageSpecial(ROSEL_DIALOG);
             player:setVar("FFR",player:getVar("FFR") - 1);
@@ -39,8 +38,8 @@ function onTrade(player,npc,trade)
 
 function onTrigger(player,npc)
 
-    RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
-    receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
+    local RoselTheArmorer = player:getQuestStatus(SANDORIA,ROSEL_THE_ARMORER);
+    local receiprForThePrince = player:hasKeyItem(RECEIPT_FOR_THE_PRINCE);
 
     if (player:getVar("RefuseRoselTheArmorerQuest") == 1 and RoselTheArmorer == QUEST_AVAILABLE) then
         player:startEvent(0x020c);
@@ -60,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -69,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     -- Rosel the Armorer, get quest and receipt for prince
     if ((csid == 0x020b or csid == 0x020c) and option == 0) then
@@ -87,7 +86,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-
-
-

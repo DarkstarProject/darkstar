@@ -34,6 +34,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     SetServerVariable("[POP]Percipient_Zoraal_Ja", 0 );
 
     SetServerVariable("[POP]Zoraal_Ja_s_Pkuucha", os.time(t) + math.random(1800, 43200)); -- 30min to 12h

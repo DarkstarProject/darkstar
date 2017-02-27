@@ -1,6 +1,6 @@
 -----------------------------------
--- Area:  Phomiuna Aqueducts
--- NPC:   qm5 (???)
+--  Area: Phomiuna Aqueducts
+--   NPC: qm5 (???)
 -- Notes: Opens door @ F-8 from behind
 -- @pos -65.512 -25.262 62.918 27
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -43,6 +43,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

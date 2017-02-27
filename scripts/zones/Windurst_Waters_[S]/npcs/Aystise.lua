@@ -2,8 +2,8 @@
 --  Area: Windurst Waters (S)
 --   NPC: Aystise
 --  Type: Standard NPC
--- @zone: 94
---  @pos -69.805 -4.5 68.078
+-- @zone 94
+-- @pos -69.805 -4.5 68.078
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

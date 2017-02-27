@@ -66,6 +66,11 @@ void CWeaponSkill::setMainOnly(uint8 main)
     m_mainOnly = main;
 }
 
+void CWeaponSkill::setUnlockId(uint8 id)
+{
+    m_unlockId = id;
+}
+
 void CWeaponSkill::setJob(int8* jobs)
 {
 	memcpy(&m_Job[1], jobs, 22);
@@ -135,6 +140,11 @@ uint16 CWeaponSkill::getID()
 uint8 CWeaponSkill::getType()
 {
 	return m_TypeID;
+}
+
+uint8 CWeaponSkill::getUnlockId()
+{
+    return m_unlockId;
 }
 
 uint8 CWeaponSkill::getJob(JOBTYPE job)

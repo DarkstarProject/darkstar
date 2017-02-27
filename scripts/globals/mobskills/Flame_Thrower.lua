@@ -1,14 +1,12 @@
 ---------------------------------------------------
---  Flame_Thrower
---  Description:
---  Type: Magical
---  additional effect : plague
----------------------------------------------------
+-- Flame_Thrower
+-- Description: Uses a flamethrower that deals Fire damage to players in a fan-shaped area of effect. Additional effect: Plague
+-- Type: Magical
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- skillList  54 = Omega
@@ -32,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = 2;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_MAB_BONUS,1);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);
     return dmg;

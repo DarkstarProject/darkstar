@@ -8,6 +8,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Celphie's Window Open Time
     local wait = math.random(7200,28800);

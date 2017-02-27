@@ -8,7 +8,14 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)    
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)    
     
     local Rose_Garden = 17281357;
     local Rose_Garden_PH = GetServerVariable("Rose_Garden_PH");

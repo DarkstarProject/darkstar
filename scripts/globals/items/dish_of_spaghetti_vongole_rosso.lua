@@ -3,7 +3,7 @@
 -- Item: dish_of_spaghetti_vongole_rosso
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- Health % 17
+-- Health % 20
 -- Health Cap 90
 -- Vitality 2
 -- Mind -1
@@ -19,11 +19,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -39,7 +39,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 17);
+    target:addMod(MOD_FOOD_HPP, 20);
     target:addMod(MOD_FOOD_HP_CAP, 90);
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_MND, -1);
@@ -53,7 +53,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FOOD_HPP, 17);
+    target:delMod(MOD_FOOD_HPP, 20);
     target:delMod(MOD_FOOD_HP_CAP, 90);
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_MND, -1);

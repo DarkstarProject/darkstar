@@ -22,8 +22,6 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
     ---- 7: 
     ---- 8: 
     ---- 9: 
-
-
 -- Death cutscenes:
 
 --    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0); -- hume
@@ -76,8 +74,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     
     if (EventFinishBCNM(player,csid,option)) then
         return;

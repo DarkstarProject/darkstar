@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Konschtat
+-- Zone: Abyssea-Tahrongi
 --  NPC: ???
--- Spawns: Chloris
+-- Spawns Chloris
+-- @pos ? ? ? 45
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

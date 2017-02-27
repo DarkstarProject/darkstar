@@ -29,7 +29,7 @@ stock = {0x43A4,675,2,        -- Bomb Arm
      0x43A1,1083,3,        -- Grenade
      0x0ae8,92,3}        -- Catalytic Oil
  
-showNationShop(player, BASTOK, stock);
+showNationShop(player, NATION_BASTOK, stock);
 end; 
 
 -----------------------------------
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,9 +46,7 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
-
-
 

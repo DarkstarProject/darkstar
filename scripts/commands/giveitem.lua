@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @giveitem <player> <itemId> <amount> <aug1> <v1> <aug2> <v2> <aug3> <v3> <aug4> <v4>
+-- func: giveitem <player> <itemId> <amount> <aug1> <v1> <aug2> <v2> <aug3> <v3> <aug4> <v4>
 -- desc: Gives an item to the target player.
 ---------------------------------------------------------------------------------------------------
 

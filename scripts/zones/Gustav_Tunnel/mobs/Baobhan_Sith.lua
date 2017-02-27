@@ -8,6 +8,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Baobhan Sith's Window Open Time
     local wait = math.random(4,8) * 3600;

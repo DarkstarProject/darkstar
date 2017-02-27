@@ -44,6 +44,11 @@ function onZoneIn(player,prevZone)
         end
     end
 
+    if (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 0 and
+            player:getVar("TOAUM38_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+        cs = 3220;
+    end
+
     return cs;
 end;
 
@@ -75,15 +80,27 @@ function onRegionEnter(player,region)
         [3] = function (x) -- TOAU Mission 1
             if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE) then
+            elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE and player:needToZone() == false) then
                 if (prevZone ~= 50) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
+            elseif (player:getCurrentMission(TOAU) == FINDERS_KEEPERS) then
+                player:startEvent(3093);
+            elseif (player:getCurrentMission(TOAU) == SOCIAL_GRACES) then
+                player:startEvent(3095)
+            elseif (player:getCurrentMission(TOAU) == FOILED_AMBITION and player:getVar("TOAUM23_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+                player:startEvent(3097,0,0,0,0,0,0,0,0,0)
+            elseif (player:getCurrentMission(TOAU) == PLAYING_THE_PART and player:getVar("TOAUM24_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+                player:startEvent(3110);
+            elseif (player:getCurrentMission(TOAU) == PATH_OF_BLOOD) then
+                player:startEvent(3131,1,1,1,1,1,1,1,1);
             end
         end,
         [4] = function (x) -- AH mission
             if (player:getCurrentMission(TOAU)== KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 2) then
                 player:startEvent(3024,0,0,0,0,0,0,0,0,0);
+            elseif (player:getCurrentMission(TOAU)== BASTION_OF_KNOWLEDGE) then
+                player:startEvent(3112);
             end
         end,
         [5] = function (x) -- AH mission
@@ -91,6 +108,10 @@ function onRegionEnter(player,region)
                 player:startEvent(3026,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == WESTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);
+            elseif (player:getCurrentMission(TOAU) == SWEETS_FOR_THE_SOUL) then
+                player:startEvent(3092);
+            elseif (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 1) then
+                player:startEvent(3136,0,0,0,0,0,0,0,0,0);
             end
         end,
     }
@@ -187,5 +208,47 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3050) then
         player:completeMission(TOAU,A_MERCENARY_LIFE);
         player:addMission(TOAU,UNDERSEA_SCOUTING);
+    elseif (csid == 3092) then
+        player:completeMission(TOAU,SWEETS_FOR_THE_SOUL);
+        player:addMission(TOAU,TEAHOUSE_TUMULT);
+    elseif (csid == 3093) then
+        player:completeMission(TOAU,FINDERS_KEEPERS);
+        player:setTitle(KARABABAS_BODYGUARD);
+        player:addMission(TOAU,SHIELD_OF_DIPLOMACY);    
+    elseif (csid == 3095) then
+        player:completeMission(TOAU,SOCIAL_GRACES);
+        player:needToZone(true);
+        player:setVar("TOAUM23_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,FOILED_AMBITION);
+    elseif (csid == 3097) then
+        player:completeMission(TOAU,FOILED_AMBITION);
+        player:setTitle(KARABABAS_SECRET_AGENT);
+        player:addItem(2187,5);
+        player:setVar("TOAUM23_STARTDAY", 0);
+        player:needToZone(true);
+        player:setVar("TOAUM24_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,PLAYING_THE_PART);
+    elseif (csid == 3110) then
+        player:completeMission(TOAU,PLAYING_THE_PART);
+        player:setVar("TOAUM24_STARTDAY", 0);
+        player:addMission(TOAU,SEAL_OF_THE_SERPENT);
+    elseif (csid == 3112) then
+        player:completeMission(TOAU,BASTION_OF_KNOWLEDGE);
+        player:setTitle(APHMAUS_MERCENARY);
+        player:addMission(TOAU,PUPPET_IN_PERIL);
+    elseif (csid == 3131) then
+        player:completeMission(TOAU,PATH_OF_BLOOD);
+        player:needToZone(true);
+        player:setVar("TOAUM38_STARTDAY", VanadielDayOfTheYear());
+        player:addMission(TOAU,STIRRINGS_OF_WAR);
+    elseif (csid == 3220) then
+        player:setVar("TOAUM38_STARTDAY", 0);
+        player:setVar("AhtUrganStatus", 1);
+    elseif (csid == 3136) then
+        player:completeMission(TOAU,STIRRINGS_OF_WAR);
+        player:setVar("AhtUrganStatus", 0);
+        player:addKeyItem(ALLIED_COUNCIL_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,ALLIED_COUNCIL_SUMMONS);
+        player:addMission(TOAU,ALLIED_RUMBLINGS);
     end
 end;

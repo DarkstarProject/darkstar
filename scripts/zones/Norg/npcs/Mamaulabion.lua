@@ -197,7 +197,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(14625); -- Evokers Ring
             player:messageSpecial(ITEM_OBTAINED,14625); -- Evokers Ring
-            player:addFame(OUTLANDS,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
+            player:addFame(NORG,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
             player:completeQuest(OUTLANDS,MAMA_MIA);
             player:setVar("tradesMamaMia",0)
         end

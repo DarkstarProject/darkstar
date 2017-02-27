@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 -- NPC: Strange Apparatus
--- @pos: 255 0 19 200
+-- @pos 255 0 19 200
 -----------------------------------
 
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;

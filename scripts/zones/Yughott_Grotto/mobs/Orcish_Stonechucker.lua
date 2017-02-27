@@ -10,6 +10,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Ashmaker_Gotblut_PH[mobID] ~= nil) then

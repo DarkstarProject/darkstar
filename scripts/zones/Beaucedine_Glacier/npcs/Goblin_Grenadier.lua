@@ -2,7 +2,7 @@
 --  Area: Beaucedine Glacier
 --  NPC:  Goblin Grenadier
 --  Type: Mission NPC
---  @pos -26.283 -60.49 -76.640 111
+-- @pos -26.283 -60.49 -76.640 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 1;
@@ -33,7 +33,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
         params.mnd_wsc = 0.7;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
     -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
     if ((player:getEquipID(SLOT_MAIN) == 18993) and (player:getMainJob() == JOBS.WHM)) then

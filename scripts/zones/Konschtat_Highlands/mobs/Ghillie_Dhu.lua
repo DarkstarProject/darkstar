@@ -73,6 +73,13 @@ end;
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.
     checkRegime(player,mob,81,1);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(3600,4200)); -- 60~70 min repop.

@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Middle_Delkfutts_Tower
--- 
+--
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -16,11 +16,6 @@ require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    
-    local tomes = {17420675,17420676,17420677,17420678};
-    
-    SetGroundsTome(tomes);    
-    
     zone:registerRegion(1, -36, -50, 83,  -30, -49,  89 ); -- Fourth Floor G-6 porter to Lower Delkfutt's Tower
     zone:registerRegion(2, -49, -50, -50, -43, -49, -43 ); -- Fourth Floor G-6 porter to Lower Delkfutt's Tower "1"
     zone:registerRegion(3, 103, -50, 10,  109, -49,  16 ); -- Fourth Floor J-6 porter to Lower Delkfutt's Tower "2"
@@ -33,17 +28,16 @@ function onInitialize(zone)
     zone:registerRegion(10, -415, -98, 104, -411, -97, 108 ); -- Seventh Floor  H-6 porter to Sixth Floor "J"
     zone:registerRegion(11, -489, -130, 84, -484,-129, 88 ); -- Ninth Floor F-6 porter to Upper Delkfutt's Tower
 
-    UpdateTreasureSpawnPoint(17420672);
-    
+    UpdateTreasureSpawnPoint(17420676);
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -60,11 +54,11 @@ return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
-    
+
     switch (region:GetRegionID()): caseof
     {
         ---------------------------------
@@ -105,7 +99,7 @@ function onRegionEnter(player,region)
         else
             player:startEvent(7);
         end
-        
+
         end,
 
         --------------------------------
@@ -138,7 +132,7 @@ function onRegionEnter(player,region)
         player:startEvent(0xA);
         end,
     }
-    
+
 end;
 
 -----------------------------------
@@ -164,7 +158,7 @@ end;
 function onEventFinish(player,csid,option)
 --print("onFinishCSID: ",csid);
 --print("onFinishRESULT: ",option);
-    
+
     if (csid <= 11 and option == 1) then
         if (csid == 0) then
             player:setPos(412, -32, 80, 100, 184);
@@ -183,5 +177,5 @@ function onEventFinish(player,csid,option)
         player:addFame(BASTOK,AF3_FAME);
         player:completeQuest(BASTOK,BLADE_OF_EVIL);
     end
-    
+
 end;

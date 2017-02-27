@@ -67,8 +67,9 @@ enum SPELLAOE
 
 enum SPELLFLAG
 {
-    SPELLFLAG_NONE      = 0,
-    SPELLFLAG_HIT_ALL   = 1     // hit all targets in range regardless of party
+    SPELLFLAG_NONE          = 0x00,
+    SPELLFLAG_HIT_ALL       = 0x01, // Hit all targets in range regardless of party
+    SPELLFLAG_WIPE_SHADOWS  = 0x02  // Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 };
 
 class CSpell
@@ -109,7 +110,7 @@ public:
     uint8       getRequirements();
     uint16      getMeritId();
     uint8       getFlag();
-    int8*       getExpansionCode();
+    int8*       getContentTag();
     float       getRange();
     bool        tookEffect(); // returns true if the spell landed, not resisted or missed
     bool        hasMPCost(); // checks if spell costs mp to use
@@ -143,7 +144,7 @@ public:
     void        setMeritId(uint16 meritId);
     void        setModifiedRecast(uint32 mrec);
     void        setFlag(uint8 flag);
-    void        setExpansionCode(int8* expansionCode);
+    void        setContentTag(int8* contentTag);
     void        setRange(float range);
 
     const int8* getName();
@@ -182,7 +183,7 @@ private:
     uint8       m_requirements;                         // requirements before being able to cast spell
     uint16      m_meritId;                              // associated merit (if applicable)
     uint8       m_flag;
-    int8*       m_expansionCode;
+    int8*       m_contentTag;
 };
 
 //Namestpace to work with spells

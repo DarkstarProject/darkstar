@@ -58,7 +58,7 @@ function triggerLightCutscene( player)
     local weather = player:getWeather();
 
     if (player:hasItem( 1125, 0)) then -- Player has Carbuncle's Ruby?
-        if (player:getQuestStatus( WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(WINDURST, I_CAN_HEAR_A_RAINBOW) == QUEST_ACCEPTED) then
             if (player:getMaskBit(player:getVar("I_CAN_HEAR_A_RAINBOW"),0) == false and (weather == WEATHER_HOT_SPELL or weather == WEATHER_HEAT_WAVE)) then
                 if (colorsAvailable[zone][RED]) then
                     cutsceneTriggered = true;

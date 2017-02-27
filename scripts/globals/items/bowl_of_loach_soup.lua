@@ -6,6 +6,7 @@
 -- Dexterity 4
 -- Agility 4
 -- Accuracy 7% Cap 50
+-- Ranged Accuracy 7% Cap 50
 -- HP 7% Cap 50
 -- Evasion 5
 -----------------------------------------
@@ -17,11 +18,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -41,6 +42,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_AGI, 4);
     target:addMod(MOD_FOOD_ACCP, 7);
     target:addMod(MOD_FOOD_ACC_CAP, 50);
+    target:addMod(MOD_FOOD_RACCP, 7);
+    target:addMod(MOD_FOOD_RACC_CAP, 50);
     target:addMod(MOD_FOOD_HPP, 7);
     target:addMod(MOD_FOOD_HP_CAP, 50);
     target:addMod(MOD_EVA, 5);
@@ -55,6 +58,8 @@ function onEffectLose(target,effect)
     target:delMod(MOD_AGI, 4);
     target:delMod(MOD_FOOD_ACCP, 7);
     target:delMod(MOD_FOOD_ACC_CAP, 50);
+    target:delMod(MOD_FOOD_RACCP, 7);
+    target:delMod(MOD_FOOD_RACC_CAP, 50);
     target:delMod(MOD_FOOD_HPP, 7);
     target:delMod(MOD_FOOD_HP_CAP, 50);
     target:delMod(MOD_EVA, 5);

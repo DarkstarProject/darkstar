@@ -39,7 +39,7 @@ function onTrigger(player,npc)
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 9);
         elseif (MissionStatus >= 8) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG);
-        elseif (player:getNation() == SANDORIA) then
+        elseif (player:getNation() == NATION_SANDORIA) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 2);
         else
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 1);
@@ -53,8 +53,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,8 +62,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x0001) then
         local rand = math.random(1,3);

@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Southern San d'Oria
---    NPC:  Aravoge, T.K.
+-- Area: Southern San d'Oria
+-- NPC:  Aravoge, T.K.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
@@ -16,9 +16,9 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
-local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(SandInv);
+local size        = #SandInv;
 local inventory   = SandInv;
 
 -----------------------------------

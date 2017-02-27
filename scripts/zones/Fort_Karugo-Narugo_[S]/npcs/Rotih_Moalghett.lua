@@ -2,8 +2,8 @@
 --  Area: Fort Karugo Narugo [S]
 --  NPC: Rotih_Moalghett
 --  Type: Quest
---  @zone: 96
---  @pos 280 -20 85
+--  @zone 96
+-- @pos 280 -20 85
 --
 -----------------------------------
 

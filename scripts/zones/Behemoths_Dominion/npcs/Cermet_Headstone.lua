@@ -58,8 +58,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -67,12 +67,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x00C8 and option == 1) then
-        SpawnMob(17297450,300):updateClaim(player); -- Legendary Weapon
-        SpawnMob(17297449,300):updateClaim(player); -- Ancient Weapon
+        SpawnMob(17297450):updateClaim(player); -- Legendary Weapon
+        SpawnMob(17297449):updateClaim(player); -- Ancient Weapon
         SetServerVariable("[ZM4]Lightning_Headstone_Active",0);
     end
     

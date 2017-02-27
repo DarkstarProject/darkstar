@@ -2,8 +2,8 @@
 --  Area: Upper Jeuno
 --  NPC: Kasra
 --  Type: Item Deliverer
---  @zone: 244
---  @pos -34.555    7.999    90.702
+--  @zone 244
+-- @pos -34.555    7.999    90.702
 --
 -----------------------------------
 

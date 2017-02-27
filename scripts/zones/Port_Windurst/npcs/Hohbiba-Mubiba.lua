@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         0x42C7,   386,3,     --Ash Pole
         0x4040,   143,3      --Bronze Dagger
     }
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end; 
 
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,6 +59,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

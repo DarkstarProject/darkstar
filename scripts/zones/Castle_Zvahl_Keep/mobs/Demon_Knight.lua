@@ -11,6 +11,13 @@ require("scripts/zones/Castle_Zvahl_Keep/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Count_Bifrons_PH[mob] ~= nil) then

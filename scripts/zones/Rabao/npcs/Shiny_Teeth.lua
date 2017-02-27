@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Rabao
---    NPC:  Shiny Teeth
---    Standard Merchant NPC
---    @pos -30 8 99 247
+-- Area: Rabao
+-- NPC:  Shiny Teeth
+-- Standard Merchant NPC
+-- @pos -30 8 99 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -48,8 +48,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -57,6 +57,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

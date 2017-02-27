@@ -4,16 +4,23 @@
 --      http://wiki.ffxiclopedia.org/wiki/Crafts_%26_Hobbies
 -------------------------------------------------
 
--- 1 2   : Alchemy
--- 2 4   : Bonecraft
--- 3 8   : Clothcraft
--- 4 16  : Cooking
--- 5 32  : Fishing
--- 6 64  : Goldsmithing
--- 7 128 : Leathercraft
--- 8 256 : Smithing
--- 9 512 : Woodworking
--- 10    : Synergy
+-----------------------------------
+-- IDs for signupGuild bitmask
+-----------------------------------
+
+guild =
+{
+    ["alchemy"]      = 2,
+    ["bonecraft"]    = 4,
+    ["clothcraft"]   = 8,
+    ["cooking"]      = 16,
+    ["fishing"]      = 32,
+    ["goldsmithing"] = 64,
+    ["leathercraft"] = 128,
+    ["smithing"]     = 256,
+    ["woodworking"]  = 512
+    -- Synergy not implemented yet
+}
 
 -----------------------------------
 -- Table for Test Item
@@ -188,7 +195,7 @@ function getCraftSkillCap(player,craftID)
 
     local Rank = player:getSkillRank(craftID)
     return (Rank+1)*10
-    
+
 end
 
 -----------------------------------
@@ -198,7 +205,7 @@ function getAdvImageSupportCost(player,craftID)
 
     local Rank = player:getSkillRank(craftID)
     return (Rank+1)*30
-    
+
 end
 
 function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
@@ -206,7 +213,7 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
     local rank = player:getSkillRank(guildID + 48);
     local cap = (rank + 1) * 10;
     local kibits = 0;
-    
+
     for kbit,ki in pairs(keyitems) do
         if (rank >= ki.rank) then
             if not player:hasKeyItem(ki.id) then
@@ -214,7 +221,7 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
             end
         end
     end
-    
+
     player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
@@ -223,7 +230,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
     if (bit.tobit(option) == -1 and rank >= 3) then
         local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
         player:setVar('[GUILD]currentGuild',guildID + 1);
-        
+
         if (oldGuild == -1) then
             player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
         else

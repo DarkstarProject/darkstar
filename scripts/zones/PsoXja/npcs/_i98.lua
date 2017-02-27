@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     local posZ = player:getZPos();
     
     if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==3) then
-        SpawnMob(16814361,240):updateClaim(player);
+        SpawnMob(16814361):updateClaim(player);
     elseif ((player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4)or player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR) or player:hasCompletedMission(COP,THE_LAST_VERSE)) then
         if (posZ < 318) then
             player:startEvent(0x0045);
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

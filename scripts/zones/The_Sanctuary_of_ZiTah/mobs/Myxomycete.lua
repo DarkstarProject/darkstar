@@ -18,7 +18,7 @@ function onMobRoam(mob)
     local Noble_Mold_ToD = GetMobByID(Noble_Mold):getLocalVar("ToD");
 
     if (Noble_Mold_ToD <= os.time()) then
-        Noble_Mold_PH = math.random((0), (table.getn(Noble_Mold_PH_Table)));
+        Noble_Mold_PH = math.random((0), (#Noble_Mold_PH_Table));
         if (Noble_Mold_PH_Table[Noble_Mold_PH] ~= nil) then
             if (
             GetMobAction(Noble_Mold) == 0 and
@@ -44,6 +44,17 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
+    checkRegime(player, mob, 115, 1);
+    checkRegime(player, mob, 116, 2);
+
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
     local Myxomycete = mob:getID();
     local Noble_Mold = 17273278;
     local Noble_Mold_PH_Table =
@@ -52,15 +63,12 @@ function onMobDeath(mob, player, isKiller)
         17273277
     };
 
-    for i = 1, table.getn(Noble_Mold_PH_Table), 1 do
+    for i = 1, #Noble_Mold_PH_Table, 1 do
         if (Noble_Mold_PH_Table[i] ~= nil) then
             if (Myxomycete == Noble_Mold_PH_Table[i]) then
                 GetMobByID(Noble_Mold):setLocalVar("ToD",os.time() + math.random((43200), (57600)));
             end
         end
     end
-
-    checkRegime(player, mob, 115, 1);
-    checkRegime(player, mob, 116, 2);
 
 end;

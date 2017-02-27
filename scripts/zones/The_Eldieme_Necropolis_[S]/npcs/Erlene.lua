@@ -100,8 +100,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -109,8 +109,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x000A and option == 0) then
         player:addQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ALittleKnowledge", 2);
     elseif (csid == 0x000E) then
         player:addKeyItem(GRIMOIRE);
-        player:unlockJob(JOB_SCH);
+        player:unlockJob(JOBS.SCH);
         player:addTitle(SCHULTZ_SCHOLAR);
         player:setVar("ALittleKnowledge", 0);
         player:setVar("SheetsofVellum", 0);

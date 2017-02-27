@@ -75,6 +75,13 @@ struct map_config_t
     uint32 max_time_lastupdate;       // max interval wait of last update player char
     int32  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
     int32  lightluggage_block;        // если значение отлично от нуля, то персонажи с lightluggage будут удаляться с сервера автоматически
+
+    uint16 ah_base_fee_single;        // Base AH fee for single items
+    uint16 ah_base_fee_stacks;        // Base AH fee for stacks
+    float  ah_tax_rate_single;        // Percent of listing price to tax single items
+    float  ah_tax_rate_stacks;        // Percent of listing price to tax stacks
+    uint32 ah_max_fee;                // Maximum total AH fees/taxes
+
     float  exp_rate;                  // множитель получаемого опыта
     float  exp_loss_rate;             // same as exp rate but applies when player dies
     uint8  exp_party_gap_penalties;   // if 1 Party Gap Penalties will apply
@@ -106,6 +113,7 @@ struct map_config_t
     float  nm_stat_multiplier;        // Multiplier for str/vit/etc of NMs
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
+    float  ability_recast_multiplier; // Adjust ability recast time
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
@@ -122,6 +130,7 @@ struct map_config_t
     bool   audit_yell;
     bool   audit_linkshell;
     bool   audit_party;
+    uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
     const char* msg_server_ip;        // central message server IP
 };

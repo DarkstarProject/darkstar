@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Vunkeral
---  NPC: ???
--- Spawns: Karkadann
+-- Zone: Abyssea-Vunkerl
+--  NPC: qm19 (???)
+-- Spawns Karkadann
+-- @pos ? ? ? 217
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

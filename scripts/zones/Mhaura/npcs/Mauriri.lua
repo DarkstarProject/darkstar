@@ -2,7 +2,7 @@
 --  Area: Mhaura
 --  NPC: Mauriri
 --  Type: Item Deliverer
---  @pos 10.883    -15.99    66.186 249
+-- @pos 10.883    -15.99    66.186 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

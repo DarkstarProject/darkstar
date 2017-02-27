@@ -404,6 +404,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Guivre's spawnpoint and respawn time (18-24 hours)
     UpdateNMSpawnPoint(mob:getID());

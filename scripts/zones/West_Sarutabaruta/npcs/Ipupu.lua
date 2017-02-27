@@ -2,7 +2,7 @@
 --  Area: West Sarutabaruta
 --  NPC: Ipupu
 --  Involved in Quest: Glyph Hanger
---  @pos 251.745 -5.5 35.539 115
+-- @pos 251.745 -5.5 35.539 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------
@@ -34,8 +34,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
 end;
 
 -----------------------------------
@@ -43,8 +43,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("OPTION: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("OPTION: %u",option);
     
     if (csid == 0x002f) then
         player:delKeyItem(NOTES_FROM_HARIGAORIGA);

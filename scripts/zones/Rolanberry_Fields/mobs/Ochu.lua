@@ -15,7 +15,15 @@ function onMobDeath(mob, player, isKiller)
 
     checkRegime(player,mob,88,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Drooling_Daisy_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Drooling_Daisy");

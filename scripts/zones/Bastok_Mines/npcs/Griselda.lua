@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             0x1118,   108,3,     --Strip of meat jerky
             0x119D,    10,3      --Flask of distilled water
         }
-        showNationShop(player, BASTOK, stock);
+        showNationShop(player, NATION_BASTOK, stock);
         
     end
 
@@ -54,8 +54,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -63,8 +63,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     if (csid == 0x01fb) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",15,true);

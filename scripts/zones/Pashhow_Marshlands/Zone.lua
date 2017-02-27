@@ -58,10 +58,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17224350,17224351};
-
-    SetFieldManual(manuals);
-
     SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
@@ -76,7 +72,7 @@ function onZoneIn( player, prevZone)
         player:setPos( 547.841, 23.192, 696.323, 136);
     end
 
-    if (prevZone == 147 and player:getCurrentMission( BASTOK) == THE_FOUR_MUSKETEERS) then
+    if (prevZone == 147 and player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS) then
         missionStatus = player:getVar("MissionStatus");
         if (missionStatus < 22) then
             cs = 0x000a;
@@ -85,8 +81,8 @@ function onZoneIn( player, prevZone)
         end
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 0x000d;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then    
-        cs = 0x000f; 
+    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+        cs = 0x000f;
     end
 
     return cs;

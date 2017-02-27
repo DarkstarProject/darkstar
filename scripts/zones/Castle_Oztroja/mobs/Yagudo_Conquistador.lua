@@ -10,6 +10,13 @@ require("scripts/zones/Castle_Oztroja/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Yaa_Haqa_the_Profane_PH[mobID] ~= nil) then

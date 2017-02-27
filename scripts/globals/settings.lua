@@ -15,7 +15,7 @@
 -- Common functions
 require("scripts/globals/common");
 
--- Enable Extension (1= yes 0= no)
+-- Enable Expansion (1= yes 0= no)
 ENABLE_COP     = 0;
 ENABLE_TOAU    = 0;
 ENABLE_WOTG    = 0;
@@ -26,20 +26,28 @@ ENABLE_ABYSSEA = 0;
 ENABLE_SOA     = 0;
 ENABLE_ROV     = 0;
 
--- Setting to lock content more accurately to the expansions you have defined above
+ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
+
+-- FIELDS OF VALOR/Grounds of Valor settings
+ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
+ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
+REGIME_WAIT = 1; -- Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
+LOW_LEVEL_REGIME = 0; -- Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
+
+-- Setting to lock content more accurately to the content you have defined above
 -- This generally results in a more accurate presentation of your selected expansions
 -- as well as a less confusing player experience for things that are disabled (things that are disabled are not loaded)
--- This feature correlates to the required_expansion column in the SQL files
-RESTRICT_BY_EXPANSION = 0;
+-- This feature correlates to the content_tag column in the SQL files
+RESTRICT_CONTENT = 0;
 
 -- CHARACTER CONFIG
 INITIAL_LEVEL_CAP = 50; -- The initial level cap for new players.  There seems to be a hardcap of 255.
 MAX_LEVEL = 75; -- Level max of the server, lowers the attainable cap by disabling Limit Break quests.
 NORMAL_MOB_MAX_LEVEL_RANGE_MIN = 81; -- Lower Bound of Max Level Range for Normal Mobs (0 = Uncapped)
 NORMAL_MOB_MAX_LEVEL_RANGE_MAX = 84; -- Upper Bound of Max Level Range for Normal Mobs (0 = Uncapped)
-START_GIL = 10; --Amount of gil given to newly created characters.
+START_GIL = 10; -- Amount of gil given to newly created characters.
 START_INVENTORY = 30; -- Starting inventory and satchel size.  Ignores values < 30.  Do not set above 80!
-OPENING_CUTSCENE_ENABLE = 0; --Set to 1 to enable opening cutscenes, 0 to disable.
+OPENING_CUTSCENE_ENABLE = 0; -- Set to 1 to enable opening cutscenes, 0 to disable.
 SUBJOB_QUEST_LEVEL = 18; -- Minimum level to accept either subjob quest.  Set to 0 to start the game with subjobs unlocked.
 ADVANCED_JOB_LEVEL = 30; -- Minimum level to accept advanced job quests.  Set to 0 to start the game with advanced jobs.
 ALL_MAPS = 0; -- Set to 1 to give starting characters all the maps.
@@ -47,7 +55,8 @@ UNLOCK_OUTPOST_WARPS = 0; -- Set to 1 to give starting characters all outpost wa
 
 SHOP_PRICE      = 1.000; -- Multiplies prices in NPC shops.
 GIL_RATE        = 1.000; -- Multiplies gil earned from quests.  Won't always display in game.
-EXP_RATE        = 1.000; -- Multiplies exp earned from fov.
+BAYLD_RATE      = 1.000; -- Multiples bayld earned from quests.
+EXP_RATE        = 1.000; -- Multiplies exp earned from fov and quests.
 TABS_RATE       = 1.000; -- Multiplies tabs earned from fov.
 CURE_POWER      = 1.000; -- Multiplies amount healed from Healing Magic, including the relevant Blue Magic.
 ELEMENTAL_POWER = 1.000; -- Multiplies damage dealt by Elemental and non-drain Dark Magic.
@@ -63,11 +72,13 @@ USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Ad
 HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
 EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
 LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100. 
+MINING_BREAK_CHANCE     = 0.33; -- % chance for the pickaxe to break during mining.  Set between 0 and 1.
 HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
 EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
 LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
-MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100. 
+MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
+
+HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
 
 -- SE implemented coffer/chest illusion time in order to prevent coffer farming. No-one in the same area can open a chest or coffer for loot (gil, gems & items)
 -- till a random time between MIN_ILLSION_TIME and MAX_ILLUSION_TIME. During this time players can loot keyitem and item related to quests (AF, maps... etc.)
@@ -105,12 +116,6 @@ QM_RESET_TIME = 300; -- Default time (in seconds) you have from killing ???-pop 
 OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
 FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
-
--- FIELDS OF VALOR/Grounds of Valor SETTINGS
-REGIME_WAIT = 1; --Make people wait till 00:00 game time as in retail. If it's 0, there is no wait time.
-FIELD_MANUALS = 1; -- Enables Fields of Valor manuals
-LOW_LEVEL_REGIME = 0; --Allow people to kill regime targets even if they give no exp, allowing people to farm regime targets at 75 in low level areas.
-GROUNDS_TOMES = 1; -- Enables Grounds of Valor tomes
 
 -- JOB ABILITY/TRAIT SPECIFIC SETTINGS
 CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
@@ -158,7 +163,7 @@ NUMBER_OF_DM_EARRINGS = 1; -- Number of earrings players can simultaneously own 
 HOMEPOINT_TELEPORT = 0; -- Enables the homepoint teleport system
 DIG_ABUNDANCE_BONUS = 0; -- Increase chance of digging up an item (450  = item digup chance +45)
 DIG_FATIGUE = 1; -- Set to 0 to disable Dig Fatigue
-MIASMA_FILTER_COOLDOWN = 5;  -- Number of days a player can obtain a Miasma Filter KI for any of the Boneyard Gully ENMs (Minimum:1)
+ENM_COOLDOWN = 120;  -- Number of hours before a player can obtain same KI for ENMs (default: 5 days)
 FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
 
 -- LIMBUS

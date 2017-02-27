@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         0x43B8,     5,3,     --Crossbow Bolt
         0x1391,  2649,3      --Scroll of Hunter's Prelude
     }
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 
 end; 
 
@@ -41,8 +41,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -50,6 +50,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

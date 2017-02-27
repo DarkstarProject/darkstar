@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
-guardnation = SANDORIA;
+guardnation = NATION_SANDORIA;
 csid         = 0x02cc;
 
 -----------------------------------
@@ -39,8 +39,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     loca = option - 1073741829;
     player:updateEvent(player:getGil(),OP_TeleFee(player,loca),player:getCP(),OP_TeleFee(player,loca),player:getCP());

@@ -60,14 +60,17 @@ STATUS_SHUTDOWN      = 20;
 SUBEFFECT_FIRE_DAMAGE       = 1;   -- 110000        3
 SUBEFFECT_ICE_DAMAGE        = 2;   -- 1-01000       5
 SUBEFFECT_WIND_DAMAGE       = 3;   -- 111000        7
+SUBEFFECT_CHOKE             = 3;   -- Shares subeffect
 SUBEFFECT_EARTH_DAMAGE      = 4;   -- 1-00100       9
 SUBEFFECT_LIGHTNING_DAMAGE  = 5;   -- 110100       11
 SUBEFFECT_WATER_DAMAGE      = 6;   -- 1-01100      13
 SUBEFFECT_LIGHT_DAMAGE      = 7;   -- 111100       15
 SUBEFFECT_DARKNESS_DAMAGE   = 8;   -- 1-00010      17
+SUBEFFECT_DISPEL            = 8;   -- Verified with video of Lockheart Greatsword proc.
 SUBEFFECT_SLEEP             = 9;   -- 110010       19
 SUBEFFECT_POISON            = 10;  -- 1-01010      21
 SUBEFFECT_PARALYSIS         = 11;
+SUBEFFECT_AMNESIA           = 11;  -- Verified uses same animation as para
 SUBEFFECT_BLIND             = 12;  -- 1-00110      25
 SUBEFFECT_SILENCE           = 13;
 SUBEFFECT_PETRIFY           = 14;
@@ -75,19 +78,15 @@ SUBEFFECT_PLAGUE            = 15;
 SUBEFFECT_STUN              = 16;
 SUBEFFECT_CURSE             = 17;
 SUBEFFECT_DEFENSE_DOWN      = 18;  -- 1-01001      37
-SUBEFFECT_EVASION_DOWN      = 18;  -- ID needs verification
-SUBEFFECT_ATTACK_DOWN       = 18;  -- ID needs verification
+SUBEFFECT_EVASION_DOWN      = 18;  -- Same subeffect as DEFENSE_DOWN
+SUBEFFECT_ATTACK_DOWN       = 18;  -- Same subeffect as DEFENSE_DOWN
 SUBEFFECT_DEATH             = 19;
 SUBEFFECT_SHIELD            = 20;
 SUBEFFECT_HP_DRAIN          = 21;  -- 1-10101      43
 SUBEFFECT_MP_DRAIN          = 22;  -- This is correct animation
 SUBEFFECT_TP_DRAIN          = 22;  -- Verified this should look exactly like Aspir Samba.
 SUBEFFECT_HASTE             = 23;
-SUBEFFECT_CHOKE             = 24;
--- Below are almost certain to be wrong: 
--- Someone needs to go on retail and verify the SubEffect IDs
-SUBEFFECT_AMNESIA           = 11; --
-SUBEFFECT_DISPEL            = 13; -- Correct ID possibly 20 ?
+-- There are no additional attack effect animations beyond 23. Some effects share subeffect/animations.
 
 -- SPIKES
 SUBEFFECT_BLAZE_SPIKES      = 1;   -- 01-1000       6
@@ -96,11 +95,14 @@ SUBEFFECT_DREAD_SPIKES      = 3;   -- 01-1100      14
 SUBEFFECT_CURSE_SPIKES      = 4;   -- 01-0010      18
 SUBEFFECT_SHOCK_SPIKES      = 5;   -- 01-1010      22
 SUBEFFECT_REPRISAL          = 6;   -- 01-0110      26
-SUBEFFECT_WIND_SPIKES       = 7;
-SUBEFFECT_STONE_SPIKES      = 8;
-SUBEFFECT_DELUGE_SPIKES     = 9;
+SUBEFFECT_GLINT_SPIKES      = 6;   --
+SUBEFFECT_GALE_SPIKES       = 7;   -- Used by enchantment "Cool Breeze" http://www.ffxiah.com/item/22018/
+SUBEFFECT_CLOD_SPIKES       = 8;   --
+SUBEFFECT_DELUGE_SPIKES     = 9;   --
 SUBEFFECT_DEATH_SPIKES      = 10;  -- yes really: http://www.ffxiah.com/item/26944/
 SUBEFFECT_COUNTER           = 63;
+-- There are no spikes effect animations beyond 63. Some effects share subeffect/animations.
+-- "Damage Spikes" use the Blaze Spikes animation even though they are different status.
 
 -- SKILLCHAINS
 SUBEFFECT_NONE          = 0;
@@ -670,7 +672,7 @@ EFFECT_MAGIC_DEF_BOOST_II       = 552
 EFFECT_ACCURACY_BOOST_II        = 553
 EFFECT_EVASION_BOOST_II         = 554
 EFFECT_MAGIC_ACC_BOOST_II       = 555
-EFFECT_MAGIC_EVASION_BOOST_II   = 556
+EFFECT_MAGIC_EVASION_BOOST      = 556
 EFFECT_ATTACK_DOWN_II           = 557
 EFFECT_DEFENSE_DOWN_II          = 558
 EFFECT_MAGIC_ATK_DOWN_II        = 559
@@ -687,7 +689,7 @@ EFFECT_BLAZE_OF_GLORY           = 569
 EFFECT_BATTUTA                  = 570
 EFFECT_RAYKE                    = 571
 EFFECT_AVOIDANCE_DOWN           = 572
-EFFECT_DELUGE_SPIKES            = 573 -- Exists in client, unused on retail?
+EFFECT_DELUGE_SPIKES            = 573
 EFFECT_FAST_CAST                = 574
 EFFECT_GESTATION                = 575
 EFFECT_DOUBT                    = 576 -- Bully: Intimidation Enfeeble status
@@ -697,7 +699,34 @@ EFFECT_COMMITMENT               = 579
 EFFECT_HASTE_II                 = 580
 EFFECT_FLURRY_II                = 581
 EFFECT_APOGEE                   = 583
-
+EFFECT_ENTRUST                  = 584
+EFFECT_COSTUME_II               = 585
+EFFECT_CURING_CONDUIT           = 586
+EFFECT_TP_BONUS                 = 587
+EFFECT_FINISHING_MOVE_6         = 588
+EFFECT_FIRESTORM_II             = 589
+EFFECT_HAILSTORM_II             = 590
+EFFECT_WINDSTORM_II             = 591
+EFFECT_SANDSTORM_II             = 592
+EFFECT_THUNDERSTORM_II          = 593
+EFFECT_RAINSTORM_II             = 594
+EFFECT_AURORASTORM_II           = 595
+EFFECT_VOIDSTORM_II             = 596
+EFFECT_INUNDATION               = 597
+EFFECT_CASCADE                  = 598
+EFFECT_CONSUME_MANA             = 599
+EFFECT_RUNEIST_S_ROLL           = 600
+EFFECT_CROOKED_CARDS            = 601
+EFFECT_VORSEAL                  = 602
+EFFECT_ELVORSEAL                = 603
+EFFECT_MIGHTY_GUARD             = 604
+EFFECT_GALE_SPIKES              = 605
+EFFECT_CLOD_SPIKES              = 606
+EFFECT_GLINT_SPIKES             = 607
+EFFECT_NEGATE_VIRUS             = 608
+EFFECT_NEGATE_CURSE             = 609
+EFFECT_NEGATE_CHARM             = 610
+EFFECT_MAGIC_EVASION_BOOST_II   = 611
 -- Effect icons in packet can go from 0-767, so no custom effects should go in that range.
 
 -- Purchased from Cruor Prospector
@@ -870,6 +899,8 @@ MOD_LIGHTRES          = 60
 MOD_DARKRES           = 61
 MOD_ATTP              = 62
 MOD_DEFP              = 63
+MOD_COMBAT_SKILLUP_RATE = 64 -- % increase in skillup combat rate
+MOD_MAGIC_SKILLUP_RATE  = 65 -- % increase in skillup magic rate
 MOD_RATTP             = 66
 MOD_EVA               = 68
 MOD_RDEF              = 69
@@ -889,6 +920,13 @@ MOD_KATANA            = 88
 MOD_GKATANA           = 89
 MOD_CLUB              = 90
 MOD_STAFF             = 91
+MOD_RAMPART_DURATION        = 92  -- Rampart duration in seconds
+MOD_FLEE_DURATION           = 93  -- Flee duration in seconds
+MOD_MEDITATE_DURATION       = 94  -- Meditate duration in seconds
+MOD_WARDING_CIRCLE_DURATION = 95  -- Warding Circle duration in seconds
+MOD_SOULEATER_EFFECT        = 96  -- Souleater power in percents
+MOD_BOOST_EFFECT            = 97  -- Boost power in tenths
+MOD_CAMOUFLAGE_DURATION     = 98  -- Camouflage duration in percents
 MOD_AUTO_MELEE_SKILL  = 101
 MOD_AUTO_RANGED_SKILL = 102
 MOD_AUTO_MAGIC_SKILL  = 103
@@ -970,6 +1008,8 @@ MOD_FOOD_RATTP        = 186
 MOD_FOOD_RATT_CAP     = 187
 MOD_FOOD_RACCP        = 188
 MOD_FOOD_RACC_CAP     = 189
+MOD_FOOD_MACCP        =  99
+MOD_FOOD_MACC_CAP     = 100
 MOD_VERMIN_KILLER     = 224
 MOD_BIRD_KILLER       = 225
 MOD_AMORPH_KILLER     = 226
@@ -1044,11 +1084,10 @@ MOD_BUST               = 332
 MOD_FINISHING_MOVES    = 333
 MOD_SAMBA_DURATION     = 490 -- Samba duration bonus
 MOD_WALTZ_POTENTCY     = 491 -- Waltz Potentcy Bonus
-MOD_CHOCO_JIG_DURATION = 492 -- Chocobo Jig duration bonus
+MOD_JIG_DURATION       = 492 -- Jig duration bonus in percents
 MOD_VFLOURISH_MACC     = 493 -- Violent Flourish accuracy bonus
 MOD_STEP_FINISH        = 494 -- Bonus finishing moves from steps
 MOD_STEP_ACCURACY      = 403 -- Accuracy bonus for steps
-MOD_SPECTRAL_JIG       = 495 -- Spectral Jig duration modifier (percent increase)
 MOD_WALTZ_RECAST       = 497 -- Waltz recast modifier (percent)
 MOD_SAMBA_PDURATION    = 498 -- Samba percent duration bonus
 MOD_WIDESCAN           = 340
@@ -1124,7 +1163,7 @@ MOD_LIGHT_ARTS_EFFECT   = 334
 MOD_DARK_ARTS_EFFECT    = 335
 MOD_LIGHT_ARTS_SKILL    = 336
 MOD_DARK_ARTS_SKILL     = 337
-MOD_REGEN_EFFECT        = 338
+MOD_LIGHT_ARTS_REGEN    = 338 -- Regen bonus HP from Light Arts and Tabula Rasa
 MOD_REGEN_DURATION      = 339
 MOD_HELIX_EFFECT        = 478
 MOD_HELIX_DURATION      = 477
@@ -1146,10 +1185,17 @@ MOD_ABSORB_DMG_CHANCE        = 480 -- Chance to absorb damage %
 MOD_EXTRA_DUAL_WIELD_ATTACK  = 481 -- Chance to land an extra attack when dual wielding
 MOD_EXTRA_KICK_ATTACK        = 482 -- Occasionally allows a second Kick Attack during an attack round without the use of Footwork.
 MOD_SAMBA_DOUBLE_DAMAGE      = 415 -- Double damage chance when samba is up.
-MOD_NULL_PHYSICAL_DAMAGE     = 416 -- Chance to null physical damage.
+MOD_NULL_PHYSICAL_DAMAGE     = 416 -- Occasionally annuls damage from physical attacks, in percents
 MOD_QUICK_DRAW_TRIPLE_DAMAGE = 417 -- Chance to do triple damage with quick draw.
 MOD_BAR_ELEMENT_NULL_CHANCE  = 418 -- Bar Elemental spells will occasionally nullify damage of the same element.
 MOD_GRIMOIRE_INSTANT_CAST    = 419 -- Spells that match your current Arts will occasionally cast instantly, without recast.
+MOD_COUNTERSTANCE_EFFECT     = 543 -- Counterstance effect in percents
+MOD_DODGE_EFFECT             = 552 -- Dodge effect in percents
+MOD_FOCUS_EFFECT             = 561 -- Focus effect in percents
+MOD_MUG_EFFECT               = 835 -- Mug effect as multiplier
+MOD_REVERSE_FLOURISH_EFFECT  = 836 -- Reverse Flourish effect in tenths of squared term multiplier
+MOD_SENTINEL_EFFECT          = 837 -- Sentinel effect in percents
+MOD_REGEN_MULTIPLIER         = 838 -- Regen base multiplier
 
 MOD_DOUBLE_SHOT_RATE          = 422 -- The rate that double shot can proc
 MOD_VELOCITY_SNAPSHOT_BONUS   = 423 -- Increases Snapshot whilst Velocity Shot is up.
@@ -1190,14 +1236,14 @@ MOD_QUAD_ATTACK               = 430 -- Quadruple attack chance.
 MOD_ADDITIONAL_EFFECT         = 431 -- All additional effects
 MOD_ENSPELL_DMG_BONUS         = 432
 
-MOD_FIRE_ABSORB  = 459 --
-MOD_EARTH_ABSORB = 460 --
-MOD_WATER_ABSORB = 461 --
-MOD_WIND_ABSORB  = 462 --
-MOD_ICE_ABSORB   = 463 --
-MOD_LTNG_ABSORB  = 464 --
-MOD_LIGHT_ABSORB = 465 --
-MOD_DARK_ABSORB  = 466 --
+MOD_FIRE_ABSORB  = 459 -- Occasionally absorbs fire elemental damage, in percents
+MOD_EARTH_ABSORB = 460 -- Occasionally absorbs earth elemental damage, in percents
+MOD_WATER_ABSORB = 461 -- Occasionally absorbs water elemental damage, in percents
+MOD_WIND_ABSORB  = 462 -- Occasionally absorbs wind elemental damage, in percents
+MOD_ICE_ABSORB   = 463 -- Occasionally absorbs ice elemental damage, in percents
+MOD_LTNG_ABSORB  = 464 -- Occasionally absorbs thunder elemental damage, in percents
+MOD_LIGHT_ABSORB = 465 -- Occasionally absorbs light elemental damage, in percents
+MOD_DARK_ABSORB  = 466 -- Occasionally absorbs dark elemental damage, in percents
 
 MOD_FIRE_NULL  = 467 --
 MOD_EARTH_NULL = 468 --
@@ -1208,9 +1254,9 @@ MOD_LTNG_NULL  = 472 --
 MOD_LIGHT_NULL = 473 --
 MOD_DARK_NULL  = 474 --
 
-MOD_MAGIC_ABSORB     = 475 --
-MOD_MAGIC_NULL       = 476 --
-MOD_PHYS_ABSORB      = 512 --
+MOD_MAGIC_ABSORB     = 475 -- Occasionally absorbs magic damage taken, in percents
+MOD_MAGIC_NULL       = 476 -- Occasionally annuls magic damage taken, in percents
+MOD_PHYS_ABSORB      = 512 -- Occasionally absorbs physical damage taken, in percents
 MOD_ABSORB_DMG_TO_MP = 516 -- Unlike PLD gear mod, works on all damage types (Ethereal Earring)
 
 MOD_WARCRY_DURATION = 483 -- Warcy duration bonus from gear
@@ -1240,14 +1286,15 @@ MOD_EAT_RAW_FISH       = 412 --
 MOD_EAT_RAW_MEAT       = 413 --
 MOD_ENHANCES_CURSNA    = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
 MOD_RETALIATION        = 414 -- Increases damage of Retaliation hits
-MOD_AUGMENTS_THIRD_EYE = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
+MOD_THIRD_EYE_COUNTER_RATE    = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
+MOD_THIRD_EYE_ANTICIPATE_RATE = 839 -- Adds anticipate rate in percents
 
 MOD_CLAMMING_IMPROVED_RESULTS  = 509 --
 MOD_CLAMMING_REDUCED_INCIDENTS = 510 --
 MOD_CHOCOBO_RIDING_TIME = 511 -- Increases chocobo riding time
 MOD_HARVESTING_RESULT   = 513 -- Improves harvesting results
 MOD_LOGGING_RESULT      = 514 -- Improves logging results
-MOD_MINNING_RESULT      = 515 -- Improves mining results
+MOD_MINING_RESULT       = 515 -- Improves mining results
 MOD_EGGHELM             = 517 -- Egg Helm (Chocobo Digging)
 
 MOD_SHIELDBLOCKRATE           = 518 -- Affects shield block rate, percent based
@@ -1275,14 +1322,14 @@ MOD_ENHANCES_ELEMENTAL_SIPHON = 540 -- Bonus Base MP added to Elemental Siphon s
 MOD_BP_DELAY_II               = 541 -- Blood Pact Delay Reduction II
 MOD_JOB_BONUS_CHANCE          = 542 -- Chance to apply job bonus to COR roll without having the job in the party.
 MOD_DAY_NUKE_BONUS            = 565 -- Bonus damage from "Elemental magic affected by day" (Sorc. Tonban)
-MOD_IRIDESCENCE               = 566 -- Iridesecnce trait (additional weather damage/penalty)
+MOD_IRIDESCENCE               = 566 -- Iridescence trait (additional weather damage/penalty)
 MOD_BARSPELL_AMOUNT           = 567 -- Additional elemental resistance granted by bar- spells
 MOD_BARSPELL_MDEF_BONUS       = 827 -- Extra magic defense bonus granted to the bar- spell effect
 MOD_RAPTURE_AMOUNT            = 568 -- Bonus amount added to Rapture effect
 MOD_EBULLIENCE_AMOUNT         = 569 -- Bonus amount added to Ebullience effect
 MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering healing breath
 MOD_AQUAVEIL_COUNT            = 832 -- Modifies the amount of hits that Aquaveil absorbs before being removed
-MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time (in milliseconds).
+MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time in seconds.
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1292,24 +1339,33 @@ MOD_AUGMENTS_SA               = 526 -- Adds Critical Attack Bonus to Sneak Attac
 MOD_AUGMENTS_TA               = 527 -- Adds Critical Attack Bonus to Trick Attack, percentage based.
 MOD_JUG_LEVEL_RANGE           = 564 -- Decreases the level range of spawned jug pets. Maxes out at 2.
 MOD_FORCE_JUMP_CRIT           = 828 -- Critical hit rate bonus for jump and high jump
-MOD_QUICK_DRAW_DMG_PERCENT    = 831 -- Percentage increase to QD damage
+MOD_QUICK_DRAW_DMG_PERCENT    = 834 -- Percentage increase to QD damage
 
-MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- See modifier.h for how this is used
+-- Crafting food effects
+MOD_SYNTH_SUCCESS    = 851 -- Rate of synthesis success
+MOD_SYNTH_SKILL_GAIN = 852 -- Synthesis skill gain rate
+
+MOD_WEAPONSKILL_DAMAGE_BASE = 570 -- Specific to 1 Weaponskill: See modifier.h for how this is used
+MOD_ALL_WSDMG_ALL_HITS      = 840 -- Generic (all Weaponskills) damage, on all hits.
+-- Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
+MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hit only.
 
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 92 -- stuff
--- MOD_SPARE = 93 -- stuff
--- MOD_SPARE = 94 -- stuff
--- MOD_SPARE = 95 -- stuff
--- MOD_SPARE = 96 -- stuff
--- MOD_SPARE = 97 -- stuff
+-- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 98 -- stuff
--- MOD_SPARE = 99 -- stuff
--- MOD_SPARE = 100 -- stuff
--- MOD_SPARE = 834 -- stuff
--- MOD_SPARE = 835 -- stuff
+-- MOD_SPARE = 495 -- stuff
+-- 570 - 825 used by WS DMG mods these are not spares.
+-- MOD_SPARE = 842 -- stuff
+-- MOD_SPARE = 843 -- stuff
+-- MOD_SPARE = 844 -- stuff
+-- MOD_SPARE = 845 -- stuff
+-- MOD_SPARE = 846 -- stuff
+-- MOD_SPARE = 847 -- stuff
+-- MOD_SPARE = 848 -- stuff
+-- MOD_SPARE = 849 -- stuff
+-- MOD_SPARE = 850 -- stuff
 
 ------------------------------------
 -- Merit Definitions
@@ -1787,6 +1843,8 @@ LOC_MOGCASE         = 7
 LOC_WARDROBE        = 8
 LOC_MOGSAFE2        = 9
 LOC_WARDROBE2       = 10
+LOC_WARDROBE3       = 11
+LOC_WARDROBE4       = 12
 
 ------------------------------------
 -- Message enum
@@ -1851,16 +1909,21 @@ MSGBASIC_CANNOT_SEE             = 217 -- You cannot see <target>.
 MSGBASIC_MOVE_AND_INTERRUPT     = 218 -- You move and interrupt your aim.
 
 -- Additional effects and spike effects
+MSGBASIC_SPIKES_EFFECT_DMG      = 44  -- <Defender>'s spikes deal <number> points of damage to the <Attacker>.
+MSGBASIC_SPIKES_EFFECT_HP_DRAIN = 132 -- <Defender>'s spikes drain <number> HP from the <Attacker>.
+MSGBASIC_ADD_EFFECT_MP_HEAL     = 152 -- Additional effect: The <player> recovers <number> MP.
 MSGBASIC_ADD_EFFECT_STATUS      = 160 -- Additional effect: <Status Effect>.
 MSGBASIC_ADD_EFFECT_HP_DRAIN    = 161 -- Additional effect: <number> HP drained from <target>.
 MSGBASIC_ADD_EFFECT_MP_DRAIN    = 162 -- Additional effect: <number> MP drained from <target>.
 MSGBASIC_ADD_EFFECT_DMG         = 163 -- Additional effect: <number> points of damage.
-MSGBASIC_ADD_EFFECT_STATUS2     = 164 -- Additional effect: <Status Effect>. (Duplicate?)
+MSGBASIC_ADD_EFFECT_STATUS_2    = 164 -- Additional effect: <Status Effect>. (Duplicate?)
 MSGBASIC_ADD_EFFECT_TP_DRAIN    = 165 -- Additional effect: <number> TP drained from <target>.
-MSGBASIC_ADD_EFFECT_STATUS3     = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
-MSGBASIC_ADD_EFFECT_HEAL        = 167 -- Additional effect: The <target> recovers <number> HP. (used when target absorbs element)
-MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s KO effect disappears!
-MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by holloween staves)
+MSGBASIC_ADD_EFFECT_STATUS_3    = 166 -- Additional effect: The <target> gains the effect of <Status Effect>. (Only difference from 160 and 164 is "The")
+MSGBASIC_ADD_EFFECT_HP_HEAL     = 167 -- Additional effect: The <player> recovers <number> HP.
+MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status Effect> effect disappears!
+MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
+MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
+MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!
@@ -1968,6 +2031,7 @@ MOBMOD_NO_STANDBACK   = 62
 MOBMOD_ATTACK_SKILL_LIST = 63
 MOBMOD_CHARMABLE      = 64
 MOBMOD_NO_MOVE        = 65
+MOBMOD_MULTI_HIT      = 66
 
 ------------------------------------
 -- Skills
@@ -2127,8 +2191,9 @@ SPELLAOE_DIFFUSION   = 6; -- AOE when under Diffusion
 -- Spell flag bits
 ------------------------------------
 
-SPELLFLAG_NONE    = 0;
-SPELLFLAG_HIT_ALL = 1; -- hit all targets in range regardless of party
+SPELLFLAG_NONE          = 0x00;
+SPELLFLAG_HIT_ALL       = 0x01; -- Hit all targets in range regardless of party
+SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 
 ------------------------------------
 -- Behaviour bits

@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: A Crisis in the Making
 -- Involved in quest: In a Stew, For Want of a Pot, The Dawn of Delectability
 --  @zone = 238
---  @pos = -116 -3 52  (outside the shop he is in)
+-- @pos = -116 -3 52  (outside the shop he is in)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

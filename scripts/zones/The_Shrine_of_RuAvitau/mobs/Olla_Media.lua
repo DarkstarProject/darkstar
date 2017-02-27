@@ -15,7 +15,9 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    SpawnMob(mob:getID() + 1,180):updateEnmity(killer);
+    if (isKiller == true) then
+        SpawnMob(mob:getID() + 1):updateClaim(player);
+    end
 end;
 
 -----------------------------------

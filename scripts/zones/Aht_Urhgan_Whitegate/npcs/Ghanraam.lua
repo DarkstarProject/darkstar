@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Ghanraam
 --  Type: "Nyzul Weapon/Salvage Armor Storer,"
---  @pos 108.773 -6.999 -51.297 50
+-- @pos 108.773 -6.999 -51.297 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

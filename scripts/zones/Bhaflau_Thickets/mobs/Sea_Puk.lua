@@ -11,6 +11,13 @@ require("scripts/zones/Bhaflau_Thickets/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Get Sea Puk ID and check if it is a PH of NP
     local mobID = mob:getID();

@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         0x1034,   290, 3  -- Antidote
     }
 
-    showNationShop(player, WINDURST, stock);
+    showNationShop(player, NATION_WINDURST, stock);
 end;
 
 -----------------------------------

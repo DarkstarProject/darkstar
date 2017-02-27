@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(17584130) == 0 and trade:hasItemQty(4365,1) and trade:getItemCount() == 1) then   
         player:tradeComplete();
         if (math.random(1,100)<=38) then
-            SpawnMob(17584130,120):updateClaim(player); -- Guardian Crawler
+            SpawnMob(17584130):updateClaim(player); -- Guardian Crawler
             npc:setStatus(STATUS_DISAPPEAR) -- hide ???
         else 
             player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);                

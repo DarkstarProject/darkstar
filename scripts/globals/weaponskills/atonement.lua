@@ -24,7 +24,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 2;
@@ -47,7 +47,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
             params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2.0;
         end
 
-        damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+        damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     else
         local dmg;
         if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -79,8 +79,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
             extraHits = 1; -- for whatever reason, Atonement always yields the a TP return of a 2 hit WS, unless it does 0 damage.
         end
 
-        damage = target:takeWeaponskillDamage(player, damage, SLOT_MAIN, tpHits, extraHits, 1);
-        target:updateEnmityFromDamage(player, damage * enmityMult);
+        local wsParams = {}
+        wsParams.enmityMult = enmityMult
+        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, SLOT_MAIN, tpHits, extraHits, nil)
     end
 
     if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOBS.PLD)) then

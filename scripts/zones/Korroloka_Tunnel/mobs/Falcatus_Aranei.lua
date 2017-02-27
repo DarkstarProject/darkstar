@@ -8,6 +8,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Falcatus_Aranei's Window Open Time
     local wait = math.random(7200,14400);

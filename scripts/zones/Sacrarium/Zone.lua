@@ -19,7 +19,7 @@ function onInitialize(zone)
     local rand = math.random((2),(7));
     SetServerVariable("Old_Prof_Spawn_Location", rand);
 
-    UpdateTreasureSpawnPoint(16892179);
+    UpdateTreasureSpawnPoint(16892183);
 end;
 
 -----------------------------------

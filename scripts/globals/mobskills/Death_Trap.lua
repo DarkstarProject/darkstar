@@ -1,17 +1,17 @@
 ---------------------------------------------
---  Roar
+-- Death Trap
 --
---  Description: Paralyzes targets in an area of effect.
---  Type: Enfeebling
---  Utsusemi/Blink absorb: Ignores shadows
---  Range: 10' radial
---  Notes:
+-- Description: Attempts to stun or poison any players in a large trap. Resets hate.
+-- Type: Enfeebling
+-- Utsusemi/Blink absorb: Ignores shadows
+-- Range: 30' radial
+-- Notes:
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

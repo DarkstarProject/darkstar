@@ -36,6 +36,7 @@
 #include "status_effect_container.h"
 #include "ai/ai_container.h"
 #include "enmity_container.h"
+#include "mob_modifier.h"
 #include "ai/states/death_state.h"
 
 CBattlefield::CBattlefield(CBattlefieldHandler* hand, uint16 id, BATTLEFIELDTYPE type) {
@@ -190,7 +191,7 @@ void CBattlefield::capPlayerToBCNM() { //adjust player's level to the appropriat
     }
     uint8 cap = getLevelCap();
     if (cap != 0)
-    {	// Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
+    {   // Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
         // Might be better to add a type flag to the sql to tell bcnm/isnm/which expantions mission than doing by bcnmID like this.
         if ((map_config.CoP_Battle_cap == 0) && (m_BcnmID == 768 || m_BcnmID == 800 || m_BcnmID == 832 || m_BcnmID == 960
             || m_BcnmID == 704 || m_BcnmID == 961 || m_BcnmID == 864 || m_BcnmID == 672 || m_BcnmID == 736 || m_BcnmID == 992 || m_BcnmID == 640))
@@ -335,6 +336,10 @@ void CBattlefield::init() {
 void CBattlefield::addEnemy(CMobEntity* PMob, uint8 condition) {
     m_EnemyList.push_back(PMob);
     PMob->PBCNM = this;
+
+    // If a BCNM mob aggros, it should always aggro regardless of level
+    PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, PMob->m_Aggro);
+
     if (condition & CONDITION_WIN_REQUIREMENT)
     {
         MobVictoryCondition_t mobCondition = {PMob, false};
@@ -522,9 +527,9 @@ void CBattlefield::cleanupDynamis() {
 
     //get all mob of this dyna zone
     const int8* fmtQuery = "SELECT msp.mobid \
-							FROM mob_spawn_points msp \
-							LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
-							WHERE zoneid = %u";
+                            FROM mob_spawn_points msp \
+                            LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
+                            WHERE zoneid = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
 
@@ -537,8 +542,10 @@ void CBattlefield::cleanupDynamis() {
             uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
             CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-            if (PMob != nullptr)
-                PMob->PAI->Despawn();
+            if (PMob != nullptr) {
+                PMob->FadeOut();
+                PMob->PAI->Internal_Respawn(0s);
+            }
         }
     }
 
@@ -586,12 +593,12 @@ bool CBattlefield::isMonsterInList(CMobEntity* PMob)
 
 void CBattlefield::clearPlayerEnmity(CCharEntity* PChar)
 {
-    for (std::vector<CMobEntity*>::iterator it = m_MobList.begin(); it != m_MobList.end(); ++it)
+    auto clearEnmity = [PChar](auto entity)
     {
-        CMobEntity* PMob = *it;
-
-        PMob->PEnmityContainer->Clear(PChar->id);
-    }
+        entity->PEnmityContainer->Clear(PChar->id);
+    };
+    std::for_each(m_MobList.cbegin(), m_MobList.cend(), clearEnmity);
+    std::for_each(m_EnemyList.cbegin(), m_EnemyList.cend(), clearEnmity);
 }
 
 bool CBattlefield::lost()
@@ -611,8 +618,11 @@ void CBattlefield::lose()
 
 void CBattlefield::win(time_point tick)
 {
-    m_WinTime = tick;
-    m_won = true;
+    if (!m_won)
+    {
+        m_WinTime = tick;
+        m_won = true;
+    }
 }
 
 bool CBattlefield::cleared()

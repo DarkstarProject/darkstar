@@ -16,7 +16,15 @@ function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,764,3);
     checkGoVregime(player,mob,765,3);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Goblinsavior_Heronox_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Goblinsavior_Heronox");
         if (ToD <= os.time(t) and GetMobAction(Goblinsavior_Heronox) == 0) then

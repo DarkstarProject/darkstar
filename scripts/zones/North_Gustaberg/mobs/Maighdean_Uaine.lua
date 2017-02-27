@@ -6,10 +6,17 @@
 require("scripts/globals/fieldsofvalor");    
 
 -----------------------------------    
--- onMobDeath    
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn    
 -----------------------------------    
     
-function onMobDeath(mob, player, isKiller)    
+function onMobDespawn(mob)    
 
     -- Set Maighdean_Uaine's Window Open Time
     local wait = math.random(900,10800)

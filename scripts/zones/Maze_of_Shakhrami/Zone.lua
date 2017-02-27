@@ -9,66 +9,67 @@ package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17588784,17588785,17588786,17588787};
-    
-    SetGroundsTome(tomes);
-
-    UpdateTreasureSpawnPoint(17588769);
-    
+    UpdateTreasureSpawnPoint(17588773);
+    local whichNM = math.random(0,19);
+    if (whichNM < 10) then
+        SetRespawnTime(Argus, 900, 43200); -- 0-12 hours
+    else
+        SetRespawnTime(Leech_King, 900, 43200); -- 0-12 hours
+    end
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(-140.246,-12.738,160.709,63);
-    end    
-    return cs;    
-end;        
+    end
+    return cs;
+end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------        
--- onRegionEnter        
------------------------------------        
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)    
-end;    
+function onRegionEnter(player,region)
+end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)    
+function onEventUpdate(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;
 
------------------------------------    
--- onEventFinish    
------------------------------------    
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
-end;    
+end;

@@ -2,11 +2,15 @@
 --  Area: Southern Sandoria
 --   NPC: Estiliphire
 --  Type: Event Sideshow NPC
---  @zone: 230
---  @pos -41.550 1.999 -2.845
+--  @zone 230
+-- @pos -41.550 1.999 -2.845
 --
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
 -----------------------------------
 
 -----------------------------------
@@ -16,8 +20,8 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 function onTrade(player,npc,trade)
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
+        local count = trade:getItemCount();
+        local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
             player:messageSpecial(FLYER_REFUSED);
         end

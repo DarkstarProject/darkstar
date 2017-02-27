@@ -2,6 +2,9 @@
 -- Area: VeLugannon Palace
 -- NPC:  Zipacna
 -----------------------------------
+
+require("scripts/globals/pathfind");
+
 local path = {
 -202, 0, 391,
 -209, 0, 387,
@@ -111,5 +114,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     mob:setRespawnTime(math.random((10800),(14400))); -- respawn 3-4 hrs
 end;

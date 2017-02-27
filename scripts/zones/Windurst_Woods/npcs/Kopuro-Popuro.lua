@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 --  NPC: Kopuro-Popuro
 --  Type: Standard NPC
---  @zone: 241
---  @pos -0.037 -4.749 -22.589
+--  @zone 241
+-- @pos -0.037 -4.749 -22.589
 -- Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
 -- Involved in quests: Lost Chick
 -----------------------------------
@@ -77,7 +77,7 @@ local LPB = player:getQuestStatus(WINDURST,LEGENDARY_PLAN_B);
 local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
 
     -- The All New C-3000
-    if (LPB == QUEST_COMPLETED and ANC3K == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 4) then
+    if (LPB == QUEST_COMPLETED and ANC3K == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4) then
         if (player:needToZone()) then
             player:startEvent(0x013c); -- Post quest text from LPB
         else
@@ -93,7 +93,7 @@ local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000);
         player:startEvent(0x012D); -- Supplemental text when AGreetingCardian in progress, right before completion
     
     -- Legendary Plan B
-    elseif (AGreetingCardian == QUEST_COMPLETED and LPB == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
+    elseif (AGreetingCardian == QUEST_COMPLETED and LPB == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 3) then
         if (player:needToZone()) then
             player:startEvent(0x0132); -- Supplemental text for AGreetingCardian before start of LPB
         else

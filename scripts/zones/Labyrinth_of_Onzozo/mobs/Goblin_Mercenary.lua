@@ -17,7 +17,15 @@ function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,772,2);
     checkGoVregime(player,mob,774,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Soulstealer_Skullnix_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Soulstealer_Skullnix");
         if (ToD <= os.time(t) and GetMobAction(Soulstealer_Skullnix) == 0) then

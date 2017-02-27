@@ -59,10 +59,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17285698,17285699,17285700};
-
-    SetFieldManual(manuals);
-
     -- Bright-handed Kunberry
     SetRespawnTime(17285220, 900, 10800);
 

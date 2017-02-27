@@ -1,17 +1,17 @@
 ---------------------------------------------------
---Asuran Claws
---Gnole Mobs, only used when standing
+-- Asuran Claws
+-- Gnole Mobs, only used when standing
 ---------------------------------------------------
----------------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:AnimationSub() == 1) then
-            return 1;
-        end
+    -- animsub 1= standing, animsub 0 = all fours
+    if (mob:AnimationSub() == 0) then
+        return 1;
+    end
 
     return 0;
 end;

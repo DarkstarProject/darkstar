@@ -75,15 +75,15 @@ function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
     local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
 
-    if (PH == mobID) then
-        -- printf("%u is a PH",mobID);
-        -- printf("JoT will pop");
+    if (PH == mobID and isKiller == true) then
+    -- printf("%u is a PH",mobID);
+    -- printf("JoT will pop");
         -- We need to set Jailer of Temperance spawn point to where the PH spawns (The platform in the room).
         local mobSpawnPoint = GetMobByID(mobID):getSpawnPos();
         GetMobByID(Jailer_of_Temperance):setSpawn(mobSpawnPoint.x, mobSpawnPoint.y, mobSpawnPoint.z);
 
         -- The jailer spawns instantly, so don't need to set respawn time
-        SpawnMob(Jailer_of_Temperance,300):updateEnmity(killer);
+        SpawnMob(Jailer_of_Temperance):updateClaim(player);
         DeterMob(mobID, true);
     end
 end;

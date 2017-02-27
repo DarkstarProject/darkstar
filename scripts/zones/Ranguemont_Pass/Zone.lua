@@ -15,10 +15,6 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17457375,17457376,17457377,17461580};
-
-    SetGroundsTome(tomes);
-
     local Taisaijin = 17457216;
     GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random((86400), (259200)));
 end;

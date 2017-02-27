@@ -16,9 +16,9 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
-local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(WindInv);
+local size        = #WindInv;
 local inventory   = WindInv;
 
 -----------------------------------

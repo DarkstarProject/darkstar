@@ -55,7 +55,7 @@ function onMobDeath(mob, player, isKiller)
     if (mobID == 17547593) then
         for nbx = 17547642, 17547648, 1 do SpawnMob(nbx); end
         local spawn =  {17547265,17547608,17547609,17547610,17547611,17547612,17547613,17547614,17547615,17547616,17547617};
-        for nbi = 1, table.getn(spawn), 1 do
+        for nbi = 1, #spawn, 1 do
             SpawnMob(spawn[nbi]);
         end
        

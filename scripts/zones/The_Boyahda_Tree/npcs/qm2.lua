@@ -21,8 +21,6 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-
-
 -- Notes: does ??? depop when Agas is spawned?
 -- current implementation: when Agas is active, triggering ??? will result in detarget
 
@@ -47,7 +45,7 @@ function onTrigger(player,npc)
                 
             else
                 player:messageSpecial(SOMETHING_NOT_RIGHT);
-                SpawnMob(17404337,288):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
+                SpawnMob(17404337):updateClaim(player); --missing repop timer for Agas due to errors with SpawnMob
             end
             
         else
@@ -61,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -70,8 +68,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x000e) then
         player:addKeyItem(MOONDROP);
         player:messageSpecial(KEYITEM_OBTAINED, MOONDROP);

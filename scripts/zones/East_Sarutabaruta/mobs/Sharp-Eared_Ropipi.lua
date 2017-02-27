@@ -8,6 +8,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Sharp_Eared_Ropipi's Window Open Time
     SetServerVariable("[POP]Sharp_Eared_Ropipi", os.time(t) + 300); -- 5 minutes

@@ -2,8 +2,8 @@
 --  Area: Northern San d'Oria
 --  NPC: Maurine
 --  Type: Standard Dialogue NPC
---  @zone: 231
---  @pos 144.852 0.000 136.828
+--  @zone 231
+-- @pos 144.852 0.000 136.828
 --
 -----------------------------------
 

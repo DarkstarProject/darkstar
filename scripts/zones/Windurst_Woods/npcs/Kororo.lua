@@ -2,8 +2,8 @@
 -- Area: Windurst Woods
 --  NPC: Kororo
 --  Type: Standard NPC
---  @zone: 241
---  @pos -11.883 -3.75 5.508
+--  @zone 241
+-- @pos -11.883 -3.75 5.508
 --  Starts quest: A Greeting Cardian 
 -- Involved in quests: Lost Chick
 --  Auto-Script: Requires Verification (Verfied by Brawndo)
@@ -37,7 +37,7 @@ local AGCcs = player:getVar("AGreetingCardian_Event");
 local AGCtime = player:getVar("AGreetingCardian_timer");
     
     -- A Greeting Cardian 
-    if (C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 3) then
+    if (C2000 == QUEST_COMPLETED and AGreetingCardian == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 3) then
         player:startEvent(0x0128); -- A Greeting Cardian quest start
     elseif (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 3) then
         if (player:needToZone() or tonumber(os.date("%j")) == AGCtime) then

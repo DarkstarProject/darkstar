@@ -2,7 +2,7 @@
 --  Area: Quicksand Caves
 --  NPC:  Goblin Geologist
 --  Type: Mission
---  @pos -737.000 -11.125 -550.000 208
+-- @pos -737.000 -11.125 -550.000 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------

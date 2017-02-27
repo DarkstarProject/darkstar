@@ -1,6 +1,6 @@
 -----------------------------------
---    Area: Port Windurst
---    NPC:  Milma-Hapilma, W.W.
+-- Area: Port Windurst
+-- NPC:  Milma-Hapilma, W.W.
 
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
@@ -16,9 +16,9 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Port_Windurst/TextIDs");
 
-local guardnation = WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size        = table.getn(WindInv);
+local size        = #WindInv;
 local inventory   = WindInv;
 
 -----------------------------------

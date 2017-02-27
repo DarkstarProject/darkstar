@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         0x16EC, 18000,3,     --Toolbag (Shika)
         0x16ED, 18000,3      --Toolbag (Cho)
     }
-     showNationShop(player, BASTOK, stock);
+     showNationShop(player, NATION_BASTOK, stock);
 end; 
 
 -----------------------------------
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,6 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

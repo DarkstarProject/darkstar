@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ordelle's Caves
 -- NPC: Strange Apparatus
--- @pos: -294 28 -100 193
+-- @pos -294 28 -100 193
 -----------------------------------
 
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;

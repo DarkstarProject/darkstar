@@ -1,15 +1,13 @@
 -----------------------------------
---    Area: Ru'Lud Gardens
---    NPC:  Pakh Jatalfih
---    @pos 34 8 -35 243
+-- Area: Ru'Lud Gardens
+-- NPC:  Pakh Jatalfih
+-- @pos 34 8 -35 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
+require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,9 +22,9 @@ end;
 
 function onTrigger(player,npc)
     
-    pNation = player:getNation();
+    local pNation = player:getNation();
     
-    if (pNation == WINDURST) then
+    if (pNation == NATION_WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
         
@@ -55,9 +53,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x006b);
         end
-    elseif (pNation == SANDORIA) then
+    elseif (pNation == NATION_SANDORIA) then
         player:startEvent(0x0034);
-    elseif (pNation == BASTOK) then
+    elseif (pNation == NATION_BASTOK) then
         player:startEvent(0x0033);
     end
     
@@ -68,8 +66,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -77,8 +75,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x002B) then
         player:setVar("MissionStatus",2);

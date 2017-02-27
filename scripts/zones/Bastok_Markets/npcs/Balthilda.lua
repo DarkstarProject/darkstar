@@ -2,8 +2,8 @@
 --  Area: Bastok Markets
 --   NPC: Balthilda
 --  Type: Merchant
--- @zone: 235
---  @pos -300 -10 -161
+-- @zone 235
+-- @pos -300 -10 -161
 --
 -- NPC not found in 'npc_list'
 --
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         0x32B9,  1495,3,     --Holly Clogs
         0x349D,  1150,3      --Leather Ring
     }
-    showNationShop(player, BASTOK, stock);
+    showNationShop(player, NATION_BASTOK, stock);
 
 end;
 

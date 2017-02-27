@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Windurst Walls
+-- Area: Windurst Walls
 --  Location: X:-81  Y:-9  Z:103
---    NPC:  Raamimi
---    Working 100%
+-- NPC:  Raamimi
+-- Working 100%
 --  Involved in Quest: To Bee or Not to Bee?
 -----------------------------------
 
@@ -37,10 +37,10 @@ function onTrigger(player,npc)
     end
 end;
 
---    Event ID List for NPC
---     player:startEvent(0x0128); -- Standard Conversation
+-- Event ID List for NPC
+--  player:startEvent(0x0128); -- Standard Conversation
 --  player:startEvent(0x0043); -- Quest is kicked off already, he gives you honey
---    player:startEvent(0x0044); -- After honey is given to player...... before given to Zayhi????
+-- player:startEvent(0x0044); -- After honey is given to player...... before given to Zayhi????
 --  player:startEvent(0x0050); -- Quest Finish - Gives Mulsum
 --  player:startEvent(0x004F); -- After Quest but before zoning: "it's certainly gotten quiet around here..."
 
@@ -50,8 +50,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------

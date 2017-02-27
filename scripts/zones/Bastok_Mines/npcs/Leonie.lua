@@ -2,8 +2,8 @@
 --  Area: Bastok Mines
 --   NPC: Leonie
 --  Type: Room Renters
--- @zone: 234
---  @pos 118.871 -0.004 -83.916
+-- @zone 234
+-- @pos 118.871 -0.004 -83.916
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

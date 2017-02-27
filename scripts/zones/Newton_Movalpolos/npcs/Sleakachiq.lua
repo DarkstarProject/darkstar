@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Newton Movalpolos
 --  NPC:  Sleakachiq
---  @pos 162.504 14.999 136.901 12
+-- @pos 162.504 14.999 136.901 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -46,8 +46,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -55,8 +55,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x001C) then
         if (option == 1) then
             player:setPos(447.99,-4.092,729.791,96,106); -- To North Gustaberg {R}

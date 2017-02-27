@@ -16,6 +16,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set Imduguds ToD
     SetServerVariable("[POP]Imdugud", os.time(t) + 75600); -- 21 hour

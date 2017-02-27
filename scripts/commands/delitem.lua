@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @delitem
+-- func: delitem
 -- desc: Deletes a single item held by a player, if they have it.
 ---------------------------------------------------------------------------------------------------
 
@@ -26,13 +26,13 @@ function onTrigger(player, itemId, target)
 
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
-        for i = LOC_INVENTORY, LOC_WARDROBE2 do -- inventory locations enums
+        for i = LOC_INVENTORY, LOC_WARDROBE4 do -- inventory locations enums
             if (targ:hasItem(itemId, i)) then
                 targ:delItem(itemId, 1, i);
                 player:PrintToPlayer(string.format("Item with ID %u deleted from player '%s'.", itemId, target));
                 break;
             end
-            if (i == LOC_WARDROBE2) then -- Wardrobe 2 is the last inventory location, if it reaches this point then the player does not have the item anywhere.
+            if (i == LOC_WARDROBE4) then -- Wardrobe 4 is the last inventory location, if it reaches this point then the player does not have the item anywhere.
                 player:PrintToPlayer(string.format("Player '%s' does not have item with ID %u", target, itemId));
             end
         end

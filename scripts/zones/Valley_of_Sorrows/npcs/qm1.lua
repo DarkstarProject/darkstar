@@ -11,6 +11,16 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 -----------------------------------
+-- onSpawn Action
+-----------------------------------
+
+function onSpawn(npc)
+    if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
+        npc:setStatus(STATUS_DISAPPEAR);
+    end
+end;
+
+-----------------------------------
 -- onTrade Action
 -----------------------------------
 
@@ -25,12 +35,14 @@ function onTrade(player,npc,trade)
             if (LandKingSystem_NQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17301537):updateClaim(player);
+                npc:setStatus(STATUS_DISAPPEAR);
             end
         -- Trade Clump of Red Pondweed
         elseif (trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then
             if (LandKingSystem_HQ ~= 0) then
                 player:tradeComplete();
                 SpawnMob(17301538):updateClaim(player);
+                npc:setStatus(STATUS_DISAPPEAR);
             end
         end
     end

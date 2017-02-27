@@ -9,6 +9,13 @@
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local Colorful_Leshy = 16875762;
     local Colorful_Leshy_PH = GetServerVariable("Colorful_Leshy_PH");
     local Defoliate_Leshy = 16875763;

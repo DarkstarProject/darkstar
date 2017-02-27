@@ -79,11 +79,11 @@
   76    Forever Today               Adoulin Ending Song
   77    Unused ID                   Unused ID
   78    Forever Today (EP. Ver - Instrumental)
-  79    ?                           ? (probably Rhapsodies content from here on)
-  80    ?                           ?
-  81    Unused ID                   Unused ID
-  82    Unused ID                   Unused ID
-  83    Unused ID                   Unused ID
+  79    ?                           Reisenjima, Rhapsodies CS music
+  80    ?                           Escha Zi'Tah, Escha Ru'Aun
+  81    Isle of the Gods            Rhapsodies final boss
+  82    Wail of the Void            Rhapsodies finale
+  83    Rhapsodies of Vana'diel     Ending Song
   84    Unused ID                   Unused ID
   85    Unused ID                   Unused ID
   86    Unused ID                   Unused ID

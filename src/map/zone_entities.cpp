@@ -81,6 +81,15 @@ void CZoneEntities::InsertPC(CCharEntity* PChar)
     ShowDebug(CL_CYAN"CZone:: %s IncreaseZoneCounter <%u> %s \n" CL_RESET, m_zone->GetName(), m_charList.size(), PChar->GetName());
 }
 
+void CZoneEntities::InsertAlly(CBaseEntity* PMob)
+{
+    if ((PMob != nullptr) && (PMob->objtype == TYPE_MOB))
+    {
+        PMob->loc.zone = m_zone;
+        m_allyList[PMob->targid] = PMob;
+    }
+}
+
 void CZoneEntities::InsertMOB(CBaseEntity* PMob)
 {
     if ((PMob != nullptr) && (PMob->objtype == TYPE_MOB))
@@ -273,7 +282,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         else {
             PChar->PPet->status = STATUS_DISAPPEAR;
             if (((CPetEntity*)(PChar->PPet))->getPetType() == PETTYPE_AVATAR)
-                PChar->setModifier(MOD_AVATAR_PERPETUATION, 0);
+                PChar->setModifier(Mod::AVATAR_PERPETUATION, 0);
         }
         // It may have been nullptred by DespawnPet
         if (PChar->PPet != nullptr) {
@@ -346,11 +355,15 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
     for (auto PMobIt : m_mobList)
     {
         CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
-        PCurrentMob->PEnmityContainer->Clear(PChar->id);
+        PCurrentMob->PEnmityContainer->LogoutReset(PChar->id);
         if (PCurrentMob->m_OwnerID.id == PChar->id)
         {
             PCurrentMob->m_OwnerID.clean();
             PCurrentMob->updatemask |= UPDATE_STATUS;
+        }
+        if (PCurrentMob->GetBattleTargetID() == PChar->targid)
+        {
+            PCurrentMob->SetBattleTargetID(0);
         }
     }
 
@@ -410,7 +423,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
 
         float CurrentDistance = distance(PChar->loc.p, PCurrentMob->loc.p);
 
-        if (PCurrentMob->status == STATUS_MOB &&
+        if (PCurrentMob->status != STATUS_DISAPPEAR &&
             CurrentDistance < 50)
         {
             if (MOB == PChar->SpawnMOBList.end() ||
@@ -910,7 +923,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
     {
         CNpcEntity* PNpc = (CNpcEntity*)it->second;
-        if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->IsUntargetable())
+        if (PNpc->status == STATUS_NORMAL && !PNpc->IsNameHidden() && !PNpc->IsUntargetable() && PNpc->widescan == 1)
         {
             if (distance(PChar->loc.p, PNpc->loc.p) < radius)
             {
@@ -937,6 +950,11 @@ void CZoneEntities::ZoneServer(time_point tick)
     for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
     {
         CMobEntity* PMob = (CMobEntity*)it->second;
+
+        if (PMob->PBCNM && PMob->PBCNM->cleared())
+        {
+            continue;
+        }
 
         PMob->StatusEffectContainer->CheckEffects(tick);
         PMob->PAI->Tick(tick);

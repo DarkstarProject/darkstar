@@ -49,8 +49,15 @@ end;
 -----------------------------------
 -- onMobDeath
 -----------------------------------
- 
+
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+ 
+function onMobDespawn(mob)
  
     -- Set Ramponneau's Window Open Time
     local wait = 5400 -- 90 minutes

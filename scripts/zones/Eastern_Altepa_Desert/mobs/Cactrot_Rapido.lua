@@ -2,7 +2,7 @@
 -- Area: Eastern Altepa Desert
 --   NM:  Cactrot Rapido
 -----------------------------------
-
+require("scripts/globals/pathfind");
 require("scripts/globals/titles");
 
 local path =
@@ -353,11 +353,15 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
     player:addTitle(CACTROT_DESACELERADOR);
+end;
 
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     -- Set Cactrot Rapido's spawnpoint and respawn time (24-72 hours)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(86400,259200));
-
 end;

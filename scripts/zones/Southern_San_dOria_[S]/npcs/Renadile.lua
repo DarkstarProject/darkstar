@@ -12,7 +12,7 @@ require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 
 Deposit = 0x0272;
 Withdrawl = 0x0273;
-ArraySize = table.getn(StorageArray);
+ArraySize = #StorageArray;
 G1 = 0;
 G2 = 0;
 G3 = 0;

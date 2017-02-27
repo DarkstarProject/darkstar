@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
-local guardnation = SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = ARAGONEU;
 local csid        = 0x7ffb;

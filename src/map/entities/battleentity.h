@@ -32,6 +32,7 @@
 #include "../trait.h"
 #include "../party.h"
 #include "../alliance.h"
+#include "../modifier.h"
 
 enum ECOSYSTEM
 {
@@ -281,26 +282,31 @@ enum SUBEFFECT
     SUBEFFECT_STUN = 16,
     SUBEFFECT_CURSE = 17,
     SUBEFFECT_DEFENSE_DOWN = 18, // 1-01001   37
+    SUBEFFECT_EVASION_DOWN = 18, // Same subeffect as DEFENSE_DOWN
+    SUBEFFECT_ATTACK_DOWN = 18, // Same subeffect as DEFENSE_DOWN
     SUBEFFECT_DEATH = 19,
     SUBEFFECT_SHIELD = 20,
     SUBEFFECT_HP_DRAIN = 21, // 1-10101   43  This is retail correct animation
     SUBEFFECT_MP_DRAIN = 22, // This is retail correct animation
     SUBEFFECT_TP_DRAIN = 22, // Pretty sure this is correct, but might use same animation as HP drain.
     SUBEFFECT_HASTE = 23,
-    SUBEFFECT_CHOKE = 24,
+    // There are no additional attack effect animations beyond 23. Some effects share subeffect/animations.
 
     // SPIKES
     SUBEFFECT_BLAZE_SPIKES = 1,  // 01-1000    6
-    SUBEFFECT_ICE_SPIKES = 2,  // 01-0100   10
+    SUBEFFECT_ICE_SPIKES = 2,    // 01-0100   10
     SUBEFFECT_DREAD_SPIKES = 3,  // 01-1100   14
     SUBEFFECT_CURSE_SPIKES = 4,  // 01-0010   18
     SUBEFFECT_SHOCK_SPIKES = 5,  // 01-1010   22
-    SUBEFFECT_REPRISAL = 6,  // 01-0110   26
-    SUBEFFECT_WIND_SPIKES = 7,  // Present in client but currently unused.
-    SUBEFFECT_STONE_SPIKES = 8,  // Present in client but currently unused.
-    SUBEFFECT_DELUGE_SPIKES = 9,  // Present in client but currently unused.
+    SUBEFFECT_REPRISAL = 6,      // 01-0110   26
+    // SUBEFFECT_GLINT_SPIKES = 6,
+    SUBEFFECT_GALE_SPIKES = 7,   // Used by enchantment "Cool Breeze" http://www.ffxiah.com/item/22018/
+    SUBEFFECT_CLOD_SPIKES = 8,
+    SUBEFFECT_DELUGE_SPIKES = 9,
     SUBEFFECT_DEATH_SPIKES = 10, // yes really: http://www.ffxiah.com/item/26944/
-    SUBEFFECT_COUNTER = 63, // Also used by Retaliation
+    SUBEFFECT_COUNTER = 63,      // Also used by Retaliation
+    // There are no spikes effect animations beyond 63. Some effects share subeffect/animations.
+    // "Damage Spikes" use the Blaze Spikes animation even though they are different status.
 
     // SKILLCHAINS
     SUBEFFECT_LIGHT = 1,
@@ -445,6 +451,7 @@ class CAbilityState;
 class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
+class CDespawnState;
 struct action_t;
 
 class CBattleEntity : public CBaseEntity
@@ -507,14 +514,14 @@ public:
     virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
     virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
 
-    int16		    getMod(uint16 modID);		// величина модификатора
+    int16		    getMod(Mod modID);		// величина модификатора
 
     bool            CanRest(); // checks if able to heal
     bool			Rest(float rate); // heal an amount of hp / mp
 
-    void		    addModifier(uint16 type, int16 amount);
-    void		    setModifier(uint16 type, int16 amount);
-    void		    delModifier(uint16 type, int16 amount);
+    void		    addModifier(Mod type, int16 amount);
+    void		    setModifier(Mod type, int16 amount);
+    void		    delModifier(Mod type, int16 amount);
     void		    addModifiers(std::vector<CModifier*> *modList);
     void            addEquipModifiers(std::vector<CModifier*> *modList, uint8 itemLevel, uint8 slotid);
     void		    setModifiers(std::vector<CModifier*> *modList);
@@ -523,11 +530,11 @@ public:
     void 		    saveModifiers(); // save current state of modifiers
     void 		    restoreModifiers(); // restore to saved state
 
-    void            addPetModifier(uint16 type, int16 amount);
-    void            setPetModifier(uint16 type, int16 amount);
-    void            delPetModifier(uint16 type, int16 amount);
-    void            addPetModifiers(std::vector<CModifier*> *modList);
-    void            delPetModifiers(std::vector<CModifier*> *modList);
+    void            addPetModifier(Mod type, PetModType, int16 amount);
+    void            setPetModifier(Mod type, PetModType, int16 amount);
+    void            delPetModifier(Mod type, PetModType, int16 amount);
+    void            addPetModifiers(std::vector<CPetModifier*> *modList);
+    void            delPetModifiers(std::vector<CPetModifier*> *modList);
     void            applyPetModifiers(CPetEntity* PPet);
     void            removePetModifiers(CPetEntity* PPet);
 
@@ -597,6 +604,7 @@ public:
     virtual void OnDeathTimer();
     virtual void OnRaise() {}
     virtual void TryHitInterrupt(CBattleEntity* PAttacker);
+    virtual void OnDespawn(CDespawnState&);
 
     void SetBattleStartTime(time_point);
     duration GetBattleTime();
@@ -641,9 +649,9 @@ private:
     uint16      m_battleTarget {0};
     time_point  m_battleStartTime;
 
-    std::unordered_map<uint16, int16>		m_modStat;	// массив модификаторов
-    std::unordered_map<uint16, int16>		m_modStatSave;	// saved state
-    std::unordered_map<uint16, int16>       m_petMod;
+    std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
+    std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
+    std::unordered_map<Mod, int16, EnumClassHash>       m_petMod;
 };
 
 #endif

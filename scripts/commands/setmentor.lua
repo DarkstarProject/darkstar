@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @setmentor <MentorMode> <target>
+-- func: setmentor <MentorMode> <target>
 -- desc: 0 = Not a mentor, 1 = Unlocked but inactive, 2 = Unlocked & flag on.
 ---------------------------------------------------------------------------------------------------
 

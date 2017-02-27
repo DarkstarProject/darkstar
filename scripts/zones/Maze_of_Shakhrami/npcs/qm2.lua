@@ -2,7 +2,7 @@
 --  Area: Maze of Shakhrami
 --  NPC:  qm2
 --  Type: Quest NPC
---  @pos 143 9 -219 198
+-- @pos 143 9 -219 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -37,9 +37,9 @@ function onTrigger(player,npc)
             player:addKeyItem(INDIGESTED_MEAT);
             player:messageSpecial(KEYITEM_OBTAINED,INDIGESTED_MEAT);
         elseif (GetMobAction(wyrm1) + GetMobAction(wyrm1) + GetMobAction(wyrm1) == 0) then
-            SpawnMob(wyrm1,180):updateClaim(player);
-            SpawnMob(wyrm2,180):updateClaim(player);
-            SpawnMob(wyrm3,180):updateClaim(player);
+            SpawnMob(wyrm1):updateClaim(player);
+            SpawnMob(wyrm2):updateClaim(player);
+            SpawnMob(wyrm3):updateClaim(player);
         end
     end
 

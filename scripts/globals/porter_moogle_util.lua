@@ -143,7 +143,7 @@ local function getStorableItems(player, trade, slipId)
     local storableItemIds = { };
     
     for i = 0, 7 do
-        local slotItemId = trade:getItem(i);
+        local slotItemId = trade:getItemId(i);
         if (slotItemId ~= 0 and isSlip(slotItemId) ~= true and player:hasItem(slotItemId)) then
             if (isStorableOn(slipId, slotItemId)) then
                 storableItemIds[#storableItemIds+1] = slotItemId;

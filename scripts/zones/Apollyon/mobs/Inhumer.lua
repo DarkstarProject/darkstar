@@ -27,6 +27,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
  local mobID = mob:getID();    
  if (mobID ==16933025) then -- time
     GetNPCByID(16932864+246):setPos(343,-1,-296);

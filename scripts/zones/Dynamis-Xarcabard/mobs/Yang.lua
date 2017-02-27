@@ -47,6 +47,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local Ying = GetMobByID(17330183);
     local dynaLord = GetMobByID(17330177);
     -- localVars clear on death, so setting it on its partner

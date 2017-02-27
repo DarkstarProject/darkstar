@@ -2,8 +2,8 @@
 --  Area: Ru'Lude Gardens
 --   NPC: Marshal
 --  Type: Marshal
--- @zone: 243
---  @pos 41.143 -0.998 -26.566
+-- @zone 243
+-- @pos 41.143 -0.998 -26.566
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

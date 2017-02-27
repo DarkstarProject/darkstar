@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4445,1) and trade:getItemCount() == 1) then -- Trade Yagudo Cherries
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
-            SpawnMob(17371579,180):updateClaim(player);
+            SpawnMob(17371579):updateClaim(player);
         end
     end
 
@@ -51,8 +51,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -60,6 +60,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

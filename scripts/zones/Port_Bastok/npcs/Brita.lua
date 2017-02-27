@@ -2,8 +2,8 @@
 --  Area: Port Bastok
 --   NPC: Brita
 --  Type: Standard NPC
--- @zone: 236
---  @pos 58.161 -3.101 -6.695
+-- @zone 236
+-- @pos 58.161 -3.101 -6.695
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

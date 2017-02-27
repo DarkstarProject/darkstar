@@ -3,9 +3,9 @@
 -- Item: Naval Rice Ball
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- HP +26
+-- HP +12
 -- Dex +3
--- Vit +4
+-- Vit +3
 -- hHP +2 
 -- Effect with enhancing equipment (Note: these are latents on gear with the effect)
 -- Atk +40
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 26);
+    target:addMod(MOD_HP, 12);
     target:addMod(MOD_DEX, 3);
     target:addMod(MOD_VIT, 3);
     target:addMod(MOD_HPHEAL, 2);
@@ -51,7 +51,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HP, 26);
+    target:delMod(MOD_HP, 12);
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_VIT, 3);
     target:delMod(MOD_HPHEAL, 2);

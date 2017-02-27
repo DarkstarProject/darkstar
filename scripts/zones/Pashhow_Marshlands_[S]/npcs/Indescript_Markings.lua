@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local gownQuestProgress    = player:getVar("AF_SCH_BODY");
     local onSabbatical         = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
     local onSabbaticalProgress = player:getVar("OnSabbatical");
-    local markings             = 17146622; -- Base ID for the 3 markings
+    local markings             = 17146626; -- Base ID for the 3 markings
 
     if (onSabbatical == QUEST_ACCEPTED and npc:getID() == markings) then
         if (onSabbaticalProgress == 2) then
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
 
         npc:hideNPC(900); -- Hide for 15 minutes
-        npc:setPos(positions[newPosition][1], positions[newPosition][2], positions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
 
 
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
         -- Pick a new pos that isn't the current
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
 
-        npc:setPos(positions[newPosition][1], positions[newPosition][2], positions[newPosition][3]);
+        npc:setPos(newPosition.x, newPosition.y, newPosition.z);
         -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
     else        
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

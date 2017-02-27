@@ -67,10 +67,10 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
     {
         if (m_POwner->GetMLevel() >= reqLvl || latentList->at(i)->GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
         {
-            if (latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB)
+            if (latentList->at(i)->GetModValue() == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
             {
                 AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
-                    latentList->at(i)->GetConditionsValue(), slot, MOD_SUB_DMG_RATING,
+                    latentList->at(i)->GetConditionsValue(), slot, Mod::SUB_DMG_RATING,
                     latentList->at(i)->GetModPower()));
             }
             else {
@@ -169,11 +169,11 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
             //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
             //    int32 visibleHp = 0;
-            //    visibleHp += (head ? head->getModifier(MOD_HP) : 0);
-            //    visibleHp += (body ? body->getModifier(MOD_HP) : 0);
-            //    visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
-            //    visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
-            //    visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
+            //    visibleHp += (head ? head->getModifier(Mod::HP) : 0);
+            //    visibleHp += (body ? body->getModifier(Mod::HP) : 0);
+            //    visibleHp += (hands ? hands->getModifier(Mod::HP) : 0);
+            //    visibleHp += (legs ? legs->getModifier(Mod::HP) : 0);
+            //    visibleHp += (feet ? feet->getModifier(Mod::HP) : 0);
 
             //    //TODO: add mp percent too
             //    if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
@@ -316,11 +316,11 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
             //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
             //    int32 visibleMp = 0;
-            //    visibleMp += (head ? head->getModifier(MOD_MP) : 0);
-            //    visibleMp += (body ? body->getModifier(MOD_MP) : 0);
-            //    visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
-            //    visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
-            //    visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
+            //    visibleMp += (head ? head->getModifier(Mod::MP) : 0);
+            //    visibleMp += (body ? body->getModifier(Mod::MP) : 0);
+            //    visibleMp += (hands ? hands->getModifier(Mod::MP) : 0);
+            //    visibleMp += (legs ? legs->getModifier(Mod::MP) : 0);
+            //    visibleMp += (feet ? feet->getModifier(Mod::MP) : 0);
 
             //    //TODO: add mp percent too
             //    if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 

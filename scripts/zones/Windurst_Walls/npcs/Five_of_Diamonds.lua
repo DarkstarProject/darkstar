@@ -2,8 +2,8 @@
 --  Area: Windurst Walls
 --   NPC: Five of Diamonds
 --  Type: Standard NPC
--- @zone: 239
---  @pos -220.954 -0.001 -122.708
+-- @zone 239
+-- @pos -220.954 -0.001 -122.708
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

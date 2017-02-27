@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
--- @zone: 252
+-- @zone 252
 -- @pos -2.251 -1 21.654
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4946); -- Scroll of Utsusemi: Ichi
             player:messageSpecial(ITEM_OBTAINED, 4946);
             player:addTitle(TREASUREHOUSE_RANSACKER);
-            player:addFame(OUTLANDS,75);
+            player:addFame(NORG,75);
             player:completeQuest(OUTLANDS,THE_SAHAGINS_STASH);
         end
     end

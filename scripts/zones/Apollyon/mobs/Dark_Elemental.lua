@@ -27,6 +27,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
  local mobID = mob:getID();    
 print(mobID);
       local mobX = mob:getXPos();

@@ -2,7 +2,7 @@
 --  Area: Castle Oztroja
 --  NPC:  Antiqix
 --  Type: Dynamis Vendor
---  @pos -207.835 -0.751 -25.498 151
+-- @pos -207.835 -0.751 -25.498 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

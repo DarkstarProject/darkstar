@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     
     if (GetMobAction(17502568) == 0 and trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
         player:tradeComplete();
-        SpawnMob(17502568,180):updateClaim(player);
+        SpawnMob(17502568):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end    
 end;
@@ -35,8 +35,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -44,6 +44,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

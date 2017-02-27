@@ -28,6 +28,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     -- Needs to be zone wide message
     -- mob:messagePublic(mob, YAGUDO_AVATAR_DEATH);
 

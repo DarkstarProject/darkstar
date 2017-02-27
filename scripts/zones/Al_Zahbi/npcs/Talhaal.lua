@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Talhaal
 --  Type: Zazarg's Attendant
--- @zone: 48
---  @pos -35.897 -7 107.160
+-- @zone 48
+-- @pos -35.897 -7 107.160
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

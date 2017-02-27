@@ -53,10 +53,10 @@ Arrapago = {
     npcs = {
         [1] = {
             [1] = {
-                DOOR1 = 17080970,
+                DOOR1 = 17080974,
             },
             [2] = {
-                ARMORY_CRATE = 17080598,
+                ARMORY_CRATE = 17080594,
             }
         }
     }

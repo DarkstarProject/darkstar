@@ -1,21 +1,20 @@
 -----------------------------------
---  Area: Selbina
+-- Area: Selbina
 --  NPC: Abelard
 --  An Explorer's Footsteps
---  @pos -52 -11 -13 248
---  This quest was changed to require a minimum amount of fame to combat RMTs POS-Hacking around to
---  quickly earn gil. However, as this is not a legitimate concern on private servers players may
---  complete this quest even with no fame.
+-- @pos -52 -11 -13 248
+-- This quest was changed to require a minimum amount of fame to combat RMTs POS-Hacking around to
+-- quickly earn gil. However, as this is not a legitimate concern on private servers players may
+-- complete this quest even with no fame.
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 
-ZoneID = 
+local ZoneID =
 {
     0x00001,800,   -- West Ronfaure
     0x00002,800,   -- East Ronfaure
@@ -41,9 +40,8 @@ ZoneID =
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
--- AN EXPLORERS FOOTSTEPS QUEST --
+    -- AN EXPLORERS FOOTSTEPS QUEST --
     if (explorer == QUEST_ACCEPTED) then
         local clay = trade:hasItemQty(570,1);
         local count = trade:getItemCount();
@@ -76,51 +74,51 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
-local keyitem = player:hasKeyItem(TORN_OUT_PAGES);
-local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
-local SignedBldProg = player:getVar("SIGNED_IN_BLOOD_Prog");
--- SIGNED IN BLOOD QUEST -- (WILL ONLY ACTIVATE IF EXPLORERS
--- FOOTSTEPS IS NOT ACTIVE OR IF IT IS COMPLETED)    
-if (blood == QUEST_ACCEPTED and keyitem == true and explorer ~= QUEST_ACCEPTED and SignedBldProg == 2) then
-    player:startEvent(0x0452);
-elseif (blood == QUEST_ACCEPTED and SignedBldProg == 1 and explorer ~= QUEST_ACCEPTED) then
-    player:startEvent(0x0450);
-elseif (blood == QUEST_ACCEPTED and SignedBldProg == 2 and explorer ~= QUEST_ACCEPTED) then
-    player:startEvent(0x0451);
-elseif (blood == QUEST_ACCEPTED and SignedBldProg == 3) then
-    player:startEvent(0x0030); -- after quest
+    local explorer = player:getQuestStatus(OTHER_AREAS,EN_EXPLORER_S_FOOTSTEPS);
+    local keyitem = player:hasKeyItem(TORN_OUT_PAGES);
+    local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
+    local SignedBldProg = player:getVar("SIGNED_IN_BLOOD_Prog");
+    -- SIGNED IN BLOOD QUEST -- (WILL ONLY ACTIVATE IF EXPLORERS
+    -- FOOTSTEPS IS NOT ACTIVE OR IF IT IS COMPLETED)
+    if (blood == QUEST_ACCEPTED and keyitem == true and explorer ~= QUEST_ACCEPTED and SignedBldProg == 2) then
+        player:startEvent(0x0452);
+    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 1 and explorer ~= QUEST_ACCEPTED) then
+        player:startEvent(0x0450);
+    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 2 and explorer ~= QUEST_ACCEPTED) then
+        player:startEvent(0x0451);
+    elseif (blood == QUEST_ACCEPTED and SignedBldProg == 3) then
+        player:startEvent(0x0030); -- after quest
 
-            
 
--- AN EXPLORERS FOOTSTEP QUEST --
-elseif (explorer == QUEST_AVAILABLE and math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2) >= 1) then
-    player:startEvent(0x0028);
-elseif (explorer == QUEST_ACCEPTED) then
-    local tab = player:hasItem(570);
-    local clay = player:hasItem(571);
-    if (clay == false and tab == false) then
-        local currtab = player:getVar("anExplorer-CurrentTablet");
-        if (currtab == -1) then
-            player:startEvent(0x002a);    
+
+    -- AN EXPLORERS FOOTSTEP QUEST --
+    elseif (explorer == QUEST_AVAILABLE and math.floor((player:getFameLevel(SANDORIA) + player:getFameLevel(BASTOK)) / 2) >= 1) then
+        player:startEvent(0x0028);
+    elseif (explorer == QUEST_ACCEPTED) then
+        local tab = player:hasItem(570);
+        local clay = player:hasItem(571);
+        if (clay == false and tab == false) then
+            local currtab = player:getVar("anExplorer-CurrentTablet");
+            if (currtab == -1) then
+                player:startEvent(0x002a);
+            else
+                player:startEvent(0x002c);
+                player:setVar("anExplorer-CurrentTablet",0);
+            end
         else
-            player:startEvent(0x002c);
-            player:setVar("anExplorer-CurrentTablet",0);
-        end
-    else
-        local tablets = player:getVar("anExplorer-ClayTablets");
-        for zone = 1, #ZoneID, 2 do
-            if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then 
-                if (zone < 20) then
-                    player:startEvent(0x002b,math.floor(zone/2));
-                else 
-                    player:startEvent(0x0031,math.floor(zone/2)-10);
+            local tablets = player:getVar("anExplorer-ClayTablets");
+            for zone = 1, #ZoneID, 2 do
+                if (tablets % (2*ZoneID[zone]) < ZoneID[zone]) then
+                    if (zone < 20) then
+                        player:startEvent(0x002b,math.floor(zone/2));
+                    else
+                        player:startEvent(0x0031,math.floor(zone/2)-10);
+                    end
+                    break;
                 end
-                break; 
             end
         end
     end
-end
 end;
 
 -----------------------------------
@@ -128,8 +126,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -137,10 +135,10 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
-    
-    if (csid == 0x0452) then 
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
+
+    if (csid == 0x0452) then
         player:setVar("SIGNED_IN_BLOOD_Prog",3);
 
     elseif (csid == 0x0028 and option ~= 0)    then
@@ -152,7 +150,7 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
         end
-    elseif (csid == 0x002a and option == 100) then    
+    elseif (csid == 0x002a and option == 100) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(571);
             player:messageSpecial(ITEM_OBTAINED,571);
@@ -167,7 +165,7 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,571);
         end
-    elseif (csid == 0x0029 or csid == 0x002e or csid == 0x002f) then 
+    elseif (csid == 0x0029 or csid == 0x002e or csid == 0x002f) then
         local currtab = player:getVar("anExplorer-CurrentTablet");
         local tablets = player:getVar("anExplorer-ClayTablets");
         local keyitem = player:hasKeyItem(MAP_OF_THE_CRAWLERS_NEST);

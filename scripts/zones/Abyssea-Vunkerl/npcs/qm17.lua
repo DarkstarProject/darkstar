@@ -1,11 +1,11 @@
 -----------------------------------
--- Zone: Abyssea-Vunkeral
---  NPC: ???
--- Spawns: Sedna
+-- Zone: Abyssea-Vunkerl
+--  NPC: qm17 (???)
+-- Spawns Sedna
+-- @pos ? ? ? 217
 -----------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrigger Action

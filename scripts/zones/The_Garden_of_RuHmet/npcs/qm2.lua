@@ -2,7 +2,7 @@
 -- Area: The_Garden_of_RuHmet
 -- NPC:  ??? (Ix'aern (Dark Knight) Spawn)
 -- Allows players to spawn the Ix'aern (Dark Knight) by checking ??? only after killing the required mobs in the same room as the ???.
--- @pos ,-560 5 239
+-- @pos -560 5 239
 -----------------------------------
 package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
@@ -36,12 +36,12 @@ function onTrigger(player,npc)
     elseif (Kills == 2) then
         player:messageSpecial(NONE_HOSTILE);--(SHEER_ANIMOSITY);
     elseif (Kills == 3) then 
-        moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921018,180):updateClaim(player);
-        mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921019,180):updateClaim(player);
-        mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players @pos.
-        SpawnMob(16921020,180):updateClaim(player);
+        moba:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
+        SpawnMob(16921018):updateClaim(player);
+        mobb:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
+        SpawnMob(16921019):updateClaim(player);
+        mobc:setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
+        SpawnMob(16921020):updateClaim(player);
         GetNPCByID(16921028):hideNPC(900);
             if (math.random(0,1) == 1) then -- random do select which item do drop. Will select one item 100% of the time.
                 SetDropRate(4397,1854,000);
@@ -57,8 +57,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdate CSID: %u",csid);
---printf("onUpdate RESULT: %u",option);
+    -- printf("onUpdate CSID: %u",csid);
+    -- printf("onUpdate RESULT: %u",option);
     end;
 
 -----------------------------------
@@ -66,6 +66,6 @@ function onEventUpdate(player,csid,option)
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinish CSID: %u",csid);
---printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
     end;

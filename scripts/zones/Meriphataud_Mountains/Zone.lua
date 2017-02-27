@@ -4,14 +4,12 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -62,10 +60,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17265291,17265292,17265293};
-
-    SetFieldManual(manuals);
-
     -- Waraxe Beak
     SetRespawnTime(17264828, 900, 10800);
 

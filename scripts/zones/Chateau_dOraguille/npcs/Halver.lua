@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         player:startEvent(564);
     elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(565);
-    elseif (pNation == SANDORIA) then
+    elseif (pNation == NATION_SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
         if (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then
             player:startEvent(31);
@@ -110,7 +110,7 @@ function onTrigger(player,npc)
         elseif (currentMission == JOURNEY_ABROAD) then
             player:startEvent(532);
         end
-    elseif (pNation == BASTOK) then
+    elseif (pNation == NATION_BASTOK) then
         -- Bastok 2-3 San -> Win
         if (currentMission == THE_EMISSARY) then
             if (MissionStatus == 3) then
@@ -129,7 +129,7 @@ function onTrigger(player,npc)
         else
             player:showText(npc,HALVER_OFFSET+1092);
         end
-    elseif (pNation == WINDURST) then
+    elseif (pNation == NATION_WINDURST) then
         -- Windurst 2-3
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus < 3) then
             player:startEvent(532);
@@ -184,8 +184,12 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",9);
     elseif (csid == 546) then
         player:setVar("MissionStatus",1);
-    elseif (csid == 507 or csid == 533 or csid == 534 or csid == 548) then
+    elseif (csid == 507 or csid == 534 or csid == 548) then
         finishMissionTimeline(player,3,csid,option);
+    elseif (csid == 533) then
+        player:addKeyItem(NEW_FEIYIN_SEAL);
+        player:setVar("MissionStatus",10);
+        player:messageSpecial(KEYITEM_OBTAINED,NEW_FEIYIN_SEAL);
     elseif (csid == 25) then
         player:setVar("MissionStatus",1);
     elseif (csid == 22) then

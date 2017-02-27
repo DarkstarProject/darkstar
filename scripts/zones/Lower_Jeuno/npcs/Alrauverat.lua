@@ -47,13 +47,13 @@ function onEventUpdate(player,csid,option)
 
     if (player:getNation() == 0) then
         inventory = SandInv;
-        size = table.getn(SandInv);
+        size = #SandInv;
     elseif (player:getNation() == 1) then
         inventory = BastInv;
-        size = table.getn(BastInv);
+        size = #BastInv;
     else
         inventory = WindInv;
-        size = table.getn(WindInv);
+        size = #WindInv;
     end
 
     if (option >= 32768 and option <= 32944) then

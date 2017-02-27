@@ -2,8 +2,8 @@
 --  Area: Windurst Woods
 --   NPC: Erpolant
 --  Type: Standard NPC
--- @zone: 241
---  @pos -63.224 -0.749 -33.424
+-- @zone 241
+-- @pos -63.224 -0.749 -33.424
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

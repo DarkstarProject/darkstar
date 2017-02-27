@@ -1,8 +1,8 @@
 -----------------------------------
---    Area: Quicksand Caves
---     NPC:  qm2
+-- Area: Quicksand Caves
+--  NPC:  qm2
 --  Notes: Used to spawn Tribunus VII-I
---     @pos -49.944 -0.891 -139.485 208
+-- @pos -49.944 -0.891 -139.485 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     -- Trade Antican Tag
     if (GetMobAction(17629643) == 0 and trade:hasItemQty(1190,1) and trade:getItemCount() == 1) then
           player:tradeComplete();
-        SpawnMob(17629643,900):updateClaim(player);
+        SpawnMob(17629643):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
     
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

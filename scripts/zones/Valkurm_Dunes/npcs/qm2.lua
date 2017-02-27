@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
     
     if (player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND) == QUEST_ACCEPTED and player:hasItem(1096) == false) then
-        SpawnMob(17199566,300):updateClaim(player);
+        SpawnMob(17199566):updateClaim(player);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -37,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -46,6 +46,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

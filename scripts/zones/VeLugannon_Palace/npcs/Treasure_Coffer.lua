@@ -32,6 +32,9 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1060,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
         
         -- IMPORTANT ITEM: Map -----------
+        local mJob = player:getMainJob();
+        local zone = player:getZoneID();
+        local listAF = getAFbyZone(zone);
         if (player:hasKeyItem(MAP_OF_THE_VELUGANNON_PALACE) == false) then
             questItemNeeded = 3;
         end
@@ -57,7 +60,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(MAP_OF_THE_VELUGANNON_PALACE);
                     player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_VELUGANNON_PALACE); -- Map of the Ve'Lugannon Palace (KI)
                 elseif (questItemNeeded == 2) then
-                    for nb = 1,table.getn(listAF),3 do
+                    for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
                             player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
@@ -105,8 +108,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -114,6 +117,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

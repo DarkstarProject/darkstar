@@ -16,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_SMITHING_IMAGERY) == true) then
         result = 237;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

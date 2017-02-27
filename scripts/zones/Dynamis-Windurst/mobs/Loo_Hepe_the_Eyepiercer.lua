@@ -16,6 +16,13 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- If last boss trigger is killed -> pop the boss
     if (GetServerVariable("[DynaWindurst]Boss_Trigger") == 8) then

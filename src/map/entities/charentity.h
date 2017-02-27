@@ -35,27 +35,10 @@ This file is part of DarkStar-server source code.
 #include "battleentity.h"
 #include "petentity.h"
 
-// Quest Areas
-
-enum QUESTAREA
-{
-    QUESTS_SANDORIA = 0,
-    QUESTS_BASTOK = 1,
-    QUESTS_WINDURST = 2,
-    QUESTS_JEUNO = 3,
-    QUESTS_OTHER = 4,
-    QUESTS_OUTLANDS = 5,
-    QUESTS_AHTURHGAN = 6,
-    QUESTS_CRYSTALWAR = 7,
-    QUESTS_ABYSSEA = 8,
-    QUESTS_ADOULIN = 9,
-    QUESTS_COALITION = 10
-};
-
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
-#define MAX_MISSIONID    93
+#define MAX_MISSIONID    226
 
 struct jobs_t
 {
@@ -91,7 +74,7 @@ struct profile_t
     uint8	   nation;			// принадлежность к государству
     uint8	   mhflag;			// флаг выхода из MogHouse
     uint16	   title;			// звание
-    uint16     fame[5];			// известность
+    uint16     fame[15];		// известность
     uint8 	   rank[3];			// рагн в трех государствах
     uint32	   rankpoints;	    // очки ранга в трех государствах
     location_t home_point;		// точка возрождения персонажа
@@ -146,7 +129,7 @@ struct UnlockedAttachments_t
 struct GearSetMod_t
 {
     uint8	modNameId;
-    uint16	modId;
+    Mod  	modId;
     uint16	modValue;
 };
 
@@ -200,6 +183,7 @@ public:
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
     uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
+    std::bitset<49>         m_LearnedWeaponskills;          // learnable weaponskills
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8					m_PetCommands[32];				// список доступных команд питомцу
     uint8					m_WeaponSkills[32];
@@ -363,17 +347,19 @@ protected:
 
 private:
 
-    CItemContainer*   m_Inventory;
-    CItemContainer*   m_Mogsafe;
-    CItemContainer*   m_Storage;
-    CItemContainer*	  m_Tempitems;
-    CItemContainer*   m_Moglocker;
-    CItemContainer*	  m_Mogsatchel;
-    CItemContainer*	  m_Mogsack;
-    CItemContainer*   m_Mogcase;
-    CItemContainer*   m_Wardrobe;
-    CItemContainer*   m_Mogsafe2;
-    CItemContainer*   m_Wardrobe2;
+    std::unique_ptr<CItemContainer>   m_Inventory;
+    std::unique_ptr<CItemContainer>   m_Mogsafe;
+    std::unique_ptr<CItemContainer>   m_Storage;
+    std::unique_ptr<CItemContainer>   m_Tempitems;
+    std::unique_ptr<CItemContainer>   m_Moglocker;
+    std::unique_ptr<CItemContainer>   m_Mogsatchel;
+    std::unique_ptr<CItemContainer>   m_Mogsack;
+    std::unique_ptr<CItemContainer>   m_Mogcase;
+    std::unique_ptr<CItemContainer>   m_Wardrobe;
+    std::unique_ptr<CItemContainer>   m_Mogsafe2;
+    std::unique_ptr<CItemContainer>   m_Wardrobe2;
+    std::unique_ptr<CItemContainer>   m_Wardrobe3;
+    std::unique_ptr<CItemContainer>   m_Wardrobe4;
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;

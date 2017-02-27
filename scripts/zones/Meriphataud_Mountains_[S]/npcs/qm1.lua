@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(2566,1) and trade:getItemCount() == 1) then 
         player:tradeComplete();
-        SpawnMob(17174889,1800):updateClaim(player); -- Bloodlapper
+        SpawnMob(17174889):updateClaim(player); -- Bloodlapper
     end
 end; 
 
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,6 +45,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

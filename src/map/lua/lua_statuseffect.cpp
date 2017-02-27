@@ -101,7 +101,7 @@ inline int32 CLuaStatusEffect::getDuration(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaStatusEffect == nullptr);
 
-    lua_pushinteger(L, m_PLuaStatusEffect->GetDuration());
+    lua_pushinteger(L, m_PLuaStatusEffect->GetDuration() / 1000);
     return 1;
 }
 
@@ -292,7 +292,7 @@ inline int32 CLuaStatusEffect::addMod(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    m_PLuaStatusEffect->addMod(lua_tointeger(L, 1), lua_tointeger(L, 2));
+    m_PLuaStatusEffect->addMod(static_cast<Mod>(lua_tointeger(L, 1)), lua_tointeger(L, 2));
     return 0;
 }
 

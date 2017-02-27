@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
     if (player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and player:hasItem(563) == false) then
         if (trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
             player:tradeComplete();
-            SpawnMob(17580038,300):updateClaim(player);
+            SpawnMob(17580038):updateClaim(player);
         end
     end
     if (player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
@@ -47,8 +47,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -56,8 +56,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x000a) then
         if (player:getFreeSlotsCount() > 0) then    
             player:addItem(16637);

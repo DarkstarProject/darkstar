@@ -2,8 +2,8 @@
 --  Area: Tavnazian Safehold
 --  NPC: Maturiri
 --  Type: Item Deliverer
---  @zone: 26
---  @pos -77.366    -20    -71.128
+--  @zone 26
+-- @pos -77.366    -20    -71.128
 --
 -----------------------------------
 

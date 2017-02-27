@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: godmode
--- desc: Toggles god mode on the player; granting them several special abilities.
+-- desc: Toggles god mode on the player, granting them several special abilities.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =

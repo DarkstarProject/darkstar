@@ -59,7 +59,7 @@ public:
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
     int32 getHP(lua_State*);                // Returns Entity Health
-    int32 getGender(lua_State*);			// Returns the player character's gender
+    int32 getGender(lua_State*);            // Returns the player character's gender
     int32 getBaseHP(lua_State*);            // Returns Entity base Health before modifiers
     int32 addHP(lua_State*);                // Modify hp of Entity +/-
     int32 restoreHP(lua_State*);            // Modify hp of Entity, but check if alive first
@@ -114,13 +114,15 @@ public:
     int32 setAnimation(lua_State*);         // Set Entity Animation
     int32 AnimationSub(lua_State*);         // get or set animationsub
     int32 costume(lua_State*);              // get or set user costume
-    int32 costume2(lua_State*);				// set monstrosity costume
+    int32 costume2(lua_State*);             // set monstrosity costume
     int32 canUseCostume(lua_State*);        // check to see if character can use costume, 0 if so
     int32 canUseChocobo(lua_State *L);      // check to see if character can use chocobo, 0 if so
     int32 canUsePet(lua_State *L);          // check to see if character can call pet, 0 if so
 
+    int32 addTreasure(lua_State*);          // Add item to directly to treasure pool
     int32 addItem(lua_State*);              // Add item to Entity inventory (additem(itemNumber,quantity))
     int32 hasItem(lua_State*);              // Check to see if Entity has item in inventory (hasItem(itemNumber))
+    int32 addUsedItem(lua_State*);          // Add charged item with timer already on full cooldown
     int32 addTempItem(lua_State*);          // Add temp item to Entity Temp inventory
     int32 delItem(lua_State*);
     int32 getFreeSlotsCount(lua_State*);    // Gets value of free slots in Entity inventory
@@ -180,8 +182,9 @@ public:
     int32 canLearnAbility(lua_State*);      // Check to see if character can learn spell, 0 if so
     int32 delLearnedAbility(lua_State*);    // Remove spell from Entity spell list
 
-    int32 addWeaponSkill(lua_State*);       //
-    int32 delWeaponSkill(lua_State*);       //
+    int32 addLearnedWeaponskill(lua_State*);
+    int32 hasLearnedWeaponskill(lua_State*);
+    int32 delLearnedWeaponskill(lua_State*);
 
     int32 getMainJob(lua_State*);           // Returns Entity Main Job
     int32 getMainLvl(lua_State*);           // Gets Entity Main Job Level
@@ -225,6 +228,7 @@ public:
     int32 getBCNMloot(lua_State*);                   //triggers if the player opens the chest inside bcnm
     int32 addPlayerToSpecialBattlefield(lua_State*); //for limbus
 
+    int32 isSpawned(lua_State*);
     int32 setSpawn(lua_State*);                // Sets spawn point
     int32 setRespawnTime(lua_State*);          // set respawn time
     int32 getDynamisUniqueID(lua_State*);      //Get unique Dynamis ID
@@ -376,6 +380,7 @@ public:
     int32 getPet(lua_State*);                // Creates an LUA reference to a pet entity
     int32 getPetID(lua_State*);              // If the entity has a pet, returns the PetID to identify pet type.
     int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
+    int32 getCharmChance(lua_State*);        // Gets the chance the entity has to charm its target.
     int32 familiar(lua_State*);              // familiar on pet
 
     int32 wakeUp(lua_State*);                //wakes target if necessary
@@ -442,6 +447,7 @@ public:
     int32 delAssaultPoint(lua_State*);      // Delete points for an assault area
 
     int32 isJailed(lua_State *L);           // Is the player jailed
+    int32 jail(lua_State* L);
 
     int32 addNationTeleport(lua_State*);     // Add new teleport: addNationTeleport(nation,number)
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
@@ -459,6 +465,7 @@ public:
     int32 isNPC(lua_State*);
     int32 isMob(lua_State*);
     int32 isPet(lua_State*);
+    int32 isAlly(lua_State*);
 
     int32 injectActionPacket(lua_State*);   // ONLY FOR DEBUGGING. Injects an action packet with the specified params.
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
@@ -600,6 +607,20 @@ public:
     int32 getNearbyEntities(lua_State* L);
     int32 getAutomatonFrame(lua_State* L);
     int32 getAutomatonHead(lua_State* L);
+
+    int32 getDropID(lua_State* L);
+    int32 setDropID(lua_State* L);
+
+    int32 resetAI(lua_State* L);
+    int32 getEntity(lua_State* L);
+
+    int32 canChangeState(lua_State* L);
+
+    int32 isAlive(lua_State* L);
+    int32 isDead(lua_State* L);
+
+    int32 engage(lua_State* L);
+    int32 disengage(lua_State* L);
 };
 
 #endif

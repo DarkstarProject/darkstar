@@ -60,17 +60,16 @@ int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 
 float distance(const position_t& A, const position_t& B)
 {
-	float one = 0, two = 0, three = 0, four = 0;
+    return sqrt(distanceSquared(A, B));
+}
 
-	one = A.x - B.x;
-	two = A.y - B.y;
-	three = A.z - B.z;
-	one *= one;
-	two *= two;
-	three *= three;
-	four = one + two + three;
 
-	return (float)sqrt((double)four);
+float distanceSquared(const position_t& A, const position_t& B)
+{
+    float diff_x = A.x - B.x;
+    float diff_y = A.y - B.y;
+    float diff_z = A.z - B.z;
+    return diff_x * diff_x + diff_y * diff_y + diff_z * diff_z;
 }
 
 /************************************************************************

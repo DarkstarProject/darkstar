@@ -24,5 +24,6 @@ function onItemUse(target)
         target:messageBasic(423);
     else
         target:addStatusEffect(EFFECT_BLINK, 3, 0, 300);
+        target:messageBasic(205,EFFECT_BLINK);
     end
 end;

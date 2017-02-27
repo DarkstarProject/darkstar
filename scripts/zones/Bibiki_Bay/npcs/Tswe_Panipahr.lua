@@ -2,7 +2,7 @@
 --  Area: Bibiki Bay
 --  NPC:  Tswe Panipahr
 --  Type: Manaclipper
---  @pos 484.604 -4.035 729.671 4
+-- @pos 484.604 -4.035 729.671 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
 -----------------------------------

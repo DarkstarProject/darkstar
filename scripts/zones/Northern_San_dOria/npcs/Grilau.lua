@@ -54,7 +54,7 @@ function onTrigger(player,npc)
 
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
     
-    if (player:getNation() ~= SANDORIA) then
+    if (player:getNation() ~= NATION_SANDORIA) then
         player:startEvent(0x03f3); -- for Non-San d'Orians
     else
         CurrentMission = player:getCurrentMission(SANDORIA);
@@ -97,8 +97,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("onUpdateCSID: %u",csid);
---printf("onUpdateOPTION: %u",option);
+    -- printf("onUpdateCSID: %u",csid);
+    -- printf("onUpdateOPTION: %u",option);
 end;
 
 -----------------------------------
@@ -106,8 +106,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("onFinishCSID: %u",csid);
---printf("onFinishOPTION: %u",option);
+    -- printf("onFinishCSID: %u",csid);
+    -- printf("onFinishOPTION: %u",option);
     
     finishMissionTimeline(player,1,csid,option);
     if (csid == 0x040b) then

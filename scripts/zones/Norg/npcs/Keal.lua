@@ -133,7 +133,7 @@ function onEventFinish(player,csid,option,npc)
             player:delKeyItem(SEALED_IRON_BOX);
             player:addItem(4961); -- Scroll of Tonko: Ichi
             player:messageSpecial(ITEM_OBTAINED, 4961); 
-            player:addFame(OUTLANDS,50);
+            player:addFame(NORG,50);
             player:completeQuest(OUTLANDS,ITS_NOT_YOUR_VAULT);
         end
     end

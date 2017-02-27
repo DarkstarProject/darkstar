@@ -42,8 +42,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID2: %u",csid);
---printf("RESULT2: %u",option);
+    -- printf("CSID2: %u",csid);
+    -- printf("RESULT2: %u",option);
 end;
 
 -----------------------------------
@@ -59,12 +59,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0082) then
         player:addQuest(BASTOK,PAST_PERFECT);
     elseif (csid == 0x0083) then
-        player:delKeyItem(TATTERED_MISSION_ORDERS);
-        player:setVar("PastPerfectVar",0);
-        player:addItem(12560);
-        player:messageSpecial(ITEM_OBTAINED,12560);
-        player:addFame(BASTOK,110);
-        player:completeQuest(BASTOK,PAST_PERFECT);
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12560);
+        else
+            if (player:addItem(12560)) then
+                player:delKeyItem(TATTERED_MISSION_ORDERS);
+                player:setVar("PastPerfectVar",0);
+                player:messageSpecial(ITEM_OBTAINED,12560);
+                player:addFame(BASTOK,110);
+                player:completeQuest(BASTOK,PAST_PERFECT);
+            end
+        end
     end
     
 end;

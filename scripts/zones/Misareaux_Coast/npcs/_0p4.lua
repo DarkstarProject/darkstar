@@ -1,6 +1,6 @@
 -----------------------------------
 --  Area: Misareaux Coast
---  NPC: Storage Compartment 
+--  NPC: Storage Compartment
 --  COP spawn Boggelmann.
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
@@ -23,12 +23,12 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and GetMobAction(16879897) == 0 and player:getVar("COP_Boggelmann_KILL") == 0) then
-      SpawnMob(16879897,180):updateClaim(player);
+      SpawnMob(16879897):updateClaim(player);
     elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("COP_Boggelmann_KILL") == 1) then
       player:startEvent(0x000D);
     else
        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-    end    
+    end
 end;
 
 -----------------------------------
@@ -36,8 +36,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -45,11 +45,11 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
    if (csid == 0x000D) then
       player:setVar("COP_Boggelmann_KILL",2);
-      player:addKeyItem(VESSEL_OF_LIGHT);
-      player:messageSpecial(KEYITEM_OBTAINED,VESSEL_OF_LIGHT);
+      player:addKeyItem(VESSEL_OF_LIGHT_KI);
+      player:messageSpecial(KEYITEM_OBTAINED,VESSEL_OF_LIGHT_KI);
    end
 end;

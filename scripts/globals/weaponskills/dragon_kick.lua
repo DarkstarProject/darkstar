@@ -3,7 +3,6 @@
 -- Hand-to-Hand weapon skill
 -- Skill Level: 225
 -- Damage varies with TP.
--- Despite the name, Dragon Kick damage is not affected by Kick Attacks or equipment that enhances kick attacks such as Dune Boots. http://www.bluegartr.com/threads/121610-Rehauled-Weapon-Skills-tier-lists?p=6140907&viewfull=1#post6140907
 -- Will stack with Sneak Attack.
 -- Aligned with the Breeze Gorget & Thunder Gorget.
 -- Aligned with the Breeze Belt & Thunder Belt.
@@ -17,7 +16,7 @@ require("scripts/globals/settings");
 require("scripts/globals/weaponskills");
 -----------------------------------
 
-function onUseWeaponSkill(player, target, wsID, tp, primary)
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.numHits = 1;
@@ -27,13 +26,14 @@ function onUseWeaponSkill(player, target, wsID, tp, primary)
     params.canCrit = false;
     params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
     params.atkmulti = 1;
+    params.kick = true; -- https://www.bluegartr.com/threads/112776-Dev-Tracker-Findings-Posts-%28NO-DISCUSSION%29?p=6712150&viewfull=1#post6712150
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.ftp100 = 2.0; params.ftp200 = 3.6; params.ftp300 = 6.5;
         params.dex_wsc = 0.5; params.vit_wsc = 0.0;
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, primary);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     return tpHits, extraHits, criticalHit, damage;
 
 end

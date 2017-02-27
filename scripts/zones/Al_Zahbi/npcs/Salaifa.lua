@@ -2,8 +2,8 @@
 --  Area: Al Zahbi
 --   NPC: Salaifa
 --  Type: Standard NPC
--- @zone: 48
---  @pos -37.462 -7 -41.665
+-- @zone 48
+-- @pos -37.462 -7 -41.665
 -- 
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

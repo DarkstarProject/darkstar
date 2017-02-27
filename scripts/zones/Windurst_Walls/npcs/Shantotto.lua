@@ -83,14 +83,14 @@ function onTrigger(player,npc)
     
         
     -- Curses,Foiled...Again!?
-    elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 2 and player:getMainLvl() >= 5 and CFAtimer == 1) then
+    elseif (foiledAgain == QUEST_COMPLETED and CFA2 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2 and player:getMainLvl() >= 5 and CFAtimer == 1) then
         player:startEvent(0x00B4,0,0,0,0,928,880,17316,940);        -- Quest Start
     elseif (CFA2 == QUEST_ACCEPTED) then
         player:startEvent(0x00B5,0,0,0,0,0,0,17316,940);  -- Reminder dialog
     
         
     -- Curses,Foiled A-Golem!?
-    elseif (CFA2 == QUEST_COMPLETED and FoiledAGolem == QUEST_AVAILABLE and player:getFameLevel (WINDURST) >= 4 and player:getMainLvl() >= 10) then
+    elseif (CFA2 == QUEST_COMPLETED and FoiledAGolem == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(0x0154);  --quest start
     elseif (golemdelivery == 1) then
         player:startEvent(0x0156);  -- finish

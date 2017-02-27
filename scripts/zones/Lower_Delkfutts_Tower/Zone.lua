@@ -16,23 +16,17 @@ require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17531228,17531229,17531230};
-    
-    SetGroundsTome(tomes);
-
     zone:registerRegion(1, 403, -34, 83, 409, -33, 89); -- Third Floor G-6 porter to Middle Delkfutt's Tower
     zone:registerRegion(2, 390, -34, -49, 397, -33, -43); -- Third Floor F-10 porter to Middle Delkfutt's Tower "1"
-
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end

@@ -4,22 +4,33 @@
 -----------------------------------
 
 require("scripts/globals/titles");
+local MobIDs = require("scripts/zones/Ranguemont_Pass/MobIDs");
 
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
-    local Taisaijin = 17457216;
-    local Taisaijin_PH = GetServerVariable("Taisaijin_PH");
-
-    GetMobByID(Taisaijin):setLocalVar("ToD", os.time() + math.random(86400, 259200));
-    SetServerVariable("Taisaijin_PH", 0);
-    DeterMob(Taisaijin, true);
-    DeterMob(Taisaijin_PH, false);
-    SpawnMob(Taisaijin_PH, "", GetMobRespawnTime(Taisaijin_PH));
-
     player:addTitle(BYEBYE_TAISAI);
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
+
+    local ph = GetServerVariable("Taisaijin_PH");
+
+    -- time to spawn
+    local tts = os.time() + math.random(86400, 259200);
+    SetServerVariable("Taisaijin_TTS", tts);
+
+    -- reset ph and nm
+    SetServerVariable("Taisaijin_PH", 0);
+    DeterMob(ph, false);
+
+    DeterMob(MobIDs.Taisaijin, true);
+    SpawnMob(ph, "", GetMobRespawnTime(ph));
 
 end;

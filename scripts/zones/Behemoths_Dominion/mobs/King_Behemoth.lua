@@ -8,6 +8,25 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 -----------------------------------
+-- onMobSpawn Action
+-----------------------------------
+
+function onMobSpawn(mob)
+    -- Todo: move this to SQL after drop slots are a thing
+    if (math.random(1,100) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
+        SetDropRate(1936,13566,1000); -- Defending Ring
+        SetDropRate(1936,13415,0);
+    else
+        SetDropRate(1936,13566,0);
+        SetDropRate(1936,13415,1000); -- Pixie Earring
+    end
+
+    if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
+        GetNPCByID(17297459):setStatus(STATUS_DISAPPEAR);
+    end
+end;
+
+-----------------------------------
 -- onMobInitialize Action
 -----------------------------------
 
@@ -34,18 +53,14 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
     player:addTitle(BEHEMOTH_DETHRONER);
+end;
 
-    -- Todo: move this to SQL after drop slots are a thing
-    if (math.random(1,100) <= 5) then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,13566,1000); -- Defending Ring
-        SetDropRate(1936,13415,0);
-    else
-        SetDropRate(1936,13566,0);
-        SetDropRate(1936,13415,1000); -- Pixie Earring
-    end
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
 
+function onMobDespawn(mob)
     -- Set King_Behemoth's Window Open Time
     if (LandKingSystem_HQ ~= 1) then
         local wait = 72 * 3600;
@@ -62,5 +77,9 @@ function onMobDeath(mob, player, isKiller)
         DeterMob(Behemoth, false);
         UpdateNMSpawnPoint(Behemoth);
         GetMobByID(Behemoth):setRespawnTime(math.random(75600,86400));
+    end
+
+    if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
+        GetNPCByID(17297459):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
     end
 end;

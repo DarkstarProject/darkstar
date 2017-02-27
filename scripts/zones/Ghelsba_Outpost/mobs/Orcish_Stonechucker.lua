@@ -10,6 +10,13 @@ require("scripts/zones/Ghelsba_Outpost/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Thousandarm_Deshglesh_PH[mobID] ~= nil) then

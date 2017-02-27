@@ -13,7 +13,15 @@ require("scripts/zones/East_Ronfaure/MobIDs");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,65,1);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Bigmouth_Billy_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Bigmouth_Billy");
         if (ToD <= os.time(t) and GetMobAction(Bigmouth_Billy) == 0) then

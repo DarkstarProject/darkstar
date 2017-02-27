@@ -17,13 +17,20 @@ end;
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob)
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     SetServerVariable("[POP]Cemetery Cherry",GetServerVariable("[POP]Cemetery Cherry") + 1);
 
     if (GetServerVariable("[POP]Cemetery Cherry") == 8) then
         SetServerVariable("[POP]Cemetery Cherry",0);
-        SpawnMob(17555863,600); -- Pop Cemetery Cherry !
+        SpawnMob(17555863); -- Pop Cemetery Cherry !
 
     end
 

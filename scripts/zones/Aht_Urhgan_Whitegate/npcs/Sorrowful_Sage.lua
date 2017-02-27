@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Sorrowful Sage
 --  Type: Assault Mission Giver
---  @pos 134.096 0.161 -30.401 50
+-- @pos 134.096 0.161 -30.401 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

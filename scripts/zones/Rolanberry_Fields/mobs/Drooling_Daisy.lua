@@ -7,7 +7,14 @@
 -- onMobDeath
 -----------------------------------
 
-function onMobDeath(mob, player, isKiller)    
+function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)    
   
     -- Set Drooling_Daisy's Window Open Time
     SetServerVariable("[POP]Drooling_Daisy", os.time(t) + 3600); -- 1 hour

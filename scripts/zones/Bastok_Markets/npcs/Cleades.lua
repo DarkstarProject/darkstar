@@ -41,7 +41,7 @@ end;
 
 function onTrigger(player,npc)
     
-    if (player:getNation() ~= BASTOK) then
+    if (player:getNation() ~= NATION_BASTOK) then
         player:startEvent(0x03eb); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
@@ -72,8 +72,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -81,8 +81,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,1,csid,option);
     

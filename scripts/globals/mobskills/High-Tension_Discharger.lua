@@ -1,14 +1,13 @@
 ---------------------------------------------------
---  High-Tension_Discharger
---  Description:
---  Type: Magical
---  additional effect : Stun
----------------------------------------------------
+-- High-Tension_Discharger
+-- Description: Discharges a powerful current that deals Lightning damage to players in a fan-shaped area. 
+-- Additional effect: Stun
+-- Type: Magical
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     -- skillList  54 = Omega

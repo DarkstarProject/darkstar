@@ -100,6 +100,7 @@ CNpcEntity::CNpcEntity()
 {
 	objtype = TYPE_NPC;
 	look.face = 0x32;
+        widescan = 1;
 	allegiance = ALLEGIANCE_MOB;
     PAI = std::make_unique<CAIContainer>(this);
 }
@@ -107,6 +108,16 @@ CNpcEntity::CNpcEntity()
 CNpcEntity::~CNpcEntity()
 {
 
+}
+
+uint32 CNpcEntity::getEntityFlags()
+{
+    return m_flags;
+}
+
+void CNpcEntity::setEntityFlags(uint32 EntityFlags)
+{
+    m_flags = EntityFlags;
 }
 
 void CNpcEntity::HideModel(bool hide)

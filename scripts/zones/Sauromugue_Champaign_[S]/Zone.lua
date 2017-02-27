@@ -27,7 +27,7 @@ function onZoneIn(player,prevZone)
     end
     if (prevZone == 91 and player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 2) then
         cs = 0x0003;
-    end    
+    end
     return cs;
 end;
 

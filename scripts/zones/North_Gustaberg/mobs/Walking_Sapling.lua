@@ -14,7 +14,15 @@ require("scripts/globals/fieldsofvalor");
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,18,2);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Maighdean_Uaine_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Maighdean_Uaine");
         if (ToD <= os.time(t) and GetMobAction(Maighdean_Uaine) == 0) then

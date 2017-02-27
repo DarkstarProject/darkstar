@@ -5,7 +5,7 @@
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
-mixins = {require("scripts/mixins/families/antlion_ambush")}
+mixins = {require("scripts/mixins/families/antlion_ambush_noaggro")}
 
 -----------------------------------
 -- onMobInitialize Action

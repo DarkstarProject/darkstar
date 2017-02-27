@@ -16,7 +16,15 @@ function onMobDeath(mob, player, isKiller)
     checkGoVregime(player,mob,764,3);
     checkGoVregime(player,mob,765,3);
 
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
     local mobID = mob:getID();
+
     if (Wyvernpoacher_Drachlox_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Wyvernpoacher_Drachlox");
         if (ToD <= os.time(t) and GetMobAction(Wyvernpoacher_Drachlox) == 0) then

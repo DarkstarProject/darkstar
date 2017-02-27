@@ -2,8 +2,8 @@
 --  Area: Rabao
 --  NPC: Pakhi Churhebi
 --  Type: Item Deliverer
---  @zone: 247
---  @pos 158.428    7.999    78.009
+--  @zone 247
+-- @pos 158.428    7.999    78.009
 --
 -----------------------------------
 

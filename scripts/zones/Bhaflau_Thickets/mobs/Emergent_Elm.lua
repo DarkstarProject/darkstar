@@ -11,6 +11,13 @@ require("scripts/zones/Bhaflau_Thickets/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     -- Set EE's ToD
     SetServerVariable("[POP]Emergent_Elm", os.time(t) + 14400); -- 4 hours

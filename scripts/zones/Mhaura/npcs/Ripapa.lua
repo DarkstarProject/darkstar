@@ -76,8 +76,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
     
     if (csid == 0x2720 and option == 1) then
         if (player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then

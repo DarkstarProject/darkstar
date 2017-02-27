@@ -1,15 +1,13 @@
 ---------------------------------------------
---  Mysterious Light
+-- Lodesong
 --
---  Description: Deals wind damage to enemies within range. Additional effect: Weight.
---  Type: Magical (Wind)
---
---
+-- Description: Weighs down targets in an area of effect.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     -- can only used if not silenced
     if (mob:getMainJob() == JOBS.BRD and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
@@ -19,9 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_WEIGHT;
-
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 50, 0, 50));
+    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 50, 0, 50));
 
     return typeEffect;
 end;

@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 
       if ((trade:hasItemQty(4514,1) or trade:hasItemQty(5793,1)) and count == 1 and gil == 0) then
         if (GetMobAction(17215494) == 0) then
-            SpawnMob(17215494,288);
+            SpawnMob(17215494);
             player:tradeComplete();
         else
             player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -49,6 +49,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
---printf("CSID: %u",csid);
---printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

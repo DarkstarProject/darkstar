@@ -44,7 +44,7 @@ function halloweenItemsCheck(player)
     reward_list = {pumpkinHead,pumpkinHead2,trickStaff,trickStaff2};
 
     -- Checks for HQ Upgrade
-    for ri = 1, table.getn(reward_list) do
+    for ri = 1, #reward_list do
         if (headSlot == reward_list[ri] or mainHand == reward_list[ri]) then
             if (headSlot == pumpkinHead and player:hasItem(13917) == false) then
                 reward = 13917; -- Horror Head
@@ -60,10 +60,10 @@ function halloweenItemsCheck(player)
     end
     
     -- Checks the possible item rewards to ensure player doesnt already have the item we are about to give them
-    local cnt = table.getn(reward_list);
+    local cnt = #reward_list;
 
     while cnt ~= 0 do
-        local picked = reward_list[math.random(1,table.getn(reward_list))];
+        local picked = reward_list[math.random(1,#reward_list)];
         if (player:hasItem(picked) == false) then
             reward = picked;
             cnt = 0;
@@ -82,7 +82,7 @@ function onHalloweenTrade(player,trade,npc)
     require(TextIDs);
     
     local contentEnabled = isHalloweenEnabled();
-    local item = trade:getItem();
+    local item = trade:getItemId();
     -------------------
     -- 2005 edition ---
     -------------------
@@ -134,7 +134,7 @@ function onHalloweenTrade(player,trade,npc)
                       5577, -- Sutlac
                       5627}; -- Yogurt Cake
 
-        for itemInList = 1, table.getn(treats_table)  do
+        for itemInList = 1, #treats_table  do
 
             if (item == treats_table[itemInList]) then
                 local itemReward = halloweenItemsCheck(player);
@@ -182,7 +182,7 @@ function onHalloweenTrade(player,trade,npc)
                     
                     halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
 
-                    local costumePicked = halloween_costume_list[math.random(1,table.getn(halloween_costume_list))]; -- will randomly pick one of the costumes in the list
+                    local costumePicked = halloween_costume_list[math.random(1,#halloween_costume_list)]; -- will randomly pick one of the costumes in the list
                     player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
 
                     -- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
@@ -194,7 +194,7 @@ function onHalloweenTrade(player,trade,npc)
                                             241,Ghost,Shade,    -- Windurst Woods
                                             238,Shade,Hound};     -- Windurst Woods
 
-                    for zi = 1, table.getn(pitchForkCostumeList), 3 do
+                    for zi = 1, #pitchForkCostumeList, 3 do
 
                         if (zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
                             player:messageSpecial(IF_YOU_WEAR_THIS);
@@ -227,11 +227,11 @@ function applyHalloweenNpcCostumes(zoneid)
         -- npcID, skinID (skin ID can be found in mob_change_skin Sql table)
         local npc_costume_map = {
             [234] = {
-                [17735787] = 40, -- Proud_Beard - Bastok Mines
+                [17735795] = 40, -- Proud_Beard - Bastok Mines
                 [17735742] = 41, -- Faustin - Bastok Mines
                 [17814119] = 42, -- Aulavia - Bastok Mines
                 [17735744] = 43, -- Mille - Bastok Mines
-                [17735810] = 44  -- Emaliveulaux - Bastok Mines
+                [17735818] = 44  -- Emaliveulaux - Bastok Mines
             },
             [235] = {
                 [17739805] = 45  -- Olwyn - Bastok Markets
@@ -240,7 +240,7 @@ function applyHalloweenNpcCostumes(zoneid)
                 [17719306] = 46, -- Apairemant - Southern Sandoria
                 [17719303] = 47, -- Machielle - Southern Sandoria
                 [17719305] = 48, -- Phamelise - Southern Sandoria
-                [17719485] = 49, -- Pourette - Southern Sandoria
+                [17719493] = 49, -- Pourette - Southern Sandoria
                 [17719304] = 50  -- Corua -- Southern Sandoria
             },
             [231] = {

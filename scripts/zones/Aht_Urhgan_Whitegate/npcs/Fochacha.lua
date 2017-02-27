@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Fochacha
 --  Type: Standard NPC
---  @pos 2.897 -1 -10.781 50
+-- @pos 2.897 -1 -10.781 50
 --  Quest: Delivering the Goods
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;

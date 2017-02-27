@@ -2,18 +2,18 @@
 -- Area: Port San d'Oria
 --   NPC: Gulemont
 --  Type: Quest Giver
--- @zone: 232
---  @pos -69 -5 -38
+-- @zone 232
+-- @pos -69 -5 -38
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
 require("scripts/zones/Port_San_dOria/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -81,7 +81,3 @@ function onEventFinish(player,csid,option)
     end;
     
 end;
-
-
-
-

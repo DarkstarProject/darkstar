@@ -10,6 +10,13 @@ require("scripts/zones/Castle_Oztroja/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
+end;
+
+-----------------------------------
+-- onMobDespawn
+-----------------------------------
+
+function onMobDespawn(mob)
 
     local mobID = mob:getID();
     if (Mee_Deggi_the_Punisher_PH[mobID] ~= nil) then

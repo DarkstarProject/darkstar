@@ -2,6 +2,8 @@
 -- Area: Jugner Forest (S)
 -- NPC:  Lobison
 -----------------------------------
+
+
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -48,4 +50,11 @@ function onMobEngaged(mob,target)
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     end
+end;
+
+-----------------------------------
+-- onMobDeath
+-----------------------------------
+
+function onMobDeath(mob, player, isKiller)
 end;

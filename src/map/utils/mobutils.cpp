@@ -501,13 +501,13 @@ void CalculateStats(CMobEntity * PMob)
         }
     }
 
-    PMob->addModifier(MOD_DEF, GetBase(PMob,PMob->defRank));
-    PMob->addModifier(MOD_EVA, GetEvasion(PMob));
-    PMob->addModifier(MOD_ATT, GetBase(PMob,PMob->attRank));
-    PMob->addModifier(MOD_ACC, GetBase(PMob,PMob->accRank));
+    PMob->addModifier(Mod::DEF, GetBase(PMob,PMob->defRank));
+    PMob->addModifier(Mod::EVA, GetEvasion(PMob));
+    PMob->addModifier(Mod::ATT, GetBase(PMob,PMob->attRank));
+    PMob->addModifier(Mod::ACC, GetBase(PMob,PMob->accRank));
 
     //natural magic evasion
-    PMob->addModifier(MOD_MEVA, GetMagicEvasion(PMob));
+    PMob->addModifier(Mod::MEVA, GetMagicEvasion(PMob));
 
     // add traits for sub and main
     battleutils::AddTraits(PMob, traits::GetTraits(mJob), mLvl);
@@ -588,6 +588,7 @@ void CalculateStats(CMobEntity * PMob)
 void SetupJob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
+    JOBTYPE sJob = PMob->GetSJob();
 
     switch(mJob)
     {
@@ -676,9 +677,11 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;
         case JOB_PLD:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
             break;
         case JOB_DRK:
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
             break;
         case JOB_WHM:
@@ -690,19 +693,41 @@ void SetupJob(CMobEntity* PMob)
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 25);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 60);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            break;
         case JOB_BLU:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            break;
         case JOB_RDM:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            break;
         case JOB_SMN:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
             // smn only has "buffs"
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
     }
 
+    // Just a fallback at the moment
+    switch(sJob)
+    {
+        case JOB_BLM:
+        case JOB_WHM:
+        case JOB_RDM:
+        case JOB_DRK:
+        case JOB_BLU:
+        case JOB_SMN:
+        case JOB_BRD:
+        case JOB_NIN:
+            if(PMob->getMobMod(MOBMOD_MP_BASE))
+            {
+                PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+                PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
+                PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
+                PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+            }
+    }
 }
 
 void SetupRoaming(CMobEntity* PMob)
@@ -812,9 +837,9 @@ void SetupDynamisMob(CMobEntity* PMob)
     // according to wiki
     for(auto&& PTrait : PMob->TraitList)
     {
-        uint16 type = PTrait->getMod();
+        Mod type = PTrait->getMod();
 
-        if(type >= 240 && type <= 255)
+        if(type >= Mod::SLEEPRES && type <= Mod::DEATHRES)
         {
             // give mob a total of x4 the regular rate
             PMob->addModifier(type, PTrait->getValue() * 3);
@@ -888,7 +913,7 @@ void SetupNMMob(CMobEntity* PMob)
         if(mJob == JOB_WHM)
         {
             // whm nms have stronger regen effect
-            PMob->addModifier(MOD_REGEN, mLvl/4);
+            PMob->addModifier(Mod::REGEN, mLvl/4);
         }
 
         // add two hours
@@ -903,9 +928,6 @@ void SetupNMMob(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob)
 {
-    // Should swing normally when not a mnk
-    PMob->m_Weapons[SLOT_MAIN]->setDelay((240*1000)/60);
-
     switch(PMob->GetMJob()){
         case JOB_NIN:
             PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
@@ -990,23 +1012,22 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, CMobEntity::sight_range);
     PMob->defaultMobMod(MOBMOD_SOUND_RANGE, CMobEntity::sound_range);
 
-
     // Killer Effect
     switch (PMob->m_EcoSystem)
       {
-        case SYSTEM_AMORPH:   PMob->addModifier(MOD_BIRD_KILLER,     5); break;
-        case SYSTEM_AQUAN:    PMob->addModifier(MOD_AMORPH_KILLER,   5); break;
-        case SYSTEM_ARCANA:   PMob->addModifier(MOD_UNDEAD_KILLER,   5); break;
-        case SYSTEM_BEAST:    PMob->addModifier(MOD_LIZARD_KILLER,   5); break;
-        case SYSTEM_BIRD:     PMob->addModifier(MOD_AQUAN_KILLER,    5); break;
-        case SYSTEM_DEMON:    PMob->addModifier(MOD_DRAGON_KILLER,   5); break;
-        case SYSTEM_DRAGON:   PMob->addModifier(MOD_DEMON_KILLER,    5); break;
-        case SYSTEM_LIZARD:   PMob->addModifier(MOD_VERMIN_KILLER,   5); break;
-        case SYSTEM_LUMINION: PMob->addModifier(MOD_LUMORIAN_KILLER, 5); break;
-        case SYSTEM_LUMORIAN: PMob->addModifier(MOD_LUMINION_KILLER, 5); break;
-        case SYSTEM_PLANTOID: PMob->addModifier(MOD_BEAST_KILLER,    5); break;
-        case SYSTEM_UNDEAD:   PMob->addModifier(MOD_ARCANA_KILLER,   5); break;
-        case SYSTEM_VERMIN:   PMob->addModifier(MOD_PLANTOID_KILLER, 5); break;
+        case SYSTEM_AMORPH:   PMob->addModifier(Mod::BIRD_KILLER,     5); break;
+        case SYSTEM_AQUAN:    PMob->addModifier(Mod::AMORPH_KILLER,   5); break;
+        case SYSTEM_ARCANA:   PMob->addModifier(Mod::UNDEAD_KILLER,   5); break;
+        case SYSTEM_BEAST:    PMob->addModifier(Mod::LIZARD_KILLER,   5); break;
+        case SYSTEM_BIRD:     PMob->addModifier(Mod::AQUAN_KILLER,    5); break;
+        case SYSTEM_DEMON:    PMob->addModifier(Mod::DRAGON_KILLER,   5); break;
+        case SYSTEM_DRAGON:   PMob->addModifier(Mod::DEMON_KILLER,    5); break;
+        case SYSTEM_LIZARD:   PMob->addModifier(Mod::VERMIN_KILLER,   5); break;
+        case SYSTEM_LUMINION: PMob->addModifier(Mod::LUMORIAN_KILLER, 5); break;
+        case SYSTEM_LUMORIAN: PMob->addModifier(Mod::LUMINION_KILLER, 5); break;
+        case SYSTEM_PLANTOID: PMob->addModifier(Mod::BEAST_KILLER,    5); break;
+        case SYSTEM_UNDEAD:   PMob->addModifier(Mod::ARCANA_KILLER,   5); break;
+        case SYSTEM_VERMIN:   PMob->addModifier(Mod::PLANTOID_KILLER, 5); break;
       }
 
     if (PMob->m_maxLevel == 0 && PMob->m_minLevel == 0)
@@ -1016,7 +1037,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
             ShowError("Mob %s level is 0! zoneid %d, poolid %d\n", PMob->GetName(), PMob->getZone(), PMob->m_Pool);
         }
     }
-
 }
 
 /*
@@ -1043,7 +1063,7 @@ void LoadCustomMods()
 		{
 			ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
+			CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
 			mod->setModAmount(Sql_GetIntData(SqlHandle,2));
 
 			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
@@ -1070,7 +1090,7 @@ void LoadCustomMods()
 			uint16 pool = Sql_GetUIntData(SqlHandle,0);
 			ModsList_t* poolMods = GetMobPoolMods(pool, true);
 
-			uint16 id = Sql_GetUIntData(SqlHandle,1);
+			Mod id = static_cast<Mod>(Sql_GetUIntData(SqlHandle,1));
 
 
 			CModifier* mod = new CModifier(id);
@@ -1099,7 +1119,7 @@ void LoadCustomMods()
 		{
 			ModsList_t* spawnMods = GetMobSpawnMods(Sql_GetUIntData(SqlHandle,0), true);
 
-			CModifier* mod = new CModifier(Sql_GetUIntData(SqlHandle,1));
+			CModifier* mod = new CModifier(static_cast<Mod>(Sql_GetUIntData(SqlHandle,1)));
 			mod->setModAmount(Sql_GetUIntData(SqlHandle,2));
 
 			int8 isMobMod = Sql_GetIntData(SqlHandle,3);
@@ -1191,10 +1211,10 @@ void AddCustomMods(CMobEntity* PMob)
 		{
 			PMob->addModifier((*it)->getModID(), (*it)->getModAmount());
 		}
-
+        //TODO: don't store mobmods in a CModifier
 		for(std::vector<CModifier*>::iterator it = PFamilyMods->mobMods.begin(); it != PFamilyMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 
@@ -1211,7 +1231,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PPoolMods->mobMods.begin(); it != PPoolMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 
@@ -1228,7 +1248,7 @@ void AddCustomMods(CMobEntity* PMob)
 
 		for(std::vector<CModifier*>::iterator it = PSpawnMods->mobMods.begin(); it != PSpawnMods->mobMods.end() ; ++it)
 		{
-			PMob->setMobMod((*it)->getModID(), (*it)->getModAmount());
+			PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
 		}
 	}
 }
@@ -1286,9 +1306,9 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 		STR, DEX, VIT, AGI, `INT`, MND, CHR, EVA, DEF, \
 		Slash, Pierce, H2H, Impact, \
 		Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, Element, \
-		mob_pools.familyid, name_prefix, flags, animationsub, \
+		mob_pools.familyid, name_prefix, entityFlags, animationsub, \
 		(mob_family_system.HP / 100), (mob_family_system.MP / 100), hasSpellScript, spellList, ATT, ACC, mob_groups.poolid, \
-		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects \
+		allegiance, namevis, aggro, mob_pools.skill_list_id, mob_pools.true_detection, mob_family_system.detects, packet_name \
 		FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid \
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE mob_groups.groupid = %u";
@@ -1305,6 +1325,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
             PMob->PInstance = instance;
 
 			PMob->name.insert(0, Sql_GetData(SqlHandle, 1));
+            PMob->packetName.insert(0, Sql_GetData(SqlHandle, 61));
 
 			PMob->m_RespawnTime = Sql_GetUIntData(SqlHandle, 2) * 1000;
 			PMob->m_SpawnType = (SPAWNTYPE)Sql_GetUIntData(SqlHandle, 3);
@@ -1356,19 +1377,19 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->attRank = (uint8)Sql_GetIntData(SqlHandle, 52);
 			PMob->accRank = (uint8)Sql_GetIntData(SqlHandle, 53);
 
-			PMob->setModifier(MOD_SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 31) * 1000));
-			PMob->setModifier(MOD_PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 32) * 1000));
-			PMob->setModifier(MOD_HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 33) * 1000));
-			PMob->setModifier(MOD_IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 34) * 1000));
+			PMob->setModifier(Mod::SLASHRES, (uint16)(Sql_GetFloatData(SqlHandle, 31) * 1000));
+			PMob->setModifier(Mod::PIERCERES, (uint16)(Sql_GetFloatData(SqlHandle, 32) * 1000));
+			PMob->setModifier(Mod::HTHRES, (uint16)(Sql_GetFloatData(SqlHandle, 33) * 1000));
+			PMob->setModifier(Mod::IMPACTRES, (uint16)(Sql_GetFloatData(SqlHandle, 34) * 1000));
 
-			PMob->setModifier(MOD_FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
-			PMob->setModifier(MOD_ICERES, (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
-			PMob->setModifier(MOD_WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
-			PMob->setModifier(MOD_EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
-			PMob->setModifier(MOD_THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
-			PMob->setModifier(MOD_WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
-			PMob->setModifier(MOD_LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
-			PMob->setModifier(MOD_DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
+			PMob->setModifier(Mod::FIRERES, (int16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100)); // These are stored as floating percentages
+			PMob->setModifier(Mod::ICERES, (int16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100)); // and need to be adjusted into modifier units.
+			PMob->setModifier(Mod::WINDRES, (int16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100)); // Higher RES = lower damage.
+			PMob->setModifier(Mod::EARTHRES, (int16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100)); // Negatives signify lower resist chance.
+			PMob->setModifier(Mod::THUNDERRES, (int16)((Sql_GetFloatData(SqlHandle, 39) - 1) * -100)); // Positives signify increased resist chance.
+			PMob->setModifier(Mod::WATERRES, (int16)((Sql_GetFloatData(SqlHandle, 40) - 1) * -100));
+			PMob->setModifier(Mod::LIGHTRES, (int16)((Sql_GetFloatData(SqlHandle, 41) - 1) * -100));
+			PMob->setModifier(Mod::DARKRES, (int16)((Sql_GetFloatData(SqlHandle, 42) - 1) * -100));
 
 			PMob->m_Element = (uint8)Sql_GetIntData(SqlHandle, 43);
 			PMob->m_Family = (uint16)Sql_GetIntData(SqlHandle, 44);
