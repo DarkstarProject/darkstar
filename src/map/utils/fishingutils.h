@@ -28,10 +28,10 @@
 
 enum FISHACTION
 {
-	FISHACTION_CHECK	= 2,
-	FISHACTION_FINISH	= 3,
-	FISHACTION_END		= 4,
-	FISHACTION_WARNING	= 5
+    FISHACTION_CHECK    = 2,  // This is always the first 0x110 packet. //
+    FISHACTION_FINISH   = 3,  // This is the next 0x110 after 0x115. //
+    FISHACTION_END      = 4,
+    FISHACTION_WARNING  = 5   // This is the 0x110 packet if the time is going on too long. //
 };
 
 /************************************************************************
@@ -46,8 +46,8 @@ namespace fishingutils
 {
     void LoadFishingMessages();
 
-	void StartFishing(CCharEntity* PChar);
-	void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina);
+    void StartFishing(CCharEntity* PChar);
+    void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint8 special);
 };
 
 #endif
