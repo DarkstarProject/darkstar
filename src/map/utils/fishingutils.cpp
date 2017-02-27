@@ -442,7 +442,7 @@ namespace fishingutils
                     PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x32));
                     // Message: "Something clamps onto your line ferociously!" //
                     PChar->pushPacket(new CMessageTextPacket(PChar, MessageOffset + 0x34));
-                    PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 0, 140, 30, 1, 12)); //monster values may need verification
+                    PChar->pushPacket(new CFishingPacket(3081, 128, 15, 500, 13, 140, 30, 1, 12)); //monster values may need verification
                 }
                 else if (checkFisherLuck(PChar, WeaponItem->getID(), AmmoItem->getID()))
                 {
@@ -461,7 +461,7 @@ namespace fishingutils
                     uint16 gTime = 0;
                     uint16 rod = 0;
                     uint16 arrowLuck = 0;
-                    uint16 arrowDelay = 0;
+                    uint16 arrowDelay = 13;
                     uint16 damage = 0;
                     uint16 miss = 0;
 
