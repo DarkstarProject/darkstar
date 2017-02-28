@@ -9,6 +9,7 @@ package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 
 require("scripts/zones/Nashmau/TextIDs");
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 
@@ -37,7 +38,7 @@ function onTrigger(player,npc)
     local mJob = player:getMainJob();
     local mLvl = player:getMainLvl();
     
-    if (player:getVar("AgainstAllOddsSideQuests") == 1 and mJob == 17 and mLvl >= AF3_QUEST_LEVEL) then
+    if (player:getVar("AgainstAllOddsSideQuests") == 1 and mJob == JOBS.COR and mLvl >= AF3_QUEST_LEVEL) then
         player:startEvent(0x11A); -- CS with 3 Options
     else
         player:startEvent(0x0108); -- Basic Dialog    
