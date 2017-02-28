@@ -7,8 +7,10 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/quests");
 require("scripts/globals/titles");
 
 -----------------------------------
@@ -20,7 +22,7 @@ function onInitialize(zone)
     zone:registerRegion(2,-96,-7,121,-64,-5,137); -- Sets Mark for "Vanishing Act" Quest cutscene.
     zone:registerRegion(3,14,-7,-65,37,-2,-41); -- TOAU Mission 1 CS area
     zone:registerRegion(4,75,-3,25,90,1,59);
-    zone:registerRegion(5,73,-7,-137,95,-3,-115);
+    zone:registerRegion(5,73,-7,-137,95,-3,-115); -- entering Shaharat Teahouse
 end;
 
 -----------------------------------
@@ -112,6 +114,8 @@ function onRegionEnter(player,region)
                 player:startEvent(3092);
             elseif (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 1) then
                 player:startEvent(3136,0,0,0,0,0,0,0,0,0);
+            elseif (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == JOBS.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
+                player:startEvent(797);
             end
         end,
     }
@@ -250,5 +254,11 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(ALLIED_COUNCIL_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,ALLIED_COUNCIL_SUMMONS);
         player:addMission(TOAU,ALLIED_RUMBLINGS);
+    elseif (csid == 797) then
+        player:setVar("AgainstAllOdds",1); -- Set For Corsair BCNM
+        player:setVar("AgainstAllOddsSideQuests",1); -- Set For Corsair Side Quests
+        player:addQuest(AHT_URHGAN,AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
+        player:addKeyItem(LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
+        player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);
     end
 end;
