@@ -7,6 +7,8 @@
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
 -- onMobSpawn
@@ -14,9 +16,8 @@ require("scripts/globals/quests");
 
 function onMobSpawn(mob)
     -- Failsafe to make sure NPC is down when NM is up
-    local npc = GetNPCByID(17236308);
-    if (OldSchoolG2 == true) then
-        npc:showNPC(1);
+    if (OldSchoolG2) then
+        GetNPCByID(17236308):showNPC(0);
     end
 end;
 
@@ -25,11 +26,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-
-    local npc = GetNPCByID(17236308);
-    if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(ROUND_FRIGICITE) == false) then
-        player:messageSpecial(BLOCKS_OF_ICE);
+    if (OldSchoolG2) then
+        -- show ??? for desired duration
+        -- notify people on the quest who need the KI
+        GetNPCByID(17236308):showNPC(FrigiciteDuration);
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(ROUND_FRIGICITE) == false) then
+            player:messageSpecial(BLOCKS_OF_ICE);
+        end
     end
-    npc:showNPC(FrigiciteDuration);
-
 end;
