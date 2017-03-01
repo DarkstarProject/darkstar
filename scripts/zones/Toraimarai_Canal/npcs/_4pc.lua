@@ -2,16 +2,12 @@
 -- Area: Toraimarai Canal
 -- NPC:  Marble Door
 -- Involved In Windurst Mission 7-1
--- @pos 132 12 -19 169 169
------------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+-- @pos 132 12 -19 169
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/settings");
 
 -----------------------------------
 -- onTrade Action
@@ -25,22 +21,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-local CurrentMission = player:getCurrentMission(WINDURST);
--- NOTE: MobAction is 25(ACTION_SPAWN) when they're dead/despawned and 16(ACTION_ROAMING) when spawned.
---         Not really sure why but this seems to work.
---         print("HingeOil 1 Action: "..GetMobAction(17469666));
-if (CurrentMission == THE_SIXTH_MINISTRY or player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY)) then
-    if ((GetMobAction(17469666) == 25) and
-       (GetMobAction(17469667) == 25) and
-       (GetMobAction(17469668) == 25) and
-       (GetMobAction(17469669) == 25)) then
-        player:startEvent(0x0046,0,0,0,2);
+    if player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY or player:hasCompletedMission(WINDURST,THE_SIXTH_MINISTRY) then
+        if (GetMobByID(17469666):isDead() and GetMobByID(17469667):isDead() and GetMobByID(17469668):isDead() and GetMobByID(17469669):isDead()) then
+            -- all four hinge oils are dead
+            player:startEvent(0x0046,0,0,0,2);
+        else
+            -- at least one hinge oil is alive
+            player:startEvent(0x0046,0,0,0,1); 
+        end
     else
-        player:startEvent(0x0046,0,0,0,1); 
+        player:startEvent(0x0046);
     end
-else
-    player:startEvent(0x0046);
-end
 end;
 
 -----------------------------------

@@ -7,9 +7,10 @@
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/zones/Xarcabard/TextIDs");
 
 -----------------------------------
@@ -24,8 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    local BorealCoeurl = GetMobAction(17236203);
-    if ((OldSchoolG2 == false) or (BorealCoeurl == ACTION_NONE or BorealCoeurl == ACTION_SPAWN)) then
+    if (OldSchoolG2 == false or GetMobByID(17236203):isDead()) then
         if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and player:hasKeyItem(SQUARE_FRIGICITE) == false) then
             player:addKeyItem(SQUARE_FRIGICITE);
             player:messageSpecial(KEYITEM_OBTAINED, SQUARE_FRIGICITE);

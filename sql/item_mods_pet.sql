@@ -40,9 +40,9 @@ CREATE TABLE IF NOT EXISTS `item_mods_pet` (
 -- -------------------------------------------------------
 -- Charivari Earring - LVL 99
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10296,25,3,3);        -- AUTOMATON:ACC
-INSERT INTO `item_mods_pet` VALUES (10296,26,3,3);        -- AUTOMATON:RACC
-INSERT INTO `item_mods_pet` VALUES (10296,30,3,3);        -- AUTOMATON:MACC
+INSERT INTO `item_mods_pet` VALUES (10296,25,3,3);        -- Automaton:ACC
+INSERT INTO `item_mods_pet` VALUES (10296,26,3,3);        -- Automaton:RACC
+INSERT INTO `item_mods_pet` VALUES (10296,30,3,3);        -- Automaton:MACC
 
 -- -------------------------------------------------------
 -- Sabong Earring - LVL 99
@@ -57,27 +57,27 @@ INSERT INTO `item_mods_pet` VALUES (10440,384,61,3);      -- Automaton: Haste+6%
 -- -------------------------------------------------------
 -- Tethyan Cuffs +1 - LVL 99
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10530,28,5,1);        -- AVATAR:MAB
+INSERT INTO `item_mods_pet` VALUES (10530,28,5,1);        -- Avatar:MAB
 
 -- -------------------------------------------------------
 -- Tethyan Cuffs +2 - LVL 99
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10531,28,5,1);        -- AVATAR:MAB
+INSERT INTO `item_mods_pet` VALUES (10531,28,5,1);        -- Avatar:MAB
 
 -- -------------------------------------------------------
 -- Tethyan Cuffs +3 - LVL 99
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10532,28,5,1);        -- AVATAR:MAB
+INSERT INTO `item_mods_pet` VALUES (10532,28,5,1);        -- Avatar:MAB
 
 -- -------------------------------------------------------
 -- Smn. Horn +2 - LVL 90
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10664,28,4,1);        -- AVATAR:MAB
+INSERT INTO `item_mods_pet` VALUES (10664,28,4,1);        -- Avatar:MAB
 
 -- -------------------------------------------------------
 -- Summoner's Doublet + 2 - LVL 90
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (10684,165,6,1);       -- AVATAR: Critical Hit Rate +6%
+INSERT INTO `item_mods_pet` VALUES (10684,165,6,1);       -- Avatar: Critical Hit Rate +6%
 
 -- -------------------------------------------------------
 -- Smn. Bracers +2 - LVL 90
@@ -230,7 +230,7 @@ INSERT INTO `item_mods_pet` VALUES (12520,27,-3,1);       -- Avatar: Enmity -3
 -- Evoker's Doublet
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (12650,27,-2,1);       -- Avatar: Enmity -2
--- Avatar will grant the smn +25 elemental resistance to the element type of the avatar
+-- Avatar will grant the smn +25 elemental resistance to the element type of the Avatar
 
 -- -------------------------------------------------------
 -- Evoker's Bracers
@@ -320,12 +320,12 @@ INSERT INTO `item_mods_pet` VALUES (15594,27,2,1);        -- Avatar: Enmity +2
 -- -------------------------------------------------------
 -- Askar Dirs - LVL 75
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (15647,1,10,0);      -- Pet: DEF +10
+INSERT INTO `item_mods_pet` VALUES (15647,1,10,0);        -- Pet: DEF +10
 
 -- -------------------------------------------------------
 -- Goliard Trews - 75
 -- -------------------------------------------------------
-INSERT INTO `item_mods_pet` VALUES (15649,1,10,0);      -- Pet: DEF +10
+INSERT INTO `item_mods_pet` VALUES (15649,1,10,0);        -- Pet: DEF +10
 
 -- -------------------------------------------------------
 -- Summoner's Pigaches + 1 - LVL 75
@@ -365,9 +365,50 @@ INSERT INTO `item_mods_pet` VALUES (16368,25,10,0);       -- Pet: accuracy +10
 INSERT INTO `item_mods_pet` VALUES (16654,368,10,0);      -- Pet: "Regain"+10
 
 -- -------------------------------------------------------
+-- Draconis Lance - LVL 90
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (16843,25,10,2);       -- Wyvern: Accuracy+10
+INSERT INTO `item_mods_pet` VALUES (16843,23,10,2);       -- Wyvern: Attack+10
+
+-- -------------------------------------------------------
+-- 	Wyvern Perch - LVL 73
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (17579,2,50,2);        -- Wyvern: HP+50
+
+-- -------------------------------------------------------
 -- Lion Tamer - LVL 74
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (17961,1,10,0);        -- Pet: DEF +10
+
+-- -------------------------------------------------------
+-- Ravana's Axe - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18547,370,3,0);       -- Pet: Adds "Regen" effect
+
+-- -------------------------------------------------------
+-- Marotte Claws - LVL 82
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18778,369,1,3);       -- Automaton: Adds "Refresh" effect
+INSERT INTO `item_mods_pet` VALUES (18778,370,1,3);       -- Automaton: Adds "Regen" effect
+
+-- -------------------------------------------------------
+-- Burattinaios - LVL 89
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18780,368,10,3);      -- Automaton: "Regain"+10
+
+-- -------------------------------------------------------
+-- Buzbaz Sainti - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18791,2,30,3);        -- Automaton: HP+30
+INSERT INTO `item_mods_pet` VALUES (18791,23,9,3);        -- Automaton: Attack+9
+INSERT INTO `item_mods_pet` VALUES (18791,24,9,3);        -- Automaton: Ranged Attack+9
+
+-- -------------------------------------------------------
+-- Buzbaz Sainti +1 - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (18792,2,40,3);        -- Automaton: HP+40
+INSERT INTO `item_mods_pet` VALUES (18792,23,10,3);       -- Automaton: Attack+10
+INSERT INTO `item_mods_pet` VALUES (18792,24,10,3);       -- Automaton: Ranged Attack+10
 
 -- -------------------------------------------------------
 -- Aymur *Mythic* - LVL 75 - ignored the Aftermath acc,atk occ.attacks twice

@@ -33,19 +33,19 @@ function onMobSpawn(mob)
 
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Hane Fubuki
-        if(skillId == 1998) then
+        if (skillId == 1998) then
             mob:showText(mob,TheAshuTalif.text.UNNATURAL_CURS);
         -- Hiden Sokyaku
-        elseif(skillId == 1999) then
+        elseif (skillId == 1999) then
             mob:showText(mob,TheAshuTalif.text.STING_OF_MY_BLADE);
         -- Happobarai
-        elseif(skillId == 2001) then
+        elseif (skillId == 2001) then
             mob:showText(mob,TheAshuTalif.text.HARNESS_THE_WHIRLWIND);
         -- Rinpyotosha
-        elseif(skillId == 2002) then
+        elseif (skillId == 2002) then
             mob:showText(mob,TheAshuTalif.text.SWIFT_AS_LIGHTNING);
         end
-    );
+    end);
 end;
 
 -----------------------------------
