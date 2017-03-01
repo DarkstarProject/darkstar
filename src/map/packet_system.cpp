@@ -5519,6 +5519,8 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     //PrintPacket(data);
+    if (PChar->animation != ANIMATION_FISHING_START)
+        return;
 
     uint32 charid = RBUFL(data, (0x04));
     uint16 stamina = RBUFW(data, (0x08));
