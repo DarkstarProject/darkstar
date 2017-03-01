@@ -160,20 +160,21 @@ INSERT INTO `item_mods` VALUES (10284,9,12);      -- DEX +12
 INSERT INTO `item_mods` VALUES (10284,23,19);     -- ATT +19
 INSERT INTO `item_mods` VALUES (10284,165,2);     -- CRIT +2%
 INSERT INTO `item_mods` VALUES (10284,384,30);    -- Haste +3%
-INSERT INTO `item_mods` VALUES (10285,1,61); -- Beguiler's Jerkin - DEF +61
-INSERT INTO `item_mods` VALUES (10285,25,15); -- ACC +15
-INSERT INTO `item_mods` VALUES (10285,73,5); -- STP +5
-INSERT INTO `item_mods` VALUES (10285,289,7); -- SUBTLE +7
-INSERT INTO `item_mods` VALUES (10285,384,51); -- Haste +5%
-INSERT INTO `item_mods` VALUES (10286,1,53); -- Seidr Cotehardie - DEF +53
-INSERT INTO `item_mods` VALUES (10286,28,7); -- MATT +7
-INSERT INTO `item_mods` VALUES (10286,30,13); -- MACC +13
-INSERT INTO `item_mods` VALUES (10287,1,71); -- Feverish Korazin - DEF +71
-INSERT INTO `item_mods` VALUES (10287,2,90); -- HP +90
-INSERT INTO `item_mods` VALUES (10287,8,15); -- STR +15
-INSERT INTO `item_mods` VALUES (10287,23,15); -- ATT +15
-INSERT INTO `item_mods` VALUES (10287,54,30); -- Fire Resist +30
-INSERT INTO `item_mods` VALUES (10287,162,-5); -- Breath Damage Taken -5%
+INSERT INTO `item_mods` VALUES (10285,1,61);      -- Beguiler's Jerkin - DEF +61
+INSERT INTO `item_mods` VALUES (10285,25,15);     -- ACC +15
+INSERT INTO `item_mods` VALUES (10285,73,5);      -- STP +5
+INSERT INTO `item_mods` VALUES (10285,289,7);     -- SUBTLE +7
+INSERT INTO `item_mods` VALUES (10285,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (10286,1,53);      -- Seidr Cotehardie - DEF +53
+INSERT INTO `item_mods` VALUES (10286,28,7);      -- MATT +7
+INSERT INTO `item_mods` VALUES (10286,30,13);     -- MACC +13
+-- INSERT INTO `item_mods` VALUES (10286,??,2);   -- Converts 2% of magic elemental damage dealt to MP
+INSERT INTO `item_mods` VALUES (10287,1,71);      -- Feverish Korazin - DEF +71
+INSERT INTO `item_mods` VALUES (10287,2,90);      -- HP +90
+INSERT INTO `item_mods` VALUES (10287,8,15);      -- STR +15
+INSERT INTO `item_mods` VALUES (10287,23,15);     -- ATT +15
+INSERT INTO `item_mods` VALUES (10287,54,30);     -- Fire Resist +30
+INSERT INTO `item_mods` VALUES (10287,162,-5);    -- Breath Damage Taken -5%
 INSERT INTO `item_mods` VALUES (10288,1,55);      -- Baalmuian Robe: DEF 55
 INSERT INTO `item_mods` VALUES (10288,12,10);     -- INT +10
 INSERT INTO `item_mods` VALUES (10288,13,10);     -- MND +10
@@ -181,29 +182,29 @@ INSERT INTO `item_mods` VALUES (10288,28,8);      -- Magic Atk. Bonus +8
 INSERT INTO `item_mods` VALUES (10288,30,8);      -- Magic Accuracy +8
 INSERT INTO `item_mods` VALUES (10288,487,5);     -- Bonus damage added to magic burst +5% ?
 INSERT INTO `item_mods` VALUES (10288,369,2);     -- Refresh +2
-INSERT INTO `item_mods` VALUES (10289,1,60); -- Sublime Breastplate - DEF +60
-INSERT INTO `item_mods` VALUES (10289,8,14); -- STR +14
-INSERT INTO `item_mods` VALUES (10289,13,14); -- MND +14
-INSERT INTO `item_mods` VALUES (10289,25,13); -- ACC +13
-INSERT INTO `item_mods` VALUES (10289,111,10); -- DIV SKILL +10
-INSERT INTO `item_mods` VALUES (10289,112,10); -- HEAL SKILL +10
-INSERT INTO `item_mods` VALUES (10290,1,78); -- Laudan Cuirass - DEF +78
-INSERT INTO `item_mods` VALUES (10290,8,16); -- STR +16
-INSERT INTO `item_mods` VALUES (10290,10,10); -- VIT +10
-INSERT INTO `item_mods` VALUES (10290,12,10); -- INT +10
-INSERT INTO `item_mods` VALUES (10290,23,30); -- ATT +30
-INSERT INTO `item_mods` VALUES (10290,384,30); -- Haste +3%
-INSERT INTO `item_mods` VALUES (10291,1,61);  -- Febro Kaftan - DEF +61
-INSERT INTO `item_mods` VALUES (10291,9,14); -- DEX +14
-INSERT INTO `item_mods` VALUES (10291,11,14); -- AGI +14
-INSERT INTO `item_mods` VALUES (10291,25,12); -- ACC +12
-INSERT INTO `item_mods` VALUES (10291,289,5); -- Sublte Blow +5
-INSERT INTO `item_mods` VALUES (10291,384,40); -- Haste +4%
+INSERT INTO `item_mods` VALUES (10289,1,60);      -- Sublime Breastplate - DEF +60
+INSERT INTO `item_mods` VALUES (10289,8,14);      -- STR +14
+INSERT INTO `item_mods` VALUES (10289,13,14);     -- MND +14
+INSERT INTO `item_mods` VALUES (10289,25,13);     -- ACC +13
+INSERT INTO `item_mods` VALUES (10289,111,10);    -- DIV SKILL +10
+INSERT INTO `item_mods` VALUES (10289,112,10);    -- HEAL SKILL +10
+INSERT INTO `item_mods` VALUES (10290,1,78);      -- Laudan Cuirass - DEF +78
+INSERT INTO `item_mods` VALUES (10290,8,16);      -- STR +16
+INSERT INTO `item_mods` VALUES (10290,10,10);     -- VIT +10
+INSERT INTO `item_mods` VALUES (10290,12,10);     -- INT +10
+INSERT INTO `item_mods` VALUES (10290,23,30);     -- ATT +30
+INSERT INTO `item_mods` VALUES (10290,384,30);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (10291,1,61);      -- Febro Kaftan - DEF +61
+INSERT INTO `item_mods` VALUES (10291,9,14);      -- DEX +14
+INSERT INTO `item_mods` VALUES (10291,11,14);     -- AGI +14
+INSERT INTO `item_mods` VALUES (10291,25,12);     -- ACC +12
+INSERT INTO `item_mods` VALUES (10291,289,5);     -- Sublte Blow +5
+INSERT INTO `item_mods` VALUES (10291,384,40);    -- Haste +4%
 INSERT INTO `item_mods` VALUES (10292,1,75);      -- Wikyo Cloak: DEF 75
 INSERT INTO `item_mods` VALUES (10292,13,16);     -- MND +16
 INSERT INTO `item_mods` VALUES (10292,30,10);     -- Magic Accuracy +10
 INSERT INTO `item_mods` VALUES (10292,114,18);    -- Enfeebling magic skill +18
-INSERT INTO `item_mods` VALUES (10293,1,2); -- Chocobo Shirt - DEF +2
+INSERT INTO `item_mods` VALUES (10293,1,2);       -- Chocobo Shirt - DEF +2
 INSERT INTO `item_mods` VALUES (10295,8,4); -- Kokou's Earring - STR +4
 INSERT INTO `item_mods` VALUES (10295,25,4); -- ACC +4
 INSERT INTO `item_mods` VALUES (10295,73,1); -- STP +1
