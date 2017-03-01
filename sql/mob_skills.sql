@@ -1071,7 +1071,7 @@ INSERT INTO `mob_skills` VALUES (1251,941,'Trinary_Tap',0,7.0,2000,1500,4,0,0,0)
 INSERT INTO `mob_skills` VALUES (1252,943,'Shadow_Spread',1,15.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1253,872,'Vanity_Strike',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1254,872,'Wanion',1,10.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (1255,873,'Occultation',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1255,873,'Occultation',0,7.0,2000,1500,1,0,0,0);
 INSERT INTO `mob_skills` VALUES (1256,874,'Empty_Crush',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1257,1001,'Special_Attack',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1258,876,'Lamentation',1,10.0,2000,1500,4,0,0,0);
