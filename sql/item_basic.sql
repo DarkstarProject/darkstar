@@ -5742,7 +5742,7 @@ INSERT INTO `item_basic` VALUES (6139,0,'midrium_bolt_quiver','mid._bolt_quiver'
 INSERT INTO `item_basic` VALUES (6140,0,'damascus_bolt_quiver','dm._bolt_quiver',12,1540,15,0,0);
 INSERT INTO `item_basic` VALUES (6141,0,'oxidant_bolt_quiver','o._bolt_quiver',12,1540,15,0,0);
 INSERT INTO `item_basic` VALUES (6142,0,'midrium_bullet_pouch','mid._bul._pouch',12,1540,15,0,0);
-INSERT INTO `item_basic` VALUES (6143,0,'damascus_bullet_pouch','dm._bul._pouch',12,1540,14,0,0);
+INSERT INTO `item_basic` VALUES (6143,0,'damascus_bullet_pouch','dm._bul._pouch',12,1540,15,0,0);
 INSERT INTO `item_basic` VALUES (6144,0,'frigorifish','frigorifish',12,1548,51,0,100);
 INSERT INTO `item_basic` VALUES (6145,0,'dwarf_remora','dwarf_remora',12,1548,51,0,100);
 INSERT INTO `item_basic` VALUES (6146,0,'remora','remora',1,1544,51,0,100);
