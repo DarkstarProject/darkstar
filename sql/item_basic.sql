@@ -4811,7 +4811,7 @@ INSERT INTO `item_basic` VALUES (5191,0,'dish_of_spaghetti_pescatora','pescatora
 INSERT INTO `item_basic` VALUES (5192,0,'dish_of_spaghetti_boscaiola','boscaiola',12,1548,56,0,715);
 INSERT INTO `item_basic` VALUES (5193,0,'dish_of_spaghetti_nero_di_seppia','nero_di_seppia',12,1548,56,0,548);
 INSERT INTO `item_basic` VALUES (5194,0,'bowl_of_pomodoro_sauce','pomodoro_sauce',12,1548,59,0,232);
-INSERT INTO `item_basic` VALUES (5195,0,'sprig_of_misareaux_parsley','misx._parsley',12,1548,59,0,539);
+INSERT INTO `item_basic` VALUES (5195,0,'sprig_of_misareaux_parsley','misx._parsley',12,1548,59,0,53);
 INSERT INTO `item_basic` VALUES (5196,0,'strip_of_buffalo_jerky','buffalo_jerky',12,1548,52,0,299);
 INSERT INTO `item_basic` VALUES (5197,0,'dish_of_spaghetti_peperoncino_+1','peperoncino_+1',12,1548,56,0,575);
 INSERT INTO `item_basic` VALUES (5198,0,'dish_of_spaghetti_vongole_rosso_+1','vongole_r._+1',12,1548,56,0,477);
