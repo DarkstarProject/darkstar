@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `item_mods_pet` (
  `itemId` smallint(5) unsigned NOT NULL,
  `modId` smallint(5) unsigned NOT NULL,
  `value` smallint(5) NOT NULL DEFAULT '0',
- `petType` tinyint(3) unsigned NOT NULL,
+ `petType` tinyint(3) unsigned NOT NULL DEFAULT '0',
  PRIMARY KEY (`itemId`,`modId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 

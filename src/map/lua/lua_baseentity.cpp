@@ -8588,7 +8588,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     {
         for (uint8 i = 0; i < DropList->size(); ++i)
         {
-            if (DropList->at(i).DropType == 2)
+            if (DropList->at(i).DropType == DROP_STEAL)
             {
                 lua_pushinteger(L, DropList->at(i).ItemID);
                 return 1;

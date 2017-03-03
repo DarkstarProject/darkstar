@@ -460,7 +460,7 @@ namespace itemutils
 
     void LoadDropList()
     {
-        int32 ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, type, rate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
+        int32 ret = Sql_Query(SqlHandle, "SELECT dropId, itemId, dropType, itemRate, groupId, groupRate FROM mob_droplist WHERE dropid < %u;", MAX_DROPID);
 
         if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
         {
@@ -478,6 +478,8 @@ namespace itemutils
                 DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
                 DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
                 DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
+                DropItem.GroupId = (uint8)Sql_GetIntData(SqlHandle,4);
+                DropItem.GroupRate = (uint16)Sql_GetIntData(SqlHandle,5);
 
                 g_pDropList[DropID]->push_back(DropItem);
             }

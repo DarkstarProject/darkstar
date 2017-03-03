@@ -1819,6 +1819,15 @@ TYPE_PET  = 0x08
 TYPE_SHIP = 0x10
 
 ----------------------------------
+-- DropType
+----------------------------------
+
+DROP_NORMAL  = 0x00
+DROP_GROUPED = 0x01
+DROP_STEAL   = 0x02
+DROP_DESPOIL = 0x04
+
+----------------------------------
 -- Allegiance Definitions
 ----------------------------------
 
