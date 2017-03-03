@@ -27,48 +27,45 @@
 
 #include "fishing.h"
 
-unsigned char packet[] = 
-{	
-	                        0x90, 0x27, 0x07, 0x80, 0x0e, 0x11, 0x08, 0x14, 0x00, 0x69, 0x74, 0x73, 
-	0x4b, 0x00, 0x00, 0x00, 0x97, 0x00, 0x00, 0x00
-};
-
-/************************************************************************
-*                                                                       *  
-*  Статический dump оригинального пакета                                *
-*                                                                       *
-************************************************************************/
-
-CFishingPacket::CFishingPacket() 
-{
-	this->type = 0x81;
-	this->size = 0x0C;
-
-	memcpy(data, &packet, 20);
-}
-
-/************************************************************************
-*                                                                       *  
-*  Версия от EDGECOM                                                    *
-*                                                                       *
-************************************************************************/
-
-CFishingPacket::CFishingPacket(uint16 stamina, uint8 regen, uint8 id1, uint8 id2, uint8 id3, uint8 id4, uint8 time, uint8 unknown1, uint8 unknown2) 
-{
-	this->type = 0x81;
-	this->size = 0x0C;
-
-	memcpy(data, &packet, 20);
+/* OLD FISHING PACKET - Used for old fishing minigame. Requires setting animation to 50 at fishing start and 38 when you receive a bite. Seems to still work but breaks client's target info after fishing
+    this->type = 0x81;
+    this->size = 0x0C;
     
-    WBUFW(data,(0x04)) = stamina;
-    WBUFB(data,(0x06)) = id3;
-    WBUFB(data,(0x07)) = regen;
-	WBUFB(data,(0x08)) = id1;
-	WBUFB(data,(0x09)) = id2;
-	WBUFB(data,(0x0A)) = id4;
-	WBUFB(data,(0x0B)) = time;
-	// "Unknown, can be 0x00 or 0x01 but most likely has to do how fast the rod moves around"
-	WBUFB(data,(0x0C)) = unknown1;
-	// something to do with stamina
-	WBUFB(data,(0x10)) = unknown2;
+    unsigned char packet[] =
+    {
+                                0x90, 0x27, 0x07, 0x80, 0x0e, 0x11, 0x08, 0x14, 0x00, 0x69, 0x74, 0x73,
+        0x4b, 0x00, 0x00, 0x00, 0x97, 0x00, 0x00, 0x00
+    };
+
+    memcpy(data+4, &packet, 20);
+    
+    WBUFW(data, (0x04)) = stamina;
+    WBUFB(data, (0x06)) = id3;
+    WBUFB(data, (0x07)) = regen;
+    WBUFB(data, (0x08)) = id1;
+    WBUFB(data, (0x09)) = id2;
+    WBUFB(data, (0x0A)) = id4;
+    WBUFB(data, (0x0B)) = time;
+    	// "Unknown, can be 0x00 or 0x01 but most likely has to do how fast the rod moves around"
+    WBUFB(data, (0x0C)) = unknown1;
+    	// something to do with stamina
+    WBUFB(data, (0x10)) = unknown2;
+*/
+
+// New Fishing Packet: Mini-Game Data.
+
+CFishingPacket::CFishingPacket(uint16 stamina, uint16 regen, uint16 response, uint16 hit_dmg, uint16 arrowdelay, uint16 miss_regen, uint16 game_time, uint8 sense, uint32 garw_perc)
+{
+    this->type = 0x15; //0x115
+    this->size = 0x0D;
+
+    ref<uint16>(0x04) = stamina;    // fish HP, generally in thousands - Constant Per Fish, Changes Per Zone.
+    ref<uint16>(0x06) = arrowdelay; // how long you have to hit the arrows, generally low 10's possible miliseconds
+    ref<uint16>(0x08) = regen;      // how much stamina fish regains/loses per frame.  base is 128, less = drain, more = regen - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0A) = response;   // fish movement, how active the fish is moving left to right (base 20) - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0C) = hit_dmg;    // fish attack, how much damage is caused to fishes stamina from successful arrows - Constant Per Fish, Changes Per Zone.
+    ref<uint16>(0x0E) = miss_regen; // fish heal, how much stamina fish heals from wrong arrow press - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x10) = game_time;  // how long you have to reel the fish in (base 60)
+    ref<uint8>(0x12)  = sense;      // 0 = fish/item, 1 = monster (battle music), 2 = fish/item (lightbulb), 3 = monster (lightbulb + fight music)
+    ref<uint32>(0x14) = garw_perc;  // % chance of getting gold arrows while fishing
 }

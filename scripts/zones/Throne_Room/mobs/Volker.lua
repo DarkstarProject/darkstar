@@ -31,7 +31,7 @@ function onMobSpawn(mob)
         elseif (skillID == 975) then
             mob:showText(mob,CANT_UNDERSTAND);
         end
-    );
+    end);
 end;
 
 -----------------------------------

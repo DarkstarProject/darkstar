@@ -32,7 +32,7 @@ function onMobSpawn(mob)
         elseif (skillID == 970) then
             mob:showText(mob,SAVAGE_PREPARE);
         end
-    );
+    end);
 end;
 
 -----------------------------------

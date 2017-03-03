@@ -282,7 +282,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `type` FROM augments WHERE augmentId = %u";
+    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
@@ -293,19 +293,20 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
         Mod modId = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 2));
         int16 modValue = (int16)Sql_GetIntData(SqlHandle, 3);
-        
+
         // type is 0 unless mod is for pets
-        uint8 type = (uint8)Sql_GetUIntData(SqlHandle, 4);
+        uint8 isPet = (uint8)Sql_GetUIntData(SqlHandle, 4);
+        PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 5));
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
         // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
         modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
 
-        if (!type)
+        if (!isPet)
             addModifier(new CModifier(modId, modValue));
         else
-            addPetModifier(new CPetModifier(modId, PetModType::All, modValue));
+            addPetModifier(new CPetModifier(modId, petType, modValue));
     }
 }
 
