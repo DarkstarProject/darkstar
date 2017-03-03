@@ -2850,7 +2850,7 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     uint16 stamina = RBUFW(data, (0x08));
     uint8  action = RBUFB(data, (0x0E));
-    uint8 special = RBUFW(data, (0x10));
+    uint8 special = RBUFB(data, (0x10));
 
     if ((FISHACTION)action != FISHACTION_FINISH || PChar->animation == ANIMATION_FISHING_FISH)
         fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
