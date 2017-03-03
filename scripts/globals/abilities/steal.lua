@@ -43,7 +43,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     local thfLevel;
     local stolen = 0;
 
@@ -68,6 +68,7 @@ function onUseAbility(player,target,ability)
         ability:setMsg(125); -- Item stolen successfully
     else
         ability:setMsg(153); -- Failed to steal
+        action:animation(target:getID(), 182);
     end
 
     return stolen;

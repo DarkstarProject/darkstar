@@ -20,7 +20,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     local thfLevel;
     local gil = 0;
 
@@ -56,6 +56,7 @@ function onUseAbility(player,target,ability)
         end
     else
         ability:setMsg(244);
+        action:animation(target:getID(), 184);
     end
 
     return gil;
