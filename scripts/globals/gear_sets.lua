@@ -115,6 +115,7 @@ local GearSets =  {
              {id = 109, items = {27650,27790,27930,28073,28210},  matches = 2, matchType = matchtype.any, mods = {{MOD_HASTE_GEAR, 30, 20, 0}} }, -- Usukane Armor Set +1: Haste +3-9%
              {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
              {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
+             {id = 112, items = {10315,10598},  matches = 2, matchType = matchtype.any, mods = {{MOD_DMGMAGIC, -5, 0, 0}} }, -- Alcedo Cuisses and Gauntlets: Magic damage taken -5%
         }
              -- increment id by (number of mods in previous gearset - 1)
 
