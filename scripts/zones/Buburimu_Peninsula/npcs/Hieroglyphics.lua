@@ -27,15 +27,15 @@ end;
 function onTrigger(player,npc)  
 
     if (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) then
-        local firstDyna = 0;
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
+        local dynaUniqueID = GetServerVariable("[DynaBuburimu]UniqueID");
         
         if (checkFirstDyna(player,8)) then
              player:startEvent(0x0028);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
-        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaBuburimu]UniqueID")) then
+        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
             player:startEvent(0x0016,8,0,0,BETWEEN_2DYNA_WAIT_TIME,32,VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
