@@ -59,12 +59,12 @@ CFishingPacket::CFishingPacket(uint16 stamina, uint16 regen, uint16 response, ui
     this->type = 0x15; //0x115
     this->size = 0x0D;
 
-    ref<uint16>(0x04) = stamina;    // fish HP, generally in thousands
+    ref<uint16>(0x04) = stamina;    // fish HP, generally in thousands - Constant Per Fish, Changes Per Zone.
     ref<uint16>(0x06) = arrowdelay; // how long you have to hit the arrows, generally low 10's possible miliseconds
-    ref<uint16>(0x08) = regen;      // how much stamina fish regains/loses per frame.  base is 128, less = drain, more = regen
-    ref<uint16>(0x0A) = response;   // fish movement, how active the fish is moving left to right (base 20) - windower considers this and the following value to constitute a unique 4-byte fish id
-    ref<uint16>(0x0C) = hit_dmg;    // fish attack, how much damage is caused to fishes stamina from successful arrows - part of windower's "fish (bite) id"
-    ref<uint16>(0x0E) = miss_regen; // fish heal, how much stamina fish heals from wrong arrow press
+    ref<uint16>(0x08) = regen;      // how much stamina fish regains/loses per frame.  base is 128, less = drain, more = regen - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0A) = response;   // fish movement, how active the fish is moving left to right (base 20) - Constant Per Fish, Doesn't Change Per Zone.
+    ref<uint16>(0x0C) = hit_dmg;    // fish attack, how much damage is caused to fishes stamina from successful arrows - Constant Per Fish, Changes Per Zone.
+    ref<uint16>(0x0E) = miss_regen; // fish heal, how much stamina fish heals from wrong arrow press - Constant Per Fish, Doesn't Change Per Zone.
     ref<uint16>(0x10) = game_time;  // how long you have to reel the fish in (base 60)
     ref<uint8>(0x12)  = sense;      // 0 = fish/item, 1 = monster (battle music), 2 = fish/item (lightbulb), 3 = monster (lightbulb + fight music)
     ref<uint32>(0x14) = garw_perc;  // % chance of getting gold arrows while fishing
