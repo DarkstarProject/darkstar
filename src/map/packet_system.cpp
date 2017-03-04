@@ -2848,9 +2848,13 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     //PrintPacket(data);
 
-    uint16 stamina = RBUFW(data, (0x08));
-    uint8  action = RBUFB(data, (0x0E));
-    uint8 special = RBUFB(data, (0x10));
+    //uint32 charid = data.ref<uint32>(0x04);
+    uint16 stamina = data.ref<uint16>(0x08);
+    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //uint16 targetid = data.ref<uint16>(0x0C);
+    uint8  action = data.ref<uint8>(0x0E);
+    //uint8 ukn2 = data.ref<uint8>(0x0F);
+    uint32 special = data.ref<uint32>(0x10);
 
     if ((FISHACTION)action != FISHACTION_FINISH || PChar->animation == ANIMATION_FISHING_FISH)
         fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
@@ -5524,16 +5528,13 @@ void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if (PChar->animation != ANIMATION_FISHING_START)
         return;
 
-    uint32 charid = RBUFL(data, (0x04));
-    uint16 stamina = RBUFW(data, (0x08));
-    uint16 ukn1 = RBUFL(data, (0x0A)); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
-    uint16 targetid = RBUFW(data, (0x0C));
-    uint8 action = RBUFB(data, (0x0E));
-    uint8 ukn2 = RBUFB(data, (0x0F));
-    uint8 special = RBUFB(data, (0x10));
-    uint8 ukn3 = RBUFB(data, (0x11));
-    uint8 ukn4 = RBUFB(data, (0x12));
-    uint8 ukn5 = RBUFB(data, (0x13));
+    //uint32 charid = data.ref<uint32>(0x04);
+    uint16 stamina = data.ref<uint16>(0x08);
+    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //uint16 targetid = data.ref<uint16>(0x0C);
+    uint8 action = data.ref<uint8>(0x0E);
+    //uint8 ukn2 = data.ref<uint8>(0x0F);
+    uint32 special = data.ref<uint32>(0x10);
     fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
 
     return;
