@@ -678,7 +678,7 @@ int32 send_parse(int8 *buff, size_t* buffsize, sockaddr_in* from, map_session_da
         }
         //Сжимаем данные без учета заголовка
         //Возвращаемый размер в 8 раз больше реальных данных
-        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, *buffsize);
+        PacketSize = zlib_compress(buff + FFXI_HEADER_SIZE, *buffsize - FFXI_HEADER_SIZE, PTempBuff, map_config.buffer_size);
         WBUFL(PTempBuff, zlib_compressed_size(PacketSize)) = PacketSize;
 
         PacketSize = zlib_compressed_size(PacketSize) + 4;
