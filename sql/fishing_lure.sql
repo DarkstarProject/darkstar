@@ -281,6 +281,7 @@ INSERT INTO `fishing_lure` VALUES(17001, 'Giant Shell Bug', 887, 0);
 INSERT INTO `fishing_lure` VALUES(17001, 'Giant Shell Bug', 13454, 0);
 INSERT INTO `fishing_lure` VALUES(17001, 'Giant Shell Bug', 13456, 0);
 INSERT INTO `fishing_lure` VALUES(17001, 'Giant Shell Bug', 1638, 0);
+INSERT INTO `fishing_lure` VALUES(17001, 'Giant Shell Bug', 4562, 0); -- odontotyrannus (PLD AF2)
 INSERT INTO `fishing_lure` VALUES(17002, 'Robber Rig', 4484, 300);
 INSERT INTO `fishing_lure` VALUES(17002, 'Robber Rig', 5473, 150);
 INSERT INTO `fishing_lure` VALUES(17002, 'Robber Rig', 5469, 150);
