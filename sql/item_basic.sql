@@ -18808,7 +18808,7 @@ INSERT INTO `item_basic` VALUES (27224,0,'gefechtdiechlings','gefechtdiechlings'
 INSERT INTO `item_basic` VALUES (27225,0,'wildheitdiechlings','wildheitdiechlings',1,2080,20,0,0);
 INSERT INTO `item_basic` VALUES (27226,0,'sombra_tights','sombra_tights',1,2084,20,0,0);
 INSERT INTO `item_basic` VALUES (27227,0,'sombra_tights_+1','sombra_tights_+1',1,2080,20,0,0);
-INSERT INTO `item_basic` VALUES (27228,0,'revealers_pants','revealers_pants',1,2084,29,0,0);
+INSERT INTO `item_basic` VALUES (27228,0,'revealers_pants','revealers_pants',1,2084,20,0,0);
 INSERT INTO `item_basic` VALUES (27229,0,'revealers_pants_+1','reveal._pants_+1',1,2080,20,0,0);
 INSERT INTO `item_basic` VALUES (27230,0,'zoar_subligar','zoar_subligar',1,63572,99,0,0);
 INSERT INTO `item_basic` VALUES (27231,0,'zoar_subligar_+1','zoar_subligar_+1',1,63568,99,1,0);
