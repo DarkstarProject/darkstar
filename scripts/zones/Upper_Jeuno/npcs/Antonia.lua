@@ -23,14 +23,22 @@ function onTrigger(player,npc)
     
 player:showText(npc,ANTONIA_SHOP_DIALOG);
 
-stock = {0x42A5,6256,  -- Mythril Rod
-         0x4283,11232, -- Oak Cudgel
-         0x428C,18048, -- Mythril Mace
-         0x4294,6033,  -- Warhammer
-         0x42CA,37440, -- Oak Pole
-         0x41C4,44550, -- Halberd
-         0x4186,10596, -- Scythe
-         0x43A8,7}    -- Iron Arrow
+stock = {0x5400,100100, -- Arasy Sainti
+     0x5432,100100, -- Arasy Knife
+     0x5464,100100, -- Arasy Sword
+     0x5496,100100, -- Arasy Claymore
+     0x54C8,100100, -- Arasy Tabar
+     0x5502,100100, -- Arasy Axe
+     0x5534,100100, -- Arasy Scythe
+     0x5569,100100, -- Arasy Lance
+     0x5595,100100, -- Yoshikiri
+     0x55C8,100100, -- Ashijiro no Tachi
+     0x55FF,100100, -- Arasy Rod
+     0x563A,100100, -- Arasy Staff
+     0x566A,100100, -- Arasy Bow
+     0x5677,100100, -- Arasy Gun
+     0x5390,100100, -- Animator Z
+     0x5391,100100} -- Arasy Sachet
  
 showShop(player, STATIC, stock);
 end; 
