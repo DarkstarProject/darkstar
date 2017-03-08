@@ -13,6 +13,7 @@ CONQUEST = 7367; -- You've earned conquest points!
 
 -- Quest Dialog
 NOTHING_OUT_OF_ORDINARY = 6421; -- There is nothing out of the ordinary here.
+     SONG_RUNES_DEFAULT = 7327; -- Lyrics on the old monument sing the story of lovers torn apart.
             UNLOCK_BARD = 7348; -- You can now become a bard!
 
 -- Signposts
