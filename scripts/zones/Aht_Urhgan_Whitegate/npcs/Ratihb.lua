@@ -41,10 +41,10 @@ function onTrigger(player,npc)
         player:startEvent(0x0304);
         player:setVar("EquipedforAllOccasions",5);
         player:setVar("LuckOfTheDraw",0);
-    elseif (player:getQuestStatus(AHT_URHGAN,NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getMainJob() == JOBS.COR and mLvl >= AF1_QUEST_LEVEL) then
-        player:startEvent(0x031D);
     elseif (player:getQuestStatus(AHT_URHGAN,LUCK_OF_THE_DRAW) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_COMPLETED) then
         player:setVar("EquipedforAllOccasions",0);
+    elseif (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_ACCEPTED and not player:hasKeyItem(LIFE_FLOAT)) then
+        player:startEvent(0x025C); -- reacquire life float
     else    
         player:startEvent(0x025B);    -- standard dialog
     end
@@ -79,11 +79,7 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,AFgun);
         end
-        
-    elseif (csid == 0x031D) then
-        player:setVar("AgainstAllOdds",1); -- Set For Corsair BCNM
-        player:setVar("AgainstAllOddsSideQuests",1); -- Set For Corsair Side Quests
-        player:addQuest(AHT_URHGAN,AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
+    elseif (csid == 0x025C) then
         player:addKeyItem(LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
         player:messageSpecial(KEYITEM_OBTAINED, LIFE_FLOAT);
     end

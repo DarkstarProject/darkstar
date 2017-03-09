@@ -28,17 +28,26 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11671, 302, 2, 55, 100); -- Triple Attack +2% when mp is greater than or equal to 100
 
+-- -------------------------------------------------------
+-- Uggalepih Pendant
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51); -- "Magic Atk. Bonus" while MP <51%
+
 INSERT INTO `item_latents` VALUES(13178, 8, 4, 25, 0); -- Auditory Torque, STR+4 song/roll active
 INSERT INTO `item_latents` VALUES(13178, 10, 4, 25, 0); -- Auditory Torque, VIT+4 song/roll active
-INSERT INTO `item_latents` VALUES(17365, 8, 4, 25, 0); -- Frenzy Fife, STR+4 song/roll active
-INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0); -- Hototogisu, parry skill +5 song/roll active
+
+-- -------------------------------------------------------
+--  Opo-opo crown
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468); -- HP +50 (pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468); -- MP +50
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468); -- CHR +14
+INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596); -- Opo-opo crown HP +50 (wild pamamas)
+INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596); -- MP +50
+INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
+
 INSERT INTO `item_latents` VALUES(14725, 68, 5, 25, 0); -- Melody Earring, EVA+5 song/roll active
 INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EVA+6 song/roll active
-INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0); -- Orphic Egg, ACC+1 song/roll active
-INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0); -- Orphic Egg, ATT+1 song/roll active
-INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0); -- Orphic Egg, EVA+1 song/roll active
-INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 474 (504 - 30) song/roll active
-
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
 INSERT INTO `item_latents` VALUES(16029, 2, 10, 22, 16); -- Booster Earring, HP+10 if BLU is in party
@@ -58,13 +67,11 @@ INSERT INTO `item_latents` VALUES(16030, 26, 1, 22, 17); -- Soarer Earring, RACC
 INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+4 if WAR is in party
 INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
 INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, Healing MP +1 if SCH is in party
+INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0); -- Hototogisu, parry skill +5 song/roll active
+INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
+INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
+INSERT INTO `item_latents` VALUES(17365, 8, 4, 25, 0); -- Frenzy Fife, STR+4 song/roll active
 
-INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468); -- Opo-opo crown HP +50 (pamamas)
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4468); -- MP +50
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4468); -- CHR +14
-INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4596); -- Opo-opo crown HP +50 (wild pamamas)
-INSERT INTO `item_latents` VALUES(13870, 5, 50, 49, 4596); -- MP +50
-INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
 INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- Primate Staff
 INSERT INTO `item_latents` VALUES(17590, 25, 10, 49, 4468);
 INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4596);
@@ -77,16 +84,14 @@ INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4468); -- Kinkobo
 INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468);
 INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596);
 INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
-INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
-INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
+
+INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0); -- Orphic Egg, ACC+1 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0); -- Orphic Egg, ATT+1 song/roll active
+INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0); -- Orphic Egg, EVA+1 song/roll active
+INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 474 (504 - 30) song/roll active
 
 INSERT INTO `item_latents` VALUES(28235,169,25,26,2);      -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256,169,25,26,2);      -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
-
--- -------------------------------------------------------
--- Uggalepih Pendant
--- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13145, 28, 8, 4, 51); -- "Magic Atk. Bonus" while MP <51%
 
 -- -------------------------------------------------------
 -- Sorcerer's Ring
@@ -1451,6 +1456,7 @@ INSERT INTO `item_latents` VALUES(18165, 68, 10, 26, 1); -- Nighttime: Evasion+1
 INSERT INTO `item_latents` VALUES(10293, 25, 50, 50, 31); -- Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 26, 50, 50, 31); -- Rng. Acc.+50
 INSERT INTO `item_latents` VALUES(10293, 30, 50, 50, 31); -- Mag. Acc.+50
+-- INSERT INTO `item_latents` VALUES(10293, ??, -1, 50, 31); -- Initiate and below: Likelihood of synthesis material loss -1%
 
 -- -------------------------------------------------------
 -- Destrier Beret
@@ -2794,28 +2800,28 @@ INSERT INTO `item_latents` VALUES (23320,169,25,26,2); -- Dusk to dawn: Movement
 INSERT INTO `item_latents` VALUES (23655,169,25,26,2); -- Dusk to dawn: Movement speed +25%
 
 -- -------------------------------------------------------
--- Lunette ring  
+-- Lunette ring
 -- Latent is active when engaged and drains 2mp/tick.
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(10766,29,5,10,0); -- MDEF+7
 INSERT INTO `item_latents` VALUES(10766,369,-2,10,0);
 
 -- -------------------------------------------------------
--- Eerie cloak +1 
+-- Eerie cloak +1
 -- Latent effect is active at night when the level of the player's main job is a multiple of 13.
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11301,369,1,40,0); -- Refresh+1
 
 -- -------------------------------------------------------
--- Chrys. Torque 
+-- Chrys. Torque
 -- Latent Effect is active when you have TP. Drains 1 TP/tick and gives 1 MP/tick
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11621,369,1,7,0);
 INSERT INTO `item_latents` VALUES(11621,368,-1,7,0);
 
 -- -------------------------------------------------------
--- Flock Ring 
--- Latent Effect activation caused by having 3 or more party members in the same area.  
+-- Flock Ring
+-- Latent Effect activation caused by having 3 or more party members in the same area.
 -- n-2 Ranged Accuracy
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11676,26,1,16,3);
@@ -2825,7 +2831,7 @@ INSERT INTO `item_latents` VALUES(11676,26,1,16,6);
 
 -- -------------------------------------------------------
 -- Flock Earring
--- Latent Effect activation caused by having 3 or more party members in the same area. 
+-- Latent Effect activation caused by having 3 or more party members in the same area.
 -- n-2 Evasion
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11727,68,1,16,3);
@@ -2881,7 +2887,7 @@ INSERT INTO `item_latents` VALUES(13852,370,2,30,0);
 
 -- -------------------------------------------------------
 -- Serpentes Sabots, Serpentes Cuffs
--- Daytime: Adds "Refresh" effect 
+-- Daytime: Adds "Refresh" effect
 -- Nighttime: Adds "Regen" effect
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14085,369,1,26,0);
@@ -2890,15 +2896,15 @@ INSERT INTO `item_latents` VALUES(15019,370,1,26,0);
 INSERT INTO `item_latents` VALUES(15019,369,1,26,1);
 
 -- -------------------------------------------------------
--- I.M. Cuisses +1/+2 
+-- I.M. Cuisses +1/+2
 -- In areas under own nation's control: STR+3/+4
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14263,8,3,53,0);
 INSERT INTO `item_latents` VALUES(14264,8,4,53,0);
 
 -- -------------------------------------------------------
--- Mist Slacks, Garish Slacks 
--- Mist Tunic, Garish Tunic 
+-- Mist Slacks, Garish Slacks
+-- Mist Tunic, Garish Tunic
 -- Mist Mitts, Garish Mitts
 -- Mist Crown, Garish Crown
 -- Mist Pumps, Garish Pumps
@@ -2931,7 +2937,7 @@ INSERT INTO `item_latents` VALUES(15318,68,2,29,0);
 INSERT INTO `item_latents` VALUES(15318,68,2,31,0);
 
 -- -------------------------------------------------------
--- Sennight Bangles  
+-- Sennight Bangles
 -- Weekday: Magic Accuracy+1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14885,30,1,28,0);
@@ -2942,7 +2948,7 @@ INSERT INTO `item_latents` VALUES(14885,30,1,34,0);
 INSERT INTO `item_latents` VALUES(14885,30,1,35,0);
 
 -- -------------------------------------------------------
--- Deadeye Gloves  
+-- Deadeye Gloves
 -- Paralysis: Ranged Accuracy+10
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14944,26,10,13,4);
@@ -2970,7 +2976,7 @@ INSERT INTO `item_latents` VALUES(15790,1,50,39,0);
 INSERT INTO `item_latents` VALUES(15790,5,20,39,0);
 
 -- -------------------------------------------------------
--- Sothic Rope  
+-- Sothic Rope
 -- Full Moon: MP+20 INT+6 MND+6
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(15915,5,20,37,4);
@@ -3001,8 +3007,8 @@ INSERT INTO `item_latents` VALUES(16121,56,15,23,65);
 INSERT INTO `item_latents` VALUES(16121,60,15,23,65);
 
 -- -------------------------------------------------------
--- Troll Coif 
--- Latent effect: HP+32 VIT+5 [Element: Water]-50 
+-- Troll Coif
+-- Latent effect: HP+32 VIT+5 [Element: Water]-50
 -- Latent Effect is active in Mamook, Arrapago Reef, and Halvung
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16122,2,32,23,54);
@@ -3049,7 +3055,7 @@ INSERT INTO `item_latents` VALUES(16124,68,2,23,65);
 INSERT INTO `item_latents` VALUES(16220,10,10,13,114);
 
 -- -------------------------------------------------------
--- Armadillo Cuisses  
+-- Armadillo Cuisses
 -- Amnesia: Accuracy+15 Attack+15
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(16340,23,15,13,16);

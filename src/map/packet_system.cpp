@@ -1167,16 +1167,17 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
-            PItem->setReserve(quantity + PItem->getReserve());
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
                 ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
+                PItem->setReserve(quantity + PItem->getReserve());
                 PChar->UContainer->SetItem(tradeSlotID, PItem);
             }
             else
             {
                 ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %d, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
             ShowDebug(CL_CYAN"%s->%s trade pushing packet to %s\n" CL_RESET, PChar->GetName(), PTarget->GetName(), PChar->GetName());
@@ -2839,18 +2840,25 @@ void SmallPacket0x064(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
-*  Fishing (Action) [Old fishing method packet!]                        *
+*  Fishing (Action) [Old fishing method packet! Still used.]            *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    PrintPacket(data);
+    //PrintPacket(data);
 
-    uint16 stamina = RBUFW(data, (0x08));
-    uint8  action = RBUFB(data, (0x0E));
+    //uint32 charid = data.ref<uint32>(0x04);
+    uint16 stamina = data.ref<uint16>(0x08);
+    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //uint16 targetid = data.ref<uint16>(0x0C);
+    uint8  action = data.ref<uint8>(0x0E);
+    //uint8 ukn2 = data.ref<uint8>(0x0F);
+    uint32 special = data.ref<uint32>(0x10);
 
-    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina);
+    if ((FISHACTION)action != FISHACTION_FINISH || PChar->animation == ANIMATION_FISHING_FISH)
+        fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
+    
     return;
 }
 
@@ -5509,6 +5517,30 @@ void SmallPacket0x10F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  Fishing (New)                                                   *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x110(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    //PrintPacket(data);
+    if (PChar->animation != ANIMATION_FISHING_START)
+        return;
+
+    //uint32 charid = data.ref<uint32>(0x04);
+    uint16 stamina = data.ref<uint16>(0x08);
+    //uint16 ukn1 = data.ref<uint16>(0x0A); // Seems to always be zero with basic fishing, skill not high enough to test legendary fish.
+    //uint16 targetid = data.ref<uint16>(0x0C);
+    uint8 action = data.ref<uint8>(0x0E);
+    //uint8 ukn2 = data.ref<uint8>(0x0F);
+    uint32 special = data.ref<uint32>(0x10);
+    fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
+
+    return;
+}
+
+/************************************************************************
 *                                                                        *
 *  Lock Style Request                                                   *
 *                                                                        *
@@ -5642,6 +5674,7 @@ void PacketParserInitialize()
     PacketSize[0x10A] = 0x06; PacketParser[0x10A] = &SmallPacket0x10A;
     PacketSize[0x10B] = 0x00; PacketParser[0x10B] = &SmallPacket0x10B;
     PacketSize[0x10F] = 0x02; PacketParser[0x10F] = &SmallPacket0x10F;
+    PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;

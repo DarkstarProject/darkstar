@@ -5458,6 +5458,7 @@ inline int32 CLuaBaseEntity::addPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->addPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }
@@ -5472,6 +5473,7 @@ inline int32 CLuaBaseEntity::delPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->delPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }
@@ -5486,6 +5488,7 @@ inline int32 CLuaBaseEntity::setPetMod(lua_State* L)
 
     ((CBattleEntity*)m_PBaseEntity)->setPetModifier(
         static_cast<Mod>(lua_tointeger(L, 1)),
+        PetModType::All,
         lua_tointeger(L, 2));
     return 0;
 }
@@ -8585,7 +8588,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     {
         for (uint8 i = 0; i < DropList->size(); ++i)
         {
-            if (DropList->at(i).DropType == 2)
+            if (DropList->at(i).DropType == DROP_STEAL)
             {
                 lua_pushinteger(L, DropList->at(i).ItemID);
                 return 1;

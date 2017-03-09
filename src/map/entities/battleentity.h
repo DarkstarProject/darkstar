@@ -530,11 +530,11 @@ public:
     void 		    saveModifiers(); // save current state of modifiers
     void 		    restoreModifiers(); // restore to saved state
 
-    void            addPetModifier(Mod type, int16 amount);
-    void            setPetModifier(Mod type, int16 amount);
-    void            delPetModifier(Mod type, int16 amount);
-    void            addPetModifiers(std::vector<CModifier*> *modList);
-    void            delPetModifiers(std::vector<CModifier*> *modList);
+    void            addPetModifier(Mod type, PetModType, int16 amount);
+    void            setPetModifier(Mod type, PetModType, int16 amount);
+    void            delPetModifier(Mod type, PetModType, int16 amount);
+    void            addPetModifiers(std::vector<CPetModifier*> *modList);
+    void            delPetModifiers(std::vector<CPetModifier*> *modList);
     void            applyPetModifiers(CPetEntity* PPet);
     void            removePetModifiers(CPetEntity* PPet);
 
