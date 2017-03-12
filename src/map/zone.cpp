@@ -974,7 +974,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     PChar->SpawnMOBList.clear();
     PChar->SpawnPETList.clear();
 
-    if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID != 0)
+    if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {
         uint8 data[4] {};
         WBUFL(data, 0) = PChar->PParty->GetPartyID();

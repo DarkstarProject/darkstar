@@ -109,7 +109,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
     case MSG_PT_DISBAND:
     {
         int8* query = "SELECT server_addr, server_port, MIN(charid) FROM accounts_sessions JOIN accounts_parties USING (charid) \
-                      							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_sessions WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
+                      							WHERE IF (allianceid <> 0, allianceid = (SELECT MAX(allianceid) FROM accounts_parties WHERE partyid = %d), partyid = %d) GROUP BY server_addr, server_port; ";
         uint32 partyid = RBUFL(extra->data(), 0);
         ret = Sql_Query(ChatSqlHandle, query, partyid, partyid);
         break;
