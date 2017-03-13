@@ -27,15 +27,15 @@ end;
 function onTrigger(player,npc)
 
     if ( (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) and player:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) and player:hasKeyItem(DYNAMIS_VALKURM_SLIVER )) then
-        local firstDyna = 0;
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
+        local dynaUniqueID = GetServerVariable("[DynaTavnazia]UniqueID");
     
         if (checkFirstDyna(player,10)) then
              player:startEvent(0x0266);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
-        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaTavnazia]UniqueID")) then
+        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
             player:startEvent(0x024C,10,0,0,BETWEEN_2DYNA_WAIT_TIME,32,VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
@@ -61,7 +62,14 @@ function onInitialize(zone)
     local qm1position = math.random(1,5);
     qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
     
-    --Give the Faith ??? a random spawn 
+    -- Give the Ix'Aern DRK ??? a random spawn 
+    local qm2 = GetNPCByID(Ix_Aern_DRK_QM);
+    local qm2position = math.random(1,4);
+    qm2:setLocalVar("position",qm2position);
+    qm2:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+    qm2:setLocalVar("hatedPlayer",0);
+    
+    -- Give the Faith ??? a random spawn 
     local qm3 = GetNPCByID(Jailer_of_Faith_QM);
     local qm3position = math.random(1,5);
     qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
@@ -94,9 +102,8 @@ end;
 -----------------------------------          
 
 function onGameHour(zone)
-    
     local VanadielHour = VanadielHour();
-    local qm2 = GetNPCByID(16921028); -- Ix'aern drk
+    local qm2 = GetNPCByID(Ix_Aern_DRK_QM); -- Ix'aern drk
     local qm3 = GetNPCByID(Jailer_of_Faith_QM); -- Jailer of Faith
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
 
@@ -111,30 +118,13 @@ function onGameHour(zone)
         qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
     end
 
-    --[[
     -- Ix'DRK spawn randomiser
-    if (VanadielHour % 6 == 0) then -- Change ??? position every 6 hours Vana'diel time (~15 mins)
-        local qm2p = math.random(1,4); -- random for next pos. -- start in spawn pos 1.
-            --print(qm2p) 
-            qm3:hideNPC(30);
-                if (qm2p == 1) then
-                    qm2:setPos(-240,5.00,440); -- spawn point 1 "Hume-Elvaan"
-                    SetServerVariable("[POSI]Ix_aern_drk",1);
-                    --printf("Qm2 is at pos 1");
-                elseif (qm2p == 2) then
-                    qm2:setPos(-280,5.00,240); -- spawn point 2 "Elvaan-Galka"
-                    SetServerVariable("[POSI]Ix_aern_drk",2);
-                    --printf("Qm2 is at pos 2");
-                elseif (qm2p == 3) then
-                    qm2:setPos(-560,5.00,239); -- spawn point 3 "Taru-Mithra"
-                    SetServerVariable("[POSI]Ix_aern_drk",3);
-                    --printf("Qm2 is at pos 3");
-                elseif (qm2p == 4) then
-                    qm2:setPos(-600,5.00,440); -- spawn point 4 "Mithra-Hume"
-                    SetServerVariable("[POSI]Ix_aern_drk",4);
-                    --printf("Qm2 is at pos 4");               
-                end
-    end    ]]--
+    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= STATUS_DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
+        qm2:hideNPC(30);
+        local qm2position = math.random(1,4);
+        qm2:setLocalVar("position",qm2position);
+        qm2:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+    end
 end;
 
 -----------------------------------        
@@ -148,6 +138,7 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
+
 -----------------------------------        
 -- onZoneIn        
 -----------------------------------        
@@ -169,71 +160,65 @@ end;
 -----------------------------------        
 
 function onRegionEnter(player,region)    
- if (player:getVar("Ru-Hmet-TP")==0 and player:getAnimation()==0) then    
-    switch (region:GetRegionID()): caseof
-    {
-        [1] = function (x) 
-           if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
-               player:startEvent(0x0065);  
-            else
-               player:startEvent(0x009B); 
-            end
-        end, --101         
-        
-        [2] = function (x) 
-            if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
-            player:startEvent(0x009C);
-            else
-            player:startEvent(0x00B7);
-            end
-        end, --102      
-        
-        
-        
-        [3] = function (x) 
-        player:startEvent(0x0067);  
-        end, --103        
-        
-        
-        
-        
-        
-        [4] = function (x) player:startEvent(0x0096);end,--hume niv 0  150 vers niv 1
-        [5] = function (x) player:startEvent(0x009E);end,--hume niv 1  158 vers niv 0
-        [6] = function (x) player:startEvent(0x009F);end,--hume niv 1  159 vers niv 2
-        [7] = function (x) player:startEvent(0x00A9);end,--hume niv 2  169 vers niv 1                
-        [8] = function (x) player:startEvent(0x00A8);end,--hume niv 2  168 vers niv 3
-        [9] = function (x) player:startEvent(0x00B2);end,--hume niv 3  178 vers niv 2        
-        
-        [10] = function (x) player:startEvent(0x0097);end,--elvaan niv 0 151 vers niv 1
-        [11] = function (x) player:startEvent(0x00A0);end,--elvaan niv 1 160 vers niv 0
-        [12] = function (x) player:startEvent(0x00A1);end,--elvaan niv 1 161 vers niv 2    
-        [13] = function (x) player:startEvent(0x00AB);end,--elvaan niv 2 171 vers niv 1        
-        [14] = function (x) player:startEvent(0x00AA);end,--elvaan niv 2 170 vers niv 3
-        [15] = function (x) player:startEvent(0x00B3);end,--elvaan niv 3 179 vers niv 2    
-        
-        [16] = function (x) player:startEvent(0x0098);end,--galka niv 0 152 vers niv 1
-        [17] = function (x) player:startEvent(0x00A2);end,--galka niv 1 162 vers niv 0
-        [18] = function (x) player:startEvent(0x00A3);end,--galka niv 1 163 vers niv 2    
-        [19] = function (x) player:startEvent(0x00AD);end,--galka niv 2 173 vers niv 1            
-        [20] = function (x) player:startEvent(0x00AC);end,--galka niv 2 172 vers niv 3
-        [21] = function (x) player:startEvent(0x00B4);end,--galka niv 3 180 vers niv 2                    
-        
-        [22] = function (x) player:startEvent(0x0099);end,--taru niv 0 153 vers niv 1
-        [23] = function (x) player:startEvent(0x00A4);end,--taru niv 1 164 vers niv 0
-        [24] = function (x) player:startEvent(0x00A5);end,--taru niv 1 165 vers niv 2
-        [25] = function (x) player:startEvent(0x00AF);end,--taru niv 2 175 vers niv 1    
-        [26] = function (x) player:startEvent(0x00AE);end,--taru niv 2 174 vers niv 3
-        [27] = function (x) player:startEvent(0x00B5);end,--taru niv 3 181 vers niv 2                            
-        
-        [28] = function (x) player:startEvent(0x009A);end,--mithra niv 0 154 vers niv 1
-        [29] = function (x) player:startEvent(0x00A6);end,--mithra niv 1 166 vers niv 0    
-        [30] = function (x) player:startEvent(0x00A7);end,--mithra niv 1 167 vers niv 2
-        [31] = function (x) player:startEvent(0x00B1);end,--mithra niv 2 177 vers niv 1    
-        [32] = function (x) player:startEvent(0x00B0);end,--mithra niv 2 176 vers niv 3
-        [33] = function (x) player:startEvent(0x00B6);end,--mithra niv 3 182 vers niv 2    
-    }
- end
+    if (player:getVar("Ru-Hmet-TP")==0 and player:getAnimation()==0) then    
+        switch (region:GetRegionID()): caseof
+        {
+            [1] = function (x) 
+                if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
+                   player:startEvent(0x0065);  
+                else
+                   player:startEvent(0x009B); 
+                end
+            end, --101         
+
+            [2] = function (x) 
+                if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
+                    player:startEvent(0x009C);
+                else
+                    player:startEvent(0x00B7);
+                end
+            end, --102      
+
+            [3] = function (x) 
+                player:startEvent(0x0067);  
+            end, --103        
+
+            [4] = function (x) player:startEvent(0x0096);end,--hume niv 0  150 vers niv 1
+            [5] = function (x) player:startEvent(0x009E);end,--hume niv 1  158 vers niv 0
+            [6] = function (x) player:startEvent(0x009F);end,--hume niv 1  159 vers niv 2
+            [7] = function (x) player:startEvent(0x00A9);end,--hume niv 2  169 vers niv 1                
+            [8] = function (x) player:startEvent(0x00A8);end,--hume niv 2  168 vers niv 3
+            [9] = function (x) player:startEvent(0x00B2);end,--hume niv 3  178 vers niv 2        
+
+            [10] = function (x) player:startEvent(0x0097);end,--elvaan niv 0 151 vers niv 1
+            [11] = function (x) player:startEvent(0x00A0);end,--elvaan niv 1 160 vers niv 0
+            [12] = function (x) player:startEvent(0x00A1);end,--elvaan niv 1 161 vers niv 2    
+            [13] = function (x) player:startEvent(0x00AB);end,--elvaan niv 2 171 vers niv 1        
+            [14] = function (x) player:startEvent(0x00AA);end,--elvaan niv 2 170 vers niv 3
+            [15] = function (x) player:startEvent(0x00B3);end,--elvaan niv 3 179 vers niv 2    
+
+            [16] = function (x) player:startEvent(0x0098);end,--galka niv 0 152 vers niv 1
+            [17] = function (x) player:startEvent(0x00A2);end,--galka niv 1 162 vers niv 0
+            [18] = function (x) player:startEvent(0x00A3);end,--galka niv 1 163 vers niv 2    
+            [19] = function (x) player:startEvent(0x00AD);end,--galka niv 2 173 vers niv 1            
+            [20] = function (x) player:startEvent(0x00AC);end,--galka niv 2 172 vers niv 3
+            [21] = function (x) player:startEvent(0x00B4);end,--galka niv 3 180 vers niv 2                    
+
+            [22] = function (x) player:startEvent(0x0099);end,--taru niv 0 153 vers niv 1
+            [23] = function (x) player:startEvent(0x00A4);end,--taru niv 1 164 vers niv 0
+            [24] = function (x) player:startEvent(0x00A5);end,--taru niv 1 165 vers niv 2
+            [25] = function (x) player:startEvent(0x00AF);end,--taru niv 2 175 vers niv 1    
+            [26] = function (x) player:startEvent(0x00AE);end,--taru niv 2 174 vers niv 3
+            [27] = function (x) player:startEvent(0x00B5);end,--taru niv 3 181 vers niv 2                            
+
+            [28] = function (x) player:startEvent(0x009A);end,--mithra niv 0 154 vers niv 1
+            [29] = function (x) player:startEvent(0x00A6);end,--mithra niv 1 166 vers niv 0    
+            [30] = function (x) player:startEvent(0x00A7);end,--mithra niv 1 167 vers niv 2
+            [31] = function (x) player:startEvent(0x00B1);end,--mithra niv 2 177 vers niv 1    
+            [32] = function (x) player:startEvent(0x00B0);end,--mithra niv 2 176 vers niv 3
+            [33] = function (x) player:startEvent(0x00B6);end,--mithra niv 3 182 vers niv 2    
+        }
+    end
 end;    
 -----------------------------------    
 -- onRegionLeave    
@@ -249,9 +234,9 @@ end;
 function onEventUpdate(player,csid,option)    
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if ((csid >0x0095 and csid < 0x00B8)or  csid ==0x0066 or  csid ==0x0067 or csid ==0x0065) then
+
+    if ((csid >0x0095 and csid < 0x00B8) or csid == 0x0066 or csid == 0x0067 or csid == 0x0065) then
         player:setVar("Ru-Hmet-TP",1);
-    
     end
 end;    
 
@@ -266,12 +251,11 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0065 and option == 1) then
         player:setPos(540,-1,-499.900,62,0x24);
         player:setVar("Ru-Hmet-TP",0);
-    elseif ((csid >0x0095 and csid < 0x00B8)or  csid ==0x0066 or  csid ==0x0067 or csid == 0x0065 ) then
+    elseif ((csid > 0x0095 and csid < 0x00B8) or csid == 0x0066 or csid == 0x0067 or csid == 0x0065) then
         player:setVar("Ru-Hmet-TP",0);
-    elseif (csid ==0x00C9) then
-      player:setVar("PromathiaStatus",1);    
-    end
-        if (csid == 0x7d00 and option==1) then
-                     player:setPos(420,0,398,68);
+    elseif (csid == 0x00C9) then
+        player:setVar("PromathiaStatus",1);    
+    elseif (csid == 0x7d00 and option==1) then
+        player:setPos(420,0,398,68);
     end
 end;

@@ -59,7 +59,7 @@ CMenuMeritPacket::CMenuMeritPacket(CCharEntity* PChar)
 	}
 
 	WBUFB(data,(0x0B)) = flag;
-	WBUFB(data,(0x0C)) = map_config.max_merit_points;
+    WBUFB(data, (0x0C)) = map_config.max_merit_points + PChar->PMeritPoints->GetMeritValue(MERIT_MAX_MERIT, PChar);
 
     PChar->pushPacket(new CBasicPacket(*this));
 
