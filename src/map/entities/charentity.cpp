@@ -59,7 +59,6 @@
 #include "../utils/attackutils.h"
 #include "../utils/charutils.h"
 #include "../utils/battleutils.h"
-#include "../utils/zoneutils.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 #include "../items/item_usable.h"
@@ -1360,23 +1359,7 @@ void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 
 void CCharEntity::OnDeathTimer()
 {
-    // remove weakness on homepoint
-    StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
-    StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
-
-    health.hp = GetMaxHP();
-    health.mp = GetMaxMP();
-
-    loc.boundary = 0;
-    loc.p = profile.home_point.p;
-    loc.destination = profile.home_point.destination;
-
-    status = STATUS_DISAPPEAR;
-    animation = ANIMATION_NONE;
-    updatemask |= UPDATE_HP;
-
-    clearPacketList();
-    charutils::SendToZone(this, 2, zoneutils::GetZoneIPP(loc.destination));
+    charutils::HomePoint(this);
 }
 
 void CCharEntity::OnRaise()

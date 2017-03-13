@@ -695,7 +695,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         if (!PChar->isDead())
             return;
-        PChar->OnDeathTimer();
+        charutils::HomePoint(PChar);
     }
     break;
     case 0x0C: // assist
