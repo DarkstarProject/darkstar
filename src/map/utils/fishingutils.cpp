@@ -337,7 +337,7 @@ void RodBreaks(CCharEntity* PChar)
 *																		*
 ************************************************************************/
 
-void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint8 special)
+void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32 special)
 {
 	uint16 MessageOffset = GetMessageOffset(PChar->getZone());
 

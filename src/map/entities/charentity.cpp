@@ -1359,7 +1359,7 @@ void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
 
 void CCharEntity::OnDeathTimer()
 {
-    //home point
+    charutils::HomePoint(this);
 }
 
 void CCharEntity::OnRaise()
