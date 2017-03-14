@@ -1,0 +1,12 @@
+(\?Possible Special Code: \w{0,4}\?)
+(\?Unknown Parameter \(Type: \w{0,4}\) \w{0,4}\?)
+(\?BAD CHAR: \w{0,4}\?)
+(\?Numeric Parameter \w{0,4}\?)
+(\?Prompt\?)
+(\d{1,1}\?)
+(\?)\1+
+( \?item\? )
+( \?Item\? )
+( \?player\? )
+( \?Player\? )
+( )\1+
