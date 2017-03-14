@@ -63,6 +63,7 @@ function onMobRoam(mob)
             mob:timer(2000, function(mob)
                 mob:hideName(false);
                 mob:untargetable(false);
+                mob:setUnkillable(false);
             end)
         end)
 
