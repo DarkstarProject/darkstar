@@ -33,70 +33,61 @@
 
 /************************************************************************
 *                                                                       *
-*  Кривое решение для вычисления ID MogHouse                            *
-*  Возможно необходим переход на uint16 формат зоны                     * 
+*  Returns the ID of the mog house map to be used                       *
 *                                                                       *
 ************************************************************************/
 
-uint16 GetMogHouseID(CCharEntity * PChar)
+uint16 GetMogHouseID(CCharEntity* PChar)
 {
-	if ( (PChar->getZone() >= 48) && (PChar->getZone() <= 50) )
-	{
-		return 0x00D6;
-	}
-	if ( (PChar->getZone() >= 230) && (PChar->getZone() <= 232) )
-	{
-		return (PChar->profile.nation == 0 ? 0x0121 : 0x0101);
-	}
-	if ( (PChar->getZone() >= 234) && (PChar->getZone() <= 236) )
-	{
-		return (PChar->profile.nation == 1 ? 0x0122 : 0x0102);
-	}
-	if ( (PChar->getZone() >= 238) && (PChar->getZone() <= 241) )
-	{
-		return (PChar->profile.nation == 2 ?  0x0123 : 0x0120);
-	}
-	if ( (PChar->getZone() >= 243) && (PChar->getZone() <= 246) )
-	{
-		return 0x0100;
-	}
-	return 0x0100;
+    switch (zoneutils::GetCurrentRegion(PChar->getZone()))
+    {
+    case REGION_WEST_AHT_URHGAN:
+        return ZONE_214;
+    case REGION_RONFAURE_FRONT:
+        return ZONE_189;
+    case REGION_GUSTABERG_FRONT:
+        return ZONE_199;
+    case REGION_SARUTA_FRONT:
+        return ZONE_219;
+    case REGION_SANDORIA:
+        return (PChar->profile.nation == 0 ? 0x0121 : 0x0101);
+    case REGION_BASTOK:
+        return (PChar->profile.nation == 1 ? 0x0122 : 0x0102);
+    case REGION_WINDURST:
+        return (PChar->profile.nation == 2 ? 0x0123 : 0x0120);
+    case REGION_JEUNO:
+        return 0x0100;
+    }
+    return 0x0100;
 }
 
 /************************************************************************
 *                                                                       *
-*                                                                       * 
+*                                                                       *
 *                                                                       *
 ************************************************************************/
 
-uint8 GetMosHouseFlag(CCharEntity* PChar)
+uint8 GetMogHouseFlag(CCharEntity* PChar)
 {
-    if ((PChar->getZone() >= 48) && (PChar->getZone() <= 50))
-	{
-		if (PChar->profile.mhflag & 0x10) return 5;
-	}
-	if ((PChar->getZone() >= 230) && (PChar->getZone() <= 232))
-	{
-		if (PChar->profile.mhflag & 0x01) return 1;
-	}
-	if ((PChar->getZone() >= 234) && (PChar->getZone() <= 236))
-	{
+    switch (zoneutils::GetCurrentRegion(PChar->getZone()))
+    {
+    case REGION_WEST_AHT_URHGAN:
+        if (PChar->profile.mhflag & 0x10) return 5;
+    case REGION_SANDORIA:
+        if (PChar->profile.mhflag & 0x01) return 1;
+    case REGION_BASTOK:
         if (PChar->profile.mhflag & 0x02) return 2;
-	}
-	if ((PChar->getZone() >= 238) && (PChar->getZone() <= 241))
-	{
-		if (PChar->profile.mhflag & 0x04) return 3;
-	}
-	if ((PChar->getZone() >= 243) && (PChar->getZone() <= 246))
-	{
-		if (PChar->profile.mhflag & 0x08) return 4;
-	}
-	return 0;
+    case REGION_WINDURST:
+        if (PChar->profile.mhflag & 0x04) return 3;
+    case REGION_JEUNO:
+        if (PChar->profile.mhflag & 0x08) return 4;
+    }
+    return 0;
 }
 
 /************************************************************************
 *                                                                       *
-*                                                                       * 
+*                                                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -177,7 +168,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
 	{
 		WBUFB(data,(0x80)) = 1;
 	    WBUFW(data,(0xAA)) = GetMogHouseID(PChar);            // Mog House id
-		WBUFB(data,(0xAE)) = GetMosHouseFlag(PChar);          // Mog House leaving flag
+		WBUFB(data,(0xAE)) = GetMogHouseFlag(PChar);          // Mog House leaving flag
 	} else {
 		WBUFB(data,(0x80)) = 2;
 	    WBUFW(data,(0xAA)) = 0x01FF;

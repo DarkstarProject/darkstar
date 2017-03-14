@@ -62,6 +62,7 @@ namespace zoneutils
     CCharEntity* GetChar(uint32 id);                                                // returns pointer to character by id
     void         ForEachZone(std::function<void(CZone*)> func);
     uint64       GetZoneIPP(uint16 zoneid);                                         // returns IPP for zone ID
+    bool         IsResidentialArea(uint16 ZoneID);                                  // returns whether or not the area is a residential zone
 };
 
 #endif
