@@ -282,14 +282,32 @@ namespace message
         }
         case MSG_PT_RELOAD:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            if (PChar)
+            if (extra->size() == 8)
             {
-                PChar->ForAlliance([](CBattleEntity* PMember)
+                uint32 partyid = RBUFL(extra->data(), 4);
+                zoneutils::ForEachZone([partyid](CZone* PZone)
                 {
-                    ((CCharEntity*)PMember)->ReloadPartyInc();
+                    PZone->ForEachChar([partyid](CCharEntity* PChar)
+                    {
+                        if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
+                        {
+                            PChar->ReloadPartyInc();
+                        }
+                    });
                 });
             }
+            else
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                if (PChar)
+                {
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
+                }
+            }            
+
             break;
         }
         case MSG_PT_DISBAND:

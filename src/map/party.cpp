@@ -532,8 +532,9 @@ void CParty::AddMember(uint32 id)
             allianceid = m_PAlliance->m_AllianceID;
         }
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, 0);
-        uint8 data[4] {};
+        uint8 data[8] {};
         WBUFL(data, 0) = m_PartyID;
+        WBUFL(data, 4) = id;
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 
         /*if (PChar->nameflags.flags & FLAG_INVITE)
