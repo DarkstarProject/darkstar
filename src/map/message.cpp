@@ -285,11 +285,19 @@ namespace message
             if (extra->size() == 8)
             {
                 uint32 partyid = RBUFL(extra->data(), 4);
-                zoneutils::ForEachZone([partyid](CZone* PZone)
+                uint32 charid = RBUFL(extra->data(), 0);
+                zoneutils::ForEachZone([partyid, charid](CZone* PZone)
                 {
-                    PZone->ForEachChar([partyid](CCharEntity* PChar)
+                    PZone->ForEachChar([partyid, charid](CCharEntity* PChar)
                     {
-                        if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
+                        if (PChar->id == charid)
+                        {
+                            PChar->ForAlliance([](CBattleEntity* PMember)
+                            {
+                                ((CCharEntity*)PMember)->ReloadPartyInc();
+                            });
+                        }
+                        else if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
                         {
                             PChar->ReloadPartyInc();
                         }
