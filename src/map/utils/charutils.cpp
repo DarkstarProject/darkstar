@@ -63,6 +63,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/message_debug.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
+#include "../packets/message_system.h"
 #include "../packets/quest_mission_log.h"
 #include "../packets/server_ip.h"
 
@@ -4713,6 +4714,29 @@ namespace charutils
             }
             PChar->ReloadPartyDec();
         }
+    }
+
+    bool IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget) {
+        if (PTarget->getBlockingAid())
+        {
+            bool inAlliance = false;
+            PTarget->ForAlliance([&PInitiator, &PTarget, &inAlliance](CBattleEntity* PEntity) {
+                if (PEntity->id == PInitiator->id)
+                {
+                    inAlliance = true;
+                }
+            });
+
+            if (!inAlliance)
+            {
+                // Target is blocking assistance
+                PInitiator->pushPacket(new CMessageSystemPacket(0, 0, 225));
+                // Interaction was blocked
+                PTarget->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                return true;
+            }
+        }
+        return false;
     }
 
     //char_points manipulation

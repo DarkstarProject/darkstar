@@ -797,10 +797,32 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x15: break; // ballista - quarry
     case 0x16: break; // ballista - sprint
-    case 0x18: // /blockaid
+    case 0x18: // blockaid
     {
-        // Blockaid is currently inactive
-        PChar->pushPacket(new CMessageSystemPacket(0, 0, 224));
+        if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALLIED_TAGS))
+        {
+            uint8 type = RBUFB(data, (0x0C));
+
+            if (type == 0x00 && PChar->getBlockingAid()) // /blockaid off
+            {
+                // Blockaid canceled
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, 222));
+                PChar->setBlockingAid(false);
+            }
+            else if (type == 0x01 && !PChar->getBlockingAid()) // /blockaid on
+            {
+                // Blockaid activated
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, 221));
+                PChar->setBlockingAid(true);
+            }
+            else if (type == 0x02) // /blockaid
+            {
+                // Blockaid is currently active/inactive
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, PChar->getBlockingAid() ? 223 : 224));
+            }
+        }
+        else
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
     }
     break;
     default:
@@ -999,6 +1021,14 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             // If either player is in prison don't allow the trade.
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+            return;
+        }
+
+        // check /blockaid
+        if (charutils::IsAidBlocked(PChar, PTarget))
+        {
+            ShowDebug(CL_CYAN"%s is blocking trades\n" CL_RESET, PTarget->GetName());
+            PChar->pushPacket(new CTradeActionPacket(PTarget, 0x01));
             return;
         }
 
@@ -2863,6 +2893,14 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         // Initiator is in prison.  Send error message.
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        return;
+    }
+
+    // check /blockaid
+    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
+    if (PTarget && charutils::IsAidBlocked(PChar, PTarget))
+    {
+        PChar->pushPacket(new CMessageSystemPacket(0, 0, 23));
         return;
     }
 

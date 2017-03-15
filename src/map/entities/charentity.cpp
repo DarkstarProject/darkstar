@@ -167,6 +167,7 @@ CCharEntity::CCharEntity()
 
     m_isWeaponSkillKill = false;
     m_isStyleLocked = false;
+    m_isBlockingAid = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -381,6 +382,16 @@ bool CCharEntity::getStyleLocked()
 void CCharEntity::setStyleLocked(bool isStyleLocked)
 {
     m_isStyleLocked = isStyleLocked;
+}
+
+bool CCharEntity::getBlockingAid()
+{
+    return m_isBlockingAid;
+}
+
+void CCharEntity::setBlockingAid(bool isBlockingAid)
+{
+    m_isBlockingAid = isBlockingAid;
 }
 
 void CCharEntity::SetPlayTime(uint32 playTime)
@@ -1509,6 +1520,11 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
 CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
 {
+    // check /blockaid
+    CCharEntity* PChar = (CCharEntity*)this->GetEntity(targid, TYPE_PC);
+    if (PChar && charutils::IsAidBlocked(this, PChar))
+        return nullptr;
+
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)
     {
@@ -1543,6 +1559,8 @@ void CCharEntity::Die()
     Die(60min);
     m_DeathCounter = 0;
     m_DeathTimestamp = (uint32)time(nullptr);
+
+    setBlockingAid(false);
 
     //influence for conquest system
     conquest::LoseInfluencePoints(this);

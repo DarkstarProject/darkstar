@@ -288,6 +288,8 @@ public:
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
+    bool              getBlockingAid();
+    void              setBlockingAid(bool isBlockingAid);
 
     bool              m_EquipSwap;					// true if equipment was recently changed
     bool              m_EffectsChanged;
@@ -363,6 +365,7 @@ private:
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;
+    bool            m_isBlockingAid;
     bool			m_reloadParty;
 
     PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
