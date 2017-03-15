@@ -98,7 +98,7 @@ bool CRangeState::Update(time_point tick)
             m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT);
         }
         action_t action;
-        if (m_errorMsg && m_errorMsg->getMessageID() != MSGBASIC_CANNOT_SEE)
+        if (m_errorMsg && static_cast<CMessageBasicPacket*>(m_errorMsg.get())->getMessageID() != MSGBASIC_CANNOT_SEE)
         {
             action.id = m_PEntity->id;
             action.actiontype = ACTION_RANGED_INTERRUPT;

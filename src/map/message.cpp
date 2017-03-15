@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 #include "entities/charentity.h"
 
 #include "packets/message_standard.h"
+#include "packets/message_system.h"
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
@@ -200,6 +201,18 @@ namespace message
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
+                }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    // Target is blocking assistance
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {

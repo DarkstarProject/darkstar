@@ -1028,6 +1028,10 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (charutils::IsAidBlocked(PChar, PTarget))
         {
             ShowDebug(CL_CYAN"%s is blocking trades\n" CL_RESET, PTarget->GetName());
+            // Target is blocking assistance
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 225));
+            // Interaction was blocked
+            PTarget->pushPacket(new CMessageSystemPacket(0, 0, 226));
             PChar->pushPacket(new CTradeActionPacket(PTarget, 0x01));
             return;
         }
@@ -2896,14 +2900,6 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    // check /blockaid
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
-    if (PTarget && charutils::IsAidBlocked(PChar, PTarget))
-    {
-        PChar->pushPacket(new CMessageSystemPacket(0, 0, 23));
-        return;
-    }
-
     switch (RBUFB(data, (0x0A)))
     {
     case 0: // party - must by party leader or solo
@@ -2927,6 +2923,18 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 {
                     ShowDebug(CL_CYAN"%s is dead, in jail, has a pending invite, or is already in a party\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+                    break;
+                }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    ShowDebug(CL_CYAN"%s is blocking party invites\n" CL_RESET, PInvitee->GetName());
+                    // Target is blocking assistance
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 23));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
