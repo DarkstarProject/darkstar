@@ -2879,7 +2879,17 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CCharEntity* PInvitee = nullptr;
             if (targid != 0)
             {
-                PInvitee = zoneutils::GetCharFromWorld(charid, targid);
+                CZone* PZone = zoneutils::GetZone(PChar->getZone());
+                if (PZone)
+                {
+                    CBaseEntity* PEntity = PZone->GetEntity(targid, TYPE_PC);
+                    if (PEntity && PEntity->id == charid)
+                        PInvitee = (CCharEntity*)PEntity;
+                }
+            }
+            else
+            {
+                PInvitee = zoneutils::GetChar(charid);
             }
             if (PInvitee)
             {
