@@ -160,6 +160,11 @@ void CAlliance::delParty(CParty* party)
             party->m_PAlliance->partyList.erase(partyList.begin() + i);
     }
 
+    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    {
+        party->m_PAlliance->partyList.at(i)->ReloadParty();
+    }
+
     party->m_PAlliance = nullptr;
     party->SetPartyNumber(0);
 
