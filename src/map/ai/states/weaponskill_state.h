@@ -34,7 +34,6 @@ public:
 
     CWeaponSkill* GetSkill();
 
-    void SpendCost();
     int16 GetSpentTP() { return m_spent; }
 
 protected:
@@ -43,6 +42,7 @@ protected:
     virtual bool CanInterrupt() override { return true; }
     virtual bool Update(time_point tick) override;
     virtual void Cleanup(time_point tick) override;
+    void SpendCost();
 
 private:
     CBattleEntity* const m_PEntity;
