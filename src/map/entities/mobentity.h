@@ -165,7 +165,7 @@ public:
     float     GetRoamRate();
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
-    virtual void HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override {}
+    virtual void HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override {}
     virtual void Die() override;
 
     virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
@@ -173,7 +173,7 @@ public:
     virtual void OnEngage(CAttackState&) override;
 
     virtual bool OnAttack(CAttackState&, action_t&);
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnCastFinished(CMagicState&, action_t&);
 
     virtual void OnDisengage(CAttackState&) override;

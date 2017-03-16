@@ -79,7 +79,7 @@ void CPlayerCharmController::DoCombatTick(time_point tick)
         if (POwner->PAI->CanFollowPath())
         {
             POwner->PAI->PathFind->LookAt(PTarget->loc.p);
-            std::unique_ptr<CMessageBasicPacket> err;
+            std::unique_ptr<CBasicPacket> err;
             if (!POwner->CanAttack(PTarget, err))
             {
                 if (POwner->speed > 0)

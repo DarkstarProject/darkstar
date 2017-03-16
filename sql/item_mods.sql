@@ -25391,6 +25391,10 @@ INSERT INTO `item_mods` VALUES (22213,12,10);     -- enki_strap INT+10
 INSERT INTO `item_mods` VALUES (22213,13,10);     -- MND+10
 INSERT INTO `item_mods` VALUES (22213,30,10);     -- Magic Accuracy+10
 INSERT INTO `item_mods` VALUES (22213,31,10);     -- Magic Evasion+10
+INSERT INTO `item_mods` VALUES (22276,11,3);      -- Sasuke Shuriken: AGI+3
+INSERT INTO `item_mods` VALUES (22276,106,242);   -- Throwing skill +242
+INSERT INTO `item_mods` VALUES (22277,11,5);      -- Sasuke Shuriken +1: AGI+5
+INSERT INTO `item_mods` VALUES (22277,106,242);   -- Throwing skill +242
 INSERT INTO `item_mods` VALUES (22278,160,-2);    -- staunch_tathlum Damage Taken-2
 INSERT INTO `item_mods` VALUES (22278,168,10);    -- Spell Interruption Rate Down+10
 INSERT INTO `item_mods` VALUES (22278,240,10);    -- Resist Sleep+10

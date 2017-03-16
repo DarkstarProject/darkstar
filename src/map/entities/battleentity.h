@@ -589,8 +589,8 @@ public:
     virtual bool OnAttack(CAttackState&, action_t&);
     virtual bool OnAttackError(CAttackState&) { return false; }
     /* Returns whether to call Attack or not (which includes error messages) */
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg);
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg);
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg);
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg);
     virtual void OnEngage(CAttackState&);
     virtual void OnDisengage(CAttackState&);
     /* Casting */

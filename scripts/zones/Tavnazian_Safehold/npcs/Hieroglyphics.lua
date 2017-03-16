@@ -26,7 +26,8 @@ end;
 
 function onTrigger(player,npc)
 
-    if ( (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) and player:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) and player:hasKeyItem(DYNAMIS_VALKURM_SLIVER )) then
+    if ((player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(VIAL_OF_SHROUDED_SAND) and
+         player:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER) and player:hasKeyItem(DYNAMIS_QUFIM_SLIVER) and player:hasKeyItem(DYNAMIS_VALKURM_SLIVER)) then
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
         local dynaUniqueID = GetServerVariable("[DynaTavnazia]UniqueID");

@@ -1782,6 +1782,8 @@ INSERT INTO `item_usable` VALUES (6396,'cutlet_sandwich',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6397,'cutlet_sandwich_+1',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6406,'pork_cutlet_rice_bowl',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6407,'pork_cutlet_rice_bowl_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6447,'sasuke_shuriken_pouch',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6448,'sasuke_shuriken_pouch_+1',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6458,'bowl_of_soy_ramen',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6459,'bowl_of_soy_ramen_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6460,'bowl_of_miso_ramen',1,1,28,0,0,0,0,0);
