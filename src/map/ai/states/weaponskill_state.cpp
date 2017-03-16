@@ -100,7 +100,8 @@ bool CWeaponSkillState::Update(time_point tick)
 {
     if (!IsCompleted())
     {
-        SpendCost();
+        if (m_PEntity->objtype != TYPE_PC) // We need to spend TP after checking if the PC can use the skill
+            SpendCost();
         action_t action;
         m_PEntity->OnWeaponSkillFinished(*this, action);
         m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, new CActionPacket(action));
