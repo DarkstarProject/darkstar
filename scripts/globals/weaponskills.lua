@@ -950,17 +950,16 @@ function applyAftermathEffect(player, tp, params)
 
     local apply_power = 0
     if (tp == 3000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV3)) then
-        checkAndRemoveLowerAftermath(player, EFFECT_AFTERMATH_LV3);
+        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
+        player:delStatusEffect(EFFECT_AFTERMATH_LV2);
         player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
             params.duration.lv3, 0, params.subpower.lv3);
     elseif (tp >= 2000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV2)) then
-        checkAndRemoveLowerAftermath(player, EFFECT_AFTERMATH_LV2);
+        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
         apply_power = math.floor(params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc)))
         player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
             params.duration.lv2, 0, params.subpower.lv2);
-        
     elseif (tp >= 1000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV1)) then
-        checkAndRemoveLowerAftermath(player, EFFECT_AFTERMATH_LV1);
         apply_power = math.floor(params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc)))
         player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
             params.duration.lv1, 0, params.subpower.lv1);
@@ -1000,25 +999,6 @@ function shouldApplyAftermath(player, effect)
     end;
 
     return result;
-end;
-
-function checkAndRemoveLowerAftermath(player, effect)
-    if (effect == EFFECT_AFTERMATH_LV3) then
-        if (player:hasStatusEffect(EFFECT_AFTERMATH_LV2)) then
-            player:delStatusEffect(EFFECT_AFTERMATH_LV2)
-        end
-        if (player:hasStatusEffect(EFFECT_AFTERMATH_LV1)) then
-            player:delStatusEffect(EFFECT_AFTERMATH_LV1)
-        end
-    elseif (effect == EFFECT_AFTERMATH_LV2) then
-        if (player:hasStatusEffect(EFFECT_AFTERMATH_LV1)) then
-            player:delStatusEffect(EFFECT_AFTERMATH_LV1)
-        end
-    elseif (effect == EFFECT_AFTERMATH_LV1) then
-    end
-
-    -- always remove the supplied effect in case it is not caught by overwrite
-    player:delStatusEffect(effect);
 end;
 
 function handleWSGorgetBelt(attacker)
