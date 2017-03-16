@@ -37,6 +37,7 @@
 #include "../packets/menu_raisetractor.h"
 #include "../packets/char_health.h"
 #include "../packets/char_appearance.h"
+#include "../packets/message_system.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
@@ -167,6 +168,7 @@ CCharEntity::CCharEntity()
 
     m_isWeaponSkillKill = false;
     m_isStyleLocked = false;
+    m_isBlockingAid = false;
 
     BazaarID.clean();
     TradePending.clean();
@@ -383,6 +385,16 @@ void CCharEntity::setStyleLocked(bool isStyleLocked)
     m_isStyleLocked = isStyleLocked;
 }
 
+bool CCharEntity::getBlockingAid()
+{
+    return m_isBlockingAid;
+}
+
+void CCharEntity::setBlockingAid(bool isBlockingAid)
+{
+    m_isBlockingAid = isBlockingAid;
+}
+
 void CCharEntity::SetPlayTime(uint32 playTime)
 {
     m_PlayTime = playTime;
@@ -544,7 +556,7 @@ void CCharEntity::OnDisengage(CAttackState& state)
     PLatentEffectContainer->CheckLatentsWeaponDraw(false);
 }
 
-bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+bool CCharEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
     float dist = distance(loc.p, PTarget->loc.p);
 
@@ -592,7 +604,7 @@ bool CCharEntity::OnAttack(CAttackState& state, action_t& action)
                     isFaceing(this->loc.p, PPotentialTarget.second->loc.p, 64) &&
                     distance(this->loc.p, PPotentialTarget.second->loc.p) <= 10)
                 {
-                    std::unique_ptr<CMessageBasicPacket> errMsg;
+                    std::unique_ptr<CBasicPacket> errMsg;
                     if (IsValidTarget(PPotentialTarget.second->targid, TARGET_ENEMY, errMsg))
                     {
                         controller->ChangeTarget(PPotentialTarget.second->targid);
@@ -836,7 +848,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         return;
     }
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
-    std::unique_ptr<CMessageBasicPacket> errMsg;
+    std::unique_ptr<CBasicPacket> errMsg;
     if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
     {
         if (this != PTarget && distance(this->loc.p, PTarget->loc.p) > PAbility->getRange())
@@ -1351,7 +1363,7 @@ bool CCharEntity::IsMobOwner(CBattleEntity* PBattleTarget)
     return found;
 }
 
-void CCharEntity::HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>& msg)
+void CCharEntity::HandleErrorMessage(std::unique_ptr<CBasicPacket>& msg)
 {
     if (msg && !isCharmed)
         pushPacket(msg.release());
@@ -1507,12 +1519,19 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
     }
 }
 
-CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = CBattleEntity::IsValidTarget(targid, validTargetFlags, errMsg);
     if (PTarget)
     {
-        if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
+        if (PTarget->objtype == TYPE_PC && charutils::IsAidBlocked(this, static_cast<CCharEntity*>(PTarget)))
+        {
+            // Target is blocking assistance
+            errMsg = std::make_unique<CMessageSystemPacket>(0, 0, 225);
+            // Interaction was blocked
+            static_cast<CCharEntity*>(PTarget)->pushPacket(new CMessageSystemPacket(0, 0, 226));
+        }
+        else if (static_cast<CCharEntity*>(this)->IsMobOwner(PTarget))
         {
             return PTarget;
         }
@@ -1543,6 +1562,8 @@ void CCharEntity::Die()
     Die(60min);
     m_DeathCounter = 0;
     m_DeathTimestamp = (uint32)time(nullptr);
+
+    setBlockingAid(false);
 
     //influence for conquest system
     conquest::LoseInfluencePoints(this);

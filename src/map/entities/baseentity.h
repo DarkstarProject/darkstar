@@ -178,7 +178,7 @@ public:
     void            SetModelId(uint16 modelId);     // Set new modelid
     uint16          GetModelId();                   // Get the modelid
 
-    virtual void    HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) {};
+    virtual void    HandleErrorMessage(std::unique_ptr<CBasicPacket>&) {};
 
     uint32			id;					// глобальный идентификатор, уникальный на сервере
     uint16			targid;				// локалный идентификатор, уникальный в зоне

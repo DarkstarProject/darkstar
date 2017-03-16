@@ -1308,7 +1308,7 @@ void CBattleEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& ac
     action.actionid = PWeaponskill->getID();
 }
 
-bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg)
+bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
     if (distance(loc.p, PTarget->loc.p) > m_ModelSize || !PAI->GetController()->IsAutoAttackEnabled())
     {
@@ -1590,7 +1590,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
 }
 
 
-CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg)
+CBattleEntity* CBattleEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)
 {
     auto PTarget = PAI->TargetFind->getValidTarget(targid, validTargetFlags);
 

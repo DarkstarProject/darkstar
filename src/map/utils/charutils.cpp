@@ -4715,6 +4715,21 @@ namespace charutils
         }
     }
 
+    bool IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget) {
+        if (PTarget->getBlockingAid())
+        {
+            bool inAlliance = false;
+            PTarget->ForAlliance([&PInitiator, &inAlliance](CBattleEntity* PEntity) {
+                if (PEntity->id == PInitiator->id)
+                    inAlliance = true;
+            });
+
+            if (!inAlliance)
+                return true;
+        }
+        return false;
+    }
+
     //char_points manipulation
     void AddPoints(CCharEntity* PChar, const char* type, int32 amount, int32 max)
     {
