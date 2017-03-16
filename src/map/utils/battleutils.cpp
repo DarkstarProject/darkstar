@@ -4679,11 +4679,11 @@ namespace battleutils
             return false;
         }
 
-        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
+        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->GetMeleeRange() * 2);
 
         std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
         {
-            float pDistance = distance(PMob->loc.p, PMember->loc.p);
+            float pDistance = distance(PMob->loc.p, PMember->loc.p) - PMember->m_ModelSize;
 
             if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
             {
