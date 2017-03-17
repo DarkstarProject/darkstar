@@ -533,9 +533,9 @@ void CParty::AddMember(uint32 id)
         {
             allianceid = m_PAlliance->m_AllianceID;
             if (this->m_PartyNumber == 1)
-                Flags += PARTY_SECOND;
+                Flags = PARTY_SECOND;
             else if (this->m_PartyNumber == 2)
-                Flags += PARTY_THIRD;
+                Flags = PARTY_THIRD;
         }
         Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, Flags);
         uint8 data[8] {};
