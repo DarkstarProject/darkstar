@@ -576,7 +576,7 @@ void CMobController::Move()
         }
     }
 
-    float currentDistance = distance(PMob->loc.p, PTarget->loc.p) - PTarget->m_ModelSize;
+    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
     if (PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
@@ -609,7 +609,7 @@ void CMobController::Move()
                 if (!PMob->PAI->PathFind->IsFollowingPath() || distanceSquared(PMob->PAI->PathFind->GetDestination(), PTarget->loc.p) > 10)
                 {
                     //path to the target if we don't have a path already
-                    PMob->PAI->PathFind->PathInRange(PTarget->loc.p, (attack_range + PTarget->m_ModelSize) - 0.2f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
+                    PMob->PAI->PathFind->PathInRange(PTarget->loc.p, attack_range - 0.2f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
                 }
                 PMob->PAI->PathFind->FollowPath();
                 if (!PMob->PAI->PathFind->IsFollowingPath())

@@ -4683,7 +4683,7 @@ namespace battleutils
 
         std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
         {
-            float pDistance = distance(PMob->loc.p, PMember->loc.p) - PMember->m_ModelSize;
+            float pDistance = distance(PMob->loc.p, PMember->loc.p);
 
             if (PMob->loc.zone == PMember->loc.zone && pDistance > drawInDistance && PMember->status != STATUS_CUTSCENE_ONLY)
             {
