@@ -3393,9 +3393,9 @@ namespace battleutils
 
             float xoffset = cos(angle) / 2;
             float zoffset = sin(angle) / 2;
-            float maxXpoint = taUserX + xoffset;
+            float maxXpoint = taUserX - xoffset;
             float maxZpoint = taUserZ + zoffset;
-            float minXpoint = taUserX - xoffset;
+            float minXpoint = taUserX + xoffset;
             float minZpoint = taUserZ - zoffset;
             maxSlope = (maxZpoint - mobZ) / (maxXpoint - mobX);
             minSlope = (minZpoint - mobZ) / (minXpoint - mobX);
