@@ -250,8 +250,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (destination == ZONE_RESIDENTIAL_AREA ||
-            destination == ZONE_214 && PChar->m_moghouseID == 0)
+        if (zoneutils::IsResidentialArea(destination) && PChar->m_moghouseID == 0)
         {
             PChar->m_moghouseID = PChar->id;
             destination = PChar->loc.prevzone;
@@ -798,10 +797,32 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x15: break; // ballista - quarry
     case 0x16: break; // ballista - sprint
-    case 0x18: // /blockaid
+    case 0x18: // blockaid
     {
-        // Blockaid is currently inactive
-        PChar->pushPacket(new CMessageSystemPacket(0, 0, 224));
+        if (!PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ALLIED_TAGS))
+        {
+            uint8 type = RBUFB(data, (0x0C));
+
+            if (type == 0x00 && PChar->getBlockingAid()) // /blockaid off
+            {
+                // Blockaid canceled
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, 222));
+                PChar->setBlockingAid(false);
+            }
+            else if (type == 0x01 && !PChar->getBlockingAid()) // /blockaid on
+            {
+                // Blockaid activated
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, 221));
+                PChar->setBlockingAid(true);
+            }
+            else if (type == 0x02) // /blockaid
+            {
+                // Blockaid is currently active/inactive
+                PChar->pushPacket(new CMessageSystemPacket(0, 0, PChar->getBlockingAid() ? 223 : 224));
+            }
+        }
+        else
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
     }
     break;
     default:
@@ -1000,6 +1021,18 @@ void SmallPacket0x032(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             // If either player is in prison don't allow the trade.
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+            return;
+        }
+
+        // check /blockaid
+        if (charutils::IsAidBlocked(PChar, PTarget))
+        {
+            ShowDebug(CL_CYAN"%s is blocking trades\n" CL_RESET, PTarget->GetName());
+            // Target is blocking assistance
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 225));
+            // Interaction was blocked
+            PTarget->pushPacket(new CMessageSystemPacket(0, 0, 226));
+            PChar->pushPacket(new CTradeActionPacket(PTarget, 0x01));
             return;
         }
 
@@ -2880,7 +2913,17 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CCharEntity* PInvitee = nullptr;
             if (targid != 0)
             {
-                PInvitee = zoneutils::GetCharFromWorld(charid, targid);
+                CZone* PZone = zoneutils::GetZone(PChar->getZone());
+                if (PZone)
+                {
+                    CBaseEntity* PEntity = PZone->GetEntity(targid, TYPE_PC);
+                    if (PEntity && PEntity->id == charid)
+                        PInvitee = (CCharEntity*)PEntity;
+                }
+            }
+            else
+            {
+                PInvitee = zoneutils::GetChar(charid);
             }
             if (PInvitee)
             {
@@ -2890,6 +2933,18 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 {
                     ShowDebug(CL_CYAN"%s is dead, in jail, has a pending invite, or is already in a party\n" CL_RESET, PInvitee->GetName());
                     PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 23));
+                    break;
+                }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    ShowDebug(CL_CYAN"%s is blocking party invites\n" CL_RESET, PInvitee->GetName());
+                    // Target is blocking assistance
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 23));
                     break;
                 }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))

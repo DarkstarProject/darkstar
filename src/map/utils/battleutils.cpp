@@ -4502,8 +4502,7 @@ namespace battleutils
             else if (PlayerToAssist->GetBattleTargetID() != 0)
             {
                 // lock on to the new target!
-                auto PTarget {static_cast<CBattleEntity*>(PChar->GetEntity(TargID))};
-                PChar->pushPacket(new CLockOnPacket(PChar, PTarget));
+                PChar->pushPacket(new CLockOnPacket(PChar, PlayerToAssist->GetBattleTarget()));
             }
         }
     }

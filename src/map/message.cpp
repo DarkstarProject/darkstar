@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 #include "entities/charentity.h"
 
 #include "packets/message_standard.h"
+#include "packets/message_system.h"
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
@@ -221,6 +222,18 @@ namespace message
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
                 }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    // Target is blocking assistance
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    break;
+                }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
@@ -302,14 +315,40 @@ namespace message
         }
         case MSG_PT_RELOAD:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            if (PChar)
+            if (extra->size() == 8)
             {
-                PChar->ForAlliance([](CBattleEntity* PMember)
+                uint32 partyid = RBUFL(extra->data(), 4);
+                uint32 charid = RBUFL(extra->data(), 0);
+                zoneutils::ForEachZone([partyid, charid](CZone* PZone)
                 {
-                    ((CCharEntity*)PMember)->ReloadPartyInc();
+                    PZone->ForEachChar([partyid, charid](CCharEntity* PChar)
+                    {
+                        if (PChar->id == charid)
+                        {
+                            PChar->ForAlliance([](CBattleEntity* PMember)
+                            {
+                                ((CCharEntity*)PMember)->ReloadPartyInc();
+                            });
+                        }
+                        else if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
+                        {
+                            PChar->ReloadPartyInc();
+                        }
+                    });
                 });
             }
+            else
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                if (PChar)
+                {
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
+                }
+            }            
+
             break;
         }
         case MSG_PT_DISBAND:

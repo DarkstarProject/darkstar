@@ -798,8 +798,8 @@ namespace charutils
         PChar->StatusEffectContainer->LoadStatusEffects();
 
         charutils::LoadEquip(PChar);
-        PChar->health.hp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxHP() : HP;
-        PChar->health.mp = PChar->loc.destination == ZONE_RESIDENTIAL_AREA ? PChar->GetMaxMP() : MP;
+        PChar->health.hp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxHP() : HP;
+        PChar->health.mp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
         luautils::OnGameIn(PChar, zoning == 1);
     }
@@ -4713,6 +4713,21 @@ namespace charutils
             }
             PChar->ReloadPartyDec();
         }
+    }
+
+    bool IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget) {
+        if (PTarget->getBlockingAid())
+        {
+            bool inAlliance = false;
+            PTarget->ForAlliance([&PInitiator, &inAlliance](CBattleEntity* PEntity) {
+                if (PEntity->id == PInitiator->id)
+                    inAlliance = true;
+            });
+
+            if (!inAlliance)
+                return true;
+        }
+        return false;
     }
 
     //char_points manipulation

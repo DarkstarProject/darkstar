@@ -223,7 +223,7 @@ public:
     PacketList_t      getPacketList();              // returns a COPY of packet list
     size_t            getPacketCount();
     void              erasePackets(uint8 num);      // erase num elements from front of packet list
-    virtual void      HandleErrorMessage(std::unique_ptr<CMessageBasicPacket>&) override;
+    virtual void      HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override;
 
     CLinkshell*       PLinkshell1;                  // linkshell, в которой общается персонаж
     CLinkshell*       PLinkshell2;                  // linkshell 2
@@ -288,6 +288,8 @@ public:
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
+    bool              getBlockingAid();
+    void              setBlockingAid(bool isBlockingAid);
 
     bool              m_EquipSwap;					// true if equipment was recently changed
     bool              m_EffectsChanged;
@@ -322,10 +324,10 @@ public:
     void Raise();
 
     /* State callbacks */
-    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool OnAttackError(CAttackState&) override;
-    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CMessageBasicPacket>& errMsg) override;
+    virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
@@ -363,6 +365,7 @@ private:
 
     bool			m_isWeaponSkillKill;
     bool            m_isStyleLocked;
+    bool            m_isBlockingAid;
     bool			m_reloadParty;
 
     PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу

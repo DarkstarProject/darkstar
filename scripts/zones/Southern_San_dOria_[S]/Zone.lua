@@ -24,9 +24,6 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(103.978,-1,-47.951,158);
-    end
     if (prevZone == 81) then
         if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
             cs = 0x003E;
@@ -38,6 +35,14 @@ function onZoneIn(player,prevZone)
                 player:getQuestStatus(CRYSTAL_WAR, BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
             cs = 0x0043;
         end
+    end
+    -- MOG HOUSE EXIT
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        player:setPos(161,-2,161,94);
+        if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
+            cs = 0x7534;
+        end
+        player:setVar("PlayerMainJob",0);
     end
     return cs;
 end;

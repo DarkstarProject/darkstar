@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     
     if (player:getVar("DynaXarcabard_Win") == 1) then
         player:startEvent(0x0020,HYDRA_CORPS_BATTLE_STANDARD); -- Win CS
-    elseif (player:hasKeyItem(HYDRA_CORPS_INSIGNIA)) then
+    elseif (player:hasKeyItem(VIAL_OF_SHROUDED_SAND) and player:hasKeyItem(HYDRA_CORPS_INSIGNIA)) then
         local firstDyna = 0;
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");

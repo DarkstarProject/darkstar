@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: DSP updated fixed Items for CM Testing
+-- func: BNETcc fixed items
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -8,7 +8,7 @@ cmdprops =
     parameters = "iiii"
 };
 function onTrigger(player)
-    player:PrintToPlayer("DSP updated fixed Items for CM Testing", 0xF);
+    player:PrintToPlayer("Stuffs WE Fixed that needs testing. #CMGMSlavery", 0x1C);
 	
 stock = {
 		27748, 1, -- Shabti Armet

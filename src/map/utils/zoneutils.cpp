@@ -1045,4 +1045,24 @@ uint64 GetZoneIPP(uint16 zoneID)
     return ipp;
 }
 
+/************************************************************************
+*                                                                       *
+*  Checks whether or not the zone is a residential area                 *
+*                                                                       *
+************************************************************************/
+
+bool IsResidentialArea(uint16 ZoneID)
+{
+    switch (ZoneID)
+    {
+        case ZONE_RESIDENTIAL_AREA:
+        case ZONE_189:
+        case ZONE_199:
+        case ZONE_214:
+        case ZONE_219:
+            return true;
+    }
+    return false;
+}
+
 }; // namespace zoneutils

@@ -185,7 +185,7 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
     auto PAbility = state.GetAbility();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    std::unique_ptr<CMessageBasicPacket> errMsg;
+    std::unique_ptr<CBasicPacket> errMsg;
     if (IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
     {
         if (this != PTarget && distance(this->loc.p, PTarget->loc.p) > PAbility->getRange())

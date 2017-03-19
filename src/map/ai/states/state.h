@@ -34,9 +34,9 @@ class CBattleEntity;
 class CStateInitException : std::exception
 {
 public:
-    explicit CStateInitException(std::unique_ptr<CMessageBasicPacket> _msg) : std::exception(),
+    explicit CStateInitException(std::unique_ptr<CBasicPacket> _msg) : std::exception(),
         packet(std::move(_msg)) {}
-    std::unique_ptr<CMessageBasicPacket> packet;
+    std::unique_ptr<CBasicPacket> packet;
 };
 
 class CState
@@ -51,7 +51,7 @@ public:
 
     bool HasErrorMsg() const;
     /* Releases ownership to the caller */
-    CMessageBasicPacket* GetErrorMsg();
+    CBasicPacket* GetErrorMsg();
 
     bool DoUpdate(time_point tick);
     //try interrupt (on hit)
@@ -77,7 +77,7 @@ protected:
     void Complete();
     time_point GetEntryTime() const;
 
-    std::unique_ptr<CMessageBasicPacket> m_errorMsg;
+    std::unique_ptr<CBasicPacket> m_errorMsg;
 
     CBaseEntity* const m_PEntity;
     uint16 m_targid;

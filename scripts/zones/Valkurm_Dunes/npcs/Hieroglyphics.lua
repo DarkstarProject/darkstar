@@ -25,7 +25,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)  
-    if (player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) then
+    if ((player:hasCompletedMission(COP,DARKNESS_NAMED) or FREE_COP_DYNAMIS == 1) and player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
         local dynaUniqueID = GetServerVariable("[DynaValkurm]UniqueID");
