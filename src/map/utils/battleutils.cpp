@@ -3411,31 +3411,23 @@ namespace battleutils
                         CBattleEntity* member = taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
                         if (taUser->id != member->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                         {
+                            float memberXdif = member->loc.p.x - mobX;
+                            float memberZdif = member->loc.p.z - mobZ;
                             if (zDependent)
                             {
-                                //is member between taUser and PMob on x line?
-                                if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                    (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                                if ((memberZdif <= memberXdif * maxSlope) &&
+                                    (memberZdif >= memberXdif * minSlope))
                                 {
-                                    if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                        (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                             else {
-                                //is member between taUser and PMob on z line?
-                                if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                    (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                                if ((memberXdif <= memberZdif * maxSlope) &&
+                                    (memberXdif >= memberZdif * minSlope))
                                 {
-                                    if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                        (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                         }
@@ -3448,31 +3440,23 @@ namespace battleutils
                     CBattleEntity* member = taUser->PParty->members.at(i);
                     if (member->id != taUser->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                     {
+                        float memberXdif = member->loc.p.x - mobX;
+                        float memberZdif = member->loc.p.z - mobZ;
                         if (zDependent)
                         {
-                            //is member between taUser and PMob on x line?
-                            if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                            if ((memberZdif <= memberXdif * maxSlope) &&
+                                (memberZdif >= memberXdif * minSlope))
                             {
-                                if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                    (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                         else {
-                            //is member between taUser and PMob on z line?
-                            if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                            if ((memberXdif <= memberZdif * maxSlope) &&
+                                (memberXdif >= memberZdif * minSlope))
                             {
-                                if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                    (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                     }
