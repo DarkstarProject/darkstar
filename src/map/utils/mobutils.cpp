@@ -363,11 +363,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= map_config.nm_mp_multiplier;
+            PMob->health.maxmp *= map_config.nm_mp_multiplier;
         }
         else
         {
-            PMob->health.maxhp *= map_config.mob_mp_multiplier;
+            PMob->health.maxmp *= map_config.mob_mp_multiplier;
         }
     }
 
