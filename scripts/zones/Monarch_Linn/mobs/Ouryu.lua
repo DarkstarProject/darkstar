@@ -21,7 +21,6 @@ end;
 function onMobFight(mob,target)
 
     local bf = mob:getBattlefield()
-    print(bf:getBcnmID())
     if bf:getBcnmID() == 961 and mob:getHPP() < 30 then
         bf:win()
         return
