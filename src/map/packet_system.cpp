@@ -3176,7 +3176,9 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", data[0x0C]);
+                char victimName[16]{};
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     uint32 id = Sql_GetUIntData(SqlHandle, 0);
@@ -3253,7 +3255,9 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
             {
-                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", data[0x0C]);
+                char victimName[16]{};
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
                 {
                     uint32 id = Sql_GetUIntData(SqlHandle, 0);
