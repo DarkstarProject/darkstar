@@ -631,3 +631,11 @@ INSERT INTO `item_mods_pet` VALUES (28356,28,5,1);        -- Avatar: MAB +5
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);        -- Avatar: Accuracy +7
 INSERT INTO `item_mods_pet` VALUES (28605,30,7,1);        -- Avatar: Magic Accuracy +7
+
+-- -------------------------------------------------------
+-- Regiment Mittens
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (28025,25,20,0);		-- Pet: Accuracy+20 
+INSERT INTO `item_mods_pet` VALUES (28025,26,20,0);		-- Pet: Ranged Accuracy+20 
+INSERT INTO `item_mods_pet` VALUES (28025,30,20,0);		-- Pet: Magic Accuracy+20 
+INSERT INTO `item_mods_pet` VALUES (28025,384,61,0);		-- Pet: Haste+6%
