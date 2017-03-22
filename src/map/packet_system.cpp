@@ -3176,7 +3176,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                char victimName[16]{};
+                char victimName[31]{};
                 Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
@@ -3255,7 +3255,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
             {
-                char victimName[16]{};
+                char victimName[31]{};
                 Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
                 int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
                 if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
