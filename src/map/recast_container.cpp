@@ -234,7 +234,7 @@ bool CRecastContainer::Has(RECASTTYPE type, uint16 id)
 *                                                                       *
 ************************************************************************/
 
-bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
+bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast, bool isSic)
 {
     RecastList_t* PRecastList = GetRecastList(type);
 
@@ -242,7 +242,12 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
     {
         if (PRecastList->at(i).ID == id && PRecastList->at(i).RecastTime > 0)
         {
-            if (PRecastList->at(i).chargeTime == 0)
+			// Sic/Ready share the same recastId, but Ready is based on charges
+			if (isSic)
+			{
+				return true;
+			}
+            else if (PRecastList->at(i).chargeTime == 0)
             {
                 return true;
             }

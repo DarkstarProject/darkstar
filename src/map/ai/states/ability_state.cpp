@@ -132,7 +132,7 @@ bool CAbilityState::CanUseAbility()
     {
         auto PAbility = GetAbility();
         auto PChar = static_cast<CCharEntity*>(m_PEntity);
-        if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId(), PAbility->getRecastTime()))
+        if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, PAbility->getRecastId(), PAbility->getRecastTime(), ABILITY_SIC == PAbility->getID()))
         {
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_WAIT_LONGER));
             return false;
