@@ -157,4 +157,8 @@ log/DSP.leaks
 #Lua Developement Tools project files
 .metadata/**
 .project
+<<<<<<< Updated upstream
 .vs
+=======
+/win32/.vs/darkstar/v15
+>>>>>>> Stashed changes
