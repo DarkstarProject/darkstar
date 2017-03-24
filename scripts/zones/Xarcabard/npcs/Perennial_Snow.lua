@@ -27,8 +27,7 @@ function onTrigger(player,npc)
    if (circleOfTime == QUEST_ACCEPTED and player:getVar("circleTime") == 3) then
        -- http://ffxiclopedia.wikia.com/wiki/The_Circle_of_Time (one earth hour delay)
        local buried = player:getVar("star_ringburied");
-       -- back compat from when it was day-of-year instead of hour-of-day
-       local cleansed = buried < tonumber(os.date("%H")) or buried > 23;
+       local cleansed = buried != tonumber(os.date("%H"));
 
        if (player:getVar("star_ringburied") == 0) then
            player:startEvent(0x03);
