@@ -5605,9 +5605,9 @@ INSERT INTO `item_mods` VALUES (11728,57,-50);
 INSERT INTO `item_mods` VALUES (11728,58,-50);
 INSERT INTO `item_mods` VALUES (11728,59,-50);
 INSERT INTO `item_mods` VALUES (11728,384,71);
-INSERT INTO `item_mods` VALUES (11729,27,3);
-INSERT INTO `item_mods` VALUES (11729,384,51);
-INSERT INTO `item_mods` VALUES (11729,486,5);
+INSERT INTO `item_mods` VALUES (11729,384,51);		-- Goading Belt -  Haste+5%
+INSERT INTO `item_mods` VALUES (11729,73,5);		-- "Store TP"+5
+INSERT INTO `item_mods` VALUES (11729,27,3);		-- Enmity+3
 INSERT INTO `item_mods` VALUES (11730,160,-3);
 INSERT INTO `item_mods` VALUES (11731,1,6);
 INSERT INTO `item_mods` VALUES (11731,23,15);
@@ -21760,7 +21760,8 @@ INSERT INTO `item_mods` VALUES (18115,73,1);
 INSERT INTO `item_mods` VALUES (18116,25,3);
 INSERT INTO `item_mods` VALUES (18118,431,1);
 INSERT INTO `item_mods` VALUES (18119,431,1);
-INSERT INTO `item_mods` VALUES (18121,288,3);
+INSERT INTO `item_mods` VALUES (18121,288,3);		-- Valkyrie's Fork - "Double Attack"+3% 
+INSERT INTO `item_mods` VALUES (18121,73,3);		-- "Store TP"+3
 INSERT INTO `item_mods` VALUES (18122,8,2);
 INSERT INTO `item_mods` VALUES (18122,12,-1);
 INSERT INTO `item_mods` VALUES (18122,13,-1);
