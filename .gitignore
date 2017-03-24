@@ -157,3 +157,4 @@ log/DSP.leaks
 #Lua Developement Tools project files
 .metadata/**
 .project
+.vs
