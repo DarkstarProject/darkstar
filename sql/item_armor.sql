@@ -11374,7 +11374,7 @@ INSERT INTO `item_armor` VALUES (26627,'hes._crown_+1',99,119,2,67,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26628,'piety_cap',99,109,4,69,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26629,'piety_cap_+1',99,119,4,69,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26630,'arch._petasos',99,109,8,71,0,0,16,0);
-INSERT INTO `item_armor` VALUES (26631,'arch._petasos_+1',99,119,8,263,0,0,16,0);
+INSERT INTO `item_armor` VALUES (26631,'arch._petasos_+1',99,119,8,71,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26632,'vitivation_chapeau',99,109,16,73,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26633,'viti._chapeau_+1',99,119,16,73,0,0,16,0);
 INSERT INTO `item_armor` VALUES (26634,'plun._bonnet',99,109,32,75,0,0,16,0);
