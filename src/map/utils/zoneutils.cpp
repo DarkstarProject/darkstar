@@ -247,6 +247,35 @@ CCharEntity* GetChar(uint32 charid)
     return nullptr;
 }
 
+
+CCharEntity* GetCharToUpdate(uint32 primary, uint32 ternary)
+{
+    CCharEntity* PPrimary = nullptr;
+    CCharEntity* PSecondary = nullptr;
+    CCharEntity* PTernary = nullptr;
+    
+    for (auto PZone : g_PZoneList)
+    {
+        PZone.second->ForEachChar([primary, ternary, &PPrimary, &PSecondary, &PTernary](CCharEntity* PChar)
+        {
+            if (!PPrimary)
+            {
+                if (PChar->id == primary)
+                    PPrimary = PChar;
+                else if (PChar->PParty && PChar->PParty->GetPartyID() == primary)
+                    PSecondary = PChar;
+                else if (PChar->id == ternary)
+                    PTernary = PChar;
+            }
+        });
+        if (PPrimary)
+            return PPrimary;
+    }
+    if (PSecondary)
+        return PSecondary;
+            
+    return PTernary;
+}
 /************************************************************************
 *                                                                       *
 *  Загружаем список NPC в указанную зону                                *

@@ -2913,13 +2913,9 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CCharEntity* PInvitee = nullptr;
             if (targid != 0)
             {
-                CZone* PZone = zoneutils::GetZone(PChar->getZone());
-                if (PZone)
-                {
-                    CBaseEntity* PEntity = PZone->GetEntity(targid, TYPE_PC);
-                    if (PEntity && PEntity->id == charid)
-                        PInvitee = (CCharEntity*)PEntity;
-                }
+                CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_PC);
+                if (PEntity && PEntity->id == charid)
+                    PInvitee = (CCharEntity*)PEntity;
             }
             else
             {
@@ -2990,7 +2986,13 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             CCharEntity* PInvitee = nullptr;
             if (targid != 0)
             {
-                PInvitee = zoneutils::GetCharFromWorld(charid, targid);
+                CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_PC);
+                if (PEntity && PEntity->id == charid)
+                    PInvitee = (CCharEntity*)PEntity;
+            }
+            else
+            {
+                PInvitee = zoneutils::GetChar(charid);
             }
             if (PInvitee)
             {
@@ -3144,7 +3146,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     switch (RBUFB(data, (0x0A)))
     {
     case 0: // party - party leader may remove member of his own party
-        if (PChar->PParty)
+        if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
         {
             CCharEntity* PVictim = (CCharEntity*)(PChar->PParty->GetMemberByName(data[0x0C]));
             if (PVictim)
@@ -3168,11 +3170,27 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         }
                     }
                 }
-                else if (PChar->PParty->GetLeader() != PChar) // not leader, cannot kick others
-                    break;
 
                 PChar->PParty->RemoveMember(PVictim);
                 ShowDebug(CL_CYAN"%s has removed %s from party\n" CL_RESET, PChar->GetName(), PVictim->GetName());
+            }
+            else
+            {
+                char victimName[31]{};
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    uint32 id = Sql_GetUIntData(SqlHandle, 0);
+                    if (Sql_Query(SqlHandle, "DELETE FROM accounts_parties WHERE partyid = %u AND charid = %u;", PChar->id, id) == SQL_SUCCESS && Sql_AffectedRows(SqlHandle))
+                    {
+                        ShowDebug(CL_CYAN"%s has removed %s from party\n" CL_RESET, PChar->GetName(), data[0x0C]);
+                        uint8 data[8]{};
+                        WBUFL(data, 0) = PChar->PParty->GetPartyID();
+                        WBUFL(data, 4) = id;
+                        message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
+                    }
+                }
             }
         }
         break;
@@ -3233,6 +3251,29 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         }
                     }
                     break; // we're done, break the for
+                }
+            }
+            if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+            {
+                char victimName[31]{};
+                Sql_EscapeStringLen(SqlHandle, victimName, data[0x0C], dsp_min(strlen(data[0x0C]), 15));
+                int32 ret = Sql_Query(SqlHandle, "SELECT charid FROM chars WHERE charname = '%s';", victimName);
+                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    uint32 id = Sql_GetUIntData(SqlHandle, 0);
+                    ret = Sql_Query(SqlHandle, "SELECT partyid FROM accounts_parties WHERE charid = %u AND allianceid = %u AND partyflag & %d AND partyflag & %d", id, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER, PARTY_SECOND | PARTY_THIRD);
+                    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 1 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                    {
+                        if (Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", PARTY_SECOND | PARTY_THIRD, id) == SQL_SUCCESS && Sql_AffectedRows(SqlHandle))
+                        {
+                            ShowDebug(CL_CYAN"%s has removed %s party from alliance\n" CL_RESET, PChar->GetName(), data[0x0C]);
+                            uint8 data[8]{};
+                            WBUFL(data, 0) = PChar->PParty->GetPartyID();
+                            WBUFL(data, 4) = id;
+                            message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
+                        }
+                        
+                    }
                 }
             }
         }
