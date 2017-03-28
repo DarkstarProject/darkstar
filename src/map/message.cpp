@@ -297,25 +297,12 @@ namespace message
         {
             if (extra->size() == 8)
             {
-                uint32 partyid = RBUFL(extra->data(), 4);
-                uint32 charid = RBUFL(extra->data(), 0);
-                zoneutils::ForEachZone([partyid, charid](CZone* PZone)
+                CCharEntity* PChar = zoneutils::GetCharToUpdate(RBUFL(extra->data(), 4), RBUFL(extra->data(), 0));
+                if (PChar)
                 {
-                    PZone->ForEachChar([partyid, charid](CCharEntity* PChar)
-                    {
-                        if (PChar->id == charid)
-                        {
-                            PChar->ForAlliance([](CBattleEntity* PMember)
-                            {
-                                ((CCharEntity*)PMember)->ReloadPartyInc();
-                            });
-                        }
-                        else if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
-                        {
-                            PChar->ReloadPartyInc();
-                        }
-                    });
-                });
+                    PChar->ReloadPartyInc();
+                    break;
+                }
             }
             else
             {
@@ -327,7 +314,7 @@ namespace message
                         ((CCharEntity*)PMember)->ReloadPartyInc();
                     });
                 }
-            }            
+            }
 
             break;
         }

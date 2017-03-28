@@ -23,6 +23,8 @@ PARIKE_PORANKE_DIALOG = 8946; -- All these people running back and forth... Ther
                  NO_KEY = 9898; -- You do not have a usable key in your possession.
             ALDO_DIALOG = 7137; -- Hi. I'm Aldo, head of Tenshodo. We deal in things you can't buy anywhere else. Take your time and have a look around.
          CHOCOBO_DIALOG = 7311; -- Hmph.
+       MERTAIRE_DEFAULT = 7417; -- Who are you? Leave me alone!
+          MERTAIRE_RING = 8036; -- So, what did you do with that ring? Maybe it's valuable. I'd ask a collector if I were you. Of course, he might just say it's worthless...
        PARIKE_PORANKE_1 = 8947; -- Hey you! Belly bursting? Intestines inflating? Bladder bulging? I can tell by the notch on your belt that you've been overindulging yourself in culinary delights.
        PARIKE_PORANKE_2 = 8950; -- I mean, this is a new era. If somebody wants to go around with their flabby-flubber hanging out of their cloaks, they should have every right to do so. If someone wants to walk around town with breath reeking of Kazham pines and roasted sleepshrooms, who am I to stop them
        PARIKE_PORANKE_3 = 8951; -- What? You want me to tend to your tummy trouble? No problem! And don't worry, this won't hurt at all! I'm only going to be flushing your bowels with thousands of tiny lightning bolts. It's all perfectly safe!
@@ -38,7 +40,6 @@ PARIKE_PORANKE_DIALOG = 8946; -- All these people running back and forth... Ther
       PARIKE_PORANKE_14 = 8974; -- Speaker Name's ll in the name of scienceskill rises one level.
       PARIKE_PORANKE_15 = 8975; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 = 8976; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
-        MERTAIRE_DIALOG = 7417; -- Who are you? Leave me alone!
 
 -- Conquest system
 CONQUEST = 8048; -- You've earned conquest points!

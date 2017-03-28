@@ -377,6 +377,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
             }
         }
     }
+    this->ReloadParty();
 }
 
 void CParty::PopMember(CBattleEntity* PEntity)
@@ -527,11 +528,16 @@ void CParty::AddMember(uint32 id)
     if (m_PartyType == PARTY_PCS)
     {
         uint32 allianceid = 0;
+        uint16 Flags = 0;
         if (m_PAlliance)
         {
             allianceid = m_PAlliance->m_AllianceID;
+            if (this->m_PartyNumber == 1)
+                Flags = PARTY_SECOND;
+            else if (this->m_PartyNumber == 2)
+                Flags = PARTY_THIRD;
         }
-        Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, 0);
+        Sql_Query(SqlHandle, "INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (%u, %u, %u, %u);", id, m_PartyID, allianceid, Flags);
         uint8 data[8] {};
         WBUFL(data, 0) = m_PartyID;
         WBUFL(data, 4) = id;
