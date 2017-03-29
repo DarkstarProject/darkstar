@@ -66,7 +66,8 @@ namespace fishingutils
 
     void LoadFishingMessages()
     {
-        zoneutils::ForEachZone([](CZone* PZone) {
+        zoneutils::ForEachZone([](CZone* PZone)
+		{
             MessageOffset[PZone->GetID()] = luautils::GetTextIDVariable(PZone->GetID(), "FISHING_MESSAGE_OFFSET");
         });
     }
@@ -278,10 +279,11 @@ namespace fishingutils
         DSP_DEBUG_BREAK_IF(PChar->UContainer->GetType() != UCONTAINER_FISHING);
         DSP_DEBUG_BREAK_IF(PChar->UContainer->GetItem(0) == nullptr);
 
-        if (special < 20) {
+		if (special < 20)
+		{
             return 0;
         }
-
+		
         CItem* PFish = PChar->UContainer->GetItem(0);
 
         uint8 skillRank = PChar->RealSkills.rank[SKILL_FISHING];
@@ -290,48 +292,58 @@ namespace fishingutils
         uint16 fishMinSkill = 0;
         uint16 fishMaxSkill = 0;
         double skillUpChance = 0;
-        double skillUpAmount = 1;
+        int32 skillUpAmount = 0;
         double random = dsprand::GetRandomNumber(1.);
 
         int32 ret = Sql_Query(SqlHandle, "SELECT min, max FROM fishing_fish WHERE fishid = %u;", PFish->getID());
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0) {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+		{
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+			{
                 fishMinSkill = Sql_GetIntData(SqlHandle, 0);
                 fishMaxSkill = Sql_GetIntData(SqlHandle, 1);
             }
         }
 
-        if (((charSkill / 10) < (maxSkill / 10)) && ((charSkill / 10) < fishMaxSkill)) {
+        if (((charSkill / 10) < (maxSkill / 10)) && ((charSkill / 10) < fishMaxSkill))
+		{
             // Player must be beneath their rank cap, and less than the fish's maximum skill level. //
-            if (((charSkill / 10) >= fishMinSkill) && ((charSkill / 10) < fishMaxSkill)) {
+            if (((charSkill / 10) >= fishMinSkill) && ((charSkill / 10) < fishMaxSkill))
+			{
                 // Player is between the fish min and max skill level, so increase chance of skill up. //
-                skillUpChance = (map_config.craft_chance_multiplier - (log(1 + charSkill / 100))) / 10;
-                skillUpChance = skillUpChance / (1 + (special / 100));
+                skillUpChance = (map_config.craft_chance_multiplier - (log(1 + charSkill / 100))) / 9;
+				skillUpAmount += 1;
             }
-            else if (((charSkill / 10) < fishMaxSkill)) {
+            else if (((charSkill / 10) < fishMaxSkill))
+			{
                 // Player is below the fish's maximum skill, so increase chance of skill up. //
                 skillUpChance = (map_config.craft_chance_multiplier - (log(1 + charSkill / 100))) / 10;
-                skillUpChance = skillUpChance / (1 + ((special*1.5) / 100));
+				skillUpAmount += 2;
             }
 
-            if (random < skillUpChance) {
+            if (random < skillUpChance)
+			{
                 skillUpAmount += 1;
             }
 
-            if (map_config.craft_amount_multiplier > 1) {
+            if (map_config.craft_amount_multiplier > 1)
+			{
                 skillUpAmount += skillUpAmount * map_config.craft_amount_multiplier;
-                if (skillUpAmount > 9) {
+                if (skillUpAmount > 9)
+				{
                     skillUpAmount = 9;
                 }
             }
-            if ((skillUpAmount + charSkill) > maxSkill) {
+            if ((skillUpAmount + charSkill) > maxSkill)
+			{
                 skillUpAmount = maxSkill - charSkill;
             }
 
             PChar->RealSkills.skill[SKILL_FISHING] += skillUpAmount;
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SKILL_FISHING, skillUpAmount, 38));
 
-            if ((charSkill / 10) < ((charSkill + skillUpAmount) / 10)) {
+			if ((charSkill/10) < (charSkill + skillUpAmount) / 10)
+			{
                 PChar->WorkingSkills.skill[SKILL_FISHING] += 0x20;
                 PChar->pushPacket(new CCharSkillsPacket(PChar));
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, SKILL_FISHING, (charSkill + skillUpAmount) / 10, 53));
@@ -569,7 +581,7 @@ namespace fishingutils
                             PMob->Spawn();
                             battleutils::ClaimMob((CBattleEntity*)PMob, (CBattleEntity*)PChar);
                         }
-
+						
                         // Message: "<blank> caught a monster!" //
                         PChar->animation = ANIMATION_FISHING_MONSTER;
                         PChar->updatemask |= UPDATE_HP;
@@ -587,7 +599,7 @@ namespace fishingutils
                         CItem* PFish = PChar->UContainer->GetItem(0);
                         uint8 rankSkill = PChar->RealSkills.rank[SKILL_FISHING];
                         uint16 rankSkillCap = (rankSkill + 1) * 100;
-                        int32 charSkill = PChar->WorkingSkills.skill[SKILL_FISHING];
+                        int32 charSkill = PChar->RealSkills.skill[SKILL_FISHING];
                         int32 fishMinSkill = 0;
                         int32 fishMaxSkill = 0;
                         int32 rodbreak = 0;
@@ -638,11 +650,11 @@ namespace fishingutils
                                 lureLoss(PChar, false);
                             }
 
-                            if (((charSkill / 10) < fishMaxSkill) && ((charSkill / 10) < (rankSkillCap / 10)))
+							if (((charSkill / 10) < fishMaxSkill) && ((charSkill / 10) < (rankSkillCap / 10)))
                             {
                                 // If the player's skill level is less than the fish's maximum skill level,
                                 // and, the player's skill level is less than the player's rank skill cap.
-                                if ((fishMinSkill > (charSkill / 10)) && (special > 50))
+                                if ((fishMinSkill > (charSkill / 10)) && (special > 40))
                                 {
                                     // If the fish's minimum skill level is greater than the player's skill level,
                                     // but the player maintained a high special greater than 50. //
@@ -650,15 +662,15 @@ namespace fishingutils
                                 }
                                 else if ((fishMaxSkill / 4) < (charSkill / 10))
                                 {
-                                    if (((special % 3) == 0) || (special > 50))
+                                    if (((special % 3) == 0) || (special > 40))
                                         fishingSkillUp(PChar, special);
                                 }
                                 else
                                 {
-                                    if (((special % 3) == 0) || (special > 60))
+                                    if (((special % 3) == 0) || (special > 50))
                                         fishingSkillUp(PChar, special);
                                 }
-                            }
+							}
                         }
                         delete PFish;
                     }
