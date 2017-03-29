@@ -47,7 +47,7 @@
 CBattleEntity::CBattleEntity()
 {
     m_OwnerID.clean();
-    m_ModelSize = 3; // неправильная инициализация, она приведет к тому, что заклинания станут читаться на 3 дальше
+    m_ModelSize = 0;
     m_mlvl = 0;
     m_slvl = 0;
 
@@ -256,6 +256,11 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     MinimumDelay -= (MinimumDelay * 0.8);
     WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
     return WeaponDelay;
+}
+
+uint8 CBattleEntity::GetMeleeRange()
+{
+    return m_ModelSize + 3;
 }
 
 int16 CBattleEntity::GetRangedWeaponDelay(bool tp)
@@ -1310,7 +1315,8 @@ void CBattleEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& ac
 
 bool CBattleEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg)
 {
-    if (distance(loc.p, PTarget->loc.p) > m_ModelSize || !PAI->GetController()->IsAutoAttackEnabled())
+    if ((distance(loc.p, PTarget->loc.p) - PTarget->m_ModelSize) > GetMeleeRange() ||
+        !PAI->GetController()->IsAutoAttackEnabled())
     {
         return false;
     }

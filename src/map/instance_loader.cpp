@@ -162,7 +162,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Type = (uint8)Sql_GetIntData(SqlInstanceHandle, 21);
             PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlInstanceHandle, 22);
             PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlInstanceHandle, 23);
-            PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlInstanceHandle, 24);
+            PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlInstanceHandle, 24);
 
             PMob->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);
             PMob->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 25);

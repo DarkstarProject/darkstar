@@ -448,7 +448,7 @@ void LoadMOBList()
                 PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 22);
                 PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 23);
                 PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 24);
-                PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle, 25);
+                PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 25);
 
                 PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 26);
                 PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 26);
