@@ -163,40 +163,58 @@ uint16 CMobSkill::getAnimationID()
 uint16 CMobSkill::getPetAnimationID()
 {
   // levi
-  if(m_AnimID >= 552 && m_AnimID <= 560){
+  if(m_AnimID >= 552 && m_AnimID <= 560)
+  {
     return m_AnimID - 488;
   }
   // garuda
-  if(m_AnimID >= 565 && m_AnimID <= 573){
+  if(m_AnimID >= 565 && m_AnimID <= 573)
+  {
     return m_AnimID - 485;
   }
   // titan
-  if(m_AnimID >= 539 && m_AnimID <= 547){
+  if(m_AnimID >= 539 && m_AnimID <= 547)
+  {
     return m_AnimID - 491;
   }
   // ifrit
-  if(m_AnimID >= 526 && m_AnimID <= 534){
+  if(m_AnimID >= 526 && m_AnimID <= 534)
+  {
     return m_AnimID - 494;
   }
   // fenrir
-  if(m_AnimID >= 513 && m_AnimID <= 521){
+  if(m_AnimID >= 513 && m_AnimID <= 521)
+  {
     return m_AnimID - 497;
   }
   // shiva
-  if(m_AnimID >= 578 && m_AnimID <= 586){
+  if(m_AnimID >= 578 && m_AnimID <= 586)
+  {
     return m_AnimID - 482;
   }
   // rumah
-  if(m_AnimID >= 591 && m_AnimID <= 599){
+  if(m_AnimID >= 591 && m_AnimID <= 599)
+  {
     return m_AnimID - 479;
   }
   // carbuncle
-  if(m_AnimID >= 605 && m_AnimID <= 611){
+  if(m_AnimID >= 605 && m_AnimID <= 611)
+  {
     return m_AnimID - 605;
   }
 
+  // automaton
+  if ((m_AnimID >= 1303 && m_AnimID <= 1307) ||
+      (m_AnimID >= 1404 && m_AnimID <= 1406) ||
+      (m_AnimID >= 1486 && m_AnimID <= 1488) ||
+      (m_AnimID >= 1509 && m_AnimID <= 1510))
+  {
+      return m_AnimID + 256;
+  }
+
   // wyvern
-  if (m_AnimID >= 621 && m_AnimID <= 632) {
+  if (m_AnimID >= 621 && m_AnimID <= 632)
+  {
       return m_AnimID - 493;
   }
 
