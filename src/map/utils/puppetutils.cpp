@@ -27,6 +27,7 @@
 #include "battleutils.h"
 #include "charutils.h"
 #include "itemutils.h"
+#include "zoneutils.h"
 #include "../status_effect_container.h"
 #include "../entities/automatonentity.h"
 #include "../packets/char_job_extra.h"
@@ -55,6 +56,8 @@ void LoadAutomaton(CCharEntity* PChar)
 
         if (PChar->PAutomaton != nullptr)
         {
+            if (auto PZone = zoneutils::GetZone(PChar->PAutomaton->getZone()))
+                PZone->DeletePET(PChar->PAutomaton);
             delete PChar->PAutomaton;
             PChar->PPet = nullptr;
             PChar->PAutomaton = nullptr;
