@@ -2550,7 +2550,7 @@ namespace charutils
             {
                 if (PChar->PAutomaton)
                 {
-                    MaxMSkill = puppetutils::getSkillCap(PChar, (SKILLTYPE)i);
+                    MaxMSkill = battleutils::GetMaxSkill(1, PChar->GetMLevel()); // A+ capped down to the Automaton's rating
                 }
             }
 

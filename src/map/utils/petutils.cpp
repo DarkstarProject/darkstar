@@ -432,9 +432,9 @@ namespace petutils
 
     void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
     {
-        PPet->WorkingSkills.automaton_melee = PMaster->GetSkill(SKILL_AME);
-        PPet->WorkingSkills.automaton_ranged = PMaster->GetSkill(SKILL_ARA);
-        PPet->WorkingSkills.automaton_magic = PMaster->GetSkill(SKILL_AMA);
+        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME));
+        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA));
+        PPet->WorkingSkills.automaton_magic = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA));
 
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
