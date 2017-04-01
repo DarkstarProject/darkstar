@@ -25,6 +25,27 @@
 #define _AUTOMATONCONTROLLER_H
 
 #include "pet_controller.h"
+#include "../../entities/automatonentity.h"
+#include "../../status_effect.h"
+
+enum AUTOMOVEMENT
+{
+    AUTOMOVEMENT_MELEE = 0,
+    AUTOMOVEMENT_RANGED = 1,
+    AUTOMOVEMENT_MAGIC = 2,
+};
+
+struct CurrentManeuvers
+{
+    int fire = 0;
+    int earth = 0;
+    int water = 0;
+    int wind = 0;
+    int ice = 0;
+    int thunder = 0;
+    int light = 0;
+    int dark = 0;
+};
 
 class CAutomatonEntity;
 
@@ -32,27 +53,60 @@ class CAutomatonController : public CPetController
 {
 public:
     CAutomatonController(CAutomatonEntity* PPet);
+protected:
+    virtual void DoCombatTick(time_point tick) override;
+    void Move();
 
+    void setCooldowns();
+    void setMagicCooldowns();
+    void setMovement();
+    bool CanCastSpells();
+    bool CastSpell(uint16 spellid, CBattleEntity* PCastTarget = nullptr);
 private:
+    bool TryAction();
+    bool TryShieldBash();
     bool TrySpellcast();
+    bool TryHeal();
+    bool TryElemental();
+    bool TryEnfeeble();
+    bool TryStatusRemoval();
+    bool TryEnhance();
     bool TryTPMove();
     bool TryRangedAttack();
+    bool TryAttachment();
+
+    CurrentManeuvers GetCurrentManeuvers();
+    CurrentManeuvers m_CurrentManeuvers;
 
     CAutomatonEntity* PAutomaton;
 
-    time_point m_magicRecast;
-    time_point m_magicEnfeebleRecast;
-    time_point m_magicElementalRecast;
-    time_point m_magicHealRecast;
-    time_point m_magicEnhanceRecast;
-    time_point m_magicStatusRecast;
+    duration m_actionCooldown{ 3s };
+    duration m_rangedCooldown{ duration::zero() };
+    static constexpr int m_RangedAbility{ 1949 };
+    duration m_magicCooldown{ duration::zero() };
+    duration m_enfeebleCooldown{ duration::zero() };
+    duration m_elementalCooldown{ duration::zero() };
+    duration m_healCooldown{ duration::zero() };
+    duration m_enhanceCooldown{ duration::zero() };
+    duration m_statusCooldown{ duration::zero() };
+    duration m_shieldbashCooldown{ duration::zero() };
+    static constexpr int m_ShieldBashAbility{ 1944 };
+
+    std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> m_naList;
+    std::unordered_map<AUTOSPELL, EFFECT, EnumClassHash> m_enfeebleList;
+    std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> m_immunityList;
+
+    AUTOMOVEMENT m_movementType;
+
+    time_point m_LastActionTime;
+    time_point m_LastMagicTime;
+    time_point m_LastEnfeebleTime;
+    time_point m_LastElementalTime;
+    time_point m_LastHealTime;
+    time_point m_LastEnhanceTime;
+    time_point m_LastStatusTime;
     time_point m_LastRangedTime;
-
-    duration m_rangedCooldown {duration::zero()};
-    static constexpr int m_RangedAbility {1949};
-protected:
-    virtual void DoCombatTick(time_point tick) override;
-
+    time_point m_LastShieldBashTime;
 };
 
 #endif
