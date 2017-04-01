@@ -1306,7 +1306,7 @@ bool CAutomatonController::TryTPMove()
 
 bool CAutomatonController::TryRangedAttack()
 {
-    if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + (3s - std::chrono::seconds(PAutomaton->getMod(Mod::SNAP_SHOT))))
+    if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + (m_rangedCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::SNAP_SHOT))))
         return MobSkill(PTarget->targid, m_RangedAbility);
     return false;
 }
