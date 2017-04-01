@@ -432,9 +432,17 @@ namespace petutils
 
     void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
     {
-        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME));
-        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA));
-        PPet->WorkingSkills.automaton_magic = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA));
+        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME)) + PMaster->getMod(Mod::AUTO_MELEE_SKILL);
+        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA)) + PMaster->getMod(Mod::AUTO_RANGED_SKILL);
+
+        // Share its magic skills to prevent needing separate spells or checks to see which skill to use
+        uint16 amaSkill = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA)) + PMaster->getMod(Mod::AUTO_MAGIC_SKILL);
+        PPet->WorkingSkills.automaton_magic = amaSkill;
+        PPet->WorkingSkills.healing = amaSkill;
+        PPet->WorkingSkills.enhancing = amaSkill;
+        PPet->WorkingSkills.enfeebling = amaSkill;
+        PPet->WorkingSkills.elemental = amaSkill;
+        PPet->WorkingSkills.dark = amaSkill;
 
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
