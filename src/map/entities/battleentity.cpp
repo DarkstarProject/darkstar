@@ -433,7 +433,10 @@ int16 CBattleEntity::addTP(int16 tp)
         }
         else if (objtype == TYPE_PET)
         {
-            TPMulti = map_config.mob_tp_multiplier * 3;
+            if (static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_AUTOMATON || !this->PMaster)
+                TPMulti = map_config.mob_tp_multiplier * 3;
+            else
+                TPMulti = map_config.player_tp_multiplier;
         }
 
         tp = tp * TPMulti;
