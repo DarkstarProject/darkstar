@@ -276,7 +276,7 @@ void CAutomatonController::DoCombatTick(time_point tick)
             m_LastMagicTime = m_Tick;
             return;
         }
-        else if (TryTPMove()) // TODO: Add scripts for its WS
+        else if (TryTPMove())
         {
             return;
         }
@@ -705,7 +705,7 @@ bool CAutomatonController::TryElemental()
     return false;
 }
 
-bool CAutomatonController::TryEnfeeble() // TODO: make sure its not immune
+bool CAutomatonController::TryEnfeeble()
 {
     if (!PAutomaton->PMaster || m_enfeebleCooldown == 0s || m_Tick <= m_LastEnfeebleTime + m_enfeebleCooldown)
         return false;
@@ -1259,7 +1259,6 @@ bool CAutomatonController::TryEnhance() // TODO: Can it Stoneskin and Phalanx it
 
 bool CAutomatonController::TryTPMove()
 {
-    //TODO: range checks
     if (PAutomaton->health.tp > 1000)
     {
         const auto& FamilySkills = battleutils::GetMobSkillList(PAutomaton->m_Family);
@@ -1275,7 +1274,8 @@ bool CAutomatonController::TryTPMove()
         for (auto skillid : FamilySkills)
         {
             auto PSkill = battleutils::GetMobSkill(skillid);
-            if (PSkill && PAutomaton->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1)
+            if (PSkill && PAutomaton->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1 &&
+                distance(PAutomaton->loc.p, PTarget->loc.p) < PSkill->getRadius())
             {
                 validSkills.push_back(PSkill);
             }

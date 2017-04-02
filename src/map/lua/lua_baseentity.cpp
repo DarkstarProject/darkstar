@@ -7139,7 +7139,6 @@ inline int32 CLuaBaseEntity::getRATT(lua_State *L)
 inline int32 CLuaBaseEntity::getRACC(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT_RANGED];
 
@@ -7148,14 +7147,14 @@ inline int32 CLuaBaseEntity::getRACC(lua_State *L)
         ShowDebug(CL_CYAN"lua::getRACC weapon in ranged slot is NULL!\n" CL_RESET);
         return 0;
     }
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
 
-    int skill = PChar->GetSkill(weapon->getSkillType());
+    int skill = PEntity->GetSkill(weapon->getSkillType());
     int acc = skill;
     if (skill > 200) { acc = 200 + (skill - 200)*0.9; }
-    acc += PChar->getMod(Mod::RACC);
-    acc += PChar->AGI() / 2;
-    acc = acc + dsp_min(((100 + PChar->getMod(Mod::FOOD_RACCP)) * acc) / 100, PChar->getMod(Mod::FOOD_RACC_CAP));
+    acc += PEntity->getMod(Mod::RACC);
+    acc += PEntity->AGI() / 2;
+    acc = acc + dsp_min(((100 + PEntity->getMod(Mod::FOOD_RACCP)) * acc) / 100, PEntity->getMod(Mod::FOOD_RACC_CAP));
 
     lua_pushinteger(L, acc);
     return 1;

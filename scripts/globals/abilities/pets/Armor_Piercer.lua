@@ -52,7 +52,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ignored300 = 0.5
     end
 
-    local damage = doRangedWeaponskill(player, target, 0, params, tp, true)
+    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true)
 
     return damage
 end

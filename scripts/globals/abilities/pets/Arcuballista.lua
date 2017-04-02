@@ -45,7 +45,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ftp300 = 13.0
     end
 
-    local damage = doRangedWeaponskill(player, target, 0, params, tp, true)
+    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true)
 
     return damage
 end

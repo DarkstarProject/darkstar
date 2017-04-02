@@ -46,12 +46,12 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ftp300 = 11.0
     end
 
-    local damage = doRangedWeaponskill(player, target, 0, params, tp, true)
+    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true)
 
     if damage > 0 then
         local chance = 0.033 * tp
         if not target:hasStatusEffect(EFFECT_STUN) and chance >= math.random()*100 then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, 2)
+            target:addStatusEffect(EFFECT_STUN, 1, 0, 4)
         end
     end
 
