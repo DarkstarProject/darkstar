@@ -444,9 +444,7 @@ int VFPRINTF(HANDLE handle, const std::string& fmt)
 }
 int FPRINTF(HANDLE handle, const std::string fmt)
 {
-	int ret;
-	ret = VFPRINTF(handle,fmt);
-	return ret;
+	return VFPRINTF(handle,fmt);
 }
 
 #define FFLUSH(handle)
@@ -460,23 +458,21 @@ int FPRINTF(HANDLE handle, const std::string fmt)
 #define is_console(file) (0!=isatty(fileno(file)))
 
 //vprintf_without_ansiformats
-int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
+int	VFPRINTF(FILE *file, const std::string& fmt)
 {
-	char *p, *q;
+	const char *p, *q;
 
-	if(!fmt || !*fmt)
+	if(fmt.empty())
 		return 0;
 
 	if( is_console(file) || stdout_with_ansisequence )
 	{
-		vfprintf(file, fmt, argptr);
+		fprintf(file, fmt.c_str());
 		return 0;
 	}
 
-    std::string tempbuf = fmt::sprintf(fmt, argptr);
-
 	// start with processing
-    p = &tempbuf[0];
+    p = &fmt[0];
 	while ((q = strchr(p, 0x1b)) != NULL)
 	{	// find the escape character
 		fprintf(file, "%.*s", (int)(q-p), p); // write up to the escape
@@ -570,17 +566,11 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 	}
 	if (*p)	// write the rest of the buffer
 		fprintf(file, "%s", p);
-	FREEBUF(tempbuf);
 	return 0;
 }
-int	FPRINTF(FILE *file, const char *fmt, ...)
+int	FPRINTF(FILE *file, std::string fmt)
 {
-	int ret;
-	va_list argptr;
-	va_start(argptr, fmt);
-	ret = VFPRINTF(file,fmt,argptr);
-	va_end(argptr);
-	return ret;
+	return VFPRINTF(file,fmt);
 }
 
 #define FFLUSH fflush

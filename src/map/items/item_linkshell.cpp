@@ -23,6 +23,8 @@
 
 #include "../../common/socket.h"
 
+#include <cstring>
+
 #include "item_linkshell.h"
 
 
