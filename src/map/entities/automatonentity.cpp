@@ -30,6 +30,8 @@
 #include "../packets/pet_sync.h"
 #include "../packets/char_job_extra.h"
 #include "../status_effect_container.h"
+#include "../ai/states/magic_state.h"
+#include "../ai/states/mobskill_state.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -464,4 +466,31 @@ bool CAutomatonEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags
         return true;
     }
     return CPetEntity::ValidTarget(PInitiator, targetFlags);
+}
+
+void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
+{
+    CMobEntity::OnCastFinished(state, action);
+
+    auto PSpell = state.GetSpell();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    if (PSpell->tookEffect())
+    {
+        puppetutils::TrySkillUP(this, SKILL_AMA, PTarget->GetMLevel());
+    }
+}
+
+void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
+{
+    CMobEntity::OnMobSkillFinished(state, action);
+
+    auto PSkill = state.GetSkill();
+    auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    // Ranged attack skill up
+    if (PSkill->getID() == 1949 && !PSkill->hasMissMsg())
+    {
+        puppetutils::TrySkillUP(this, SKILL_ARA, PTarget->GetMLevel());
+    }
 }

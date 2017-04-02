@@ -461,10 +461,10 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
     DSP_DEBUG_BREAK_IF(!PAutomaton->PMaster || PAutomaton->PMaster->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)PAutomaton->PMaster;
-    if (getSkillCap(PChar, SkillID) != 0 && !(PChar->WorkingSkills.skill[SkillID] & 0x8000))
+    if (getSkillCap(PChar, SkillID) != 0 && !(PAutomaton->WorkingSkills.skill[SkillID] & 0x8000))
     {
         uint16 CurSkill = PChar->RealSkills.skill[SkillID];
-        uint16 MaxSkill = getSkillCap(PChar, SkillID);
+        uint16 MaxSkill = getSkillCap(PChar, SkillID, dsp_min(PAutomaton->GetMLevel(), lvl));
 
         int16  Diff = MaxSkill - CurSkill / 10;
         double SkillUpChance = Diff / 5.0 + map_config.skillup_chance_multiplier * (2.0 - log10(1.0 + CurSkill / 100));
@@ -475,6 +475,8 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
         {
             SkillUpChance = 0.5;
         }
+
+        SkillUpChance *= ((100.f + PAutomaton->getMod(Mod::COMBAT_SKILLUP_RATE)) / 100.f);
 
         if (Diff > 0 && random < SkillUpChance)
         {
@@ -524,8 +526,18 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
 
             if ((CurSkill / 10) < (CurSkill + SkillAmount) / 10) //if gone up a level
             {
-                //TODO: regenerate automatons weaponskills
                 PChar->WorkingSkills.skill[SkillID] += 1;
+                PAutomaton->WorkingSkills.skill[SkillID] += 1;
+                if (SkillID == SKILL_AMA)
+                {
+                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
+                    PAutomaton->WorkingSkills.automaton_magic = amaSkill;
+                    PAutomaton->WorkingSkills.healing = amaSkill;
+                    PAutomaton->WorkingSkills.enhancing = amaSkill;
+                    PAutomaton->WorkingSkills.enfeebling = amaSkill;
+                    PAutomaton->WorkingSkills.elemental = amaSkill;
+                    PAutomaton->WorkingSkills.dark = amaSkill;
+                }
                 PChar->pushPacket(new CCharJobExtraPacket(PChar, PChar->GetMJob() == JOB_PUP));
                 PChar->pushPacket(new CMessageBasicPacket(PAutomaton, PAutomaton, SkillID, (CurSkill + SkillAmount) / 10, 53));
             }

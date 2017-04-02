@@ -444,6 +444,11 @@ namespace petutils
         PPet->WorkingSkills.elemental = amaSkill;
         PPet->WorkingSkills.dark = amaSkill;
 
+        // Set capped flags
+        for (int i = 22; i <= 24; ++i)
+            if (puppetutils::getSkillCap(PMaster, (SKILLTYPE)i) == PPet->GetSkill(i))
+                PPet->WorkingSkills.skill[i] |= 0x8000;
+
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
         float jobStat = 0;			// конечное число HP для уровня на основе первичной профессии.

@@ -43,6 +43,7 @@
 #include "../weapon_skill.h"
 #include "../packets/action.h"
 #include "../utils/petutils.h"
+#include "../utils/puppetutils.h"
 
 CBattleEntity::CBattleEntity()
 {
@@ -1447,6 +1448,11 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         {
                             uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
                             charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
+                        } // In case the Automaton can counter
+                        else if (PTarget->objtype == TYPE_PET && PTarget->PMaster && PTarget->PMaster->objtype == TYPE_PC &&
+                            static_cast<CPetEntity*>(PTarget)->getPetType() == PETTYPE_AUTOMATON)
+                        {
+                            puppetutils::TrySkillUP((CAutomatonEntity*)PTarget, SKILL_AME, GetMLevel());
                         }
                     }
                 }
