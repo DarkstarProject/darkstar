@@ -692,11 +692,11 @@ bool CAutomatonController::TryElemental()
     while (tier >= 0)
     {
         for (AUTOSPELL id : castPriority)
-            if (CastSpell(id + tier, PTarget))
+            if (CastSpell((AUTOSPELL)(id + tier), PTarget))
                 return true;
 
         for (AUTOSPELL id : defaultPriority)
-            if (CastSpell(id + tier, PTarget))
+            if (CastSpell((AUTOSPELL)(id + tier), PTarget))
                 return true;
 
         --tier;
@@ -1333,7 +1333,7 @@ bool CAutomatonController::CanCastSpells()
     return true;
 }
 
-bool CAutomatonController::CastSpell(uint16 spellid, CBattleEntity* PCastTarget)
+bool CAutomatonController::CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget)
 {
     CSpell* PSpell = spell::GetSpell(spellid);
 

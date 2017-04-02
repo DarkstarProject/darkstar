@@ -61,7 +61,7 @@ protected:
     void setMagicCooldowns();
     void setMovement();
     bool CanCastSpells();
-    bool CastSpell(uint16 spellid, CBattleEntity* PCastTarget = nullptr);
+    bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget = nullptr);
 private:
     bool TryAction();
     bool TryShieldBash();
