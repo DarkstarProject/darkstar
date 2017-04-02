@@ -718,7 +718,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
             target.animation = PSkill->getPetAnimationID();
-            target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
+            if (static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_AUTOMATON || !this->PMaster)
+                target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
+            else
+                target.param = luautils::OnAutomatonAbility(this, PTarget, PSkill, state.GetSpentTP(), &action);
         }
         else
         {

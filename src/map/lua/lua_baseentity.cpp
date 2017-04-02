@@ -4972,6 +4972,19 @@ inline int32 CLuaBaseEntity::hasStatusEffectByFlag(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::countEffect(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 numEffects = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->GetEffectsCount((EFFECT)lua_tointeger(L, 1));
+
+    lua_pushinteger(L, numEffects);
+    return 1;
+}
+
 inline int32 CLuaBaseEntity::hasBustEffect(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8819,9 +8832,14 @@ inline int32 CLuaBaseEntity::isAlly(lua_State *L)
 inline int32 CLuaBaseEntity::hasTrait(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        lua_pushboolean(L, false);
+        return 1;
+    }
 
     lua_pushboolean(L, charutils::hasTrait((CCharEntity*)m_PBaseEntity, lua_tointeger(L, 1)));
     return 1;
@@ -11263,6 +11281,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canGainStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasStatusEffectByFlag),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,countEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasBustEffect),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,numBustEffects),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStatusEffectElement),
