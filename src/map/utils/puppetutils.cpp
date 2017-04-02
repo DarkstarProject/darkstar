@@ -518,7 +518,7 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
             if (SkillAmount + CurSkill >= MaxSkill)
             {
                 SkillAmount = MaxSkill - CurSkill;
-                PChar->WorkingSkills.skill[SkillID] |= 0x8000;
+                PAutomaton->WorkingSkills.skill[SkillID] |= 0x8000;
             }
 
             PChar->RealSkills.skill[SkillID] += SkillAmount;
