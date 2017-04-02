@@ -41,9 +41,6 @@
     <ClInclude Include="..\..\src\common\kernel.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\common\malloc.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\md52.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
@@ -57,9 +54,6 @@
       <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\sql.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\strlib.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\common\taskmgr.h">
@@ -106,9 +100,6 @@
     <ClCompile Include="..\..\src\common\kernel.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\malloc.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\common\md52.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
@@ -119,9 +110,6 @@
       <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\common\sql.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\strlib.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\common\taskmgr.cpp">

@@ -77,7 +77,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
         Sql_Query(SqlHandle, "UPDATE accounts_parties JOIN accounts_sessions USING (charid) \
                         SET allianceid = 0, partyflag = partyflag & ~%d \
                         WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
-                        ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip, map_port, map_ip, map_port);
+                        ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip.s_addr, map_port, map_ip.s_addr, map_port);
         //first kick out the third party if it exsists
         CParty* party = nullptr;
         if (this->partyList.size() == 3)

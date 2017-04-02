@@ -22,13 +22,11 @@
     <ClInclude Include="..\..\src\common\blowfish.h" />
     <ClInclude Include="..\..\src\common\cbasetypes.h" />
     <ClInclude Include="..\..\src\common\kernel.h" />
-    <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
     <ClInclude Include="..\..\src\common\showmsg.h" />
     <ClInclude Include="..\..\src\common\socket.h" />
     <ClInclude Include="..\..\src\common\sql.h" />
-    <ClInclude Include="..\..\src\common\strlib.h" />
     <ClInclude Include="..\..\src\common\taskmgr.h" />
     <ClInclude Include="..\..\src\common\timer.h" />
     <ClInclude Include="..\..\src\common\utils.h" />
@@ -45,12 +43,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
     <ClCompile Include="..\..\src\common\kernel.cpp" />
-    <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
     <ClCompile Include="..\..\src\common\showmsg.cpp" />
     <ClCompile Include="..\..\src\common\socket.cpp" />
     <ClCompile Include="..\..\src\common\sql.cpp" />
-    <ClCompile Include="..\..\src\common\strlib.cpp" />
     <ClCompile Include="..\..\src\common\taskmgr.cpp" />
     <ClCompile Include="..\..\src\common\timer.cpp" />
     <ClCompile Include="..\..\src\common\utils.cpp" />
@@ -141,7 +137,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -158,7 +154,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -179,7 +175,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -201,7 +197,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;NDEBUG;_CONSOLE;dsTCPSERV;DEBUGLOGLOGIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

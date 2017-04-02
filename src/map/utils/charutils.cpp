@@ -24,7 +24,6 @@ This file is part of DarkStar-server source code.
 #include "../../common/socket.h"
 #include "../../common/showmsg.h"
 #include "../../common/sql.h"
-#include "../../common/strlib.h"
 #include "../../common/timer.h"
 #include "../../common/utils.h"
 

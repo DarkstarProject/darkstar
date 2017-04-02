@@ -433,11 +433,11 @@ namespace message
     {
         SqlHandle = Sql_Malloc();
 
-        if (Sql_Connect(SqlHandle, map_config.mysql_login,
-            map_config.mysql_password,
-            map_config.mysql_host,
+        if (Sql_Connect(SqlHandle, map_config.mysql_login.c_str(),
+            map_config.mysql_password.c_str(),
+            map_config.mysql_host.c_str(),
             map_config.mysql_port,
-            map_config.mysql_database) == SQL_ERROR)
+            map_config.mysql_database.c_str()) == SQL_ERROR)
         {
             exit(EXIT_FAILURE);
         }

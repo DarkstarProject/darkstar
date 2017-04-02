@@ -308,7 +308,7 @@ void LoadNPCList()
         ON (npcid & 0xFFF000) >> 12 = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -400,7 +400,7 @@ void LoadMOBList()
             WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
             AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
-    int32 ret = Sql_Query(SqlHandle, Query, map_ip, inet_ntoa(map_ip), map_port);
+    int32 ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -571,7 +571,7 @@ void LoadMOBList()
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    ret = Sql_Query(SqlHandle, PetQuery, map_ip, inet_ntoa(map_ip), map_port);
+    ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
@@ -655,7 +655,7 @@ void LoadZoneList()
     std::vector<uint16> zones;
     const int8* query = "SELECT zoneid FROM zone_settings WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-    int ret = Sql_Query(SqlHandle, query, map_ip, inet_ntoa(map_ip), map_port);
+    int ret = Sql_Query(SqlHandle, query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
