@@ -61,7 +61,7 @@ function OnAutomatonAbility(automaton, target, skill, tp, master, action)
     local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params)
 
     if damage > 0 then
-        local chance = 0.0033 * tp
+        local chance = 0.033 * tp
         if not target:hasStatusEffect(EFFECT_STUN) and chance >= math.random()*100 then
             target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
         end

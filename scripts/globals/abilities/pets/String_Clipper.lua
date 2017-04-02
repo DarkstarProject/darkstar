@@ -43,7 +43,7 @@ function OnAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ftp100 = 3.5
         params.ftp200 = 3.5
         params.ftp300 = 3.5
-        params.accBonus = 0.005 * tp
+        params.accBonus = 0.05 * tp
     end
 
     local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params)
