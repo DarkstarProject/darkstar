@@ -14,14 +14,14 @@ require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
 
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
 
     local criticalHit = false;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    bonusacc = bonusacc + attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
     -- get fstr
     local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmgRank());
