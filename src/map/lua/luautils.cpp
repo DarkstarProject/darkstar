@@ -3488,7 +3488,7 @@ namespace luautils
     {
         lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
 
-        if (prepFile(File, "OnAutomatonAbility"))
+        if (prepFile(File, "onAutomatonAbility"))
         {
             return 0;
         }
@@ -3512,21 +3512,21 @@ namespace luautils
 
         if (lua_pcall(LuaHandle, 6, LUA_MULTRET, 0))
         {
-            ShowError("luautils::OnAutomatonAbility: %s\n", lua_tostring(LuaHandle, -1));
+            ShowError("luautils::onAutomatonAbility: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return 0;
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
         if (returns < 1)
         {
-            ShowError("luautils::OnAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
+            ShowError("luautils::onAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
             return 0;
         }
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
         if (returns > 1)
         {
-            ShowError("luautils::OnAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
+            ShowError("luautils::onAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
             lua_pop(LuaHandle, returns - 1);
         }
         return retVal;

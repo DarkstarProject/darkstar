@@ -18,7 +18,7 @@ function onMobSkillCheck(target, automaton, skill)
     end
 end
 
-function OnAutomatonAbility(automaton, target, skill, tp, master, action)
+function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local params = {
         numHits = 1,
         atkmulti = 0,

@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
-function OnAutomatonAbility(automaton, target, skill, tp, master, action)
+function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 1.5;

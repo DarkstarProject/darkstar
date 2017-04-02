@@ -16,7 +16,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function OnAutomatonAbility(automaton, target, skill, tp, master, action)
+function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local chance = 90;
     local damage = 90 + automaton:getMod(MOD_SHIELD_BASH);
 
