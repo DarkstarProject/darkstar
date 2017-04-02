@@ -238,17 +238,17 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
--- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
+-- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr, accBonus, weaponDamage
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
 
 function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
 
     local bonusTP = params.bonusTP or 0
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    bonusacc = bonusacc + attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
     local fint = utils.clamp(8 + (attacker:getStat(MOD_INT) - target:getStat(MOD_INT)), -32, 32);
-    local dmg = attacker:getMainLvl() + 2 + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
+    local dmg = (params.weaponDamage or attacker:getMainLvl() + 2) + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
          attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
@@ -674,19 +674,19 @@ function getAlpha(level)
     return alpha;
 end;
 
- -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+ -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
  function doRangedWeaponskill(attacker, target, wsID, params, tp, primary)
 
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    bonusacc = bonusacc + attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
     -- get fstr
     local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmgForRank());
 
     -- apply WSC
-    local base = attacker:getRangedDmg() + fstr +
+    local base = (params.weaponDamage or attacker:getRangedDmg()) + fstr +
         (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
