@@ -63,7 +63,7 @@ function OnAutomatonAbility(automaton, target, skill, tp, master, action)
     if damage > 0 then
         local chance = 0.033 * tp
         if not target:hasStatusEffect(EFFECT_STUN) and chance >= math.random()*100 then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, 2);
+            target:addStatusEffect(EFFECT_STUN, 1, 0, 2)
         end
     end
 
