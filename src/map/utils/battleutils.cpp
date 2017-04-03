@@ -2070,9 +2070,18 @@ namespace battleutils
 
         if (PDefender->objtype == TYPE_MOB)
         {
-            PDefender->m_OwnerID.id = PChar->id;
-            PDefender->m_OwnerID.targid = PChar->targid;
-            PDefender->updatemask |= UPDATE_STATUS;
+            if (PChar->PMaster != nullptr)
+            {
+                PDefender->m_OwnerID.id = PChar->PMaster->id;
+                PDefender->m_OwnerID.targid = PChar->PMaster->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
+            else
+            {
+                PDefender->m_OwnerID.id = PChar->id;
+                PDefender->m_OwnerID.targid = PChar->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
         }
 
         if (damage > 0)
