@@ -1331,6 +1331,11 @@ MOD_WYVERN_EFFECTIVE_BREATH   = 829 -- Increases the threshold for triggering he
 MOD_AQUAVEIL_COUNT            = 832 -- Modifies the amount of hits that Aquaveil absorbs before being removed
 MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time in seconds.
 
+-- Automaton mods
+MOD_AUTO_DECISION_DELAY    = 842 -- Reduces the Automaton's global decision delay
+MOD_AUTO_SHIELD_BASH_DELAY = 843 -- Reduces the Automaton's global shield bash delay
+MOD_AUTO_HEALING_THRESHOLD = 844 -- Increases the healing trigger threshold
+
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
 MOD_AOE_NA                    = 524 -- Set to 1 to make -na spells/erase always AoE w/ Divine Veil
@@ -1357,9 +1362,6 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 842 -- stuff
--- MOD_SPARE = 843 -- stuff
--- MOD_SPARE = 844 -- stuff
 -- MOD_SPARE = 845 -- stuff
 -- MOD_SPARE = 846 -- stuff
 -- MOD_SPARE = 847 -- stuff
