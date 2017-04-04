@@ -56,9 +56,9 @@ void LoadAutomaton(CCharEntity* PChar)
 
         if (PChar->PAutomaton != nullptr)
         {
-            if (auto PZone = zoneutils::GetZone(PChar->PAutomaton->getZone()))
-                PZone->DeletePET(PChar->PAutomaton);
-            delete PChar->PAutomaton;
+            // Make the old one disappear and allow the zone to delete it safely
+            PChar->PAutomaton->status = STATUS_DISAPPEAR;
+            PChar->PAutomaton->PMaster = nullptr;
             PChar->PPet = nullptr;
             PChar->PAutomaton = nullptr;
         }
