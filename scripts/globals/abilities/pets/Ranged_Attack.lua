@@ -1,32 +1,42 @@
 ---------------------------------------------------
 -- Ranged Attack
--- Deals a ranged attack to a single target.
 ---------------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/status")
+require("scripts/globals/settings")
+require("scripts/globals/weaponskills")
 
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 1.5;
+    local params = {
+        numHits = 1,
+        atkmulti = 1.5,
+        ftp100 = 1.0,
+        ftp200 = 1.25,
+        ftp300 = 1.5,
+        acc100 = 0.0,
+        acc200 = 0.0,
+        acc300 = 0.0,
+        str_wsc = 0.0,
+        dex_wsc = 0.0,
+        vit_wsc = 0.0,
+        agi_wsc = 0.0,
+        int_wsc = 0.0,
+        mnd_wsc = 0.0,
+        chr_wsc = 0.0
+    }
 
-    local info = MobRangedMove(automaton,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local damage = doRangedWeaponskill(automaton, target, 0, params, math.random(1000, 3000), true)
 
-    local dmg = MobFinalAdjustments(info.dmg,automaton,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded);
-
-    if (dmg > 0) then
-       target:addTP(20);
-       automaton:addTP(80);
+    -- Miss message
+    if damage == 0 then
+        skill:setMsg(188)
     end
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    return damage
+end

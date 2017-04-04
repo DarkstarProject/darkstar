@@ -2,9 +2,9 @@
 -- Bone Crusher
 ---------------------------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/globals/weaponskills");
+require("scripts/globals/status")
+require("scripts/globals/settings")
+require("scripts/globals/weaponskills")
 
 ---------------------------------------------------
 

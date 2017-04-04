@@ -1,14 +1,10 @@
 ---------------------------------------------
 --  Shield Bash
---
---  Description:  Delivers an attack that can stun the target. Shield required. 
---  Type: Physical
---  Range: Melee
 ---------------------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/globals/weaponskills");
+require("scripts/globals/status")
+require("scripts/globals/settings")
+require("scripts/globals/weaponskills")
 
 ---------------------------------------------------
 
@@ -17,32 +13,32 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
-    local chance = 90;
-    local damage = 90 + automaton:getMod(MOD_SHIELD_BASH);
+    local chance = 90
+    local damage = (automaton:getSkillLevel(22)/2) + automaton:getMod(MOD_SHIELD_BASH)
 
-    damage = math.floor(damage);
+    damage = math.floor(damage)
 
-    chance = chance + (automaton:getMainLvl() - target:getMainLvl())*5;
+    chance = chance + (automaton:getMainLvl() - target:getMainLvl())*5
 
-    if (math.random()*100 < chance) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+    if math.random()*100 < chance then
+        target:addStatusEffect(EFFECT_STUN, 1, 0, 6)
     end
 
     -- randomize damage
-    local ratio = automaton:getStat(MOD_ATT)/target:getStat(MOD_DEF);
-    if (ratio > 1.3) then
-        ratio = 1.3;
+    local ratio = automaton:getStat(MOD_ATT)/target:getStat(MOD_DEF)
+    if ratio > 1.3 then
+        ratio = 1.3
     end
-    if (ratio < 0.2) then
-        ratio = 0.2;
+    if ratio < 0.2 then
+        ratio = 0.2
     end
 
-    local pdif = (math.random(ratio*0.8*1000, ratio*1.2*1000));
+    local pdif = math.random(ratio*0.8*1000, ratio*1.2*1000)
 
-    damage = damage * (pdif / 1000);
+    damage = damage * (pdif / 1000)
 
-    target:delHP(damage);
-    target:updateEnmityFromDamage(automaton, damage);
+    target:delHP(damage)
+    target:updateEnmityFromDamage(automaton, damage)
 
     return damage
 end
