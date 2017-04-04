@@ -1335,7 +1335,9 @@ MOD_SONG_RECAST_DELAY         = 833 -- Reduces song recast time in seconds.
 -- Automaton mods
 MOD_AUTO_DECISION_DELAY    = 842 -- Reduces the Automaton's global decision delay
 MOD_AUTO_SHIELD_BASH_DELAY = 843 -- Reduces the Automaton's global shield bash delay
-MOD_AUTO_HEALING_THRESHOLD = 844 -- Increases the healing trigger threshold
+MOD_AUTO_MAGIC_DELAY       = 844 -- Reduces the Automaton's global magic delay
+MOD_AUTO_HEALING_DELAY     = 845 -- Reduces the Automaton's global healing delay
+MOD_AUTO_HEALING_THRESHOLD = 846 -- Increases the healing trigger threshold
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1360,10 +1362,7 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
 -- MOD_SPARE = 67 -- stuff
--- MOD_SPARE = 98 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 845 -- stuff
--- MOD_SPARE = 846 -- stuff
 -- MOD_SPARE = 847 -- stuff
 -- MOD_SPARE = 848 -- stuff
 -- MOD_SPARE = 849 -- stuff

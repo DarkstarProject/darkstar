@@ -354,7 +354,8 @@ bool CAutomatonController::TryShieldBash()
 bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into account the mob's HPP?
 {
     // Note that the old AI used the Mana Booster attachment to reduce magic cooldown instead of giving fast cast
-    if (!PAutomaton->PMaster || m_magicCooldown == 0s || m_Tick <= m_LastMagicTime + m_magicCooldown || !CanCastSpells())
+    if (!PAutomaton->PMaster || m_magicCooldown == 0s ||
+        m_Tick <= m_LastMagicTime + (m_magicCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::AUTO_MAGIC_DELAY))) || !CanCastSpells())
         return false;
 
     switch (PAutomaton->getHead())
@@ -510,7 +511,7 @@ bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into acc
 
 bool CAutomatonController::TryHeal()
 {
-    if (!PAutomaton->PMaster || m_healCooldown == 0s || m_Tick <= m_LastHealTime + m_healCooldown)
+    if (!PAutomaton->PMaster || m_healCooldown == 0s || m_Tick <= m_LastHealTime + (m_healCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::AUTO_HEALING_DELAY))))
         return false;
 
     float threshold = 0;
@@ -1009,7 +1010,7 @@ bool CAutomatonController::TryStatusRemoval()
     return false;
 }
 
-bool CAutomatonController::TryEnhance() // TODO: Can it Stoneskin and Phalanx its master?
+bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and Phalanx on its master
 {
     if (!PAutomaton->PMaster || m_enhanceCooldown == 0s || m_Tick <= m_LastEnhanceTime + m_enhanceCooldown)
         return false;
