@@ -477,6 +477,7 @@ enum class Mod
     ENSPELL                   = 341, // stores the type of enspell active (0 if nothing)
     ENSPELL_DMG               = 343, // stores the base damage of the enspell before reductions
     ENSPELL_DMG_BONUS         = 432, //
+    ENSPELL_CHANCE            = 495, // Chance of enspell activating (0 = 100%, 10 = 10%, 30 = 30%, ...)
     SPIKES                    = 342, // store the type of spike spell active (0 if nothing)
     SPIKES_DMG                = 344, // stores the base damage of the spikes before reductions
 
@@ -651,7 +652,6 @@ enum class Mod
     ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
     // SPARE = 67, // stuff
-    // SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 845, // stuff
     // SPARE = 846, // stuff

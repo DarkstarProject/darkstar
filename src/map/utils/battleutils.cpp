@@ -968,7 +968,8 @@ namespace battleutils
         }
 
         // Enspell overwrites weapon effects
-        if (PAttacker->getMod(Mod::ENSPELL) > 0)
+        if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
+            PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))
         {
             SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
                 SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };

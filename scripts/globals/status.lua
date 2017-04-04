@@ -1095,6 +1095,7 @@ MOD_BARRAGE_ACC        = 420 --
 MOD_ENSPELL            = 341
 MOD_SPIKES             = 342
 MOD_ENSPELL_DMG        = 343
+MOD_ENSPELL_CHANCE     = 495
 MOD_SPIKES_DMG         = 344
 MOD_TP_BONUS           = 345
 MOD_PERPETUATION_REDUCTION = 346
@@ -1360,7 +1361,6 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 
 -- MOD_SPARE = 67 -- stuff
 -- MOD_SPARE = 98 -- stuff
--- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
 -- MOD_SPARE = 845 -- stuff
 -- MOD_SPARE = 846 -- stuff
