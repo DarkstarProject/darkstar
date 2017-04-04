@@ -717,25 +717,31 @@ bool CAutomatonController::TryEnfeeble()
     {
     default:
     {
-        if (m_CurrentManeuvers.dark) // Dark -> Bio
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
         {
-            castPriority.push_back(AUTOSPELL_BIO_II);
-            castPriority.push_back(AUTOSPELL_BIO);
-        }
-        else
-        {
-            defaultPriority.push_back(AUTOSPELL_BIO_II);
-            defaultPriority.push_back(AUTOSPELL_BIO);
-        }
-
-        if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia II
-        {
-            castPriority.push_back(AUTOSPELL_DIA_II);
+            if (m_CurrentManeuvers.dark) // Dark -> Bio
+            {
+                castPriority.push_back(AUTOSPELL_BIO_II);
+                castPriority.push_back(AUTOSPELL_BIO);
+            }
+            else
+            {
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
+            }
         }
 
-        if (m_CurrentManeuvers.light) // Light -> Dia
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            castPriority.push_back(AUTOSPELL_DIA);
+            if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia II
+            {
+                castPriority.push_back(AUTOSPELL_DIA_II);
+            }
+
+            if (m_CurrentManeuvers.light) // Light -> Dia
+            {
+                castPriority.push_back(AUTOSPELL_DIA);
+            }
         }
 
         if (m_CurrentManeuvers.water) // Water -> Poison
@@ -793,14 +799,21 @@ bool CAutomatonController::TryEnfeeble()
 
             // Not prioritizable since it requires 1 Dark to access Enfeebles and requires 2 of another element to prioritize another
             defaultPriority.push_back(AUTOSPELL_BLIND);
-            defaultPriority.push_back(AUTOSPELL_BIO_II);
-            defaultPriority.push_back(AUTOSPELL_BIO);
-
-            if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                castPriority.push_back(AUTOSPELL_DIA_II);
-                castPriority.push_back(AUTOSPELL_DIA);
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
             }
+
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
+            {
+                if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia
+                {
+                    castPriority.push_back(AUTOSPELL_DIA_II);
+                    castPriority.push_back(AUTOSPELL_DIA);
+                }
+            }
+
 
             if (m_CurrentManeuvers.water >= 2) // 2 Water -> Poison
             {
@@ -856,26 +869,35 @@ bool CAutomatonController::TryEnfeeble()
         if (m_CurrentManeuvers.dark) // Dark -> Blind > Bio
         {
             castPriority.push_back(AUTOSPELL_BLIND);
-            castPriority.push_back(AUTOSPELL_BIO_II);
-            castPriority.push_back(AUTOSPELL_BIO);
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
+            {
+                castPriority.push_back(AUTOSPELL_BIO_II);
+                castPriority.push_back(AUTOSPELL_BIO);
+            }
         }
         else
         {
             defaultPriority.push_back(AUTOSPELL_BLIND);
-            defaultPriority.push_back(AUTOSPELL_BIO_II);
-            defaultPriority.push_back(AUTOSPELL_BIO);
+            if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
+            {
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
+            }
         }
 
-        // This is probably wrong
-        if (m_CurrentManeuvers.light) // Light -> Dia
+        if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            castPriority.push_back(AUTOSPELL_DIA_II);
-            castPriority.push_back(AUTOSPELL_DIA);
-        }
-        else
-        {
-            defaultPriority.push_back(AUTOSPELL_DIA_II);
-            defaultPriority.push_back(AUTOSPELL_DIA);
+            // This is probably wrong
+            if (m_CurrentManeuvers.light) // Light -> Dia
+            {
+                castPriority.push_back(AUTOSPELL_DIA_II);
+                castPriority.push_back(AUTOSPELL_DIA);
+            }
+            else
+            {
+                defaultPriority.push_back(AUTOSPELL_DIA_II);
+                defaultPriority.push_back(AUTOSPELL_DIA);
+            }
         }
 
         if (m_CurrentManeuvers.wind) // Wind -> Silence
@@ -1221,9 +1243,9 @@ bool CAutomatonController::TryEnhance() // TODO: Can it Stoneskin and Phalanx it
 
     if (PRegenTarget && (PTarget->GetMLevel() + 5) >= PAutomaton->GetMLevel() && !(PRegenTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REGEN) ||
         PRegenTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REGEN_II)))
-        if (CastSpell(AUTOSPELL_REGEN_III, PProtectTarget) ||
-            CastSpell(AUTOSPELL_REGEN_II, PProtectTarget) ||
-            CastSpell(AUTOSPELL_REGEN, PProtectTarget))
+        if (CastSpell(AUTOSPELL_REGEN_III, PRegenTarget) ||
+            CastSpell(AUTOSPELL_REGEN_II, PRegenTarget) ||
+            CastSpell(AUTOSPELL_REGEN, PRegenTarget))
             return true;
 
     if (PProtectTarget)
