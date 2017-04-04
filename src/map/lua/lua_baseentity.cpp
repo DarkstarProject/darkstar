@@ -11218,6 +11218,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasGearSetMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setPetName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonName),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonFrame),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAutomatonHead),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMaskBit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMaskBit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,countMaskBits),
