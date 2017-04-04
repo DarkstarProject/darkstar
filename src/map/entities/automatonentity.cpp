@@ -317,7 +317,6 @@ bool CAutomatonEntity::hasSpell(AUTOSPELL spellid)
         case AUTOSPELL_DIA:
         case AUTOSPELL_DIA_II:
         case AUTOSPELL_SLOW:
-        case AUTOSPELL_HASTE:
         case AUTOSPELL_PARALYZE:
         case AUTOSPELL_SILENCE:
         case AUTOSPELL_POISON:
