@@ -13,6 +13,10 @@ require("scripts/globals/status");
 ---------------------------------------------------
 
 function onMobSkillCheck(target, mob, skill)
+    if (mob:getHPP() > 50 and mob:getPool() == 3326) then
+        -- Raskovnik doesn't use this for the 1st half of its HP.
+        return 1;
+    end
     return 0;
 end;
 
