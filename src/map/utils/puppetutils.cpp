@@ -56,9 +56,12 @@ void LoadAutomaton(CCharEntity* PChar)
 
         if (PChar->PAutomaton != nullptr)
         {
-            // Make the old one disappear and allow the zone to delete it safely
-            PChar->PAutomaton->status = STATUS_DISAPPEAR;
-            PChar->PAutomaton->PMaster = nullptr;
+            // Make sure we don't delete a pet that is active
+            auto PZone = zoneutils::GetZone(PChar->PAutomaton->getZone());
+            if (PZone == nullptr || PZone->GetEntity(PChar->PAutomaton->targid, TYPE_PET) == nullptr)
+                delete PChar->PAutomaton;
+            else
+                PChar->PAutomaton->PMaster = nullptr;
             PChar->PPet = nullptr;
             PChar->PAutomaton = nullptr;
         }
