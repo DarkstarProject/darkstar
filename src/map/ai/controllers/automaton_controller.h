@@ -62,6 +62,8 @@ protected:
     void setMovement();
     bool CanCastSpells();
     bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget = nullptr);
+
+    bool m_deployed;
 private:
     bool TryAction();
     bool TryShieldBash();

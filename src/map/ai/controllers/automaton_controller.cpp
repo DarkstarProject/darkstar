@@ -223,6 +223,8 @@ void CAutomatonController::setMovement()
     case HEAD_SPIRITREAVER:
         m_movementType = AUTOMOVEMENT_MAGIC;
     }
+
+    m_deployed = false;
 }
 
 CurrentManeuvers CAutomatonController::GetCurrentManeuvers()
@@ -251,13 +253,17 @@ void CAutomatonController::DoCombatTick(time_point tick)
     auto PPrevTarget = PTarget;
     PTarget = static_cast<CBattleEntity*>(PAutomaton->GetEntity(PAutomaton->GetBattleTargetID()));
 
-    // We just deployed, so reposition if needed
-    if (PPrevTarget != PTarget)
-        Move();
-
     if (TryDeaggro())
     {
         Disengage();
+        return;
+    }
+
+    // We just deployed, so reposition if needed
+    if (PPrevTarget != PTarget || (!m_deployed && PAutomaton->PAI->PathFind->IsFollowingPath()))
+    {
+        m_deployed = false;
+        Move();
         return;
     }
 
@@ -299,11 +305,6 @@ void CAutomatonController::Move()
     {
         return;
     }
-    if (PAutomaton->PAI->PathFind->IsFollowingScriptedPath())
-    {
-        PAutomaton->PAI->PathFind->FollowPath();
-        return;
-    }
 
     bool move = PAutomaton->PAI->PathFind->IsFollowingPath();
     float attack_range = PAutomaton->GetMeleeRange();
@@ -335,6 +336,7 @@ bool CAutomatonController::TryAction()
     if (m_Tick > m_LastActionTime + (m_actionCooldown - std::chrono::microseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)))
     {
         m_LastActionTime = m_Tick;
+        m_deployed = true;
         return true;
     }
     return false;
