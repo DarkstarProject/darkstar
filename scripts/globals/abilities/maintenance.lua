@@ -43,11 +43,11 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet()
 
     local function removeStatus()
-        if pet:delStatusEffect(EFFECT_DOOM) then return true end
+        --if pet:delStatusEffect(EFFECT_DOOM) then return true end
         if pet:delStatusEffect(EFFECT_PETRIFICATION) then return true end
-        if pet:delStatusEffect(EFFECT_LULLABY) then return true end
-        if pet:delStatusEffect(EFFECT_SLEEP_II) then return true end
-        if pet:delStatusEffect(EFFECT_SLEEP) then return true end
+        --if pet:delStatusEffect(EFFECT_LULLABY) then return true end
+        --if pet:delStatusEffect(EFFECT_SLEEP_II) then return true end
+        --if pet:delStatusEffect(EFFECT_SLEEP) then return true end
         if pet:delStatusEffect(EFFECT_SILENCE) then return true end
         if pet:delStatusEffect(EFFECT_BANE) then return true end
         if pet:delStatusEffect(EFFECT_CURSE_II) then return true end
