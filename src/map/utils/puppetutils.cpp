@@ -76,9 +76,9 @@ void LoadAutomaton(CCharEntity* PChar)
 		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
 			setHead(PChar, tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ? HEAD_HARLEQUIN : tempEquip.Head);
 			setFrame(PChar, tempEquip.Frame <= FRAME_HARLEQUIN || tempEquip.Frame > FRAME_STORMWAKER ? FRAME_HARLEQUIN : tempEquip.Frame);
+            LoadAutomatonStats(PChar);
             for (int i = 0; i < 12; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
-            LoadAutomatonStats(PChar);
         }
     }
 }
