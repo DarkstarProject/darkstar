@@ -30,6 +30,7 @@
 
 #include "../entities/charentity.h"
 #include "../entities/automatonentity.h"
+#include "../merit.h"
 
 CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
 {
@@ -90,15 +91,21 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
         WBUFW(data,(0x6C)) = PChar->PAutomaton->health.mp;
         WBUFW(data,(0x6E)) = PChar->PAutomaton->GetMaxMP();
 
+        // TODO: this is a lot of calculations that could be avoided if these were properly initialized in the Automaton when first loading your character
         uint16 ameCap = puppetutils::getSkillCap(PChar, SKILL_AME);
-        WBUFW(data,(0x70)) = dsp_min(ameCap, PChar->GetSkill(SKILL_AME)) + PChar->getMod(Mod::AUTO_MELEE_SKILL);
-        WBUFW(data,(0x72)) = ameCap + PChar->getMod(Mod::AUTO_MELEE_SKILL);
+        uint16 ameBonus = PChar->getMod(Mod::AUTO_MELEE_SKILL) + PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MELEE_SKILL, PChar);
+        WBUFW(data,(0x70)) = dsp_min(ameCap, PChar->GetSkill(SKILL_AME)) + ameBonus;
+        WBUFW(data,(0x72)) = ameCap + ameBonus;
+
         uint16 araCap = puppetutils::getSkillCap(PChar, SKILL_ARA);
-        WBUFW(data,(0x74)) = dsp_min(araCap, PChar->GetSkill(SKILL_ARA)) + PChar->getMod(Mod::AUTO_RANGED_SKILL);
-        WBUFW(data,(0x76)) = araCap + PChar->getMod(Mod::AUTO_RANGED_SKILL);
+        uint16 araBonus = PChar->getMod(Mod::AUTO_RANGED_SKILL) + PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_RANGED_SKILL, PChar);
+        WBUFW(data,(0x74)) = dsp_min(araCap, PChar->GetSkill(SKILL_ARA)) + araBonus;
+        WBUFW(data,(0x76)) = araCap + araBonus;
+
         uint16 amaCap = puppetutils::getSkillCap(PChar, SKILL_AMA);
-        WBUFW(data,(0x78)) = dsp_min(amaCap, PChar->GetSkill(SKILL_AMA)) + PChar->getMod(Mod::AUTO_MAGIC_SKILL);
-        WBUFW(data,(0x7A)) = amaCap + PChar->getMod(Mod::AUTO_MAGIC_SKILL);
+        uint16 amaBonus = PChar->getMod(Mod::AUTO_MAGIC_SKILL) + PChar->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MAGIC_SKILL, PChar);
+        WBUFW(data,(0x78)) = dsp_min(amaCap, PChar->GetSkill(SKILL_AMA)) + amaBonus;
+        WBUFW(data,(0x7A)) = amaCap + amaBonus;
 
         WBUFW(data,(0x80)) = PChar->PAutomaton->stats.STR;
         WBUFW(data,(0x82)) = PChar->PAutomaton->getMod(Mod::STR);

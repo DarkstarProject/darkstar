@@ -432,11 +432,14 @@ namespace petutils
 
     void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
     {
-        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME)) + PMaster->getMod(Mod::AUTO_MELEE_SKILL);
-        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA)) + PMaster->getMod(Mod::AUTO_RANGED_SKILL);
+        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME)) +
+            PMaster->getMod(Mod::AUTO_MELEE_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MELEE_SKILL, PMaster);
+        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA)) +
+            PMaster->getMod(Mod::AUTO_RANGED_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_RANGED_SKILL, PMaster);
 
         // Share its magic skills to prevent needing separate spells or checks to see which skill to use
-        uint16 amaSkill = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA)) + PMaster->getMod(Mod::AUTO_MAGIC_SKILL);
+        uint16 amaSkill = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA)) +
+            PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MAGIC_SKILL, PMaster);
         PPet->WorkingSkills.automaton_magic = amaSkill;
         PPet->WorkingSkills.healing = amaSkill;
         PPet->WorkingSkills.enhancing = amaSkill;
