@@ -488,7 +488,7 @@
     <ClInclude Include="..\..\src\map\packets\guild_menu.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="gameserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\weapon_skill.h">
@@ -1575,11 +1575,11 @@
     <None Include="..\..\documentation\ZoneIDs.txt">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="..\..\icons\gameserver.ico">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
+    <None Include="..\..\icons\gameserver.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="gameserver.rc" />
   </ItemGroup>
 </Project>
