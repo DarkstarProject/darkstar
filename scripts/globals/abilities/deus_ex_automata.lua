@@ -32,8 +32,8 @@ function onUseAbility(player,target,ability)
     player:spawnPet(PET_AUTOMATON)
     local pet = player:getPet()
     if pet then
-		local percent = math.floor((player:getMainLvl()/3))/100
-		pet:setHP(pet:getHP() * percent)
-		pet:setMP(pet:getMP() * percent)
+        local percent = math.floor((player:getMainLvl()/3))/100
+        pet:setHP(pet:getHP() * percent)
+        pet:setMP(pet:getMP() * percent)
     end
 end
