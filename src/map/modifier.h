@@ -443,6 +443,10 @@ enum class Mod
     AUTO_MAGIC_DELAY          = 844, // Reduces the Automaton's global magic delay
     AUTO_HEALING_DELAY        = 845, // Reduces the Automaton's global healing delay
     AUTO_HEALING_THRESHOLD    = 846, // Increases the healing trigger threshold
+    BURDEN_DECAY              = 847, // Increases amount of burden removed per tick
+    AUTO_SHIELD_BASH_SLOW     = 848, // Adds a slow effect to Shield Bash
+    // AUTO_                  = 849, // 
+    // AUTO_                  = 850, // 
 
     // Dancer
     FINISHING_MOVES           = 333, // Tracks # of finishing moves
@@ -655,10 +659,6 @@ enum class Mod
 
     // SPARE = 67, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 847, // stuff
-    // SPARE = 848, // stuff
-    // SPARE = 849, // stuff
-    // SPARE = 850, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

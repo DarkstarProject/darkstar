@@ -1280,6 +1280,7 @@ MOD_ITEM_SPIKES_CHANCE = 501 -- Chance of an items spike proc
 MOD_FERAL_HOWL_DURATION = 503 -- +20% duration per merit when wearing augmented Monster Jackcoat +2
 MOD_MANEUVER_BONUS      = 504 -- Maneuver Stat Bonus
 MOD_OVERLOAD_THRESH     = 505 -- Overload Threshold Bonus
+MOD_BURDEN_DECAY        = 847 -- Increases amount of burden removed per tick
 MOD_EXTRA_DMG_CHANCE    = 506 -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1%
 MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
@@ -1338,6 +1339,9 @@ MOD_AUTO_SHIELD_BASH_DELAY = 843 -- Reduces the Automaton's global shield bash d
 MOD_AUTO_MAGIC_DELAY       = 844 -- Reduces the Automaton's global magic delay
 MOD_AUTO_HEALING_DELAY     = 845 -- Reduces the Automaton's global healing delay
 MOD_AUTO_HEALING_THRESHOLD = 846 -- Increases the healing trigger threshold
+MOD_AUTO_SHIELD_BASH_SLOW  = 848 -- Adds a slow effect to Shield Bash
+--MOD_AUTO_                = 849 -- 
+--MOD_AUTO_                = 850 -- 
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1363,10 +1367,6 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 
 -- MOD_SPARE = 67 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 847 -- stuff
--- MOD_SPARE = 848 -- stuff
--- MOD_SPARE = 849 -- stuff
--- MOD_SPARE = 850 -- stuff
 
 ------------------------------------
 -- Merit Definitions
