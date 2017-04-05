@@ -454,7 +454,8 @@ void CAutomatonEntity::PostTick()
 
 void CAutomatonEntity::Die()
 {
-    PMaster->StatusEffectContainer->RemoveAllManeuvers();
+    if (PMaster != nullptr)
+        PMaster->StatusEffectContainer->RemoveAllManeuvers();
     CPetEntity::Die();
 }
 
