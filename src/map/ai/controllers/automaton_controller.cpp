@@ -180,6 +180,7 @@ void CAutomatonController::setMagicCooldowns()
     m_naList[EFFECT_BANE] = AUTOSPELL_CURSNA;
     m_naList[EFFECT_BLINDNESS] = AUTOSPELL_BLINDNA;
     m_naList[EFFECT_SILENCE] = AUTOSPELL_SILENA;
+    m_naList[EFFECT_LULLABY] = AUTOSPELL_CURE; // This is probably wrong
     m_naList[EFFECT_SLEEP] = AUTOSPELL_CURE; // This is probably wrong
     m_naList[EFFECT_SLEEP_II] = AUTOSPELL_CURE; // This is probably wrong
     m_naList[EFFECT_PETRIFICATION] = AUTOSPELL_STONA;
@@ -519,6 +520,9 @@ bool CAutomatonController::TryHeal()
     float threshold = 0;
     switch (m_CurrentManeuvers.light) // Light -> Higher healing threshold
     {
+    default:
+        threshold += 30;
+        break;
     case 1:
         threshold += 40;
         break;
@@ -527,9 +531,6 @@ bool CAutomatonController::TryHeal()
         break;
     case 3:
         threshold += 75;
-        break;
-    default:
-        threshold += 30;
     }
 
     threshold = dsp_cap(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30, 90);
@@ -560,7 +561,7 @@ bool CAutomatonController::TryHeal()
     // Prioritize hate
     if (haveHate)
     {
-        if (PAutomaton->GetHPP() <= threshold)
+        if (PAutomaton->GetHPP() <= 50) // Automaton only heals itself when <= 50%
             PCastTarget = PAutomaton;
         else if (PAutomaton->PMaster->GetHPP() <= threshold && distance(PAutomaton->loc.p, PAutomaton->PMaster->loc.p) < 20)
             PCastTarget = PAutomaton->PMaster;
@@ -569,7 +570,7 @@ bool CAutomatonController::TryHeal()
     {
         if (PAutomaton->PMaster->GetHPP() <= threshold)
             PCastTarget = PAutomaton->PMaster;
-        else if (PAutomaton->GetHPP() <= threshold)
+        else if (PAutomaton->GetHPP() <= 50) // Automaton only heals itself when <= 50%
             PCastTarget = PAutomaton;
     }
 
