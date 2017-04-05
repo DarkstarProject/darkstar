@@ -1360,7 +1360,8 @@ bool CAutomatonController::CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarg
 {
     CSpell* PSpell = spell::GetSpell(spellid);
 
-    if (!PAutomaton->hasSpell((AUTOSPELL)spellid) || PAutomaton->health.mp < PSpell->getMPCost()) // TODO: check recast
+    if (!PAutomaton->hasSpell(spellid) || PAutomaton->health.mp < PSpell->getMPCost() ||
+        (PAutomaton->m_RecastList[spellid] && time(nullptr) < PAutomaton->m_RecastList[spellid]))
         return false;
 
     if (PSpell == nullptr)

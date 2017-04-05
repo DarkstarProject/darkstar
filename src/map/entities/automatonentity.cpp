@@ -32,6 +32,7 @@
 #include "../status_effect_container.h"
 #include "../ai/states/magic_state.h"
 #include "../ai/states/mobskill_state.h"
+#include "../packets/action.h"
 
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
@@ -474,6 +475,8 @@ void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
 
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+
+    m_RecastList[PSpell->getID()] = time(nullptr) + action.recast;
 
     if (PSpell->tookEffect())
     {

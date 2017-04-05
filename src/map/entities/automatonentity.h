@@ -151,6 +151,7 @@ public:
     std::array<uint8, 8> m_ElementEquip;
     // Maybe move these to a sql table?
     std::unordered_map<uint16, uint16> m_SpellList;
+    std::unordered_map<uint16, uint32> m_RecastList;
 
     void loadSpells();
     bool hasSpell(AUTOSPELL spellid);
