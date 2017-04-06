@@ -1,34 +1,24 @@
--- Contains all common weaponskill calculations including but not limited to:
--- fSTR
--- Alpha
--- Ratio -> cRatio
--- min/max cRatio
--- applications of fTP
--- applications of critical hits ('Critical hit rate varies with TP.')
--- applications of accuracy mods ('Accuracy varies with TP.')
--- applications of damage mods ('Damage varies with TP.')
--- performance of the actual WS (rand numbers, etc)
+-- Uses a mixture of mob and player WS formulas
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
+MSG_MISS = 188;
 
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
-function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
+function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill)
 
     local criticalHit = false;
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
-    local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    local bonusacc = attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
-    -- get fstr
-    local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getWeaponDmgRank());
+    local dstr = utils.clamp(attacker:getStat(MOD_STR) - target:getStat(MOD_VIT), -10, 10)
 
     -- apply WSC
-    local weaponDamage = attacker:getWeaponDmg();
-    local weaponType = attacker:getWeaponSkillType(0);
+    local weaponDamage = params.weaponDamage or attacker:getWeaponDmg();
+    local weaponType = params.weaponType or attacker:getWeaponSkillType(0);
 
     if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
@@ -36,20 +26,20 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         if (params.kick and attacker:hasStatusEffect(EFFECT_FOOTWORK)) then
             weaponDamage = attacker:getMod(MOD_KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
         else
-            weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0);
+            weaponDamage = utils.clamp(weaponDamage-3, 0);
         end
 
         weaponDamage = weaponDamage + h2hSkill;
     end
 
-    local base = weaponDamage + fstr +
+    local base = math.max(weaponDamage + dstr +
         (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
-         attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
+         attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
@@ -57,7 +47,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     end
 
     -- get cratio min and max
-    local cratio, ccritratio = cMeleeRatio(attacker, target, params, ignoredDef);
+    local cratio, ccritratio = getcRatio(attacker, target, params, ignoredDef, true);
     local ccmin = 0;
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
@@ -200,17 +190,11 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             end
         end
     end
-    finaldmg = finaldmg + souleaterBonus(attacker, (tpHitsLanded+extraHitsLanded));
     -- print("Landed " .. hitslanded .. "/" .. numHits .. " hits with hitrate " .. hitrate .. "!");
 
 
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
-
-    -- Ws Specific DMG Bonus
-    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
-    end
 
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
@@ -235,26 +219,30 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     end
+
+    -- Miss message
+    if finaldmg <= 0 then
+        skill:setMsg(MSG_MISS)
+    end
+
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
--- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
+-- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr, accBonus, weaponDamage
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
-
-function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
-
+function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params, skill)
     local bonusTP = params.bonusTP or 0
-    local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    local bonusacc = attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
     local fint = utils.clamp(8 + (attacker:getStat(MOD_INT) - target:getStat(MOD_INT)), -32, 32);
-    local dmg = attacker:getMainLvl() + 2 + (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
+    local dmg = math.max((params.weaponDamage or (attacker:getMainLvl() + 2)) + fint +
+        (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
-         attacker:getStat(MOD_CHR) * params.chr_wsc) + fint;
+         attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1);
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
 
     dmg = dmg * ftp;
 
@@ -269,151 +257,46 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
 
-    -- Ws Specific DMG Bonus
-    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
-    end
-
     -- Add in bonusdmg
     dmg = dmg * ((100 + bonusdmg)/100);
     dmg = dmg + firstHitBonus;
 
     dmg = dmg * WEAPON_SKILL_POWER
     dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
+
+    -- Miss message
+    if dmg <= 0 then
+        skill:setMsg(MSG_MISS)
+    end
+
     return dmg, false, 1, 0;
 end
-
-function souleaterBonus(attacker, numhits)
-    if attacker:hasStatusEffect(EFFECT_SOULEATER) then
-        local damage = 0;
-        local percent = 0.1;
-        if attacker:getMainJob() ~= JOBS.DRK then
-            percent = percent / 2;
-        end
-        percent = percent + math.min(0.02, 0.01 * attacker:getMod(MOD_SOULEATER_EFFECT));
-
-        local hitscounted = 0;
-        while (hitscounted < numhits) do
-            local health = attacker:getHP();
-            if health > 10 then
-                damage = damage + health*percent;
-            end
-            hitscounted = hitscounted + 1;
-        end
-        attacker:delHP(numhits*0.10*attacker:getHP());
-        return damage;
-    else
-        return 0;
-    end
-end;
 
 function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
     -- sadly acc varies with tp ALL apply an acc PENALTY, the acc at various %s are given as a1 a2 a3
     accpct = fTP(tp,a1,a2,a3);
     acclost = acc - (acc*accpct);
-    hrate = hitrate - (0.005*acclost);
+    hrate = utils.hitrate - (0.005*acclost);
     -- cap it
-    if (hrate>0.95) then
-        hrate = 0.95;
-    end
-    if (hrate<0.2) then
-        hrate = 0.2;
-    end
+    hitrate = utils.clamp(hitrate, 0.2, 0.95);
     return hrate;
 end;
 
-function getHitRate(attacker,target,capHitRate,bonus)
-    local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
-    if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:addMod(MOD_ACC, 20 + flourisheffect:getSubPower())
-    end
-    local acc = attacker:getACC();
-    local eva = target:getEVA();
-    if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:delMod(MOD_ACC, 20 + flourisheffect:getSubPower())
-    end
-    if (bonus == nil) then
-        bonus = 0;
-    end
-    if (attacker:hasStatusEffect(EFFECT_INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost if attacker is behind target
-        bonus = bonus + attacker:getStatusEffect(EFFECT_INNIN):getPower();
-    end
-    if (target:hasStatusEffect(EFFECT_YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
-        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
+function getHitRate(attacker,defender,capHitRate,bonus)
+    local acc = attacker:getACC() + (bonus or 0);
+    local eva = defender:getEVA();
+
+    local levelbonus = 0;
+    if (attacker:getMainLvl() > defender:getMainLvl()) then
+        levelbonus = 2 * (attacker:getMainLvl() - defender:getMainLvl());
     end
 
-    acc = acc + bonus;
-
-    if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
-        acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
-    elseif (attacker:getMainLvl() < target:getMainLvl()) then -- acc penalty :(
-        acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
-    end
-
-    local hitdiff = 0;
-    local hitrate = 75;
-    if (acc>eva) then
-    hitdiff = (acc-eva)/2;
-    end
-    if (eva>acc) then
-    hitdiff = ((-1)*(eva-acc))/2;
-    end
-
-    hitrate = hitrate+hitdiff;
-    hitrate = hitrate/100;
-
-
-    -- Applying hitrate caps
-    if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
-        if (hitrate>0.95) then
-            hitrate = 0.95;
-        end
-        if (hitrate<0.2) then
-            hitrate = 0.2;
-        end
-    end
-    return hitrate;
-end;
-
-function getRangedHitRate(attacker,target,capHitRate,bonus)
-    local acc = attacker:getRACC();
-    local eva = target:getEVA();
-
-    if (bonus == nil) then
-        bonus = 0;
-    end
-    if (target:hasStatusEffect(EFFECT_YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
-        bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
-    end
-
-    acc = acc + bonus;
-
-    if (attacker:getMainLvl() > target:getMainLvl()) then -- acc bonus!
-        acc = acc + ((attacker:getMainLvl()-target:getMainLvl())*4);
-    elseif (attacker:getMainLvl() < target:getMainLvl()) then -- acc penalty :(
-        acc = acc - ((target:getMainLvl()-attacker:getMainLvl())*4);
-    end
-
-    local hitdiff = 0;
-    local hitrate = 75;
-    if (acc>eva) then
-    hitdiff = (acc-eva)/2;
-    end
-    if (eva>acc) then
-    hitdiff = ((-1)*(eva-acc))/2;
-    end
-
-    hitrate = hitrate+hitdiff;
+    local hitrate = acc - eva + levelbonus + 75;
     hitrate = hitrate/100;
 
     -- Applying hitrate caps
     if (capHitRate) then -- this isn't capped for when acc varies with tp, as more penalties are due
-        if (hitrate>0.95) then
-            hitrate = 0.95;
-        end
-        if (hitrate<0.2) then
-            hitrate = 0.2;
-        end
+        hitrate = utils.clamp(hitrate, 0.2, 0.95);
     end
     return hitrate;
 end;
@@ -443,55 +326,44 @@ function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
 end
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
-function cMeleeRatio(attacker, defender, params, ignoredDef)
-
-    local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
-    if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:addMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
-    end
+function getcRatio(attacker, defender, params, ignoredDef, melee)
     local cratio = (attacker:getStat(MOD_ATT) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
-    cratio = utils.clamp(cratio, 0, 2.25);
-    if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:delMod(MOD_ATTP, 25 + flourisheffect:getSubPower()/2)
-    end
-    local levelcor = 0;
-    if (attacker:getMainLvl() < defender:getMainLvl()) then
-        levelcor = 0.05 * (defender:getMainLvl() - attacker:getMainLvl());
+
+    local levelbonus = 0;
+    if (attacker:getMainLvl() > defender:getMainLvl()) then
+        levelbonus = 0.05 * (attacker:getMainLvl() - defender:getMainLvl());
     end
 
-    cratio = cratio - levelcor;
+    cratio = cratio + levelbonus;
+    cratio = utils.clamp(cratio, 0, (melee and 4.0 or 3.0));
 
-    if (cratio < 0) then
-        cratio = 0;
-    end
     local pdifmin = 0;
-    local pdifmax = 0;
-
-    -- max
-
+    local pdifmax = 1;
+    
     if (cratio < 0.5) then
         pdifmax = cratio + 0.5;
-    elseif (cratio < 0.7) then
+    elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
         pdifmax = 1;
-    elseif (cratio < 1.2) then
+    elseif ((0.7 < cratio) and (cratio <= 1.2)) then
         pdifmax = cratio + 0.3;
-    elseif (cratio < 1.5) then
+    elseif ((1.2 < cratio) and (cratio <= 1.5)) then
         pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 2.625) then
+    elseif ((1.5 < cratio) and (cratio <= 2.625)) then
         pdifmax = cratio + 0.375;
-    else
+    elseif ((2.625 < cratio) and (cratio <= 3.25)) then
         pdifmax = 3;
+    else 
+        pdifmax = cratio;
     end
-    -- min
 
     if (cratio < 0.38) then
-        pdifmin = 0;
-    elseif (cratio < 1.25) then
-        pdifmin = cratio * (1176/1024) - (448/1024);
-    elseif (cratio < 1.51) then
+        pdifmin =  0;
+    elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
+        pdifmin = cratio * (1176 / 1024) - (448 / 1024);
+    elseif ((1.25 < cratio) and (cratio <= 1.51)) then
         pdifmin = 1;
-    elseif (cratio < 2.44) then
-        pdifmin = cratio * (1176/1024) - (775/1024);
+    elseif ((1.51 < cratio) and (cratio <= 2.44)) then
+        pdifmin = cratio * (1176 / 1024) - (775 / 1024);
     else
         pdifmin = cratio - 0.375;
     end
@@ -502,33 +374,34 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
 
     local pdifcrit = {};
     cratio = cratio + 1;
-    cratio = utils.clamp(cratio, 0, 3);
+    cratio = utils.clamp(cratio, 0, 4.0);
 
     -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
 
     if (cratio < 0.5) then
         pdifmax = cratio + 0.5;
-    elseif (cratio < 0.7) then
+    elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
         pdifmax = 1;
-    elseif (cratio < 1.2) then
+    elseif ((0.7 < cratio) and (cratio <= 1.2)) then
         pdifmax = cratio + 0.3;
-    elseif (cratio < 1.5) then
+    elseif ((1.2 < cratio) and (cratio <= 1.5)) then
         pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 2.625) then
+    elseif ((1.5 < cratio) and (cratio <= 2.625)) then
         pdifmax = cratio + 0.375;
-    else
+    elseif ((2.625 < cratio) and (cratio <= 3.25)) then
         pdifmax = 3;
+    else 
+        pdifmax = cratio;
     end
-    -- min
 
     if (cratio < 0.38) then
-        pdifmin = 0;
-    elseif (cratio < 1.25) then
-        pdifmin = cratio * (1176/1024) - (448/1024);
-    elseif (cratio < 1.51) then
+        pdifmin =  0;
+    elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
+        pdifmin = cratio * (1176 / 1024) - (448 / 1024);
+    elseif ((1.25 < cratio) and (cratio <= 1.51)) then
         pdifmin = 1;
-    elseif (cratio < 2.44) then
-        pdifmin = cratio * (1176/1024) - (775/1024);
+    elseif ((1.51 < cratio) and (cratio <= 2.44)) then
+        pdifmin = cratio * (1176 / 1024) - (775 / 1024);
     else
         pdifmin = cratio - 0.375;
     end
@@ -541,159 +414,24 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
     return pdif, pdifcrit;
 end;
 
-function cRangedRatio(attacker, defender, params, ignoredDef)
-
-    local cratio = attacker:getRATT() / (defender:getStat(MOD_DEF) - ignoredDef);
-
-    local levelcor = 0;
-    if (attacker:getMainLvl() < defender:getMainLvl()) then
-        levelcor = 0.025 * (defender:getMainLvl() - attacker:getMainLvl());
-    end
-
-    cratio = cratio - levelcor;
-
-    cratio = cratio * params.atkmulti;
-
-    if (cratio > 3 - levelcor) then
-        cratio = 3 - levelcor;
-    end
-
-    if (cratio < 0) then
-        cratio = 0;
-    end
-
-    -- max
-    local pdifmax = 0;
-    if (cratio < 0.9) then
-        pdifmax = cratio * (10/9);
-    elseif (cratio < 1.1) then
-        pdifmax = 1;
-    else
-        pdifmax = cratio;
-    end
-
-    -- min
-    local pdifmin = 0;
-    if (cratio < 0.9) then
-        pdifmin = cratio;
-    elseif (cratio < 1.1) then
-        pdifmin = 1;
-    else
-        pdifmin = (cratio * (20/19))-(3/19);
-    end
-
-    pdif = {};
-    pdif[1] = pdifmin;
-    pdif[2] = pdifmax;
-    -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
-    pdifcrit = {};
-
-    pdifmin = pdifmin * 1.25;
-    pdifmax = pdifmax * 1.25;
-
-    pdifcrit[1] = pdifmin;
-    pdifcrit[2] = pdifmax;
-
-    return pdif, pdifcrit;
-
-end
-
--- Given the attacker's str and the mob's vit, fSTR is calculated
-function fSTR(atk_str,def_vit,base_dmg)
-    local dSTR = atk_str - def_vit;
-    if (dSTR >= 12) then
-        fSTR2 = ((dSTR+4)/2);
-    elseif (dSTR >= 6) then
-        fSTR2 = ((dSTR+6)/2);
-    elseif (dSTR >= 1) then
-        fSTR2 = ((dSTR+7)/2);
-    elseif (dSTR >= -2) then
-        fSTR2 = ((dSTR+8)/2);
-    elseif (dSTR >= -7) then
-        fSTR2 = ((dSTR+9)/2);
-    elseif (dSTR >= -15) then
-        fSTR2 = ((dSTR+10)/2);
-    elseif (dSTR >= -21) then
-        fSTR2 = ((dSTR+12)/2);
-    else
-        fSTR2 = ((dSTR+13)/2);
-    end
-    -- Apply fSTR caps.
-    if (fSTR2<((base_dmg/9)*(-1))) then
-        fSTR2 = (base_dmg/9)*(-1);
-    elseif (fSTR2>((base_dmg/9)+8)) then
-        fSTR2 = (base_dmg/9)+8;
-    end
-    return fSTR2;
-end;
-
--- obtains alpha, used for working out WSC
-function getAlpha(level)
-    alpha = 1.00;
-    if (level <= 5) then
-        alpha = 1.00;
-    elseif (level <= 11) then
-        alpha = 0.99;
-    elseif (level <= 17) then
-        alpha = 0.98;
-    elseif (level <= 23) then
-        alpha = 0.97;
-    elseif (level <= 29) then
-        alpha = 0.96;
-    elseif (level <= 35) then
-        alpha = 0.95;
-    elseif (level <= 41) then
-        alpha = 0.94;
-    elseif (level <= 47) then
-        alpha = 0.93;
-    elseif (level <= 53) then
-        alpha = 0.92;
-    elseif (level <= 59) then
-        alpha = 0.91;
-    elseif (level <= 61) then
-        alpha = 0.90;
-    elseif (level <= 63) then
-        alpha = 0.89;
-    elseif (level <= 65) then
-        alpha = 0.88;
-    elseif (level <= 67) then
-        alpha = 0.87;
-    elseif (level <= 69) then
-        alpha = 0.86;
-    elseif (level <= 71) then
-        alpha = 0.85;
-    elseif (level <= 73) then
-        alpha = 0.84;
-    elseif (level <= 75) then
-        alpha = 0.83;
-    elseif (level < 99) then
-        alpha = 0.85;
-    else
-        alpha = 1; -- Retail has no alpha anymore!
-    end
-    return alpha;
-end;
-
- -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
- function doRangedWeaponskill(attacker, target, wsID, params, tp, primary)
+ -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
+ function doRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill)
 
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
-    local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
-    bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
+    local bonusacc = attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
-    -- get fstr
-    local fstr = fSTR(attacker:getStat(MOD_STR),target:getStat(MOD_VIT),attacker:getRangedDmgForRank());
+    local dstr = utils.clamp(attacker:getStat(MOD_STR) - target:getStat(MOD_VIT), -10, 10)
 
     -- apply WSC
-    local base = attacker:getRangedDmg() + fstr +
+    local base = math.max((params.weaponDamage or attacker:getRangedDmg()) + dstr +
         (attacker:getStat(MOD_STR) * params.str_wsc + attacker:getStat(MOD_DEX) * params.dex_wsc +
          attacker:getStat(MOD_VIT) * params.vit_wsc + attacker:getStat(MOD_AGI) * params.agi_wsc +
          attacker:getStat(MOD_INT) * params.int_wsc + attacker:getStat(MOD_MND) * params.mnd_wsc +
-         attacker:getStat(MOD_CHR) * params.chr_wsc) * getAlpha(attacker:getMainLvl());
+         attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300) + bonusfTP;
+    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
     local crit = false
 
     local ignoredDef = 0;
@@ -702,7 +440,7 @@ end;
     end
 
     -- get cratio min and max
-    local cratio, ccritratio = cRangedRatio( attacker, target, params, ignoredDef);
+    local cratio, ccritratio = getcRatio(attacker, target, params, ignoredDef, false);
     local ccmin = 0;
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
@@ -732,11 +470,11 @@ end;
     -- First hit has 95% acc always. Second hit + affected by hit rate.
     local missChance = math.random();
     local finaldmg = 0;
-    local hitrate = getRangedHitRate(attacker,target,true,bonusacc);
+    local hitrate = getHitRate(attacker,target,true,bonusacc);
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getRangedHitRate(attacker,target,false,bonusacc),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
+        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -767,7 +505,7 @@ end;
     if (numHits>1) then
         if (params.acc100==0) then
             -- work out acc since we actually need it now
-            hitrate = getRangedHitRate(attacker,target,true,bonusacc);
+            hitrate = getHitRate(attacker,target,true,bonusacc);
         end
 
         hitsdone = 1;
@@ -796,11 +534,6 @@ end;
     -- DMG Bonus for any WS
     local bonusdmg = attacker:getMod(MOD_ALL_WSDMG_ALL_HITS);
 
-    -- Ws Specific DMG Bonus
-    if (attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        bonusdmg = bonusdmg + attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID);
-    end
-
     -- Add in bonusdmg
     finaldmg = finaldmg * ((100 + bonusdmg)/100);
     finaldmg = finaldmg + firstHitBonus;
@@ -813,6 +546,12 @@ end;
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
+
+    -- Miss message
+    if finaldmg <= 0 then
+        skill:setMsg(MSG_MISS)
+    end
+
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
 
@@ -854,64 +593,12 @@ function getMultiAttacks(attacker, numHits)
     return numHits + bonusHits;
 end;
 
-function generatePdif (cratiomin, cratiomax, melee)
+function generatePdif(cratiomin, cratiomax, melee)
     local pdif = math.random(cratiomin*1000, cratiomax*1000) / 1000;
     if (melee) then
         pdif = pdif * (math.random(100,105)/100);
     end
     return pdif;
-end
-
-function getStepAnimation(skill)
-    if skill <= 1 then
-        return 15;
-    elseif skill <= 3 then
-        return 14;
-    elseif skill == 4 then
-        return 19;
-    elseif skill == 5 then
-        return 16;
-    elseif skill <= 7 then
-        return 18;
-    elseif skill == 8 then
-        return 20;
-    elseif skill == 9 then
-        return 21;
-    elseif skill == 10 then
-        return 22;
-    elseif skill == 11 then
-        return 17;
-    elseif skill == 12 then
-        return 23;
-    else
-        return 0;
-    end
-end
-
-function getFlourishAnimation(skill)
-    if skill <= 1 then
-        return 25;
-    elseif skill <= 3 then
-        return 24;
-    elseif skill == 4 then
-        return 29;
-    elseif skill == 5 then
-        return 26;
-    elseif skill <= 7 then
-        return 28;
-    elseif skill == 8 then
-        return 30;
-    elseif skill == 9 then
-        return 31;
-    elseif skill == 10 then
-        return 32;
-    elseif skill == 11 then
-        return 27;
-    elseif skill == 12 then
-        return 33;
-    else
-        return 0;
-    end
 end
 
 function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
@@ -927,110 +614,3 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
 
     return finaldmg;
 end
-
--- Params should have the following members:
--- params.power.lv1: Base value for AM power @ level 1
--- params.power.lv2: Base value for AM power @ level 2
--- params.power.lv3: Base value for AM power @ level 3
-
--- params.power.lv1_inc: How much to increment at each power level
--- params.power.lv2_inc: How much to increment at each power level
-
--- params.subpower.lv1: Subpower for level 1
--- params.subpower.lv2: Subpower for level 2
--- params.subpower.lv3: Subpower for level 3
-
--- params.duration.lv1: Duration for AM level 1
--- params.duration.lv2: Duration for AM level 2
--- params.duration.lv3: Duration for AM level 3
-function applyAftermathEffect(player, tp, params)
-    if (params == nil) then
-        params = initAftermathParams()
-    end
-
-    local apply_power = 0
-    if (tp == 3000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV3)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        player:delStatusEffect(EFFECT_AFTERMATH_LV2);
-        player:addStatusEffect(EFFECT_AFTERMATH_LV3, params.power.lv3, 0,
-            params.duration.lv3, 0, params.subpower.lv3);
-    elseif (tp >= 2000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV2)) then
-        player:delStatusEffect(EFFECT_AFTERMATH_LV1);
-        apply_power = math.floor(params.power.lv2 + ((tp - 2000) / (100 / params.power.lv2_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV2, apply_power, 0,
-            params.duration.lv2, 0, params.subpower.lv2);
-    elseif (tp >= 1000 and shouldApplyAftermath(player, EFFECT_AFTERMATH_LV1)) then
-        apply_power = math.floor(params.power.lv1 + ((tp - 1000) / (100 / params.power.lv1_inc)))
-        player:addStatusEffect(EFFECT_AFTERMATH_LV1, apply_power, 0,
-            params.duration.lv1, 0, params.subpower.lv1);
-    end
-end;
-
-function initAftermathParams()
-    local params = {}
-    params.power = {}
-    params.subpower = {}
-    params.duration = {}
-
-    params.power.lv1 = 10
-    params.power.lv2 = 20
-    params.power.lv3 = 40
-
-    params.power.lv1_inc = 1
-    params.power.lv2_inc = 4
-
-    params.subpower.lv1 = 1
-    params.subpower.lv2 = 1
-    params.subpower.lv3 = 1
-
-    params.duration.lv1 = 60
-    params.duration.lv2 = 90
-    params.duration.lv3 = 120
-
-    return params
-end;
-
-function shouldApplyAftermath(player, effect)
-    local result = true;
-    if (effect == EFFECT_AFTERMATH_LV1 and (player:hasStatusEffect(EFFECT_AFTERMATH_LV2) or player:hasStatusEffect(EFFECT_AFTERMATH_LV3))) then
-        result = false;
-    elseif (effect == EFFECT_AFTERMATH_LV2 and player:hasStatusEffect(EFFECT_AFTERMATH_LV3)) then
-        result = false;
-    end;
-
-    return result;
-end;
-
-function handleWSGorgetBelt(attacker)
-    local ftpBonus = 0;
-    local accBonus = 0;
-    if (attacker:getObjType() == TYPE_PC) then
-        -- TODO: Get these out of itemid checks when possible.
-        local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
-        local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
-        local neck = attacker:getEquipID(SLOT_NECK);
-        local belt = attacker:getEquipID(SLOT_WAIST);
-        local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
-
-        for i,v in ipairs(elementalGorget) do
-            if (neck == v) then
-                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
-                    accBonus = accBonus + 10;
-                    ftpBonus = ftpBonus + 0.1;
-                end
-                break;
-            end
-        end
-
-        for i,v in ipairs(elementalBelt) do
-            if (belt == v) then
-                if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
-                    accBonus = accBonus + 10;
-                    ftpBonus = ftpBonus + 0.1;
-                end
-                break;
-            end
-        end
-    end
-    return ftpBonus, accBonus;
-end;

@@ -4,7 +4,7 @@
 
 require("scripts/globals/status")
 require("scripts/globals/settings")
-require("scripts/globals/weaponskills")
+require("scripts/globals/automatonweaponskills")
 
 ---------------------------------------------------
 
@@ -46,7 +46,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.accBonus = 0.04 * tp
     end
 
-    local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params)
+    local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
 
     return damage
 end

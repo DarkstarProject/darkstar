@@ -4,7 +4,7 @@
 
 require("scripts/globals/status")
 require("scripts/globals/settings")
-require("scripts/globals/weaponskills")
+require("scripts/globals/automatonweaponskills")
 
 ---------------------------------------------------
 
@@ -39,7 +39,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     }
     skill:setSkillchain(141)
 
-    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true)
+    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true, skill)
 
     if damage > 0 then
         local bonusduration = 1 + 0.00033 * (tp - 1000)

@@ -4,7 +4,7 @@
 
 require("scripts/globals/status")
 require("scripts/globals/settings")
-require("scripts/globals/weaponskills")
+require("scripts/globals/automatonweaponskills")
 
 ---------------------------------------------------
 
@@ -21,11 +21,11 @@ end
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local params = {
         numHits = 1,
-        atkmulti = 1,
+        atkmulti = 1.5,
         accBonus = 100,
-        ftp100 = 2.0,
-        ftp200 = 2.0,
-        ftp300 = 2.0,
+        ftp100 = 3.0,
+        ftp200 = 3.0,
+        ftp300 = 3.0,
         acc100 = 0.0,
         acc200 = 0.0,
         acc300 = 0.0,
@@ -52,7 +52,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ignored300 = 0.5
     end
 
-    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true)
+    local damage = doRangedWeaponskill(automaton, target, 0, params, tp, true, skill)
 
     return damage
 end
