@@ -354,7 +354,7 @@ bool CAutomatonController::TryShieldBash()
     return false;
 }
 
-bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into account the mob's HPP?
+bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into account the mob's HPP for all heads?
 {
     // Note that the old AI used the Mana Booster attachment to reduce magic cooldown instead of giving fast cast
     if (!PAutomaton->PMaster || m_magicCooldown == 0s ||
@@ -1013,7 +1013,7 @@ bool CAutomatonController::TryStatusRemoval()
     return false;
 }
 
-bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and Phalanx on its master
+bool CAutomatonController::TryEnhance()
 {
     if (!PAutomaton->PMaster || m_enhanceCooldown == 0s || m_Tick <= m_LastEnhanceTime + m_enhanceCooldown)
         return false;
@@ -1088,11 +1088,11 @@ bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and P
                 if (PStatus->GetStatusID() == EFFECT_HASTE || PStatus->GetStatusID() == EFFECT_HASTE_II)
                     haste = true;
 
-                //if (PStatus->GetStatusID() == EFFECT_STONESKIN)
-                //    stoneskin = true;
+                if (PStatus->GetStatusID() == EFFECT_STONESKIN)
+                    stoneskin = true;
 
-                //if (PStatus->GetStatusID() == EFFECT_PHALANX)
-                //    phalanx = true;
+                if (PStatus->GetStatusID() == EFFECT_PHALANX)
+                    phalanx = true;
             }
         });
 
@@ -1106,11 +1106,11 @@ bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and P
             if (!haste)
                 PHasteTarget = PAutomaton->PMaster;
 
-            //if (!stoneskin)
-            //    PStoneSkinTarget = PAutomaton->PMaster;
+            if (!stoneskin)
+                PStoneSkinTarget = PAutomaton->PMaster;
 
-            //if (!phalanx)
-            //    PPhalanxTarget = PAutomaton->PMaster;
+            if (!phalanx)
+                PPhalanxTarget = PAutomaton->PMaster;
         }
     }
 
@@ -1142,12 +1142,6 @@ bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and P
 
             if (PStatus->GetStatusID() == EFFECT_HASTE || PStatus->GetStatusID() == EFFECT_HASTE_II)
                 haste = true;
-
-            if (PStatus->GetStatusID() == EFFECT_STONESKIN)
-                stoneskin = true;
-
-            if (PStatus->GetStatusID() == EFFECT_PHALANX)
-                phalanx = true;
         }
     });
 
@@ -1159,12 +1153,6 @@ bool CAutomatonController::TryEnhance() // TODO: It can only use Stoneskin and P
 
     if (!PHasteTarget && !haste)
         PHasteTarget = PAutomaton;
-
-    if (!PStoneSkinTarget && !stoneskin)
-        PStoneSkinTarget = PAutomaton;
-
-    if (!PPhalanxTarget && !phalanx)
-        PPhalanxTarget = PAutomaton;
 
     int members = 0;
 
