@@ -432,14 +432,15 @@ namespace petutils
 
     void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
     {
+        int32 meritbonus = PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PMaster);
         PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME)) +
-            PMaster->getMod(Mod::AUTO_MELEE_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MELEE_SKILL, PMaster);
+            PMaster->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
         PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA)) +
-            PMaster->getMod(Mod::AUTO_RANGED_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_RANGED_SKILL, PMaster);
+            PMaster->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
 
         // Share its magic skills to prevent needing separate spells or checks to see which skill to use
         uint16 amaSkill = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA)) +
-            PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATION_MAGIC_SKILL, PMaster);
+            PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
         PPet->WorkingSkills.automaton_magic = amaSkill;
         PPet->WorkingSkills.healing = amaSkill;
         PPet->WorkingSkills.enhancing = amaSkill;

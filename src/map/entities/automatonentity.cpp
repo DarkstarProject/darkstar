@@ -425,7 +425,6 @@ void CAutomatonEntity::setInitialBurden()
 
 uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
 {
-    //TODO: tactical processor attachment
     uint8 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
     m_Burden[element] += burden;
     //check for overload
