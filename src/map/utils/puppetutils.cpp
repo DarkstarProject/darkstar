@@ -562,7 +562,7 @@ void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
             {
                 CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i));
 
-                if (PAttachment && PAttachment->getElementSlots() >> (element * 4))
+                if (PAttachment && (PAttachment->getElementSlots() >> (element * 4)) & 0xF)
                 {
                     if (gain)
                         luautils::OnManeuverGain(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
