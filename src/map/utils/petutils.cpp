@@ -450,7 +450,7 @@ namespace petutils
 
         // Set capped flags
         for (int i = 22; i <= 24; ++i)
-            if (puppetutils::getSkillCap(PMaster, (SKILLTYPE)i) == PPet->GetSkill(i))
+            if (PPet->GetSkill(i) >= puppetutils::getSkillCap(PMaster, (SKILLTYPE)i))
                 PPet->WorkingSkills.skill[i] |= 0x8000;
 
         // Объявление переменных, нужных для рассчета.
