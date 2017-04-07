@@ -32,7 +32,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-
     -- 1st need to get the pet food is equipped in the range slot.
     local rangeObj = player:getEquipID(SLOT_AMMO);
     local totalHealing = 0;
@@ -41,11 +40,11 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet();
     local petCurrentHP = pet:getHP();
     local petMaxHP = pet:getMaxHP();
-    
+
     -- Need to start to calculate the HP to restore to the pet.
     -- Please note that I used this as base for the calculations:
     -- http://ffxiclopedia.wikia.com/wiki/Repair
-    
+
     switch (rangeObj) : caseof {
         [18731] = function (x) -- Automaton Oil
             regenAmount = 10;
@@ -68,7 +67,7 @@ function onUseAbility(player,target,ability)
             regenTime = 120;
             end,
     }
-        
+
     -- Now calculating the bonus based on gear.
     local feet = player:getEquipID(SLOT_FEET);
     local earring1 = player:getEquipID(SLOT_EAR1);    
@@ -77,9 +76,6 @@ function onUseAbility(player,target,ability)
     local function removeStatus()
         --if pet:delStatusEffect(EFFECT_DOOM) then return true end
         if pet:delStatusEffect(EFFECT_PETRIFICATION) then return true end
-        --if pet:delStatusEffect(EFFECT_LULLABY) then return true end
-        --if pet:delStatusEffect(EFFECT_SLEEP_II) then return true end
-        --if pet:delStatusEffect(EFFECT_SLEEP) then return true end
         if pet:delStatusEffect(EFFECT_SILENCE) then return true end
         if pet:delStatusEffect(EFFECT_BANE) then return true end
         if pet:delStatusEffect(EFFECT_CURSE_II) then return true end
@@ -107,11 +103,17 @@ function onUseAbility(player,target,ability)
         if not removeStatus() then break end
         toremove = toremove - 1
     end
-    
+
+    local bonus = 1 + player:getMerit(MERIT_REPAIR_EFFECT)/100
+
+    totalHealing = totalHealing * bonus
+
     if (earring1 == 15999 or earring2 == 15999) then  --Check for Guignol Earring
-        regenAmount = regenAmount + 0.2 * regenAmount;
+        bonus = bonus + 0.2
     end
-        
+
+    regenAmount = regenAmount * bonus
+
     local diff = petMaxHP - petCurrentHP;
 
     if (diff < totalHealing) then
