@@ -33,7 +33,7 @@ function onUseAbility(player,target,ability)
     local pet = player:getPet()
     if pet then
         local percent = math.floor((player:getMainLvl()/3))/100
-        pet:setHP(pet:getHP() * percent)
+        pet:setHP(math.max(pet:getHP() * percent, 1))
         pet:setMP(pet:getMP() * percent)
     end
 end
