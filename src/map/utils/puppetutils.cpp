@@ -79,6 +79,9 @@ void LoadAutomaton(CCharEntity* PChar)
             LoadAutomatonStats(PChar);
             for (int i = 0; i < 12; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
+            PChar->PAutomaton->UpdateHealth();
+            PChar->PAutomaton->health.hp = PChar->PAutomaton->health.modhp;
+            PChar->PAutomaton->health.mp = PChar->PAutomaton->health.modmp;
         }
     }
 }
