@@ -1648,7 +1648,7 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsZone(uint16 weather)
+void CLatentEffectContainer::CheckLatentsZone()
 {
     for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
     {
@@ -1675,23 +1675,7 @@ void CLatentEffectContainer::CheckLatentsZone(uint16 weather)
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-            // In the default case we need to pull weather from zone/player
-            if (weather == MAX_WEATHER_ID)
-            {
-                weather = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false));
-            }
-            // otherwise pull it from scholar storm effects
-            else
-            {
-                auto sch_weather = battleutils::GetScholarWeather(m_POwner);
-                // if there is a scholar weather convert to the weather element
-                if (sch_weather != WEATHER_NONE)
-                {
-                    weather = zoneutils::GetWeatherElement(sch_weather);
-                }
-            }
-
-            if (m_LatentEffectList.at(i)->GetConditionsValue() == weather)
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1784,4 +1768,34 @@ void CLatentEffectContainer::CheckLatentsZone(uint16 weather)
         }
     }
     m_POwner->UpdateHealth();
+}
+
+/************************************************************************
+*																		*
+*  Checks all latents regarding current weather							*
+*																		*
+************************************************************************/
+
+void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
+{
+    for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+    {
+        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            // get the scholar weather and convert to a weather element
+            auto sch_weather = zoneutils::GetWeatherElement(battleutils::GetScholarWeather(m_POwner));
+
+            // if either the new weather or the scholar weather satisfy the latent then activate it
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == weather || m_LatentEffectList.at(i)->GetConditionsValue() == sch_weather)
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+
+            m_POwner->UpdateHealth();
+        }
+    }
 }
