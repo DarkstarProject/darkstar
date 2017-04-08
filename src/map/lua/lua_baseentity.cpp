@@ -6763,6 +6763,38 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
 
 /************************************************************************
 *                                                                       *
+*  Sets the CE and VE the mob has towards the player                    *
+*                                                                       *
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setCE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 amount = lua_tointeger(L, 2);
+
+    ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->SetCE((CBattleEntity*)PEntity->GetBaseEntity(), amount);
+    return 0;
+}
+
+inline int32 CLuaBaseEntity::setVE(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    int32 amount = lua_tointeger(L, 2);
+
+    ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->SetVE((CBattleEntity*)PEntity->GetBaseEntity(), amount);
+    return 0;
+}
+
+/************************************************************************
+*                                                                       *
 *  Проверяем, покидал ли персонаж зону после поднятия флага             *
 *  необходимости ее покинуть. С параметром устанавливаем флаг, без      *
 *  параметра узнаем результат.                                          *
@@ -11321,6 +11353,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEnmityFromDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getVE),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setCE),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setVE),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addEnmity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEquipID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShieldSize),

@@ -306,6 +306,8 @@ public:
     int32 transferEnmity(lua_State*);
     int32 getCE(lua_State*);                //gets current CE the mob has towards the player
     int32 getVE(lua_State*);                //gets current VE the mob has towards the player
+    int32 setCE(lua_State*);                //sets current CE the mob has towards the player
+    int32 setVE(lua_State*);                //sets current VE the mob has towards the player
 
     int32 hasImmunity(lua_State*);          // Check if the mob has immunity for a type of spell (list at mobentity.h)
     int32 getBattleTime(lua_State*);        // Get the time in second of the battle

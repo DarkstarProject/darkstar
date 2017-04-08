@@ -63,6 +63,8 @@ public:
     void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
     uint16  GetCE(CBattleEntity* PEntity);
     uint16  GetVE(CBattleEntity* PEntity);
+    void    SetCE(CBattleEntity* PEntity, uint16 amount);
+    void    SetVE(CBattleEntity* PEntity, uint16 amount);
     void    DecayEnmity();
     bool    IsWithinEnmityRange(CBattleEntity* PEntity);
     uint8   GetHighestTH();
