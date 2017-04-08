@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "latent_effect.h"
 #include "entities/charentity.h"
 #include "entities/battleentity.h"
+#include "utils/battleutils.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "modifier.h"
@@ -626,7 +627,9 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_WEATHER_ELEMENT:
-                if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+            {
+                auto weatherElement = m_LatentEffectList.at(i)->GetConditionsValue();
+                if (weatherElement == zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) || weatherElement == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }
@@ -635,6 +638,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     m_LatentEffectList.at(i)->Deactivate();
                 }
                 break;
+            }
             case LATENT_NATION_CONTROL:
                 CheckLatentsZone();
                 break;
@@ -1674,7 +1678,9 @@ void CLatentEffectContainer::CheckLatentsZone()
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-            if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+        {
+            auto weatherElement = m_LatentEffectList.at(i)->GetConditionsValue();
+            if (weatherElement == zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) || weatherElement == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1683,6 +1689,7 @@ void CLatentEffectContainer::CheckLatentsZone()
                 m_LatentEffectList.at(i)->Deactivate();
             }
             break;
+        }
         case LATENT_NATION_CONTROL:
         {
             //player is logging in/zoning
