@@ -61,7 +61,7 @@ public:
 	void CheckLatentsPetType(uint8 petID);
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
-	void CheckLatentsZone();
+	void CheckLatentsZone(uint16 weather = MAX_WEATHER_ID);
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);
 	void AddLatentEffects(std::vector<CLatentEffect*> *latentList, uint8 reqLvl, uint8 slot);

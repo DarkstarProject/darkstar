@@ -627,9 +627,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_WEATHER_ELEMENT:
-            {
-                auto weatherElement = m_LatentEffectList.at(i)->GetConditionsValue();
-                if (weatherElement == zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) || weatherElement == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
+                if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }
@@ -638,7 +636,6 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                     m_LatentEffectList.at(i)->Deactivate();
                 }
                 break;
-            }
             case LATENT_NATION_CONTROL:
                 CheckLatentsZone();
                 break;
@@ -1651,7 +1648,7 @@ void CLatentEffectContainer::CheckLatentsWeaponBreak(uint8 slot)
 *																		*
 ************************************************************************/
 
-void CLatentEffectContainer::CheckLatentsZone()
+void CLatentEffectContainer::CheckLatentsZone(uint16 weather)
 {
     for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
     {
@@ -1678,9 +1675,23 @@ void CLatentEffectContainer::CheckLatentsZone()
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-        {
-            auto weatherElement = m_LatentEffectList.at(i)->GetConditionsValue();
-            if (weatherElement == zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) || weatherElement == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
+            // In the default case we need to pull weather from zone/player
+            if (weather == MAX_WEATHER_ID)
+            {
+                weather = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false));
+            }
+            // otherwise pull it from scholar storm effects
+            else
+            {
+                auto sch_weather = battleutils::GetScholarWeather(m_POwner);
+                // if there is a scholar weather convert to the weather element
+                if (sch_weather != WEATHER_NONE)
+                {
+                    weather = zoneutils::GetWeatherElement(sch_weather);
+                }
+            }
+
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == weather)
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1689,7 +1700,6 @@ void CLatentEffectContainer::CheckLatentsZone()
                 m_LatentEffectList.at(i)->Deactivate();
             }
             break;
-        }
         case LATENT_NATION_CONTROL:
         {
             //player is logging in/zoning
