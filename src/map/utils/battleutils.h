@@ -223,8 +223,7 @@ namespace battleutils
     void				assistTarget(CCharEntity* PChar, uint16 TargID);
 
     uint8               GetSpellAoEType(CBattleEntity* PCaster, CSpell* PSpell);
-    WEATHER             GetScholarWeather(CBattleEntity* PEntity);
-    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar);
+    WEATHER             GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather = MAX_WEATHER_ID);
     bool                WeatherMatchesElement(WEATHER weather, uint8 element);
     bool				DrawIn(CBattleEntity* PEntity, CMobEntity* PMob, float offset);
     void				DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll);

@@ -1782,11 +1782,8 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
     {
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
         {
-            // get the scholar weather and convert to a weather element
-            auto sch_weather = zoneutils::GetWeatherElement(battleutils::GetScholarWeather(m_POwner));
-
-            // if either the new weather or the scholar weather satisfy the latent then activate it
-            if (m_LatentEffectList.at(i)->GetConditionsValue() == weather || m_LatentEffectList.at(i)->GetConditionsValue() == sch_weather)
+            auto element = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false, weather));
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == element)
             {
                 m_LatentEffectList.at(i)->Activate();
             }
