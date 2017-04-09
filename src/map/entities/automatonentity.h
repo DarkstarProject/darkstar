@@ -173,7 +173,7 @@ public:
 
     void burdenTick();
     void setInitialBurden();
-    uint8 addBurden(uint8 element, uint8 burden);
+    uint16 addBurden(uint8 element, int16 burden);
 
     void PostTick() override;
 
@@ -185,7 +185,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
-    std::array<uint8, 8> m_Burden {};
+    std::array<uint16, 8> m_Burden {};
 };
 
 #endif

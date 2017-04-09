@@ -423,17 +423,24 @@ void CAutomatonEntity::setInitialBurden()
     m_Burden.fill(30);
 }
 
-uint8 CAutomatonEntity::addBurden(uint8 element, uint8 burden)
+uint16 CAutomatonEntity::addBurden(uint8 element, int16 burden)
 {
-    uint8 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
-    m_Burden[element] += burden;
-    //check for overload
-    if (m_Burden[element] > thresh)
+    if (m_Burden[element] < -burden)
+        m_Burden[element] = 0;
+    else
+        m_Burden[element] += burden;
+
+    if (burden > 0)
     {
-        if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+        //check for overload
+        int16 thresh = 30 + PMaster->getMod(Mod::OVERLOAD_THRESH);
+        if (m_Burden[element] > thresh)
         {
-            //return overload duration
-            return m_Burden[element] - thresh;
+            if (dsprand::GetRandomNumber(100) < (m_Burden[element] - thresh + 5))
+            {
+                //return overload duration
+                return m_Burden[element] - thresh;
+            }
         }
     }
     return 0;
