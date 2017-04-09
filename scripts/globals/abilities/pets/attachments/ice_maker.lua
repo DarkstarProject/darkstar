@@ -25,6 +25,7 @@ function onEquip(pet)
         else
             return
         end
+        amount = math.floor(amount)
         pet:addMod(MOD_MATT, amount)
         pet:setLocalVar("icemaker", amount)
     end)
