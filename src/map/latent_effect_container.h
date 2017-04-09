@@ -62,6 +62,7 @@ public:
 	void CheckLatentsTime();
 	void CheckLatentsWeaponBreak(uint8 slot);
 	void CheckLatentsZone();
+    void CheckLatentsWeather();
     void CheckLatentsWeather(uint16 weather);
 
 	void AddLatentEffect(CLatentEffect* LatentEffect);

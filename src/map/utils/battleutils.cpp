@@ -4522,6 +4522,11 @@ namespace battleutils
         return PSpell->getAOE();
     }
 
+    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
+    {
+        return GetWeather(PEntity, ignoreScholar, zoneutils::GetZone(PEntity->getZone())->GetWeather());
+    }
+
     WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather)
     {
         WEATHER scholarSpell = WEATHER_NONE;
@@ -4541,10 +4546,6 @@ namespace battleutils
             scholarSpell = WEATHER_AURORAS;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
             scholarSpell = WEATHER_GLOOM;
-        if (zoneWeather == MAX_WEATHER_ID)
-        {
-            zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
-        }
 
         if (ignoreScholar || scholarSpell == WEATHER_NONE || zoneWeather == (scholarSpell + 1)) // Strong weather overwrites scholar spell weak weather
             return (WEATHER)zoneWeather;

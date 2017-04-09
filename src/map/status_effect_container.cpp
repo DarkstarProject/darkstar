@@ -394,7 +394,7 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
                 PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
                 PChar->PLatentEffectContainer->CheckLatentsRollSong(PStatusEffect->GetFlag() & (EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
-                PChar->PLatentEffectContainer->CheckLatentsZone();
+                PChar->PLatentEffectContainer->CheckLatentsWeather();
                 PChar->UpdateHealth();
             }
             PChar->pushPacket(new CCharSyncPacket(PChar));
@@ -448,7 +448,7 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
         PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
         PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
         PChar->PLatentEffectContainer->CheckLatentsRollSong(HasStatusEffectByFlag(EFFECTFLAG_SONG | EFFECTFLAG_ROLL));
-        PChar->PLatentEffectContainer->CheckLatentsZone();
+        PChar->PLatentEffectContainer->CheckLatentsWeather();
         PChar->UpdateHealth();
 
         PChar->pushPacket(new CCharSyncPacket(PChar));

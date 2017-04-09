@@ -1775,6 +1775,10 @@ void CLatentEffectContainer::CheckLatentsZone()
 *  Checks all latents regarding current weather							*
 *																		*
 ************************************************************************/
+void CLatentEffectContainer::CheckLatentsWeather()
+{
+    CheckLatentsWeather(zoneutils::GetZone(m_POwner->getZone())->GetWeather());
+}
 
 void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
 {
