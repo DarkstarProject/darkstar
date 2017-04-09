@@ -548,21 +548,21 @@ uint16 CBattleEntity::ATT()
     {
         ATT += (STR() * 3) / 4;
     }
-    else {
+    else
+    {
         ATT += (STR()) / 2;
     }
 
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
         ATT += this->getMod(Mod::ENSPELL_DMG);
 
-    if (this->objtype & TYPE_PC) {
+    if (this->objtype & TYPE_PC)
+    {
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        ATT += PMaster->GetSkill(SKILL_AME);
-        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
+        ATT += this->GetSkill(SKILL_AME);
     }
     return ATT + (ATT * m_modStat[Mod::ATTP] / 100) +
         dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
@@ -576,13 +576,6 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
         return 0;
     }
     int32 ATT = 8 + GetSkill(skill) + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR() / 2;
-
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        return ATT + (ATT * (m_modStat[Mod::ATTP] + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, (CCharEntity*)PMaster)) / 100) +
-            dsp_min((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
-    }
-
     return ATT + (ATT * m_modStat[Mod::RATTP] / 100) +
         dsp_min((ATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]);
 }
@@ -603,11 +596,6 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     acc += getMod(Mod::RACC);
     acc += battleutils::GetRangedAccuracyBonuses(this);
     acc += AGI() / 2;
-    if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
-    {
-        acc += ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
-    }
-
     return acc + dsp_min(((100 + getMod(Mod::FOOD_RACCP)) * acc) / 100, getMod(Mod::FOOD_RACC_CAP));
 }
 
@@ -652,10 +640,10 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        int16 ACC = PMaster->GetSkill(SKILL_AME);
+        int16 ACC = this->GetSkill(SKILL_AME);
         ACC = (ACC > 200 ? (((ACC - 200)*0.9) + 200) : ACC);
         ACC += DEX() * 0.5;
-        ACC += m_modStat[Mod::ACC] + offsetAccuracy + ((CCharEntity*)PMaster)->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, (CCharEntity*)PMaster);
+        ACC += m_modStat[Mod::ACC] + offsetAccuracy;
         ACC = ACC + dsp_min((ACC * m_modStat[Mod::FOOD_ACCP] / 100), m_modStat[Mod::FOOD_ACC_CAP]);
         return dsp_max(0, ACC);
     }
