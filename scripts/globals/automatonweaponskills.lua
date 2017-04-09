@@ -93,11 +93,11 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     local missChance = math.random();
     local finaldmg = 0;
-    local hitrate = getHitRate(attacker,target,true,bonusacc);
+    local hitrate = getHitRate(attacker,target,true,bonusacc,true);
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getACC(),tp,params.acc100,params.acc200,params.acc300);
+        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc,true),attacker:getACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -282,8 +282,8 @@ function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
     return hrate;
 end;
 
-function getHitRate(attacker,defender,capHitRate,bonus)
-    local acc = attacker:getACC() + (bonus or 0);
+function getHitRate(attacker,defender,capHitRate,bonus,melee)
+    local acc = (melee and attacker:getACC() or attacker:getRACC()) + (bonus or 0);
     local eva = defender:getEVA();
 
     local levelbonus = 0;
@@ -327,7 +327,7 @@ end
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function getcRatio(attacker, defender, params, ignoredDef, melee)
-    local cratio = (attacker:getStat(MOD_ATT) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
+    local cratio = ((melee and attacker:getATT() or attacker:getRATT()) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
 
     local levelbonus = 0;
     if (attacker:getMainLvl() > defender:getMainLvl()) then
@@ -337,79 +337,114 @@ function getcRatio(attacker, defender, params, ignoredDef, melee)
     cratio = cratio + levelbonus;
     cratio = utils.clamp(cratio, 0, (melee and 4.0 or 3.0));
 
-    local pdifmin = 0;
-    local pdifmax = 1;
-    
-    if (cratio < 0.5) then
-        pdifmax = cratio + 0.5;
-    elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
-        pdifmax = 1;
-    elseif ((0.7 < cratio) and (cratio <= 1.2)) then
-        pdifmax = cratio + 0.3;
-    elseif ((1.2 < cratio) and (cratio <= 1.5)) then
-        pdifmax = (cratio * 0.25) + cratio;
-    elseif ((1.5 < cratio) and (cratio <= 2.625)) then
-        pdifmax = cratio + 0.375;
-    elseif ((2.625 < cratio) and (cratio <= 3.25)) then
-        pdifmax = 3;
-    else 
-        pdifmax = cratio;
-    end
-
-    if (cratio < 0.38) then
-        pdifmin =  0;
-    elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
-        pdifmin = cratio * (1176 / 1024) - (448 / 1024);
-    elseif ((1.25 < cratio) and (cratio <= 1.51)) then
-        pdifmin = 1;
-    elseif ((1.51 < cratio) and (cratio <= 2.44)) then
-        pdifmin = cratio * (1176 / 1024) - (775 / 1024);
-    else
-        pdifmin = cratio - 0.375;
-    end
-
     local pdif = {};
-    pdif[1] = pdifmin;
-    pdif[2] = pdifmax;
-
     local pdifcrit = {};
-    cratio = cratio + 1;
-    cratio = utils.clamp(cratio, 0, 4.0);
 
-    -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+    if melee then
+        local pdifmin = 0;
+        local pdifmax = 1;
 
-    if (cratio < 0.5) then
-        pdifmax = cratio + 0.5;
-    elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
-        pdifmax = 1;
-    elseif ((0.7 < cratio) and (cratio <= 1.2)) then
-        pdifmax = cratio + 0.3;
-    elseif ((1.2 < cratio) and (cratio <= 1.5)) then
-        pdifmax = (cratio * 0.25) + cratio;
-    elseif ((1.5 < cratio) and (cratio <= 2.625)) then
-        pdifmax = cratio + 0.375;
-    elseif ((2.625 < cratio) and (cratio <= 3.25)) then
-        pdifmax = 3;
-    else 
-        pdifmax = cratio;
-    end
+        if (cratio < 0.5) then
+            pdifmax = cratio + 0.5;
+        elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
+            pdifmax = 1;
+        elseif ((0.7 < cratio) and (cratio <= 1.2)) then
+            pdifmax = cratio + 0.3;
+        elseif ((1.2 < cratio) and (cratio <= 1.5)) then
+            pdifmax = (cratio * 0.25) + cratio;
+        elseif ((1.5 < cratio) and (cratio <= 2.625)) then
+            pdifmax = cratio + 0.375;
+        elseif ((2.625 < cratio) and (cratio <= 3.25)) then
+            pdifmax = 3;
+        else 
+            pdifmax = cratio;
+        end
 
-    if (cratio < 0.38) then
-        pdifmin =  0;
-    elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
-        pdifmin = cratio * (1176 / 1024) - (448 / 1024);
-    elseif ((1.25 < cratio) and (cratio <= 1.51)) then
-        pdifmin = 1;
-    elseif ((1.51 < cratio) and (cratio <= 2.44)) then
-        pdifmin = cratio * (1176 / 1024) - (775 / 1024);
+        if (cratio < 0.38) then
+            pdifmin =  0;
+        elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
+            pdifmin = cratio * (1176 / 1024) - (448 / 1024);
+        elseif ((1.25 < cratio) and (cratio <= 1.51)) then
+            pdifmin = 1;
+        elseif ((1.51 < cratio) and (cratio <= 2.44)) then
+            pdifmin = cratio * (1176 / 1024) - (775 / 1024);
+        else
+            pdifmin = cratio - 0.375;
+        end
+
+        pdif[1] = pdifmin;
+        pdif[2] = pdifmax;
+
+        cratio = cratio + 1;
+        cratio = utils.clamp(cratio, 0, 4.0);
+
+        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+
+        if (cratio < 0.5) then
+            pdifmax = cratio + 0.5;
+        elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
+            pdifmax = 1;
+        elseif ((0.7 < cratio) and (cratio <= 1.2)) then
+            pdifmax = cratio + 0.3;
+        elseif ((1.2 < cratio) and (cratio <= 1.5)) then
+            pdifmax = (cratio * 0.25) + cratio;
+        elseif ((1.5 < cratio) and (cratio <= 2.625)) then
+            pdifmax = cratio + 0.375;
+        elseif ((2.625 < cratio) and (cratio <= 3.25)) then
+            pdifmax = 3;
+        else 
+            pdifmax = cratio;
+        end
+
+        if (cratio < 0.38) then
+            pdifmin =  0;
+        elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
+            pdifmin = cratio * (1176 / 1024) - (448 / 1024);
+        elseif ((1.25 < cratio) and (cratio <= 1.51)) then
+            pdifmin = 1;
+        elseif ((1.51 < cratio) and (cratio <= 2.44)) then
+            pdifmin = cratio * (1176 / 1024) - (775 / 1024);
+        else
+            pdifmin = cratio - 0.375;
+        end
+
+        local critbonus = attacker:getMod(MOD_CRIT_DMG_INCREASE)
+        critbonus = utils.clamp(critbonus, 0, 100);
+        pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
+        pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
     else
-        pdifmin = cratio - 0.375;
-    end
+        -- max
+        local pdifmax = 0;
+        if (cratio < 0.9) then
+            pdifmax = cratio * (10/9);
+        elseif (cratio < 1.1) then
+            pdifmax = 1;
+        else
+            pdifmax = cratio;
+        end
 
-    local critbonus = attacker:getMod(MOD_CRIT_DMG_INCREASE)
-    critbonus = utils.clamp(critbonus, 0, 100);
-    pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
-    pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+        -- min
+        local pdifmin = 0;
+        if (cratio < 0.9) then
+            pdifmin = cratio;
+        elseif (cratio < 1.1) then
+            pdifmin = 1;
+        else
+            pdifmin = (cratio * (20/19))-(3/19);
+        end
+
+        pdif[1] = pdifmin;
+        pdif[2] = pdifmax;
+        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+
+        pdifmin = pdifmin * 1.25;
+        pdifmax = pdifmax * 1.25;
+
+        local critbonus = attacker:getMod(MOD_CRIT_DMG_INCREASE)
+        critbonus = utils.clamp(critbonus, 0, 100);
+        pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
+        pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+    end
 
     return pdif, pdifcrit;
 end;
@@ -470,11 +505,11 @@ end;
     -- First hit has 95% acc always. Second hit + affected by hit rate.
     local missChance = math.random();
     local finaldmg = 0;
-    local hitrate = getHitRate(attacker,target,true,bonusacc);
+    local hitrate = getHitRate(attacker,target,true,bonusacc,false);
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
+        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc,false),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -505,7 +540,7 @@ end;
     if (numHits>1) then
         if (params.acc100==0) then
             -- work out acc since we actually need it now
-            hitrate = getHitRate(attacker,target,true,bonusacc);
+            hitrate = getHitRate(attacker,target,true,bonusacc,false);
         end
 
         hitsdone = 1;
