@@ -169,7 +169,7 @@ void CAutomatonController::setMagicCooldowns()
         m_magicCooldown = 10s;
         m_enfeebleCooldown = 10s;
         m_elementalCooldown = 33s;
-        m_enhanceCooldown = 180s;
+        m_enhanceCooldown = 135s;
     }
     }
 
@@ -354,7 +354,7 @@ bool CAutomatonController::TryShieldBash()
     return false;
 }
 
-bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into account the mob's HPP for all heads?
+bool CAutomatonController::TrySpellcast()
 {
     // Note that the old AI used the Mana Booster attachment to reduce magic cooldown instead of giving fast cast
     if (!PAutomaton->PMaster || m_magicCooldown == 0s ||
@@ -491,6 +491,11 @@ bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into acc
             m_LastElementalTime = m_Tick;
             return true;
         }
+        else if (m_CurrentManeuvers.dark && TryEnhance())
+        {
+            m_LastEnhanceTime = m_Tick;
+            return true;
+        }
         else if ((m_CurrentManeuvers.dark || PAutomaton->GetHPP() <= 75 || PAutomaton->GetMPP() <= 75) && TryEnfeeble()) // Dark or self HPP/MPP <= 75 -> Enfeeble
         {
             m_LastEnfeebleTime = m_Tick;
@@ -500,11 +505,6 @@ bool CAutomatonController::TrySpellcast() // TODO: Does the new AI take into acc
         if (!m_CurrentManeuvers.ice && TryElemental())
         {
             m_LastElementalTime = m_Tick;
-            return true;
-        }
-        else if (TryEnhance())
-        {
-            m_LastEnhanceTime = m_Tick;
             return true;
         }
     }
@@ -1019,11 +1019,7 @@ bool CAutomatonController::TryEnhance()
         return false;
 
     if (PAutomaton->getHead() == HEAD_SPIRITREAVER)
-    {
-        if (CastSpell(AUTOSPELL_DREAD_SPIKES, PAutomaton))
-            return true;
-        return false;
-    }
+        return CastSpell(AUTOSPELL_DREAD_SPIKES, PAutomaton);
 
     EnmityList_t* enmityList;
     auto PMob = dynamic_cast<CMobEntity*>(PTarget);
