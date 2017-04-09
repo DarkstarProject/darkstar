@@ -207,7 +207,9 @@ uint16 CMobSkill::getPetAnimationID()
   if ((m_AnimID >= 1303 && m_AnimID <= 1307) ||
       (m_AnimID >= 1404 && m_AnimID <= 1406) ||
       (m_AnimID >= 1486 && m_AnimID <= 1488) ||
-      (m_AnimID >= 1509 && m_AnimID <= 1510))
+      (m_AnimID >= 1509 && m_AnimID <= 1510) ||
+      (m_AnimID == 1219) ||
+      (m_AnimID >= 1690 && m_AnimID <= 1692))
   {
       return m_AnimID + 256;
   }

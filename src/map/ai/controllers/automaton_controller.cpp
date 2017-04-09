@@ -287,12 +287,12 @@ void CAutomatonController::DoCombatTick(time_point tick)
         {
             return;
         }
-        else if (TryRangedAttack()) // TODO: Find the animation for its ranged attack
+        else if (TryRangedAttack())
         {
             m_LastRangedTime = m_Tick;
             return;
         }
-        else if (TryAttachment()) // TODO
+        else if (TryAttachment())
         {
             return;
         }
@@ -1314,18 +1314,23 @@ bool CAutomatonController::TryTPMove()
     return false;
 }
 
-bool CAutomatonController::TryRangedAttack()
+bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its ranged attack
 {
     if (m_rangedCooldown > 0s && m_Tick > m_LastRangedTime + (m_rangedCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::SNAP_SHOT))))
         return MobSkill(PTarget->targid, m_RangedAbility);
     return false;
 }
 
-bool CAutomatonController::TryAttachment()
+bool CAutomatonController::TryAttachment() // TODO: Try and make these less hardcoded and find their animations
 {
-    if (false)
+    if (PAutomaton->getMod(Mod::AUTO_PROVOKE) && m_Tick > m_attachmentRecasts[0])
     {
-        return true;
+        float currentDistance = distance(PAutomaton->loc.p, PTarget->loc.p);
+        if (currentDistance < 7 && MobSkill(PTarget->targid, 1945))
+        {
+            m_attachmentRecasts[0] = m_Tick + 30s;
+            return true;
+        }
     }
     return false;
 }

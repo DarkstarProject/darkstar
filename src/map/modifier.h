@@ -445,8 +445,8 @@ enum class Mod
     AUTO_HEALING_THRESHOLD    = 846, // Increases the healing trigger threshold
     BURDEN_DECAY              = 847, // Increases amount of burden removed per tick
     AUTO_SHIELD_BASH_SLOW     = 848, // Adds a slow effect to Shield Bash
-    // AUTO_                  = 849, // 
-    // AUTO_                  = 850, // 
+    AUTO_PROVOKE              = 849, // Grants access to "Provoke"
+    AUTO_STONESKIN            = 850, // Grants access to "Stoneskin"
 
     // Dancer
     FINISHING_MOVES           = 333, // Tracks # of finishing moves

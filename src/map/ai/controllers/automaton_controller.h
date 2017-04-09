@@ -98,6 +98,8 @@ private:
     std::unordered_map<AUTOSPELL, EFFECT, EnumClassHash> m_enfeebleList;
     std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> m_immunityList;
 
+    std::unordered_map<uint8, time_point> m_attachmentRecasts;
+
     AUTOMOVEMENT m_movementType;
 
     time_point m_LastActionTime;

@@ -12,10 +12,12 @@ require("scripts/globals/status");
 
 function onEquip(pet)
     pet:addMod(MOD_ENMITY, 5) -- 10 currently on retail
+    pet:addMod(MOD_AUTO_PROVOKE, 1)
 end
 
 function onUnequip(pet)
     pet:delMod(MOD_ENMITY, 5) -- 10 currently on retail
+    pet:delMod(MOD_AUTO_PROVOKE, 1)
 end
 
 function onManeuverGain(pet,maneuvers)
