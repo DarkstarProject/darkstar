@@ -719,6 +719,20 @@ bool CAutomatonController::TryEnfeeble()
 
     switch (PAutomaton->getHead())
     {
+    case HEAD_STORMWAKER:
+    {
+        PTarget->StatusEffectContainer->ForEachEffect([&castPriority](CStatusEffect* PStatus)
+        {
+            if (PStatus->GetDuration() > 0)
+            {
+                if (PStatus->GetFlag() & EFFECTFLAG_DISPELABLE)
+                {
+                    castPriority.push_back(AUTOSPELL_DISPEL);
+                    return;
+                }
+            }
+        });
+    }
     default:
     {
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
