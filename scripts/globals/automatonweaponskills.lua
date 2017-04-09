@@ -221,7 +221,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     end
 
     -- Miss message
-    if finaldmg <= 0 then
+    if finaldmg < 1 then
         skill:setMsg(MSG_MISS)
     end
 
@@ -265,7 +265,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params,
     dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
 
     -- Miss message
-    if dmg <= 0 then
+    if dmg < 1 then
         skill:setMsg(MSG_MISS)
     end
 
@@ -583,7 +583,7 @@ end;
     end
 
     -- Miss message
-    if finaldmg <= 0 then
+    if finaldmg < 1 then
         skill:setMsg(MSG_MISS)
     end
 
