@@ -728,6 +728,17 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
                 m_LatentEffectList.at(i)->Deactivate();
             }
         }
+        else if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+        }
     }
 }
 
