@@ -39,6 +39,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
 
     target:delHP(damage)
     target:updateEnmityFromDamage(automaton, damage)
+    target:addEnmity(automaton, 450, 900)
 
     return damage
 end
