@@ -228,20 +228,17 @@ void CAutomatonController::setMovement()
     m_deployed = false;
 }
 
-CurrentManeuvers CAutomatonController::GetCurrentManeuvers()
+void CAutomatonController::GetCurrentManeuvers()
 {
     auto statuses = PAutomaton->PMaster->StatusEffectContainer;
-    CurrentManeuvers maneuvers = {
-        statuses->GetEffectsCount(EFFECT_FIRE_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_EARTH_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_WATER_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_WIND_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_ICE_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_THUNDER_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_LIGHT_MANEUVER),
-        statuses->GetEffectsCount(EFFECT_DARK_MANEUVER)
-    };
-    return maneuvers;
+    m_CurrentManeuvers.fire = statuses->GetEffectsCount(EFFECT_FIRE_MANEUVER);
+    m_CurrentManeuvers.earth = statuses->GetEffectsCount(EFFECT_EARTH_MANEUVER);
+    m_CurrentManeuvers.water = statuses->GetEffectsCount(EFFECT_WATER_MANEUVER);
+    m_CurrentManeuvers.wind = statuses->GetEffectsCount(EFFECT_WIND_MANEUVER);
+    m_CurrentManeuvers.ice = statuses->GetEffectsCount(EFFECT_ICE_MANEUVER);
+    m_CurrentManeuvers.thunder = statuses->GetEffectsCount(EFFECT_THUNDER_MANEUVER);
+    m_CurrentManeuvers.light = statuses->GetEffectsCount(EFFECT_LIGHT_MANEUVER);
+    m_CurrentManeuvers.dark = statuses->GetEffectsCount(EFFECT_DARK_MANEUVER);
 }
 
 void CAutomatonController::DoCombatTick(time_point tick)
@@ -271,7 +268,7 @@ void CAutomatonController::DoCombatTick(time_point tick)
     // Automatons only attempt actions in 3 second intervals (Reduced by the Tactical Processor)
     if (TryAction())
     {
-        m_CurrentManeuvers = GetCurrentManeuvers();
+        GetCurrentManeuvers();
 
         if (TryShieldBash())
         {

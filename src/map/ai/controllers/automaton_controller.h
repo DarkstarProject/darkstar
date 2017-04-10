@@ -77,7 +77,7 @@ private:
     bool TryRangedAttack();
     bool TryAttachment();
 
-    CurrentManeuvers GetCurrentManeuvers();
+    void GetCurrentManeuvers();
     CurrentManeuvers m_CurrentManeuvers;
 
     CAutomatonEntity* PAutomaton;
