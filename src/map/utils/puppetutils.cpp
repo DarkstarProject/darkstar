@@ -71,11 +71,29 @@ void LoadAutomaton(CCharEntity* PChar)
             PChar->PAutomaton = new CAutomatonEntity();
             PChar->PAutomaton->name.insert(0,Sql_GetData(SqlHandle, 1));
             automaton_equip_t tempEquip;
-		    attachments = nullptr;
-		    Sql_GetData(SqlHandle,2,&attachments,&length);
-		    memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
-			setHead(PChar, tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ? HEAD_HARLEQUIN : tempEquip.Head);
-			setFrame(PChar, tempEquip.Frame <= FRAME_HARLEQUIN || tempEquip.Frame > FRAME_STORMWAKER ? FRAME_HARLEQUIN : tempEquip.Frame);
+            attachments = nullptr;
+            Sql_GetData(SqlHandle,2,&attachments,&length);
+            memcpy(&tempEquip, attachments, (length > sizeof(tempEquip) ? sizeof(tempEquip) : length));
+
+            // If any of this happens then the Automaton failed to load properly and should just reset (Should only occur with older characters or if DB is missing)
+            if (tempEquip.Head < HEAD_HARLEQUIN || tempEquip.Head > HEAD_SPIRITREAVER ||
+                tempEquip.Frame < FRAME_HARLEQUIN || tempEquip.Frame > FRAME_STORMWAKER) {
+                PChar->PAutomaton->setHead(HEAD_HARLEQUIN);
+                tempEquip.Head = HEAD_HARLEQUIN;
+                PChar->PAutomaton->setFrame(FRAME_HARLEQUIN);
+                tempEquip.Frame = FRAME_HARLEQUIN;
+                for (int i = 0; i < 12; i++)
+                    tempEquip.Attachments[i] = 0;
+                for (int i = 0; i < 6; i++)
+                    PChar->PAutomaton->setElementMax(i, 5);
+                PChar->PAutomaton->setElementMax(6, 3);
+                PChar->PAutomaton->setElementMax(7, 3);
+                for (int i = 0; i < 8; i++)
+                    PChar->PAutomaton->m_ElementEquip[i] = 0;
+            }
+
+            setHead(PChar,tempEquip.Head);
+            setFrame(PChar, tempEquip.Frame);
             LoadAutomatonStats(PChar);
             for (int i = 0; i < 12; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
@@ -446,7 +464,7 @@ void LoadAutomatonStats(CCharEntity* PChar)
 {
     switch (PChar->PAutomaton->getFrame())
     {
-        case FRAME_HARLEQUIN:
+        default: //case FRAME_HARLEQUIN:
             petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
             break;
         case FRAME_VALOREDGE:
