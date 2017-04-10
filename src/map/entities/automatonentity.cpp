@@ -46,7 +46,7 @@ CAutomatonEntity::~CAutomatonEntity()
 
 void CAutomatonEntity::loadSpells()
 {
-    m_SpellList[AUTOSPELL_DIA] = 1;
+    m_SpellList[AUTOSPELL_DIA] = 0; // Temp fix
     m_SpellList[AUTOSPELL_CURE] = 12;
     m_SpellList[AUTOSPELL_STONE] = 15;
     m_SpellList[AUTOSPELL_POISON] = 18;
