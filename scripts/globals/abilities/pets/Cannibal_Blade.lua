@@ -63,7 +63,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         end
     end
 
-    local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
 
     if damage > 0 then
         if not target:isUndead() then

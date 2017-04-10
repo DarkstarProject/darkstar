@@ -7,7 +7,7 @@ require("scripts/globals/magicburst");
 MSG_MISS = 188;
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
-function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill)
+function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill)
 
     local criticalHit = false;
     local bonusTP = params.bonusTP or 0
@@ -39,15 +39,15 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
-        ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+        ignoredDef = calculatedAutoIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
     end
 
     -- get cratio min and max
-    local cratio, ccritratio = getcRatio(attacker, target, params, ignoredDef, true);
+    local cratio, ccritratio = getAutocRatio(attacker, target, params, ignoredDef, true);
     local ccmin = 0;
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
@@ -68,7 +68,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local nativecrit = 0;
 
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
-        critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
+        critrate = autoFTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local flourisheffect = attacker:getStatusEffect(EFFECT_BUILDING_FLOURISH);
         if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
@@ -89,15 +89,15 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     end
 
     -- Applying pDIF
-    local pdif = generatePdif (cratio[1], cratio[2], true);
+    local pdif = generateAutoPdif(cratio[1], cratio[2], true);
 
     local missChance = math.random();
     local finaldmg = 0;
-    local hitrate = getHitRate(attacker,target,true,bonusacc,true);
+    local hitrate = getAutoHitRate(attacker,target,true,bonusacc,true);
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc,true),attacker:getACC(),tp,params.acc100,params.acc200,params.acc300);
+        hr = autoAccVariesWithTP(getAutoHitRate(attacker,target,false,bonusacc,true),attacker:getACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -108,7 +108,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         if (params.canCrit or isSneakValid or isAssassinValid) then
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
-                local cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
+                local cpdif = generateAutoPdif(ccritratio[1], ccritratio[2], true);
                 finaldmg = dmg * cpdif;
                 if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
                     finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
@@ -138,12 +138,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
                 and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
-            pdif = generatePdif (cratio[1], cratio[2], true);
+            pdif = generateAutoPdif(cratio[1], cratio[2], true);
             if (params.canCrit) then
                 critchance = math.random();
                 if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
                     criticalHit = true;
-                    cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
+                    cpdif = generateAutoPdif(ccritratio[1], ccritratio[2], true);
                     finaldmg = finaldmg + dmg * cpdif;
                 else
                     finaldmg = finaldmg + dmg * pdif;
@@ -158,7 +158,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     -- Store first hit bonus for use after other calcs are done..
     local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
-    local numHits = getMultiAttacks(attacker, params.numHits);
+    local numHits = getAutoMultiAttacks(attacker, params.numHits);
     local extraHitsLanded = 0;
 
     if (numHits > 1) then
@@ -169,12 +169,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
                     not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  -- it hit
-                pdif = generatePdif (cratio[1], cratio[2], true);
+                pdif = generateAutoPdif(cratio[1], cratio[2], true);
                 if (params.canCrit) then
                     critchance = math.random();
                     if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
                         criticalHit = true;
-                        cpdif = generatePdif (ccritratio[1], ccritratio[2], true);
+                        cpdif = generateAutoPdif(ccritratio[1], ccritratio[2], true);
                         finaldmg = finaldmg + dmg * cpdif;
                     else
                         finaldmg = finaldmg + dmg * pdif;
@@ -217,7 +217,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     end
 
     -- Miss message
@@ -230,7 +230,7 @@ end;
 
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr, accBonus, weaponDamage
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
-function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params, skill)
+function doAutoMagicWeaponskill(attacker, target, wsID, tp, primary, action, params, skill)
     local bonusTP = params.bonusTP or 0
     local bonusacc = attacker:getMod(MOD_WSACC) + (params.accBonus or 0);
 
@@ -242,7 +242,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params,
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1);
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
 
     dmg = dmg * ftp;
 
@@ -262,7 +262,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params,
     dmg = dmg + firstHitBonus;
 
     dmg = dmg * WEAPON_SKILL_POWER
-    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
+    dmg = takeAutoWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
 
     -- Miss message
     if dmg < 1 then
@@ -272,9 +272,9 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params,
     return dmg, false, 1, 0;
 end
 
-function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
+function autoAccVariesWithTP(hitrate,acc,tp,a1,a2,a3)
     -- sadly acc varies with tp ALL apply an acc PENALTY, the acc at various %s are given as a1 a2 a3
-    accpct = fTP(tp,a1,a2,a3);
+    accpct = autoFTP(tp,a1,a2,a3);
     acclost = acc - (acc*accpct);
     hrate = utils.hitrate - (0.005*acclost);
     -- cap it
@@ -282,7 +282,7 @@ function accVariesWithTP(hitrate,acc,tp,a1,a2,a3)
     return hrate;
 end;
 
-function getHitRate(attacker,defender,capHitRate,bonus,melee)
+function getAutoHitRate(attacker,defender,capHitRate,bonus,melee)
     local acc = (melee and attacker:getACC() or attacker:getRACC()) + (bonus or 0);
     local eva = defender:getEVA();
 
@@ -301,7 +301,7 @@ function getHitRate(attacker,defender,capHitRate,bonus,melee)
     return hitrate;
 end;
 
-function fTP(tp,ftp1,ftp2,ftp3)
+function autoFTP(tp,ftp1,ftp2,ftp3)
     if (tp < 1000) then
         tp = 1000;
     end
@@ -316,7 +316,7 @@ function fTP(tp,ftp1,ftp2,ftp3)
     return 1; -- no ftp mod
 end;
 
-function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
+function calculatedAutoIgnoredDef(tp, def, ignore1, ignore2, ignore3)
     if (tp>=1000 and tp <2000) then
         return (ignore1 + ( ((ignore2-ignore1)/1000) * (tp-1000)))*def;
     elseif (tp>=2000 and tp<=3000) then
@@ -326,8 +326,8 @@ function calculatedIgnoredDef(tp, def, ignore1, ignore2, ignore3)
 end
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
-function getcRatio(attacker, defender, params, ignoredDef, melee)
-    local cratio = ((melee and attacker:getATT() or attacker:getRATT()) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
+function getAutocRatio(attacker, defender, params, ignoredDef, melee)
+    local cratio = ((melee and attacker:getStat(MOD_ATT) or attacker:getRATT()) * params.atkmulti) / (defender:getStat(MOD_DEF) - ignoredDef);
 
     local levelbonus = 0;
     if (attacker:getMainLvl() > defender:getMainLvl()) then
@@ -450,7 +450,7 @@ function getcRatio(attacker, defender, params, ignoredDef, melee)
 end;
 
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
- function doRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill)
+ function doAutoRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill)
 
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
@@ -466,22 +466,22 @@ end;
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = fTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
     local crit = false
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
-        ignoredDef = calculatedIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
+        ignoredDef = calculatedAutoIgnoredDef(tp, target:getStat(MOD_DEF), params.ignored100, params.ignored200, params.ignored300);
     end
 
     -- get cratio min and max
-    local cratio, ccritratio = getcRatio(attacker, target, params, ignoredDef, false);
+    local cratio, ccritratio = getAutocRatio(attacker, target, params, ignoredDef, false);
     local ccmin = 0;
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(EFFECT_MIGHTY_STRIKES);
     local critrate = 0;
     if (params.canCrit) then -- work out critical hit ratios, by +1ing
-        critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
+        critrate = autoFTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
         nativecrit = nativecrit + (attacker:getMod(MOD_CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
@@ -500,16 +500,16 @@ end;
     local dmg = base * ftp;
 
     -- Applying pDIF
-    local pdif = generatePdif (cratio[1],cratio[2], false);
+    local pdif = generateAutoPdif(cratio[1],cratio[2], false);
 
     -- First hit has 95% acc always. Second hit + affected by hit rate.
     local missChance = math.random();
     local finaldmg = 0;
-    local hitrate = getHitRate(attacker,target,true,bonusacc,false);
+    local hitrate = getAutoHitRate(attacker,target,true,bonusacc,false);
     if (params.acc100~=0) then
         -- ACCURACY VARIES WITH TP, APPLIED TO ALL HITS.
         -- print("Accuracy varies with TP.");
-        hr = accVariesWithTP(getHitRate(attacker,target,false,bonusacc,false),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
+        hr = autoAccVariesWithTP(getAutoHitRate(attacker,target,false,bonusacc,false),attacker:getRACC(),tp,params.acc100,params.acc200,params.acc300);
         hitrate = hr;
     end
 
@@ -519,7 +519,7 @@ end;
             local critchance = math.random();
             if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
                 crit = true
-                local cpdif = generatePdif (ccritratio[1], ccritratio[2], false);
+                local cpdif = generateAutoPdif(ccritratio[1], ccritratio[2], false);
                 finaldmg = dmg * cpdif;
             else
                 finaldmg = dmg * pdif;
@@ -540,18 +540,18 @@ end;
     if (numHits>1) then
         if (params.acc100==0) then
             -- work out acc since we actually need it now
-            hitrate = getHitRate(attacker,target,true,bonusacc,false);
+            hitrate = getAutoHitRate(attacker,target,true,bonusacc,false);
         end
 
         hitsdone = 1;
         while (hitsdone < numHits) do
             chance = math.random();
             if (chance<=hitrate) then -- it hit
-                pdif = generatePdif (cratio[1],cratio[2], false);
+                pdif = generateAutoPdif(cratio[1],cratio[2], false);
                 if (canCrit) then
                     critchance = math.random();
                     if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
-                        cpdif = generatePdif (ccritratio[1], ccritratio[2], false);
+                        cpdif = generateAutoPdif(ccritratio[1], ccritratio[2], false);
                         finaldmg = finaldmg + dmg * cpdif;
                     else
                         finaldmg = finaldmg + dmg * pdif;
@@ -579,7 +579,7 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     end
 
     -- Miss message
@@ -590,7 +590,7 @@ end;
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
 
-function getMultiAttacks(attacker, numHits)
+function getAutoMultiAttacks(attacker, numHits)
     local bonusHits = 0;
     local multiChances = 1;
     local doubleRate = (attacker:getMod(MOD_DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
@@ -628,7 +628,7 @@ function getMultiAttacks(attacker, numHits)
     return numHits + bonusHits;
 end;
 
-function generatePdif(cratiomin, cratiomax, melee)
+function generateAutoPdif(cratiomin, cratiomax, melee)
     local pdif = math.random(cratiomin*1000, cratiomax*1000) / 1000;
     if (melee) then
         pdif = pdif * (math.random(100,105)/100);
@@ -636,7 +636,7 @@ function generatePdif(cratiomin, cratiomax, melee)
     return pdif;
 end
 
-function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+function takeAutoWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
     local targetTPMult = params.targetTPMult or 1
     finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;

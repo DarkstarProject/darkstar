@@ -43,7 +43,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     }
     skill:setSkillchain(29)
 
-    local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
 
     return damage
 end

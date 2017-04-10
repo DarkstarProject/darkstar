@@ -31,7 +31,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         chr_wsc = 0.0
     }
 
-    local damage = doRangedWeaponskill(automaton, target, 0, params, 1000, true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, 1000, true, skill)
 
     return damage
 end
