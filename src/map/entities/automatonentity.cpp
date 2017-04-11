@@ -413,7 +413,7 @@ void CAutomatonEntity::burdenTick()
     {
         if (burden > 0)
         {
-            burden = burden - dsp_max(1 + PMaster->getMod(Mod::BURDEN_DECAY), 1);
+            burden -= dsp_cap(1 + PMaster->getMod(Mod::BURDEN_DECAY) + this->getMod(Mod::BURDEN_DECAY), 1, burden);
         }
     }
 }
