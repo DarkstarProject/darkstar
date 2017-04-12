@@ -4757,17 +4757,9 @@ void SmallPacket0x0F1(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     uint16 IconID = RBUFW(data, (0x04));
 
-    if (IconID != 0)
-    {
-        auto effect = PChar->StatusEffectContainer->GetStatusEffect((EFFECT)IconID);
-
-        // think this covers all the removable effects
-        if (!effect || effect->GetFlag() & EFFECTFLAG_CONFRONTATION || effect->GetFlag() & EFFECTFLAG_FOOD ||
-            effect->GetFlag() & EFFECTFLAG_ERASABLE)
-            return;
-
+    if (IconID)
         PChar->StatusEffectContainer->DelStatusEffectsByIcon(IconID);
-    }
+
     return;
 }
 
