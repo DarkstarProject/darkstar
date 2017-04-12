@@ -233,6 +233,11 @@ INSERT INTO `item_mods_pet` VALUES (12650,27,-2,1);       -- Avatar: Enmity -2
 -- Avatar will grant the smn +25 elemental resistance to the element type of the Avatar
 
 -- -------------------------------------------------------
+-- Drachen Fng. Gnt. - LVL 56
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (13974,25,5,2);        -- Wyvern: Accuracy +5
+
+-- -------------------------------------------------------
 -- Evoker's Bracers
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (13975,27,-2,1);       -- Avatar: Enmity -2
@@ -244,10 +249,20 @@ INSERT INTO `item_mods_pet` VALUES (14103,27,-2,1);       -- Avatar: Enmity -2
 INSERT INTO `item_mods_pet` VALUES (14103,68,5,1);        -- Avatar: Evasion +5 (?)
 
 -- -------------------------------------------------------
+-- Drachen Brais - LVL 52
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (14227,3,10,2);        -- Wyvern: HP+10%
+
+-- -------------------------------------------------------
 -- Evoker's Spats
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (14228,25,10,1);       -- Avatar: Accuracy +10
 INSERT INTO `item_mods_pet` VALUES (14228,27,-2,1);       -- Avatar: Enmity -2
+
+-- -------------------------------------------------------
+-- Wyvern Mail - LVL 50
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (14405,2,65,2);        -- Wyvern: HP+65
 
 -- -------------------------------------------------------
 -- Yinyang Robe - LVL 71
@@ -258,6 +273,16 @@ INSERT INTO `item_mods_pet` VALUES (14468,27,5,1);        -- Avatar: Pet: Enmity
 -- Summoner's Doublet + 1 - LVL 75
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (14514,165,4,1);       -- Avatar: Critical Hit Rate +4%
+
+-- -------------------------------------------------------
+-- Ostreger Mitts - LVL 74
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (14872,2,10,2);        -- Wyvern: HP +10
+
+-- -------------------------------------------------------
+-- Drachen Fng. Gnt. +1 - LVL 74
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (14903,25,5,2);        -- Wyvern: Accuracy +5
 
 -- -------------------------------------------------------
 -- Evoker's Bracers +1
@@ -306,6 +331,16 @@ INSERT INTO `item_mods_pet` VALUES (15366,27,-4,1);       -- Avatar: Enmity -4
 INSERT INTO `item_mods_pet` VALUES (15366,68,5,1);        -- Avatar: Evasion +5 (?)
 
 -- -------------------------------------------------------
+-- Falconer's hose - LVL 50
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (15367,2,30,2);        -- Wyvern: HP+30
+
+-- -------------------------------------------------------
+-- Drachen Brais +1 - LVL 74
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (15574,3,15,2);        -- Wyvern: HP+15%
+
+-- -------------------------------------------------------
 -- Evoker's Spats + 1 - LVL 74
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (15575,25,14,1);       -- Avatar: Accuracy +14 (?)
@@ -328,6 +363,11 @@ INSERT INTO `item_mods_pet` VALUES (15647,1,10,0);        -- Pet: DEF +10
 INSERT INTO `item_mods_pet` VALUES (15649,1,10,0);        -- Pet: DEF +10
 
 -- -------------------------------------------------------
+-- Homam Gambieras - LVL 75
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (15661,2,50,2);        -- Wyvern: HP+50
+
+-- -------------------------------------------------------
 -- Summoner's Pigaches + 1 - LVL 75
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (15679,23,10,1);       -- Avatar: Attack +10 (?)
@@ -348,6 +388,11 @@ INSERT INTO `item_mods_pet` VALUES (15944,163,-7,0);      -- Pet: Magic Damage t
 -- Pallas's Shield - LVL 72
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (16173,1,10,0);        -- Pet: DEF +10
+
+-- -------------------------------------------------------
+-- Chaonix's Gorget - LVL 70
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (16270,2,50,2);        -- Wyvern: HP+50
 
 -- -------------------------------------------------------
 -- Shepherd's Chain - LVL 60
