@@ -34,105 +34,104 @@
 #include "../ai/states/mobskill_state.h"
 #include "../packets/action.h"
 
+// Maybe move these to a sql table?
+std::unordered_map<AUTOSPELL, uint16, EnumClassHash> g_autoSpellList{
+    { AUTOSPELL_DIA,            0 }, // Temp fix
+    { AUTOSPELL_CURE,           12 },
+    { AUTOSPELL_STONE,          15 },
+    { AUTOSPELL_POISON,         18 },
+    { AUTOSPELL_PARALYZE,       21 },
+    { AUTOSPELL_PROTECT,        24 },
+    { AUTOSPELL_BLIND,          27 },
+    { AUTOSPELL_POISONA,        27 },
+    { AUTOSPELL_WATER,          30 },
+    { AUTOSPELL_BIO,            33 },
+    { AUTOSPELL_PARALYNA,       36 },
+    { AUTOSPELL_SLOW,           42 },
+    { AUTOSPELL_AERO,           45 },
+    { AUTOSPELL_BLINDNA,        45 },
+    { AUTOSPELL_CURE_II,        45 },
+    { AUTOSPELL_DRAIN,          45 },
+    { AUTOSPELL_SHELL,          54 },
+    { AUTOSPELL_SILENCE,        57 },
+    { AUTOSPELL_FIRE,           60 },
+    { AUTOSPELL_SILENA,         60 },
+    { AUTOSPELL_REGEN,          66 },
+    { AUTOSPELL_BLIZZARD,       75 },
+    { AUTOSPELL_ASPIR,          78 },
+    { AUTOSPELL_CURE_III,       81 },
+    { AUTOSPELL_PROTECT_II,     84 },
+    { AUTOSPELL_CURSNA,         90 },
+    { AUTOSPELL_THUNDER,        90 },
+    { AUTOSPELL_DIA_II,         96 },
+    { AUTOSPELL_ERASE,          99 },
+    { AUTOSPELL_PHALANX,        99 },
+    { AUTOSPELL_DISPEL,         105 },
+    { AUTOSPELL_STONESKIN,      105 },
+    { AUTOSPELL_VIRUNA,         105 },
+    { AUTOSPELL_BIO_II,         107 },
+    { AUTOSPELL_STONE_II,       108 },
+    { AUTOSPELL_SHELL_II,       114 },
+    { AUTOSPELL_ABSORB_INT,     120 },
+    { AUTOSPELL_STONA,          120 },
+    { AUTOSPELL_WATER_II,       123 },
+    { AUTOSPELL_REGEN_II,       135 },
+    { AUTOSPELL_AERO_II,        138 },
+    { AUTOSPELL_POISON_II,      141 },
+    { AUTOSPELL_PROTECT_III,    144 },
+    { AUTOSPELL_CURE_IV,        147 },
+    { AUTOSPELL_HASTE,          147 },
+    { AUTOSPELL_FIRE_II,        153 },
+    { AUTOSPELL_BLIZZARD_II,    178 },
+    { AUTOSPELL_SHELL_III,      188 },
+    { AUTOSPELL_THUNDER_II,     203 },
+    { AUTOSPELL_CURE_V,         207 },
+    { AUTOSPELL_PROTECT_IV,     217 },
+    { AUTOSPELL_STONE_III,      227 },
+    { AUTOSPELL_REGEN_III,      232 },
+    { AUTOSPELL_WATER_III,      236 },
+    { AUTOSPELL_SHELL_IV,       241 },
+    { AUTOSPELL_AERO_III,       246 },
+    { AUTOSPELL_FIRE_III,       251 },
+    { AUTOSPELL_BLIZZARD_III,   256 },
+    { AUTOSPELL_DREAD_SPIKES,   256 },
+    { AUTOSPELL_THUNDER_III,    261 },
+    { AUTOSPELL_STONE_IV,       266 },
+    { AUTOSPELL_WATER_IV,       271 },
+    { AUTOSPELL_AERO_IV,        276 },
+    { AUTOSPELL_FIRE_IV,        281 },
+    { AUTOSPELL_PROTECT_V,      281 },
+    { AUTOSPELL_BLIZZARD_IV,    286 },
+    { AUTOSPELL_THUNDER_IV,     291 },
+    { AUTOSPELL_STONE_V,        296 },
+    { AUTOSPELL_CURE_VI,        313 },
+    { AUTOSPELL_WATER_V,        313 },
+    { AUTOSPELL_AERO_V,         331 },
+    { AUTOSPELL_ASPIR_II,       331 },
+    { AUTOSPELL_ADDLE,          337 },
+    { AUTOSPELL_REGEN_IV,       337 },
+    { AUTOSPELL_SHELL_V,        347 },
+    { AUTOSPELL_FIRE_V,         349 },
+    { AUTOSPELL_ABSORB_ATTRI,   368 },
+    { AUTOSPELL_BLIZZARD_V,     368 },
+    { AUTOSPELL_THUNDER_V,      389 },
+    { AUTOSPELL_HASTE_II,       410 }, // Guess
+    { AUTOSPELL_PROTECTRA_V,    425 }, // Guess
+    { AUTOSPELL_SHELLRA_V,      434 } // Guess
+};
+
 CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
 {
     PAI->SetController(nullptr);
-    loadSpells();
 }
 
 CAutomatonEntity::~CAutomatonEntity()
 {}
 
-void CAutomatonEntity::loadSpells()
-{
-    m_SpellList[AUTOSPELL_DIA] = 0; // Temp fix
-    m_SpellList[AUTOSPELL_CURE] = 12;
-    m_SpellList[AUTOSPELL_STONE] = 15;
-    m_SpellList[AUTOSPELL_POISON] = 18;
-    m_SpellList[AUTOSPELL_PARALYZE] = 21;
-    m_SpellList[AUTOSPELL_PROTECT] = 24;
-    m_SpellList[AUTOSPELL_BLIND] = 27;
-    m_SpellList[AUTOSPELL_POISONA] = 27;
-    m_SpellList[AUTOSPELL_WATER] = 30;
-    m_SpellList[AUTOSPELL_BIO] = 33;
-    m_SpellList[AUTOSPELL_PARALYNA] = 36;
-    m_SpellList[AUTOSPELL_SLOW] = 42;
-    m_SpellList[AUTOSPELL_AERO] = 45;
-    m_SpellList[AUTOSPELL_BLINDNA] = 45;
-    m_SpellList[AUTOSPELL_CURE_II] = 45;
-    m_SpellList[AUTOSPELL_DRAIN] = 45;
-    m_SpellList[AUTOSPELL_SHELL] = 54;
-    m_SpellList[AUTOSPELL_SILENCE] = 57;
-    m_SpellList[AUTOSPELL_FIRE] = 60;
-    m_SpellList[AUTOSPELL_SILENA] = 60;
-    m_SpellList[AUTOSPELL_REGEN] = 66;
-    m_SpellList[AUTOSPELL_BLIZZARD] = 75;
-    m_SpellList[AUTOSPELL_ASPIR] = 78;
-    m_SpellList[AUTOSPELL_CURE_III] = 81;
-    m_SpellList[AUTOSPELL_PROTECT_II] = 84;
-    m_SpellList[AUTOSPELL_CURSNA] = 90;
-    m_SpellList[AUTOSPELL_THUNDER] = 90;
-    m_SpellList[AUTOSPELL_DIA_II] = 96;
-    m_SpellList[AUTOSPELL_ERASE] = 99;
-    m_SpellList[AUTOSPELL_PHALANX] = 99;
-    m_SpellList[AUTOSPELL_DISPEL] = 105;
-    m_SpellList[AUTOSPELL_STONESKIN] = 105;
-    m_SpellList[AUTOSPELL_VIRUNA] = 105;
-    m_SpellList[AUTOSPELL_BIO_II] = 107;
-    m_SpellList[AUTOSPELL_STONE_II] = 108;
-    m_SpellList[AUTOSPELL_SHELL_II] = 114;
-    m_SpellList[AUTOSPELL_ABSORB_INT] = 120;
-    m_SpellList[AUTOSPELL_STONA] = 120;
-    m_SpellList[AUTOSPELL_WATER_II] = 123;
-    m_SpellList[AUTOSPELL_REGEN_II] = 135;
-    m_SpellList[AUTOSPELL_AERO_II] = 138;
-    m_SpellList[AUTOSPELL_POISON_II] = 141;
-    m_SpellList[AUTOSPELL_PROTECT_III] = 144;
-    m_SpellList[AUTOSPELL_CURE_IV] = 147;
-    m_SpellList[AUTOSPELL_HASTE] = 147;
-    m_SpellList[AUTOSPELL_FIRE_II] = 153;
-    m_SpellList[AUTOSPELL_BLIZZARD_II] = 178;
-    m_SpellList[AUTOSPELL_SHELL_III] = 188;
-    m_SpellList[AUTOSPELL_THUNDER_II] = 203;
-    m_SpellList[AUTOSPELL_CURE_V] = 207;
-    m_SpellList[AUTOSPELL_PROTECT_IV] = 217;
-    m_SpellList[AUTOSPELL_STONE_III] = 227;
-    m_SpellList[AUTOSPELL_REGEN_III] = 232;
-    m_SpellList[AUTOSPELL_WATER_III] = 236;
-    m_SpellList[AUTOSPELL_SHELL_IV] = 241;
-    m_SpellList[AUTOSPELL_AERO_III] = 246;
-    m_SpellList[AUTOSPELL_FIRE_III] = 251;
-    m_SpellList[AUTOSPELL_BLIZZARD_III] = 256;
-    m_SpellList[AUTOSPELL_DREAD_SPIKES] = 256;
-    m_SpellList[AUTOSPELL_THUNDER_III] = 261;
-    m_SpellList[AUTOSPELL_STONE_IV] = 266;
-    m_SpellList[AUTOSPELL_WATER_IV] = 271;
-    m_SpellList[AUTOSPELL_AERO_IV] = 276;
-    m_SpellList[AUTOSPELL_FIRE_IV] = 281;
-    m_SpellList[AUTOSPELL_PROTECT_V] = 281;
-    m_SpellList[AUTOSPELL_BLIZZARD_IV] = 286;
-    m_SpellList[AUTOSPELL_THUNDER_IV] = 291;
-    m_SpellList[AUTOSPELL_STONE_V] = 296;
-    m_SpellList[AUTOSPELL_CURE_VI] = 313;
-    m_SpellList[AUTOSPELL_WATER_V] = 313;
-    m_SpellList[AUTOSPELL_AERO_V] = 331;
-    m_SpellList[AUTOSPELL_ASPIR_II] = 331;
-    m_SpellList[AUTOSPELL_ADDLE] = 337;
-    m_SpellList[AUTOSPELL_REGEN_IV] = 337;
-    m_SpellList[AUTOSPELL_SHELL_V] = 347;
-    m_SpellList[AUTOSPELL_FIRE_V] = 349;
-    m_SpellList[AUTOSPELL_ABSORB_ATTRI] = 368;
-    m_SpellList[AUTOSPELL_BLIZZARD_V] = 368;
-    m_SpellList[AUTOSPELL_THUNDER_V] = 389;
-    m_SpellList[AUTOSPELL_HASTE_II] = 410; // Guess
-    m_SpellList[AUTOSPELL_PROTECTRA_V] = 425; // Guess
-    m_SpellList[AUTOSPELL_SHELLRA_V] = 434; // Guess
-}
-
 bool CAutomatonEntity::hasSpell(AUTOSPELL spellid)
 {
-    if (GetSkill(SKILL_AMA) < m_SpellList[spellid]) {
+    if (GetSkill(SKILL_AMA) < g_autoSpellList[spellid]) {
         return false;
     }
 

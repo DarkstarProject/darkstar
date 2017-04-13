@@ -35,6 +35,44 @@
 #include "../../status_effect_container.h"
 #include "../../enmity_container.h"
 
+std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> g_autoNaList{
+    { EFFECT_POISON, AUTOSPELL_POISONA },
+    { EFFECT_PARALYSIS, AUTOSPELL_PARALYNA },
+    { EFFECT_CURSE, AUTOSPELL_CURSNA },
+    { EFFECT_CURSE_II, AUTOSPELL_CURSNA },
+    { EFFECT_BANE, AUTOSPELL_CURSNA },
+    { EFFECT_BLINDNESS, AUTOSPELL_BLINDNA },
+    { EFFECT_SILENCE, AUTOSPELL_SILENA },
+    { EFFECT_LULLABY, AUTOSPELL_CURE }, // This is probably wrong
+    { EFFECT_SLEEP, AUTOSPELL_CURE }, // This is probably wrong
+    { EFFECT_SLEEP_II, AUTOSPELL_CURE }, // This is probably wrong
+    { EFFECT_PETRIFICATION, AUTOSPELL_STONA },
+    { EFFECT_DISEASE, AUTOSPELL_VIRUNA },
+    { EFFECT_PLAGUE, AUTOSPELL_VIRUNA }
+};
+std::unordered_map<AUTOSPELL, EFFECT, EnumClassHash> g_autoEnfeebleList{
+    { AUTOSPELL_BIO_II, EFFECT_BIO },
+    { AUTOSPELL_BIO, EFFECT_BIO },
+    { AUTOSPELL_DIA_II, EFFECT_DIA },
+    { AUTOSPELL_DIA, EFFECT_DIA },
+    { AUTOSPELL_POISON_II, EFFECT_POISON },
+    { AUTOSPELL_POISON, EFFECT_POISON },
+    { AUTOSPELL_SILENCE, EFFECT_SILENCE },
+    { AUTOSPELL_SLOW, EFFECT_SLOW },
+    { AUTOSPELL_BLIND, EFFECT_BLINDNESS },
+    { AUTOSPELL_PARALYZE, EFFECT_PARALYSIS },
+    { AUTOSPELL_ADDLE, EFFECT_ADDLE },
+    { AUTOSPELL_ABSORB_INT, EFFECT_INT_DOWN }
+};
+std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> g_autoImmunityList{
+    { AUTOSPELL_SILENCE, IMMUNITY_SILENCE },
+    { AUTOSPELL_PARALYZE, IMMUNITY_PARALYZE },
+    { AUTOSPELL_BLIND, IMMUNITY_BLIND },
+    { AUTOSPELL_SLOW, IMMUNITY_SLOW },
+    { AUTOSPELL_POISON_II, IMMUNITY_POISON },
+    { AUTOSPELL_POISON, IMMUNITY_POISON }
+};
+
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
 {
@@ -172,40 +210,6 @@ void CAutomatonController::setMagicCooldowns()
         m_enhanceCooldown = 135s;
     }
     }
-
-    m_naList[EFFECT_POISON] = AUTOSPELL_POISONA;
-    m_naList[EFFECT_PARALYSIS] = AUTOSPELL_PARALYNA;
-    m_naList[EFFECT_CURSE] = AUTOSPELL_CURSNA;
-    m_naList[EFFECT_CURSE_II] = AUTOSPELL_CURSNA;
-    m_naList[EFFECT_BANE] = AUTOSPELL_CURSNA;
-    m_naList[EFFECT_BLINDNESS] = AUTOSPELL_BLINDNA;
-    m_naList[EFFECT_SILENCE] = AUTOSPELL_SILENA;
-    m_naList[EFFECT_LULLABY] = AUTOSPELL_CURE; // This is probably wrong
-    m_naList[EFFECT_SLEEP] = AUTOSPELL_CURE; // This is probably wrong
-    m_naList[EFFECT_SLEEP_II] = AUTOSPELL_CURE; // This is probably wrong
-    m_naList[EFFECT_PETRIFICATION] = AUTOSPELL_STONA;
-    m_naList[EFFECT_DISEASE] = AUTOSPELL_VIRUNA;
-    m_naList[EFFECT_PLAGUE] = AUTOSPELL_VIRUNA;
-
-    m_enfeebleList[AUTOSPELL_BIO_II] = EFFECT_BIO;
-    m_enfeebleList[AUTOSPELL_BIO] = EFFECT_BIO;
-    m_enfeebleList[AUTOSPELL_DIA_II] = EFFECT_DIA;
-    m_enfeebleList[AUTOSPELL_DIA] = EFFECT_DIA;
-    m_enfeebleList[AUTOSPELL_POISON_II] = EFFECT_POISON;
-    m_enfeebleList[AUTOSPELL_POISON] = EFFECT_POISON;
-    m_enfeebleList[AUTOSPELL_SILENCE] = EFFECT_SILENCE;
-    m_enfeebleList[AUTOSPELL_SLOW] = EFFECT_SLOW;
-    m_enfeebleList[AUTOSPELL_BLIND] = EFFECT_BLINDNESS;
-    m_enfeebleList[AUTOSPELL_PARALYZE] = EFFECT_PARALYSIS;
-    m_enfeebleList[AUTOSPELL_ADDLE] = EFFECT_ADDLE;
-    m_enfeebleList[AUTOSPELL_ABSORB_INT] = EFFECT_INT_DOWN;
-
-    m_immunityList[AUTOSPELL_SILENCE] = IMMUNITY_SILENCE;
-    m_immunityList[AUTOSPELL_PARALYZE] = IMMUNITY_PARALYZE;
-    m_immunityList[AUTOSPELL_BLIND] = IMMUNITY_BLIND;
-    m_immunityList[AUTOSPELL_SLOW] = IMMUNITY_SLOW;
-    m_immunityList[AUTOSPELL_POISON_II] = IMMUNITY_POISON;
-    m_immunityList[AUTOSPELL_POISON] = IMMUNITY_POISON;
 }
 
 void CAutomatonController::setMovement()
@@ -278,6 +282,8 @@ void CAutomatonController::DoCombatTick(time_point tick)
         else if (TrySpellcast())
         {
             m_LastMagicTime = m_Tick;
+            m_castPriority.clear();
+            m_defaultPriority.clear();
             return;
         }
         else if (TryTPMove())
@@ -652,56 +658,56 @@ bool CAutomatonController::TryElemental()
 
     bool useManeuvers = PAutomaton->getHead() == HEAD_SPIRITREAVER;
 
-    std::vector<AUTOSPELL> castPriority;
-    std::vector<AUTOSPELL> defaultPriority;
-
     if (useManeuvers)
     {
         if (m_CurrentManeuvers.thunder) // Thunder -> Thunder spells
-            castPriority.push_back(AUTOSPELL_THUNDER);
+            m_castPriority.push_back(AUTOSPELL_THUNDER);
         else
-            defaultPriority.push_back(AUTOSPELL_THUNDER);
+            m_defaultPriority.push_back(AUTOSPELL_THUNDER);
 
         if (m_CurrentManeuvers.ice) // Ice -> Blizzard spells
-            castPriority.push_back(AUTOSPELL_BLIZZARD);
+            m_castPriority.push_back(AUTOSPELL_BLIZZARD);
         else
-            defaultPriority.push_back(AUTOSPELL_BLIZZARD);
+            m_defaultPriority.push_back(AUTOSPELL_BLIZZARD);
 
         if (m_CurrentManeuvers.fire) // Fire -> Fire spells
-            castPriority.push_back(AUTOSPELL_FIRE);
+            m_castPriority.push_back(AUTOSPELL_FIRE);
         else
-            defaultPriority.push_back(AUTOSPELL_FIRE);
+            m_defaultPriority.push_back(AUTOSPELL_FIRE);
 
         if (m_CurrentManeuvers.wind) // Wind -> Aero spells
-            castPriority.push_back(AUTOSPELL_AERO);
+            m_castPriority.push_back(AUTOSPELL_AERO);
         else
-            defaultPriority.push_back(AUTOSPELL_AERO);
+            m_defaultPriority.push_back(AUTOSPELL_AERO);
 
         if (m_CurrentManeuvers.water) // Water -> Water spells
-            castPriority.push_back(AUTOSPELL_WATER);
+            m_castPriority.push_back(AUTOSPELL_WATER);
         else
-            defaultPriority.push_back(AUTOSPELL_WATER);
+            m_defaultPriority.push_back(AUTOSPELL_WATER);
 
         if (m_CurrentManeuvers.earth) // Earth -> Stone spells
-            castPriority.push_back(AUTOSPELL_STONE);
+            m_castPriority.push_back(AUTOSPELL_STONE);
         else
-            defaultPriority.push_back(AUTOSPELL_STONE);
+            m_defaultPriority.push_back(AUTOSPELL_STONE);
     }
     else
-        defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
+        m_defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
 
     while (tier >= 0)
     {
-        for (AUTOSPELL id : castPriority)
+        for (AUTOSPELL& id : m_castPriority)
             if (CastSpell((AUTOSPELL)(id + tier), PTarget))
                 return true;
 
-        for (AUTOSPELL id : defaultPriority)
+        for (AUTOSPELL& id : m_defaultPriority)
             if (CastSpell((AUTOSPELL)(id + tier), PTarget))
                 return true;
 
         --tier;
     }
+
+    m_castPriority.clear();
+    m_defaultPriority.clear();
 
     return false;
 }
@@ -711,24 +717,24 @@ bool CAutomatonController::TryEnfeeble()
     if (!PAutomaton->PMaster || m_enfeebleCooldown == 0s || m_Tick <= m_LastEnfeebleTime + m_enfeebleCooldown)
         return false;
 
-    std::vector<AUTOSPELL> castPriority;
-    std::vector<AUTOSPELL> defaultPriority;
-
     switch (PAutomaton->getHead())
     {
     case HEAD_STORMWAKER:
     {
-        PTarget->StatusEffectContainer->ForEachEffect([&castPriority](CStatusEffect* PStatus)
+        bool dispel = false;
+        PTarget->StatusEffectContainer->ForEachEffect([&dispel](CStatusEffect* PStatus)
         {
-            if (PStatus->GetDuration() > 0)
+            if (!dispel && PStatus->GetDuration() > 0)
             {
                 if (PStatus->GetFlag() & EFFECTFLAG_DISPELABLE)
                 {
-                    castPriority.push_back(AUTOSPELL_DISPEL);
+                    dispel = true;
                     return;
                 }
             }
         });
+        if (dispel)
+            m_castPriority.push_back(AUTOSPELL_DISPEL);
     }
     default:
     {
@@ -736,13 +742,13 @@ bool CAutomatonController::TryEnfeeble()
         {
             if (m_CurrentManeuvers.dark) // Dark -> Bio
             {
-                castPriority.push_back(AUTOSPELL_BIO_II);
-                castPriority.push_back(AUTOSPELL_BIO);
+                m_castPriority.push_back(AUTOSPELL_BIO_II);
+                m_castPriority.push_back(AUTOSPELL_BIO);
             }
             else
             {
-                defaultPriority.push_back(AUTOSPELL_BIO_II);
-                defaultPriority.push_back(AUTOSPELL_BIO);
+                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
+                m_defaultPriority.push_back(AUTOSPELL_BIO);
             }
         }
 
@@ -750,153 +756,153 @@ bool CAutomatonController::TryEnfeeble()
         {
             if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia II
             {
-                castPriority.push_back(AUTOSPELL_DIA_II);
+                m_castPriority.push_back(AUTOSPELL_DIA_II);
             }
 
             if (m_CurrentManeuvers.light) // Light -> Dia
             {
-                castPriority.push_back(AUTOSPELL_DIA);
+                m_castPriority.push_back(AUTOSPELL_DIA);
             }
         }
 
         if (m_CurrentManeuvers.water) // Water -> Poison
         {
-            castPriority.push_back(AUTOSPELL_POISON_II);
-            castPriority.push_back(AUTOSPELL_POISON);
+            m_castPriority.push_back(AUTOSPELL_POISON_II);
+            m_castPriority.push_back(AUTOSPELL_POISON);
         }
         else
         {
-            defaultPriority.push_back(AUTOSPELL_POISON_II);
-            defaultPriority.push_back(AUTOSPELL_POISON);
+            m_defaultPriority.push_back(AUTOSPELL_POISON_II);
+            m_defaultPriority.push_back(AUTOSPELL_POISON);
         }
 
         if (m_CurrentManeuvers.wind) // Wind -> Silence
-            castPriority.push_back(AUTOSPELL_SILENCE);
+            m_castPriority.push_back(AUTOSPELL_SILENCE);
         else
-            defaultPriority.push_back(AUTOSPELL_SILENCE);
+            m_defaultPriority.push_back(AUTOSPELL_SILENCE);
 
         if (m_CurrentManeuvers.earth) // Earth -> Slow
-            castPriority.push_back(AUTOSPELL_SLOW);
+            m_castPriority.push_back(AUTOSPELL_SLOW);
         else
-            defaultPriority.push_back(AUTOSPELL_SLOW);
+            m_defaultPriority.push_back(AUTOSPELL_SLOW);
 
         if (m_CurrentManeuvers.dark) // Dark -> Blind
-            castPriority.push_back(AUTOSPELL_BLIND);
+            m_castPriority.push_back(AUTOSPELL_BLIND);
         else
-            defaultPriority.push_back(AUTOSPELL_BLIND);
+            m_defaultPriority.push_back(AUTOSPELL_BLIND);
 
         if (m_CurrentManeuvers.ice) // Ice -> Paralyze
-            castPriority.push_back(AUTOSPELL_PARALYZE);
+            m_castPriority.push_back(AUTOSPELL_PARALYZE);
         else
-            defaultPriority.push_back(AUTOSPELL_PARALYZE);
+            m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
         if (m_CurrentManeuvers.fire) // Fire -> Addle
-            castPriority.push_back(AUTOSPELL_ADDLE);
+            m_castPriority.push_back(AUTOSPELL_ADDLE);
         else
-            defaultPriority.push_back(AUTOSPELL_ADDLE);
+            m_defaultPriority.push_back(AUTOSPELL_ADDLE);
     }
     break;
     case HEAD_SPIRITREAVER:
     {
         if (PAutomaton->GetMPP() <= 75 && PTarget->health.mp > 0) // MPP <= 75 -> Aspir
         {
-            castPriority.push_back(AUTOSPELL_ASPIR_II);
-            castPriority.push_back(AUTOSPELL_ASPIR);
+            m_castPriority.push_back(AUTOSPELL_ASPIR_II);
+            m_castPriority.push_back(AUTOSPELL_ASPIR);
         }
 
         if (PAutomaton->GetHPP() <= 75 && PTarget->m_EcoSystem != SYSTEM_UNDEAD) // HPP <= 75 -> Drain
-            castPriority.push_back(AUTOSPELL_DRAIN);
+            m_castPriority.push_back(AUTOSPELL_DRAIN);
 
         if (m_CurrentManeuvers.dark) // Dark -> Access to Enfeebles
         {
             if (!PAutomaton->StatusEffectContainer->HasStatusEffect(EFFECT_INT_BOOST)) // Use it ASAP
-                defaultPriority.push_back(AUTOSPELL_ABSORB_INT);
+                m_defaultPriority.push_back(AUTOSPELL_ABSORB_INT);
 
             // Not prioritizable since it requires 1 Dark to access Enfeebles and requires 2 of another element to prioritize another
-            defaultPriority.push_back(AUTOSPELL_BLIND);
+            m_defaultPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                defaultPriority.push_back(AUTOSPELL_BIO_II);
-                defaultPriority.push_back(AUTOSPELL_BIO);
+                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
+                m_defaultPriority.push_back(AUTOSPELL_BIO);
             }
 
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
             {
                 if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia
                 {
-                    castPriority.push_back(AUTOSPELL_DIA_II);
-                    castPriority.push_back(AUTOSPELL_DIA);
+                    m_castPriority.push_back(AUTOSPELL_DIA_II);
+                    m_castPriority.push_back(AUTOSPELL_DIA);
                 }
             }
 
 
             if (m_CurrentManeuvers.water >= 2) // 2 Water -> Poison
             {
-                castPriority.push_back(AUTOSPELL_POISON_II);
-                castPriority.push_back(AUTOSPELL_POISON);
+                m_castPriority.push_back(AUTOSPELL_POISON_II);
+                m_castPriority.push_back(AUTOSPELL_POISON);
             }
             else
             {
-                defaultPriority.push_back(AUTOSPELL_POISON_II);
-                defaultPriority.push_back(AUTOSPELL_POISON);
+                m_defaultPriority.push_back(AUTOSPELL_POISON_II);
+                m_defaultPriority.push_back(AUTOSPELL_POISON);
             }
 
             if (m_CurrentManeuvers.wind >= 2) // 2 Wind -> Silence
-                castPriority.push_back(AUTOSPELL_SILENCE);
+                m_castPriority.push_back(AUTOSPELL_SILENCE);
             else
-                defaultPriority.push_back(AUTOSPELL_SILENCE);
+                m_defaultPriority.push_back(AUTOSPELL_SILENCE);
 
             if (m_CurrentManeuvers.earth >= 2) // 2 Earth -> Slow
-                castPriority.push_back(AUTOSPELL_SLOW);
+                m_castPriority.push_back(AUTOSPELL_SLOW);
             else
-                defaultPriority.push_back(AUTOSPELL_SLOW);
+                m_defaultPriority.push_back(AUTOSPELL_SLOW);
 
             if (m_CurrentManeuvers.ice >= 2) // 2 Ice -> Paralyze
-                castPriority.push_back(AUTOSPELL_PARALYZE);
+                m_castPriority.push_back(AUTOSPELL_PARALYZE);
             else
-                defaultPriority.push_back(AUTOSPELL_PARALYZE);
+                m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
             if (m_CurrentManeuvers.fire >= 2) // 2 Fire -> Addle
-                castPriority.push_back(AUTOSPELL_ADDLE);
+                m_castPriority.push_back(AUTOSPELL_ADDLE);
             else
-                defaultPriority.push_back(AUTOSPELL_ADDLE);
+                m_defaultPriority.push_back(AUTOSPELL_ADDLE);
         }
     }
     break;
     case HEAD_SOULSOOTHER:
     {
         if (m_CurrentManeuvers.earth) // Earth -> Slow
-            castPriority.push_back(AUTOSPELL_SLOW);
+            m_castPriority.push_back(AUTOSPELL_SLOW);
         else
-            defaultPriority.push_back(AUTOSPELL_SLOW);
+            m_defaultPriority.push_back(AUTOSPELL_SLOW);
 
         if (m_CurrentManeuvers.water) // 2 Water -> Poison
         {
-            castPriority.push_back(AUTOSPELL_POISON_II);
-            castPriority.push_back(AUTOSPELL_POISON);
+            m_castPriority.push_back(AUTOSPELL_POISON_II);
+            m_castPriority.push_back(AUTOSPELL_POISON);
         }
         else
         {
-            defaultPriority.push_back(AUTOSPELL_POISON_II);
-            defaultPriority.push_back(AUTOSPELL_POISON);
+            m_defaultPriority.push_back(AUTOSPELL_POISON_II);
+            m_defaultPriority.push_back(AUTOSPELL_POISON);
         }
 
         if (m_CurrentManeuvers.dark) // Dark -> Blind > Bio
         {
-            castPriority.push_back(AUTOSPELL_BLIND);
+            m_castPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                castPriority.push_back(AUTOSPELL_BIO_II);
-                castPriority.push_back(AUTOSPELL_BIO);
+                m_castPriority.push_back(AUTOSPELL_BIO_II);
+                m_castPriority.push_back(AUTOSPELL_BIO);
             }
         }
         else
         {
-            defaultPriority.push_back(AUTOSPELL_BLIND);
+            m_defaultPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                defaultPriority.push_back(AUTOSPELL_BIO_II);
-                defaultPriority.push_back(AUTOSPELL_BIO);
+                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
+                m_defaultPriority.push_back(AUTOSPELL_BIO);
             }
         }
 
@@ -905,48 +911,51 @@ bool CAutomatonController::TryEnfeeble()
             // This is probably wrong
             if (m_CurrentManeuvers.light) // Light -> Dia
             {
-                castPriority.push_back(AUTOSPELL_DIA_II);
-                castPriority.push_back(AUTOSPELL_DIA);
+                m_castPriority.push_back(AUTOSPELL_DIA_II);
+                m_castPriority.push_back(AUTOSPELL_DIA);
             }
             else
             {
-                defaultPriority.push_back(AUTOSPELL_DIA_II);
-                defaultPriority.push_back(AUTOSPELL_DIA);
+                m_defaultPriority.push_back(AUTOSPELL_DIA_II);
+                m_defaultPriority.push_back(AUTOSPELL_DIA);
             }
         }
 
         if (m_CurrentManeuvers.wind) // Wind -> Silence
-            castPriority.push_back(AUTOSPELL_SILENCE);
+            m_castPriority.push_back(AUTOSPELL_SILENCE);
         else
-            defaultPriority.push_back(AUTOSPELL_SILENCE);
+            m_defaultPriority.push_back(AUTOSPELL_SILENCE);
 
         if (m_CurrentManeuvers.ice) // Ice -> Paralyze
-            castPriority.push_back(AUTOSPELL_PARALYZE);
+            m_castPriority.push_back(AUTOSPELL_PARALYZE);
         else
-            defaultPriority.push_back(AUTOSPELL_PARALYZE);
+            m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
         if (m_CurrentManeuvers.fire) // Fire -> Addle
-            castPriority.push_back(AUTOSPELL_ADDLE);
+            m_castPriority.push_back(AUTOSPELL_ADDLE);
         else
-            defaultPriority.push_back(AUTOSPELL_ADDLE);
+            m_defaultPriority.push_back(AUTOSPELL_ADDLE);
     }
     }
 
     CStatusEffectContainer* statuses = PTarget->StatusEffectContainer;
     // Could probably use hasImmunity() here instead if there was an easy way to calculate the effect's power
-    for (AUTOSPELL id : castPriority)
+    for (AUTOSPELL& id : m_castPriority)
     {
-        if ((!m_enfeebleList[id] || (!statuses->HasStatusEffect(m_enfeebleList[id]) && !PTarget->hasImmunity(m_immunityList[id]))) &&
+        if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
             CastSpell(id, PTarget))
             return true;
     }
 
-    for (AUTOSPELL id : defaultPriority)
+    for (AUTOSPELL& id : m_defaultPriority)
     {
-        if ((!m_enfeebleList[id] || (!statuses->HasStatusEffect(m_enfeebleList[id]) && !PTarget->hasImmunity(m_immunityList[id]))) &&
+        if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
             CastSpell(id, PTarget))
             return true;
     }
+
+    m_castPriority.clear();
+    m_defaultPriority.clear();
 
     return false;
 }
@@ -956,8 +965,8 @@ bool CAutomatonController::TryStatusRemoval()
     if (!PAutomaton->PMaster || m_statusCooldown == 0s || m_Tick <= m_LastStatusTime + m_statusCooldown)
         return false;
 
-    std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash>& naList = m_naList;
-    std::vector<AUTOSPELL> queue;
+    std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash>& naList = g_autoNaList;
+    std::vector<AUTOSPELL>& queue = m_castPriority;
 
     PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&naList, &queue](CStatusEffect* PStatus)
     {
@@ -971,7 +980,7 @@ bool CAutomatonController::TryStatusRemoval()
         }
     });
 
-    for (AUTOSPELL id : queue)
+    for (AUTOSPELL& id : queue)
         if (CastSpell(id, PAutomaton->PMaster))
             return true;
 
@@ -989,7 +998,7 @@ bool CAutomatonController::TryStatusRemoval()
         }
     });
 
-    for (AUTOSPELL id : queue)
+    for (AUTOSPELL& id : queue)
         if (CastSpell(id, PAutomaton))
             return true;
 
@@ -1014,12 +1023,14 @@ bool CAutomatonController::TryStatusRemoval()
                     }
                 });
 
-                for (AUTOSPELL id : queue)
+                for (AUTOSPELL& id : queue)
                     if (CastSpell(id, member))
                         return true;
             }
         }
     }
+
+    queue.clear();
 
     return false;
 }
@@ -1292,7 +1303,7 @@ bool CAutomatonController::TryTPMove()
         if (PAutomaton->getFrame() == FRAME_SHARPSHOT)
             skilltype = SKILL_ARA;
 
-        for (auto skillid : FamilySkills)
+        for (auto& skillid : FamilySkills)
         {
             auto PSkill = battleutils::GetMobSkill(skillid);
             if (PSkill && PAutomaton->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1 &&
@@ -1305,7 +1316,7 @@ bool CAutomatonController::TryTPMove()
         uint16 currentSkill = 0;
         CMobSkill* PWSkill;
         int8 currentManeuvers = -1;
-        for (auto PSkill : validSkills)
+        for (auto& PSkill : validSkills)
         {
             int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
             if (maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))

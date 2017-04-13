@@ -94,11 +94,10 @@ private:
     duration m_shieldbashCooldown{ duration::zero() };
     static constexpr int m_ShieldBashAbility{ 1944 };
 
-    std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> m_naList;
-    std::unordered_map<AUTOSPELL, EFFECT, EnumClassHash> m_enfeebleList;
-    std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> m_immunityList;
-
     std::unordered_map<uint8, time_point> m_attachmentRecasts;
+
+    std::vector<AUTOSPELL> m_castPriority;
+    std::vector<AUTOSPELL> m_defaultPriority;
 
     AUTOMOVEMENT m_movementType;
 
