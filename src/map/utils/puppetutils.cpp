@@ -192,33 +192,37 @@ bool UnlockAttachment(CCharEntity* PChar, CItem* PItem)
 
 bool HasAttachment(CCharEntity* PChar, CItem* PItem)
 {
-	uint16 id = PItem->getID();
+    uint16 id = PItem->getID();
 
-	if (!PItem->isType(ITEM_PUPPET))
-		return false;
+    if (!PItem->isType(ITEM_PUPPET))
+        return false;
 
     uint8 slot = ((CItemPuppet*)PItem)->getEquipSlot();
-	
-	if (slot == 3) //automaton attachment
-	{
-		return hasBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments));
-	}
-	else if (slot == 2) //automaton frame
-	{
-		return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames));
 
-	}
-	else if (slot == 1) //automaton head
-	{
-		return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads));
-	}
+    if (slot == 3) //automaton attachment
+    {
+        return hasBit(id & 0xFF, (uint8*)PChar->m_unlockedAttachments.attachments, sizeof(PChar->m_unlockedAttachments.attachments));
+    }
+    else if (slot == 2) //automaton frame
+    {
+        return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.frames, sizeof(PChar->m_unlockedAttachments.frames));
+    }
+    else if (slot == 1) //automaton head
+    {
+        return hasBit(id & 0x0F, &PChar->m_unlockedAttachments.heads, sizeof(PChar->m_unlockedAttachments.heads));
+    }
     return false;
 }
 
 void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 {
+    CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
+
     if (attachment != 0)
     {
+        if (PAttachment && !HasAttachment(PChar, PAttachment))
+            return;
+
         for (int i = 0; i < 12; i++)
         {
             if (attachment == PChar->PAutomaton->getAttachment(i))
@@ -234,8 +238,6 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 
     if (attachment != 0)
     {
-        CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
-
         bool valid = false;
 
         if (PAttachment && PAttachment->getEquipSlot() == ITEM_PUPPET_ATTACHMENT)
@@ -271,7 +273,7 @@ void setAttachment(CCharEntity* PChar, uint8 slotId, uint8 attachment)
 
         if (attachment != 0)
         {
-            CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
+            PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
 
             if (PAttachment && PAttachment->getEquipSlot() == ITEM_PUPPET_ATTACHMENT)
             {
@@ -304,7 +306,7 @@ void setFrame(CCharEntity* PChar, uint8 frame)
         }
     }
     CItemPuppet* PFrame = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + frame);
-    if (PFrame == nullptr || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME)
+    if (PFrame == nullptr || PFrame->getEquipSlot() != ITEM_PUPPET_FRAME || (frame != FRAME_HARLEQUIN && !HasAttachment(PChar, PFrame)))
         return;
     for (int i = 0; i < 8; i ++)
     {
@@ -360,7 +362,7 @@ void setHead(CCharEntity* PChar, uint8 head)
         }
     }
     CItemPuppet* PHead = (CItemPuppet*)itemutils::GetItemPointer(0x2000 + head);
-    if (PHead == nullptr || PHead->getEquipSlot() != ITEM_PUPPET_HEAD)
+    if (PHead == nullptr || PHead->getEquipSlot() != ITEM_PUPPET_HEAD || (head != HEAD_HARLEQUIN && !HasAttachment(PChar, PHead)))
         return;
     for (int i = 0; i < 8; i ++)
     {
