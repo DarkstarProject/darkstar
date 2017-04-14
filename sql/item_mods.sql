@@ -4568,6 +4568,7 @@ INSERT INTO `item_mods` VALUES (11387,2,19);
 INSERT INTO `item_mods` VALUES (11387,8,5);
 INSERT INTO `item_mods` VALUES (11387,25,5);
 INSERT INTO `item_mods` VALUES (11387,68,5);
+INSERT INTO `item_mods` VALUES (11387,851,1);
 INSERT INTO `item_mods` VALUES (11388,1,17);
 INSERT INTO `item_mods` VALUES (11388,2,14);
 INSERT INTO `item_mods` VALUES (11388,12,2);
@@ -5145,6 +5146,7 @@ INSERT INTO `item_mods` VALUES (11535,1,7);
 INSERT INTO `item_mods` VALUES (11535,11,2);
 INSERT INTO `item_mods` VALUES (11535,24,12);
 INSERT INTO `item_mods` VALUES (11536,1,5);
+INSERT INTO `item_mods` VALUES (11536,101,2); -- Automaton melee skill +2 (Not applied to the pet)
 INSERT INTO `item_mods` VALUES (11537,1,6);
 INSERT INTO `item_mods` VALUES (11537,27,1);
 INSERT INTO `item_mods` VALUES (11537,68,5);
@@ -15402,6 +15404,8 @@ INSERT INTO `item_mods` VALUES (14929,110,5);
 INSERT INTO `item_mods` VALUES (14930,1,12);
 INSERT INTO `item_mods` VALUES (14930,2,13);
 INSERT INTO `item_mods` VALUES (14930,11,3);
+INSERT INTO `item_mods` VALUES (14930,504,1);
+INSERT INTO `item_mods` VALUES (14930,505,5);
 INSERT INTO `item_mods` VALUES (14931,1,14);
 INSERT INTO `item_mods` VALUES (14932,1,13);
 INSERT INTO `item_mods` VALUES (14932,8,4);
@@ -15777,6 +15781,8 @@ INSERT INTO `item_mods` VALUES (15030,1,13);
 INSERT INTO `item_mods` VALUES (15030,2,18);
 INSERT INTO `item_mods` VALUES (15030,8,5);
 INSERT INTO `item_mods` VALUES (15030,11,5);
+INSERT INTO `item_mods` VALUES (15030,504,1);
+INSERT INTO `item_mods` VALUES (15030,505,5);
 INSERT INTO `item_mods` VALUES (15031,1,18);
 INSERT INTO `item_mods` VALUES (15031,2,16);
 INSERT INTO `item_mods` VALUES (15031,9,2);
@@ -18077,6 +18083,7 @@ INSERT INTO `item_mods` VALUES (15686,1,11);
 INSERT INTO `item_mods` VALUES (15686,2,9);
 INSERT INTO `item_mods` VALUES (15686,8,3);
 INSERT INTO `item_mods` VALUES (15686,58,10);
+INSERT INTO `item_mods` VALUES (15686,851,1);
 INSERT INTO `item_mods` VALUES (15687,1,11);
 INSERT INTO `item_mods` VALUES (15687,8,1);
 INSERT INTO `item_mods` VALUES (15687,11,1);
@@ -18888,6 +18895,7 @@ INSERT INTO `item_mods` VALUES (15994,55,11);
 INSERT INTO `item_mods` VALUES (15995,9,1);
 INSERT INTO `item_mods` VALUES (15995,12,1);
 INSERT INTO `item_mods` VALUES (15995,296,1);
+INSERT INTO `item_mods` VALUES (15999,852,20);
 INSERT INTO `item_mods` VALUES (16001,2,5);
 INSERT INTO `item_mods` VALUES (16001,5,-5);
 INSERT INTO `item_mods` VALUES (16001,28,2);
@@ -19599,7 +19607,9 @@ INSERT INTO `item_mods` VALUES (16279,25,1);
 INSERT INTO `item_mods` VALUES (16280,1,2);
 INSERT INTO `item_mods` VALUES (16280,73,1);     -- StoreTP+1
 INSERT INTO `item_mods` VALUES (16281,2,3);
+INSERT INTO `item_mods` VALUES (16281,505,5);
 INSERT INTO `item_mods` VALUES (16282,2,5);
+INSERT INTO `item_mods` VALUES (16282,505,5);
 INSERT INTO `item_mods` VALUES (16283,13,5);
 INSERT INTO `item_mods` VALUES (16283,71,3);
 INSERT INTO `item_mods` VALUES (16284,28,2);
@@ -21526,6 +21536,8 @@ INSERT INTO `item_mods` VALUES (17855,60,5);
 INSERT INTO `item_mods` VALUES (17855,444,2);
 INSERT INTO `item_mods` VALUES (17856,433,3);
 INSERT INTO `item_mods` VALUES (17856,447,3);
+INSERT INTO `item_mods` VALUES (17857,9,4);
+INSERT INTO `item_mods` VALUES (17858,9,2);
 INSERT INTO `item_mods` VALUES (17925,24,7);
 INSERT INTO `item_mods` VALUES (17925,26,7);
 INSERT INTO `item_mods` VALUES (17926,8,2);
@@ -27329,6 +27341,7 @@ INSERT INTO `item_mods` VALUES (23325,29,3);      -- Magic Defense+3
 INSERT INTO `item_mods` VALUES (23325,31,74);     -- Magic Evasion+74
 INSERT INTO `item_mods` VALUES (23325,68,89);     -- Evasion+89
 INSERT INTO `item_mods` VALUES (23325,384,40);    -- Haste +40
+INSERT INTO `item_mods` VALUES (23325,851,2);     -- Repair Effect+2
 INSERT INTO `item_mods` VALUES (23326,1,82);      -- Maxixi Toe Shoes +2 (male): DEF:82
 INSERT INTO `item_mods` VALUES (23326,2,49);      -- HP+49
 INSERT INTO `item_mods` VALUES (23326,8,17);      -- STR+17
@@ -29296,6 +29309,7 @@ INSERT INTO `item_mods` VALUES (23660,29,4);      -- Magic Defense+4
 INSERT INTO `item_mods` VALUES (23660,31,87);     -- Magic Evasion+87
 INSERT INTO `item_mods` VALUES (23660,68,99);     -- Evasion+99
 INSERT INTO `item_mods` VALUES (23660,384,40);    -- Haste +40
+INSERT INTO `item_mods` VALUES (23660,851,3);     -- Repair Effect +3
 INSERT INTO `item_mods` VALUES (23661,1,92);      -- Maxixi Toe Shoes +3 (male): DEF 92
 INSERT INTO `item_mods` VALUES (23661,2,59);      -- HP+59
 INSERT INTO `item_mods` VALUES (23661,8,22);      -- STR+22
@@ -43787,6 +43801,7 @@ INSERT INTO `item_mods` VALUES (28261,29,3);      -- Magic Def. Bonus +3
 INSERT INTO `item_mods` VALUES (28261,31,64);     -- Magic Evasion +64
 INSERT INTO `item_mods` VALUES (28261,68,69);     -- Evasion +69
 INSERT INTO `item_mods` VALUES (28261,384,40);    -- Haste +4%
+INSERT INTO `item_mods` VALUES (28261,851,2);     -- Repair Effect +2
 INSERT INTO `item_mods` VALUES (28262,1,72);      -- Maxixi Toe Shoes +1 (male): DEF 72
 INSERT INTO `item_mods` VALUES (28262,2,33);      -- HP +33
 INSERT INTO `item_mods` VALUES (28262,8,12);      -- STR +12

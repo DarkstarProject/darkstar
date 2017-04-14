@@ -68,11 +68,6 @@ function onUseAbility(player,target,ability)
             end,
     }
 
-    -- Now calculating the bonus based on gear.
-    local feet = player:getEquipID(SLOT_FEET);
-    local earring1 = player:getEquipID(SLOT_EAR1);    
-    local earring2 = player:getEquipID(SLOT_EAR2);
-
     local function removeStatus()
         --if pet:delStatusEffect(EFFECT_DOOM) then return true end
         if pet:delStatusEffect(EFFECT_PETRIFICATION) then return true end
@@ -89,15 +84,11 @@ function onUseAbility(player,target,ability)
         return false
     end
 
-    local toremove = 0
-    
-    if (feet == 11387 or feet == 15686 or feet == 28240) then
+    local toremove = player:getMod(MOD_REPAIR_EFFECT);
+
+    --[[if (feet == 28240) then -- This item isn't implemented so im leaving this here for reference
         toremove = 1
-    elseif (feet == 28261 or feet == 23325) then
-        toremove = 2
-    elseif (feet == 23660) then
-        toremove = 3
-    end
+    end]]
 
     while toremove > 0 do
         if not removeStatus() then break end
@@ -108,9 +99,7 @@ function onUseAbility(player,target,ability)
 
     totalHealing = totalHealing * bonus
 
-    if (earring1 == 15999 or earring2 == 15999) then  --Check for Guignol Earring
-        bonus = bonus + 0.2
-    end
+    bonus = bonus + player:getMod(MOD_REPAIR_POTENCY)/100
 
     regenAmount = regenAmount * bonus
 

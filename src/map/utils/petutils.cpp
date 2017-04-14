@@ -1455,9 +1455,12 @@ namespace petutils
             {
                 return true;
             }
-            if (petmod == PetModType::Automaton && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
+            if (petmod >= PetModType::Automaton && petmod <= PetModType::Stormwaker && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
             {
-                return true;
+                if (petmod == PetModType::Automaton || (uint16)petmod + 28 == (uint16)static_cast<CAutomatonEntity*>(PPetEntity)->getFrame())
+                {
+                    return true;
+                }
             }
         }
         else
