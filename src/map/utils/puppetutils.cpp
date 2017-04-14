@@ -98,8 +98,8 @@ void LoadAutomaton(CCharEntity* PChar)
             for (int i = 0; i < 12; i++)
                 setAttachment(PChar, i, tempEquip.Attachments[i]);
             PChar->PAutomaton->UpdateHealth();
-            PChar->PAutomaton->health.hp = PChar->PAutomaton->health.modhp;
-            PChar->PAutomaton->health.mp = PChar->PAutomaton->health.modmp;
+            PChar->PAutomaton->health.hp = PChar->PAutomaton->GetMaxHP();
+            PChar->PAutomaton->health.mp = PChar->PAutomaton->GetMaxMP();
         }
     }
 }

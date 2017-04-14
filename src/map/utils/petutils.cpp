@@ -1435,8 +1435,10 @@ namespace petutils
 		//set C magic evasion
 		PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
 		PPet->health.tp = 0;
-		PPet->UpdateHealth();
         PMaster->applyPetModifiers(PPet);
+        PPet->UpdateHealth();
+        PPet->health.hp = PPet->GetMaxHP();
+        PPet->health.mp = PPet->GetMaxMP();
 	}
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)
