@@ -795,6 +795,7 @@ namespace petutils
             {
                 PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
                 PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
+                PPet->health.mp = ((CCharEntity*)PMaster)->petZoningInfo.petMP;
             }
         }
         else if (PMaster->objtype == TYPE_PC)

@@ -282,6 +282,7 @@ void CCharEntity::resetPetZoningInfo()
     // reset the petZoning info
     petZoningInfo.petHP = 0;
     petZoningInfo.petTP = 0;
+    petZoningInfo.petMP = 0;
     petZoningInfo.respawnPet = false;
     petZoningInfo.petType = PETTYPE_AVATAR;
 }

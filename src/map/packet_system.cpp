@@ -2682,6 +2682,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             case PETTYPE_WYVERN:
                 PChar->petZoningInfo.petHP = PPet->health.hp;
                 PChar->petZoningInfo.petTP = PPet->health.tp;
+                PChar->petZoningInfo.petMP = PPet->health.mp;
                 PChar->petZoningInfo.respawnPet = true;
                 PChar->petZoningInfo.petType = PPet->getPetType();
                 petutils::DespawnPet(PChar);
