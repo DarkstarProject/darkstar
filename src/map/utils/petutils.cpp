@@ -587,6 +587,10 @@ namespace petutils
         PPet->m_Weapons[SLOT_RANGED]->setDamage((PPet->GetSkill(SKILL_ARA) / 9) * 2 + 3);
 
         CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
+
+        // Automatons are hard to interrupt
+        PPet->addModifier(Mod::SPELLINTERRUPT, 85);
+
         switch (PAutomaton->getFrame())
         {
         case FRAME_HARLEQUIN:
