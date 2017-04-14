@@ -318,7 +318,7 @@ void CAutomatonController::Move()
     if ((move ||
         (m_movementType == AUTOMOVEMENT_MELEE && currentDistance > attack_range - 0.2f) ||
         (m_movementType == AUTOMOVEMENT_RANGED && currentDistance > 15) ||
-        (m_movementType == AUTOMOVEMENT_MAGIC && (currentDistance > 15 || PAutomaton->health.mp < 8))) &&
+        (m_movementType == AUTOMOVEMENT_MAGIC && (currentDistance > 15 || (PAutomaton->health.mp < 8 && currentDistance > attack_range - 0.2f)))) &&
         PAutomaton->speed != 0)
     {
         if (!move || distanceSquared(PAutomaton->PAI->PathFind->GetDestination(), PTarget->loc.p) > 10)
