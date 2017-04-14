@@ -1357,7 +1357,7 @@ namespace petutils
             CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
             switch (PAutomaton->getFrame())
             {
-            case FRAME_HARLEQUIN:
+            default: //case FRAME_HARLEQUIN:
                 PPet->SetMJob(JOB_WAR);
                 PPet->SetSJob(JOB_RDM);
                 break;
