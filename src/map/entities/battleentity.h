@@ -652,7 +652,7 @@ private:
 
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
-    std::unordered_map<Mod, int16, EnumClassHash>       m_petMod;
+    std::unordered_map<PetModType, std::unordered_map<Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
 };
 
 #endif

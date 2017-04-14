@@ -993,31 +993,34 @@ int16 CBattleEntity::getMod(Mod modID)
 
 void CBattleEntity::addPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] += amount;
+    m_petMod[petmod][type] += amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->addModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
 void CBattleEntity::setPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] = amount;
+    m_petMod[petmod][type] = amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->setModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
 void CBattleEntity::delPetModifier(Mod type, PetModType petmod, int16 amount)
 {
-    m_petMod[type] -= amount;
+    m_petMod[petmod][type] -= amount;
 
     if (PPet && petutils::CheckPetModType(PPet, petmod))
     {
         PPet->delModifier(type, amount);
+        PPet->UpdateHealth();
     }
 }
 
@@ -1039,18 +1042,32 @@ void CBattleEntity::delPetModifiers(std::vector<CPetModifier*> *modList)
 
 void CBattleEntity::applyPetModifiers(CPetEntity* PPet)
 {
-    for (auto mod : m_petMod)
+    for (auto modtype : m_petMod)
     {
-        PPet->addModifier(mod.first, mod.second);
+        if (petutils::CheckPetModType(PPet, modtype.first))
+        {
+            for (auto mod : modtype.second)
+            {
+                PPet->addModifier(mod.first, mod.second);
+                PPet->UpdateHealth();
+            }
+        }
     }
 }
 
 
 void CBattleEntity::removePetModifiers(CPetEntity* PPet)
 {
-    for (auto mod : m_petMod)
+    for (auto modtype : m_petMod)
     {
-        PPet->delModifier(mod.first, mod.second);
+        if (petutils::CheckPetModType(PPet, modtype.first))
+        {
+            for (auto mod : modtype.second)
+            {
+                PPet->delModifier(mod.first, mod.second);
+                PPet->UpdateHealth();
+            }
+        }
     }
 }
 
