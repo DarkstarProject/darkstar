@@ -467,7 +467,7 @@ void LoadAutomatonStats(CCharEntity* PChar)
     switch (PChar->PAutomaton->getFrame())
     {
         default: //case FRAME_HARLEQUIN:
-            ShowWarning("puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n", PChar->GetName(), (uint16)PChar->PAutomaton->getFrame());
+            ShowWarning(CL_YELLOW"puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n" CL_RESET, PChar->GetName(), (uint16)PChar->PAutomaton->getFrame());
         case FRAME_HARLEQUIN:
             petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
             break;
