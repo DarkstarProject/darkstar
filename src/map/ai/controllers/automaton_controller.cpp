@@ -1347,8 +1347,7 @@ bool CAutomatonController::TryAttachment() // TODO: Try and make these less hard
 {
     if (PAutomaton->getMod(Mod::AUTO_PROVOKE) && m_Tick > m_attachmentRecasts[0])
     {
-        float currentDistance = distance(PAutomaton->loc.p, PTarget->loc.p);
-        if (currentDistance < 7 && MobSkill(PTarget->targid, 1945))
+        if ((distance(PAutomaton->loc.p, PTarget->loc.p) - PTarget->m_ModelSize) < 7 && MobSkill(PTarget->targid, 1945))
         {
             m_attachmentRecasts[0] = m_Tick + 30s;
             return true;
