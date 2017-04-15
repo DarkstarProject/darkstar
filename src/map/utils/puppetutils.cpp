@@ -408,7 +408,7 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
         return 0;
     switch (PChar->PAutomaton->getFrame())
     {
-        case FRAME_HARLEQUIN:
+        default: //case FRAME_HARLEQUIN:
             rank = 5;
             break;
         case FRAME_VALOREDGE:
@@ -467,6 +467,8 @@ void LoadAutomatonStats(CCharEntity* PChar)
     switch (PChar->PAutomaton->getFrame())
     {
         default: //case FRAME_HARLEQUIN:
+            ShowWarning("puppetutils::LoadAutomatonStats Invalid frame detected for '%s', used Harlequin instead! (%u)\n", PChar->GetName(), (uint16)PChar->PAutomaton->getFrame());
+        case FRAME_HARLEQUIN:
             petutils::LoadPet(PChar, PETID_HARLEQUINFRAME, false);
             break;
         case FRAME_VALOREDGE:
