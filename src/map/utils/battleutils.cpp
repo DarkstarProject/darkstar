@@ -2855,13 +2855,13 @@ namespace battleutils
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2869,7 +2869,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetPower());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2915,7 +2915,7 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PSpell->getID(), 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
@@ -2949,20 +2949,20 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PSpell->getID(), 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
             }
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2970,7 +2970,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetPower());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2999,8 +2999,8 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetSubPower(PSpell->getID());
-            PSCEffect->SetPower(0);
+            PSCEffect->SetPower(PSpell->getID());
+            PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;
         }
