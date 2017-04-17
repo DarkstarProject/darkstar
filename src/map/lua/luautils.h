@@ -201,7 +201,7 @@ namespace luautils
     int32 OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment);
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
-    int32 OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment);
+    std::pair<int32, CBattleEntity*> OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment);
 
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
     int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param = 0);    // check to see if item can be used

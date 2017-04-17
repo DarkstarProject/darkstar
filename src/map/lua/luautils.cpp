@@ -2036,13 +2036,13 @@ namespace luautils
         return 0;
     }
 
-    int32 OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment)
+    std::pair<int32, CBattleEntity*> OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment)
     {
         lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
 
         if (prepFile(File, "onAttachmentCheck"))
         {
-            return -1;
+            return std::make_pair(-1, nullptr);
         }
 
         CLuaBaseEntity LuaMobEntity(PEntity);
@@ -2055,22 +2055,27 @@ namespace luautils
         {
             ShowError("luautils::onAttachmentCheck (%s): %s\n", attachment->getName(), lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
+            return std::make_pair(-1, nullptr);
         }
         int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns < 1)
+        CBattleEntity* PSkillTarget = nullptr;
+        uint32 skill = -1;
+        if (returns > 1 && !lua_isnil(LuaHandle, -1) && lua_isuserdata(LuaHandle, -1) && !lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2))
         {
-            ShowError("luautils::onAttachmentCheck (%s): 1 return expected, got %d\n", File, returns);
-            return -1;
+            PSkillTarget = (CBattleEntity*)Lunar<CLuaBaseEntity>::check(LuaHandle, -1)->GetBaseEntity();
+            skill = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (uint32)lua_tonumber(LuaHandle, -2) : -1);
         }
-        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : -1);
-        lua_pop(LuaHandle, 1);
-        if (returns > 1)
+        else
         {
-            ShowError("luautils::onAttachmentCheck (%s): 1 return expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns - 1);
+            PSkillTarget = PTarget;
+            skill = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (uint32)lua_tonumber(LuaHandle, -1) : -1);
         }
-        return retVal;
+        lua_pop(LuaHandle, returns);
+        if (returns > 2)
+        {
+            ShowError("luautils::onAttachmentCheck (%s): 0-2 returns expected, got %d\n", File, returns);
+        }
+        return std::make_pair(skill, PSkillTarget);
     }
 
     /************************************************************************

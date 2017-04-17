@@ -1350,20 +1350,32 @@ bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its
     return false;
 }
 
-bool CAutomatonController::TryAttachment() // TODO: Try and make these less hardcoded and find their animations
+bool CAutomatonController::TryAttachment()
 {
     int16 skillid = 0;
+    CBattleEntity* PSkillTarget = nullptr;
     for (uint8 i = 0; i < 12; i++)
     {
         if (m_checkAttachment[i])
         {
             CItemPuppet* PAttachment = nullptr;
             // If an attachment returns -1, doesn't have an attachment check, or errors, disable it from being called to improve speed
-            if (PAutomaton->getAttachment(i) != 0 && (PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i))) &&
-                (skillid = luautils::OnAttachmentCheck(PAutomaton, PTarget, PAttachment)) >= 0)
+            if (PAutomaton->getAttachment(i) != 0 && (PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i))))
             {
-                if (skillid > 0)
-                    break;
+                auto retValue = luautils::OnAttachmentCheck(PAutomaton, PTarget, PAttachment);
+                if (retValue.first >= 0)
+                {
+                    if (retValue.first > 0)
+                    {
+                        skillid = retValue.first;
+                        PSkillTarget = retValue.second;
+                        break;
+                    }
+                }
+                else
+                {
+                    m_checkAttachment[i] = false;
+                }
             }
             else
             {
@@ -1373,7 +1385,7 @@ bool CAutomatonController::TryAttachment() // TODO: Try and make these less hard
     }
 
     if (skillid > 0)
-        return MobSkill(PTarget->targid, skillid);
+        return MobSkill(PSkillTarget->targid, skillid);
 
     return false;
 }
