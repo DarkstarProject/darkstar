@@ -3,9 +3,9 @@ function updateInstanceTime(instance, elapsed, texttable)
     local players = instance:getChars();
     local lastTimeUpdate = instance:getLastTimeUpdate();
     local remainingTimeLimit = (instance:getTimeLimit()) * 60 - (elapsed / 1000);
-    local wipeTime = instance:getWipeTime();
+    local wipeTime = math.abs(instance:getWipeTime());
     local message = 0;
-    
+
     if (remainingTimeLimit < 0) then
         instance:fail();
         return;
