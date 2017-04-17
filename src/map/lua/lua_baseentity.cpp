@@ -6945,6 +6945,16 @@ inline int32 CLuaBaseEntity::getName(lua_State *L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::getModelSize(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
+
+    lua_pushinteger(L, PEntity->m_ModelSize);
+    return 1;
+}
+
 /************************************************************************
 *                                                                       *
 *  Gets the current weapon's base DMG; used for WS calcs                *
@@ -11143,6 +11153,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPool),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getName),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getGender),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getHPP),

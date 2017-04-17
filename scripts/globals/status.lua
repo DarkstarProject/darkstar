@@ -1343,8 +1343,8 @@ MOD_AUTO_MAGIC_DELAY       = 844 -- Reduces the Automaton's global magic delay
 MOD_AUTO_HEALING_DELAY     = 845 -- Reduces the Automaton's global healing delay
 MOD_AUTO_HEALING_THRESHOLD = 846 -- Increases the healing trigger threshold
 MOD_AUTO_SHIELD_BASH_SLOW  = 848 -- Adds a slow effect to Shield Bash
-MOD_AUTO_PROVOKE           = 849 -- Grants access to "Provoke"
-MOD_AUTO_STONESKIN         = 850 -- Grants access to "Stoneskin"
+MOD_AUTO_TP_EFFICIENCY     = 849 -- Causes the Automaton to wait to form a skillchain when its master is > 90% TP
+MOD_AUTO_SCAN_RESISTS      = 850 -- Causes the Automaton to scan a target's resistances
 
 -- Mythic Weapon Mods
 MOD_AUGMENTS_ABSORB           = 521 -- Direct Absorb spell increase while Liberator is equipped (percentage based)

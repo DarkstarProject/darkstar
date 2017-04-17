@@ -34,6 +34,7 @@
 #include "../../utils/puppetutils.h"
 #include "../../status_effect_container.h"
 #include "../../enmity_container.h"
+#include "../../utils/itemutils.h"
 
 std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> g_autoNaList{
     { EFFECT_POISON, AUTOSPELL_POISONA },
@@ -76,6 +77,7 @@ std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> g_autoImmunityList{
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
 {
+    memset(&m_checkAttachment, true, sizeof(m_checkAttachment));
     PPet->setInitialBurden();
     setCooldowns();
     setMovement();
@@ -264,6 +266,8 @@ void CAutomatonController::DoCombatTick(time_point tick)
     // We just deployed, so reposition if needed
     if (PPrevTarget != PTarget || (!m_deployed && PAutomaton->PAI->PathFind->IsFollowingPath()))
     {
+        if (PTarget != nullptr && PPrevTarget != PTarget)
+            PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_ON_DEPLOY", PAutomaton, PTarget);
         m_deployed = false;
         Move();
         return;
@@ -340,6 +344,9 @@ bool CAutomatonController::TryAction()
     if (m_Tick > m_LastActionTime + (m_actionCooldown - std::chrono::microseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)))
     {
         m_LastActionTime = m_Tick;
+        if (!m_deployed && PTarget != nullptr)
+            PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_FINISHED_DEPLOY", PAutomaton, PTarget);
+        PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_AI_TICK", PAutomaton, PTarget);
         m_deployed = true;
         return true;
     }
@@ -1345,14 +1352,29 @@ bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its
 
 bool CAutomatonController::TryAttachment() // TODO: Try and make these less hardcoded and find their animations
 {
-    if (PAutomaton->getMod(Mod::AUTO_PROVOKE) && m_Tick > m_attachmentRecasts[0])
+    int16 skillid = 0;
+    for (uint8 i = 0; i < 12; i++)
     {
-        if ((distance(PAutomaton->loc.p, PTarget->loc.p) - PTarget->m_ModelSize) < 7 && MobSkill(PTarget->targid, 1945))
+        if (m_checkAttachment[i])
         {
-            m_attachmentRecasts[0] = m_Tick + 30s;
-            return true;
+            CItemPuppet* PAttachment = nullptr;
+            // If an attachment returns -1, doesn't have an attachment check, or errors, disable it from being called to improve speed
+            if (PAutomaton->getAttachment(i) != 0 && (PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i))) &&
+                (skillid = luautils::OnAttachmentCheck(PAutomaton, PTarget, PAttachment)) >= 0)
+            {
+                if (skillid > 0)
+                    break;
+            }
+            else
+            {
+                m_checkAttachment[i] = false;
+            }
         }
     }
+
+    if (skillid > 0)
+        return MobSkill(PTarget->targid, skillid);
+
     return false;
 }
 
@@ -1387,4 +1409,11 @@ bool CAutomatonController::CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarg
         Cast(PCastTarget->targid, spellid);
     }
     return true;
+}
+
+void CAutomatonController::Disengage()
+{
+    PTarget = nullptr; // Reset this so the AI will know when its deployed
+    m_deployed = false;
+    CMobController::Disengage();
 }

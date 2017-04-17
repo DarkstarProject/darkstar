@@ -12,12 +12,10 @@ require("scripts/globals/status");
 
 function onEquip(pet)
     pet:addMod(MOD_ENMITY, 10) -- 20 currently on retail
-    pet:addMod(MOD_AUTO_PROVOKE, 1)
 end
 
 function onUnequip(pet)
     pet:delMod(MOD_ENMITY, 10) -- 20 currently on retail
-    pet:delMod(MOD_AUTO_PROVOKE, 1)
 end
 
 function onManeuverGain(pet,maneuvers)
@@ -37,5 +35,14 @@ function onManeuverLose(pet,maneuvers)
         pet:delMod(MOD_ENMITY, 15); -- 25 currently on retail
     elseif (maneuvers == 3) then
         pet:delMod(MOD_ENMITY, 20); -- 35 currently on retail
+    end
+end
+
+function onAttachmentCheck(pet,target)
+    if pet:getLocalVar("provoke") < VanadielTime() and (pet:checkDistance(target) - target:getModelSize()) < 7 then
+        pet:setLocalVar("provoke", VanadielTime() + 30)
+        return 1945
+    else
+        return 0
     end
 end

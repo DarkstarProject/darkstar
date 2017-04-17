@@ -2036,6 +2036,43 @@ namespace luautils
         return 0;
     }
 
+    int32 OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onAttachmentCheck"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaMobEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+        CLuaBaseEntity LuaBaseEntity(PTarget);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        {
+            ShowError("luautils::onAttachmentCheck (%s): %s\n", attachment->getName(), lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+        int32 returns = lua_gettop(LuaHandle) - oldtop;
+        if (returns < 1)
+        {
+            ShowError("luautils::onAttachmentCheck (%s): 1 return expected, got %d\n", File, returns);
+            return -1;
+        }
+        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : -1);
+        lua_pop(LuaHandle, 1);
+        if (returns > 1)
+        {
+            ShowError("luautils::onAttachmentCheck (%s): 1 return expected, got %d\n", File, returns);
+            lua_pop(LuaHandle, returns - 1);
+        }
+        return retVal;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *
