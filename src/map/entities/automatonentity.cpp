@@ -124,6 +124,10 @@ CAutomatonEntity::CAutomatonEntity()
     : CPetEntity(PETTYPE_AUTOMATON)
 {
     PAI->SetController(nullptr);
+    memset(&m_ElementMax, 0, sizeof(m_ElementMax));
+    memset(&m_ElementEquip, 0, sizeof(m_ElementEquip));
+    memset(&m_Burden, 0, sizeof(m_Burden));
+    memset(&m_Equip.Attachments, 0, sizeof(m_Equip.Attachments));
 }
 
 CAutomatonEntity::~CAutomatonEntity()

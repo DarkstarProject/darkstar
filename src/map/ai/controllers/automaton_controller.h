@@ -37,14 +37,14 @@ enum AUTOMOVEMENT
 
 struct CurrentManeuvers
 {
-    int fire = 0;
-    int earth = 0;
-    int water = 0;
-    int wind = 0;
-    int ice = 0;
-    int thunder = 0;
-    int light = 0;
-    int dark = 0;
+    int fire{ 0 };
+    int earth{ 0 };
+    int water{ 0 };
+    int wind{ 0 };
+    int ice{ 0 };
+    int thunder{ 0 };
+    int light{ 0 };
+    int dark{ 0 };
 };
 
 class CAutomatonEntity;
@@ -61,7 +61,7 @@ protected:
     void setMagicCooldowns();
     void setMovement();
     bool CanCastSpells();
-    bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget = nullptr);
+    bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget);
 
     bool m_deployed;
 private:
