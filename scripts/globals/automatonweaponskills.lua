@@ -39,7 +39,8 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftpdmgbonus = attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE)/100;
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300) + ftpdmgbonus;
 
     local ignoredDef = 0;
     if (params.ignoresDef == not nil and params.ignoresDef == true) then
@@ -242,7 +243,8 @@ function doAutoMagicWeaponskill(attacker, target, wsID, tp, primary, action, par
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1);
 
     -- Applying fTP multiplier
-    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftpdmgbonus = attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE)/100;
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300) + ftpdmgbonus;
 
     dmg = dmg * ftp;
 
@@ -466,7 +468,8 @@ end;
          attacker:getStat(MOD_CHR) * params.chr_wsc) + math.max(attacker:getMainLvl() - target:getMainLvl(), 0), 1)
 
     -- Applying fTP multiplier
-    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300);
+    local ftpdmgbonus = attacker:getMod(MOD_WEAPONSKILL_DAMAGE_BASE)/100;
+    local ftp = autoFTP(tp,params.ftp100,params.ftp200,params.ftp300) + ftpdmgbonus;
     local crit = false
 
     local ignoredDef = 0;
