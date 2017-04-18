@@ -28,8 +28,6 @@ function onItemUse(target)
     if (target:hasStatusEffect(EFFECT_DOOM) and math.random() <= 0.33) then
         target:delStatusEffect(EFFECT_DOOM);
         target:messageBasic(359);
-        target:delStatusEffect(EFFECT_DOOM);
-        target:messageBasic(359);
     elseif (curse ~= nil and curse2 ~= nil and bane ~= nil) then
         target:delStatusEffect(EFFECT_CURSE_I);
         target:delStatusEffect(EFFECT_CURSE_II);
