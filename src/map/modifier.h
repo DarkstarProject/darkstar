@@ -193,6 +193,7 @@ enum class Mod
     // Damage / Crit Damage / Delay
     DMG                       = 160, // Damage Taken %
     DMGPHYS                   = 161, // Physical Damage Taken %
+    DMGPHYS_II                = 842, // Physical Damage Taken II %
     DMGBREATH                 = 162, // Breath Damage Taken %
     DMGMAGIC                  = 163, // Magic Damage Taken %
     DMGMAGIC_II               = 831, // Magic Damage Taken II % (Aegis)
@@ -289,6 +290,7 @@ enum class Mod
     // Monk
 	BOOST_EFFECT              = 97,  // Boost power in tenths
     SUBTLE_BLOW               = 289, // How much TP to reduce.
+    SUBTLE_BLOW_II            = 844, // Additional Subtle Blow passed the 50 cap. Capped at 25.
     COUNTER                   = 291, // Percent chance to counter
     KICK_ATTACK               = 292, // Percent chance to kick
     PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
@@ -520,6 +522,7 @@ enum class Mod
     REGEN                     = 370, // auto regen from equipment
     REGEN_DOWN                = 404, // poison
     CURE_POTENCY              = 374, // % cure potency | bonus from gear is capped at 50
+    CURE_POTENCY_II           = 843, // % cure potency II | bonus from gear is capped at 25
     CURE_POTENCY_RCVD         = 375, // % potency of received cure | healer's roll, some items have this
     RANGED_DMG_RATING         = 376, // adds damage rating to ranged weapon
     MAIN_DMG_RANK             = 377, // adds weapon rank to main weapon http://wiki.bluegartr.com/bg/Weapon_Rank
@@ -650,9 +653,6 @@ enum class Mod
     // SPARE = 67, // stuff
     // SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 842, // stuff
-    // SPARE = 843, // stuff
-    // SPARE = 844, // stuff
     // SPARE = 845, // stuff
     // SPARE = 846, // stuff
     // SPARE = 847, // stuff

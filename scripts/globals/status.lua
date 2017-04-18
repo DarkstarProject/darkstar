@@ -970,6 +970,7 @@ MOD_ANTIHQ_ALCHEMY    = 150
 MOD_ANTIHQ_COOK       = 151
 MOD_DMG               = 160
 MOD_DMGPHYS           = 161
+MOD_DMGPHYS_II        = 842
 MOD_DMGBREATH         = 162
 MOD_DMGMAGIC          = 163
 MOD_DMGMAGIC_II       = 831 -- Magic Damage Taken II % (Aegis)
@@ -1046,6 +1047,7 @@ MOD_MIJIN_GAKURE       = 258
 MOD_DUAL_WIELD         = 259
 MOD_DOUBLE_ATTACK      = 288
 MOD_SUBTLE_BLOW        = 289
+MOD_SUBTLE_BLOW_II     = 844
 MOD_COUNTER            = 291
 MOD_KICK_ATTACK        = 292
 MOD_AFFLATUS_SOLACE    = 293
@@ -1143,6 +1145,7 @@ MOD_WEATHER_REDUCTION   = 372
 MOD_DAY_REDUCTION       = 373
 MOD_CURE_POTENCY        = 374
 MOD_CURE_POTENCY_RCVD   = 375
+MOD_CURE_POTENCY_II     = 843
 MOD_DELAYP              = 380
 MOD_RANGED_DELAYP       = 381
 MOD_EXP_BONUS           = 382
@@ -1354,12 +1357,8 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
 -- MOD_SPARE = 67 -- stuff
--- MOD_SPARE = 98 -- stuff
 -- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
--- MOD_SPARE = 842 -- stuff
--- MOD_SPARE = 843 -- stuff
--- MOD_SPARE = 844 -- stuff
 -- MOD_SPARE = 845 -- stuff
 -- MOD_SPARE = 846 -- stuff
 -- MOD_SPARE = 847 -- stuff
