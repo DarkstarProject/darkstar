@@ -1934,6 +1934,7 @@ MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status E
 MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
 MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
 MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
+MSGBASIC_ADD_EFFECT_HEAL        = 384 -- Additional effect: <target> recovers <number> HP.
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!
