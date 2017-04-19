@@ -33,4 +33,6 @@ end;
 
 function onUseAbility(player,target,ability)
     player:spawnPet(PET_WYVERN);
+    local pet = player:getPet();
+    pet:addMod(MOD_DMG, -40);
 end;
