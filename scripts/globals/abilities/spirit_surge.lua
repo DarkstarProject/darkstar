@@ -30,6 +30,7 @@ function onUseAbility(player,target,ability)
     -- bg wiki says 25% ffxiclopedia says 15%, going with 25 for now
     local mhp_boost = target:getPet():getMaxHP()*0.25;
     -- Dragoon gets all of wyverns TP when using Spirit Surge
+    local pet = player:getPet();
     local petTP = pet:getTP();
     target:addTP(petTP); --add pet TP to dragoon
     pet:delTP(petTP); -- remove TP from pet
