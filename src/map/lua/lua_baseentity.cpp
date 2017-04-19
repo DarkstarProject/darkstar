@@ -8854,7 +8854,6 @@ inline int32 CLuaBaseEntity::getTrickAttackChar(lua_State *L)
     return 1;
 }
 
-
 inline int32 CLuaBaseEntity::setDelay(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8865,6 +8864,7 @@ inline int32 CLuaBaseEntity::setDelay(lua_State* L)
     ((CMobEntity*)m_PBaseEntity)->m_Weapons[SLOT_MAIN]->setDelay(lua_tonumber(L, 1));
     return 0;
 }
+
 inline int32 CLuaBaseEntity::setDamage(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8876,7 +8876,8 @@ inline int32 CLuaBaseEntity::setDamage(lua_State* L)
     return 0;
 }
 
-//cast spell in parameter - if no parameter, cast any spell in the spell list
+// cast spell in first parameter - if no parameter, cast any spell in the spell list
+// optional target in second parameter
 inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
@@ -8886,9 +8887,9 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
         auto spellid {lua_tointeger(L, 1)};
         CBattleEntity* PTarget {nullptr};
 
-        if (!lua_isnil(L, 1) && lua_isuserdata(L, 1))
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
-            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+            CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
             PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
         }
 
