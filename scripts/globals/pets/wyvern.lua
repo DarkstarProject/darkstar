@@ -37,6 +37,7 @@ local wyvernTypes = {
 
 function onMobSpawn(mob)
     local master = mob:getMaster()
+    mob:addMod(MOD_DMG, -40);
     local wyvernType = wyvernTypes[master:getSubJob()]
     local healingbreath = 624
     if mob:getMainLvl() >= 80 then healingbreath = 623
