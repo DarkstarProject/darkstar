@@ -32,7 +32,7 @@ function onUseAbility(player,target,ability)
     -- Dragoon gets all of wyverns TP when using Spirit Surge
     local pet = player:getPet();
     local petTP = pet:getTP();
-	target:addTP(petTP); --add pet TP to dragoon
+    target:addTP(petTP); --add pet TP to dragoon
     pet:delTP(petTP); -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
