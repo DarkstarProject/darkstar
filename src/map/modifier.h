@@ -287,7 +287,7 @@ enum class Mod
     WARCRY_DURATION           = 483, // Warcy duration bonus from gear
 
     // Monk
-	BOOST_EFFECT              = 97,  // Boost power in tenths
+    BOOST_EFFECT              = 97,  // Boost power in tenths
     SUBTLE_BLOW               = 289, // How much TP to reduce.
     COUNTER                   = 291, // Percent chance to counter
     KICK_ATTACK               = 292, // Percent chance to kick
@@ -592,7 +592,11 @@ enum class Mod
     EAT_RAW_FISH              = 412, //
     EAT_RAW_MEAT              = 413, //
 
-    ENHANCES_CURSNA           = 310, // Used by gear with the "Enhances Cursna" attribute
+
+    ENHANCES_CURSNA_RCVD      = 67,  // Potency of "Cursna" effects received
+    ENHANCES_CURSNA           = 310, // Used by gear with the "Enhances Cursna" or "Cursna+" attribute
+    ENHANCES_HOLYWATER        = 495, // Used by gear with the "Enhances Holy Water" or "Holy Water+" attribute
+
     RETALIATION               = 414, // Increases damage of Retaliation hits
 
     CLAMMING_IMPROVED_RESULTS = 509, //
@@ -647,8 +651,6 @@ enum class Mod
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
     ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
-    // SPARE = 67, // stuff
-    // SPARE = 495, // stuff
     // 570 through 825 used by WS DMG mods these are not spares.
     // SPARE = 842, // stuff
     // SPARE = 843, // stuff

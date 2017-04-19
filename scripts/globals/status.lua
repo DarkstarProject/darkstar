@@ -1282,10 +1282,14 @@ MOD_OVERLOAD_THRESH     = 505 -- Overload Threshold Bonus
 MOD_EXTRA_DMG_CHANCE    = 506 -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1%
 MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
-MOD_EAT_RAW_FISH       = 412 --
-MOD_EAT_RAW_MEAT       = 413 --
-MOD_ENHANCES_CURSNA    = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
-MOD_RETALIATION        = 414 -- Increases damage of Retaliation hits
+MOD_EAT_RAW_FISH         = 412 --
+MOD_EAT_RAW_MEAT         = 413 --
+
+MOD_ENHANCES_CURSNA_RCVD = 67  -- Potency of "Cursna" effects received
+MOD_ENHANCES_CURSNA      = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
+MOD_ENHANCES_HOLYWATER   = 495 -- Used by gear with the "Enhances Holy Water" or "Holy Water+" attribute
+
+MOD_RETALIATION          = 414 -- Increases damage of Retaliation hits
 MOD_THIRD_EYE_COUNTER_RATE    = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
 MOD_THIRD_EYE_ANTICIPATE_RATE = 839 -- Adds anticipate rate in percents
 
@@ -1353,9 +1357,6 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 67 -- stuff
--- MOD_SPARE = 98 -- stuff
--- MOD_SPARE = 495 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
 -- MOD_SPARE = 842 -- stuff
 -- MOD_SPARE = 843 -- stuff
