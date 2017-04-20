@@ -10,6 +10,7 @@ require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addListener("MAGIC_START", "AUTO_ICE_MAKER_START", function(pet, spell, action)
+        if spell:getSkillType() ~= SKILL_ELE then return end
         local master = pet:getMaster()
         local maneuvers = master:countEffect(EFFECT_ICE_MANEUVER)
         local amount = 100 + pet:getMod(MOD_MATT)
