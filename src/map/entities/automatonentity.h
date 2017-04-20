@@ -175,6 +175,7 @@ public:
 
     void PostTick() override;
 
+    virtual void Spawn() override;
     virtual void Die() override;
 
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;

@@ -33,6 +33,8 @@
 #include "../ai/states/magic_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../packets/action.h"
+#include "../mob_modifier.h"
+#include "../utils/mobutils.h"
 
 // Maybe move these to a sql table?
 std::unordered_map<AUTOSPELL, uint16, EnumClassHash> g_autoSpellList{
@@ -505,4 +507,26 @@ void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, action_t& actio
     {
         puppetutils::TrySkillUP(this, SKILL_ARA, PTarget->GetMLevel());
     }
+}
+
+void CAutomatonEntity::Spawn()
+{
+    //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
+
+    if (PMaster && PMaster->objtype == TYPE_PC && m_EcoSystem == SYSTEM_ELEMENTAL)
+    {
+        this->defaultMobMod(MOBMOD_MAGIC_DELAY, 12);
+        this->defaultMobMod(MOBMOD_MAGIC_COOL, 48);
+        mobutils::GetAvailableSpells(this);
+    }
+
+    status = allegiance == ALLEGIANCE_MOB ? STATUS_MOB : STATUS_NORMAL;
+    updatemask |= UPDATE_HP;
+    //ResetLocalVars(); // I hate making this function just to comment this out, why is this function called at all here?
+    PAI->Reset();
+    PAI->EventHandler.triggerListener("SPAWN", this);
+    animation = ANIMATION_NONE;
+    m_OwnerID.clean();
+    HideName(false);
+    luautils::OnMobSpawn(this);
 }
