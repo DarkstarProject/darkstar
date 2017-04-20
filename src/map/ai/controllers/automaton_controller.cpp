@@ -642,14 +642,18 @@ bool CAutomatonController::TryHeal()
     return false;
 }
 
+inline bool resistanceComparator(const std::pair<AUTOSPELL, int16>& firstElem, const std::pair<AUTOSPELL, int16>& secondElem) {
+    return firstElem.second < secondElem.second;
+}
+
 bool CAutomatonController::TryElemental()
 {
     if (!PAutomaton->PMaster || m_elementalCooldown == 0s || m_Tick <= m_LastElementalTime + m_elementalCooldown)
         return false;
 
-    int tier = 4;
-    int hp = PTarget->health.hp;
-    int selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
+    uint8 tier = 4;
+    int32 hp = PTarget->health.hp;
+    int32 selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
     if (selfmp < 4)
         return false;
     else if (hp <= 50 || selfmp < 16)
@@ -661,11 +665,21 @@ bool CAutomatonController::TryElemental()
     else if (hp <= 600 || selfmp < 156)
         tier = 3;
 
-    // Need to choose the weakest element, if they have that attachment, using PTarget->getMod(Mod::FIRERES)
-
-    bool useManeuvers = PAutomaton->getHead() == HEAD_SPIRITREAVER;
-
-    if (useManeuvers)
+    if (PAutomaton->getMod(Mod::AUTO_SCAN_RESISTS))
+    {
+        std::vector<std::pair<AUTOSPELL, int16>> reslist{
+            std::make_pair(AUTOSPELL_THUNDER, PTarget->getMod(Mod::THUNDERRES)),
+            std::make_pair(AUTOSPELL_BLIZZARD, PTarget->getMod(Mod::ICERES)),
+            std::make_pair(AUTOSPELL_FIRE, PTarget->getMod(Mod::FIRERES)),
+            std::make_pair(AUTOSPELL_AERO, PTarget->getMod(Mod::WINDRES)),
+            std::make_pair(AUTOSPELL_WATER, PTarget->getMod(Mod::WATERRES)),
+            std::make_pair(AUTOSPELL_STONE, PTarget->getMod(Mod::EARTHRES))
+        };
+        std::stable_sort(reslist.begin(), reslist.end(), resistanceComparator);
+        for (std::pair<AUTOSPELL, int16>& res : reslist)
+            m_castPriority.push_back(res.first);
+    }
+    else if (PAutomaton->getHead() == HEAD_SPIRITREAVER)
     {
         if (m_CurrentManeuvers.thunder) // Thunder -> Thunder spells
             m_castPriority.push_back(AUTOSPELL_THUNDER);
@@ -698,7 +712,9 @@ bool CAutomatonController::TryElemental()
             m_defaultPriority.push_back(AUTOSPELL_STONE);
     }
     else
+    {
         m_defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
+    }
 
     while (tier >= 0)
     {
@@ -1055,7 +1071,7 @@ bool CAutomatonController::TryEnhance()
     if (PMob)
         enmityList = PMob->PEnmityContainer->GetEnmityList();
 
-    int highestEnmity = 0;
+    uint16 highestEnmity = 0;
 
     CBattleEntity* PRegenTarget = nullptr;
     CBattleEntity* PProtectTarget = nullptr;
@@ -1065,9 +1081,9 @@ bool CAutomatonController::TryEnhance()
     CBattleEntity* PPhalanxTarget = nullptr;
 
     bool protect = false;
-    int protectcount = 0;
+    uint8 protectcount = 0;
     bool shell = false;
-    int shellcount = 0;
+    uint8 shellcount = 0;
     bool haste = false;
     bool stoneskin = false;
     bool phalanx = false;
@@ -1179,7 +1195,7 @@ bool CAutomatonController::TryEnhance()
     if (!PHasteTarget && !haste)
         PHasteTarget = PAutomaton;
 
-    int members = 0;
+    uint8 members = 0;
 
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
     if (PAutomaton->PMaster->PParty)
