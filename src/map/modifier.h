@@ -447,7 +447,7 @@ enum class Mod
     VFLOURISH_MACC            = 493, // Violent Flourish accuracy bonus
     STEP_FINISH               = 494, // Bonus finishing moves from steps
     STEP_ACCURACY             = 403, // Bonus accuracy for Dancer's steps
-    WALTZ_RECAST              = 497, // Waltz recast modifier (percent)
+    WALTZ_DELAY               = 497, // Waltz Ability Delay modifier (-1 mod is -1 second)
     SAMBA_PDURATION           = 498, // Samba percent duration bonus
     REVERSE_FLOURISH_EFFECT   = 836, // Reverse Flourish effect in tenths of squared term multiplier
 
