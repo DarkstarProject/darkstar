@@ -4526,8 +4526,12 @@ namespace battleutils
         return PSpell->getAOE();
     }
 
-
     WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
+    {
+        return GetWeather(PEntity, ignoreScholar, zoneutils::GetZone(PEntity->getZone())->GetWeather());
+    }
+
+    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather)
     {
         WEATHER scholarSpell = WEATHER_NONE;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
@@ -4546,10 +4550,9 @@ namespace battleutils
             scholarSpell = WEATHER_AURORAS;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
             scholarSpell = WEATHER_GLOOM;
-        WEATHER zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
 
         if (ignoreScholar || scholarSpell == WEATHER_NONE || zoneWeather == (scholarSpell + 1)) // Strong weather overwrites scholar spell weak weather
-            return zoneWeather;
+            return (WEATHER)zoneWeather;
         else if (scholarSpell == zoneWeather)
             return (WEATHER)(zoneWeather + 1); // Storm spells stack with weather
         else
