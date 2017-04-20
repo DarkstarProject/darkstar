@@ -1,5 +1,5 @@
 -----------------------------------
--- Attachment: Shock Absorber
+-- Attachment: Shock Absorber II
 -----------------------------------
 
 require("scripts/globals/status");
@@ -10,11 +10,11 @@ require("scripts/globals/status");
 
 function onEquip(pet)
 	pet:setLocalVar("stoneskin", VanadielTime() + 180)
-	pet:setLocalVar("shockabsorber", pet:getLocalVar("shockabsorber") + 1)
+	pet:setLocalVar("shockabsorber", pet:getLocalVar("shockabsorber") + 2)
 end
 
 function onUnequip(pet)
-	pet:setLocalVar("shockabsorber", pet:getLocalVar("shockabsorber") - 1)
+	pet:setLocalVar("shockabsorber", pet:getLocalVar("shockabsorber") - 2)
 end
 
 function onManeuverGain(pet,maneuvers)
