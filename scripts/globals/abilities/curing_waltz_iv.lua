@@ -24,7 +24,7 @@ function onAbilityCheck(player,target,ability)
         return MSGBASIC_NOT_ENOUGH_TP,0;
     else
         --[[ Apply "Waltz Ability Delay" reduction
-            1 modifier = 1 second recast time]]
+            1 modifier = 1 second]]
         local recastMod = player:getMod(MOD_WALTZ_DELAY);
         if (recastMod) ~= 0) then
             local newRecast = ability:getRecast() +recastMod;
