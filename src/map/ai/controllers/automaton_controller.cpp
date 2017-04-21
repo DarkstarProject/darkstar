@@ -1368,7 +1368,8 @@ bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its
 
 bool CAutomatonController::TryAttachment()
 {
-    if (!PAutomaton->PAI->CanChangeState()) return false;
+    if (!PAutomaton->PAI->CanChangeState())
+        return false;
 
     int16 skillid = 0;
     CBattleEntity* PSkillTarget = nullptr;
