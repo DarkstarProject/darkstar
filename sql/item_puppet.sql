@@ -86,7 +86,7 @@ INSERT INTO `item_puppet` VALUES (8548, 'armor_plate_ii', 3, 12288);
 INSERT INTO `item_puppet` VALUES (8549, 'equalizer', 3, 8192);
 INSERT INTO `item_puppet` VALUES (8550, 'schurzen', 3, 4096);
 INSERT INTO `item_puppet` VALUES (8551, 'hammermill', 3, 4096);
-INSERT INTO `item_puppet` VALUES (8552, 'barrier_module', 3, 8192);
+INSERT INTO `item_puppet` VALUES (8552, 'barrier_module_ii', 3, 8192);
 INSERT INTO `item_puppet` VALUES (8553, 'shock_absorber_ii', 3, 8192);
 INSERT INTO `item_puppet` VALUES (8554, 'armor_plate_iii', 3, 16384);
 INSERT INTO `item_puppet` VALUES (8577, 'stabilizer', 3, 131072);
