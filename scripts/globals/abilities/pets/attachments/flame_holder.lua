@@ -41,7 +41,6 @@ function onEquip(pet)
         else
             return
         end
-        amount = math.floor(amount)
         pet:addMod(MOD_WEAPONSKILL_DAMAGE_BASE, amount)
         pet:setLocalVar("flameholder", amount)
     end)
