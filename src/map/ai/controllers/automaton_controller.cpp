@@ -1368,6 +1368,8 @@ bool CAutomatonController::TryRangedAttack() // TODO: Find the animation for its
 
 bool CAutomatonController::TryAttachment()
 {
+    if (!PAutomaton->PAI->CanChangeState()) return false;
+
     int16 skillid = 0;
     CBattleEntity* PSkillTarget = nullptr;
     for (uint8 i = 0; i < 12; i++)
@@ -1412,11 +1414,8 @@ bool CAutomatonController::CanCastSpells()
     if (PAutomaton->StatusEffectContainer->HasStatusEffect({ EFFECT_SILENCE, EFFECT_MUTE }))
         return false;
 
-    // Check if we are already casting!
-    if (PAutomaton->PAI->IsCurrentState<CMagicState>())
-        return false;
-
-    return true;
+    // Check if we can change states!
+    return PAutomaton->PAI->CanChangeState();
 }
 
 bool CAutomatonController::CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget)
