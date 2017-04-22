@@ -651,7 +651,7 @@ bool CAutomatonController::TryElemental()
     if (!PAutomaton->PMaster || m_elementalCooldown == 0s || m_Tick <= m_LastElementalTime + m_elementalCooldown)
         return false;
 
-    uint8 tier = 4;
+    int8 tier = 4;
     int32 hp = PTarget->health.hp;
     int32 selfmp = PAutomaton->health.mp; // Shortcut for wasting less time
     if (selfmp < 4)
