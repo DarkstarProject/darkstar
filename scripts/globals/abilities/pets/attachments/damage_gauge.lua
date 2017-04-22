@@ -9,11 +9,13 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
+    pet:setLocalVar("damagegauge", 1)
     pet:addMod(MOD_AUTO_HEALING_THRESHOLD, 20);
     pet:addMod(MOD_AUTO_HEALING_DELAY, 3);
 end
 
 function onUnequip(pet)
+    pet:setLocalVar("damagegauge", 0)
     pet:delMod(MOD_AUTO_HEALING_THRESHOLD, 20);
     pet:delMod(MOD_AUTO_HEALING_DELAY, 3);
 end
