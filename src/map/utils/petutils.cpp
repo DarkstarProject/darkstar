@@ -599,6 +599,7 @@ namespace petutils
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(10, PPet->GetMLevel()));
             break;
         case FRAME_VALOREDGE:
+            PPet->m_Weapons[SLOT_SUB]->setShieldSize(3);
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(5, PPet->GetMLevel());
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(5, PPet->GetMLevel()));
             break;
