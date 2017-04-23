@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
     local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
     --Duration, including resistance.  May need more research.
-    local duration = 180;
+    local duration = 120;
 
     --Resist
     local resist = applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SILENCE);
