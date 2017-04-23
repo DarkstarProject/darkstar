@@ -6641,7 +6641,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
         {
             return static_cast<CCharEntity*>(m_PBaseEntity);
         }
-        else if (m_PBaseEntity->objtype == TYPE_PET)
+        else if (m_PBaseEntity->objtype == TYPE_PET && static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PETTYPE_AUTOMATON)
         {
             auto PMaster = static_cast<CPetEntity*>(m_PBaseEntity)->PMaster;
             if (PMaster->objtype == TYPE_PC)
