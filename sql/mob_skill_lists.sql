@@ -3554,3 +3554,91 @@ INSERT INTO `mob_skill_lists` VALUES ('Yaguarogui_group_1',974,270); -- Roar
 
 INSERT INTO `mob_skill_lists` VALUES ('Yaguarogui_group_2',975,273); -- Claw_Cyclone
 -- INSERT INTO `mob_skill_lists` VALUES ('Yaguarogui_group_2',975,1340); -- Crossthrash
+
+INSERT INTO `mob_skill_lists` VALUES ('Alfard',976,1828); -- Pyric_Blast
+INSERT INTO `mob_skill_lists` VALUES ('Alfard',976,1830); -- Polar_Blast
+INSERT INTO `mob_skill_lists` VALUES ('Alfard',976,1835); -- Serpentine_Tail
+INSERT INTO `mob_skill_lists` VALUES ('Alfard',976,1836); -- Nerve_Gas
+
+-- INSERT INTO `mob_skill_lists` VALUES ('Amphitrite',977,506); -- Palsynyxis
+-- INSERT INTO `mob_skill_lists` VALUES ('Amphitrite',977,507); -- Painful_Whip
+-- INSERT INTO `mob_skill_lists` VALUES ('Amphitrite',977,2693); -- Virulent_Haze
+
+INSERT INTO `mob_skill_lists` VALUES ('Assailer_Chariot',978,2055); -- Intertia_stream
+INSERT INTO `mob_skill_lists` VALUES ('Assailer_Chariot',978,2056); -- Discharge
+INSERT INTO `mob_skill_lists` VALUES ('Assailer_Chariot',978,2059); -- PW_Discoid
+
+INSERT INTO `mob_skill_lists` VALUES ('Azdaja',979,1309); -- Cyclone_Wing
+INSERT INTO `mob_skill_lists` VALUES ('Azdaja',979,1310); -- Spike_Flail
+INSERT INTO `mob_skill_lists` VALUES ('Azdaja',979,1311); -- Sable_Breath
+-- INSERT INTO `mob_skill_lists` VALUES ('Azdaja',979,2696); -- Baleful_Roar
+-- INSERT INTO `mob_skill_lists` VALUES ('Azdaja',979,2697); -- Infinite_Terror
+
+-- INSERT INTO `mob_skill_lists` VALUES ('Bomblix_Flamefinger',980,1119); -- Frag_Bomb
+
+INSERT INTO `mob_skill_lists` VALUES ('Burstrox_Powderpate',981,591); -- Bomb_Toss
+
+INSERT INTO `mob_skill_lists` VALUES ('Deelgeed',982,382); -- Tail_Roll
+INSERT INTO `mob_skill_lists` VALUES ('Deelgeed',982,384); -- Scutum
+INSERT INTO `mob_skill_lists` VALUES ('Deelgeed',982,386); -- Awful_Eye
+-- INSERT INTO `mob_skill_lists` VALUES ('Deelgeed',982,2643); -- Tyrant_Tusk
+-- INSERT INTO `mob_skill_lists` VALUES ('Deelgeed',982,2695); -- Torment_Tusk
+
+INSERT INTO `mob_skill_lists` VALUES ('Fleshflayer_Killakriq',983,1081); -- Frypan
+INSERT INTO `mob_skill_lists` VALUES ('Fleshflayer_Killakriq',983,1082); -- Smokebomb
+INSERT INTO `mob_skill_lists` VALUES ('Fleshflayer_Killakriq',983,1084); -- Crispy_Candle
+INSERT INTO `mob_skill_lists` VALUES ('Fleshflayer_Killakriq',983,1086); -- Paralysis_Shower
+INSERT INTO `mob_skill_lists` VALUES ('Fleshflayer_Killakriq',983,1088); -- Goblin_Rush
+
+INSERT INTO `mob_skill_lists` VALUES ('Fuath',984,2193); -- Zephyr_Arrow
+INSERT INTO `mob_skill_lists` VALUES ('Fuath',984,2194); -- Lethe_Arrows
+-- INSERT INTO `mob_skill_lists` VALUES ('Fuath',984,2694); -- Cyclonic_Blight
+
+-- Ika-Roa uses skill list 197 reserving 985 for NM
+
+INSERT INTO `mob_skill_lists` VALUES ('Ironclad_Sunderer',986,2619); -- Turbine_Cyclone
+INSERT INTO `mob_skill_lists` VALUES ('Ironclad_Sunderer',986,2620); -- Seismic_Impact
+INSERT INTO `mob_skill_lists` VALUES ('Ironclad_Sunderer',986,2621); -- Incinerator
+INSERT INTO `mob_skill_lists` VALUES ('Ironclad_Sunderer',986,2622); -- Arm_Cannon
+INSERT INTO `mob_skill_lists` VALUES ('Ironclad_Sunderer',986,2624); -- Scapula_Beam
+
+INSERT INTO `mob_skill_lists` VALUES ('Jaculus',987,1718); -- Crosswind
+INSERT INTO `mob_skill_lists` VALUES ('Jaculus',987,1720); -- Wind_Shear
+INSERT INTO `mob_skill_lists` VALUES ('Jaculus',987,1722); -- Zephyr_Mantle
+INSERT INTO `mob_skill_lists` VALUES ('Jaculus',987,1723); -- Ill_Wind
+
+INSERT INTO `mob_skill_lists` VALUES ('Lorelei',988,2193); -- Zephyr_Arrow
+INSERT INTO `mob_skill_lists` VALUES ('Lorelei',988,2194); -- Lethe_Arrows
+INSERT INTO `mob_skill_lists` VALUES ('Lorelei',988,2200); -- Cyclonic_Torrent
+
+INSERT INTO `mob_skill_lists` VALUES ('Melo_Melo',989,1572); -- Venom_Shell
+
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,813); -- Dispelling_Wind
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,814); -- Deadly_Drive
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,815); -- Wind_Wall
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,816); -- Fang_Rush
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,817); -- Dread_Shriek
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,818); -- Tail_Crush
+-- INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,819); -- Blizzard_Breath
+-- INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,820); -- Thunder_Breath
+INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,822); -- Chaos_Breath
+-- INSERT INTO `mob_skill_lists` VALUES ('Minaruja',990,2222); -- Hurricane_Breath
+
+INSERT INTO `mob_skill_lists` VALUES ('Ningishzida',991,1829); -- Pyric_Bulwark
+INSERT INTO `mob_skill_lists` VALUES ('Ningishzida',991,1831); -- Polar_Bulwark
+INSERT INTO `mob_skill_lists` VALUES ('Ningishzida',991,1832); -- Barofield
+INSERT INTO `mob_skill_lists` VALUES ('Ningishzida',991,1834); -- Trembling
+INSERT INTO `mob_skill_lists` VALUES ('Ningishzida',991,1835); -- Serpentine_Tail
+
+INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2567); -- Stygian_Cyclone
+INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2571); -- Stygian_Sphere
+INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2572); -- Malign_Invocation
+INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2692); -- Royal_Decree
+
+-- Rencounter_Chariot abilities not on wiki reserving 993
+
+-- Teekesselchen uses skill list 175 reserving 994 for NM
+
+INSERT INTO `mob_skill_lists` VALUES ('Teugghia',995,2197); -- Autumn_Breeze
+
+-- Xibalba uses 227 reserving 996 for NM start next mob in this list at 997
