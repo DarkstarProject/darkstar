@@ -716,17 +716,15 @@ bool CAutomatonController::TryElemental()
         m_defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
     }
 
-    while (tier >= 0)
+    for (int8 i = tier; i >= 0; --i)
     {
         for (AUTOSPELL& id : m_castPriority)
-            if (CastSpell((AUTOSPELL)(id + tier), PTarget))
+            if (CastSpell((AUTOSPELL)(id + i), PTarget))
                 return true;
 
         for (AUTOSPELL& id : m_defaultPriority)
-            if (CastSpell((AUTOSPELL)(id + tier), PTarget))
+            if (CastSpell((AUTOSPELL)(id + i), PTarget))
                 return true;
-
-        --tier;
     }
 
     m_castPriority.clear();
@@ -962,7 +960,6 @@ bool CAutomatonController::TryEnfeeble()
     }
 
     CStatusEffectContainer* statuses = PTarget->StatusEffectContainer;
-    // Could probably use hasImmunity() here instead if there was an easy way to calculate the effect's power
     for (AUTOSPELL& id : m_castPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
