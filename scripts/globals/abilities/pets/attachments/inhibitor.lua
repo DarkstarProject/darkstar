@@ -10,10 +10,12 @@ require("scripts/globals/status");
 
 function onEquip(pet)
     pet:addMod(MOD_STORETP, 5)
+    pet:addMod(MOD_AUTO_TP_EFFICIENCY, 900)
 end
 
 function onUnequip(pet)
     pet:delMod(MOD_STORETP, 5)
+    pet:delMod(MOD_AUTO_TP_EFFICIENCY, 900)
 end
 
 function onManeuverGain(pet,maneuvers)

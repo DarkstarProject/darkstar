@@ -35,6 +35,7 @@
 #include "../../status_effect_container.h"
 #include "../../enmity_container.h"
 #include "../../utils/itemutils.h"
+#include "../../utils/battleutils.h"
 
 std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> g_autoNaList{
     { EFFECT_POISON, AUTOSPELL_POISONA },
@@ -72,6 +73,23 @@ std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> g_autoImmunityList{
     { AUTOSPELL_SLOW, IMMUNITY_SLOW },
     { AUTOSPELL_POISON_II, IMMUNITY_POISON },
     { AUTOSPELL_POISON, IMMUNITY_POISON }
+};
+std::unordered_map<uint16, uint16> g_autoSkillChainList = {
+    // Map of Automaton WS to player WS for skill chain property references
+    { 1940, 150 }, // Chimera Ripper
+    { 1941, 129 }, // String Clipper
+    { 2065, 179 }, // Cannibal Blade
+    { 2299, 24 },  // Bone Crusher
+    { 2743, 29 },  // String Shredder
+
+    { 1942, 192 }, // Arcuballista
+    { 2066, 113 }, // Daze
+    { 2300, 135 }, // Armor Piercer
+    { 2744, 141 }, // Armor Shatterer
+
+    { 1943, 38 },  // Slapstick
+    { 2067, 148 }, // Knockout
+    { 2301, 119 }  // Magic Mortar (This should be Liquefaction + Fusion, but no player WS has this combination!)
 };
 
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
@@ -1311,7 +1329,7 @@ bool CAutomatonController::TryEnhance()
 
 bool CAutomatonController::TryTPMove()
 {
-    if (PAutomaton->health.tp > 1000)
+    if (PAutomaton->health.tp >= 1000)
     {
         const auto& FamilySkills = battleutils::GetMobSkillList(PAutomaton->m_Family);
 
@@ -1333,17 +1351,76 @@ bool CAutomatonController::TryTPMove()
             }
         }
 
-        uint16 currentSkill = 0;
+        int16 currentSkill = -1;
         CMobSkill* PWSkill;
         int8 currentManeuvers = -1;
-        for (auto& PSkill : validSkills)
+
+        bool attemptChain = (PAutomaton->getMod(Mod::AUTO_TP_EFFICIENCY) != 0);
+
+        if (attemptChain)
         {
-            int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
-            if (maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))
+            CStatusEffect* PSCEffect = PTarget->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
+            if (PSCEffect)
             {
-                currentManeuvers = maneuvers;
-                currentSkill = PSkill->getParam();
-                PWSkill = PSkill;
+                std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
+                if (PSCEffect->GetTier() == 0)
+                {
+                    if (PSCEffect->GetStartTime() + 3s < m_Tick)
+                    {
+                        if (PSCEffect->GetPower())
+                        {
+                            CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSCEffect->GetPower());
+                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
+                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
+                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
+                        }
+                        else
+                        {
+                            CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
+                            resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
+                        }
+                    }
+                }
+                else
+                {
+                    resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PSCEffect->GetPower());
+                }
+
+                for (auto& PSkill : validSkills)
+                {
+                    if (PSkill->getParam() > currentSkill)
+                    {
+                        CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(g_autoSkillChainList[PSkill->getID()]);
+                        if (PWeaponSkill)
+                        {
+                            std::list<SKILLCHAIN_ELEMENT> skillProperties;
+                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
+                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
+                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
+                            if (battleutils::FormSkillchain(resonanceProperties, skillProperties) != SC_NONE)
+                            {
+                                currentManeuvers = 1;
+                                currentSkill = PSkill->getParam();
+                                PWSkill = PSkill;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!attemptChain || (currentManeuvers == -1 && PAutomaton->PMaster && PAutomaton->PMaster->health.tp < PAutomaton->getMod(Mod::AUTO_TP_EFFICIENCY)))
+        {
+            for (auto& PSkill : validSkills)
+            {
+                int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
+                if (maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))
+                {
+                    currentManeuvers = maneuvers;
+                    currentSkill = PSkill->getParam();
+                    PWSkill = PSkill;
+                }
             }
         }
 
