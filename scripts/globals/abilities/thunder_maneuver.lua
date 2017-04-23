@@ -36,6 +36,12 @@ function onUseAbility(player,target,ability)
 
     local overload = target:addBurden(ELE_THUNDER-1, burden);
 
+    if (overload ~= 0 and
+        (player:getMod(MOD_PREVENT_OVERLOAD) > 0 or player:getPet():getMod(MOD_PREVENT_OVERLOAD) > 0) and
+        player:delStatusEffectSilent(EFFECT_WATER_MANEUVER)) then
+        overload = 0;
+    end
+
     if (overload ~= 0) then
         target:removeAllManeuvers();
         target:addStatusEffect(EFFECT_OVERLOAD, 0, 0, overload);
