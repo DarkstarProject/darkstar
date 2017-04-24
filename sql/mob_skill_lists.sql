@@ -3342,12 +3342,10 @@ INSERT INTO `mob_skill_lists` VALUES ('Amarok',930,1787); -- Scorching_Lash
 INSERT INTO `mob_skill_lists` VALUES ('Amarok',930,1788); -- Ululation
 INSERT INTO `mob_skill_lists` VALUES ('Amarok',930,1789); -- Magma_Hoplon
 
-INSERT INTO `mob_skill_lists` VALUES ('Ansherekh',931,270); -- Roar
-INSERT INTO `mob_skill_lists` VALUES ('Ansherekh',931,271); -- Razor_Fang
-INSERT INTO `mob_skill_lists` VALUES ('Ansherekh',931,273); -- Claw_Cyclone
+-- Ansherekh uses skill id 242 reserving 931 for NM
 
-INSERT INTO `mob_skill_lists` VALUES ('Ansherekh',932,2054); -- Diffusion_ray
-INSERT INTO `mob_skill_lists` VALUES ('Ansherekh',932,2055); -- Intertia_stream
+INSERT INTO `mob_skill_lists` VALUES ('Battlerigged_Chariot',932,2054); -- Diffusion_ray
+INSERT INTO `mob_skill_lists` VALUES ('Battlerigged_Chariot',932,2055); -- Intertia_stream
 
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,399); -- Scratch
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,400); -- Triple_Attack
