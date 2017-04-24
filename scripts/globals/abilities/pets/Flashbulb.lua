@@ -33,7 +33,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
             skill:setMsg(189) -- MSG_NO_EFFECT
         end
     else
-        spell:setMsg(85) -- MSG_RESIST
+        skill:setMsg(85) -- MSG_RESIST
     end
 
     return EFFECT_FLASH
