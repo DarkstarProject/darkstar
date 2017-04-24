@@ -18,5 +18,9 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local amount = math.floor(automaton:getMaxMP() * 0.2 * maneuvers)
     skill:setMsg(224) -- no message for this, recovers MP
 
+    for i = 1, maneuvers do
+        master:delStatusEffectSilent(EFFECT_DARK_MANEUVER)
+    end
+
     return automaton:addMP(amount)
 end
