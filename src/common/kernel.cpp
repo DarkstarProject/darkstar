@@ -285,7 +285,7 @@ int main (int argc, char **argv)
 
     log_init(argc, argv);
 	set_server_type();
-	//display_title();
+	display_title();
 	usercheck();
 	signals_init();
 	timer_init();
