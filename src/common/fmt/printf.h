@@ -62,21 +62,21 @@ class IsZeroInt : public ArgVisitor<IsZeroInt, bool> {
 };
 
 // returns the default type for format specific "%s"
-class DefaultType : public ArgVisitor<DefaultType, wchar_t> {
+class DefaultType : public ArgVisitor<DefaultType, char> {
  public:
-  wchar_t visit_char(int) { return 'c'; }
+  char visit_char(int) { return 'c'; }
 
-  wchar_t visit_bool(bool) { return 's'; }
+  char visit_bool(bool) { return 's'; }
 
-  wchar_t visit_pointer(const void *) { return 'p'; }
-
-  template <typename T>
-  wchar_t visit_any_int(T) { return 'd'; }
+  char visit_pointer(const void *) { return 'p'; }
 
   template <typename T>
-  wchar_t visit_any_double(T) { return 'g'; }
+  char visit_any_int(T) { return 'd'; }
 
-  wchar_t visit_unhandled_arg() { return 's'; }
+  template <typename T>
+  char visit_any_double(T) { return 'g'; }
+
+  char visit_unhandled_arg() { return 's'; }
 };
 
 template <typename T, typename U>
