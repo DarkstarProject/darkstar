@@ -41,12 +41,6 @@
     <ClCompile Include="..\..\src\common\showmsg.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\common\strlib.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\common\malloc.cpp">
-      <Filter>Source Files\common</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\common\sql.cpp">
       <Filter>Source Files\common</Filter>
     </ClCompile>
@@ -103,12 +97,6 @@
     <ClInclude Include="..\..\src\common\showmsg.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\common\strlib.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\common\malloc.h">
-      <Filter>Header Files\common</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\common\socket.h">
       <Filter>Header Files\common</Filter>
     </ClInclude>
@@ -142,12 +130,12 @@
     <ClInclude Include="..\..\src\search\packets\linkshell_list.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
+    <ClInclude Include="searchserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
+    <ResourceCompile Include="searchserver.rc" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\icons\searchserver.ico" />

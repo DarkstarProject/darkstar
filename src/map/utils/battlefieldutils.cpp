@@ -208,7 +208,7 @@ namespace battlefieldutils {
         //after the tick initially due to threading
         if (tick > battlefield->getStartTime() && (tick - battlefield->getStartTime()) > battlefield->getTimeLimit()) {
             ShowDebug("BCNM %i inst:%i - You have exceeded your time limit!\n", battlefield->getID(),
-                battlefield->getBattlefieldNumber(), tick, battlefield->getStartTime(), battlefield->getTimeLimit());
+                battlefield->getBattlefieldNumber());
             return true;
         }
 

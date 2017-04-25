@@ -67,21 +67,23 @@
   <PropertyGroup>
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\..\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectName)_$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\..\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)_$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\..\</OutDir>
     <TargetName>$(ProjectName)_64</TargetName>
+    <IntDir>$(ProjectName)_$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>..\..\</OutDir>
     <TargetName>$(ProjectName)_64</TargetName>
+    <IntDir>$(ProjectName)_$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(WindowsSDK_IncludePath);$(VC_IncludePath)</IncludePath>
@@ -90,7 +92,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -115,7 +117,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(ProjectDir)..\external;$(ProjectDir)..\external\mysql;$(ProjectDir)..\external\zmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;_DEBUG;_CONSOLE;dsUDPSERV;DEBUGLOGMAP;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -136,7 +138,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsUDPSERV;DEBUGLOGMAP;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsUDPSERV;DEBUGLOGMAP;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -162,7 +164,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsUDPSERV;DEBUGLOGMAP;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NOMINMAX;FMT_HEADER_ONLY;FMT_USE_WINDOWS_H=0;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;dsUDPSERV;DEBUGLOGMAP;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <PrecompiledHeader>
@@ -201,7 +203,6 @@
     <ClInclude Include="..\..\src\common\lua\lualib.h" />
     <ClInclude Include="..\..\src\common\lua\luaxlib.h" />
     <ClInclude Include="..\..\src\common\lua\lunar.h" />
-    <ClInclude Include="..\..\src\common\malloc.h" />
     <ClInclude Include="..\..\src\common\marshal\string.h" />
     <ClInclude Include="..\..\src\common\md52.h" />
     <ClInclude Include="..\..\src\common\mmo.h" />
@@ -211,7 +212,6 @@
     <ClInclude Include="..\..\src\common\showmsg.h" />
     <ClInclude Include="..\..\src\common\socket.h" />
     <ClInclude Include="..\..\src\common\sql.h" />
-    <ClInclude Include="..\..\src\common\strlib.h" />
     <ClInclude Include="..\..\src\common\taskmgr.h" />
     <ClInclude Include="..\..\src\common\timer.h" />
     <ClInclude Include="..\..\src\common\utils.h" />
@@ -439,7 +439,7 @@
     <ClInclude Include="..\..\src\map\attackround.h" />
     <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="gameserver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
@@ -450,12 +450,10 @@
     <ClCompile Include="..\..\src\common\detour\DetourNavMeshQuery.cpp" />
     <ClCompile Include="..\..\src\common\detour\DetourNode.cpp" />
     <ClCompile Include="..\..\src\common\kernel.cpp" />
-    <ClCompile Include="..\..\src\common\malloc.cpp" />
     <ClCompile Include="..\..\src\common\md52.cpp" />
     <ClCompile Include="..\..\src\common\showmsg.cpp" />
     <ClCompile Include="..\..\src\common\socket.cpp" />
     <ClCompile Include="..\..\src\common\sql.cpp" />
-    <ClCompile Include="..\..\src\common\strlib.cpp" />
     <ClCompile Include="..\..\src\common\taskmgr.cpp" />
     <ClCompile Include="..\..\src\common\timer.cpp" />
     <ClCompile Include="..\..\src\common\utils.cpp" />
@@ -688,7 +686,7 @@
     <None Include="..\..\icons\gameserver.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="resource.rc" />
+    <ResourceCompile Include="gameserver.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

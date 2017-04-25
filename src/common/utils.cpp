@@ -39,6 +39,21 @@
 *																		*
 ************************************************************************/
 
+
+//--------------------------------------------------
+// Return numerical value of a switch configuration
+// on/off, english, fran<E7>ais, deutsch, espa<F1>ol
+//--------------------------------------------------
+int config_switch(const char* str)
+{
+       if (strcmpi(str, "true") == 0 || strcmpi(str, "on") == 0 || strcmpi(str, "yes") == 0 || strcmpi(str, "oui") == 0 || strcmpi(str, "ja") == 0 || strcmpi(str, "si") == 0)
+               return 1;
+       if (strcmpi(str, "false") == 0 || strcmpi(str, "off") == 0 || strcmpi(str, "no") == 0 || strcmpi(str, "non") == 0 || strcmpi(str, "nein") == 0)
+               return 0;
+
+       return (int)strtol(str, NULL, 0);
+}
+
 int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 {
 	unsigned char hash[16];
@@ -50,6 +65,29 @@ int32 checksum(unsigned char *buf,uint32 buflen, char checkhash[16])
 		return 0;
 	}
 	return -1;
+}
+
+
+/// Produces the hexadecimal representation of the given input.
+/// The output buffer must be at least count*2+1 in size.
+/// Returns true on success, false on failure.
+///
+/// @param output Output string
+/// @param input Binary input buffer
+/// @param count Number of bytes to convert
+bool bin2hex(char* output, unsigned char* input, size_t count)
+{
+    char toHex[] = "0123456789abcdef";
+    size_t i;
+
+    for (i = 0; i < count; ++i)
+    {
+        *output++ = toHex[(*input & 0xF0) >> 4];
+        *output++ = toHex[(*input & 0x0F) >> 0];
+        ++input;
+    }
+    *output = '\0';
+    return true;
 }
 
 /************************************************************************

@@ -26,7 +26,6 @@ This file is part of DarkStar-server source code.
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
 #include "../common/socket.h"
-#include "../common/strlib.h"
 #include "../common/taskmgr.h"
 #include "../common/timer.h"
 #include "../common/utils.h"

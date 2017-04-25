@@ -237,11 +237,11 @@ void message_server_init()
 {
     ChatSqlHandle = Sql_Malloc();
 
-    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login,
-        login_config.mysql_password,
-        login_config.mysql_host,
+    if (Sql_Connect(ChatSqlHandle, login_config.mysql_login.c_str(),
+        login_config.mysql_password.c_str(),
+        login_config.mysql_host.c_str(),
         login_config.mysql_port,
-        login_config.mysql_database) == SQL_ERROR)
+        login_config.mysql_database.c_str()) == SQL_ERROR)
     {
         exit(EXIT_FAILURE);
     }
