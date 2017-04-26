@@ -2496,23 +2496,24 @@ namespace charutils
                 uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
                 uint16 currentSkill = dsp_cap((PChar->RealSkills.skill[i] / 10), 0, dsp_max(MaxMSkill, MaxSSkill)); // working skill before bonuses
                 uint16 artsBaseline = 0; // Level based baseline to which to raise skills
-                if (PChar->GetMJob() < 51)
+                uint8 mLevel = PChar->GetMLevel();
+                if (mLevel < 51)
                 {
-                    artsBaseline = 5 + 2.7 * (PChar->GetMJob() - 1);
+                    artsBaseline = 5 + 2.7 * (mLevel - 1);
                 }
-                else if ((PChar->GetMJob() > 50) && (PChar->GetMJob() < 61))
+                else if ((mLevel > 50) && (mLevel < 61))
                 {
-                    artsBaseline = 137 + 4.7 * (PChar->GetMJob() - 50);
+                    artsBaseline = 137 + 4.7 * (mLevel - 50);
                 }
-                else if ((PChar->GetMJob() > 60) && (PChar->GetMJob() < 71))
+                else if ((mLevel > 60) && (mLevel < 71))
                 {
-                    artsBaseline = 184 + 3.7 * (PChar->GetMJob() - 60);
+                    artsBaseline = 184 + 3.7 * (mLevel - 60);
                 }
-                else if ((PChar->GetMJob() > 70) && (PChar->GetMJob() < 75))
+                else if ((mLevel > 70) && (mLevel < 75))
                 {
-                    artsBaseline = 221 + 5.0 * (PChar->GetMJob() - 70);
+                    artsBaseline = 221 + 5.0 * (mLevel - 70);
                 }
-                else if (PChar->GetMJob() >= 75)
+                else if (mLevel >= 75)
                 {
                     artsBaseline = skillCapD + 36;
                 }
