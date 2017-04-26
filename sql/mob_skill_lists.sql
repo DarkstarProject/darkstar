@@ -2853,8 +2853,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Hadhayosh',817,2391); -- amnesic blast
 INSERT INTO `mob_skill_lists` VALUES ('Hadhayosh',817,2586); -- ecliptic meteor
 -- NOTE: "Meteor" is spell not skill (verified via youtube video) and is cast at 20% and 5% (via script, not spell-List)
 
--- INSERT INTO `mob_skill_lists` VALUES ('Irrlicht',932,2511); -- corpse breath
-
 INSERT INTO `mob_skill_lists` VALUES ('Keesha_Poppo',818,290); -- spinning claw
 INSERT INTO `mob_skill_lists` VALUES ('Keesha_Poppo',818,291); -- claw storm
 INSERT INTO `mob_skill_lists` VALUES ('Keesha_Poppo',818,295); -- magic fruit
@@ -2921,7 +2919,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Bhumi',833,853); -- earthen ward
 INSERT INTO `mob_skill_lists` VALUES ('Bhumi',833,854); -- stone iv
 INSERT INTO `mob_skill_lists` VALUES ('Bhumi',833,855); -- mountain buster
 
--- INSERT INTO `mob_skill_lists` VALUES ('Cannered_Noz',0,2511); -- corpse breath -- shares 932 with Irrlicht
+INSERT INTO `mob_skill_lists` VALUES ('NM_Corpselights',834,2511); -- corpse breath
 
 INSERT INTO `mob_skill_lists` VALUES ('Chloris',835,306); -- scream
 INSERT INTO `mob_skill_lists` VALUES ('Chloris',835,2210); -- petal pirouette
@@ -3355,10 +3353,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,922); -- Blind_Vortex
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,923); -- Giga_Scream
 -- INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,2703); -- Dread_Wind
 
-INSERT INTO `mob_skill_lists` VALUES ('Bugul_Noz',934,2210); -- Petal_Pirouette
-
-INSERT INTO `mob_skill_lists` VALUES ('Bugul_Noz_post_50',935,2210); -- Petal_Pirouette 
--- INSERT INTO `mob_skill_lists` VALUES ('Bugul_Noz_post_50',935,2601); -- Petalback_Spin
+-- 934 free Bugul_Noz',934,2210); -- Petal_Pirouette
 
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,406); -- Hammer_Beak
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,407); -- Poison_Pick
@@ -3367,7 +3362,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,411); -- Baleful_Gaze
 -- INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,1333); -- Contagion Transfer
 
 INSERT INTO `mob_skill_lists` VALUES ('Cuijatender',937,304); -- Photosynthesis
--- INSERT INTO `mob_skill_lists` VALUES ('Cuijatender',937,2704); -- ???_Needles
+INSERT INTO `mob_skill_lists` VALUES ('Cuijatender',937,2704); -- ???_Needles
 
 INSERT INTO `mob_skill_lists` VALUES ('Dragua',938,1299); -- Typhoon_Wing
 INSERT INTO `mob_skill_lists` VALUES ('Dragua',938,1301); -- Geotic_Breath
@@ -3376,8 +3371,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Dragua',938,1306); -- Horrid_Roar_3
 -- INSERT INTO `mob_skill_lists` VALUES ('Dragua',938,2702); -- Terra_Wing
 
 INSERT INTO `mob_skill_lists` VALUES ('Emperador_de_Altepa',939,322); -- 1000_Needles
--- INSERT INTO `mob_skill_lists` VALUES ('Emperador_de_Altepa',939,1625); -- 2000_Needles
--- INSERT INTO `mob_skill_lists` VALUES ('Emperador_de_Altepa',939,1626); -- 4000_Needles
+INSERT INTO `mob_skill_lists` VALUES ('Emperador_de_Altepa',939,1625); -- 2000_Needles
+INSERT INTO `mob_skill_lists` VALUES ('Emperador_de_Altepa',939,1626); -- 4000_Needles
 
 INSERT INTO `mob_skill_lists` VALUES ('Hazhdiha',940,645); -- Body_Slam
 INSERT INTO `mob_skill_lists` VALUES ('Hazhdiha',940,646); -- Heavy_Stomp
