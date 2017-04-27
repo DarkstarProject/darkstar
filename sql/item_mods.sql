@@ -1767,7 +1767,6 @@ INSERT INTO `item_mods` VALUES (10664,1,23);      -- Summoner's Horn +2: DEF 23
 INSERT INTO `item_mods` VALUES (10664,5,42);      -- MP +42
 INSERT INTO `item_mods` VALUES (10664,346,3);     -- Avatar perpetuation cost -3
 INSERT INTO `item_mods` VALUES (10664,357,5);     -- Blood Pact ability delay -5
-INSERT INTO `item_mods` VALUES (10664,357,5);     -- Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (10665,1,31);
 INSERT INTO `item_mods` VALUES (10665,2,21);
 INSERT INTO `item_mods` VALUES (10665,8,5);
