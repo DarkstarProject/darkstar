@@ -24,6 +24,47 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
 -- -------------------------------------------------------
+-- Marine Boxers +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10338, 5, 20, 52, 0);   -- Sunny weather: MP+20
+-- From BG wiki: Sunny weather is the default weather with no icon.
+
+-- -------------------------------------------------------
+-- Marine Shorts +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10339, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- Woodsy Boxers +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10340, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- Woodsy Shorts +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10341, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- Creek Boxers +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10342, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- Creek Shorts +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10343, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- River Shorts +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10344, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
+-- Dune Boxers +1
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(10345, 5, 20, 52, 0);   -- Sunny weather: MP+20
+
+-- -------------------------------------------------------
 -- Oneiros Ring
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11671, 302, 2, 55, 100); -- Triple Attack +2% when mp is greater than or equal to 100
@@ -37,6 +78,11 @@ INSERT INTO `item_latents` VALUES(13178, 8, 4, 25, 0); -- Auditory Torque, STR+4
 INSERT INTO `item_latents` VALUES(13178, 10, 4, 25, 0); -- Auditory Torque, VIT+4 song/roll active
 
 -- -------------------------------------------------------
+-- Sorcerer's Ring
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76); -- "Magic Atk. Bonus"+10 while HP <76% and TP <100%
+
+-- -------------------------------------------------------
 --  Opo-opo crown
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(13870, 2, 50, 49, 4468); -- HP +50 (pamamas)
@@ -48,24 +94,24 @@ INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
 
 INSERT INTO `item_latents` VALUES(14725, 68, 5, 25, 0); -- Melody Earring, EVA+5 song/roll active
 INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EVA+6 song/roll active
+INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+4 if WAR is in party
+INSERT INTO `item_latents` VALUES(16015, 2, 20, 22, 2); -- Esse Earring, HP+20 if MNK is in party
+INSERT INTO `item_latents` VALUES(16016, 27, -1, 22, 3); -- Chary Earring, Enmity-1 if WHM is in party
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
+INSERT INTO `item_latents` VALUES(16019, 9, 1, 22, 6); -- Forte Earring, DEX+1 if THF is in party
+INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
+INSERT INTO `item_latents` VALUES(16021, 8, 1, 22, 8); -- Brawn Earring, STR+1 if DRK is in party
+INSERT INTO `item_latents` VALUES(16023, 14, 1, 22, 10); -- Mystique Earring, CHR+1 if BRD is in party
+INSERT INTO `item_latents` VALUES(16024, 24, 1, 22, 11); -- Impetus Earring, RATT+1 if RNG is in party
+INSERT INTO `item_latents` VALUES(16025, 73, 1, 22, 12); -- Rathe Earring, Store TP+1 if SAM is in party
+INSERT INTO `item_latents` VALUES(16026, 68, 4, 22, 13); -- Elan Earring, EVA+4 if NIN is in party
+INSERT INTO `item_latents` VALUES(16027, 25, 1, 22, 14); -- Seeker Earring, ACC+1 if DRG is in party
+INSERT INTO `item_latents` VALUES(16028, 5, 15, 22, 15); -- Psyche Earring, MP+15 if SMN is in party
 INSERT INTO `item_latents` VALUES(16029, 2, 10, 22, 16); -- Booster Earring, HP+10 if BLU is in party
 INSERT INTO `item_latents` VALUES(16029, 5, 10, 22, 16); -- Booster Earring, MP+10 if BLU is in party
-INSERT INTO `item_latents` VALUES(16021, 8, 1, 22, 8); -- Brawn Earring, STR+1 if DRK is in party
-INSERT INTO `item_latents` VALUES(16016, 27, -1, 22, 3); -- Chary Earring, Enmity-1 if WHM is in party
-INSERT INTO `item_latents` VALUES(16015, 2, 20, 22, 2); -- Esse Earring, HP+20 if MNK is in party
-INSERT INTO `item_latents` VALUES(16026, 68, 4, 22, 13); -- Elan Earring, EVA+4 if NIN is in party
-INSERT INTO `item_latents` VALUES(16019, 9, 1, 22, 6); -- Forte Earring, DEX+1 if THF is in party
-INSERT INTO `item_latents` VALUES(16024, 24, 1, 22, 11); -- Impetus Earring, RATT+1 if RNG is in party
-INSERT INTO `item_latents` VALUES(16032, 289, 3, 22, 19); -- Muffle Earring, Subtle Blow +3 if DNC is in party
-INSERT INTO `item_latents` VALUES(16023, 14, 1, 22, 10); -- Mystique Earring, CHR+1 if BRD is in party
-INSERT INTO `item_latents` VALUES(16028, 5, 15, 22, 15); -- Psyche Earring, MP+15 if SMN is in party
-INSERT INTO `item_latents` VALUES(16025, 73, 1, 22, 12); -- Rathe Earring, Store TP+1 if SAM is in party
-INSERT INTO `item_latents` VALUES(16027, 25, 1, 22, 14); -- Seeker Earring, ACC+1 if DRG is in party
 INSERT INTO `item_latents` VALUES(16030, 26, 1, 22, 17); -- Soarer Earring, RACC+1 if COR is in party
-INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+4 if WAR is in party
-INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
+INSERT INTO `item_latents` VALUES(16032, 289, 3, 22, 19); -- Muffle Earring, Subtle Blow +3 if DNC is in party
 INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, Healing MP +1 if SCH is in party
 INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0); -- Hototogisu, parry skill +5 song/roll active
 INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
@@ -92,11 +138,6 @@ INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 
 
 INSERT INTO `item_latents` VALUES(28235,169,25,26,2);      -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256,169,25,26,2);      -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
-
--- -------------------------------------------------------
--- Sorcerer's Ring
--- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13289, 28, 10, 2, 76); -- "Magic Atk. Bonus"+10 while HP <76% and TP <100%
 
 -- -------------------------------------------------------
 -- Carapace Gauntlets

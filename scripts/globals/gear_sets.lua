@@ -116,6 +116,7 @@ local GearSets =  {
              {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{MOD_CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
              {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{MOD_DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
              {id = 112, items = {10315,10598},  matches = 2, matchType = matchtype.any, mods = {{MOD_DMGMAGIC, -5, 0, 0}} }, -- Alcedo Cuisses and Gauntlets: Magic damage taken -5%
+             {id = 113, items = {10474,10523,10554,10620,10901}, matches = 5, matchType = matchtype.any, mods = {{MOD_STR, 15, 0, 0}, {MOD_VIT, 15, 0, 0}, {MOD_INT, 15, 0, 0}, {MOD_MND, 15, 0, 0}} }, --  Phorcys Armor Set: Set Increases STR, VIT, INT, MND. Bonus is +2 Stats for 2 pieces, +5 for 3 pieces, +10 for 4 pieces, and +15 for 5 pieces
         }
              -- increment id by (number of mods in previous gearset - 1)
 
@@ -123,7 +124,8 @@ local GearSets =  {
 
 local HipsterSets = {
     -- stick the ids of sets that need their own handling here e.g. Rubeus
-    {id = 34, hipster = true}
+    {id = 34, hipster = true},
+    {id = 113, hipster = true}
 }
 
 ------------------------------------------
@@ -255,6 +257,18 @@ function HandleHipsterSet(player, gearset, matches)
         end;
         -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_FASTCAST, modValue);
         player:addGearSetMod(gearset.id, MOD_FASTCAST, modValue);
+        return;
+    elseif (gearset.id == 113) then
+        local modValues = {0, 2, 5, 10, 15};
+        --  Phorcys Armor Set: Set Increases STR, VIT, INT, MND. Bonus is +2 Stats for 2 pieces, +5 for 3 pieces, +10 for 4 pieces, and +15 for 5 pieces
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_STR, modValues);
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_VIT, modValues);
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_INT, modValues);
+        -- printf("we have a special snowflake | gearset: %u | mod %u %u", gearset.id, MOD_MND, modValues);
+        player:addGearSetMod(gearset.id, MOD_STR, modValues[matches]);
+        player:addGearSetMod(gearset.id, MOD_VIT, modValues[matches]);
+        player:addGearSetMod(gearset.id, MOD_INT, modValues[matches]);
+        player:addGearSetMod(gearset.id, MOD_MND, modValues[matches]);
         return;
     end
 end
