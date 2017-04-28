@@ -13,7 +13,6 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
-    local master = automaton:getMaster()
     local maneuvers = master:countEffect(EFFECT_EARTH_MANEUVER)
     local pMod = math.max(automaton:getSkillLevel(22), automaton:getSkillLevel(23), automaton:getSkillLevel(24))
     local duration = 180

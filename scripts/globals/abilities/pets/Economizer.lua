@@ -13,7 +13,6 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
-    local master = automaton:getMaster()
     local maneuvers = master:countEffect(EFFECT_DARK_MANEUVER)
     local amount = math.floor(automaton:getMaxMP() * 0.2 * maneuvers)
     skill:setMsg(224) -- no message for this, recovers MP

@@ -13,7 +13,6 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
-    local master = automaton:getMaster()
     local maneuvers = master:countEffect(EFFECT_WIND_MANEUVER)
     local duration = 300
     local shadows = 1 + maneuvers -- math.floor(maneuvers * 3.5) currently on retail
