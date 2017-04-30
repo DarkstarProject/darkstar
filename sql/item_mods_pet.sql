@@ -50,6 +50,18 @@ INSERT INTO `item_mods_pet` VALUES (10296,30,3,3);        -- Automaton:MACC
 INSERT INTO `item_mods_pet` VALUES (10299,288,2,0);       -- Pet:Double Atk+2%
 
 -- -------------------------------------------------------
+-- 	Enif Gambieras - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (10367,2,80,2);        -- Wyvern: HP+80
+
+-- -------------------------------------------------------
+-- Shedir Crackows - LVL 99
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (10370,28,3,1);        -- Avatar: Enhances Magic Atk. Bonus +3
+INSERT INTO `item_mods_pet` VALUES (10370,30,3,1);        -- Avatar: Enhances magic accuracy ??? (Using +3, since all other values are)
+-- INSERT INTO `item_mods_pet` VALUES (10370,??,3,1);     -- Avatar: Increases Blood Pact damage +3%
+
+-- -------------------------------------------------------
 -- Murzim Zucchetto - LVL 99
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (10440,384,61,3);      -- Automaton: Haste+6%

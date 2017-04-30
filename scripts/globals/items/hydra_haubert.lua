@@ -1,6 +1,6 @@
 -----------------------------------------
 -- ID: 15170
--- Item: Stoneskin torque
+-- Item: Hydra Haubert
 -- Item Effect: gives refresh
 -----------------------------------------
 
