@@ -1096,7 +1096,8 @@ namespace petutils
 
         Pet_t* PPetData = g_PPetList.at(PetID);
 
-        if (PMaster->objtype == TYPE_PC){
+        if (PMaster->objtype == TYPE_PC)
+        {
             ((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
             ((CCharEntity*)PMaster)->petZoningInfo.respawnPet = true;
 	}
@@ -1220,7 +1221,7 @@ namespace petutils
         PPet->loc = PMaster->loc;
 
 
-	//assigning petType num to petZoningInfo
+        //assigning petType num to petZoningInfo
         ((CCharEntity*)PMaster)->petZoningInfo.petType = petType;
 
         // spawn me randomly around master
@@ -1374,7 +1375,7 @@ namespace petutils
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 		
-	//finalizing petZoningInfo	
+        //finalizing petZoningInfo	
         ((CCharEntity*)PMaster)->petZoningInfo.petHP = PPet->GetMaxHP();
         ((CCharEntity*)PMaster)->petZoningInfo.petMP = PPet->GetMaxMP();
 
