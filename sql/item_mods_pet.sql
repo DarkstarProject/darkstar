@@ -544,6 +544,12 @@ INSERT INTO `item_mods_pet` VALUES (27005,25,28,1);       -- Avatar: Accuracy +2
 INSERT INTO `item_mods_pet` VALUES (27005,384,31,1);      -- Avatar: Haste +3%
 
 -- -------------------------------------------------------
+-- 
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (27080,25,20,1);	-- Avatar: ACC +20
+INSERT INTO `item_mods_pet` VALUES (27081,25,30,1);	-- Avatar: ACC +30
+
+-- -------------------------------------------------------
 -- Glyphic Spats
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (27180,30,10,1);       -- Avatar: Magic Accuracy +10
@@ -556,6 +562,12 @@ INSERT INTO `item_mods_pet` VALUES (27181,30,13,1);       -- Avatar: Magic Accur
 -- INSERT INTO `item_mods_pet` VALUES (27181,???,???,1);  -- Avatar: Shortens magic recast time for spirits
 
 -- -------------------------------------------------------
+-- 
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);	-- Avatar: TP Bonus +550
+INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);	-- Avatar: TP Bonus +600
+
+-- -------------------------------------------------------
 -- Glyphic Pigaches
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (27356,23,28,1);       -- Avatar: Attack +25
@@ -566,6 +578,12 @@ INSERT INTO `item_mods_pet` VALUES (27356,562,7,1);       -- Avatar: Magic criti
 -- -------------------------------------------------------
 INSERT INTO `item_mods_pet` VALUES (27357,23,28,1);       -- Avatar: Attack +28
 INSERT INTO `item_mods_pet` VALUES (27357,562,9,1);       -- Avatar: Magic critical hit rate +9%
+
+-- -------------------------------------------------------
+-- 
+-- -------------------------------------------------------
+INSERT INTO `item_mods_pet` VALUES (27439,30,17,1); 	-- Avatar: MACC +17
+INSERT INTO `item_mods_pet` VALUES (27440,30,27,1); 	-- Avatar: MACC +27
 
 -- -------------------------------------------------------
 -- Convoker's Horn
