@@ -32424,7 +32424,7 @@ INSERT INTO `item_mods` VALUES (26768,31,54);     -- MEVA
 INSERT INTO `item_mods` VALUES (26768,68,16);     -- EVA
 INSERT INTO `item_mods` VALUES (26768,117,11);    -- Summoning Magic Skill
 INSERT INTO `item_mods` VALUES (26768,369,2);     -- Refresh
-INSERT INTO `item_mods` VALUES (26768,384,50);    -- Haste
+INSERT INTO `item_mods` VALUES (26768,384,51);    -- Haste
 INSERT INTO `item_mods` VALUES (26769,1,93);      -- Beckoner's Horn +1: DEF
 INSERT INTO `item_mods` VALUES (26769,2,31);      -- HP
 INSERT INTO `item_mods` VALUES (26769,5,134);     -- MP
@@ -32440,7 +32440,7 @@ INSERT INTO `item_mods` VALUES (26769,31,80);     -- MEVA
 INSERT INTO `item_mods` VALUES (26769,68,36);     -- EVA
 INSERT INTO `item_mods` VALUES (26769,117,13);    -- Summoning Magic Skill
 INSERT INTO `item_mods` VALUES (26769,369,2);     -- Refresh
-INSERT INTO `item_mods` VALUES (26769,384,60);    -- Haste
+INSERT INTO `item_mods` VALUES (26769,384,61);    -- Haste
 INSERT INTO `item_mods` VALUES (26770,1,71);
 INSERT INTO `item_mods` VALUES (26770,2,17);
 INSERT INTO `item_mods` VALUES (26770,5,29);
@@ -36603,7 +36603,7 @@ INSERT INTO `item_mods` VALUES (27266,29,6);      -- MDEF
 INSERT INTO `item_mods` VALUES (27266,31,107);    -- MEVA
 INSERT INTO `item_mods` VALUES (27266,68,33);     -- EVA
 INSERT INTO `item_mods` VALUES (27266,117,20);    -- Summ. Magic Skill
-INSERT INTO `item_mods` VALUES (27266,384,50);    -- Haste
+INSERT INTO `item_mods` VALUES (27266,384,51);    -- Haste
 INSERT INTO `item_mods` VALUES (27267,1,78);
 INSERT INTO `item_mods` VALUES (27267,2,21);
 INSERT INTO `item_mods` VALUES (27267,5,26);
