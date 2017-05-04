@@ -32409,38 +32409,38 @@ INSERT INTO `item_mods` VALUES (26767,31,48);
 INSERT INTO `item_mods` VALUES (26767,68,36);
 INSERT INTO `item_mods` VALUES (26767,87,17);
 INSERT INTO `item_mods` VALUES (26767,384,71);
-INSERT INTO `item_mods` VALUES (26768,1,69); 	-- DEF
-INSERT INTO `item_mods` VALUES (26768,2,15);	-- HP 
-INSERT INTO `item_mods` VALUES (26768,5,103);	-- MP 
-INSERT INTO `item_mods` VALUES (26768,8,8);		-- STR
-INSERT INTO `item_mods` VALUES (26768,9,9);		-- DEX
-INSERT INTO `item_mods` VALUES (26768,10,9);	-- Vit
-INSERT INTO `item_mods` VALUES (26768,11,9);	-- Agi
-INSERT INTO `item_mods` VALUES (26768,12,12);	-- INT
-INSERT INTO `item_mods` VALUES (26768,13,12);	-- MND
-INSERT INTO `item_mods` VALUES (26768,14,12);	-- CHR
-INSERT INTO `item_mods` VALUES (26768,29,3);	-- MDEF
-INSERT INTO `item_mods` VALUES (26768,31,54);	-- MEVA
-INSERT INTO `item_mods` VALUES (26768,68,16);	-- EVA
-INSERT INTO `item_mods` VALUES (26768,117,11);	-- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26768,369,2);	-- Refresh
-INSERT INTO `item_mods` VALUES (26768,384,50);	-- Haste
-INSERT INTO `item_mods` VALUES (26769,1,93); 	-- DEF
-INSERT INTO `item_mods` VALUES (26769,2,31);	-- HP 
-INSERT INTO `item_mods` VALUES (26769,5,134);	-- MP 
-INSERT INTO `item_mods` VALUES (26769,8,14);	-- STR
-INSERT INTO `item_mods` VALUES (26769,9,15);	-- DEX
-INSERT INTO `item_mods` VALUES (26769,10,15);	-- Vit
-INSERT INTO `item_mods` VALUES (26769,11,15);	-- Agi
-INSERT INTO `item_mods` VALUES (26769,12,20);	-- INT
-INSERT INTO `item_mods` VALUES (26769,13,20);	-- MND
-INSERT INTO `item_mods` VALUES (26769,14,20);	-- CHR
-INSERT INTO `item_mods` VALUES (26769,29,6);	-- MDEF
-INSERT INTO `item_mods` VALUES (26769,31,80);	-- MEVA
-INSERT INTO `item_mods` VALUES (26769,68,36);	-- EVA
-INSERT INTO `item_mods` VALUES (26769,117,13);	-- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26769,369,2);	-- Refresh
-INSERT INTO `item_mods` VALUES (26769,384,60);	-- Haste
+INSERT INTO `item_mods` VALUES (26768,1,69); -- DEF:69 HP+15 MP+103 STR+8 DEX+9 VIT+9 AGI+9 INT+12 MND+12 CHR+12 Evasion+16 Magic Evasion+54 "Magic Def. Bonus"+3 Haste+5% Summoning magic skill +11 "Avatar's Favor"+2 "Refresh"+2 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (26768,2,15); -- HP 
+INSERT INTO `item_mods` VALUES (26768,5,103); -- MP 
+INSERT INTO `item_mods` VALUES (26768,8,8);	-- STR
+INSERT INTO `item_mods` VALUES (26768,9,9);	-- DEX
+INSERT INTO `item_mods` VALUES (26768,10,9); -- Vit
+INSERT INTO `item_mods` VALUES (26768,11,9); -- Agi
+INSERT INTO `item_mods` VALUES (26768,12,12); -- INT
+INSERT INTO `item_mods` VALUES (26768,13,12); -- MND
+INSERT INTO `item_mods` VALUES (26768,14,12); -- CHR
+INSERT INTO `item_mods` VALUES (26768,29,3); -- MDEF
+INSERT INTO `item_mods` VALUES (26768,31,54); -- MEVA
+INSERT INTO `item_mods` VALUES (26768,68,16); -- EVA
+INSERT INTO `item_mods` VALUES (26768,117,11); -- Summoning Magic Skill
+INSERT INTO `item_mods` VALUES (26768,369,2); -- Refresh
+INSERT INTO `item_mods` VALUES (26768,384,50); -- Haste
+INSERT INTO `item_mods` VALUES (26769,1,93); 	-- DEF:93 HP+31 MP+134 STR+14 DEX+15 VIT+15 AGI+15 INT+20 MND+20 CHR+20 Evasion+36 Magic Evasion+80 "Magic Def. Bonus"+6 Haste+6% Summoning magic skill +13 "Avatar's Favor"+3 "Refresh"+2 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (26769,2,31); -- HP 
+INSERT INTO `item_mods` VALUES (26769,5,134); -- MP 
+INSERT INTO `item_mods` VALUES (26769,8,14); -- STR
+INSERT INTO `item_mods` VALUES (26769,9,15); -- DEX
+INSERT INTO `item_mods` VALUES (26769,10,15); -- Vit
+INSERT INTO `item_mods` VALUES (26769,11,15); -- Agi
+INSERT INTO `item_mods` VALUES (26769,12,20); -- INT
+INSERT INTO `item_mods` VALUES (26769,13,20); -- MND
+INSERT INTO `item_mods` VALUES (26769,14,20); -- CHR
+INSERT INTO `item_mods` VALUES (26769,29,6); -- MDEF
+INSERT INTO `item_mods` VALUES (26769,31,80); -- MEVA
+INSERT INTO `item_mods` VALUES (26769,68,36); -- EVA
+INSERT INTO `item_mods` VALUES (26769,117,13); -- Summoning Magic Skill
+INSERT INTO `item_mods` VALUES (26769,369,2); -- Refresh
+INSERT INTO `item_mods` VALUES (26769,384,60); -- Haste
 INSERT INTO `item_mods` VALUES (26770,1,71);
 INSERT INTO `item_mods` VALUES (26770,2,17);
 INSERT INTO `item_mods` VALUES (26770,5,29);
@@ -33907,38 +33907,38 @@ INSERT INTO `item_mods` VALUES (26925,31,59);
 INSERT INTO `item_mods` VALUES (26925,68,44);
 INSERT INTO `item_mods` VALUES (26925,73,12);
 INSERT INTO `item_mods` VALUES (26925,384,30);
-INSERT INTO `item_mods` VALUES (26926,1,91); 	-- DEF
-INSERT INTO `item_mods` VALUES (26926,2,25);	-- HP 
-INSERT INTO `item_mods` VALUES (26926,5,135);	-- MP 
-INSERT INTO `item_mods` VALUES (26926,8,14);	-- STR
-INSERT INTO `item_mods` VALUES (26926,9,12);	-- DEX
-INSERT INTO `item_mods` VALUES (26926,10,14);	-- Vit
-INSERT INTO `item_mods` VALUES (26926,11,12);	-- Agi
-INSERT INTO `item_mods` VALUES (26926,12,18);	-- INT
-INSERT INTO `item_mods` VALUES (26926,13,18);	-- MND
-INSERT INTO `item_mods` VALUES (26926,14,18);	-- CHR
-INSERT INTO `item_mods` VALUES (26926,29,3);	-- MDEF
-INSERT INTO `item_mods` VALUES (26926,31,54);	-- MEVA
-INSERT INTO `item_mods` VALUES (26926,68,20);	-- EVA
-INSERT INTO `item_mods` VALUES (26926,117,12);	-- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26926,346,5);	-- Aatar Perp Cost. 
-INSERT INTO `item_mods` VALUES (26926,384,20);	-- Haste
-INSERT INTO `item_mods` VALUES (26927,1,123); 	-- DEF
-INSERT INTO `item_mods` VALUES (26927,2,54);	-- HP 
-INSERT INTO `item_mods` VALUES (26927,5,151);	-- MP 
-INSERT INTO `item_mods` VALUES (26927,8,23);	-- STR
-INSERT INTO `item_mods` VALUES (26927,9,19);	-- DEX
-INSERT INTO `item_mods` VALUES (26927,10,23);	-- Vit
-INSERT INTO `item_mods` VALUES (26927,11,20);	-- Agi
-INSERT INTO `item_mods` VALUES (26927,12,29);	-- INT
-INSERT INTO `item_mods` VALUES (26927,13,29);	-- MND
-INSERT INTO `item_mods` VALUES (26927,14,29);	-- CHR
-INSERT INTO `item_mods` VALUES (26927,29,6);	-- MDEF
-INSERT INTO `item_mods` VALUES (26927,31,80);	-- MEVA
-INSERT INTO `item_mods` VALUES (26927,68,44);	-- EVA
-INSERT INTO `item_mods` VALUES (26927,117,14);	-- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26927,346,6);	-- Aatar Perp Cost. 
-INSERT INTO `item_mods` VALUES (26927,384,30);	-- Haste
+INSERT INTO `item_mods` VALUES (26926,1,91); -- DEF:91 HP+25 MP+135 STR+14 DEX+12 VIT+14 AGI+12 INT+18 MND+18 CHR+18 Evasion+20 Magic Evasion+54 "Magic Def. Bonus"+3 Haste+2% Summoning magic skill +12 Avatar perpetuation cost -5 Avatar: "Blood Pact" damage +10 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (26926,2,25); -- HP 
+INSERT INTO `item_mods` VALUES (26926,5,135); -- MP 
+INSERT INTO `item_mods` VALUES (26926,8,14); -- STR
+INSERT INTO `item_mods` VALUES (26926,9,12); -- DEX
+INSERT INTO `item_mods` VALUES (26926,10,14); -- Vit
+INSERT INTO `item_mods` VALUES (26926,11,12); -- Agi
+INSERT INTO `item_mods` VALUES (26926,12,18); -- INT
+INSERT INTO `item_mods` VALUES (26926,13,18); -- MND
+INSERT INTO `item_mods` VALUES (26926,14,18); -- CHR
+INSERT INTO `item_mods` VALUES (26926,29,3); -- MDEF
+INSERT INTO `item_mods` VALUES (26926,31,54); -- MEVA
+INSERT INTO `item_mods` VALUES (26926,68,20); -- EVA
+INSERT INTO `item_mods` VALUES (26926,117,12); -- Summoning Magic Skill
+INSERT INTO `item_mods` VALUES (26926,346,5); -- Aatar Perp Cost. 
+INSERT INTO `item_mods` VALUES (26926,384,20); -- Haste
+INSERT INTO `item_mods` VALUES (26927,1,123); -- DEF:123 HP+54 MP+151 STR+23 DEX+19 VIT+23 AGI+20 INT+29 MND+29 CHR+29 Evasion+44 Magic Evasion+80 "Magic Def. Bonus"+6 Haste+3% Summoning magic skill +14 Avatar perpetuation cost -6 Avatar: "Blood Pact" damage +11 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (26927,2,54); -- HP 
+INSERT INTO `item_mods` VALUES (26927,5,151); -- MP 
+INSERT INTO `item_mods` VALUES (26927,8,23); -- STR
+INSERT INTO `item_mods` VALUES (26927,9,19); -- DEX
+INSERT INTO `item_mods` VALUES (26927,10,23); -- Vit
+INSERT INTO `item_mods` VALUES (26927,11,20); -- Agi
+INSERT INTO `item_mods` VALUES (26927,12,29); -- INT
+INSERT INTO `item_mods` VALUES (26927,13,29); -- MND
+INSERT INTO `item_mods` VALUES (26927,14,29); -- CHR
+INSERT INTO `item_mods` VALUES (26927,29,6); -- MDEF
+INSERT INTO `item_mods` VALUES (26927,31,80); -- MEVA
+INSERT INTO `item_mods` VALUES (26927,68,44); -- EVA
+INSERT INTO `item_mods` VALUES (26927,117,14); -- Summoning Magic Skill
+INSERT INTO `item_mods` VALUES (26927,346,6); -- Aatar Perp Cost. 
+INSERT INTO `item_mods` VALUES (26927,384,30); -- Haste
 INSERT INTO `item_mods` VALUES (26928,1,92);
 INSERT INTO `item_mods` VALUES (26928,2,27);
 INSERT INTO `item_mods` VALUES (26928,5,51);
@@ -35258,38 +35258,38 @@ INSERT INTO `item_mods` VALUES (27079,31,32);
 INSERT INTO `item_mods` VALUES (27079,68,24);
 INSERT INTO `item_mods` VALUES (27079,288,5);
 INSERT INTO `item_mods` VALUES (27079,384,40);
-INSERT INTO `item_mods` VALUES (27080,1,60); 	-- DEF
-INSERT INTO `item_mods` VALUES (27080,2,8);		-- HP 
-INSERT INTO `item_mods` VALUES (27080,5,86);	-- MP 
-INSERT INTO `item_mods` VALUES (27080,8,4);		-- STR
-INSERT INTO `item_mods` VALUES (27080,9,17);	-- DEX
-INSERT INTO `item_mods` VALUES (27080,10,15);	-- Vit
-INSERT INTO `item_mods` VALUES (27080,11,3);	-- Agi
-INSERT INTO `item_mods` VALUES (27080,12,12);	-- INT
-INSERT INTO `item_mods` VALUES (27080,13,21);	-- MND
-INSERT INTO `item_mods` VALUES (27080,14,12);	-- CHR
-INSERT INTO `item_mods` VALUES (27080,29,1);	-- MDEF
-INSERT INTO `item_mods` VALUES (27080,31,29);	-- MEVA
-INSERT INTO `item_mods` VALUES (27080,68,10);	-- EVA
-INSERT INTO `item_mods` VALUES (27080,372,50);  -- Halves Perp. cost depending on weather
-INSERT INTO `item_mods` VALUES (27080,373,50);  -- Halves Perp. cost depending on day
-INSERT INTO `item_mods` VALUES (27080,384,30);	-- Haste
-INSERT INTO `item_mods` VALUES (27081,1,82); 	-- DEF
-INSERT INTO `item_mods` VALUES (27081,2,18);	-- HP 
-INSERT INTO `item_mods` VALUES (27081,5,94);	-- MP 
-INSERT INTO `item_mods` VALUES (27081,8,6);		-- STR
-INSERT INTO `item_mods` VALUES (27081,9,28);	-- DEX
-INSERT INTO `item_mods` VALUES (27081,10,24);	-- Vit
-INSERT INTO `item_mods` VALUES (27081,11,5);	-- Agi
-INSERT INTO `item_mods` VALUES (27081,12,19);	-- INT
-INSERT INTO `item_mods` VALUES (27081,13,33);	-- MND
-INSERT INTO `item_mods` VALUES (27081,14,20);	-- CHR
-INSERT INTO `item_mods` VALUES (27081,29,3);	-- MDEF
-INSERT INTO `item_mods` VALUES (27081,31,43);	-- MEVA
-INSERT INTO `item_mods` VALUES (27081,68,22);	-- EVA
-INSERT INTO `item_mods` VALUES (27081,372,50);  -- Halves Perp. cost depending on weather
-INSERT INTO `item_mods` VALUES (27081,373,50);  -- Halves Perp. cost depending on day
-INSERT INTO `item_mods` VALUES (27081,384,30);	-- Haste
+INSERT INTO `item_mods` VALUES (27080,1,60); -- DEF:60 HP+8 MP+86 STR+4 DEX+17 VIT+15 AGI+3 INT+12 MND+21 CHR+12 Evasion+10 Magic Evasion+29 "Magic Def. Bonus"+1 Haste+3% "Mana Cede"+110 Depending on day or weather: Halves avatar perpetuation cost Avatar: Accuracy+20 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27080,2,8);	-- HP 
+INSERT INTO `item_mods` VALUES (27080,5,86); -- MP 
+INSERT INTO `item_mods` VALUES (27080,8,4); -- STR
+INSERT INTO `item_mods` VALUES (27080,9,17); -- DEX
+INSERT INTO `item_mods` VALUES (27080,10,15); -- Vit
+INSERT INTO `item_mods` VALUES (27080,11,3); -- Agi
+INSERT INTO `item_mods` VALUES (27080,12,12); -- INT
+INSERT INTO `item_mods` VALUES (27080,13,21); -- MND
+INSERT INTO `item_mods` VALUES (27080,14,12); -- CHR
+INSERT INTO `item_mods` VALUES (27080,29,1); -- MDEF
+INSERT INTO `item_mods` VALUES (27080,31,29); -- MEVA
+INSERT INTO `item_mods` VALUES (27080,68,10); -- EVA
+INSERT INTO `item_mods` VALUES (27080,372,50); -- Halves Perp. cost depending on weather
+INSERT INTO `item_mods` VALUES (27080,373,50); -- Halves Perp. cost depending on day
+INSERT INTO `item_mods` VALUES (27080,384,30); -- Haste
+INSERT INTO `item_mods` VALUES (27081,1,82); -- DEF:82 HP+18 MP+94 STR+6 DEX+28 VIT+24 AGI+5 INT+19 MND+33 CHR+20 Evasion+22 Magic Evasion+43 "Magic Def. Bonus"+3 Haste+3% "Mana Cede"+120 Depending on day or weather: Halves avatar perpetuation cost Avatar: Accuracy+30 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27081,2,18); -- HP 
+INSERT INTO `item_mods` VALUES (27081,5,94); -- MP 
+INSERT INTO `item_mods` VALUES (27081,8,6);	-- STR
+INSERT INTO `item_mods` VALUES (27081,9,28); -- DEX
+INSERT INTO `item_mods` VALUES (27081,10,24); -- Vit
+INSERT INTO `item_mods` VALUES (27081,11,5); -- Agi
+INSERT INTO `item_mods` VALUES (27081,12,19); -- INT
+INSERT INTO `item_mods` VALUES (27081,13,33); -- MND
+INSERT INTO `item_mods` VALUES (27081,14,20); -- CHR
+INSERT INTO `item_mods` VALUES (27081,29,3); -- MDEF
+INSERT INTO `item_mods` VALUES (27081,31,43); -- MEVA
+INSERT INTO `item_mods` VALUES (27081,68,22); -- EVA
+INSERT INTO `item_mods` VALUES (27081,372,50); -- Halves Perp. cost depending on weather
+INSERT INTO `item_mods` VALUES (27081,373,50); -- Halves Perp. cost depending on day
+INSERT INTO `item_mods` VALUES (27081,384,30); -- Haste
 INSERT INTO `item_mods` VALUES (27082,1,61);
 INSERT INTO `item_mods` VALUES (27082,2,11);
 INSERT INTO `item_mods` VALUES (27082,5,14);
@@ -36576,34 +36576,34 @@ INSERT INTO `item_mods` VALUES (27264,31,80);
 INSERT INTO `item_mods` VALUES (27264,68,24);
 INSERT INTO `item_mods` VALUES (27264,384,51);
 INSERT INTO `item_mods` VALUES (27264,421,11);
-INSERT INTO `item_mods` VALUES (27265,1,76); 	-- DEF
-INSERT INTO `item_mods` VALUES (27265,2,19);	-- HP 
-INSERT INTO `item_mods` VALUES (27265,5,106);	-- MP 
-INSERT INTO `item_mods` VALUES (27265,8,15);	-- STR
-INSERT INTO `item_mods` VALUES (27265,10,8);	-- Vit
-INSERT INTO `item_mods` VALUES (27265,11,11);	-- Agi
-INSERT INTO `item_mods` VALUES (27265,12,22);	-- INT
-INSERT INTO `item_mods` VALUES (27265,13,14);	-- MND
-INSERT INTO `item_mods` VALUES (27265,14,12);	-- CHR
-INSERT INTO `item_mods` VALUES (27265,29,3);	-- MDEF
-INSERT INTO `item_mods` VALUES (27265,31,73);	-- MEVA
-INSERT INTO `item_mods` VALUES (27265,68,15);	-- EVA
-INSERT INTO `item_mods` VALUES (27265,117,15);	-- Summ. Magic Skill 
-INSERT INTO `item_mods` VALUES (27265,384,40);	-- Haste
-INSERT INTO `item_mods` VALUES (27266,1,102); 	-- DEF
-INSERT INTO `item_mods` VALUES (27266,2,41);	-- HP 
-INSERT INTO `item_mods` VALUES (27266,5,116);	-- MP 
-INSERT INTO `item_mods` VALUES (27266,8,24);	-- STR
-INSERT INTO `item_mods` VALUES (27266,10,12);	-- Vit
-INSERT INTO `item_mods` VALUES (27266,11,17);	-- Agi
-INSERT INTO `item_mods` VALUES (27266,12,35);	-- INT
-INSERT INTO `item_mods` VALUES (27266,13,23);	-- MND
-INSERT INTO `item_mods` VALUES (27266,14,20);	-- CHR
-INSERT INTO `item_mods` VALUES (27266,29,6);	-- MDEF
-INSERT INTO `item_mods` VALUES (27266,31,107);	-- MEVA
-INSERT INTO `item_mods` VALUES (27266,68,33);	-- EVA
-INSERT INTO `item_mods` VALUES (27266,117,20);	-- Summ. Magic Skill 
-INSERT INTO `item_mods` VALUES (27266,384,50);	-- Haste
+INSERT INTO `item_mods` VALUES (27265,1,76); -- DEF:76 HP+19 MP+106 STR+15 VIT+8 AGI+11 INT+22 MND+14 CHR+12 Evasion+15 Magic Evasion+73 "Magic Def. Bonus"+3 Summoning magic skill +15 Haste+4% "Blood Boon"+11 Avatar: TP Bonus +550 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27265,2,19); -- HP 
+INSERT INTO `item_mods` VALUES (27265,5,106); -- MP 
+INSERT INTO `item_mods` VALUES (27265,8,15); -- STR
+INSERT INTO `item_mods` VALUES (27265,10,8); -- Vit
+INSERT INTO `item_mods` VALUES (27265,11,11); -- Agi
+INSERT INTO `item_mods` VALUES (27265,12,22); -- INT
+INSERT INTO `item_mods` VALUES (27265,13,14); -- MND
+INSERT INTO `item_mods` VALUES (27265,14,12); -- CHR
+INSERT INTO `item_mods` VALUES (27265,29,3); -- MDEF
+INSERT INTO `item_mods` VALUES (27265,31,73); -- MEVA
+INSERT INTO `item_mods` VALUES (27265,68,15); -- EVA
+INSERT INTO `item_mods` VALUES (27265,117,15); -- Summ. Magic Skill 
+INSERT INTO `item_mods` VALUES (27265,384,40); -- Haste
+INSERT INTO `item_mods` VALUES (27266,1,102); -- DEF:102 HP+41 MP+116 STR+24 VIT+12 AGI+17 INT+35 MND+23 CHR+20 Evasion+33 Magic Evasion+107 "Magic Def. Bonus"+6 Summoning magic skill +20 Haste+5% "Blood Boon"+12 Avatar: TP Bonus +600 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27266,2,41); -- HP 
+INSERT INTO `item_mods` VALUES (27266,5,116); -- MP 
+INSERT INTO `item_mods` VALUES (27266,8,24); -- STR
+INSERT INTO `item_mods` VALUES (27266,10,12); -- Vit
+INSERT INTO `item_mods` VALUES (27266,11,17); -- Agi
+INSERT INTO `item_mods` VALUES (27266,12,35); -- INT
+INSERT INTO `item_mods` VALUES (27266,13,23); -- MND
+INSERT INTO `item_mods` VALUES (27266,14,20); -- CHR
+INSERT INTO `item_mods` VALUES (27266,29,6); -- MDEF
+INSERT INTO `item_mods` VALUES (27266,31,107); -- MEVA
+INSERT INTO `item_mods` VALUES (27266,68,33); -- EVA
+INSERT INTO `item_mods` VALUES (27266,117,20); -- Summ. Magic Skill 
+INSERT INTO `item_mods` VALUES (27266,384,50); -- Haste
 INSERT INTO `item_mods` VALUES (27267,1,78);
 INSERT INTO `item_mods` VALUES (27267,2,21);
 INSERT INTO `item_mods` VALUES (27267,5,26);
@@ -37838,38 +37838,38 @@ INSERT INTO `item_mods` VALUES (27438,29,2);
 INSERT INTO `item_mods` VALUES (27438,31,80);
 INSERT INTO `item_mods` VALUES (27438,68,55);
 INSERT INTO `item_mods` VALUES (27438,384,61);
-INSERT INTO `item_mods` VALUES (27439,1,44); 	-- DEF
-INSERT INTO `item_mods` VALUES (27439,2,4);		-- HP 
-INSERT INTO `item_mods` VALUES (27439,5,89);	-- MP 
-INSERT INTO `item_mods` VALUES (27439,8,7);		-- STR
-INSERT INTO `item_mods` VALUES (27439,9,7);		-- DEX
-INSERT INTO `item_mods` VALUES (27439,10,7);	-- Vit
-INSERT INTO `item_mods` VALUES (27439,11,19);	-- Agi
-INSERT INTO `item_mods` VALUES (27439,12,12);	-- INT
-INSERT INTO `item_mods` VALUES (27439,13,12);	-- MND
-INSERT INTO `item_mods` VALUES (27439,14,22);	-- CHR
-INSERT INTO `item_mods` VALUES (27439,29,3);	-- MDEF
-INSERT INTO `item_mods` VALUES (27439,31,80);	-- MEVA
-INSERT INTO `item_mods` VALUES (27439,68,25);	-- EVA
-INSERT INTO `item_mods` VALUES (27439,346,6);	-- Aatar Perp Cost. 
-INSERT INTO `item_mods` VALUES (27439,384,30);	-- Haste
-INSERT INTO `item_mods` VALUES (27439,540,50);	-- Elemental Siphon 
-INSERT INTO `item_mods` VALUES (27440,1,61); 	-- DEF
-INSERT INTO `item_mods` VALUES (27440,2,9);		-- HP 
-INSERT INTO `item_mods` VALUES (27440,5,97);	-- MP 
-INSERT INTO `item_mods` VALUES (27440,8,11);	-- STR
-INSERT INTO `item_mods` VALUES (27440,9,11);	-- DEX
-INSERT INTO `item_mods` VALUES (27440,10,11);	-- Vit
-INSERT INTO `item_mods` VALUES (27440,11,30);	-- Agi
-INSERT INTO `item_mods` VALUES (27440,12,19);	-- INT
-INSERT INTO `item_mods` VALUES (27440,13,19);	-- MND
-INSERT INTO `item_mods` VALUES (27440,14,35);	-- CHR
-INSERT INTO `item_mods` VALUES (27440,29,6);	-- MDEF
-INSERT INTO `item_mods` VALUES (27440,31,118);	-- MEVA
-INSERT INTO `item_mods` VALUES (27440,68,55);	-- EVA
-INSERT INTO `item_mods` VALUES (27440,346,7);	-- Aatar Perp Cost. 
-INSERT INTO `item_mods` VALUES (27440,384,30);	-- Haste
-INSERT INTO `item_mods` VALUES (27440,540,60);	-- Elemental Siphon 
+INSERT INTO `item_mods` VALUES (27439,1,44); --DEF:44 HP+4 MP+89 STR+7 DEX+7 VIT+7 AGI+19 INT+12 MND+12 CHR+22 Evasion+25 Magic Evasion+80 "Magic Def. Bonus"+3 Haste+3% "Elemental Siphon"+50 Avatar perpetuation cost -6 Avatar: Magic Accuracy+17 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27439,2,4);	-- HP 
+INSERT INTO `item_mods` VALUES (27439,5,89); -- MP 
+INSERT INTO `item_mods` VALUES (27439,8,7);	-- STR
+INSERT INTO `item_mods` VALUES (27439,9,7);	-- DEX
+INSERT INTO `item_mods` VALUES (27439,10,7); -- Vit
+INSERT INTO `item_mods` VALUES (27439,11,19); -- Agi
+INSERT INTO `item_mods` VALUES (27439,12,12); -- INT
+INSERT INTO `item_mods` VALUES (27439,13,12); -- MND
+INSERT INTO `item_mods` VALUES (27439,14,22); -- CHR
+INSERT INTO `item_mods` VALUES (27439,29,3); -- MDEF
+INSERT INTO `item_mods` VALUES (27439,31,80); -- MEVA
+INSERT INTO `item_mods` VALUES (27439,68,25); -- EVA
+INSERT INTO `item_mods` VALUES (27439,346,6); -- Aatar Perp Cost. 
+INSERT INTO `item_mods` VALUES (27439,384,30); -- Haste
+INSERT INTO `item_mods` VALUES (27439,540,50); -- Elemental Siphon 
+INSERT INTO `item_mods` VALUES (27440,1,61); -- DEF:61 HP+9 MP+97 STR+11 DEX+11 VIT+11 AGI+30 INT+19 MND+19 CHR+35 Evasion+55 Magic Evasion+118 "Magic Def. Bonus"+6 Haste+3% "Elemental Siphon"+60 Avatar perpetuation cost -7 Avatar: Magic Accuracy+27 Set: Augments "Blood Boon"
+INSERT INTO `item_mods` VALUES (27440,2,9);	-- HP 
+INSERT INTO `item_mods` VALUES (27440,5,97); -- MP 
+INSERT INTO `item_mods` VALUES (27440,8,11); -- STR
+INSERT INTO `item_mods` VALUES (27440,9,11); -- DEX
+INSERT INTO `item_mods` VALUES (27440,10,11); -- Vit
+INSERT INTO `item_mods` VALUES (27440,11,30); -- Agi
+INSERT INTO `item_mods` VALUES (27440,12,19); -- INT
+INSERT INTO `item_mods` VALUES (27440,13,19); -- MND
+INSERT INTO `item_mods` VALUES (27440,14,35); -- CHR
+INSERT INTO `item_mods` VALUES (27440,29,6); -- MDEF
+INSERT INTO `item_mods` VALUES (27440,31,118); -- MEVA
+INSERT INTO `item_mods` VALUES (27440,68,55); -- EVA
+INSERT INTO `item_mods` VALUES (27440,346,7); -- Aatar Perp Cost. 
+INSERT INTO `item_mods` VALUES (27440,384,30); -- Haste
+INSERT INTO `item_mods` VALUES (27440,540,60); -- Elemental Siphon 
 INSERT INTO `item_mods` VALUES (27441,1,60);
 INSERT INTO `item_mods` VALUES (27441,2,7);
 INSERT INTO `item_mods` VALUES (27441,5,14);
