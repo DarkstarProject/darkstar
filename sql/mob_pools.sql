@@ -34,7 +34,7 @@ CREATE TABLE `mob_pools` (
   `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',
   `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',
   `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `aggro` smallint(3) unsigned NOT NULL DEFAULT '0',
   `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `links` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',
