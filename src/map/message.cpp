@@ -317,25 +317,12 @@ namespace message
         {
             if (extra->size() == 8)
             {
-                uint32 partyid = RBUFL(extra->data(), 4);
-                uint32 charid = RBUFL(extra->data(), 0);
-                zoneutils::ForEachZone([partyid, charid](CZone* PZone)
+                CCharEntity* PChar = zoneutils::GetCharToUpdate(RBUFL(extra->data(), 4), RBUFL(extra->data(), 0));
+                if (PChar)
                 {
-                    PZone->ForEachChar([partyid, charid](CCharEntity* PChar)
-                    {
-                        if (PChar->id == charid)
-                        {
-                            PChar->ForAlliance([](CBattleEntity* PMember)
-                            {
-                                ((CCharEntity*)PMember)->ReloadPartyInc();
-                            });
-                        }
-                        else if (PChar->id == partyid || (PChar->PParty && PChar->PParty->GetPartyID() == partyid))
-                        {
-                            PChar->ReloadPartyInc();
-                        }
-                    });
-                });
+                    PChar->ReloadPartyInc();
+                    break;
+                }
             }
             else
             {
@@ -347,7 +334,7 @@ namespace message
                         ((CCharEntity*)PMember)->ReloadPartyInc();
                     });
                 }
-            }            
+            }
 
             break;
         }
@@ -466,11 +453,11 @@ namespace message
     {
         SqlHandle = Sql_Malloc();
 
-        if (Sql_Connect(SqlHandle, map_config.mysql_login,
-            map_config.mysql_password,
-            map_config.mysql_host,
+        if (Sql_Connect(SqlHandle, map_config.mysql_login.c_str(),
+            map_config.mysql_password.c_str(),
+            map_config.mysql_host.c_str(),
             map_config.mysql_port,
-            map_config.mysql_database) == SQL_ERROR)
+            map_config.mysql_database.c_str()) == SQL_ERROR)
         {
             exit(EXIT_FAILURE);
         }

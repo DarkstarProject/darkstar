@@ -20,7 +20,6 @@
 
 ===========================================================================
 */
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "login_session.h"

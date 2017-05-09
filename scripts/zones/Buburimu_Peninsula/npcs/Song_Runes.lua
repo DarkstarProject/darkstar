@@ -2,6 +2,7 @@
 -- Area: Buburimu Peninsula
 --  NPC: Song Runes
 --  Finishes Quest: The Old Monument
+-- @pos -244 16 -280 40
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------
@@ -15,23 +16,10 @@ require("scripts/zones/Buburimu_Peninsula/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-            
-    if (player:getVar("TheOldMonument_Event") == 3) then
-        count = trade:getItemCount();
-        gil = trade:getGil();
-
-        if (trade:hasItemQty(917,1) == true and count == 1 and gil == 0) then
-            player:tradeComplete();
-            player:completeQuest(JEUNO,THE_OLD_MONUMENT);
-            player:addItem(634,1);
-            player:messageSpecial(ITEM_OBTAINED, 634);
-            player:addTitle(RESEARCHER_OF_CLASSICS);
-            player:addFame(BASTOK,10);
-            player:addFame(SANDORIA,10);
-            player:addFame(WINDURST,10);
-            player:setVar("TheOldMonument_Event",0);
-        end
-    end        
+    -- THE OLD MONUMENT (parchment)
+    if (player:getVar("TheOldMonument_Event") == 3 and trade:hasItemQty(917,1) and trade:getItemCount() == 1) then
+        player:startEvent(2);
+    end;
 end;
 
 -----------------------------------
@@ -39,19 +27,23 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+    -- THE OLD MONUMENT
     if (player:getVar("TheOldMonument_Event") == 2) then
-        player:startEvent(0x0000);
-    end
-end; 
+        player:startEvent(0);
+    elseif (player:getVar("TheOldMonument_Event") == 3) then
+        player:messageSpecial(SONG_RUNES_REQUIRE,917);
+
+    -- DEFAULT DIALOG
+    else
+        player:messageSpecial(SONG_RUNES_DEFAULT);
+    end;
+end;
 
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -59,11 +51,18 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    
-    if (csid == 0x0000) then
+    if (csid == 0) then
         player:setVar("TheOldMonument_Event",3);
-    end
+    elseif (csid == 2) then
+        player:tradeComplete();
+        player:messageSpecial(SONG_RUNES_WRITING,917);
+        player:addItem(634,1);
+        player:messageSpecial(ITEM_OBTAINED, 634);
+        player:completeQuest(JEUNO,THE_OLD_MONUMENT);
+        player:addTitle(RESEARCHER_OF_CLASSICS);
+        player:addFame(BASTOK,10);
+        player:addFame(SANDORIA,10);
+        player:addFame(WINDURST,10);
+        player:setVar("TheOldMonument_Event",0);
+    end;
 end;
-

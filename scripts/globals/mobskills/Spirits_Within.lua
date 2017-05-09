@@ -33,10 +33,10 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- Should produce 1000 - 3750 @ full HP using the player formula, assuming 8k HP for AA EV.
     -- dmg * 2.5, as wiki claims ~2500 at 100% HP, until a better formula comes along.
-    if tp <= 2000 then -- 1000 - 2000
-        dmg = math.floor(hp * (math.floor(0.16 * tp) + 16) / 256);
+    if (tp <= 2000) then -- 1000 - 2000
+        dmg = math.floor(hp * (math.floor(0.016 * tp) + 16) / 256);
     else -- 2001 - 3000
-        dmg = math.floor(hp * (math.floor(0.72 * tp) - 96) / 256);
+        dmg = math.floor(hp * (math.floor(0.072 * tp) - 96) / 256);
     end
 
     dmg = dmg * 2.5;

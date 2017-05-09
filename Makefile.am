@@ -7,7 +7,7 @@ include sources.am
 ## Set up all of our dependency flags
 SRC_ALL                 = $(SRC_DARKSTAR)
 CFLAGS_ALL              = $(DARKSTAR_CFLAGS) -fsigned-char
-CPPFLAGS_ALL            = $(DARKSTAR_CPPFLAGS) -fsigned-char
+CPPFLAGS_ALL            = $(DARKSTAR_CPPFLAGS) -fsigned-char -DFMT_HEADER_ONLY
 CXXFLAGS_ALL            = $(DARKSTAR_CXXFLAGS) -fsigned-char
 LIBS_ALL                = $(DARKSTAR_LIBS)
 LDFLAGS_ALL             = $(DARKSTAR_LDFLAGS)

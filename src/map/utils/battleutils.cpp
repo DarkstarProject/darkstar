@@ -1053,6 +1053,10 @@ namespace battleutils
         else if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->getMobMod(MOBMOD_ADD_EFFECT) > 0)
         {
             luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage);
+            if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
+            {
+                Action->addEffectMessage = 384;
+            }
         }
         else
         {
@@ -2855,13 +2859,13 @@ namespace battleutils
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2869,7 +2873,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetPower());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2915,7 +2919,7 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PSpell->getID(), 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
@@ -2949,20 +2953,20 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, 0, 0, 10, 0, PSpell->getID(), 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PSpell->getID(), 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
             }
             // Previous effect exists
             else if (PSCEffect && PSCEffect->GetTier() == 0)
             {
-                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower() && !PSCEffect->GetSubPower());
+                DSP_DEBUG_BREAK_IF(!PSCEffect->GetPower());
                 // Previous effect is an opening effect, meaning the power is
                 // actually the ID of the opening weaponskill.  We need all 3
                 // of the possible skillchain properties on the initial link.
                 if (PSCEffect->GetStartTime() + 3s < server_clock::now())
                 {
-                    if (PSCEffect->GetPower())
+                    if (PSCEffect->GetPower() < 512) //Weaponskills (Blue Magic Starts at Spell id 513)
                     {
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)g_PWeaponSkillList[PSCEffect->GetPower()]->getSecondarySkillchain());
@@ -2970,7 +2974,7 @@ namespace battleutils
                     }
                     else
                     {
-                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetSubPower());
+                        CBlueSpell* oldSpell = (CBlueSpell*)spell::GetSpell(PSCEffect->GetPower());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getPrimarySkillchain());
                         resonanceProperties.push_back((SKILLCHAIN_ELEMENT)oldSpell->getSecondarySkillchain());
                     }
@@ -2999,8 +3003,8 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetSubPower(PSpell->getID());
-            PSCEffect->SetPower(0);
+            PSCEffect->SetPower(PSpell->getID());
+            PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;
         }
@@ -3393,9 +3397,9 @@ namespace battleutils
 
             float xoffset = cos(angle) / 2;
             float zoffset = sin(angle) / 2;
-            float maxXpoint = taUserX + xoffset;
+            float maxXpoint = taUserX - xoffset;
             float maxZpoint = taUserZ + zoffset;
-            float minXpoint = taUserX - xoffset;
+            float minXpoint = taUserX + xoffset;
             float minZpoint = taUserZ - zoffset;
             maxSlope = (maxZpoint - mobZ) / (maxXpoint - mobX);
             minSlope = (minZpoint - mobZ) / (minXpoint - mobX);
@@ -3411,31 +3415,23 @@ namespace battleutils
                         CBattleEntity* member = taUser->PParty->m_PAlliance->partyList.at(a)->members.at(i);
                         if (taUser->id != member->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                         {
+                            float memberXdif = member->loc.p.x - mobX;
+                            float memberZdif = member->loc.p.z - mobZ;
                             if (zDependent)
                             {
-                                //is member between taUser and PMob on x line?
-                                if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                    (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                                if ((memberZdif <= memberXdif * maxSlope) &&
+                                    (memberZdif >= memberXdif * minSlope))
                                 {
-                                    if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                        (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                             else {
-                                //is member between taUser and PMob on z line?
-                                if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                    (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                                if ((memberXdif <= memberZdif * maxSlope) &&
+                                    (memberXdif >= memberZdif * minSlope))
                                 {
-                                    if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                        (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                    {
-                                        //finally found a TA partner
-                                        return member;
-                                    }
+                                    //finally found a TA partner
+                                    return member;
                                 }
                             }
                         }
@@ -3448,31 +3444,23 @@ namespace battleutils
                     CBattleEntity* member = taUser->PParty->members.at(i);
                     if (member->id != taUser->id && distance(member->loc.p, PMob->loc.p) <= distance(taUser->loc.p, PMob->loc.p))
                     {
+                        float memberXdif = member->loc.p.x - mobX;
+                        float memberZdif = member->loc.p.z - mobZ;
                         if (zDependent)
                         {
-                            //is member between taUser and PMob on x line?
-                            if ((member->loc.p.x <= taUserX && member->loc.p.x >= mobX) ||
-                                (member->loc.p.x >= taUserX && member->loc.p.x <= mobX))
+                            if ((memberZdif <= memberXdif * maxSlope) &&
+                                (memberZdif >= memberXdif * minSlope))
                             {
-                                if ((member->loc.p.z - mobZ <= (member->loc.p.x - mobX)*maxSlope) &&
-                                    (member->loc.p.z - mobZ >= (member->loc.p.x - mobX)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                         else {
-                            //is member between taUser and PMob on z line?
-                            if ((member->loc.p.z <= taUserZ && member->loc.p.z >= mobZ) ||
-                                (member->loc.p.z >= taUserZ && member->loc.p.z <= mobZ))
+                            if ((memberXdif <= memberZdif * maxSlope) &&
+                                (memberXdif >= memberZdif * minSlope))
                             {
-                                if ((member->loc.p.x - mobX <= (member->loc.p.z - mobZ)*maxSlope) &&
-                                    (member->loc.p.x - mobX >= (member->loc.p.z - mobZ)*minSlope))
-                                {
-                                    //finally found a TA partner
-                                    return member;
-                                }
+                                //finally found a TA partner
+                                return member;
                             }
                         }
                     }
@@ -4538,8 +4526,12 @@ namespace battleutils
         return PSpell->getAOE();
     }
 
-
     WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar)
+    {
+        return GetWeather(PEntity, ignoreScholar, zoneutils::GetZone(PEntity->getZone())->GetWeather());
+    }
+
+    WEATHER GetWeather(CBattleEntity* PEntity, bool ignoreScholar, uint16 zoneWeather)
     {
         WEATHER scholarSpell = WEATHER_NONE;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_FIRESTORM))
@@ -4558,10 +4550,9 @@ namespace battleutils
             scholarSpell = WEATHER_AURORAS;
         if (PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_VOIDSTORM))
             scholarSpell = WEATHER_GLOOM;
-        WEATHER zoneWeather = zoneutils::GetZone(PEntity->getZone())->GetWeather();
 
         if (ignoreScholar || scholarSpell == WEATHER_NONE || zoneWeather == (scholarSpell + 1)) // Strong weather overwrites scholar spell weak weather
-            return zoneWeather;
+            return (WEATHER)zoneWeather;
         else if (scholarSpell == zoneWeather)
             return (WEATHER)(zoneWeather + 1); // Storm spells stack with weather
         else
@@ -4679,7 +4670,7 @@ namespace battleutils
             return false;
         }
 
-        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->m_ModelSize * 2);
+        float drawInDistance = (PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->GetMeleeRange() * 2);
 
         std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
         {

@@ -262,7 +262,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
     {
         CCharEntity* PChar = (CCharEntity*)it->second;
 
-        PChar->PLatentEffectContainer->CheckLatentsZone();
+        PChar->PLatentEffectContainer->CheckLatentsWeather(weather);
         PChar->PAI->EventHandler.triggerListener("WEATHER_CHANGE", PChar, static_cast<int>(weather), element);
     }
 }

@@ -248,6 +248,11 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
             }
             else
             {
+                //a request to use more charges than the maximum only applies to abilities who share normal recasts with charges (ie. sic)
+                if ( recast > PRecastList->at(i).maxCharges )
+                {
+                    return true;
+                }
                 int charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
                 if (charges < recast)

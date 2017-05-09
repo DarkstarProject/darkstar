@@ -1441,8 +1441,8 @@ INSERT INTO `mob_skills` VALUES (1575,865,'Suctorial_Tentacle',0,7.0,2000,1500,4
 -- INSERT INTO `mob_skills` VALUES (1622,1366,'Cursed_Sphere',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1623,1367,'Venom',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1624,1368,'Debilitating_Drone',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1625,1369,'2000_Needles',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1626,1370,'4000_Needles',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1625,1369,'2000_Needles',1,10.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1626,1370,'4000_Needles',1,10.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1627,1371,'Needleshot',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1628,1372,'Heat_Breath',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1629,1373,'Riddle',0,7.0,2000,1500,4,0,0,0);
@@ -3685,7 +3685,7 @@ INSERT INTO `mob_skills` VALUES (3503,3247,'Justicebreaker',0,7.0,2000,0,4,0,0,0
 -- INSERT INTO `mob_skills` VALUES (3864,3608,'Scissor_Guard',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3865,3609,'Metallic_Body',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3866,3610,'Needleshot',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (3867,3611,'???_Needles',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (3867,3611,'QuestionMarks_Needles',1,10.0,2000,1500,4,0,0,0); -- ???_Needles.lua isn't a valid filename
 -- INSERT INTO `mob_skills` VALUES (3868,3612,'Frogkick',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3869,3613,'Spore',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (3870,3614,'Queasyshroom',0,7.0,2000,1500,4,0,0,0);

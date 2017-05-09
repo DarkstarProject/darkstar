@@ -1365,7 +1365,7 @@ namespace petutils
 
 		FinalizePetStatistics(PMaster, PPet);
 		PPet->status = STATUS_NORMAL;
-		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
+		PPet->m_ModelSize = g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 
         PMaster->PPet = PPet;

@@ -560,7 +560,9 @@ void CStatusEffectContainer::DelStatusEffectsByIcon(uint16 IconID)
     {
         if (m_StatusEffectList.at(i)->GetIcon() == IconID)
         {
-            RemoveStatusEffect(i--);
+            // think this covers all the removable effects
+            if (!(m_StatusEffectList.at(i)->GetFlag() & (EFFECTFLAG_CONFRONTATION | EFFECTFLAG_FOOD | EFFECTFLAG_ERASABLE)))
+                RemoveStatusEffect(i--);
         }
     }
 }

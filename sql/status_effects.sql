@@ -75,7 +75,7 @@ INSERT INTO `status_effects` VALUES (32,'flee',33,0,12,0,0,0,4,0);
 INSERT INTO `status_effects` VALUES (33,'haste',33,0,13,0,0,0,4,0);
 INSERT INTO `status_effects` VALUES (34,'blaze_spikes',33,34,0,0,0,0,1,0);
 INSERT INTO `status_effects` VALUES (35,'ice_spikes',33,34,0,0,0,0,5,0);
-INSERT INTO `status_effects` VALUES (36,'blink',33,36,0,1,66,0,4,0);
+INSERT INTO `status_effects` VALUES (36,'blink',33,36,0,0,66,0,4,0);
 INSERT INTO `status_effects` VALUES (37,'stoneskin',33,0,0,2,0,0,2,0);
 INSERT INTO `status_effects` VALUES (38,'shock_spikes',33,34,0,0,0,0,6,0);
 INSERT INTO `status_effects` VALUES (39,'aquaveil',33,0,0,0,0,0,3,0);

@@ -157,5 +157,7 @@ log/DSP.leaks
 #Lua Developement Tools project files
 .metadata/**
 .project
+.vs
+/win32/.vs/darkstar/v15
 /*.iobj
 /*.ipdb

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -76,9 +77,10 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 0x0003 and option == 13) then -- Accept and unlock
+        player:setVar("AnEmptyVesselProgress",0);
         player:setVar("EmptyVesselStone",0);
         player:addKeyItem(MARK_OF_ZAHAK);
-        player:unlockJob(16);
+        player:unlockJob(JOBS.BLU);
         player:addTitle(BEARER_OF_THE_MARK_OF_ZAHAK);
         player:completeQuest(AHT_URHGAN,AN_EMPTY_VESSEL);
         player:setPos(148,-2,0,130,50);

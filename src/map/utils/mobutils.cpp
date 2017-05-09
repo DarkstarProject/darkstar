@@ -363,11 +363,11 @@ void CalculateStats(CMobEntity * PMob)
 
         if(isNM)
         {
-            PMob->health.maxhp *= map_config.nm_mp_multiplier;
+            PMob->health.maxmp *= map_config.nm_mp_multiplier;
         }
         else
         {
-            PMob->health.maxhp *= map_config.mob_mp_multiplier;
+            PMob->health.maxmp *= map_config.mob_mp_multiplier;
         }
     }
 
@@ -1353,7 +1353,7 @@ CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
 			PMob->m_Type = (uint8)Sql_GetIntData(SqlHandle, 17);
 			PMob->m_Immunity = (IMMUNITY)Sql_GetIntData(SqlHandle, 18);
 			PMob->m_EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 19);
-			PMob->m_ModelSize += (uint8)Sql_GetIntData(SqlHandle, 10);
+			PMob->m_ModelSize = (uint8)Sql_GetIntData(SqlHandle, 10);
 
 			PMob->speed = (uint8)Sql_GetIntData(SqlHandle, 21);
 			PMob->speedsub = (uint8)Sql_GetIntData(SqlHandle, 21);

@@ -1,10 +1,10 @@
-COMMON_OBJ = obj_all/kernel.o obj_all/timer.o obj_all/db.o obj_all/malloc.o 			\
-             obj_all/showmsg.o obj_all/strlib.o obj_all/utils.o obj_all/md52.o obj_all/sql.o    \
+COMMON_OBJ = obj_all/kernel.o obj_all/timer.o obj_all/db.o \
+             obj_all/showmsg.o obj_all/utils.o obj_all/md52.o obj_all/sql.o    \
              obj_all/zlib.o obj_all/blowfish.o obj_all/taskmgr.o
 
-COMMON_H   = svnversion.h mmo.h version.h  							\
-             kernel.h timer.h db.h malloc.h  							\
-             showmsg.h strlib.h utils.h md52.h blowfish.h 					\
+COMMON_H   = mmo.h version.h  							\
+             kernel.h timer.h db.h \
+             showmsg.h utils.h md52.h blowfish.h 					\
              zlib.h sql.h lua/lua.h lua/lunar.h lua/lua.hpp lua/lualib.h lua/luaxlib.h		\
 	     taskmgr.h	 
 
@@ -34,7 +34,7 @@ all: $(ALL_DEPENDS)
 sql: common
 
 clean: 
-	rm -rf *.o obj_all svnversion.h
+	rm -rf *.o obj_all
 
 help:
 	@echo "possible targets are 'sql' 'all' 'clean' 'help'"
