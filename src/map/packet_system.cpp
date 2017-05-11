@@ -1192,7 +1192,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %d, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
                 PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
