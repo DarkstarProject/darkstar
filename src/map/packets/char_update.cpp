@@ -87,7 +87,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR))
         flag |= 0x08;
     if (PChar->allegiance > 1)
-        flag |= (allegiance << 5);
+        flag |= (PChar->allegiance << 5);
     
     WBUFB(data, (0x36)) = flag;
 
