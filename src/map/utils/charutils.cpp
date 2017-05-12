@@ -1705,7 +1705,7 @@ namespace charutils
         {
             auto removeSlotID = PItem->getRemoveSlotId();
 
-            for (auto i = 0; i < sizeof(removeSlotID) * 8; ++i)
+            for (auto i = 0; i < SLOT_FEET + 1; ++i)
             {
                 if (removeSlotID & (1 << i))
                 {
