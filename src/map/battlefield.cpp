@@ -313,11 +313,9 @@ bool CBattlefield::delPlayerFromBcnm(CCharEntity* PChar)
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-            m_PlayerList.erase(m_PlayerList.begin() + i);
-            if (m_PlayerList.empty())
-            {
-                cleanup();
-            }
+            PChar->PAI->Disengage();
+			clearPlayerEnmity(PChar);
+			m_PlayerList.erase(m_PlayerList.begin() + i);
             return true;
         }
     }
@@ -508,20 +506,20 @@ void CBattlefield::beforeCleanup()
         // enable subjob
         enableSubJob();
     }
-    if (m_PlayerList.empty())
-        cleanup();
-}
+  }
+
+  //  No longer will 5-1 kill you after win or leave the counter on forever in other BCNMS
 
 bool CBattlefield::winBcnm()
 {
     beforeCleanup();
-    for (auto&& PChar : m_PlayerList)
-    {
-        luautils::OnBcnmLeave(PChar, this, LEAVE_WIN);
-        PChar->PAI->Disengage();
-        clearPlayerEnmity(PChar);
+	for (int i = 0; i < m_PlayerList.size(); i++) {
+		luautils::OnBcnmLeave(m_PlayerList.at(i), this, LEAVE_WIN);
+		if (this->delPlayerFromBcnm(m_PlayerList.at(i))) { i--; }
     }
-    return true;
+	cleanup();
+	return true;
+	
 }
 
 bool CBattlefield::spawnTreasureChest()
@@ -538,13 +536,13 @@ void CBattlefield::OpenChestinBcnm()
 bool CBattlefield::loseBcnm()
 {
     beforeCleanup();
-    for (auto&& PChar : m_PlayerList)
-    {
-        luautils::OnBcnmLeave(PChar, this, LEAVE_LOSE);
-        PChar->PAI->Disengage();
-        clearPlayerEnmity(PChar);
+	for (int i = 0; i < m_PlayerList.size(); i++) {
+		luautils::OnBcnmLeave(m_PlayerList.at(i), this, LEAVE_LOSE);
+		if (this->delPlayerFromBcnm(m_PlayerList.at(i))) { i--; }
     }
-    return true;
+	
+	cleanup();
+	return true;
 }
 
 bool CBattlefield::isEnemyBelowHPP(uint8 hpp)

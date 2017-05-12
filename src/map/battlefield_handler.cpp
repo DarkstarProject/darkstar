@@ -243,27 +243,37 @@ bool CBattlefieldHandler::disconnectFromBcnm(CCharEntity* PChar) //includes warp
     }
     return false;
 }
-
+// this thing black screens on Run Away in Horalis Peak, it does end battlefield now. I think the exit cs is broken somewher
 bool CBattlefieldHandler::leaveBcnm(uint16 bcnmid, CCharEntity* PChar) {
-    for (int i = 0; i < m_MaxBattlefields; i++) {
-        if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
-            if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
-                if (m_Battlefields[i] == PChar->PBCNM) {
-                    luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_EXIT);
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
+	for (int i = 0; i < m_MaxBattlefields; i++) {
+		if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
+			if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
+				if (m_Battlefields[i]->delPlayerFromBcnm(PChar)) {
+					luautils::OnBcnmLeave(PChar, m_Battlefields[i], LEAVE_EXIT);
+					if (!m_Battlefields[i]->isReserved()) {//no more players in BCNM
+						ShowDebug("Detected no more players in BCNM Battlefield %i. Cleaning up. \n",
+							m_Battlefields[i]->getBattlefieldNumber());
+						m_Battlefields[i]->loseBcnm();
+						
+					}
+					return true;
+					
+				}
+				
+			}
+			
+		}
+		
+	}
+	return false;
 }
-
+// this might do something now?
 bool CBattlefieldHandler::winBcnm(uint16 bcnmid, CCharEntity* PChar) {
     for (int i = 0; i < m_MaxBattlefields; i++) {
         if (m_Battlefields[i] != nullptr && m_Battlefields[i]->getID() == bcnmid) {
             if (m_Battlefields[i]->isPlayerInBcnm(PChar)) {
                 m_Battlefields[i]->winBcnm();
-                return true;
+				return true;
             }
         }
     }
