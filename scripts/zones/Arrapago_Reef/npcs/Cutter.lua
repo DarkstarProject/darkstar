@@ -46,7 +46,7 @@ function onEventUpdate(player,csid,option,target)
                     player:messageText(target,MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                     return;
-                elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
+                elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
                     player:messageText(target,MEMBER_TOO_FAR, false);
                     player:instanceEntry(target,1);
                     return;
@@ -80,10 +80,12 @@ function onInstanceCreated(player,target,instance)
         player:setInstance(instance);
         player:instanceEntry(target,4);
 
+        local party = player:getParty();
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if v:getID() ~= player:getID() and v:getZone() == player:getZone() then
+                if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
+                    v:startEvent(90); -- wrong csid, yet better than nothing
                 end
             end
         end

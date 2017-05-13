@@ -103,6 +103,10 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,57);
     elseif (csid == 34 and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(35);
+    elseif (csid == 90) then -- enter instance: the ashu talif
+        player:setPos(0,0,0,0,60);
+    elseif (csid == 108) then -- enter instance: illrusi atoll
+        player:setPos(0,0,0,0,55);
     elseif (csid == 237) then
         player:startEvent(240);
     elseif (csid == 240) then
