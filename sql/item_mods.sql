@@ -25030,7 +25030,8 @@ INSERT INTO `item_mods` VALUES (21142,355,187); -- Nirvana iLvL 119 - Garland of
 INSERT INTO `item_mods` VALUES (21143,5,150);
 INSERT INTO `item_mods` VALUES (21143,38,100);
 INSERT INTO `item_mods` VALUES (21143,355,190); -- Hvergelmir iLvL 119 - Myrkr
-INSERT INTO `item_mods` VALUES (21144,5,150);
+INSERT INTO `item_mods` VALUES (21144,5,150); -- MP+150
+INSERT INTO `item_mods` VALUES (21144,311,248); -- Magic Damage +248
 INSERT INTO `item_mods` VALUES (21144,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (21151,24,10);
 INSERT INTO `item_mods` VALUES (21151,26,15);
@@ -36351,6 +36352,7 @@ INSERT INTO `item_mods` VALUES (27245,30,12);
 INSERT INTO `item_mods` VALUES (27245,31,76);
 INSERT INTO `item_mods` VALUES (27245,68,12);
 INSERT INTO `item_mods` VALUES (27245,384,40);
+INSERT INTO `item_mods` VALUES (27245,529,1);     -- Enhances Refresh potency +1
 INSERT INTO `item_mods` VALUES (27246,1,107);
 INSERT INTO `item_mods` VALUES (27246,2,45);
 INSERT INTO `item_mods` VALUES (27246,5,97);
@@ -36366,6 +36368,7 @@ INSERT INTO `item_mods` VALUES (27246,30,22);
 INSERT INTO `item_mods` VALUES (27246,31,112);
 INSERT INTO `item_mods` VALUES (27246,68,27);
 INSERT INTO `item_mods` VALUES (27246,384,51);
+INSERT INTO `item_mods` VALUES (27246,529,2);     -- Enhances Refresh potency +2
 INSERT INTO `item_mods` VALUES (27247,1,77);
 INSERT INTO `item_mods` VALUES (27247,2,23);
 INSERT INTO `item_mods` VALUES (27247,8,18);
