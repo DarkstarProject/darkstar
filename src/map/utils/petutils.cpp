@@ -1100,7 +1100,7 @@ namespace petutils
         {
             ((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
             ((CCharEntity*)PMaster)->petZoningInfo.respawnPet = true;
-	}
+        }
 
         PETTYPE petType = PETTYPE_JUG_PET;
 
