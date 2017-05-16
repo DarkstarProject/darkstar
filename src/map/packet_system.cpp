@@ -355,8 +355,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             default:
                 break;
             }
-            // reset the petZoning info
-            PChar->resetPetZoningInfo();
         }
     }
 
