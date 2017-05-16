@@ -86,6 +86,9 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     uint8 flag = 0x20;
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR))
         flag |= 0x08;
+    if (PChar->allegiance > 1)
+        flag |= (PChar->allegiance << 5);
+    
     WBUFB(data, (0x36)) = flag;
 
     if (!PChar->isDead() || PChar->m_DeathCounter == 0) //prevent this packet from resetting the homepoint timer after tractor
