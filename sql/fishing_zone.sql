@@ -626,6 +626,7 @@ INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 90);
 INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 14117);
 INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 16606);
 INSERT INTO `fishing_zone` VALUES(151, 'Castle Oztroja', 4472);
+INSERT INTO `fishing_zone` VALUES(151, 'Castle Oztroja', 4562); -- A Boy's Dream (PLD AF2)
 INSERT INTO `fishing_zone` VALUES(153, 'Boyahda Tree', 4401);
 INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 4426);
 INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 4428);

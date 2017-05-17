@@ -176,3 +176,4 @@ INSERT INTO `fishing_fish` VALUES(5458, 'Yilanbaligi', 0, 47, 0, 0, 0, 255, 255)
 INSERT INTO `fishing_fish` VALUES(4385, 'Zafmlug Bass', 0, 48, 0, 0, 1, 255, 255);
 INSERT INTO `fishing_fish` VALUES(4288, 'Zebra Eel', 0, 71, 0, 0, 0, 255, 255);
 INSERT INTO `fishing_fish` VALUES(1624, 'Bugbear Mask', 0, 0, 0, 0, 0, 255, 255);
+INSERT INTO `fishing_fish` VALUES(4562, 'Odontotyrannus', 0, 0, 0, 0, 0, 0, 91); -- A Boy's Dream (PLD AF2)
