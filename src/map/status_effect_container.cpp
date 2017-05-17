@@ -33,6 +33,7 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "../common/showmsg.h"
 #include "../common/timer.h"
+#include "../common/utils.h"
 
 #include <string.h>
 #include <array>
@@ -41,6 +42,8 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "ai/ai_container.h"
 #include "ai/states/inactive_state.h"
+
+#include "items/item_armor.h"
 
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
@@ -1376,6 +1379,33 @@ void CStatusEffectContainer::CheckRegen(time_point tick)
         int16 regain = m_POwner->getMod(Mod::REGAIN) - m_POwner->getMod(Mod::REGAIN_DOWN);
         m_POwner->addHP(regen);
 
+        //Handle Latent Refresh/Regain augments on main weapon
+        if (m_POwner->animation == ANIMATION_ATTACK && m_POwner->objtype == TYPE_PC)
+        {
+            auto PChar {dynamic_cast<CCharEntity*>(m_POwner)};
+            CItemArmor* PMainWeapon = PChar->getEquip(SLOT_MAIN);
+            
+            if (PMainWeapon)
+            {
+                uint16 augmentData = PMainWeapon->getAugment(SLOT_MAIN);
+                
+                if (augmentData)
+                {
+                    uint16 augmentID = (unpackBitsBE((uint8*)(&augmentData), 0, 11));
+                    uint8 augmentVal = (unpackBitsBE((uint8*)(&augmentData), 11, 5)) + 1;
+                    
+                    if (augmentID == 59)
+                    {
+                        m_POwner->addTP((augmentVal*10) / map_config.player_tp_multiplier);
+                    }
+                    if (augmentID == 60)
+                    {
+                        m_POwner->addMP(augmentVal);
+                    }
+                }
+            }
+        }
+        
         if (poison)
         {
             int16 damage = battleutils::HandleStoneskin(m_POwner, poison);
