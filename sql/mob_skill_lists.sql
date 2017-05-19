@@ -3170,11 +3170,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,1697); -- seaspr
 -- INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,1978); -- abominable_belch
 -- INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,2639); -- mayhem_lantern
 
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,318); -- somersault
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,659); -- cuirsed_sphere
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,660); -- venom
--- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,1624); -- debilitating_drone
-
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1713); -- Yawn
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1714); -- Wing_Slap
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1715); -- Beak_Lunge
@@ -3635,3 +3630,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2692); -- Royal_Decree
 INSERT INTO `mob_skill_lists` VALUES ('Teugghia',995,2197); -- Autumn_Breeze
 
 -- Xibalba uses 227 reserving 996 for NM start next mob in this list at 997
+
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,318); -- somersault
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,659); -- cuirsed_sphere
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,660); -- venom
+-- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,1624); -- debilitating_drone
