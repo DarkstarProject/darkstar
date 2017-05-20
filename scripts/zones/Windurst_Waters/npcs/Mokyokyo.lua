@@ -4,22 +4,20 @@
 -- Starts Windurst Missions
 -- @pos -55 -8 227 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getNation() ~= NATION_WINDURST) then
         player:startEvent(0x0067); -- for other nation
     else
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         MissionStatus = player:getVar("MissionStatus");
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
-        
+
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
@@ -49,7 +47,7 @@ function onTrigger(player,npc)
             player:startEvent(0x006f,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -68,14 +66,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
-    
+
     finishMissionTimeline(player,2,csid,option);
-    
+
     if (csid == 0x0076 and option == 1) then
         player:addTitle(FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 0x006f and (option == 12 or option == 15)) then
         player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
     end
-    
+
 end;

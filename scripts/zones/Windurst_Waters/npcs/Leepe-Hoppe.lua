@@ -4,13 +4,10 @@
 -- Involved in Mission 1-3, Mission 7-2
 -- @pos 13 -9 -197 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrigger Action
@@ -111,16 +108,16 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         player:setVar("ohbiru_dohbiru_talk",0);
         player:addKeyItem(FOOD_OFFERINGS);
-        player:messageSpecial(KEYITEM_OBTAINED,FOOD_OFFERINGS);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,FOOD_OFFERINGS);
         player:addKeyItem(DRINK_OFFERINGS);
-        player:messageSpecial(KEYITEM_OBTAINED,DRINK_OFFERINGS);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,DRINK_OFFERINGS);
 
     -- Moonlit Path and Other Fenrir Stuff
     elseif (csid == 842 and option == 2) then
         player:addQuest(WINDURST,THE_MOONLIT_PATH);
     elseif (csid == 844) then
         player:addKeyItem(MOON_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,MOON_BAUBLE);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,MOON_BAUBLE);
         player:delKeyItem(WHISPER_OF_FLAMES);
         player:delKeyItem(WHISPER_OF_TREMORS);
         player:delKeyItem(WHISPER_OF_TIDES);
@@ -147,21 +144,21 @@ function onEventFinish(player,csid,option)
         elseif (option == 5) then reward = 1208; -- Ancient's Key
         elseif (option == 6) then
             player:addGil(GIL_RATE*10000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+            player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE*10000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
         end
 
         if (player:getFreeSlotsCount() == 0 and reward ~= 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+            player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,reward);
         elseif (reward ~= 0) then
             player:addItem(reward);
-            player:messageSpecial(ITEM_OBTAINED,reward);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,reward);
         end
 
         if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(DARK_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
+            player:messageSpecial(TextIDs.KEYITEM_OBTAINED,DARK_MANA_ORB);
         end
     elseif (csid == 850) then -- Repeat turn-in event
         player:addTitle(HEIR_OF_THE_NEW_MOON);
@@ -176,25 +173,25 @@ function onEventFinish(player,csid,option)
         elseif (option == 5) then reward = 1208; -- Ancient's Key
         elseif (option == 6) then
             player:addGil(GIL_RATE*10000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
+            player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE*15000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
         end
 
         if (player:getFreeSlotsCount() == 0 and reward ~= 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+            player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,reward);
         elseif (reward ~= 0) then
             player:addItem(reward);
-            player:messageSpecial(ITEM_OBTAINED,reward);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,reward);
         end
 
         if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(DARK_MANA_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
+            player:messageSpecial(TextIDs.KEYITEM_OBTAINED,DARK_MANA_ORB);
         end
     elseif (csid == 848) then
         player:addKeyItem(MOON_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,MOON_BAUBLE);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,MOON_BAUBLE);
     elseif (csid == 734) then
         player:setVar("MissionStatus",1);
     elseif (csid == 742) then

@@ -4,11 +4,9 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,ENSASA_SHOP_DIALOG);
+    player:showText(npc,TextIDs.ENSASA_SHOP_DIALOG);
 
     stock = {
         0x0068,  3881,1,     --Tarutaru Folding Screen
@@ -42,7 +40,7 @@ function onTrigger(player,npc)
         0x0763,   576,3,     --Sea Foliage
         0x005C,   905,3,     --Tarutaru Stool
         0x006E,  4744,3      --White Jar
-    } 
+    }
     showNationShop(player, NATION_WINDURST, stock);
 
 end;

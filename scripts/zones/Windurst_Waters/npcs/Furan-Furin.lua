@@ -3,18 +3,15 @@
 -- NPC: Furan-Furin
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -22,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x82712,0,0,0,0,0,0,0,VanadielTime());
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

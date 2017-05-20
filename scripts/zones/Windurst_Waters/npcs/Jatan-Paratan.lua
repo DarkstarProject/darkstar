@@ -6,9 +6,7 @@
 --  @zone = 238
 -- @pos = -59 -4 22
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -82,12 +80,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,WONDERING_MINSTREL);
     elseif (csid == 0x027e) then  -- WONDERING_MINSTREL: Quest Finish
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17349);
+            player:messageSpecial(TextIDs.ITEM_CANNOT_BE_OBTAINED,17349);
         else
             player:tradeComplete(trade);
             player:completeQuest(WINDURST,WONDERING_MINSTREL)
             player:addItem(17349);
-            player:messageSpecial(ITEM_OBTAINED,17349);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,17349);
             player:addFame(WINDURST,75);
             player:addTitle(DOWN_PIPER_PIPEUPPERER);
             player:needToZone(true);

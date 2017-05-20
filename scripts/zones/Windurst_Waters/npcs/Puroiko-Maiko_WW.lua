@@ -9,11 +9,9 @@
 -- X Start Supply Run Missions and offers a list of already-delivered supplies.
 --   Start an Expeditionary Force by giving an E.F. region insignia to you.
 -------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/conquest");
 require("scripts/globals/common");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
@@ -35,10 +33,10 @@ end;
 function onTrigger(player,npc)
 
     if (player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
-        player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
+        player:showText(npc,TextIDs.CONQUEST + 40); -- "We will dispose of those unusable supplies."
         local region = player:getVar("supplyQuest_region");
         player:delKeyItem(getSupplyKey(region));
-        player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED + 1,getSupplyKey(region));
         player:setVar("supplyQuest_started",0);
         player:setVar("supplyQuest_region",0);
         player:setVar("supplyQuest_fresh",0);
@@ -101,7 +99,7 @@ function onEventFinish(player,csid,option)
                     -- Logic to impose limits on exp bands
                     if (option >= 32933 and option <= 32935) then
                         if (checkConquestRing(player) > 0) then
-                            player:messageSpecial(CONQUEST+60,0,0,inventory[Item+2]);
+                            player:messageSpecial(TextIDs.CONQUEST+60,0,0,inventory[Item+2]);
                             break;
                         else
                             player:setVar("CONQUEST_RING_TIMER",getConquestTally());
@@ -121,12 +119,12 @@ function onEventFinish(player,csid,option)
                     if (player:hasItem(inventory[Item + 2]) == false) then
                         player:delCP(itemCP);
                         player:addItem(inventory[Item + 2],1);
-                        player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
+                        player:messageSpecial(TextIDs\.ITEM_OBTAINED,inventory[Item + 2]);
                     else
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+                        player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
                     end;
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
+                    player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,inventory[Item + 2]);
                 end;
                 break;
             end;
@@ -134,7 +132,7 @@ function onEventFinish(player,csid,option)
     elseif (option >= 65541 and option <= 65565) then -- player chose supply quest.
         local region = option - 65541;
         player:addKeyItem(getSupplyKey(region));
-        player:messageSpecial(KEYITEM_OBTAINED,getSupplyKey(region));
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,getSupplyKey(region));
         player:setVar("supplyQuest_started",vanaDay());
         player:setVar("supplyQuest_region",region);
         player:setVar("supplyQuest_fresh",getConquestTally());

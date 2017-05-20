@@ -4,9 +4,7 @@
 -- Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
 --    @pos -19 -5 101 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -81,22 +79,22 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x0185) then
         player:addKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATIONS);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATIONS);
     elseif (csid == 0x0190) then
         player:needToZone(true);
         player:addTitle(SAVIOR_OF_KNOWLEDGE);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 0x0194) then
         player:addKeyItem(OVERDUE_BOOK_NOTIFICATION);
-        player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATION);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATION);
     elseif (csid == 0x019a) then
         player:needToZone(true);
         player:addGil(GIL_RATE*2800);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2800);
+        player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE*2800);
         player:addTitle(SAVIOR_OF_KNOWLEDGE);
         player:delKeyItem(OVERDUE_BOOK_NOTIFICATION);
         player:delKeyItem(A_SONG_OF_LOVE);

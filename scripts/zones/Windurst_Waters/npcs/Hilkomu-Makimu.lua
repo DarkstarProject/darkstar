@@ -4,24 +4,22 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,HIKOMUMAKIMU_SHOP_DIALOG);
+    player:showText(npc,TextIDs.HIKOMUMAKIMU_SHOP_DIALOG);
 
     stock = {
         0x12DD, 23184,1,     --Scroll of Poison II
@@ -42,7 +40,7 @@ function onTrigger(player,npc)
         0x1291, 16928,3,     --Scroll of Fire II
         0x1296, 22356,3,     --Scroll of Blizzard II
         0x12A5, 28520,3      --Scroll of Thunder II
-    } 
+    }
     showNationShop(player, NATION_WINDURST, stock);
 end;
 

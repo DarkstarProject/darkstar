@@ -23,7 +23,7 @@ function isHalloweenEnabled()
         elseif (HALLOWEEN_2009 == 1) then
             option = 3;
         elseif (HALLOWEEN_2010 == 1) then
-            option = 4;        
+            option = 4;
         end
     end
     return option;
@@ -34,13 +34,13 @@ function halloweenItemsCheck(player)
     local headSlot = player:getEquipID(SLOT_HEAD);
     local mainHand = player:getEquipID(SLOT_MAIN);
     local reward = 0;
-    
+
     -- Normal Quality Rewards
     local pumpkinHead = 13916
     local pumpkinHead2 = 15176;
     local trickStaff = 17565;
     local trickStaff2 = 17587;
-    
+
     reward_list = {pumpkinHead,pumpkinHead2,trickStaff,trickStaff2};
 
     -- Checks for HQ Upgrade
@@ -58,7 +58,7 @@ function halloweenItemsCheck(player)
             return reward;
         end
     end
-    
+
     -- Checks the possible item rewards to ensure player doesnt already have the item we are about to give them
     local cnt = #reward_list;
 
@@ -75,12 +75,15 @@ function halloweenItemsCheck(player)
     end;
 end;
 
-function onHalloweenTrade(player,trade,npc)
+-- Unsafe usage of global TextIDs do not pass in a TextIDs table so it is nil, take care.
+function onHalloweenTrade(player,trade,npc,TextIDs)
     local zone = player:getZoneName();
-    local TextIDs = "scripts/zones/" .. zone .. "/TextIDs";
-    package.loaded[TextIDs] = nil;
-    require(TextIDs);
-    
+    if (not(TextIDs)) then
+        local ids = "scripts/zones/" .. zone .. "/TextIDs";
+        package.loaded[ids] = nil;
+        require(ids);
+    end
+
     local contentEnabled = isHalloweenEnabled();
     local item = trade:getItemId();
     -------------------
@@ -142,20 +145,20 @@ function onHalloweenTrade(player,trade,npc)
                 local harvestFestTreats;
                 if (itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
 
-                    harvestFestTreats = player:getVar(varName); 
+                    harvestFestTreats = player:getVar(varName);
                 else
 
                     varName = "harvestFestTreats2";
                     harvestFestTreats = player:getVar(varName); --  this is the second list
                     itemInList = itemInList - 32;
                 end
-                
+
                 local AlreadyTradedChk = player:getMaskBit(harvestFestTreats,itemInList);
                 if (itemReward ~= 0 and player:getFreeSlotsCount() >= 1 and math.random(1,3) < 2) then -- Math.random added so you have 33% chance on getting item
 
-                    player:messageSpecial(HERE_TAKE_THIS);
+                    player:messageSpecial((TextIDs and TextIDs.HERE_TAKE_THIS) or HERE_TAKE_THIS);
                     player:addItem(itemReward);
-                    player:messageSpecial(ITEM_OBTAINED,itemReward);
+                    player:messageSpecial((TextIDs and TextIDs.ITEM_OBTAINED) or ITEM_OBTAINED,itemReward);
 
                 elseif (player:canUseCostume() and AlreadyTradedChk == false) then
                 -- Other neat looking halloween type costumes
@@ -164,12 +167,12 @@ function onHalloweenTrade(player,trade,npc)
                 -- @ 433/432 golem
                 -- 265 dark eye, 266 Giant version
                 -- 290 dark bombs
-                -- 301 dark mandy 
+                -- 301 dark mandy
                 -- 313 black spiders
                 -- 488 gob
                 -- 531 - 548 shade
                 -- 564/579 skele
-                    
+
                     -- Possible costume values:
                     Yagudo = math.random(580,607);
                     Quadav = math.random(644,671);
@@ -179,15 +182,15 @@ function onHalloweenTrade(player,trade,npc)
                     Hound = 365;
                     Skeleton = 564;
                     Dark_Stalker = math.random(531,534);
-                    
-                    halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
+
+                    halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker};
 
                     local costumePicked = halloween_costume_list[math.random(1,#halloween_costume_list)]; -- will randomly pick one of the costumes in the list
                     player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
 
                     -- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
                     -- zone, costumeID
-                    pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines 
+                    pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines
                                             235,Hound,Ghost,      -- Bastok Markets
                                             230,Ghost,Skeleton, -- Southern Sandoria
                                             231,Hound,Skeleton,   -- Northern Sandoria
@@ -197,24 +200,24 @@ function onHalloweenTrade(player,trade,npc)
                     for zi = 1, #pitchForkCostumeList, 3 do
 
                         if (zone == pitchForkCostumeList[zi] and (costumePicked == pitchForkCostumeList[zi + 1] or zone == pitchForkCostumeList[zi] and costumePicked == pitchForkCostumeList[zi + 2])) then -- Gives special hint for pitch fork costume
-                            player:messageSpecial(IF_YOU_WEAR_THIS);
+                            player:messageSpecial((TextIDs and TextIDs.IF_YOU_WEAR_THIS) or IF_YOU_WEAR_THIS);
 
                         elseif (zi == 16) then
-                            player:messageSpecial(THANK_YOU_TREAT);    
+                            player:messageSpecial((TextIDs and TextIDs.THANK_YOU_TREAT) or THANK_YOU_TREAT);
 
                         end
 
                     end
                 else
-                    player:messageSpecial(THANK_YOU);
+                    player:messageSpecial((TextIDs and TextIDs.THANK_YOU) or THANK_YOU);
                 end
-                
+
                 if (AlreadyTradedChk == false) then
                     player:setMaskBit(harvestFestTreats,varName,itemInList,true);
                 end
-                
+
                 player:tradeComplete();
-                
+
                 break;
             end
         end
@@ -263,16 +266,13 @@ function applyHalloweenNpcCostumes(zoneid)
                 [17752102] = 63  -- Maqu_Molpih - Windurst Waters
             }
         };
-        
+
         for id,skin in pairs(npc_costume_map[zoneid]) do
             local hfNpc = GetNPCByID(id);
             if (hfNpc ~= nil) then
                 hfNpc:changeSkin(skin);
             end
         end
-        
+
     end
 end;
-
-
-

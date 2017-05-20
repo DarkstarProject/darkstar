@@ -4,12 +4,10 @@
 -- Only sells when Windurst controlls Aragoneu Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -26,9 +24,9 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(ARAGONEU);
     if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,MAQUMOLPIH_CLOSED_DIALOG);
+        player:showText(npc,TextIDs.MAQUMOLPIH_CLOSED_DIALOG);
     else
-        player:showText(npc,MAQUMOLPIH_OPEN_DIALOG);
+        player:showText(npc,TextIDs.MAQUMOLPIH_OPEN_DIALOG);
 
         stock = {
             0x0277,    36,   --Horo Flour

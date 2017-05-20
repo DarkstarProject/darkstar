@@ -4,25 +4,23 @@
 -- Adventurer's Assistant
 -- Working 100%
 -------------------------------------
-
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
-function onTrade(player,npc,trade) 
+function onTrade(player,npc,trade)
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     player:startEvent(0x0116);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -41,6 +39,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
-
-

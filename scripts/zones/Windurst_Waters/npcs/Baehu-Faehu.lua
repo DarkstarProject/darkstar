@@ -4,11 +4,9 @@
 -- Only sells when Windurst has control of Sarutabaruta
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,10 +21,10 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(SARUTABARUTA);
-    if (RegionOwner ~= NATION_WINDURST) then 
-        player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
+    if (RegionOwner ~= NATION_WINDURST) then
+        player:showText(npc,TextIDs.BAEHUFAEHU_CLOSED_DIALOG);
     else
-        player:showText(npc,BAEHUFAEHU_OPEN_DIALOG);
+        player:showText(npc,TextIDs.BAEHUFAEHU_OPEN_DIALOG);
 
         stock = {
             0x115C,    22,   --Rarab Tail
