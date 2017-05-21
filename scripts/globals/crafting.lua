@@ -253,12 +253,19 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
     elseif (category == 2 or category == 1) then -- item
         local idx = bit.band(option, 3);
         local i = items[(category - 1) * 4 + idx];
+        local quantity = bit.rshift(option, 9);
+        local cost = quantity * i.cost;
         if (i and rank >= i.rank) then
-            if (player:getCurrency(currency) >= i.cost) then
-                if (player:addItem(i.id, true)) then
-                    player:delCurrency(currency, i.cost);
-                    player:messageSpecial(ITEM_OBTAINED, i.id);
-                else
+            if (player:getCurrency(currency) >= cost) then
+                local delivered = 0;
+                for count = 1, quantity do -- addItem does not appear to honor quantity if the item doesn't stack.
+                    if (player:addItem(i.id, true)) then
+                        player:delCurrency(currency, i.cost);
+                        player:messageSpecial(ITEM_OBTAINED, i.id);
+                        delivered = delivered + 1;
+                    end
+                end
+                if (delivered == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
@@ -267,10 +274,12 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         end
     elseif (category == 0) then -- HQ crystal
         local i = HQCrystals[bit.band(bit.rshift(option, 5), 15)];
+        local quantity = bit.rshift(option, 9);
+        local cost = quantity * i.cost;
         if (i and rank >= 3) then
-            if (player:getCurrency(currency) >= i.cost) then
-                if (player:addItem(i.id, true)) then
-                    player:delCurrency(currency, i.cost);
+            if (player:getCurrency(currency) >= cost) then
+                if (player:addItem(i.id, quantity)) then
+                    player:delCurrency(currency, cost);
                     player:messageSpecial(ITEM_OBTAINED, i.id);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
