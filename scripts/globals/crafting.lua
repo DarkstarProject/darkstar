@@ -227,6 +227,8 @@ end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
     local rank = player:getSkillRank(guildID + 48);
+    local category = bit.band(bit.rshift(option, 2),3);
+
     if (bit.tobit(option) == -1 and rank >= 3) then
         local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
         player:setVar('[GUILD]currentGuild',guildID + 1);
@@ -237,8 +239,8 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
             player:setVar('[GUILD]daily_points',-1);
         end
-    elseif (bit.band(option, 32) > 0) then -- keyitem
-        local ki = keyitems[bit.band(option, 31)];
+    elseif (category == 3) then -- keyitem
+        local ki = keyitems[bit.band(bit.rshift(option, 5), 15) - 1];
         if (ki and rank >= ki.rank) then
             if (player:getCurrency(currency) >= ki.cost) then
                 player:delCurrency(currency, ki.cost);
@@ -248,8 +250,9 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
-    elseif (bit.band(option, 16) > 0) then -- item
-        local i = items[bit.band(option, 15)];
+    elseif (category == 2 or category == 1) then -- item
+        local idx = bit.band(option, 3);
+        local i = items[(category - 1) * 4 + idx];
         if (i and rank >= i.rank) then
             if (player:getCurrency(currency) >= i.cost) then
                 if (player:addItem(i.id, true)) then
@@ -262,8 +265,8 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
-    else -- HQ crystal (or nothing)
-        local i = HQCrystals[bit.band(option, option)];
+    elseif (category == 0) then -- HQ crystal
+        local i = HQCrystals[bit.band(bit.rshift(option, 5), 15)];
         if (i and rank >= 3) then
             if (player:getCurrency(currency) >= i.cost) then
                 if (player:addItem(i.id, true)) then
