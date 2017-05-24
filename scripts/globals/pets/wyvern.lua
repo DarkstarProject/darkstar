@@ -124,7 +124,12 @@ function onMobSpawn(mob)
         local pet = player:getPet()
         local prev_exp = pet:getLocalVar("wyvern_exp")
         if (prev_exp < 1000) then
-            local diff = math.floor((prev_exp + exp)/200) - math.floor(prev_exp/200)
+        -- cap exp at 1000 to prevent wyvern leveling up many times from large exp awards
+            local currentExp = exp
+            if (prev_exp+exp > 1000) then
+                currentExp = 1000 - prev_exp
+            end
+            local diff = math.floor((prev_exp + currentExp)/200) - math.floor(prev_exp/200)
             if diff ~= 0 then
                 -- wyvern levelled up (diff is the number of level ups)
                 pet:addMod(MOD_ACC,2*diff)
