@@ -83,11 +83,10 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     }
     //Status flag: bit 4: frozen anim (terror),
     //  bit 6/7/8 related to Ballista (6 set - normal, 7 set san d'oria, 6+7 set bastok, 8 set windurst)
-    uint8 flag = 0x20;
+    uint8 flag = (PChar->allegiance << 5);
+    
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_TERROR))
         flag |= 0x08;
-    if (PChar->allegiance > 1)
-        flag |= (PChar->allegiance << 5);
     
     WBUFB(data, (0x36)) = flag;
 
