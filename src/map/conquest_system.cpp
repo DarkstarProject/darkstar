@@ -560,16 +560,16 @@ namespace conquest
 
 	/************************************************************************
     *                                                                       *
-    *  Добавляем персонажу conquest points, основываясь на полученном опыте *
+    *  Adding character conquest points, based on lessons learned           *
     *                                                                       *
     ************************************************************************/
 
-    // TODO: необходимо учитывать добавленные очки для еженедельного подсчета conquest
+    // TODO: Added points to be considered for the weekly count conquest
 
     uint32 AddConquestPoints(CCharEntity* PChar, uint32 exp)
     {
-        // ВНИМЕНИЕ: не нужно отправлять персонажу CConquestPacket,
-        // т.к. клиент сам запрашивает этот пакет через фиксированный промежуток времени
+        // Off the radar : no need to send the character CConquestPacket,
+        // because the client himself requests the package after a fixed period
 
         REGIONTYPE region = PChar->loc.zone->GetRegionID();
 
@@ -583,7 +583,7 @@ namespace conquest
             charutils::AddPoints(PChar, charutils::GetConquestPointsName(PChar).c_str(), points);
             GainInfluencePoints(PChar, points/2);
         }
-        return 0; // added conquest points (пока не вижу в этом определенного смысла)
+        return 0; // added conquest points (I do not see in this particular sense)
     }
 
 
