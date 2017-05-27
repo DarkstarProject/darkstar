@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "latent_effect.h"
 #include "entities/charentity.h"
 #include "entities/battleentity.h"
+#include "utils/battleutils.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "modifier.h"
@@ -626,7 +627,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_WEATHER_ELEMENT:
-                if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+                if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }
@@ -719,6 +720,17 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_STATUS_EFFECT_ACTIVE)
         {
             if (m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)m_LatentEffectList.at(i)->GetConditionsValue()))
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+        }
+        else if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1674,7 +1686,7 @@ void CLatentEffectContainer::CheckLatentsZone()
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-            if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1767,4 +1779,35 @@ void CLatentEffectContainer::CheckLatentsZone()
         }
     }
     m_POwner->UpdateHealth();
+}
+
+/************************************************************************
+*																		*
+*  Checks all latents regarding current weather							*
+*																		*
+************************************************************************/
+void CLatentEffectContainer::CheckLatentsWeather()
+{
+    CheckLatentsWeather(zoneutils::GetZone(m_POwner->getZone())->GetWeather());
+}
+
+void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
+{
+    for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+    {
+        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            auto element = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false, weather));
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == element)
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+
+            m_POwner->UpdateHealth();
+        }
+    }
 }

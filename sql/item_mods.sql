@@ -2358,11 +2358,11 @@ INSERT INTO `item_mods` VALUES (10791,1,5);       -- Haoma's Ring: DEF 5
 INSERT INTO `item_mods` VALUES (10791,112,8);     -- Healing magic skill +8
 INSERT INTO `item_mods` VALUES (10791,310,15);    -- Cursna effect +15%
 INSERT INTO `item_mods` VALUES (10792,1,4); -- SAIDA RING, DEF:4 Enhances effect of "Cursna" received
--- INSERT INTO `item_mods` VALUES (10792,ENHANCE EFFECT OF CURSNA RECEIVED,1);
+INSERT INTO `item_mods` VALUES (10792,67,15);
 INSERT INTO `item_mods` VALUES (10793,1,5); -- ESHMUNS RING, DEF:5 Enhances effect of "Cursna" received
--- INSERT INTO `item_mods` VALUES (10793,ENHANCE EFFECT OF CURSNA RECEIVED,1);
--- INSERT INTO `item_mods` VALUES (10794,ENHANCE HOLY WATER EFFECT,1); -- BLENMOTS RING, Enhances "Holy Water" effect
--- INSERT INTO `item_mods` VALUES (10795,ENHANCE HOLY WATER EFFECT,1); -- BLENMOTS RING +1, Enhances "Holy Water" effect
+INSERT INTO `item_mods` VALUES (10793,67,20);
+INSERT INTO `item_mods` VALUES (10794,495,5); -- BLENMOTS RING, Enhances "Holy Water" effect
+INSERT INTO `item_mods` VALUES (10795,495,10); -- BLENMOTS RING +1, Enhances "Holy Water" effect
 INSERT INTO `item_mods` VALUES (10797,23,10); -- DAGAZ RING, Attack+10 Ranged Attack+10 Enmity-1
 INSERT INTO `item_mods` VALUES (10797,24,10); -- RATT
 INSERT INTO `item_mods` VALUES (10797,27,-1); -- ENMITY

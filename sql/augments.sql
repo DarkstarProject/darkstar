@@ -399,7 +399,7 @@ INSERT INTO `augments` VALUES (327, 0, 0, 0, 0, 0); -- Weapon skill damage+1%
 INSERT INTO `augments` VALUES (328, 0, 421, 1, 0, 0); -- Crit. hit damage+1%
 INSERT INTO `augments` VALUES (329, 0, 374, 1, 0, 0); -- Cure potency+1%
 INSERT INTO `augments` VALUES (330, 0, 491, 1, 0, 0); -- Waltz potency+1%
-INSERT INTO `augments` VALUES (331, 0, 0, 0, 0, 0); -- Waltz ability delay -1
+INSERT INTO `augments` VALUES (331, 0, 497, -1, 0, 0); -- Waltz ability delay -1
 INSERT INTO `augments` VALUES (332, 0, 175, 1, 0, 0); -- Sklchn.dmg.+1%
 INSERT INTO `augments` VALUES (333, 0, 0, 0, 0, 0); -- Conserve TP+1
 INSERT INTO `augments` VALUES (334, 0, 487, 1, 0, 0); -- Magic burst dmg.+1%
