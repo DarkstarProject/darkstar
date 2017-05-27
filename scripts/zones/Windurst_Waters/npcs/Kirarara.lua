@@ -2,18 +2,15 @@
 -- Area: Windurst Waters
 -- NPC:  Kirarara
 --  Involved in Quest: Making the Grade
--- Working 100% 
+-- Working 100%
 --  @zone = 238
 -- @pos = 132 -7 172
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -32,7 +29,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01a9);  -- Standard conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -51,6 +48,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-
-
-

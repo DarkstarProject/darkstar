@@ -7,9 +7,6 @@
 --  0x027e  0x0332 0x0334    0x0336  0x0337
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -70,16 +67,15 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,ECO_WARRIOR_WIN);
             player:delKeyItem(INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE * 5000);
+            player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
-            player:messageSpecial(ITEM_OBTAINED,4198);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,4198);
             player:addTitle(EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4198);
+            player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,4198);
         end
     end
 end;
-

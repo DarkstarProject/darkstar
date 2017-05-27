@@ -3,11 +3,8 @@
 -- NPC:  HomePoint#3
 -- @pos 4 -4 -174 238
 -----------------------------------
-
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/homepoint");
 
 -----------------------------------
@@ -15,7 +12,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +21,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fe, 103);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,9 +42,9 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fe) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(TextIDs.HOMEPOINT_SET);
         else
             hpTeleport( player, option);
         end

@@ -1056,7 +1056,8 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
 
 end;
 
-function finishMissionTimeline(player,guard,csid,option)
+-- Unsafe usage of global TextIDs do not pass in a TextIDs table so it is nil, take care.
+function finishMissionTimeline(player,guard,csid,option,TextIDs)
 
     nation = player:getNation();
 
@@ -1202,7 +1203,7 @@ function finishMissionTimeline(player,guard,csid,option)
 
                 switch (messList[1]) : caseof {
                     [1] = function (x) if (messList[2] ~= nil) then player:addMission(nation,messList[2]); else player:addMission(nation,timeline[cs]); end end,
-                    [2] = function (x) player:messageSpecial(YOU_ACCEPT_THE_MISSION); end,
+                    [2] = function (x) player:messageSpecial((TextIDs and TextIDs.YOU_ACCEPT_THE_MISSION) or YOU_ACCEPT_THE_MISSION); end,
                     [3] = function (x) player:setVar(messList[2],messList[3]); end,
                     [4] = function (x) player:tradeComplete(); end,
                     [5] = function (x) if ((player:getRankPoints() + messList[2]) > 4000) then player:setRankPoints(4000); else player:addRankPoints(messList[2]); end end,

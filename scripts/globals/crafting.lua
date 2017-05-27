@@ -225,16 +225,17 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
     player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
-function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
+-- Unsafe usage of global TextIDs do not pass in a TextIDs table so it is nil, take care.
+function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items, TextIDs)
     local rank = player:getSkillRank(guildID + 48);
     if (bit.tobit(option) == -1 and rank >= 3) then
         local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
         player:setVar('[GUILD]currentGuild',guildID + 1);
 
         if (oldGuild == -1) then
-            player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
+            player:messageSpecial((TextIDs and TextIDs.GUILD_NEW_CONTRACT) or GUILD_NEW_CONTRACT, guildID);
         else
-            player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:messageSpecial((TextIDs and TextIDs.GUILD_TERMINATE_CONTRACT) or GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
             player:setVar('[GUILD]daily_points',-1);
         end
     elseif (bit.band(option, 32) > 0) then -- keyitem
@@ -243,9 +244,9 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             if (player:getCurrency(currency) >= ki.cost) then
                 player:delCurrency(currency, ki.cost);
                 player:addKeyItem(ki.id);
-                player:messageSpecial(KEYITEM_OBTAINED, ki.id);
+                player:messageSpecial((TextIDs and TextIDs.KEYITEM_OBTAINED) or KEYITEM_OBTAINED, ki.id);
             else
-               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+               player:messageText(target, (TextIDs and TextIDs.NOT_HAVE_ENOUGH_GP) or NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
     elseif (bit.band(option, 16) > 0) then -- item
@@ -254,12 +255,12 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             if (player:getCurrency(currency) >= i.cost) then
                 if (player:addItem(i.id, true)) then
                     player:delCurrency(currency, i.cost);
-                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                    player:messageSpecial((TextIDs and TextIDs.ITEM_OBTAINED) or ITEM_OBTAINED, i.id);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                    player:messageSpecial((TextIDs and TextIDs.ITEM_CANNOT_BE_OBTAINED) or ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
-               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+               player:messageText(target, (TextIDs and TextIDs.NOT_HAVE_ENOUGH_GP) or NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
     else -- HQ crystal (or nothing)
@@ -268,22 +269,23 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             if (player:getCurrency(currency) >= i.cost) then
                 if (player:addItem(i.id, true)) then
                     player:delCurrency(currency, i.cost);
-                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                    player:messageSpecial((TextIDs and TextIDs.ITEM_OBTAINED) or ITEM_OBTAINED, i.id);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                    player:messageSpecial((TextIDs and TextIDs.ITEM_CANNOT_BE_OBTAINED) or ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
-               player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
+               player:messageText(target, (TextIDs and TextIDs.NOT_HAVE_ENOUGH_GP) or NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
     end
 end
 
-function unionRepresentativeTrade(player, npc, trade, csid, guildID)
+-- Unsafe usage of global TextIDs do not pass in a TextIDs table so it is nil, take care.
+function unionRepresentativeTrade(player, npc, trade, csid, guildID, TextIDs)
     local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
     if (player:getVar('[GUILD]currentGuild') - 1 == guildID) then
         if remainingPoints == 0 then
-            player:messageText(npc, NO_MORE_GP_ELIGIBLE);
+            player:messageText(npc, (TextIDs and TextIDs.NO_MORE_GP_ELIGIBLE) or NO_MORE_GP_ELIGIBLE);
         else
             local totalPoints = 0;
             for i=0,8,1 do

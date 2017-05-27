@@ -6,9 +6,7 @@
 --  @zone = 238
 -- @pos = 161 -2 161
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
@@ -45,7 +43,7 @@ function onTrigger(player,npc)
         elseif (prog == 1) then
             player:startEvent(0x01c8); -- Deliver Test Sheets Reminder
         elseif (prog == 2 or prog == 3) then
-            player:startEvent(0x01ca); -- Quest Finish    
+            player:startEvent(0x01ca); -- Quest Finish
         end
     elseif (gradestatus == QUEST_COMPLETED and player:needToZone() == true) then
         player:startEvent(0x01cb); -- After Quest
@@ -57,7 +55,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x1a7); -- Standard Conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -81,16 +79,16 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestMakingTheGrade_prog",1);
     elseif (csid == 0x01ca) then -- Quest Finish
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4855);
+            player:messageSpecial(TextIDs.ITEM_CANNOT_BE_OBTAINED,4855);
         else
             player:completeQuest(WINDURST,MAKING_THE_GRADE);
             player:addFame(WINDURST,75);
             player:addItem(4855);
-            player:messageSpecial(ITEM_OBTAINED,4855);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,4855);
             player:setVar("QuestMakingTheGrade_prog",0);
             player:needToZone(true);
         end
     elseif (csid == 0x0331) then
         player:setVar("ClassReunion_TalkedToFupepe",1);
-    end    
+    end
 end;

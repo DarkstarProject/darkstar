@@ -4,11 +4,9 @@
 -- Only sells when Windurst controlls Li'Telor Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,10 +21,10 @@ end;
 
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(LITELOR);
-    if (RegionOwner ~= NATION_WINDURST) then 
-        player:showText(npc,OTETE_CLOSED_DIALOG);
+    if (RegionOwner ~= NATION_WINDURST) then
+        player:showText(npc,TextIDs.OTETE_CLOSED_DIALOG);
     else
-        player:showText(npc,OTETE_OPEN_DIALOG);
+        player:showText(npc,TextIDs.OTETE_OPEN_DIALOG);
 
         stock = {
             0x026F,   119,   --Bay Leaves

@@ -5,9 +5,7 @@
 --  @zone = 238
 -- @pos = -195 -11 -120
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -22,9 +20,9 @@ function onTrade(player,npc,trade)
         StarSpinel = trade:hasItemQty(1149,1);
         if (StarSpinel == true and count == 1) then
             player:startEvent(0x0307,0,1149);
-        end    
-    end    
-end; 
+        end
+    end
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -98,7 +96,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("CryingOverOnions",2);
         player:addItem(13136);
-        player:messageSpecial(ITEM_OBTAINED,13136);
+        player:messageSpecial(TextIDs\.ITEM_OBTAINED,13136);
     elseif (csid == 0x0308) then
         player:completeQuest(WINDURST,CRYING_OVER_ONIONS);
         player:addFame(WINDURST,120);
@@ -118,8 +116,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x036A)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
         player:addKeyItem(CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
     end
 end;
-
-

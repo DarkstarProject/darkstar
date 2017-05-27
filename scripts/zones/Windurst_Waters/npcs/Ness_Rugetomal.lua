@@ -4,11 +4,9 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
+    player:showText(npc,TextIDs.NESSRUGETOMALL_SHOP_DIALOG);
 
     stock = {
         0x112A,    10,1,     --Ginger Cookie

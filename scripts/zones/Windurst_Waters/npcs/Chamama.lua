@@ -4,9 +4,7 @@
 -- Involved In Quest:     Inspector's Gadget
 -- Starts Quest:        In a Pickle
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -52,7 +50,7 @@ gil                    = trade:getGil();
         end
     elseif (InvisibleManSticker == false) then
         ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
-        
+
         if (ThePromise == QUEST_ACCEPTED) then
             count = trade:getItemCount();
             ShoalWeed = trade:hasItemQty(1148,1);
@@ -62,8 +60,8 @@ gil                    = trade:getGil();
             end
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -76,12 +74,12 @@ InAPickle         = player:getQuestStatus(WINDURST,IN_A_PICKLE);
 NeedToZone         = player:needToZone();
     if (ThePromise == QUEST_ACCEPTED) then
         InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
-        
+
         if (InvisibleManSticker == true) then
-            player:startEvent(0x0320);    
+            player:startEvent(0x0320);
         else
             ThePromiseVar = player:getVar("ThePromise");
-            
+
             if (ThePromiseVar == 1) then
                 player:startEvent(0x031e,0,1148,INVISIBLE_MAN_STICKER);
             else
@@ -96,18 +94,18 @@ NeedToZone         = player:needToZone();
         else
             player:startEvent(0x0227,0,FAKE_MOUSTACHE);
         end
-    elseif (InAPickle == QUEST_AVAILABLE and NeedToZone == false) then 
+    elseif (InAPickle == QUEST_AVAILABLE and NeedToZone == false) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(0x028e,0,4444); -- IN A PICKLE + RARAB TAIL: Quest Begin
         else
             player:startEvent(0x028b); -- Standard Conversation
         end
-    elseif (InAPickle == QUEST_ACCEPTED or player:getVar("QuestInAPickle_var") == 1) then 
+    elseif (InAPickle == QUEST_ACCEPTED or player:getVar("QuestInAPickle_var") == 1) then
         player:startEvent(0x028f,0,4444); -- IN A PICKLE + RARAB TAIL: Quest Objective Reminder
-    elseif (InAPickle == QUEST_COMPLETED and NeedToZone) then 
+    elseif (InAPickle == QUEST_COMPLETED and NeedToZone) then
         player:startEvent(0x0294); -- IN A PICKLE: After Quest
-    elseif (InAPickle == QUEST_COMPLETED and NeedToZone == false and player:getVar("QuestInAPickle_var") ~= 1) then 
+    elseif (InAPickle == QUEST_COMPLETED and NeedToZone == false and player:getVar("QuestInAPickle_var") ~= 1) then
         rand = math.random(1,2)
         if (rand == 1) then
             player:startEvent(0x0295); -- IN A PICKLE: Repeatable Quest Begin
@@ -140,25 +138,25 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0228) then
         player:tradeComplete();
         player:addKeyItem(FAKE_MOUSTACHE);
-        player:messageSpecial(KEYITEM_OBTAINED,FAKE_MOUSTACHE);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,FAKE_MOUSTACHE);
     elseif (csid == 0x031d) then
         player:setVar("ThePromise",1);
     elseif (csid == 0x031f) then
         player:tradeComplete();
         player:addKeyItem(INVISIBLE_MAN_STICKER);
-        player:messageSpecial(KEYITEM_OBTAINED,INVISIBLE_MAN_STICKER);
+        player:messageSpecial(TextIDs.KEYITEM_OBTAINED,INVISIBLE_MAN_STICKER);
     elseif (csid == 0x028e and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
         player:addQuest(WINDURST,IN_A_PICKLE);
     elseif (csid == 0x0293) then  -- IN A PICKLE: Quest Turn In (1st Time)
         player:tradeComplete(trade);
-        player:completeQuest(WINDURST,IN_A_PICKLE);    
+        player:completeQuest(WINDURST,IN_A_PICKLE);
         player:needToZone(true);
         player:addItem(12505);
-        player:messageSpecial(ITEM_OBTAINED,12505);
+        player:messageSpecial(TextIDs\.ITEM_OBTAINED,12505);
         player:addGil(GIL_RATE*200);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+        player:messageSpecial(TextIDs\.GIL_OBTAINED,GIL_RATE*200);
         player:addFame(WINDURST,75);
-    elseif (csid == 0x0295 and option == 1) then 
+    elseif (csid == 0x0295 and option == 1) then
         player:setVar("QuestInAPickle_var",1)
     elseif (csid == 0x0296) then  -- IN A PICKLE + 200 GIL: Repeatable Quest Turn In
         player:tradeComplete(trade);
@@ -168,4 +166,3 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestInAPickle_var",0)
     end
 end;
-            

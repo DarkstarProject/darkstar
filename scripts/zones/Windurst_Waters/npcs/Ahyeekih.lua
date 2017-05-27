@@ -8,8 +8,7 @@
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -26,10 +25,10 @@ end;
 function onTrigger(player,npc)
     RegionOwner = GetRegionOwner(KOLSHUSHU);
     if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
+        player:showText(npc,TextIDs.AHYEEKIH_CLOSED_DIALOG);
     else
-        player:showText(npc,AHYEEKIH_OPEN_DIALOG);
-       
+        player:showText(npc,TextIDs.AHYEEKIH_OPEN_DIALOG);
+
         stock = {
             0x1197,   184,   --Buburimu Grape
             0x0460,  1620,   --Casablanca

@@ -4,24 +4,22 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,OREZEBREZ_SHOP_DIALOG);
+    player:showText(npc,TextIDs.OREZEBREZ_SHOP_DIALOG);
 
     stock = {
         0x30B2, 20000,1,     --Red Cap
@@ -42,7 +40,7 @@ function onTrigger(player,npc)
         0x30D2,  1800,3,     --Cotton Headband
         0x30A0,   151,3,     --Bronze Cap
         0x30A1,  1471,3      --Brass Cap
-    } 
+    }
     showNationShop(player, NATION_WINDURST, stock);
 
 end;

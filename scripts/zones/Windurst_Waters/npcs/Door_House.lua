@@ -3,9 +3,7 @@
 --  NPC: Door_House
 -- 17752333 (Corsair's Gants) @pos -200 -4 -111 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 
@@ -52,7 +50,7 @@ function onTrigger(player,npc)
             end;
         end;
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -83,6 +81,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 944) then
         player:setVar("LeleroonsletterGreen", 5);
         player:addItem(14929); -- corsair's gants
-        player:messageSpecial(ITEM_OBTAINED,14929);
+        player:messageSpecial(TextIDs\.ITEM_OBTAINED,14929);
     end;
 end;

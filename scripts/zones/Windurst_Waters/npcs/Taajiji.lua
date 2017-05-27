@@ -4,24 +4,22 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,TAAJIJI_SHOP_DIALOG);
+    player:showText(npc,TextIDs.TAAJIJI_SHOP_DIALOG);
 
     stock = {
         0x113B,   756,1,     --Dhalmel Pie

@@ -3,9 +3,7 @@
 --  NPC: Moari-Kaaori
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
@@ -18,7 +16,7 @@ function onTrade(player,npc,trade)
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
     local offer = trade:getItemId();
-    
+
     if (player:getVar("FLOWER_PROGRESS") == 2) then
         if (trade:hasItemQty(950, 1) and trade:getItemCount() == 1) then
             if (SayFlowers == QUEST_COMPLETED) then
@@ -40,7 +38,7 @@ function onTrigger(player,npc)
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
     local zoned = player:getLocalVar("FLOWER_ZONE");
-    
+
     if (FlowerProgress == 2) then
         player:startEvent(0x0203); -- Waiting for trade.
     elseif (zoned == 1) then -- Must zone to retry quest.
@@ -52,7 +50,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0200);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -82,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,SAY_IT_WITH_FLOWERS);
         player:addFame(WINDURST,30);
         player:addItem(16536);
-        player:messageSpecial(ITEM_OBTAINED,16536);
+        player:messageSpecial(TextIDs\.ITEM_OBTAINED,16536);
         player:setVar("FLOWER_PROGRESS",0);
         player:setLocalVar("FLOWER_ZONE",1);
         player:setTitle(CUPIDS_FLORIST);
@@ -90,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,SAY_IT_WITH_FLOWERS);
         player:tradeComplete();
         player:addGil(100);
-        player:messageSpecial(GIL_OBTAINED,100);
+        player:messageSpecial(TextIDs\.GIL_OBTAINED,100);
         player:addFame(WINDURST,10);
         player:setLocalVar("FLOWER_ZONE",1);
         player:setVar("FLOWER_PROGRESS",0);
@@ -105,6 +103,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FLOWER_PROGRESS",2);
     end
 end;
-
-
-

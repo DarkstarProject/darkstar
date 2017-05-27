@@ -4,12 +4,10 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -24,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:showText(npc,UPIHKHACHLA_SHOP_DIALOG);
+    player:showText(npc,TextIDs.UPIHKHACHLA_SHOP_DIALOG);
 
     stock = {
         0x43A1,  1107,1,     --Grenade
@@ -43,7 +41,7 @@ function onTrigger(player,npc)
         0x0765,  3960,3,     --Salinator
         0x03FC,   276,3,     --Sickle
         0x04D9,   354,3      --Twinkle Powder
-    }               
+    }
 
     rank = getNationRank(NATION_WINDURST);
     if (rank ~= 1) then

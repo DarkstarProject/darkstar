@@ -4,9 +4,7 @@
 -- Type: Cooking Guild Master
 -- @pos -124.012 -2.999 59.998 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local TextIDs = require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 
@@ -60,10 +58,10 @@ function onEventFinish(player,csid,option)
         local crystal = 4096; -- fire crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(TextIDs\.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(TextIDs\.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.cooking);
         end
     end
