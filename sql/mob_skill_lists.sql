@@ -1113,7 +1113,7 @@ INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1304);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1305);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1306);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,951);
-INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,952);
+INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,952); -- Alliance only targeting version of Spike Flail
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,953);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,957);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,958);
@@ -1125,7 +1125,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,951);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,952);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,953);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,951);
-INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,952);
+INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1040); -- Outside alliance targeting version of Spike Flail
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,953);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,957);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1046);

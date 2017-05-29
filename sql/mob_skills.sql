@@ -768,7 +768,7 @@ INSERT INTO `mob_skills` VALUES (948,650,'Tachi_Kasha',0,7,2000,0,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (949,693,'Flame_Blast',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (950,694,'Flame_Blast',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (951,653,'Hurricane_Wing',1,30.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (952,654,'Spike_Flail',1,23.0,2000,2000,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (952,654,'Spike_Flail',1,23.0,2000,2000,4,0,0,0); -- (Fafnir) Alliance only targeting version of Spike Flail
 INSERT INTO `mob_skills` VALUES (953,655,'Dragon_Breath',4,18.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (954,698,'Touchdown',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (955,699,'Flame_Blast',0,7.0,2000,1500,4,0,0,0);
@@ -856,7 +856,7 @@ INSERT INTO `mob_skills` VALUES (1036,737,'Maats_Bash',0,7.0,2000,0,4,4,0,0);
 -- INSERT INTO `mob_skills` VALUES (1037,781,'Fireball_1',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1038,782,'Fireball_2',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1039,783,'Hurricane_Wing',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1040,784,'Spike_Flail',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1040,654,'Spike_Flail',1,40.0,2000,2000,4,8,0,0); -- (Nidhogg) Outside alliance targeting version of Spike Flail
 -- INSERT INTO `mob_skills` VALUES (1041,785,'Dragon_Breath',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1042,786,'Landing_to_the_surface',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1043,787,'Giant_fireball_Flying',0,7.0,2000,1500,4,0,0,0);
