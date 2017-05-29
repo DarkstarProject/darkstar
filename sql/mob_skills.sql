@@ -855,13 +855,13 @@ INSERT INTO `mob_skills` VALUES (1034,735,'Asuran_Fists',0,7.0,2000,0,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1036,737,'Maats_Bash',0,7.0,2000,0,4,4,0,0);
 -- INSERT INTO `mob_skills` VALUES (1037,781,'Fireball_1',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1038,782,'Fireball_2',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1039,783,'Hurricane_Wing',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1039,653,'Hurricane_Wing',1,30.0,2000,1500,4,8,0,0);
 INSERT INTO `mob_skills` VALUES (1040,654,'Spike_Flail',1,40.0,2000,2000,4,8,0,0); -- (Nidhogg) Outside alliance targeting version of Spike Flail
--- INSERT INTO `mob_skills` VALUES (1041,785,'Dragon_Breath',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1041,655,'Dragon_Breath',4,18.0,2000,1500,4,8,0,0);
 -- INSERT INTO `mob_skills` VALUES (1042,786,'Landing_to_the_surface',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1043,787,'Giant_fireball_Flying',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1044,788,'Great_wing_gust_Flying',0,7.0,2000,1500,4,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1045,789,'Absolute_Terror',0,7.0,2000,1500,4,0,0,0);
+INSERT INTO `mob_skills` VALUES (1045,659,'Absolute_Terror',0,18.0,4000,1500,4,8,0,0);
 INSERT INTO `mob_skills` VALUES (1046,660,'Horrid_Roar_2',0,18.0,4000,1500,4,8,0,0);
 -- INSERT INTO `mob_skills` VALUES (1047,791,'Tortoise_Song',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1048,792,'Head_Butt',0,7.0,2000,1500,4,0,0,0);
