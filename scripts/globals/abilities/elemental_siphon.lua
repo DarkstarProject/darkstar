@@ -43,7 +43,8 @@ function onUseAbility(player,target,ability)
         spiritEle = 3
     end;
     
-    local basePower = player:getSkillLevel(SKILL_SUM) - 50;
+    local pEquipMods = player:getMod(MOD_ENHANCES_ELEMENTAL_SIPHON);
+    local basePower = player:getSkillLevel(SKILL_SUM) + pEquipMods - 50;
     if (basePower < 0) then -- skill your summoning magic you lazy bastard !
         basePower = 0;
     end;
