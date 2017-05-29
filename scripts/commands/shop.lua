@@ -37,6 +37,7 @@ stock = {
         4549, 5000, -- Dragon Soup
         5603, 5000, -- Hydra Kofte +1
         5925, 5000, -- Charred Salisbury Steak
+		1126, 5000, -- Beastmen's Seal
 		1550, 500000, -- Ark pentasphere
 		1875, 50000, -- Ancient beastcoin 
         1298, 5000000, -- Hakutaku eye cluster
