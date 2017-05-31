@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 14665
---    Teleport ring: Yhoat
---  Enchantment: "Teleport-Yhoat"
+-- ID: 14665
+-- Teleport ring: Yhoat
+-- Enchantment: "Teleport-Yhoat"
 -----------------------------------------
 
 require("scripts/globals/status");
