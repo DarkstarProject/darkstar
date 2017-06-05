@@ -1857,7 +1857,7 @@ INSERT INTO `mob_skills` VALUES (2028,1386,'Fulmination',1,32.0,2000,1500,4,0,0,
 -- INSERT INTO `mob_skills` VALUES (2038,1782,'Artificial_Gravity',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2039,1783,'Antigravity',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2040,1784,'Rail_Cannon',0,7.0,2000,1500,4,0,0,0);
-INSERT INTO `mob_skills` VALUES (2041,1376,'PL_Restoral',0,7.0,2000,1500,1,0,0,0);
+INSERT INTO `mob_skills` VALUES (2041,1376,'Restoral',0,7.0,2000,1500,1,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2042,1786,'Armature',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2043,1787,'Artificial_Gravity',0,7.0,2000,1500,4,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2044,1788,'Antigravity',0,7.0,2000,1500,4,0,0,0);
