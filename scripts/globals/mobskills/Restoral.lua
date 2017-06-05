@@ -23,13 +23,13 @@ function onMobWeaponSkill(target, mob, skill)
     which does not seem to fit with retail in game observations on the mobskill version..
     So math.random() for now!
     ]]
-    local potency = math.random(1000, 1400);
+    local heal = math.random(1000, 1400);
     -- Bigger heal for NMs
     if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        potency = potency * 3;
+        heal = heal * 3;
     end
 
     skill:setMsg(MSG_SELF_HEAL);
 
-    return MobHealMove(mob, potency);
+    return MobHealMove(mob, heal);
 end;
