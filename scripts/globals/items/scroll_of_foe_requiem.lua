@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4976
---    Scroll of Foe Requiem
---    Teaches the song Foe Requiem
+-- ID: 4976
+-- Scroll of Foe Requiem
+-- Teaches the song Foe Requiem
 -----------------------------------------
 
 -----------------------------------------

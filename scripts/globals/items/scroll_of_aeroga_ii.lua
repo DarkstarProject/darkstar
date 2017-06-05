@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4793
---    Scroll of Aeroga II
---    Teaches the black magic Aeroga II
+-- ID: 4793
+-- Scroll of Aeroga II
+-- Teaches the black magic Aeroga II
 -----------------------------------------
 
 -----------------------------------------

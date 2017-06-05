@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5030
---    Scroll of Carnage Elegy
---    Teaches the song Carnage Elegy
+-- ID: 5030
+-- Scroll of Carnage Elegy
+-- Teaches the song Carnage Elegy
 -----------------------------------------
 
 -----------------------------------------

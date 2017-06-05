@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4890
---    Scroll of Firaja
---    Teaches the black magic Firaja
+-- ID: 4890
+-- Scroll of Firaja
+-- Teaches the black magic Firaja
 -----------------------------------------
 
 -----------------------------------------

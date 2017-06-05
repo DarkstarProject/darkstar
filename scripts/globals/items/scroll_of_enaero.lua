@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4710
---    Scroll of Enaero
---    Teaches the white magic Enaero
+-- ID: 4710
+-- Scroll of Enaero
+-- Teaches the white magic Enaero
 -----------------------------------------
 
 -----------------------------------------

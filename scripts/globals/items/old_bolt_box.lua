@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5278
---    Old Bolt Box
---    When used, you will obtain one partial stack of Dogbolt
+-- ID: 5278
+-- Old Bolt Box
+-- When used, you will obtain one partial stack of Dogbolt
 -----------------------------------------
 
 -----------------------------------------

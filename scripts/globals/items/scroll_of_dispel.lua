@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4868
---    Scroll of Dispel
---    Teaches the black magic Dispel
+-- ID: 4868
+-- Scroll of Dispel
+-- Teaches the black magic Dispel
 -----------------------------------------
 
 -----------------------------------------

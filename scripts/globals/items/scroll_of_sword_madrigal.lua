@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5007
---    Scroll of Sword Madrigal
---    Teaches the song Sword Madrigal
+-- ID: 5007
+-- Scroll of Sword Madrigal
+-- Teaches the song Sword Madrigal
 -----------------------------------------
 
 -----------------------------------------

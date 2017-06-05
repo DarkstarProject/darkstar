@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6049
---    Firestorm Schema
---    Teaches the white magic Firestorm
+-- ID: 6049
+-- Firestorm Schema
+-- Teaches the white magic Firestorm
 -----------------------------------------
 
 -----------------------------------------

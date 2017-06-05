@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4771
---    Scroll of Stone V
---    Teaches the black magic Stone V
+-- ID: 4771
+-- Scroll of Stone V
+-- Teaches the black magic Stone V
 -----------------------------------------
 
 -----------------------------------------

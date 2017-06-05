@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4872
---    Scroll of Tractor
---    Teaches the black magic Tractor
+-- ID: 4872
+-- Scroll of Tractor
+-- Teaches the black magic Tractor
 -----------------------------------------
 
 -----------------------------------------

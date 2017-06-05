@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4903
---    Dark Spirit Pact
---    Teaches the summoning magic Dark Spirit
+-- ID: 4903
+-- Dark Spirit Pact
+-- Teaches the summoning magic Dark Spirit
 -----------------------------------------
 
 -----------------------------------------

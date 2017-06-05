@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4164
---    Prism Powder
---    When applied, it makes things invisible.
+-- ID: 4164
+-- Prism Powder
+-- When applied, it makes things invisible.
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4757
---    Scroll of Blizzard
---    Teaches the black magic Blizzard
+-- ID: 4757
+-- Scroll of Blizzard
+-- Teaches the black magic Blizzard
 -----------------------------------------
 
 -----------------------------------------

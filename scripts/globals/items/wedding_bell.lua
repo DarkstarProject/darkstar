@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4170
---    Wedding Bell
---    These bells are used in most Vana'diel weddings.
+-- ID: 4170
+-- Wedding Bell
+-- These bells are used in most Vana'diel weddings.
 -----------------------------------------
 
 -----------------------------------------

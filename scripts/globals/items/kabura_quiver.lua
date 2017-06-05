@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5332
---    Kabura Quiver
---    When used, you will obtain one stack of Kabura Arrows
+-- ID: 5332
+-- Kabura Quiver
+-- When used, you will obtain one stack of Kabura Arrows
 -----------------------------------------
 
 -----------------------------------------

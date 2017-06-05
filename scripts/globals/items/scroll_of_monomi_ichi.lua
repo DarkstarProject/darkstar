@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4964
---    Scroll of Monomi: Ichi
---    Teaches the ninjutsu Monomi: Ichi
+-- ID: 4964
+-- Scroll of Monomi: Ichi
+-- Teaches the ninjutsu Monomi: Ichi
 -----------------------------------------
 
 -----------------------------------------

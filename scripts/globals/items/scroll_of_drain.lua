@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4853
---    Scroll of Drain
---    Teaches the black magic Drain
+-- ID: 4853
+-- Scroll of Drain
+-- Teaches the black magic Drain
 -----------------------------------------
 
 -----------------------------------------

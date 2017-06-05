@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4848
---    Scroll of Drown
---    Teaches the black magic Drown
+-- ID: 4848
+-- Scroll of Drown
+-- Teaches the black magic Drown
 -----------------------------------------
 
 -----------------------------------------

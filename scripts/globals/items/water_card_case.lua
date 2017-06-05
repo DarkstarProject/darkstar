@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5407
---    Water Card Case
---    When used, you will obtain one stack of Water Cards
+-- ID: 5407
+-- Water Card Case
+-- When used, you will obtain one stack of Water Cards
 -----------------------------------------
 
 -----------------------------------------

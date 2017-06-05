@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4979
---    Scroll of Foe Requiem IV
---    Teaches the song Foe Requiem IV
+-- ID: 4979
+-- Scroll of Foe Requiem IV
+-- Teaches the song Foe Requiem IV
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5402
---    Fire Card Case
---    When used, you will obtain one stack of Fire Cards
+-- ID: 5402
+-- Fire Card Case
+-- When used, you will obtain one stack of Fire Cards
 -----------------------------------------
 
 -----------------------------------------

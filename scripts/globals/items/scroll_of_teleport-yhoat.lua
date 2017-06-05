@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4728
---    Scroll of Teleport-Yhoat
---    Teaches the white magic Teleport-Yhoat
+-- ID: 4728
+-- Scroll of Teleport-Yhoat
+-- Teaches the white magic Teleport-Yhoat
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4893
---    Scroll of Stoneja
---    Teaches the black magic Stoneja
+-- ID: 4893
+-- Scroll of Stoneja
+-- Teaches the black magic Stoneja
 -----------------------------------------
 
 -----------------------------------------

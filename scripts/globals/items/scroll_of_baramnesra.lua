@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4691
---    Scroll of Baramnesra
---    Teaches the white magic Baramnesra
+-- ID: 4691
+-- Scroll of Baramnesra
+-- Teaches the white magic Baramnesra
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4953
---    Scroll of Hojo: Ni
---    Teaches the ninjutsu Hojo: Ni
+-- ID: 4953
+-- Scroll of Hojo: Ni
+-- Teaches the ninjutsu Hojo: Ni
 -----------------------------------------
 
 -----------------------------------------

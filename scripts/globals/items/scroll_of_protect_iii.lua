@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4653
---    Scroll of Protect III
---    Teaches the white magic Protect III
+-- ID: 4653
+-- Scroll of Protect III
+-- Teaches the white magic Protect III
 -----------------------------------------
 
 -----------------------------------------

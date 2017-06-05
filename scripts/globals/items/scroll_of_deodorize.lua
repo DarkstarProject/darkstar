@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4746
---    Scroll of Deodorize
---    Teaches the white magic Deodorize
+-- ID: 4746
+-- Scroll of Deodorize
+-- Teaches the white magic Deodorize
 -----------------------------------------
 
 -----------------------------------------

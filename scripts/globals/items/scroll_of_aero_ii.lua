@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4763
---    Scroll of Aero II
---    Teaches the black magic Aero II
+-- ID: 4763
+-- Scroll of Aero II
+-- Teaches the black magic Aero II
 -----------------------------------------
 
 -----------------------------------------

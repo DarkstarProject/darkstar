@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4107
---    Earth Cluster
---    Turn into a stack of earth crystals
+-- ID: 4107
+-- Earth Cluster
+-- Turn into a stack of earth crystals
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5406
---    Thunder Card Case
---    When used, you will obtain one stack of Thunder Cards
+-- ID: 5406
+-- Thunder Card Case
+-- When used, you will obtain one stack of Thunder Cards
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4871
---    Scroll of Escape
---    Teaches the black magic Escape
+-- ID: 4871
+-- Scroll of Escape
+-- Teaches the black magic Escape
 -----------------------------------------
 
 -----------------------------------------

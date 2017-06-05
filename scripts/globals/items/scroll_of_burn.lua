@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4843
---    Scroll of Burn
---    Teaches the black magic Burn
+-- ID: 4843
+-- Scroll of Burn
+-- Teaches the black magic Burn
 -----------------------------------------
 
 -----------------------------------------

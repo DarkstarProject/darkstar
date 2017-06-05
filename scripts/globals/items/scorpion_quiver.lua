@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4223
---    Scorpion Quiver
---    When used, you will obtain one stack of Scorpion Arrows
+-- ID: 4223
+-- Scorpion Quiver
+-- When used, you will obtain one stack of Scorpion Arrows
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4623
---    Scroll of Paralyna
---    Teaches the white magic Paralyna
+-- ID: 4623
+-- Scroll of Paralyna
+-- Teaches the white magic Paralyna
 -----------------------------------------
 
 -----------------------------------------

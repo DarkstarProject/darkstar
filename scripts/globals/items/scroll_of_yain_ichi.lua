@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4971
---    Scroll of Yain: Ichi
---    Teaches the ninjutsu Yain: Ichi
+-- ID: 4971
+-- Scroll of Yain: Ichi
+-- Teaches the ninjutsu Yain: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4902
---    Light Spirit Pact
---    Teaches the summoning magic Air Spirit
+-- ID: 4902
+-- Light Spirit Pact
+-- Teaches the summoning magic Air Spirit
 -----------------------------------------
 
 -----------------------------------------

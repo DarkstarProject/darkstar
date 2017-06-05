@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5872
---    Dark Adaman Bolt Quiver
---    When used, you will obtain one stack of Dark Adaman Bolts
+-- ID: 5872
+-- Dark Adaman Bolt Quiver
+-- When used, you will obtain one stack of Dark Adaman Bolts
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4105
---    Ice Cluster
---    Turn into a stack of ice crystals
+-- ID: 4105
+-- Ice Cluster
+-- Turn into a stack of ice crystals
 -----------------------------------------
 
 -----------------------------------------

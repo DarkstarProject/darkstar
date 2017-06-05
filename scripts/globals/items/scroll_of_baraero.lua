@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4670
---    Scroll of Baraero
---    Teaches the white magic Baraero
+-- ID: 4670
+-- Scroll of Baraero
+-- Teaches the white magic Baraero
 -----------------------------------------
 
 -----------------------------------------

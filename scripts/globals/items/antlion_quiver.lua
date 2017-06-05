@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5819
---    Item: Antlion Quiver
---    When used, you will obtain one stack of Antlion Arrows
+-- ID: 5819
+-- Item: Antlion Quiver
+-- When used, you will obtain one stack of Antlion Arrows
 -----------------------------------------
 
 -----------------------------------------

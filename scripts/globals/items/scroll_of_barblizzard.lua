@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4669
---    Scroll of Barblizzard
---    Teaches the white magic Barblizzard
+-- ID: 4669
+-- Scroll of Barblizzard
+-- Teaches the white magic Barblizzard
 -----------------------------------------
 
 -----------------------------------------
