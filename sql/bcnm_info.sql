@@ -289,7 +289,7 @@ INSERT INTO `bcnm_info` VALUES (1303,37,'central_temenos_1st_floor',NULL,NULL,27
 INSERT INTO `bcnm_info` VALUES (1304,37,'central_temenos_2nd_floor',NULL,NULL,2700,0,18,0,7);
 INSERT INTO `bcnm_info` VALUES (1305,37,'central_temenos_3rd_floor',NULL,NULL,2700,0,18,0,7);
 INSERT INTO `bcnm_info` VALUES (1306,37,'central_temenos_4th_floor',NULL,NULL,3600,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1307,37,'central_temenos_4th_floor_ii',NULL,NULL,3600,0,18,0,7);z
+INSERT INTO `bcnm_info` VALUES (1307,37,'central_temenos_4th_floor_ii',NULL,NULL,3600,0,18,0,7);
 -- INSERT INTO `bcnm_info` VALUES (1308,255,'the_wyrm_god',NULL,NULL,1800,0,18,0,7);
 
 -- Dump completed on 2017-01-31 10:38:18
