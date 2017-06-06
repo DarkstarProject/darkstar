@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5912
---    Gargouille Quiver
---    When used, you will obtain one stack of Gargouille Arrow
+-- ID: 5912
+-- Gargouille Quiver
+-- When used, you will obtain one stack of Gargouille Arrow
 -----------------------------------------
 
 -----------------------------------------

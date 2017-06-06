@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6042
---    Hydrohelix Schema
---    Teaches the black magic Hydrohelix
+-- ID: 6042
+-- Hydrohelix Schema
+-- Teaches the black magic Hydrohelix
 -----------------------------------------
 
 -----------------------------------------

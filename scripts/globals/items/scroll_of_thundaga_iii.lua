@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4804
---    Scroll of Thundaga III
---    Teaches the black magic Thundaga III
+-- ID: 4804
+-- Scroll of Thundaga III
+-- Teaches the black magic Thundaga III
 -----------------------------------------
 
 -----------------------------------------

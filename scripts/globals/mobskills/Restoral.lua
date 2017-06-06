@@ -2,9 +2,9 @@
 -- Restoral
 -- Description: Restores HP.
 ---------------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -18,20 +18,18 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local potency = skill:getParam();
-    local mobhp = mob:getHPP();
-
-    if mobhp > 50 then
-        return 0;
+    --[[
+    The only calculations available on the net are for the players blue magic version,
+    which does not seem to fit with retail in game observations on the mobskill version..
+    So math.random() for now!
+    ]]
+    local heal = math.random(1000, 1400);
+    -- Bigger heal for NMs
+    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
+        heal = heal * 3;
     end
-
-    if (potency == 0) then
-        potency = 10;
-    end
-
-    potency = potency - math.random(0, potency/1);
 
     skill:setMsg(MSG_SELF_HEAL);
 
-    return MobHealMove(mob, mob:getMaxHP() * potency / 10);
+    return MobHealMove(mob, heal);
 end;

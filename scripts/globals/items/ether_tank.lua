@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 13682
---    Ether Tank
---    When used, you will obtain one Ether
+-- ID: 13682
+-- Ether Tank
+-- When used, you will obtain one Ether
 -----------------------------------------
 
 -----------------------------------------

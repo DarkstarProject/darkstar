@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4784
---    Scroll of Firaga III
---    Teaches the black magic Firaga III
+-- ID: 4784
+-- Scroll of Firaga III
+-- Teaches the black magic Firaga III
 -----------------------------------------
 
 -----------------------------------------

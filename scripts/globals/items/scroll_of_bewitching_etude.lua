@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5045
---    Scroll of Bewitching Etude
---    Teaches the song Bewitching Etude
+-- ID: 5045
+-- Scroll of Bewitching Etude
+-- Teaches the song Bewitching Etude
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5064
---    Scroll of Wind Threnody
---    Teaches the song Wind Threnody
+-- ID: 5064
+-- Scroll of Wind Threnody
+-- Teaches the song Wind Threnody
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4754
---    Scroll of Fire III
---    Teaches the black magic Fire III
+-- ID: 4754
+-- Scroll of Fire III
+-- Teaches the black magic Fire III
 -----------------------------------------
 
 -----------------------------------------

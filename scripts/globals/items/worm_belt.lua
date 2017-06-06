@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15298
---    Worm Belt
---    Enchantment: 60Min, Costume - Worm (orange/brown)
+-- ID: 15298
+-- Worm Belt
+-- Enchantment: 60Min, Costume - Worm (orange/brown)
 -----------------------------------------
 
 require("scripts/globals/status");

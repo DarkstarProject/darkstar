@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5283
---    Old Bolt Box +5
---    When used, you will obtain one partial stack of Dogbolt +5
+-- ID: 5283
+-- Old Bolt Box +5
+-- When used, you will obtain one partial stack of Dogbolt +5
 -----------------------------------------
 
 -----------------------------------------

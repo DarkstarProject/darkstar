@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4720
---    Scroll of Flash
---    Teaches the white magic Flash
+-- ID: 4720
+-- Scroll of Flash
+-- Teaches the white magic Flash
 -----------------------------------------
 
 -----------------------------------------

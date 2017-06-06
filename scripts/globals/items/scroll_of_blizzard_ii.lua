@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4758
---    Scroll of Blizzard II
---    Teaches the black magic Blizzard II
+-- ID: 4758
+-- Scroll of Blizzard II
+-- Teaches the black magic Blizzard II
 -----------------------------------------
 
 -----------------------------------------

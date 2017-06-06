@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5336
---    Holy Bolt Quiver
---    When used, you will obtain one stack of Holy Bolts
+-- ID: 5336
+-- Holy Bolt Quiver
+-- When used, you will obtain one stack of Holy Bolts
 -----------------------------------------
 
 -----------------------------------------

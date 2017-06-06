@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4895
---    Scroll of Waterja
---    Teaches the Black magic Waterja
+-- ID: 4895
+-- Scroll of Waterja
+-- Teaches the Black magic Waterja
 -----------------------------------------
 
 -----------------------------------------

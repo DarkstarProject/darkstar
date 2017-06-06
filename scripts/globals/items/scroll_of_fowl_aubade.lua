@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5013
---    Scroll of Fowl Aubade
---    Teaches the song Fowl Aubade
+-- ID: 5013
+-- Scroll of Fowl Aubade
+-- Teaches the song Fowl Aubade
 -----------------------------------------
 
 -----------------------------------------

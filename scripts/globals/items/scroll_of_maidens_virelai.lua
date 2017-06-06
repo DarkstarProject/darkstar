@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5074
---    Scroll of Maiden's Virelai
---    Teaches the song Maiden's Virelai
+-- ID: 5074
+-- Scroll of Maiden's Virelai
+-- Teaches the song Maiden's Virelai
 -----------------------------------------
 
 -----------------------------------------

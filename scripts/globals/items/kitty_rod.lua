@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 18871
---    Kitty Rod
---    Enchantment: 60Min, Costume - Mithra child (Blue)
+-- ID: 18871
+-- Kitty Rod
+-- Enchantment: 60Min, Costume - Mithra child (Blue)
 -----------------------------------------
 
 require("scripts/globals/status");

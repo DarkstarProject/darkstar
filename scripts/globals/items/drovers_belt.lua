@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15919
---    Drover's Belt
---    Enchantment: 60Min, Costume - Chigoe (red)
+-- ID: 15919
+-- Drover's Belt
+-- Enchantment: 60Min, Costume - Chigoe (red)
 -----------------------------------------
 
 require("scripts/globals/status");

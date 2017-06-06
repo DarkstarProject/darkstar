@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4783
---    Scroll of Firaga II
---    Teaches the black magic Firaga II
+-- ID: 4783
+-- Scroll of Firaga II
+-- Teaches the black magic Firaga II
 -----------------------------------------
 
 -----------------------------------------

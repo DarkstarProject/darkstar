@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4761
---    Scroll of Blizzard V
---    Teaches the black magic Blizzard V
+-- ID: 4761
+-- Scroll of Blizzard V
+-- Teaches the black magic Blizzard V
 -----------------------------------------
 
 -----------------------------------------

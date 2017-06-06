@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4730
---    Scroll of Teleport-Holla
---    Teaches the white magic Teleport-Holla
+-- ID: 4730
+-- Scroll of Teleport-Holla
+-- Teaches the white magic Teleport-Holla
 -----------------------------------------
 
 -----------------------------------------

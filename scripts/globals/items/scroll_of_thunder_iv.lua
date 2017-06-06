@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4775
---    Scroll of Thunder IV
---    Teaches the black magic Thunder IV
+-- ID: 4775
+-- Scroll of Thunder IV
+-- Teaches the black magic Thunder IV
 -----------------------------------------
 
 -----------------------------------------

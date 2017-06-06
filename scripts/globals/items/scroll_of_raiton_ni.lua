@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4941
---    Scroll of Raiton: Ni
---    Teaches the ninjutsu Raiton: Ni
+-- ID: 4941
+-- Scroll of Raiton: Ni
+-- Teaches the ninjutsu Raiton: Ni
 -----------------------------------------
 
 -----------------------------------------

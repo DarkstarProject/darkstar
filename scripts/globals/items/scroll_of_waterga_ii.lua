@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4808
---    Scroll of Waterga II
---    Teaches the black magic Waterga II
+-- ID: 4808
+-- Scroll of Waterga II
+-- Teaches the black magic Waterga II
 -----------------------------------------
 
 -----------------------------------------

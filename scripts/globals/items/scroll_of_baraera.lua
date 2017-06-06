@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4676
---    Scroll of Baraera
---    Teaches the white magic Baraera
+-- ID: 4676
+-- Scroll of Baraera
+-- Teaches the white magic Baraera
 -----------------------------------------
 
 -----------------------------------------

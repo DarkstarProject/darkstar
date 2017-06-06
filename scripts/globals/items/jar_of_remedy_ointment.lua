@@ -2,7 +2,7 @@
 -- ID: 5356
 -- Item: Remedy Ointment
 -- Item Effect: This potion remedies status ailments.
---    Works on paralysis, silence, blindness, poison, and plague.
+-- Works on paralysis, silence, blindness, poison, and plague.
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -21,7 +21,7 @@ end;
 
 function onItemUse(target)
     if (target:hasStatusEffect(EFFECT_SILENCE) or target:hasStatusEffect(EFFECT_BLINDNESS) or target:hasStatusEffect(EFFECT_POISON) or target:hasStatusEffect(EFFECT_PARALYSIS) or target:hasStatusEffect(EFFECT_PLAGUE)) then
-        local effectRemoved = 0;    
+        local effectRemoved = 0;
         while effectRemoved == 0 do
             num = math.random(1,5);
             if (num == 1 and target:hasStatusEffect(EFFECT_SILENCE)) then
@@ -43,8 +43,8 @@ function onItemUse(target)
             elseif (num == 5 and target:hasStatusEffect(EFFECT_PLAGUE)) then
                 effectRemoved = effectRemoved + 1;
                 target:delStatusEffect(EFFECT_PLAGUE);
-            end    
+            end
         end
-    end    
+    end
 end;
 

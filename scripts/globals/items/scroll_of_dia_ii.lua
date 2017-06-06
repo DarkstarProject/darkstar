@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4632
---    Scroll of Dia II
---    Teaches the white magic Dia II
+-- ID: 4632
+-- Scroll of Dia II
+-- Teaches the white magic Dia II
 -----------------------------------------
 
 -----------------------------------------

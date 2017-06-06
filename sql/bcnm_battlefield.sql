@@ -320,8 +320,8 @@ INSERT INTO `bcnm_battlefield` VALUES (160,3,17453059,1);
 INSERT INTO `bcnm_battlefield` VALUES (160,3,17453062,2);
 INSERT INTO `bcnm_battlefield` VALUES (161,1,17453063,1);
 INSERT INTO `bcnm_battlefield` VALUES (161,1,17453064,2);
-INSERT INTO `bcnm_battlefield` VALUES (161,1,17453065,3);
-INSERT INTO `bcnm_battlefield` VALUES (161,1,17453066,3);
+INSERT INTO `bcnm_battlefield` VALUES (161,1,17453065,0); -- removing the requirement to kill shadow of rage from bastok mission 9-2
+INSERT INTO `bcnm_battlefield` VALUES (161,1,17453066,0); -- zeid can be killed before they are unhidden, preventing them from spawning and make fight unwinable
 INSERT INTO `bcnm_battlefield` VALUES (161,2,17453067,1);
 INSERT INTO `bcnm_battlefield` VALUES (161,2,17453068,2);
 INSERT INTO `bcnm_battlefield` VALUES (161,2,17453069,3);

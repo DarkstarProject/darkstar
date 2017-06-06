@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4850
---    Scroll of Refresh II
---    Teaches the white magic Refresh II
+-- ID: 4850
+-- Scroll of Refresh II
+-- Teaches the white magic Refresh II
 -----------------------------------------
 
 -----------------------------------------

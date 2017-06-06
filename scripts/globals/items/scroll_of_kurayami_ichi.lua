@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4955
---    Scroll of Kurayami: Ichi
---    Teaches the ninjutsu Kurayami: Ichi
+-- ID: 4955
+-- Scroll of Kurayami: Ichi
+-- Teaches the ninjutsu Kurayami: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5822
---    Oberon Bullet Pouch
---    When used, you will obtain one stack of Oberon Bullets
+-- ID: 5822
+-- Oberon Bullet Pouch
+-- When used, you will obtain one stack of Oberon Bullets
 -----------------------------------------
 
 -----------------------------------------

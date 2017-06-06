@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5350
---    Phial of Volant Serum
---    Enchantment: 60Min, Costume - bat
+-- ID: 5350
+-- Phial of Volant Serum
+-- Enchantment: 60Min, Costume - bat
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4854
---    Scroll of Drain II
---    Teaches the black magic Drain II
+-- ID: 4854
+-- Scroll of Drain II
+-- Teaches the black magic Drain II
 -----------------------------------------
 
 -----------------------------------------

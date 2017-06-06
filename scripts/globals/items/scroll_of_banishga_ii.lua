@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4647
---    Scroll of Banishga II
---    Teaches the white magic Banishga II
+-- ID: 4647
+-- Scroll of Banishga II
+-- Teaches the white magic Banishga II
 -----------------------------------------
 
 -----------------------------------------

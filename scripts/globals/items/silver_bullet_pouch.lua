@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5340
---    Silver Bullet Pouch
---    When used, you will obtain one stack of Silver Bullets
+-- ID: 5340
+-- Silver Bullet Pouch
+-- When used, you will obtain one stack of Silver Bullets
 -----------------------------------------
 
 -----------------------------------------

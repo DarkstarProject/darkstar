@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4684
---    Scroll of Barsilence
---    Teaches the white magic Barsilence
+-- ID: 4684
+-- Scroll of Barsilence
+-- Teaches the white magic Barsilence
 -----------------------------------------
 
 -----------------------------------------

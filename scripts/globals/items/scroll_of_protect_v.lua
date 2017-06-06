@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4655
---    Scroll of Protect V
---    Teaches the white magic Protect V
+-- ID: 4655
+-- Scroll of Protect V
+-- Teaches the white magic Protect V
 -----------------------------------------
 
 -----------------------------------------

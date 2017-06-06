@@ -1,10 +1,10 @@
 -----------------------------------------
---    ID: 4386
---    King Truffle
+-- ID: 4386
+-- King Truffle
 --  5 Minutes, food effect, All Races
 -----------------------------------------
---    Strength -6
---    Mind     +4
+-- Strength -6
+-- Mind     +4
 -----------------------------------------
 
 require("scripts/globals/status");

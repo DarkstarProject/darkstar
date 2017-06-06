@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4897
---    Ice Spirit Pact
---    Teaches the summoning magic ice Spirit
+-- ID: 4897
+-- Ice Spirit Pact
+-- Teaches the summoning magic ice Spirit
 -----------------------------------------
 
 -----------------------------------------

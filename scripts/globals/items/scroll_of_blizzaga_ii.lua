@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4788
---    Scroll of Blizzaga II
---    Teaches the black magic Blizzaga II
+-- ID: 4788
+-- Scroll of Blizzaga II
+-- Teaches the black magic Blizzaga II
 -----------------------------------------
 
 -----------------------------------------

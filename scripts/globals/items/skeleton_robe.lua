@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 11320
---    Skeleton Robe
---    Enchantment: 60Min, Costume - Skeleton
+-- ID: 11320
+-- Skeleton Robe
+-- Enchantment: 60Min, Costume - Skeleton
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4671
---    Scroll of Barstone
---    Teaches the white magic Barstone
+-- ID: 4671
+-- Scroll of Barstone
+-- Teaches the white magic Barstone
 -----------------------------------------
 
 -----------------------------------------

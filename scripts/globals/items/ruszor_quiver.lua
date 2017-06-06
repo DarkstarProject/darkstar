@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5871
---    Ruszor Quiver
---    When used, you will obtain one stack of Ruszor Arrows
+-- ID: 5871
+-- Ruszor Quiver
+-- When used, you will obtain one stack of Ruszor Arrows
 -----------------------------------------
 
 -----------------------------------------

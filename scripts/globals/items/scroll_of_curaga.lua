@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4615
---    Scroll of Curaga
---    Teaches the white magic Curaga
+-- ID: 4615
+-- Scroll of Curaga
+-- Teaches the white magic Curaga
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5023
---    Scroll of Goblin Gavotte
---    Teaches the song Goblin Gavotte
+-- ID: 5023
+-- Scroll of Goblin Gavotte
+-- Teaches the song Goblin Gavotte
 -----------------------------------------
 
 -----------------------------------------

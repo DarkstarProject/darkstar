@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4734
---    Scroll of Protectra II
---    Teaches the white magic Protectra II
+-- ID: 4734
+-- Scroll of Protectra II
+-- Teaches the white magic Protectra II
 -----------------------------------------
 
 -----------------------------------------

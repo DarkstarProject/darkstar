@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15204
---    Mandragora Beret
---    Enchantment: 60Min, Costume - Mandragora (white)
+-- ID: 15204
+-- Mandragora Beret
+-- Enchantment: 60Min, Costume - Mandragora (white)
 -----------------------------------------
 
 require("scripts/globals/status");

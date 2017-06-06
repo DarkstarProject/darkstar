@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5085
---    Scroll of Regen IV
---    Teaches the white magic Regen IV
+-- ID: 5085
+-- Scroll of Regen IV
+-- Teaches the white magic Regen IV
 -----------------------------------------
 
 -----------------------------------------

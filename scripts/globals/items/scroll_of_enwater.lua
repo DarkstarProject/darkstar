@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4713
---    Scroll of Enwater
---    Teaches the white magic Enwater
+-- ID: 4713
+-- Scroll of Enwater
+-- Teaches the white magic Enwater
 -----------------------------------------
 
 -----------------------------------------

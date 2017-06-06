@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4752
---    Scroll of Fire
---    Teaches the black magic Fire
+-- ID: 4752
+-- Scroll of Fire
+-- Teaches the black magic Fire
 -----------------------------------------
 
 -----------------------------------------

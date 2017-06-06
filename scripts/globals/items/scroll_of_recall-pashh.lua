@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4688
---    Scroll of Recall-Pashh
---    Teaches the white magic Recall-Pashh
+-- ID: 4688
+-- Scroll of Recall-Pashh
+-- Teaches the white magic Recall-Pashh
 -----------------------------------------
 
 -----------------------------------------

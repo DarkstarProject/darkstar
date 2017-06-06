@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4847
---    Scroll of Shock
---    Teaches the black magic Shock
+-- ID: 4847
+-- Scroll of Shock
+-- Teaches the black magic Shock
 -----------------------------------------
 
 -----------------------------------------

@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 13171
---    Reraise Gorget
+-- ID: 13171
+-- Reraise Gorget
 --  This necklace functions in the same way as the spell Reraise II.
 -----------------------------------------
 

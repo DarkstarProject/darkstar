@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4994
---    Scroll of Mages Ballad
---    Teaches the song Mages Ballad
+-- ID: 4994
+-- Scroll of Mages Ballad
+-- Teaches the song Mages Ballad
 -----------------------------------------
 
 -----------------------------------------

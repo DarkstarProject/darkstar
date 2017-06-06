@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5037
---    Scroll of Spirited Etude
---    Teaches the song Spirited Etude
+-- ID: 5037
+-- Scroll of Spirited Etude
+-- Teaches the song Spirited Etude
 -----------------------------------------
 
 -----------------------------------------

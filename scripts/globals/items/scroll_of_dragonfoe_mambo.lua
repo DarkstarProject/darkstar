@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5012
---    Scroll of Dragonfoe Mambo
---    Teaches the song Dragonfoe Mambo
+-- ID: 5012
+-- Scroll of Dragonfoe Mambo
+-- Teaches the song Dragonfoe Mambo
 -----------------------------------------
 
 -----------------------------------------

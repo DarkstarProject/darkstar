@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4625
---    Scroll of Silena
---    Teaches the white magic Silena
+-- ID: 4625
+-- Scroll of Silena
+-- Teaches the white magic Silena
 -----------------------------------------
 
 -----------------------------------------

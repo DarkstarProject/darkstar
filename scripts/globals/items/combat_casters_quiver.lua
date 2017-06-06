@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15958
---    Combat Caster's Quiver
---    When used, you will obtain one Combat Caster's Arrow
+-- ID: 15958
+-- Combat Caster's Quiver
+-- When used, you will obtain one Combat Caster's Arrow
 -----------------------------------------
 
 -----------------------------------------

@@ -7,6 +7,7 @@ package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +22,11 @@ end;
 
 function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
-        player:messageSpecial(SOLID_STONE);
+        if (player:hasKeyItem(MAGICKED_ASTROLABE)) then
+            npc:openDoor(8);
+        else
+            player:messageSpecial(SOLID_STONE);
+        end
     end
     return 0;
 end;

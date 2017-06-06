@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4626
---    Scroll of Stona
---    Teaches the white magic Stona
+-- ID: 4626
+-- Scroll of Stona
+-- Teaches the white magic Stona
 -----------------------------------------
 
 -----------------------------------------

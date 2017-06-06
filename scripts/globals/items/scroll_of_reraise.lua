@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4743
---    Scroll of Reraise
---    Teaches the white magic Reraise
+-- ID: 4743
+-- Scroll of Reraise
+-- Teaches the white magic Reraise
 -----------------------------------------
 
 -----------------------------------------
