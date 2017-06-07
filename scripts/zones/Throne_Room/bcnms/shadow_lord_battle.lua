@@ -32,7 +32,7 @@ function onBcnmLeave(player,instance,leavecode)
         if (player:hasCompletedMission(player:getNation(),15)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(0x07);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
@@ -61,5 +61,7 @@ function onEventFinish(player,csid,option)
             -- You will be transported back to the entrance of Castle Zvahl Baileys
             player:setPos(378.222,-12,-20.299,125,0xA1);
         end
+    elseif (csid == 0x07) then
+        player:startEvent(0x7d01);
     end    
 end;
