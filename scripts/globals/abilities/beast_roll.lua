@@ -66,7 +66,7 @@ function applyRoll(caster,target,ability,action,total)
     elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_BEAST_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_PET_ATTP) == false) then
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_BEAST_ROLL, effectpower, 0, duration, caster:getID(), total) == false) then
         ability:setMsg(422);
     elseif total > 11 then
         ability:setMsg(426);

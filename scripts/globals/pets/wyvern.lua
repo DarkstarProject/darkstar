@@ -43,6 +43,16 @@ function onMobSpawn(mob)
     if mob:getMainLvl() >= 80 then healingbreath = 623
     elseif mob:getMainLvl() >= 40 then healingbreath = 626
     elseif mob:getMainLvl() >= 20 then healingbreath = 625 end
+
+    if (master:hasStatusEffect(EFFECT_BEAST_ROLL)) then
+        master:addPetMod(MOD_ATTP, master:getStatusEffect(EFFECT_BEAST_ROLL):getPower());
+    end
+    if (master:hasStatusEffect(EFFECT_PUPPET_ROLL)) then
+        local effect = master:getStatusEffect(EFFECT_PUPPET_ROLL);
+        master:addPetMod(MOD_MATT, effect:getPower());
+        master:addPetMod(MOD_MACC, effect:getPower());
+    end
+
     if wyvernType == WYVERN_DEFENSIVE then
         master:addListener("WEAPONSKILL_USE", "PET_WYVERN_WS", function(player, target, skillid)
             local party = player:getParty()
