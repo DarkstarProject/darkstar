@@ -32,7 +32,7 @@ function onBcnmLeave(player,instance,leavecode)
         if (player:hasCompletedMission(player:getNation(),15)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x07);
+            player:startEvent(0x07,1,1,1,instance:getTimeInside(),1,0,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
@@ -45,23 +45,18 @@ end;
     
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 0x7d01) then
+    print("bc finish csid "..csid.." and option "..option);
+    -- if (csid == 0x7d01) then
+    if (csid == 0x07) then
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
             if ((not player:hasCompletedMission(ZILART, THE_NEW_FRONTIER)) and (player:getCurrentMission(ZILART) ~= THE_NEW_FRONTIER)) then
                 -- Don't add missions we already completed..Players who change nation will hit this.
                 player:addMission(ZILART,THE_NEW_FRONTIER);
             end
+            player:setPos(378.222,-12,-20.299,125,0xA1);
             player:addKeyItem(SHADOW_FRAGMENT);
             player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
             player:setVar("MissionStatus",4);
         end
-        if (option == 1) then
-            player:startEvent(0x07);
-        else
-            -- You will be transported back to the entrance of Castle Zvahl Baileys
-            player:setPos(378.222,-12,-20.299,125,0xA1);
-        end
-    elseif (csid == 0x07) then
-        player:startEvent(0x7d01);
     end    
 end;
