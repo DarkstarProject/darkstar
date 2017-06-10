@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if 	(player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
+    if (player:getVar("TOO_MANY_CHEFS") == 5) then -- end Quest Too Many Chefs
         player:startEvent(0x01d9);
     else
         player:startEvent(0x019b);
