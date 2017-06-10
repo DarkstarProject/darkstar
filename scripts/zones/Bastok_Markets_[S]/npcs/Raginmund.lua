@@ -1,35 +1,30 @@
 -----------------------------------
--- Area: Metalworks
---  NPC: Leonhardt
+-- Area: Bastok Markets (S)
+-- NPC:  Raginmund
 -- Involved in Quest: Too Many Chefs
+-- Standard Info NPC
+-- Location L-10
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getVar("TOO_MANY_CHEFS") == 3) then
-        if trade:hasItemQty(2527,1) then -- Trade Red Oven Mitt
-            player:tradeComplete();
-            player:startEvent(0x03b6);
-        end
-    end
 end;
-
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getVar("TOO_MANY_CHEFS") == 1) then
-        player:startEvent(0x03b4); -- part 2 Too Many Chefs
+    if (player:getVar("TOO_MANY_CHEFS") == 2) then
+        player:startEvent(0x0070); -- part 3 Too Many Chefs
     else
-        player:startEvent(0x03b1); -- standard
+        player:startEvent(0x006f); -- standard
     end
 end;
 
@@ -49,9 +44,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x03b4) then
-        player:setVar("TOO_MANY_CHEFS",2);
-    elseif (csid == 0x03b6) then
-        player:setVar("TOO_MANY_CHEFS",4);
+    if (csid == 0x0070) then
+        player:setVar("TOO_MANY_CHEFS",3);
     end
 end;
