@@ -71,5 +71,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x00cc) then
         player:setVar("Missionstatus",5);
         player:delKeyItem(OLD_PIECE_OF_WOOD);
+        player:setPos(23,0,4);
     end
 end;
