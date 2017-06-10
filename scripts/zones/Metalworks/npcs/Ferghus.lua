@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
 		
 	local TooManyChefs = player:getQuestStatus(BASTOK,TOO_MANY_CHEFS);
-	pFame = player:getFameLevel(BASTOK);
+	local pFame = player:getFameLevel(BASTOK);
 		
 	if (TooManyChefs == QUEST_AVAILABLE and pFame >= 5) then
 		player:startEvent(0x03b2); -- Start Quest "Too Many Chefs"
