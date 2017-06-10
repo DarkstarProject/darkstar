@@ -7,7 +7,6 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 
 -----------------------------------
@@ -15,26 +14,19 @@ require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-end; 
-
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-
-	if (player:getVar("TOO_MANY_CHEFS") == 2) then
-		player:startEvent(0x0070); -- part 3 Too Many Chefs
-	
-	
-	else
-		player:startEvent(0x006f); -- standard
-	end
-	
-	
-end; 
+    if (player:getVar("TOO_MANY_CHEFS") == 2) then
+        player:startEvent(0x0070); -- part 3 Too Many Chefs
+    else
+        player:startEvent(0x006f); -- standard
+    end
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -52,7 +44,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-	if (csid == 0x0070) then
-		player:setVar("TOO_MANY_CHEFS",3);
-	end	
+    if (csid == 0x0070) then
+        player:setVar("TOO_MANY_CHEFS",3);
+    end
 end;
