@@ -32,7 +32,7 @@ function onBcnmLeave(player,instance,leavecode)
         if (player:hasCompletedMission(player:getNation(),15)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
         else
-            player:startEvent(0x07,1,1,1,instance:getTimeInside(),1,0,0);
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
@@ -45,18 +45,18 @@ end;
     
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    print("bc finish csid "..csid.." and option "..option);
-    -- if (csid == 0x7d01) then
-    if (csid == 0x07) then
+    if (csid == 0x07d01) then
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
             if ((not player:hasCompletedMission(ZILART, THE_NEW_FRONTIER)) and (player:getCurrentMission(ZILART) ~= THE_NEW_FRONTIER)) then
                 -- Don't add missions we already completed..Players who change nation will hit this.
                 player:addMission(ZILART,THE_NEW_FRONTIER);
             end
-            player:setPos(378.222,-12,-20.299,125,0xA1);
-            player:addKeyItem(SHADOW_FRAGMENT);
-            player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
-            player:setVar("MissionStatus",4);
+            player:startEvent(0x07);
         end
+    elseif (csid==7) then
+        player:setPos(378, -12, -20, 125, 0xA1);
+        player:addKeyItem(SHADOW_FRAGMENT);
+        player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
+        player:setVar("MissionStatus",4);
     end    
 end;
