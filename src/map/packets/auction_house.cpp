@@ -65,7 +65,7 @@ CAuctionHousePacket::CAuctionHousePacket(uint8 action, CItem* PItem, uint8 quant
         auctionFee = map_config.ah_base_fee_single+(price*map_config.ah_tax_rate_single/100);
     }
 
-    auctionFee = dsp_cap(auctionFee, 1, map_config.ah_max_fee);
+    auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
 
     WBUFB(data,(0x04)) = action;
     WBUFB(data,(0x05)) = 0xFF;

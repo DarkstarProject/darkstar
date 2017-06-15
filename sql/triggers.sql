@@ -63,7 +63,6 @@ BEGIN
 	DELETE FROM `char_storage`   WHERE `charid` = OLD.charid;
 	DELETE FROM `char_style`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_vars`      WHERE `charid` = OLD.charid;
-	DELETE FROM `char_weapon_skill_points` WHERE `charid` = OLD.charid;
 	DELETE FROM `auction_house`  WHERE `seller` = OLD.charid;
 	DELETE FROM `delivery_box`   WHERE `charid` = OLD.charid;
 	UPDATE `delivery_box` SET sent = 0 WHERE box = 2 AND received = 0 AND sent = 1 AND senderid = OLD.charid;
