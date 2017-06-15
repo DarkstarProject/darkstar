@@ -3292,6 +3292,39 @@ namespace luautils
         return retVal;
     }
 
+    int32 OnMobWeaponSkillPrecast(CBaseEntity* PMob, CMobSkill* PMobSkill)
+    {
+        if (PMob->objtype == TYPE_MOB)
+        {
+            lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+
+            if (prepFile(File, "onMobWeaponSkillPrecast"))
+            {
+                return 0;
+            }
+
+            CLuaBaseEntity LuaMobEntity(PMob);
+            Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
+
+            CLuaMobSkill LuaMobSkill(PMobSkill);
+            Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
+
+            if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+            {
+                ShowError("luautils::onMobWeaponSkillPrecast: %s\n", lua_tostring(LuaHandle, -1));
+                lua_pop(LuaHandle, 1);
+                return 0;
+            }
+            int32 returns = lua_gettop(LuaHandle) - oldtop;
+            if (returns > 0)
+            {
+                ShowError("luautils::onMobWeaponSkillPrecast (%s): 0 returns expected, got %d\n", File, returns);
+                lua_pop(LuaHandle, returns);
+            }
+        }
+        return 0;
+    }
+
     /***********************************************************************
     *                                                                       *
     *                                                                       *

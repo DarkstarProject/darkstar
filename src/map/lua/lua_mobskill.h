@@ -56,6 +56,11 @@ public:
     int32 getMsg(lua_State*);
     int32 getTotalTargets(lua_State*);
     int32 setSkillchain(lua_State*);
+
+    int32 setFlag(lua_State*);
+    int32 setAoE(lua_State*);
+    int32 setDistance(lua_State*);
+    int32 setKnockback(lua_State*);
 };
 
 #endif
