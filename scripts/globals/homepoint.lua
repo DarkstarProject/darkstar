@@ -222,9 +222,13 @@ function hpTeleport( player, option)
             teleportCost = 0;
         end
 
-        player:delGil(teleportCost);
-        player:setLocalVar("currentHpIndex", 0);
-        player:setPos( homepoints[hpIndex][3], homepoints[hpIndex][4], homepoints[hpIndex][5], homepoints[hpIndex][6], homepoints[hpIndex][7]);
+        if (hasHP(player, hpIndex)) then
+            player:delGil(teleportCost);
+            player:setLocalVar("currentHpIndex", 0);
+            player:setPos( homepoints[hpIndex][3], homepoints[hpIndex][4], homepoints[hpIndex][5], homepoints[hpIndex][6], homepoints[hpIndex][7]);
+        else
+            player:setPos(player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID());
+        end
     end
 end;
 
@@ -253,6 +257,33 @@ function freeHpTeleport( player, hpIndex)
             end
         else
             break;
+        end
+    end
+
+    return false;
+end;
+
+function hasHP (player, hpIndex)
+    local HpTeleportMask1 = bit.bor( bit.lshift( player:getVar("HpTeleportMask1a"), 16), player:getVar("HpTeleportMask1b"));
+    local HpTeleportMask2 = bit.bor( bit.lshift( player:getVar("HpTeleportMask2a"), 16), player:getVar("HpTeleportMask2b"));
+    local HpTeleportMask3 = bit.bor( bit.lshift( player:getVar("HpTeleportMask3a"), 16), player:getVar("HpTeleportMask3b"));
+    local HpTeleportMask4 = bit.bor( bit.lshift( player:getVar("HpTeleportMask4a"), 16), player:getVar("HpTeleportMask4b"));
+
+    if ( homepoints[hpIndex][1] == 1) then
+        if ( bit.rshift( bit.lshift( HpTeleportMask1, 32 - homepoints[hpIndex][2]), 31) ~= 0) then
+            return true;
+        end
+    elseif (  homepoints[hpIndex][1] == 2) then
+        if ( bit.rshift( bit.lshift( HpTeleportMask2, 32 - homepoints[hpIndex][2]), 31) ~= 0) then
+            return true;
+        end
+    elseif (  homepoints[hpIndex][1] == 3) then
+        if ( bit.rshift( bit.lshift( HpTeleportMask3, 32 - homepoints[hpIndex][2]), 31) ~= 0) then
+            return true;
+        end
+    elseif (  homepoints[hpIndex][1] == 4) then
+        if ( bit.rshift( bit.lshift( HpTeleportMask4, 32 - homepoints[hpIndex][2]), 31) ~= 0) then
+            return true;
         end
     end
 
