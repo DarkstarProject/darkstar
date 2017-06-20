@@ -283,6 +283,9 @@ bool CMobController::MobSkill(int wsList)
         {
             continue;
         }
+
+        luautils::OnMobWeaponSkillPrecast(PMob, PMobSkill);
+
         if (PMobSkill->getValidTargets() == TARGET_ENEMY) //enemy
         {
             PActionTarget = PTarget;
@@ -319,6 +322,8 @@ bool CMobController::TrySpecialSkill()
         ShowError("CAIMobDummy::ActionSpawn Special skill was set but not found! (%d)\n", PMob->getMobMod(MOBMOD_SPECIAL_SKILL));
         return false;
     }
+
+    luautils::OnMobWeaponSkillPrecast(PMob, PSpecialSkill);
 
     if (!IsWeaponSkillEnabled())
     {
