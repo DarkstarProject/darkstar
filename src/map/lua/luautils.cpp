@@ -3137,7 +3137,7 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action)
+    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill)
     {
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
@@ -3152,10 +3152,7 @@ namespace luautils
             CLuaMobSkill LuaMobSkill(PMobSkill);
             Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
 
-            CLuaAction LuaAction(action);
-            Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
-
-            if (lua_pcall(LuaHandle, 4, LUA_MULTRET, 0))
+            if (lua_pcall(LuaHandle, 3, LUA_MULTRET, 0))
             {
                 ShowError("luautils::onMobWeaponSkill: %s\n", lua_tostring(LuaHandle, -1));
                 lua_pop(LuaHandle, 1);

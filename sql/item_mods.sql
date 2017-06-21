@@ -1666,6 +1666,10 @@ INSERT INTO `item_mods` VALUES (10646,1,19); -- OPIMA PIGACHES, DEF:19 MP+45 "Ma
 INSERT INTO `item_mods` VALUES (10646,5,45); -- MP
 INSERT INTO `item_mods` VALUES (10646,28,5); -- MAB
 INSERT INTO `item_mods` VALUES (10646,27,-7); -- ENMITY
+INSERT INTO `item_mods` VALUES (10664,1,23);      -- Summoner's Horn +2: DEF 23
+INSERT INTO `item_mods` VALUES (10664,5,42);      -- MP +42
+INSERT INTO `item_mods` VALUES (10664,346,3);     -- Avatar perpetuation cost -3
+INSERT INTO `item_mods` VALUES (10664,357,5);     -- Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (10647,1,4);
 INSERT INTO `item_mods` VALUES (10647,11,2);
 INSERT INTO `item_mods` VALUES (10647,169,12);
@@ -1763,10 +1767,6 @@ INSERT INTO `item_mods` VALUES (10663,8,7);
 INSERT INTO `item_mods` VALUES (10663,10,7);
 INSERT INTO `item_mods` VALUES (10663,23,4);
 INSERT INTO `item_mods` VALUES (10663,402,43);
-INSERT INTO `item_mods` VALUES (10664,1,23);      -- Summoner's Horn +2: DEF 23
-INSERT INTO `item_mods` VALUES (10664,5,42);      -- MP +42
-INSERT INTO `item_mods` VALUES (10664,346,3);     -- Avatar perpetuation cost -3
-INSERT INTO `item_mods` VALUES (10664,357,5);     -- Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (10665,1,31);
 INSERT INTO `item_mods` VALUES (10665,2,21);
 INSERT INTO `item_mods` VALUES (10665,8,5);
@@ -2915,8 +2915,7 @@ INSERT INTO `item_mods` VALUES (10969,2,25);
 INSERT INTO `item_mods` VALUES (10969,5,-10);
 INSERT INTO `item_mods` VALUES (10969,8,5);
 INSERT INTO `item_mods` VALUES (10969,9,5);
-INSERT INTO `item_mods` VALUES (10970,1,20);      -- Scuta Cape Def +20
-INSERT INTO `item_mods` VALUES (10970,169,-12);   -- Movement Speed -12
+INSERT INTO `item_mods` VALUES (10970,169,-12);   -- scuta_cape Movement Speed-12
 INSERT INTO `item_mods` VALUES (10970,370,2);
 INSERT INTO `item_mods` VALUES (10971,1,12); -- STRENDU MANTLE, DEF:12 HP+110 VIT+3
 INSERT INTO `item_mods` VALUES (10971,2,110); -- HP
@@ -5352,6 +5351,7 @@ INSERT INTO `item_mods` VALUES (11613,29,1);
 INSERT INTO `item_mods` VALUES (11614,1,5);
 INSERT INTO `item_mods` VALUES (11614,2,25);
 INSERT INTO `item_mods` VALUES (11614,5,-40);
+INSERT INTO `item_mods` VALUES (11614,162,5);
 INSERT INTO `item_mods` VALUES (11615,2,33);      -- Orison Locket: HP +33
 INSERT INTO `item_mods` VALUES (11615,5,33);      -- MP +33
 INSERT INTO `item_mods` VALUES (11615,170,5);     -- Fast Cast +5%
@@ -20067,6 +20067,7 @@ INSERT INTO `item_mods` VALUES (16675,56,10);
 INSERT INTO `item_mods` VALUES (16675,57,10);
 INSERT INTO `item_mods` VALUES (16676,25,10);
 INSERT INTO `item_mods` VALUES (16676,68,-10);
+INSERT INTO `item_mods` VALUES (16777,431,1);
 INSERT INTO `item_mods` VALUES (16678,8,2);
 INSERT INTO `item_mods` VALUES (16678,9,2);
 INSERT INTO `item_mods` VALUES (16679,8,7);
@@ -20165,7 +20166,6 @@ INSERT INTO `item_mods` VALUES (16773,13,-2);
 INSERT INTO `item_mods` VALUES (16773,60,-2);
 INSERT INTO `item_mods` VALUES (16773,61,2);
 INSERT INTO `item_mods` VALUES (16773,431,1);
-INSERT INTO `item_mods` VALUES (16777,431,1);
 INSERT INTO `item_mods` VALUES (16780,8,2);
 INSERT INTO `item_mods` VALUES (16780,10,-1);
 INSERT INTO `item_mods` VALUES (16784,55,6);
@@ -23687,9 +23687,6 @@ INSERT INTO `item_mods` VALUES (19293,8,4);
 INSERT INTO `item_mods` VALUES (19293,68,4);
 INSERT INTO `item_mods` VALUES (19294,8,5);
 INSERT INTO `item_mods` VALUES (19294,68,5);
-INSERT INTO `item_mods` VALUES (19295,68,10); -- Mujin Tanto -- 10 Eva
-INSERT INTO `item_mods` VALUES (19295,166,-3); -- Enemy Crit -3%
-INSERT INTO `item_mods` VALUES (19295,289,10); -- 10 Subtle Blow
 INSERT INTO `item_mods` VALUES (19296,54,12);
 INSERT INTO `item_mods` VALUES (19296,431,1);
 INSERT INTO `item_mods` VALUES (19297,9,5);
@@ -24009,13 +24006,8 @@ INSERT INTO `item_mods` VALUES (19759,355,200); -- Namas Arrow
 INSERT INTO `item_mods` VALUES (19759,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (19759,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (19759,770,40); -- Namas Arrow DMG +40%
-INSERT INTO `item_mods` VALUES (19760,23,2);  -- Anger Bomblet -- 2 Att
-INSERT INTO `item_mods` VALUES (19760,68,-2); -- -2 Eva
-INSERT INTO `item_mods` VALUES (19760,288,1); -- 1 Double Attack
 INSERT INTO `item_mods` VALUES (19761,168,10);    -- Impatiens: Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (19762,84,2);
-INSERT INTO `item_mods` VALUES (19763,23,-7);  -- Oneiros Cluster -- -7 Att
-INSERT INTO `item_mods` VALUES (19763,384,10); -- 1% Gear Haste
 INSERT INTO `item_mods` VALUES (19764,9,4);
 INSERT INTO `item_mods` VALUES (19765,5,20);
 INSERT INTO `item_mods` VALUES (19765,29,2);
@@ -24025,12 +24017,6 @@ INSERT INTO `item_mods` VALUES (19767,10,5);
 INSERT INTO `item_mods` VALUES (19767,25,4);
 INSERT INTO `item_mods` VALUES (19768,2,45);
 INSERT INTO `item_mods` VALUES (19768,12,-2);
-INSERT INTO `item_mods` VALUES (19769,16,-10); -- Mantis Eye -- Ice Element -10
-INSERT INTO `item_mods` VALUES (19769,17,10); -- Element Air +10
-INSERT INTO `item_mods` VALUES (19769,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (19770,11,6); -- Aliyat Chakram -- 6 AGI
-INSERT INTO `item_mods` VALUES (19770,22,12); -- Element Dark +12
-INSERT INTO `item_mods` VALUES (19770,68,6); -- 6 Eva
 INSERT INTO `item_mods` VALUES (19771,5,45);
 INSERT INTO `item_mods` VALUES (19771,61,10);
 INSERT INTO `item_mods` VALUES (19772,27,-2);
@@ -24048,9 +24034,6 @@ INSERT INTO `item_mods` VALUES (19779,23,15);
 INSERT INTO `item_mods` VALUES (19780,5,20);
 INSERT INTO `item_mods` VALUES (19780,13,3);
 INSERT INTO `item_mods` VALUES (19780,71,2);
-INSERT INTO `item_mods` VALUES (19790,23,40); -- Oneiros Lance -- 40 Att
-INSERT INTO `item_mods` VALUES (19790,27,8); -- Enmity +8
-INSERT INTO `item_mods` VALUES (19790,165,4); -- 4% Crit Rate
 INSERT INTO `item_mods` VALUES (19791,8,7);
 INSERT INTO `item_mods` VALUES (19792,13,10);
 INSERT INTO `item_mods` VALUES (19793,11,10);
@@ -24439,10 +24422,6 @@ INSERT INTO `item_mods` VALUES (20624,68,48);
 INSERT INTO `item_mods` VALUES (20629,25,12);     -- Legato Dagger (iLvl 109): Accuracy +12
 INSERT INTO `item_mods` VALUES (20629,68,12);     -- Evasion +12
 INSERT INTO `item_mods` VALUES (20629,454,5);     -- Increases song effect duration +5%
-INSERT INTO `item_mods` VALUES (20632,25,13); -- Vanir Knife -- 13 Acc
-INSERT INTO `item_mods` VALUES (20632,68,22); -- 22 Eva
-INSERT INTO `item_mods` VALUES (20632,163,-5); -- Magic Damage Taken -5%
-INSERT INTO `item_mods` VALUES (20632,311,70); -- 70 Magic Damage
 INSERT INTO `item_mods` VALUES (20634,68,15);
 INSERT INTO `item_mods` VALUES (20635,25,15);
 INSERT INTO `item_mods` VALUES (20635,68,8);
@@ -24571,8 +24550,6 @@ INSERT INTO `item_mods` VALUES (20765,369,3);
 INSERT INTO `item_mods` VALUES (20765,370,3);
 INSERT INTO `item_mods` VALUES (20766,23,10);
 INSERT INTO `item_mods` VALUES (20766,25,15);
-INSERT INTO `item_mods` VALUES (20770,23,13); -- Mes'yohi Sword -- 13 Att
-INSERT INTO `item_mods` VALUES (20770,29,3); -- 3 Mdef
 INSERT INTO `item_mods` VALUES (20772,25,-50);    -- Voay Sword -1 (iLvl 105): Accuracy -50
 INSERT INTO `item_mods` VALUES (20773,23,22);     -- Voay Sword (iLvl 107): Attack +22
 INSERT INTO `item_mods` VALUES (20773,27,15);     -- Enmity +15
@@ -24958,22 +24935,12 @@ INSERT INTO `item_mods` VALUES (21112,311,124);
 INSERT INTO `item_mods` VALUES (21115,12,6);      -- Aedold +2 (iLvl 119): INT +6
 INSERT INTO `item_mods` VALUES (21115,13,6);      -- MND +6
 INSERT INTO `item_mods` VALUES (21115,25,27);     -- Accuracy +27
-INSERT INTO `item_mods` VALUES (21116,12,6); -- Cagliostro's Rod -- 6 INT
-INSERT INTO `item_mods` VALUES (21116,13,20); -- 20 MND
-INSERT INTO `item_mods` VALUES (21116,28,16); -- 16 Mab
-INSERT INTO `item_mods` VALUES (21116,30,13); -- 13 Macc
-INSERT INTO `item_mods` VALUES (21116,311,124); -- 124 Magic Damage
 INSERT INTO `item_mods` VALUES (21119,12,6);
 INSERT INTO `item_mods` VALUES (21119,13,6);
 INSERT INTO `item_mods` VALUES (21119,23,10);
 INSERT INTO `item_mods` VALUES (21119,25,15);
 INSERT INTO `item_mods` VALUES (21119,28,14);
 INSERT INTO `item_mods` VALUES (21119,311,111);
-INSERT INTO `item_mods` VALUES (21122,12,6); -- Mes'yohi Rod -- 6 INT
-INSERT INTO `item_mods` VALUES (21122,13,16); -- 16 MND
-INSERT INTO `item_mods` VALUES (21122,28,16); -- 16 Mab
-INSERT INTO `item_mods` VALUES (21122,111,10); -- 10 Divine Skill
-INSERT INTO `item_mods` VALUES (21122,311,124); -- 124 Magic Damage
 INSERT INTO `item_mods` VALUES (21125,12,5);
 INSERT INTO `item_mods` VALUES (21125,13,5);
 INSERT INTO `item_mods` VALUES (21125,28,12);
@@ -25030,8 +24997,7 @@ INSERT INTO `item_mods` VALUES (21142,355,187); -- Nirvana iLvL 119 - Garland of
 INSERT INTO `item_mods` VALUES (21143,5,150);
 INSERT INTO `item_mods` VALUES (21143,38,100);
 INSERT INTO `item_mods` VALUES (21143,355,190); -- Hvergelmir iLvL 119 - Myrkr
-INSERT INTO `item_mods` VALUES (21144,5,150); -- MP+150
-INSERT INTO `item_mods` VALUES (21144,311,248); -- Magic Damage +248
+INSERT INTO `item_mods` VALUES (21144,5,150);
 INSERT INTO `item_mods` VALUES (21144,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (21151,24,10);
 INSERT INTO `item_mods` VALUES (21151,26,15);
@@ -25277,9 +25243,6 @@ INSERT INTO `item_mods` VALUES (21374,302,1);
 INSERT INTO `item_mods` VALUES (21376,1,10);
 INSERT INTO `item_mods` VALUES (21376,25,10);
 INSERT INTO `item_mods` VALUES (21377,541,4);
-INSERT INTO `item_mods` VALUES (21380,5,20); -- Vanir Battery -- 20 MP
-INSERT INTO `item_mods` VALUES (21380,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (21380,288,1); -- 1 Double Attack
 INSERT INTO `item_mods` VALUES (21381,541,5);
 INSERT INTO `item_mods` VALUES (21382,28,6);
 INSERT INTO `item_mods` VALUES (21382,311,13);
@@ -25320,8 +25283,6 @@ INSERT INTO `item_mods` VALUES (21425,171,5);
 INSERT INTO `item_mods` VALUES (21426,5,15);
 INSERT INTO `item_mods` VALUES (21426,13,4);
 INSERT INTO `item_mods` VALUES (21426,27,-4);
-INSERT INTO `item_mods` VALUES (21427,25,6); -- Comment me
-INSERT INTO `item_mods` VALUES (21427,73,6);
 INSERT INTO `item_mods` VALUES (21428,2,50);
 INSERT INTO `item_mods` VALUES (21428,23,10);
 INSERT INTO `item_mods` VALUES (21428,25,10);
@@ -30976,6 +30937,12 @@ INSERT INTO `item_mods` VALUES (26033,1,14);      -- Mnbw. Whistle +1 DEF:+14
 INSERT INTO `item_mods` VALUES (26033,14,23);     -- CHR+23
 INSERT INTO `item_mods` VALUES (26033,30,23);     -- Magic Accuracy+23
 INSERT INTO `item_mods` VALUES (26033,452,3);     -- All Songs+3
+INSERT INTO `item_mods` VALUES (26160,116,10);    -- Evanescence Ring: Dark magic skill +10
+INSERT INTO `item_mods` VALUES (26160,168,5);     -- Spell interruption rate down 5%
+INSERT INTO `item_mods` VALUES (26160,315,10);    -- Drain and Aspir potency +10%
+INSERT INTO `item_mods` VALUES (26171,8,6);       -- Rufescent Ring: STR +6
+INSERT INTO `item_mods` VALUES (26171,13,6);      -- MND +6
+INSERT INTO `item_mods` VALUES (26171,48,7);      -- Weapon Skill Accuracy +7
 INSERT INTO `item_mods` VALUES (26080,9,5);       -- mache_earring DEX+5
 INSERT INTO `item_mods` VALUES (26080,25,7);      -- Accuracy+7
 INSERT INTO `item_mods` VALUES (26080,173,10);    -- Martial Arts+10
@@ -30992,12 +30959,6 @@ INSERT INTO `item_mods` VALUES (26084,9,5);       -- DEX+5
 INSERT INTO `item_mods` VALUES (26084,73,5);      -- Store TP+5
 INSERT INTO `item_mods` VALUES (26084,288,5);     -- Double Attack+5
 INSERT INTO `item_mods` VALUES (26084,289,5);     -- Subtle Blow+5
-INSERT INTO `item_mods` VALUES (26160,116,10);    -- Evanescence Ring: Dark magic skill +10
-INSERT INTO `item_mods` VALUES (26160,168,5);     -- Spell interruption rate down 5%
-INSERT INTO `item_mods` VALUES (26160,315,10);    -- Drain and Aspir potency +10%
-INSERT INTO `item_mods` VALUES (26171,8,6);       -- Rufescent Ring: STR +6
-INSERT INTO `item_mods` VALUES (26171,13,6);      -- MND +6
-INSERT INTO `item_mods` VALUES (26171,48,7);      -- Weapon Skill Accuracy +7
 INSERT INTO `item_mods` VALUES (26179,25,7);      -- varar_ring Accuracy+7
 INSERT INTO `item_mods` VALUES (26180,25,10);     -- varar_ring_+1 Accuracy+10
 INSERT INTO `item_mods` VALUES (26181,25,7);      -- chirich_ring Accuracy+7
@@ -32449,38 +32410,6 @@ INSERT INTO `item_mods` VALUES (26767,31,48);
 INSERT INTO `item_mods` VALUES (26767,68,36);
 INSERT INTO `item_mods` VALUES (26767,87,17);
 INSERT INTO `item_mods` VALUES (26767,384,71);
-INSERT INTO `item_mods` VALUES (26768,1,69);      -- Beckoner's Horn: DEF
-INSERT INTO `item_mods` VALUES (26768,2,15);      -- HP
-INSERT INTO `item_mods` VALUES (26768,5,103);     -- MP
-INSERT INTO `item_mods` VALUES (26768,8,8);       -- STR
-INSERT INTO `item_mods` VALUES (26768,9,9);       -- DEX
-INSERT INTO `item_mods` VALUES (26768,10,9);      -- Vit
-INSERT INTO `item_mods` VALUES (26768,11,9);      -- Agi
-INSERT INTO `item_mods` VALUES (26768,12,12);     -- INT
-INSERT INTO `item_mods` VALUES (26768,13,12);     -- MND
-INSERT INTO `item_mods` VALUES (26768,14,12);     -- CHR
-INSERT INTO `item_mods` VALUES (26768,29,3);      -- MDEF
-INSERT INTO `item_mods` VALUES (26768,31,54);     -- MEVA
-INSERT INTO `item_mods` VALUES (26768,68,16);     -- EVA
-INSERT INTO `item_mods` VALUES (26768,117,11);    -- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26768,369,2);     -- Refresh
-INSERT INTO `item_mods` VALUES (26768,384,51);    -- Haste
-INSERT INTO `item_mods` VALUES (26769,1,93);      -- Beckoner's Horn +1: DEF
-INSERT INTO `item_mods` VALUES (26769,2,31);      -- HP
-INSERT INTO `item_mods` VALUES (26769,5,134);     -- MP
-INSERT INTO `item_mods` VALUES (26769,8,14);      -- STR
-INSERT INTO `item_mods` VALUES (26769,9,15);      -- DEX
-INSERT INTO `item_mods` VALUES (26769,10,15);     -- Vit
-INSERT INTO `item_mods` VALUES (26769,11,15);     -- Agi
-INSERT INTO `item_mods` VALUES (26769,12,20);     -- INT
-INSERT INTO `item_mods` VALUES (26769,13,20);     -- MND
-INSERT INTO `item_mods` VALUES (26769,14,20);     -- CHR
-INSERT INTO `item_mods` VALUES (26769,29,6);      -- MDEF
-INSERT INTO `item_mods` VALUES (26769,31,80);     -- MEVA
-INSERT INTO `item_mods` VALUES (26769,68,36);     -- EVA
-INSERT INTO `item_mods` VALUES (26769,117,13);    -- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26769,369,2);     -- Refresh
-INSERT INTO `item_mods` VALUES (26769,384,61);    -- Haste
 INSERT INTO `item_mods` VALUES (26770,1,71);
 INSERT INTO `item_mods` VALUES (26770,2,17);
 INSERT INTO `item_mods` VALUES (26770,5,29);
@@ -32945,24 +32874,22 @@ INSERT INTO `item_mods` VALUES (26818,68,17);
 INSERT INTO `item_mods` VALUES (26818,119,12);
 INSERT INTO `item_mods` VALUES (26818,161,-3);
 INSERT INTO `item_mods` VALUES (26818,384,51);
-INSERT INTO `item_mods` VALUES (26819,1,125);     -- Bihu Jstcorps +1: DEF
-INSERT INTO `item_mods` VALUES (26819,2,69);      -- HP
-INSERT INTO `item_mods` VALUES (26819,5,74);      -- MP
-INSERT INTO `item_mods` VALUES (26819,8,29);      -- STR
-INSERT INTO `item_mods` VALUES (26819,9,31);      -- DEX
-INSERT INTO `item_mods` VALUES (26819,10,29);     -- VIT
-INSERT INTO `item_mods` VALUES (26819,11,31);     -- AGI
-INSERT INTO `item_mods` VALUES (26819,12,29);     -- INT
-INSERT INTO `item_mods` VALUES (26819,13,28);     -- MND
-INSERT INTO `item_mods` VALUES (26819,14,33);     -- CHR
-INSERT INTO `item_mods` VALUES (26819,23,27);     -- ATT
-INSERT INTO `item_mods` VALUES (26819,25,27);     -- ACC
-INSERT INTO `item_mods` VALUES (26819,29,6);      -- MDEF
-INSERT INTO `item_mods` VALUES (26819,30,29);     -- MACC
-INSERT INTO `item_mods` VALUES (26819,31,80);     -- MEVA
-INSERT INTO `item_mods` VALUES (26819,68,44);     -- EVA
-INSERT INTO `item_mods` VALUES (26819,161,-5);    -- PDT
-INSERT INTO `item_mods` VALUES (26819,384,30);    -- Haste
+INSERT INTO `item_mods` VALUES (26819,1,125);
+INSERT INTO `item_mods` VALUES (26819,2,69);
+INSERT INTO `item_mods` VALUES (26819,5,74);
+INSERT INTO `item_mods` VALUES (26819,8,29);
+INSERT INTO `item_mods` VALUES (26819,9,31);
+INSERT INTO `item_mods` VALUES (26819,10,29);
+INSERT INTO `item_mods` VALUES (26819,11,31);
+INSERT INTO `item_mods` VALUES (26819,12,29);
+INSERT INTO `item_mods` VALUES (26819,13,28);
+INSERT INTO `item_mods` VALUES (26819,14,33);
+INSERT INTO `item_mods` VALUES (26819,29,6);
+INSERT INTO `item_mods` VALUES (26819,30,29);
+INSERT INTO `item_mods` VALUES (26819,31,80);
+INSERT INTO `item_mods` VALUES (26819,68,44);
+INSERT INTO `item_mods` VALUES (26819,161,-5);
+INSERT INTO `item_mods` VALUES (26819,384,30);
 INSERT INTO `item_mods` VALUES (26820,1,95);
 INSERT INTO `item_mods` VALUES (26820,2,28);
 INSERT INTO `item_mods` VALUES (26820,5,36);
@@ -33947,38 +33874,6 @@ INSERT INTO `item_mods` VALUES (26925,31,59);
 INSERT INTO `item_mods` VALUES (26925,68,44);
 INSERT INTO `item_mods` VALUES (26925,73,12);
 INSERT INTO `item_mods` VALUES (26925,384,30);
-INSERT INTO `item_mods` VALUES (26926,1,91);      -- Beckoner's Doublet: DEF
-INSERT INTO `item_mods` VALUES (26926,2,25);      -- HP
-INSERT INTO `item_mods` VALUES (26926,5,135);     -- MP
-INSERT INTO `item_mods` VALUES (26926,8,14);      -- STR
-INSERT INTO `item_mods` VALUES (26926,9,12);      -- DEX
-INSERT INTO `item_mods` VALUES (26926,10,14);     -- Vit
-INSERT INTO `item_mods` VALUES (26926,11,12);     -- Agi
-INSERT INTO `item_mods` VALUES (26926,12,18);     -- INT
-INSERT INTO `item_mods` VALUES (26926,13,18);     -- MND
-INSERT INTO `item_mods` VALUES (26926,14,18);     -- CHR
-INSERT INTO `item_mods` VALUES (26926,29,3);      -- MDEF
-INSERT INTO `item_mods` VALUES (26926,31,54);     -- MEVA
-INSERT INTO `item_mods` VALUES (26926,68,20);     -- EVA
-INSERT INTO `item_mods` VALUES (26926,117,12);    -- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26926,346,5);     -- Aatar Perp Cost.
-INSERT INTO `item_mods` VALUES (26926,384,20);    -- Haste
-INSERT INTO `item_mods` VALUES (26927,1,123);     -- Beck. Doublet +1: DEF
-INSERT INTO `item_mods` VALUES (26927,2,54);      -- HP
-INSERT INTO `item_mods` VALUES (26927,5,151);     -- MP
-INSERT INTO `item_mods` VALUES (26927,8,23);      -- STR
-INSERT INTO `item_mods` VALUES (26927,9,19);      -- DEX
-INSERT INTO `item_mods` VALUES (26927,10,23);     -- Vit
-INSERT INTO `item_mods` VALUES (26927,11,20);     -- Agi
-INSERT INTO `item_mods` VALUES (26927,12,29);     -- INT
-INSERT INTO `item_mods` VALUES (26927,13,29);     -- MND
-INSERT INTO `item_mods` VALUES (26927,14,29);     -- CHR
-INSERT INTO `item_mods` VALUES (26927,29,6);      -- MDEF
-INSERT INTO `item_mods` VALUES (26927,31,80);     -- MEVA
-INSERT INTO `item_mods` VALUES (26927,68,44);     -- EVA
-INSERT INTO `item_mods` VALUES (26927,117,14);    -- Summoning Magic Skill
-INSERT INTO `item_mods` VALUES (26927,346,6);     -- Aatar Perp Cost.
-INSERT INTO `item_mods` VALUES (26927,384,30);    -- Haste
 INSERT INTO `item_mods` VALUES (26928,1,92);
 INSERT INTO `item_mods` VALUES (26928,2,27);
 INSERT INTO `item_mods` VALUES (26928,5,51);
@@ -35298,38 +35193,6 @@ INSERT INTO `item_mods` VALUES (27079,31,32);
 INSERT INTO `item_mods` VALUES (27079,68,24);
 INSERT INTO `item_mods` VALUES (27079,288,5);
 INSERT INTO `item_mods` VALUES (27079,384,40);
-INSERT INTO `item_mods` VALUES (27080,1,60);      -- Beckoner's Bracers: DEF
-INSERT INTO `item_mods` VALUES (27080,2,8);       -- HP
-INSERT INTO `item_mods` VALUES (27080,5,86);      -- MP
-INSERT INTO `item_mods` VALUES (27080,8,4);       -- STR
-INSERT INTO `item_mods` VALUES (27080,9,17);      -- DEX
-INSERT INTO `item_mods` VALUES (27080,10,15);     -- Vit
-INSERT INTO `item_mods` VALUES (27080,11,3);      -- Agi
-INSERT INTO `item_mods` VALUES (27080,12,12);     -- INT
-INSERT INTO `item_mods` VALUES (27080,13,21);     -- MND
-INSERT INTO `item_mods` VALUES (27080,14,12);     -- CHR
-INSERT INTO `item_mods` VALUES (27080,29,1);      -- MDEF
-INSERT INTO `item_mods` VALUES (27080,31,29);     -- MEVA
-INSERT INTO `item_mods` VALUES (27080,68,10);     -- EVA
-INSERT INTO `item_mods` VALUES (27080,372,50);    -- Halves Perp. cost depending on weather
-INSERT INTO `item_mods` VALUES (27080,373,50);    -- Halves Perp. cost depending on day
-INSERT INTO `item_mods` VALUES (27080,384,30);    -- Haste
-INSERT INTO `item_mods` VALUES (27081,1,82);      -- Beck. Bracers +1: DEF
-INSERT INTO `item_mods` VALUES (27081,2,18);      -- HP
-INSERT INTO `item_mods` VALUES (27081,5,94);      -- MP
-INSERT INTO `item_mods` VALUES (27081,8,6);       -- STR
-INSERT INTO `item_mods` VALUES (27081,9,28);      -- DEX
-INSERT INTO `item_mods` VALUES (27081,10,24);     -- Vit
-INSERT INTO `item_mods` VALUES (27081,11,5);      -- Agi
-INSERT INTO `item_mods` VALUES (27081,12,19);     -- INT
-INSERT INTO `item_mods` VALUES (27081,13,33);     -- MND
-INSERT INTO `item_mods` VALUES (27081,14,20);     -- CHR
-INSERT INTO `item_mods` VALUES (27081,29,3);      -- MDEF
-INSERT INTO `item_mods` VALUES (27081,31,43);     -- MEVA
-INSERT INTO `item_mods` VALUES (27081,68,22);     -- EVA
-INSERT INTO `item_mods` VALUES (27081,372,50);    -- Halves Perp. cost depending on weather
-INSERT INTO `item_mods` VALUES (27081,373,50);    -- Halves Perp. cost depending on day
-INSERT INTO `item_mods` VALUES (27081,384,30);    -- Haste
 INSERT INTO `item_mods` VALUES (27082,1,61);
 INSERT INTO `item_mods` VALUES (27082,2,11);
 INSERT INTO `item_mods` VALUES (27082,5,14);
@@ -36352,7 +36215,6 @@ INSERT INTO `item_mods` VALUES (27245,30,12);
 INSERT INTO `item_mods` VALUES (27245,31,76);
 INSERT INTO `item_mods` VALUES (27245,68,12);
 INSERT INTO `item_mods` VALUES (27245,384,40);
-INSERT INTO `item_mods` VALUES (27245,529,1);     -- Enhances Refresh potency +1
 INSERT INTO `item_mods` VALUES (27246,1,107);
 INSERT INTO `item_mods` VALUES (27246,2,45);
 INSERT INTO `item_mods` VALUES (27246,5,97);
@@ -36368,7 +36230,6 @@ INSERT INTO `item_mods` VALUES (27246,30,22);
 INSERT INTO `item_mods` VALUES (27246,31,112);
 INSERT INTO `item_mods` VALUES (27246,68,27);
 INSERT INTO `item_mods` VALUES (27246,384,51);
-INSERT INTO `item_mods` VALUES (27246,529,2);     -- Enhances Refresh potency +2
 INSERT INTO `item_mods` VALUES (27247,1,77);
 INSERT INTO `item_mods` VALUES (27247,2,23);
 INSERT INTO `item_mods` VALUES (27247,8,18);
@@ -36618,34 +36479,21 @@ INSERT INTO `item_mods` VALUES (27264,31,80);
 INSERT INTO `item_mods` VALUES (27264,68,24);
 INSERT INTO `item_mods` VALUES (27264,384,51);
 INSERT INTO `item_mods` VALUES (27264,421,11);
-INSERT INTO `item_mods` VALUES (27265,1,76);      -- Beckoner's Spats: DEF
-INSERT INTO `item_mods` VALUES (27265,2,19);      -- HP
-INSERT INTO `item_mods` VALUES (27265,5,106);     -- MP
-INSERT INTO `item_mods` VALUES (27265,8,15);      -- STR
-INSERT INTO `item_mods` VALUES (27265,10,8);      -- Vit
-INSERT INTO `item_mods` VALUES (27265,11,11);     -- Agi
-INSERT INTO `item_mods` VALUES (27265,12,22);     -- INT
-INSERT INTO `item_mods` VALUES (27265,13,14);     -- MND
-INSERT INTO `item_mods` VALUES (27265,14,12);     -- CHR
-INSERT INTO `item_mods` VALUES (27265,29,3);      -- MDEF
-INSERT INTO `item_mods` VALUES (27265,31,73);     -- MEVA
-INSERT INTO `item_mods` VALUES (27265,68,15);     -- EVA
-INSERT INTO `item_mods` VALUES (27265,117,15);    -- Summ. Magic Skill
-INSERT INTO `item_mods` VALUES (27265,384,40);    -- Haste
-INSERT INTO `item_mods` VALUES (27266,1,102);     -- Beck. Spats +1: DEF
-INSERT INTO `item_mods` VALUES (27266,2,41);      -- HP
-INSERT INTO `item_mods` VALUES (27266,5,116);     -- MP
-INSERT INTO `item_mods` VALUES (27266,8,24);      -- STR
-INSERT INTO `item_mods` VALUES (27266,10,12);     -- Vit
-INSERT INTO `item_mods` VALUES (27266,11,17);     -- Agi
-INSERT INTO `item_mods` VALUES (27266,12,35);     -- INT
-INSERT INTO `item_mods` VALUES (27266,13,23);     -- MND
-INSERT INTO `item_mods` VALUES (27266,14,20);     -- CHR
-INSERT INTO `item_mods` VALUES (27266,29,6);      -- MDEF
-INSERT INTO `item_mods` VALUES (27266,31,107);    -- MEVA
-INSERT INTO `item_mods` VALUES (27266,68,33);     -- EVA
-INSERT INTO `item_mods` VALUES (27266,117,20);    -- Summ. Magic Skill
-INSERT INTO `item_mods` VALUES (27266,384,51);    -- Haste
+INSERT INTO `item_mods` VALUES (27265,1,113);
+INSERT INTO `item_mods` VALUES (27265,2,50);
+INSERT INTO `item_mods` VALUES (27265,8,29);
+INSERT INTO `item_mods` VALUES (27265,10,16);
+INSERT INTO `item_mods` VALUES (27265,11,20);
+INSERT INTO `item_mods` VALUES (27265,12,30);
+INSERT INTO `item_mods` VALUES (27265,13,17);
+INSERT INTO `item_mods` VALUES (27265,14,11);
+INSERT INTO `item_mods` VALUES (27265,25,20);
+INSERT INTO `item_mods` VALUES (27265,29,5);
+INSERT INTO `item_mods` VALUES (27265,31,75);
+INSERT INTO `item_mods` VALUES (27265,68,47);
+INSERT INTO `item_mods` VALUES (27265,88,23);
+INSERT INTO `item_mods` VALUES (27265,291,14);
+INSERT INTO `item_mods` VALUES (27265,384,81);
 INSERT INTO `item_mods` VALUES (27267,1,78);
 INSERT INTO `item_mods` VALUES (27267,2,21);
 INSERT INTO `item_mods` VALUES (27267,5,26);
@@ -37880,38 +37728,6 @@ INSERT INTO `item_mods` VALUES (27438,29,2);
 INSERT INTO `item_mods` VALUES (27438,31,80);
 INSERT INTO `item_mods` VALUES (27438,68,55);
 INSERT INTO `item_mods` VALUES (27438,384,61);
-INSERT INTO `item_mods` VALUES (27439,1,44);      -- Beck. Pigaches: DEF
-INSERT INTO `item_mods` VALUES (27439,2,4);       -- HP
-INSERT INTO `item_mods` VALUES (27439,5,89);      -- MP
-INSERT INTO `item_mods` VALUES (27439,8,7);       -- STR
-INSERT INTO `item_mods` VALUES (27439,9,7);       -- DEX
-INSERT INTO `item_mods` VALUES (27439,10,7);      -- Vit
-INSERT INTO `item_mods` VALUES (27439,11,19);     -- Agi
-INSERT INTO `item_mods` VALUES (27439,12,12);     -- INT
-INSERT INTO `item_mods` VALUES (27439,13,12);     -- MND
-INSERT INTO `item_mods` VALUES (27439,14,22);     -- CHR
-INSERT INTO `item_mods` VALUES (27439,29,3);      -- MDEF
-INSERT INTO `item_mods` VALUES (27439,31,80);     -- MEVA
-INSERT INTO `item_mods` VALUES (27439,68,25);     -- EVA
-INSERT INTO `item_mods` VALUES (27439,346,6);     -- Aatar Perp Cost.
-INSERT INTO `item_mods` VALUES (27439,384,30);    -- Haste
-INSERT INTO `item_mods` VALUES (27439,540,50);    -- Elemental Siphon
-INSERT INTO `item_mods` VALUES (27440,1,61);      -- Beck. Pigaches +1 DEF:61
-INSERT INTO `item_mods` VALUES (27440,2,9);       -- HP
-INSERT INTO `item_mods` VALUES (27440,5,97);      -- MP
-INSERT INTO `item_mods` VALUES (27440,8,11);      -- STR
-INSERT INTO `item_mods` VALUES (27440,9,11);      -- DEX
-INSERT INTO `item_mods` VALUES (27440,10,11);     -- Vit
-INSERT INTO `item_mods` VALUES (27440,11,30);     -- Agi
-INSERT INTO `item_mods` VALUES (27440,12,19);     -- INT
-INSERT INTO `item_mods` VALUES (27440,13,19);     -- MND
-INSERT INTO `item_mods` VALUES (27440,14,35);     -- CHR
-INSERT INTO `item_mods` VALUES (27440,29,6);      -- MDEF
-INSERT INTO `item_mods` VALUES (27440,31,118);    -- MEVA
-INSERT INTO `item_mods` VALUES (27440,68,55);     -- EVA
-INSERT INTO `item_mods` VALUES (27440,346,7);     -- Aatar Perp Cost.
-INSERT INTO `item_mods` VALUES (27440,384,30);    -- Haste
-INSERT INTO `item_mods` VALUES (27440,540,60);    -- Elemental Siphon
 INSERT INTO `item_mods` VALUES (27441,1,60);
 INSERT INTO `item_mods` VALUES (27441,2,7);
 INSERT INTO `item_mods` VALUES (27441,5,14);
@@ -39204,70 +39020,6 @@ INSERT INTO `item_mods` VALUES (27743,29,1);
 INSERT INTO `item_mods` VALUES (27743,31,41);
 INSERT INTO `item_mods` VALUES (27743,68,8);
 INSERT INTO `item_mods` VALUES (27743,384,51);
-INSERT INTO `item_mods` VALUES (27744,1,107); -- Comment me
-INSERT INTO `item_mods` VALUES (27744,2,38);
-INSERT INTO `item_mods` VALUES (27744,8,24);
-INSERT INTO `item_mods` VALUES (27744,9,20);
-INSERT INTO `item_mods` VALUES (27744,10,24);
-INSERT INTO `item_mods` VALUES (27744,11,31);
-INSERT INTO `item_mods` VALUES (27744,12,20);
-INSERT INTO `item_mods` VALUES (27744,13,20);
-INSERT INTO `item_mods` VALUES (27744,14,20);
-INSERT INTO `item_mods` VALUES (27744,25,15);
-INSERT INTO `item_mods` VALUES (27744,29,2);
-INSERT INTO `item_mods` VALUES (27744,31,53);
-INSERT INTO `item_mods` VALUES (27744,68,36);
-INSERT INTO `item_mods` VALUES (27744,161,-3);
-INSERT INTO `item_mods` VALUES (27744,384,81);
-INSERT INTO `item_mods` VALUES (27745,1,100); -- Comment me
-INSERT INTO `item_mods` VALUES (27745,2,36);
-INSERT INTO `item_mods` VALUES (27745,5,23);
-INSERT INTO `item_mods` VALUES (27745,8,23);
-INSERT INTO `item_mods` VALUES (27745,9,23);
-INSERT INTO `item_mods` VALUES (27745,10,23);
-INSERT INTO `item_mods` VALUES (27745,11,23);
-INSERT INTO `item_mods` VALUES (27745,12,19);
-INSERT INTO `item_mods` VALUES (27745,13,19);
-INSERT INTO `item_mods` VALUES (27745,14,20);
-INSERT INTO `item_mods` VALUES (27745,23,10);
-INSERT INTO `item_mods` VALUES (27745,29,2);
-INSERT INTO `item_mods` VALUES (27745,31,53);
-INSERT INTO `item_mods` VALUES (27745,68,44);
-INSERT INTO `item_mods` VALUES (27745,227,5);
-INSERT INTO `item_mods` VALUES (27745,302,2);
-INSERT INTO `item_mods` VALUES (27745,384,81);
-INSERT INTO `item_mods` VALUES (27750,1,82); -- Haruspex Hat -- def 82 
-INSERT INTO `item_mods` VALUES (27750,2,26); -- hp 26
-INSERT INTO `item_mods` VALUES (27750,5,29); -- mp 29
-INSERT INTO `item_mods` VALUES (27750,8,15); -- str 15
-INSERT INTO `item_mods` VALUES (27750,9,15); -- dex 15
-INSERT INTO `item_mods` VALUES (27750,10,15); -- vit 15
-INSERT INTO `item_mods` VALUES (27750,11,15); -- agi 15
-INSERT INTO `item_mods` VALUES (27750,12,19); -- int 19
-INSERT INTO `item_mods` VALUES (27750,13,19); -- mnd 25
-INSERT INTO `item_mods` VALUES (27750,14,25);  -- chr 25
-INSERT INTO `item_mods` VALUES (27750,27,-4); -- enmity -4
-INSERT INTO `item_mods` VALUES (27750,29,4); -- mdef 4
-INSERT INTO `item_mods` VALUES (27750,31,63); -- meva 63
-INSERT INTO `item_mods` VALUES (27750,68,26); -- eva 26
-INSERT INTO `item_mods` VALUES (27750,170,8); -- fast cast 8
-INSERT INTO `item_mods` VALUES (27750,384,50); -- haste 5
-INSERT INTO `item_mods` VALUES (27751,1,85); -- Haruspex Hat +1 -- 85 Def
-INSERT INTO `item_mods` VALUES (27751,2,28); -- 28 HP
-INSERT INTO `item_mods` VALUES (27751,5,30); -- 30 MP
-INSERT INTO `item_mods` VALUES (27751,8,17); -- 17 STR
-INSERT INTO `item_mods` VALUES (27751,9,17); -- 17 DEX
-INSERT INTO `item_mods` VALUES (27751,10,17); -- 17 VIT
-INSERT INTO `item_mods` VALUES (27751,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (27751,12,21); -- 21 INT
-INSERT INTO `item_mods` VALUES (27751,13,21); -- 21 MND
-INSERT INTO `item_mods` VALUES (27751,14,28); -- 28 CHR
-INSERT INTO `item_mods` VALUES (27751,27,-5); -- Enmity -5
-INSERT INTO `item_mods` VALUES (27751,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (27751,31,65); -- 65 Meva
-INSERT INTO `item_mods` VALUES (27751,68,28); -- 28 Eva
-INSERT INTO `item_mods` VALUES (27751,170,9); -- 9% Fast Cast
-INSERT INTO `item_mods` VALUES (27751,384,51); -- 5% Gear Haste
 INSERT INTO `item_mods` VALUES (27752,1,82);
 INSERT INTO `item_mods` VALUES (27752,5,19);
 INSERT INTO `item_mods` VALUES (27752,8,19);
@@ -39403,52 +39155,6 @@ INSERT INTO `item_mods` VALUES (27769,31,34);     -- Magic Evasion +34
 INSERT INTO `item_mods` VALUES (27769,68,26);     -- Evasion +26
 INSERT INTO `item_mods` VALUES (27769,73,5);      -- Store TP +5
 INSERT INTO `item_mods` VALUES (27769,384,71);    -- Haste +7%
-INSERT INTO `item_mods` VALUES (27770,1,82); -- Comment me
-INSERT INTO `item_mods` VALUES (27770,2,24);
-INSERT INTO `item_mods` VALUES (27770,5,21);
-INSERT INTO `item_mods` VALUES (27770,8,17);
-INSERT INTO `item_mods` VALUES (27770,9,20);
-INSERT INTO `item_mods` VALUES (27770,10,17);
-INSERT INTO `item_mods` VALUES (27770,11,20);
-INSERT INTO `item_mods` VALUES (27770,12,17);
-INSERT INTO `item_mods` VALUES (27770,13,17);
-INSERT INTO `item_mods` VALUES (27770,14,18);
-INSERT INTO `item_mods` VALUES (27770,29,1);
-INSERT INTO `item_mods` VALUES (27770,31,43);
-INSERT INTO `item_mods` VALUES (27770,68,30);
-INSERT INTO `item_mods` VALUES (27770,302,2);
-INSERT INTO `item_mods` VALUES (27770,384,71);
-INSERT INTO `item_mods` VALUES (27771,1,79); -- Gende. Caubeen -- 79 Def
-INSERT INTO `item_mods` VALUES (27771,2,24); -- 24 HP
-INSERT INTO `item_mods` VALUES (27771,5,29); -- 29 MP
-INSERT INTO `item_mods` VALUES (27771,8,16); -- 16 STR
-INSERT INTO `item_mods` VALUES (27771,9,16); -- 16 DEX
-INSERT INTO `item_mods` VALUES (27771,10,16); -- 16 VIT
-INSERT INTO `item_mods` VALUES (27771,11,16); -- 16 AGI
-INSERT INTO `item_mods` VALUES (27771,12,20); -- 20 INT
-INSERT INTO `item_mods` VALUES (27771,13,20); -- 20 MND
-INSERT INTO `item_mods` VALUES (27771,14,20); -- 20 CHR
-INSERT INTO `item_mods` VALUES (27771,27,-8); -- Enmity -5
-INSERT INTO `item_mods` VALUES (27771,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (27771,31,60); -- 60 Meva
-INSERT INTO `item_mods` VALUES (27771,68,24); -- 24 Eva
-INSERT INTO `item_mods` VALUES (27771,374,101); -- 10% Cure Potency
-INSERT INTO `item_mods` VALUES (27771,384,51); -- 5% Gear Haste
-INSERT INTO `item_mods` VALUES (27772,1,78); -- Hagondes Hat -- 78 Def
-INSERT INTO `item_mods` VALUES (27772,2,24); -- 24 HP
-INSERT INTO `item_mods` VALUES (27772,5,29); -- 29 MP
-INSERT INTO `item_mods` VALUES (27772,8,15); -- 15 STR
-INSERT INTO `item_mods` VALUES (27772,9,15); -- 15 DEX
-INSERT INTO `item_mods` VALUES (27772,10,15); -- 15 VIT
-INSERT INTO `item_mods` VALUES (27772,11,15); -- 15 AGI
-INSERT INTO `item_mods` VALUES (27772,12,19); -- 19 INT
-INSERT INTO `item_mods` VALUES (27772,13,19); -- 19 MND
-INSERT INTO `item_mods` VALUES (27772,14,19); -- 19 CHR
-INSERT INTO `item_mods` VALUES (27772,28,13); -- 13 Mab
-INSERT INTO `item_mods` VALUES (27772,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (27772,31,60); -- 60 Meva
-INSERT INTO `item_mods` VALUES (27772,68,24); -- 24 Eva
-INSERT INTO `item_mods` VALUES (27772,384,51); -- 5% Gear Haste
 INSERT INTO `item_mods` VALUES (27773,1,114);
 INSERT INTO `item_mods` VALUES (27773,2,41);
 INSERT INTO `item_mods` VALUES (27773,5,23);
@@ -39514,20 +39220,6 @@ INSERT INTO `item_mods` VALUES (27776,29,1);      -- Magic Def. Bonus +1
 INSERT INTO `item_mods` VALUES (27776,31,22);     -- Magic Evasion +22
 INSERT INTO `item_mods` VALUES (27776,68,17);     -- Evasion +17
 INSERT INTO `item_mods` VALUES (27776,384,71);    -- Haste +7%
-INSERT INTO `item_mods` VALUES (27777,1,72); -- Manibozho Beret -- def 72
-INSERT INTO `item_mods` VALUES (27777,2,19); -- hp 19
-INSERT INTO `item_mods` VALUES (27777,5,20); -- mp 20
-INSERT INTO `item_mods` VALUES (27777,8,10); -- str 10
-INSERT INTO `item_mods` VALUES (27777,9,13); -- dex 13
-INSERT INTO `item_mods` VALUES (27777,10,10); -- vit 10
-INSERT INTO `item_mods` VALUES (27777,11,13); -- agi 13
-INSERT INTO `item_mods` VALUES (27777,12,10); -- int 10
-INSERT INTO `item_mods` VALUES (27777,13,10); -- mnd 10
-INSERT INTO `item_mods` VALUES (27777,14,11); -- chr 11
-INSERT INTO `item_mods` VALUES (27777,29,1);  -- Magic Def. Bonus +1
-INSERT INTO `item_mods` VALUES (27777,31,38); -- meva 38
-INSERT INTO `item_mods` VALUES (27777,68,22); -- eva 22
-INSERT INTO `item_mods` VALUES (27777,384,61); -- haste 6%
 INSERT INTO `item_mods` VALUES (27779,1,72);
 INSERT INTO `item_mods` VALUES (27779,2,12);
 INSERT INTO `item_mods` VALUES (27779,5,18);
@@ -40422,23 +40114,6 @@ INSERT INTO `item_mods` VALUES (27856,31,64);
 INSERT INTO `item_mods` VALUES (27856,68,49);
 INSERT INTO `item_mods` VALUES (27856,369,2);
 INSERT INTO `item_mods` VALUES (27856,384,40);
-INSERT INTO `item_mods` VALUES (27858,1,131); -- Dread Jupon -- 131 Def
-INSERT INTO `item_mods` VALUES (27858,2,59); -- 59 HP
-INSERT INTO `item_mods` VALUES (27858,5,44); -- 44 MP
-INSERT INTO `item_mods` VALUES (27858,8,27); -- 27 STR
-INSERT INTO `item_mods` VALUES (27858,9,37); -- 37 DEX
-INSERT INTO `item_mods` VALUES (27858,10,27); -- 27 VIT
-INSERT INTO `item_mods` VALUES (27858,11,36); -- 36 AGI
-INSERT INTO `item_mods` VALUES (27858,12,26); -- 26 INT
-INSERT INTO `item_mods` VALUES (27858,13,26); -- 26 MND
-INSERT INTO `item_mods` VALUES (27858,14,26); -- 26 CHR
-INSERT INTO `item_mods` VALUES (27858,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (27858,29,6); -- 6 Mdef
-INSERT INTO `item_mods` VALUES (27858,31,64); -- 64 Meva
-INSERT INTO `item_mods` VALUES (27858,68,49); -- 49 Eva
-INSERT INTO `item_mods` VALUES (27858,170,7); -- 7% Fast Cast
-INSERT INTO `item_mods` VALUES (27858,288,2); -- 2% Double Attack
-INSERT INTO `item_mods` VALUES (27858,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (27862,1,138);
 INSERT INTO `item_mods` VALUES (27862,2,120);
 INSERT INTO `item_mods` VALUES (27862,5,44);
@@ -40501,24 +40176,6 @@ INSERT INTO `item_mods` VALUES (27865,29,6);
 INSERT INTO `item_mods` VALUES (27865,31,75);
 INSERT INTO `item_mods` VALUES (27865,68,37);
 INSERT INTO `item_mods` VALUES (27865,384,30);
-INSERT INTO `item_mods` VALUES (27868,1,127); -- Ischemia Chasu -- def 127
-INSERT INTO `item_mods` VALUES (27868,2,54); --  Hit Points +54
-INSERT INTO `item_mods` VALUES (27868,5,59); --  Mana Points +59
-INSERT INTO `item_mods` VALUES (27868,8,21); --  Strength +21
-INSERT INTO `item_mods` VALUES (27868,9,21); --  Dexterity +21
-INSERT INTO `item_mods` VALUES (27868,10,21); --  Vitality +21
-INSERT INTO `item_mods` VALUES (27868,11,21); --  Agility +21
-INSERT INTO `item_mods` VALUES (27868,12,29); --  Intelligence +29
-INSERT INTO `item_mods` VALUES (27868,13,29); --  Mind +29
-INSERT INTO `item_mods` VALUES (27868,14,29); --  Charisma +29
-INSERT INTO `item_mods` VALUES (27868,25,25); --  Accuracy +25
-INSERT INTO `item_mods` VALUES (27868,30,15); --  Magic Accuracy +15
-INSERT INTO `item_mods` VALUES (27868,68,41); --  Evasion +41
-INSERT INTO `item_mods` VALUES (27868,31,80); --  Magic Evasion +80
-INSERT INTO `item_mods` VALUES (27868,29,6); --  Magic Defense Bonus + 68
-INSERT INTO `item_mods` VALUES (27868,114,18); --  Enfeebling Magic Skill +18
-INSERT INTO `item_mods` VALUES (27868,384,30); --  Haste +3%
-INSERT INTO `item_mods` VALUES (27868,369,2); --  Refresh +2
 INSERT INTO `item_mods` VALUES (27869,1,142);
 INSERT INTO `item_mods` VALUES (27869,2,83);
 INSERT INTO `item_mods` VALUES (27869,5,35);
@@ -40717,23 +40374,6 @@ INSERT INTO `item_mods` VALUES (27886,23,30);
 INSERT INTO `item_mods` VALUES (27886,25,30);
 INSERT INTO `item_mods` VALUES (27886,288,2);
 INSERT INTO `item_mods` VALUES (27886,384,30);
-INSERT INTO `item_mods` VALUES (27887,1,120); -- Vanir Cotehardie -- 120 Def
-INSERT INTO `item_mods` VALUES (27887,2,54); -- 54 HP
-INSERT INTO `item_mods` VALUES (27887,5,59); -- 59 MP
-INSERT INTO `item_mods` VALUES (27887,8,21); -- 21 STR
-INSERT INTO `item_mods` VALUES (27887,9,21); -- 21 DEX
-INSERT INTO `item_mods` VALUES (27887,10,21); -- 21 VIT
-INSERT INTO `item_mods` VALUES (27887,11,21); -- 21 AGI
-INSERT INTO `item_mods` VALUES (27887,12,36); -- 36 INT
-INSERT INTO `item_mods` VALUES (27887,13,36); -- 36 INT
-INSERT INTO `item_mods` VALUES (27887,14,29); -- 29 CHR
-INSERT INTO `item_mods` VALUES (27887,28,18); -- 18 Mab
-INSERT INTO `item_mods` VALUES (27887,29,6); -- 6 Mdef
-INSERT INTO `item_mods` VALUES (27887,30,18); -- 18 Macc
-INSERT INTO `item_mods` VALUES (27887,31,80); -- 80 Meva
-INSERT INTO `item_mods` VALUES (27887,68,41); -- 41 Eva
-INSERT INTO `item_mods` VALUES (27887,170,5); -- 5% Fast Cast
-INSERT INTO `item_mods` VALUES (27887,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (27888,1,129);
 INSERT INTO `item_mods` VALUES (27888,2,59);
 INSERT INTO `item_mods` VALUES (27888,5,44);
@@ -40768,22 +40408,6 @@ INSERT INTO `item_mods` VALUES (27889,29,4);
 INSERT INTO `item_mods` VALUES (27889,31,54);
 INSERT INTO `item_mods` VALUES (27889,68,36);
 INSERT INTO `item_mods` VALUES (27889,384,40);
-INSERT INTO `item_mods` VALUES (27890,1,116); -- Aeto. Jerkin +1 -- 116 Def
-INSERT INTO `item_mods` VALUES (27890,2,86); -- 86 HP
-INSERT INTO `item_mods` VALUES (27890,5,81); -- 81 MP
-INSERT INTO `item_mods` VALUES (27890,8,20); -- 20 STR
-INSERT INTO `item_mods` VALUES (27890,9,31); -- 31 DEX
-INSERT INTO `item_mods` VALUES (27890,10,20); -- 20 VIT
-INSERT INTO `item_mods` VALUES (27890,11,30); -- 30 AGI
-INSERT INTO `item_mods` VALUES (27890,12,18); -- 18 INT
-INSERT INTO `item_mods` VALUES (27890,13,18); -- 18 MND
-INSERT INTO `item_mods` VALUES (27890,14,18); -- 18 CHR
-INSERT INTO `item_mods` VALUES (27890,25,15); -- 15 Acc
-INSERT INTO `item_mods` VALUES (27890,26,15); -- 15 Racc
-INSERT INTO `item_mods` VALUES (27890,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (27890,31,56); -- 56 Meva
-INSERT INTO `item_mods` VALUES (27890,68,39); -- 39 Eva
-INSERT INTO `item_mods` VALUES (27890,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (27891,1,123);
 INSERT INTO `item_mods` VALUES (27891,2,102);
 INSERT INTO `item_mods` VALUES (27891,5,87);
@@ -40799,21 +40423,6 @@ INSERT INTO `item_mods` VALUES (27891,29,3);
 INSERT INTO `item_mods` VALUES (27891,31,40);
 INSERT INTO `item_mods` VALUES (27891,68,30);
 INSERT INTO `item_mods` VALUES (27891,384,30);
-INSERT INTO `item_mods` VALUES (27892,1,127); -- Shabti Cuirass +1 -- 127 Def
-INSERT INTO `item_mods` VALUES (27892,2,115); -- 115 HP
-INSERT INTO `item_mods` VALUES (27892,5,98); -- 98 MP
-INSERT INTO `item_mods` VALUES (27892,8,31); -- 31 STR
-INSERT INTO `item_mods` VALUES (27892,9,15); -- 15 DEX
-INSERT INTO `item_mods` VALUES (27892,10,31); -- 31 VIT
-INSERT INTO `item_mods` VALUES (27892,11,15); -- 15 AGI
-INSERT INTO `item_mods` VALUES (27892,12,15); -- 15 INT
-INSERT INTO `item_mods` VALUES (27892,13,15); -- 15 MND
-INSERT INTO `item_mods` VALUES (27892,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (27892,27,6); -- 6 Enmity
-INSERT INTO `item_mods` VALUES (27892,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (27892,31,42); -- 42 Meva
-INSERT INTO `item_mods` VALUES (27892,68,32); -- 32 Eva
-INSERT INTO `item_mods` VALUES (27892,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (27893,1,107);
 INSERT INTO `item_mods` VALUES (27893,2,40);
 INSERT INTO `item_mods` VALUES (27893,5,54);
@@ -40830,23 +40439,6 @@ INSERT INTO `item_mods` VALUES (27893,30,10);
 INSERT INTO `item_mods` VALUES (27893,31,67);
 INSERT INTO `item_mods` VALUES (27893,68,30);
 INSERT INTO `item_mods` VALUES (27893,384,20);
-INSERT INTO `item_mods` VALUES (27894,1,111); -- Haruspex Coat +1 -- 111 Def
-INSERT INTO `item_mods` VALUES (27894,2,43); -- 43 HP
-INSERT INTO `item_mods` VALUES (27894,5,55); -- 55 MP
-INSERT INTO `item_mods` VALUES (27894,8,17); -- 17 STR
-INSERT INTO `item_mods` VALUES (27894,9,17); -- 17 DEX
-INSERT INTO `item_mods` VALUES (27894,10,17); -- 17 VIT
-INSERT INTO `item_mods` VALUES (27894,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (27894,12,31); -- 31 INT
-INSERT INTO `item_mods` VALUES (27894,13,31); -- 31 MND
-INSERT INTO `item_mods` VALUES (27894,14,31); -- 31 CHR
-INSERT INTO `item_mods` VALUES (27894,27,-6); -- -6 Enmity
-INSERT INTO `item_mods` VALUES (27894,29,5); -- 5 Mdef
-INSERT INTO `item_mods` VALUES (27894,30,11); -- 11 Macc
-INSERT INTO `item_mods` VALUES (27894,31,70); -- 70 Meva
-INSERT INTO `item_mods` VALUES (27894,68,32); -- 32 Eva
-INSERT INTO `item_mods` VALUES (27894,311,14); -- 14 Magic Damage
-INSERT INTO `item_mods` VALUES (27894,384,20); -- 2% Gear Haste
 INSERT INTO `item_mods` VALUES (27895,1,104);
 INSERT INTO `item_mods` VALUES (27895,5,30);
 INSERT INTO `item_mods` VALUES (27895,8,29);
@@ -40931,84 +40523,6 @@ INSERT INTO `item_mods` VALUES (27909,31,47);
 INSERT INTO `item_mods` VALUES (27909,68,12);
 INSERT INTO `item_mods` VALUES (27909,384,20);
 INSERT INTO `item_mods` VALUES (27911,1,1);
-INSERT INTO `item_mods` VALUES (27912,1,118); -- Cizin Mail -- 118 Def
-INSERT INTO `item_mods` VALUES (27912,2,43); -- 43 HP
-INSERT INTO `item_mods` VALUES (27912,5,31); -- 31 MP
-INSERT INTO `item_mods` VALUES (27912,8,25); -- 25 STR
-INSERT INTO `item_mods` VALUES (27912,9,17); -- 17 DEX
-INSERT INTO `item_mods` VALUES (27912,10,25); -- 25 VIT
-INSERT INTO `item_mods` VALUES (27912,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (27912,12,17); -- 17 INT
-INSERT INTO `item_mods` VALUES (27912,13,17); -- 17 MND
-INSERT INTO `item_mods` VALUES (27912,14,17); -- 17 CHR
-INSERT INTO `item_mods` VALUES (27912,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (27912,31,39); -- 39 Meva
-INSERT INTO `item_mods` VALUES (27912,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (27912,68,28); -- 28 Eva
-INSERT INTO `item_mods` VALUES (27912,384,31); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (27913,1,106); -- Otronif Harness -- 106 Def
-INSERT INTO `item_mods` VALUES (27913,2,40); -- 40 HP
-INSERT INTO `item_mods` VALUES (27913,8,20); -- 20 STR
-INSERT INTO `item_mods` VALUES (27913,9,21); -- 21 DEX
-INSERT INTO `item_mods` VALUES (27913,10,18); -- 18 VIT
-INSERT INTO `item_mods` VALUES (27913,11,21); -- 21 AGI
-INSERT INTO `item_mods` VALUES (27913,12,20); -- 20 INT
-INSERT INTO `item_mods` VALUES (27913,13,20); -- 20 MND
-INSERT INTO `item_mods` VALUES (27913,14,20); -- 20 CHR
-INSERT INTO `item_mods` VALUES (27913,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (27913,68,35); -- 35 Eva
-INSERT INTO `item_mods` VALUES (27913,31,43); -- 43 Meva
-INSERT INTO `item_mods` VALUES (27913,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (27913,384,40); -- 4 Gear Haste
-INSERT INTO `item_mods` VALUES (27913,291,3); -- 3 Counter
-INSERT INTO `item_mods` VALUES (27914,1,108); -- Luitl Vest -- 108 Def
-INSERT INTO `item_mods` VALUES (27914,2,40); -- 40 HP
-INSERT INTO `item_mods` VALUES (27914,5,39); -- 39 MP
-INSERT INTO `item_mods` VALUES (27914,8,19); -- 19 STR
-INSERT INTO `item_mods` VALUES (27914,9,23); -- 23 DEX
-INSERT INTO `item_mods` VALUES (27914,10,19); -- 19 VIT
-INSERT INTO `item_mods` VALUES (27914,11,22); -- 22 AGI
-INSERT INTO `item_mods` VALUES (27914,12,18); -- 18 INT
-INSERT INTO `item_mods` VALUES (27914,13,18); -- 18 MND
-INSERT INTO `item_mods` VALUES (27914,14,18); -- 18 CHR
-INSERT INTO `item_mods` VALUES (27914,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (27914,26,10); -- 10 Racc
-INSERT INTO `item_mods` VALUES (27914,68,33); -- 33 Eva
-INSERT INTO `item_mods` VALUES (27914,31,52); -- 52 Meva
-INSERT INTO `item_mods` VALUES (27914,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (27914,289,8); -- 8 Subtle Blow
-INSERT INTO `item_mods` VALUES (27914,384,40); -- 4 Gear Haste
-INSERT INTO `item_mods` VALUES (27915,1,103); -- Gendewitha Bliaut -- 103 Def
-INSERT INTO `item_mods` VALUES (27915,2,37); -- 37 HP
-INSERT INTO `item_mods` VALUES (27915,5,53); -- 53 MP
-INSERT INTO `item_mods` VALUES (27915,8,19); -- 19 STR
-INSERT INTO `item_mods` VALUES (27915,9,19); -- 19 DEX
-INSERT INTO `item_mods` VALUES (27915,10,19); -- 19 VIT
-INSERT INTO `item_mods` VALUES (27915,11,19); -- 19 AGI
-INSERT INTO `item_mods` VALUES (27915,12,25); -- 25 INT
-INSERT INTO `item_mods` VALUES (27915,13,25); -- 25 MND
-INSERT INTO `item_mods` VALUES (27915,14,25); -- 25 CHR
-INSERT INTO `item_mods` VALUES (27915,68,28); -- 28 Eva
-INSERT INTO `item_mods` VALUES (27915,31,65); -- 65 Meva
-INSERT INTO `item_mods` VALUES (27915,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (27915,374,8); -- 8 Cure Potency
-INSERT INTO `item_mods` VALUES (27915,369,1); -- 1 Refresh
-INSERT INTO `item_mods` VALUES (27916,1,102); -- Hagondes Coat -- 102 Def
-INSERT INTO `item_mods` VALUES (27916,2,37); -- 37 HP
-INSERT INTO `item_mods` VALUES (27916,5,53); -- 53 MP
-INSERT INTO `item_mods` VALUES (27916,8,17); -- 17 STR
-INSERT INTO `item_mods` VALUES (27916,9,17); -- 17 DEX
-INSERT INTO `item_mods` VALUES (27916,10,17); -- 17 VIT
-INSERT INTO `item_mods` VALUES (27916,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (27916,12,28); -- 28 INT
-INSERT INTO `item_mods` VALUES (27916,13,23); -- 23 MND
-INSERT INTO `item_mods` VALUES (27916,14,23); -- 23 CHR
-INSERT INTO `item_mods` VALUES (27916,28,10); -- 10 Matt
-INSERT INTO `item_mods` VALUES (27916,68,28); -- 28 Eva
-INSERT INTO `item_mods` VALUES (27916,31,65); -- 65 Meva
-INSERT INTO `item_mods` VALUES (27916,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (27916,384,30); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (27916,369,1); -- 1 Refresh
 INSERT INTO `item_mods` VALUES (27917,1,102);
 INSERT INTO `item_mods` VALUES (27917,2,33);
 INSERT INTO `item_mods` VALUES (27917,5,30);
@@ -41862,36 +41376,6 @@ INSERT INTO `item_mods` VALUES (27984,68,22);
 INSERT INTO `item_mods` VALUES (27984,296,4);
 INSERT INTO `item_mods` VALUES (27984,384,30);
 INSERT INTO `item_mods` VALUES (27984,407,5);
-INSERT INTO `item_mods` VALUES (27987,1,101); -- Gefechthentzes -- 101 Def
-INSERT INTO `item_mods` VALUES (27987,2,57); -- 57 HP
-INSERT INTO `item_mods` VALUES (27987,8,6); -- 6 STR
-INSERT INTO `item_mods` VALUES (27987,9,35); -- 35 DEX
-INSERT INTO `item_mods` VALUES (27987,10,30); -- 30 VIT
-INSERT INTO `item_mods` VALUES (27987,11,7); -- 7 AGI
-INSERT INTO `item_mods` VALUES (27987,12,10); -- 10 INT
-INSERT INTO `item_mods` VALUES (27987,13,26); -- 26 MND
-INSERT INTO `item_mods` VALUES (27987,14,20); -- 20 CHR
-INSERT INTO `item_mods` VALUES (27987,25,7); -- 7 Acc
-INSERT INTO `item_mods` VALUES (27987,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (27987,30,7); -- 7 Macc
-INSERT INTO `item_mods` VALUES (27987,31,26); -- 26 Meva
-INSERT INTO `item_mods` VALUES (27987,68,22); -- 22 Eva
-INSERT INTO `item_mods` VALUES (27987,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (27988,1,102); -- Wildheithentzes -- 102 Def
-INSERT INTO `item_mods` VALUES (27988,2,67); -- 67 HP
-INSERT INTO `item_mods` VALUES (27988,8,6); -- 6 STR
-INSERT INTO `item_mods` VALUES (27988,9,36); -- 36 DEX
-INSERT INTO `item_mods` VALUES (27988,10,30); -- 30 VIT
-INSERT INTO `item_mods` VALUES (27988,11,7); -- 7 AGI
-INSERT INTO `item_mods` VALUES (27988,12,10); -- 10 INT
-INSERT INTO `item_mods` VALUES (27988,13,26); -- 26 MND
-INSERT INTO `item_mods` VALUES (27988,14,20); -- 20 CHR
-INSERT INTO `item_mods` VALUES (27988,25,8); -- 8 Acc
-INSERT INTO `item_mods` VALUES (27988,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (27988,30,8); -- 8 Macc
-INSERT INTO `item_mods` VALUES (27988,31,26); -- 26 Meva
-INSERT INTO `item_mods` VALUES (27988,68,22); -- 22 Eva
-INSERT INTO `item_mods` VALUES (27988,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (27991,1,83); -- Revealers Mitts -- 83 Def
 INSERT INTO `item_mods` VALUES (27991,2,22); -- 22 HP
 INSERT INTO `item_mods` VALUES (27991,5,34); -- 34 MP
@@ -41938,23 +41422,6 @@ INSERT INTO `item_mods` VALUES (27996,29,1);
 INSERT INTO `item_mods` VALUES (27996,31,26);
 INSERT INTO `item_mods` VALUES (27996,68,22);
 INSERT INTO `item_mods` VALUES (27996,384,51);
-INSERT INTO `item_mods` VALUES (28005,1,88); -- Alruna's Gloves +1 -- 88 Def
-INSERT INTO `item_mods` VALUES (28005,2,23); -- 23 HP
-INSERT INTO `item_mods` VALUES (28005,8,11); -- 11 STR
-INSERT INTO `item_mods` VALUES (28005,9,34); -- 34 DEX
-INSERT INTO `item_mods` VALUES (28005,10,31); -- 31 VIT
-INSERT INTO `item_mods` VALUES (28005,11,11); -- 11 AGI
-INSERT INTO `item_mods` VALUES (28005,12,12); -- 12 INT
-INSERT INTO `item_mods` VALUES (28005,13,29); -- 29 MND
-INSERT INTO `item_mods` VALUES (28005,14,17); -- 17 CHR
-INSERT INTO `item_mods` VALUES (28005,24,20); -- 20 Ratt
-INSERT INTO `item_mods` VALUES (28005,26,20); -- 20 Racc
-INSERT INTO `item_mods` VALUES (28005,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (28005,31,36); -- 36 Meva
-INSERT INTO `item_mods` VALUES (28005,68,23); -- 23 Eva
-INSERT INTO `item_mods` VALUES (28005,162,3); -- -3% Breath Damage Taken
-INSERT INTO `item_mods` VALUES (28005,365,5); -- Snapshot +5
-INSERT INTO `item_mods` VALUES (28005,384,51); -- 5% Gear Haste
 INSERT INTO `item_mods` VALUES (28009,1,90);
 INSERT INTO `item_mods` VALUES (28009,2,25);
 INSERT INTO `item_mods` VALUES (28009,8,10);
@@ -42185,110 +41652,6 @@ INSERT INTO `item_mods` VALUES (28032,14,9);
 INSERT INTO `item_mods` VALUES (28032,31,20);
 INSERT INTO `item_mods` VALUES (28032,68,5);
 INSERT INTO `item_mods` VALUES (28032,384,30);
-INSERT INTO `item_mods` VALUES (28035,1,85); -- Lurid Mitts -- 85 Def
-INSERT INTO `item_mods` VALUES (28035,2,22); -- 22 HP
-INSERT INTO `item_mods` VALUES (28035,5,14); -- 14 MP
-INSERT INTO `item_mods` VALUES (28035,8,6); -- 6 STR
-INSERT INTO `item_mods` VALUES (28035,9,28); -- 28 DEX
-INSERT INTO `item_mods` VALUES (28035,10,25); -- 25 VIT
-INSERT INTO `item_mods` VALUES (28035,11,5); -- 5 AGI
-INSERT INTO `item_mods` VALUES (28035,12,19); -- 19 INT
-INSERT INTO `item_mods` VALUES (28035,13,33); -- 33 MND
-INSERT INTO `item_mods` VALUES (28035,14,19); -- 19 CHR
-INSERT INTO `item_mods` VALUES (28035,30,23); -- 23 Macc
-INSERT INTO `item_mods` VALUES (28035,68,22); -- 22 Eva
-INSERT INTO `item_mods` VALUES (28035,31,37); -- 37 MEva
-INSERT INTO `item_mods` VALUES (28035,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (28035,114,18); -- 18 Enfeeble
-INSERT INTO `item_mods` VALUES (28035,384,30); -- 3 Gear Haste
-INSERT INTO `item_mods` VALUES (28036,1,76); -- Aetosaur Gloves -- 76 Def
-INSERT INTO `item_mods` VALUES (28036,2,18); -- 18 HP
-INSERT INTO `item_mods` VALUES (28036,8,7); -- 7 STR
-INSERT INTO `item_mods` VALUES (28036,9,35); -- 35 DEX
-INSERT INTO `item_mods` VALUES (28036,10,24); -- 24 VIT
-INSERT INTO `item_mods` VALUES (28036,11,2); -- 2 AGI
-INSERT INTO `item_mods` VALUES (28036,12,8); -- 8 INT
-INSERT INTO `item_mods` VALUES (28036,13,22); -- 22 MND
-INSERT INTO `item_mods` VALUES (28036,14,12); -- 12 CHR
-INSERT INTO `item_mods` VALUES (28036,25,10); -- 10 Acc
-INSERT INTO `item_mods` VALUES (28036,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (28036,31,31); -- 31 Meva
-INSERT INTO `item_mods` VALUES (28036,73,3); -- 3 Store TP
-INSERT INTO `item_mods` VALUES (28036,68,18); -- 18 Eva
-INSERT INTO `item_mods` VALUES (28036,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (28037,1,79); -- Aetosaur Gloves +1 -- 79 Def
-INSERT INTO `item_mods` VALUES (28037,2,19); -- 19 HP
-INSERT INTO `item_mods` VALUES (28037,8,8); -- 8 STR
-INSERT INTO `item_mods` VALUES (28037,9,38); -- 38 DEX
-INSERT INTO `item_mods` VALUES (28037,10,26); -- 26 VIT
-INSERT INTO `item_mods` VALUES (28037,11,3); -- 3 AGI
-INSERT INTO `item_mods` VALUES (28037,12,10); -- 10 INT
-INSERT INTO `item_mods` VALUES (28037,13,25); -- 25 MND
-INSERT INTO `item_mods` VALUES (28037,14,14); -- 14 CHR
-INSERT INTO `item_mods` VALUES (28037,25,11); -- 11 Acc
-INSERT INTO `item_mods` VALUES (28037,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (28037,31,32); -- 32 Meva
-INSERT INTO `item_mods` VALUES (28037,73,4); -- 4 Store TP
-INSERT INTO `item_mods` VALUES (28037,68,19); -- 19 Eva
-INSERT INTO `item_mods` VALUES (28037,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (28038,1,87); -- Shabti Gauntlets -- 87 Def
-INSERT INTO `item_mods` VALUES (28038,2,21); -- 21 HP
-INSERT INTO `item_mods` VALUES (28038,8,6); -- 6 STR
-INSERT INTO `item_mods` VALUES (28038,9,21); -- 21 DEX
-INSERT INTO `item_mods` VALUES (28038,10,33); -- 33 VIT
-INSERT INTO `item_mods` VALUES (28038,12,5); -- 5 INT
-INSERT INTO `item_mods` VALUES (28038,13,18); -- 18 MND
-INSERT INTO `item_mods` VALUES (28038,14,13); -- 13 CHR
-INSERT INTO `item_mods` VALUES (28038,31,22); -- 22 Meva
-INSERT INTO `item_mods` VALUES (28038,68,16); -- 16 Eva
-INSERT INTO `item_mods` VALUES (28038,161,-4); -- PDT -4%
-INSERT INTO `item_mods` VALUES (28038,166,-3); -- Chance of recieving critical hits -3%
-INSERT INTO `item_mods` VALUES (28038,384,30); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (28039,1,90); -- Shabti Gauntlets +1 -- 90 Def
-INSERT INTO `item_mods` VALUES (28039,2,23); -- 23 HP
-INSERT INTO `item_mods` VALUES (28039,8,7); -- 7 STR
-INSERT INTO `item_mods` VALUES (28039,9,24); -- 24 DEX
-INSERT INTO `item_mods` VALUES (28039,10,35); -- 35 VIT
-INSERT INTO `item_mods` VALUES (28039,12,6); -- 6 INT
-INSERT INTO `item_mods` VALUES (28039,13,21); -- 21 MND
-INSERT INTO `item_mods` VALUES (28039,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28039,31,23); -- 23 Meva
-INSERT INTO `item_mods` VALUES (28039,68,17); -- 17 Eva
-INSERT INTO `item_mods` VALUES (28039,161,-5); -- PDT -5%
-INSERT INTO `item_mods` VALUES (28039,166,-4); -- Chance of recieving critical hits -4%
-INSERT INTO `item_mods` VALUES (28039,384,30); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (28040,1,71); -- Haruspex Cuffs -- 71 Def
-INSERT INTO `item_mods` VALUES (28040,2,16); -- 16 HP
-INSERT INTO `item_mods` VALUES (28040,5,13); -- 13 MP
-INSERT INTO `item_mods` VALUES (28040,8,3); -- 3 STR
-INSERT INTO `item_mods` VALUES (28040,9,20); -- 20 DEX
-INSERT INTO `item_mods` VALUES (28040,10,18); -- 18 VIT
-INSERT INTO `item_mods` VALUES (28040,11,2); -- 2 AGI
-INSERT INTO `item_mods` VALUES (28040,12,13); -- 13 INT
-INSERT INTO `item_mods` VALUES (28040,13,35); -- 35 MND
-INSERT INTO `item_mods` VALUES (28040,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28040,27,-3); -- Enmity -3
-INSERT INTO `item_mods` VALUES (28040,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28040,31,31); -- 31 Meva
-INSERT INTO `item_mods` VALUES (28040,68,16); -- 16 Eva
-INSERT INTO `item_mods` VALUES (28040,296,4); -- 4 Conserve MP
-INSERT INTO `item_mods` VALUES (28040,384,30); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (28041,1,74); -- Haruspex Cuffs +1 -- 74 Def
-INSERT INTO `item_mods` VALUES (28041,2,18); -- 18 HP
-INSERT INTO `item_mods` VALUES (28041,5,13); -- 13 MP
-INSERT INTO `item_mods` VALUES (28041,8,4); -- 4 STR
-INSERT INTO `item_mods` VALUES (28041,9,23); -- 23 DEX
-INSERT INTO `item_mods` VALUES (28041,10,21); -- 21 VIT
-INSERT INTO `item_mods` VALUES (28041,11,3); -- 3 AGI
-INSERT INTO `item_mods` VALUES (28041,12,15); -- 15 INT
-INSERT INTO `item_mods` VALUES (28041,13,35); -- 35 MND
-INSERT INTO `item_mods` VALUES (28041,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28041,27,-4); -- Enmity -4
-INSERT INTO `item_mods` VALUES (28041,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28041,31,32); -- 32 Meva
-INSERT INTO `item_mods` VALUES (28041,68,17); -- 17 Eva
-INSERT INTO `item_mods` VALUES (28041,296,5); -- 5 Conserve MP
-INSERT INTO `item_mods` VALUES (28041,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (28042,1,74);
 INSERT INTO `item_mods` VALUES (28042,8,6);
 INSERT INTO `item_mods` VALUES (28042,9,19);
@@ -42382,50 +41745,6 @@ INSERT INTO `item_mods` VALUES (28050,31,32);
 INSERT INTO `item_mods` VALUES (28050,68,19);
 INSERT INTO `item_mods` VALUES (28050,375,13);
 INSERT INTO `item_mods` VALUES (28050,384,30);
-INSERT INTO `item_mods` VALUES (28051,1,84); -- Cizin Mufflers -- 84 Def
-INSERT INTO `item_mods` VALUES (28051,2,20); -- 20 HP
-INSERT INTO `item_mods` VALUES (28051,8,8);  -- 8 STR
-INSERT INTO `item_mods` VALUES (28051,9,23); -- 23 DEX
-INSERT INTO `item_mods` VALUES (28051,10,26); -- 26 VIT
-INSERT INTO `item_mods` VALUES (28051,12,7); -- 7 INT
-INSERT INTO `item_mods` VALUES (28051,13,23); -- 23 MND
-INSERT INTO `item_mods` VALUES (28051,14,17); -- 17 CHR
-INSERT INTO `item_mods` VALUES (28051,23,8); -- 8 Att
-INSERT INTO `item_mods` VALUES (28051,27,3); -- 3 Enmity
-INSERT INTO `item_mods` VALUES (28051,31,21); -- 21 Meva
-INSERT INTO `item_mods` VALUES (28051,68,15); -- 15 Eva
-INSERT INTO `item_mods` VALUES (28051,73,5); -- 5 Store TP
-INSERT INTO `item_mods` VALUES (28051,384,31); -- 3% Gear Haste
-INSERT INTO `item_mods` VALUES (28052,1,74); -- Ontronif Gloves -- 74 Def
-INSERT INTO `item_mods` VALUES (28052,2,22); -- 22 HP
-INSERT INTO `item_mods` VALUES (28052,8,8); -- 8 STR
-INSERT INTO `item_mods` VALUES (28052,9,27); -- 27 DEX
-INSERT INTO `item_mods` VALUES (28052,10,22); -- 22 VIT
-INSERT INTO `item_mods` VALUES (28052,11,5); -- 5 AGI
-INSERT INTO `item_mods` VALUES (28052,12,8); -- 8 INT
-INSERT INTO `item_mods` VALUES (28052,13,22); -- 22 MND
-INSERT INTO `item_mods` VALUES (28052,14,13); -- 13 CHR
-INSERT INTO `item_mods` VALUES (28052,25,8); -- 8 Acc
-INSERT INTO `item_mods` VALUES (28052,31,21); -- 21 Meva
-INSERT INTO `item_mods` VALUES (28052,68,15); -- 15 Eva
-INSERT INTO `item_mods` VALUES (28052,73,7); -- 7 Store TP
-INSERT INTO `item_mods` VALUES (28052,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (28053,1,72); -- Iutil Wristbands -- 72 Def
-INSERT INTO `item_mods` VALUES (28053,2,17); -- 17 HP
-INSERT INTO `item_mods` VALUES (28053,8,9); -- 9 STR
-INSERT INTO `item_mods` VALUES (28053,9,28); -- 28 DEX
-INSERT INTO `item_mods` VALUES (28053,10,25); -- 25 VIT
-INSERT INTO `item_mods` VALUES (28053,11,14); -- 14 AGI
-INSERT INTO `item_mods` VALUES (28053,12,10); -- 10 INT
-INSERT INTO `item_mods` VALUES (28053,13,24); -- 24 MND
-INSERT INTO `item_mods` VALUES (28053,14,14); -- 14 CHR
-INSERT INTO `item_mods` VALUES (28053,25,8); -- 8 Acc
-INSERT INTO `item_mods` VALUES (28053,26,8); -- 8 Racc
-INSERT INTO `item_mods` VALUES (28053,27,-6); -- Enmity -6
-INSERT INTO `item_mods` VALUES (28053,29,1); -- 1 Mdef
-INSERT INTO `item_mods` VALUES (28053,31,30); -- 30 Meva
-INSERT INTO `item_mods` VALUES (28053,68,16); -- 16 Eva
-INSERT INTO `item_mods` VALUES (28053,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (28054,1,69);      -- Gendewitha Gages: DEF 69
 INSERT INTO `item_mods` VALUES (28054,2,23);      -- HP +23
 INSERT INTO `item_mods` VALUES (28054,5,21);      -- MP +21
@@ -42441,22 +41760,6 @@ INSERT INTO `item_mods` VALUES (28054,30,15);     -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (28054,31,30);     -- Magic Evasion +30
 INSERT INTO `item_mods` VALUES (28054,68,15);     -- Evasion +15
 INSERT INTO `item_mods` VALUES (28054,170,7);     -- Fast Cast +7%
-INSERT INTO `item_mods` VALUES (28055,1,68); -- Hagondes Cuffs -- 68 Def
-INSERT INTO `item_mods` VALUES (28055,2,23); -- 23 HP
-INSERT INTO `item_mods` VALUES (28055,5,21); -- 21 MP
-INSERT INTO `item_mods` VALUES (28055,8,5); -- 5 STR
-INSERT INTO `item_mods` VALUES (28055,9,22); -- 22 DEX
-INSERT INTO `item_mods` VALUES (28055,10,20); -- 20 VIT
-INSERT INTO `item_mods` VALUES (28055,11,4); -- 4 AGI
-INSERT INTO `item_mods` VALUES (28055,12,15); -- 15 INT
-INSERT INTO `item_mods` VALUES (28055,13,26); -- 26 MND
-INSERT INTO `item_mods` VALUES (28055,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28055,27,-8); -- Enmity -8
-INSERT INTO `item_mods` VALUES (28055,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28055,30,20); -- 20 Macc
-INSERT INTO `item_mods` VALUES (28055,31,30); -- 30 Meva
-INSERT INTO `item_mods` VALUES (28055,68,15); -- 15 Eva
-INSERT INTO `item_mods` VALUES (28055,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (28056,1,84);
 INSERT INTO `item_mods` VALUES (28056,2,22);
 INSERT INTO `item_mods` VALUES (28056,5,14);
@@ -43330,21 +42633,6 @@ INSERT INTO `item_mods` VALUES (28144,68,26);     -- Evasion +26
 INSERT INTO `item_mods` VALUES (28144,117,14);    -- Summoning magic skill +14
 INSERT INTO `item_mods` VALUES (28144,168,10);    -- Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (28144,384,51);    -- Haste +5%
-INSERT INTO `item_mods` VALUES (28148,1,109); -- Perdition Slops -- 109 Def
-INSERT INTO `item_mods` VALUES (28148,2,73); -- 73 HP
-INSERT INTO `item_mods` VALUES (28148,5,59); -- 59 MP
-INSERT INTO `item_mods` VALUES (28148,8,25); -- 25 STR
-INSERT INTO `item_mods` VALUES (28148,10,12); -- 12 VIT
-INSERT INTO `item_mods` VALUES (28148,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (28148,12,39); -- 39 INT
-INSERT INTO `item_mods` VALUES (28148,13,29); -- 29 MND
-INSERT INTO `item_mods` VALUES (28148,14,19); -- 19 CHR
-INSERT INTO `item_mods` VALUES (28148,28,13); -- 13 Matt
-INSERT INTO `item_mods` VALUES (28148,29,6); -- 6 Mdef
-INSERT INTO `item_mods` VALUES (28148,30,13); -- 13 Macc
-INSERT INTO `item_mods` VALUES (28148,31,107); -- 107 Meva
-INSERT INTO `item_mods` VALUES (28148,68,27); -- 27 Eva
-INSERT INTO `item_mods` VALUES (28148,384,51); -- 5% Gear Haste
 INSERT INTO `item_mods` VALUES (28151,1,106);
 INSERT INTO `item_mods` VALUES (28151,2,43);
 INSERT INTO `item_mods` VALUES (28151,5,69);
@@ -43634,116 +42922,6 @@ INSERT INTO `item_mods` VALUES (28172,30,20);
 INSERT INTO `item_mods` VALUES (28172,31,107);
 INSERT INTO `item_mods` VALUES (28172,68,27);
 INSERT INTO `item_mods` VALUES (28172,384,51);
-INSERT INTO `item_mods` VALUES (28173,1,138); -- Osmium Cuisses -- 138 Def
-INSERT INTO `item_mods` VALUES (28173,2,110); -- 110 HP
-INSERT INTO `item_mods` VALUES (28173,8,30); -- 30 STR
-INSERT INTO `item_mods` VALUES (28173,10,22); -- 22 VIT
-INSERT INTO `item_mods` VALUES (28173,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (28173,12,29);  -- 29 INT
-INSERT INTO `item_mods` VALUES (28173,13,16); -- 16 MND
-INSERT INTO `item_mods` VALUES (28173,14,16); -- 16 CHR
-INSERT INTO `item_mods` VALUES (28173,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (28173,31,80); -- 80 Meva
-INSERT INTO `item_mods` VALUES (28173,68,27); -- 27 Eva
-INSERT INTO `item_mods` VALUES (28173,161,-2); -- PDT -2%
-INSERT INTO `item_mods` VALUES (28173,384,61); -- 6% Gear Haste
-INSERT INTO `item_mods` VALUES (28174,1,109); -- Theurgist's Slacks -- 109 Def
-INSERT INTO `item_mods` VALUES (28174,2,43); -- 43 HP
-INSERT INTO `item_mods` VALUES (28174,5,59); -- 59 MP
-INSERT INTO `item_mods` VALUES (28174,8,25); -- 25 STR
-INSERT INTO `item_mods` VALUES (28174,10,12); -- 12 VIT
-INSERT INTO `item_mods` VALUES (28174,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (28174,12,34); -- 34 INT
-INSERT INTO `item_mods` VALUES (28174,13,24); -- 24 MND
-INSERT INTO `item_mods` VALUES (28174,14,19); -- 19 CHR
-INSERT INTO `item_mods` VALUES (28174,29,6); -- 6 Mdef
-INSERT INTO `item_mods` VALUES (28174,31,107); -- 107 Meva
-INSERT INTO `item_mods` VALUES (28174,68,27); -- 27 Eva
-INSERT INTO `item_mods` VALUES (28174,296,4); -- 4 Conserve MP
-INSERT INTO `item_mods` VALUES (28174,311,16); -- 16 Magic Damage
-INSERT INTO `item_mods` VALUES (28174,384,50); -- 5% Gear Haste
-INSERT INTO `item_mods` VALUES (28176,1,97); -- Aetosaur Trousers -- 97 Def
-INSERT INTO `item_mods` VALUES (28176,2,35); -- 35 HP
-INSERT INTO `item_mods` VALUES (28176,8,21); -- 21 STR
-INSERT INTO `item_mods` VALUES (28176,10,11); -- 11 VIT
-INSERT INTO `item_mods` VALUES (28176,11,20); -- 20 AGI
-INSERT INTO `item_mods` VALUES (28176,12,22); -- 22 INT
-INSERT INTO `item_mods` VALUES (28176,13,12); -- 12 MND
-INSERT INTO `item_mods` VALUES (28176,14,7); -- 7 CHR
-INSERT INTO `item_mods` VALUES (28176,26,12); -- 12 Racc
-INSERT INTO `item_mods` VALUES (28176,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (28176,31,58); -- 58 Meva
-INSERT INTO `item_mods` VALUES (28176,73,4); -- 4 Store TP
-INSERT INTO `item_mods` VALUES (28176,68,28); -- 28 Eva
-INSERT INTO `item_mods` VALUES (28176,384,60); -- 6% Gear Haste
-INSERT INTO `item_mods` VALUES (28177,1,100); -- Aeto. Trousers +1 -- Def 100
-INSERT INTO `item_mods` VALUES (28177,2,37); -- hp 37
-INSERT INTO `item_mods` VALUES (28177,8,24); -- str 24
-INSERT INTO `item_mods` VALUES (28177,10,13); -- vit 13
-INSERT INTO `item_mods` VALUES (28177,11,23); -- agi 23
-INSERT INTO `item_mods` VALUES (28177,12,25); -- int 25
-INSERT INTO `item_mods` VALUES (28177,13,14); -- mnd 14
-INSERT INTO `item_mods` VALUES (28177,14,8); -- chr 8
-INSERT INTO `item_mods` VALUES (28177,26,13); -- racc 13
-INSERT INTO `item_mods` VALUES (28177,29,4); -- mdef 4
-INSERT INTO `item_mods` VALUES (28177,31,60); -- meva 60
-INSERT INTO `item_mods` VALUES (28177,73,5);  -- stp 5
-INSERT INTO `item_mods` VALUES (28177,68,30); -- eva 30
-INSERT INTO `item_mods` VALUES (28177,384,60); -- haste 6%
-INSERT INTO `item_mods` VALUES (28178,1,107); -- Shabti Cuisses -- 107 Def
-INSERT INTO `item_mods` VALUES (28178,2,38); -- 38 HP
-INSERT INTO `item_mods` VALUES (28178,8,27); -- 27 STR
-INSERT INTO `item_mods` VALUES (28178,10,23); -- 23 VIT
-INSERT INTO `item_mods` VALUES (28178,11,11); -- 11 AGI
-INSERT INTO `item_mods` VALUES (28178,12,18); -- 18 INT
-INSERT INTO `item_mods` VALUES (28178,13,8); -- 8 MND
-INSERT INTO `item_mods` VALUES (28178,14,6); -- 6 CHR
-INSERT INTO `item_mods` VALUES (28178,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28178,31,54); -- 54 Meva
-INSERT INTO `item_mods` VALUES (28178,68,16); -- 16 Eva
-INSERT INTO `item_mods` VALUES (28178,161,-4); -- PDT -4%
-INSERT INTO `item_mods` VALUES (28178,384,50); -- 5% Gear Haste
-INSERT INTO `item_mods` VALUES (28179,1,111); -- Shabti Cuisses +1 -- 111 Def
-INSERT INTO `item_mods` VALUES (28179,2,41); -- 41 HP
-INSERT INTO `item_mods` VALUES (28179,8,30); -- 30 STR
-INSERT INTO `item_mods` VALUES (28179,10,25); -- 25 VIT
-INSERT INTO `item_mods` VALUES (28179,11,13); -- 13 AGI
-INSERT INTO `item_mods` VALUES (28179,12,21); -- 21 INT
-INSERT INTO `item_mods` VALUES (28179,13,10); -- 10 MND
-INSERT INTO `item_mods` VALUES (28179,14,7); -- 7 CHR
-INSERT INTO `item_mods` VALUES (28179,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28179,31,56); -- 56 Meva
-INSERT INTO `item_mods` VALUES (28179,68,17); -- 17 Eva
-INSERT INTO `item_mods` VALUES (28179,161,-5); -- -5% PDT
-INSERT INTO `item_mods` VALUES (28179,384,50); -- 5% Gear Haste
-INSERT INTO `item_mods` VALUES (28180,1,92); -- Haruspex Slops -- 92 Def
-INSERT INTO `item_mods` VALUES (28180,2,31); -- 31 HP
-INSERT INTO `item_mods` VALUES (28180,5,27); -- 27 MP
-INSERT INTO `item_mods` VALUES (28180,8,18); -- 18 STR
-INSERT INTO `item_mods` VALUES (28180,10,8); -- 8 VIT
-INSERT INTO `item_mods` VALUES (28180,11,12); -- 12 AGI
-INSERT INTO `item_mods` VALUES (28180,12,34); -- 34 INT
-INSERT INTO `item_mods` VALUES (28180,13,17); -- 17 MND
-INSERT INTO `item_mods` VALUES (28180,14,13); -- 13 CHR
-INSERT INTO `item_mods` VALUES (28180,27,-4); -- Enmity -4
-INSERT INTO `item_mods` VALUES (28180,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (28180,31,90); -- 90 Meva
-INSERT INTO `item_mods` VALUES (28180,68,20); -- 20 Eva
-INSERT INTO `item_mods` VALUES (28180,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (28181,1,95); -- Haruspex Slops +1 -- 95 Def
-INSERT INTO `item_mods` VALUES (28181,2,34); -- 34 HP
-INSERT INTO `item_mods` VALUES (28181,5,27); -- 27 MP
-INSERT INTO `item_mods` VALUES (28181,8,21); -- 21 STR
-INSERT INTO `item_mods` VALUES (28181,10,10); -- 10 VIT
-INSERT INTO `item_mods` VALUES (28181,11,14); -- 14 AGI
-INSERT INTO `item_mods` VALUES (28181,12,36); -- 36 INT
-INSERT INTO `item_mods` VALUES (28181,13,20); -- 20 MND
-INSERT INTO `item_mods` VALUES (28181,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28181,27,-5); -- Enmity -5
-INSERT INTO `item_mods` VALUES (28181,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (28181,31,93); -- 93 Meva
-INSERT INTO `item_mods` VALUES (28181,68,21); -- 21 Eva
-INSERT INTO `item_mods` VALUES (28181,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (28182,1,91);
 INSERT INTO `item_mods` VALUES (28182,5,65);
 INSERT INTO `item_mods` VALUES (28182,8,20);
@@ -43822,79 +43000,6 @@ INSERT INTO `item_mods` VALUES (28190,29,2);
 INSERT INTO `item_mods` VALUES (28190,31,62);
 INSERT INTO `item_mods` VALUES (28190,68,9);
 INSERT INTO `item_mods` VALUES (28190,384,30);
-INSERT INTO `item_mods` VALUES (28192,1,103); -- Cizin Breeches -- 103 Def
-INSERT INTO `item_mods` VALUES (28192,2,35); -- 35 HP
-INSERT INTO `item_mods` VALUES (28192,8,28); -- 28 STR
-INSERT INTO `item_mods` VALUES (28192,10,17); -- 17 VIT
-INSERT INTO `item_mods` VALUES (28192,11,13); -- 13 AGI
-INSERT INTO `item_mods` VALUES (28192,12,20); -- 20 INT
-INSERT INTO `item_mods` VALUES (28192,13,10); -- 10 MND
-INSERT INTO `item_mods` VALUES (28192,14,8); -- 8 CHR
-INSERT INTO `item_mods` VALUES (28192,23,10); -- 10 Att
-INSERT INTO `item_mods` VALUES (28192,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28192,31,52); -- 52 Meva
-INSERT INTO `item_mods` VALUES (28192,68,15); -- 15 Eva
-INSERT INTO `item_mods` VALUES (28192,288,2); -- 2% Double Attack
-INSERT INTO `item_mods` VALUES (28192,384,51); -- 5% Gear Haste
-INSERT INTO `item_mods` VALUES (28193,1,92); -- Ontronif Brais -- 92 Def
-INSERT INTO `item_mods` VALUES (28193,2,32); -- 32 HP
-INSERT INTO `item_mods` VALUES (28193,8,25); -- 25 STR
-INSERT INTO `item_mods` VALUES (28193,10,11); -- 11 VIT
-INSERT INTO `item_mods` VALUES (28193,11,17); -- 17 AGI
-INSERT INTO `item_mods` VALUES (28193,12,25); -- 25 INT
-INSERT INTO `item_mods` VALUES (28193,13,14); -- 14 MND
-INSERT INTO `item_mods` VALUES (28193,14,8); -- 8 CHR
-INSERT INTO `item_mods` VALUES (28193,23,10); -- 10 Att
-INSERT INTO `item_mods` VALUES (28193,29,2); -- 2 Mdef
-INSERT INTO `item_mods` VALUES (28193,31,52); -- 52 Meva
-INSERT INTO `item_mods` VALUES (28193,68,22); -- 22 Eva
-INSERT INTO `item_mods` VALUES (28193,73,6); -- 6 Store TP
-INSERT INTO `item_mods` VALUES (28193,384,61); -- 6% Gear Haste
-INSERT INTO `item_mods` VALUES (28194,1,94); -- Iuitl Tights -- 94 Def
-INSERT INTO `item_mods` VALUES (28194,2,32); -- 32 HP
-INSERT INTO `item_mods` VALUES (28194,8,23); -- 23 STR
-INSERT INTO `item_mods` VALUES (28194,10,13); -- 13 VIT
-INSERT INTO `item_mods` VALUES (28194,11,16); -- 16 AGI
-INSERT INTO `item_mods` VALUES (28194,12,24); -- 24 INT
-INSERT INTO `item_mods` VALUES (28194,13,14); -- 14 MND
-INSERT INTO `item_mods` VALUES (28194,14,9); -- 9 CHR
-INSERT INTO `item_mods` VALUES (28194,30,10); -- 10 Macc
-INSERT INTO `item_mods` VALUES (28194,28,10); -- 10 Matt
-INSERT INTO `item_mods` VALUES (28194,68,36); -- 36 Eva
-INSERT INTO `item_mods` VALUES (28194,31,56); -- 56 Meva
-INSERT INTO `item_mods` VALUES (28194,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (28194,73,5); -- 5 Store TP
-INSERT INTO `item_mods` VALUES (28194,384,61); -- 6 Gear Haste
-INSERT INTO `item_mods` VALUES (28195,1,89); -- Gendewitha Spats -- 89 Def
-INSERT INTO `item_mods` VALUES (28195,2,29); -- 29 HP
-INSERT INTO `item_mods` VALUES (28195,5,26); -- 26 MP
-INSERT INTO `item_mods` VALUES (28195,8,20); -- 20 STR
-INSERT INTO `item_mods` VALUES (28195,10,10); -- 10 VIT
-INSERT INTO `item_mods` VALUES (28195,11,14); -- 14 AGI
-INSERT INTO `item_mods` VALUES (28195,12,27); -- 27 INT
-INSERT INTO `item_mods` VALUES (28195,13,19); -- 19 MND
-INSERT INTO `item_mods` VALUES (28195,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28195,28,8); -- 8 Matt
-INSERT INTO `item_mods` VALUES (28195,68,18); -- 18 Eva
-INSERT INTO `item_mods` VALUES (28195,31,86); -- 86 Meva
-INSERT INTO `item_mods` VALUES (28195,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (28195,455,5); -- -5% Song Spellcasting Time
-INSERT INTO `item_mods` VALUES (28195,384,40); -- 4% Gear Haste
-INSERT INTO `item_mods` VALUES (28196,1,88); -- Hagondes Pants -- 88 Def
-INSERT INTO `item_mods` VALUES (28196,2,29); -- 29 HP
-INSERT INTO `item_mods` VALUES (28196,5,26); -- 26 MP
-INSERT INTO `item_mods` VALUES (28196,8,20); -- 20 STR
-INSERT INTO `item_mods` VALUES (28196,10,10); -- 10 VIT
-INSERT INTO `item_mods` VALUES (28196,11,14); -- 14 AGI
-INSERT INTO `item_mods` VALUES (28196,12,27); -- 27 INT
-INSERT INTO `item_mods` VALUES (28196,13,19); -- 19 MND
-INSERT INTO `item_mods` VALUES (28196,14,15); -- 15 CHR
-INSERT INTO `item_mods` VALUES (28196,28,25); -- 25 Matt
-INSERT INTO `item_mods` VALUES (28196,311,10); -- 10 Magic Damage
-INSERT INTO `item_mods` VALUES (28196,68,18); -- 18 Eva
-INSERT INTO `item_mods` VALUES (28196,31,86); -- 86 Meva
-INSERT INTO `item_mods` VALUES (28196,29,4); -- 4 Mdef
-INSERT INTO `item_mods` VALUES (28196,384,40); -- 4% Gear Haste
 INSERT INTO `item_mods` VALUES (28197,1,114); -- Nahtirah Trousers DEF +114
 INSERT INTO `item_mods` VALUES (28197,2,47); -- HP +47
 INSERT INTO `item_mods` VALUES (28197,8,29); -- STR +29
@@ -43921,19 +43026,6 @@ INSERT INTO `item_mods` VALUES (28198,29,1);      -- Magic Def. Bonus +1
 INSERT INTO `item_mods` VALUES (28198,31,45);     -- Magic Evasion +45
 INSERT INTO `item_mods` VALUES (28198,48,10);     -- Weapon Skill Accuracy +10
 INSERT INTO `item_mods` VALUES (28198,68,11);     -- Evasion +11
-INSERT INTO `item_mods` VALUES (28199,1,80); -- Manibozho Brais -- Def 80
-INSERT INTO `item_mods` VALUES (28199,2,25); --  Hit Points +25
-INSERT INTO `item_mods` VALUES (28199,8,13); --  Strength +13
-INSERT INTO `item_mods` VALUES (28199,9,12); --  Dexterity +12
-INSERT INTO `item_mods` VALUES (28199,10,4); --  Vitality +4
-INSERT INTO `item_mods` VALUES (28199,11,6); --  Agility +6
-INSERT INTO `item_mods` VALUES (28199,12,13); --  Intelligence +13
-INSERT INTO `item_mods` VALUES (28199,13,5); --  Mind +5
-INSERT INTO `item_mods` VALUES (28199,23,15); --  Attack +15
-INSERT INTO `item_mods` VALUES (28199,68,19); --  Evasion +19
-INSERT INTO `item_mods` VALUES (28199,31,49); --  Magic Evasion +49
-INSERT INTO `item_mods` VALUES (28199,29,2); --  Magic Defense Bonus +2
-INSERT INTO `item_mods` VALUES (28199,384,60); --  Haste +6%
 INSERT INTO `item_mods` VALUES (28200,1,76);      -- Bokwus slops: DEF 76
 INSERT INTO `item_mods` VALUES (28200,2,22);      -- HP +22
 INSERT INTO `item_mods` VALUES (28200,5,25);      -- MP +25
@@ -46314,21 +45406,6 @@ INSERT INTO `item_mods` VALUES (28544,25,7);      -- Yacuruna Ring: Accuracy +7
 INSERT INTO `item_mods` VALUES (28544,163,-5);    -- Magic damage taken -5%
 INSERT INTO `item_mods` VALUES (28545,25,8);      -- Yacuruna Ring +1: Accuracy +8
 INSERT INTO `item_mods` VALUES (28545,163,-6);    -- Magic damage taken -6%
-INSERT INTO `item_mods` VALUES (28547,317,3); -- Merirosvo Ring -- Rogue's Roll +3
-INSERT INTO `item_mods` VALUES (28547,318,3); -- Gallants Roll +3
-INSERT INTO `item_mods` VALUES (28547,319,3); -- Chaos Roll +3
-INSERT INTO `item_mods` VALUES (28547,320,3); -- Beast Roll +3
-INSERT INTO `item_mods` VALUES (28547,321,3); -- Choral Roll +3
-INSERT INTO `item_mods` VALUES (28547,322,3); -- Hunters Roll +3
-INSERT INTO `item_mods` VALUES (28547,323,3); -- Samurai Roll +3
-INSERT INTO `item_mods` VALUES (28547,324,3); -- Ninja Roll +3
-INSERT INTO `item_mods` VALUES (28547,325,3); -- Drachen Roll +3
-INSERT INTO `item_mods` VALUES (28547,326,3); -- Evokers Roll +3
-INSERT INTO `item_mods` VALUES (28547,327,3); -- Magus Roll +3
-INSERT INTO `item_mods` VALUES (28547,328,3); -- Corsairs Roll +3
-INSERT INTO `item_mods` VALUES (28547,329,3); -- Puppet Roll +3
-INSERT INTO `item_mods` VALUES (28547,330,3); -- Dancers Roll +3
-INSERT INTO `item_mods` VALUES (28547,331,3); -- Scholars Roll +3
 INSERT INTO `item_mods` VALUES (28549,9,2);
 INSERT INTO `item_mods` VALUES (28549,25,7);
 INSERT INTO `item_mods` VALUES (28550,8,2);
