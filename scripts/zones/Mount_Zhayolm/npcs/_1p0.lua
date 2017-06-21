@@ -16,11 +16,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
+    
     if (player:getZPos() < 332) then
-        player:startEvent(106);
+        player:startEvent(0x006a);
     else
-        player:startEvent(107);
+        player:startEvent(0x006b);
     end
+    
+    return 1;
+    
 end;
 
 -----------------------------------

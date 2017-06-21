@@ -1,5 +1,5 @@
 ---------------------------------------------
--- Electromagnetic Field
+-- Electromagnetic Field 
 --
 -- Description: Deals thunder damage.
 -- Type: Magical (Thunder)
@@ -10,7 +10,6 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
