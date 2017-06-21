@@ -1113,7 +1113,7 @@ INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1304);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1305);
 INSERT INTO `mob_skill_lists` VALUES ('OuryuWyrm',259,1306);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,951);
-INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,952); -- Alliance only targeting version of Spike Flail
+INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,952);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,953);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,957);
 INSERT INTO `mob_skill_lists` VALUES ('FafnirWyrm',260,958);
@@ -1125,7 +1125,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,951);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,952);
 INSERT INTO `mob_skill_lists` VALUES ('Wyrm',262,953);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,951);
-INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1040); -- Outside alliance targeting version of Spike Flail
+INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,952);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,953);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,957);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1046);
@@ -1270,6 +1270,7 @@ INSERT INTO `mob_skill_lists` VALUES ('IrizIma',295,1706);
 INSERT INTO `mob_skill_lists` VALUES ('IrizIma',295,1705);
 INSERT INTO `mob_skill_lists` VALUES ('IrizIma',295,1704);
 -- INSERT INTO `mob_skill_lists` VALUES ('IrizIma',295,1708);
+-- INSERT INTO `mob_skill_lists` VALUES ('IrizIma',295,1962);
 INSERT INTO `mob_skill_lists` VALUES ('LividrootAmoo',296,316);
 INSERT INTO `mob_skill_lists` VALUES ('LividrootAmoo',296,317);
 -- INSERT INTO `mob_skill_lists` VALUES ('LividrootAmoo',296,318);
@@ -1279,7 +1280,6 @@ INSERT INTO `mob_skill_lists` VALUES ('LividrootAmoo',296,320);
 INSERT INTO `mob_skill_lists` VALUES ('IririSamariri',297,1959);
 INSERT INTO `mob_skill_lists` VALUES ('IririSamariri',297,1958);
 -- INSERT INTO `mob_skill_lists` VALUES ('IririSamariri',297,1960);
--- INSERT INTO `mob_skill_lists` VALUES ('IririSamariri',297,1962);
 INSERT INTO `mob_skill_lists` VALUES ('Anantaboga',298,644);
 INSERT INTO `mob_skill_lists` VALUES ('Anantaboga',298,645);
 INSERT INTO `mob_skill_lists` VALUES ('Anantaboga',298,646);
@@ -3170,6 +3170,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,1697); -- seaspr
 -- INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,1978); -- abominable_belch
 -- INSERT INTO `mob_skill_lists` VALUES ('Cirein-croin_post50',890,2639); -- mayhem_lantern
 
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,318); -- somersault
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,659); -- cuirsed_sphere
+INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,660); -- venom
+-- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',890,1624); -- debilitating_drone
+
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1713); -- Yawn
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1714); -- Wing_Slap
 INSERT INTO `mob_skill_lists` VALUES ('Funereal_Apkallu',891,1715); -- Beak_Lunge
@@ -3630,8 +3635,3 @@ INSERT INTO `mob_skill_lists` VALUES ('Raja',992,2692); -- Royal_Decree
 INSERT INTO `mob_skill_lists` VALUES ('Teugghia',995,2197); -- Autumn_Breeze
 
 -- Xibalba uses 227 reserving 996 for NM start next mob in this list at 997
-
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,318); -- somersault
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,659); -- cuirsed_sphere
-INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,660); -- venom
--- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,1624); -- debilitating_drone
