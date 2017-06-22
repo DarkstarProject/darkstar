@@ -13,11 +13,11 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     respawn = GetServerVariable("[POP]Crimson-toothed_Pawberry");
-    
+
     -- Trade Uggalepih Offering
-    if (trade:hasItemQty(1183,1) and trade:getItemCount() == 1 and respawn <= os.time(t)) then 
+    if (trade:hasItemQty(1183,1) and trade:getItemCount() == 1 and respawn <= os.time()) then
         player:tradeComplete();
         SpawnMob(17428813):updateClaim(player);
         SpawnMob(17428815):updateClaim(player);

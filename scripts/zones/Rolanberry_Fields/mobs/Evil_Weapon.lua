@@ -21,7 +21,7 @@ function onMobDespawn(mob)
     local mobID = mob:getID();
     if (Eldritch_Edge_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Eldritch_Edge");
-        if (ToD <= os.time(t) and GetMobAction(Eldritch_Edge) == 0) then
+        if (ToD <= os.time() and GetMobAction(Eldritch_Edge) == 0) then
             if (math.random(1,5) == 5) then
                 UpdateNMSpawnPoint(Eldritch_Edge);
                 GetMobByID(Eldritch_Edge):setRespawnTime(GetMobRespawnTime(mobID));

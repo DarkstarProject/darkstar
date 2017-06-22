@@ -17,7 +17,7 @@ end;
 
 function onMobDespawn(mob)
     -- Set Window Open Time
-    SetServerVariable("[POP]Morille_Mortelle", os.time(t) + 18000); -- 5 hour
+    SetServerVariable("[POP]Morille_Mortelle", os.time() + 18000); -- 5 hour
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

@@ -20,7 +20,7 @@ function onMobDespawn(mob)
     local mobID = mob:getID();
     if (Morille_Mortelle_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Morille_Mortelle");
-        if (ToD <= os.time(t) and GetMobAction(Morille_Mortelle) == 0) then
+        if (ToD <= os.time() and GetMobAction(Morille_Mortelle) == 0) then
             if (math.random(1,8) == 4) then
                 UpdateNMSpawnPoint(Morille_Mortelle);
                 GetMobByID(Morille_Mortelle):setRespawnTime(GetMobRespawnTime(mobID));

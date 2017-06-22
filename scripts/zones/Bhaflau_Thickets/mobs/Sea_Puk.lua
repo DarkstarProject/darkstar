@@ -29,7 +29,7 @@ function onMobDespawn(mob)
         local NP_ToD = GetServerVariable("[POP]Nis_Puk");
 
         -- Check if NP window is open, and there is not an NP popped already(ACTION_NONE = 0)
-        if (NP_ToD <= os.time(t) and GetMobAction(Nis_Puk) == 0) then
+        if (NP_ToD <= os.time() and GetMobAction(Nis_Puk) == 0) then
 
             -- printf("NP window open");
             -- Give Sea Puk 5 percent chance to pop NP

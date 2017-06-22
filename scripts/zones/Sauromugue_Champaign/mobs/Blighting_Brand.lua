@@ -20,7 +20,7 @@ end;
 function onMobDespawn(mob)
      -- Set Eldritch Edge's Window Open Time
     local wait = math.random(5400,7200);
-    SetServerVariable("[POP]Blighting_Brand", os.time(t) + wait); -- 90 to 120 minutes
+    SetServerVariable("[POP]Blighting_Brand", os.time() + wait); -- 90 to 120 minutes
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

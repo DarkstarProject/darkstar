@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     if (Moo_Ouzi_the_Swiftblade_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Moo_Ouzi_the_Swiftblade");
-        if (ToD <= os.time(t) and GetMobAction(Moo_Ouzi_the_Swiftblade) == 0) then
+        if (ToD <= os.time() and GetMobAction(Moo_Ouzi_the_Swiftblade) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Moo_Ouzi_the_Swiftblade);
                 GetMobByID(Moo_Ouzi_the_Swiftblade):setRespawnTime(GetMobRespawnTime(mobID));

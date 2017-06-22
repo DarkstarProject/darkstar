@@ -23,7 +23,7 @@ function onMobSpawn(mob)
     mob:setModelId(1839);
 
     -- Two hours to forced depop
-    mob:setLocalVar("PWardenDespawnTime", os.time(t) + 7200);
+    mob:setLocalVar("PWardenDespawnTime", os.time() + 7200);
 end;
 
 -----------------------------------
@@ -49,7 +49,7 @@ function onMobFight(mob,target)
     local petIDs = {17056170,17056171,17056172,17056173,17056174,17056175,17056176,17056177};
     local petStatus = {GetMobAction(petIDs[1]),GetMobAction(petIDs[2]),GetMobAction(petIDs[3]),GetMobAction(petIDs[4]),GetMobAction(petIDs[5]),GetMobAction(petIDs[6]),GetMobAction(petIDs[7]),GetMobAction(petIDs[8])};
     local TP = mob:getLocalVar("TP");
-    
+
 
     ------------------------ Notes  ------------------------
     -- I can't help but think this could be better executed with a single set of logic checks and a table of HP and skin values.
@@ -230,7 +230,7 @@ function onMobFight(mob,target)
     -- someone ever wants it
     -- if (mob:getLocalVar("repopPets") == 1) then
         -- for i = 1, 8 do
-            -- if petStatus[i] == 0 then                    
+            -- if petStatus[i] == 0 then
                 -- SpawnMob(petIDs[i]):updateEnmity(target);
             -- end
 
@@ -243,7 +243,7 @@ function onMobFight(mob,target)
 
 
     ------------------------ Despawn timer ------------------------
-    if (os.time(t) > depopTime and mob:actionQueueEmpty() == true) then
+    if (os.time() > depopTime and mob:actionQueueEmpty() == true) then
         for i=17056170, 17056186 do
             DespawnMob(i);
         end

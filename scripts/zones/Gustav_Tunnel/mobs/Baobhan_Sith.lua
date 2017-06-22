@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Baobhan Sith's Window Open Time
     local wait = math.random(4,8) * 3600;
-    SetServerVariable("[POP]Baobhan_Sith", os.time(t) + wait); -- 4-8 hours
+    SetServerVariable("[POP]Baobhan_Sith", os.time() + wait); -- 4-8 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

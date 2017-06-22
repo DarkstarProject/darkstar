@@ -33,7 +33,7 @@ function onMobDespawn(mob)
         local Despot_ToD = GetServerVariable("[POP]Despot");
 
         -- Check if Despot window is open, and there is not an Despot popped already(ACTION_NONE = 0)
-        if (Despot_ToD <= os.time(t) and GetMobAction(Despot) == 0) then
+        if (Despot_ToD <= os.time() and GetMobAction(Despot) == 0) then
 
             -- printf("Despot window open");
             -- Give Groundskeeper 5 percent chance to pop Despot

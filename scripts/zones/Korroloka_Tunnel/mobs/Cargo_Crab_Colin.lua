@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Cargo_Crab_Colin's Window Open Time
     local wait = math.random(7200,21600);
-    SetServerVariable("[POP]Cargo_Crab_Colin", os.time(t) + wait); -- 1-6 hours
+    SetServerVariable("[POP]Cargo_Crab_Colin", os.time() + wait); -- 1-6 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
