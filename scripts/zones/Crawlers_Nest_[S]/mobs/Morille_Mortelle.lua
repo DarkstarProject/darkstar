@@ -1,6 +1,7 @@
 -----------------------------------
--- Area: Giddeus (145)
---  NM:  Hoo_Mjuu_the_Torrent
+-- Area: Crawlers nest [S] (171)
+--  NM:  Morille Mortelle
+-- @pos 59.788 -0.939 22.316 171
 -----------------------------------
 
 -----------------------------------
@@ -15,16 +16,13 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
-
-    -- Set Hoo_Mjuu_the_Torrent's Window Open Time
-    SetServerVariable("[POP]Hoo_Mjuu_the_Torrent", os.time() + 3600); -- 1 hour
+    -- Set Window Open Time
+    SetServerVariable("[POP]Morille_Mortelle", os.time() + 18000); -- 5 hour
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
-    local PH = GetServerVariable("[PH]Hoo_Mjuu_the_Torrent");
-    SetServerVariable("[PH]Hoo_Mjuu_the_Torrent", 0);
+    local PH = GetServerVariable("[PH]Morille_Mortelle");
+    SetServerVariable("[PH]Morille_Mortelle", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-
 end;
-

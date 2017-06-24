@@ -17,7 +17,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Northern Shadow's ToD
-    SetServerVariable("[POP]Northern_Shadow", os.time(t) + 57600); -- 16 hours
+    SetServerVariable("[POP]Northern_Shadow", os.time() + 57600); -- 16 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

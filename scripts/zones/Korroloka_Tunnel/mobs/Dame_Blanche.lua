@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Dame_Blanche's Window Open Time
     local wait = math.random(7200,28800);
-    SetServerVariable("[POP]Dame_Blanche", os.time(t) + wait); -- 1-8 hours
+    SetServerVariable("[POP]Dame_Blanche", os.time() + wait); -- 1-8 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

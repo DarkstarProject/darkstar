@@ -20,7 +20,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Mahishasura's ToD
-    SetServerVariable("[POP]Mahishasura", os.time(t) + 10800); -- 3 hours
+    SetServerVariable("[POP]Mahishasura", os.time() + 10800); -- 3 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

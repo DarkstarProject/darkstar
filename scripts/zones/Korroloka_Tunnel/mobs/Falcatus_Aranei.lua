@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Falcatus_Aranei's Window Open Time
     local wait = math.random(7200,14400);
-    SetServerVariable("[POP]Falcatus_Aranei", os.time(t) + wait); -- 1-2 hours
+    SetServerVariable("[POP]Falcatus_Aranei", os.time() + wait); -- 1-2 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

@@ -20,7 +20,7 @@ function onMobDespawn(mob)
 
     -- Set Stinging_Sophie's Window Open Time
     local wait = math.random(1200,3600)
-    SetServerVariable("[POP]Stinging_Sophie", os.time(t) + wait); -- 20-60 minutes
+    SetServerVariable("[POP]Stinging_Sophie", os.time() + wait); -- 20-60 minutes
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

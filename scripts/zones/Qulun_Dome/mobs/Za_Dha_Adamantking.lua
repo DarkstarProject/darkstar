@@ -40,7 +40,7 @@ function onMobDespawn(mob)
 
     -- Set Za_Dha_Adamantking's Window Open Time
     local wait = 48 * 3600
-    SetServerVariable("[POP]Za_Dha_Adamantking", os.time(t) + wait); -- 2 days
+    SetServerVariable("[POP]Za_Dha_Adamantking", os.time() + wait); -- 2 days
 
     -- Set Diamond_Quadav's spawnpoint and respawn time (21-24 hours)
     local Diamond_Quadav = 17383442;

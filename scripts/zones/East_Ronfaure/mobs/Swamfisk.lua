@@ -20,7 +20,7 @@ function onMobDespawn(mob)
 
     -- Set Swamfisk's Window Open Time
     local wait = math.random(3600,10800);
-    SetServerVariable("[POP]Swamfisk", os.time(t) + wait); -- 1-3 hours
+    SetServerVariable("[POP]Swamfisk", os.time() + wait); -- 1-3 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
