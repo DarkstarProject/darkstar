@@ -12426,6 +12426,8 @@ INSERT INTO `mob_groups` VALUES (14547,4662,215,0,0,0,0,0,0,0,0); -- Svarbhanu
 INSERT INTO `mob_groups` VALUES (14548,5757,182,0,128,0,0,9999,75,75,0); -- cait sith mob
 INSERT INTO `mob_groups` VALUES (14549,3314,217,0,0,0,0,0,0,0,0); -- Rakshas
 
+-- Hovering Hotpot
+INSERT INTO `mob_groups` VALUES (14550,5841,200,3600,0,4584,7000,9999,58,60,0);
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
