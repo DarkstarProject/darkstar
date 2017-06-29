@@ -1891,7 +1891,7 @@ INSERT INTO `guild_shops` VALUES ('60431', '16871', '183516', '404395', '20', '2
 INSERT INTO `guild_shops` VALUES ('60431', '17259', '72144', '158976', '20', '5', '10');
 INSERT INTO `guild_shops` VALUES ('60431', '17301', '29', '87', '2970', '594', '1188');
 INSERT INTO `guild_shops` VALUES ('60431', '17302', '347', '993', '2970', '594', '1188');
-INSERT INTO `guild_shops` VALUES ('60431', '17304', '57960', '57960', '2970', '594', '1188');
+INSERT INTO `guild_shops` VALUES ('60431', '17304', '1472', '3285', '2970', '594', '1188');
 INSERT INTO `guild_shops` VALUES ('60431', '17322', '81', '187', '2970', '594', '1188');
 INSERT INTO `guild_shops` VALUES ('60431', '17340', '58', '436', '8910', '0', '3564');
 INSERT INTO `guild_shops` VALUES ('60431', '12456', '552', '858', '20', '10', '20');

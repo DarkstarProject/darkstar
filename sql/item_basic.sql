@@ -13930,7 +13930,7 @@ INSERT INTO `item_basic` VALUES (17300,0,'platinum_bullet','platinum_bullet',99,
 INSERT INTO `item_basic` VALUES (17301,0,'shuriken','shuriken',99,2052,15,0,10);
 INSERT INTO `item_basic` VALUES (17302,0,'juji_shuriken','juji_shuriken',99,2052,15,0,85);
 INSERT INTO `item_basic` VALUES (17303,0,'manji_shuriken','manji_shuriken',99,2052,15,0,184);
-INSERT INTO `item_basic` VALUES (17304,0,'fuma_shuriken','fuma_shuriken',99,2052,15,0,3285);
+INSERT INTO `item_basic` VALUES (17304,0,'fuma_shuriken','fuma_shuriken',99,2052,15,0,50);
 INSERT INTO `item_basic` VALUES (17305,0,'cluster_arm','cluster_arm',12,2052,15,0,459);
 INSERT INTO `item_basic` VALUES (17306,0,'snoll_arm','snoll_arm',12,2052,15,0,300);
 INSERT INTO `item_basic` VALUES (17307,0,'dart','dart',99,2052,15,0,2);
