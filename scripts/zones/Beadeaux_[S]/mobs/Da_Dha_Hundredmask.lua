@@ -5,8 +5,6 @@
 -- @pos -89.901 .225 -159.694 92
 -----------------------------------
 
--- needs 2 hour perfect dodge
-
 -----------------------------------
 -- onMobSpawn
 -----------------------------------
@@ -22,8 +20,8 @@ end;
 function onMobFight( mob, target )
     if (mob:getHPP() < math.random(5,65) and mob:getLocalVar("perfect_dodge") == 0) then
         mob:useMobAbility(1013);
-		mob:setLocalVar("perfect_dodge", 1);
-	end
+        mob:setLocalVar("perfect_dodge", 1);
+    end
 end;
 
 -----------------------------------
