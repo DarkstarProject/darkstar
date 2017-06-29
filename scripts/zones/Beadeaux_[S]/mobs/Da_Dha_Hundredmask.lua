@@ -10,7 +10,9 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_TRIPLE_ATTACK, 5);
+    mob:setLocalVar("HpTrigger", math.random(5,65));
+    mob:setMod(MOD_TRIPLE_ATTACK, 25);
+    mob:addMod(MOD_GRAVITYRES, 50);
 end;
 
 -----------------------------------
@@ -18,7 +20,7 @@ end;
 -----------------------------------
 
 function onMobFight( mob, target )
-    if (mob:getHPP() < math.random(5,65) and mob:getLocalVar("perfect_dodge") == 0) then
+    if (mob:getHPP() < mob:getLocalVar("HpTrigger") and mob:getLocalVar("perfect_dodge") == 0) then
         mob:useMobAbility(1013);
         mob:setLocalVar("perfect_dodge", 1);
     end
