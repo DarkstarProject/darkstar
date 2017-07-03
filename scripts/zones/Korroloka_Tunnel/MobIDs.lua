@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Cargo_Crab_Colin
-Cargo_Crab_Colin=17485980;
+Cargo_Crab_Colin = 17485980;
 Cargo_Crab_Colin_PH =
 {
     [17486002] = '1', -- -30.384, 1.000, -33.277
@@ -13,7 +13,7 @@ Cargo_Crab_Colin_PH =
 };
 
 -- Dame_Blanche
-Dame_Blanche=17486129;
+Dame_Blanche = 17486129;
 Dame_Blanche_PH =
 {
     [17486128] = '1', -- -345.369, 0.716, 119.486
@@ -26,7 +26,7 @@ Dame_Blanche_PH =
 };
 
 -- Falcatus_Aranei
-Falcatus_Aranei=17486031;
+Falcatus_Aranei = 17486031;
 Falcatus_Aranei_PH =
 {
     [17486033] = '1', -- -68.852, -5.029, 141.069

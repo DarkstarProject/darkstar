@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Mee_Deggi_the_Punisher
-Mee_Deggi_the_Punisher=17395800;
+Mee_Deggi_the_Punisher = 17395800;
 Mee_Deggi_the_Punisher_PH =
 {
     [17395798] = '1', -- -207.840, -0.498, 109.939
@@ -19,7 +19,7 @@ Mee_Deggi_the_Punisher_PH =
 };
 
 -- Moo_Ouzi_the_Swiftblade
-Moo_Ouzi_the_Swiftblade=17395816;
+Moo_Ouzi_the_Swiftblade = 17395816;
 Moo_Ouzi_the_Swiftblade_PH =
 {
     [17395809] = '1', -- -18.415, -0.075, -92.889
@@ -27,7 +27,7 @@ Moo_Ouzi_the_Swiftblade_PH =
 };
 
 -- Quu_Domi_the_Gallant
-Quu_Domi_the_Gallant=17395870;
+Quu_Domi_the_Gallant = 17395870;
 Quu_Domi_the_Gallant_PH =
 {
     [17395844] = '1', -- 103.948, -1.250, -189.869
@@ -40,7 +40,7 @@ Quu_Domi_the_Gallant_PH =
 };
 
 -- Yaa_Haqa_the_Profane
-Yaa_Haqa_the_Profane=17395954;
+Yaa_Haqa_the_Profane = 17395954;
 Yaa_Haqa_the_Profane_PH =
 {
     [17395950] = '1', -- -24.719, -16.250, -139.678

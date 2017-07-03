@@ -5,7 +5,7 @@
 -----------------------------------
 
 Da_Dha_Hundredmask = 17154195; -- -89.901, .225, -159.964, 92
-Da_Dha_Hundredmask_PH = 
+Da_Dha_Hundredmask_PH =
 {
     [17154095] = '1'    -- Gold Quadav -37, 1, -128, 92
 };

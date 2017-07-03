@@ -5,10 +5,10 @@
 -----------------------------------
 
 -- Percipient Zoraal Ja
-Percipient_Zoraal_Ja=16986198;
+Percipient_Zoraal_Ja = 16986198;
 
 -- Zoraal Ja's Pkuucha PH
-Zoraal_Ja_s_Pkuucha=16986197;
+Zoraal_Ja_s_Pkuucha = 16986197;
 Zoraal_Ja_s_Pkuucha_PH =
 {
     [16986191] = '1', -- 181.000, -18.000, -63.000

@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Thousandarm_Deshglesh
-Thousandarm_Deshglesh=17350826;
+Thousandarm_Deshglesh = 17350826;
 Thousandarm_Deshglesh_PH =
 {
     [17350825] = '1', -- 123.357, -0.102, 332.706

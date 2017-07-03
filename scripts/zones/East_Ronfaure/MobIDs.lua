@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Bigmouth_Billy
-Bigmouth_Billy=17191196;
+Bigmouth_Billy = 17191196;
 Bigmouth_Billy_PH =
 {
     [17191194] = '1', -- 453.625, -18.436, -127.048
@@ -14,7 +14,7 @@ Bigmouth_Billy_PH =
 };
 
 -- Swamfisk
-Swamfisk=17191189;
+Swamfisk = 17191189;
 Swamfisk_PH =
 {
     [17191289] = '1', -- 461.268, -6.674, -391.342
