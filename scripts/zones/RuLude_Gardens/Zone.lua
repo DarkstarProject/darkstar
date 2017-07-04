@@ -68,6 +68,10 @@ function onRegionEnter(player,region)
             player:startEvent(10048);
         elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(10051);
+        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
+            player:startEvent(10094);
+        elseif (player:getCurrentMission(TOAU) == ALLIED_RUMBLINGS) then
+            player:startEvent(10097);
         elseif (player:getCurrentMission(COP) == DAWN) then
             if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3
             and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
@@ -79,10 +83,6 @@ function onRegionEnter(player,region)
                     player:startEvent(143);
                 end
             end
-        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
-            player:startEvent(10094);
-        elseif (player:getCurrentMission(TOAU) == ALLIED_RUMBLINGS) then
-            player:startEvent(10097);
         end
     end
 end;
