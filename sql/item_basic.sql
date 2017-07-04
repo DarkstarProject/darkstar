@@ -5242,7 +5242,7 @@ INSERT INTO `item_basic` VALUES (5609,0,'hellsteak','hellsteak',1,1580,52,0,706)
 INSERT INTO `item_basic` VALUES (5610,0,'hellsteak_+1','hellsteak_+1',1,1580,52,0,882);
 INSERT INTO `item_basic` VALUES (5611,0,'angler_stewpot','angler_stewpot',1,1580,55,0,756);
 INSERT INTO `item_basic` VALUES (5612,0,'prime_angler_stewpot','prm._ang._stewpot',1,1580,55,0,945);
-INSERT INTO `item_basic` VALUES (5613,0,'prize_angler_stewpot','prz._ang._stewpot',1,1580,55,0,1181);
+INSERT INTO `item_basic` VALUES (5613,0,'prized_angler_stewpot','prz._ang._stewpot',1,1580,55,0,1181);
 INSERT INTO `item_basic` VALUES (5614,0,'konigskuchen','konigskuchen',1,1580,57,0,540);
 INSERT INTO `item_basic` VALUES (5615,0,'uberkuchen','uberkuchen',1,1580,57,0,675);
 INSERT INTO `item_basic` VALUES (5616,0,'lebkuchen_house','lebkuchen_house',1,1580,57,0,180);
