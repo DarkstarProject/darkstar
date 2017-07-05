@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4657
---    Scroll of Shell II
---    Teaches the white magic Shell II
+-- ID: 4657
+-- Scroll of Shell II
+-- Teaches the white magic Shell II
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4663
---    Scroll of Aquaveil
---    Teaches the white magic Aquaveil
+-- ID: 4663
+-- Scroll of Aquaveil
+-- Teaches the white magic Aquaveil
 -----------------------------------------
 
 -----------------------------------------

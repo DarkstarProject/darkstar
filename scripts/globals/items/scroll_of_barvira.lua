@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4700
---    Scroll of Barvira
---    Teaches the white magic Barvira
+-- ID: 4700
+-- Scroll of Barvira
+-- Teaches the white magic Barvira
 -----------------------------------------
 
 -----------------------------------------

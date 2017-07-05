@@ -17,7 +17,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Western Shadow's ToD
-    SetServerVariable("[POP]Western_Shadow", os.time(t) + 36000); -- 10 hours
+    SetServerVariable("[POP]Western_Shadow", os.time() + 36000); -- 10 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

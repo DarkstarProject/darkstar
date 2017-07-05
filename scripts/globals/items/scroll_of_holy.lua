@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4629
---    Scroll of Holy
---    Teaches the white magic Holy
+-- ID: 4629
+-- Scroll of Holy
+-- Teaches the white magic Holy
 -----------------------------------------
 
 -----------------------------------------

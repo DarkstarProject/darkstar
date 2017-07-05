@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4716
---    Scroll of Regen
---    Teaches the white magic Regen
+-- ID: 4716
+-- Scroll of Regen
+-- Teaches the white magic Regen
 -----------------------------------------
 
 -----------------------------------------

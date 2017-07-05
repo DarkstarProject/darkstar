@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5092
---    Scroll of Gain-MND
---    Teaches the white magic Gain-MND
+-- ID: 5092
+-- Scroll of Gain-MND
+-- Teaches the white magic Gain-MND
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5342
---    Corsair Bullet Pouch
---    When used, you will obtain one stack of Corsair Bullets
+-- ID: 5342
+-- Corsair Bullet Pouch
+-- When used, you will obtain one stack of Corsair Bullets
 -----------------------------------------
 
 -----------------------------------------

@@ -30,7 +30,7 @@ function onMobDespawn(mob)
         local LL_ToD = GetServerVariable("[POP]Leaping_Lizzy");
 
         -- Check if LL window is open, and there is not an LL popped already(ACTION_NONE = 0)
-        if (LL_ToD <= os.time(t) and GetMobAction(Leaping_Lizzy) == 0) then
+        if (LL_ToD <= os.time() and GetMobAction(Leaping_Lizzy) == 0) then
             -- printf("LL window open");
             -- Give Rock_Lizard 5 percent chance to pop LL
             if (math.random(1,20) == 5) then

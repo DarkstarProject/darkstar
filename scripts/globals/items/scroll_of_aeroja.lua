@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4892
---    Scroll of Aeroja
---    Teaches the black magic Aeroja
+-- ID: 4892
+-- Scroll of Aeroja
+-- Teaches the black magic Aeroja
 -----------------------------------------
 
 -----------------------------------------

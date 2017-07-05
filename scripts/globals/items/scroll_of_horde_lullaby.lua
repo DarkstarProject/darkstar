@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4984
---    Scroll of Horde Lullaby
---    Teaches the song Horde Lullaby
+-- ID: 4984
+-- Scroll of Horde Lullaby
+-- Teaches the song Horde Lullaby
 -----------------------------------------
 
 -----------------------------------------

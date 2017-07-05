@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5050
---    Scroll of Lightning Carol
---    Teaches the song Lightning Carol
+-- ID: 5050
+-- Scroll of Lightning Carol
+-- Teaches the song Lightning Carol
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4695
---    Scroll of Barpoisonra
---    Teaches the white magic Barpoisonra
+-- ID: 4695
+-- Scroll of Barpoisonra
+-- Teaches the white magic Barpoisonra
 -----------------------------------------
 
 -----------------------------------------

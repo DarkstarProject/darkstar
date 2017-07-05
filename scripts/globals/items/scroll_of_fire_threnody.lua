@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5062
---    Scroll of Fire Threnody
---    Teaches the song Fire Threnody
+-- ID: 5062
+-- Scroll of Fire Threnody
+-- Teaches the song Fire Threnody
 -----------------------------------------
 
 -----------------------------------------

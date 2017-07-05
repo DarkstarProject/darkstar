@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5273
---    Old Quiver +3
---    When used, you will obtain one partial stack of Crude Arrows +3
+-- ID: 5273
+-- Old Quiver +3
+-- When used, you will obtain one partial stack of Crude Arrows +3
 -----------------------------------------
 
 -----------------------------------------

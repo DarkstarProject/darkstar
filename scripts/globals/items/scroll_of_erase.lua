@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4751
---    Scroll of Erase
---    Teaches the white magic Erase
+-- ID: 4751
+-- Scroll of Erase
+-- Teaches the white magic Erase
 -----------------------------------------
 
 -----------------------------------------

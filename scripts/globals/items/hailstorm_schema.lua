@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6052
---    Hailstorm Schema
---    Teaches the white magic Hailstorm
+-- ID: 6052
+-- Hailstorm Schema
+-- Teaches the white magic Hailstorm
 -----------------------------------------
 
 -----------------------------------------

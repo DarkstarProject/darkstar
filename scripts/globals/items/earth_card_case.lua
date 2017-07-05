@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5405
---    Earth Card Case
---    When used, you will obtain one stack of Earth Cards
+-- ID: 5405
+-- Earth Card Case
+-- When used, you will obtain one stack of Earth Cards
 -----------------------------------------
 
 -----------------------------------------

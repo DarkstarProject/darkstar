@@ -70,7 +70,7 @@ MND_BASED = 3;
 --      .agi_wsc - Same as above.
 function BluePhysicalSpell(caster, target, spell, params)
     -- store related values
-    local magicskill = caster:getSkillLevel(BLUE_SKILL) + caster:getMod(79 + BLUE_SKILL); -- Base skill + equip mods
+    local magicskill = caster:getSkillLevel(BLUE_SKILL); -- skill + merits + equip bonuses
     -- TODO: Under Chain affinity?
     -- TODO: Under Efflux?
     -- TODO: Merits.

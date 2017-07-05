@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5054
---    Scroll of Fire Carol II
---    Teaches the song Fire Carol II
+-- ID: 5054
+-- Scroll of Fire Carol II
+-- Teaches the song Fire Carol II
 -----------------------------------------
 
 -----------------------------------------

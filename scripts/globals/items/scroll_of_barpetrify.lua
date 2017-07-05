@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4685
---    Scroll of Barpetrify
---    Teaches the white magic Barpetrify
+-- ID: 4685
+-- Scroll of Barpetrify
+-- Teaches the white magic Barpetrify
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6056
---    Voidstorm Schema
---    Teaches the white magic Voidstorm
+-- ID: 6056
+-- Voidstorm Schema
+-- Teaches the white magic Voidstorm
 -----------------------------------------
 
 -----------------------------------------

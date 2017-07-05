@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5088
---    Scroll of Gain-DEX
---    Teaches the white magic Gain-DEX
+-- ID: 5088
+-- Scroll of Gain-DEX
+-- Teaches the white magic Gain-DEX
 -----------------------------------------
 
 -----------------------------------------

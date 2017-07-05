@@ -20,7 +20,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Orctrap's ToD
-    SetServerVariable("[POP]Orctrap", os.time(t) + math.random(3600,25200)); -- 1-7 hours
+    SetServerVariable("[POP]Orctrap", os.time() + math.random(3600,25200)); -- 1-7 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

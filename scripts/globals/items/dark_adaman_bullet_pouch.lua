@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5873
---    Dark Adaman Bullet Pouch
---    When used, you will obtain one stack of Dark Adaman Bullets
+-- ID: 5873
+-- Dark Adaman Bullet Pouch
+-- When used, you will obtain one stack of Dark Adaman Bullets
 -----------------------------------------
 
 -----------------------------------------

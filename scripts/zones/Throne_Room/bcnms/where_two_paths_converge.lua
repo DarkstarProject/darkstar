@@ -1,14 +1,13 @@
------------------------------------
+------------------------------------
 -- Area: Throne Room
 -- Name: Mission 9-2
 -- @pos -111 -6 0 165
 -----------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------
-
+require("scripts/zones/Throne_Room/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Throne_Room/TextIDs");
 
 -----------------------------------
 
@@ -29,24 +28,24 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBcnmLeave(player,instance,leavecode)
-print("leave code "..leavecode);
-    
-if (leavecode == 2) then 
-    if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
-    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
-    else
-    player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+    -- print("leave code "..leavecode);
+
+    if (leavecode == 2) then
+        if (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE) then
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
+        else
+            player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
+        end
+    elseif (leavecode == 4) then
+        player:startEvent(0x7d02);
     end
-elseif (leavecode == 4) then
-player:startEvent(0x7d02);
-end
 end;
 
 function onEventUpdate(player,csid,option)
-print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
-print("bc finish csid "..csid.." and option "..option);
-player:setVar("BASTOK92",2);
+    -- print("bc finish csid "..csid.." and option "..option);
+    player:setVar("BASTOK92",2); -- This should be MissionStatus..But all instances of same var need updated.
 end;

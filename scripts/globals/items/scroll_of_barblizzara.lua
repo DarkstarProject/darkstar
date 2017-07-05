@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4675
---    Scroll of Barblizzara
---    Teaches the white magic Barblizzara
+-- ID: 4675
+-- Scroll of Barblizzara
+-- Teaches the white magic Barblizzara
 -----------------------------------------
 
 -----------------------------------------

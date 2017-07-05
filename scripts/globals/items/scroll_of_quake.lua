@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4818
---    Scroll of Quake
---    Teaches the black magic Quake
+-- ID: 4818
+-- Scroll of Quake
+-- Teaches the black magic Quake
 -----------------------------------------
 
 -----------------------------------------

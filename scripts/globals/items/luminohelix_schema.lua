@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6047
---    Luminohelix Schema
---    Teaches the black magic Luminohelix
+-- ID: 6047
+-- Luminohelix Schema
+-- Teaches the black magic Luminohelix
 -----------------------------------------
 
 -----------------------------------------

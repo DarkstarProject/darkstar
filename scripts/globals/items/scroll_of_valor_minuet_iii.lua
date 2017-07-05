@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5004
---    Scroll of Valor Minuet III
---    Teaches the song Valor Minuet III
+-- ID: 5004
+-- Scroll of Valor Minuet III
+-- Teaches the song Valor Minuet III
 -----------------------------------------
 
 -----------------------------------------

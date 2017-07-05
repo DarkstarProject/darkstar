@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Buburimboo's Window Open Time
     local wait = math.random((3600),(7200));
-    SetServerVariable("[POP]Buburimboo", os.time(t) + wait); -- 1-2 hours
+    SetServerVariable("[POP]Buburimboo", os.time() + wait); -- 1-2 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

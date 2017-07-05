@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5205
---    Piece of Tarutaru Mochi
---    Enchantment: 60Min, Costume - Tarutaru child (male)
+-- ID: 5205
+-- Piece of Tarutaru Mochi
+-- Enchantment: 60Min, Costume - Tarutaru child (male)
 -----------------------------------------
 
 require("scripts/globals/status");

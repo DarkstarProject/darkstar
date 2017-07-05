@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5048
---    Scroll of Wind Carol
---    Teaches the song Wind Carol
+-- ID: 5048
+-- Scroll of Wind Carol
+-- Teaches the song Wind Carol
 -----------------------------------------
 
 -----------------------------------------

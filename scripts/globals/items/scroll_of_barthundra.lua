@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4678
---    Scroll of Barthundra
---    Teaches the white magic Barthundra
+-- ID: 4678
+-- Scroll of Barthundra
+-- Teaches the white magic Barthundra
 -----------------------------------------
 
 -----------------------------------------

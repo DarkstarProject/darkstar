@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 5343
---    Azouph Fireflies
+-- ID: 5343
+-- Azouph Fireflies
 --  Transports the user to Azouph Isle
 -----------------------------------------
 require("scripts/globals/status");

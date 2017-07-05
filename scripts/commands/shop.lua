@@ -18,6 +18,7 @@ stock = {
         4165, 5000, -- Silent Oil
         4164, 5000, -- Prism Powder
         4151, 5000, -- Echo Drops
+		1127, 10000, -- Kindred's Seal
         6307, 5000, -- Happo Shuriken +1 Pouch
         5410, 5000, -- Virtue Stone pouch
         4213, 5000, -- Icarus Wing

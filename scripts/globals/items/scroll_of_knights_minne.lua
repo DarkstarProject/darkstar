@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4997
---    Scroll of Knights Minne
---    Teaches the song Mages Ballad
+-- ID: 4997
+-- Scroll of Knights Minne
+-- Teaches the song Mages Ballad
 -----------------------------------------
 
 -----------------------------------------

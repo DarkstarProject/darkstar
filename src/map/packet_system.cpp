@@ -355,8 +355,6 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             default:
                 break;
             }
-            // reset the petZoning info
-            PChar->resetPetZoningInfo();
         }
     }
 
@@ -615,7 +613,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case 0x00: // trigger
     {
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+        if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
         if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
@@ -623,14 +621,15 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;
         }
-        CBaseEntity* PNpc = nullptr;
 
+        CBaseEntity* PNpc = nullptr;
         PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
         if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
+
         if (PChar->m_event.EventID == -1)
         {
             PChar->m_event.reset();
@@ -762,7 +761,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
-        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
     }
     break;
     case 0x13: // tractor menu
@@ -1192,7 +1191,7 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             else
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %d, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
                 PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
@@ -1736,7 +1735,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) == 0)
                     orphan = true;
-                
+
                 if (!commit || !Sql_TransactionCommit(SqlHandle))
                 {
                     Sql_TransactionRollback(SqlHandle);
@@ -1879,7 +1878,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         uint8 received_items = 0;
         uint8 slotID = 0;
-        
+
         int32 ret = Sql_Query(SqlHandle, "SELECT slot FROM delivery_box WHERE charid = %u AND received = 1 AND box = 2 ORDER BY slot ASC;", PChar->id);
 
         if (ret != SQL_ERROR)
@@ -2226,6 +2225,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 auctionFee = map_config.ah_base_fee_single+(price*map_config.ah_tax_rate_single/100);
             }
 
+            auctionFee = dsp_cap(auctionFee, 0, map_config.ah_max_fee);
+
             if (PChar->getStorage(LOC_INVENTORY)->GetItem(0)->getQuantity() < auctionFee)
             {
                 // ShowDebug(CL_CYAN"%s Can't afford the AH fee\n" CL_RESET,PChar->GetName());
@@ -2353,13 +2354,13 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else
                     ShowError("Failed to return item id %u stack %u to char... \n", canceledItem.itemid, canceledItem.stack);
-                
+
                 Sql_TransactionRollback(SqlHandle);
                 Sql_SetAutoCommit(SqlHandle, isAutoCommitOn);
             }
         }
         // Let client know something went wrong
-        PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); // Inventory full, unable to remove msg        
+        PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, PChar, slotid, true)); // Inventory full, unable to remove msg
     }
     break;
     case 0x0D:
@@ -2874,7 +2875,7 @@ void SmallPacket0x066(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if ((FISHACTION)action != FISHACTION_FINISH || PChar->animation == ANIMATION_FISHING_FISH)
         fishingutils::FishingAction(PChar, (FISHACTION)action, stamina, special);
-    
+
     return;
 }
 
@@ -2995,7 +2996,19 @@ void SmallPacket0x06E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
             if (PInvitee)
             {
-                ShowDebug(CL_CYAN"%s sent party invite to %s\n" CL_RESET, PChar->GetName(), PInvitee->GetName());
+                ShowDebug(CL_CYAN"%s sent alliance invite to %s\n" CL_RESET, PChar->GetName(), PInvitee->GetName());
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    ShowDebug(CL_CYAN"%s is blocking alliance invites\n" CL_RESET, PInvitee->GetName());
+                    // Target is blocking assistance
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    PChar->pushPacket(new CMessageSystemPacket(0, 0, 23));
+                    break;
+                }
                 //make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
                 if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 ||
                     PInvitee->PParty == nullptr || PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
@@ -3271,7 +3284,7 @@ void SmallPacket0x071(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                             WBUFL(data, 4) = id;
                             message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
                         }
-                        
+
                     }
                 }
             }
@@ -3316,10 +3329,10 @@ void SmallPacket0x074(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 ShowDebug(CL_CYAN"%s invited %s to an alliance\n" CL_RESET, PInviter->GetName(), PChar->GetName());
                 //the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if (PInviter->PParty->m_PAlliance && PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty)
+                if (PInviter->PParty->m_PAlliance)
                 {
-                    //break if alliance is full
-                    if (PInviter->PParty->m_PAlliance->partyCount() == 3)
+                    //break if alliance is full or the inviter is not the leader
+                    if (PInviter->PParty->m_PAlliance->partyCount() == 3 || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
                     {
                         ShowDebug(CL_CYAN"Alliance is full, invite to %s cancelled\n" CL_RESET, PChar->GetName());
                         PChar->pushPacket(new CMessageStandardPacket(PChar, 0, 0, 14));
@@ -5532,7 +5545,7 @@ void SmallPacket0x10A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
 
-    if ((PItem != nullptr) && !(PItem->getFlag() & ITEM_FLAG_EX))
+    if ((PItem != nullptr) && !(PItem->getFlag() & ITEM_FLAG_EX) && (!PItem->isSubType(ITEM_LOCKED) || PItem->getCharPrice() != 0))
     {
         Sql_Query(SqlHandle, "UPDATE char_inventory SET bazaar = %u WHERE charid = %u AND location = 0 AND slot = %u;", price, PChar->id, slotID);
 

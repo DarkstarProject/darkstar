@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4946
---    Scroll of Utsusemi: Ichi
---    Teaches the ninjutsu Utsusemi: Ichi
+-- ID: 4946
+-- Scroll of Utsusemi: Ichi
+-- Teaches the ninjutsu Utsusemi: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -31,7 +31,7 @@ function onMobDespawn(mob)
     local mobID = mob:getID();
     if (Sagittarius_X_XIII_PH[mobID] ~= nil) then
         local windowOpen = GetServerVariable("[POP]Sagittarius_X_XIII");
-        if (windowOpen <= os.time(t) and GetMobAction(Sagittarius_X_XIII) == 0) then
+        if (windowOpen <= os.time() and GetMobAction(Sagittarius_X_XIII) == 0) then
             if (math.random(1,10) == 1) then
                 UpdateNMSpawnPoint(Sagittarius_X_XIII);
                 GetMobByID(Sagittarius_X_XIII):setRespawnTime(GetMobRespawnTime(mobID));

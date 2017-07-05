@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4844
---    Scroll of Frost
---    Teaches the black magic Frost
+-- ID: 4844
+-- Scroll of Frost
+-- Teaches the black magic Frost
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Zone: Abyssea-Konschtat
---  NPC: qm20 (???)
--- Spawns Siranpa-Kamuy
+--  NPC: qm12 (???)
+-- Spawns Fear Gorta
 -- @pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
@@ -12,9 +12,9 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
 --[[
-    if (trade:hasItemQty(2906,1) and trade:getItemCount() == 1) then -- Player has all the required items.
-        if (GetMobAction(16838962) == ACTION_NONE) then -- Mob not already spawned from this
-            SpawnMob(16838962):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
+    if (trade:hasItemQty(2905,1) and trade:getItemCount() == 1) then -- Player has all the required items.
+        if (GetMobAction(16839033) == ACTION_NONE) then -- Mob not already spawned from this
+            SpawnMob(16839033):updateClaim(player); -- Spawn NM, Despawn after inactive for 5 minutes (pt has to reclaim within 5 of a wipe)
             player:tradeComplete();
         end
     end
@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(1010, 2906); -- Inform payer what items they need.
+    player:startEvent(1010, 2905); -- Inform payer what items they need.
 end;
 
 -----------------------------------

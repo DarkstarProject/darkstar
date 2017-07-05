@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4624
---    Scroll of Blindna
---    Teaches the white magic Blindna
+-- ID: 4624
+-- Scroll of Blindna
+-- Teaches the white magic Blindna
 -----------------------------------------
 
 -----------------------------------------

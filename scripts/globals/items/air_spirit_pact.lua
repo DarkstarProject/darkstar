@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4898
---    Air Spirit Pact
---    Teaches the summoning magic Air Spirit
+-- ID: 4898
+-- Air Spirit Pact
+-- Teaches the summoning magic Air Spirit
 -----------------------------------------
 
 -----------------------------------------

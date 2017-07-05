@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     if (Viscount_Morax_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Viscount_Morax");
-        if (ToD <= os.time(t) and GetMobAction(Viscount_Morax) == 0) then
+        if (ToD <= os.time() and GetMobAction(Viscount_Morax) == 0) then
             if (math.random(1,10) == 5) then
                 UpdateNMSpawnPoint(Viscount_Morax);
                 GetMobByID(Viscount_Morax):setRespawnTime(GetMobRespawnTime(mobID));

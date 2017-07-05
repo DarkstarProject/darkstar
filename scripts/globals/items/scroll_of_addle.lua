@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: Unknown
---    Scroll of Addle
---    Teaches the magic Addle
+-- ID: Unknown
+-- Scroll of Addle
+-- Teaches the magic Addle
 -----------------------------------------
 
 -----------------------------------------

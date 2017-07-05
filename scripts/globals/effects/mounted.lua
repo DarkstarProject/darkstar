@@ -1,15 +1,21 @@
 -----------------------------------
 --
---     EFFECT_CHOCOBO
---     
+-- EFFECT_MOUNTED
+--
 -----------------------------------
+require("scripts/globals/status");
+
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:setAnimation(5);
+    if (effect:getPower() == 0) then
+        target:setAnimation(ANIMATION_CHOCOBO);
+    else
+        target:setAnimation(ANIMATION_MOUNT);
+    end
 end;
 
 -----------------------------------
@@ -24,5 +30,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:setAnimation(0);
+    target:setAnimation(ANIMATION_NONE);
 end;

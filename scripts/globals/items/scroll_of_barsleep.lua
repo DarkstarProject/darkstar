@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4680
---    Scroll of Barsleep
---    Teaches the white magic Barsleep
+-- ID: 4680
+-- Scroll of Barsleep
+-- Teaches the white magic Barsleep
 -----------------------------------------
 
 -----------------------------------------

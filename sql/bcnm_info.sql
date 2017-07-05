@@ -268,32 +268,28 @@ INSERT INTO `bcnm_info` VALUES (1282,187,'dynamis_windurst',NULL,NULL,3600,0,64,
 INSERT INTO `bcnm_info` VALUES (1283,188,'dynamis_jeuno',NULL,NULL,3600,0,64,0,7);
 INSERT INTO `bcnm_info` VALUES (1284,134,'dynamis_beaucedine',NULL,NULL,3600,0,64,0,7);
 INSERT INTO `bcnm_info` VALUES (1285,135,'dynamis_xarcabard',NULL,NULL,3600,0,64,0,7);
-INSERT INTO `bcnm_info` VALUES (1286,39,'dynamis_Valkurm',NULL,NULL,3600,0,36,0,7);
-INSERT INTO `bcnm_info` VALUES (1287,40,'dynamis_Buburimu',NULL,NULL,3600,0,36,0,7);
-INSERT INTO `bcnm_info` VALUES (1288,41,'dynamis_Qufim',NULL,NULL,3600,0,36,0,7);
-INSERT INTO `bcnm_info` VALUES (1289,42,'dynamis_Tavnazia',NULL,NULL,3600,0,18,0,7);
-
-INSERT INTO `bcnm_info` VALUES (1290,38,'NW_Apollyon',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1291,38,'SW_Apollyon',NULL,NULL,1800,0,18,0,7);
-
-INSERT INTO `bcnm_info` VALUES (1292,38,'NE_Apollyon',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1293,38,'SE_Apollyon',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1294,38,'CS_Apollyon',NULL,NULL,1200,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1295,38,'CS_Apollyon_II',NULL,NULL,1200,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1296,38,'Central_Apollyon',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1297,38,'Central_Apollyon_II',NULL,NULL,1800,0,18,0,7);
-
-INSERT INTO `bcnm_info` VALUES (1298,37,'Temenos_Western_Tower',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1299,37,'Temenos_Northern_Tower',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1300,37,'Temenos_Eastern_Tower',NULL,NULL,1800,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1301,37,'Central_Temenos_Basement',NULL,NULL,900,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1302,37,'Central_Temenos_Basement_II',NULL,NULL,900,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1303,37,'Central_Temenos_1st_Floor',NULL,NULL,2700,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1304,37,'Central_Temenos_2nd_Floor',NULL,NULL,2700,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1305,37,'Central_Temenos_3rd_Floor',NULL,NULL,2700,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1306,37,'Central_Temenos_4th_Floor',NULL,NULL,3600,0,18,0,7);
-INSERT INTO `bcnm_info` VALUES (1307,37,'Central_Temenos_4th_Floor_II',NULL,NULL,3600,0,18,0,7);
-
--- INSERT INTO `bcnm_info` VALUES (1308,255,'The_Wyrm_God',null,null,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1286,39,'dynamis_valkurm',NULL,NULL,3600,0,36,0,7);
+INSERT INTO `bcnm_info` VALUES (1287,40,'dynamis_buburimu',NULL,NULL,3600,0,36,0,7);
+INSERT INTO `bcnm_info` VALUES (1288,41,'dynamis_qufim',NULL,NULL,3600,0,36,0,7);
+INSERT INTO `bcnm_info` VALUES (1289,42,'dynamis_tavnazia',NULL,NULL,3600,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1290,38,'nw_apollyon',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1291,38,'sw_apollyon',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1292,38,'ne_apollyon',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1293,38,'se_apollyon',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1294,38,'cs_apollyon',NULL,NULL,1200,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1295,38,'cs_apollyon_ii',NULL,NULL,1200,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1296,38,'central_apollyon',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1297,38,'central_apollyon_ii',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1298,37,'temenos_western_tower',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1299,37,'temenos_northern_tower',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1300,37,'temenos_eastern_tower',NULL,NULL,1800,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1301,37,'central_temenos_basement',NULL,NULL,900,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1302,37,'central_temenos_basement_ii',NULL,NULL,900,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1303,37,'central_temenos_1st_floor',NULL,NULL,2700,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1304,37,'central_temenos_2nd_floor',NULL,NULL,2700,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1305,37,'central_temenos_3rd_floor',NULL,NULL,2700,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1306,37,'central_temenos_4th_floor',NULL,NULL,3600,0,18,0,7);
+INSERT INTO `bcnm_info` VALUES (1307,37,'central_temenos_4th_floor_ii',NULL,NULL,3600,0,18,0,7);
+-- INSERT INTO `bcnm_info` VALUES (1308,255,'the_wyrm_god',NULL,NULL,1800,0,18,0,7);
 
 -- Dump completed on 2017-01-31 10:38:18

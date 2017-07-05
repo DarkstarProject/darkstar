@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5408
---    Light Card Case
---    When used, you will obtain one stack of Light Cards
+-- ID: 5408
+-- Light Card Case
+-- When used, you will obtain one stack of Light Cards
 -----------------------------------------
 
 -----------------------------------------

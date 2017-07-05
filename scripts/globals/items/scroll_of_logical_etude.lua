@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5044
---    Scroll of Logical Etude
---    Teaches the song Logical Etude
+-- ID: 5044
+-- Scroll of Logical Etude
+-- Teaches the song Logical Etude
 -----------------------------------------
 
 -----------------------------------------

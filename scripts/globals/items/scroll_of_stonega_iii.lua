@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4799
---    Scroll of Stonega III
---    Teaches the black magic Stonega III
+-- ID: 4799
+-- Scroll of Stonega III
+-- Teaches the black magic Stonega III
 -----------------------------------------
 
 -----------------------------------------

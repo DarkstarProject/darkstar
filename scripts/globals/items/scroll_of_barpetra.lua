@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4699
---    Scroll of Barpetra
---    Teaches the white magic Barpetra
+-- ID: 4699
+-- Scroll of Barpetra
+-- Teaches the white magic Barpetra
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4846
---    Scroll of Rasp
---    Teaches the black magic Rasp
+-- ID: 4846
+-- Scroll of Rasp
+-- Teaches the black magic Rasp
 -----------------------------------------
 
 -----------------------------------------

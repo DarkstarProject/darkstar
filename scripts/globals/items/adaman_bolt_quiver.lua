@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5913
---    Adaman Bolt Quiver
---    When used, you will obtain one stack of Adaman Bolts
+-- ID: 5913
+-- Adaman Bolt Quiver
+-- When used, you will obtain one stack of Adaman Bolts
 -----------------------------------------
 
 -----------------------------------------

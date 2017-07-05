@@ -371,7 +371,7 @@ EFFECT_IMAGERY_5                = 248
 EFFECT_DEDICATION               = 249
 EFFECT_EF_BADGE                 = 250
 EFFECT_FOOD                     = 251
-EFFECT_CHOCOBO                  = 252
+EFFECT_MOUNTED                  = 252
 EFFECT_SIGNET                   = 253
 EFFECT_BATTLEFIELD              = 254
 EFFECT_NONE                     = 255
@@ -1933,7 +1933,7 @@ MSGBASIC_ADD_EFFECT_HP_HEAL     = 167 -- Additional effect: The <player> recover
 MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status Effect> effect disappears!
 MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
 MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
-MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
+MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore <number> HP to the <?>.
 MSGBASIC_ADD_EFFECT_HEAL        = 384 -- Additional effect: <target> recovers <number> HP.
 
 -- Charm
@@ -2245,6 +2245,7 @@ ITEM_LINKSHELL   = 0x80;
 ------------------------------------
 ANIMATION_NONE                     = 0;
 ANIMATION_ATTACK                   = 1;
+-- Death 2                            = 2;
 ANIMATION_DEATH                    = 3;
 ANIMATION_CHOCOBO                  = 5;
 ANIMATION_FISHING                  = 6;
@@ -2253,6 +2254,8 @@ ANIMATION_OPEN_DOOR                = 8;
 ANIMATION_CLOSE_DOOR               = 9;
 ANIMATION_ELEVATOR_UP              = 10;
 ANIMATION_ELEVATOR_DOWN            = 11;
+-- seems to be WALLHACK               = 28;
+-- seems to be WALLHACK also..        = 31;
 ANIMATION_HEALING                  = 33;
 ANIMATION_FISHING_FISH             = 38;
 ANIMATION_FISHING_CAUGHT           = 39;
@@ -2264,3 +2267,29 @@ ANIMATION_SYNTH                    = 44;
 ANIMATION_SIT                      = 47;
 ANIMATION_RANGED                   = 48;
 ANIMATION_FISHING_START            = 50;
+-- 63 through 72 are used with /sitchair
+-- 73 through 83 sitting on air (guessing future use for more chairs..)
+ANIMATION_MOUNT                    = 85;
+-- ANIMATION_TRUST                    = 90; -- This is the animation for a trust NPC spawning in.
+
+------------------------------------
+-- Mount IDs
+------------------------------------
+MOUNTS =
+{
+    MOUNT_CHOCOBO    = 0,
+    MOUNT_RAPTOR     = 1,
+    MOUNT_TIGER      = 2,
+    MOUNT_CRAB       = 3,
+    MOUNT_RED_CRAB   = 4,
+    MOUNT_BOMB       = 5,
+    MOUNT_RAM        = 6,
+    MOUNT_MORBOL     = 7,
+    MOUNT_CRAWLER    = 8,
+    MOUNT_FENRIR     = 9,
+    MOUNT_BEETLE     = 10,
+    MOUNT_MOOGLE     = 11,
+    MOUNT_MAGIC_POT  = 12,
+    MOUNT_TULFAIRE   = 13,
+    MOUNT_WARMACHINE = 14
+}

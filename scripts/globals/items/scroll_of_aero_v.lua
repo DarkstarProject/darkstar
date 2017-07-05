@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4766
---    Scroll of Aero V
---    Teaches the black magic Aero V
+-- ID: 4766
+-- Scroll of Aero V
+-- Teaches the black magic Aero V
 -----------------------------------------
 
 -----------------------------------------

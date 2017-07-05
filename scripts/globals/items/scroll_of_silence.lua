@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4667
---    Scroll of Silence
---    Teaches the white magic Silence
+-- ID: 4667
+-- Scroll of Silence
+-- Teaches the white magic Silence
 -----------------------------------------
 
 -----------------------------------------

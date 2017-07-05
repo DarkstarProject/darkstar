@@ -5242,7 +5242,7 @@ INSERT INTO `item_basic` VALUES (5609,0,'hellsteak','hellsteak',1,1580,52,0,706)
 INSERT INTO `item_basic` VALUES (5610,0,'hellsteak_+1','hellsteak_+1',1,1580,52,0,882);
 INSERT INTO `item_basic` VALUES (5611,0,'angler_stewpot','angler_stewpot',1,1580,55,0,756);
 INSERT INTO `item_basic` VALUES (5612,0,'prime_angler_stewpot','prm._ang._stewpot',1,1580,55,0,945);
-INSERT INTO `item_basic` VALUES (5613,0,'prize_angler_stewpot','prz._ang._stewpot',1,1580,55,0,1181);
+INSERT INTO `item_basic` VALUES (5613,0,'prized_angler_stewpot','prz._ang._stewpot',1,1580,55,0,1181);
 INSERT INTO `item_basic` VALUES (5614,0,'konigskuchen','konigskuchen',1,1580,57,0,540);
 INSERT INTO `item_basic` VALUES (5615,0,'uberkuchen','uberkuchen',1,1580,57,0,675);
 INSERT INTO `item_basic` VALUES (5616,0,'lebkuchen_house','lebkuchen_house',1,1580,57,0,180);
@@ -13930,7 +13930,7 @@ INSERT INTO `item_basic` VALUES (17300,0,'platinum_bullet','platinum_bullet',99,
 INSERT INTO `item_basic` VALUES (17301,0,'shuriken','shuriken',99,2052,15,0,10);
 INSERT INTO `item_basic` VALUES (17302,0,'juji_shuriken','juji_shuriken',99,2052,15,0,85);
 INSERT INTO `item_basic` VALUES (17303,0,'manji_shuriken','manji_shuriken',99,2052,15,0,184);
-INSERT INTO `item_basic` VALUES (17304,0,'fuma_shuriken','fuma_shuriken',99,2052,15,0,3285);
+INSERT INTO `item_basic` VALUES (17304,0,'fuma_shuriken','fuma_shuriken',99,2052,15,0,50);
 INSERT INTO `item_basic` VALUES (17305,0,'cluster_arm','cluster_arm',12,2052,15,0,459);
 INSERT INTO `item_basic` VALUES (17306,0,'snoll_arm','snoll_arm',12,2052,15,0,300);
 INSERT INTO `item_basic` VALUES (17307,0,'dart','dart',99,2052,15,0,2);

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4935
---    Scroll of Huton: Ni
---    Teaches the ninjutsu Huton: Ni
+-- ID: 4935
+-- Scroll of Huton: Ni
+-- Teaches the ninjutsu Huton: Ni
 -----------------------------------------
 
 -----------------------------------------

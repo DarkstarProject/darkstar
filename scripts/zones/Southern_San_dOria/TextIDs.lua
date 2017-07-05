@@ -18,89 +18,89 @@ FULL_INVENTORY_AFTER_TRADE = 6427; -- Try trading again after sorting your inven
    NOTHING_OUT_OF_ORDINARY = 6443; -- There is nothing out of the ordinary here.<Prompt>
 
 -- Tutorial NPC
-TUTORIAL_NPC = 13504; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
+TUTORIAL_NPC = 13505; -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
 
 -- Conquest System
-CONQUEST =  8477; -- You've earned conquest points!
+CONQUEST =  8478; -- You've earned conquest points!
 
 -- Mission Dialogs
- YOU_ACCEPT_THE_MISSION = 7190; -- You accept the mission.
-ORIGINAL_MISSION_OFFSET = 7201; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
+ YOU_ACCEPT_THE_MISSION = 7191; -- You accept the mission.
+ORIGINAL_MISSION_OFFSET = 7202; -- Bring me one of those axes, and your mission will be a success. No running away now; we've a proud country to defend!
 
 -- Dynamis dialogs
-      YOU_CANNOT_ENTER_DYNAMIS = 7407; -- You cannot enter Dynamis
-PLAYERS_HAVE_NOT_REACHED_LEVEL = 7409; -- Players who have not reached level <<<Numeric Parameter 0>>> are prohibited from entering Dynamis.
-  UNUSUAL_ARRANGEMENT_BRANCHES = 7419; -- There is an unusual arrangement of branches here.
+      YOU_CANNOT_ENTER_DYNAMIS = 7408; -- You cannot enter Dynamis
+PLAYERS_HAVE_NOT_REACHED_LEVEL = 7410; -- Players who have not reached level <<<Numeric Parameter 0>>> are prohibited from entering Dynamis.
+  UNUSUAL_ARRANGEMENT_BRANCHES = 7420; -- There is an unusual arrangement of branches here.
 
 -- Quest Dialogs
-      UNLOCK_PALADIN = 8002; -- You can now become a paladin!
-       FLYER_REFUSED = 8173; -- Your flyer is refused.
-      FLYER_ACCEPTED = 8822; -- The flyer is accepted.
-       FLYER_ALREADY = 8823; -- This person already has a flyer.
-    VARCHET_BET_LOST = 7750; -- You lose your bet of 5 gil.
-VARCHET_KEEP_PROMISE = 7759; -- As promised, I shall go and see about those woodchippers. Maybe we can play another game later.
+      UNLOCK_PALADIN = 8003; -- You can now become a paladin!
+       FLYER_REFUSED = 8174; -- Your flyer is refused.
+      FLYER_ACCEPTED = 8823; -- The flyer is accepted.
+       FLYER_ALREADY = 8824; -- This person already has a flyer.
+    VARCHET_BET_LOST = 7751; -- You lose your bet of 5 gil.
+VARCHET_KEEP_PROMISE = 7760; -- As promised, I shall go and see about those woodchippers. Maybe we can play another game later.
 
 -- Harvest Festival
-  TRICK_OR_TREAT = 7349; -- Trick or treat...
- THANK_YOU_TREAT = 7350; -- And now for your treat...
-  HERE_TAKE_THIS = 7351; -- Here, take this...
-IF_YOU_WEAR_THIS = 7352; -- If you put this on and walk around, something...unexpected might happen...
-       THANK_YOU = 7350; -- Thank you...<<<Prompt>>>
+  TRICK_OR_TREAT = 7350; -- Trick or treat...
+ THANK_YOU_TREAT = 7351; -- And now for your treat...
+  HERE_TAKE_THIS = 7352; -- Here, take this...
+IF_YOU_WEAR_THIS = 7353; -- If you put this on and walk around, something...unexpected might happen...
+       THANK_YOU = 7351; -- Thank you...<<<Prompt>>>
 
 -- Other dialog
-ITEM_DELIVERY_DIALOG = 8402; -- Parcels delivered to rooms anywhere in Vana'diel!
-        ROSEL_DIALOG = 7779; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
+ITEM_DELIVERY_DIALOG = 8403; -- Parcels delivered to rooms anywhere in Vana'diel!
+        ROSEL_DIALOG = 7780; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
 
-     BLENDARE_DIALOG = 8086; -- Wait! If I had magic, maybe I could keep my brother's hands off my sweets...
+     BLENDARE_DIALOG = 8087; -- Wait! If I had magic, maybe I could keep my brother's hands off my sweets...
 
-    BLENDARE_MESSAGE = 8824; -- Blendare looks over curiously for a moment.
-       ROSEL_MESSAGE = 8825; -- Rosel looks over curiously for a moment.
-       MAUGIE_DIALOG = 8826; -- A magic shop, eh? Hmm... A little magic could go a long way for making a leisurely retirement! Ho ho ho!
-      MAUGIE_MESSAGE = 8827; -- Maugie looks over curiously for a moment.
-      ADAUNEL_DIALOG = 8828; -- A magic shop? Maybe I'll check it out one of these days. Could help with my work, even...
-     ADAUNEL_MESSAGE = 8829; -- Adaunel looks over curiously for a moment.
-     LEUVERET_DIALOG = 8830; -- A magic shop? That'd be a fine place to peddle my wares. I smell a profit! I'll be up to my gills in gil, I will!
-    LEUVERET_MESSAGE = 8831; -- Leuveret looks over curiously for a moment.
+    BLENDARE_MESSAGE = 8825; -- Blendare looks over curiously for a moment.
+       ROSEL_MESSAGE = 8826; -- Rosel looks over curiously for a moment.
+       MAUGIE_DIALOG = 8827; -- A magic shop, eh? Hmm... A little magic could go a long way for making a leisurely retirement! Ho ho ho!
+      MAUGIE_MESSAGE = 8828; -- Maugie looks over curiously for a moment.
+      ADAUNEL_DIALOG = 8829; -- A magic shop? Maybe I'll check it out one of these days. Could help with my work, even...
+     ADAUNEL_MESSAGE = 8830; -- Adaunel looks over curiously for a moment.
+     LEUVERET_DIALOG = 8831; -- A magic shop? That'd be a fine place to peddle my wares. I smell a profit! I'll be up to my gills in gil, I will!
+    LEUVERET_MESSAGE = 8832; -- Leuveret looks over curiously for a moment.
 
-     PAUNELIE_DIALOG = 8302; -- I'm sorry, can I help you?
+     PAUNELIE_DIALOG = 8303; -- I'm sorry, can I help you?
 
 -- Shop Texts
-      LUSIANE_SHOP_DIALOG = 7953; -- Hello! Let Taumila's handle all your sundry needs!
-      OSTALIE_SHOP_DIALOG = 7954; -- Welcome, customer. Please have a look.
+      LUSIANE_SHOP_DIALOG = 7954; -- Hello! Let Taumila's handle all your sundry needs!
+      OSTALIE_SHOP_DIALOG = 7955; -- Welcome, customer. Please have a look.
 
-ASH_THADI_ENE_SHOP_DIALOG = 7975; -- Welcome to Helbort's Blades!
+ASH_THADI_ENE_SHOP_DIALOG = 7976; -- Welcome to Helbort's Blades!
 
-       SHILAH_SHOP_DIALOG = 8107; -- Welcome, weary traveler. Make yourself at home!
+       SHILAH_SHOP_DIALOG = 8108; -- Welcome, weary traveler. Make yourself at home!
 
-            CLETAE_DIALOG = 8193; -- Why, hello. All our skins are guild-approved.
-   KUEH_IGUNAHMORI_DIALOG = 8194; -- Good day! We have lots in stock today.
+            CLETAE_DIALOG = 8194; -- Why, hello. All our skins are guild-approved.
+   KUEH_IGUNAHMORI_DIALOG = 8195; -- Good day! We have lots in stock today.
 
-FERDOULEMIONT_SHOP_DIALOG = 7953; -- Hello!
-      AVELINE_SHOP_DIALOG = 8412; -- Welcome to Raimbroy's Grocery!
-      BENAIGE_SHOP_DIALOG = 8413; -- Looking for something in particular?
-     CAPUCINE_SHOP_DIALOG = 8406; -- Hello!
-    MACHIELLE_OPEN_DIALOG = 8408; -- Might I interest you in produce from Norvallen?
-        CORUA_OPEN_DIALOG = 8409; -- Ronfaure produce for sale!
-    PHAMELISE_OPEN_DIALOG = 8410; -- I've got fresh produce from Zulkheim!
-   APAIREMANT_OPEN_DIALOG = 8411; -- Might you be interested in produce from Gustaberg
+FERDOULEMIONT_SHOP_DIALOG = 7954; -- Hello!
+      AVELINE_SHOP_DIALOG = 8413; -- Welcome to Raimbroy's Grocery!
+      BENAIGE_SHOP_DIALOG = 8414; -- Looking for something in particular?
+     CAPUCINE_SHOP_DIALOG = 8407; -- Hello!
+    MACHIELLE_OPEN_DIALOG = 8409; -- Might I interest you in produce from Norvallen?
+        CORUA_OPEN_DIALOG = 8410; -- Ronfaure produce for sale!
+    PHAMELISE_OPEN_DIALOG = 8411; -- I've got fresh produce from Zulkheim!
+   APAIREMANT_OPEN_DIALOG = 8412; -- Might you be interested in produce from Gustaberg
 
-     PAUNELIE_SHOP_DIALOG = 8307; -- These magic shells are full of mysteries...
+     PAUNELIE_SHOP_DIALOG = 8308; -- These magic shells are full of mysteries...
 
-  MACHIELLE_CLOSED_DIALOG = 8415; -- We want to sell produce from Norvallen, but the entire region is under foreign control!
-      CORUA_CLOSED_DIALOG = 8416; -- We specialize in Ronfaure produce, but we cannot import from that region without a strong San d'Orian presence there.
-  PHAMELISE_CLOSED_DIALOG = 8417; -- I'd be making a killing selling produce from Zulkheim, but the region's under foreign control!
- APAIREMANT_CLOSED_DIALOG = 8418; -- I'd love to import produce from Gustaberg, but the foreign powers in control there make me feel unsafe!
-     POURETTE_OPEN_DIALOG = 8419; -- Derfland produce for sale!
-   POURETTE_CLOSED_DIALOG = 8420; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
+  MACHIELLE_CLOSED_DIALOG = 8416; -- We want to sell produce from Norvallen, but the entire region is under foreign control!
+      CORUA_CLOSED_DIALOG = 8417; -- We specialize in Ronfaure produce, but we cannot import from that region without a strong San d'Orian presence there.
+  PHAMELISE_CLOSED_DIALOG = 8418; -- I'd be making a killing selling produce from Zulkheim, but the region's under foreign control!
+ APAIREMANT_CLOSED_DIALOG = 8419; -- I'd love to import produce from Gustaberg, but the foreign powers in control there make me feel unsafe!
+     POURETTE_OPEN_DIALOG = 8420; -- Derfland produce for sale!
+   POURETTE_CLOSED_DIALOG = 8421; -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
 
-     MIOGIQUE_SHOP_DIALOG = 8413; -- Looking for something in particular?
-     CARAUTIA_SHOP_DIALOG = 8414; -- Well, what sort of armor would you like?
-    VALERIANO_SHOP_DIALOG = 8125; -- Oh, a fellow outsider! We are Troupe Valeriano. I am Valeriano, at your service!
+     MIOGIQUE_SHOP_DIALOG = 8414; -- Looking for something in particular?
+     CARAUTIA_SHOP_DIALOG = 8415; -- Well, what sort of armor would you like?
+    VALERIANO_SHOP_DIALOG = 8126; -- Oh, a fellow outsider! We are Troupe Valeriano. I am Valeriano, at your service!
 
-        RAMINEL_DELIVERY  = 8090; -- Here's your delivery!
-            LUSIANE_THANK = 8091; -- Thank you!?Prompt?
-       RAMINEL_DELIVERIES = 8092; -- Sorry, I have deliveries to make!
+        RAMINEL_DELIVERY  = 8091; -- Here's your delivery!
+            LUSIANE_THANK = 8092; -- Thank you!?Prompt?
+       RAMINEL_DELIVERIES = 8093; -- Sorry, I have deliveries to make!
 
 -- conquest Base
-CONQUEST_BASE = 7026; -- Tallying conquest results...
+CONQUEST_BASE = 7027; -- Tallying conquest results...
 

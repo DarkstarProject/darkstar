@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4995
---    Scroll of Mages Ballad II
---    Teaches the song Mages Ballad II
+-- ID: 4995
+-- Scroll of Mages Ballad II
+-- Teaches the song Mages Ballad II
 -----------------------------------------
 
 -----------------------------------------

@@ -27,7 +27,7 @@ end;
 function onMobDespawn(mob)
     -- Set Baron_Vapula's Window Open Time
     local wait = math.random(3600,28800);
-    SetServerVariable("[POP]Baron_Vapula", os.time(t) + wait); -- 1-8 hours
+    SetServerVariable("[POP]Baron_Vapula", os.time() + wait); -- 1-8 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

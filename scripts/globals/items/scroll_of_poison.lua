@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4828
---    Scroll of Poison
---    Teaches the black magic Poison
+-- ID: 4828
+-- Scroll of Poison
+-- Teaches the black magic Poison
 -----------------------------------------
 
 -----------------------------------------

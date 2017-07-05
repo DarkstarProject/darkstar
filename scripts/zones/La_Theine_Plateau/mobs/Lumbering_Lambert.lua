@@ -27,7 +27,7 @@ function onMobDespawn(mob)
     local mobID = mob:getID();
     local chanceForBaldurf = 0;
 
-    if (GetServerVariable("[POP]Bloodtear_Baldurf") <= os.time(t)) then
+    if (GetServerVariable("[POP]Bloodtear_Baldurf") <= os.time()) then
         chanceForBaldurf = math.random(1,100);
     end
 
@@ -36,9 +36,9 @@ function onMobDespawn(mob)
         GetMobByID(Bloodtear_Baldurf):setRespawnTime(GetMobRespawnTime(Battering_Ram));
         DeterMob(mobID, true);
     else
-        GetMobByID(Battering_Ram):setRespawnTime(GetMobRespawnTime(Battering_Ram)); 
+        GetMobByID(Battering_Ram):setRespawnTime(GetMobRespawnTime(Battering_Ram));
         DeterMob(mobID, true);
     end
 
-    SetServerVariable("[POP]Lumbering_Lambert", os.time(t) + math.random(3600, 28800)); -- 1-8hours repop
+    SetServerVariable("[POP]Lumbering_Lambert", os.time() + math.random(3600, 28800)); -- 1-8hours repop
 end;

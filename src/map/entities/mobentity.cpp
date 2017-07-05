@@ -722,7 +722,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         }
         else
         {
-            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill);
+            target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill, &action);
         }
 
         if (msg == 0)

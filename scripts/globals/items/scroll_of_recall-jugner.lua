@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4687
---    Scroll of Recall-Jugner
---    Teaches the white magic Recall-Jugner
+-- ID: 4687
+-- Scroll of Recall-Jugner
+-- Teaches the white magic Recall-Jugner
 -----------------------------------------
 
 -----------------------------------------

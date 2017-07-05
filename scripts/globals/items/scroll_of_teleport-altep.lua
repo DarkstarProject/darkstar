@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4729
---    Scroll of Teleport-Altep
---    Teaches the white magic Teleport-Altep
+-- ID: 4729
+-- Scroll of Teleport-Altep
+-- Teaches the white magic Teleport-Altep
 -----------------------------------------
 
 -----------------------------------------

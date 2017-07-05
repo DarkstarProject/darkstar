@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4820
---    Scroll of Burst
---    Teaches the black magic Burst
+-- ID: 4820
+-- Scroll of Burst
+-- Teaches the black magic Burst
 -----------------------------------------
 
 -----------------------------------------

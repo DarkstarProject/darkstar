@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4696
---    Scroll of Barparalyzra
---    Teaches the white magic Barparalyzra
+-- ID: 4696
+-- Scroll of Barparalyzra
+-- Teaches the white magic Barparalyzra
 -----------------------------------------
 
 -----------------------------------------

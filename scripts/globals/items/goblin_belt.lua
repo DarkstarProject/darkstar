@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15929
---    Goblin Belt
---    Enchantment: 60Min, Costume - Goblin (dagger)
+-- ID: 15929
+-- Goblin Belt
+-- Enchantment: 60Min, Costume - Goblin (dagger)
 -----------------------------------------
 
 require("scripts/globals/status");

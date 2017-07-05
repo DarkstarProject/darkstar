@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4839
---    Scroll of Bio II
---    Teaches the black magic Bio II
+-- ID: 4839
+-- Scroll of Bio II
+-- Teaches the black magic Bio II
 -----------------------------------------
 
 -----------------------------------------
