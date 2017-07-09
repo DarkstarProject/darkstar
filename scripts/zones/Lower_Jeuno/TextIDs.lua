@@ -36,8 +36,8 @@ PARIKE_PORANKE_DIALOG = 8948; -- All these people running back and forth... Ther
        PARIKE_PORANKE_9 = 8966; -- Consider this a petite present from your pal Parike-Poranke!
       PARIKE_PORANKE_10 = 8970; -- Wait a minute... Don't tell me you came to Parike-Poranke on an empty stomach! This is terrible! The minister will have my head!
       PARIKE_PORANKE_12 = 8972; -- Phew! That was close... What were you thinking, crazy adventurer!
-FIXME:       PARIKE_PORANKE_13 = 8973; -- Speaker Name's ll in the name of scienceskill rises 0.1 points. 
-FIXME:       PARIKE_PORANKE_14 = 8974; -- Speaker Name's ll in the name of scienceskill rises one level.
+      PARIKE_PORANKE_13 = 8973; -- Speaker Name's ll in the name of scienceskill rises 0.1 points.
+      PARIKE_PORANKE_14 = 8974; -- Speaker Name's ll in the name of scienceskill rises one level.
       PARIKE_PORANKE_15 = 8977; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 = 8978; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
 
