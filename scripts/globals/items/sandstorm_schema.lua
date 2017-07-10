@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6053
---    Sandstorm Schema
---    Teaches the white magic Sandstorm
+-- ID: 6053
+-- Sandstorm Schema
+-- Teaches the white magic Sandstorm
 -----------------------------------------
 
 -----------------------------------------

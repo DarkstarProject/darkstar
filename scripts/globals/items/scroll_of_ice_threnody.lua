@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5063
---    Scroll of Ice Threnody
---    Teaches the song Ice Threnody
+-- ID: 5063
+-- Scroll of Ice Threnody
+-- Teaches the song Ice Threnody
 -----------------------------------------
 
 -----------------------------------------

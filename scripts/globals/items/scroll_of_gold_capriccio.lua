@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5020
---    Scroll of Gold Capriccio
---    Teaches the song Gold Capriccio
+-- ID: 5020
+-- Scroll of Gold Capriccio
+-- Teaches the song Gold Capriccio
 -----------------------------------------
 
 -----------------------------------------

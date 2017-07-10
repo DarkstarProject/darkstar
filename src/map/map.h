@@ -63,14 +63,14 @@ struct map_config_t
     uint16 usMapPort;               // port of map server      -> xxxxx
     uint32 uiMapIp;                 // ip of map server        -> INADDR_ANY
 
-    const int8 *mysql_host;         // mysql addr     -> localhost:3306
+    std::string mysql_host;         // mysql addr     -> localhost:3306
     uint16 mysql_port;              // mysql port     -> 3306
-    const int8 *mysql_login;        // mysql login    -> default root
-    const int8 *mysql_password;     // mysql pass     -> default nullptr
-    const int8 *mysql_database;     // mysql database -> default dspdb
+    std::string mysql_login;        // mysql login    -> default root
+    std::string mysql_password;     // mysql pass     -> default nullptr
+    std::string mysql_database;     // mysql database -> default dspdb
 
-    string_t server_message;
-    string_t server_message_fr;
+    std::string server_message;
+    std::string server_message_fr;
 
     uint32 max_time_lastupdate;       // max interval wait of last update player char
     int32  vanadiel_time_offset;      // смещение игрового времени относительно реального времени
@@ -113,6 +113,7 @@ struct map_config_t
     float  nm_stat_multiplier;        // Multiplier for str/vit/etc of NMs
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
+    float  ability_recast_multiplier; // Adjust ability recast time
     float  drop_rate_multiplier;      // Multiplier for drops
     uint32 all_mobs_gil_bonus;        // Sets the amount of bonus gil (per level) all mobs will drop.
     uint32 max_gil_bonus;             // Maximum total bonus gil that can be dropped. Default 9999 gil.
@@ -131,7 +132,7 @@ struct map_config_t
     bool   audit_party;
     uint8  healing_tick_delay;
     uint16 msg_server_port;           // central message server port
-    const char* msg_server_ip;        // central message server IP
+    std::string msg_server_ip;        // central message server IP
 };
 
 /************************************************************************

@@ -16,6 +16,16 @@ AwAernDRGGroups = {16920777,16920781,16920785,16920789};
 IxAernDRK = 16921018;
 QnAernA = 16921019;
 QnAernB = 16921020;
+AwAernDRKGroups = {16920660,16920665,16920646,16920651}; --NE, SE, SW, NW
+
+Ix_Aern_DRK_QM = 16921028;
+Ix_Aern_DRK_QM_POS =
+{
+    {-240,5.00,440}, -- Hume-Elvaan
+    {-280,5.00,240}, -- Elvaan-Galka
+    {-560,5.00,239}, -- Taru-Mithra
+    {-600,5.00,440}  -- Mithra-Hume
+};
 
 -----------------------------------
 

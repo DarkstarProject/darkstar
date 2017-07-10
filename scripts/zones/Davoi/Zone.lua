@@ -16,7 +16,7 @@ require("scripts/zones/Davoi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17388023);
+    UpdateTreasureSpawnPoint(17388027);
 end;        
 
 -----------------------------------        
@@ -67,7 +67,7 @@ function onGameDay()
                          --[[G-10]]{-55.960,2.958,-300.014}, --[[I-7]]{152.311,4.000,-74.176}, --[[I-8]]{153.514,4.250,-112.616},--[[J-7]]{188.988,4.000,-80.058},  --[[K-7]]{318.694,0.001,-58.646},
                          --[[K-8]]{299.717,0.001,-160.910},  --[[K-9]]{274.849,4.162,-213.599},--[[K-9]]{250.809,4.000,-240.509},--[[J-8]]{219.474,3.750,-128.170}, --[[I-9]]{86.749,-5.166,-166.414}};
     
-    local storageHole = GetNPCByID(17388021);
+    local storageHole = GetNPCByID(17388025);
     local randPos = 0;
     
     while(randPos == 0 or storHolePos[randPos][1] == storageHole:getXPos()) do

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4760
---    Scroll of Blizzard IV
---    Teaches the black magic Blizzard IV
+-- ID: 4760
+-- Scroll of Blizzard IV
+-- Teaches the black magic Blizzard IV
 -----------------------------------------
 
 -----------------------------------------

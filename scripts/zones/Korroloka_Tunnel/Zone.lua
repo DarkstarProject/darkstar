@@ -15,15 +15,10 @@ require("scripts/zones/Korroloka_Tunnel/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17486258,17486259,17486260,17486261};
-
-    SetGroundsTome(tomes);
-    
     -- Waterfalls (RegionID, X, Radius, Z)
     zone:registerRegion(1,   -87, 4, -105, 0,0,0); -- Left pool
     zone:registerRegion(2,     -101, 7, -114, 0,0,0); -- Center Pool
     zone:registerRegion(3,     -112, 3, -103, 0,0,0); -- Right Pool
-    
 end;
 
 -----------------------------------
@@ -56,7 +51,7 @@ end;
 
 function onRegionEnter(player,region)
     local pooltime = (os.time() - player:getVar("POOL_TIME"));
-    
+
     if player:getVar("BathedInScent") == 1 then  -- pollen scent from touching all 3 Blue Rafflesias in Yuhtunga
         switch (region:GetRegionID()): caseof
         {
@@ -75,18 +70,18 @@ function onRegionEnter(player,region)
         }
     end
 end;
-    
 
 
------------------------------------        
--- OnRegionLeave        
------------------------------------        
+
+-----------------------------------
+-- OnRegionLeave
+-----------------------------------
 
 function onRegionLeave(player,region)
 
     local RegionID = region:GetRegionID();
     local pooltime = (os.time() - player:getLocalVar("POOL_TIME"));
-    
+
     if(RegionID <= 3 and player:getVar("BathedInScent") == 1) then
         if pooltime >= 300 then
             player:messageSpecial(LEFT_SPRING_CLEAN);

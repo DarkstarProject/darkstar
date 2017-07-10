@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5097
---    Scroll of Boost-AGI
---    Teaches the white magic Boost-AGI
+-- ID: 5097
+-- Scroll of Boost-AGI
+-- Teaches the white magic Boost-AGI
 -----------------------------------------
 
 -----------------------------------------

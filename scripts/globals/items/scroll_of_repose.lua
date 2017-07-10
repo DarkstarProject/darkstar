@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4721
---    Scroll of Repose
---    Teaches the white magic Repose
+-- ID: 4721
+-- Scroll of Repose
+-- Teaches the white magic Repose
 -----------------------------------------
 
 -----------------------------------------

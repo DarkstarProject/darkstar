@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4677
---    Scroll of Barstonra
---    Teaches the white magic Barstonra
+-- ID: 4677
+-- Scroll of Barstonra
+-- Teaches the white magic Barstonra
 -----------------------------------------
 
 -----------------------------------------

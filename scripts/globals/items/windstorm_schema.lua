@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6054
---    Windstorm Schema
---    Teaches the white magic Windstorm
+-- ID: 6054
+-- Windstorm Schema
+-- Teaches the white magic Windstorm
 -----------------------------------------
 
 -----------------------------------------

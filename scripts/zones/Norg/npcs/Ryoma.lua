@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED, 17772); -- Zushio
             player:needToZone();
             player:setVar("twentyInPirateYearsCS",0);
-            player:addFame(OUTLANDS,30);
+            player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS);
         end
     elseif (csid == 0x0087) then

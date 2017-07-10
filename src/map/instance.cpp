@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "instance.h"
 
 #include "zone.h"
+#include "ai/ai_container.h"
 #include "entities/charentity.h"
 #include "lua/luautils.h"
 
@@ -87,7 +88,11 @@ void CInstance::LoadInstance()
         "start_x, "
         "start_y, "
         "start_z, "
-        "start_rot "
+        "start_rot, "
+        "music_day, "
+        "music_night, "
+        "battlesolo, "
+        "battlemulti "
         "FROM instance_list "
         "WHERE instanceid = %u "
         "LIMIT 1";
@@ -104,6 +109,10 @@ void CInstance::LoadInstance()
         m_entryloc.y = Sql_GetFloatData(SqlHandle, 4);
         m_entryloc.z = Sql_GetFloatData(SqlHandle, 5);
         m_entryloc.rotation = Sql_GetUIntData(SqlHandle, 6);
+        m_zone_music_override.m_songDay = Sql_GetUIntData(SqlHandle, 7);
+        m_zone_music_override.m_songNight = Sql_GetUIntData(SqlHandle, 8);
+        m_zone_music_override.m_bSongS = Sql_GetUIntData(SqlHandle, 9);
+        m_zone_music_override.m_bSongM = Sql_GetUIntData(SqlHandle, 10);
     }
     else
     {
@@ -223,10 +232,26 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
     return false;
 }
 
+void CInstance::ClearEntities()
+{
+    auto clearStates = [](auto& entity)
+    {
+        if (static_cast<CBattleEntity*>(entity.second)->isAlive())
+        {
+            entity.second->PAI->ClearStateStack();
+        }
+    };
+    std::for_each(m_charList.cbegin(), m_charList.cend(), clearStates);
+    std::for_each(m_mobList.cbegin(), m_mobList.cend(), clearStates);
+    std::for_each(m_petList.cbegin(), m_petList.cend(), clearStates);
+}
+
 void CInstance::Fail()
 {
     Cancel();
 
+    ClearEntities();
+    
     luautils::OnInstanceFailure(this);
 }
 
@@ -238,6 +263,8 @@ bool CInstance::Failed()
 void CInstance::Complete()
 {
     m_status = INSTANCE_COMPLETE;
+
+    ClearEntities();
 
     luautils::OnInstanceComplete(this);
 }
@@ -256,4 +283,24 @@ bool CInstance::CheckFirstEntry(uint32 id)
 {
     //insert returns a pair (iterator,inserted)
     return m_enteredChars.insert(id).second;
+}
+
+uint8 CInstance::GetSoloBattleMusic()
+{
+    return m_zone_music_override.m_bSongS != (uint8)-1 ? m_zone_music_override.m_bSongS : GetZone()->GetSoloBattleMusic();
+}
+
+uint8 CInstance::GetPartyBattleMusic()
+{
+    return m_zone_music_override.m_bSongM != (uint8)-1 ? m_zone_music_override.m_bSongM : GetZone()->GetPartyBattleMusic();
+}
+
+uint8 CInstance::GetBackgroundMusicDay()
+{
+    return m_zone_music_override.m_songDay != (uint8)-1 ? m_zone_music_override.m_songDay : GetZone()->GetBackgroundMusicDay();
+}
+
+uint8 CInstance::GetBackgroundMusicNight()
+{
+    return m_zone_music_override.m_songNight != (uint8)-1 ? m_zone_music_override.m_songNight : GetZone()->GetBackgroundMusicNight();
 }

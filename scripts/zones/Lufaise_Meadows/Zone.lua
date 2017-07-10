@@ -16,10 +16,6 @@ require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {16875906,16875907,16875908};
-    SetVoidwatchNPC(vwnpc);
-
     local Colorful_Leshy = 16875762;
     GetMobByID(Colorful_Leshy):setLocalVar("1",os.time() + math.random((43200), (86400)));
 

@@ -14,7 +14,7 @@ function onItemCheck(target)
             return 0;
         end
     end
-    return -1
+    return -1;
 end;
 
 -----------------------------------------

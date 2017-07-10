@@ -7,9 +7,9 @@
 -- Magic 10
 -- Dexterity 3
 -- Mind -2
--- Accuracy % 17
+-- Accuracy % 18
 -- Accuracy Cap 28
--- Ranged ACC % 17
+-- Ranged ACC % 18
 -- Ranged ACC Cap 28
 -----------------------------------------
 
@@ -20,11 +20,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -44,9 +44,9 @@ function onEffectGain(target,effect)
     target:addMod(MOD_MP, 10);
     target:addMod(MOD_DEX, 3);
     target:addMod(MOD_MND, -2);
-    target:addMod(MOD_FOOD_ACCP, 17);
+    target:addMod(MOD_FOOD_ACCP, 18);
     target:addMod(MOD_FOOD_ACC_CAP, 28);
-    target:addMod(MOD_FOOD_RACCP, 17);
+    target:addMod(MOD_FOOD_RACCP, 18);
     target:addMod(MOD_FOOD_RACC_CAP, 28);
 end;
 
@@ -59,8 +59,8 @@ function onEffectLose(target,effect)
     target:delMod(MOD_MP, 10);
     target:delMod(MOD_DEX, 3);
     target:delMod(MOD_MND, -2);
-    target:delMod(MOD_FOOD_ACCP, 17);
+    target:delMod(MOD_FOOD_ACCP, 18);
     target:delMod(MOD_FOOD_ACC_CAP, 28);
-    target:delMod(MOD_FOOD_RACCP, 17);
+    target:delMod(MOD_FOOD_RACCP, 18);
     target:delMod(MOD_FOOD_RACC_CAP, 28);
 end;

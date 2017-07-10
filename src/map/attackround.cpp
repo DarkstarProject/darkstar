@@ -220,9 +220,9 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, num);
 
     // Checking the players triple, double and quadruple attack
-    int16 tripleAttack = m_attacker->getMod(MOD_TRIPLE_ATTACK);
-    int16 doubleAttack = m_attacker->getMod(MOD_DOUBLE_ATTACK);
-    int16 quadAttack = m_attacker->getMod(MOD_QUAD_ATTACK);
+    int16 tripleAttack = m_attacker->getMod(Mod::TRIPLE_ATTACK);
+    int16 doubleAttack = m_attacker->getMod(Mod::DOUBLE_ATTACK);
+    int16 quadAttack = m_attacker->getMod(Mod::QUAD_ATTACK);
 
     //check for merit upgrades
     if (isPC)
@@ -242,7 +242,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     // Checking Mikage Effect - Hits Vary With Num of Utsusemi Shadows for Main Weapon
     if (m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_MIKAGE) && m_attacker->m_Weapons[SLOT_MAIN]->getID() == PWeapon->getID())
     {
-        int16 shadows = m_attacker->getMod(MOD_UTSUSEMI);
+        int16 shadows = m_attacker->getMod(Mod::UTSUSEMI);
         //ShowDebug(CL_CYAN"Create Attacks: Mikage Active, Rolling Attack Chance for %d Shadowss...\n" CL_RESET, shadows);
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, shadows);
     }
@@ -256,7 +256,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
 
     // Ammo extra swing - players only
-    if (isPC && m_attacker->getMod(MOD_AMMO_SWING) > 0)
+    if (isPC && m_attacker->getMod(Mod::AMMO_SWING) > 0)
     {
         // Check for ammo
         CCharEntity* PChar = (CCharEntity*)m_attacker;
@@ -268,22 +268,22 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
         uint8 ammoCount = 0;
 
         // Handedness check, checking mod of the weapon for the purposes of level scaling
-        if (battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 2 &&
-            dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+        if (battleutils::GetScaledItemModifier(PChar, PMain, Mod::AMMO_SWING_TYPE) == 2 &&
+            dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
             ammoCount += 1;
         }
         else
         {
-            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, MOD_AMMO_SWING_TYPE) == 1 &&
-                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            if (direction == RIGHTATTACK && battleutils::GetScaledItemModifier(PChar, PMain, Mod::AMMO_SWING_TYPE) == 1 &&
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
                 ammoCount += 1;
             }
-            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, MOD_AMMO_SWING_TYPE) == 1 &&
-                dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
+            if (direction == LEFTATTACK && PSub != nullptr && battleutils::GetScaledItemModifier(PChar, PSub, Mod::AMMO_SWING_TYPE) == 1 &&
+                dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::AMMO_SWING) && PAmmo != nullptr && ammoCount < PAmmo->getQuantity())
             {
                 AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, LEFTATTACK, 1);
                 ammoCount += 1;
@@ -306,7 +306,7 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     // TODO: Possible Lua function for the nitty gritty stuff below.
 
     // Iga mod: Extra attack chance whilst dual wield is on.
-    if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_DUAL_WIELD_ATTACK))
+    if (direction == LEFTATTACK && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_DUAL_WIELD_ATTACK))
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, RIGHTATTACK, 1);
 
 }
@@ -321,7 +321,7 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(MOD_KICK_ATTACK);
+        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {
@@ -339,7 +339,7 @@ void CAttackRound::CreateKickAttacks()
         // TODO: Possible Lua function for the nitty gritty stuff below.
 
         // Mantra set mod: Try an extra left kick attack.
-        if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(MOD_EXTRA_KICK_ATTACK))
+        if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_KICK_ATTACK))
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, LEFTATTACK, 1);
         }

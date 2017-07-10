@@ -1,10 +1,10 @@
 -----------------------------------------
---    ID: 4386
---    King Truffle
+-- ID: 4386
+-- King Truffle
 --  5 Minutes, food effect, All Races
 -----------------------------------------
---    Strength -6
---    Mind     +4
+-- Strength -6
+-- Mind     +4
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,11 +14,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

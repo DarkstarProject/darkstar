@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local gownQuestProgress    = player:getVar("AF_SCH_BODY");
     local onSabbatical         = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
     local onSabbaticalProgress = player:getVar("OnSabbatical");
-    local markings             = 17146622; -- Base ID for the 3 markings
+    local markings             = 17146626; -- Base ID for the 3 markings
 
     if (onSabbatical == QUEST_ACCEPTED and npc:getID() == markings) then
         if (onSabbaticalProgress == 2) then

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4607,4767
---    Scroll of Stone
---    Teaches the black magic Stone
+-- ID: 4607,4767
+-- Scroll of Stone
+-- Teaches the black magic Stone
 -----------------------------------------
 
 -----------------------------------------

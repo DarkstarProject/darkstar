@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13782);
             player:messageSpecial(ITEM_OBTAINED,13782); -- Ninja Chainmail
             player:setVar("trueWillCS",0);
-            player:addFame(OUTLANDS,30);
+            player:addFame(NORG,30);
             player:completeQuest(OUTLANDS,TRUE_WILL);
         end
     end

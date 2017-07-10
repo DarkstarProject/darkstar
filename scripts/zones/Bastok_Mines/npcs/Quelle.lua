@@ -3,10 +3,9 @@
 --  NPC: Quelle
 -- Type: Chocobo Renter
 -----------------------------------
-
-require("scripts/globals/chocobo");
-require("scripts/globals/keyitems");
 require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/chocobo");
 require("scripts/globals/status");
 
 -----------------------------------
@@ -64,9 +63,9 @@ function onEventFinish(player,csid,option)
             if (player:getMainLvl() >= 20) then
                 local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
 
-                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,duration,true);
+                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
             else
-                player:addStatusEffectEx(EFFECT_CHOCOBO,EFFECT_CHOCOBO,1,0,900,true);
+                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,900,true);
             end
 
             player:setPos(580,0,-305,0x40,0x6B);

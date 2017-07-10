@@ -15,15 +15,11 @@ require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local tomes = {17498658,17498659,17498660,17498661,17498662};
-
-    SetGroundsTome(tomes);
-
     -- Charybdis PH alternates, remove one
     DespawnMob(17498518);
 
-    UpdateTreasureSpawnPoint(17498621);
-    UpdateTreasureSpawnPoint(17498622);
+    UpdateTreasureSpawnPoint(17498625);
+    UpdateTreasureSpawnPoint(17498626);
 end;
 
 -----------------------------------

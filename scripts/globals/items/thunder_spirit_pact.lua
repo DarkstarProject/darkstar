@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4900
---    Thunder Spirit Pact
---    Teaches the summoning magic Thunder Spirit
+-- ID: 4900
+-- Thunder Spirit Pact
+-- Teaches the summoning magic Thunder Spirit
 -----------------------------------------
 
 -----------------------------------------

@@ -15,18 +15,10 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17617263,17617264,17617265,17617266,17617267,17617268,17617269,17617270};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17617257,17617258,17617259};
-    SetVoidwatchNPC(vwnpc);
-
     -- Ash Dragon
     SetRespawnTime(17617147, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17617220);
-
+    UpdateTreasureSpawnPoint(17617224);
 end;
 
 -----------------------------------
@@ -64,7 +56,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
 
     local VanadielHour = VanadielHour();
     local FlameSpout = 17617204;

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5406
---    Thunder Card Case
---    When used, you will obtain one stack of Thunder Cards
+-- ID: 5406
+-- Thunder Card Case
+-- When used, you will obtain one stack of Thunder Cards
 -----------------------------------------
 
 -----------------------------------------
@@ -9,11 +9,11 @@
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:getFreeSlotsCount() == 0) then
         result = 308;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

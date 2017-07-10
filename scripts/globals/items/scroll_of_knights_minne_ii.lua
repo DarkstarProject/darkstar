@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4998
---    Scroll of Knights Minne II
---    Teaches the song Mages Ballad II
+-- ID: 4998
+-- Scroll of Knights Minne II
+-- Teaches the song Mages Ballad II
 -----------------------------------------
 
 -----------------------------------------

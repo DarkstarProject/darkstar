@@ -25,7 +25,6 @@ This file is part of DarkStar-server source code.
 
 #include "../common/cbasetypes.h"
 #include "../common/blowfish.h"
-#include "../common/malloc.h"
 #include "../common/md52.h"
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
@@ -200,7 +199,7 @@ int32 main(int32 argc, int8 **argv)
     hints.ai_flags = AI_PASSIVE;
 
     // Resolve the server address and port
-    iResult = getaddrinfo(nullptr, login_config.search_server_port, &hints, &result);
+    iResult = getaddrinfo(nullptr, login_config.search_server_port.c_str(), &hints, &result);
     if (iResult != 0)
     {
         ShowError("getaddrinfo failed with error: %d\n", iResult);
@@ -369,15 +368,15 @@ void search_config_read(const int8* file)
 
         if (strcmp(w1, "mysql_host") == 0)
         {
-            search_config.mysql_host = aStrdup(w2);
+            search_config.mysql_host = std::string(w2);
         }
         else if (strcmp(w1, "mysql_login") == 0)
         {
-            search_config.mysql_login = aStrdup(w2);
+            search_config.mysql_login = std::string(w2);
         }
         else if (strcmp(w1, "mysql_password") == 0)
         {
-            search_config.mysql_password = aStrdup(w2);
+            search_config.mysql_password = std::string(w2);
         }
         else if (strcmp(w1, "mysql_port") == 0)
         {
@@ -385,7 +384,7 @@ void search_config_read(const int8* file)
         }
         else if (strcmp(w1, "mysql_database") == 0)
         {
-            search_config.mysql_database = aStrdup(w2);
+            search_config.mysql_database = std::string(w2);
         }
         else if (strcmp(w1, "expire_auctions") == 0)
         {
@@ -454,7 +453,7 @@ void login_config_read(const int8* file)
 
         if (strcmp(w1, "search_server_port") == 0)
         {
-            login_config.search_server_port = aStrdup(w2);
+            login_config.search_server_port = std::string(w2);
         }
     }
     fclose(fp);

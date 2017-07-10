@@ -24,7 +24,7 @@ function onMobDespawn(mob)
 
     if (Dame_Blanche_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Dame_Blanche");
-        if (ToD <= os.time(t) and GetMobAction(Dame_Blanche) == 0) then
+        if (ToD <= os.time() and GetMobAction(Dame_Blanche) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Dame_Blanche);
                 GetMobByID(Dame_Blanche):setRespawnTime(GetMobRespawnTime(mobID));

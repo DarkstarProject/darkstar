@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4756
---    Scroll of Fire V
---    Teaches the Black magic Fire V
+-- ID: 4756
+-- Scroll of Fire V
+-- Teaches the Black magic Fire V
 -----------------------------------------
 
 -----------------------------------------

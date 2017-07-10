@@ -15,15 +15,7 @@ require("scripts/zones/Gusgen_Mines/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17580412,17580413,17580414};
-    SetGroundsTome(tomes);
-
-    UpdateTreasureSpawnPoint(17580399);
-
-    local vwnpc = {17580406,17580407,17580408};
-    SetVoidwatchNPC(vwnpc);
-
+    UpdateTreasureSpawnPoint(17580403);
 end;
 
 -----------------------------------

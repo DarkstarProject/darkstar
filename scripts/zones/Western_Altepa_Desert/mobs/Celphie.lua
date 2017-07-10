@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Celphie's Window Open Time
     local wait = math.random(7200,28800);
-    SetServerVariable("[POP]Celphie", os.time(t) + wait); -- 2-8 hours
+    SetServerVariable("[POP]Celphie", os.time() + wait); -- 2-8 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
@@ -26,5 +26,5 @@ function onMobDespawn(mob)
     SetServerVariable("[PH]Celphie", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-  
+
 end;

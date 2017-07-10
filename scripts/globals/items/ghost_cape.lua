@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 16257
---    Ghost Cape
---    Enchantment: 60Min, Costume - Ghost
+-- ID: 16257
+-- Ghost Cape
+-- Enchantment: 60Min, Costume - Ghost
 -----------------------------------------
 
 require("scripts/globals/status");

@@ -227,11 +227,11 @@ function applyHalloweenNpcCostumes(zoneid)
         -- npcID, skinID (skin ID can be found in mob_change_skin Sql table)
         local npc_costume_map = {
             [234] = {
-                [17735787] = 40, -- Proud_Beard - Bastok Mines
+                [17735795] = 40, -- Proud_Beard - Bastok Mines
                 [17735742] = 41, -- Faustin - Bastok Mines
                 [17814119] = 42, -- Aulavia - Bastok Mines
                 [17735744] = 43, -- Mille - Bastok Mines
-                [17735810] = 44  -- Emaliveulaux - Bastok Mines
+                [17735818] = 44  -- Emaliveulaux - Bastok Mines
             },
             [235] = {
                 [17739805] = 45  -- Olwyn - Bastok Markets
@@ -240,7 +240,7 @@ function applyHalloweenNpcCostumes(zoneid)
                 [17719306] = 46, -- Apairemant - Southern Sandoria
                 [17719303] = 47, -- Machielle - Southern Sandoria
                 [17719305] = 48, -- Phamelise - Southern Sandoria
-                [17719485] = 49, -- Pourette - Southern Sandoria
+                [17719493] = 49, -- Pourette - Southern Sandoria
                 [17719304] = 50  -- Corua -- Southern Sandoria
             },
             [231] = {

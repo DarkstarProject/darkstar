@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4637
---    Scroll of Banish II
---    Teaches the white magic Banish II
+-- ID: 4637
+-- Scroll of Banish II
+-- Teaches the white magic Banish II
 -----------------------------------------
 
 -----------------------------------------

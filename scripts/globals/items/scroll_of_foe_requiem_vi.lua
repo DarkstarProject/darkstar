@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4981
---    Scroll of Foe Requiem VI
---    Teaches the song Foe Requiem VI
+-- ID: 4981
+-- Scroll of Foe Requiem VI
+-- Teaches the song Foe Requiem VI
 -----------------------------------------
 
 -----------------------------------------

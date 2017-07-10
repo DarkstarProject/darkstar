@@ -177,14 +177,14 @@ end;
  function getCurePower(caster,isBlueMagic)
     local MND = caster:getStat(MOD_MND);
     local VIT = caster:getStat(MOD_VIT);
-    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);
+    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL);
     local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
     return power;
 end;
 function getCurePowerOld(caster)
     local MND = caster:getStat(MOD_MND);
     local VIT = caster:getStat(MOD_VIT);
-    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL) + caster:getMod(MOD_HEALING);--it's healing magic skill for the BLU cures as well
+    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL);--it's healing magic skill for the BLU cures as well
     local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power;
 end;
@@ -377,11 +377,11 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
         bonusAcc = 0;
     end
 
-    -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
     local magicacc = caster:getMod(MOD_MACC) + caster:getILvlMacc();
 
+    -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
     if (skillType ~= 0) then
-        magicacc = magicacc + caster:getSkillLevel(skillType) + caster:getMod(79 + skillType);
+        magicacc = magicacc + caster:getSkillLevel(skillType);
     else
         -- for mob skills / additional effects which don't have a skill
         magicacc = magicacc + utils.getSkillLvl(1, caster:getMainLvl());
@@ -403,6 +403,10 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
 
     magicacc = magicacc + bonusAcc;
 
+    -- Add macc% from food
+    local maccFood = magicacc * (caster:getMod(MOD_FOOD_MACCP)/100);
+    magicacc = magicacc + utils.clamp(maccFood, 0, caster:getMod(MOD_FOOD_MACC_CAP));
+
     return calculateMagicHitRate(magicacc, magiceva, percentBonus, caster:getMainLvl(), target:getMainLvl());
 end
 
@@ -412,8 +416,6 @@ function calculateMagicHitRate(magicacc, magiceva, percentBonus, casterLvl, targ
     local levelDiff = utils.clamp(casterLvl - targetLvl, -5, 5);
 
     p = 70 - 0.5 * (magiceva - magicacc) + levelDiff * 3 + percentBonus;
-
-    -- printf("P: %f, macc: %f, meva: %f, bonus: %d%%, leveldiff: %d", p, magicacc, magiceva, percentBonus, levelDiff);
 
     return utils.clamp(p, 5, 95);
 end

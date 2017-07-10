@@ -162,7 +162,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(12); -- Samurai Job Unlocked
         player:setVar("ForgeYourDestiny_timer",0);
         player:setVar("ForgeYourDestiny_Event",0);
-        player:addFame(OUTLANDS, 30);
+        player:addFame(NORG, 30);
         player:completeQuest(OUTLANDS, FORGE_YOUR_DESTINY);
     elseif (csid == 0x008b and option == 1) then
         player:addQuest(OUTLANDS,THE_SACRED_KATANA);
@@ -174,7 +174,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Wait1DayForYomiOkuri",VanadielDayOfTheYear());
         player:addItem(17812);
         player:messageSpecial(ITEM_OBTAINED,17812); -- Magoroku
-        player:addFame(OUTLANDS,AF1_FAME);
+        player:addFame(NORG,AF1_FAME);
         player:completeQuest(OUTLANDS,THE_SACRED_KATANA);
     elseif (csid == 0x0092 and option == 1) then
         player:addQuest(OUTLANDS,YOMI_OKURI);
@@ -200,7 +200,7 @@ function onEventFinish(player,csid,option)
             player:setVar("yomiOkuriCS",0);
             player:needToZone(true);
             player:setVar("Wait1DayForAThiefinNorg_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(OUTLANDS,AF2_FAME);
+            player:addFame(NORG,AF2_FAME);
             player:completeQuest(OUTLANDS,YOMI_OKURI);
         end
     elseif (csid == 0x009e and option == 1) then
@@ -232,7 +232,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(PARAGON_OF_SAMURAI_EXCELLENCE);
             player:setVar("aThiefinNorgCS",0);
             player:setVar("Wait1DayForAThiefinNorg2_date",0);
-            player:addFame(OUTLANDS,AF3_FAME);
+            player:addFame(NORG,AF3_FAME);
             player:completeQuest(OUTLANDS,A_THIEF_IN_NORG);
         end
     end

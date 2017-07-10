@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4880
---    Scroll of Absorb-CHR
---    Teaches the black magic Absorb-CHR
+-- ID: 4880
+-- Scroll of Absorb-CHR
+-- Teaches the black magic Absorb-CHR
 -----------------------------------------
 
 -----------------------------------------

@@ -4,10 +4,10 @@
 --  Type: Travelling Merchant NPC / NPC Quiver Maker / Bastok 1st Place
 -- @zone 236
 -- @pos 112.667 7.455 -46.174
---
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Port_Bastok/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -15,55 +15,55 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 
 function onTrade(player,npc,trade)
     local count = trade:getItemCount();
-    local carnation    = trade:getItemQty(948)
+    local carnation   = trade:getItemQty(948)
     ----------------ARROWS----------------------------
-    local antlion    =    (trade:getItemQty(19195) / 99)
-    local beetle    =    (trade:getItemQty(18154) / 99)
-    local demon        =    (trade:getItemQty(18159) / 99)
-    local gargou    =    (trade:getItemQty(19800) / 99)
+    local antlion     =    (trade:getItemQty(19195) / 99)
+    local beetle      =    (trade:getItemQty(18154) / 99)
+    local demon       =    (trade:getItemQty(18159) / 99)
+    local gargou      =    (trade:getItemQty(19800) / 99)
     local horn        =    (trade:getItemQty(18156) / 99)
-    local irona        =    (trade:getItemQty(17320) / 99)
-    local kabura    =    (trade:getItemQty(17325) / 99)
-    local ruszor    =    (trade:getItemQty(19182) / 99)
+    local irona       =    (trade:getItemQty(17320) / 99)
+    local kabura      =    (trade:getItemQty(17325) / 99)
+    local ruszor      =    (trade:getItemQty(19182) / 99)
     local scorpion    =    (trade:getItemQty(18155) / 99)
-    local silvera    =    (trade:getItemQty(17321) / 99)
-    local sleepa    =    (trade:getItemQty(18158) / 99)
+    local silvera     =    (trade:getItemQty(17321) / 99)
+    local sleepa      =    (trade:getItemQty(18158) / 99)
     ----------------BOLTS-----------------------------
     local acid        =    (trade:getItemQty(18148) / 99)
-    local adamana    =    (trade:getItemQty(19801) / 99)
-    local blind        =    (trade:getItemQty(18150) / 99)
-    local bloody    =    (trade:getItemQty(18151) / 99)
-    local darka        =    (trade:getItemQty(19183) / 99)
+    local adamana     =    (trade:getItemQty(19801) / 99)
+    local blind       =    (trade:getItemQty(18150) / 99)
+    local bloody      =    (trade:getItemQty(18151) / 99)
+    local darka       =    (trade:getItemQty(19183) / 99)
     local darkling    =    (trade:getItemQty(19196) / 99)
-    local darksteel    =    (trade:getItemQty(17338) / 99)
-    local fusion    =    (trade:getItemQty(19197) / 99)
+    local darksteel   =    (trade:getItemQty(17338) / 99)
+    local fusion      =    (trade:getItemQty(19197) / 99)
     local holy        =    (trade:getItemQty(18153) / 99)
-    local mythril    =    (trade:getItemQty(17337) / 99)
-    local sleepb    =    (trade:getItemQty(18149) / 99)
-    local venom        =    (trade:getItemQty(18152) / 99)
+    local mythril     =    (trade:getItemQty(17337) / 99)
+    local sleepb      =    (trade:getItemQty(18149) / 99)
+    local venom       =    (trade:getItemQty(18152) / 99)
     ----------------BULLETS---------------------------
-    local adamanb    =    (trade:getItemQty(19803) / 99)
-    local bullet    =    (trade:getItemQty(17340) / 99)
-    local bronze    =    (trade:getItemQty(17343) / 99)
-    local darkb        =    (trade:getItemQty(19184) / 99)
-    local dweomer    =    (trade:getItemQty(19198) / 99)
-    local ironb        =    (trade:getItemQty(17312) / 99)
-    local oberons    =    (trade:getItemQty(19199) / 99)
-    local orichalcum=    (trade:getItemQty(19802) / 99)
-    local silverb    =    (trade:getItemQty(17341) / 99)
-    local steel        =    (trade:getItemQty(18723) / 99)
-    local spartan    =    (trade:getItemQty(18160) / 99)
+    local adamanb     =    (trade:getItemQty(19803) / 99)
+    local bullet      =    (trade:getItemQty(17340) / 99)
+    local bronze      =    (trade:getItemQty(17343) / 99)
+    local darkb       =    (trade:getItemQty(19184) / 99)
+    local dweomer     =    (trade:getItemQty(19198) / 99)
+    local ironb       =    (trade:getItemQty(17312) / 99)
+    local oberons     =    (trade:getItemQty(19199) / 99)
+    local orichalcum  =    (trade:getItemQty(19802) / 99)
+    local silverb     =    (trade:getItemQty(17341) / 99)
+    local steel       =    (trade:getItemQty(18723) / 99)
+    local spartan     =    (trade:getItemQty(18160) / 99)
     ----------------CARDS-----------------------------
     local fire        =    (trade:getItemQty(2176) / 99)
-    local ice        =    (trade:getItemQty(2177) / 99)
+    local ice         =    (trade:getItemQty(2177) / 99)
     local wind        =    (trade:getItemQty(2178) / 99)
-    local earth        =    (trade:getItemQty(2179) / 99)
-    local thunder    =    (trade:getItemQty(2180) / 99)
-    local water        =    (trade:getItemQty(2181) / 99)
-    local light        =    (trade:getItemQty(2182) / 99)
+    local earth       =    (trade:getItemQty(2179) / 99)
+    local thunder     =    (trade:getItemQty(2180) / 99)
+    local water       =    (trade:getItemQty(2181) / 99)
+    local light       =    (trade:getItemQty(2182) / 99)
     local dark        =    (trade:getItemQty(2183) / 99)
 -----------------------------------------------------
-    
+
     local quiver = (antlion + beetle + demon + gargou + horn + irona + kabura + ruszor + scorpion + silvera + sleepa + acid + adamana + blind + bloody + darka + darkling + darksteel + fusion + holy + mythril + sleepb + venom + adamanb + bullet + bronze + darkb + dweomer + ironb + oberons + orichalcum + silverb + steel + spartan + fire + ice + wind + earth + thunder + water + light + dark)
     if (((quiver * 99) + carnation) == count) then
         if ((quiver == math.floor(quiver)) and (quiver == carnation) and (player:getFreeSlotsCount() >= carnation)) then
@@ -242,53 +242,54 @@ function onTrade(player,npc,trade)
             end
         end
     end
---948    - carnation
---SINGLE--ARROWS----------------STACK
---19195    - antlion arrow        -    5819
---18154    - beetle arrow        -    4221
---18159    - demon arrow        -    4224
---19800    - gargouille arrow    -    5912
---18156    - horn arrow        -    4222
---17320    - iron arrow        -    4225
---17325    - kabura arrow        -    5332
---19182    - ruszor arrow        -    5871
---18155    - scorpion arrow    -    4223
---17321    - silver arrow        -    4226
---18158    - sleep arrow        -    5333
-----------BOLTS-----------------------
---18148    - acid bolt            -    5335
---19801    - adaman bolt        -    5913
---18150    - blind bolt        -    5334
---18151    - bloody bolt        -    5339
---19183    - dark adaman bolt    -    5872
---19196    - darkling bolt        -    5820
---17338    - darksteel bolt    -    4229
---19197 - fusion bolt        -    5821
---18153    - holy bolt            -    5336
---17337    - mythril bolt        -    4228
---18149 - sleep bolt         -    5337
---18152 - venom bolt        -    5338
-----------BULLETS---------------------
---19803    - adaman bullet        -    5915    
---17340    - bullet            -    5363
---17343    - bronze bullet        -    5359
---19184    - dark adaman bullet-    5873
---19198    - dweomer bullet    -    5822
---17312    - iron bullet        -    5353
---19199    - oberon's bullet    -    5823
---19802    - orichalcum bullet -    5914
---17341    - silver bullet        -    5340
---18723    - steel bullet        -    5416
---18160    - spartan bullet    -    5341
-----------CARDS-----------------------
---2176    - fire card            -    5402
---2177    - ice card            -    5403
---2178    - wind card            -    5404
---2179    - earth card        -    5405
---2180    - thunder card        -    5406
---2181    - water card        -    5407
---2182    - light card        -    5408
---2183    - dark card            -    5409
+
+-- 948      - carnation
+-- SINGLE -- ARROWS---------------- STACK
+-- 19195    - antlion arrow      -    5819
+-- 18154    - beetle arrow       -    4221
+-- 18159    - demon arrow        -    4224
+-- 19800    - gargouille arrow   -    5912
+-- 18156    - horn arrow         -    4222
+-- 17320    - iron arrow         -    4225
+-- 17325    - kabura arrow       -    5332
+-- 19182    - ruszor arrow       -    5871
+-- 18155    - scorpion arrow     -    4223
+-- 17321    - silver arrow       -    4226
+-- 18158    - sleep arrow        -    5333
+---------- BOLTS -----------------------
+-- 18148    - acid bolt          -    5335
+-- 19801    - adaman bolt        -    5913
+-- 18150    - blind bolt         -    5334
+-- 18151    - bloody bolt        -    5339
+-- 19183    - dark adaman bolt   -    5872
+-- 19196    - darkling bolt      -    5820
+-- 17338    - darksteel bolt     -    4229
+-- 19197    - fusion bolt        -    5821
+-- 18153    - holy bolt          -    5336
+-- 17337    - mythril bolt       -    4228
+-- 18149    - sleep bolt         -    5337
+-- 18152    - venom bolt         -    5338
+---------- BULLETS ---------------------
+-- 19803    - adaman bullet      -    5915
+-- 17340    - bullet             -    5363
+-- 17343    - bronze bullet      -    5359
+-- 19184    - dark adaman bullet -    5873
+-- 19198    - dweomer bullet     -    5822
+-- 17312    - iron bullet        -    5353
+-- 19199    - oberon's bullet    -    5823
+-- 19802    - orichalcum bullet  -    5914
+-- 17341    - silver bullet      -    5340
+-- 18723    - steel bullet       -    5416
+-- 18160    - spartan bullet     -    5341
+---------- CARDS -----------------------
+-- 2176    - fire card           -    5402
+-- 2177    - ice card            -    5403
+-- 2178    - wind card           -    5404
+-- 2179    - earth card          -    5405
+-- 2180    - thunder card        -    5406
+-- 2181    - water card          -    5407
+-- 2182    - light card          -    5408
+-- 2183    - dark card           -    5409
 --------------------------------------
 end;
 
@@ -317,4 +318,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

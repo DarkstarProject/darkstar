@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Dune_Widow's Window Open Time
     local wait = math.random(1,5) * 3600;
-    SetServerVariable("[POP]Dune_Widow", os.time(t) + wait); -- 1-5 hours
+    SetServerVariable("[POP]Dune_Widow", os.time() + wait); -- 1-5 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

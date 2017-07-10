@@ -69,7 +69,7 @@ SandInv = {0x80A1,0x000A,0x1055,0x80A0,0x0007,0x1056,0x80A3,0x2328,0x3CB5,
            0x8060,0x7D00,0x4932,0x8072,0x9C40,0x3354,0x8070,0x9C40,0x36BD,
            0x8071,0x9C40,0x36BE,0x8083,0xBB80,0x41FD,0x8080,0xBB80,0x4239,
            0x8082,0xBB80,0x4432,0x8081,0xBB80,0x460E,0x8090,0xDAC0,0x385C,
-           0x80A4,0x1388,0x44AF};
+           0x80A4,0x1388,0x44AF,0x80A8,0x1388,0x6F7C};
 
 -----------------------------------
 -- Bastok inventory
@@ -95,7 +95,8 @@ BastInv = {0x80A1,0x000A,0x1055,0x80A0,0x0007,0x1056,0x80A3,0x2328,0x3CB5,
            0x8062,0x7D00,0x34F6,0x8060,0x7D00,0x3E55,0x8061,0x7D00,0x458F,
            0x8072,0x9C40,0x3355,0x8071,0x9C40,0x3638,0x8070,0x9C40,0x36BF,
            0x8080,0xBB80,0x419F,0x8081,0xBB80,0x4431,0x8083,0xBB80,0x44F7,
-           0x8082,0xBB80,0x4714,0x8090,0xDAC0,0x385D,0x80A4,0x1388,0x44B0};
+           0x8082,0xBB80,0x4714,0x8090,0xDAC0,0x385D,0x80A4,0x1388,0x44B0,
+           0x80A8,0x1388,0x6F7C};
 
 -----------------------------------
 -- Windurst inventory
@@ -123,7 +124,7 @@ WindInv = {0x80A1,0x000A,0x1055,0x8044,0x3E80,0x31BE,0x8025,0x0FA0,0x32B6,
            0x8017,0x07D0,0x4222,0x8082,0xBB80,0x4464,0x8090,0xDAC0,0x385E,
            0x8010,0x07D0,0x42CF,0x8081,0xBB80,0x447A,0x8023,0x0FA0,0x31B6,
            0x8021,0x0FA0,0x30B6,0x8083,0xBB80,0x44D1,0x8080,0xBB80,0x46E1,
-           0x8022,0x0FA0,0x3136};
+           0x8022,0x0FA0,0x3136,0x80A8,0x1388,0x6F7C};
 
 -----------------------------------
 -- Crystal Donate Array
@@ -586,7 +587,7 @@ switch (region): caseof {
   ---------------------------------
     --print("RONFAURE");
 
-    local Doladepaiton = 17187521;
+    local Doladepaiton = 17187525;
 
     npc  = {
     --
@@ -617,7 +618,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ZULKHEIM");
 
-    local Quanteilleron = 17199705;
+    local Quanteilleron = 17199709;
 
     npc  = {
     --
@@ -648,7 +649,7 @@ switch (region): caseof {
   ---------------------------------
     --print("NORVALLEN");
 
-    local Chaplion = 17203844;
+    local Chaplion = 17203848;
 
     npc  = {
     --
@@ -679,7 +680,7 @@ switch (region): caseof {
   ---------------------------------
     --print("GUSTABERG");
 
-    local Ennigreaud = 17212056;
+    local Ennigreaud = 17212060;
 
     npc  = {
     --
@@ -710,7 +711,7 @@ switch (region): caseof {
   ---------------------------------
     --print("DERFLAND");
 
-    local Mesachedeau = 17224322;
+    local Mesachedeau = 17224326;
 
     npc  = {
     --
@@ -741,7 +742,7 @@ switch (region): caseof {
   ---------------------------------
     --print("SARUTABARUTA");
 
-    local Naguipeillont = 17248853;
+    local Naguipeillont = 17248825;
 
     npc  = {
     --
@@ -803,7 +804,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ARAGONEU");
 
-    local Chegourt = 17265267;
+    local Chegourt = 17265271;
 
     npc  = {
     --
@@ -834,7 +835,7 @@ switch (region): caseof {
   ---------------------------------
     --print("FAUREGANDI");
 
-    local Parledaire = 17232205;
+    local Parledaire = 17232209;
 
     npc  = {
     --
@@ -865,7 +866,7 @@ switch (region): caseof {
   ---------------------------------
     --print("VALDEAUNIA");
 
-    local Jeantelas = 17236286;
+    local Jeantelas = 17236290;
 
     npc  = {
     --
@@ -896,7 +897,7 @@ switch (region): caseof {
   ---------------------------------
     --print("QUFIMISLAND");
 
-    local Pitoire = 17293712;
+    local Pitoire = 17293716;
 
     npc  = {
     --
@@ -1082,7 +1083,7 @@ switch (region): caseof {
   ---------------------------------
     --print("TULIA");
     
-    local RuAun_Banner = 17310076;
+    local RuAun_Banner = 17310080;
 
     npc  = {
     --
@@ -1120,7 +1121,7 @@ switch (region): caseof {
   ---------------------------------
     --print("TAVNAZIA");
 
-    local Jemmoquel = 16875861;
+    local Jemmoquel = 16875865;
 
     npc  = {
     --

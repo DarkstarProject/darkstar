@@ -664,9 +664,7 @@ INSERT INTO `mob_spawn_mods` VALUES (16921017,55,180,1);
 -- Jailer of Faith
 INSERT INTO `mob_spawn_mods` VALUES (16921021,55,900,1);
 
--- Gurfurlur the Menacing
-INSERT INTO `mob_spawn_mods` VALUES (17031592,55,180,1);
-
+-- ?
 INSERT INTO `mob_spawn_mods` VALUES (17588701,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588702,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588703,55,180,1);

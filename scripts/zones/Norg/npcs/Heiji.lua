@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
         player:addItem(4955); -- Scroll of Kurayami: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
         player:setVar("shiningSubligar_nb",0);
-        player:addFame(OUTLANDS,100);
+        player:addFame(NORG,100);
         player:completeQuest(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
     end
     

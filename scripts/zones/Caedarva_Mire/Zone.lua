@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/titles");
 require("scripts/globals/zone");
 require("scripts/zones/Caedarva_Mire/TextIDs");
 
@@ -15,13 +16,8 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17101341,17101342,17101343};
-    SetVoidwatchNPC(vwnpc);
-
     -- Aynu-kasey
     SetRespawnTime(17101099, 900, 10800);
-
 end;
 
 -----------------------------------
@@ -39,6 +35,11 @@ function onZoneIn(player,prevZone)
     if (prevZone == 56) then
         player:setPos(-252.715,-7.666,-30.64,128);
     end
+
+    if (player:getCurrentMission(TOAU) == SHADES_OF_VENGEANCE and player:getVar("AhtUrganStatus") == 1) then
+        cs = 21;
+    end
+ 
     return cs;
 end;
 
@@ -76,4 +77,12 @@ end;
 function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
+
+    if (csid == 21) then
+        player:completeMission(TOAU,SHADES_OF_VENGEANCE);
+        player:setVar("AhtUrganStatus", 0);
+        player:setVar("TOAUM31_PERMITDAY", 0);
+        player:setTitle(NASHMEIRAS_MERCENARY);
+        player:addMission(TOAU,IN_THE_BLOOD);
+    end
 end;

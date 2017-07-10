@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5295
---    Elvaan Rice Cake
---    Enchantment: 60Min, Costume - Elvaan Child (female)
+-- ID: 5295
+-- Elvaan Rice Cake
+-- Enchantment: 60Min, Costume - Elvaan Child (female)
 -----------------------------------------
 
 require("scripts/globals/status");

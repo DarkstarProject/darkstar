@@ -110,6 +110,16 @@ CNpcEntity::~CNpcEntity()
 
 }
 
+uint32 CNpcEntity::getEntityFlags()
+{
+    return m_flags;
+}
+
+void CNpcEntity::setEntityFlags(uint32 EntityFlags)
+{
+    m_flags = EntityFlags;
+}
+
 void CNpcEntity::HideModel(bool hide)
 {
     if (hide)

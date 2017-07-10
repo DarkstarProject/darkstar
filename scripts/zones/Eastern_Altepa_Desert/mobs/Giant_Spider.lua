@@ -25,7 +25,7 @@ function onMobDespawn(mob)
 
     if (Dune_Widow_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Dune_Widow");
-        if (ToD <= os.time(t) and GetMobAction(Dune_Widow) == 0) then
+        if (ToD <= os.time() and GetMobAction(Dune_Widow) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Dune_Widow);
                 GetMobByID(Dune_Widow):setRespawnTime(GetMobRespawnTime(mobID));

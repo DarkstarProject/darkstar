@@ -15,9 +15,6 @@ require("scripts/zones/Attohwa_Chasm/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {16806372,16806373,16806374};
-    SetVoidwatchNPC(vwnpc);
-
     -- Poison Flowers!
     zone:registerRegion(1, -475.809, 5, 316.499, 0,0,0);
     zone:registerRegion(2, -440.938, 7, 281.749, 0,0,0);
@@ -115,7 +112,7 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
     local npc = GetNPCByID(16806283);
     if (npc ~= nil) then
         npc:openDoor(); -- Attohwa Chasm miasma

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5018
---    Scroll of Puppets Operetta
---    Teaches the song Puppets Operetta
+-- ID: 5018
+-- Scroll of Puppets Operetta
+-- Teaches the song Puppets Operetta
 -----------------------------------------
 
 -----------------------------------------

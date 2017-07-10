@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4869
---    Scroll of Warp
---    Teaches the black magic Warp
+-- ID: 4869
+-- Scroll of Warp
+-- Teaches the black magic Warp
 -----------------------------------------
 
 -----------------------------------------

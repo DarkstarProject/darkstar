@@ -16,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_WOODWORKING_IMAGERY) == true) then
         result = 236;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

@@ -8,6 +8,7 @@
 -- Vitality 2
 -- Intelligence -3
 -- Mind 3
+-- HP recovered while healing 2
 -- MP recovered while healing 2
 -- Accuracy 5
 -- Attack % 18 (cap 95)
@@ -21,11 +22,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -46,6 +47,7 @@ function onEffectGain(target,effect)
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_INT, -3);
     target:addMod(MOD_MND, 3);
+    target:addMod(MOD_HPHEAL, 2);
     target:addMod(MOD_MPHEAL, 2);
     target:addMod(MOD_ACC, 5);
     target:addMod(MOD_FOOD_ATTP, 18);
@@ -64,6 +66,7 @@ function onEffectLose(target,effect)
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_INT, -3);
     target:delMod(MOD_MND, 3);
+    target:delMod(MOD_HPHEAL, 2);
     target:delMod(MOD_MPHEAL, 2);
     target:delMod(MOD_ACC, 5);
     target:delMod(MOD_FOOD_ATTP, 18);

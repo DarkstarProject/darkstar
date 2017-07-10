@@ -61,7 +61,7 @@ uint16 CItemArmor::getEquipSlotId()
 	return m_equipSlotID;
 }
 
-uint8 CItemArmor::getRemoveSlotId()
+uint16 CItemArmor::getRemoveSlotId()
 {
 	return m_removeSlotID;
 }
@@ -111,7 +111,7 @@ void CItemArmor::setEquipSlotId(uint16 equipSlot)
 	m_equipSlotID = equipSlot;
 }
 
-void CItemArmor::setRemoveSlotId(uint8 removSlot)
+void CItemArmor::setRemoveSlotId(uint16 removSlot)
 {
 	m_removeSlotID = removSlot;
 }
@@ -173,7 +173,7 @@ void CItemArmor::setScriptType(uint16 ScriptType)
 
 void CItemArmor::addModifier(CModifier* modifier)
 {
-    if (IsShield() && modifier->getModID() == MOD_DEF)
+    if (IsShield() && modifier->getModID() == Mod::DEF)
     {
         // reduction calc source: www.bluegartr.com/threads/84830-Shield-Asstery
         // http://www.ffxiah.com/forum/topic/21671/paladin-faq-info-and-trade-studies/33/ <~Aegis and Ochain
@@ -202,7 +202,7 @@ void CItemArmor::addModifier(CModifier* modifier)
     modList.push_back(modifier);
 }
 
-int16 CItemArmor::getModifier(uint16 mod)
+int16 CItemArmor::getModifier(Mod mod)
 {
 	for (uint16 i = 0; i < modList.size(); ++i)
 	{
@@ -214,7 +214,7 @@ int16 CItemArmor::getModifier(uint16 mod)
 	return 0;
 }
 
-void CItemArmor::addPetModifier(CModifier* modifier)
+void CItemArmor::addPetModifier(CPetModifier* modifier)
 {
     petModList.push_back(modifier);
 }
@@ -282,7 +282,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
 
 
     // obtain augment info by querying the db
-    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `type` FROM augments WHERE augmentId = %u";
+    const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
 
     int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
 
@@ -291,21 +291,22 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
         Sql_NextRow(SqlHandle) == SQL_SUCCESS)
     {
         uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
-        uint32 modId = (uint32)Sql_GetUIntData(SqlHandle, 2);
+        Mod modId = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 2));
         int16 modValue = (int16)Sql_GetIntData(SqlHandle, 3);
-        
+
         // type is 0 unless mod is for pets
-        uint8 type = (uint8)Sql_GetUIntData(SqlHandle, 4);
+        uint8 isPet = (uint8)Sql_GetUIntData(SqlHandle, 4);
+        PetModType petType = static_cast<PetModType>(Sql_GetIntData(SqlHandle, 5));
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier
         // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
         modValue = (modValue > 0 ? modValue + value : modValue - value) * (multiplier > 1 ? multiplier : 1);
 
-        if (!type)
+        if (!isPet)
             addModifier(new CModifier(modId, modValue));
         else
-            addPetModifier(new CModifier(modId, modValue));
+            addPetModifier(new CPetModifier(modId, petType, modValue));
     }
 }
 

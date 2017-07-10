@@ -26,6 +26,7 @@
 
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
+#include "modifier.h"
 
 enum LATENT
 {
@@ -101,7 +102,7 @@ public:
     LATENT      GetConditionsID();
     uint16      GetConditionsValue();
     uint8       GetSlot();
-    uint16      GetModValue();
+    Mod         GetModValue();
     int16       GetModPower();
     bool        IsActivated();
     uint16      GetFlag();
@@ -111,7 +112,7 @@ public:
     void    SetConditionsId(LATENT id);
     void    SetConditionsValue(uint16 value);
     void    SetSlot(uint8 slot);
-    void    SetModValue(uint16 value);
+    void    SetModValue(Mod value);
     void    SetModPower(int16 power);
     void    Activate();
     void    Deactivate();
@@ -121,7 +122,7 @@ public:
          LATENT conditionsId,
          uint16 conditionsValue,
          uint8 slot, 
-         uint16 modValue, 
+         Mod modValue, 
          int16 modPower
     );
 
@@ -134,7 +135,7 @@ private:
     LATENT      m_ConditionsID;         //condition type to be true
     uint16      m_ConditionsValue;      //condition parameter to be met
     uint8       m_SlotID;               //slot associated with latent
-    uint16      m_ModValue;             //mod ID to be applied when active
+    Mod         m_ModValue;             //mod ID to be applied when active
     uint16      m_ModPower;             //power of mod to be applied when active
     bool        m_Activated;            //active or not active
 };

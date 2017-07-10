@@ -28,6 +28,7 @@
 #include "bazaar_confirmation.h"
 
 #include "../entities/charentity.h"
+#include "../utils/itemutils.h"
 
 
 CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 SlotID, uint8 Quantity)
@@ -40,4 +41,18 @@ CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, uint8 S
 	WBUFB(data,(0x20)) = SlotID;
 
 	memcpy(data+(0x10), PChar->GetName(), PChar->name.size());	
+}
+
+CBazaarConfirmationPacket::CBazaarConfirmationPacket(CCharEntity* PChar, CItem* PItem)
+{
+    this->type = 0x0A;  // 0x10A
+    this->size = 0x11;
+
+    if (PItem)
+    {
+        ref<uint32>(0x04) = PItem->getQuantity();
+        ref<uint16>(0x08) = PItem->getID();
+    }
+
+    memcpy(data + (0x0A), PChar->GetName(), PChar->name.size());
 }

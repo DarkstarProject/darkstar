@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4741
---    Scroll of Shellra IV
---    Teaches the white magic Shellra IV
+-- ID: 4741
+-- Scroll of Shellra IV
+-- Teaches the white magic Shellra IV
 -----------------------------------------
 
 -----------------------------------------

@@ -6,10 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/status");
-require("scripts/globals/crafting");
 require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/globals/crafting");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
@@ -63,7 +62,7 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(4096);
             player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
-            signupGuild(player,256);
+            signupGuild(player, guild.smithing);
         end
     end
 end;

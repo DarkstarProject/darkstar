@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4958
---    Scroll of Dokumori: Ichi
---    Teaches the ninjutsu Dokumori: Ichi
+-- ID: 4958
+-- Scroll of Dokumori: Ichi
+-- Teaches the ninjutsu Dokumori: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4857
---    Scroll of Blaze Spikes
---    Teaches the black magic Blaze Spikes
+-- ID: 4857
+-- Scroll of Blaze Spikes
+-- Teaches the black magic Blaze Spikes
 -----------------------------------------
 
 -----------------------------------------

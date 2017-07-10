@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RaKaznar_Inner_Court
 -- NPC:  HomePoint#1
--- @pos 
+-- @pos 757 120 17.5 276
 -----------------------------------
 
 package.loaded["scripts/zones/RaKaznar_Inner_Court/TextIDs"] = nil;

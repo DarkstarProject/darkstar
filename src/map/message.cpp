@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 #include "entities/charentity.h"
 
 #include "packets/message_standard.h"
+#include "packets/message_system.h"
 #include "packets/party_invite.h"
 #include "packets/server_ip.h"
 
@@ -201,6 +202,18 @@ namespace message
                     send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
                     return;
                 }
+                // check /blockaid
+                if (PInvitee->getBlockingAid())
+                {
+                    WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
+                    // Target is blocking assistance
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageSystemPacket(0, 0, 225));
+                    // Interaction was blocked
+                    PInvitee->pushPacket(new CMessageSystemPacket(0, 0, 226));
+                    // You cannot invite that person at this time.
+                    send(MSG_DIRECT, extra->data(), sizeof(uint32), new CMessageStandardPacket(PInvitee, 0, 0, 23));
+                    break;
+                }
                 if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
                 {
                     WBUFL(extra->data(), 0) = RBUFL(extra->data(), 6);
@@ -282,14 +295,27 @@ namespace message
         }
         case MSG_PT_RELOAD:
         {
-            CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
-            if (PChar)
+            if (extra->size() == 8)
             {
-                PChar->ForAlliance([](CBattleEntity* PMember)
+                CCharEntity* PChar = zoneutils::GetCharToUpdate(RBUFL(extra->data(), 4), RBUFL(extra->data(), 0));
+                if (PChar)
                 {
-                    ((CCharEntity*)PMember)->ReloadPartyInc();
-                });
+                    PChar->ReloadPartyInc();
+                    break;
+                }
             }
+            else
+            {
+                CCharEntity* PChar = zoneutils::GetChar(RBUFL(extra->data(), 0));
+                if (PChar)
+                {
+                    PChar->ForAlliance([](CBattleEntity* PMember)
+                    {
+                        ((CCharEntity*)PMember)->ReloadPartyInc();
+                    });
+                }
+            }
+
             break;
         }
         case MSG_PT_DISBAND:
@@ -407,11 +433,11 @@ namespace message
     {
         SqlHandle = Sql_Malloc();
 
-        if (Sql_Connect(SqlHandle, map_config.mysql_login,
-            map_config.mysql_password,
-            map_config.mysql_host,
+        if (Sql_Connect(SqlHandle, map_config.mysql_login.c_str(),
+            map_config.mysql_password.c_str(),
+            map_config.mysql_host.c_str(),
             map_config.mysql_port,
-            map_config.mysql_database) == SQL_ERROR)
+            map_config.mysql_database.c_str()) == SQL_ERROR)
         {
             exit(EXIT_FAILURE);
         }

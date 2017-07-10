@@ -12,6 +12,7 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
 
 before_script:
+  - g++ --version
   - sh autogen.sh
   - mysql -u root -e 'create database dspdb_test;'
 

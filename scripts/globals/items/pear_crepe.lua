@@ -5,7 +5,7 @@
 -----------------------------------------
 -- Intelligence +2
 -- MP Healing +2
--- Magic Accuracy +5
+-- Magic Accuracy +20% (cap 45)
 -- Magic Defense +1
 -----------------------------------------
 
@@ -16,7 +16,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
@@ -37,9 +37,10 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_INT, 2);
-    target:addMod(MOD_MPHEAL, 2);
-    target:addMod(MOD_MACC, 5);
+    target:addMod(MOD_FOOD_MACCP, 20);
+    target:addMod(MOD_FOOD_MACC_CAP, 45);
     target:addMod(MOD_MDEF, 1);
+    target:addMod(MOD_MPHEAL, 2);
 end;
 
 -----------------------------------------
@@ -48,7 +49,8 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_INT, 2);
-    target:delMod(MOD_MPHEAL, 2);
-    target:delMod(MOD_MACC, 5);
+    target:delMod(MOD_FOOD_MACCP, 20);
+    target:delMod(MOD_FOOD_MACC_CAP, 45);
     target:delMod(MOD_MDEF, 1);
+    target:delMod(MOD_MPHEAL, 2);
 end;

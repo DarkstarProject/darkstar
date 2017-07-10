@@ -19,7 +19,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    worked = 0;
     if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
         target:addStatusEffect(EFFECT_REFRESH,2,3,300);
     else

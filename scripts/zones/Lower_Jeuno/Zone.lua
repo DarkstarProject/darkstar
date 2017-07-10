@@ -6,18 +6,18 @@
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
-require("scripts/zones/Lower_Jeuno/TextIDs");
-require("scripts/globals/settings");
 require("scripts/globals/missions");
+require("scripts/globals/pathfind");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/zones/Lower_Jeuno/NPCIDs");
+require("scripts/zones/Lower_Jeuno/TextIDs");
 
 -----------------------------------
 -- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17780974};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
 end;
 
@@ -82,18 +82,50 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
     local VanadielHour = VanadielHour();
-
+    local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
+    local playerOnQuest = GetPlayerByID(playerOnQuestId);
+    
     -- Community Service Quest
-    if (VanadielHour == 1) then
-        if (GetServerVariable("[JEUNO]CommService") == 0) then
-            GetNPCByID(17780880):setStatus(0); -- Vhana Ehgaklywha
-            GetNPCByID(17780880):initNpcAi();
-        end;
+    -- 7AM: it's daytime. turn off all the lights
+    if (VanadielHour == 7) then
+        for i=0,11 do
+            local lamp = GetNPCByID(lampIdOffset + i);
+            lamp:setAnimation(ANIMATION_CLOSE_DOOR);
+        end
 
-    elseif (VanadielHour == 5) then
+    -- 8PM: make quest available
+    -- notify anyone in zone with membership card that zauko is recruiting
+    elseif (VanadielHour == 20) then        
         SetServerVariable("[JEUNO]CommService",0);
+        local players = zone:getPlayers();
+        for name, player in pairs(players) do
+            if player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) then
+                player:messageSpecial(ZAUKO_IS_RECRUITING);
+            end
+        end
+        
+    -- 9PM: notify the person on the quest that they can begin lighting lamps
+    elseif (VanadielHour == 21) then
+        local playerOnQuest = GetPlayerByID(GetServerVariable("[JEUNO]CommService"));
+        if playerOnQuest then
+            playerOnQuest:startEvent(0x0072);
+        end
+        
+    -- 1AM: if nobody has accepted the quest yet, NPC Vhana Ehgaklywha takes up the task
+    -- she starts near Zauko and paths all the way to the Rolanberry exit.
+    -- PATHFLAG_WALLHACK because she gets stuck on some terrain otherwise.
+    elseif (VanadielHour == 1) then
+        if (playerOnQuestId == 0) then
+            local npc = GetNPCByID(vhana);
+            npc:clearPath();
+            npc:setStatus(0);
+            npc:initNpcAi();
+            npc:setPos(pathfind.first(lampPath));
+            npc:pathThrough(pathfind.fromStart(lampPath), bit.bor(PATHFLAG_RUN,PATHFLAG_WALLHACK));
+        end
+
     end
 end;
 

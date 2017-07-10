@@ -141,12 +141,14 @@ GOV_EVENT_QUICKSAND_CAVES        = 15;
 ----------------------------------
 
 function startGov(eventid,player)
-    if (GROUNDS_TOMES == 1) then
-       local hasRegime = player:getVar("fov_regimeid");
-       local tabs = player:getCurrency("valor_point");
-       player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
-	end;
-end
+    if (ENABLE_GROUNDS_TOMES == 1) then
+        local hasRegime = player:getVar("fov_regimeid");
+        local tabs = player:getCurrency("valor_point");
+        player:startEvent(eventid,0,0,0,0,0,0,tabs,hasRegime);
+    else
+        player:PrintToPlayer("Disabled.");
+    end
+end;
 
 ----------------------------------
 -- GoV onEventUpdate
@@ -493,6 +495,15 @@ function checkGoVregime(player,mob,rid,index)
                         -- Complete regime
                         player:messageBasic(GOV_MSG_COMPLETED_REGIME);
                         local reward = getGoVregimeReward(rid);
+
+                        -- adjust reward down if regime is higher than mob level cap
+                        -- example: if you have mobs capped at level 80, and the regime is level 100, you will only get 80% of the reward
+                        if NORMAL_MOB_MAX_LEVEL_RANGE_MAX > 0 and fov_info[6] > NORMAL_MOB_MAX_LEVEL_RANGE_MAX then
+                            local avgCapLevel = (NORMAL_MOB_MAX_LEVEL_RANGE_MIN + NORMAL_MOB_MAX_LEVEL_RANGE_MAX)/2;
+                            local avgMobLevel = (fov_info[5] + fov_info[6])/2;
+                            reward = math.floor(reward * avgCapLevel/avgMobLevel);
+                        end
+
                         local RewardCAP = reward * 2;
                         local GoV_clears = 0;
                         local tabs = (math.floor(reward/10)*TABS_RATE);

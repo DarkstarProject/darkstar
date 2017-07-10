@@ -5,8 +5,8 @@
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 56;
-local zone = target:getZoneID();
+    local result = 56;
+    local zone = target:getZoneID();
     if (zone == 238 or zone == 239 or zone == 240 or zone == 241 or zone == 242 or -- Windurst
         zone == 234 or zone == 235 or zone == 236 or zone == 237 or -- Bastok
         zone == 230 or zone == 231 or zone == 232 or zone == 233 or -- San d'Oria
@@ -18,7 +18,7 @@ local zone = target:getZoneID();
         zone == 53) -- Nashmau
         then result = 0;
     end;
-return result;
+    return result;
 end;
 
 function onItemUse(target)

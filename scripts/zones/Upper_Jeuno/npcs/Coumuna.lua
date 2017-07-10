@@ -1,39 +1,48 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Coumuna
+--  NPC: Coumuna
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
+require("scripts/globals/shop");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-player:showText(npc,COUMUNA_SHOP_DIALOG);
-
-stock = {0x4141,4186, -- Greataxe
-     0x4086,31000, -- Mythril Degen
-     0x404C,11128, -- Kris 
-     0x4053,14560, -- Mythril Knife
-     0x400F,15488, -- Katars
-     0x40CD,13926, -- Two-Handed Sword
-     0x401C,29760, -- Mythril Claws
-     0x40B7,85250} -- Knight's Sword
- 
-showShop(player, STATIC, stock);
-end; 
+    local stock =
+    {
+        16705, 4550,  -- Greataxe
+        16518, 31000, -- Mythril Degen
+        16460, 12096, -- Kris
+        16467, 14560, -- Mythril Knife
+        16399, 15488, -- Katars
+        16589, 13962, -- Two-Handed Sword
+        16412, 29760, -- Mythril Claws
+        16567, 85250, -- Knight's Sword
+        16644, 48600, -- Mythril Axe
+        17061, 6256,  -- Mythril Rod
+        17027, 11232, -- Oak Cudgel
+        17036, 18048, -- Mythril Mace
+        17044, 6558,  -- Warhammer
+        17098, 37440, -- Oak Pole
+        16836, 44550, -- Halberd
+        16774, 10596, -- Scythe
+        17320, 8      -- Iron Arrow
+    }
+    player:showText(npc,COUMUNA_SHOP_DIALOG);
+    showShop(player, STATIC, stock);
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -52,4 +61,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

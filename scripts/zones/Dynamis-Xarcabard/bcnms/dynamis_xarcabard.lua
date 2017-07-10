@@ -6,7 +6,7 @@
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     
-    SetServerVariable("[DynaXarcabard]UniqueID",player:getDynamisUniqueID(1285));
+    SetServerVariable("[DynaXarcabard]UniqueID",os.time());
     SetServerVariable("[DynaXarcabard]TE43_Trigger",0);
     SetServerVariable("[DynaXarcabard]TE60_Trigger",0);
     SetServerVariable("[DynaXarcabard]TE150_Trigger",0);

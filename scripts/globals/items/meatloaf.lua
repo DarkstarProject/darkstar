@@ -6,7 +6,7 @@
 -- Strength 6
 -- Agility 2
 -- Intelligence -3
--- Attack 20% Cap 75
+-- Attack 18% Cap 90
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -16,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD)) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -39,8 +39,8 @@ function onEffectGain(target,effect)
     target:addMod(MOD_STR, 6);
     target:addMod(MOD_AGI, 2);
     target:addMod(MOD_INT, -3);
-    target:addMod(MOD_FOOD_ATTP, 20);
-    target:addMod(MOD_FOOD_ATT_CAP, 75);
+    target:addMod(MOD_FOOD_ATTP, 18);
+    target:addMod(MOD_FOOD_ATT_CAP, 90);
 end;
 
 -----------------------------------------
@@ -51,6 +51,6 @@ function onEffectLose(target,effect)
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_AGI, 2);
     target:delMod(MOD_INT, -3);
-    target:delMod(MOD_FOOD_ATTP, 20);
-    target:delMod(MOD_FOOD_ATT_CAP, 75);
+    target:delMod(MOD_FOOD_ATTP, 18);
+    target:delMod(MOD_FOOD_ATT_CAP, 90);
 end;

@@ -15,10 +15,6 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17175418,17175419,17175420};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------
@@ -44,9 +40,9 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
     local GameHour = 150; -- Seconds per VanadielHour
-    local npc = GetNPCByID(17175338); -- Indescript Markings
+    local npc = GetNPCByID(17175342); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 17) then
             npc:setStatus(STATUS_DISAPPEAR);

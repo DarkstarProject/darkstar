@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4772
---    Scroll of Thunder
---    Teaches the black magic Thunder
+-- ID: 4772
+-- Scroll of Thunder
+-- Teaches the black magic Thunder
 -----------------------------------------
 
 -----------------------------------------

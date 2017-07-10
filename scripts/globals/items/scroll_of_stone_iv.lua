@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4770
---    Scroll of Stone IV
---    Teaches the black magic Stone IV
+-- ID: 4770
+-- Scroll of Stone IV
+-- Teaches the black magic Stone IV
 -----------------------------------------
 
 -----------------------------------------

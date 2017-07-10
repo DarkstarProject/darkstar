@@ -14,7 +14,7 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17371604);
+    UpdateTreasureSpawnPoint(17371608);
 end;
 
 -----------------------------------

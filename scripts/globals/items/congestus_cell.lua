@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION)
+    local debilitation = target:getStatusEffect(EFFECT_DEBILITATION);
     if (debilitation) then
         local power = debilitation:getPower()
         if bit.band(power, 0x004) > 0 then

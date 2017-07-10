@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5043
---    Scroll of Sage Etude
---    Teaches the song Sage Etude
+-- ID: 5043
+-- Scroll of Sage Etude
+-- Teaches the song Sage Etude
 -----------------------------------------
 
 -----------------------------------------

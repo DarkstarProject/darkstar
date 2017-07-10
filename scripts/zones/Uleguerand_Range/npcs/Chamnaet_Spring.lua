@@ -3,13 +3,11 @@
 --  NPC:  Chamnaet Spring
 --  Receive Chamnaet Ice upon trading Cotton Pouch
 -- @pos -305.240 3.605 17.977
-
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
 require("scripts/zones/Uleguerand_Range/TextIDs");
+require("scripts/globals/keyitems");
 
 -----------------------------------
 -- onTrade Action
@@ -33,6 +31,4 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
-    
 end;

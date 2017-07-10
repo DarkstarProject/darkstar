@@ -42,6 +42,12 @@ function onTrigger(player,npc)
         end    
     elseif (player:getCurrentMission(COP) == MORE_QUESTIONS_THAN_ANSWERS  and  player:getVar("PromathiaStatus") == 0) then    
         player:startEvent(0x2741);    
+    elseif (player:getCurrentMission(TOAU) == UNRAVELING_REASON) then
+        if (player:getVar("TOAUM40_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
+            player:startEvent(10098,0,0,0,0,0,0,0,0);
+        else
+            player:startEvent(10099);
+        end
     else
         player:startEvent(0x009b);
     end
@@ -53,8 +59,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    -- printf("Update CSID: %u",csid);
+    -- printf("Update RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -62,10 +68,12 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    -- printf("Finish CSID: %u",csid);
+    -- printf("Finish RESULT: %u",option);
 
-    if (csid == 0x0018) then
+    if (csid == 10098) then
+        player:setPos(0,0,0,0,51);
+    elseif (csid == 0x0018) then
         player:setVar("PromathiaStatus",1); -- first cs mission 1.2 has been seen YOU CAN NOW ENTER TO PROMYVION
         player:setVar("FirstPromyvionHolla",1);
         player:setVar("FirstPromyvionMea",1);
@@ -75,5 +83,4 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x273E or 0x2741) then    
         player:setVar("PromathiaStatus",1);    
     end
-    
 end;

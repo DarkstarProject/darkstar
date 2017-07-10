@@ -25,7 +25,7 @@ function onMobDespawn(mob)
 
     if (Jaggedy_Eared_Jack_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Jaggedy_Eared_Jack");
-        if (ToD <= os.time(t) and GetMobAction(Jaggedy_Eared_Jack) == 0) then
+        if (ToD <= os.time() and GetMobAction(Jaggedy_Eared_Jack) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Jaggedy_Eared_Jack);
                 GetMobByID(Jaggedy_Eared_Jack):setRespawnTime(GetMobRespawnTime(mobID));

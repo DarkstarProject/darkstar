@@ -148,7 +148,7 @@ inline int32 CLuaItem::getMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint16 mod = lua_tointeger(L, 1);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
 
     lua_pushinteger(L, PItem->getModifier(mod));
     return 1;
@@ -162,7 +162,7 @@ inline int32 CLuaItem::addMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint32 mod = lua_tointeger(L, 1);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     int32 power = lua_tointeger(L, 2);
 
     PItem->addModifier(new CModifier(mod, power));
@@ -177,7 +177,7 @@ inline int32 CLuaItem::delMod(lua_State* L)
 
     CItemArmor* PItem = (CItemArmor*)m_PLuaItem;
 
-    uint32 mod = lua_tointeger(L, 1);
+    Mod mod = static_cast<Mod>(lua_tointeger(L, 1));
     int32 power = lua_tointeger(L, 2);
 
     PItem->addModifier(new CModifier(mod, -power));

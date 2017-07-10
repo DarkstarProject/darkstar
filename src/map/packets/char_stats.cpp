@@ -51,25 +51,25 @@ CCharStatsPacket::CCharStatsPacket(CCharEntity * PChar)
 
 	memcpy(data+(0x14), &PChar->stats, 14); // TODO: с merits это не прокатит
 
-	WBUFW(data,(0x22)) = dsp_cap(PChar->getMod(MOD_STR), -999 + PChar->stats.STR, 999 - PChar->stats.STR);
-	WBUFW(data,(0x24)) = dsp_cap(PChar->getMod(MOD_DEX), -999 + PChar->stats.DEX, 999 - PChar->stats.DEX);
-	WBUFW(data,(0x26)) = dsp_cap(PChar->getMod(MOD_VIT), -999 + PChar->stats.VIT, 999 - PChar->stats.VIT);
-	WBUFW(data,(0x28)) = dsp_cap(PChar->getMod(MOD_AGI), -999 + PChar->stats.AGI, 999 - PChar->stats.AGI);
-	WBUFW(data,(0x2A)) = dsp_cap(PChar->getMod(MOD_INT), -999 + PChar->stats.INT, 999 - PChar->stats.INT);
-	WBUFW(data,(0x2C)) = dsp_cap(PChar->getMod(MOD_MND), -999 + PChar->stats.MND, 999 - PChar->stats.MND);
-	WBUFW(data,(0x2E)) = dsp_cap(PChar->getMod(MOD_CHR), -999 + PChar->stats.CHR, 999 - PChar->stats.CHR);
+	WBUFW(data,(0x22)) = dsp_cap(PChar->getMod(Mod::STR), -999 + PChar->stats.STR, 999 - PChar->stats.STR);
+	WBUFW(data,(0x24)) = dsp_cap(PChar->getMod(Mod::DEX), -999 + PChar->stats.DEX, 999 - PChar->stats.DEX);
+	WBUFW(data,(0x26)) = dsp_cap(PChar->getMod(Mod::VIT), -999 + PChar->stats.VIT, 999 - PChar->stats.VIT);
+	WBUFW(data,(0x28)) = dsp_cap(PChar->getMod(Mod::AGI), -999 + PChar->stats.AGI, 999 - PChar->stats.AGI);
+	WBUFW(data,(0x2A)) = dsp_cap(PChar->getMod(Mod::INT), -999 + PChar->stats.INT, 999 - PChar->stats.INT);
+	WBUFW(data,(0x2C)) = dsp_cap(PChar->getMod(Mod::MND), -999 + PChar->stats.MND, 999 - PChar->stats.MND);
+	WBUFW(data,(0x2E)) = dsp_cap(PChar->getMod(Mod::CHR), -999 + PChar->stats.CHR, 999 - PChar->stats.CHR);
 
     WBUFW(data,(0x30)) = PChar->ATT();
 	WBUFW(data,(0x32)) = PChar->DEF();
 
-	WBUFW(data,(0x34)) = PChar->getMod(MOD_FIRERES);
-	WBUFW(data,(0x36)) = PChar->getMod(MOD_ICERES);
-	WBUFW(data,(0x38)) = PChar->getMod(MOD_WINDRES);
-	WBUFW(data,(0x3A)) = PChar->getMod(MOD_EARTHRES);
-	WBUFW(data,(0x3C)) = PChar->getMod(MOD_THUNDERRES);
-	WBUFW(data,(0x3E)) = PChar->getMod(MOD_WATERRES);
-	WBUFW(data,(0x40)) = PChar->getMod(MOD_LIGHTRES);
-	WBUFW(data,(0x42)) = PChar->getMod(MOD_DARKRES);
+	WBUFW(data,(0x34)) = PChar->getMod(Mod::FIRERES);
+	WBUFW(data,(0x36)) = PChar->getMod(Mod::ICERES);
+	WBUFW(data,(0x38)) = PChar->getMod(Mod::WINDRES);
+	WBUFW(data,(0x3A)) = PChar->getMod(Mod::EARTHRES);
+	WBUFW(data,(0x3C)) = PChar->getMod(Mod::THUNDERRES);
+	WBUFW(data,(0x3E)) = PChar->getMod(Mod::WATERRES);
+	WBUFW(data,(0x40)) = PChar->getMod(Mod::LIGHTRES);
+	WBUFW(data,(0x42)) = PChar->getMod(Mod::DARKRES);
 
 	WBUFW(data,(0x44)) = PChar->profile.title;
 	WBUFB(data,(0x46)) = PChar->profile.rank[PChar->profile.nation];

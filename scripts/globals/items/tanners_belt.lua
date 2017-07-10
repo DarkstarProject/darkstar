@@ -16,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
  
 function onItemCheck(target)
-local result = 0;
-        if (target:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == true) then
-                result = 240;
-        end
-return result;
+    local result = 0;
+    if (target:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == true) then
+        result = 240;
+    end
+    return result;
 end;
  
 -----------------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------------
  
 function onItemUse(target)
-        target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,120);
+    target:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,120);
 end;
  
 -----------------------------------------
@@ -36,7 +36,7 @@ end;
 -----------------------------------------
  
 function onEffectGain(target,effect)
-        target:addMod(MOD_SKILL_LTH, 1);
+    target:addMod(MOD_SKILL_LTH, 1);
 end;
  
 -----------------------------------------

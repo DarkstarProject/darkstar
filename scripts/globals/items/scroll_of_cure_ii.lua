@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4610
---    Scroll of Cure II
---    Teaches the white magic Cure II
+-- ID: 4610
+-- Scroll of Cure II
+-- Teaches the white magic Cure II
 -----------------------------------------
 
 -----------------------------------------

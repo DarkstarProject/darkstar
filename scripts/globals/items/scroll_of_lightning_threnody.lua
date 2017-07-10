@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5066
---    Scroll of Lightning Threnody
---    Teaches the song Lightning Threnody
+-- ID: 5066
+-- Scroll of Lightning Threnody
+-- Teaches the song Lightning Threnody
 -----------------------------------------
 
 -----------------------------------------

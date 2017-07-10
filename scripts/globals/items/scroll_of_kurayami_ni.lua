@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4956
---    Scroll of Kurayami: Ni
---    Teaches the ninjutsu Kurayami: Ni
+-- ID: 4956
+-- Scroll of Kurayami: Ni
+-- Teaches the ninjutsu Kurayami: Ni
 -----------------------------------------
 
 -----------------------------------------

@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     -- printf("finishRESULT: %u",option);
     
     if (csid == 0x0064) then
-        player:setVar("LoveAndIceQuest",1);
+        player:setVar("LoveAndIceProgress",1);
         player:delKeyItem(CARMELOS_SONG_SHEET);
     end
     

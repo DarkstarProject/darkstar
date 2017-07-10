@@ -5,7 +5,7 @@
 -----------------------------------
 
 Jailer_of_Temperance = 16916814;
-Jailer_of_Temperance_PH = 
+Jailer_of_Temperance_PH =
 {
     16916489, -- -420, -1, 757
     16916508, -- -43, -1, 460

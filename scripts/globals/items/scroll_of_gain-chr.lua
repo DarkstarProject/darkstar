@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5093
---    Scroll of Gain-CHR
---    Teaches the white magic Gain-CHR
+-- ID: 5093
+-- Scroll of Gain-CHR
+-- Teaches the white magic Gain-CHR
 -----------------------------------------
 
 -----------------------------------------

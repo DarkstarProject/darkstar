@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4863
---    Scroll of Break
---    Teaches the black magic Break
+-- ID: 4863
+-- Scroll of Break
+-- Teaches the black magic Break
 -----------------------------------------
 
 -----------------------------------------

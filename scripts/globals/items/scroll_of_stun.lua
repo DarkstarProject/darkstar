@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4860
---    Scroll of Stun
---    Teaches the black magic Stun
+-- ID: 4860
+-- Scroll of Stun
+-- Teaches the black magic Stun
 -----------------------------------------
 
 -----------------------------------------

@@ -51,7 +51,7 @@ CRangeState::CRangeState(CCharEntity* PEntity, uint16 targid) :
 
     if (charutils::hasTrait(m_PEntity, TRAIT_RAPID_SHOT))
     {
-        auto chance {m_PEntity->getMod(MOD_RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
+        auto chance {m_PEntity->getMod(Mod::RAPID_SHOT) + m_PEntity->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, m_PEntity)};
         if (dsprand::GetRandomNumber(100) < chance)
         {
             //reduce delay by 10%-50%
@@ -98,7 +98,8 @@ bool CRangeState::Update(time_point tick)
             m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT);
         }
         action_t action;
-        if (m_errorMsg && m_errorMsg->getMessageID() != MSGBASIC_CANNOT_SEE)
+        auto cast_errorMsg = dynamic_cast<CMessageBasicPacket*>(m_errorMsg.get());
+        if (m_errorMsg && (!cast_errorMsg || cast_errorMsg->getMessageID() != MSGBASIC_CANNOT_SEE))
         {
             action.id = m_PEntity->id;
             action.actiontype = ACTION_RANGED_INTERRUPT;

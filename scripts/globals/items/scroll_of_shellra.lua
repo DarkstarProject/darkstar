@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4738
---    Scroll of Shellra
---    Teaches the white magic Shellra
+-- ID: 4738
+-- Scroll of Shellra
+-- Teaches the white magic Shellra
 -----------------------------------------
 
 -----------------------------------------

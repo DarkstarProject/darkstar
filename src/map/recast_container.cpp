@@ -177,9 +177,9 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
 
     if (type == RECAST_ABILITY)
     {
-        for (auto&& recast : *PRecastList)
+        if (auto recast = GetRecast(RECAST_ABILITY, id))
         {
-            recast.RecastTime = 0;
+            recast->RecastTime = 0;
         }
         Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
     }
@@ -248,6 +248,11 @@ bool CRecastContainer::HasRecast(RECASTTYPE type, uint16 id, uint32 recast)
             }
             else
             {
+                //a request to use more charges than the maximum only applies to abilities who share normal recasts with charges (ie. sic)
+                if ( recast > PRecastList->at(i).maxCharges )
+                {
+                    return true;
+                }
                 int charges = PRecastList->at(i).maxCharges - ((PRecastList->at(i).RecastTime - (time(nullptr) - PRecastList->at(i).TimeStamp)) / (PRecastList->at(i).chargeTime)) - 1;
 
                 if (charges < recast)

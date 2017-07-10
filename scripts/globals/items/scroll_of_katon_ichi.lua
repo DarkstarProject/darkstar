@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4928
---    Scroll of Katon: Ichi
---    Teaches the ninjutsu Katon: Ichi
+-- ID: 4928
+-- Scroll of Katon: Ichi
+-- Teaches the ninjutsu Katon: Ichi
 -----------------------------------------
 
 -----------------------------------------

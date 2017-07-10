@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onAdditionalEffect(player,target,damage)
-    chance = 15;
+    local chance = 15;
     if (chance > math.random(0,99)) then
         local dispel = target:dispelStatusEffect();
         if (dispel == EFFECT_NONE) then

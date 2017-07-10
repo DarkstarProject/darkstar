@@ -13,8 +13,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    result = 0;
-    return result;
+    return 0;
 end;
 
 -----------------------------------------

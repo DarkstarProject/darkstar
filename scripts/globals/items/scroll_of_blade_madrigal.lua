@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5008
---    Scroll of Blade Madrigal
---    Teaches the song Blade Madrigal
+-- ID: 5008
+-- Scroll of Blade Madrigal
+-- Teaches the song Blade Madrigal
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6044
---    Cryohelix Schema
---    Teaches the black magic Cryohelix
+-- ID: 6044
+-- Cryohelix Schema
+-- Teaches the black magic Cryohelix
 -----------------------------------------
 
 -----------------------------------------

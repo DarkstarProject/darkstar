@@ -45,6 +45,7 @@ public:
     }
 
     int32 getID(lua_State*);
+    int32 getAllies(lua_State*);
     int32 getChars(lua_State*);
     int32 getMobs(lua_State*);
     int32 getNpcs(lua_State*);

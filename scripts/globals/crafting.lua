@@ -4,16 +4,23 @@
 --      http://wiki.ffxiclopedia.org/wiki/Crafts_%26_Hobbies
 -------------------------------------------------
 
--- 1 2   : Alchemy
--- 2 4   : Bonecraft
--- 3 8   : Clothcraft
--- 4 16  : Cooking
--- 5 32  : Fishing
--- 6 64  : Goldsmithing
--- 7 128 : Leathercraft
--- 8 256 : Smithing
--- 9 512 : Woodworking
--- 10    : Synergy
+-----------------------------------
+-- IDs for signupGuild bitmask
+-----------------------------------
+
+guild =
+{
+    ["alchemy"]      = 2,
+    ["bonecraft"]    = 4,
+    ["clothcraft"]   = 8,
+    ["cooking"]      = 16,
+    ["fishing"]      = 32,
+    ["goldsmithing"] = 64,
+    ["leathercraft"] = 128,
+    ["smithing"]     = 256,
+    ["woodworking"]  = 512
+    -- Synergy not implemented yet
+}
 
 -----------------------------------
 -- Table for Test Item
@@ -188,7 +195,7 @@ function getCraftSkillCap(player,craftID)
 
     local Rank = player:getSkillRank(craftID)
     return (Rank+1)*10
-    
+
 end
 
 -----------------------------------
@@ -198,7 +205,7 @@ function getAdvImageSupportCost(player,craftID)
 
     local Rank = player:getSkillRank(craftID)
     return (Rank+1)*30
-    
+
 end
 
 function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
@@ -206,7 +213,7 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
     local rank = player:getSkillRank(guildID + 48);
     local cap = (rank + 1) * 10;
     local kibits = 0;
-    
+
     for kbit,ki in pairs(keyitems) do
         if (rank >= ki.rank) then
             if not player:hasKeyItem(ki.id) then
@@ -214,24 +221,26 @@ function unionRepresentativeTrigger(player, guildID, csid, currency, keyitems)
             end
         end
     end
-    
+
     player:startEvent(csid, player:getCurrency(currency), player:getVar('[GUILD]currentGuild') - 1, gpItem, remainingPoints, cap, 0, kibits);
 end
 
 function unionRepresentativeTriggerFinish(player, option, target, guildID, currency, keyitems, items)
     local rank = player:getSkillRank(guildID + 48);
+    local category = bit.band(bit.rshift(option, 2),3);
+
     if (bit.tobit(option) == -1 and rank >= 3) then
         local oldGuild = player:getVar('[GUILD]currentGuild') - 1;
         player:setVar('[GUILD]currentGuild',guildID + 1);
-        
+
         if (oldGuild == -1) then
             player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
         else
             player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
             player:setVar('[GUILD]daily_points',-1);
         end
-    elseif (bit.band(option, 32) > 0) then -- keyitem
-        local ki = keyitems[bit.band(option, 31)];
+    elseif (category == 3) then -- keyitem
+        local ki = keyitems[bit.band(bit.rshift(option, 5), 15) - 1];
         if (ki and rank >= ki.rank) then
             if (player:getCurrency(currency) >= ki.cost) then
                 player:delCurrency(currency, ki.cost);
@@ -241,26 +250,36 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
-    elseif (bit.band(option, 16) > 0) then -- item
-        local i = items[bit.band(option, 15)];
+    elseif (category == 2 or category == 1) then -- item
+        local idx = bit.band(option, 3);
+        local i = items[(category - 1) * 4 + idx];
+        local quantity = bit.rshift(option, 9);
+        local cost = quantity * i.cost;
         if (i and rank >= i.rank) then
-            if (player:getCurrency(currency) >= i.cost) then
-                if (player:addItem(i.id, true)) then
-                    player:delCurrency(currency, i.cost);
-                    player:messageSpecial(ITEM_OBTAINED, i.id);
-                else
+            if (player:getCurrency(currency) >= cost) then
+                local delivered = 0;
+                for count = 1, quantity do -- addItem does not appear to honor quantity if the item doesn't stack.
+                    if (player:addItem(i.id, true)) then
+                        player:delCurrency(currency, i.cost);
+                        player:messageSpecial(ITEM_OBTAINED, i.id);
+                        delivered = delivered + 1;
+                    end
+                end
+                if (delivered == 0) then
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
-    else -- HQ crystal (or nothing)
-        local i = HQCrystals[bit.band(option, option)];
+    elseif (category == 0) then -- HQ crystal
+        local i = HQCrystals[bit.band(bit.rshift(option, 5), 15)];
+        local quantity = bit.rshift(option, 9);
+        local cost = quantity * i.cost;
         if (i and rank >= 3) then
-            if (player:getCurrency(currency) >= i.cost) then
-                if (player:addItem(i.id, true)) then
-                    player:delCurrency(currency, i.cost);
+            if (player:getCurrency(currency) >= cost) then
+                if (player:addItem(i.id, quantity)) then
+                    player:delCurrency(currency, cost);
                     player:messageSpecial(ITEM_OBTAINED, i.id);
                 else
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);

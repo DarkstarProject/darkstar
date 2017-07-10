@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4705
---    Scroll of Temper
---    Teaches the white magic Temper
+-- ID: 4705
+-- Scroll of Temper
+-- Teaches the white magic Temper
 -----------------------------------------
 
 -----------------------------------------

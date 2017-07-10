@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4899
---    Earth Spirit Pact
---    Teaches the summoning magic Earth Spirit
+-- ID: 4899
+-- Earth Spirit Pact
+-- Teaches the summoning magic Earth Spirit
 -----------------------------------------
 
 -----------------------------------------

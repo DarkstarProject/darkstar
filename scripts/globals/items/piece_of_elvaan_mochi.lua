@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5204
---    Piece of Elvaan Mochi
---    Enchantment: 60Min, Costume - Elvaan Child (male)
+-- ID: 5204
+-- Piece of Elvaan Mochi
+-- Enchantment: 60Min, Costume - Elvaan Child (male)
 -----------------------------------------
 
 require("scripts/globals/status");

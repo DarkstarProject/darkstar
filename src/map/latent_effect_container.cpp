@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 #include "latent_effect.h"
 #include "entities/charentity.h"
 #include "entities/battleentity.h"
+#include "utils/battleutils.h"
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "modifier.h"
@@ -67,10 +68,10 @@ void CLatentEffectContainer::AddLatentEffects(std::vector<CLatentEffect*> *laten
     {
         if (m_POwner->GetMLevel() >= reqLvl || latentList->at(i)->GetConditionsValue() == LATENT_JOB_LEVEL_ABOVE)
         {
-            if (latentList->at(i)->GetModValue() == MOD_MAIN_DMG_RATING && slot == SLOT_SUB)
+            if (latentList->at(i)->GetModValue() == Mod::MAIN_DMG_RATING && slot == SLOT_SUB)
             {
                 AddLatentEffect(new CLatentEffect(latentList->at(i)->GetConditionsID(),
-                    latentList->at(i)->GetConditionsValue(), slot, MOD_SUB_DMG_RATING,
+                    latentList->at(i)->GetConditionsValue(), slot, Mod::SUB_DMG_RATING,
                     latentList->at(i)->GetModPower()));
             }
             else {
@@ -169,11 +170,11 @@ void CLatentEffectContainer::CheckLatentsHP(int32 hp)
             //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
             //    int32 visibleHp = 0;
-            //    visibleHp += (head ? head->getModifier(MOD_HP) : 0);
-            //    visibleHp += (body ? body->getModifier(MOD_HP) : 0);
-            //    visibleHp += (hands ? hands->getModifier(MOD_HP) : 0);
-            //    visibleHp += (legs ? legs->getModifier(MOD_HP) : 0);
-            //    visibleHp += (feet ? feet->getModifier(MOD_HP) : 0);
+            //    visibleHp += (head ? head->getModifier(Mod::HP) : 0);
+            //    visibleHp += (body ? body->getModifier(Mod::HP) : 0);
+            //    visibleHp += (hands ? hands->getModifier(Mod::HP) : 0);
+            //    visibleHp += (legs ? legs->getModifier(Mod::HP) : 0);
+            //    visibleHp += (feet ? feet->getModifier(Mod::HP) : 0);
 
             //    //TODO: add mp percent too
             //    if ((float)( hp / ((m_POwner->health.hp - m_POwner->health.modhp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_HP)->count * 10 ) + 
@@ -316,11 +317,11 @@ void CLatentEffectContainer::CheckLatentsMP(int32 mp)
             //    CItemArmor* feet = (CItemArmor*)(m_POwner->getStorage(LOC_INVENTORY)->GetItem(m_POwner->equip[SLOT_FEET]));
 
             //    int32 visibleMp = 0;
-            //    visibleMp += (head ? head->getModifier(MOD_MP) : 0);
-            //    visibleMp += (body ? body->getModifier(MOD_MP) : 0);
-            //    visibleMp += (hands ? hands->getModifier(MOD_MP) : 0);
-            //    visibleMp += (legs ? legs->getModifier(MOD_MP) : 0);
-            //    visibleMp += (feet ? feet->getModifier(MOD_MP) : 0);
+            //    visibleMp += (head ? head->getModifier(Mod::MP) : 0);
+            //    visibleMp += (body ? body->getModifier(Mod::MP) : 0);
+            //    visibleMp += (hands ? hands->getModifier(Mod::MP) : 0);
+            //    visibleMp += (legs ? legs->getModifier(Mod::MP) : 0);
+            //    visibleMp += (feet ? feet->getModifier(Mod::MP) : 0);
 
             //    //TODO: add mp percent too
             //    if ((float)( mp / ((m_POwner->health.mp - m_POwner->health.modmp) + (m_POwner->PMeritPoints->GetMerit(MERIT_MAX_MP)->count * 10 ) + 
@@ -626,7 +627,7 @@ void CLatentEffectContainer::CheckLatentsEquip(uint8 slot)
                 }
                 break;
             case LATENT_WEATHER_ELEMENT:
-                if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+                if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
                 {
                     m_LatentEffectList.at(i)->Activate();
                 }
@@ -719,6 +720,17 @@ void CLatentEffectContainer::CheckLatentsStatusEffect()
         if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_STATUS_EFFECT_ACTIVE)
         {
             if (m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)m_LatentEffectList.at(i)->GetConditionsValue()))
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+        }
+        else if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1674,7 +1686,7 @@ void CLatentEffectContainer::CheckLatentsZone()
             }
             break;
         case LATENT_WEATHER_ELEMENT:
-            if (zoneutils::GetWeatherElement(zoneutils::GetZone(m_POwner->getZone())->GetWeather()) == m_LatentEffectList.at(i)->GetConditionsValue())
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false)))
             {
                 m_LatentEffectList.at(i)->Activate();
             }
@@ -1767,4 +1779,35 @@ void CLatentEffectContainer::CheckLatentsZone()
         }
     }
     m_POwner->UpdateHealth();
+}
+
+/************************************************************************
+*																		*
+*  Checks all latents regarding current weather							*
+*																		*
+************************************************************************/
+void CLatentEffectContainer::CheckLatentsWeather()
+{
+    CheckLatentsWeather(zoneutils::GetZone(m_POwner->getZone())->GetWeather());
+}
+
+void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
+{
+    for (uint16 i = 0; i < m_LatentEffectList.size(); ++i)
+    {
+        if (m_LatentEffectList.at(i)->GetConditionsID() == LATENT_WEATHER_ELEMENT)
+        {
+            auto element = zoneutils::GetWeatherElement(battleutils::GetWeather((CBattleEntity*)m_POwner, false, weather));
+            if (m_LatentEffectList.at(i)->GetConditionsValue() == element)
+            {
+                m_LatentEffectList.at(i)->Activate();
+            }
+            else
+            {
+                m_LatentEffectList.at(i)->Deactivate();
+            }
+
+            m_POwner->UpdateHealth();
+        }
+    }
 }

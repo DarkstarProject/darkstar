@@ -3,11 +3,10 @@
 -- Item: Meatloaf +1
 -- Food Effect: 3 Hrs, All Races
 -----------------------------------------
--- TODO: Needs verification
 -- Strength 6
 -- Agility 2
--- Intelligence -2
--- Attack 25% Cap 85
+-- Intelligence -3
+-- Attack 18% Cap 95
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -17,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD)) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -39,9 +38,9 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_STR, 6);
     target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_INT, -2);
-    target:addMod(MOD_FOOD_ATTP, 25);
-    target:addMod(MOD_FOOD_ATT_CAP, 85);
+    target:addMod(MOD_INT, -3);
+    target:addMod(MOD_FOOD_ATTP, 18);
+    target:addMod(MOD_FOOD_ATT_CAP, 95);
 end;
 
 -----------------------------------------
@@ -51,7 +50,7 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_STR, 6);
     target:delMod(MOD_AGI, 2);
-    target:delMod(MOD_INT, -2);
-    target:delMod(MOD_FOOD_ATTP, 25);
-    target:delMod(MOD_FOOD_ATT_CAP, 85);
+    target:delMod(MOD_INT, -3);
+    target:delMod(MOD_FOOD_ATTP, 18);
+    target:delMod(MOD_FOOD_ATT_CAP, 95);
 end;

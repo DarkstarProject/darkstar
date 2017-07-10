@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     EFFECT_AGI_DOWN
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -37,6 +37,6 @@ end;
 function onEffectLose(target,effect)
     local downAGI_effect_size = effect:getPower()
     if (downAGI_effect_size > 0) then
-        target:delMod(MOD_AGI,downAGI_effect_size);
+        target:delMod(MOD_AGI,-downAGI_effect_size);
     end
 end;

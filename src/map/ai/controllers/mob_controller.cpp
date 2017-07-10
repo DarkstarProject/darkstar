@@ -110,7 +110,7 @@ bool CMobController::CheckHide(CBattleEntity* PTarget)
 
 bool CMobController::CheckDetection(CBattleEntity* PTarget)
 {
-    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) || 
+    if (CanDetectTarget(PTarget) || CanPursueTarget(PTarget) ||
         PMob->StatusEffectContainer->HasStatusEffect({EFFECT_BIND, EFFECT_SLEEP, EFFECT_SLEEP_II, EFFECT_LULLABY}))
     {
         TapDeaggroTime();
@@ -195,7 +195,7 @@ bool CMobController::CanDetectTarget(CBattleEntity* PTarget, bool forceSight)
     }
 
     auto detects = PMob->m_Detects;
-    auto currentDistance = distance(PTarget->loc.p, PMob->loc.p) + PTarget->getMod(MOD_STEALTH);
+    auto currentDistance = distance(PTarget->loc.p, PMob->loc.p) + PTarget->getMod(Mod::STEALTH);
 
     bool detectSight = (detects & DETECT_SIGHT) || forceSight;
     bool hasInvisible = false;
@@ -409,7 +409,7 @@ bool CMobController::TryCastSpell()
 bool CMobController::CanCastSpells()
 {
 
-    if (!PMob->SpellContainer->HasSpells())
+    if (!PMob->SpellContainer->HasSpells() && !PMob->m_HasSpellScript)
     {
         return false;
     }
@@ -538,7 +538,6 @@ void CMobController::Move()
     {
         return;
     }
-    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
     if (PMob->PAI->PathFind->IsFollowingScriptedPath() && PMob->PAI->CanFollowPath())
     {
         PMob->PAI->PathFind->FollowPath();
@@ -561,7 +560,7 @@ void CMobController::Move()
     }
 
     bool move = PMob->PAI->PathFind->IsFollowingPath();
-    float attack_range = PMob->m_ModelSize;
+    float attack_range = PMob->GetMeleeRange();
 
     if (PMob->getMobMod(MOBMOD_ATTACK_SKILL_LIST) > 0)
     {
@@ -577,18 +576,19 @@ void CMobController::Move()
         }
     }
 
+    float currentDistance = distance(PMob->loc.p, PTarget->loc.p);
     if (PMob->getMobMod(MOBMOD_SHARE_POS) > 0)
     {
         CMobEntity* posShare = (CMobEntity*)PMob->GetEntity(PMob->getMobMod(MOBMOD_SHARE_POS) + PMob->targid, TYPE_MOB);
         PMob->loc = posShare->loc;
     }
-    else if (((distance(PMob->loc.p, PTarget->loc.p) > attack_range - 0.2f) || move) && PMob->PAI->CanFollowPath())
+    else if (((currentDistance > attack_range - 0.2f) || move) && PMob->PAI->CanFollowPath())
     {
         //#TODO: can this be moved to scripts entirely?
         if (PMob->getMobMod(MOBMOD_DRAW_IN) > 0)
         {
-            if (currentDistance >= PMob->m_ModelSize * 2)
-                battleutils::DrawIn(PTarget, PMob, PMob->m_ModelSize - 0.2f);
+            if (currentDistance >= PMob->GetMeleeRange() * 2)
+                battleutils::DrawIn(PTarget, PMob, PMob->GetMeleeRange() - 0.2f);
         }
         if (PMob->speed != 0 && PMob->getMobMod(MOBMOD_NO_MOVE) == 0 && m_Tick >= m_LastSpecialTime)
         {
@@ -758,6 +758,7 @@ void CMobController::DoRoamTick(time_point tick)
             }
             else
             {
+                // No longer including conditional for ROAMFLAG_AMBUSH now that using mixin to handle mob hiding
                 if (PMob->getMobMod(MOBMOD_SPECIAL_SKILL) != 0 &&
                     m_Tick >= m_LastSpecialTime + std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_SPECIAL_COOL)) &&
                     TrySpecialSkill())
@@ -774,16 +775,6 @@ void CMobController::DoRoamTick(time_point tick)
                 {
                     // cast buff
                     CastSpell(PMob->SpellContainer->GetBuffSpell());
-                }
-                else if ((PMob->m_roamFlags & ROAMFLAG_AMBUSH))
-                {
-                    //#TODO: #AIToScript move to scripts
-                    // stay underground
-                    PMob->HideName(true);
-                    PMob->HideModel(true);
-                    PMob->animationsub = 0;
-
-                    PMob->updatemask |= UPDATE_HP;
                 }
                 else if ((PMob->m_roamFlags & ROAMFLAG_STEALTH))
                 {

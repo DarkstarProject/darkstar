@@ -3,7 +3,7 @@
 -- Item: Serving of Patriarch Sautee
 -- Food Effect: 4Hrs, All Races
 -----------------------------------------
--- MP 60
+-- MP 65
 -- Mind 7
 -- MP Recovered While Healing 7
 -----------------------------------------
@@ -15,11 +15,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -35,7 +35,7 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MP, 60);
+    target:addMod(MOD_MP, 65);
     target:addMod(MOD_MND, 7);
     target:addMod(MOD_MPHEAL, 7);
 end;
@@ -45,7 +45,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MP, 60);
+    target:delMod(MOD_MP, 65);
     target:delMod(MOD_MND, 7);
     target:delMod(MOD_MPHEAL, 7);
 end;

@@ -33,8 +33,8 @@ function onInitialize(zone)
     -- Grand Duke Batym
     SetRespawnTime(17436927, 900, 10800);
 
-    UpdateTreasureSpawnPoint(17436993);
-    UpdateTreasureSpawnPoint(17436994);
+    UpdateTreasureSpawnPoint(17436997);
+    UpdateTreasureSpawnPoint(17436998);
 end;
 
 

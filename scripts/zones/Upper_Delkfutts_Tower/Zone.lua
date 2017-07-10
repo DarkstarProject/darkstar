@@ -17,47 +17,41 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
+    zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower
+    zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum
 
-    local tomes = {17424560,17424561,17424562};
-    
-    SetGroundsTome(tomes);    
+    UpdateTreasureSpawnPoint(17424563);
+end;
 
-    zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower    
-    zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum    
-    
-    UpdateTreasureSpawnPoint(17424559);
-
-end;        
-
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-    
+
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------        
--- onZoneIn        
------------------------------------        
+-----------------------------------
+-- onZoneIn
+-----------------------------------
 
-function onZoneIn(player,prevZone)        
-    local cs = -1;    
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
+function onZoneIn(player,prevZone)
+    local cs = -1;
+    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(12.098,-105.408,27.683,239);
-    end    
-    return cs;    
-end;    
+    end
+    return cs;
+end;
 
------------------------------------    
--- onRegionEnter    
------------------------------------    
+-----------------------------------
+-- onRegionEnter
+-----------------------------------
 
-function onRegionEnter(player,region)    
+function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
     [1] = function (x)
@@ -69,34 +63,34 @@ function onRegionEnter(player,region)
     player:startEvent(1);
     end,
     }
-end;    
+end;
 
------------------------------------    
--- onRegionLeave    
------------------------------------    
+-----------------------------------
+-- onRegionLeave
+-----------------------------------
 
-function onRegionLeave(player,region)    
-end;    
+function onRegionLeave(player,region)
+end;
 
------------------------------------    
--- onEventUpdate    
------------------------------------    
+-----------------------------------
+-- onEventUpdate
+-----------------------------------
 
-function onEventUpdate(player,csid,option)    
-    --printf("CSID: %u",csid);    
-    --printf("RESULT: %u",option);    
-end;        
+function onEventUpdate(player,csid,option)
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+end;
 
------------------------------------        
--- onEventFinish        
------------------------------------        
+-----------------------------------
+-- onEventFinish
+-----------------------------------
 
-function onEventFinish(player,csid,option)        
-    --printf("CSID: %u",csid);    
-    --printf("RESULT: %u",option);    
-    if (csid == 0 and option == 1) then    
+function onEventFinish(player,csid,option)
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
+    if (csid == 0 and option == 1) then
         player:setPos(-490, -130, 81, 231, 157);
-    elseif (csid == 1 and option == 1) then    
+    elseif (csid == 1 and option == 1) then
         player:setPos(-520 , 1 , -23, 192, 0xB3); -- to stellar fulcrum
-    end    
+    end
 end;

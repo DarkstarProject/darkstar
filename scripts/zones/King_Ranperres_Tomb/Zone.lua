@@ -15,20 +15,12 @@ require("scripts/zones/King_Ranperres_Tomb/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17555963,17555964,17555965,17555966};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17555957,17555958,17555959};
-    SetVoidwatchNPC(vwnpc);
-
-
     zone:registerRegion(1,-84.302,6.5,-120.997,-77,7.5,-114);  -- Used for stairs teleport -85.1,7,-119.9
 
     -- Vrtra
     SetRespawnTime(17555890, 86400, 259200);
 
-    UpdateTreasureSpawnPoint(17555951);
+    UpdateTreasureSpawnPoint(17555955);
 end;
 
 -----------------------------------

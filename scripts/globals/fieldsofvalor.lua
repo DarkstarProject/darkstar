@@ -129,12 +129,14 @@ FOV_EVENT_SORROWS         = 0x003d;
 ----------------------------------
 
 function startFov(eventid, player)
-    if (FIELD_MANUALS == 1) then
-       local hasRegime = player:getVar("fov_regimeid");
-       local tabs = player:getCurrency("valor_point");
-       player:startEvent(eventid, 0, 0, 0, 0, 0, 0, tabs, hasRegime);
-    end;
-end
+    if (ENABLE_FIELD_MANUALS == 1) then
+        local hasRegime = player:getVar("fov_regimeid");
+        local tabs = player:getCurrency("valor_point");
+        player:startEvent(eventid, 0, 0, 0, 0, 0, 0, tabs, hasRegime);
+    else
+        player:PrintToPlayer("Disabled.");
+    end
+end;
 
 ----------------------------------
 -- Update FoV onEventUpdate

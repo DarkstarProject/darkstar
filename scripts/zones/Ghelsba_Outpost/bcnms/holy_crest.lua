@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_HOLY_CREST);
-    player:setPetName(PETTYPE_WYVERN,option);
+        player:setPetName(PETTYPE_WYVERN,option+1);
     end
     
 end;

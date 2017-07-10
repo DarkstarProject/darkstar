@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4714
---    Scroll of Phalanx
---    Teaches the white magic Phalanx
+-- ID: 4714
+-- Scroll of Phalanx
+-- Teaches the white magic Phalanx
 -----------------------------------------
 
 -----------------------------------------

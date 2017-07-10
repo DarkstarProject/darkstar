@@ -77,7 +77,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
         Sql_Query(SqlHandle, "UPDATE accounts_parties JOIN accounts_sessions USING (charid) \
                         SET allianceid = 0, partyflag = partyflag & ~%d \
                         WHERE allianceid = %u AND IF(%u = 0 AND %u = 0, true, server_addr = %u AND server_port = %u);", 
-                        ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip, map_port, map_ip, map_port);
+                        ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, m_AllianceID, map_ip.s_addr, map_port, map_ip.s_addr, map_port);
         //first kick out the third party if it exsists
         CParty* party = nullptr;
         if (this->partyList.size() == 3)
@@ -120,6 +120,25 @@ uint32 CAlliance::partyCount(void)
 
 void CAlliance::removeParty(CParty * party) 
 {
+
+    //if main party then pass alliance lead to the next (d/c fix)
+    if (this->getMainParty() == party) 
+    {
+        int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+                                JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE allianceid = %u AND partyflag & %d \
+                                AND partyid != %d ORDER BY timestamp ASC LIMIT 1;", m_AllianceID, PARTY_LEADER, party->GetPartyID());
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            std::string newLeader(Sql_GetData(SqlHandle, 0));
+            assignAllianceLeader(newLeader.c_str());
+        }
+        if (this->getMainParty() == party)
+        {
+            dissolveAlliance();
+            return;
+        }
+    }
+    
     delParty(party);
 
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u;", ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
@@ -134,30 +153,16 @@ void CAlliance::removeParty(CParty * party)
 
 void CAlliance::delParty(CParty* party)
 {
-    CAlliance* alliance = party->m_PAlliance;
-
-    //if main party then pass alliance lead to the next (d/c fix)
-    if (alliance->getMainParty() == party){
-        int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
-                                JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE allianceid = %u AND partyflag & %d \
-                                AND partyid != %d ORDER BY timestamp ASC LIMIT 1;", m_AllianceID, PARTY_LEADER, party->GetPartyID());
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            std::string newLeader(Sql_GetData(SqlHandle, 0));
-            assignAllianceLeader(newLeader.c_str());
-        }
-        if (alliance->getMainParty() == party)
-        {
-            dissolveAlliance();
-            return;
-        }
-    }
-
     //delete the party from the alliance list
     for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
     {
         if (party == party->m_PAlliance->partyList.at(i))
             party->m_PAlliance->partyList.erase(partyList.begin() + i);
+    }
+
+    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    {
+        party->m_PAlliance->partyList.at(i)->ReloadParty();
     }
 
     party->m_PAlliance = nullptr;
@@ -256,8 +261,9 @@ void CAlliance::addParty(uint32 partyid)
         }
     }
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET allianceid = %u, partyflag = partyflag | %d WHERE partyid = %u;", m_AllianceID, newparty, partyid);
-    uint8 data[4] {};
+    uint8 data[8] {};
 	WBUFL(data, 0) = m_AllianceID;
+    WBUFL(data, 4) = partyid;
     message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
 }
 

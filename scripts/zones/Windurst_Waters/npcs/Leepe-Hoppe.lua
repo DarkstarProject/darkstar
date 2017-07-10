@@ -134,12 +134,7 @@ function onEventFinish(player,csid,option)
         player:delQuest(SANDORIA,TRIAL_BY_ICE);
         player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
     elseif (csid == 846) then -- Turn-in event
-        player:addTitle(HEIR_OF_THE_NEW_MOON);
-        player:delKeyItem(WHISPER_OF_THE_MOON);
-        player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
-        player:addFame(WINDURST,30);
-        player:completeQuest(WINDURST,THE_MOONLIT_PATH);
-
+        local reward = 0;
         if (option == 1) then reward = 18165; -- Fenrir's Stone
         elseif (option == 2) then reward = 13572; -- Fenrir's Cape
         elseif (option == 3) then reward = 13138; -- Fenrir's Torque
@@ -150,6 +145,17 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
+        elseif (option == 8) then
+            reward = nil;
+            -- Pact as Mount
+        end
+
+        if (reward ~= nil) then
+            player:addTitle(HEIR_OF_THE_NEW_MOON);
+            player:delKeyItem(WHISPER_OF_THE_MOON);
+            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:addFame(WINDURST,30);
+            player:completeQuest(WINDURST,THE_MOONLIT_PATH);
         end
 
         if (player:getFreeSlotsCount() == 0 and reward ~= 0) then
@@ -164,11 +170,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(KEYITEM_OBTAINED,DARK_MANA_ORB);
         end
     elseif (csid == 850) then -- Repeat turn-in event
-        player:addTitle(HEIR_OF_THE_NEW_MOON);
-        player:delKeyItem(WHISPER_OF_THE_MOON);
-        player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
-        player:addFame(WINDURST,30);
-
+        local reward = 0;
         if (option == 1) then reward = 18165; -- Fenrir's Stone
         elseif (option == 2) then reward = 13572; -- Fenrir's Cape
         elseif (option == 3) then reward = 13138; -- Fenrir's Torque
@@ -179,6 +181,16 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
+        elseif (option == 8) then
+            reward = nil;
+            -- Pact as Mount
+        end
+
+        if (reward ~= nil) then
+            player:addTitle(HEIR_OF_THE_NEW_MOON);
+            player:delKeyItem(WHISPER_OF_THE_MOON);
+            player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:addFame(WINDURST,30);
         end
 
         if (player:getFreeSlotsCount() == 0 and reward ~= 0) then

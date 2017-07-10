@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addKeyItem(2051);
         player:messageSpecial(KEYITEM_OBTAINED,2051);
-        player:addFame(OUTLANDS,30);
+        player:addFame(RABAO,30);
         player:completeQuest(OUTLANDS,OPEN_SESAME);
     end
     

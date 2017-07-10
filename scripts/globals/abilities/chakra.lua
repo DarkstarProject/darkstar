@@ -5,7 +5,7 @@
 -- Recast Time: 5:00
 -- Duration: Instant
 -----------------------------------
- 
+
 require("scripts/globals/status");
 
 -----------------------------------

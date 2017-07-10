@@ -15,9 +15,9 @@ require("scripts/zones/Dynamis-Qufim/TextIDs");
 function onInitialize(zone)
 end;
 
------------------------------------        
--- onConquestUpdate        
------------------------------------        
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -32,45 +32,39 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
-        player:setPos(-18,-17,104);
-    end    
-    
-    local realDay = os.time();
-    local dynaWaitxDay = player:getVar("dynaWaitxDay");
-    
-    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaQufim]UniqueID")) then
-        if (player:isBcnmsFull() == 1) then
-            if (player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
-                inst = player:addPlayerToDynamis(1288);
-                
-                if (inst == 1) then
-                    player:bcnmEnter(1288);
-                else
-                     cs = 0x0065;
-                end
-            else
-                player:bcnmEnter(1288);
-            end
-        else
-            inst = player:bcnmRegister(1288);
-            
-            if (inst == 1) then
-                player:bcnmEnter(1288);
-            else
-                cs = 0x0065;
-            end
+    local cs = 0;
+    local inst = 0;
+
+    if player:isBcnmsFull() == 1 then
+        -- run currently in progress
+        -- add player to the run if they entered via markings, or if they reconnected to a run they were previously in
+        -- gms will be automatically registered
+        if player:getVar("enteringDynamis") == 1 or player:getVar("DynamisID") == GetServerVariable("[DynaQufim]UniqueID") or player:getGMLevel() > 0 then
+            inst = player:addPlayerToDynamis(1288);
         end
     else
-        cs = 0x0065;
+        -- no run yet in progress
+        -- register run by player if they entered via markings
+        -- gms will be automatically registered
+        if player:getVar("enteringDynamis") == 1 or player:getGMLevel() > 0 then
+            inst = player:bcnmRegister(1288);
+        end
     end
 
-  return cs;
+    if inst == 1 then
+        player:bcnmEnter(1288);
+        cs = -1;
+        if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+            player:setPos(-19,-17,104,253);
+        end
+    end
+
+    player:setVar("enteringDynamis",0);
+    return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
@@ -92,8 +86,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0065) then
-            player:setPos(18,-19,162,240, 126);
+    if (csid == 0) then
+        player:setPos(18,-19,162,240, 126);
     end
 end;
-

@@ -19,8 +19,8 @@ require("scripts/globals/chocobo_digging");
 -----------------------------------
 local itemMap = {
                     -- itemid, abundance, requirement
-                    { 880, 167, DIGREQ_NONE }, 
-                    { 893, 88, DIGREQ_NONE }, 
+                    { 880, 167, DIGREQ_NONE },
+                    { 893, 88, DIGREQ_NONE },
                     { 17296, 135, DIGREQ_NONE },
                     { 736, 52, DIGREQ_NONE },
                     { 644, 22, DIGREQ_NONE },
@@ -62,10 +62,6 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local manuals = {17244653,17244654,17244655};
-
-    SetFieldManual(manuals);
-
     -- Cactrot Rapido
     SetRespawnTime(17244539, 900, 10800);
 

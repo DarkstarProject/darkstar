@@ -16,9 +16,6 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-    local vwnpc = {17744052};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1,-112,-3,-17,-96,3,-3);--event COP
 end;
 

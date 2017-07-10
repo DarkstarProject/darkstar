@@ -9,7 +9,7 @@
 -- onMobFight
 -----------------------------------
 function onMobFight(mob, target)
-    printf("mobtp %u",mob:getTP());
+    -- printf("mobtp %u",mob:getTP());
 end;
 
 -----------------------------------
@@ -33,8 +33,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    printf("finishCSID: %u",csid);
-    printf("RESULT: %u",option);
+    -- printf("finishCSID: %u",csid);
+    -- printf("RESULT: %u",option);
     if (csid == 0x7d04) then
         if (player:getVar("bcnm_instanceid") == 1) then
         SpawnMob(17453064);

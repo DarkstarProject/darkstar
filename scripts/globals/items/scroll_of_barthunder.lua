@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4672
---    Scroll of Barthunder
---    Teaches the white magic Barthunder
+-- ID: 4672
+-- Scroll of Barthunder
+-- Teaches the white magic Barthunder
 -----------------------------------------
 
 -----------------------------------------

@@ -4,7 +4,7 @@
 -----------------------------------
 
 require("scripts/globals/status");
-mixins = {require("scripts/mixins/families/antlion_ambush")}
+mixins = {require("scripts/mixins/families/antlion_ambush_noaggro")}
 
 -----------------------------------
 -- onMobInitialize Action

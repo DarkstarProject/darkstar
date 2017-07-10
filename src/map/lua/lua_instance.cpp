@@ -71,6 +71,28 @@ inline int32 CLuaInstance::getID(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaInstance::getAllies(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
+
+    lua_createtable(L, m_PLuaInstance->m_allyList.size(), 0);
+    int8 newTable = lua_gettop(L);
+    int i = 1;
+    for (auto member : m_PLuaInstance->m_allyList)
+    {
+        lua_getglobal(L, CLuaBaseEntity::className);
+        lua_pushstring(L, "new");
+        lua_gettable(L, -2);
+        lua_insert(L, -2);
+        lua_pushlightuserdata(L, (void*)member.second);
+        lua_pcall(L, 2, 1, 0);
+
+        lua_rawseti(L, -2, i++);
+    }
+
+    return 1;
+}
+
 inline int32 CLuaInstance::getChars(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
@@ -231,7 +253,7 @@ inline int32 CLuaInstance::getEntity(lua_State* L)
     uint16 targid = lua_tointeger(L, 1);
 
     uint8 filter = -1;
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
         filter = lua_tointeger(L, 2);
     }
@@ -359,6 +381,8 @@ inline int32 CLuaInstance::insertAlly(lua_State* L)
     CMobEntity* PAlly = mobutils::InstantiateAlly(groupid, m_PLuaInstance->GetZone()->GetID(), m_PLuaInstance);
     if (PAlly)
     {
+        m_PLuaInstance->InsertAlly(PAlly);
+
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
@@ -385,6 +409,7 @@ Lunar<CLuaInstance>::Register_t CLuaInstance::methods[] =
 {
     LUNAR_DECLARE_METHOD(CLuaInstance, getID),
     LUNAR_DECLARE_METHOD(CLuaInstance, setLevelCap),
+    LUNAR_DECLARE_METHOD(CLuaInstance, getAllies),
     LUNAR_DECLARE_METHOD(CLuaInstance, getChars),
     LUNAR_DECLARE_METHOD(CLuaInstance, getMobs),
     LUNAR_DECLARE_METHOD(CLuaInstance, getNpcs),

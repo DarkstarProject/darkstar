@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17346);
             player:messageSpecial(ITEM_OBTAINED,17346); -- Siren Flute
             player:addFame(BASTOK,120);
-            player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
+            player:completeQuest(BASTOK,LOVERS_IN_THE_DUSK);
         end
     end
 end;

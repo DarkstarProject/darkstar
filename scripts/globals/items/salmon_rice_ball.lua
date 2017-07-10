@@ -3,7 +3,7 @@
 -- Item: Salmon Rice Ball
 -- Food Effect: 30Min, All Races
 -----------------------------------------
--- HP +25
+-- HP +10
 -- Dex +2
 -- Vit +2
 -- Mnd -1
@@ -40,7 +40,7 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 25);
+    target:addMod(MOD_HP, 10);
     target:addMod(MOD_DEX, 2);
     target:addMod(MOD_VIT, 2);
     target:addMod(MOD_MND, -1);
@@ -52,7 +52,7 @@ end;
 -----------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HP, 25);
+    target:delMod(MOD_HP, 10);
     target:delMod(MOD_DEX, 2);
     target:delMod(MOD_VIT, 2);
     target:delMod(MOD_MND, -1);

@@ -90,27 +90,27 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
 	    WBUFW(data,(0x6C)) = PChar->PAutomaton->health.mp;
 	    WBUFW(data,(0x6E)) = PChar->PAutomaton->GetMaxMP();
 
-        WBUFW(data,(0x70)) = PChar->GetSkill(SKILL_AME) + PChar->getMod(MOD_AUTO_MELEE_SKILL);
-	    WBUFW(data,(0x72)) = puppetutils::getSkillCap(PChar, SKILL_AME) + PChar->getMod(MOD_AUTO_MELEE_SKILL);
-	    WBUFW(data,(0x74)) = PChar->GetSkill(SKILL_ARA) + PChar->getMod(MOD_AUTO_RANGED_SKILL);
-	    WBUFW(data,(0x76)) = puppetutils::getSkillCap(PChar, SKILL_ARA) + PChar->getMod(MOD_AUTO_RANGED_SKILL);
-	    WBUFW(data,(0x78)) = PChar->GetSkill(SKILL_AMA) + PChar->getMod(MOD_AUTO_MAGIC_SKILL);
-	    WBUFW(data,(0x7A)) = puppetutils::getSkillCap(PChar, SKILL_AMA) + PChar->getMod(MOD_AUTO_MAGIC_SKILL);
+        WBUFW(data,(0x70)) = PChar->GetSkill(SKILL_AME) + PChar->getMod(Mod::AUTO_MELEE_SKILL);
+	    WBUFW(data,(0x72)) = puppetutils::getSkillCap(PChar, SKILL_AME) + PChar->getMod(Mod::AUTO_MELEE_SKILL);
+	    WBUFW(data,(0x74)) = PChar->GetSkill(SKILL_ARA) + PChar->getMod(Mod::AUTO_RANGED_SKILL);
+	    WBUFW(data,(0x76)) = puppetutils::getSkillCap(PChar, SKILL_ARA) + PChar->getMod(Mod::AUTO_RANGED_SKILL);
+	    WBUFW(data,(0x78)) = PChar->GetSkill(SKILL_AMA) + PChar->getMod(Mod::AUTO_MAGIC_SKILL);
+	    WBUFW(data,(0x7A)) = puppetutils::getSkillCap(PChar, SKILL_AMA) + PChar->getMod(Mod::AUTO_MAGIC_SKILL);
 
 	    WBUFW(data,(0x80)) = PChar->PAutomaton->stats.STR;
-        WBUFW(data,(0x82)) = PChar->PAutomaton->getMod(MOD_STR);
+        WBUFW(data,(0x82)) = PChar->PAutomaton->getMod(Mod::STR);
         WBUFW(data,(0x84)) = PChar->PAutomaton->stats.DEX;
-        WBUFW(data,(0x86)) = PChar->PAutomaton->getMod(MOD_DEX);
+        WBUFW(data,(0x86)) = PChar->PAutomaton->getMod(Mod::DEX);
         WBUFW(data,(0x88)) = PChar->PAutomaton->stats.VIT;
-        WBUFW(data,(0x8A)) = PChar->PAutomaton->getMod(MOD_VIT);
+        WBUFW(data,(0x8A)) = PChar->PAutomaton->getMod(Mod::VIT);
 	    WBUFW(data,(0x8C)) = PChar->PAutomaton->stats.AGI;
-        WBUFW(data,(0x8E)) = PChar->PAutomaton->getMod(MOD_AGI);
+        WBUFW(data,(0x8E)) = PChar->PAutomaton->getMod(Mod::AGI);
 	    WBUFW(data,(0x90)) = PChar->PAutomaton->stats.INT;
-        WBUFW(data,(0x92)) = PChar->PAutomaton->getMod(MOD_INT);
+        WBUFW(data,(0x92)) = PChar->PAutomaton->getMod(Mod::INT);
 	    WBUFW(data,(0x94)) = PChar->PAutomaton->stats.MND;
-        WBUFW(data,(0x96)) = PChar->PAutomaton->getMod(MOD_MND);
+        WBUFW(data,(0x96)) = PChar->PAutomaton->getMod(Mod::MND);
 	    WBUFW(data,(0x98)) = PChar->PAutomaton->stats.CHR;
-        WBUFW(data,(0x9A)) = PChar->PAutomaton->getMod(MOD_CHR);
+        WBUFW(data,(0x9A)) = PChar->PAutomaton->getMod(Mod::CHR);
     }
 
 }

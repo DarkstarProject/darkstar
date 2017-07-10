@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4822
---    Scroll of Flood
---    Teaches the black magic Flood
+-- ID: 4822
+-- Scroll of Flood
+-- Teaches the black magic Flood
 -----------------------------------------
 
 -----------------------------------------

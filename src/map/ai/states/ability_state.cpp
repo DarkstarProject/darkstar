@@ -142,7 +142,7 @@ bool CAbilityState::CanUseAbility()
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_UNABLE_TO_USE_JA2));
             return false;
         }
-        std::unique_ptr<CMessageBasicPacket> errMsg;
+        std::unique_ptr<CBasicPacket> errMsg;
         auto PTarget = GetTarget();
         if (PChar->IsValidTarget(PTarget->targid, PAbility->getValidTarget(), errMsg))
         {

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6058
---    Klimaform Schema
---    Teaches the black magic Klimaform
+-- ID: 6058
+-- Klimaform Schema
+-- Teaches the black magic Klimaform
 -----------------------------------------
 
 -----------------------------------------

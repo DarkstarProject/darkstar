@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4999
---    Scroll of Knights Minne III
---    Teaches the song Mages Ballad III
+-- ID: 4999
+-- Scroll of Knights Minne III
+-- Teaches the song Mages Ballad III
 -----------------------------------------
 
 -----------------------------------------

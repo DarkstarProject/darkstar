@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4109
---    Water Cluster
---    Turn into a stack of water crystals
+-- ID: 4109
+-- Water Cluster
+-- Turn into a stack of water crystals
 -----------------------------------------
 
 -----------------------------------------
@@ -9,11 +9,11 @@
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:getFreeSlotsCount() == 0) then
         result = 308;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

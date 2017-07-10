@@ -16,10 +16,6 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local vwnpc = {17118038,17118039,17118040};
-    SetVoidwatchNPC(vwnpc);
-
 end;
 
 -----------------------------------
@@ -40,7 +36,7 @@ end;
 
 function onZoneWeatherChange(weather)
 
-    local npc = GetNPCByID(17118004); -- Indescript Markings
+    local npc = GetNPCByID(17118008); -- Indescript Markings
     if (npc ~= nil) then
         if (weather == WEATHER_FOG or weather == WEATHER_THUNDER) then
             npc:setStatus(STATUS_DISAPPEAR);
@@ -54,9 +50,9 @@ end;
 -- onGameHour
 -----------------------------------
 
-function onGameHour()
+function onGameHour(zone)
 
-    local npc = GetNPCByID(17118004); -- Indescript Markings
+    local npc = GetNPCByID(17118008); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 16) then
             npc:setStatus(STATUS_DISAPPEAR);

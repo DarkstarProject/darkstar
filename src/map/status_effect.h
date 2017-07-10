@@ -316,7 +316,7 @@ enum EFFECT
     EFFECT_DEDICATION               = 249,
     EFFECT_EF_BADGE                 = 250,
     EFFECT_FOOD                     = 251,
-    EFFECT_CHOCOBO                  = 252,
+    EFFECT_MOUNTED                  = 252,
     EFFECT_SIGNET                   = 253,
     EFFECT_BATTLEFIELD              = 254,
     EFFECT_NONE                     = 255,
@@ -765,7 +765,7 @@ public:
     void    SetLastTick(time_point LastTick);
     void    SetStartTime(time_point StartTime);
 
-    void    addMod(uint16 modType, int16 amount);
+    void    addMod(Mod modType, int16 amount);
 
     void    SetName(string_t name);
     void    SetName(const int8* name);

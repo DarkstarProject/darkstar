@@ -18,7 +18,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:delStatusEffectSilent(EFFECT_OMERTA)
-    target:messageText(target, 7218)
+    target:delStatusEffectSilent(EFFECT_OMERTA);
+    target:messageText(target, 7218);
 end;
 

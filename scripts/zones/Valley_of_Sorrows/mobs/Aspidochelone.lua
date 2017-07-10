@@ -41,7 +41,7 @@ function onMobDespawn(mob)
     -- Set Aspidochelone's Window Open Time
     if (LandKingSystem_HQ ~= 1) then
         local wait = 72 * 3600;
-        SetServerVariable("[POP]Aspidochelone", os.time(t) + wait); -- 3 days
+        SetServerVariable("[POP]Aspidochelone", os.time() + wait); -- 3 days
         if (LandKingSystem_HQ == 0) then -- Is time spawn only
             DeterMob(mob:getID(), true);
         end

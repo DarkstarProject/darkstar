@@ -5,16 +5,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/zone");
 require("scripts/globals/npc_util");
-require("scripts/zones/Quicksand_Caves/TextIDs");
+require("scripts/globals/zone");
 
-base_id = 17629685;
+local base_id = 17629685;
 
-anticanTagPositions = {
+local anticanTagPositions =
+{
     [1] = {590.000, -6.600, -663.000},
     [2] = {748.000, 2.000, -570.000},
     [3] = {479.000, -14.000, -815.000},
@@ -26,19 +26,12 @@ anticanTagPositions = {
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17629766,17629767,17629768,17629769,17629770,17629771};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17629760,17629761,17629762};
-    SetVoidwatchNPC(vwnpc);
-
     -- Weight Door System (RegionID, X, Radius, Z)
-    zone:registerRegion(1,   -15, 5, -60, 0,0,0); -- 0x010D01EF Door
-    zone:registerRegion(3,       15, 5,-180, 0,0,0); -- 0x010D01F1 Door
-    zone:registerRegion(5,     -580, 5,-420, 0,0,0); -- 0x010D01F3 Door
-    zone:registerRegion(7,     -700, 5,-420, 0,0,0); -- 0x010D01F5 Door
-    zone:registerRegion(9,     -700, 5,-380, 0,0,0); -- 0x010D01F7 Door
+    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 0x010D01EF Door
+    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 0x010D01F1 Door
+    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 0x010D01F3 Door
+    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 0x010D01F5 Door
+    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 0x010D01F7 Door
     zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 0x010D01F9 Door
     zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 0x010D01FB Door
     zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 0x010D01FD Door
@@ -65,18 +58,18 @@ function onInitialize(zone)
     ]]--
 
     -- Hole in the Sand
-    zone:registerRegion(30,495,-9,-817,497,-7,-815);     -- E-11 (Map 2)
-    zone:registerRegion(31,815,-9,-744,817,-7,-742);     -- M-9 (Map 2)
-    zone:registerRegion(32,215,6,-17,217,8,-15);         -- K-6 (Map 3)
-    zone:registerRegion(33,-297,6,415,-295,8,417);         -- E-7 (Map 6)
-    zone:registerRegion(34,-137,6,-177,-135,8,-175);     -- G-7 (Map 8)
+    zone:registerRegion(30,495,-9,-817,497,-7,-815); -- E-11 (Map 2)
+    zone:registerRegion(31,815,-9,-744,817,-7,-742); -- M-9 (Map 2)
+    zone:registerRegion(32,215,6,-17,217,8,-15);     -- K-6 (Map 3)
+    zone:registerRegion(33,-297,6,415,-295,8,417);   -- E-7 (Map 6)
+    zone:registerRegion(34,-137,6,-177,-135,8,-175); -- G-7 (Map 8)
 
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time()-QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(17629735);
+    UpdateTreasureSpawnPoint(17629739);
 
-    npcUtil.UpdateNPCSpawnPoint(17629757, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(17629761, 60, 120, anticanTagPositions, "[POP]Antican_Tag");
 end;
 
 -----------------------------------
@@ -97,7 +90,7 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-980.193,14.913,-282.863,60);
     end
     return cs;
@@ -110,7 +103,6 @@ end;
 function onRegionEnter(player,region)
 
     local RegionID = region:GetRegionID();
-
     if (RegionID >= 30) then
         switch (RegionID): caseof
         {
@@ -131,23 +123,23 @@ function onRegionEnter(player,region)
             end,
         }
     else
+        -- printf("entering region %u",RegionID);
         local race = player:getRace();
-         printf("entering region %u",RegionID);
-
+        local raceWeight;
         if (race == 8) then -- Galka
-            weight = 3;
+            raceWeight = 3;
         elseif (race == 5 or race == 6) then -- Taru male or female
-            weight = 1;
+            raceWeight = 1;
         else -- Hume/Elvaan/Mithra
-            weight = 2;
+            raceWeight = 2;
         end
 
         local varname = "[DOOR]Weight_Sensor_"..RegionID;
-        w = GetServerVariable(varname);
-        w = w + weight;
-        SetServerVariable(varname,w);
+        local totalWeight = GetServerVariable(varname);
+        totalWeight = totalWeight + raceWeight;
+        SetServerVariable(varname,totalWeight);
 
-        if (player:hasKeyItem(2051) or w >= 3) then
+        if (player:hasKeyItem(LOADSTONE) or totalWeight >= 3) then
             local door = GetNPCByID(base_id + RegionID - 1);
             door:openDoor(15); -- open door with a 15 second time delay.
             --platform = GetNPCByID(base_id + RegionID + 1);
@@ -164,25 +156,25 @@ end;
 function onRegionLeave(player,region)
 
     local RegionID = region:GetRegionID();
-
     if (RegionID < 30) then
+        -- printf("exiting region %u",RegionID);
         local race = player:getRace();
-    -- printf("exiting region %u",RegionID);
-
+        local raceWeight;
         if (race == 8) then -- Galka
-            weight = 3;
+            raceWeight = 3;
         elseif (race == 5 or race == 6) then -- Taru male or female
-            weight = 1;
+            raceWeight = 1;
         else -- Hume/Elvaan/Mithra
-            weight = 2;
-        end;
-        local varname = "[DOOR]Weight_Sensor_"..RegionID;
-        w = GetServerVariable(varname);
-        lastWeight = w;
-        w = w - weight;
-        SetServerVariable(varname,w);
+            raceWeight = 2;
+        end
 
-        if (lastWeight >= 3 and w < 3) then
+        local varname = "[DOOR]Weight_Sensor_"..RegionID;
+        local totalWeight = GetServerVariable(varname);
+        local lastWeight = totalWeight;
+        totalWeight = totalWeight - raceWeight;
+        SetServerVariable(varname,totalWeight);
+
+        if (lastWeight >= 3 and totalWeight < 3) then
             --platform = GetNPCByID(base_id + RegionID + 1);
             --platform:setAnimation(9);
         end
@@ -195,8 +187,8 @@ end;
 -----------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;
 
 -----------------------------------
@@ -204,6 +196,6 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
+    -- printf("CSID: %u",csid);
+    -- printf("RESULT: %u",option);
 end;

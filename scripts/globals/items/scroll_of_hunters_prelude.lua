@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5009
---    Scroll of Hunters Prelude
---    Teaches the song Hunters Prelude
+-- ID: 5009
+-- Scroll of Hunters Prelude
+-- Teaches the song Hunters Prelude
 -----------------------------------------
 
 -----------------------------------------

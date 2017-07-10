@@ -4,7 +4,9 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Strength 1
--- Accuracy % 16
+-- Accuracy % 14 (cap 68)
+-- Ranged Accuracy % 14 (cap 68)
+-- Resist Sleep +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -14,11 +16,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -35,8 +37,11 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(MOD_STR, 1);
-    target:addMod(MOD_FOOD_ACCP, 16);
-    target:addMod(MOD_FOOD_ACC_CAP, 999);
+    target:addMod(MOD_FOOD_ACCP, 14);
+    target:addMod(MOD_FOOD_ACC_CAP, 68);
+    target:addMod(MOD_FOOD_RACCP, 14);
+    target:addMod(MOD_FOOD_RACC_CAP, 68);
+    target:addMod(MOD_SLEEPRES, 1);
 end;
 
 -----------------------------------------
@@ -45,6 +50,9 @@ end;
 
 function onEffectLose(target,effect)
     target:delMod(MOD_STR, 1);
-    target:delMod(MOD_FOOD_ACCP, 16);
-    target:delMod(MOD_FOOD_ACC_CAP, 999);
+    target:delMod(MOD_FOOD_ACCP, 14);
+    target:delMod(MOD_FOOD_ACC_CAP, 68);
+    target:delMod(MOD_FOOD_RACCP, 14);
+    target:delMod(MOD_FOOD_RACC_CAP, 68);
+    target:delMod(MOD_SLEEPRES, 1);
 end;

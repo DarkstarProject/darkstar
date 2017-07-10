@@ -67,7 +67,7 @@ function onUseAbility(player,target,ability)
     end
 
     pet:delStatusEffect(EFFECT_POISON);
-    pet:delStatusEffect(EFFECT_BLIND);
+    pet:delStatusEffect(EFFECT_BLINDNESS);
     pet:delStatusEffect(EFFECT_PARALYSIS);
     
     if (math.random(1,2) == 1) then

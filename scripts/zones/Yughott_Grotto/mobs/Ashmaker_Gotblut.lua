@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Ashmaker_Gotblut's Window Open Time
     local wait = math.random(7200,10800)
-    SetServerVariable("[POP]Ashmaker_Gotblut", os.time(t) + wait); -- 2-3 hours
+    SetServerVariable("[POP]Ashmaker_Gotblut", os.time() + wait); -- 2-3 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

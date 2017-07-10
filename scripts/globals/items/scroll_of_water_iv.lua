@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4780
---    Scroll of Water IV
---    Teaches the black magic Water IV
+-- ID: 4780
+-- Scroll of Water IV
+-- Teaches the black magic Water IV
 -----------------------------------------
 
 -----------------------------------------

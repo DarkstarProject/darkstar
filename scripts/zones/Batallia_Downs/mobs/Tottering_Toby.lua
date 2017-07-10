@@ -18,7 +18,7 @@ function onMobDespawn(mob)
 
     -- Set Tottering_Toby's Window Open Time
     local wait = math.random((3600),(10800));
-    SetServerVariable("[POP]Tottering_Toby", os.time(t) + wait); -- 1-6 hours
+    SetServerVariable("[POP]Tottering_Toby", os.time() + wait); -- 1-6 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

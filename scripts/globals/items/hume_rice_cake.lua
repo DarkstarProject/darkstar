@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5294
---    Hume Rice Cake
---    Enchantment: 60Min, Costume - Hume child (female)
+-- ID: 5294
+-- Hume Rice Cake
+-- Enchantment: 60Min, Costume - Hume child (female)
 -----------------------------------------
 
 require("scripts/globals/status");

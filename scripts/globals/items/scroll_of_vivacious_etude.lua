@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5034
---    Scroll of Vivacious Etude
---    Teaches the song Vivacious Etude
+-- ID: 5034
+-- Scroll of Vivacious Etude
+-- Teaches the song Vivacious Etude
 -----------------------------------------
 
 -----------------------------------------

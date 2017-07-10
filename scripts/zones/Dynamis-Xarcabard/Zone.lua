@@ -33,40 +33,34 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
+    local cs = 0;
+    local inst = 0;
 
-    local realDay = os.time();
-    local dynaWaitxDay = player:getVar("dynaWaitxDay");
-
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-        player:setPos(569.600,-0.078,-270.000,90);
-    end
-
-    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or player:getVar("DynamisID") == GetServerVariable("[DynaXarcabard]UniqueID")) then
-        if (player:isBcnmsFull() == 1) then
-            if (player:hasStatusEffect(EFFECT_DYNAMIS, 0) == false) then
-                inst = player:addPlayerToDynamis(1285);
-                if (inst == 1) then
-                    player:bcnmEnter(1285);
-                else
-                     cs = 0;
-                end
-            else
-                player:bcnmEnter(1285);
-            end
-        else
-            inst = player:bcnmRegister(1285);
-
-            if (inst == 1) then
-                player:bcnmEnter(1285);
-            else
-                cs = 0;
-            end
+    if player:isBcnmsFull() == 1 then
+        -- run currently in progress
+        -- add player to the run if they entered via markings, or if they reconnected to a run they were previously in
+        -- gms will be automatically registered
+        if player:getVar("enteringDynamis") == 1 or player:getVar("DynamisID") == GetServerVariable("[DynaXarcabard]UniqueID") or player:getGMLevel() > 0 then
+            inst = player:addPlayerToDynamis(1285);
         end
     else
-        cs = 0;
+        -- no run yet in progress
+        -- register run by player if they entered via markings
+        -- gms will be automatically registered
+        if player:getVar("enteringDynamis") == 1 or player:getGMLevel() > 0 then
+            inst = player:bcnmRegister(1285);
+        end
     end
 
+    if inst == 1 then
+        player:bcnmEnter(1285);
+        cs = -1;
+        if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+            player:setPos(569.312,-0.098,-270.158,90);
+        end
+    end
+
+    player:setVar("enteringDynamis",0);
     return cs;
 end;
 

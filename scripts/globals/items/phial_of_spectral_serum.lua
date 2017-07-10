@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5352
---    Phial of spectral Serum
---    Enchantment: 60Min, Costume - ghost
+-- ID: 5352
+-- Phial of spectral Serum
+-- Enchantment: 60Min, Costume - ghost
 -----------------------------------------
 
 require("scripts/globals/status");

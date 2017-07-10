@@ -6,7 +6,7 @@
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
     
-    SetServerVariable("[DynaJeuno]UniqueID",player:getDynamisUniqueID(1283));
+    SetServerVariable("[DynaJeuno]UniqueID",os.time());
     SetServerVariable("[DynaJeuno]Boss_Trigger",0);
     SetServerVariable("[DynaJeuno]Already_Received",0);
     

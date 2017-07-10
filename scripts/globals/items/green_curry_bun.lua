@@ -1,11 +1,16 @@
 -----------------------------------------
 -- ID: 5756
 -- Item: green_curry_bun
--- Food Effect: 1hour, All Races
+-- Food Effect: 30 min, All Races
 -----------------------------------------
--- Vitality 1
--- Agility 2
--- Defense % 12
+-- TODO: Group effects
+-- VIT +1
+-- AGI +2
+-- Ranged Accuracy +5% (cap 25)
+-- DEF +9% (cap 160)
+-- Resist Sleep +3
+-- hHP +2
+-- hMP +1
 -----------------------------------------
 
 require("scripts/globals/status");
@@ -15,11 +20,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------
@@ -27,7 +32,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5756);
+    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5756);
 end;
 
 -----------------------------------------
@@ -37,8 +42,13 @@ end;
 function onEffectGain(target,effect)
     target:addMod(MOD_VIT, 1);
     target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_FOOD_DEFP, 12);
-    target:addMod(MOD_FOOD_DEF_CAP, 999);
+    target:addMod(MOD_FOOD_RACCP, 5);
+    target:addMod(MOD_FOOD_RACC_CAP, 25);
+    target:addMod(MOD_FOOD_DEFP, 9);
+    target:addMod(MOD_FOOD_DEF_CAP, 160);
+    target:addMod(MOD_SLEEPRES, 3);
+    target:addMod(MOD_HPHEAL, 2);
+    target:addMod(MOD_MPHEAL, 1);
 end;
 
 -----------------------------------------
@@ -48,6 +58,11 @@ end;
 function onEffectLose(target,effect)
     target:delMod(MOD_VIT, 1);
     target:delMod(MOD_AGI, 2);
-    target:delMod(MOD_FOOD_DEFP, 12);
-    target:delMod(MOD_FOOD_DEF_CAP, 999);
+    target:delMod(MOD_FOOD_RACCP, 5);
+    target:delMod(MOD_FOOD_RACC_CAP, 25);
+    target:delMod(MOD_FOOD_DEFP, 9);
+    target:delMod(MOD_FOOD_DEF_CAP, 160);
+    target:delMod(MOD_SLEEPRES, 3);
+    target:delMod(MOD_HPHEAL, 2);
+    target:delMod(MOD_MPHEAL, 1);
 end;

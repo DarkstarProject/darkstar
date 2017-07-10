@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     if (Mee_Deggi_the_Punisher_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Mee_Deggi_the_Punisher");
-        if (ToD <= os.time(t) and GetMobAction(Mee_Deggi_the_Punisher) == 0) then
+        if (ToD <= os.time() and GetMobAction(Mee_Deggi_the_Punisher) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Mee_Deggi_the_Punisher);
                 GetMobByID(Mee_Deggi_the_Punisher):setRespawnTime(GetMobRespawnTime(mobID));

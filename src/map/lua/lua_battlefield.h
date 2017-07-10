@@ -55,6 +55,8 @@ public:
     int32 getEntrance(lua_State*);
     int32 insertAlly(lua_State*);
     int32 getAllies(lua_State*);
+    int32 getEnemies(lua_State*);
+    int32 getPlayers(lua_State*);
     int32 lose(lua_State*);
     int32 win(lua_State*);
 };

@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
                 end;
                 spell:setMsg(237);
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
-                target:addStatusEffect(EFFECT_FROST,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASBLE);
+                target:addStatusEffect(EFFECT_FROST,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
             end;
         end;
     end;

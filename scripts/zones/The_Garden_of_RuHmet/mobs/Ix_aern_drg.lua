@@ -9,7 +9,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    if (math.random(0,3) == 0) then
+    if (math.random(0,99) < 78) then
         SetDropRate(4396,1870,1000); -- Deed Of Sensib.
         SetDropRate(4396,1903,0);
     else

@@ -60,7 +60,7 @@ void CPlayerController::Cast(uint16 targid, uint16 spellid)
 bool CPlayerController::Engage(uint16 targid)
 {
     //#TODO: pet engage/disengage
-    std::unique_ptr<CMessageBasicPacket> errMsg;
+    std::unique_ptr<CBasicPacket> errMsg;
     auto PChar = static_cast<CCharEntity*>(POwner);
     auto PTarget = PChar->IsValidTarget(targid, TARGET_ENEMY, errMsg);
 
@@ -178,7 +178,7 @@ void CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             }
         }
 
-        std::unique_ptr<CMessageBasicPacket> errMsg;
+        std::unique_ptr<CBasicPacket> errMsg;
         auto PTarget = PChar->IsValidTarget(targid, battleutils::isValidSelfTargetWeaponskill(wsid) ? TARGET_SELF : TARGET_ENEMY, errMsg);
 
         if (PTarget)

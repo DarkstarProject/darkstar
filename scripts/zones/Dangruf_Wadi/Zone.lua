@@ -17,19 +17,11 @@ require("scripts/zones/Dangruf_Wadi/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
-
-    local tomes = {17559931,17559932};
-    SetGroundsTome(tomes);
-
-    local vwnpc = {17559925,17559926,17559927};
-    SetVoidwatchNPC(vwnpc);
-
     zone:registerRegion(1, -133.5, 2, 132.6, -132.7, 4,  133.8);  -- I-8 Geyser
     zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser
     zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser
 
-    UpdateTreasureSpawnPoint(17559920);
-
+    UpdateTreasureSpawnPoint(17559924);
 end;
 
 -----------------------------------
@@ -109,7 +101,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local qm2 = GetNPCByID(17559907); -- Quest: An Empty Vessel
+    local qm2 = GetNPCByID(17559911); -- Quest: An Empty Vessel
     if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
         qm2:setStatus(STATUS_NORMAL);
     else

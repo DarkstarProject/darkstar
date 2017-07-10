@@ -38,8 +38,7 @@ function onUseAbility(player,target,ability)
     dmg = dmg * applyResistanceAbility(player,target,ELE_LIGHTNING,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_LIGHTNING);
     
-    target:takeWeaponskillDamage(player, dmg, SLOT_RANGED, 1, 0, 0); -- targetTPMult is 0 because Quick Draw gives no TP to the mob
-    target:updateEnmityFromDamage(player,dmg);
+    dmg = takeWeaponskillDamage(target, player, {}, true, dmg, SLOT_RANGED, 1, 0, nil);
     
     local effects = {};
     local counter = 1;

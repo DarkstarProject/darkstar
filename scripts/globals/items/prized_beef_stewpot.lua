@@ -11,7 +11,7 @@
 -- Mind +2
 -- HP Recovered while healing +9
 -- MP Recovered while healing +3
--- Attack 15% Cap 80
+-- Attack 18% Cap 80
 -- Evasion +7
 -----------------------------------------
 
@@ -22,11 +22,11 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-result = 0
+    local result = 0;
     if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
-return result;
+    return result;
 end;
 
 -----------------------------------------

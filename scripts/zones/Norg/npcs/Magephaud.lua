@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0076) then
         player:completeQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:tradeComplete();
-        player:addFame(OUTLANDS,80);
+        player:addFame(NORG,80);
         player:addKeyItem(291);    -- Permanent Tonberry key
         player:messageSpecial(KEYITEM_OBTAINED,291);
         player:setVar("EveryonesGrudgeStarted",0);

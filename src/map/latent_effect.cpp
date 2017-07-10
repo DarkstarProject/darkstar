@@ -28,7 +28,7 @@
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
 
-CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, uint16 modValue, int16 modPower)
+CLatentEffect::CLatentEffect(LATENT conditionsId, uint16 conditionsValue, uint8 slot, Mod modValue, int16 modPower)
 {
     m_ConditionsID      = conditionsId;
     m_ConditionsValue   = conditionsValue;
@@ -57,7 +57,7 @@ uint8 CLatentEffect::GetSlot()
     return m_SlotID;
 }
 
-uint16 CLatentEffect::GetModValue()
+Mod CLatentEffect::GetModValue()
 {
     return m_ModValue;
 }
@@ -92,7 +92,7 @@ void CLatentEffect::SetSlot(uint8 slot)
     m_SlotID = slot;
 }
 
-void CLatentEffect::SetModValue(uint16 value)
+void CLatentEffect::SetModValue(Mod value)
 {
     m_ModValue = value;
 }
@@ -107,7 +107,7 @@ void CLatentEffect::Activate()
     if( !IsActivated() )
     {
         //additional effect/dmg latents add mod to weapon, not player
-        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
+        if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
             CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
@@ -129,7 +129,7 @@ void CLatentEffect::Deactivate()
     if( IsActivated() )
     {
         //remove the modifier from weapon, not player
-        if (GetModValue() == MOD_ADDITIONAL_EFFECT || GetModValue() == MOD_DMG)
+        if (GetModValue() == Mod::ADDITIONAL_EFFECT || GetModValue() == Mod::DMG)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
 			CItemWeapon* weapon = (CItemWeapon*)PChar->getEquip((SLOTTYPE)GetSlot());
@@ -138,12 +138,12 @@ void CLatentEffect::Deactivate()
 
             if (weapon != nullptr && (weapon->isType(ITEM_ARMOR) || weapon->isType(ITEM_WEAPON)))
             {
-                if (GetModValue() == MOD_ADDITIONAL_EFFECT)
+                if (GetModValue() == Mod::ADDITIONAL_EFFECT)
                 {
                     for (uint8 i = 0; i < weapon->modList.size(); ++i)
                     {
                         //ensure the additional effect is fully removed from the weapon
-                        if (weapon->modList.at(i)->getModID() == MOD_ADDITIONAL_EFFECT)
+                        if (weapon->modList.at(i)->getModID() == Mod::ADDITIONAL_EFFECT)
                         {
                             weapon->modList.at(i)->setModAmount(0);
                         }

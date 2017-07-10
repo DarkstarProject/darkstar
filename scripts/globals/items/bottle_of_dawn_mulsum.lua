@@ -11,14 +11,14 @@ require("scripts/globals/settings");
 -----------------------------------------
 
 function onItemCheck(target)
-local result = 0;
+    local result = 0;
 
-if (target:hasPet() == false) then
-    -- result = 56;
-    result = 215; -- this right?
-end
+    if (target:hasPet() == false) then
+        -- result = 56;
+        result = 215; -- this right?
+    end
 
-return result;
+    return result;
 end;
 
 -----------------------------------------

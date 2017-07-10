@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4965
---    Scroll of Aisha: Ichi
---    Teaches the ninjutsu Aisha: Ichi
+-- ID: 4965
+-- Scroll of Aisha: Ichi
+-- Teaches the ninjutsu Aisha: Ichi
 -----------------------------------------
 
 -----------------------------------------

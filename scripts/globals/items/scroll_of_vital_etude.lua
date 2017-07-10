@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5041
---    Scroll of Vital Etude
---    Teaches the song Vital Etude
+-- ID: 5041
+-- Scroll of Vital Etude
+-- Teaches the song Vital Etude
 -----------------------------------------
 
 -----------------------------------------
