@@ -465,7 +465,7 @@ void CBattlefield::cleanup()
         auto enemy = m_EnemyList.at(i);
         if (enemy->PPet != nullptr && enemy->PPet->isAlive())
         {
-            enemy->PPet->Die();
+            enemy->PPet->PAI->Despawn();
         }
         enemy->PAI->Despawn();
         enemy->status = STATUS_DISAPPEAR;
