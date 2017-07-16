@@ -143,22 +143,15 @@ uint32 CDataLoader::GetPlayersCount(search_req sr)
 {
     uint8 jobid = sr.jobid;
     if (jobid > 0 && jobid < 21){
-        if (Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid)
-            != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions LEFT JOIN char_stats USING (charid) WHERE mjob = %u", jobid))
         {
-            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                return Sql_GetUIntData(SqlHandle, 0);
-            }
+            return Sql_GetUIntData(SqlHandle, 0);
         }
     }
     else{
-        if (Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions") != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for(auto res : Sql_Query(SqlHandle, "SELECT COUNT(*) FROM accounts_sessions"))
         {
-            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                return Sql_GetUIntData(SqlHandle, 0);
-            }
+            return Sql_GetUIntData(SqlHandle, 0);
         }
     }
     return 0;

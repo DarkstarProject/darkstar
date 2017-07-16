@@ -105,7 +105,7 @@ public:
         int res{SQL_ERROR};
     };
 
-    Sql_Result_t(Sql_t* handle, std::string& query);
+    Sql_Result_t(Sql_t* handle, const std::string& query);
 
     iterator begin() const;
     iterator end() const;
@@ -118,7 +118,7 @@ private:
 };
 
 /// Allocates and initializes a new Sql handle.
-struct Sql_t* Sql_Malloc(void);
+class Sql_t* Sql_Malloc(void);
 
 /// Establishes a connection.
 ///

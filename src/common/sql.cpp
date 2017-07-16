@@ -75,7 +75,7 @@ int Sql_Result_t::iterator::operator*() const
     return res;
 }
 
-Sql_Result_t::Sql_Result_t(Sql_t* handle, std::string& query) : sql_handle(handle), res(Sql_QueryStr(sql_handle, query.c_str()))
+Sql_Result_t::Sql_Result_t(Sql_t* handle, const std::string& query) : sql_handle(handle), res(Sql_QueryStr(sql_handle, query.c_str()))
 {
 }
 
