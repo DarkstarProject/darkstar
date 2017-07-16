@@ -51,6 +51,54 @@ struct s_column_length
 *																		*
 ************************************************************************/
 
+Sql_Result_t::iterator::iterator(Sql_t* handle) : sql_handle(handle)
+{
+}
+
+Sql_Result_t::iterator::iterator(Sql_t* handle, int _res) : sql_handle(handle), res(_res)
+{
+}
+
+bool Sql_Result_t::iterator::operator!=(const iterator& o) const
+{
+    return res != o.res;
+}
+
+Sql_Result_t::iterator& Sql_Result_t::iterator::operator++()
+{
+    res = Sql_NextRow(sql_handle);
+    return *this;
+}
+
+int Sql_Result_t::iterator::operator*() const
+{
+    return res;
+}
+
+Sql_Result_t::Sql_Result_t(Sql_t* handle, std::string& query) : sql_handle(handle), res(Sql_QueryStr(sql_handle, query.c_str()))
+{
+}
+
+Sql_Result_t::iterator Sql_Result_t::begin() const
+{
+    return iterator(sql_handle, res);
+}
+
+Sql_Result_t::iterator Sql_Result_t::end() const
+{
+    return iterator(sql_handle);
+}
+
+bool Sql_Result_t::operator==(const int32& o) const
+{
+    return res == o;
+}
+
+Sql_Result_t::operator int() const
+{
+    return res;
+}
+
 Sql_t* Sql_Malloc(void)
 {
 	Sql_t* self;
@@ -80,7 +128,7 @@ int32 Sql_Connect(Sql_t* self, const char* user, const char* passwd, const char*
 		ShowSQL("%s\n", mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
-	
+
 	return SQL_SUCCESS;
 }
 

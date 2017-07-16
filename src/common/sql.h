@@ -67,14 +67,47 @@ enum SqlDataType
 *
 */
 
-struct Sql_t
+class Sql_t
 {
+public:
 	std::string buf;
 	MYSQL handle;
 	MYSQL_RES* result;
 	MYSQL_ROW row;
 	unsigned long* lengths;
 	int keepalive;
+private:
+    int query_count;
+};
+
+class Sql_Result_t
+{
+public:
+    class iterator
+    {
+    public:
+        typedef std::forward_iterator_tag iterator_category;
+
+        iterator(Sql_t* handle);
+        iterator(Sql_t* handle, int res);
+        bool operator!=(const iterator&) const;
+        iterator& operator++();
+        int operator*() const;
+    private:
+        Sql_t* sql_handle {nullptr};
+        int res{SQL_ERROR};
+    };
+
+    Sql_Result_t(Sql_t* handle, std::string& query);
+
+    iterator begin() const;
+    iterator end() const;
+
+    bool operator==(const int32&) const;
+    operator int() const;
+private:
+    Sql_t* sql_handle {nullptr};
+    int32 res;
 };
 
 /// Allocates and initializes a new Sql handle.
@@ -125,10 +158,10 @@ int32 Sql_QueryStr(Sql_t* self, const char* query);
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
 template<typename... Args>
-int32 Sql_Query(Sql_t* self, const char* query, Args... args)
+Sql_Result_t Sql_Query(Sql_t* self, const char* query, Args... args)
 {
     std::string query_v = fmt::sprintf(query, args...);
-	return Sql_QueryStr(self, query_v.c_str());
+	return Sql_Result_t(self, query_v);
 }
 
 uint64 Sql_AffectedRows(Sql_t* self);
