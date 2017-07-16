@@ -1753,8 +1753,8 @@ INSERT INTO `item_latents` VALUES(14013, 110, 10, 53, 1); -- DEX +2 in areas out
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14017, 12, 1, 53, 1); -- INT +1 in areas outside own nation's control
 INSERT INTO `item_latents` VALUES(14017, 13, 1, 53, 1); -- MND +1 in areas outside own nation's control
-INSERT INTO `item_latents` VALUES(14017, 113, 7, 53, 1); -- Enfeeb +7 in areas outside own nation's control
-INSERT INTO `item_latents` VALUES(14017, 114, 7, 53, 1); -- element +7 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(14017, 114, 7, 53, 1); -- Enfeeb +7 in areas outside own nation's control
+INSERT INTO `item_latents` VALUES(14017, 115, 7, 53, 1); -- element +7 in areas outside own nation's control
 
 -- -------------------------------------------------------
 -- San d'Orian Mace / Kingdom Mace
