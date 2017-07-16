@@ -76,6 +76,13 @@ public:
 	MYSQL_ROW row;
 	unsigned long* lengths;
 	int keepalive;
+
+    /// Fetches the next row.
+    /// The data of the previous row is no longer valid.
+    ///
+    /// @return SQL_SUCCESS, SQL_ERROR or SQL_NO_DATA
+    int32 Sql_NextRow();
+
 private:
     int query_count;
 };
@@ -180,12 +187,6 @@ uint32 Sql_NumColumns(Sql_t* self);
 ///
 /// @return Number of rows
 uint64 Sql_NumRows(Sql_t* self);
-
-/// Fetches the next row.
-/// The data of the previous row is no longer valid.
-///
-/// @return SQL_SUCCESS, SQL_ERROR or SQL_NO_DATA
-int32 Sql_NextRow(Sql_t* self);
 
 /// Establishes keepalive (periodic ping) on the connection
 ///

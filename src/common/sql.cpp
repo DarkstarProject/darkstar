@@ -385,18 +385,18 @@ uint64 Sql_NumRows(Sql_t* self)
 *																		*
 ************************************************************************/
 
-int32 Sql_NextRow(Sql_t* self)
+int32 Sql_t::Sql_NextRow()
 {
-	if( self && self->result )
+	if( result )
 	{
-		self->row = mysql_fetch_row(self->result);
-		if( self->row )
+		row = mysql_fetch_row(result);
+		if( row )
 		{
-			self->lengths = mysql_fetch_lengths(self->result);
+			lengths = mysql_fetch_lengths(result);
 			return SQL_SUCCESS;
 		}
-		self->lengths = NULL;
-		if( mysql_errno(&self->handle) == 0 )
+		lengths = NULL;
+		if( mysql_errno(&handle) == 0 )
 		{
 			return SQL_NO_DATA;
 		}
