@@ -1,15 +1,25 @@
+---------------------------------------------
+-- Metalid Body
+--
+cGives the effect of "Stoneskin."
+-- Type: Magical
+---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
----------------------------------------------------
+---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local base = mob:getMainLvl() + 0.05*mob:getMaxHP()*(skill:getTP()/1000); --base is around 5~150 level depending
-    local typeEffect = EFFECT_STONESKIN;
-    skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 300));
-    return typeEffect;
+    local power = 25; -- ffxiclopedia claims its always 25 on the crabs page. Tested on wootzshell in mt zhayolm..
+    --[[
+    if (mob:isNM()) then
+        power = ???  Betting NMs aren't 25 but I don't have data..
+    end
+    ]]
+    skill:setMsg(MobBuffMove(mob, EFFECT_STONESKIN, power, 0, 300));
+    return EFFECT_STONESKIN;
 end;
