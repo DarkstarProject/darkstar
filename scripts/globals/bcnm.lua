@@ -90,7 +90,7 @@ function TradeBCNM(player, zone, trade, npc)
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then -- cant start a new bc
         player:messageBasic(94, 0, 0);
         return false;
-    elseif (player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
+    elseif (trade ~= nil and player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
         player:messageBasic(56, 0, 0); -- i need correct dialog
         return false;
     end
