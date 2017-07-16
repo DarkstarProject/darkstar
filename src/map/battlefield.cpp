@@ -462,9 +462,14 @@ void CBattlefield::cleanup()
     ShowDebug("bcnm cleanup id:%i inst:%i \n", this->getID(), this->getBattlefieldNumber());
     //wipe enmity from all mobs in list if needed
     for (int i = 0; i < m_EnemyList.size(); i++) {
-        m_EnemyList.at(i)->PAI->Despawn();
-        m_EnemyList.at(i)->status = STATUS_DISAPPEAR;
-        m_EnemyList.at(i)->PBCNM = nullptr;
+        auto enemy = m_EnemyList.at(i);
+        if (enemy->PPet != nullptr && enemy->PPet->isAlive())
+        {
+            enemy->PPet->PAI->Despawn();
+        }
+        enemy->PAI->Despawn();
+        enemy->status = STATUS_DISAPPEAR;
+        enemy->PBCNM = nullptr;
     }
     //wipe mob list
     m_EnemyList.clear();
