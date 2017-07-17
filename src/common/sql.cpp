@@ -66,7 +66,7 @@ bool Sql_Result_t::iterator::operator!=(const iterator& o) const
 
 Sql_Result_t::iterator& Sql_Result_t::iterator::operator++()
 {
-    res = Sql_NextRow(sql_handle);
+    res = sql_handle->Sql_NextRow();
     return *this;
 }
 
