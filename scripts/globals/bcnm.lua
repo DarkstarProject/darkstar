@@ -86,11 +86,15 @@ bcnmid_param_map = {6, {640, 0, 643, 3},
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player, zone, trade, npc)
-    -- return false;
+    if (trade == nil) then
+        print("TradeBCNM was sent a nil trade!\n\t Player: "..player:getName().."\n\t zone: "..zone.."\n");
+        return false;
+    end
+
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then -- cant start a new bc
         player:messageBasic(94, 0, 0);
         return false;
-    elseif (trade ~= nil and player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
+    elseif (player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
         player:messageBasic(56, 0, 0); -- i need correct dialog
         return false;
     end
@@ -281,7 +285,7 @@ function CheckMaatFights(player, zone, trade, npc)
 
     if (itemid >= 1426 and itemid <= 1440) then -- The traded item IS A TESTIMONY
         if (lvl < 66) then
-        return true;
+            return true;
         end
 
         if (player:isBcnmsFull() == 1) then -- temp measure, this will precheck the instances
@@ -398,7 +402,6 @@ end;
 --      You also need to know the bitmask (event param) which should be put in bcnmid_param_map
 
 function checkNonTradeBCNM(player, npc)
-
     local mask = 0;
     local Zone = player:getZoneID();
 
@@ -408,7 +411,7 @@ function checkNonTradeBCNM(player, npc)
              player:setVar("trade_bcnmid", 640);
 	    elseif (player:hasKeyItem(ZEPHYR_FAN)) then -- Brothers ENM
             mask = GetBattleBitmask(643, Zone, 1);
-            player:setVar("trade_bcnmid", 643);		 
+            player:setVar("trade_bcnmid", 643);
         end
     elseif (Zone == 8) then -- Boneyard_Gully
            if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5) then -- head_wind
@@ -487,31 +490,26 @@ function checkNonTradeBCNM(player, npc)
             mask = GetBattleBitmask(1024, Zone, 1);
             player:setVar("trade_bcnmid", 1024);
         end
-
     elseif (Zone == 36) then -- Empyreal Paradox
         if (player:getCurrentMission(COP) ==  DAWN and player:getVar("PromathiaStatus")==2) then -- dawn
             mask = GetBattleBitmask(1056, Zone, 1);
             player:setVar("trade_bcnmid", 1056);
         end
-
     elseif (Zone == 57) then --  Talacca Cove
         if (player:getCurrentMission(TOAU) ==  LEGACY_OF_THE_LOST) then -- TOAU-35 Legacy of the Lost
             mask = GetBattleBitmask(1092, Zone, 1);
             player:setVar("trade_bcnmid", 1092);
         end
-
     elseif (Zone == 64) then -- Navukgo Execution Chamber
         if (player:getCurrentMission(TOAU) ==  SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus")==2) then -- TOAU-22 shield of diplomacy
             mask = GetBattleBitmask(1124, Zone, 1);
             player:setVar("trade_bcnmid", 1124);
         end
-
     elseif (Zone == 67) then -- Jade Sepulcher
         if (player:getCurrentMission(TOAU) ==  PUPPET_IN_PERIL and player:getVar("AhtUrganStatus")==1) then -- TOAU-29 Puppet in Peril
             mask = GetBattleBitmask(1156, Zone, 1);
             player:setVar("trade_bcnmid", 1156);
         end
-
     elseif (Zone == 139) then -- Horlais Peak
         if ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
             player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9) then -- Mission 2-3
@@ -560,8 +558,6 @@ function checkNonTradeBCNM(player, npc)
         elseif (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1) then -- bastok 9-2
             mask = GetBattleBitmask(161, Zone, 1);
             player:setVar("trade_bcnmid", 161);
-
-
         end
     elseif (Zone == 168) then -- Chamber of Oracles
         if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES) then -- Zilart Mission 6
