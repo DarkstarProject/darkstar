@@ -165,7 +165,7 @@ int32 Sql_QueryStr(Sql_t* self, const char* query);
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
 template<typename... Args>
-Sql_Result_t Sql_Query(Sql_t* self, const char* query, Args... args)
+Sql_Result_t Sql_Query(Sql_t* self, const std::string& query, Args... args)
 {
     std::string query_v = fmt::sprintf(query, args...);
 	return Sql_Result_t(self, query_v);

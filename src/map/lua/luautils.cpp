@@ -3916,11 +3916,7 @@ namespace luautils
 
         int32 value = 0;
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT value FROM server_variables WHERE name = '%s' LIMIT 1;", lua_tostring(L, -1));
-
-        if (ret != SQL_ERROR &&
-            Sql_NumRows(SqlHandle) != 0 &&
-            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        for (auto res : Sql_Query(SqlHandle, "SELECT value FROM server_variables WHERE name = '%s' LIMIT 1;", lua_tostring(L, -1)))
         {
             value = (int32)Sql_GetIntData(SqlHandle, 0);
         }
@@ -4229,19 +4225,20 @@ namespace luautils
             if (PMob != nullptr)
             {
                 int32 r = 0;
-                int32 ret = Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid);
-                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS && Sql_GetUIntData(SqlHandle, 0) > 0)
+                bool fuck = true;
+                for (auto res : Sql_Query(SqlHandle, "SELECT count(mobid) FROM `nm_spawn_points` where mobid=%u", mobid))
                 {
                     r = dsprand::GetRandomNumber(Sql_GetUIntData(SqlHandle, 0));
+                    fuck = false;
                 }
-                else
+
+                if (fuck)
                 {
                     ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error: No entries for mobid <%u> found.\n" CL_RESET, mobid);
                     return 0;
                 }
-
-                ret = Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r);
-                if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                
+                for (auto res : Sql_Query(SqlHandle, "SELECT pos_x, pos_y, pos_z FROM `nm_spawn_points` WHERE mobid=%u AND pos=%i", mobid, r))
                 {
                     PMob->m_SpawnPoint.rotation = dsprand::GetRandomNumber(256);
                     PMob->m_SpawnPoint.x = Sql_GetFloatData(SqlHandle, 0);
@@ -4249,7 +4246,7 @@ namespace luautils
                     PMob->m_SpawnPoint.z = Sql_GetFloatData(SqlHandle, 2);
                     //ShowDebug(CL_RED"UpdateNMSpawnPoint: After %i - %f, %f, %f, %i\n" CL_RESET, r, PMob->m_SpawnPoint.x,PMob->m_SpawnPoint.y,PMob->m_SpawnPoint.z,PMob->m_SpawnPoint.rotation);
                 }
-                else
+                if (fuck)
                 {
                     ShowDebug(CL_RED"UpdateNMSpawnPoint: SQL error or NM <%u> not found in nmspawnpoints table.\n" CL_RESET, mobid);
                 }

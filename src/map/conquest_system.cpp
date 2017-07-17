@@ -71,21 +71,24 @@ namespace conquest
 
         std::string Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence FROM conquest_system WHERE region_id = %d;";
 
-        int ret = Sql_Query(SqlHandle, Query.c_str(), region);
+        bool fuck = true;
 
-        if (ret == SQL_ERROR || Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+        int influences[4];
+
+        for (auto res : Sql_Query(SqlHandle, Query, region))
         {
-            return;
+            influences[0] = Sql_GetIntData(SqlHandle, 0);
+            influences[1] = Sql_GetIntData(SqlHandle, 1);
+            influences[2] = Sql_GetIntData(SqlHandle, 2);
+            influences[3] = Sql_GetIntData(SqlHandle, 3);
+
+            fuck = false;
+            break;
         }
 
-        int influences[4] =
-        {
-            Sql_GetIntData(SqlHandle, 0),
-            Sql_GetIntData(SqlHandle, 1),
-            Sql_GetIntData(SqlHandle, 2),
-            Sql_GetIntData(SqlHandle, 3),
-        };
-
+        if (fuck)
+            return;
+        
         if (influences[nation] == 5000)
             return;
 
@@ -239,9 +242,7 @@ namespace conquest
         const int8* Query = "SELECT sandoria_influence, bastok_influence, windurst_influence, beastmen_influence \
                              FROM conquest_system WHERE region_id = %d;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, regionid);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        for (auto res : Sql_Query(SqlHandle, Query, regionid))
         {
             sandoria = Sql_GetIntData(SqlHandle, 0);
             bastok = Sql_GetIntData(SqlHandle, 1);
@@ -406,22 +407,18 @@ namespace conquest
         uint8 sandoria = 0;
         uint8 bastok = 0;
         uint8 windurst = 0;
-        const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
+        std::string Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
-        int32 ret = Sql_Query(SqlHandle, Query);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, Query))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                if (Sql_GetIntData(SqlHandle, 0) == 0)
-                    sandoria = Sql_GetIntData(SqlHandle, 1);
-                else if(Sql_GetIntData(SqlHandle, 0) == 1)
-                    bastok = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 2)
-                    windurst = Sql_GetIntData(SqlHandle, 1);
-            }
+            if (Sql_GetIntData(SqlHandle, 0) == 0)
+                sandoria = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 1)
+                bastok = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 2)
+                windurst = Sql_GetIntData(SqlHandle, 1);
         }
+
 
         uint8 sandoria_prev = 0;
         uint8 bastok_prev = 0;
@@ -429,20 +426,16 @@ namespace conquest
 
         Query = "SELECT region_control_prev, COUNT(*) FROM conquest_system WHERE region_control_prev < 3 GROUP BY region_control_prev;";
 
-        ret = Sql_Query(SqlHandle, Query);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, Query))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                if (Sql_GetIntData(SqlHandle, 0) == 0)
-                    sandoria_prev = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 1)
-                    bastok_prev = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 2)
-                    windurst_prev = Sql_GetIntData(SqlHandle, 1);
-            }
+            if (Sql_GetIntData(SqlHandle, 0) == 0)
+                sandoria_prev = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 1)
+                bastok_prev = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 2)
+                windurst_prev = Sql_GetIntData(SqlHandle, 1);
         }
+
         return GetBalance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, sandoria_prev);
     }
 
@@ -487,20 +480,16 @@ namespace conquest
         uint8 windurst = 0;
         const int8* Query = "SELECT region_control, COUNT(*) FROM conquest_system WHERE region_control < 3 GROUP BY region_control;";
 
-        int32 ret = Sql_Query(SqlHandle, Query);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, Query))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                if (Sql_GetIntData(SqlHandle, 0) == 0)
-                    sandoria = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 1)
-                    bastok = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 2)
-                    windurst = Sql_GetIntData(SqlHandle, 1);
-            }
+            if(Sql_GetIntData(SqlHandle, 0) == 0)
+                sandoria = Sql_GetIntData(SqlHandle, 1);
+            else if(Sql_GetIntData(SqlHandle, 0) == 1)
+                bastok = Sql_GetIntData(SqlHandle, 1);
+            else if(Sql_GetIntData(SqlHandle, 0) == 2)
+                windurst = Sql_GetIntData(SqlHandle, 1);
         }
+        
 
         uint8 sandoria_prev = 0;
         uint8 bastok_prev = 0;
@@ -508,19 +497,14 @@ namespace conquest
 
         Query = "SELECT region_control_prev, COUNT(*) FROM conquest_system WHERE region_control_prev < 3 GROUP BY region_control_prev;";
 
-        ret = Sql_Query(SqlHandle, Query);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, Query))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                if (Sql_GetIntData(SqlHandle, 0) == 0)
-                    sandoria_prev = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 1)
-                    bastok_prev = Sql_GetIntData(SqlHandle, 1);
-                else if (Sql_GetIntData(SqlHandle, 0) == 2)
-                    windurst_prev = Sql_GetIntData(SqlHandle, 1);
-            }
+            if (Sql_GetIntData(SqlHandle, 0) == 0)
+                sandoria_prev = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 1)
+                bastok_prev = Sql_GetIntData(SqlHandle, 1);
+            else if (Sql_GetIntData(SqlHandle, 0) == 2)
+                windurst_prev = Sql_GetIntData(SqlHandle, 1);
         }
 
         return GetAlliance(sandoria, bastok, windurst, sandoria_prev, bastok_prev, windurst_prev) == 1;
@@ -549,9 +533,7 @@ namespace conquest
     {
         const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
-        int32 ret = Sql_Query(SqlHandle, Query, RegionID);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        for (auto ret : Sql_Query(SqlHandle, Query, RegionID))
         {
             return Sql_GetIntData(SqlHandle, 0);
         }

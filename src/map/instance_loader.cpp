@@ -119,11 +119,9 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
 		INNER JOIN mob_family_system ON mob_pools.familyid = mob_family_system.familyid \
 		WHERE instanceid = %u AND NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0);";
 
-    int32 ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID());
-
-    if (!instance->Failed() && ret != SQL_ERROR /*&& Sql_NumRows(SqlInstanceHandle) != 0*/)
+    if (!instance->Failed())
     {
-        while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
+        for (auto res : Sql_Query(SqlInstanceHandle, Query, instance->GetID()))
         {
             CMobEntity* PMob = new CMobEntity;
 
@@ -221,7 +219,7 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
             PMob->m_Aggro = aggro;
 
             // If a special instanced mob aggros, it should always aggro regardless of level.
-            if(PMob->m_Type & MOBTYPE_EVENT)
+            if (PMob->m_Type & MOBTYPE_EVENT)
             {
                 PMob->setMobMod(MOBMOD_ALWAYS_AGGRO, aggro);
             }
@@ -250,13 +248,9 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
         uint32 zoneMin = (zone->GetID() << 12) + 0x1000000;
         uint32 zoneMax = zoneMin + 1024;
 
-        ret = Sql_Query(SqlInstanceHandle, Query, instance->GetID(), zoneMin, zoneMax);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlInstanceHandle) != 0)
+        for (auto res : Sql_Query(SqlInstanceHandle, Query, instance->GetID(), zoneMin, zoneMax))
         {
-            while (Sql_NextRow(SqlInstanceHandle) == SQL_SUCCESS)
-            {
-                CNpcEntity* PNpc = new CNpcEntity;
+            CNpcEntity* PNpc = new CNpcEntity;
                 PNpc->id = (uint32)Sql_GetUIntData(SqlInstanceHandle, 0);
                 PNpc->targid = PNpc->id & 0xFFF;
 
@@ -266,28 +260,27 @@ CInstance* CInstanceLoader::LoadInstance(CInstance* instance)
                 PNpc->loc.p.x = Sql_GetFloatData(SqlInstanceHandle, 3);
                 PNpc->loc.p.y = Sql_GetFloatData(SqlInstanceHandle, 4);
                 PNpc->loc.p.z = Sql_GetFloatData(SqlInstanceHandle, 5);
-                PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
+            PNpc->loc.p.moving = (uint16)Sql_GetUIntData(SqlInstanceHandle, 6);
 
-                PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
+            PNpc->m_TargID = (uint32)Sql_GetUIntData(SqlInstanceHandle, 6) >> 16; // вполне вероятно
 
-                PNpc->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 7);
-                PNpc->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 8);
-                PNpc->animation = (uint8)Sql_GetIntData(SqlInstanceHandle, 9);
-                PNpc->animationsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 10);
+            PNpc->speed = (uint8)Sql_GetIntData(SqlInstanceHandle, 7);
+            PNpc->speedsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 8);
+            PNpc->animation = (uint8)Sql_GetIntData(SqlInstanceHandle, 9);
+            PNpc->animationsub = (uint8)Sql_GetIntData(SqlInstanceHandle, 10);
 
-                PNpc->namevis = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
-                PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlInstanceHandle, 12);
-                PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
+            PNpc->namevis = (uint8)Sql_GetIntData(SqlInstanceHandle, 11);
+            PNpc->status = (STATUSTYPE)Sql_GetIntData(SqlInstanceHandle, 12);
+            PNpc->m_flags = (uint32)Sql_GetUIntData(SqlInstanceHandle, 13);
 
-                PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
-                PNpc->widescan = (uint8)Sql_GetIntData(SqlInstanceHandle, 16);
+            PNpc->name_prefix = (uint8)Sql_GetIntData(SqlInstanceHandle, 15);
+            PNpc->widescan = (uint8)Sql_GetIntData(SqlInstanceHandle, 16);
 
-                memcpy(&PNpc->look, Sql_GetData(SqlInstanceHandle, 14), 20);
+            memcpy(&PNpc->look, Sql_GetData(SqlInstanceHandle, 14), 20);
 
-                PNpc->PInstance = instance;
+            PNpc->PInstance = instance;
 
-                instance->InsertNPC(PNpc);
-            }
+            instance->InsertNPC(PNpc);
         }
     }
     else

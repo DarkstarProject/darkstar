@@ -620,24 +620,23 @@ void CBattlefield::cleanupDynamis()
                             FROM mob_spawn_points msp \
                             LEFT JOIN mob_groups mg ON mg.groupid = msp.groupid \
                             WHERE zoneid = %u";
-
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, this->getZoneId());
-
-    if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) {
-        ShowError("Dynamis cleanup : SQL error - Cannot find any ID for Dyna %i \n", this->getID());
-    }
-    else
+    bool fuck = true;
+    for (auto res : Sql_Query(SqlHandle, fmtQuery, this->getZoneId()))
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
-            CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+        uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
+        CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
 
-            if (PMob != nullptr) {
-                PMob->FadeOut();
-                PMob->PAI->Internal_Respawn(0s);
-            }
+        if (PMob != nullptr)
+        {
+            PMob->FadeOut();
+            PMob->PAI->Internal_Respawn(0s);
         }
+        fuck = false;
+    }
+    
+    if (fuck)
+    {
+        ShowError("Dynamis cleanup : SQL error - Cannot find any ID for Dyna %i \n", this->getID());
     }
 
     //wipe mob list

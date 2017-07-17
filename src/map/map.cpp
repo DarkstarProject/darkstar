@@ -476,9 +476,12 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             int32 ret = Sql_Query(SqlHandle, fmtQuery, CharID);
 
-            if (ret == SQL_ERROR ||
-                Sql_NumRows(SqlHandle) == 0 ||
-                Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+            bool fuck = true;
+
+            for (auto res : Sql_Query(SqlHandle, fmtQuery, CharID))
+                fuck = false;
+
+            if (fuck)
             {
                 ShowError(CL_RED"recv_parse: Cannot load charid %u" CL_RESET, CharID);
                 return -1;
@@ -486,11 +489,10 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
             fmtQuery = "SELECT session_key FROM accounts_sessions WHERE charid = %u LIMIT 1;";
 
-            ret = Sql_Query(SqlHandle, fmtQuery, CharID);
+            for (auto res : Sql_Query(SqlHandle, fmtQuery, CharID))
+                fuck = false;
 
-            if (ret == SQL_ERROR ||
-                Sql_NumRows(SqlHandle) == 0 ||
-                Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+            if (fuck)
             {
                 ShowError(CL_RED"recv_parse: Cannot load session_key for charid %u" CL_RESET, CharID);
             }

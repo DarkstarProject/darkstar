@@ -144,7 +144,7 @@ int32 Sql_GetTimeout(Sql_t* self, uint32* out_timeout)
 	{
 		char* data;
 		size_t len;
-		if( SQL_SUCCESS == Sql_NextRow(self) &&
+		if( SQL_SUCCESS == self->Sql_NextRow() &&
 			SQL_SUCCESS == Sql_GetData(self, 1, &data, &len) )
 		{
 			*out_timeout = (uint32)strtoul(data, NULL, 10);
@@ -173,7 +173,7 @@ int32 Sql_GetColumnNames(Sql_t* self, const char* table, char* out_buf, size_t b
 		return SQL_ERROR;
 
 	out_buf[off] = '\0';
-	while( SQL_SUCCESS == Sql_NextRow(self) && SQL_SUCCESS == Sql_GetData(self, 0, &data, &len) )
+	while( SQL_SUCCESS == self->Sql_NextRow() && SQL_SUCCESS == Sql_GetData(self, 0, &data, &len) )
 	{
 		len = strnlen(data, len);
 		if( off + len + 2 > buf_len )
@@ -581,7 +581,7 @@ bool Sql_GetAutoCommit(Sql_t* self)
 
         if( ret != SQL_ERROR && 
            Sql_NumRows(self) > 0 && 
-           Sql_NextRow(self) == SQL_SUCCESS )
+           self->Sql_NextRow() == SQL_SUCCESS )
         {
             return (Sql_GetUIntData(self, 0) == 1);
         }

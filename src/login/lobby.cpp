@@ -144,33 +144,30 @@ int32 lobbydata_parse(int32 fd)
 										  WHERE accid = %i \
 										  LIMIT 16;";
 
-            int32 ret = Sql_Query(SqlHandle, pfmtQuery, sd->accid);
-            if (ret == SQL_ERROR)
-            {
-                do_close_lobbydata(sd, fd);
-                return -1;
-            }
-
-            LOBBY_A1_RESERVEPACKET(ReservePacket);
-
-            //server's name that shows in lobby menu
-            memcpy(ReservePacket + 60, login_config.servername.c_str(), dsp_cap(login_config.servername.length(), 0, 15));
-
-            // Prepare the character list data..
-            for (int j = 0; j < 16; ++j)
-            {
-                memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
-                memset(CharList + 32 + 140 * j, 0x00, 4);
-                memset(uList + 16 * (j + 1), 0x00, 4);
-            }
-
-            uList[0] = 0x03;
-
+            bool fuck = true;
             int i = 0;
-            //Считывание информации о конкректном персонаже
-            //Загрузка всей необходимой информации о персонаже из базы
-            while (Sql_NextRow(SqlHandle) != SQL_NO_DATA)
+            for (auto res : Sql_Query(SqlHandle, pfmtQuery, sd->accid))
             {
+
+                LOBBY_A1_RESERVEPACKET(ReservePacket);
+
+                //server's name that shows in lobby menu
+                memcpy(ReservePacket + 60, login_config.servername.c_str(), dsp_cap(login_config.servername.length(), 0, 15));
+
+                // Prepare the character list data..
+                for (int j = 0; j < 16; ++j)
+                {
+                    memcpy(CharList + 32 + 140 * j, ReservePacket + 32, 140);
+                    memset(CharList + 32 + 140 * j, 0x00, 4);
+                    memset(uList + 16 * (j + 1), 0x00, 4);
+                }
+
+                uList[0] = 0x03;
+
+                int i = 0;
+                //Считывание информации о конкректном персонаже
+                //Загрузка всей необходимой информации о персонаже из базы
+
                 char* strCharName = nullptr;
 
                 Sql_GetData(SqlHandle, 1, &strCharName, nullptr);
@@ -211,27 +208,35 @@ int32 lobbydata_parse(int32 fd)
                 WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
                 ///////////////////////////////////////////////////
                 ++i;
+
+
+                if (session[sd->login_lobbyview_fd] != nullptr) {
+                    // write into lobbydata
+                    uList[1] = 0x10;
+                    session[fd]->wdata.assign(uList, 0x148);
+                    RFIFOSKIP(fd, session[fd]->rdata.size());
+                    RFIFOFLUSH(fd);
+                    ////////////////////////////////////////
+
+                    unsigned char hash[16];
+                    md5((unsigned char*)(CharList), hash, 2272);
+
+                    memcpy(CharList + 12, hash, 16);
+                    // write into lobbyview
+                    session[sd->login_lobbyview_fd]->wdata.assign((const char*)CharList, 2272);
+                    RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata.size());
+                    RFIFOFLUSH(sd->login_lobbyview_fd);
+                    fuck = false;
+                }
+                else { //cleanup
+                    ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA1). Disconnecting client.\n", sd->accid);
+                    do_close_lobbydata(sd, fd);
+                    return -1;
+                }
             }
 
-            if (session[sd->login_lobbyview_fd] != nullptr) {
-                // write into lobbydata
-                uList[1] = 0x10;
-                session[fd]->wdata.assign(uList, 0x148);
-                RFIFOSKIP(fd, session[fd]->rdata.size());
-                RFIFOFLUSH(fd);
-                ////////////////////////////////////////
-
-                unsigned char hash[16];
-                md5((unsigned char*)(CharList), hash, 2272);
-
-                memcpy(CharList + 12, hash, 16);
-                // write into lobbyview
-                session[sd->login_lobbyview_fd]->wdata.assign((const char*)CharList, 2272);
-                RFIFOSKIP(sd->login_lobbyview_fd, session[sd->login_lobbyview_fd]->rdata.size());
-                RFIFOFLUSH(sd->login_lobbyview_fd);
-            }
-            else { //cleanup
-                ShowWarning("lobbydata_parse: char:(%i) login data corrupt (0xA1). Disconnecting client.\n", sd->accid);
+            if (fuck)
+            {
                 do_close_lobbydata(sd, fd);
                 return -1;
             }
@@ -267,10 +272,11 @@ int32 lobbydata_parse(int32 fd)
             uint16 ZoneID = 0;
             uint16 PrevZone = 0;
 
-            if (Sql_Query(SqlHandle, fmtQuery, charid) != SQL_ERROR &&
-                Sql_NumRows(SqlHandle) != 0)
+            bool fuck = true;
+            for (auto res : Sql_Query(SqlHandle, fmtQuery, charid))
             {
-                Sql_NextRow(SqlHandle);
+                // todo: wat
+                //Sql_NextRow(SqlHandle);
 
                 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 2);
                 PrevZone = (uint16)Sql_GetUIntData(SqlHandle, 3);
@@ -283,8 +289,9 @@ int32 lobbydata_parse(int32 fd)
                 WBUFL(ReservePacket, (0x38)) = ZoneIP;
                 WBUFW(ReservePacket, (0x3C)) = ZonePort;
                 ShowInfo("lobbydata_parse: zoneid:(%u),zoneip:(%s),zoneport:(%u) for char:(%u)\n", ZoneID, ip2str(ntohl(ZoneIP), nullptr), ZonePort, charid);
+                fuck = false;
             }
-            else
+            if (fuck)
             {
                 ShowWarning("lobbydata_parse: zoneip:(%s) for char:(%u) is standard\n", ip2str(sd->servip, nullptr), charid);
                 WBUFL(ReservePacket, (0x38)) = sd->servip;  // map-server ip
@@ -732,17 +739,10 @@ int32 lobby_createchar(login_session_data_t *loginsd, char *buf)
 
     const int8* fmtQuery = "SELECT max(charid) FROM chars";
 
-    if (Sql_Query(SqlHandle, fmtQuery) == SQL_ERROR)
-    {
-        return -1;
-    }
-
     uint32 CharID = 0;
 
-    if (Sql_NumRows(SqlHandle) != 0)
+    for (auto res : Sql_Query(SqlHandle, fmtQuery))
     {
-        Sql_NextRow(SqlHandle);
-
         CharID = (uint32)Sql_GetUIntData(SqlHandle, 0) + 1;
     }
 

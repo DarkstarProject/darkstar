@@ -97,9 +97,8 @@ void CInstance::LoadInstance()
         "WHERE instanceid = %u "
         "LIMIT 1";
 
-    if (Sql_Query(SqlHandle, Query, m_instanceid) != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    bool fuck = true;
+    for (auto res : Sql_Query(SqlHandle, Query, m_instanceid))
     {
         m_instanceName.insert(0, Sql_GetData(SqlHandle, 0));
 
@@ -113,8 +112,10 @@ void CInstance::LoadInstance()
         m_zone_music_override.m_songNight = Sql_GetUIntData(SqlHandle, 8);
         m_zone_music_override.m_bSongS = Sql_GetUIntData(SqlHandle, 9);
         m_zone_music_override.m_bSongM = Sql_GetUIntData(SqlHandle, 10);
+        fuck = false;
     }
-    else
+
+    if (fuck)
     {
         ShowFatalError(CL_RED"CZone::LoadInstance: Cannot load instance %u\n" CL_RESET, m_instanceid);
         Fail();

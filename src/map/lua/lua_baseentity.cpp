@@ -967,9 +967,8 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 
     // char will not be logged in so get the id manually
     const int8* Query = "SELECT charid FROM chars WHERE charname = '%s';";
-    int32 ret = Sql_Query(SqlHandle, Query, charName);
-
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    
+    for (auto res : Sql_Query(SqlHandle, Query, charName))
         id = (int32)Sql_GetIntData(SqlHandle, 0);
 
 
@@ -3405,11 +3404,7 @@ inline int32 CLuaBaseEntity::getAutomatonName(lua_State* L)
         "char_pet LEFT JOIN pet_name ON automatonid = id "
         "WHERE charid = %u;";
 
-    int32 ret = Sql_Query(SqlHandle, Query, m_PBaseEntity->id);
-
-    if (ret != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    for (auto res : Sql_Query(SqlHandle, Query, m_PBaseEntity->id))
     {
         lua_pushstring(L, Sql_GetData(SqlHandle, 0));
         return 1;

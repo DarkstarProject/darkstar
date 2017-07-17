@@ -107,11 +107,11 @@ int32 login_parse(int32 fd)
             const int8* fmtQuery = "SELECT accounts.id,accounts.status \
 									FROM accounts \
 									WHERE accounts.login = '%s' AND accounts.password = PASSWORD('%s')";
-            int32 ret = Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str());
-            if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
+            
+            bool fuck = true;
+            for (auto res : Sql_Query(SqlHandle, fmtQuery, name.c_str(), password.c_str()))
             {
-                ret = Sql_NextRow(SqlHandle);
-
+                
                 sd->accid = (uint32)Sql_GetUIntData(SqlHandle, 0);
                 uint8 status = (uint8)Sql_GetUIntData(SqlHandle, 1);
 
@@ -134,23 +134,19 @@ int32 login_parse(int32 fd)
                                 FROM accounts_sessions JOIN accounts \
                                 ON accounts_sessions.accid = accounts.id \
                                 WHERE accounts.id = %d;";
-                    ret = Sql_Query(SqlHandle, fmtQuery, sd->accid);
-                    if (ret != SQL_ERROR  && Sql_NumRows(SqlHandle) == 1)
+                    for (auto res : Sql_Query(SqlHandle, fmtQuery, sd->accid))
                     {
-                        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                        {
-                            uint32 charid = Sql_GetUIntData(SqlHandle, 0);
-                            uint64 ip = Sql_GetUIntData(SqlHandle, 1);
-                            uint64 port = Sql_GetUIntData(SqlHandle, 2);
+                        uint32 charid = Sql_GetUIntData(SqlHandle, 0);
+                        uint64 ip = Sql_GetUIntData(SqlHandle, 1);
+                        uint64 port = Sql_GetUIntData(SqlHandle, 2);
 
-                            ip |= (port << 32);
+                        ip |= (port << 32);
 
-                            zmq::message_t chardata(sizeof(charid));
-                            WBUFL(chardata.data(), 0) = charid;
-                            zmq::message_t empty(0);
+                        zmq::message_t chardata(sizeof(charid));
+                        WBUFL(chardata.data(), 0) = charid;
+                        zmq::message_t empty(0);
 
-                            queue_message(ip, MSG_LOGIN, &chardata, &empty);
-                        }
+                        queue_message(ip, MSG_LOGIN, &chardata, &empty);
                     }
                     memset(&session[fd]->wdata[0], 0, 33);
                     session[fd]->wdata.resize(33);
@@ -158,6 +154,7 @@ int32 login_parse(int32 fd)
                     WBUFL(session[fd]->wdata.data(), 1) = sd->accid;
                     flush_fifo(fd);
                     do_close_tcp(fd);
+                    fuck = false;
                 }
                 else if (status & ACCST_BANNED)
                 {
@@ -196,7 +193,8 @@ int32 login_parse(int32 fd)
                 ShowInfo("login_parse:" CL_WHITE"<%s>" CL_RESET" was connected\n", name.c_str(), status);
                 return 0;
             }
-            else {
+            if (fuck)
+            {
                 session[fd]->wdata.resize(1);
                 WBUFB(session[fd]->wdata.data(), 0) = LOGIN_ERROR;
                 ShowWarning("login_parse: unexisting user" CL_WHITE"<%s>" CL_RESET" tried to connect\n", name.c_str());
@@ -221,13 +219,13 @@ int32 login_parse(int32 fd)
 
                 uint32 accid = 0;
 
-                if (Sql_Query(SqlHandle, fmtQuery) != SQL_ERROR  && Sql_NumRows(SqlHandle) != 0)
+                for (auto res : Sql_Query(SqlHandle, fmtQuery))
                 {
-                    Sql_NextRow(SqlHandle);
-
                     accid = Sql_GetUIntData(SqlHandle, 0) + 1;
                 }
-                else {
+                
+                if (accid == 0)
+                {
                     session[fd]->wdata.resize(1);
                     WBUFB(session[fd]->wdata.data(), 0) = LOGIN_ERROR_CREATE;
                     do_close_login(sd, fd);

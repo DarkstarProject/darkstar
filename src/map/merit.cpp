@@ -121,7 +121,7 @@ static const MeritCategoryInfo_t meritCatInfo[] =
 
     {14,15,8}, //MCATEGORY_WS
 
-	{0,0,8},   //MCATEGORY_UNK_0	26
+   {0,0,8},   //MCATEGORY_UNK_0	26
     {0,0,8},   //MCATEGORY_UNK_1
     {0,0,8},   //MCATEGORY_UNK_2
     {0,0,8},   //MCATEGORY_UNK_3
@@ -160,30 +160,30 @@ static const MeritCategoryInfo_t meritCatInfo[] =
 
 CMeritPoints::CMeritPoints(CCharEntity* PChar)
 {
-	/*
-	DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(merits::GMeritsTemplate));
+    /*
+    DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(merits::GMeritsTemplate));
 
-    memcpy(merits, merits::GMeritsTemplate, sizeof(merits));
+     memcpy(merits, merits::GMeritsTemplate, sizeof(merits));
 
-    for (uint8 m = 0, i = 0; i < sizeof(Categories)/sizeof(Merit_t*); ++i)
-    {
-        Categories[i] = &merits[m];
+     for (uint8 m = 0, i = 0; i < sizeof(Categories)/sizeof(Merit_t*); ++i)
+     {
+         Categories[i] = &merits[m];
 
-        for (uint8 t = 0; t < count[i].MaxMerits; ++t)
-        {
-            merits[m].next = upgrade[count[i].UpgradeID][0];
-            merits[m++].id = ((i + 1) << 6) + (t << 1);
-		}
-    }
-	*/
+         for (uint8 t = 0; t < count[i].MaxMerits; ++t)
+         {
+             merits[m].next = upgrade[count[i].UpgradeID][0];
+             merits[m++].id = ((i + 1) << 6) + (t << 1);
+       }
+     }
+    */
 
-	DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(meritNameSpace::GMeritsTemplate));
+    DSP_DEBUG_BREAK_IF(sizeof(merits) != sizeof(meritNameSpace::GMeritsTemplate));
 
     memcpy(merits, meritNameSpace::GMeritsTemplate, sizeof(merits));
 
 
     m_PChar = PChar;
-	LoadMeritPoints(PChar->id);
+    LoadMeritPoints(PChar->id);
 
     m_LimitPoints = 0;
     m_MeritPoints = 0;
@@ -216,22 +216,16 @@ void CMeritPoints::LoadMeritPoints(uint32 charid)
         merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
     }
 
-    if (Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid) != SQL_ERROR)
+    for (auto res : Sql_Query(SqlHandle, "SELECT meritid, upgrades FROM char_merit WHERE charid = %u", charid))
     {
-        for (uint16 j = 0; j < Sql_NumRows(SqlHandle); j++)
+        uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
+        uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
+        for (uint16 i = 0; i < MERITS_COUNT; i++)
         {
-            if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            if (merits[i].id == meritID)
             {
-                uint32 meritID = Sql_GetUIntData(SqlHandle, 0);
-                uint32 upgrades = Sql_GetUIntData(SqlHandle, 1);
-                for (uint16 i = 0; i < MERITS_COUNT; i++)
-                {
-                    if (merits[i].id == meritID)
-                    {
-                        merits[i].count = upgrades;
-                        merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
-                    }
-                }
+                merits[i].count = upgrades;
+                merits[i].next = upgrade[merits[i].upgradeid][merits[i].count];
             }
         }
     }
@@ -289,12 +283,12 @@ bool CMeritPoints::AddLimitPoints(uint16 points)
 
     if (m_LimitPoints >= MAX_LIMIT_POINTS)
     {
-		//check if player has reached cap
-		if (m_MeritPoints == map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar))
-		{
-			m_LimitPoints = MAX_LIMIT_POINTS -1;
-			return false;
-		}
+        //check if player has reached cap
+        if (m_MeritPoints == map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar))
+        {
+            m_LimitPoints = MAX_LIMIT_POINTS - 1;
+            return false;
+        }
 
         uint8 MeritPoints = dsp_min(m_MeritPoints + m_LimitPoints / MAX_LIMIT_POINTS, map_config.max_merit_points + GetMeritValue(MERIT_MAX_MERIT, m_PChar));
 
@@ -340,7 +334,7 @@ void CMeritPoints::SetMeritPoints(uint16 points)
 
 bool CMeritPoints::IsMeritExist(MERIT_TYPE merit)
 {
-    if ((int16)merit <  MCATEGORY_START) return false;
+    if ((int16)merit < MCATEGORY_START) return false;
     if ((int16)merit >= MCATEGORY_COUNT) return false;
 
     if ((GetMeritID(merit)) >= meritCatInfo[GetMeritCategory(merit)].MeritsInCat) return false;
@@ -369,7 +363,7 @@ const Merit_t* CMeritPoints::GetMeritByIndex(uint16 index)
 {
     DSP_DEBUG_BREAK_IF(index >= MERITS_COUNT);
 
-	return  &merits[index];
+    return  &merits[index];
 }
 
 /************************************************************************
@@ -401,7 +395,7 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
     {
         m_MeritPoints -= PMerit->next;
 
-		PMerit->next = upgrade[PMerit->upgradeid][PMerit->count+1];
+        PMerit->next = upgrade[PMerit->upgradeid][PMerit->count + 1];
         if (PMerit->spellid != 0)
         {
             if (charutils::addSpell(m_PChar, PMerit->spellid))
@@ -410,7 +404,7 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
                 m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
             }
         }
-		PMerit->count++;
+        PMerit->count++;
     }
 }
 
@@ -458,7 +452,7 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
 int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 {
     Merit_t* PMerit = GetMeritPointer(merit);
-	uint8 meritValue = 0;
+    uint8 meritValue = 0;
 
     if (PMerit)
     {
@@ -471,7 +465,7 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
         meritValue *= PMerit->value;
     }
 
-	return meritValue;
+    return meritValue;
 }
 
 
@@ -484,78 +478,72 @@ int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
 
 namespace meritNameSpace
 {
-	Merit_t GMeritsTemplate[MERITS_COUNT] = {0};		// global list of merits and their properties
-	int16 groupOffset[MCATEGORY_COUNT/64-1] = {0};		// the first merit offset of each catagory
+    Merit_t GMeritsTemplate[MERITS_COUNT] = { 0 };		// global list of merits and their properties
+    int16 groupOffset[MCATEGORY_COUNT / 64 - 1] = { 0 };		// the first merit offset of each catagory
 
-    /************************************************************************
-    *                                                                       *
-    *  Загружаем шаблон массива merits  /   Load pattern array merits       *
-    *                                                                       *
-    ************************************************************************/
+     /************************************************************************
+     *                                                                       *
+     *  Загружаем шаблон массива merits  /   Load pattern array merits       *
+     *                                                                       *
+     ************************************************************************/
 
     void LoadMeritsList()
     {
+        // issue with unknown catagories causing massive confusion
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
-            spell_list sl ON m.name = sl.name ORDER BY m.meritid ASC LIMIT %u", MERITS_COUNT);
+        uint16 index = 0;			// global merit template count (to 255)
+        int8 catIndex = 0;			// global merit catagory count (to 51)
+        int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
+        int8 catMeritIndex = 0;		// counts number of merits in a catagory
 
-	    if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != MERITS_COUNT )
-	    {
+        for (auto res : Sql_Query(SqlHandle, "SELECT m.meritid, m.value, m.jobs, m.upgrade, m.upgradeid, m.catagoryid, sl.spellid FROM merits m LEFT JOIN \
+            spell_list sl ON m.name = sl.name ORDER BY m.meritid ASC LIMIT %u", MERITS_COUNT))
+        {
 
-			// issue with unknown catagories causing massive confusion
+                Merit_t Merit = { 0 };								// creat a new merit template.
 
-            uint16 index = 0;			// global merit template count (to 255)
-			int8 catIndex = 0;			// global merit catagory count (to 51)
-			int8 previousCatIndex = 0;  // will be set on every loop, used for detecting a catagory change
-			int8 catMeritIndex = 0;		// counts number of merits in a catagory
+                Merit.id = Sql_GetUIntData(SqlHandle, 0);		// set data from db.
+                Merit.value = Sql_GetUIntData(SqlHandle, 1);
+                Merit.jobs = Sql_GetUIntData(SqlHandle, 2);
+                Merit.upgrade = Sql_GetUIntData(SqlHandle, 3);
+                Merit.upgradeid = Sql_GetUIntData(SqlHandle, 4);
+                Merit.catid = Sql_GetUIntData(SqlHandle, 5);
+                Merit.next = upgrade[Merit.upgradeid][0];
+                Merit.spellid = Sql_GetUIntData(SqlHandle, 6);
 
-
-		    while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )
-		    {
-                Merit_t Merit = {0};								// creat a new merit template.
-
-				Merit.id		= Sql_GetUIntData(SqlHandle,0);		// set data from db.
-                Merit.value		= Sql_GetUIntData(SqlHandle,1);
-                Merit.jobs		= Sql_GetUIntData(SqlHandle,2);
-                Merit.upgrade	= Sql_GetUIntData(SqlHandle,3);
-				Merit.upgradeid = Sql_GetUIntData(SqlHandle,4);
-				Merit.catid		= Sql_GetUIntData(SqlHandle,5);
-				Merit.next      = upgrade[Merit.upgradeid][0];
-                Merit.spellid   = Sql_GetUIntData(SqlHandle, 6);
-
-				GMeritsTemplate[index] = Merit;						// add the merit to the array
+                GMeritsTemplate[index] = Merit;						// add the merit to the array
 
 
-				previousCatIndex = Merit.catid;						// previousCatIndex is set on everyloop to detect a catogory change.
+                previousCatIndex = Merit.catid;						// previousCatIndex is set on everyloop to detect a catogory change.
 
-				if (previousCatIndex != catIndex)					// check for catagory change.
-				{
-					groupOffset[catIndex] = index - catMeritIndex;	// set index offset, first merit of each group.
-					catIndex++;										// now on next catagory.
-					catMeritIndex = 0;								// reset the merit catagory count to 0.
+                if (previousCatIndex != catIndex)					// check for catagory change.
+                {
+                    groupOffset[catIndex] = index - catMeritIndex;	// set index offset, first merit of each group.
+                    catIndex++;										// now on next catagory.
+                    catMeritIndex = 0;								// reset the merit catagory count to 0.
 
-					if (previousCatIndex != catIndex)				// this deals with the problem with unknown catagories.
-						catIndex = previousCatIndex;
-				}
+                    if (previousCatIndex != catIndex)				// this deals with the problem with unknown catagories.
+                        catIndex = previousCatIndex;
+                }
 
-				catMeritIndex++;									// next index within catagory.
-				index++;											// next global template index.
-		    }
+                catMeritIndex++;									// next index within catagory.
+                index++;											// next global template index.
 
-			groupOffset[catIndex] = index - catMeritIndex;			// add the last offset manually since loop finishes before hand.
+            groupOffset[catIndex] = index - catMeritIndex;			// add the last offset manually since loop finishes before hand.
 
-           /* ret = Sql_Query(SqlHandle, "SELECT meritid, spellid FROM merits INNER JOIN spell_list ON merits.name = spell_list.name");
+              /* ret = Sql_Query(SqlHandle, "SELECT meritid, spellid FROM merits INNER JOIN spell_list ON merits.name = spell_list.name");
 
-            if (ret != SQL_ERROR)
-            {
-		        while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )
-		        {
-                    GMeritsTemplate
-		        }
-            }*/
+               if (ret != SQL_ERROR)
+               {
+                 while( Sql_NextRow(SqlHandle) == SQL_SUCCESS )
+                 {
+                       GMeritsTemplate
+                 }
+               }*/
 
-	    }
-        else
+        }
+        // todo: replace with fuck
+        if (previousCatIndex == 0)
         {
             ShowError(CL_RED"The merits table is damaged\n" CL_RESET);
         }

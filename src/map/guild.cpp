@@ -57,23 +57,19 @@ void CGuild::updateGuildPointsPattern(uint8 pattern)
         GPItems.clear();
     }
 
-    for (auto i = 0; i < m_GPItemsRank.size(); ++i)
+    for(auto i = 0; i < m_GPItemsRank.size(); ++i)
     {
         m_GPItemsRank[i] = (m_GPItemsRank[i] + 1) % (i + 4);
 
         std::string query = "SELECT itemid, points, max_points FROM guild_item_points WHERE "
             "guildid = %u AND pattern = %u AND rank = %u";
-        int ret = Sql_Query(SqlHandle, query.c_str(), m_id, pattern, m_GPItemsRank[i]);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) > 0)
+        for(auto res : Sql_Query(SqlHandle, query, m_id, pattern, m_GPItemsRank[i]))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                m_GPItems[i].push_back(GPItem_t(
-                    itemutils::GetItemPointer(Sql_GetUIntData(SqlHandle, 0)),
-                    Sql_GetUIntData(SqlHandle, 2),
-                    Sql_GetUIntData(SqlHandle, 1)));
-            }
+            m_GPItems[i].push_back(GPItem_t(
+                itemutils::GetItemPointer(Sql_GetUIntData(SqlHandle, 0)),
+                Sql_GetUIntData(SqlHandle, 2),
+                Sql_GetUIntData(SqlHandle, 1)));
         }
     }
 }
@@ -97,7 +93,7 @@ uint8 CGuild::addGuildPoints(CCharEntity* PChar, CItem* PItem, int16& pointsAdde
                     // if a player ranks up to a new pattern whose maxpoints are fewer than the player's current daily points
                     // then we'd be trying to push a negative number into quantity. our edit to CGuild::getDailyGPItem should
                     // prevent this, but let's be doubly sure.
-                    uint8 quantity = dsp_max(0,dsp_min(((GPItem.maxpoints - curPoints) / GPItem.points) + 1, PItem->getQuantity()));
+                    uint8 quantity = dsp_max(0, dsp_min(((GPItem.maxpoints - curPoints) / GPItem.points) + 1, PItem->getQuantity()));
                     uint16 points = GPItem.points * quantity;
                     if (points > GPItem.maxpoints - curPoints)
                     {

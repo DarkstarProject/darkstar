@@ -284,11 +284,7 @@ void CItemArmor::SetAugmentMod(uint16 type, uint8 value)
     // obtain augment info by querying the db
     const int8* fmtQuery = "SELECT augmentId, multiplier, modId, `value`, `isPet`, `petType` FROM augments WHERE augmentId = %u";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, type);
-
-    while (ret != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    for (auto res : Sql_Query(SqlHandle, fmtQuery, type))
     {
         uint8 multiplier = (uint8)Sql_GetUIntData(SqlHandle, 1);
         Mod modId = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 2));
