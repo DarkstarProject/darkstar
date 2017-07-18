@@ -8,7 +8,7 @@ Visit our forums and Discord or IRC to keep in touch with the latest development
 
 **Forums:** https://forums.dspt.info/index.php
 
-** Discord:**
+**Discord:**
 https://discord.gg/4dgAzfC
 
 **IRC Channel**
