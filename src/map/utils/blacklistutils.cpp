@@ -62,33 +62,30 @@ namespace blacklistutils
 
 		// Obtain this users blacklist info..
 		const int8* sql = "SELECT c.charid, c.charname FROM char_blacklist AS b INNER JOIN chars AS c ON b.charid_target = c.charid WHERE charid_owner = %u;";
-		if (Sql_Query(SqlHandle, sql, PChar->id) == SQL_ERROR || Sql_NumRows(SqlHandle) == 0) 
-		{
-			PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
-			return;
-		}
+      int currentCount = 0;
+      for (auto res : Sql_Query(SqlHandle, sql, PChar->id))
+      {
+          // Loop and build blacklist..
+          uint32 accid_target = Sql_GetUIntData(SqlHandle, 0);
+          string_t targetName = string_t(Sql_GetData(SqlHandle, 1));
 
-		// Loop and build blacklist..
-		int currentCount = 0;
-		while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		{
-			uint32 accid_target = Sql_GetUIntData(SqlHandle, 0);
-			string_t targetName = string_t(Sql_GetData(SqlHandle, 1));
+          blacklist.push_back(std::make_pair(accid_target, targetName));
+          currentCount++;
 
-			blacklist.push_back(std::make_pair(accid_target, targetName));
-			currentCount++;
+          if (currentCount >= 12)
+          {
+              PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
+              blacklist.clear();
+              currentCount = 0;
+          }
 
-			if (currentCount >= 12) 
-			{
-				PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
-				blacklist.clear();
-				currentCount = 0;
-			}
-		}
+          // Push remaining entries..
+          if (blacklist.size() != 0)
+              PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
+      }
 
-		// Push remaining entries..
-		if (blacklist.size() != 0)
-			PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
+      if (blacklist.size() == 0)
+          PChar->pushPacket(new CStopDownloadingPacket(PChar, blacklist));
 	}
 
 } // namespace blacklistutils

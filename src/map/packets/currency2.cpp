@@ -35,8 +35,7 @@ CCurrencyPacket2::CCurrencyPacket2(CCharEntity* PChar)
     const char* query = "SELECT bayld, kinetic_unit, imprimaturs, obsidian_fragment, lebondopt_wing, \
                          pulchridopt_wing, mweya_plasm FROM char_points WHERE charid = %d";
 
-    int ret = Sql_Query(SqlHandle, query, PChar->id);
-    if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    for (auto res : Sql_Query(SqlHandle, query, PChar->id))
     {
         WBUFL(data, (0x04)) = Sql_GetIntData(SqlHandle, 0);
         WBUFW(data, (0x08)) = Sql_GetUIntData(SqlHandle, 1);

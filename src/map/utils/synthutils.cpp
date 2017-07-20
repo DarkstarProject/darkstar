@@ -85,7 +85,7 @@ bool isRightRecipe(CCharEntity* PChar)
 			AND Ingredient8 = %u \
 		LIMIT 1";
 
-	int32 ret = Sql_Query(
+	auto ret = Sql_Query(
 		SqlHandle,
 		fmtQuery,
 		PChar->CraftContainer->getItemID(0),
@@ -99,9 +99,7 @@ bool isRightRecipe(CCharEntity* PChar)
 		PChar->CraftContainer->getItemID(7),
 		PChar->CraftContainer->getItemID(8));
 
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	for (auto res : ret)
 	{
 		uint16 KeyItemID = (uint16)Sql_GetUIntData(SqlHandle,1);
 

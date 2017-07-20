@@ -108,18 +108,18 @@ namespace battleutils
 							ORDER BY level \
 							LIMIT 100";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery);
+        auto ret = Sql_Query(SqlHandle, fmtQuery);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        auto x = 0;
+        for (auto res : ret)
         {
-            for (uint32 x = 0; x < 100 && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
+            for (uint32 y = 0; y < 14; ++y)
             {
-                for (uint32 y = 0; y < 14; ++y)
-                {
-                    g_SkillTable[x][y] = (uint16)Sql_GetIntData(SqlHandle, y);
-                }
+                g_SkillTable[x][y] = (uint16)Sql_GetIntData(SqlHandle, y);
             }
+            ++x;
         }
+
 
         fmtQuery = "SELECT skillid,war,mnk,whm,blm,rdm,thf,pld,drk,bst,brd,rng,sam,nin,drg,smn,blu,cor,pup,dnc,sch,geo,run \
 				FROM skill_ranks \
@@ -127,17 +127,20 @@ namespace battleutils
 
         ret = Sql_Query(SqlHandle, fmtQuery);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        x = 0;
+        for (auto res : Sql_Query(SqlHandle, fmtQuery))
         {
-            for (uint32 x = 0; x < MAX_SKILLTYPE && Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
-            {
-                uint8 SkillID = dsp_cap((uint8)Sql_GetIntData(SqlHandle, 0), 0, MAX_SKILLTYPE - 1);
+            // todo: is this actually retarded
+            if (x == MAX_SKILLTYPE)
+                break;
 
-                for (uint32 y = 1; y < MAX_JOBTYPE; ++y)
-                {
-                    g_SkillRanks[SkillID][y] = dsp_cap((uint16)Sql_GetIntData(SqlHandle, y), 0, 11);
-                }
+            uint8 SkillID = dsp_cap((uint8)Sql_GetIntData(SqlHandle, 0), 0, MAX_SKILLTYPE - 1);
+
+            for (uint32 y = 1; y < MAX_JOBTYPE; ++y)
+            {
+                g_SkillRanks[SkillID][y] = dsp_cap((uint16)Sql_GetIntData(SqlHandle, y), 0, 11);
             }
+            ++x;
         }
     }
 
@@ -148,37 +151,33 @@ namespace battleutils
     void LoadWeaponSkillsList()
     {
         const int8* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
-                            "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only, unlock_id "
-							"FROM weapon_skills "
-							"WHERE weaponskillid < %u "
-							"ORDER BY type, skilllevel ASC";
+            "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only, unlock_id "
+            "FROM weapon_skills "
+            "WHERE weaponskillid < %u "
+            "ORDER BY type, skilllevel ASC";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_WEAPONSKILL_ID);
 
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, fmtQuery, MAX_WEAPONSKILL_ID))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                CWeaponSkill* PWeaponSkill = new CWeaponSkill(Sql_GetIntData(SqlHandle, 0));
+            CWeaponSkill* PWeaponSkill = new CWeaponSkill(Sql_GetIntData(SqlHandle, 0));
 
-                PWeaponSkill->setName(Sql_GetData(SqlHandle, 1));
-                PWeaponSkill->setJob(Sql_GetData(SqlHandle, 2));
-                PWeaponSkill->setType(Sql_GetIntData(SqlHandle, 3));
-                PWeaponSkill->setSkillLevel(Sql_GetIntData(SqlHandle, 4));
-                PWeaponSkill->setElement(Sql_GetIntData(SqlHandle, 5));
-                PWeaponSkill->setAnimationId(Sql_GetIntData(SqlHandle, 6));
-                PWeaponSkill->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle, 7)));
-                PWeaponSkill->setRange(Sql_GetIntData(SqlHandle, 8));
-                PWeaponSkill->setAoe(Sql_GetIntData(SqlHandle, 9));
-                PWeaponSkill->setPrimarySkillchain(Sql_GetIntData(SqlHandle, 10));
-                PWeaponSkill->setSecondarySkillchain(Sql_GetIntData(SqlHandle, 11));
-                PWeaponSkill->setTertiarySkillchain(Sql_GetIntData(SqlHandle, 12));
-                PWeaponSkill->setMainOnly(Sql_GetIntData(SqlHandle, 13));
-                PWeaponSkill->setUnlockId(Sql_GetIntData(SqlHandle, 14));
+            PWeaponSkill->setName(Sql_GetData(SqlHandle, 1));
+            PWeaponSkill->setJob(Sql_GetData(SqlHandle, 2));
+            PWeaponSkill->setType(Sql_GetIntData(SqlHandle, 3));
+            PWeaponSkill->setSkillLevel(Sql_GetIntData(SqlHandle, 4));
+            PWeaponSkill->setElement(Sql_GetIntData(SqlHandle, 5));
+            PWeaponSkill->setAnimationId(Sql_GetIntData(SqlHandle, 6));
+            PWeaponSkill->setAnimationTime(std::chrono::milliseconds(Sql_GetUIntData(SqlHandle, 7)));
+            PWeaponSkill->setRange(Sql_GetIntData(SqlHandle, 8));
+            PWeaponSkill->setAoe(Sql_GetIntData(SqlHandle, 9));
+            PWeaponSkill->setPrimarySkillchain(Sql_GetIntData(SqlHandle, 10));
+            PWeaponSkill->setSecondarySkillchain(Sql_GetIntData(SqlHandle, 11));
+            PWeaponSkill->setTertiarySkillchain(Sql_GetIntData(SqlHandle, 12));
+            PWeaponSkill->setMainOnly(Sql_GetIntData(SqlHandle, 13));
+            PWeaponSkill->setUnlockId(Sql_GetIntData(SqlHandle, 14));
 
-                g_PWeaponSkillList[PWeaponSkill->getID()] = PWeaponSkill;
-                g_PWeaponSkillsList[PWeaponSkill->getType()].push_back(PWeaponSkill);
-            }
+            g_PWeaponSkillList[PWeaponSkill->getID()] = PWeaponSkill;
+            g_PWeaponSkillsList[PWeaponSkill->getType()].push_back(PWeaponSkill);
         }
     }
 
@@ -198,43 +197,33 @@ namespace battleutils
         mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
         FROM mob_skills;";
 
-        int32 ret = Sql_Query(SqlHandle, specialQuery);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, specialQuery))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
-                PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 1));
-                PMobSkill->setName(Sql_GetData(SqlHandle, 2));
-                PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 3));
-                PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 4));
-                PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 5));
-                PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 6));
-                PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 7));
-                PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
-                PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
-                PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
-                PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
-                g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
-            }
+            CMobSkill* PMobSkill = new CMobSkill(Sql_GetIntData(SqlHandle, 0));
+            PMobSkill->setAnimationID(Sql_GetIntData(SqlHandle, 1));
+            PMobSkill->setName(Sql_GetData(SqlHandle, 2));
+            PMobSkill->setAoe(Sql_GetIntData(SqlHandle, 3));
+            PMobSkill->setDistance(Sql_GetFloatData(SqlHandle, 4));
+            PMobSkill->setAnimationTime(Sql_GetIntData(SqlHandle, 5));
+            PMobSkill->setActivationTime(Sql_GetIntData(SqlHandle, 6));
+            PMobSkill->setValidTargets(Sql_GetIntData(SqlHandle, 7));
+            PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
+            PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
+            PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
+            PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
+            g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
         }
 
         const int8* fmtQuery = "SELECT skill_list_id, mob_skill_id \
         FROM mob_skill_lists;";
 
-        ret = Sql_Query(SqlHandle, fmtQuery);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, fmtQuery))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                int16 skillListId = Sql_GetIntData(SqlHandle, 0);
+            int16 skillListId = Sql_GetIntData(SqlHandle, 0);
 
-                uint16 skillId = Sql_GetIntData(SqlHandle, 1);
+            uint16 skillId = Sql_GetIntData(SqlHandle, 1);
 
-                g_PMobSkillLists[skillListId].push_back(skillId);
-            }
+            g_PMobSkillLists[skillListId].push_back(skillId);
         }
     }
 
@@ -244,19 +233,13 @@ namespace battleutils
                            FROM skillchain_damage_modifiers \
                            ORDER BY chain_level, chain_count";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, fmtQuery))
         {
-            for (uint32 x = 0; Sql_NextRow(SqlHandle) == SQL_SUCCESS; ++x)
-            {
-                uint16 level = (uint16)Sql_GetIntData(SqlHandle, 0);
-                uint16 count = (uint16)Sql_GetIntData(SqlHandle, 1);
-                uint16 value = (uint16)Sql_GetIntData(SqlHandle, 2);
-                g_SkillChainDamageModifiers[level][count] = value;
-            }
+            uint16 level = (uint16)Sql_GetIntData(SqlHandle, 0);
+            uint16 count = (uint16)Sql_GetIntData(SqlHandle, 1);
+            uint16 value = (uint16)Sql_GetIntData(SqlHandle, 2);
+            g_SkillChainDamageModifiers[level][count] = value;
         }
-
         return;
     }
 
@@ -308,11 +291,11 @@ namespace battleutils
 
     bool isValidSelfTargetWeaponskill(int wsid) {
         switch (wsid) {
-            case 163: //starlight
-            case 164: //moonlight
-            case 173: //dagan
-            case 190: //myrkr
-                return true;
+        case 163: //starlight
+        case 164: //moonlight
+        case 173: //dagan
+        case 190: //myrkr
+            return true;
         }
         return false;
     }
@@ -404,26 +387,26 @@ namespace battleutils
     {
         uint16 id = 0;
 
-        if(familyId == 335)
+        if (familyId == 335)
         {
             // Maat has his own two hour animations
             switch (job)
             {
-                case JOB_WAR: id = 752; break;
-                case JOB_MNK: id = 753; break;
-                case JOB_WHM: id = 754; break;
-                case JOB_BLM: id = 755; break;
-                case JOB_RDM: id = 756; break;
-                case JOB_THF: id = 757; break;
-                case JOB_PLD: id = 758; break;
-                case JOB_DRK: id = 759; break;
-                case JOB_BST: id = 760; break;
-                case JOB_BRD: id = 762; break;
-                case JOB_RNG: id = 763; break;
-                case JOB_SAM: id = 764; break;
-                case JOB_NIN: id = 765; break;
-                case JOB_DRG: id = 766; break;
-                case JOB_SMN: id = 767; break;
+            case JOB_WAR: id = 752; break;
+            case JOB_MNK: id = 753; break;
+            case JOB_WHM: id = 754; break;
+            case JOB_BLM: id = 755; break;
+            case JOB_RDM: id = 756; break;
+            case JOB_THF: id = 757; break;
+            case JOB_PLD: id = 758; break;
+            case JOB_DRK: id = 759; break;
+            case JOB_BST: id = 760; break;
+            case JOB_BRD: id = 762; break;
+            case JOB_RNG: id = 763; break;
+            case JOB_SAM: id = 764; break;
+            case JOB_NIN: id = 765; break;
+            case JOB_DRG: id = 766; break;
+            case JOB_SMN: id = 767; break;
             }
 
             return GetMobSkill(id);
@@ -431,90 +414,90 @@ namespace battleutils
 
         switch (job)
         {
-            case JOB_WAR: id = 432; break;
-            case JOB_MNK: id = 434; break;
-            case JOB_WHM: id = 433; break;
-            case JOB_BLM: id = 435; break;
-            case JOB_RDM: id = 436; break;
-            case JOB_THF: id = 437; break;
-            case JOB_PLD: id = 438; break;
-            case JOB_DRK: id = 439; break;
-            case JOB_BST: id = 484; break;
-            case JOB_BRD: id = 440; break;
-            case JOB_RNG:
-                          if(familyId == 270 || familyId == 360)
-                          {
-                              // Yagudo has it's own version
-                              id = 865;
-                          }
-                          else if(familyId == 3)
-                          {
-                              // Aern
-                              id = 1389;
-                          }
-                          else if(familyId == 169 || familyId == 358)
-                          {
-                              // Kindred has it's own version
-                              id = 895;
-                          }
-                          else if (familyId == 133 || familyId == 327)
-                          {
-                              // Goblin
-                              id = 479;
-                          }
-                          else if (familyId == 25)
-                          {
-                              // Antica
-                              id = 480;
-                          }
-                          else if (familyId == 189 || familyId == 334)
-                          {
-                              // Orc
-                              id = 481;
-                          }
-                          else if (familyId == 115 || familyId == 359 || familyId == 221
-                                  || familyId == 222 || familyId == 223)
-                          {
-                              // Fomor / Shadow
-                              id = 482;
-                          }
-                          else if (familyId == 328 || familyId >= 126 && familyId <= 130)
-                          {
-                              // Giga
-                              id = 483;
-                          }
-                          else if(familyId == 337 || familyId == 200 || familyId == 201
-                                  || familyId == 202)
-                          {
-                              // Quadav has it's own version
-                              id = 866;
-                          }
-                          else if(familyId == 171)
-                          {
-                              // Lamiae
-                              id = 1675;
-                          }
-                          else if(familyId == 246)
-                          {
-                              // Troll
-                              id = 1996;
-                          }
-                          else
-                          {
-                              // Defaulting to crappy goblin animation
-                              id = 479;
-                          }
-                          break;
-            case JOB_SAM: id = 474; break;
-            case JOB_NIN: id = 475; break;
-            case JOB_DRG: id = 476; break;
-            case JOB_SMN: id = 2000; break;  // alt 2000
-                // case JOB_BLU: id = 1933; break; // alt 2001
-                // case JOB_COR: id = 1934; break; // alt 2002
-                // case JOB_PUP: id = 1935; break; // alt 2003
-                // case JOB_DNC: id = 2454; break; // alt 2004
-                // case JOB_SCH: id = 2102 break;  // alt 2005
-            default: return nullptr;
+        case JOB_WAR: id = 432; break;
+        case JOB_MNK: id = 434; break;
+        case JOB_WHM: id = 433; break;
+        case JOB_BLM: id = 435; break;
+        case JOB_RDM: id = 436; break;
+        case JOB_THF: id = 437; break;
+        case JOB_PLD: id = 438; break;
+        case JOB_DRK: id = 439; break;
+        case JOB_BST: id = 484; break;
+        case JOB_BRD: id = 440; break;
+        case JOB_RNG:
+            if (familyId == 270 || familyId == 360)
+            {
+                // Yagudo has it's own version
+                id = 865;
+            }
+            else if (familyId == 3)
+            {
+                // Aern
+                id = 1389;
+            }
+            else if (familyId == 169 || familyId == 358)
+            {
+                // Kindred has it's own version
+                id = 895;
+            }
+            else if (familyId == 133 || familyId == 327)
+            {
+                // Goblin
+                id = 479;
+            }
+            else if (familyId == 25)
+            {
+                // Antica
+                id = 480;
+            }
+            else if (familyId == 189 || familyId == 334)
+            {
+                // Orc
+                id = 481;
+            }
+            else if (familyId == 115 || familyId == 359 || familyId == 221
+                || familyId == 222 || familyId == 223)
+            {
+                // Fomor / Shadow
+                id = 482;
+            }
+            else if (familyId == 328 || familyId >= 126 && familyId <= 130)
+            {
+                // Giga
+                id = 483;
+            }
+            else if (familyId == 337 || familyId == 200 || familyId == 201
+                || familyId == 202)
+            {
+                // Quadav has it's own version
+                id = 866;
+            }
+            else if (familyId == 171)
+            {
+                // Lamiae
+                id = 1675;
+            }
+            else if (familyId == 246)
+            {
+                // Troll
+                id = 1996;
+            }
+            else
+            {
+                // Defaulting to crappy goblin animation
+                id = 479;
+            }
+            break;
+        case JOB_SAM: id = 474; break;
+        case JOB_NIN: id = 475; break;
+        case JOB_DRG: id = 476; break;
+        case JOB_SMN: id = 2000; break;  // alt 2000
+            // case JOB_BLU: id = 1933; break; // alt 2001
+            // case JOB_COR: id = 1934; break; // alt 2002
+            // case JOB_PUP: id = 1935; break; // alt 2003
+            // case JOB_DNC: id = 2454; break; // alt 2004
+            // case JOB_SCH: id = 2102 break;  // alt 2005
+        default: return nullptr;
         }
         return GetMobSkill(id);
     }
@@ -657,12 +640,12 @@ namespace battleutils
 
         switch (Action->spikesEffect)
         {
-            case SPIKE_DREAD:
-                // drain same as damage taken
-                damage = damageTaken;
-                break;
-            default:
-                break;
+        case SPIKE_DREAD:
+            // drain same as damage taken
+            damage = damageTaken;
+            break;
+        default:
+            break;
         }
 
         return damage;
@@ -729,71 +712,71 @@ namespace battleutils
 
             switch (Action->spikesEffect)
             {
-                case SPIKE_BLAZE:
-                case SPIKE_ICE:
-                case SPIKE_SHOCK:
-                    PAttacker->addHP(-Action->spikesParam);
-                    break;
+            case SPIKE_BLAZE:
+            case SPIKE_ICE:
+            case SPIKE_SHOCK:
+                PAttacker->addHP(-Action->spikesParam);
+                break;
 
-                case SPIKE_DREAD:
-                    if (PAttacker->m_EcoSystem == SYSTEM_UNDEAD)
-                    {
-                        // is undead no effect
-                        Action->spikesEffect = (SUBEFFECT)0;
-                        return false;
-                    }
-                    else
-                    {
-                        Action->addEffectMessage = 132;
+            case SPIKE_DREAD:
+                if (PAttacker->m_EcoSystem == SYSTEM_UNDEAD)
+                {
+                    // is undead no effect
+                    Action->spikesEffect = (SUBEFFECT)0;
+                    return false;
+                }
+                else
+                {
+                    Action->addEffectMessage = 132;
 
-                        if (PDefender->isAlive())
-                        {
-                            auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DREAD_SPIKES);
-                            if (PEffect)
-                            {
-                                // Subpower is the remaining damage that can be drained. When it reaches 0 the effect ends
-                                int remainingDrain = PEffect->GetSubPower();
-                                if (remainingDrain - Action->spikesParam <= 0)
-                                {
-                                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DREAD_SPIKES);
-                                }
-                                else
-                                {
-                                    PEffect->SetSubPower(remainingDrain - Action->spikesParam);
-                                }
-                            }
-                            PDefender->addHP(Action->spikesParam);
-                        }
-                        PAttacker->addHP(-Action->spikesParam);
-                    }
-                    break;
-
-                case SPIKE_REPRISAL:
-                    if (Action->reaction == REACTION_BLOCK)
+                    if (PDefender->isAlive())
                     {
-                        PAttacker->addHP(-Action->spikesParam);
-                        auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
+                        auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_DREAD_SPIKES);
                         if (PEffect)
                         {
-                            // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
-                            int remainingReflect = PEffect->GetSubPower();
-                            if (remainingReflect - Action->spikesParam <= 0)
+                            // Subpower is the remaining damage that can be drained. When it reaches 0 the effect ends
+                            int remainingDrain = PEffect->GetSubPower();
+                            if (remainingDrain - Action->spikesParam <= 0)
                             {
-                                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                                PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DREAD_SPIKES);
                             }
                             else
                             {
-                                PEffect->SetSubPower(remainingReflect - Action->spikesParam);
+                                PEffect->SetSubPower(remainingDrain - Action->spikesParam);
                             }
                         }
+                        PDefender->addHP(Action->spikesParam);
                     }
-                    else
+                    PAttacker->addHP(-Action->spikesParam);
+                }
+                break;
+
+            case SPIKE_REPRISAL:
+                if (Action->reaction == REACTION_BLOCK)
+                {
+                    PAttacker->addHP(-Action->spikesParam);
+                    auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
+                    if (PEffect)
                     {
-                        // only works on shield blocks
-                        Action->spikesEffect = (SUBEFFECT)0;
-                        return false;
+                        // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
+                        int remainingReflect = PEffect->GetSubPower();
+                        if (remainingReflect - Action->spikesParam <= 0)
+                        {
+                            PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_REPRISAL);
+                        }
+                        else
+                        {
+                            PEffect->SetSubPower(remainingReflect - Action->spikesParam);
+                        }
                     }
-                    break;
+                }
+                else
+                {
+                    // only works on shield blocks
+                    Action->spikesEffect = (SUBEFFECT)0;
+                    return false;
+                }
+                break;
             }
 
             if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
@@ -810,7 +793,7 @@ namespace battleutils
             {
                 CCharEntity* PCharDef = (CCharEntity*)PDefender;
 
-                for (auto&& slot : {SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET})
+                for (auto&& slot : { SLOT_SUB, SLOT_BODY, SLOT_LEGS, SLOT_HEAD, SLOT_HANDS, SLOT_FEET })
                 {
                     CItemArmor* PItem = PCharDef->getEquip(slot);
                     if (PItem)
@@ -879,30 +862,30 @@ namespace battleutils
         }
         switch (Action->spikesEffect)
         {
-            case SUBEFFECT_CURSE_SPIKES:
-                if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false)
-                {
-                    PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CURSE, EFFECT_CURSE, 15, 0, 180));
-                }
-                break;
-            case SUBEFFECT_ICE_SPIKES:
+        case SUBEFFECT_CURSE_SPIKES:
+            if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false)
             {
-                if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
-                {
-                    PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
-                }
-                break;
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CURSE, EFFECT_CURSE, 15, 0, 180));
             }
-            case SUBEFFECT_SHOCK_SPIKES:
+            break;
+        case SUBEFFECT_ICE_SPIKES:
+        {
+            if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
             {
-                if (dsprand::GetRandomNumber(100) <= 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
-                {
-                    PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
-                }
-                break;
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
             }
-            default:
-                break;
+            break;
+        }
+        case SUBEFFECT_SHOCK_SPIKES:
+        {
+            if (dsprand::GetRandomNumber(100) <= 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
+            {
+                PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
+            }
+            break;
+        }
+        default:
+            break;
         }
     }
 
@@ -1043,7 +1026,7 @@ namespace battleutils
         }
         //check weapon for additional effects
         else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, Mod::ADDITIONAL_EFFECT) > 0 &&
-                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
@@ -1544,7 +1527,7 @@ namespace battleutils
         return dsprand::GetRandomNumber(minPdif, maxPdif);
     }
 
-    int16 CalculateBaseTP(int delay){
+    int16 CalculateBaseTP(int delay) {
         int16 x = 1;
         if (delay <= 180) {
             x = 61 + ((delay - 180)*63.f) / 360;
@@ -1701,24 +1684,24 @@ namespace battleutils
 
         switch (shieldSize)
         {
-            case 1: // buckler
-                base = 55;
-                break;
-            case 2: // round
-            case 5: // aegis
-                base = 50;
-                break;
-            case 3: // kite
-                base = 45;
-                break;
-            case 4: // tower
-                base = 30;
-                break;
-            case 6: // ochain
-                base = 110;
-                break;
-            default:
-                return 0;
+        case 1: // buckler
+            base = 55;
+            break;
+        case 2: // round
+        case 5: // aegis
+            base = 50;
+            break;
+        case 3: // kite
+            base = 45;
+            break;
+        case 4: // tower
+            base = 30;
+            break;
+        case 6: // ochain
+            base = 110;
+            break;
+        default:
+            return 0;
         }
 
         float skillmodifier = (blockskill - attackskill) * 0.215f;
@@ -1849,10 +1832,10 @@ namespace battleutils
             {
                 switch (PAttacker->m_Weapons[slot]->getDmgType())
                 {
-                    case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(Mod::PIERCERES))) / 1000; break;
-                    case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(Mod::SLASHRES))) / 1000; break;
-                    case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
-                    case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
+                case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(Mod::PIERCERES))) / 1000; break;
+                case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(Mod::SLASHRES))) / 1000; break;
+                case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
+                case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
                 }
             }
             else
@@ -1888,7 +1871,7 @@ namespace battleutils
                         // Subpower is the remaining damage that can be reflected. When it reaches 0 the effect ends
                         CStatusEffect* reprisalEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
                         int32 blockedDamage = (damage * (100 - absorb)) / 100;
-                        if (PDefender->StatusEffectContainer->HasStatusEffect({EFFECT_INVINCIBLE, EFFECT_SENTINEL}))
+                        if (PDefender->StatusEffectContainer->HasStatusEffect({ EFFECT_INVINCIBLE, EFFECT_SENTINEL }))
                         {
                             blockedDamage = (baseDamage * (100 - absorb)) / 100;
                         }
@@ -1944,32 +1927,32 @@ namespace battleutils
 
             switch (PDefender->objtype)
             {
-                case TYPE_MOB:
-                    if (taChar == nullptr)
-                        ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
-                    else
-                        ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
+            case TYPE_MOB:
+                if (taChar == nullptr)
+                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, damage);
+                else
+                    ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar, damage);
 
-                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
-                    {
-                        ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
-                    }
+                if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+                {
+                    ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+                }
 
-                    //if the mob is charmed by player
-                    if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
-                        ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
-
-                    break;
-
-                case TYPE_PET:
+                //if the mob is charmed by player
+                if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
-                    break;
-                case TYPE_PC:
-                    if (PAttacker->objtype == TYPE_MOB)
-                    {
-                        ((CMobEntity*)PAttacker)->PEnmityContainer->UpdateEnmityFromAttack(PDefender, damage);
-                    }
-                    break;
+
+                break;
+
+            case TYPE_PET:
+                ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
+                break;
+            case TYPE_PC:
+                if (PAttacker->objtype == TYPE_MOB)
+                {
+                    ((CMobEntity*)PAttacker)->PEnmityContainer->UpdateEnmityFromAttack(PDefender, damage);
+                }
+                break;
             }
 
             // try to interrupt spell if not a ranged attack and not blocked by Shield Mastery
@@ -2088,21 +2071,21 @@ namespace battleutils
 
             switch (PDefender->objtype)
             {
-                case TYPE_MOB:
-                    //if the mob is charmed by player
-                    if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
-                        ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
-
-                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PChar->GetMLevel())
-                    {
-                        ((CMobEntity*)PDefender)->m_HiPCLvl = PChar->GetMLevel();
-                    }
-
-                    break;
-
-                case TYPE_PET:
+            case TYPE_MOB:
+                //if the mob is charmed by player
+                if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
                     ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
-                    break;
+
+                if (((CMobEntity*)PDefender)->m_HiPCLvl < PChar->GetMLevel())
+                {
+                    ((CMobEntity*)PDefender)->m_HiPCLvl = PChar->GetMLevel();
+                }
+
+                break;
+
+            case TYPE_PET:
+                ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
+                break;
             }
 
             // try to interrupt spell
@@ -2468,57 +2451,57 @@ namespace battleutils
 
         switch (hits)
         {
-            case 0: break;
-            case 1: break;
-            case 2: // cdf = 55,100
-                if (distribution < 55) { break; }
-                else { num += 1; break; }
-                break;
-            case 3: // cdf = 30,80,100
-                if (distribution < 30) { break; }
-                else if (distribution < 80) { num += 1; break; }
-                else { num += 2; break; }
-                break;
-            case 4: // cdf = 20,50,80,100
-                if (distribution < 20) { break; }
-                else if (distribution < 50) { num += 1; break; }
-                else if (distribution < 80) { num += 2; break; }
-                else { num += 3; break; }
-                break;
-            case 5: // cdf = 10,30,60,90,100
-                if (distribution < 10) { break; }
-                else if (distribution < 30) { num += 1; break; }
-                else if (distribution < 60) { num += 2; break; }
-                else if (distribution < 90) { num += 3; break; }
-                else { num += 4; break; }
-                break;
-            case 6: // cdf = 10,30,50,70,90,100
-                if (distribution < 10) { break; }
-                else if (distribution < 30) { num += 1; break; }
-                else if (distribution < 50) { num += 2; break; }
-                else if (distribution < 70) { num += 3; break; }
-                else if (distribution < 90) { num += 4; break; }
-                else { num += 5; break; }
-                break;
-            case 7: // cdf = 5,20,45,70,85,95,100
-                if (distribution < 5) { break; }
-                else if (distribution < 20) { num += 1; break; }
-                else if (distribution < 45) { num += 2; break; }
-                else if (distribution < 70) { num += 3; break; }
-                else if (distribution < 85) { num += 4; break; }
-                else if (distribution < 95) { num += 5; break; }
-                else { num += 6; break; }
-                break;
-            case 8: // cdf = 5,20,45,70,85,95,98,100
-                if (distribution < 5) { break; }
-                else if (distribution < 20) { num += 1; break; }
-                else if (distribution < 45) { num += 2; break; }
-                else if (distribution < 70) { num += 3; break; }
-                else if (distribution < 85) { num += 4; break; }
-                else if (distribution < 95) { num += 5; break; }
-                else if (distribution < 98) { num += 6; break; }
-                else { num += 7; break; }
-                break;
+        case 0: break;
+        case 1: break;
+        case 2: // cdf = 55,100
+            if (distribution < 55) { break; }
+            else { num += 1; break; }
+            break;
+        case 3: // cdf = 30,80,100
+            if (distribution < 30) { break; }
+            else if (distribution < 80) { num += 1; break; }
+            else { num += 2; break; }
+            break;
+        case 4: // cdf = 20,50,80,100
+            if (distribution < 20) { break; }
+            else if (distribution < 50) { num += 1; break; }
+            else if (distribution < 80) { num += 2; break; }
+            else { num += 3; break; }
+            break;
+        case 5: // cdf = 10,30,60,90,100
+            if (distribution < 10) { break; }
+            else if (distribution < 30) { num += 1; break; }
+            else if (distribution < 60) { num += 2; break; }
+            else if (distribution < 90) { num += 3; break; }
+            else { num += 4; break; }
+            break;
+        case 6: // cdf = 10,30,50,70,90,100
+            if (distribution < 10) { break; }
+            else if (distribution < 30) { num += 1; break; }
+            else if (distribution < 50) { num += 2; break; }
+            else if (distribution < 70) { num += 3; break; }
+            else if (distribution < 90) { num += 4; break; }
+            else { num += 5; break; }
+            break;
+        case 7: // cdf = 5,20,45,70,85,95,100
+            if (distribution < 5) { break; }
+            else if (distribution < 20) { num += 1; break; }
+            else if (distribution < 45) { num += 2; break; }
+            else if (distribution < 70) { num += 3; break; }
+            else if (distribution < 85) { num += 4; break; }
+            else if (distribution < 95) { num += 5; break; }
+            else { num += 6; break; }
+            break;
+        case 8: // cdf = 5,20,45,70,85,95,98,100
+            if (distribution < 5) { break; }
+            else if (distribution < 20) { num += 1; break; }
+            else if (distribution < 45) { num += 2; break; }
+            else if (distribution < 70) { num += 3; break; }
+            else if (distribution < 85) { num += 4; break; }
+            else if (distribution < 95) { num += 5; break; }
+            else if (distribution < 98) { num += 6; break; }
+            else { num += 7; break; }
+            break;
         }
         return dsp_min(num, 8); // не более восьми ударов за одну атаку
     }
@@ -2616,12 +2599,12 @@ namespace battleutils
             if (Shadow == 0)
             {
                 switch (modShadow) {
-                    case Mod::UTSUSEMI:
-                        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
-                        break;
-                    case Mod::BLINK:
-                        PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
-                        break;
+                case Mod::UTSUSEMI:
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
+                    break;
+                case Mod::BLINK:
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_BLINK);
+                    break;
                 }
             }
             else if (Shadow < 4 && Mod::UTSUSEMI == modShadow)
@@ -2635,8 +2618,8 @@ namespace battleutils
                         uint16 icon = EFFECT_COPY_IMAGE_3;
                         switch (PDefender->getMod(Mod::UTSUSEMI))
                         {
-                            case 1: icon = EFFECT_COPY_IMAGE_1; break;
-                            case 2: icon = EFFECT_COPY_IMAGE_2; break;
+                        case 1: icon = EFFECT_COPY_IMAGE_1; break;
+                        case 2: icon = EFFECT_COPY_IMAGE_2; break;
                         }
                         PStatusEffect->SetIcon(icon);
                         PDefender->StatusEffectContainer->UpdateStatusIcons();
@@ -2664,21 +2647,21 @@ namespace battleutils
 
         switch (PAttacker->m_EcoSystem)
         {
-            case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(Mod::AMORPH_KILLER);   break;
-            case SYSTEM_AQUAN:		KillerEffect = PDefender->getMod(Mod::AQUAN_KILLER);    break;
-            case SYSTEM_ARCANA:		KillerEffect = PDefender->getMod(Mod::ARCANA_KILLER);   break;
-            case SYSTEM_BEAST:		KillerEffect = PDefender->getMod(Mod::BEAST_KILLER);    break;
-            case SYSTEM_BIRD:		KillerEffect = PDefender->getMod(Mod::BIRD_KILLER);     break;
-            case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(Mod::DEMON_KILLER);    break;
-            case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(Mod::DRAGON_KILLER);   break;
-            case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(Mod::EMPTY_KILLER);    break;
-            case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(Mod::HUMANOID_KILLER); break;
-            case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(Mod::LIZARD_KILLER);   break;
-            case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(Mod::LUMINION_KILLER); break;
-            case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(Mod::LUMORIAN_KILLER); break;
-            case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(Mod::PLANTOID_KILLER); break;
-            case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(Mod::UNDEAD_KILLER);   break;
-            case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
+        case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(Mod::AMORPH_KILLER);   break;
+        case SYSTEM_AQUAN:		KillerEffect = PDefender->getMod(Mod::AQUAN_KILLER);    break;
+        case SYSTEM_ARCANA:		KillerEffect = PDefender->getMod(Mod::ARCANA_KILLER);   break;
+        case SYSTEM_BEAST:		KillerEffect = PDefender->getMod(Mod::BEAST_KILLER);    break;
+        case SYSTEM_BIRD:		KillerEffect = PDefender->getMod(Mod::BIRD_KILLER);     break;
+        case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(Mod::DEMON_KILLER);    break;
+        case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(Mod::DRAGON_KILLER);   break;
+        case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(Mod::EMPTY_KILLER);    break;
+        case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(Mod::HUMANOID_KILLER); break;
+        case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(Mod::LIZARD_KILLER);   break;
+        case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(Mod::LUMINION_KILLER); break;
+        case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(Mod::LUMORIAN_KILLER); break;
+        case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(Mod::PLANTOID_KILLER); break;
+        case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(Mod::UNDEAD_KILLER);   break;
+        case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
         }
         return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
@@ -2762,33 +2745,33 @@ namespace battleutils
         {{SC_FRAGMENTATION, SC_DISTORTION}, SC_DISTORTION},
         {{SC_FRAGMENTATION, SC_FUSION}, SC_LIGHT},
 
-            // Level 1 Pairs
-        {{SC_TRANSFIXION, SC_COMPRESSION}, SC_COMPRESSION},
-        {{SC_TRANSFIXION, SC_SCISSION}, SC_DISTORTION},
-        {{SC_TRANSFIXION, SC_REVERBERATION}, SC_REVERBERATION},
+        // Level 1 Pairs
+    {{SC_TRANSFIXION, SC_COMPRESSION}, SC_COMPRESSION},
+    {{SC_TRANSFIXION, SC_SCISSION}, SC_DISTORTION},
+    {{SC_TRANSFIXION, SC_REVERBERATION}, SC_REVERBERATION},
 
-        {{SC_COMPRESSION, SC_TRANSFIXION}, SC_TRANSFIXION},
-        {{SC_COMPRESSION, SC_DETONATION}, SC_DETONATION},
+    {{SC_COMPRESSION, SC_TRANSFIXION}, SC_TRANSFIXION},
+    {{SC_COMPRESSION, SC_DETONATION}, SC_DETONATION},
 
-        {{SC_LIQUEFACTION, SC_SCISSION}, SC_SCISSION},
-        {{SC_LIQUEFACTION, SC_IMPACTION}, SC_FUSION},
+    {{SC_LIQUEFACTION, SC_SCISSION}, SC_SCISSION},
+    {{SC_LIQUEFACTION, SC_IMPACTION}, SC_FUSION},
 
-        {{SC_SCISSION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
-        {{SC_SCISSION, SC_REVERBERATION}, SC_REVERBERATION},
-        {{SC_SCISSION, SC_DETONATION}, SC_DETONATION},
+    {{SC_SCISSION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
+    {{SC_SCISSION, SC_REVERBERATION}, SC_REVERBERATION},
+    {{SC_SCISSION, SC_DETONATION}, SC_DETONATION},
 
-        {{SC_REVERBERATION, SC_INDURATION}, SC_INDURATION},
-        {{SC_REVERBERATION, SC_IMPACTION}, SC_IMPACTION},
+    {{SC_REVERBERATION, SC_INDURATION}, SC_INDURATION},
+    {{SC_REVERBERATION, SC_IMPACTION}, SC_IMPACTION},
 
-        {{SC_DETONATION, SC_COMPRESSION}, SC_GRAVITATION},
-        {{SC_DETONATION, SC_SCISSION}, SC_SCISSION},
+    {{SC_DETONATION, SC_COMPRESSION}, SC_GRAVITATION},
+    {{SC_DETONATION, SC_SCISSION}, SC_SCISSION},
 
-        {{SC_INDURATION, SC_COMPRESSION}, SC_COMPRESSION},
-        {{SC_INDURATION, SC_REVERBERATION}, SC_FRAGMENTATION},
-        {{SC_INDURATION, SC_IMPACTION}, SC_IMPACTION},
+    {{SC_INDURATION, SC_COMPRESSION}, SC_COMPRESSION},
+    {{SC_INDURATION, SC_REVERBERATION}, SC_FRAGMENTATION},
+    {{SC_INDURATION, SC_IMPACTION}, SC_IMPACTION},
 
-        {{SC_IMPACTION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
-        {{SC_IMPACTION, SC_DETONATION}, SC_DETONATION}
+    {{SC_IMPACTION, SC_LIQUEFACTION}, SC_LIQUEFACTION},
+    {{SC_IMPACTION, SC_DETONATION}, SC_DETONATION}
     };
 
     SKILLCHAIN_ELEMENT FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill)
@@ -2799,7 +2782,7 @@ namespace battleutils
             {
                 try
                 {
-                    return skillchain_map.at({resonance_element, skill_element});
+                    return skillchain_map.at({ resonance_element, skill_element });
                 }
                 catch (std::out_of_range&) {}
             }
@@ -3040,77 +3023,77 @@ namespace battleutils
         switch (element)
         {
             // Level 1 skill chains
-            case SC_LIQUEFACTION:
-            case SC_IMPACTION:
-            case SC_DETONATION:
-            case SC_SCISSION:
-            case SC_REVERBERATION:
-            case SC_INDURATION:
-            case SC_COMPRESSION:
-            case SC_TRANSFIXION:
+        case SC_LIQUEFACTION:
+        case SC_IMPACTION:
+        case SC_DETONATION:
+        case SC_SCISSION:
+        case SC_REVERBERATION:
+        case SC_INDURATION:
+        case SC_COMPRESSION:
+        case SC_TRANSFIXION:
+            defMod = resistances[element][0];
+            break;
+
+            // Level 2 skill chains
+        case SC_FUSION:
+        case SC_FRAGMENTATION:
+        case SC_GRAVITATION:
+        case SC_DISTORTION:
+            if (PDefender->getMod(resistances[element][0]) < PDefender->getMod(resistances[element][1]))
                 defMod = resistances[element][0];
-                break;
+            else
+                defMod = resistances[element][1];
+            break;
 
-                // Level 2 skill chains
-            case SC_FUSION:
-            case SC_FRAGMENTATION:
-            case SC_GRAVITATION:
-            case SC_DISTORTION:
-                if (PDefender->getMod(resistances[element][0]) < PDefender->getMod(resistances[element][1]))
-                    defMod = resistances[element][0];
-                else
-                    defMod = resistances[element][1];
-                break;
+            // Level 3 & 4 skill chains
+        case SC_LIGHT:
+        case SC_LIGHT_II:
+        case SC_DARKNESS:
+        case SC_DARKNESS_II:
+            if (PDefender->getMod(resistances[element][0]) < PDefender->getMod(resistances[element][1]))
+                defMod = resistances[element][0];
+            else
+                defMod = resistances[element][1];
+            if (PDefender->getMod(resistances[element][2]) < PDefender->getMod(defMod))
+                defMod = resistances[element][2];
+            if (PDefender->getMod(resistances[element][3]) < PDefender->getMod(defMod))
+                defMod = resistances[element][3];
+            break;
 
-                // Level 3 & 4 skill chains
-            case SC_LIGHT:
-            case SC_LIGHT_II:
-            case SC_DARKNESS:
-            case SC_DARKNESS_II:
-                if (PDefender->getMod(resistances[element][0]) < PDefender->getMod(resistances[element][1]))
-                    defMod = resistances[element][0];
-                else
-                    defMod = resistances[element][1];
-                if (PDefender->getMod(resistances[element][2]) < PDefender->getMod(defMod))
-                    defMod = resistances[element][2];
-                if (PDefender->getMod(resistances[element][3]) < PDefender->getMod(defMod))
-                    defMod = resistances[element][3];
-                break;
-
-            default:
-                DSP_DEBUG_BREAK_IF(true);
-                return 0;
-                break;
+        default:
+            DSP_DEBUG_BREAK_IF(true);
+            return 0;
+            break;
         }
 
         switch (defMod)
         {
-            case Mod::FIREDEF:
-                *appliedEle = ELEMENT_FIRE;
-                break;
-            case Mod::EARTHDEF:
-                *appliedEle = ELEMENT_EARTH;
-                break;
-            case Mod::WATERDEF:
-                *appliedEle = ELEMENT_WATER;
-                break;
-            case Mod::WINDDEF:
-                *appliedEle = ELEMENT_WIND;
-                break;
-            case Mod::ICEDEF:
-                *appliedEle = ELEMENT_ICE;
-                break;
-            case Mod::THUNDERDEF:
-                *appliedEle = ELEMENT_THUNDER;
-                break;
-            case Mod::LIGHTDEF:
-                *appliedEle = ELEMENT_LIGHT;
-                break;
-            case Mod::DARKDEF:
-                *appliedEle = ELEMENT_DARK;
-                break;
-            default:
-                break;
+        case Mod::FIREDEF:
+            *appliedEle = ELEMENT_FIRE;
+            break;
+        case Mod::EARTHDEF:
+            *appliedEle = ELEMENT_EARTH;
+            break;
+        case Mod::WATERDEF:
+            *appliedEle = ELEMENT_WATER;
+            break;
+        case Mod::WINDDEF:
+            *appliedEle = ELEMENT_WIND;
+            break;
+        case Mod::ICEDEF:
+            *appliedEle = ELEMENT_ICE;
+            break;
+        case Mod::THUNDERDEF:
+            *appliedEle = ELEMENT_THUNDER;
+            break;
+        case Mod::LIGHTDEF:
+            *appliedEle = ELEMENT_LIGHT;
+            break;
+        case Mod::DARKDEF:
+            *appliedEle = ELEMENT_DARK;
+            break;
+        default:
+            break;
         }
 
         return PDefender->getMod(defMod);
@@ -3172,21 +3155,21 @@ namespace battleutils
 
         switch (PDefender->objtype)
         {
-            case TYPE_PC:
+        case TYPE_PC:
+        {
+            if (PDefender->animation == ANIMATION_SIT)
             {
-                if (PDefender->animation == ANIMATION_SIT)
-                {
-                    PDefender->animation = ANIMATION_NONE;
-                    PDefender->updatemask |= UPDATE_HP;
-                }
+                PDefender->animation = ANIMATION_NONE;
+                PDefender->updatemask |= UPDATE_HP;
             }
-            break;
+        }
+        break;
 
-            case TYPE_MOB:
-            {
-                ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (uint16)damage);
-            }
-            break;
+        case TYPE_MOB:
+        {
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(taChar ? taChar : PAttacker, (uint16)damage);
+        }
+        break;
         }
 
         return damage;
@@ -3263,37 +3246,37 @@ namespace battleutils
                 {
                     switch (toolID)
                     {
-                        case ITEM_UCHITAKE:
-                        case ITEM_TSURARA:
-                        case ITEM_KAWAHORI_OGI:
-                        case ITEM_MAKIBISHI:
-                        case ITEM_HIRAISHIN:
-                        case ITEM_MIZU_DEPPO:
-                            toolID = ITEM_INOSHISHINOFUDA;
-                            break;
+                    case ITEM_UCHITAKE:
+                    case ITEM_TSURARA:
+                    case ITEM_KAWAHORI_OGI:
+                    case ITEM_MAKIBISHI:
+                    case ITEM_HIRAISHIN:
+                    case ITEM_MIZU_DEPPO:
+                        toolID = ITEM_INOSHISHINOFUDA;
+                        break;
 
-                        case ITEM_RYUNO:
-                        case ITEM_MOKUJIN:
-                        case ITEM_SANJAKU_TENUGUI:
-                        case ITEM_KABENRO:
-                        case ITEM_SHINOBI_TABI:
-                        case ITEM_SHIHEI:
-                        case ITEM_RANKA:
-                        case ITEM_FURUSUMI:
+                    case ITEM_RYUNO:
+                    case ITEM_MOKUJIN:
+                    case ITEM_SANJAKU_TENUGUI:
+                    case ITEM_KABENRO:
+                    case ITEM_SHINOBI_TABI:
+                    case ITEM_SHIHEI:
+                    case ITEM_RANKA:
+                    case ITEM_FURUSUMI:
 
-                            toolID = ITEM_SHIKANOFUDA;
-                            break;
+                        toolID = ITEM_SHIKANOFUDA;
+                        break;
 
-                        case ITEM_SOSHI:
-                        case ITEM_KODOKU:
-                        case ITEM_KAGINAWA:
-                        case ITEM_JUSATSU:
-                        case ITEM_SAIRUI_RAN:
-                        case ITEM_JINKO:
-                            toolID = ITEM_CHONOFUDA;
-                            break;
+                    case ITEM_SOSHI:
+                    case ITEM_KODOKU:
+                    case ITEM_KAGINAWA:
+                    case ITEM_JUSATSU:
+                    case ITEM_SAIRUI_RAN:
+                    case ITEM_JINKO:
+                        toolID = ITEM_CHONOFUDA;
+                        break;
 
-                        default: return false;
+                    default: return false;
                     }
                     if (ERROR_SLOTID == (SlotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(toolID)))
                     {
@@ -3615,12 +3598,12 @@ namespace battleutils
 
                 switch (meritCount)
                 {
-                    case 1:	tmpDamage += tmpDamage * 0.05f; break;
-                    case 2:	tmpDamage += tmpDamage * 0.10f; break;
-                    case 3:	tmpDamage += tmpDamage * 0.15f; break;
-                    case 4:	tmpDamage += tmpDamage * 0.17f; break;
-                    case 5:	tmpDamage += tmpDamage * 0.19f; break;
-                    default: break;
+                case 1:	tmpDamage += tmpDamage * 0.05f; break;
+                case 2:	tmpDamage += tmpDamage * 0.10f; break;
+                case 3:	tmpDamage += tmpDamage * 0.15f; break;
+                case 4:	tmpDamage += tmpDamage * 0.17f; break;
+                case 5:	tmpDamage += tmpDamage * 0.19f; break;
+                default: break;
                 }
                 damage = (uint16)floor(tmpDamage);
             }
@@ -3871,7 +3854,7 @@ namespace battleutils
             }
 
             //Bind uncharmable mobs for 5 seconds
-            if ( ((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 ||  PVictim->PMaster != nullptr) {
+            if (((CMobEntity*)PVictim)->getMobMod(MOBMOD_CHARMABLE) == 0 || PVictim->PMaster != nullptr) {
                 PVictim->StatusEffectContainer->AddStatusEffect(
                     new CStatusEffect(EFFECT_BIND, EFFECT_BIND, 1, 0, dsprand::GetRandomNumber(1, 5)));
                 return;
@@ -4158,12 +4141,12 @@ namespace battleutils
 
     int32 BreathDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGBREATH) / 100.0f )  ) / 256.0f;
+        float resist = 1.0f + floor(256.0f * (PDefender->getMod(Mod::UDMGBREATH) / 100.0f)) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGBREATH) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)       / 100.0f ) ) / 256.0f );
+        resist = 1.0f + (floor(256.0f * (PDefender->getMod(Mod::DMGBREATH) / 100.0f)) / 256.0f)
+            + (floor(256.0f * (PDefender->getMod(Mod::DMG) / 100.0f)) / 256.0f);
         resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
         damage *= resist;
 
@@ -4185,14 +4168,14 @@ namespace battleutils
         Mod absorb[8] = { Mod::FIRE_ABSORB, Mod::EARTH_ABSORB, Mod::WATER_ABSORB, Mod::WIND_ABSORB, Mod::ICE_ABSORB, Mod::LTNG_ABSORB, Mod::LIGHT_ABSORB, Mod::DARK_ABSORB };
         Mod nullarray[8] = { Mod::FIRE_NULL, Mod::EARTH_NULL, Mod::WATER_NULL, Mod::WIND_NULL, Mod::ICE_NULL, Mod::LTNG_NULL, Mod::LIGHT_NULL, Mod::DARK_NULL };
 
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGMAGIC) / 100.0f )  ) / 256.0f;
+        float resist = 1.0f + floor(256.0f * (PDefender->getMod(Mod::UDMGMAGIC) / 100.0f)) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGMAGIC) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)      / 100.0f ) ) / 256.0f );
+        resist = 1.0f + (floor(256.0f * (PDefender->getMod(Mod::DMGMAGIC) / 100.0f)) / 256.0f)
+            + (floor(256.0f * (PDefender->getMod(Mod::DMG) / 100.0f)) / 256.0f);
         resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
-        resist = resist + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGMAGIC_II) / 100.0f ) ) / 256.0f );
+        resist = resist + (floor(256.0f * (PDefender->getMod(Mod::DMGMAGIC_II) / 100.0f)) / 256.0f);
         resist = dsp_cap(resist, 0.125f, 1.5f); //Total cap with MDT-% II included is 87.5%
         damage *= resist;
 
@@ -4217,12 +4200,12 @@ namespace battleutils
 
     int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGPHYS) / 100.0f )  ) / 256.0f;
+        float resist = 1.0f + floor(256.0f * (PDefender->getMod(Mod::UDMGPHYS) / 100.0f)) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGPHYS) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)     / 100.0f ) ) / 256.0f );
+        resist = 1.0f + (floor(256.0f * (PDefender->getMod(Mod::DMGPHYS) / 100.0f)) / 256.0f)
+            + (floor(256.0f * (PDefender->getMod(Mod::DMG) / 100.0f)) / 256.0f);
         resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
         damage *= resist;
 
@@ -4245,12 +4228,12 @@ namespace battleutils
 
     int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGRANGE) / 100.0f )  ) / 256.0f;
+        float resist = 1.0f + floor(256.0f * (PDefender->getMod(Mod::UDMGRANGE) / 100.0f)) / 256.0f;
         resist = dsp_max(resist, 0);
         damage *= resist;
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGRANGE) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)      / 100.0f ) ) / 256.0f );
+        resist = 1.0f + (floor(256.0f * (PDefender->getMod(Mod::DMGRANGE) / 100.0f)) / 256.0f)
+            + (floor(256.0f * (PDefender->getMod(Mod::DMG) / 100.0f)) / 256.0f);
         resist = dsp_cap(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
         damage *= resist;
 
@@ -4273,7 +4256,7 @@ namespace battleutils
 
     void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CBattleEntity* PAttacker) {
         if (PAttacker->objtype == TYPE_MOB &&
-             PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
+            PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_ISSEKIGAN)) {
             // Issekigan is Known to Grant 300 CE per parry, but unknown how it effects VE (per bgwiki). So VE is left alone for now.
             static_cast<CMobEntity*>(PAttacker)->PEnmityContainer->UpdateEnmity(PDefender, 300, 0, false);
         }
@@ -4563,99 +4546,99 @@ namespace battleutils
     {
         switch (element)
         {
-            case ELEMENT_NONE:
-                return false; // Can't match with no element...
-                break;
-            case ELEMENT_FIRE:
-                switch (weather)
-                {
-                    case WEATHER_HOT_SPELL:
-                    case WEATHER_HEAT_WAVE:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_EARTH:
-                switch (weather)
-                {
-                    case WEATHER_DUST_STORM:
-                    case WEATHER_SAND_STORM:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_WATER:
-                switch (weather)
-                {
-                    case WEATHER_RAIN:
-                    case WEATHER_SQUALL:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_WIND:
-                switch (weather)
-                {
-                    case WEATHER_WIND:
-                    case WEATHER_GALES:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_ICE:
-                switch (weather)
-                {
-                    case WEATHER_SNOW:
-                    case WEATHER_BLIZZARDS:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_THUNDER:
-                switch (weather)
-                {
-                    case WEATHER_THUNDER:
-                    case WEATHER_THUNDERSTORMS:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_LIGHT:
-                switch (weather)
-                {
-                    case WEATHER_AURORAS:
-                    case WEATHER_STELLAR_GLARE:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
-                break;
-            case ELEMENT_DARK:
-                switch (weather)
-                {
-                    case WEATHER_GLOOM:
-                    case WEATHER_DARKNESS:
-                        return true;
-                        break;
-                    default:
-                        return false;
-                }
+        case ELEMENT_NONE:
+            return false; // Can't match with no element...
+            break;
+        case ELEMENT_FIRE:
+            switch (weather)
+            {
+            case WEATHER_HOT_SPELL:
+            case WEATHER_HEAT_WAVE:
+                return true;
                 break;
             default:
                 return false;
+            }
+            break;
+        case ELEMENT_EARTH:
+            switch (weather)
+            {
+            case WEATHER_DUST_STORM:
+            case WEATHER_SAND_STORM:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_WATER:
+            switch (weather)
+            {
+            case WEATHER_RAIN:
+            case WEATHER_SQUALL:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_WIND:
+            switch (weather)
+            {
+            case WEATHER_WIND:
+            case WEATHER_GALES:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_ICE:
+            switch (weather)
+            {
+            case WEATHER_SNOW:
+            case WEATHER_BLIZZARDS:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_THUNDER:
+            switch (weather)
+            {
+            case WEATHER_THUNDER:
+            case WEATHER_THUNDERSTORMS:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_LIGHT:
+            switch (weather)
+            {
+            case WEATHER_AURORAS:
+            case WEATHER_STELLAR_GLARE:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        case ELEMENT_DARK:
+            switch (weather)
+            {
+            case WEATHER_GLOOM:
+            case WEATHER_DARKNESS:
+                return true;
+                break;
+            default:
+                return false;
+            }
+            break;
+        default:
+            return false;
         }
     }
 
@@ -4745,74 +4728,74 @@ namespace battleutils
 
         switch (roll)
         {
-            case 1:
-                // Restores some Job Abilities (does not restore One Hour Abilities)
-                for (uint8 i = RecastsToDelete; i > 0; --i)
+        case 1:
+            // Restores some Job Abilities (does not restore One Hour Abilities)
+            for (uint8 i = RecastsToDelete; i > 0; --i)
+            {
+                if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
                 {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
-                    {
-                        PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
-                    }
+                    PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
                 }
-                break;
+            }
+            break;
 
-            case 2:
-                // Restores all Job Abilities (does not restore One Hour Abilities)
+        case 2:
+            // Restores all Job Abilities (does not restore One Hour Abilities)
+            PTarget->PRecastContainer->ResetAbilities();
+            break;
+
+        case 3:
+            // Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore
+            for (uint8 i = RecastsToDelete; i > 0; --i)
+            {
+                if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
+                {
+                    PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+                }
+            }
+            PTarget->health.tp = 1000;
+            break;
+
+        case 4:
+            // Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore
+            PTarget->PRecastContainer->ResetAbilities();
+            PTarget->health.tp = 3000;
+            break;
+
+        case 5:
+            // Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore
+            for (uint8 i = RecastsToDelete; i > 0; --i)
+            {
+                if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
+                {
+                    PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
+                }
+            }
+
+            // Restore 2hr except for Wildcard.
+            if (PTarget->GetMJob() != JOB_COR)
+            {
+                PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
+            }
+
+            if (PTarget->health.maxmp > 0 && (PTarget->health.mp < (PTarget->health.maxmp / 2)))
+            {
+                PTarget->health.mp = PTarget->health.maxmp / 2;
+            }
+            break;
+
+        case 6:
+            // Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore
+            if (PTarget->GetMJob() == JOB_COR)
+            {
                 PTarget->PRecastContainer->ResetAbilities();
-                break;
-
-            case 3:
-                // Restores some Job Abilities (does not restore One Hour Abilities), 100% TP Restore
-                for (uint8 i = RecastsToDelete; i > 0; --i)
-                {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
-                    {
-                        PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
-                    }
-                }
-                PTarget->health.tp = 1000;
-                break;
-
-            case 4:
-                // Restores all Job Abilities (does not restore One Hour Abilities), 300% TP Restore
-                PTarget->PRecastContainer->ResetAbilities();
-                PTarget->health.tp = 3000;
-                break;
-
-            case 5:
-                // Restores some Job Abilities and One Hour Abilities (Not Wild Card though), 50% MP Restore
-                for (uint8 i = RecastsToDelete; i > 0; --i)
-                {
-                    if (PTarget->PRecastContainer->GetRecastList(RECAST_ABILITY)->at(i - 1).ID != 0)
-                    {
-                        PTarget->PRecastContainer->DeleteByIndex(RECAST_ABILITY, i - 1);
-                    }
-                }
-
-                // Restore 2hr except for Wildcard.
-                if (PTarget->GetMJob() != JOB_COR)
-                {
-                    PTarget->PRecastContainer->Del(RECAST_ABILITY, 0);
-                }
-
-                if (PTarget->health.maxmp > 0 && (PTarget->health.mp < (PTarget->health.maxmp / 2)))
-                {
-                    PTarget->health.mp = PTarget->health.maxmp / 2;
-                }
-                break;
-
-            case 6:
-                // Restores all Job Abilities and One Hour Abilities (Not Wild Card though), 100% MP Restore
-                if (PTarget->GetMJob() == JOB_COR)
-                {
-                    PTarget->PRecastContainer->ResetAbilities();
-                }
-                else
-                {
-                    PTarget->PRecastContainer->Del(RECAST_ABILITY);
-                }
-                PTarget->addMP(PTarget->health.maxmp);
-                break;
+            }
+            else
+            {
+                PTarget->PRecastContainer->Del(RECAST_ABILITY);
+            }
+            PTarget->addMP(PTarget->health.maxmp);
+            break;
         }
     }
 
@@ -4823,7 +4806,7 @@ namespace battleutils
     ************************************************************************/
     int16 GetSnapshotReduction(CCharEntity* m_PChar, int16 delay)
     {
-        auto SnapShotReductionPercent {m_PChar->getMod(Mod::SNAP_SHOT)};
+        auto SnapShotReductionPercent{ m_PChar->getMod(Mod::SNAP_SHOT) };
 
         if (charutils::hasTrait(m_PChar, TRAIT_SNAPSHOT))
         {
@@ -4936,19 +4919,19 @@ namespace battleutils
         }
 
         if (PTarget->m_OwnerID.id == 0 || PTarget->m_OwnerID.id == PMaster->id || PTarget->objtype == TYPE_PC ||
-                PTarget->objtype == TYPE_PET)
+            PTarget->objtype == TYPE_PET)
         {
             return true;
         }
 
         bool found = false;
 
-        PMaster->ForAlliance([&PTarget, &found](CBattleEntity* PChar){
-                if (PChar->id == PTarget->m_OwnerID.id)
-                {
-                    found = true;
-                }
-                });
+        PMaster->ForAlliance([&PTarget, &found](CBattleEntity* PChar) {
+            if (PChar->id == PTarget->m_OwnerID.id)
+            {
+                found = true;
+            }
+        });
 
         return found;
     }
@@ -4964,7 +4947,7 @@ namespace battleutils
         uint32 base = PSpell->getCastTime();
         uint32 cast = base;
 
-        if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_HASSO, EFFECT_SEIGAN}))
+        if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_HASSO, EFFECT_SEIGAN }))
         {
             cast = cast * 2.0f;
         }
@@ -4984,7 +4967,7 @@ namespace battleutils
             }
             else if (applyArts)
             {
-                if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK}))
+                if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK }))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
                     cast = cast * (1.0f + (PEntity->getMod(Mod::BLACK_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f);
@@ -5010,7 +4993,7 @@ namespace battleutils
             }
             else if (applyArts)
             {
-                if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE}))
+                if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE }))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
                     cast = cast * (1.0f + (PEntity->getMod(Mod::WHITE_MAGIC_CAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f);
@@ -5172,7 +5155,7 @@ namespace battleutils
             recast *= 1.25;
         }
 
-        if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_HASSO, EFFECT_SEIGAN}))
+        if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_HASSO, EFFECT_SEIGAN }))
         {
             recast *= 1.5;
         }
@@ -5208,7 +5191,7 @@ namespace battleutils
             }
             if (applyArts)
             {
-                if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK}))
+                if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK }))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
                     recast *= (1.0f + (PEntity->getMod(Mod::BLACK_MAGIC_RECAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f);
@@ -5247,7 +5230,7 @@ namespace battleutils
             }
             if (applyArts)
             {
-                if (PEntity->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE}))
+                if (PEntity->StatusEffectContainer->HasStatusEffect({ EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE }))
                 {
                     // Add any "Grimoire: Reduces spellcasting time" bonuses
                     recast *= (1.0f + (PEntity->getMod(Mod::WHITE_MAGIC_RECAST) + PEntity->getMod(Mod::GRIMOIRE_SPELLCASTING)) / 100.0f);
@@ -5351,35 +5334,35 @@ namespace battleutils
             auto modAmount = PItem->getModifier(mod);
             switch (mod)
             {
-                case Mod::DEF:
-                case Mod::MAIN_DMG_RATING:
-                case Mod::SUB_DMG_RATING:
-                case Mod::RANGED_DMG_RATING:
-                    modAmount *= 3;
-                    modAmount /= 4;
-                    break;
-                case Mod::HP:
-                case Mod::MP:
-                    modAmount /= 2;
-                    break;
-                case Mod::STR:
-                case Mod::DEX:
-                case Mod::VIT:
-                case Mod::AGI:
-                case Mod::INT:
-                case Mod::MND:
-                case Mod::CHR:
-                case Mod::ATT:
-                case Mod::RATT:
-                case Mod::ACC:
-                case Mod::RACC:
-                case Mod::MATT:
-                case Mod::MACC:
-                    modAmount /= 3;
-                    break;
-                default:
-                    modAmount = 0;
-                    break;
+            case Mod::DEF:
+            case Mod::MAIN_DMG_RATING:
+            case Mod::SUB_DMG_RATING:
+            case Mod::RANGED_DMG_RATING:
+                modAmount *= 3;
+                modAmount /= 4;
+                break;
+            case Mod::HP:
+            case Mod::MP:
+                modAmount /= 2;
+                break;
+            case Mod::STR:
+            case Mod::DEX:
+            case Mod::VIT:
+            case Mod::AGI:
+            case Mod::INT:
+            case Mod::MND:
+            case Mod::CHR:
+            case Mod::ATT:
+            case Mod::RATT:
+            case Mod::ACC:
+            case Mod::RACC:
+            case Mod::MATT:
+            case Mod::MACC:
+                modAmount /= 3;
+                break;
+            default:
+                modAmount = 0;
+                break;
             }
             return modAmount / PItem->getReqLvl();
         }

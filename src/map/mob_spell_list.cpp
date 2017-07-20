@@ -60,24 +60,20 @@ namespace mobSpellList
                             FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id \
                             WHERE spell_list_id < %u;";
 
-        int32 ret = Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID);
 
-        if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, Query, MAX_MOBSPELLLIST_ID))
         {
-            while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            uint16 spellId = (uint16)Sql_GetIntData(SqlHandle, 1);
+            uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle, 2);
+            uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle, 3);
+
+            uint16 pos = Sql_GetIntData(SqlHandle, 0);
+            if (!PMobSpellList[pos])
             {
-                uint16 spellId = (uint16)Sql_GetIntData(SqlHandle,1);
-                uint16 minLvl = (uint16)Sql_GetIntData(SqlHandle,2);
-                uint16 maxLvl = (uint16)Sql_GetIntData(SqlHandle,3);
-
-                uint16 pos = Sql_GetIntData(SqlHandle,0);
-                if (!PMobSpellList[pos])
-                {
-                    PMobSpellList[pos] = new CMobSpellList();
-                }
-
-                PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
+                PMobSpellList[pos] = new CMobSpellList();
             }
+
+            PMobSpellList[pos]->AddSpell(spellId, minLvl, maxLvl);
         }
     }
 

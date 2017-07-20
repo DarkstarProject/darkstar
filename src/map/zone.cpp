@@ -248,7 +248,7 @@ bool CZone::IsWeatherStatic()
 zoneLine_t* CZone::GetZoneLine(uint32 zoneLineID)
 {
     for (zoneLineList_t::const_iterator  i = m_zoneLineList.begin();
-    i != m_zoneLineList.end();
+        i != m_zoneLineList.end();
         i++)
     {
         if ((*i)->m_zoneLineID == zoneLineID)
@@ -270,23 +270,20 @@ void CZone::LoadZoneLines()
 {
     static const int8 fmtQuery[] = "SELECT zoneline, tozone, tox, toy, toz, rotation FROM zonelines WHERE fromzone = %u";
 
-    int32 ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
+    auto ret = Sql_Query(SqlHandle, fmtQuery, m_zoneID);
 
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    for (auto res : ret)
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            zoneLine_t* zl = new zoneLine_t;
+        zoneLine_t* zl = new zoneLine_t;
 
-            zl->m_zoneLineID = (uint32)Sql_GetIntData(SqlHandle, 0);
-            zl->m_toZone = (uint16)Sql_GetIntData(SqlHandle, 1);
-            zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
-            zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
-            zl->m_toPos.z = Sql_GetFloatData(SqlHandle, 4);
-            zl->m_toPos.rotation = (uint8)Sql_GetIntData(SqlHandle, 5);
+        zl->m_zoneLineID = (uint32)Sql_GetIntData(SqlHandle, 0);
+        zl->m_toZone = (uint16)Sql_GetIntData(SqlHandle, 1);
+        zl->m_toPos.x = Sql_GetFloatData(SqlHandle, 2);
+        zl->m_toPos.y = Sql_GetFloatData(SqlHandle, 3);
+        zl->m_toPos.z = Sql_GetFloatData(SqlHandle, 4);
+        zl->m_toPos.rotation = (uint8)Sql_GetIntData(SqlHandle, 5);
 
-            m_zoneLineList.push_back(zl);
-        }
+        m_zoneLineList.push_back(zl);
     }
 }
 
@@ -308,11 +305,11 @@ void CZone::LoadZoneWeather()
         "WHERE zoneid = %u "
         "ORDER BY weather_day";
 
-    int32 ret = Sql_Query(SqlHandle, Query, m_zoneID);
+    auto ret = Sql_Query(SqlHandle, Query, m_zoneID);
 
     if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        for (auto res : ret)
         {
             m_WeatherVector.insert(std::make_pair((uint16)Sql_GetUIntData(SqlHandle, 0), zoneWeather_t(Sql_GetIntData(SqlHandle, 1),
                 Sql_GetIntData(SqlHandle, 2), Sql_GetIntData(SqlHandle, 3))));
@@ -351,30 +348,34 @@ void CZone::LoadZoneSettings()
         "WHERE zoneid = %u "
         "LIMIT 1";
 
-    if (Sql_Query(SqlHandle, Query, m_zoneID) != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    auto ret = Sql_Query(SqlHandle, Query, m_zoneID);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0)
     {
-        m_zoneName.insert(0, Sql_GetData(SqlHandle, 0));
-
-        m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
-        m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
-        m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
-        m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
-        m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
-        m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle, 6);   // party battle music
-        m_tax = (uint16)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
-        m_miscMask = (uint16)Sql_GetUIntData(SqlHandle, 8);
-
-        m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
-
-        if (Sql_GetData(SqlHandle, 10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+        for (auto res : ret)
         {
-            m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
-        }
-        if (m_miscMask & MISC_TREASURE)
-        {
-            m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
+            m_zoneName.insert(0, Sql_GetData(SqlHandle, 0));
+
+            m_zoneIP = inet_addr(Sql_GetData(SqlHandle, 1));
+            m_zonePort = (uint16)Sql_GetUIntData(SqlHandle, 2);
+            m_zoneMusic.m_songDay = (uint8)Sql_GetUIntData(SqlHandle, 3);   // background music (day)
+            m_zoneMusic.m_songNight = (uint8)Sql_GetUIntData(SqlHandle, 4);   // background music (night)
+            m_zoneMusic.m_bSongS = (uint8)Sql_GetUIntData(SqlHandle, 5);   // solo battle music
+            m_zoneMusic.m_bSongM = (uint8)Sql_GetUIntData(SqlHandle, 6);   // party battle music
+            m_tax = (uint16)(Sql_GetFloatData(SqlHandle, 7) * 100);      // tax for bazaar
+            m_miscMask = (uint16)Sql_GetUIntData(SqlHandle, 8);
+
+            m_zoneType = (ZONETYPE)Sql_GetUIntData(SqlHandle, 9);
+
+            if (Sql_GetData(SqlHandle, 10) != nullptr) // сейчас нельзя использовать bcnmid, т.к. они начинаются с нуля
+            {
+                m_BattlefieldHandler = new CBattlefieldHandler(m_zoneID);
+            }
+            if (m_miscMask & MISC_TREASURE)
+            {
+                m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
+            }
         }
     }
     else
@@ -982,7 +983,7 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->PParty && PChar->loc.destination != 0 && PChar->m_moghouseID == 0)
     {
-        uint8 data[4] {};
+        uint8 data[4]{};
         WBUFL(data, 0) = PChar->PParty->GetPartyID();
         message::send(MSG_PT_RELOAD, data, sizeof data, nullptr);
     }

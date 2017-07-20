@@ -40,14 +40,7 @@ CSynthSuggestionPacket::CSynthSuggestionPacket(uint32 synthID)
 		WHERE ID = %u \
 		LIMIT 1";
 
-	int32 ret = Sql_Query(
-		SqlHandle,
-		fmtQuery,
-		synthID);
-
-	if (ret != SQL_ERROR &&
-		Sql_NumRows(SqlHandle) != 0 &&
-		Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+	for (auto res : Sql_Query(SqlHandle, fmtQuery, synthID))
 	{
 		WBUFW(data,(0x04)) = Sql_GetUIntData(SqlHandle,10);
 		//words 0x06, 0x08, 0x0A are subcraft number

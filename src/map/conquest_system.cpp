@@ -533,7 +533,7 @@ namespace conquest
     {
         const int8* Query = "SELECT region_control FROM conquest_system WHERE region_id = %d";
 
-        for (auto ret : Sql_Query(SqlHandle, Query, RegionID))
+        for (auto res : Sql_Query(SqlHandle, Query, RegionID))
         {
             return Sql_GetIntData(SqlHandle, 0);
         }

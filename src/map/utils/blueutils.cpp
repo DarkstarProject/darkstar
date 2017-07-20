@@ -321,11 +321,7 @@ void LoadSetSpells(CCharEntity* PChar)
             "SELECT set_blue_spells FROM "
               "chars WHERE charid = %u;";
 
-        int32 ret = Sql_Query(SqlHandle,Query,PChar->id);
-
-        if (ret != SQL_ERROR &&
-            Sql_NumRows(SqlHandle) != 0 &&
-            Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        for (auto res : Sql_Query(SqlHandle, Query, PChar->id))
         {
 		    size_t length = 0;
 		    int8* blue_spells = nullptr;

@@ -150,58 +150,48 @@ namespace traits
 
     void LoadTraitsList()
     {
-	    const int8* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag \
+        const int8* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag \
 							 FROM traits \
                              WHERE traitid < %u \
 							 ORDER BY job, traitid ASC, rank DESC";
 
-	    int32 ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
+        for (auto res : Sql_Query(SqlHandle, Query, MAX_TRAIT_ID))
+        {
+            int8* contentTag;
+            Sql_GetData(SqlHandle, 6, &contentTag, nullptr);
 
-	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	    {
-		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-				int8* contentTag;
-				Sql_GetData(SqlHandle, 6, &contentTag, nullptr);
+            if (luautils::IsContentEnabled(contentTag) == false) {
+                continue;
+            }
 
-				if (luautils::IsContentEnabled(contentTag)==false){
-					continue;
-				}
+            CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle, 0));
 
-			    CTrait* PTrait = new CTrait(Sql_GetIntData(SqlHandle,0));
+            PTrait->setJob(Sql_GetIntData(SqlHandle, 1));
+            PTrait->setLevel(Sql_GetIntData(SqlHandle, 2));
+            PTrait->setRank(Sql_GetIntData(SqlHandle, 3));
+            PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle, 4)));
+            PTrait->setValue(Sql_GetIntData(SqlHandle, 5));
 
-			    PTrait->setJob(Sql_GetIntData(SqlHandle,1));
-			    PTrait->setLevel(Sql_GetIntData(SqlHandle,2));
-                PTrait->setRank(Sql_GetIntData(SqlHandle,3));
-                PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle,4)));
-                PTrait->setValue(Sql_GetIntData(SqlHandle,5));
+            PTraitsList[PTrait->getJob()].push_back(PTrait);
+        }
 
-			    PTraitsList[PTrait->getJob()].push_back(PTrait);
-		    }
-	    }
-
-	    Query = "SELECT trait_category, trait_points_needed, traitid, modifier, value \
+        Query = "SELECT trait_category, trait_points_needed, traitid, modifier, value \
 							 FROM blue_traits \
                              WHERE traitid < %u \
 							 ORDER BY trait_category ASC, trait_points_needed DESC";
 
-	    ret = Sql_Query(SqlHandle, Query, MAX_TRAIT_ID);
+        for (auto res : Sql_Query(SqlHandle, Query, MAX_TRAIT_ID))
+        {
+            CBlueTrait* PTrait = new CBlueTrait(Sql_GetIntData(SqlHandle, 0), Sql_GetIntData(SqlHandle, 2));
 
-	    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-	    {
-		    while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-		    {
-			    CBlueTrait* PTrait = new CBlueTrait(Sql_GetIntData(SqlHandle,0), Sql_GetIntData(SqlHandle,2));
+            PTrait->setJob(JOB_BLU);
+            PTrait->setRank(1);
+            PTrait->setPoints(Sql_GetIntData(SqlHandle, 1));
+            PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle, 3)));
+            PTrait->setValue(Sql_GetIntData(SqlHandle, 4));
 
-			    PTrait->setJob(JOB_BLU);
-                PTrait->setRank(1);
-                PTrait->setPoints(Sql_GetIntData(SqlHandle,1));
-                PTrait->setMod(static_cast<Mod>(Sql_GetIntData(SqlHandle,3)));
-                PTrait->setValue(Sql_GetIntData(SqlHandle,4));
-
-			    PTraitsList[JOB_BLU].push_back(PTrait);
-		    }
-	    }
+            PTraitsList[JOB_BLU].push_back(PTrait);
+        }
     }
 
     /************************************************************************

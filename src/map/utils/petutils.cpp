@@ -169,75 +169,74 @@ namespace petutils
                 FROM pet_list, mob_pools, mob_family_system \
                 WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
-        if (Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        auto ret = Sql_Query(SqlHandle, Query);
+
+        for (auto res : ret)
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                Pet_t* Pet = new Pet_t();
+            Pet_t* Pet = new Pet_t();
 
-                Pet->name.insert(0, Sql_GetData(SqlHandle, 0));
+            Pet->name.insert(0, Sql_GetData(SqlHandle, 0));
 
-                memcpy(&Pet->look, Sql_GetData(SqlHandle, 1), 20);
-                Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle, 2);
-                Pet->maxLevel = (uint8)Sql_GetIntData(SqlHandle, 3);
-                Pet->time = Sql_GetUIntData(SqlHandle, 4);
-                Pet->size = Sql_GetUIntData(SqlHandle, 5);
-                Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 6);
-                Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle, 7);
-                Pet->mJob = (uint8)Sql_GetIntData(SqlHandle, 8);
-                Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
+            memcpy(&Pet->look, Sql_GetData(SqlHandle, 1), 20);
+            Pet->minLevel = (uint8)Sql_GetIntData(SqlHandle, 2);
+            Pet->maxLevel = (uint8)Sql_GetIntData(SqlHandle, 3);
+            Pet->time = Sql_GetUIntData(SqlHandle, 4);
+            Pet->size = Sql_GetUIntData(SqlHandle, 5);
+            Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 6);
+            Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle, 7);
+            Pet->mJob = (uint8)Sql_GetIntData(SqlHandle, 8);
+            Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
 
-                Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
-                Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
+            Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
+            Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
 
-                Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 12);
+            Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 12);
 
-                Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 13);
-                Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 14);
-                Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 15);
-                Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 16);
-                Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 17);
-                Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 18);
-                Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 19);
-                Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
-                Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
-                Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
-                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
+            Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 13);
+            Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 14);
+            Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 15);
+            Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 16);
+            Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 17);
+            Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 18);
+            Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 19);
+            Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
+            Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
+            Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+            Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
 
-                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
+            Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
+            Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
 
-                // resistances
-                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
-                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
-                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
-                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
+            // resistances
+            Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
+            Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
+            Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+            Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
 
-                Pet->firedef = 0;
-                Pet->icedef = 0;
-                Pet->winddef = 0;
-                Pet->earthdef = 0;
-                Pet->thunderdef = 0;
-                Pet->waterdef = 0;
-                Pet->lightdef = 0;
-                Pet->darkdef = 0;
+            Pet->firedef = 0;
+            Pet->icedef = 0;
+            Pet->winddef = 0;
+            Pet->earthdef = 0;
+            Pet->thunderdef = 0;
+            Pet->waterdef = 0;
+            Pet->lightdef = 0;
+            Pet->darkdef = 0;
 
-                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
-                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
-                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
-                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
-                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
-                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
-                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
-                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
+            Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
+            Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+            Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+            Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+            Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+            Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+            Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+            Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
 
-                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
-                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
-                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
+            Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
+            Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
+            Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
 
-                g_PPetList.push_back(Pet);
-            }
+            g_PPetList.push_back(Pet);
         }
     }
 
@@ -256,7 +255,7 @@ namespace petutils
         }
     }
 
-    void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget){
+    void AttackTarget(CBattleEntity* PMaster, CBattleEntity* PTarget) {
         DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
@@ -267,7 +266,7 @@ namespace petutils
         }
     }
 
-    void RetreatToMaster(CBattleEntity* PMaster){
+    void RetreatToMaster(CBattleEntity* PMaster) {
         DSP_DEBUG_BREAK_IF(PMaster->PPet == nullptr);
 
         CBattleEntity* PPet = PMaster->PPet;
@@ -287,8 +286,8 @@ namespace petutils
     {
 
         uint8 lvl = PMob->GetMLevel();
-        if (lvl > 50){
-            switch (rank){
+        if (lvl > 50) {
+            switch (rank) {
             case 1:
                 return (float)153 + (lvl - 50)*5.0;
             case 2:
@@ -306,7 +305,7 @@ namespace petutils
             }
         }
         else {
-            switch (rank){
+            switch (rank) {
             case 1:
                 return (float)6 + (lvl - 1)*3.0;
             case 2:
@@ -340,7 +339,7 @@ namespace petutils
         return 0;
     }
 
-    void LoadJugStats(CPetEntity* PMob, Pet_t* petStats){
+    void LoadJugStats(CPetEntity* PMob, Pet_t* petStats) {
         //follows monster formulas but jugs have no subjob
 
         float growth = 1.0;
@@ -348,31 +347,31 @@ namespace petutils
 
         //give hp boost every 10 levels after 25
         //special boosts at 25 and 50
-        if (lvl > 75){
+        if (lvl > 75) {
             growth = 1.22;
         }
-        else if (lvl > 65){
+        else if (lvl > 65) {
             growth = 1.20;
         }
-        else if (lvl > 55){
+        else if (lvl > 55) {
             growth = 1.18;
         }
-        else if (lvl > 50){
+        else if (lvl > 50) {
             growth = 1.16;
         }
-        else if (lvl > 45){
+        else if (lvl > 45) {
             growth = 1.12;
         }
-        else if (lvl > 35){
+        else if (lvl > 35) {
             growth = 1.09;
         }
-        else if (lvl > 25){
+        else if (lvl > 25) {
             growth = 1.07;
         }
 
         PMob->health.maxhp = (int16)(17.0 * pow(lvl, growth) * petStats->HPscale);
 
-        switch (PMob->GetMJob()){
+        switch (PMob->GetMJob()) {
         case JOB_PLD:
         case JOB_WHM:
         case JOB_BLM:
@@ -400,7 +399,7 @@ namespace petutils
         PMob->m_Weapons[SLOT_MAIN]->setDamage(GetJugWeaponDamage(PMob));
 
         //reduce weapon delay of MNK
-        if (PMob->GetMJob() == JOB_MNK){
+        if (PMob->GetMJob() == JOB_MNK) {
             PMob->m_Weapons[SLOT_MAIN]->resetDelay();
         }
 
@@ -664,7 +663,7 @@ namespace petutils
         if (grade::GetJobGrade(mjob, 1) == 0)
         {
         }
-        else{
+        else {
             //Расчет нормального расового бонуса
             raceStat = grade::GetMPScale(grade, 0) +
                 grade::GetMPScale(grade, scaleTo60Column) * mainLevelUpTo60 +
@@ -685,7 +684,7 @@ namespace petutils
         //add in evasion from skill
         int16 evaskill = PPet->GetSkill(SKILL_EVA);
         int16 eva = evaskill;
-        if (evaskill > 200){ //Evasion skill is 0.9 evasion post-200
+        if (evaskill > 200) { //Evasion skill is 0.9 evasion post-200
             eva = 200 + (evaskill - 200)*0.9;
         }
         PPet->setModifier(Mod::EVA, eva);
@@ -853,10 +852,10 @@ namespace petutils
         CCharEntity* PChar = (CCharEntity*)PMaster;
 
 
-        if (PPet->objtype == TYPE_MOB){
+        if (PPet->objtype == TYPE_MOB) {
             CMobEntity* PMob = (CMobEntity*)PPet;
 
-            if (!PMob->isDead()){
+            if (!PMob->isDead()) {
 
                 //clear the ex-charmed mobs enmity
                 PMob->PEnmityContainer->Clear();
@@ -877,7 +876,7 @@ namespace petutils
 
                 //master using leave command
                 auto state = dynamic_cast<CAbilityState*>(PMaster->PAI->GetCurrentState());
-                if (state && state->GetAbility()->getID() == ABILITY_LEAVE || PChar->loc.zoning || PChar->isDead()){
+                if (state && state->GetAbility()->getID() == ABILITY_LEAVE || PChar->loc.zoning || PChar->isDead()) {
                     PMob->PEnmityContainer->Clear();
                     PMob->m_OwnerID.clean();
                     PMob->updatemask |= UPDATE_STATUS;
@@ -900,7 +899,7 @@ namespace petutils
                 PMob->PAI->Disengage();
 
         }
-        else if (PPet->objtype == TYPE_PET){
+        else if (PPet->objtype == TYPE_PET) {
             if (!PPet->isDead())
                 PPet->Die();
             CPetEntity* PPetEnt = (CPetEntity*)PPet;
@@ -909,11 +908,11 @@ namespace petutils
                 PMaster->setModifier(Mod::AVATAR_PERPETUATION, 0);
 
             ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(-1);
-            PMaster->ForParty([](CBattleEntity* PMember){
+            PMaster->ForParty([](CBattleEntity* PMember) {
                 ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });
 
-            if (PPetEnt->getPetType() != PETTYPE_AUTOMATON){
+            if (PPetEnt->getPetType() != PETTYPE_AUTOMATON) {
                 PPetEnt->PMaster = nullptr;
             }
             else
@@ -1062,7 +1061,7 @@ namespace petutils
             boost stats by 10%
             */
 
-        // only increase time for charmed mobs
+            // only increase time for charmed mobs
         if (PPet->objtype == TYPE_MOB && PPet->isCharmed)
         {
             // increase charm duration
@@ -1121,17 +1120,16 @@ namespace petutils
                 WHERE pet_name.id = char_pet.wyvernid AND \
                 char_pet.charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-            {
-                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                {
-                    uint16 wyvernid = (uint16)Sql_GetIntData(SqlHandle, 1);
+            auto ret = Sql_Query(SqlHandle, Query, PMaster->id);
 
-                    if (wyvernid != 0)
-                    {
-                        g_PPetList.at(PetID)->name.clear();
-                        g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
-                    }
+            for (auto res : ret)
+            {
+                uint16 wyvernid = (uint16)Sql_GetIntData(SqlHandle, 1);
+
+                if (wyvernid != 0)
+                {
+                    g_PPetList.at(PetID)->name.clear();
+                    g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
                 }
             }
         }
@@ -1172,34 +1170,30 @@ namespace petutils
                 FROM char_pet\
                 char_pet.charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            auto ret = Sql_Query(SqlHandle, Query, PMaster->id);
+
+            for (auto res : ret)
             {
-                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                uint32 chocoboid = (uint32)Sql_GetIntData(SqlHandle, 0);
+
+                if (chocoboid != 0)
                 {
-                    uint32 chocoboid = (uint32)Sql_GetIntData(SqlHandle, 0);
+                    uint16 chocoboname1 = chocoboid & 0x0000FFFF;
+                    uint16 chocoboname2 = chocoboid >>= 16;
 
-                    if (chocoboid != 0)
-                    {
-                        uint16 chocoboname1 = chocoboid & 0x0000FFFF;
-                        uint16 chocoboname2 = chocoboid >>= 16;
+                    g_PPetList.at(PetID)->name.clear();
 
-                        g_PPetList.at(PetID)->name.clear();
-
-                        Query =
-                            "SELECT\
+                    Query =
+                        "SELECT\
                             pet_name.name\
                             FROM pet_name\
                             WHERE pet_name.id = %u OR pet_name.id = %u";
 
-                        if (Sql_Query(SqlHandle, Query, chocoboname1, chocoboname2) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+                    for (auto res : Sql_Query(SqlHandle, Query, chocoboname1, chocoboname2))
+                    {
+                        if (chocoboname1 != 0 && chocoboname2 != 0)
                         {
-                            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-                            {
-                                if (chocoboname1 != 0 && chocoboname2 != 0)
-                                {
-                                    g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
-                                }
-                            }
+                            g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
                         }
                     }
                 }
@@ -1215,8 +1209,8 @@ namespace petutils
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
             PPet->PAI->SetController(std::make_unique<CAutomatonController>(static_cast<CAutomatonEntity*>(PPet)));
         }
-		else
-			PPet = new CPetEntity(petType);
+        else
+            PPet = new CPetEntity(petType);
 
         PPet->loc = PMaster->loc;
 
@@ -1243,14 +1237,14 @@ namespace petutils
         PPet->m_Element = g_PPetList.at(PetID)->m_Element;
         PPet->m_PetID = PetID;
 
-        if (PPet->getPetType() == PETTYPE_AVATAR){
-            if (PMaster->GetMJob() == JOB_SMN){
+        if (PPet->getPetType() == PETTYPE_AVATAR) {
+            if (PMaster->GetMJob() == JOB_SMN) {
                 PPet->SetMLevel(PMaster->GetMLevel());
             }
-            else if (PMaster->GetSJob() == JOB_SMN){
+            else if (PMaster->GetSJob() == JOB_SMN) {
                 PPet->SetMLevel(PMaster->GetSLevel());
             }
-            else{ //should never happen
+            else { //should never happen
                 ShowDebug("%s summoned an avatar but is not SMN main or SMN sub! Please report. \n", PMaster->GetName());
                 PPet->SetMLevel(1);
             }
@@ -1259,24 +1253,24 @@ namespace petutils
             PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(PPetData->spellList);
 
             PPet->setModifier(Mod::DMGPHYS, -50); //-50% PDT
-            if (PPet->GetMLevel() >= 70){
+            if (PPet->GetMLevel() >= 70) {
                 PPet->setModifier(Mod::MATT, 32);
             }
-            else if (PPet->GetMLevel() >= 50){
+            else if (PPet->GetMLevel() >= 50) {
                 PPet->setModifier(Mod::MATT, 28);
             }
-            else if (PPet->GetMLevel() >= 30){
+            else if (PPet->GetMLevel() >= 30) {
                 PPet->setModifier(Mod::MATT, 24);
             }
-            else if (PPet->GetMLevel() >= 10){
+            else if (PPet->GetMLevel() >= 10) {
                 PPet->setModifier(Mod::MATT, 20);
             }
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f)));
-            if (PetID == PETID_FENRIR){
+            if (PetID == PETID_FENRIR) {
                 PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0*(280.0f / 60.0f)));
             }
             PPet->m_Weapons[SLOT_MAIN]->setDamage(floor(PPet->GetMLevel()*0.74f));
-            if (PetID == PETID_CARBUNCLE){
+            if (PetID == PETID_CARBUNCLE) {
                 PPet->m_Weapons[SLOT_MAIN]->setDamage(floor(PPet->GetMLevel()*0.67f));
             }
 
@@ -1317,7 +1311,7 @@ namespace petutils
 
             PMaster->addModifier(Mod::AVATAR_PERPETUATION, PerpetuationCost(PetID, PPet->GetMLevel()));
         }
-        else if (PPet->getPetType() == PETTYPE_JUG_PET){
+        else if (PPet->getPetType() == PETTYPE_JUG_PET) {
             PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(240.0f / 60.0f)));
 
             //Get the Jug pet cap level
@@ -1328,10 +1322,10 @@ namespace petutils
             highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // And cap it to the master's level.
-			if (highestLvl > PMaster->GetMLevel())
+            if (highestLvl > PMaster->GetMLevel())
             {
-				highestLvl = PMaster->GetMLevel();
-			}
+                highestLvl = PMaster->GetMLevel();
+            }
 
             // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
             highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
@@ -1339,8 +1333,8 @@ namespace petutils
             PPet->SetMLevel(highestLvl);
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
         }
-        else if (PPet->getPetType() == PETTYPE_WYVERN){
-			LoadWyvernStatistics(PMaster, PPet, false);
+        else if (PPet->getPetType() == PETTYPE_WYVERN) {
+            LoadWyvernStatistics(PMaster, PPet, false);
         }
         else if (PPet->getPetType() == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         {
@@ -1370,11 +1364,11 @@ namespace petutils
             LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
         }
 
-		FinalizePetStatistics(PMaster, PPet);
-		PPet->status = STATUS_NORMAL;
-		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
-		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
-		
+        FinalizePetStatistics(PMaster, PPet);
+        PPet->status = STATUS_NORMAL;
+        PPet->m_ModelSize += g_PPetList.at(PetID)->size;
+        PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
+
         //finalizing petZoningInfo	
         ((CCharEntity*)PMaster)->petZoningInfo.petHP = PPet->GetMaxHP();
         ((CCharEntity*)PMaster)->petZoningInfo.petMP = PPet->GetMaxMP();
@@ -1382,36 +1376,36 @@ namespace petutils
         PMaster->PPet = PPet;
     }
 
-	void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
-		//set the wyvern job based on master's SJ
-		if (PMaster->GetSJob() != JOB_NON){
-			PPet->SetSJob(PMaster->GetSJob());
-		}
-		PPet->SetMJob(JOB_DRG);
-		PPet->SetMLevel(PMaster->GetMLevel());
+    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
+        //set the wyvern job based on master's SJ
+        if (PMaster->GetSJob() != JOB_NON) {
+            PPet->SetSJob(PMaster->GetSJob());
+        }
+        PPet->SetMJob(JOB_DRG);
+        PPet->SetMLevel(PMaster->GetMLevel());
 
-		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
-		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
-		PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
-		//Set A+ weapon skill
-		PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-		//Set D evasion and def
-		PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+        LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
+        PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
+        PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
+        //Set A+ weapon skill
+        PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+        PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+        //Set D evasion and def
+        PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+        PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
 
-		if (finalize) {
-			FinalizePetStatistics(PMaster, PPet);
-		}
-	}
+        if (finalize) {
+            FinalizePetStatistics(PMaster, PPet);
+        }
+    }
 
-	void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
-		//set C magic evasion
-		PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
-		PPet->health.tp = 0;
-		PPet->UpdateHealth();
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+        //set C magic evasion
+        PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
+        PPet->health.tp = 0;
+        PPet->UpdateHealth();
         PMaster->applyPetModifiers(PPet);
-	}
+    }
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)
     {

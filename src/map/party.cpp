@@ -419,10 +419,10 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 {
     DSP_DEBUG_BREAK_IF(members.empty());
 
-    int ret = Sql_Query(SqlHandle, "SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
+    auto query = fmt::format("SELECT charname FROM accounts_sessions JOIN chars ON accounts_sessions.charid = chars.charid \
                                     JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE partyid = %u AND NOT partyflag & %d \
                                     ORDER BY timestamp ASC LIMIT 1;", m_PartyID, PARTY_LEADER);
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    for (auto res : Sql_Query(SqlHandle, query))
     {
         std::string newLeader(Sql_GetData(SqlHandle, 0));
         SetLeader(newLeader.c_str());
@@ -440,21 +440,18 @@ void CParty::RemovePartyLeader(CBattleEntity* PEntity)
 std::vector<CParty::partyInfo_t> CParty::GetPartyInfo()
 {
     std::vector<CParty::partyInfo_t> memberinfo;
-    int ret = Sql_Query(SqlHandle, "SELECT chars.charid, partyid, allianceid, charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
+    auto query = fmt::format("SELECT chars.charid, partyid, allianceid, charname, partyflag, pos_zone, pos_prevzone FROM accounts_parties \
                                     LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                     (allianceid <> 0 AND allianceid = %d) OR partyid = %d ORDER BY partyflag & %u, timestamp;",
         m_PAlliance ? m_PAlliance->m_AllianceID : 0, m_PartyID, PARTY_SECOND | PARTY_THIRD);
 
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    for (auto res : Sql_Query(SqlHandle, query))
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            memberinfo.push_back({Sql_GetUIntData(SqlHandle,0), Sql_GetUIntData(SqlHandle, 1),
-                Sql_GetUIntData(SqlHandle, 2), std::string(Sql_GetData(SqlHandle, 3)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 4)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 5)),
-                static_cast<uint16>(Sql_GetUIntData(SqlHandle, 6))});
-        }
+        memberinfo.push_back({ Sql_GetUIntData(SqlHandle,0), Sql_GetUIntData(SqlHandle, 1),
+            Sql_GetUIntData(SqlHandle, 2), std::string(Sql_GetData(SqlHandle, 3)),
+            static_cast<uint16>(Sql_GetUIntData(SqlHandle, 4)),
+            static_cast<uint16>(Sql_GetUIntData(SqlHandle, 5)),
+            static_cast<uint16>(Sql_GetUIntData(SqlHandle, 6)) });
     }
     return memberinfo;
 }
@@ -878,16 +875,14 @@ void CParty::SetLeader(const char* MemberName)
     if (m_PartyType == PARTY_PCS)
     {
         uint32 newId = 0;
-        int ret = Sql_Query(SqlHandle, "SELECT chars.charid from accounts_sessions JOIN chars ON chars.charid = accounts_sessions.charid WHERE charname = ('%s')", MemberName);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        
+        for (auto res : Sql_Query(SqlHandle, "SELECT chars.charid from accounts_sessions JOIN chars ON chars.charid = accounts_sessions.charid WHERE charname = ('%s')", MemberName))
         {
             newId = Sql_GetUIntData(SqlHandle, 0);
         }
-        else
-        {
+
+        if (newId == 0)
             return;
-        }
 
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag & ~%d WHERE partyid = %u AND partyflag & %d", ALLIANCE_LEADER | PARTY_LEADER, m_PartyID, PARTY_LEADER);
         Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyid = %u WHERE partyid = %u", newId, m_PartyID);

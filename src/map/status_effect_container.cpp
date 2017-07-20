@@ -118,26 +118,21 @@ namespace effects
             EffectsParams[i].Flag = 0;
         }
 
-        int32 ret = Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID);
-
-        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        for (auto res : Sql_Query(SqlHandle, "SELECT id, name, flags, type, negative_id, overwrite, block_id, remove_id, element, min_duration FROM status_effects WHERE id < %u", MAX_EFFECTID))
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-            {
-                uint16 EffectID = (uint16)Sql_GetIntData(SqlHandle, 0);
+            uint16 EffectID = (uint16)Sql_GetIntData(SqlHandle, 0);
 
-                EffectsParams[EffectID].Name = Sql_GetData(SqlHandle, 1);
-                EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle, 2);
-                EffectsParams[EffectID].Type = Sql_GetIntData(SqlHandle, 3);
-                EffectsParams[EffectID].NegativeId = (EFFECT)Sql_GetIntData(SqlHandle, 4);
-                EffectsParams[EffectID].Overwrite = (EFFECTOVERWRITE)Sql_GetIntData(SqlHandle, 5);
-                EffectsParams[EffectID].BlockId = (EFFECT)Sql_GetIntData(SqlHandle, 6);
-                EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle, 7);
+            EffectsParams[EffectID].Name = Sql_GetData(SqlHandle, 1);
+            EffectsParams[EffectID].Flag = Sql_GetIntData(SqlHandle, 2);
+            EffectsParams[EffectID].Type = Sql_GetIntData(SqlHandle, 3);
+            EffectsParams[EffectID].NegativeId = (EFFECT)Sql_GetIntData(SqlHandle, 4);
+            EffectsParams[EffectID].Overwrite = (EFFECTOVERWRITE)Sql_GetIntData(SqlHandle, 5);
+            EffectsParams[EffectID].BlockId = (EFFECT)Sql_GetIntData(SqlHandle, 6);
+            EffectsParams[EffectID].RemoveId = (EFFECT)Sql_GetIntData(SqlHandle, 7);
 
-                EffectsParams[EffectID].Element = Sql_GetIntData(SqlHandle, 8);
-                // convert from second to millisecond
-                EffectsParams[EffectID].MinDuration = Sql_GetIntData(SqlHandle, 9) * 1000;
-            }
+            EffectsParams[EffectID].Element = Sql_GetIntData(SqlHandle, 8);
+            // convert from second to millisecond
+            EffectsParams[EffectID].MinDuration = Sql_GetIntData(SqlHandle, 9) * 1000;
         }
     }
 
@@ -1212,33 +1207,28 @@ void CStatusEffectContainer::LoadStatusEffects()
         "FROM char_effects "
         "WHERE charid = %u;";
 
-    int32 ret = Sql_Query(SqlHandle, Query, m_POwner->id);
-
     std::vector<CStatusEffect*> PEffectList;
 
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    for (auto res : Sql_Query(SqlHandle, Query, m_POwner->id))
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-            CStatusEffect* PStatusEffect = new CStatusEffect(
-                (EFFECT)Sql_GetUIntData(SqlHandle, 0),
-                (uint16)Sql_GetUIntData(SqlHandle, 1),
-                (uint16)Sql_GetUIntData(SqlHandle, 2),
-                (uint32)Sql_GetUIntData(SqlHandle, 3),
-                (uint32)Sql_GetUIntData(SqlHandle, 4),
-                (uint16)Sql_GetUIntData(SqlHandle, 5),
-                (uint16)Sql_GetUIntData(SqlHandle, 6),
-                (uint16)Sql_GetUIntData(SqlHandle, 7));
+        CStatusEffect* PStatusEffect = new CStatusEffect(
+            (EFFECT)Sql_GetUIntData(SqlHandle, 0),
+            (uint16)Sql_GetUIntData(SqlHandle, 1),
+            (uint16)Sql_GetUIntData(SqlHandle, 2),
+            (uint32)Sql_GetUIntData(SqlHandle, 3),
+            (uint32)Sql_GetUIntData(SqlHandle, 4),
+            (uint16)Sql_GetUIntData(SqlHandle, 5),
+            (uint16)Sql_GetUIntData(SqlHandle, 6),
+            (uint16)Sql_GetUIntData(SqlHandle, 7));
 
             PEffectList.push_back(PStatusEffect);
 
-            // load shadows left
-            if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
-                m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
-            }
-            else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
-                m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
-            }
+        // load shadows left
+        if (PStatusEffect->GetStatusID() == EFFECT_COPY_IMAGE) {
+            m_POwner->setModifier(Mod::UTSUSEMI, PStatusEffect->GetPower());
+        }
+        else if (PStatusEffect->GetStatusID() == EFFECT_BLINK) {
+            m_POwner->setModifier(Mod::BLINK, PStatusEffect->GetPower());
         }
     }
 

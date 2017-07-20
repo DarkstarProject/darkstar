@@ -42,7 +42,7 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
                          sandoria_influence, bastok_influence, windurst_influence, \
                          beastmen_influence FROM conquest_system;";
 
-    int32 ret = Sql_Query(SqlHandle, Query);
+    auto ret = Sql_Query(SqlHandle, Query);
 
     uint8 sandoria_regions = 0;
     uint8 bastok_regions = 0;
@@ -51,50 +51,47 @@ CConquestPacket::CConquestPacket(CCharEntity * PChar)
     uint8 bastok_prev = 0;
     uint8 windurst_prev = 0;
 
-    if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+    for (auto res : ret)
     {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        int regionid = Sql_GetIntData(SqlHandle, 0);
+        int region_control = Sql_GetIntData(SqlHandle, 1);
+        int region_control_prev = Sql_GetIntData(SqlHandle, 2);
+
+        if (region_control == 0)
+            sandoria_regions++;
+        else if (region_control == 1)
+            bastok_regions++;
+        else if (region_control == 2)
+            windurst_regions++;
+
+        if (region_control_prev == 0)
+            sandoria_prev++;
+        else if (region_control_prev == 1)
+            bastok_prev++;
+        else if (region_control_prev == 2)
+            windurst_prev++;
+
+        int32 san_inf = Sql_GetIntData(SqlHandle, 3);
+        int32 bas_inf = Sql_GetIntData(SqlHandle, 4);
+        int32 win_inf = Sql_GetIntData(SqlHandle, 5);
+        int32 bst_inf = Sql_GetIntData(SqlHandle, 6);
+        WBUFB(data, 0x1A + (regionid * 4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf, bst_inf);
+        WBUFB(data, 0x1B + (regionid * 4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf);
+        WBUFB(data, 0x1C + (regionid * 4)) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
+        WBUFB(data, 0x1D + (regionid * 4)) = region_control + 1;
+
+        int64 total = san_inf + bas_inf + win_inf;
+        int64 totalBeastmen = total + bst_inf;
+
+        if (PChar->loc.zone->GetRegionID() == regionid)
         {
-            int regionid = Sql_GetIntData(SqlHandle, 0);
-            int region_control = Sql_GetIntData(SqlHandle, 1);
-            int region_control_prev = Sql_GetIntData(SqlHandle, 2);
-
-            if (region_control == 0)
-                sandoria_regions++;
-            else if (region_control == 1)
-                bastok_regions++;
-            else if (region_control == 2)
-                windurst_regions++;
-
-            if (region_control_prev == 0)
-                sandoria_prev++;
-            else if (region_control_prev == 1)
-                bastok_prev++;
-            else if (region_control_prev == 2)
-                windurst_prev++;
-
-            int32 san_inf = Sql_GetIntData(SqlHandle, 3);
-            int32 bas_inf = Sql_GetIntData(SqlHandle, 4);
-            int32 win_inf = Sql_GetIntData(SqlHandle, 5);
-            int32 bst_inf = Sql_GetIntData(SqlHandle, 6);
-            WBUFB(data,0x1A+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf, bst_inf);
-            WBUFB(data,0x1B+(regionid*4)) = conquest::GetInfluenceRanking(san_inf, bas_inf, win_inf);
-            WBUFB(data,0x1C+(regionid*4)) = conquest::GetInfluenceGraphics(san_inf, bas_inf, win_inf, bst_inf);
-            WBUFB(data,0x1D+(regionid*4)) = region_control+1;
-
-            int64 total = san_inf + bas_inf + win_inf;
-            int64 totalBeastmen = total + bst_inf;
-
-            if (PChar->loc.zone->GetRegionID() == regionid)
-            {
-                WBUFB(data, (0x86)) = (san_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x87)) = (bas_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x88)) = (win_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-                WBUFB(data, (0x89)) = (san_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x8A)) = (bas_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x8B)) = (win_inf*100) / (total == 0 ? 1 : total);
-                WBUFB(data, (0x94)) = (bst_inf*100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
-            }
+            WBUFB(data, (0x86)) = (san_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+            WBUFB(data, (0x87)) = (bas_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+            WBUFB(data, (0x88)) = (win_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
+            WBUFB(data, (0x89)) = (san_inf * 100) / (total == 0 ? 1 : total);
+            WBUFB(data, (0x8A)) = (bas_inf * 100) / (total == 0 ? 1 : total);
+            WBUFB(data, (0x8B)) = (win_inf * 100) / (total == 0 ? 1 : total);
+            WBUFB(data, (0x94)) = (bst_inf * 100) / (totalBeastmen == 0 ? 1 : totalBeastmen);
         }
     }
 

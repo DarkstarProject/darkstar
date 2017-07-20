@@ -46,8 +46,8 @@ CCurrencyPacket1::CCurrencyPacket1(CCharEntity* PChar)
                         first_echelon_trophy, cave_points, id_tags, op_credits, traverser_stones, voidstones, kupofried_corundums, \
                         pheromone_sacks FROM char_points WHERE charid = %d";
 
-    int ret = Sql_Query(SqlHandle, query, PChar->id);
-    if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    auto ret = Sql_Query(SqlHandle, query, PChar->id);
+    for (auto res : ret)
     {
         WBUFL(data, (0x04)) = Sql_GetIntData(SqlHandle, 0);
         WBUFL(data, (0x08)) = Sql_GetIntData(SqlHandle, 1);

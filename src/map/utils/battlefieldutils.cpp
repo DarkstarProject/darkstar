@@ -47,11 +47,10 @@ namespace battlefieldutils {
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
+        auto ret = Sql_Query(SqlHandle, fmtQuery, bcnmid);
 
         if (ret == SQL_ERROR ||
-            Sql_NumRows(SqlHandle) == 0 ||
-            Sql_NextRow(SqlHandle) != SQL_SUCCESS)
+            Sql_NumRows(SqlHandle) == 0)
         {
             ShowError("Cannot load battlefield BCNM:%i \n", bcnmid);
         }
@@ -86,7 +85,7 @@ namespace battlefieldutils {
                             FROM bcnm_battlefield \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)
@@ -94,11 +93,14 @@ namespace battlefieldutils {
             ShowError("spawnMonstersForBcnm : SQL error - Cannot find any monster IDs for BCNMID %i Battlefield %i \n",
                 battlefield->getID(), battlefield->getBattlefieldNumber());
         }
-        else {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+        else
+        {
+            for (auto res : ret)
+            {
                 uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
                 uint8 condition = Sql_GetUIntData(SqlHandle, 1);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
+
                 if (PMob != nullptr)
                 {
 
@@ -109,7 +111,9 @@ namespace battlefieldutils {
                     {
                         if (!PMob->PAI->IsSpawned())
                         {
-                            if (strcmp(PMob->GetName(), "Maat") == 0) {
+                            // todo: please fuckin nuke this hardcoded shit already
+                            if (strcmp(PMob->GetName(), "Maat") == 0)
+                            {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
                                 // disallow subjob, this will enable for later
@@ -121,15 +125,18 @@ namespace battlefieldutils {
                             //ShowDebug("Spawned %s (%u) id %i inst %i \n",PMob->GetName(),PMob->id,battlefield->getID(),battlefield->getBattlefieldNumber());
                             battlefield->addEnemy(PMob, condition);
                         }
-                        else {
+                        else
+                        {
                             ShowDebug(CL_CYAN"SpawnMobForBcnm: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
                         }
                     }
-                    else {
+                    else
+                    {
                         battlefield->addEnemy(PMob, condition);
                     }
                 }
-                else {
+                else
+                {
                     ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);
                 }
             }
@@ -156,7 +163,7 @@ namespace battlefieldutils {
                             FROM bcnm_treasure_chests \
                             WHERE bcnmId = %u AND battlefieldNumber = %u";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID(), battlefield->getBattlefieldNumber());
 
         if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
         {
@@ -165,7 +172,7 @@ namespace battlefieldutils {
         }
         else
         {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            for (auto res : ret)
             {
                 uint32 npcid = Sql_GetUIntData(SqlHandle, 0);
                 CBaseEntity* PNpc = (CBaseEntity*)zoneutils::GetEntity(npcid, TYPE_NPC);
@@ -293,13 +300,16 @@ namespace battlefieldutils {
                         JOIN bcnm_info ON bcnm_info.LootDropId = bcnm_loot.LootDropId \
                         WHERE bcnm_info.LootDropId = %u LIMIT 1";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId());
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId());
+        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
+        {
             ShowError("SQL error occured \n");
             return 0;
         }
-        else {
-            return (uint8)Sql_GetUIntData(SqlHandle, 0);
+        else
+        {
+            for (auto res : ret)
+                return (uint8)Sql_GetUIntData(SqlHandle, 0);
         }
     }
 
@@ -311,13 +321,16 @@ namespace battlefieldutils {
             ELSE 0 END) \
             FROM bcnm_loot;";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId(), groupID);
-        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0 || Sql_NextRow(SqlHandle) != SQL_SUCCESS) {
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getLootId(), groupID);
+        if (ret == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
+        {
             ShowError("SQL error occured \n");
             return 0;
         }
-        else {
-            return (uint16)Sql_GetUIntData(SqlHandle, 0);
+        else
+        {
+            for (auto res : ret)
+                return (uint16)Sql_GetUIntData(SqlHandle, 0);
         }
     }
 
@@ -383,7 +396,7 @@ namespace battlefieldutils {
                                 FROM bcnm_battlefield \
                                 WHERE bcnmId = %u AND battlefieldNumber = 2";
 
-        int32 ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
+        auto ret = Sql_Query(SqlHandle, fmtQuery, battlefield->getID());
 
         if (ret == SQL_ERROR ||
             Sql_NumRows(SqlHandle) == 0)
@@ -391,8 +404,10 @@ namespace battlefieldutils {
             ShowError("spawnSecondPartDynamis : SQL error - Cannot find any monster IDs for Dynamis %i \n",
                 battlefield->getID(), battlefield->getBattlefieldNumber());
         }
-        else {
-            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS) {
+        else
+        {
+            for (auto res : ret)
+            {
                 uint32 mobid = Sql_GetUIntData(SqlHandle, 0);
                 CMobEntity* PMob = (CMobEntity*)zoneutils::GetEntity(mobid, TYPE_MOB);
                 if (PMob != nullptr)
@@ -406,11 +421,13 @@ namespace battlefieldutils {
                         ShowDebug("Spawned %s (%u) id %i inst %i \n", PMob->GetName(), PMob->id, battlefield->getID(), battlefield->getBattlefieldNumber());
                         battlefield->addEnemy(PMob, CONDITION_SPAWNED_AT_START & CONDITION_WIN_REQUIREMENT);
                     }
-                    else {
+                    else
+                    {
                         ShowDebug(CL_CYAN"spawnSecondPartDynamis: <%s> (%u) is already spawned\n" CL_RESET, PMob->GetName(), PMob->id);
                     }
                 }
-                else {
+                else
+                {
                     ShowDebug("spawnSecondPartDynamis: mob %u not found\n", mobid);
                 }
             }
