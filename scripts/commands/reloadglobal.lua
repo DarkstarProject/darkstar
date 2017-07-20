@@ -15,20 +15,13 @@ cmdprops =
     parameters = "s"
 };
 
-function onTrigger(player,globalLua)
-
-    if (globalLua == "player" or globalLua == "server" ) then
-        player:PrintToPlayer( "Some file should not be live reloaded. This is one of them." );
-        return
-    end
-
+function onTrigger(player,globalLua,other)
     if (globalLua ~= nil) then
         local String = table.concat({"scripts/globals/",globalLua});
         package.loaded[String] = nil;
         require(String);
-        player:PrintToPlayer( string.format( "Lua file '%s' has been reloaded.", String ) );
+        player:PrintToPlayer(string.format("Lua file '%s' has been reloaded.", String));
     else
-        player:PrintToPlayer( "Must Specify a global lua file.");
+        player:PrintToPlayer("Must Specify a global lua file.");
     end
-
 end;
