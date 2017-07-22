@@ -400,9 +400,7 @@ namespace zoneutils
             WHERE NOT (pos_x = 0 AND pos_y = 0 AND pos_z = 0) AND IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE) \
             AND mob_groups.zoneid = ((mobid >> 12) & 0xFFF);";
 
-        auto ret = Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, Query, map_ip.s_addr, inet_ntoa(map_ip), map_port))
         {
             uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
 
@@ -568,9 +566,7 @@ namespace zoneutils
         INNER JOIN zone_settings ON mob_groups.zoneid = zone_settings.zoneid \
         WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE);";
 
-        ret = Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, PetQuery, map_ip.s_addr, inet_ntoa(map_ip), map_port))
         {
             uint16 ZoneID = (uint16)Sql_GetUIntData(SqlHandle, 0);
             uint32 masterid = (uint32)Sql_GetUIntData(SqlHandle, 1);

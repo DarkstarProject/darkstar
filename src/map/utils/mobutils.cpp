@@ -1056,9 +1056,7 @@ namespace mobutils
         // load family mods
         const int8 QueryFamilyMods[] = "SELECT familyid, modid, value, is_mob_mod FROM mob_family_mods;";
 
-        auto ret = Sql_Query(SqlHandle, QueryFamilyMods);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, QueryFamilyMods))
         {
             ModsList_t* familyMods = GetMobFamilyMods(Sql_GetUIntData(SqlHandle, 0), true);
 
@@ -1104,9 +1102,7 @@ namespace mobutils
         // load spawn mods
         const int8 QuerySpawnMods[] = "SELECT mobid, modid, value, is_mob_mod FROM mob_spawn_mods;";
 
-        ret = Sql_Query(SqlHandle, QuerySpawnMods);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, QuerySpawnMods))
         {
             ModsList_t* spawnMods = GetMobSpawnMods(Sql_GetUIntData(SqlHandle, 0), true);
 
