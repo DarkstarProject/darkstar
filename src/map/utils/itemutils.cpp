@@ -318,9 +318,7 @@ namespace itemutils
             "LEFT JOIN item_puppet AS p USING (itemId) "
             "WHERE itemId < %u;";
 
-        auto ret = Sql_Query(SqlHandle, Query, MAX_ITEMID);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, Query, MAX_ITEMID))
         {
             CItem* PItem = CreateItem(Sql_GetUIntData(SqlHandle, 0));
 
@@ -394,9 +392,9 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
+        
 
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, "SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))"))
         {
             uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
             Mod modID = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 1));
@@ -408,9 +406,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))"))
         {
             uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
             Mod modID = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 1));
@@ -423,9 +419,7 @@ namespace itemutils
             }
         }
 
-        ret = Sql_Query(SqlHandle, "SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))");
-
-        for (auto res : ret)
+        for(auto res : Sql_Query(SqlHandle, "SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_armor USING (itemId))"));
         {
             uint16 ItemID = (uint16)Sql_GetUIntData(SqlHandle, 0);
             Mod modID = static_cast<Mod>(Sql_GetUIntData(SqlHandle, 1));

@@ -108,10 +108,8 @@ namespace battleutils
 							ORDER BY level \
 							LIMIT 100";
 
-        auto ret = Sql_Query(SqlHandle, fmtQuery);
-
         auto x = 0;
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, fmtQuery))
         {
             for (uint32 y = 0; y < 14; ++y)
             {
@@ -125,12 +123,9 @@ namespace battleutils
 				FROM skill_ranks \
 				LIMIT 64";
 
-        ret = Sql_Query(SqlHandle, fmtQuery);
-
         x = 0;
         for (auto res : Sql_Query(SqlHandle, fmtQuery))
         {
-            // todo: is this actually retarded
             if (x == MAX_SKILLTYPE)
                 break;
 

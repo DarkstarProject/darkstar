@@ -1079,9 +1079,7 @@ namespace mobutils
         // load pool mods
         const int8 QueryPoolMods[] = "SELECT poolid, modid, value, is_mob_mod FROM mob_pool_mods;";
 
-        ret = Sql_Query(SqlHandle, QueryPoolMods);
-
-        for (auto res : ret)
+        for (auto res : Sql_Query(SqlHandle, QueryPoolMods))
         {
             uint16 pool = Sql_GetUIntData(SqlHandle, 0);
             ModsList_t* poolMods = GetMobPoolMods(pool, true);

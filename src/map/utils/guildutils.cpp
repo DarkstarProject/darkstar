@@ -146,24 +146,23 @@ namespace guildutils
 
         const char* query = "SELECT value FROM server_variables WHERE name = '[GUILD]pattern_update';";
 
-        auto ret = Sql_Query(SqlHandle, query);
         bool update = false;
-        bool fuck = true;
-
-        for (auto res : ret)
         {
-            if (Sql_GetUIntData(SqlHandle, 0) != CVanaTime::getInstance()->getSysYearDay())
+            auto ret = Sql_Query(SqlHandle, query);
+            if(ret == SQL_SUCCESS)
+            {
+                for(auto res : ret)
+                {
+                    if(Sql_GetUIntData(SqlHandle, 0) != CVanaTime::getInstance()->getSysYearDay())
+                    {
+                        update = true;
+                    }
+                }
+            }
+            else
             {
                 update = true;
-                fuck = false;
             }
-        }
-
-        // todo: is this fucked?
-        // if (res == SQL_ERROR || Sql_NumRows(SqlHandle) == 0)
-        if (fuck)
-        {
-            update = true;
         }
 
         if (update)

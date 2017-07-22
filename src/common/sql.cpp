@@ -51,15 +51,15 @@ struct s_column_length
 *																		*
 ************************************************************************/
 
-Sql_Result_t::iterator::iterator(Sql_t* handle) : sql_handle(handle)
+Sql_t::Sql_Result_t::iterator::iterator(Sql_t* handle) : sql_handle(handle)
 {
 }
 
-Sql_Result_t::iterator::iterator(Sql_t* handle, int _res) : sql_handle(handle), res(_res)
+Sql_t::Sql_Result_t::iterator::iterator(Sql_t* handle, int _res) : sql_handle(handle), res(_res)
 {
 }
 
-bool Sql_Result_t::iterator::operator!=(const iterator& o) const
+bool Sql_t::Sql_Result_t::iterator::operator!=(const iterator& o) const
 {
     //for the purpose of !=, the two error conditions are equal
     if (res == SQL_ERROR && o.res == SQL_NO_DATA ||
@@ -70,38 +70,45 @@ bool Sql_Result_t::iterator::operator!=(const iterator& o) const
     return res != o.res;
 }
 
-Sql_Result_t::iterator& Sql_Result_t::iterator::operator++()
+Sql_t::Sql_Result_t::iterator& Sql_t::Sql_Result_t::iterator::operator++()
 {
     res = sql_handle->Sql_NextRow();
     return *this;
 }
 
-int Sql_Result_t::iterator::operator*() const
+int Sql_t::Sql_Result_t::iterator::operator*() const
 {
     return res;
 }
 
-Sql_Result_t::Sql_Result_t(Sql_t* handle, const std::string& query) : sql_handle(handle), res(Sql_QueryStr(sql_handle, query.c_str()))
+Sql_t::Sql_Result_t::Sql_Result_t(Sql_t* handle, const std::string& query) : sql_handle(handle), res(Sql_QueryStr(sql_handle, query.c_str()))
 {
-
+    DSP_DEBUG_BREAK_IF(sql_handle->query_count != 0);
+    sql_handle->query_count++;
 }
 
-Sql_Result_t::iterator Sql_Result_t::begin()
+Sql_t::Sql_Result_t::~Sql_Result_t()
+{
+    if (sql_handle)
+        sql_handle->query_count--;
+}
+
+Sql_t::Sql_Result_t::iterator Sql_t::Sql_Result_t::begin()
 {
     return iterator(sql_handle, sql_handle->Sql_NextRow());
 }
 
-Sql_Result_t::iterator Sql_Result_t::end() const
+Sql_t::Sql_Result_t::iterator Sql_t::Sql_Result_t::end() const
 {
     return iterator(sql_handle, SQL_NO_DATA);
 }
 
-bool Sql_Result_t::operator==(const int32& o) const
+bool Sql_t::Sql_Result_t::operator==(const int32& o) const
 {
     return res == o;
 }
 
-Sql_Result_t::operator int() const
+Sql_t::Sql_Result_t::operator int() const
 {
     return res;
 }

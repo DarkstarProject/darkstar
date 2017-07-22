@@ -83,39 +83,41 @@ public:
     /// @return SQL_SUCCESS, SQL_ERROR or SQL_NO_DATA
     int32 Sql_NextRow();
 
-private:
-    int query_count;
-};
-
-class Sql_Result_t
-{
-public:
-    class iterator
+    class Sql_Result_t
     {
     public:
-        typedef std::forward_iterator_tag iterator_category;
+        class iterator
+        {
+        public:
+            typedef std::forward_iterator_tag iterator_category;
 
-        iterator(Sql_t* handle);
-        iterator(Sql_t* handle, int res);
-        bool operator!=(const iterator&) const;
-        iterator& operator++();
-        int operator*() const;
+            iterator(Sql_t* handle);
+            iterator(Sql_t* handle, int res);
+            bool operator!=(const iterator&) const;
+            iterator& operator++();
+            int operator*() const;
+        private:
+            Sql_t* sql_handle {nullptr};
+            int res{SQL_ERROR};
+        };
+
+        Sql_Result_t(Sql_t* handle, const std::string& query);
+        ~Sql_Result_t();
+
+        iterator begin();
+        iterator end() const;
+
+        bool operator==(const int32&) const;
+        operator int() const;
     private:
         Sql_t* sql_handle {nullptr};
-        int res{SQL_ERROR};
+        int32 res;
     };
 
-    Sql_Result_t(Sql_t* handle, const std::string& query);
-
-    iterator begin();
-    iterator end() const;
-
-    bool operator==(const int32&) const;
-    operator int() const;
 private:
-    Sql_t* sql_handle {nullptr};
-    int32 res;
+    int query_count {0};
 };
+
 
 /// Allocates and initializes a new Sql handle.
 class Sql_t* Sql_Malloc(void);
@@ -165,10 +167,10 @@ int32 Sql_QueryStr(Sql_t* self, const char* query);
 ///
 /// @return SQL_SUCCESS or SQL_ERROR
 template<typename... Args>
-Sql_Result_t Sql_Query(Sql_t* self, const std::string& query, Args... args)
+Sql_t::Sql_Result_t Sql_Query(Sql_t* self, const std::string& query, Args... args)
 {
     std::string query_v = fmt::sprintf(query, args...);
-	return Sql_Result_t(self, query_v);
+	return Sql_t::Sql_Result_t(self, query_v);
 }
 
 uint64 Sql_AffectedRows(Sql_t* self);
