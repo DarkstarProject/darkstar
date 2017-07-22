@@ -61,6 +61,12 @@ Sql_Result_t::iterator::iterator(Sql_t* handle, int _res) : sql_handle(handle), 
 
 bool Sql_Result_t::iterator::operator!=(const iterator& o) const
 {
+    //for the purpose of !=, the two error conditions are equal
+    if (res == SQL_ERROR && o.res == SQL_NO_DATA ||
+        res == SQL_NO_DATA && o.res == SQL_ERROR)
+    {
+        return false;
+    }
     return res != o.res;
 }
 
@@ -80,14 +86,14 @@ Sql_Result_t::Sql_Result_t(Sql_t* handle, const std::string& query) : sql_handle
 
 }
 
-Sql_Result_t::iterator Sql_Result_t::begin() const
+Sql_Result_t::iterator Sql_Result_t::begin()
 {
-    return iterator(sql_handle, res);
+    return iterator(sql_handle, sql_handle->Sql_NextRow());
 }
 
 Sql_Result_t::iterator Sql_Result_t::end() const
 {
-    return iterator(sql_handle);
+    return iterator(sql_handle, SQL_NO_DATA);
 }
 
 bool Sql_Result_t::operator==(const int32& o) const

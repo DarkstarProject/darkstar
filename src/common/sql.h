@@ -107,7 +107,7 @@ public:
 
     Sql_Result_t(Sql_t* handle, const std::string& query);
 
-    iterator begin() const;
+    iterator begin();
     iterator end() const;
 
     bool operator==(const int32&) const;
