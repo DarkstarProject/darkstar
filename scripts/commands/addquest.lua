@@ -12,16 +12,16 @@ cmdprops =
 };
 
 function onTrigger(player, logId, questId, target)
-    
+
     local logName;
-    logId = tonumber(logId) or _G[logId];
+    logId = tonumber(logId) or _G[string.upper(logId)];
     if ((type(logId) == "table")) then
         logName = logId.full_name;
         logId = logId.quest_log;
     end
 
-    questId = tonumber(questId) or _G[questId];
-    
+    questId = tonumber(questId) or _G[string.upper(questId)];
+
     if (questId == nil or logId == nil) then
         player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
         player:PrintToPlayer( "@addquest <logID> <questID> <player>" );

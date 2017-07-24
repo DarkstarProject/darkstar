@@ -13,7 +13,7 @@ cmdprops =
 
 function onTrigger(player, keyId, target)
 
-    keyId = tonumber(keyId) or _G[keyId];
+    keyId = tonumber(keyId) or _G[string.upper(keyId)];
 
     if (keyId == nil or keyId == 0) then
         player:PrintToPlayer( "You must enter a valid KeyItem ID." );

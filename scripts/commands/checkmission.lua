@@ -12,9 +12,9 @@ cmdprops =
 };
 
 function onTrigger(player,logId,target)
-    
+
     local logName;
-    logId = tonumber(logId) or _G[logId];
+    logId = tonumber(logId) or _G[string.upper(logId)];
     if ((type(logId) == "table")) then
         logName = logId.full_name;
         logId = logId.mission_log;
@@ -27,7 +27,7 @@ function onTrigger(player,logId,target)
             logName = missionAreas[logId - 2].full_name;
         end
     end
-    
+
     if (logId == nil) then
         player:PrintToPlayer( "You must enter a valid LogID!" );
         player:PrintToPlayer( "@checkmission <Log ID> <Player>" );
