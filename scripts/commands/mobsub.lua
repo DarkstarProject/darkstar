@@ -12,9 +12,9 @@ cmdprops =
 };
 
 function onTrigger(player, target, animationId)
-    
-    animationId = tonumber(animationId) or _G[animationId];
-    
+
+    animationId = tonumber(animationId) or _G[string.upper(animationId)];
+
     local mob = GetMobByID( target );
     if (mob ~= nil and animationId ~= nil) then
         mob:AnimationSub( animationId );

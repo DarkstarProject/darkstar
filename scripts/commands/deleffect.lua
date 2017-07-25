@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 -- func: addeffect
--- desc: Adds the given effect to the given player.
+-- desc: Removes the given effect from the given player.
 ---------------------------------------------------------------------------------------------------
 
 require("scripts/globals/status");
@@ -20,7 +20,7 @@ function onTrigger(player, target, id)
     end
 
     local effectTarget = player;
-    
+
     -- check if target name was entered
     local num = tonumber(target)
     if (type(num) == "number") then
@@ -30,7 +30,7 @@ function onTrigger(player, target, id)
         if (pc ~= nil) then
             effectTarget = pc;
         else
-            id = _G[target];
+            id = _G[string.upper(target)];
         end
 
         if (id == 0 or id == nil) then

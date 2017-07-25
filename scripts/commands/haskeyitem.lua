@@ -14,7 +14,7 @@ cmdprops =
 
 function onTrigger(player, KI, target)
     KI = string.upper(KI);
-    local keyId = tonumber(KI) or _G[KI];
+    local keyId = tonumber(KI) or _G[string.upper(KI)];
 
     if (keyId == nil) then
         player:PrintToPlayer("You must enter a valid KeyItem to check.");

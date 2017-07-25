@@ -15,11 +15,11 @@ cmdprops =
 
 function onTrigger(player, target, id, power, duration, subid, subPower)
     id = tonumber(id);
-    power = tonumber(power) or _G[power]; -- EFFECT_TELEPORT etc, only works self-targeted cause lazy
+    power = tonumber(power) or _G[string.upper(power)]; -- EFFECT_TELEPORT etc, only works self-targeted cause lazy
     duration = tonumber(duration);
     subid = tonumber(subid);
     subPower = tonumber(subPower);
-    
+
     -- Ensure a target is set..
     if (target == nil) then
         player:PrintToPlayer( "What are you even trying to add?" );
@@ -27,7 +27,7 @@ function onTrigger(player, target, id, power, duration, subid, subPower)
     end
 
     local effectTarget = player;
-    
+
     -- check if target name was entered
     local num = tonumber(target)
     if (type(num) == "number") then
