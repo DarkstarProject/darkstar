@@ -1215,8 +1215,8 @@ namespace petutils
             PPet = ((CCharEntity*)PMaster)->PAutomaton;
             PPet->PAI->SetController(std::make_unique<CAutomatonController>(static_cast<CAutomatonEntity*>(PPet)));
         }
-		else
-			PPet = new CPetEntity(petType);
+        else
+            PPet = new CPetEntity(petType);
 
         PPet->loc = PMaster->loc;
 
@@ -1328,10 +1328,10 @@ namespace petutils
             highestLvl += PChar->PMeritPoints->GetMeritValue(MERIT_BEAST_AFFINITY, PChar);
 
             // And cap it to the master's level.
-			if (highestLvl > PMaster->GetMLevel())
+            if (highestLvl > PMaster->GetMLevel())
             {
-				highestLvl = PMaster->GetMLevel();
-			}
+                highestLvl = PMaster->GetMLevel();
+            }
 
             // Randomize: 0-2 lvls lower, less Monster Gloves(+1/+2) bonus
             highestLvl -= dsprand::GetRandomNumber(3 - dsp_cap(PChar->getMod(Mod::JUG_LEVEL_RANGE), 0, 2));
@@ -1340,7 +1340,7 @@ namespace petutils
             LoadJugStats(PPet, PPetData); //follow monster calcs (w/o SJ)
         }
         else if (PPet->getPetType() == PETTYPE_WYVERN){
-			LoadWyvernStatistics(PMaster, PPet, false);
+            LoadWyvernStatistics(PMaster, PPet, false);
         }
         else if (PPet->getPetType() == PETTYPE_AUTOMATON && PMaster->objtype == TYPE_PC)
         {
@@ -1370,10 +1370,10 @@ namespace petutils
             LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
         }
 
-		FinalizePetStatistics(PMaster, PPet);
-		PPet->status = STATUS_NORMAL;
-		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
-		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
+        FinalizePetStatistics(PMaster, PPet);
+        PPet->status = STATUS_NORMAL;
+        PPet->m_ModelSize += g_PPetList.at(PetID)->size;
+        PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
 
         //finalizing petZoningInfo
         ((CCharEntity*)PMaster)->petZoningInfo.petHP = PPet->GetMaxHP();
@@ -1382,36 +1382,36 @@ namespace petutils
         PMaster->PPet = PPet;
     }
 
-	void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
-		//set the wyvern job based on master's SJ
-		if (PMaster->GetSJob() != JOB_NON){
-			PPet->SetSJob(PMaster->GetSJob());
-		}
-		PPet->SetMJob(JOB_DRG);
-		PPet->SetMLevel(PMaster->GetMLevel());
+    void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
+        //set the wyvern job based on master's SJ
+        if (PMaster->GetSJob() != JOB_NON){
+            PPet->SetSJob(PMaster->GetSJob());
+        }
+        PPet->SetMJob(JOB_DRG);
+        PPet->SetMLevel(PMaster->GetMLevel());
 
-		LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
-		PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
-		PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
-		//Set A+ weapon skill
-		PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
-		//Set D evasion and def
-		PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
-		PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+        LoadAvatarStats(PPet); //follows PC calcs (w/o SJ)
+        PPet->m_Weapons[SLOT_MAIN]->setDelay(floor(1000.0f*(320.0f / 60.0f))); //320 delay
+        PPet->m_Weapons[SLOT_MAIN]->setDamage(1 + floor(PPet->GetMLevel()*0.9f));
+        //Set A+ weapon skill
+        PPet->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+        PPet->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_GAX, JOB_WAR, PPet->GetMLevel()));
+        //Set D evasion and def
+        PPet->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
+        PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_H2H, JOB_WAR, PPet->GetMLevel()));
 
-		if (finalize) {
-			FinalizePetStatistics(PMaster, PPet);
-		}
-	}
+        if (finalize) {
+            FinalizePetStatistics(PMaster, PPet);
+        }
+    }
 
-	void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
-		//set C magic evasion
-		PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
-		PPet->health.tp = 0;
-		PPet->UpdateHealth();
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+        //set C magic evasion
+        PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
+        PPet->health.tp = 0;
+        PPet->UpdateHealth();
         PMaster->applyPetModifiers(PPet);
-	}
+    }
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)
     {
