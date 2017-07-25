@@ -1138,28 +1138,28 @@ namespace petutils
         /*
         else if (PetID==PETID_ADVENTURING_FELLOW)
         {
-        petType = PETTYPE_ADVENTURING_FELLOW;
+            petType = PETTYPE_ADVENTURING_FELLOW;
 
-        const int8* Query =
-        "SELECT\
-        pet_name.name,\
-        char_pet.adventuringfellowid\
-        FROM pet_name, char_pet\
-        WHERE pet_name.id = char_pet.adventuringfellowid";
+            const int8* Query =
+            "SELECT\
+            pet_name.name,\
+            char_pet.adventuringfellowid\
+            FROM pet_name, char_pet\
+            WHERE pet_name.id = char_pet.adventuringfellowid";
 
-        if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
-        {
-        while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-        {
-        uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
+            if ( Sql_Query(SqlHandle, Query) != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+            {
+                while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+                {
+                    uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
 
-        if (adventuringfellowid != 0)
-        {
-        g_PPetList.at(PetID)->name.clear();
-        g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
-        }
-        }
-        }
+                    if (adventuringfellowid != 0)
+                    {
+                        g_PPetList.at(PetID)->name.clear();
+                        g_PPetList.at(PetID)->name.insert(0, Sql_GetData(SqlHandle, 0));
+                    }
+                }
+            }
         }
         */
         else if (PetID == PETID_CHOCOBO)
@@ -1374,8 +1374,8 @@ namespace petutils
 		PPet->status = STATUS_NORMAL;
 		PPet->m_ModelSize += g_PPetList.at(PetID)->size;
 		PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
-		
-        //finalizing petZoningInfo	
+
+        //finalizing petZoningInfo
         ((CCharEntity*)PMaster)->petZoningInfo.petHP = PPet->GetMaxHP();
         ((CCharEntity*)PMaster)->petZoningInfo.petMP = PPet->GetMaxMP();
 
