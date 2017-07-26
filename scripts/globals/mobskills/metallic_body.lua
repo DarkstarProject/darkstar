@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Metalid Body
 --
-cGives the effect of "Stoneskin."
+-- Gives the effect of "Stoneskin."
 -- Type: Magical
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
