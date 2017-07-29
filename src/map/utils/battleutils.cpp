@@ -1051,10 +1051,10 @@ namespace battleutils
             }
         }
         //check script for grip if main failed
-        else if (PAttacker->objtype == TYPE_PC && PAttacker->m_Weapons[SLOT_SUB] && 
-            weapon == PAttacker->m_Weapons[SLOT_MAIN] && PAttacker->m_Weapons[SLOT_SUB]->getSkillType() == SKILL_NON &&
-            battleutils::GetScaledItemModifier(PAttacker, PAttacker->m_Weapons[SLOT_SUB], Mod::ADDITIONAL_EFFECT) > 0 &&
-            luautils::OnAdditionalEffect(PAttacker, PDefender, PAttacker->m_Weapons[SLOT_SUB], Action, finaldamage) == 0 && Action->additionalEffect)
+        else if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB) &&
+            weapon == PAttacker->m_Weapons[SLOT_MAIN] && static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB))->getSkillType() == SKILL_NON &&
+            battleutils::GetScaledItemModifier(PAttacker, static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB), Mod::ADDITIONAL_EFFECT) > 0 &&
+            luautils::OnAdditionalEffect(PAttacker, PDefender, static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB)), Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {
