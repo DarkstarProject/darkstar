@@ -229,24 +229,26 @@ end;
 
 function finishConquestGuard(player,csid,option,size,inventory,guardnation)
     if (option == 1) then
-        duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
-        player:delStatusEffect(EFFECT_SIGIL);
-        player:delStatusEffect(EFFECT_SANCTION);
-        player:delStatusEffect(EFFECT_SIGNET);
+        local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
+        player:delStatusEffectSilent(EFFECT_SIGIL);
+        player:delStatusEffectSilent(EFFECT_SANCTION);
+        player:delStatusEffectSilent(EFFECT_SIGNET);
         player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
     elseif (option >= 32768 and option <= 32944) then
         for Item = 1,size,3 do
             if (option == inventory[Item]) then
                 if (player:getFreeSlotsCount() >= 1) then
-                -- Logic to impose limits on exp bands
-                if (option >= 32933 and option <= 32935) then
-                    if (checkConquestRing(player) > 0) then
-                        player:messageSpecial(CONQUEST+60,0,0,inventory[Item+2]);
-                        break;
-                    else
-                        player:setVar("CONQUEST_RING_TIMER",getConquestTally());
+                    -- Logic to impose limits on exp bands
+                    if (option >= 32933 and option <= 32935) then
+                        if (checkConquestRing(player) > 0) then
+                            player:messageSpecial(CONQUEST+60,0,0,inventory[Item+2]);
+                            break;
+                        else
+                            player:setVar("CONQUEST_RING_TIMER",getConquestTally());
+                        end
                     end
-                end
+
+                    local itemCP;
                     if (player:getNation() == guardnation) then
                         itemCP = inventory[Item + 1];
                     else
@@ -256,7 +258,8 @@ function finishConquestGuard(player,csid,option,size,inventory,guardnation)
                             itemCP = inventory[Item + 1] + 8000;
                         end;
                     end;
-                    if (player:hasItem(inventory[Item + 2]) == false) then
+
+                    if (player:hasItem(inventory[Item + 2]) == false and player:getCP() >= itemCP) then
                         player:delCP(itemCP);
                         player:addItem(inventory[Item + 2],1);
                         player:messageSpecial(ITEM_OBTAINED,inventory[Item + 2]);
