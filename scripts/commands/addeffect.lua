@@ -14,7 +14,12 @@ cmdprops =
 };
 
 function onTrigger(player, target, id, power, duration, subid, subPower)
-    id = tonumber(id);
+    if (id == nil) then
+        player:PrintToPlayer( "Effect id cannot be nil." );
+        return;
+    end
+
+    id = tonumber(id) or _G[string.upper(id)]; -- Arguments shift 1 to the left is target is omitted. AAF..
     power = tonumber(power) or _G[string.upper(power)]; -- EFFECT_TELEPORT etc, only works self-targeted cause lazy
     duration = tonumber(duration);
     subid = tonumber(subid);
@@ -83,11 +88,6 @@ function onTrigger(player, target, id, power, duration, subid, subPower)
         if (id == 0 or id == nil) then
             id = 1;
         end
-    end
-
-    if (id == nil) then
-        player:PrintToPlayer( "Effect id cannot be nil." );
-        return;
     end
 
     if (effectTarget:addStatusEffect(id, power, 3, duration, subid, subPower)) then
