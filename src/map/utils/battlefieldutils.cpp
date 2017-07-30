@@ -113,7 +113,7 @@ namespace battlefieldutils {
                                 mobutils::InitializeMaat(PMob, (JOBTYPE)battlefield->getPlayerMainJob());
 
                                 // disallow subjob, this will enable for later
-                                battlefield->m_RuleMask |= RULES_ALLOW_SUBJOBS;
+                                battlefield->m_RuleMask &= ~RULES_ALLOW_SUBJOBS;
 
                             }
                             PMob->Spawn();
@@ -133,7 +133,7 @@ namespace battlefieldutils {
                     ShowDebug("SpawnMobForBcnm: mob %u not found\n", mobid);
                 }
             }
-            if (battlefield->m_RuleMask & RULES_ALLOW_SUBJOBS)
+            if (!(battlefield->m_RuleMask & RULES_ALLOW_SUBJOBS))
             {
                 // disable players subjob
                 battlefield->disableSubJob();
