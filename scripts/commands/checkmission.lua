@@ -12,6 +12,11 @@ cmdprops =
 };
 
 function onTrigger(player,logId,target)
+    if (logId == nil) then
+        player:PrintToPlayer( "You must enter a valid LogID!" );
+        player:PrintToPlayer( "@checkmission <Log ID> <Player>" );
+        return;
+    end
 
     local logName;
     logId = tonumber(logId) or _G[string.upper(logId)];
@@ -28,19 +33,15 @@ function onTrigger(player,logId,target)
         end
     end
 
-    if (logId == nil) then
-        player:PrintToPlayer( "You must enter a valid LogID!" );
-        player:PrintToPlayer( "@checkmission <Log ID> <Player>" );
-        return;
-    end
-
-    if (target == nil) then
-        target = player:getName();
-    end
-
-    local targ = GetPlayerByName(target);
     local Log = targ:getCurrentMission(logId)
-    -- Todo: loop through missionIDs and output mission name, not just a number.
+
+    local targ;
+    if (target == nil) then
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
+    end
+
     if (targ ~= nil) then
         if (logId <= 13) then
             if ((logId <= 3) and (Log == 255)) then

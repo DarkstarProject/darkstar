@@ -12,14 +12,13 @@ cmdprops =
 };
 
 function onTrigger(player, keyId, target)
-
-    keyId = tonumber(keyId) or _G[string.upper(keyId)];
-
     if (keyId == nil or keyId == 0) then
         player:PrintToPlayer( "You must enter a valid KeyItem ID." );
         player:PrintToPlayer( "@addkeyitem <ID> <player>" );
         return;
     end
+
+    keyId = tonumber(keyId) or _G[string.upper(keyId)];
 
     local targ;
     if (target == nil) then

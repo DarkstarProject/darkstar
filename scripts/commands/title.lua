@@ -12,19 +12,20 @@ cmdprops =
 };
 
 function onTrigger(player, titleId, target)
-
-    titleId = tonumber(titleId) or _G[string.upper(titleId)];
-
     if (titleId == nil) then
         player:PrintToPlayer("You must enter a valid title id.");
         return
     end
 
+    titleId = tonumber(titleId) or _G[string.upper(titleId)];
+
+    local targ;
     if (target == nil) then
-        target = player:getName();
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
     end
 
-    local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:addTitle( titleId );
     else

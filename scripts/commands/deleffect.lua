@@ -12,7 +12,6 @@ cmdprops =
 };
 
 function onTrigger(player, target, id)
-
     -- Ensure a target is set..
     if (target == nil) then
         player:PrintToPlayer( "Target required; cannot be nil." );

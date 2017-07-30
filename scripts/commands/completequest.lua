@@ -12,6 +12,11 @@ cmdprops =
 };
 
 function onTrigger(player, logId, questId, target)
+    if (questId == nil or logId == nil) then
+        player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
+        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
+        return;
+    end
 
     local logName;
     logId = tonumber(logId) or _G[string.upper(logId)];
@@ -22,17 +27,13 @@ function onTrigger(player, logId, questId, target)
 
     questId = tonumber(questId) or _G[string.upper(questId)];
 
-    if (questId == nil or logId == nil) then
-        player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
-        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
-        return;
-    end
-
+    local targ;
     if (target == nil) then
-        target = player:getName();
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
     end
 
-    local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:completeQuest( logId, questId );
         if (logName) then

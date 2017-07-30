@@ -10,19 +10,22 @@ cmdprops =
 };
 
 function onTrigger(player, target, nation)
-
-    nation = tonumber(nation) or _G[string.upper(nation)];
-
-    if (target == nil) then
-        target = player:getName();
-    end
-
     if (nation > 2 or nation < 0) then
         player:PrintToPlayer( "Invalid nation id given! Must be 0, 1, or 2!" );
         return;
     end
 
-    local targ = GetPlayerByName( target );
+    --[[ need to fetch from table and change argument to string type
+    nation = tonumber(nation) or _G[string.upper(nation)];
+    ]]
+
+    local targ;
+    if (target == nil) then
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
+    end
+
     if (targ ~= nil) then
         targ:setNation( nation );
     else

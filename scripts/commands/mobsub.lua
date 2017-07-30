@@ -12,13 +12,13 @@ cmdprops =
 };
 
 function onTrigger(player, target, animationId)
+    if (mob == nil and animationId == nil) then
+        player:PrintToPlayer( "A mob ID and Animation ID must be specified." );
+        return;
+    end
 
     animationId = tonumber(animationId) or _G[string.upper(animationId)];
 
     local mob = GetMobByID( target );
-    if (mob ~= nil and animationId ~= nil) then
-        mob:AnimationSub( animationId );
-    else
-        player:PrintToPlayer( "A mob ID and Animation ID must be specified." );
-    end
+    mob:AnimationSub( animationId );
 end

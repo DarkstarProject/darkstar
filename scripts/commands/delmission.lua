@@ -12,6 +12,11 @@ cmdprops =
 };
 
 function onTrigger(player, logId, missionId, target)
+    if (missionId == nil or logId == nil) then
+        player:PrintToPlayer( "You must enter a valid log id and mission id!" );
+        player:PrintToPlayer( "@delmission <logID> <missionID> <player>" );
+        return;
+    end
 
     local logName;
     logId = tonumber(logId) or _G[string.upper(logId)];
@@ -22,17 +27,13 @@ function onTrigger(player, logId, missionId, target)
 
     missionId = tonumber(missionId) or _G[string.upper(missionId)];
 
-    if (missionId == nil or logId == nil) then
-        player:PrintToPlayer( "You must enter a valid log id and mission id!" );
-        player:PrintToPlayer( "@delmission <logID> <missionID> <player>" );
-        return;
-    end
-
+    local targ;
     if (target == nil) then
-        target = player:getName();
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
     end
 
-    local targ = GetPlayerByName(target);
     if (targ ~= nil) then
         targ:delMission( logId, missionId );
         if (logName) then
