@@ -431,7 +431,7 @@ function checkRegime(player, mob, rid, index)
 
     if (player:getVar("fov_regimeid") == rid) then -- player is doing this regime
 
-        if (partyType < 2 and (player:getValorCredit(mob) == true or LOW_LEVEL_REGIME == 1)) then
+        if (partyType < 2 and (player:checkValorCredit(mob) == true or LOW_LEVEL_REGIME == 1)) then
             -- get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);

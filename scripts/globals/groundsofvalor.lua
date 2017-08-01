@@ -472,7 +472,7 @@ function checkGoVregime(player,mob,rid,index)
 
     if (player:getVar("fov_regimeid") == rid) then -- Player is doing this regime
 
-        if (player:getValorCredit(mob) == true or LOW_LEVEL_REGIME == 1) then
+        if (player:checkValorCredit(mob) == true or LOW_LEVEL_REGIME == 1) then
             -- Get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);
