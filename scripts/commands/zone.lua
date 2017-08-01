@@ -297,7 +297,7 @@ function onTrigger(player, zoneId)
 
     -- Ensure a zone was given..
     if (player:getVar("inJail") ~= 0) then
-        player:PrintToPlayer( string.format( "You've been bad." ) );
+        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
 else
     if (zoneId == nil) then
         player:PrintToPlayer("You must enter a VALID zone id. (MAX Zone ID is 285)");
