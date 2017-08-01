@@ -11,8 +11,8 @@ cmdprops =
 };
 function onTrigger(player, x, y, z, zone)
 if (player:getVar("inJail") ~= 0) then
-        player:PrintToPlayer( string.format( "You've been bad." ) );
-else
-            player:setPos('0', '-1', '-51', '176', '128');
+        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
+	else
+		player:setPos('0', '-1', '-51', '176', '128');
     end
 end
