@@ -10,38 +10,41 @@ require("scripts/globals/quests");
 -- array to map (for each zone) the item id of the valid trade item with the bcnmid in the database
 -- e.g. zone, {itemid, bcnmid, itemid, bcnmid, itemid, bcnmid}
 -- DO NOT INCLUDE MAAT FIGHTS
-itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
-                   8, {0, 0}, -- Boneyard_Gully
-                   10, {0, 0}, -- The_Shrouded_Maw
-                   13, {0, 0}, -- Mine_Shaft_2716
-                   17, {0, 0}, -- Spire of Holla
-                   19, {0, 0}, -- Spire of Dem
-                   21, {0, 0}, -- Spire of Mea
-                   23, {0, 0}, -- Spire of Vahzl
-                   29, {0, 0}, -- Riverne Site #B01
-                   31, {0, 0}, -- Monarch Linn
-                   32, {0, 0}, -- Sealion's Den
-                   35, {0, 0}, -- The Garden of RuHmet
-                   36, {0, 0}, -- Empyreal Paradox
-                   57, {0, 0}, -- Talacca Cove
-                   64, {0, 0}, -- Navukgo Execution Chamber
-                   67, {0, 0}, -- Jade Sepulcher
-                   139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
-                   140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
-                   144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
-                   146, {1553, 107, 1551, 105, 1177, 100}, -- Balgas Dias
-                   163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
-                   168, {0, 0}, -- Chamber of Oracles
-                   170, {0, 0}, -- Full Moon Fountain
-                   180, {1550, 293}, -- LaLoff Amphitheater
-                   181, {0, 0}, -- The Celestial Nexus
-                   201, {1546, 418, 1174, 417}, -- Cloister of Gales
-                   202, {1548, 450, 1172, 449}, -- Cloister of Storms
-                   203, {1545, 482, 1171, 481}, -- Cloister of Frost
-                   206, {0, 0}, -- Qu'Bia Arena
-                   207, {1544, 545}, -- Cloister of Flames
-                   209, {1547, 578, 1169, 577}, -- Cloister of Tremors
-                   211, {1549, 609}}; -- Cloister of Tides
+itemid_bcnmid_map =
+{
+    6,   {0, 0}, -- Bearclaw_Pinnacle
+    8,   {0, 0}, -- Boneyard_Gully
+    10,  {0, 0}, -- The_Shrouded_Maw
+    13,  {0, 0}, -- Mine_Shaft_2716
+    17,  {0, 0}, -- Spire of Holla
+    19,  {0, 0}, -- Spire of Dem
+    21,  {0, 0}, -- Spire of Mea
+    23,  {0, 0}, -- Spire of Vahzl
+    29,  {0, 0}, -- Riverne Site #B01
+    31,  {0, 0}, -- Monarch Linn
+    32,  {0, 0}, -- Sealion's Den
+    35,  {0, 0}, -- The Garden of RuHmet
+    36,  {0, 0}, -- Empyreal Paradox
+    57,  {0, 0}, -- Talacca Cove
+    64,  {0, 0}, -- Navukgo Execution Chamber
+    67,  {0, 0}, -- Jade Sepulcher
+    139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
+    140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
+    144, {1166, 68, 1178, 81, 1553, 76, 1180, 82, 1130, 79, 1552, 73}, -- Waughroon Shrine
+    146, {1553, 107, 1551, 105, 1177, 100}, -- Balgas Dias
+    163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
+    168, {0, 0}, -- Chamber of Oracles
+    170, {0, 0}, -- Full Moon Fountain
+    180, {1550, 293}, -- LaLoff Amphitheater
+    181, {0, 0}, -- The Celestial Nexus
+    201, {1546, 418, 1174, 417}, -- Cloister of Gales
+    202, {1548, 450, 1172, 449}, -- Cloister of Storms
+    203, {1545, 482, 1171, 481}, -- Cloister of Frost
+    206, {0, 0}, -- Qu'Bia Arena
+    207, {1544, 545}, -- Cloister of Flames
+    209, {1547, 578, 1169, 577}, -- Cloister of Tremors
+    211, {1549, 609}; -- Cloister of Tides
+}
 
 -- array to map (for each zone) the BCNM ID to the Event Parameter corresponding to this ID.
 -- DO NOT INCLUDE MAAT FIGHTS (only included one for testing!)
@@ -49,40 +52,43 @@ itemid_bcnmid_map = {6, {0, 0}, -- Bearclaw_Pinnacle
 -- The BCNMID is found via the database.
 -- The paramid is a bitmask which you need to find out. Being a bitmask, it will be one of:
 -- 0, 1, 2, 3, 4, 5, ...
-bcnmid_param_map = {6, {640, 0, 643, 3},
-                  8, {672, 0, 673, 1},
-                  10, {704, 0, 706, 2},
-                  13, {736, 0},
-                  17, {768, 0},
-                  19, {800, 0},
-                  21, {832, 0},
-                  23, {864, 0},
-                  29, {896, 0},
-                  31, {960, 0, 961, 1},
-                  32, {992, 0, 993, 1},
-                  35, {1024, 0},
-                  36, {1056, 0},
-                  57, {1092, 4},
-                  64, {1124, 4},
-                  67, {1156, 4},
-                  139, {0, 0, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 10, 10, 11, 11, 12, 12, 15, 15, 17, 17},
-                  140, {32, 0, 33, 1, 34, 2, 35, 3, 36, 4},
-                  144, {65, 1, 73, 9, 64, 0, 67, 3, 68, 4, 70, 6, 71, 7, 72, 8, 81, 17, 76, 12, 82, 18, 79, 15},
-                  146, {99, 3, 96, 0, 101, 5, 102, 6, 103, 7, 107, 11, 105, 9},
-                  163, {128, 0, 129, 1, 130, 2},
-                  165, {160, 0, 161, 1},
-                  168, {192, 0, 194, 2, 195, 3, 196, 4},
-                  170, {224, 0, 225, 1},
-                  179, {256, 0},
-                  180, {293, 5, 288, 0, 289, 1, 290, 2, 291, 3, 292, 4},
-                  181, {320, 0},
-                  201, {416, 0, 417, 1, 418, 2, 420, 4},
-                  202, {448, 0, 449, 1, 450, 2, 452, 4},
-                  203, {480, 0, 481, 1, 482, 2, 484, 4},
-                  206, {512, 0, 516, 4, 517, 5, 518, 6, 519, 7, 532, 20},
-                  207, {544, 0, 545, 1, 547, 3},
-                  209, {576, 0, 577, 1, 578, 2, 580, 4},
-                  211, {608, 0, 609, 1, 611, 3}};
+bcnmid_param_map =
+{
+    6,   {640, 0, 643, 3},
+    8,   {672, 0, 673, 1},
+    10,  {704, 0, 706, 2},
+    13,  {736, 0},
+    17,  {768, 0},
+    19,  {800, 0},
+    21,  {832, 0},
+    23,  {864, 0},
+    29,  {896, 0},
+    31,  {960, 0, 961, 1},
+    32,  {992, 0, 993, 1},
+    35,  {1024, 0},
+    36,  {1056, 0},
+    57,  {1092, 4},
+    64,  {1124, 4},
+    67,  {1156, 4},
+    139, {0, 0, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 10, 10, 11, 11, 12, 12, 15, 15, 17, 17},
+    140, {32, 0, 33, 1, 34, 2, 35, 3, 36, 4},
+    144, {65, 1, 73, 9, 64, 0, 67, 3, 68, 4, 70, 6, 71, 7, 72, 8, 81, 17, 76, 12, 82, 18, 79, 15},
+    146, {99, 3, 96, 0, 101, 5, 102, 6, 103, 7, 107, 11, 105, 9},
+    163, {128, 0, 129, 1, 130, 2},
+    165, {160, 0, 161, 1},
+    168, {192, 0, 194, 2, 195, 3, 196, 4},
+    170, {224, 0, 225, 1},
+    179, {256, 0},
+    180, {293, 5, 288, 0, 289, 1, 290, 2, 291, 3, 292, 4},
+    181, {320, 0},
+    201, {416, 0, 417, 1, 418, 2, 420, 4},
+    202, {448, 0, 449, 1, 450, 2, 452, 4},
+    203, {480, 0, 481, 1, 482, 2, 484, 4},
+    206, {512, 0, 516, 4, 517, 5, 518, 6, 519, 7, 532, 20},
+    207, {544, 0, 545, 1, 547, 3},
+    209, {576, 0, 577, 1, 578, 2, 580, 4},
+    211, {608, 0, 609, 1, 611, 3}
+}
 
 -- Call this onTrade for burning circles
 function TradeBCNM(player, zone, trade, npc)
@@ -255,7 +261,6 @@ end;
 function EventFinishBCNM(player, csid, option)
     print("FINISH csid "..csid.." option "..option);
 
-
     if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
         return false;
     else
@@ -295,11 +300,14 @@ function CheckMaatFights(player, zone, trade, npc)
         end
 
         -- Zone, {item, job, menu, bcnmid, ...}
-        maatList = {139, {1426, 1, 32, 5, 1429, 4, 64, 6, 1436, 11, 128, 7},        -- Horlais Peak [WAR BLM RNG]
-                    144, {1430, 5, 64, 70, 1431, 6, 128, 71, 1434, 9, 256, 72},        -- Waughroon Shrine [RDM THF BST]
-                    146, {1427, 2, 32, 101, 1428, 3, 64, 102, 1440, 15, 128, 103},    -- Balga's Dais [MNK WHM SMN]
-                    168, {1437, 12, 4, 194, 1438, 13, 8, 195, 1439, 14, 16, 196},    -- Chamber of Oracles [SAM NIN DRG]
-                    206, {1432, 7, 32, 517, 1433, 8, 64, 518, 1435, 10, 128, 519} };-- Qu'Bia Arena [PLD DRK BRD]
+        maatList =
+        {
+            139, {1426, 1, 32, 5, 1429, 4, 64, 6, 1436, 11, 128, 7},       -- Horlais Peak [WAR BLM RNG]
+            144, {1430, 5, 64, 70, 1431, 6, 128, 71, 1434, 9, 256, 72},    -- Waughroon Shrine [RDM THF BST]
+            146, {1427, 2, 32, 101, 1428, 3, 64, 102, 1440, 15, 128, 103}, -- Balga's Dais [MNK WHM SMN]
+            168, {1437, 12, 4, 194, 1438, 13, 8, 195, 1439, 14, 16, 196},  -- Chamber of Oracles [SAM NIN DRG]
+            206, {1432, 7, 32, 517, 1433, 8, 64, 518, 1435, 10, 128, 519}  -- Qu'Bia Arena [PLD DRK BRD]
+        };
 
         for nb = 1, #maatList, 2 do
             if (maatList[nb] == zone) then
@@ -409,7 +417,7 @@ function checkNonTradeBCNM(player, npc)
            if (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6) then -- flames_for_the_dead
              mask = GetBattleBitmask(640, Zone, 1);
              player:setVar("trade_bcnmid", 640);
-	    elseif (player:hasKeyItem(ZEPHYR_FAN)) then -- Brothers ENM
+        elseif (player:hasKeyItem(ZEPHYR_FAN)) then -- Brothers ENM
             mask = GetBattleBitmask(643, Zone, 1);
             player:setVar("trade_bcnmid", 643);
         end
@@ -420,7 +428,6 @@ function checkNonTradeBCNM(player, npc)
         elseif (player:hasKeyItem(MIASMA_FILTER)==true) then
             mask = GetBattleBitmask(673, Zone, 1);
             player:setVar("trade_bcnmid", 673);
-        else
         end
     elseif (Zone == 10) then -- The_Shrouded_Maw
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then-- DARKNESS_NAMED
@@ -633,11 +640,11 @@ function checkNonTradeBCNM(player, npc)
         elseif (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3) then -- sando 9-2
             mask = GetBattleBitmask(516, Zone, 1);
             player:setVar("trade_bcnmid", 516);
-
-        -- Temp disabled pending BCNM mob fixes
-        -- elseif (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED)) then -- ACP Mission 7
-            -- mask = GetBattleBitmask(532, Zone, 1);
-            -- player:setVar("trade_bcnmid", 532);
+        --[[ Temp disabled pending BCNM mob fixes
+        elseif (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED)) then -- ACP Mission 7
+            mask = GetBattleBitmask(532, Zone, 1);
+            player:setVar("trade_bcnmid", 532);
+        ]]
         end
     elseif (Zone == 207) then -- Cloister of Flames
         if (player:hasKeyItem(TUNING_FORK_OF_FIRE)) then -- Trial by Fire
