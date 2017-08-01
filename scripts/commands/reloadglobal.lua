@@ -8,7 +8,7 @@
 -- but has a default permission lv of 4 so that helpers or
 -- less experienced GMs do not mistakenly misuse it.
 --
--- specify "I_am_sure" without quotes to attempt to reload thinsg that are not in \scirtpts\globals\
+-- specify "I_am_sure" without quotes to attempt to reload things that are not in \scripts\globals\
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
