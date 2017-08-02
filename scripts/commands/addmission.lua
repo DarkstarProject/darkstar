@@ -11,38 +11,47 @@ cmdprops =
     parameters = "sss"
 };
 
-function onTrigger(player, logId, missionId, target)
-    if (missionId == nil or logId == nil) then
-        player:PrintToPlayer( "You must enter a valid log id and mission id!" );
-        player:PrintToPlayer( "@addmission <logID> <missionID> <player>" );
-        return;
-    end
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("@addmission <logID> <missionID> {player}");
+end;
 
+function onTrigger(player, logId, missionId, target)
     local logName;
-    logId = tonumber(logId) or _G[string.upper(logId)];
-    if ((type(logId) == "table")) then
+
+    -- validate logId
+    if (logId ~= nil) then
+        logId = tonumber(logId) or _G[string.upper(logId)];
+    end
+    if ((type(logId) == "table") and logId.mission_log ~= nil) then
         logName = logId.full_name;
         logId = logId.mission_log;
+    else
+        error(player, "Invalid logID.");
+        return;
     end
-
-    missionId = tonumber(missionId) or _G[string.upper(missionId)];
-
+    
+    -- validate target
     local targ;
     if (target == nil) then
         targ = player;
     else
         targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
     end
 
-    if (targ ~= nil) then
-        targ:addMission( logId, missionId );
-        if (logName) then
-            player:PrintToPlayer( string.format( "Added %s Mission with ID %u for %s", logName, missionId, target ) );
-        else
-            player:PrintToPlayer( string.format( "Added Mission for log %u with ID %u to %s", logId, missionId, target ) );
-        end
+    -- validate missionId
+    if (missionId == nil) then
+        error(player, "Invalid missionID.");
+        return;
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@addmission <logID> <missionID> <player>" );
+        missionId = tonumber(missionId) or _G[string.upper(missionId)];
     end
+
+    -- add mission
+    targ:addMission(logId, missionId);
+    player:PrintToPlayer(string.format("Added %s Mission with ID %u for %s", logName, missionId, targ:getName()));
 end;

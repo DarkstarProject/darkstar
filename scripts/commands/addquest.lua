@@ -11,38 +11,47 @@ cmdprops =
     parameters = "sss"
 };
 
-function onTrigger(player, logId, questId, target)
-    if (questId == nil or logId == nil) then
-        player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
-        player:PrintToPlayer( "@addquest <logID> <questID> <player>" );
-        return;
-    end
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("@addquest <logID> <questID> {player}");
+end;
 
+function onTrigger(player, logId, questId, target)
     local logName;
-    logId = tonumber(logId) or _G[string.upper(logId)];
-    if ((type(logId) == "table")) then
+
+    -- validate logId
+    if (logId ~= nil) then
+        logId = tonumber(logId) or _G[string.upper(logId)];
+    end
+    if ((type(logId) == "table") and logId.quest_log ~= nil) then
         logName = logId.full_name;
         logId = logId.quest_log;
+    else
+        error(player, "Invalid logID.");
+        return;
     end
-
-    questId = tonumber(questId) or _G[string.upper(questId)];
-
+    
+    -- validate target
     local targ;
     if (target == nil) then
         targ = player;
     else
         targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
     end
 
-    if (targ ~= nil) then
-        targ:addQuest( logId, questId );
-        if (logName) then
-            player:PrintToPlayer( string.format( "Added %s Quest with ID %u for %s", logName, questId, target ) );
-        else
-            player:PrintToPlayer( string.format( "Added Quest for log %u with ID %u to %s", logId, questId, target ) );
-        end
+    -- validate questId
+    if (questId == nil) then
+        error(player, "Invalid questID.");
+        return;
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@addquest <logID> <questID> <player>" );
+        questId = tonumber(questId) or _G[string.upper(questId)];
     end
+
+    -- add quest
+    targ:addQuest( logId, questId );
+    player:PrintToPlayer( string.format( "Added %s Quest with ID %u for %s", logName, questId, targ:getName() ) );
 end;
