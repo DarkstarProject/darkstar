@@ -8656,7 +8656,7 @@ inline int32 CLuaBaseEntity::checkValorCredit(lua_State *L)
         else
             credit = true;
     }
-    
+
     lua_pushboolean(L, credit);
     return 1;
 }
