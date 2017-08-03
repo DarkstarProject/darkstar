@@ -471,10 +471,8 @@ function checkGoVregime(player,mob,rid,index)
     end
 
     if (player:getVar("fov_regimeid") == rid) then -- Player is doing this regime
-        -- Need to add difference because a lvl1 can XP with a level 75 at Ro'Maeve
-        local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
 
-        if ((mob:getBaseExp() > 0 or LOW_LEVEL_REGIME == 1) and difference <= 15 and (player:checkDistance(mob) < 100 or player:checkFovDistancePenalty() == 0)) then
+        if (player:checkValorCredit(mob) == true or LOW_LEVEL_REGIME == 1) then
             -- Get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);

@@ -23272,8 +23272,10 @@ INSERT INTO `item_mods` VALUES (19018,5,10);
 INSERT INTO `item_mods` VALUES (19018,12,1);
 INSERT INTO `item_mods` VALUES (19018,13,1);
 INSERT INTO `item_mods` VALUES (19018,14,1);
-INSERT INTO `item_mods` VALUES (19019,25,2);
-INSERT INTO `item_mods` VALUES (19020,25,3);
+INSERT INTO `item_mods` VALUES (19019,25,2);      -- Platinum Grip: Acc+2
+INSERT INTO `item_mods` VALUES (19019,431,1);     -- Add Effect Stun
+INSERT INTO `item_mods` VALUES (19020,25,3);      -- Platinum Grip +1: Acc+3
+INSERT INTO `item_mods` VALUES (19020,431,1);     -- Add Effect Stun
 INSERT INTO `item_mods` VALUES (19021,306,3);     -- Katana Strap: Zanshin +3% https://www.bg-wiki.com/bg/Katana_Strap
 INSERT INTO `item_mods` VALUES (19022,2,20);
 INSERT INTO `item_mods` VALUES (19022,8,3);
