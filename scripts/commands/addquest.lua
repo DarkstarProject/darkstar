@@ -60,6 +60,6 @@ function onTrigger(player, logId, questId, target)
     end
 
     -- add quest
-    targ:addQuest( logId, questId );
-    player:PrintToPlayer( string.format( "Added %s Quest with ID %u for %s", logName, questId, targ:getName() ) );
+    targ:addQuest(logId, questId);
+    player:PrintToPlayer(string.format("Added %s quest %i to %s.", logName, questId, targ:getName()));
 end;

@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@addkeyitem <ID> <player>");
+    player:PrintToPlayer("@addkeyitem <key item ID> {player}");
 end;
 
 function onTrigger(player, keyId, target)
@@ -42,10 +42,14 @@ function onTrigger(player, keyId, target)
     end
 
     -- add key item to target
-    local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-    package.loaded[TextIDs] = nil;
-    require(TextIDs);
-    targ:addKeyItem( keyId );
-    targ:messageSpecial( KEYITEM_OBTAINED, keyId );
-    player:PrintToPlayer( string.format( "Keyitem ID '%u' added to player!", keyId ) );
+    if (targ:hasKeyItem(keyId)) then
+        player:PrintToPlayer(string.format("%s already has key item %i.", targ:getName(), keyId));
+    else
+        local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
+        package.loaded[TextIDs] = nil;
+        require(TextIDs);
+        targ:addKeyItem( keyId );
+        targ:messageSpecial( KEYITEM_OBTAINED, keyId );
+        player:PrintToPlayer(string.format("Key item %i was given to %s.", keyId, targ:getName()));
+    end
 end;
