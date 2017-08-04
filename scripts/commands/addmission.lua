@@ -61,5 +61,5 @@ function onTrigger(player, logId, missionId, target)
 
     -- add mission
     targ:addMission(logId, missionId);
-    player:PrintToPlayer(string.format("Added %s Mission with ID %u for %s", logName, missionId, targ:getName()));
+    player:PrintToPlayer(string.format("Added %s mission %i to %s.", logName, missionId, targ:getName()));
 end;
