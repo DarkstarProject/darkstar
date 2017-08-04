@@ -1,9 +1,9 @@
 ---------------------------------------------------------------------------------------------------
--- func: completequest <logID> <questID> <player>
--- desc: Completes the given quest for the GM or target player.
+-- func: @checkquest <logID> <questID> {player}
+-- desc: Prints status of the quest to the in game chatlog
 ---------------------------------------------------------------------------------------------------
 
-require("scripts/globals/quests")
+require("scripts/globals/quests");
 
 cmdprops =
 {
@@ -13,11 +13,11 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@completequest <logID> <questID> {player}");
+    player:PrintToPlayer("@checkquest <logID> <questID> {player}");
 end;
 
-function onTrigger(player, logId, questId, target)
-
+function onTrigger(player,logId,questId,target)
+    
     -- validate logId
     local logName;
     if (logId == nil) then
@@ -50,7 +50,10 @@ function onTrigger(player, logId, questId, target)
     -- validate target
     local targ;
     if (target == nil) then
-        targ = player;
+        targ = player:getCursorTarget();
+        if (targ == nil or not targ:isPC()) then
+            targ = player;
+        end
     else
         targ = GetPlayerByName(target);
         if (targ == nil) then
@@ -59,7 +62,16 @@ function onTrigger(player, logId, questId, target)
         end
     end
 
-    -- complete quest
-    targ:completeQuest( logId, questId );
-    player:PrintToPlayer( string.format( "Completed %s Quest with ID %u for %s", logName, questId, targ:getName() ) );
+    -- get quest status
+    local status = targ:getQuestStatus(logId,questId);
+    switch (status): caseof
+    {
+        [0] = function (x) status = "AVAILABLE"; end,
+        [1] = function (x) status = "ACCEPTED"; end,
+        [2] = function (x) status = "COMPLETED"; end,
+    }
+    
+    -- show quest status
+    player:PrintToPlayer( string.format( "%s's status for %s quest ID %i is: %s", targ:getName(), logName, questId, status ) );
+
 end;
