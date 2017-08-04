@@ -9,16 +9,31 @@ cmdprops =
     parameters = "s"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("@goto <player>");
+end;
+
 function onTrigger(player, target)
+
+    -- validate target
     if (target == nil) then
-        player:PrintToPlayer("You must enter a valid player name.");
+        error(player, "You must enter a player name.");
+        return;
+    end
+    local targ = GetPlayerByName( target );
+    if (targ == nil) then
+        error(player, string.format( "Player named '%s' not found!", target ) );
+        return;
+    elseif (targ:getID() == player:getID()) then
+        error(player, "You can't goto yourself.");
         return;
     end
 
-    local targ = GetPlayerByName( target );
-    if (targ ~= nil) then
-        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), 0, targ:getZoneID() );    
+    -- goto target
+    if (targ:getZoneID() == player:getZoneID()) then
+        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), targ:getRotPos() );
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
+        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), targ:getRotPos(), targ:getZoneID() );
     end
 end
