@@ -13,7 +13,7 @@ cmdprops =
 };
 
 function onTrigger(player, KI, target)
-    if (keyId == nil) then
+    if (KI == nil) then
         player:PrintToPlayer("You must enter a valid KeyItem to check.");
         player:PrintToPlayer("@haskeyitem <KeyItem> <player>");
         return;
