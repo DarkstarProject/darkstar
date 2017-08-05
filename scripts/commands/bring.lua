@@ -6,15 +6,15 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "s"
+    parameters = "si"
 };
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@bring <player>");
+    player:PrintToPlayer("@bring <player> {forceZone}");
 end;
 
-function onTrigger(player, target)
+function onTrigger(player, target, forceZone)
     -- validate target
     if (target == nil) then
         error(player, "You must enter a target player name.");
@@ -23,12 +23,21 @@ function onTrigger(player, target)
     local targ = GetPlayerByName( target );
     if (targ == nil) then
         error(player, string.format( "Player named '%s' not found!", target ) );
+        return;
+    end
+    
+    -- validate forceZone
+    if (forceZone ~= nil) then
+        if (forceZone ~= 0 and forceZone ~= 1) then
+            error(player, "If provided, forceZone must be 1 (true) or 0 (false).");
+            return;
+        end
     end
     
     -- bring target
-    if (targ:getZoneID() == player:getZoneID()) then
-        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos() );
-    else
+    if (targ:getZoneID() ~= player:getZoneID() or forceZone == 1) then
         targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
+    else
+        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos() );
     end
 end

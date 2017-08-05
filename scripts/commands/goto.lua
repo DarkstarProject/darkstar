@@ -6,15 +6,15 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "s"
+    parameters = "si"
 };
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@goto <player>");
+    player:PrintToPlayer("@goto <player> {forceZone}");
 end;
 
-function onTrigger(player, target)
+function onTrigger(player, target, forceZone)
 
     -- validate target
     if (target == nil) then
@@ -25,15 +25,20 @@ function onTrigger(player, target)
     if (targ == nil) then
         error(player, string.format( "Player named '%s' not found!", target ) );
         return;
-    elseif (targ:getID() == player:getID()) then
-        error(player, "You can't goto yourself.");
-        return;
     end
 
+    -- validate forceZone
+    if (forceZone ~= nil) then
+        if (forceZone ~= 0 and forceZone ~= 1) then
+            error(player, "If provided, forceZone must be 1 (true) or 0 (false).");
+            return;
+        end
+    end
+    
     -- goto target
-    if (targ:getZoneID() == player:getZoneID()) then
-        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), targ:getRotPos() );
-    else
+    if (targ:getZoneID() ~= player:getZoneID() or forceZone == 1) then
         player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), targ:getRotPos(), targ:getZoneID() );
+    else
+        player:setPos( targ:getXPos(), targ:getYPos(), targ:getZPos(), targ:getRotPos() );
     end
 end
