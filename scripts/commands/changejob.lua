@@ -23,7 +23,7 @@ function onTrigger(player, jobId, level)
         return;
     end
     jobId = tonumber(jobId) or JOBS[string.upper(jobId)];
-    if (JobId == nil or jobId <= 0 or jobId >= MAX_JOB_TYPE) then
+    if (jobId == nil or jobId <= 0 or jobId >= MAX_JOB_TYPE) then
         error(player, "Invalid jobID.  Use job short name, e.g. WAR, or its equivalent numeric ID.");
         return;
     end
