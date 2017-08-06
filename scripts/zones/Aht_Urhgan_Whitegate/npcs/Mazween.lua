@@ -23,8 +23,9 @@ end;
 function onTrigger(player,npc)
 
     player:showText(npc,MAZWEEN_SHOP_DIALOG);
-    
-    local stock = {
+
+    local stock =
+    {
         4881,11200, -- Scroll of Sleepga
         4867,18720, -- Scroll of Sleep II
         4829,25200, -- Poison II
