@@ -48,5 +48,7 @@ function onTrigger(player, arg1, arg2)
     
     -- delete status effect
     targ:delStatusEffect(id);
-    player:PrintToPlayer(string.format("Removed effect %i from %s.",id,targ:getName()));
+    if(targ:getID() ~= player:getID()) then
+        player:PrintToPlayer(string.format("Removed effect %i from %s.",id,targ:getName()));
+    end
 end
