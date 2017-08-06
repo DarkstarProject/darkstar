@@ -33,6 +33,8 @@ function onTrigger(player, target, forceZone)
             error(player, "If provided, forceZone must be 1 (true) or 0 (false).");
             return;
         end
+    else
+        forceZone = 1;
     end
     
     -- goto target
