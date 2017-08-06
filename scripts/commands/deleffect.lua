@@ -36,7 +36,7 @@ function onTrigger(player, arg1, arg2)
         error(player, string.format("Player named '%s' not found!", arg1));
         return;
     end
-    
+
     -- validate effect
     id = tonumber(id) or _G[string.upper(id)];
     if (id == nil) then
@@ -45,10 +45,10 @@ function onTrigger(player, arg1, arg2)
     elseif (id == 0) then
         id = 1;
     end
-    
+
     -- delete status effect
     targ:delStatusEffect(id);
-    if(targ:getID() ~= player:getID()) then
+    if (targ:getID() ~= player:getID()) then
         player:PrintToPlayer(string.format("Removed effect %i from %s.",id,targ:getName()));
     end
 end
