@@ -15,10 +15,12 @@ function error(player, msg)
 end;
 
 function onTrigger(player, target, level)
-    local maxLevel = player:getGMLevel();
-    local targ;
+    -- determine maximum level player can promote to
+    local maxLevel = player:getGMLevel() - 1;
+    if (maxLevel < 1) then maxLevel = 0;
     
     -- validate target
+    local targ;
     if (target == nil) then
         error(player, "You must provide a player name.");
         return;
