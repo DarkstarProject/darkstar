@@ -163,6 +163,11 @@ int32 CCommandHandler::call(CCharEntity* PChar, const int8* commandline)
 
         switch (*parameter)
         {
+        case 'b':
+            lua_pushstring(m_LState, commandline);
+            ++cntparam;
+            break;
+
         case 's':
             if (cmdparameters.size() == 1)
             {
