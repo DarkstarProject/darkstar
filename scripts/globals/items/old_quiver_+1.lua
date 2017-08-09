@@ -22,7 +22,5 @@ end;
 
 function onItemUse(target)
     local quantity = math.random(99);
-    quantity = math.random(99);
-    quantity = math.random(99);
     target:addItem(18182,quantity);
 end;

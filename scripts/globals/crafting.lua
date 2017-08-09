@@ -272,7 +272,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
         end
-    elseif (category == 0) then -- HQ crystal
+    elseif (category == 0 and option ~= 1073741824) then -- HQ crystal
         local i = HQCrystals[bit.band(bit.rshift(option, 5), 15)];
         local quantity = bit.rshift(option, 9);
         local cost = quantity * i.cost;

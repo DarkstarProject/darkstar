@@ -61,36 +61,36 @@ FOV_MSG_BEGINS_ANEW      = 643;
 
 
 -- MESSAGE ID CONSTANTS (msg id of "new training regime registered!": change this if msg ids break!)
-FOV_MSG_EAST_RONFAURE   = 9767;
-FOV_MSG_WEST_RONFAURE   = 10346;
-FOV_MSG_NORTH_GUSTABERG = 10317;
-FOV_MSG_SOUTH_GUSTABERG = 9795;
-FOV_MSG_WEST_SARUTA     = 10126;
-FOV_MSG_EAST_SARUTA     = 9840;
-FOV_MSG_KONSCHTAT       = 9701;
-FOV_MSG_TAHRONGI        = 9720;
-FOV_MSG_LA_THEINE       = 10039;
-FOV_MSG_PASHHOW         = 10611;
-FOV_MSG_JUGNER          = 10757;
-FOV_MSG_MERIPH          = 10490;
-FOV_MSG_BATALLIA        = 9921;
-FOV_MSG_SAUROMAGUE      = 9711;
-FOV_MSG_ROLANBERRY      = 9672;
-FOV_MSG_VALKURM         = 10166;
-FOV_MSG_BUBURIMU        = 10177;
-FOV_MSG_QUFIM           = 10252;
-FOV_MSG_RUAUN_GARDENS   = 9672;
-FOV_MSG_BEAUCEDINE      = 10649;
-FOV_MSG_YUHTUNGA        = 9971;
-FOV_MSG_YHOATOR         = 9920;
-FOV_MSG_WEST_ALTEPA     = 9731;
-FOV_MSG_EAST_ALTEPA     = 9868;
-FOV_MSG_XARCABARD       = 10156;
-FOV_MSG_BEHEMOTH        = 9362;
-FOV_MSG_ZITAH           = 10188;
-FOV_MSG_ROMAEVE         = 9537;
-FOV_MSG_TERIGGAN        = 10031;
-FOV_MSG_SORROWS         = 9517;
+FOV_MSG_EAST_RONFAURE   = 9862;
+FOV_MSG_WEST_RONFAURE   = 10418;
+FOV_MSG_NORTH_GUSTABERG = 10390;
+FOV_MSG_SOUTH_GUSTABERG = 9890;
+FOV_MSG_WEST_SARUTA     = 10180;
+FOV_MSG_EAST_SARUTA     = 9916;
+FOV_MSG_KONSCHTAT       = 9777;
+FOV_MSG_TAHRONGI        = 9815;
+FOV_MSG_LA_THEINE       = 10115;
+FOV_MSG_PASHHOW         = 10703;
+FOV_MSG_JUGNER          = 10849;
+FOV_MSG_MERIPH          = 10582;
+FOV_MSG_BATALLIA        = 9973;
+FOV_MSG_SAUROMAGUE      = 9803;
+FOV_MSG_ROLANBERRY      = 9764;
+FOV_MSG_VALKURM         = 10257;
+FOV_MSG_BUBURIMU        = 10283;
+FOV_MSG_QUFIM           = 10325;
+FOV_MSG_RUAUN_GARDENS   = 9722;
+FOV_MSG_BEAUCEDINE      = 10741;
+FOV_MSG_YUHTUNGA        = 10043;
+FOV_MSG_YHOATOR         = 9994;
+FOV_MSG_WEST_ALTEPA     = 9804;
+FOV_MSG_EAST_ALTEPA     = 9942;
+FOV_MSG_XARCABARD       = 10343;
+FOV_MSG_BEHEMOTH        = 9526;
+FOV_MSG_ZITAH           = 10260;
+FOV_MSG_ROMAEVE         = 9609;
+FOV_MSG_TERIGGAN        = 10103;
+FOV_MSG_SORROWS         = 9681;
 
 -- Event IDs
 FOV_EVENT_RUAUN_GARDENS   = 0x0049;
@@ -430,10 +430,8 @@ function checkRegime(player, mob, rid, index)
     end
 
     if (player:getVar("fov_regimeid") == rid) then -- player is doing this regime
-        -- Need to add difference because a lvl1 can xp with a level 75 at ro'maeve
-        local difference = math.abs(mob:getMainLvl() - player:getMainLvl());
 
-        if (partyType < 2 and (mob:getBaseExp() > 0 or LOW_LEVEL_REGIME == 1) and difference <= 15 and (player:checkDistance(mob) < 100 or player:checkFovDistancePenalty() == 0)) then
+        if (partyType < 2 and (player:checkValorCredit(mob) == true or LOW_LEVEL_REGIME == 1)) then
             -- get the number of mobs needed/killed
             local needed = player:getVar("fov_numneeded"..index);
             local killed = player:getVar("fov_numkilled"..index);

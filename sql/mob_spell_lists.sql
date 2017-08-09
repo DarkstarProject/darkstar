@@ -1347,7 +1347,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Disaster_Idol_Darksday',125,271,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Disaster_Idol_Darksday',125,272,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Disaster_Idol_Darksday',125,242,1,255);
 INSERT INTO `mob_spell_lists` VALUES ('Disaster_Idol_Darksday',125,275,1,255);
-INSERT INTO `mob_spell_lists` VALUES ('King_Behemoth', 126, 218, 1, 255);
+INSERT INTO `mob_spell_lists` VALUES ('Casting_Behemoth', 126, 218, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Promathia_1', 127, 219, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Promathia_2', 128, 218, 1, 255);
 INSERT INTO `mob_spell_lists` VALUES ('Promathia_2', 128, 219, 1, 255);
@@ -2433,6 +2433,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,361,1,255); -- blindga
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,366,1,255); -- graviga
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,367,1,255); -- death
 INSERT INTO `mob_spell_lists` VALUES ('Xibalba',292,498,1,255); -- aeroja
+
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

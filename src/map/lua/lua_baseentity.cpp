@@ -8627,16 +8627,37 @@ inline int32 CLuaBaseEntity::checkDistance(lua_State *L)
     return 1;
 }
 
-inline int32 CLuaBaseEntity::getBaseExp(lua_State *L)
+inline int32 CLuaBaseEntity::checkValorCredit(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
-    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
-    uint32 baseexp = charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel());
+    DSP_DEBUG_BREAK_IF(PLuaBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(PLuaBaseEntity->GetBaseEntity()->objtype != TYPE_MOB);
 
-    lua_pushinteger(L, baseexp);
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    CMobEntity* PMob = (CMobEntity*)PLuaBaseEntity->GetBaseEntity();
+
+    bool credit = false;
+    int lvlDiff = (int)(PMob->GetMLevel()) - (int)(PChar->GetMLevel());
+
+    if (charutils::GetRealExp(PMob->m_HiPCLvl, PMob->GetMLevel()) && distance(PMob->loc.p, PChar->loc.p) < 100 && lvlDiff < 15)
+    {
+        if (PChar->PParty && PChar->PParty->GetSyncTarget())
+        {
+            if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) < 100 && PChar->PParty->GetSyncTarget()->health.hp)
+            {
+                credit = true;
+            }
+        }
+        else
+            credit = true;
+    }
+
+    lua_pushboolean(L, credit);
     return 1;
 }
 
@@ -8660,43 +8681,6 @@ inline int32 CLuaBaseEntity::checkSoloPartyAlliance(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*   TODO: Is this needed?                                               *
-*                                                                       *
-************************************************************************/
-inline int32 CLuaBaseEntity::checkExpPoints(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-
-    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    float baseexp = (float)lua_tonumber(L, 2);
-    float exp = 0;
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    CMobEntity* PMob = (CMobEntity*)PLuaBaseEntity->GetBaseEntity();
-    uint8 charlvl = PChar->GetMLevel();
-    uint8 maxlevel = PMob->m_HiPCLvl;
-
-    if (map_config.fov_party_gap_penalties == 1)
-    {
-        if (maxlevel > 50 || maxlevel > (charlvl + 7))
-        {
-            exp = (float)baseexp*(float)((float)(charlvl) / (float)(maxlevel));
-        }
-        else
-        {
-            exp = (float)baseexp*(float)((float)(charutils::GetExpNEXTLevel(charlvl)) / (float)(charutils::GetExpNEXTLevel(maxlevel)));
-        }
-    }
-    else exp = baseexp;
-
-    lua_pushnumber(L, exp);
-    return 1;
-}
-
-/************************************************************************
-*                                                                       *
 *   Checks whether alliances can do FoV pages                           *
 *                                                                       *
 ************************************************************************/
@@ -8708,22 +8692,6 @@ inline int32 CLuaBaseEntity::checkFovAllianceAllowed(lua_State *L)
     uint8 FovAlliance = map_config.fov_allow_alliance;
 
     lua_pushinteger(L, FovAlliance);
-    return 1;
-}
-
-/************************************************************************
-*                                                                       *
-*   Checks whether FoV distance from mob penalty applies                *
-*                                                                       *
-************************************************************************/
-inline int32 CLuaBaseEntity::checkFovDistancePenalty(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    uint8 FovDistancePenalty = map_config.fov_party_gap_penalties;
-
-    lua_pushinteger(L, FovDistancePenalty);
     return 1;
 }
 
@@ -11415,11 +11383,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPlayerToSpecialBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTimeToSpecialBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkDistance),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBaseExp),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkValorCredit),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkSoloPartyAlliance),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkExpPoints),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovAllianceAllowed),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,checkFovDistancePenalty),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasImmunity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isUndead),

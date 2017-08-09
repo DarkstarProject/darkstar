@@ -11,9 +11,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
+    --[[
+        Retail sends a music change packet (packet ID 0x5F) in both cases.
+    ]]
     if (effect:getPower() == 0) then
+        target:ChangeMusic(5,212);
         target:setAnimation(ANIMATION_CHOCOBO);
     else
+        target:ChangeMusic(5,84);
         target:setAnimation(ANIMATION_MOUNT);
     end
 end;

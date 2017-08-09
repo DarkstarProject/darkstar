@@ -1288,7 +1288,17 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             }
 
             uint32 tick = PStatusEffect->GetTickTime() == 0 ? 0 : PStatusEffect->GetTickTime() / 1000;
-            uint32 duration = PStatusEffect->GetDuration() == 0 ? 0 : std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+            uint32 duration = 0;
+            
+            if (PStatusEffect->GetDuration() > 0)
+            {
+                auto seconds = std::chrono::duration_cast<std::chrono::seconds>(realduration).count();
+
+                if (seconds > 0)
+                    duration = seconds;
+                else
+                    continue;
+            }
 
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,
