@@ -16,6 +16,12 @@ end;
 
 function onTrigger(player, amount, target)
 
+    -- validate amount
+    if (amount == nil or amount < 1) then
+        error(player, "Invalid amount.");
+        return;
+    end
+
     -- validate target
     local targ;
     if (target == nil) then
@@ -28,18 +34,8 @@ function onTrigger(player, amount, target)
         end
     end
 
-    -- validate amount
-    local oldAmount = targ:getExp();
-    if (amount == nil or amount < 1) then
-        error(player, "Invalid amount.");
-        return;
-    end
-    if (amount > oldAmount) then
-        amount = oldAmount;
-    end
-
     -- take xp
     targ:delExp(amount);
-    player:PrintToPlayer( string.format( "Removed %i exp from %s. They are now level %i with %i exp.", amount, targ:getName(), targ:getMainLvl(), targ:getExp() ));
+    player:PrintToPlayer( string.format( "Removed %i exp from %s. They are now level %i.", amount, targ:getName(), targ:getMainLvl() ));
 
 end;

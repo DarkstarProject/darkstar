@@ -5569,22 +5569,6 @@ inline int32 CLuaBaseEntity::delMobMod(lua_State *L)
 
 /************************************************************************
 *                                                                       *
-*  Get character experience points                                      *
-*                                                                       *
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getExp(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    lua_pushinteger(L, PChar->jobs.exp[PChar->GetMJob()]);
-    return 1;
-}
-
-/************************************************************************
-*                                                                       *
 *  Добавляем очки опыта персонажу                                       *
 *                                                                       *
 ************************************************************************/
@@ -11206,7 +11190,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delGil),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setGil),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delExp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,createShop),
