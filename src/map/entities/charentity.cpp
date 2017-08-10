@@ -1569,7 +1569,7 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain);
+        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
 }
 
 void CCharEntity::Die(duration _duration)

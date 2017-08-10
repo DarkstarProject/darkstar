@@ -3409,7 +3409,7 @@ namespace charutils
     *  1 means no exp loss. A value of 0 means full exp loss.               *
     *                                                                       *
     ************************************************************************/
-    void DelExperiencePoints(CCharEntity* PChar, float retainPercent)
+    void DelExperiencePoints(CCharEntity* PChar, float retainPercent, uint16 forcedXpLoss)
     {
         DSP_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
         DSP_DEBUG_BREAK_IF(map_config.exp_loss_level > 99 || map_config.exp_loss_level < 1);
@@ -3422,9 +3422,17 @@ namespace charutils
         uint8 mLevel = (PChar->m_LevelRestriction != 0 && PChar->m_LevelRestriction < PChar->GetMLevel()) ? PChar->m_LevelRestriction : PChar->GetMLevel();
         uint16 exploss = mLevel <= 67 ? (GetExpNEXTLevel(mLevel) * 8) / 100 : 2400;
 
-        //apply retention percent
-        exploss = exploss*(1 - retainPercent);
-        exploss = exploss * map_config.exp_loss_rate;
+        if (forcedXpLoss > 0)
+        {
+            // Override normal XP loss with specified value.
+            exploss = forcedXpLoss;
+        }
+        else
+        {
+            // Apply retention percent
+            exploss = exploss*(1 - retainPercent);
+            exploss = exploss * map_config.exp_loss_rate;
+        }
 
         if (PChar->jobs.exp[PChar->GetMJob()] < exploss)
         {
