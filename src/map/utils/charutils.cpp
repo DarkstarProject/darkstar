@@ -3414,7 +3414,7 @@ namespace charutils
         DSP_DEBUG_BREAK_IF(retainPercent > 1.0f || retainPercent < 0.0f);
         DSP_DEBUG_BREAK_IF(map_config.exp_loss_level > 99 || map_config.exp_loss_level < 1);
 
-        if (PChar->GetMLevel() < map_config.exp_loss_level)
+        if (PChar->GetMLevel() < map_config.exp_loss_level && forcedXpLoss == 0)
         {
             return;
         }
@@ -3436,52 +3436,60 @@ namespace charutils
 
         if (PChar->jobs.exp[PChar->GetMJob()] < exploss)
         {
-            //de-level!
-            int32 diff = abs(PChar->jobs.exp[PChar->GetMJob()] - exploss);
-            PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()] - 1) - diff;
-            PChar->jobs.job[PChar->GetMJob()] -= 1;
-
-            if (PChar->m_LevelRestriction == 0 || PChar->jobs.job[PChar->GetMJob()] < PChar->m_LevelRestriction)
+            if (PChar->jobs.job[PChar->GetMJob()] > 1)
             {
-                PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
-                PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
-            }
+                //de-level!
+                int32 lowerLevelMaxExp = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()] - 1);
+                exploss -= PChar->jobs.exp[PChar->GetMJob()];
+                PChar->jobs.exp[PChar->GetMJob()] = std::max(0, lowerLevelMaxExp - exploss);
+                PChar->jobs.job[PChar->GetMJob()] -= 1;
 
-            BuildingCharSkillsTable(PChar);
-            CalculateStats(PChar);
-            CheckValidEquipment(PChar);
-
-            BuildingCharAbilityTable(PChar);
-            BuildingCharTraitsTable(PChar);
-            BuildingCharWeaponSkills(PChar);
-
-            PChar->pushPacket(new CCharJobsPacket(PChar));
-            PChar->pushPacket(new CCharUpdatePacket(PChar));
-            PChar->pushPacket(new CCharSkillsPacket(PChar));
-            PChar->pushPacket(new CCharRecastPacket(PChar));
-            PChar->pushPacket(new CCharAbilitiesPacket(PChar));
-            PChar->pushPacket(new CMenuMeritPacket(PChar));
-            PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
-            PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
-            PChar->pushPacket(new CCharSyncPacket(PChar));
-
-            PChar->UpdateHealth();
-
-            SaveCharStats(PChar);
-            SaveCharJob(PChar, PChar->GetMJob());
-
-            if (PChar->PParty != nullptr)
-            {
-                if (PChar->PParty->GetSyncTarget() == PChar)
+                if (PChar->m_LevelRestriction == 0 || PChar->jobs.job[PChar->GetMJob()] < PChar->m_LevelRestriction)
                 {
-                    PChar->PParty->RefreshSync();
+                    PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
+                    PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
                 }
-                PChar->PParty->ReloadParty();
-            }
 
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
-            luautils::OnPlayerLevelDown(PChar);
-            PChar->updatemask |= UPDATE_HP;
+                BuildingCharSkillsTable(PChar);
+                CalculateStats(PChar);
+                CheckValidEquipment(PChar);
+
+                BuildingCharAbilityTable(PChar);
+                BuildingCharTraitsTable(PChar);
+                BuildingCharWeaponSkills(PChar);
+
+                PChar->pushPacket(new CCharJobsPacket(PChar));
+                PChar->pushPacket(new CCharUpdatePacket(PChar));
+                PChar->pushPacket(new CCharSkillsPacket(PChar));
+                PChar->pushPacket(new CCharRecastPacket(PChar));
+                PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+                PChar->pushPacket(new CMenuMeritPacket(PChar));
+                PChar->pushPacket(new CCharJobExtraPacket(PChar, true));
+                PChar->pushPacket(new CCharJobExtraPacket(PChar, false));
+                PChar->pushPacket(new CCharSyncPacket(PChar));
+
+                PChar->UpdateHealth();
+
+                SaveCharStats(PChar);
+                SaveCharJob(PChar, PChar->GetMJob());
+
+                if (PChar->PParty != nullptr)
+                {
+                    if (PChar->PParty->GetSyncTarget() == PChar)
+                    {
+                        PChar->PParty->RefreshSync();
+                    }
+                    PChar->PParty->ReloadParty();
+                }
+
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
+                luautils::OnPlayerLevelDown(PChar);
+                PChar->updatemask |= UPDATE_HP;
+            }
+            else
+            {
+                PChar->jobs.exp[PChar->GetMJob()] = 0;
+            }
         }
         else
         {
