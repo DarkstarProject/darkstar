@@ -5599,9 +5599,7 @@ inline int32 CLuaBaseEntity::delExp(lua_State *L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
-    PChar->jobs.exp[PChar->GetMJob()] -= (uint32)lua_tointeger(L, 1);
-    charutils::SaveCharExp(PChar, PChar->GetMJob());
-    PChar->pushPacket(new CCharStatsPacket(PChar));
+    charutils::DelExperiencePoints(PChar, 0, dsp_cap(lua_tointeger(L, 1), 0, 65535));
     return 0;
 }
 
