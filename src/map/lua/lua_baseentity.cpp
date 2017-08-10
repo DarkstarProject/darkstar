@@ -7155,18 +7155,8 @@ inline int32 CLuaBaseEntity::getACC(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    uint8 slot = SLOT_MAIN;
-    uint8 offsetAccuracy = 0;
-    // if((L,1) == 1){
-    //  slot = SLOT_SUB;
-    //}
-    if ((L, 2) > 0)
-    {
-        offsetAccuracy = (L, 2);
-    }
-
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    uint16 ACC = PEntity->ACC(slot, offsetAccuracy);
+    uint16 ACC = PEntity->ACC(0, 0);
 
     lua_pushinteger(L, ACC);
     return 1;
