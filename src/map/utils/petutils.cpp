@@ -768,7 +768,7 @@ namespace petutils
                 ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
 
                 // check latents affected by pets
-                ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(PetID);
+                ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType();
                 PMaster->ForParty([](CBattleEntity* PMember) {
                     ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
                 });
@@ -908,7 +908,7 @@ namespace petutils
             if (PPetEnt->getPetType() == PETTYPE_AVATAR)
                 PMaster->setModifier(Mod::AVATAR_PERPETUATION, 0);
 
-            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType(-1);
+            ((CCharEntity*)PMaster)->PLatentEffectContainer->CheckLatentsPetType();
             PMaster->ForParty([](CBattleEntity* PMember){
                 ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });
