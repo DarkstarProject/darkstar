@@ -21,7 +21,7 @@ function onManeuverLose(pet,maneuvers)
 end
 
 function onAttachmentCheck(pet,target)
-	local master = pet:getMaster()
+    local master = pet:getMaster()
     if master and master:countEffect(EFFECT_LIGHT_MANEUVER) > 0 and pet:getLocalVar("flash") < VanadielTime() then
         pet:setLocalVar("flash", VanadielTime() + 45)
         return 1947
