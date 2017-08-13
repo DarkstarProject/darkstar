@@ -14,7 +14,7 @@ end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local maneuvers = master:countEffect(EFFECT_FIRE_MANEUVER)
-    skill:setMsg(409) -- uses... tp is increased to ..
+    skill:setMsg(MSG_TP_INCREASE)
 
     target:addTP(400 * maneuvers)
 

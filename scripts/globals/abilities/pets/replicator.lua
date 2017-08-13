@@ -18,12 +18,12 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local shadows = 1 + maneuvers -- math.floor(maneuvers * 3.5) currently on retail
 
     if target:addStatusEffect(EFFECT_BLINK, shadows, 0, duration) then
-        skill:setMsg(186) -- MSG_BUFF
+        skill:setMsg(MSG_BUFF)
         for i = 1, maneuvers do
             master:delStatusEffectSilent(EFFECT_WIND_MANEUVER)
         end
     else
-        skill:setMsg(189) -- MSG_NO_EFFECT
+        skill:setMsg(MSG_NO_EFFECT)
     end
 
     return EFFECT_BLINK

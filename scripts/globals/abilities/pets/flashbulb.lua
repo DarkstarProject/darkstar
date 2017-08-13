@@ -28,12 +28,12 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
 
     if resist > 0.0625 then
         if target:addStatusEffect(EFFECT_FLASH, 200, 0, duration) then
-            skill:setMsg(243) -- MSG_ENFEEB
+            skill:setMsg(MSG_ENFEEB)
         else
-            skill:setMsg(189) -- MSG_NO_EFFECT
+            skill:setMsg(MSG_NO_EFFECT)
         end
     else
-        skill:setMsg(85) -- MSG_RESIST
+        skill:setMsg(MSG_RESIST)
     end
 
     return EFFECT_FLASH

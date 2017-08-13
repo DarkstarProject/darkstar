@@ -14,7 +14,7 @@ end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
     local maneuvers = master:countEffect(EFFECT_LIGHT_MANEUVER)
-    skill:setMsg(101) -- MSG_USES
+    skill:setMsg(MSG_USES)
 
     local function removeStatus()
         if target:delStatusEffect(EFFECT_PETRIFICATION) then return true end

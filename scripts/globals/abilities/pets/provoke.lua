@@ -14,6 +14,6 @@ end
 
 function onAutomatonAbility(automaton, target, skill, tp, master, action)
     target:addEnmity(automaton, 1, 1800)
-    skill:setMsg(101) -- MSG_USES
+    skill:setMsg(MSG_USES)
     return 0
 end

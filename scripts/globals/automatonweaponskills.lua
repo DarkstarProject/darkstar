@@ -4,7 +4,17 @@ require("scripts/globals/utils");
 require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
-MSG_MISS = 188;
+MSG_RESIST = 85
+MSG_USES = 101 -- simple uses message
+MSG_DISAPPEAR = 159 -- <target>'s stun effect disappears!
+MSG_MISS = 188
+MSG_BUFF = 186
+MSG_DRAIN_HP = 187
+MSG_NO_EFFECT = 189
+MSG_RECOVER_MP = 224
+MSG_ENFEEB = 243 --XXX receives the effect of petrification.
+MSG_ATTR_DRAINED = 369
+MSG_TP_INCREASE = 409
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
 function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill)

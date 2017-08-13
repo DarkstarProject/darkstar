@@ -47,9 +47,9 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     amount = amount + math.floor(bonus)
 
     if target:addStatusEffect(EFFECT_STONESKIN, amount, 0, duration) then
-        skill:setMsg(186) -- MSG_BUFF
+        skill:setMsg(MSG_BUFF)
     else
-        skill:setMsg(189) -- MSG_NO_EFFECT
+        skill:setMsg(MSG_NO_EFFECT)
     end
 
     return EFFECT_STONESKIN
