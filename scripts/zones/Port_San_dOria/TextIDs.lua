@@ -1,9 +1,8 @@
 -- Variable TextID   Description text
 
 -- General Texts
- ITEM_CANNOT_BE_OBTAINED_1 =  6422; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.<<<Prompt>>>
- ITEM_CANNOT_BE_OBTAINED_2 =  6423; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Come back after sorting your inventory.
- ITEM_CANNOT_BE_OBTAINED_3 =  6425; -- You cannot obtain the item. Come back after sorting your inventory.
+   ITEM_CANNOT_BE_OBTAINED =  6424; -- You cannot obtain the <item>. Come back after sorting your inventory.
+          MYSTIC_RETRIEVER =  6426; -- You cannot obtain the <item>. Speak with the mystic retriever after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE =  6427; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Try trading again after sorting your inventory.
              ITEM_OBTAINED =  6429; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
               GIL_OBTAINED =  6430; -- Obtained <<<Numeric Parameter 0>>> gil.
