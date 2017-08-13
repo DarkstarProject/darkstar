@@ -48,7 +48,7 @@ function onMobEngaged(mob,target)
             mob:setMod(MOD_EARTHDEF,256);
         end
 
-        if (IsMobDead(16929034)==true and IsMobDead(16929043)==true) then
+        if (IsMobDead(16929037)==true and IsMobDead(16929043)==true) then
             mob:setMod(MOD_THUNDERDEF,-128);
         else    
             mob:setMod(MOD_THUNDERDEF,256);
