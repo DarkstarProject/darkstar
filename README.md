@@ -4,9 +4,12 @@ Darkstar Project
 ========
 
 Welcome to the DarkStar project, an emulation server for FFXI.
-Visit our forums and IRC to keep in touch with the latest developments.
+Visit our forums and Discord or IRC to keep in touch with the latest developments.
 
 **Forums:** https://forums.dspt.info/index.php
+
+**Discord:**
+https://discord.gg/4dgAzfC
 
 **IRC Channel**
  * **Server:** irc.rizon.net

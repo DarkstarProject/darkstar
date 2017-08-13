@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4226
---    Silver Quiver
---    When used, you will obtain one stack of Silver Arrows
+-- ID: 4226
+-- Silver Quiver
+-- When used, you will obtain one stack of Silver Arrows
 -----------------------------------------
 
 -----------------------------------------

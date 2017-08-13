@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     if (Ashmaker_Gotblut_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Ashmaker_Gotblut");
-        if (ToD <= os.time(t) and GetMobAction(Ashmaker_Gotblut) == 0) then
+        if (ToD <= os.time() and GetMobAction(Ashmaker_Gotblut) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Ashmaker_Gotblut);
                 GetMobByID(Ashmaker_Gotblut):setRespawnTime(GetMobRespawnTime(mobID));

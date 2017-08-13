@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4978
---    Scroll of Foe Requiem III
---    Teaches the song Foe Requiem III
+-- ID: 4978
+-- Scroll of Foe Requiem III
+-- Teaches the song Foe Requiem III
 -----------------------------------------
 
 -----------------------------------------

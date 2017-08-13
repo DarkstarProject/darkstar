@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4666
---    Scroll of Paralyze
---    Teaches the white magic Paralyze
+-- ID: 4666
+-- Scroll of Paralyze
+-- Teaches the white magic Paralyze
 -----------------------------------------
 
 -----------------------------------------

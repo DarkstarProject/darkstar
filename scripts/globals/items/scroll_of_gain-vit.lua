@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5089
---    Scroll of Gain-VIT
---    Teaches the white magic Gain-VIT
+-- ID: 5089
+-- Scroll of Gain-VIT
+-- Teaches the white magic Gain-VIT
 -----------------------------------------
 
 -----------------------------------------

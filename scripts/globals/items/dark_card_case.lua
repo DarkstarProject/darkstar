@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5409
---    Dark Card Case
---    When used, you will obtain one stack of Dark Cards
+-- ID: 5409
+-- Dark Card Case
+-- When used, you will obtain one stack of Dark Cards
 -----------------------------------------
 
 -----------------------------------------

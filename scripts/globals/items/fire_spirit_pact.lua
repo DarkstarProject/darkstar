@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4896
---    Fire Spirit Pact
---    Teaches the summoning magicFire Spirit
+-- ID: 4896
+-- Fire Spirit Pact
+-- Teaches the summoning magicFire Spirit
 -----------------------------------------
 
 -----------------------------------------

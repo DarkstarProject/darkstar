@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 6041
---    Pyrohelix Schema
---    Teaches the black magic Pyrohelix
+-- ID: 6041
+-- Pyrohelix Schema
+-- Teaches the black magic Pyrohelix
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4986
---    Scroll of Armys Paeton
---    Teaches the song Armys Paeton
+-- ID: 4986
+-- Scroll of Armys Paeton
+-- Teaches the song Armys Paeton
 -----------------------------------------
 
 -----------------------------------------

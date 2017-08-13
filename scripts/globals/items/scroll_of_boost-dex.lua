@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5095
---    Scroll of Boost-DEX
---    Teaches the white magic Boost-DEX
+-- ID: 5095
+-- Scroll of Boost-DEX
+-- Teaches the white magic Boost-DEX
 -----------------------------------------
 
 -----------------------------------------

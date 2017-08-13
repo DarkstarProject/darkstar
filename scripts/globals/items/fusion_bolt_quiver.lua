@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5821
---    Fusion Bolt Quiver
---    When used, you will obtain one stack of Fusion Bolts
+-- ID: 5821
+-- Fusion Bolt Quiver
+-- When used, you will obtain one stack of Fusion Bolts
 -----------------------------------------
 
 -----------------------------------------

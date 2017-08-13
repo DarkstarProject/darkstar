@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4659
---    Scroll of Shell IV
---    Teaches the white magic Shell IV
+-- ID: 4659
+-- Scroll of Shell IV
+-- Teaches the white magic Shell IV
 -----------------------------------------
 
 -----------------------------------------

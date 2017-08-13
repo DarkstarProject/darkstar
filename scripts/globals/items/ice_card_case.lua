@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5403
---    Ice Card Case
---    When used, you will obtain one stack of Ice Cards
+-- ID: 5403
+-- Ice Card Case
+-- When used, you will obtain one stack of Ice Cards
 -----------------------------------------
 
 -----------------------------------------

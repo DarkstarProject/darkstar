@@ -22,22 +22,27 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(75);
     else
         -- Calculate duration.
-        local duration = 180;
+        local duration = 120;
 
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
             duration = duration * 2;
         end
 
-        -- Grabbing variables for paralyze potency
-        local pMND = caster:getStat(MOD_MND);
-        local mMND = target:getStat(MOD_MND);
-        local merits = caster:getMerit(MERIT_PARALYZE_II);
-        local dMND = (pMND - mMND);
+        local dMND = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
 
         -- Calculate potency.
-        local potency = (pMND + dMND)/5; -- Simplified from (2 * (pMND + dMND)) / 10
+        local merits = caster:getMerit(MERIT_PARALYZE_II);
+        local potency = math.floor(dMND / 4) + 20;
         if (potency > 30) then
             potency = 30;
+        end
+
+        if (potency < 10) then
+            potency = 10;
+        end
+
+        if (merits > 1) then
+            potency = potency + merits - 1;
         end
 
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
@@ -45,7 +50,6 @@ function onSpellCast(caster,target,spell)
             caster:delStatusEffect(EFFECT_SABOTEUR);
         end
 
-        potency = potency + merits; --similar to Slow II, merit potency bonus is added after the cap
         -- printf("Duration : %u",duration);
         -- printf("Potency : %u",potency);
         local resist = applyResistanceEffect(caster,spell,target,dMND,35,merits*2,EFFECT_PARALYSIS);

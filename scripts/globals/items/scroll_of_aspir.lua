@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4855
---    Scroll of Aspir
---    Teaches the black magic Aspir
+-- ID: 4855
+-- Scroll of Aspir
+-- Teaches the black magic Aspir
 -----------------------------------------
 
 -----------------------------------------

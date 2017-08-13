@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4689
---    Scroll of Recall-Meriph
---    Teaches the white magic Recall-Meriph
+-- ID: 4689
+-- Scroll of Recall-Meriph
+-- Teaches the white magic Recall-Meriph
 -----------------------------------------
 
 -----------------------------------------

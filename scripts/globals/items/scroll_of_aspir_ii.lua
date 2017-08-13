@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4856
---    Scroll of Aspir II
---    Teaches the black magic Aspir II
+-- ID: 4856
+-- Scroll of Aspir II
+-- Teaches the black magic Aspir II
 -----------------------------------------
 
 -----------------------------------------

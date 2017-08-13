@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4809
---    Scroll of Waterga III
---    Teaches the black magic Waterga III
+-- ID: 4809
+-- Scroll of Waterga III
+-- Teaches the black magic Waterga III
 -----------------------------------------
 
 -----------------------------------------

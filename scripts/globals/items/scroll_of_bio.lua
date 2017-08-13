@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4838
---    Scroll of Bio
---    Teaches the black magic Bio
+-- ID: 4838
+-- Scroll of Bio
+-- Teaches the black magic Bio
 -----------------------------------------
 
 -----------------------------------------

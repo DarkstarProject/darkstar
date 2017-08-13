@@ -3,31 +3,31 @@ TheAshuTalif = {
     text = {
         -- General Texts
         ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED = 6384; -- Obtained: <item>
-        GIL_OBTAINED = 6385; -- Obtained <number> gil
-        KEYITEM_OBTAINED = 6387; -- Obtained key item: <keyitem>
+        ITEM_OBTAINED = 6385; -- Obtained: <item>
+        GIL_OBTAINED = 6386; -- Obtained <number> gil
+        KEYITEM_OBTAINED = 6388; -- Obtained key item: <keyitem>
 
         -- Assault Texts
-        TIME_TO_COMPLETE = 7399, -- to complete this mission
-        MISSION_FAILED = 7400, -- The mission has failed. Leaving area
-        TIME_REMAINING_MINUTES = 7404, -- minute/minutes
-        TIME_REMAINING_SECONDS = 7405, -- second/seconds
-        FADES_INTO_NOTHINGNESS = 7406, -- fades into nothingness
-        PARTY_FALLEN = 7407, -- party members have fallen in battle. Mission failure in
+        TIME_TO_COMPLETE = 7400, -- to complete this mission
+        MISSION_FAILED = 7401, -- The mission has failed. Leaving area
+        TIME_REMAINING_MINUTES = 7405, -- minute/minutes
+        TIME_REMAINING_SECONDS = 7406, -- second/seconds
+        FADES_INTO_NOTHINGNESS = 7407, -- fades into nothingness
+        PARTY_FALLEN = 7408, -- party members have fallen in battle. Mission failure in
 
         -- The Black Coffin
-        BATTLE_HIGH_SEAS = 7562,
-        TIME_IS_NEAR = 7563,
-        SO_I_FALL = 7564,
-        SWIFT_AS_LIGHTNING = 7565,
-        HARNESS_THE_WHIRLWIND = 7566,
-        STING_OF_MY_BLADE = 7567,
-        UNNATURAL_CURS = 7568,
-        OVERPOWERED_CREW = 7569,
-        TEST_YOUR_BLADES = 7570,
-        FOR_THE_BLACK_COFFIN = 7571,
-        FOR_EPHRAMAD = 7572,
-        TROUBLESOME_SQUABS = 7573
+        BATTLE_HIGH_SEAS = 7563,
+        TIME_IS_NEAR = 7564,
+        SO_I_FALL = 7565,
+        SWIFT_AS_LIGHTNING = 7566,
+        HARNESS_THE_WHIRLWIND = 7567,
+        STING_OF_MY_BLADE = 7568,
+        UNNATURAL_CURS = 7569,
+        OVERPOWERED_CREW = 7570,
+        TEST_YOUR_BLADES = 7571,
+        FOR_THE_BLACK_COFFIN = 7572,
+        FOR_EPHRAMAD = 7573,
+        TROUBLESOME_SQUABS = 7574
     },
 
     mobs = {

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4816
---    Scroll of Tornado
---    Teaches the black magic Tornado
+-- ID: 4816
+-- Scroll of Tornado
+-- Teaches the black magic Tornado
 -----------------------------------------
 
 -----------------------------------------

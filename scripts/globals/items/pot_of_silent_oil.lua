@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4165
---    Silent oil
---    This lubricant cuts down 99.99% of all friction
+-- ID: 4165
+-- Silent oil
+-- This lubricant cuts down 99.99% of all friction
 -----------------------------------------
 
 require("scripts/globals/status");

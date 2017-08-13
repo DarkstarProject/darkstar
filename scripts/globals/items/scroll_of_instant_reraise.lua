@@ -1,5 +1,5 @@
 -----------------------------------------
---    ID: 4182
+-- ID: 4182
 --  Scroll of Instant ReRaise
 --  Brings you back from the dead~!
 -----------------------------------------
@@ -28,7 +28,7 @@ function onItemUse(target)
             target:delStatusEffect(EFFECT_RERAISE);
             target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
         end
-    else    
+    else
         target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
     end
 end;

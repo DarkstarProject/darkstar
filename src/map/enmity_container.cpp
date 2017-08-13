@@ -128,6 +128,7 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, 
 
     if (enmity_obj != m_EnmityList.end())
     {
+        if (enmity_obj->second.PEnmityOwner == nullptr) enmity_obj->second.PEnmityOwner = PEntity;
         float bonus = CalculateEnmityBonus(PEntity);
 
         int newCE = enmity_obj->second.CE + ((CE > 0) ? CE * bonus : CE);

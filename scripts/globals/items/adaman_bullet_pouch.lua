@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5915
---    Adaman Bullet Pouch
---    When used, you will obtain one stack of Adaman Bullets
+-- ID: 5915
+-- Adaman Bullet Pouch
+-- When used, you will obtain one stack of Adaman Bullets
 -----------------------------------------
 
 -----------------------------------------

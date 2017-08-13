@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4929
---    Scroll of Katon: Ni
---    Teaches the ninjutsu Katon: Ni
+-- ID: 4929
+-- Scroll of Katon: Ni
+-- Teaches the ninjutsu Katon: Ni
 -----------------------------------------
 
 -----------------------------------------

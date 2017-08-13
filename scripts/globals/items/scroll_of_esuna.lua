@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4703
---    Scroll of Esuna
---    Teaches the white magic Esuna
+-- ID: 4703
+-- Scroll of Esuna
+-- Teaches the white magic Esuna
 -----------------------------------------
 
 -----------------------------------------

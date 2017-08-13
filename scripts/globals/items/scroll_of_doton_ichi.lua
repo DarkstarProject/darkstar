@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4937
---    Scroll of Doton: Ichi
---    Teaches the ninjutsu Doton: Ichi
+-- ID: 4937
+-- Scroll of Doton: Ichi
+-- Teaches the ninjutsu Doton: Ichi
 -----------------------------------------
 
 -----------------------------------------

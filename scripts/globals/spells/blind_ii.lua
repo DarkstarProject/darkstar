@@ -23,21 +23,23 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_MND)); --blind uses caster INT vs target MND
 
     -- Base power.  May need more research.
-    local power = math.floor((dINT + 100) / 4);
+    local power = math.floor(dINT * 3/8) + 45;
 
     if (power < 15) then
         power = 15;
     end
     
-    if (power > 30) then
-        power = 30;
-    end
-    
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-        power = power * 2;
+    if (power > 90) then
+        power = 90;
     end
 
-    power = power + merits; --similar to Slow II, merit potency bonus is added after the cap
+    if (merits > 1) then
+        power = power + merits - 1;
+    end
+
+    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        power = power * 2;
+    end
 
     -- Duration, including resistance.  Unconfirmed.
     local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,merits*2,EFFECT_BLINDNESS);

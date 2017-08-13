@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4622
---    Scroll of Poisona
---    Teaches the white magic Poisona
+-- ID: 4622
+-- Scroll of Poisona
+-- Teaches the white magic Poisona
 -----------------------------------------
 
 -----------------------------------------

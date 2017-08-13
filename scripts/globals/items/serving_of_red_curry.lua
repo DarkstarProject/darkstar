@@ -3,16 +3,16 @@
 -- Item: serving_of_red_curry
 -- Food Effect: 3 hours, All Races
 -----------------------------------------
---    HP +25
---    Strength +7
---    Agility +1
---    Intelligence -2
---    HP recovered while healing +2
---    MP recovered while healing +1
---    Attack +23% (Cap: 150@652 Base Attack)
---    Ranged Attack +23% (Cap: 150@652 Base Ranged Attack)
---    Demon Killer +4
---    Resist Sleep +3
+-- HP +25
+-- Strength +7
+-- Agility +1
+-- Intelligence -2
+-- HP recovered while healing +2
+-- MP recovered while healing +1
+-- Attack +23% (Cap: 150@652 Base Attack)
+-- Ranged Attack +23% (Cap: 150@652 Base Ranged Attack)
+-- Demon Killer +4
+-- Resist Sleep +3
 -----------------------------------------
 
 require("scripts/globals/status");

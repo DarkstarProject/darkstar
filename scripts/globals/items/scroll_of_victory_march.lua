@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5028
---    Scroll of Victory March
---    Teaches the song Victory March
+-- ID: 5028
+-- Scroll of Victory March
+-- Teaches the song Victory March
 -----------------------------------------
 
 -----------------------------------------

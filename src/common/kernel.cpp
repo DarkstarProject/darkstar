@@ -22,7 +22,6 @@
 */
 
 #include "../common/kernel.h"
-#include "../common/malloc.h"
 #include "../common/showmsg.h"
 #include "../common/socket.h"
 #include "../common/taskmgr.h"
@@ -33,6 +32,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <cstring>
+#include "fmt/printf.h"
 
 #ifndef _WIN32
 	#include <unistd.h>
@@ -284,7 +284,6 @@ int main (int argc, char **argv)
 	}
 
     log_init(argc, argv);
-	malloc_init();
 	set_server_type();
 	display_title();
 	usercheck();

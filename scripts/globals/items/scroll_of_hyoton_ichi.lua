@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4931
---    Scroll of Hyoton: Ichi
---    Teaches the ninjutsu Hyoton: Ichi
+-- ID: 4931
+-- Scroll of Hyoton: Ichi
+-- Teaches the ninjutsu Hyoton: Ichi
 -----------------------------------------
 
 -----------------------------------------

@@ -17,7 +17,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Vuu_Puqu_the_Beguiler's Window Open Time
-    SetServerVariable("[POP]Vuu_Puqu_the_Beguiler", os.time(t) + math.random((7200),(14400))); -- 2-4 hours
+    SetServerVariable("[POP]Vuu_Puqu_the_Beguiler", os.time() + math.random((7200),(14400))); -- 2-4 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

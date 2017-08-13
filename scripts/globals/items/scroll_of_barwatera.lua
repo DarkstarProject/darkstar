@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4679
---    Scroll of Barwatera
---    Teaches the white magic Barwatera
+-- ID: 4679
+-- Scroll of Barwatera
+-- Teaches the white magic Barwatera
 -----------------------------------------
 
 -----------------------------------------

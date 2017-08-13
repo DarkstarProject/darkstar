@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4996
---    Scroll of Mages Ballad III
---    Teaches the song Mages Ballad III
+-- ID: 4996
+-- Scroll of Mages Ballad III
+-- Teaches the song Mages Ballad III
 -----------------------------------------
 
 -----------------------------------------

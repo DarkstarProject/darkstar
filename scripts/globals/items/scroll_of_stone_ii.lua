@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4768
---    Scroll of Stone II
---    Teaches the black magic Stone II
+-- ID: 4768
+-- Scroll of Stone II
+-- Teaches the black magic Stone II
 -----------------------------------------
 
 -----------------------------------------

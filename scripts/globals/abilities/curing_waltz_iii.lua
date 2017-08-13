@@ -5,7 +5,7 @@
 -- TP Required: 50%
 -- Recast Time: 00:10
 -----------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -23,11 +23,19 @@ function onAbilityCheck(player,target,ability)
     elseif (player:getTP() < 500) then
         return MSGBASIC_NOT_ENOUGH_TP,0;
     else
-        -- apply waltz recast modifiers
-        if (player:getMod(MOD_WALTZ_RECAST)~=0) then
-            local recastMod = -100 * (player:getMod(MOD_WALTZ_RECAST)); -- 500 ms per 5% (per merit)
-            if (recastMod <0) then
-                --TODO
+        --[[ Apply "Waltz Ability Delay" reduction
+            1 modifier = 1 second]]
+        local recastMod = player:getMod(MOD_WALTZ_DELAY);
+        if (recastMod ~= 0) then
+            local newRecast = ability:getRecast() +recastMod;
+            ability:setRecast(utils.clamp(newRecast,0,newRecast));
+        end
+        -- Apply "Fan Dance" Waltz recast reduction
+        if (player:hasStatusEffect(EFFECT_FAN_DANCE)) then
+            local fanDanceMerits = target:getMerit(MERIT_FAN_DANCE);
+            -- Every tier beyond the 1st is -5% recast time
+            if (fanDanceMerits > 5) then
+                ability:setRecast(ability:getRecast() * ((fanDanceMerits -5)/100));
             end
         end
         return 0,0;
@@ -43,13 +51,13 @@ function onUseAbility(player,target,ability)
     if not player:hasStatusEffect(EFFECT_TRANCE) then
         player:delTP(500);
     end;
-    
+
     --Grabbing variables.
     local vit = target:getStat(MOD_VIT);
     local chr = player:getStat(MOD_CHR);
     local mjob = player:getMainJob(); --19 for DNC main.
     local cure = 0;
-    
+
 
 
     --Performing mj check.
@@ -71,12 +79,12 @@ function onUseAbility(player,target,ability)
     if ((target:getMaxHP() - target:getHP()) < cure) then
         cure = (target:getMaxHP() - target:getHP());
     end
-    
+
     --Do it
     target:restoreHP(cure);
     target:wakeUp();
     player:updateEnmityFromCure(target,cure);
-    
+
     return cure;
-    
+
 end;

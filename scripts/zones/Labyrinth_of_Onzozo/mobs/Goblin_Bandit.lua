@@ -28,7 +28,7 @@ function onMobDespawn(mob)
 
     if (Soulstealer_Skullnix_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Soulstealer_Skullnix");
-        if (ToD <= os.time(t) and GetMobAction(Soulstealer_Skullnix) == 0) then
+        if (ToD <= os.time() and GetMobAction(Soulstealer_Skullnix) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Soulstealer_Skullnix);
                 GetMobByID(Soulstealer_Skullnix):setRespawnTime(GetMobRespawnTime(mobID));

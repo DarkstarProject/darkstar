@@ -27,7 +27,7 @@ function onMobDespawn(mob)
 
     if (Arachne_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Arachne");
-        if (ToD <= os.time(t) and GetMobAction(Arachne) == 0) then
+        if (ToD <= os.time() and GetMobAction(Arachne) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Arachne);
                 GetMobByID(Arachne):setRespawnTime(GetMobRespawnTime(mobID));

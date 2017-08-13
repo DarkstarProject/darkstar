@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4719
---    Scroll of Regen III
---    Teaches the white magic Regen III
+-- ID: 4719
+-- Scroll of Regen III
+-- Teaches the white magic Regen III
 -----------------------------------------
 
 -----------------------------------------

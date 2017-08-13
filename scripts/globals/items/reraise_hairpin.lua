@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 15211
---    Mamool Ja Earring
+-- ID: 15211
+-- Mamool Ja Earring
 --  This Hairpin functions in the same way as the spell Reraise II.
 -----------------------------------------
 

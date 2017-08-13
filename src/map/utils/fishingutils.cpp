@@ -283,7 +283,7 @@ bool LureLoss(CCharEntity* PChar, bool RemoveFly)
 	}
 	if (PLure->getQuantity() == 1)
 	{
-		charutils::EquipItem(PChar, 0, PChar->equip[SLOT_AMMO], LOC_INVENTORY);
+		charutils::EquipItem(PChar, 0, SLOT_AMMO, LOC_INVENTORY);
 	}
 
 	charutils::UpdateItem(PChar, PLure->getLocationID(), PLure->getSlotID(), -1);

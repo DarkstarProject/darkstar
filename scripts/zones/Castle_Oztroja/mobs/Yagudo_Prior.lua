@@ -22,7 +22,7 @@ function onMobDespawn(mob)
     if (Yaa_Haqa_the_Profane_PH[mobID] ~= nil) then
 
         local ToD = GetServerVariable("[POP]Yaa_Haqa_the_Profane");
-        if (ToD <= os.time(t) and GetMobAction(Yaa_Haqa_the_Profane) == 0) then
+        if (ToD <= os.time() and GetMobAction(Yaa_Haqa_the_Profane) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Yaa_Haqa_the_Profane);
                 GetMobByID(Yaa_Haqa_the_Profane):setRespawnTime(GetMobRespawnTime(mobID));

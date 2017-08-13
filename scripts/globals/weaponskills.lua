@@ -16,10 +16,15 @@ require("scripts/globals/magicburst");
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
-
     local criticalHit = false;
-    local bonusTP = params.bonusTP or 0
-    local multiHitfTP = params.multiHitfTP or false
+    local bonusTP = 0;
+    if (params.bonusTP ~= nil) then
+        bonusTP = params.bonusTP;
+    end
+    local multiHitfTP = false;
+    if (params.multiHitfTP ~= nil) then
+        multiHitfTP = params.multiHitfTP;
+    end
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
     bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
 
@@ -242,8 +247,10 @@ end;
 --         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
 
 function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
-
-    local bonusTP = params.bonusTP or 0
+    local bonusTP = 0;
+    if (params.bonusTP ~= nil) then
+        bonusTP = params.bonusTP;
+    end
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
     bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
 
@@ -676,9 +683,14 @@ end;
 
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
  function doRangedWeaponskill(attacker, target, wsID, params, tp, primary)
-
-    local bonusTP = params.bonusTP or 0
-    local multiHitfTP = params.multiHitfTP or false
+    local bonusTP = 0;
+    if (params.bonusTP ~= nil) then
+        bonusTP = params.bonusTP;
+    end
+    local multiHitfTP = false;
+    if (params.multiHitfTP ~= nil) then
+        multiHitfTP = params.multiHitfTP;
+    end
     local bonusfTP, bonusacc = handleWSGorgetBelt(attacker);
     bonusacc = bonusacc + attacker:getMod(MOD_WSACC);
 

@@ -1,6 +1,6 @@
 -----------------------------------------
---    ID: 28540
---    Warp Ring
+-- ID: 28540
+-- Warp Ring
 --  Transports the user to their Home Point
 -----------------------------------------
 require("scripts/globals/status");

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4740
---    Scroll of Shellra III
---    Teaches the white magic Shellra III
+-- ID: 4740
+-- Scroll of Shellra III
+-- Teaches the white magic Shellra III
 -----------------------------------------
 
 -----------------------------------------

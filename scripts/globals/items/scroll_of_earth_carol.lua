@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5049
---    Scroll of Earth Carol
---    Teaches the song Earth Carol
+-- ID: 5049
+-- Scroll of Earth Carol
+-- Teaches the song Earth Carol
 -----------------------------------------
 
 -----------------------------------------

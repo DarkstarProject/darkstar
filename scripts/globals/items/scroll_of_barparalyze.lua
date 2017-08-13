@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4682
---    Scroll of Barparalyze
---    Teaches the white magic Barparalyze
+-- ID: 4682
+-- Scroll of Barparalyze
+-- Teaches the white magic Barparalyze
 -----------------------------------------
 
 -----------------------------------------

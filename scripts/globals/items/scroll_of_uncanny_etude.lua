@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5040
---    Scroll of Uncanny Etude
---    Teaches the song Uncanny Etude
+-- ID: 5040
+-- Scroll of Uncanny Etude
+-- Teaches the song Uncanny Etude
 -----------------------------------------
 
 -----------------------------------------

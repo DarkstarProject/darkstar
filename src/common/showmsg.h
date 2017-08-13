@@ -10,6 +10,7 @@ This file is part of DarkStar-server source code.
 #define _SHOWMSG_H_
 
 #include "../common/cbasetypes.h"
+#include "fmt/printf.h"
 #include <string>
 
 /************************************************************************
@@ -107,19 +108,75 @@ enum MSGTYPE
     MSG_NAVMESH         = 0x0400,
 };
 
-extern void ClearScreen(void);
+void ClearScreen(void);
 
-extern void InitializeLog(std::string logFile);
-extern int32 ShowMessage(const int8 *, ...);
-extern int32 ShowStatus(const int8 *, ...);
-extern int32 ShowSQL(const int8 *, ...);
-extern int32 ShowInfo(const int8 *, ...);
-extern int32 ShowNotice(const int8 *, ...);
-extern int32 ShowWarning(const int8 *, ...);
-extern int32 ShowDebug(const int8 *, ...);
-extern int32 ShowError(const int8 *, ...);
-extern int32 ShowFatalError(const int8 *, ...);
-extern int32 ShowScript(const int8 *, ...);
-extern int32 ShowNavError(const int8 *, ...);
+void InitializeLog(std::string logFile);
+int32 _vShowMessage(MSGTYPE, const std::string&);
+template<typename... Args>
+int32 ShowMessage(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_NONE, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowStatus(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_STATUS, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowSQL(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_SQL, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowInfo(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_INFORMATION, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowNotice(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_NOTICE, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowWarning(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_WARNING, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowDebug(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_DEBUG, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowError(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_ERROR, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowFatalError(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_FATALERROR, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowScript(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_LUASCRIPT, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowNavError(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+	return _vShowMessage(MSG_NAVMESH, fmt_string_v);
+}
 
 #endif /* _SHOWMSG_H_ */

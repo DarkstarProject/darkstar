@@ -18,7 +18,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set Despot ToD
-    SetServerVariable("[POP]Despot", os.time(t) + 7200); -- 2 hour
+    SetServerVariable("[POP]Despot", os.time() + 7200); -- 2 hour
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

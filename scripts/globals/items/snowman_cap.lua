@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 10875
---    Snowman Cap
---    Enchantment: 60Min, Costume - Snoll
+-- ID: 10875
+-- Snowman Cap
+-- Enchantment: 60Min, Costume - Snoll
 -----------------------------------------
 
 require("scripts/globals/status");

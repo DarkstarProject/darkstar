@@ -371,7 +371,7 @@ EFFECT_IMAGERY_5                = 248
 EFFECT_DEDICATION               = 249
 EFFECT_EF_BADGE                 = 250
 EFFECT_FOOD                     = 251
-EFFECT_CHOCOBO                  = 252
+EFFECT_MOUNTED                  = 252
 EFFECT_SIGNET                   = 253
 EFFECT_BATTLEFIELD              = 254
 EFFECT_NONE                     = 255
@@ -1088,14 +1088,14 @@ MOD_JIG_DURATION       = 492 -- Jig duration bonus in percents
 MOD_VFLOURISH_MACC     = 493 -- Violent Flourish accuracy bonus
 MOD_STEP_FINISH        = 494 -- Bonus finishing moves from steps
 MOD_STEP_ACCURACY      = 403 -- Accuracy bonus for steps
-MOD_WALTZ_RECAST       = 497 -- Waltz recast modifier (percent)
+MOD_WALTZ_DELAY        = 497 -- Waltz Ability Delay modifier (-1 mod is -1 second)
 MOD_SAMBA_PDURATION    = 498 -- Samba percent duration bonus
 MOD_WIDESCAN           = 340
 MOD_BARRAGE_ACC        = 420 --
 MOD_ENSPELL            = 341
 MOD_SPIKES             = 342
 MOD_ENSPELL_DMG        = 343
-MOD_ENSPELL_CHANCE     = 495
+MOD_ENSPELL_CHANCE     = 856
 MOD_SPIKES_DMG         = 344
 MOD_TP_BONUS           = 345
 MOD_PERPETUATION_REDUCTION = 346
@@ -1288,10 +1288,14 @@ MOD_PREVENT_OVERLOAD    = 855 -- Overloading erases a water maneuver (except on 
 MOD_EXTRA_DMG_CHANCE    = 506 -- Proc rate of MOD_OCC_DO_EXTRA_DMG. 111 would be 11.1%
 MOD_OCC_DO_EXTRA_DMG    = 507 -- Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
-MOD_EAT_RAW_FISH       = 412 --
-MOD_EAT_RAW_MEAT       = 413 --
-MOD_ENHANCES_CURSNA    = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
-MOD_RETALIATION        = 414 -- Increases damage of Retaliation hits
+MOD_EAT_RAW_FISH         = 412 --
+MOD_EAT_RAW_MEAT         = 413 --
+
+MOD_ENHANCES_CURSNA_RCVD = 67  -- Potency of "Cursna" effects received
+MOD_ENHANCES_CURSNA      = 310 -- Raises success rate of Cursna when removing effect (like Doom) that are not 100% chance to remove
+MOD_ENHANCES_HOLYWATER   = 495 -- Used by gear with the "Enhances Holy Water" or "Holy Water+" attribute
+
+MOD_RETALIATION          = 414 -- Increases damage of Retaliation hits
 MOD_THIRD_EYE_COUNTER_RATE    = 508 -- Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
 MOD_THIRD_EYE_ANTICIPATE_RATE = 839 -- Adds anticipate rate in percents
 
@@ -1369,8 +1373,8 @@ MOD_ALL_WSDMG_FIRST_HIT     = 841 -- Generic (all Weaponskills) damage, first hi
 -- The entire mod list is in desperate need of kind of some organizing.
 -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
 
--- MOD_SPARE = 67 -- stuff
 -- 570 - 825 used by WS DMG mods these are not spares.
+-- MOD_SPARE = 857 -- stuff
 
 ------------------------------------
 -- Merit Definitions
@@ -1937,7 +1941,8 @@ MSGBASIC_ADD_EFFECT_HP_HEAL     = 167 -- Additional effect: The <player> recover
 MSGBASIC_ADD_EFFECT_DISPEL      = 168 -- Additional effect: <target>'s <Status Effect> effect disappears!
 MSGBASIC_ADD_EFFECT_WARP        = 169 -- Additional effect: Warp! (used by Halloween staves)
 MSGBASIC_STATUS_SPIKES          = 374 -- Striking <Defender>'s armor causes <Attacker> to become <status effect>.
-MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore 0 HP to the <?>.
+MSGBASIC_SPIKES_EFFECT_HEAL     = 383 -- <?>'s spikes restore <number> HP to the <?>.
+MSGBASIC_ADD_EFFECT_HEAL        = 384 -- Additional effect: <target> recovers <number> HP.
 
 -- Charm
 MSGBASIC_CANNOT_CHARM           = 210 -- The <player> cannot charm <target>!
@@ -2248,6 +2253,7 @@ ITEM_LINKSHELL   = 0x80;
 ------------------------------------
 ANIMATION_NONE                     = 0;
 ANIMATION_ATTACK                   = 1;
+-- Death 2                            = 2;
 ANIMATION_DEATH                    = 3;
 ANIMATION_CHOCOBO                  = 5;
 ANIMATION_FISHING                  = 6;
@@ -2256,6 +2262,8 @@ ANIMATION_OPEN_DOOR                = 8;
 ANIMATION_CLOSE_DOOR               = 9;
 ANIMATION_ELEVATOR_UP              = 10;
 ANIMATION_ELEVATOR_DOWN            = 11;
+-- seems to be WALLHACK               = 28;
+-- seems to be WALLHACK also..        = 31;
 ANIMATION_HEALING                  = 33;
 ANIMATION_FISHING_FISH             = 38;
 ANIMATION_FISHING_CAUGHT           = 39;
@@ -2267,3 +2275,29 @@ ANIMATION_SYNTH                    = 44;
 ANIMATION_SIT                      = 47;
 ANIMATION_RANGED                   = 48;
 ANIMATION_FISHING_START            = 50;
+-- 63 through 72 are used with /sitchair
+-- 73 through 83 sitting on air (guessing future use for more chairs..)
+ANIMATION_MOUNT                    = 85;
+-- ANIMATION_TRUST                    = 90; -- This is the animation for a trust NPC spawning in.
+
+------------------------------------
+-- Mount IDs
+------------------------------------
+MOUNTS =
+{
+    MOUNT_CHOCOBO    = 0,
+    MOUNT_RAPTOR     = 1,
+    MOUNT_TIGER      = 2,
+    MOUNT_CRAB       = 3,
+    MOUNT_RED_CRAB   = 4,
+    MOUNT_BOMB       = 5,
+    MOUNT_RAM        = 6,
+    MOUNT_MORBOL     = 7,
+    MOUNT_CRAWLER    = 8,
+    MOUNT_FENRIR     = 9,
+    MOUNT_BEETLE     = 10,
+    MOUNT_MOOGLE     = 11,
+    MOUNT_MAGIC_POT  = 12,
+    MOUNT_TULFAIRE   = 13,
+    MOUNT_WARMACHINE = 14
+}

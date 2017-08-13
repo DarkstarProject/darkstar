@@ -43,7 +43,7 @@ function onMobDespawn(mob)
     local kills = GetServerVariable("[PH]Nidhogg");
     local popNow = (math.random(1,5) == 3 or kills > 6);
 
-    if (LandKingSystem_HQ ~= 1 and ToD <= os.time(t) and popNow == true) then
+    if (LandKingSystem_HQ ~= 1 and ToD <= os.time() and popNow == true) then
         -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
         if (LandKingSystem_NQ == 0) then
             DeterMob(Fafnir, true);

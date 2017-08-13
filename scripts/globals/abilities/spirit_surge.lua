@@ -29,7 +29,11 @@ function onUseAbility(player,target,ability)
     -- Spirit Surge increases dragoon's MAX HP increases by 25% of wyvern MaxHP
     -- bg wiki says 25% ffxiclopedia says 15%, going with 25 for now
     local mhp_boost = target:getPet():getMaxHP()*0.25;
-
+    -- Dragoon gets all of wyverns TP when using Spirit Surge
+    local pet = player:getPet();
+    local petTP = pet:getTP();
+    target:addTP(petTP); --add pet TP to dragoon
+    pet:delTP(petTP); -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
     if (target:getMainJob() == JOBS.DRG) then

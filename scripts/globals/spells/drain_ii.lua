@@ -18,7 +18,7 @@ end;
 function onSpellCast(caster,target,spell)
     --calculate raw damage (unknown function  -> only dark skill though) - using http://www.bluegartr.com/threads/44518-Drain-Calculations
     -- also have small constant to account for 0 dark skill
-    local dmg = 20 + (1.236 * (caster:getSkillLevel(DARK_MAGIC_SKILL)) + caster:getMod(79 + DARK_MAGIC_SKILL));
+    local dmg = 20 + (1.236 * caster:getSkillLevel(DARK_MAGIC_SKILL));
     
     if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85)) then
         dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85);

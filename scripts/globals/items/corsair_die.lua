@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5493
---    Corsair Die
---    Teaches the job ability Corsair's Roll
+-- ID: 5493
+-- Corsair Die
+-- Teaches the job ability Corsair's Roll
 -----------------------------------------
 
 -----------------------------------------

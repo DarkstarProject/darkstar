@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5090
---    Scroll of Gain-AGI
---    Teaches the white magic Gain-AGI
+-- ID: 5090
+-- Scroll of Gain-AGI
+-- Teaches the white magic Gain-AGI
 -----------------------------------------
 
 -----------------------------------------

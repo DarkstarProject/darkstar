@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 16249
---    Elixir Tank
---    When used, you will obtain one Elixir
+-- ID: 16249
+-- Elixir Tank
+-- When used, you will obtain one Elixir
 -----------------------------------------
 
 -----------------------------------------

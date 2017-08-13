@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4727
---    Scroll of Enwater II
---    Teaches the white magic Enwater II
+-- ID: 4727
+-- Scroll of Enwater II
+-- Teaches the white magic Enwater II
 -----------------------------------------
 
 -----------------------------------------

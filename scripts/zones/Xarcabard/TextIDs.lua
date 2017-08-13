@@ -17,7 +17,7 @@ NOTHING_OUT_OF_ORDINARY = 6412; -- There is nothing out of the ordinary here.
           BLOCKS_OF_ICE = 7715; -- You can hear blocks of ice moving from deep within the cave.
  PERENNIAL_SNOW_DEFAULT = 7716; -- How many millennia has this snow been here, hidden from the rays of the sun?
     PERENNIAL_SNOW_WAIT = 7718; -- The <keyitem> you buried is not yet purified.
-       
+
 -- Dynamis dialogs
        YOU_CANNOT_ENTER_DYNAMIS = 7840; -- You cannot enter Dynamis
  PLAYERS_HAVE_NOT_REACHED_LEVEL = 7842; -- Players who have not reached levelare prohibited from entering Dynamis

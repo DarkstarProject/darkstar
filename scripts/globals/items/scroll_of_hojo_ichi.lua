@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4952
---    Scroll of Hojo: Ichi
---    Teaches the ninjutsu Hojo: Ichi
+-- ID: 4952
+-- Scroll of Hojo: Ichi
+-- Teaches the ninjutsu Hojo: Ichi
 -----------------------------------------
 
 -----------------------------------------

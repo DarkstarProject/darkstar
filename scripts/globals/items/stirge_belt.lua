@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 15933
---    Stirge Belt
---    Enchantment: 60Min, Costume - Bat
+-- ID: 15933
+-- Stirge Belt
+-- Enchantment: 60Min, Costume - Bat
 -----------------------------------------
 
 require("scripts/globals/status");

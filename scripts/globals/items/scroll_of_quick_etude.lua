@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5035
---    Scroll of Quick Etude
---    Teaches the song Quick Etude
+-- ID: 5035
+-- Scroll of Quick Etude
+-- Teaches the song Quick Etude
 -----------------------------------------
 
 -----------------------------------------

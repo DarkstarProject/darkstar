@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 13684
---    Potion Tank
---    When used, you will obtain one Potion
+-- ID: 13684
+-- Potion Tank
+-- When used, you will obtain one Potion
 -----------------------------------------
 
 -----------------------------------------

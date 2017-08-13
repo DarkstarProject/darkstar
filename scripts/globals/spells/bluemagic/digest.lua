@@ -30,7 +30,7 @@ end;
 
 function onSpellCast(caster,target,spell)
         
-    local dmg = 5 + 0.575 * (caster:getSkillLevel(BLUE_SKILL) + caster:getMod(79 + BLUE_SKILL));
+    local dmg = 5 + 0.575 * caster:getSkillLevel(BLUE_SKILL);
     --get resist multiplier (1x if no resist)
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),BLUE_SKILL,1.0);
     --get the resisted damage

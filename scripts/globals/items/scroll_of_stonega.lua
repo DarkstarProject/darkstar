@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4797
---    Scroll of Stonega
---    Teaches the black magic Stonega
+-- ID: 4797
+-- Scroll of Stonega
+-- Teaches the black magic Stonega
 -----------------------------------------
 
 -----------------------------------------

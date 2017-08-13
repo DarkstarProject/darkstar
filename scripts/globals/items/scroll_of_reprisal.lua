@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4715
---    Scroll of Reprisal
---    Teaches the white magic Reprisal
+-- ID: 4715
+-- Scroll of Reprisal
+-- Teaches the white magic Reprisal
 -----------------------------------------
 
 -----------------------------------------

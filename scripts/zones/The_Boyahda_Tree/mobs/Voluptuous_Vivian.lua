@@ -30,7 +30,7 @@ end;
 function onMobDespawn(mob)
 
     -- Set VV's ToD
-    SetServerVariable("[POP]Voluptuous_Vivian", os.time(t) + math.random(57600,86400)); -- 16-24 hours
+    SetServerVariable("[POP]Voluptuous_Vivian", os.time() + math.random(57600,86400)); -- 16-24 hours
     DeterMob(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn

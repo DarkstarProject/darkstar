@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4764
---    Scroll of Aero III
---    Teaches the black magic Aero III
+-- ID: 4764
+-- Scroll of Aero III
+-- Teaches the black magic Aero III
 -----------------------------------------
 
 -----------------------------------------

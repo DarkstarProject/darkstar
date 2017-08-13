@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4698
---    Scroll of Barsilencera
---    Teaches the white magic Barsilencera
+-- ID: 4698
+-- Scroll of Barsilencera
+-- Teaches the white magic Barsilencera
 -----------------------------------------
 
 -----------------------------------------

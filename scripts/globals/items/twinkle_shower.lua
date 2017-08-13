@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4168
---    Twinkle Shower
---    Sparkle effects surround the user
+-- ID: 4168
+-- Twinkle Shower
+-- Sparkle effects surround the user
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4735
---    Scroll of Protectra III
---    Teaches the white magic Protectra III
+-- ID: 4735
+-- Scroll of Protectra III
+-- Teaches the white magic Protectra III
 -----------------------------------------
 
 -----------------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 4845
---    Scroll of Choke
---    Teaches the black magic Choke
+-- ID: 4845
+-- Scroll of Choke
+-- Teaches the black magic Choke
 -----------------------------------------
 
 -----------------------------------------

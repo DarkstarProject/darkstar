@@ -1,7 +1,7 @@
 -----------------------------------------
---    ID: 5046
---    Scroll of Fire Carol
---    Teaches the song Fire Carol
+-- ID: 5046
+-- Scroll of Fire Carol
+-- Teaches the song Fire Carol
 -----------------------------------------
 
 -----------------------------------------

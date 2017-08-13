@@ -24,7 +24,7 @@ function onMobDespawn(mob)
 
     if (Swamfisk_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Swamfisk");
-        if (ToD <= os.time(t) and GetMobAction(Swamfisk) == 0) then
+        if (ToD <= os.time() and GetMobAction(Swamfisk) == 0) then
             if (math.random(1,15) == 5) then
                 UpdateNMSpawnPoint(Swamfisk);
                 GetMobByID(Swamfisk):setRespawnTime(GetMobRespawnTime(mobID));
