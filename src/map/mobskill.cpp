@@ -208,10 +208,18 @@ uint16 CMobSkill::getPetAnimationID()
       (m_AnimID >= 1404 && m_AnimID <= 1406) ||
       (m_AnimID >= 1486 && m_AnimID <= 1488) ||
       (m_AnimID >= 1509 && m_AnimID <= 1510) ||
-      (m_AnimID == 1219) ||
-      (m_AnimID >= 1690 && m_AnimID <= 1692))
+      (m_AnimID == 1219))
   {
       return m_AnimID + 256;
+  }
+
+  // automaton placeholder animations (their animations are blank)
+  if ((m_AnimID >= 1690 && m_AnimID <= 1692) ||
+      (m_AnimID == 1775) ||
+      (m_AnimID == 1876) ||
+      (m_AnimID >= 2489 && m_AnimID <= 2489))
+  {
+      return 1760;
   }
 
   // wyvern
