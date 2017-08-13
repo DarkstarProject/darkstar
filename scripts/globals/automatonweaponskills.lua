@@ -219,10 +219,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
-    end
-
-    -- Miss message
-    if finaldmg < 1 then
+    else
         skill:setMsg(MSG_MISS)
     end
 
@@ -265,11 +262,6 @@ function doAutoMagicWeaponskill(attacker, target, wsID, tp, primary, action, par
 
     dmg = dmg * WEAPON_SKILL_POWER
     dmg = takeAutoWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
-
-    -- Miss message
-    if dmg < 1 then
-        skill:setMsg(MSG_MISS)
-    end
 
     return dmg, false, 1, 0;
 end
@@ -583,10 +575,7 @@ end;
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
         finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
-    end
-
-    -- Miss message
-    if finaldmg < 1 then
+    else
         skill:setMsg(MSG_MISS)
     end
 
