@@ -216,8 +216,9 @@ uint16 CMobSkill::getPetAnimationID()
   // automaton placeholder animations (their animations are blank)
   if ((m_AnimID >= 1690 && m_AnimID <= 1692) ||
       (m_AnimID == 1775) ||
+      (m_AnimID == 1812) ||
       (m_AnimID == 1876) ||
-      (m_AnimID >= 2489 && m_AnimID <= 2489))
+      (m_AnimID >= 2489 && m_AnimID <= 2491))
   {
       return 1760;
   }
