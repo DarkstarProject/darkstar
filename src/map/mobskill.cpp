@@ -203,6 +203,12 @@ uint16 CMobSkill::getPetAnimationID()
     return m_AnimID - 605;
   }
 
+  // wyvern
+  if (m_AnimID >= 621 && m_AnimID <= 632)
+  {
+      return m_AnimID - 493;
+  }
+
   // automaton
   if ((m_AnimID >= 1303 && m_AnimID <= 1307) ||
       (m_AnimID >= 1404 && m_AnimID <= 1406) ||
@@ -221,12 +227,6 @@ uint16 CMobSkill::getPetAnimationID()
       (m_AnimID >= 2489 && m_AnimID <= 2491))
   {
       return 1760;
-  }
-
-  // wyvern
-  if (m_AnimID >= 621 && m_AnimID <= 632)
-  {
-      return m_AnimID - 493;
   }
 
   return m_AnimID;
