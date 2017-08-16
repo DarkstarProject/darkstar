@@ -123,7 +123,7 @@ function lightCutsceneUpdate( player)
         weather = WEATHER_NONE;
     end
 
-    if (player:getVar( "I_CAN_HEAR_A_RAINBOW") < 127) then
+    if (player:getVar("I_CAN_HEAR_A_RAINBOW") < 127) then
         player:updateEvent( 0, 0, weather);
     else
         player:updateEvent( 0, 0, weather, 6);
@@ -144,7 +144,7 @@ end;
 -----------------------------------
 
 function fixChocoboBug( player)
-    if (player:hasStatusEffect(EFFECT_CHOCOBO)) then
+    if (player:hasStatusEffect(EFFECT_MOUNTED)) then
         if (player:getAnimation() == 5) then
             player:setAnimation( 0);
         elseif (player:getAnimation() == 0) then
