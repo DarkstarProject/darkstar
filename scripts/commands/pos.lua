@@ -60,7 +60,7 @@ function onTrigger(player, arg1, arg2, arg3, arg4, arg5)
     -- validate zone
     if (zoneId ~= nil) then
         zoneId = tonumber(zoneId);
-        if (zoneId == nil or zoneId < 0 or zoneId > 285) then
+        if (zoneId == nil or zoneId < 1 or zoneId > 285) then
             error(player, "Invalid zone ID.");
             return;
         end
