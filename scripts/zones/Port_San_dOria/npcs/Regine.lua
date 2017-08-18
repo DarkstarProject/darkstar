@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:messageSpecial(ITEM_OBTAINED,532);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_2, 532); -- CANNOT_OBTAIN_ITEM
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 532); -- CANNOT_OBTAIN_ITEM
         end
     elseif (trade:hasItemQty(532,1) == true and count == 1) then
         if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then

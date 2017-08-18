@@ -625,7 +625,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CBaseEntity* PNpc = nullptr;
         PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
-        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
+        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && PNpc->PAI->IsSpawned())
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
@@ -3806,7 +3806,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (RBUFB(data, (0x06)) == '@' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (RBUFB(data, (0x06)) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
     {
         //this makes sure a command isn't sent to chat
     }

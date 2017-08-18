@@ -453,11 +453,9 @@ public:
     int32 getNationTeleport(lua_State*);     // Get teleport you can use by nation: getNationTeleport(nation)
 
     int32 checkDistance(lua_State*);           // Check Distacnce and returns distance number
-    int32 getBaseExp(lua_State*);
+    int32 checkValorCredit(lua_State*);
     int32 checkSoloPartyAlliance(lua_State*);  // Check if Player is in Party or Alliance 0=Solo 1=Party 2=Alliance
-    int32 checkExpPoints(lua_State*);          // Exp points penalty for Player vs Max High Player Gap in party
     int32 checkFovAllianceAllowed(lua_State*); // checks the map config, 1 if alliance is allowed to farm Fov pages
-    int32 checkFovDistancePenalty(lua_State*); // Checks whether FoV distance from mob penalty applies.
 
     int32 getObjType(lua_State*);
 

@@ -9,7 +9,11 @@ cmdprops =
     parameters = "s"
 };
 
-local ValidSpells = {
+
+};
+
+function onTrigger(player, target)
+	local ValidSpells = {
     1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,28,29,33,38,39,43,44,45,46,47,48,49,50,51,
     52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,86,87,88,
     89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,
@@ -45,31 +49,28 @@ local ValidSpells = {
     --922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,
     --948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,
     --974,975,976,977,978,979,980,981,982,983,984,985,986,987,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016
-};
+    };
 
-local function AddAllSpells(player)
+    -- validate target
+    local targ;
+    if (target == nil) then
+        targ = player;
+    else
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
+    end
+
+    -- add all spells
     local save = true;
     local silent = true;    -- prevent packet spam
-
     for i = 1, #ValidSpells do
-        
         if i == #ValidSpells then
             silent = false;
         end
-
-        player:addSpell(ValidSpells[i], silent, save);
+        targ:addSpell(ValidSpells[i], silent, save);
     end
-end;
-
-function onTrigger(player, target)
-    if (target == nil) then
-        AddAllSpells(player);
-    else
-        local targ = GetPlayerByName(target);
-        if (targ == nil) then
-            player:PrintToPlayer(string.format( "Player named '%s' not found!", target ));
-        else
-            AddAllSpells(targ);
-        end
-    end
+    player:PrintToPlayer(string.format("%s now has all spells.",targ:getName()));
 end

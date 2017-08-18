@@ -23247,88 +23247,90 @@ INSERT INTO `item_mods` VALUES (19007,580,20); --
 INSERT INTO `item_mods` VALUES (19008,173,20); --
 INSERT INTO `item_mods` VALUES (19008,288,15); --
 INSERT INTO `item_mods` VALUES (19008,355,12); -- Kenkonken 75 - Stringing Pummel
-INSERT INTO `item_mods` VALUES (19009,9,1); --
-INSERT INTO `item_mods` VALUES (19010,9,2); --
-INSERT INTO `item_mods` VALUES (19011,2,5); --
-INSERT INTO `item_mods` VALUES (19011,5,5); --
-INSERT INTO `item_mods` VALUES (19012,2,10); --
-INSERT INTO `item_mods` VALUES (19012,5,10); --
-INSERT INTO `item_mods` VALUES (19013,8,1); --
-INSERT INTO `item_mods` VALUES (19013,10,1); --
-INSERT INTO `item_mods` VALUES (19013,25,1); --
-INSERT INTO `item_mods` VALUES (19014,8,2); --
-INSERT INTO `item_mods` VALUES (19014,10,2); --
-INSERT INTO `item_mods` VALUES (19014,25,2); --
-INSERT INTO `item_mods` VALUES (19015,2,10); --
-INSERT INTO `item_mods` VALUES (19015,5,5); --
-INSERT INTO `item_mods` VALUES (19015,13,1); --
-INSERT INTO `item_mods` VALUES (19016,2,15); --
-INSERT INTO `item_mods` VALUES (19016,5,10); --
-INSERT INTO `item_mods` VALUES (19016,13,2); --
-INSERT INTO `item_mods` VALUES (19017,5,5); --
-INSERT INTO `item_mods` VALUES (19017,13,1); --
-INSERT INTO `item_mods` VALUES (19017,14,1); --
-INSERT INTO `item_mods` VALUES (19018,5,10); --
-INSERT INTO `item_mods` VALUES (19018,12,1); --
-INSERT INTO `item_mods` VALUES (19018,13,1); --
-INSERT INTO `item_mods` VALUES (19018,14,1); --
-INSERT INTO `item_mods` VALUES (19019,25,2); --
-INSERT INTO `item_mods` VALUES (19020,25,3); --
-INSERT INTO `item_mods` VALUES (19021,306,3); -- Katana Strap: Zanshin +3% https://www.bg-wiki.com/bg/Katana_Strap
-INSERT INTO `item_mods` VALUES (19022,2,20); --
-INSERT INTO `item_mods` VALUES (19022,8,3); --
-INSERT INTO `item_mods` VALUES (19023,5,20); --
-INSERT INTO `item_mods` VALUES (19023,27,-2); --
-INSERT INTO `item_mods` VALUES (19025,288,2); --
-INSERT INTO `item_mods` VALUES (19026,2,10); --
-INSERT INTO `item_mods` VALUES (19026,5,10); --
-INSERT INTO `item_mods` VALUES (19026,9,3); --
-INSERT INTO `item_mods` VALUES (19027,165,3); --
-INSERT INTO `item_mods` VALUES (19028,5,23); -- Magic Strap: MP +23
-INSERT INTO `item_mods` VALUES (19028,168,5); -- Spell interruption rate down 5%
-INSERT INTO `item_mods` VALUES (19030,562,3); --
-INSERT INTO `item_mods` VALUES (19031,7,20); --
-INSERT INTO `item_mods` VALUES (19031,40,2); --
-INSERT INTO `item_mods` VALUES (19032,7,20); --
-INSERT INTO `item_mods` VALUES (19032,45,2); --
-INSERT INTO `item_mods` VALUES (19033,7,20); --
-INSERT INTO `item_mods` VALUES (19033,42,2); --
-INSERT INTO `item_mods` VALUES (19034,7,20); --
-INSERT INTO `item_mods` VALUES (19034,41,2); --
-INSERT INTO `item_mods` VALUES (19035,7,20); --
-INSERT INTO `item_mods` VALUES (19035,44,2); --
-INSERT INTO `item_mods` VALUES (19036,7,20); --
-INSERT INTO `item_mods` VALUES (19036,43,2); --
-INSERT INTO `item_mods` VALUES (19037,7,20); --
-INSERT INTO `item_mods` VALUES (19037,46,2); --
-INSERT INTO `item_mods` VALUES (19038,7,20); --
-INSERT INTO `item_mods` VALUES (19038,47,2); --
-INSERT INTO `item_mods` VALUES (19039,23,3); --
-INSERT INTO `item_mods` VALUES (19040,2,10); --
-INSERT INTO `item_mods` VALUES (19040,27,3); --
-INSERT INTO `item_mods` VALUES (19041,73,4); --
-INSERT INTO `item_mods` VALUES (19042,71,1); --
-INSERT INTO `item_mods` VALUES (19043,23,1); --
-INSERT INTO `item_mods` VALUES (19044,25,1); --
-INSERT INTO `item_mods` VALUES (19045,5,8); --
-INSERT INTO `item_mods` VALUES (19046,5,10); --
-INSERT INTO `item_mods` VALUES (19046,11,1); --
-INSERT INTO `item_mods` VALUES (19047,5,12); --
-INSERT INTO `item_mods` VALUES (19047,11,2); --
-INSERT INTO `item_mods` VALUES (19048,13,3); --
-INSERT INTO `item_mods` VALUES (19048,14,3); --
-INSERT INTO `item_mods` VALUES (19049,170,1); -- Vivid Strap: Fast Cast +1%
-INSERT INTO `item_mods` VALUES (19050,161,-2); -- Eisen Grip: Physical damage taken -2%
-INSERT INTO `item_mods` VALUES (19051,12,1); -- Vivid Strap +1: INT +1
-INSERT INTO `item_mods` VALUES (19051,170,1); -- Fast Cast +1%
-INSERT INTO `item_mods` VALUES (19052,111,3); --
-INSERT INTO `item_mods` VALUES (19053,112,3); --
-INSERT INTO `item_mods` VALUES (19054,113,3); --
-INSERT INTO `item_mods` VALUES (19055,114,3); --
-INSERT INTO `item_mods` VALUES (19056,115,3); --
-INSERT INTO `item_mods` VALUES (19057,116,3); --
-INSERT INTO `item_mods` VALUES (19058,117,3); --
-INSERT INTO `item_mods` VALUES (19059,119,3); --
+INSERT INTO `item_mods` VALUES (19009,9,1);
+INSERT INTO `item_mods` VALUES (19010,9,2);
+INSERT INTO `item_mods` VALUES (19011,2,5);
+INSERT INTO `item_mods` VALUES (19011,5,5);
+INSERT INTO `item_mods` VALUES (19012,2,10);
+INSERT INTO `item_mods` VALUES (19012,5,10);
+INSERT INTO `item_mods` VALUES (19013,8,1);
+INSERT INTO `item_mods` VALUES (19013,10,1);
+INSERT INTO `item_mods` VALUES (19013,25,1);
+INSERT INTO `item_mods` VALUES (19014,8,2);
+INSERT INTO `item_mods` VALUES (19014,10,2);
+INSERT INTO `item_mods` VALUES (19014,25,2);
+INSERT INTO `item_mods` VALUES (19015,2,10);
+INSERT INTO `item_mods` VALUES (19015,5,5);
+INSERT INTO `item_mods` VALUES (19015,13,1);
+INSERT INTO `item_mods` VALUES (19016,2,15);
+INSERT INTO `item_mods` VALUES (19016,5,10);
+INSERT INTO `item_mods` VALUES (19016,13,2);
+INSERT INTO `item_mods` VALUES (19017,5,5);
+INSERT INTO `item_mods` VALUES (19017,13,1);
+INSERT INTO `item_mods` VALUES (19017,14,1);
+INSERT INTO `item_mods` VALUES (19018,5,10);
+INSERT INTO `item_mods` VALUES (19018,12,1);
+INSERT INTO `item_mods` VALUES (19018,13,1);
+INSERT INTO `item_mods` VALUES (19018,14,1);
+INSERT INTO `item_mods` VALUES (19019,25,2);      -- Platinum Grip: Acc+2
+INSERT INTO `item_mods` VALUES (19019,431,1);     -- Add Effect Stun
+INSERT INTO `item_mods` VALUES (19020,25,3);      -- Platinum Grip +1: Acc+3
+INSERT INTO `item_mods` VALUES (19020,431,1);     -- Add Effect Stun
+INSERT INTO `item_mods` VALUES (19021,306,3);     -- Katana Strap: Zanshin +3% https://www.bg-wiki.com/bg/Katana_Strap
+INSERT INTO `item_mods` VALUES (19022,2,20);
+INSERT INTO `item_mods` VALUES (19022,8,3);
+INSERT INTO `item_mods` VALUES (19023,5,20);
+INSERT INTO `item_mods` VALUES (19023,27,-2);
+INSERT INTO `item_mods` VALUES (19025,288,2);
+INSERT INTO `item_mods` VALUES (19026,2,10);
+INSERT INTO `item_mods` VALUES (19026,5,10);
+INSERT INTO `item_mods` VALUES (19026,9,3);
+INSERT INTO `item_mods` VALUES (19027,165,3);
+INSERT INTO `item_mods` VALUES (19028,5,23);      -- Magic Strap: MP +23
+INSERT INTO `item_mods` VALUES (19028,168,5);     -- Spell interruption rate down 5%
+INSERT INTO `item_mods` VALUES (19030,562,3);
+INSERT INTO `item_mods` VALUES (19031,7,20);
+INSERT INTO `item_mods` VALUES (19031,40,2);
+INSERT INTO `item_mods` VALUES (19032,7,20);
+INSERT INTO `item_mods` VALUES (19032,45,2);
+INSERT INTO `item_mods` VALUES (19033,7,20);
+INSERT INTO `item_mods` VALUES (19033,42,2);
+INSERT INTO `item_mods` VALUES (19034,7,20);
+INSERT INTO `item_mods` VALUES (19034,41,2);
+INSERT INTO `item_mods` VALUES (19035,7,20);
+INSERT INTO `item_mods` VALUES (19035,44,2);
+INSERT INTO `item_mods` VALUES (19036,7,20);
+INSERT INTO `item_mods` VALUES (19036,43,2);
+INSERT INTO `item_mods` VALUES (19037,7,20);
+INSERT INTO `item_mods` VALUES (19037,46,2);
+INSERT INTO `item_mods` VALUES (19038,7,20);
+INSERT INTO `item_mods` VALUES (19038,47,2);
+INSERT INTO `item_mods` VALUES (19039,23,3);
+INSERT INTO `item_mods` VALUES (19040,2,10);
+INSERT INTO `item_mods` VALUES (19040,27,3);
+INSERT INTO `item_mods` VALUES (19041,73,4);
+INSERT INTO `item_mods` VALUES (19042,71,1);
+INSERT INTO `item_mods` VALUES (19043,23,1);
+INSERT INTO `item_mods` VALUES (19044,25,1);
+INSERT INTO `item_mods` VALUES (19045,5,8);
+INSERT INTO `item_mods` VALUES (19046,5,10);
+INSERT INTO `item_mods` VALUES (19046,11,1);
+INSERT INTO `item_mods` VALUES (19047,5,12);
+INSERT INTO `item_mods` VALUES (19047,11,2);
+INSERT INTO `item_mods` VALUES (19048,13,3);
+INSERT INTO `item_mods` VALUES (19048,14,3);
+INSERT INTO `item_mods` VALUES (19049,170,1);     -- Vivid Strap: Fast Cast +1%
+INSERT INTO `item_mods` VALUES (19050,161,-2);    -- Eisen Grip: Physical damage taken -2%
+INSERT INTO `item_mods` VALUES (19051,12,1);      -- Vivid Strap +1: INT +1
+INSERT INTO `item_mods` VALUES (19051,170,1);     -- Fast Cast +1%
+INSERT INTO `item_mods` VALUES (19052,111,3);
+INSERT INTO `item_mods` VALUES (19053,112,3);
+INSERT INTO `item_mods` VALUES (19054,113,3);
+INSERT INTO `item_mods` VALUES (19055,114,3);
+INSERT INTO `item_mods` VALUES (19056,115,3);
+INSERT INTO `item_mods` VALUES (19057,116,3);
+INSERT INTO `item_mods` VALUES (19058,117,3);
+INSERT INTO `item_mods` VALUES (19059,119,3);
 INSERT INTO `item_mods` VALUES (19060,355,90); -- Conqueror 80 - King's Justice
 INSERT INTO `item_mods` VALUES (19061,355,11); -- Glanzfaust 80 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19062,355,171); -- Yagrush 80 - Mystic Boon
@@ -37387,6 +37389,38 @@ INSERT INTO `item_mods` VALUES (27367,112,16);    -- Healing magic skill +16
 INSERT INTO `item_mods` VALUES (27367,384,30);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (27367,399,16);    -- Weather: Enhances Celerity and Alacrity Effect +16%
 INSERT INTO `item_mods` VALUES (27367,407,6);     -- Uncapped Fast Cast +6% ?
+INSERT INTO `item_mods` VALUES (27400,1,65); -- Revealers Pumps -- 65 Def
+INSERT INTO `item_mods` VALUES (27400,2,13); -- 13 HP
+INSERT INTO `item_mods` VALUES (27400,5,44); -- 44 MP
+INSERT INTO `item_mods` VALUES (27400,8,10); -- 10 STR
+INSERT INTO `item_mods` VALUES (27400,9,11); -- 11 DEX
+INSERT INTO `item_mods` VALUES (27400,10,10); -- 10 VIT
+INSERT INTO `item_mods` VALUES (27400,11,33); -- 33 AGI
+INSERT INTO `item_mods` VALUES (27400,12,21); -- 21 INT
+INSERT INTO `item_mods` VALUES (27400,13,19); -- 19 MND
+INSERT INTO `item_mods` VALUES (27400,14,38); -- 38 CHR
+INSERT INTO `item_mods` VALUES (27400,27,-4); -- Enmity -4
+INSERT INTO `item_mods` VALUES (27400,28,10); -- 10 Matt
+INSERT INTO `item_mods` VALUES (27400,29,5); -- 5 Mdef
+INSERT INTO `item_mods` VALUES (27400,31,107); -- 107 Meva
+INSERT INTO `item_mods` VALUES (27400,68,55); -- 55 Eva
+INSERT INTO `item_mods` VALUES (27400,384,30); -- 3% Gear Haste
+INSERT INTO `item_mods` VALUES (27401,1,66); -- Revealers Pumps +1 -- 66 Def
+INSERT INTO `item_mods` VALUES (27401,2,13); -- 13 HP
+INSERT INTO `item_mods` VALUES (27401,5,54); -- 54 MP
+INSERT INTO `item_mods` VALUES (27401,8,10); -- 10 STR
+INSERT INTO `item_mods` VALUES (27401,9,11); -- 11 DEX
+INSERT INTO `item_mods` VALUES (27401,10,10); -- 10 VIT
+INSERT INTO `item_mods` VALUES (27401,11,33); -- 33 AGI
+INSERT INTO `item_mods` VALUES (27401,12,22); -- 22 INT
+INSERT INTO `item_mods` VALUES (27401,13,19); -- 19 MND
+INSERT INTO `item_mods` VALUES (27401,14,39); -- 39 CHR
+INSERT INTO `item_mods` VALUES (27401,27,-5); -- Enmity -5
+INSERT INTO `item_mods` VALUES (27401,28,11); -- 11 Matt
+INSERT INTO `item_mods` VALUES (27401,29,5); -- 5 Mdef
+INSERT INTO `item_mods` VALUES (27401,31,107); -- 107 Meva
+INSERT INTO `item_mods` VALUES (27401,68,55); -- 55 Eva
+INSERT INTO `item_mods` VALUES (27401,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (27402,1,82);
 INSERT INTO `item_mods` VALUES (27402,2,18);
 INSERT INTO `item_mods` VALUES (27402,8,15);

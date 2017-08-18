@@ -91,12 +91,12 @@ function onRegionEnter(player,region)
                 player:startEvent(0x002E);
             end,
             [2] = function (x)
-                if (GetNPCByID(16843057):getAnimation() == 8) then
+                if (GetNPCByID(16843058):getAnimation() == 8) then
                     player:startEvent(0x0025);
                 end
             end,
             [3] = function (x)
-                if (GetNPCByID(16843056):getAnimation() == 8) then
+                if (GetNPCByID(16843057):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(0x0021);
                     else
@@ -105,7 +105,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [4] = function (x)
-                if (GetNPCByID(16843055):getAnimation() == 8) then
+                if (GetNPCByID(16843056):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(0x0021);
                     else
@@ -114,7 +114,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [5] = function (x)
-                if (GetNPCByID(16843054):getAnimation() == 8) then
+                if (GetNPCByID(16843055):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(0x0021);
                     else
@@ -123,7 +123,7 @@ function onRegionEnter(player,region)
                 end
             end,
             [6] = function (x)
-                if (GetNPCByID(16843053):getAnimation() == 8) then
+                if (GetNPCByID(16843054):getAnimation() == 8) then
                     if (player:getVar("MemoryReceptacle") == 2) then
                         player:startEvent(0x0021);
                     else
@@ -138,17 +138,17 @@ function onRegionEnter(player,region)
                 player:startEvent(0x002A);
             end,
             [9] = function (x)
-                if (GetNPCByID(16843052):getAnimation() == 8) then
+                if (GetNPCByID(16843053):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
             [10] = function (x)
-                if (GetNPCByID(16843051):getAnimation() == 8) then
+                if (GetNPCByID(16843052):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
             [11] = function (x)
-                if (GetNPCByID(16843050):getAnimation() == 8) then
+                if (GetNPCByID(16843051):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
@@ -156,17 +156,17 @@ function onRegionEnter(player,region)
                 player:startEvent(0x002A);
             end,
             [13] = function (x)
-                if (GetNPCByID(16843060):getAnimation() == 8) then
+                if (GetNPCByID(16843061):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
             [14] = function (x)
-                if (GetNPCByID(16843058):getAnimation() == 8) then
+                if (GetNPCByID(16843059):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
             [15] = function (x)
-                if (GetNPCByID(16843059):getAnimation() == 8) then
+                if (GetNPCByID(16843060):getAnimation() == 8) then
                     player:startEvent(0x001E);
                 end
             end,
