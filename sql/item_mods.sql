@@ -29591,6 +29591,25 @@ INSERT INTO `item_mods` VALUES (25591,30,38);     -- Magic Accuracy+38
 INSERT INTO `item_mods` VALUES (25591,31,53);     -- Magic Evasion+53
 INSERT INTO `item_mods` VALUES (25591,68,33);     -- Evasion+33
 INSERT INTO `item_mods` VALUES (25591,384,81);    -- Haste +8%
+INSERT INTO `item_mods` VALUES (25634,1,111);     -- Terminal Helm  DEF:111
+INSERT INTO `item_mods` VALUES (25634,2,41);      -- 41 HP
+INSERT INTO `item_mods` VALUES (25634,5,29);      -- 29 MP
+INSERT INTO `item_mods` VALUES (25634,8,24);      -- 24 STR
+INSERT INTO `item_mods` VALUES (25634,9,8);      -- 8 DEX
+INSERT INTO `item_mods` VALUES (25634,10,19);     -- 19 VIT
+INSERT INTO `item_mods` VALUES (25634,11,14);     -- 14 AGI
+INSERT INTO `item_mods` VALUES (25634,12,16);     -- 16 INT
+INSERT INTO `item_mods` VALUES (25634,13,12);     -- 12 MND
+INSERT INTO `item_mods` VALUES (25634,14,16);     -- 14 CHR
+INSERT INTO `item_mods` VALUES (25634,23,23);     -- Attack +23
+INSERT INTO `item_mods` VALUES (25634,24,23);     -- Ranged Attack +23
+INSERT INTO `item_mods` VALUES (25634,28,15);     -- MAB 15
+INSERT INTO `item_mods` VALUES (25634,29,2);      -- MDB 2
+INSERT INTO `item_mods` VALUES (25634,31,37);     -- 37 Meva
+INSERT INTO `item_mods` VALUES (25634,68,36);     -- 36 Eva
+INSERT INTO `item_mods` VALUES (25634,311,15);    -- Magic damage 15
+INSERT INTO `item_mods` VALUES (25634,384,71);    -- Haste +7%
+INSERT INTO `item_mods` VALUES (25634,831,-5);    -- MDT -5%
 INSERT INTO `item_mods` VALUES (25652,1,1);       -- crab_cap DEF:1
 INSERT INTO `item_mods` VALUES (25661,1,101);     -- meghanada_visor DEF:101
 INSERT INTO `item_mods` VALUES (25661,2,25);      -- HP+25
@@ -29697,6 +29716,25 @@ INSERT INTO `item_mods` VALUES (25668,384,30);    -- Haste +30
 INSERT INTO `item_mods` VALUES (25669,1,2);       -- crab_cap_+1 DEF:2
 INSERT INTO `item_mods` VALUES (25677,1,1);       -- Arthro's Cap DEF:+1
 INSERT INTO `item_mods` VALUES (25678,1,2);       -- Arthro's Cap +1 DEF:+2
+INSERT INTO `item_mods` VALUES (25707,1,143);     -- Terminal Plate DEF:143
+INSERT INTO `item_mods` VALUES (25707,2,63);      -- 63 HP
+INSERT INTO `item_mods` VALUES (25707,5,59);      -- 59 MP
+INSERT INTO `item_mods` VALUES (25707,8,32);      -- 32 STR
+INSERT INTO `item_mods` VALUES (25707,9,16);      -- 16 DEX
+INSERT INTO `item_mods` VALUES (25707,10,29);     -- 29 VIT
+INSERT INTO `item_mods` VALUES (25707,11,19);     -- 19 AGI
+INSERT INTO `item_mods` VALUES (25707,12,20);     -- 20 INT
+INSERT INTO `item_mods` VALUES (25707,13,20);     -- 20 MND
+INSERT INTO `item_mods` VALUES (25707,14,20);     -- 20 CHR
+INSERT INTO `item_mods` VALUES (25707,23,25);     -- Attack +25
+INSERT INTO `item_mods` VALUES (25707,24,25);     -- Ranged Attack +25
+INSERT INTO `item_mods` VALUES (25707,28,20);     -- MAB 20
+INSERT INTO `item_mods` VALUES (25707,29,4);      -- Magic Defense+4
+INSERT INTO `item_mods` VALUES (25707,31,53);     -- 53 Meva
+INSERT INTO `item_mods` VALUES (25707,68,44);     -- 44 Eva
+INSERT INTO `item_mods` VALUES (25707,311,15);    -- Magic damage 15
+INSERT INTO `item_mods` VALUES (25707,384,30);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (25707,161,-5);    -- PDT -5%
 INSERT INTO `item_mods` VALUES (25722,1,1);       -- jubilee_shirt DEF:1
 INSERT INTO `item_mods` VALUES (25747,1,123);     -- meghanada_cuirie DEF:123
 INSERT INTO `item_mods` VALUES (25747,2,40);      -- HP+40

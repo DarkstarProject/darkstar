@@ -40,6 +40,7 @@ enum CHAT_MESSAGE_TYPE
     MESSAGE_SYSTEM_2    = 0x07,
     MESSAGE_EMOTION     = 0x08,
     MESSAGE_YELL        = 0x1A,
+    MESSAGE_UNITY       = 0x21,
     MESSAGE_LINKSHELL2  = 0x1B,
 };
 

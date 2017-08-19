@@ -5,7 +5,7 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 0,
     parameters = "b"
 };
 
@@ -301,8 +301,18 @@ function onTrigger(player, bytes)
     local z = 0;
     local rot = 0;
     local zone;
+    local blockedZones =
+    {
+   15,16,18,22,27,39,40,41,42,45,55,56,60,63,66,69,73,74,75,76,77,86,93,129,183,
+   132,133,134,135,215,216,217,218,253,254,255,258,259,260,262,
+   263,264,264,267,268,269,270,271,272,273,274,275,276,277,
+   278,279,280,281,282,283,284,285,185,186,187,188,0,214,288,289
 
-    if (bytes == nil) then
+    }
+
+    if (player:getVar("inJail") ~= 0) then
+        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
+elseif (bytes == nil) then
         error(player, "You must provide a zone ID or autotranslate phrase.");
         return;
     end

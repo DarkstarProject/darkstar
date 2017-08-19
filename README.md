@@ -1,10 +1,20 @@
-[![Build Status](https://travis-ci.org/DarkstarProject/darkstar.svg?branch=master)](https://travis-ci.org/DarkstarProject/darkstar)
-[![Build status](https://ci.appveyor.com/api/projects/status/69bemc5htluv9ss3/branch/master?svg=true)](https://ci.appveyor.com/project/teschnei/darkstar/branch/master)
-Darkstar Project
+[![Build Status](https://travis-ci.org/bnetcc/darkstar.svg?branch=BNETcc-Live)](https://travis-ci.org/bnetcc/darkstar)
+[![Build status](https://ci.appveyor.com/api/projects/status/fs3hpjwbpnlpbjlo/branch/BNETcc-Live?svg=true)](https://ci.appveyor.com/project/Ninjistix/darkstar-br4ck/branch/BNETcc-Live)
+BNETcc's fork of Darkstar Project
 ========
+Welcome to BNETcc a Darkstar Project emulated FFXI Private Server.
 
-Welcome to the DarkStar project, an emulation server for FFXI.
-Visit our forums and Discord or IRC to keep in touch with the latest developments.
+Contact BNETcc
+========
+SLACK and the FORUMS are the best ways to get ahold of staff or get fast help.
+
+**Forums:** http://bnet.cc/
+
+**Slack:** http://www.bnet.cc/slack.php
+
+Contact Darkstar
+========
+ forums and IRC to keep in touch with the latest developments.
 
 **Forums:** https://forums.dspt.info/index.php
 
@@ -36,7 +46,7 @@ Use 4 spaces per tab - this will be enforced in pull requests.
 
 Please *test your code* before committing changes/submitting a pull request.
 
-Wiki
+Ultimate FAQ
 ========
-Our project wiki with various information and guides can be found here:
-https://wiki.dspt.info/
+Our server FAQ with various information and setup guides can be found here:
+http://bnet.cc/threads/ultimate-f-a-q.1147/

@@ -5,10 +5,11 @@
 
 cmdprops =
 {
-    permission = 1,
+    permission = 0,
     parameters = "si"
 };
 
+function onTrigger(player, target)
 function error(player, msg)
     player:PrintToPlayer(msg);
     player:PrintToPlayer("@goto <player> {forceZone}");
@@ -17,7 +18,9 @@ end;
 function onTrigger(player, target, forceZone)
 
     -- validate target
-    if (target == nil) then
+    if (targ:getVar("inJail") ~= 0) then
+        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
+    elseif (target == nil) then
         error(player, "You must enter a player name.");
         return;
     end

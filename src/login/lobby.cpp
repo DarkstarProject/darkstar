@@ -466,7 +466,7 @@ int32 lobbyview_parse(int32 fd)
             string_t expected_version(version_info.CLIENT_VER, 0, 6); // Same deal here!
             expected_version = expected_version+"xx_x";
 
-            if (expected_version != client_ver_data)
+            if (expected_version > client_ver_data)
             {
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
