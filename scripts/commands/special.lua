@@ -10,7 +10,7 @@ cmdprops =
     parameters = ""
 };
 function onTrigger(player)
-    player:PrintToPlayer("Special Shop for special people..", 0xF);
+    player:PrintToPlayer("Special Shop for helpful people..", 0xF);
     if(player:getName() == "Charmaine") then -- Xu qinggui
         local stock =
         {
@@ -53,12 +53,6 @@ function onTrigger(player)
            20646, 1, -- Excalibur
         }
     	showShop(player, STATIC, stock);
-    -- elseif(player:getName() == "Colette") then -- Colette
-        -- local stock =
-        -- {
-           -- 13606, 1, -- Judge Cape
-        -- }
-    	-- showShop(player, STATIC, stock);
     else
         player:PrintToPlayer("You just aren't special enough");
     end

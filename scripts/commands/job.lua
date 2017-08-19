@@ -69,11 +69,11 @@ function onTrigger(player)
 			11124,325000, -- Ravager's Cuisses+2
 			11144,325000, -- Ravager's Calligae+2
             -- AF3            
-            23375,10000000, --  Pummeler's Mask +3
-            23442,10000000, --  Pumm. Lorica +3 
-            23509,10000000, --  Pumm. Mufflers +3
-            23576,10000000, --  Pumm. Cuisses +3
-            23643,10000000, --  Pumm. Calligae +3
+            -- 23375,10000000, --  Pummeler's Mask +3
+            -- 23442,10000000, --  Pumm. Lorica +3 
+            -- 23509,10000000, --  Pumm. Mufflers +3
+            -- 23576,10000000, --  Pumm. Cuisses +3
+            -- 23643,10000000, --  Pumm. Calligae +3
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 2) then -- MNK
@@ -134,11 +134,11 @@ function onTrigger(player)
 			11125,325000, -- Tantra Hose+2
 			11145,325000, -- Tantra Gaiters+2
             -- AF3
-            23376,10000000, -- Anch. Crown +3
-            23443,10000000, -- Anch. Cyclas +3
-            23510,10000000, -- Anchor. Gloves +3
-            23577,10000000, -- Anch. Hose +3 
-            23644,10000000, -- Anch. Gaiters +3                     
+            -- 23376,10000000, -- Anch. Crown +3
+            -- 23443,10000000, -- Anch. Cyclas +3
+            -- 23510,10000000, -- Anchor. Gloves +3
+            -- 23577,10000000, -- Anch. Hose +3 
+            -- 23644,10000000, -- Anch. Gaiters +3                     
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 3) then -- WHM
@@ -199,11 +199,11 @@ function onTrigger(player)
 			11126,325000, -- Orison Pantaloons+2
 			11146,325000, -- Orison Duckbills+2
                         -- AF3
-            23377,10000000, -- Theophany Cap +3
-            23444,10000000, -- Theo. Briault +3
-            23511,10000000, -- Theophany Mitts +3
-            23578,10000000, -- Th. Pant. +3
-            23645,10000000, -- Theo. Duckbills +3
+            -- 23377,10000000, -- Theophany Cap +3
+            -- 23444,10000000, -- Theo. Briault +3
+            -- 23511,10000000, -- Theophany Mitts +3
+            -- 23578,10000000, -- Th. Pant. +3
+            -- 23645,10000000, -- Theo. Duckbills +3
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 4) then -- BLM
@@ -264,11 +264,11 @@ function onTrigger(player)
 			11127,325000, -- Goetia Tonban+2
 			11147,325000, -- Goetia Sabots+2
             -- AF3
-            23378,10000000, -- Spae. Petasos +3
-            23445,10000000, -- Spaekona's Coat +3
-            23512,10000000, -- Spae. Gloves +3
-            23579,10000000, -- Spae. Tonban +3
-            23646,10000000, -- Spae. Sabots +3         
+            -- 23378,10000000, -- Spae. Petasos +3
+            -- 23445,10000000, -- Spaekona's Coat +3
+            -- 23512,10000000, -- Spae. Gloves +3
+            -- 23579,10000000, -- Spae. Tonban +3
+            -- 23646,10000000, -- Spae. Sabots +3         
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 5) then -- RDM
@@ -329,11 +329,11 @@ function onTrigger(player)
 			11128,325000, -- Estoqueur's Fuseau+2
 			11148,325000, -- Estoqueur's Houseaux+2
             -- AF3
-            23379,10000000, -- Atrophy Chapeau +3
-            23446,10000000, -- Atrophy Tabard +3
-            23513,10000000, -- Atrophy Gloves +3
-            23580,10000000, -- Atrophy Tights +3
-            23647,10000000, -- Atro. Boots +3
+            -- 23379,10000000, -- Atrophy Chapeau +3
+            -- 23446,10000000, -- Atrophy Tabard +3
+            -- 23513,10000000, -- Atrophy Gloves +3
+            -- 23580,10000000, -- Atrophy Tights +3
+            -- 23647,10000000, -- Atrophy Boots +3
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 6) then -- THF
@@ -394,11 +394,11 @@ function onTrigger(player)
 			11129,325000, -- Raider's Culottes+2
 			11149,325000, -- Raider's Poulaines+2
             -- AF3           
-            23380,10000000, -- 
-            23447,10000000, -- 
-            23514,10000000, -- 
-            23581,10000000, -- 
-            23648,10000000, --         
+            -- 23380,10000000, -- 
+            -- 23447,10000000, -- 
+            -- 23514,10000000, -- 
+            -- 23581,10000000, -- 
+            -- 23648,10000000, --         
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 7) then -- PLD
@@ -459,11 +459,11 @@ function onTrigger(player)
 			11130,325000, -- Creed Cuisses+2
 			11150,325000, -- Creed Sabatons+2
             -- AF3           
-            23381,10000000, -- 
-            23448,10000000, -- 
-            23515,10000000, -- 
-            23582,10000000, -- 
-            23649,10000000, --           
+            -- 23381,10000000, -- 
+            -- 23448,10000000, -- 
+            -- 23515,10000000, -- 
+            -- 23582,10000000, -- 
+            -- 23649,10000000, --           
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 8) then -- DRK
@@ -524,11 +524,11 @@ function onTrigger(player)
 			11131,325000, -- Bale Flanchard+2
 			11151,325000, -- Bale Sollerets+2
             -- AF3           
-            23382,10000000, -- 
-            23449,10000000, -- 
-            23516,10000000, -- 
-            23583,10000000, -- 
-            23650,10000000, -- 
+            -- 23382,10000000, -- 
+            -- 23449,10000000, -- 
+            -- 23516,10000000, -- 
+            -- 23583,10000000, -- 
+            -- 23650,10000000, -- 
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 9) then -- BST
@@ -589,11 +589,11 @@ function onTrigger(player)
 			11132,325000, -- Ferine Quijotes+2
 			11152,325000, -- Ferine Ocreae+2
             -- AF3           
-            23383,10000000, -- 
-            23450,10000000, -- 
-            23517,10000000, -- 
-            23584,10000000, -- 
-            23651,10000000, -- 
+            -- 23383,10000000, -- 
+            -- 23450,10000000, -- 
+            -- 23517,10000000, -- 
+            -- 23584,10000000, -- 
+            -- 23651,10000000, -- 
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 10) then -- BRD
@@ -654,11 +654,11 @@ function onTrigger(player)
 			11133,325000, -- Aoidos' Rhingrave+2
 			11153,325000, -- Aoidos' Cothurnes+2
             -- AF3           
-            23384,10000000, -- 
-            23451,10000000, -- 
-            23518,10000000, -- 
-            23585,10000000, -- 
-            23652,10000000, --
+            -- 23384,10000000, -- 
+            -- 23451,10000000, -- 
+            -- 23518,10000000, -- 
+            -- 23585,10000000, -- 
+            -- 23652,10000000, --
         }
 		showShop(player, STATIC, stock);
 		elseif(player:getMainJob() == 11) then -- RNG
@@ -719,11 +719,11 @@ function onTrigger(player)
 			11134,325000, -- Sylvan Bragues+2
 			11154,325000, -- Sylvan Bottillons+2
                         -- AF3           
-            23385,10000000, -- 
-            23452,10000000, -- 
-            23519,10000000, -- 
-            23586,10000000, -- 
-            23653,10000000, --
+            -- 23385,10000000, -- 
+            -- 23452,10000000, -- 
+            -- 23519,10000000, -- 
+            -- 23586,10000000, -- 
+            -- 23653,10000000, --
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 12) then -- SAM
@@ -783,11 +783,11 @@ function onTrigger(player)
 			11135,325000, -- Unkai Haidate+2
 			11155,325000, -- Unkai Sune-Ate+2
             -- AF3           
-            23386,10000000, -- 
-            23453,10000000, -- 
-            23520,10000000, -- 
-            23587,10000000, -- 
-            23654,10000000, --
+            -- 23386,10000000, -- 
+            -- 23453,10000000, -- 
+            -- 23520,10000000, -- 
+            -- 23587,10000000, -- 
+            -- 23654,10000000, --
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 13) then -- NIN
@@ -849,11 +849,11 @@ function onTrigger(player)
 			11136,325000, -- Iga Hakama+2
 			11156,325000, -- Iga Kyahan+2
             -- AF3           
-            23387,10000000, -- 
-            23454,10000000, -- 
-            23521,10000000, -- 
-            23588,10000000, -- 
-            23655,10000000, --
+            -- 23387,10000000, -- 
+            -- 23454,10000000, -- 
+            -- 23521,10000000, -- 
+            -- 23588,10000000, -- 
+            -- 23655,10000000, --
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 14) then -- DRG
@@ -914,11 +914,11 @@ function onTrigger(player)
 			11137,325000, -- Lancer's Cuissots+2
 			11157,325000, -- Lancer's Schynbalds+2
             -- AF3           
-            23388,10000000, -- 
-            23455,10000000, -- 
-            23522,10000000, -- 
-            23589,10000000, -- 
-            23656,10000000, --         
+            -- 23388,10000000, -- 
+            -- 23455,10000000, -- 
+            -- 23522,10000000, -- 
+            -- 23589,10000000, -- 
+            -- 23656,10000000, --         
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 15) then -- SMN
@@ -979,11 +979,11 @@ function onTrigger(player)
 			11138,325000, -- Caller's Spats+2
 			11158,325000, -- Caller's Pigaches+2
             -- AF3           
-            23389,10000000, -- 
-            23456,10000000, -- 
-            23523,10000000, -- 
-            23590,10000000, -- 
-            23657,10000000, --            
+            -- 23389,10000000, -- 
+            -- 23456,10000000, -- 
+            -- 23523,10000000, -- 
+            -- 23590,10000000, -- 
+            -- 23657,10000000, --            
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 16) then -- BLU
@@ -1044,11 +1044,11 @@ function onTrigger(player)
 			11139,325000, -- Mavi Tayt+2
 			11159,325000, -- Mavi Basmak+2
             -- AF3           
-            23390,10000000, -- 
-            23457,10000000, -- 
-            23524,10000000, -- 
-            23591,10000000, -- 
-            23658,10000000, --
+            -- 23390,10000000, -- 
+            -- 23457,10000000, -- 
+            -- 23524,10000000, -- 
+            -- 23591,10000000, -- 
+            -- 23658,10000000, --
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 17) then -- COR
@@ -1140,11 +1140,11 @@ function onTrigger(player)
 			11140,325000, -- Navarch's Culottes+2
 			11160,325000, -- Navarch's Bottes+2
             -- AF3           
-            23391,10000000, -- 
-            23458,10000000, -- 
-            23525,10000000, -- 
-            23592,10000000, -- 
-            23659,10000000, --
+            -- 23391,10000000, -- 
+            -- 23458,10000000, -- 
+            -- 23525,10000000, -- 
+            -- 23592,10000000, -- 
+            -- 23659,10000000, --
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 18) then -- PUP
@@ -1277,11 +1277,11 @@ function onTrigger(player)
 		11142,325000, -- Charis Tights+2
 		11162,325000, -- Charis Shoes+2	
         -- AF3           
-        23393,10000000, -- 
-        23460,10000000, -- 
-        23527,10000000, -- 
-        23594,10000000, -- 
-        23661,10000000, --
+        -- 23393,10000000, -- 
+        -- 23460,10000000, -- 
+        -- 23527,10000000, -- 
+        -- 23594,10000000, -- 
+        -- 23661,10000000, --
         }
 		showShop(player, STATIC, stock);
 	elseif(player:getMainJob() == 20) then -- SCH
@@ -1342,11 +1342,11 @@ function onTrigger(player)
 		11143,325000, -- Savant's Pants+2
 		11163,325000, -- Savant's Loafers+2
         -- AF3           
-        23394,10000000, -- 
-        23461,10000000, -- 
-        23528,10000000, -- 
-        23595,10000000, -- 
-        23662,10000000, --
+        -- 23394,10000000, -- 
+        -- 23461,10000000, -- 
+        -- 23528,10000000, -- 
+        -- 23595,10000000, -- 
+        -- 23662,10000000, --
         }
 		showShop(player, STATIC, stock);
     elseif(player:getMainJob() == 21) then -- GEO

@@ -1,7 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: vrtra/vrtra @vrtra
--- auth: <Unknown> :: Modded by Tagban
--- desc: Sets the players position to specific location (can be added to later).
+-- func: Takes player to  ACHUKA
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =

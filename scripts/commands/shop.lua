@@ -22,7 +22,6 @@ stock = {
         6307, 5000, -- Happo Shuriken +1 Pouch
         5410, 5000, -- Virtue Stone pouch
         4213, 5000, -- Icarus Wing
-        4175, 5000, -- Vile Elixir +1
         5142, 5000, -- Bison Steak
         4381, 5000, -- Meat Mithkabob
         5146, 5000, -- Hedgehog Pie

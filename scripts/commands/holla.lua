@@ -1,7 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: ah/auction
--- auth: <Unknown> :: Modded by Tagban
--- desc: Sets the players position to specific location (can be added to later).
+-- func: Teleports player to Holla Gate Crystal.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -9,6 +7,6 @@ cmdprops =
     permission = 0,
     parameters = "iiii"
 };
-function onTrigger(player)
-	player:sendMenu(3);
+function onTrigger(player, x, y, z, zone)
+		player:setPos('420', '19', '22', '245', '102');
 end

@@ -1,12 +1,12 @@
 ---------------------------------------------------------------------------------------------------
--- func: Teleports players to Chigre.
+-- func: Teleports player to Dem Gate Crystal.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
-    permission = 1,
-    parameters = ""
-}; 
+    permission = 0,
+    parameters = "iiii"
+};
 function onTrigger(player, x, y, z, zone)
-            player:setPos('-218', '35', '14', '70', '68');
+		player:setPos('220', '19', '303', '245', '108');
 end

@@ -1,15 +1,12 @@
 ---------------------------------------------------------------------------------------------------
--- func: costume
--- auth: <Unknown>
--- desc: Sets the players current costume.
+-- func: Teleports player to Mea Gate Crystal.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 0,
-    parameters = "i"
+    parameters = "iiii"
 };
-
-function onTrigger(player, costume)
-    player:costume( costume );
+function onTrigger(player, x, y, z, zone)
+		player:setPos('95', '35', '340', '245', '117');
 end

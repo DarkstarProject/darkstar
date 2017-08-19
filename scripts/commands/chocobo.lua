@@ -1,7 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: @chocobo
--- auth: Modded by Tagban // Updated per suggesttion from Teotwawki
--- desc: Adds Chocobo 
+-- func: Give's player Chocobo Effect.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =

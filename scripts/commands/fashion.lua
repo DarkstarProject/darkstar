@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: Fireworks!
--- desc: BIKINIS BIKINIS!
+-- func: Shop for Misc Outfits
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -52,13 +51,13 @@ local stock = {
         16327,100000,	-- MITHRA BOTTOM
         16328,100000,	-- GALKA BOTTOM
         -- DREAM SET
-        --18863,100000,	-- Dream Bell
-        --15752,100000,	-- Dream Boots
-        --15178,100000,	-- Dream Hat
-        --10382,100000,	-- Dream Mittens
-        --11967,100000,	-- Dream Pants
-        --14519,100000,	-- Dream Robe
-        --11965,100000,	-- Dream Trousers
+        18863,100000,	-- Dream Bell
+        15752,100000,	-- Dream Boots
+        15178,100000,	-- Dream Hat
+        10382,100000,	-- Dream Mittens
+        11967,100000,	-- Dream Pants
+        14519,100000,	-- Dream Robe
+        11965,100000,	-- Dream Trousers
 	}
 
 showShop(player, STATIC, stock);

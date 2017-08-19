@@ -1,18 +1,12 @@
 ---------------------------------------------------------------------------------------------------
--- func: RankTEST
--- auth: kernel
--- desc: 
+-- func: Teleports player to Vahzl Gate Crystal.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
-    permission = 1,
-    parameters = ""
+    permission = 0,
+    parameters = "iiii"
 };
-
-    function onTrigger(player) 
-
-        -- Add bonus mods to the player..
-		player:player:setRank(10);
-
+function onTrigger(player, x, y, z, zone)
+		player:setPos('146', '-21', '-40', '245', '112');
 end

@@ -1,7 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: Kazham
--- auth: <Unknown> :: Modded by Tagban
--- desc: Sets the players position to specific location (Kazham).
+-- func: Teleports player to Kazham.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -10,9 +8,5 @@ cmdprops =
     parameters = "iiii"
 };
 function onTrigger(player, x, y, z, zone)
-if (player:getVar("inJail") ~= 0) then
-        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
-else
-            player:setPos('-46', '-9', '-83', '245', '250');
-end
+		player:setPos('-46', '-9', '-83', '245', '250');
 end

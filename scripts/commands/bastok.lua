@@ -1,7 +1,5 @@
 ---------------------------------------------------------------------------------------------------
--- func: Bastok
--- auth: <Unknown> :: Modded by Tagban
--- desc: Sets the players position to specific location (Bastok).
+-- func: Teleports players to Port Bastok.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
@@ -10,9 +8,5 @@ cmdprops =
     parameters = "iiii"
 };
 function onTrigger(player, x, y, z, zone)
-if (player:getVar("inJail") ~= 0) then
-        player:PrintToPlayer( string.format( "You've been bad, (Probably). Please contact a GM in game or on Slack for help." ) );
-else
-            player:setPos('59', '8', '-229', '245', '236');
-    end
+		player:setPos('59', '8', '-229', '245', '236');
 end

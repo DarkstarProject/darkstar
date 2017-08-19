@@ -6,7 +6,7 @@
 
 cmdprops =
 {
-    permission = 2,
+    permission = 3,
     parameters = "iiii"
 };
 function onTrigger(player)
@@ -19,7 +19,7 @@ function onTrigger(player)
    SpawnMob('16973968'); --Incendiary_Bombs
    SpawnMob('16973969'); --Fighting_Flan-------GrpId=1505               poolID=1335
    SpawnMob('16973970'); --Fighting_Flan
-    SpawnMob('16973971'); --Fighting_Flan
+   SpawnMob('16973971'); --Fighting_Flan
    SpawnMob('16973972'); --Fighting_Flan
    SpawnMob('16973973'); --Fighting_Flan
    SpawnMob('16973974'); --Siege_Scorpion------GrpId=1571               poolID=3620

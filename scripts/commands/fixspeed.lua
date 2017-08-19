@@ -10,5 +10,5 @@ cmdprops =
 };
 
 function onTrigger(player, speed)
-    player:speed(90);
+    player:speed(65);
 end
