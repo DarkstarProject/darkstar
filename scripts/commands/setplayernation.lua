@@ -6,29 +6,45 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "si"
+    parameters = "ss"
 };
 
-function onTrigger(player, target, nation)
-    if (nation > 2 or nation < 0) then
-        player:PrintToPlayer( "Invalid nation id given! Must be 0, 1, or 2!" );
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("@setplayernation {player} <nation>");
+    player:PrintToPlayer("Nations: 0=San d'Oria 1=Bastok 2=Windurst");
+end;
+
+function onTrigger(player, arg1, arg2)
+    local targ;
+    local nation;
+    
+    -- validate target
+    if (arg2 ~= nil) then
+        targ = GetPlayerByName(arg1);
+        if (targ == nil) then
+            error(player, string.format( "Player named '%s' not found!", arg1 ));
+            return;
+        end
+        nation = tonumber(arg2);
+    elseif (arg1 ~= nil) then
+        targ = player;
+        nation = tonumber(arg1);
+    end
+
+    -- validate nation
+    if (nation == nil or nation < 0 or nation > 2) then
+        error(player, "Invalid nation ID.");
         return;
     end
 
-    --[[ need to fetch from table and change argument to string type
-    nation = tonumber(nation) or _G[string.upper(nation)];
-    ]]
+    local nationByNum = {
+        [0] = "San d'Oria",
+        [1] = "Bastok",
+        [2] = "Windurst"
+    }
 
-    local targ;
-    if (target == nil) then
-        targ = player;
-    else
-        targ = GetPlayerByName(target);
-    end
-
-    if (targ ~= nil) then
-        targ:setNation( nation );
-    else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-    end
+    -- set nation
+    targ:setNation( nation );
+    player:PrintToPlayer( string.format("Set %s's home nation to %s.", targ:getName(), nationByNum[nation]) );
 end;

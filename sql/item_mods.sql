@@ -37369,6 +37369,38 @@ INSERT INTO `item_mods` VALUES (27367,112,16);    -- Healing magic skill +16
 INSERT INTO `item_mods` VALUES (27367,384,30);    -- Haste +3%
 INSERT INTO `item_mods` VALUES (27367,399,16);    -- Weather: Enhances Celerity and Alacrity Effect +16%
 INSERT INTO `item_mods` VALUES (27367,407,6);     -- Uncapped Fast Cast +6% ?
+INSERT INTO `item_mods` VALUES (27400,1,65); -- Revealers Pumps -- 65 Def
+INSERT INTO `item_mods` VALUES (27400,2,13); -- 13 HP
+INSERT INTO `item_mods` VALUES (27400,5,44); -- 44 MP
+INSERT INTO `item_mods` VALUES (27400,8,10); -- 10 STR
+INSERT INTO `item_mods` VALUES (27400,9,11); -- 11 DEX
+INSERT INTO `item_mods` VALUES (27400,10,10); -- 10 VIT
+INSERT INTO `item_mods` VALUES (27400,11,33); -- 33 AGI
+INSERT INTO `item_mods` VALUES (27400,12,21); -- 21 INT
+INSERT INTO `item_mods` VALUES (27400,13,19); -- 19 MND
+INSERT INTO `item_mods` VALUES (27400,14,38); -- 38 CHR
+INSERT INTO `item_mods` VALUES (27400,27,-4); -- Enmity -4
+INSERT INTO `item_mods` VALUES (27400,28,10); -- 10 Matt
+INSERT INTO `item_mods` VALUES (27400,29,5); -- 5 Mdef
+INSERT INTO `item_mods` VALUES (27400,31,107); -- 107 Meva
+INSERT INTO `item_mods` VALUES (27400,68,55); -- 55 Eva
+INSERT INTO `item_mods` VALUES (27400,384,30); -- 3% Gear Haste
+INSERT INTO `item_mods` VALUES (27401,1,66); -- Revealers Pumps +1 -- 66 Def
+INSERT INTO `item_mods` VALUES (27401,2,13); -- 13 HP
+INSERT INTO `item_mods` VALUES (27401,5,54); -- 54 MP
+INSERT INTO `item_mods` VALUES (27401,8,10); -- 10 STR
+INSERT INTO `item_mods` VALUES (27401,9,11); -- 11 DEX
+INSERT INTO `item_mods` VALUES (27401,10,10); -- 10 VIT
+INSERT INTO `item_mods` VALUES (27401,11,33); -- 33 AGI
+INSERT INTO `item_mods` VALUES (27401,12,22); -- 22 INT
+INSERT INTO `item_mods` VALUES (27401,13,19); -- 19 MND
+INSERT INTO `item_mods` VALUES (27401,14,39); -- 39 CHR
+INSERT INTO `item_mods` VALUES (27401,27,-5); -- Enmity -5
+INSERT INTO `item_mods` VALUES (27401,28,11); -- 11 Matt
+INSERT INTO `item_mods` VALUES (27401,29,5); -- 5 Mdef
+INSERT INTO `item_mods` VALUES (27401,31,107); -- 107 Meva
+INSERT INTO `item_mods` VALUES (27401,68,55); -- 55 Eva
+INSERT INTO `item_mods` VALUES (27401,384,30); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (27402,1,82);
 INSERT INTO `item_mods` VALUES (27402,2,18);
 INSERT INTO `item_mods` VALUES (27402,8,15);

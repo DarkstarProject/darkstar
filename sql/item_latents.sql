@@ -2732,7 +2732,7 @@ INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 3); -- Spear: Accuracy +10 
 -- Rune equips
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18206, 25, 5, 56, 0); -- Rune Chopper +5 Acc.
-INSERT INTO `item_latents` VALUES(18206, 167, 9, 56, 0); -- Rune Chopper +9% haste
+INSERT INTO `item_latents` VALUES(18206, 167, 90, 56, 0); -- Rune Chopper +9% haste
 INSERT INTO `item_latents` VALUES(18206, 369, -3, 56, 0); -- Rune Chopper -3MP/tic
 INSERT INTO `item_latents` VALUES(17333, 10, 1, 56, 0); -- Rune Arrow +1 VIT
 INSERT INTO `item_latents` VALUES(17333, 24, 10, 56, 0); -- Rune Arrow +10 R.Atk.
