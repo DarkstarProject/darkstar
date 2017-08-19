@@ -249,16 +249,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (zoneutils::IsResidentialArea(destination) && PChar->m_moghouseID == 0)
-        {
-            PChar->m_moghouseID = PChar->id;
-            destination = PChar->loc.prevzone;
-        }
-        else
-        {
-            PChar->m_moghouseID = 0;
-        }
-
         zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
@@ -2769,6 +2759,12 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     PChar->status = STATUS_NORMAL;
                     return;
+                }
+                else if (PZoneLine->m_toZone == 0)
+                {
+                    //TODO: for entering another persons mog house, it must be set here
+                    PChar->m_moghouseID = PChar->id;
+                    PChar->loc.p = PZoneLine->m_toPos;
                 }
                 else
                 {

@@ -45,7 +45,7 @@ CREATE TABLE `zone_settings` (
 
 LOCK TABLES `zone_settings` WRITE;
 /*!40000 ALTER TABLE `zone_settings` DISABLE KEYS */;
-INSERT INTO `zone_settings` VALUES (0,1,'127.0.0.1',54230,'Residential_Area',0,0,0,0,0,0.00,32);
+INSERT INTO `zone_settings` VALUES (0,1,'127.0.0.1',54230,'unknown',0,0,0,0,0,0.00,32);
 INSERT INTO `zone_settings` VALUES (1,2,'127.0.0.1',54230,'Phanauet_Channel',229,229,101,219,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (2,2,'127.0.0.1',54230,'Carpenters_Landing',0,0,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (3,2,'127.0.0.1',54230,'Manaclipper',229,229,101,219,0,0.00,152);
