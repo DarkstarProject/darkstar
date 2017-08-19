@@ -6,7 +6,7 @@
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
-
+require("scripts/globals/status");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -29,16 +29,16 @@ function onMobDeath(mob, player, isKiller)
         SetServerVariable("Bastok8-1LastClear", os.time());
     end
 end;
-
+-- and GetMobById(17629187):isDead() and GetMobById(17629188):isDead()
 -----------------------------------
 -- onMobDespawn Action
 -----------------------------------
 function onMobDespawn(mob)
-    local mobsup = GetServerVariable("BastokFight8_1");
-    SetServerVariable("BastokFight8_1",mobsup - 1);
+    local ants = GetServerVariable("BastokFight8_1");
+    SetServerVariable("BastokFight8_1", ants + 1);
 
-    if (GetServerVariable("BastokFight8_1") == 0) then
+    if (GetServerVariable("BastokFight8_1") >= 3) then
         local npc = GetNPCByID(17629738); -- qm6
-        npc:setStatus(0); -- Reappear
+        npc:setStatus(STATUS_NORMAL); -- Reappear
     end
 end;
