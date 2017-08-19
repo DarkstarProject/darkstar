@@ -30,7 +30,7 @@ function onMobDeath(mob, player, isKiller)
         SetServerVariable("Bastok8-1LastClear", os.time());
     end
 end;
--- and GetMobById(17629187):isDead() and GetMobById(17629189):isDead()
+
 -----------------------------------
 -- onMobDespawn Action
 -----------------------------------
