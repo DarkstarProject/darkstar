@@ -67,10 +67,10 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getRace() ~= 8) then
-        target:addMod(MOD_STR, 3);
-        target:addMod(MOD_INT, -4);
-        target:addMod(MOD_ATT, 9);
-        target:addMod(MOD_RATT, 9);
+        target:delMod(MOD_STR, 3);
+        target:delMod(MOD_INT, -4);
+        target:delMod(MOD_ATT, 9);
+        target:delMod(MOD_RATT, 9);
     else
         target:delMod(MOD_STR, 3);
         target:delMod(MOD_INT, -1);
