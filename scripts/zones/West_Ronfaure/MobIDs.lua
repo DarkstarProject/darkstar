@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Fungus Beetle
-Fungus_Beetle=17187047;
+Fungus_Beetle = 17187047;
 Fungus_Beetle_PH =
 {
     [17187046] = '1', -- -133.001, -20.636, -141.110
@@ -14,7 +14,7 @@ Fungus_Beetle_PH =
 };
 
 -- Jaggedy-Eared Jack
-Jaggedy_Eared_Jack=17187111;
+Jaggedy_Eared_Jack = 17187111;
 Jaggedy_Eared_Jack_PH =
 {
         [17187110] = '1', -- -262.780, -22.384, -253.873

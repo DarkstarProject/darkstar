@@ -4,12 +4,24 @@
 -- @pos 59.788 -0.939 22.316 171
 -----------------------------------
 
+require("scripts/globals/status");
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
+
+-----------------------------------
+-- onMobSpawn
+-----------------------------------
+
+function onMobSpawn(mob)
+    mob:setMod(MOD_DOUBLE_ATTACK, 20);
+    mob:setMod(MOD_STORETP, 10);
+end;
+	
 
 -----------------------------------
 -- onMobDespawn
@@ -25,4 +37,27 @@ function onMobDespawn(mob)
     SetServerVariable("[PH]Morille_Mortelle", 0);
     DeterMob(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
+end;
+
+-----------------------------------
+-- onAdditionalEffect
+-----------------------------------
+
+function onAdditionalEffect(mob, player)
+    local chance = 25;
+    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_PLAGUE);
+    if (math.random(0,99) >= chance or resist <= 0.5) then
+        return 0,0,0;
+    else
+        local duration = 30;
+        if (mob:getMainLvl() > player:getMainLvl()) then
+            duration = duration + (mob:getMainLvl() - player:getMainLvl())
+        end
+        duration = utils.clamp(duration,1,45);
+        duration = duration * resist;
+        if (not player:hasStatusEffect(EFFECT_PLAGUE)) then
+            player:addStatusEffect(EFFECT_PLAGUE, 1, 0, duration);
+        end
+        return SUBEFFECT_PLAGUE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PLAGUE;
+    end
 end;

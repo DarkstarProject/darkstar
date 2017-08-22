@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Ashmaker_Gotblut
-Ashmaker_Gotblut=17358932;
+Ashmaker_Gotblut = 17358932;
 Ashmaker_Gotblut_PH =
 {
     [17358926] = '1', -- 16.179, -1.321, -27.321

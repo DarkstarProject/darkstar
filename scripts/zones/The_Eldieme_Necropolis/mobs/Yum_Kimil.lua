@@ -21,5 +21,7 @@ end;
 -- OnMobDeath Action
 -----------------------------------
 function onMobDeath(mob, player, isKiller)
-    player:setVar("TheRequiemYumKilled",1);
+    if (player:getVar("TheRequiemCS") == 3) then
+        player:setVar("TheRequiemYumKilled",1);
+    end
 end;

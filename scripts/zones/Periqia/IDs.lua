@@ -3,9 +3,9 @@ Periqia = {
     text = {
         -- General Texts
         ITEM_CANNOT_BE_OBTAINED = 6378, -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED = 6381, -- Obtained: <item>
-        GIL_OBTAINED = 6384, -- Obtained <number> gil
-        KEYITEM_OBTAINED = 6384, -- Obtained key item: <keyitem>
+        ITEM_OBTAINED = 6385, -- Obtained: <item>
+        GIL_OBTAINED = 6386, -- Obtained <number> gil
+        KEYITEM_OBTAINED = 6388, -- Obtained key item: <keyitem>
 
         -- Assault Texts
         ASSAULT_31_START = 7447,
@@ -18,34 +18,34 @@ Periqia = {
         ASSAULT_38_START = 7454,
         ASSAULT_39_START = 7455,
         ASSAULT_40_START = 7456,
-        TIME_TO_COMPLETE = 7477,
-        MISSION_FAILED = 7478,
-        RUNE_UNLOCKED_POS = 7479,
-        RUNE_UNLOCKED = 7480,
-        ASSAULT_POINTS_OBTAINED = 7481,
-        TIME_REMAINING_MINUTES = 7482,
-        TIME_REMAINING_SECONDS = 7483,
-        PARTY_FALLEN = 7485,
+        TIME_TO_COMPLETE = 7504,
+        MISSION_FAILED = 7505,
+        RUNE_UNLOCKED_POS = 7506,
+        RUNE_UNLOCKED = 7507,
+        ASSAULT_POINTS_OBTAINED = 7508,
+        TIME_REMAINING_MINUTES = 7509,
+        TIME_REMAINING_SECONDS = 7510,
+        PARTY_FALLEN = 7512,
 
         -- Seagull Grounded
-        EXCALIACE_START = 7494,
-        EXCALIACE_END1 = 7495,
-        EXCALIACE_END2 = 7496,
-        EXCALIACE_ESCAPE = 7497,
-        EXCALIACE_PAIN1 = 7498,
-        EXCALIACE_PAIN2 = 7499,
-        EXCALIACE_PAIN3 = 7500,
-        EXCALIACE_PAIN4 = 7501,
-        EXCALIACE_PAIN5 = 7502,
-        EXCALIACE_CRAB1 = 7503,
-        EXCALIACE_CRAB2 = 7504,
-        EXCALIACE_CRAB3 = 7505,
-        EXCALIACE_DEBAUCHER1 = 7506,
-        EXCALIACE_DEBAUCHER2 = 7507,
-        EXCALIACE_RUN = 7508,
-        EXCALIACE_TOO_CLOSE = 7509,
-        EXCALIACE_TIRED = 7510,
-        EXCALIACE_CAUGHT = 7511,
+        EXCALIACE_START = 7521,
+        EXCALIACE_END1 = 7522,
+        EXCALIACE_END2 = 7523,
+        EXCALIACE_ESCAPE = 7524,
+        EXCALIACE_PAIN1 = 7525,
+        EXCALIACE_PAIN2 = 7526,
+        EXCALIACE_PAIN3 = 7527,
+        EXCALIACE_PAIN4 = 7528,
+        EXCALIACE_PAIN5 = 7529,
+        EXCALIACE_CRAB1 = 7530,
+        EXCALIACE_CRAB2 = 7531,
+        EXCALIACE_CRAB3 = 7532,
+        EXCALIACE_DEBAUCHER1 = 7533,
+        EXCALIACE_DEBAUCHER2 = 7534,
+        EXCALIACE_RUN = 7535,
+        EXCALIACE_TOO_CLOSE = 7536,
+        EXCALIACE_TIRED = 7537,
+        EXCALIACE_CAUGHT = 7538,
     },
 
     mobs = {

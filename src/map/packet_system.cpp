@@ -249,16 +249,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (zoneutils::IsResidentialArea(destination) && PChar->m_moghouseID == 0)
-        {
-            PChar->m_moghouseID = PChar->id;
-            destination = PChar->loc.prevzone;
-        }
-        else
-        {
-            PChar->m_moghouseID = 0;
-        }
-
         zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
@@ -613,7 +603,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case 0x00: // trigger
     {
-        if(PChar->StatusEffectContainer->HasPreventActionEffect())
+        if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
         if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
@@ -621,14 +611,15 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;
         }
-        CBaseEntity* PNpc = nullptr;
 
+        CBaseEntity* PNpc = nullptr;
         PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
-        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
+        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && (PNpc->PAI->IsSpawned() || PChar->m_moghouseID != 0))
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
+
         if (PChar->m_event.EventID == -1)
         {
             PChar->m_event.reset();
@@ -760,7 +751,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
-        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_CHOCOBO);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
     }
     break;
     case 0x13: // tractor menu
@@ -2769,6 +2760,13 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     PChar->status = STATUS_NORMAL;
                     return;
                 }
+                else if (PZoneLine->m_toZone == 0)
+                {
+                    //TODO: for entering another persons mog house, it must be set here
+                    PChar->m_moghouseID = PChar->id;
+                    PChar->loc.p = PZoneLine->m_toPos;
+                    PChar->loc.destination = PChar->loc.prevzone;
+                }
                 else
                 {
                     PChar->loc.destination = PZoneLine->m_toZone;
@@ -3805,7 +3803,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (RBUFB(data, (0x06)) == '@' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (RBUFB(data, (0x06)) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
     {
         //this makes sure a command isn't sent to chat
     }

@@ -25,5 +25,5 @@ function onMobDespawn(mob)
     local PH = GetServerVariable("[PH]Hovering_Hotpot");
     SetServerVariable("[PH]Hovering_Hotpot", 0);
     DeterMob(PH, false);
-    GetMobByID(PH):SetRespawnTime(GetMobRespawnTime(PH));
+    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

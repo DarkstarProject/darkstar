@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Demonic_Tiphia
-Demonic_Tiphia=17584398;
+Demonic_Tiphia = 17584398;
 Demonic_Tiphia_PH =
 {
     [17584392] = '1', -- -103.000, -1.000, 311.000

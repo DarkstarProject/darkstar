@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Sharp-Eared_Ropipi
-Sharp_Eared_Ropipi=17252489;
+Sharp_Eared_Ropipi = 17252489;
 Sharp_Eared_Ropipi_PH =
 {
 [17252507] = '1', -- 363.152, -16.705, -326.213
@@ -15,7 +15,7 @@ Sharp_Eared_Ropipi_PH =
 };
 
 -- Spiny_Spipi
-Spiny_Spipi=17252657;
+Spiny_Spipi = 17252657;
 Spiny_Spipi_PH =
 {
 [17252656] = '1', -- 285.575, -12.656, 126.129

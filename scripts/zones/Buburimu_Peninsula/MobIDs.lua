@@ -5,7 +5,7 @@
 -----------------------------------
 
 -- Buburimboo
-Buburimboo=17261003;
+Buburimboo = 17261003;
 Buburimboo_PH =
 {
     [17261000] = '1', -- 443.429, 19.500, 135.322
@@ -15,7 +15,7 @@ Buburimboo_PH =
 };
 
 -- Helldiver
-Helldiver=17260907;
+Helldiver = 17260907;
 Helldiver_PH =
 {
     [17260886] = '1', -- 439.685, -0.200, -271.203

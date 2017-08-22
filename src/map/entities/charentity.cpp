@@ -344,7 +344,7 @@ int16 CCharEntity::addTP(int16 tp)
     tp = CBattleEntity::addTP(tp);
     //	if ((oldtp < 1000 && health.tp >= 1000 ) || (oldtp >= 1000 && health.tp < 1000))
     //	{
-    PLatentEffectContainer->CheckLatentsTP(health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
     //	}
     return abs(tp);
 }
@@ -352,7 +352,7 @@ int16 CCharEntity::addTP(int16 tp)
 int32 CCharEntity::addHP(int32 hp)
 {
     hp = CBattleEntity::addHP(hp);
-    PLatentEffectContainer->CheckLatentsHP(health.hp);
+    PLatentEffectContainer->CheckLatentsHP();
 
     return abs(hp);
 }
@@ -360,7 +360,7 @@ int32 CCharEntity::addHP(int32 hp)
 int32 CCharEntity::addMP(int32 mp)
 {
     mp = CBattleEntity::addMP(mp);
-    PLatentEffectContainer->CheckLatentsMP(health.mp);
+    PLatentEffectContainer->CheckLatentsMP();
 
     return abs(mp);
 }
@@ -698,7 +698,7 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
     int16 tp = state.GetSpentTP();
     tp = battleutils::CalculateWeaponSkillTP(this, PWeaponSkill, tp);
 
-    PLatentEffectContainer->CheckLatentsTP(this->health.tp);
+    PLatentEffectContainer->CheckLatentsTP();
 
     SLOTTYPE damslot = SLOT_MAIN;
     if (distance(loc.p, PBattleTarget->loc.p) - PBattleTarget->m_ModelSize <= PWeaponSkill->getRange())
@@ -1569,7 +1569,7 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain);
+        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
 }
 
 void CCharEntity::Die(duration _duration)

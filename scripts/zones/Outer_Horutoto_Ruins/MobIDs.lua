@@ -5,13 +5,13 @@
 -----------------------------------
 
 -- Bomb King
-Bomb_King=17572146;
+Bomb_King = 17572146;
 
 -- Doppelganger Gog
-Doppelganger_Gog=17572147;
+Doppelganger_Gog = 17572147;
 
 -- Doppelganger Dio
-Doppelganger_Dio=17572144;
+Doppelganger_Dio = 17572144;
 
 MultiNM_Zone_194_PH =
 {

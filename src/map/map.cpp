@@ -1109,10 +1109,6 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.exp_party_gap_penalties = atof(w2);
         }
-        else if (strcmp(w1, "fov_party_gap_penalties") == 0)
-        {
-            map_config.fov_party_gap_penalties = atof(w2);
-        }
         else if (strcmp(w1, "fov_allow_alliance") == 0)
         {
             map_config.fov_allow_alliance = atof(w2);

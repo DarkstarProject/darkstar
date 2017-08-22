@@ -45,7 +45,7 @@ CREATE TABLE `zone_settings` (
 
 LOCK TABLES `zone_settings` WRITE;
 /*!40000 ALTER TABLE `zone_settings` DISABLE KEYS */;
-INSERT INTO `zone_settings` VALUES (0,1,'127.0.0.1',54230,'Residential_Area',0,0,0,0,0,0.00,32);
+INSERT INTO `zone_settings` VALUES (0,1,'127.0.0.1',54230,'unknown',0,0,0,0,0,0.00,32); -- Demonstration Area from pre-release: Has no client side mesh, use wallhack to get around.
 INSERT INTO `zone_settings` VALUES (1,2,'127.0.0.1',54230,'Phanauet_Channel',229,229,101,219,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (2,2,'127.0.0.1',54230,'Carpenters_Landing',0,0,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (3,2,'127.0.0.1',54230,'Manaclipper',229,229,101,219,0,0.00,152);
@@ -94,7 +94,7 @@ INSERT INTO `zone_settings` VALUES (45,2,'127.0.0.1',54230,'Abyssea-Tahrongi',51
 INSERT INTO `zone_settings` VALUES (46,2,'127.0.0.1',54230,'Open_sea_route_to_Al_Zahbi',147,147,101,138,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (47,2,'127.0.0.1',54230,'Open_sea_route_to_Mhaura',147,147,101,138,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (48,1,'127.0.0.1',54230,'Al_Zahbi',178,178,178,178,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (49,0,'127.0.0.1',54230,'49',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (49,0,'127.0.0.1',54230,'49',0,0,0,0,0,0.00,0); -- Empty grid. Like z210 but with no entity or string dats at all.
 INSERT INTO `zone_settings` VALUES (50,1,'127.0.0.1',54230,'Aht_Urhgan_Whitegate',178,178,178,178,0,0.00,1032);
 INSERT INTO `zone_settings` VALUES (51,2,'127.0.0.1',54230,'Wajaom_Woodlands',149,149,101,138,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (52,2,'127.0.0.1',54230,'Bhaflau_Thickets',149,149,101,138,0,0.00,156);
@@ -178,7 +178,7 @@ INSERT INTO `zone_settings` VALUES (129,6,'127.0.0.1',54230,'Ghoyus_Reverie',0,0
 INSERT INTO `zone_settings` VALUES (130,2,'127.0.0.1',54230,'RuAun_Gardens',210,210,101,191,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (131,3,'127.0.0.1',54230,'Mordion_Gaol',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (132,2,'127.0.0.1',54230,'Abyssea-La_Theine',51,51,52,52,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (133,0,'127.0.0.1',0,'133',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (133,0,'127.0.0.1',0,'133',0,0,0,0,0,0.00,0); -- Not a real zone, this is the character selection background before you are in game.
 INSERT INTO `zone_settings` VALUES (134,5,'127.0.0.1',54230,'Dynamis-Beaucedine',121,121,121,121,0,0.00,400);
 INSERT INTO `zone_settings` VALUES (135,5,'127.0.0.1',54230,'Dynamis-Xarcabard',119,119,119,119,0,0.00,400);
 INSERT INTO `zone_settings` VALUES (136,2,'127.0.0.1',54230,'Beaucedine_Glacier_[S]',0,0,101,215,0,0.00,152);
@@ -255,7 +255,7 @@ INSERT INTO `zone_settings` VALUES (206,4,'127.0.0.1',54230,'QuBia_Arena',0,0,12
 INSERT INTO `zone_settings` VALUES (207,4,'127.0.0.1',54230,'Cloister_of_Flames',0,0,0,0,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (208,3,'127.0.0.1',54230,'Quicksand_Caves',0,0,115,192,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (209,4,'127.0.0.1',54230,'Cloister_of_Tremors',0,0,0,0,0,0.00,145);
-INSERT INTO `zone_settings` VALUES (210,0,'127.0.0.1',54230,'GM_Home',0,0,0,0,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (210,0,'127.0.0.1',54230,'GM_Home',0,0,0,0,0,0.00,0); -- NPC debug zone, where GMs idle on retail.
 INSERT INTO `zone_settings` VALUES (211,4,'127.0.0.1',54230,'Cloister_of_Tides',0,0,0,0,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (212,3,'127.0.0.1',54230,'Gustav_Tunnel',0,0,115,192,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (213,3,'127.0.0.1',54230,'Labyrinth_of_Onzozo',0,0,115,192,0,0.00,145);
