@@ -615,7 +615,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CBaseEntity* PNpc = nullptr;
         PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
-        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && PNpc->PAI->IsSpawned())
+        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && (PNpc->PAI->IsSpawned() || PChar->m_moghouseID != 0))
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
