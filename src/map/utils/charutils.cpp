@@ -799,8 +799,8 @@ namespace charutils
         PChar->StatusEffectContainer->LoadStatusEffects();
 
         charutils::LoadEquip(PChar);
-        PChar->health.hp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxHP() : HP;
-        PChar->health.mp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxMP() : MP;
+        PChar->health.hp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxHP() : HP;
+        PChar->health.mp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
         luautils::OnGameIn(PChar, zoning == 1);
     }
