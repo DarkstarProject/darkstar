@@ -2765,6 +2765,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     //TODO: for entering another persons mog house, it must be set here
                     PChar->m_moghouseID = PChar->id;
                     PChar->loc.p = PZoneLine->m_toPos;
+                    PChar->loc.destination = PChar->loc.prevzone;
                 }
                 else
                 {
