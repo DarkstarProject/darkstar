@@ -26,7 +26,7 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    mob:setLocalVar("beneduction", 0);
+    mob:setLocalVar("benediction", 0);
 end;
 
 -----------------------------------
