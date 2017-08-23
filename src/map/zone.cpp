@@ -711,6 +711,16 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
     return m_zoneEntities->GetEntity(targid, filter);
 }
 
+uint32 CZone::GetNPCIDByName(int8* name)
+{
+    return m_zoneEntities->GetNPCIDByName(name);
+}
+
+uint32 CZone::GetMobIDByName(int8* name)
+{
+    return m_zoneEntities->GetMobIDByName(name);
+}
+
 /************************************************************************
 *                                                                       *
 *  Oбработка реакции мира на смену времени суток                        *

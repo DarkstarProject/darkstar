@@ -526,6 +526,8 @@ public:
     virtual CCharEntity*    GetCharByID(uint32 id);
     // Gets an entity - ignores instances (use CBaseEntity->GetEntity if possible)
     virtual CBaseEntity*    GetEntity(uint16 targid, uint8 filter = -1);            // получаем указатель на любую сущность в зоне
+    virtual uint32    GetMobIDByName(int8* name);                              // returns mobid if found in zone
+    virtual uint32    GetNPCIDByName(int8* name);                              // returns npcid if found in zone
 
     bool            IsWeatherStatic();                                              // погода в зоне не требует изменения (никогда не меняется)
     bool            CanUseMisc(uint16 misc);

@@ -105,6 +105,8 @@ namespace luautils
         lua_register(LuaHandle, "GetNPCByID", luautils::GetNPCByID);
         lua_register(LuaHandle, "GetMobByID", luautils::GetMobByID);
         lua_register(LuaHandle, "GetMobIDByJob", luautils::GetMobIDByJob);
+        lua_register(LuaHandle, "GetMobIDByName", luautils::GetMobIDByName);
+        lua_register(LuaHandle, "GetNPCIDByName", luautils::GetNPCIDByName);
         lua_register(LuaHandle, "WeekUpdateConquest", luautils::WeekUpdateConquest);
         lua_register(LuaHandle, "GetRegionOwner", luautils::GetRegionOwner);
         lua_register(LuaHandle, "GetRegionInfluence", luautils::GetRegionInfluence);
@@ -453,6 +455,74 @@ namespace luautils
                 return 1;
             }
         }
+        lua_pushnil(L);
+        return 1;
+    }
+
+    int32 GetNPCIDByName(lua_State* L)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            CZone* PZone = zoneutils::GetZone(lua_tointeger(L, 1));
+
+            if (PZone && !lua_isnil(L, 2) && lua_isstring(L, 2))
+            {
+                int8* name = (int8*)lua_tolstring(L, 2, nullptr);
+
+                uint32 npcid = PZone->GetNPCIDByName(name);
+
+                if (npcid != 0)
+                {
+                    lua_pushinteger(L, npcid);
+                    return 1;
+                }
+
+                ShowError(CL_RED "GetNPCIDByName: invalid input string or NPC not found: %s - Zone: %s\n" CL_RESET, name, PZone->GetName());
+            }
+            else
+            {
+                ShowError(CL_RED "GetNPCIDByName: could not find zone by id: %u\n" CL_RESET, lua_tointeger(L, 1));
+            }
+        }
+        else
+        {
+            ShowError(CL_RED "GetNPCIDByName: no zoneID provided!\n" CL_RESET);
+        }
+
+        lua_pushnil(L);
+        return 1;
+    }
+
+    int32 GetMobIDByName(lua_State* L)
+    {
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+        {
+            CZone* PZone = zoneutils::GetZone(lua_tointeger(L, 1));
+
+            if (PZone && !lua_isnil(L, 2) && lua_isstring(L, 2))
+            {
+                int8* name = (int8*)lua_tolstring(L, 2, nullptr);
+
+                uint32 mobid = PZone->GetMobIDByName(name);
+
+                if (mobid != 0)
+                {
+                    lua_pushinteger(L, mobid);
+                    return 1;
+                }
+
+                ShowError(CL_RED "GetMobIDByName: invalid input string or NPC not found: %s - Zone: %s\n" CL_RESET, name, PZone->GetName());
+            }
+            else
+            {
+                ShowError(CL_RED "GetMobIDByName: could not find zone by id: %u\n" CL_RESET, lua_tointeger(L, 1));
+            }
+        }
+        else
+        {
+            ShowError(CL_RED "GetMobIDByName: no zoneID provided!\n" CL_RESET);
+        }
+
         lua_pushnil(L);
         return 1;
     }

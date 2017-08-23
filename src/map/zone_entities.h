@@ -35,6 +35,8 @@ public:
     CCharEntity*    GetCharByName(int8* name);                                      // finds the player if exists in zone
     CCharEntity*	GetCharByID(uint32 id);
     CBaseEntity*	GetEntity(uint16 targid, uint8 filter = -1); 					// получаем указатель на любую сущность в зоне
+    uint32     GetMobIDByName(int8* name);                                      // returns mobid if found in zone
+    uint32     GetNPCIDByName(int8* name);                                      // returns npcid if found in zone
 
     void			SpawnPCs(CCharEntity* PChar);									// отображаем персонажей в зоне
     void			SpawnMOBs(CCharEntity* PChar);									// отображаем MOBs в зоне

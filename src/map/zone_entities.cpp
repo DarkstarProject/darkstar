@@ -762,6 +762,38 @@ void CZoneEntities::SavePlayTime()
     }
 }
 
+uint32 CZoneEntities::GetMobIDByName(int8* name)
+{
+    if (!m_mobList.empty())
+    {
+        for (EntityList_t::const_iterator it = m_mobList.begin(); it != m_mobList.end(); ++it)
+        {
+            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+            if (stricmp(PCurrentMob->GetName(), name) == 0)
+            {
+                return PCurrentMob->id;
+            }
+        }
+    }
+    return 0;
+}
+
+uint32 CZoneEntities::GetNPCIDByName(int8* name)
+{
+    if (!m_npcList.empty())
+    {
+        for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
+        {
+            CBaseEntity* PCurrentNPC = (CBaseEntity*)it->second;
+            if (stricmp(PCurrentNPC->GetName(), name) == 0)
+            {
+                return PCurrentNPC->id;
+            }
+        }
+    }
+    return 0;
+}
+
 CCharEntity* CZoneEntities::GetCharByName(int8* name)
 {
     if (!m_charList.empty())
