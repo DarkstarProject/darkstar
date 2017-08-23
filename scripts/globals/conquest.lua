@@ -658,7 +658,7 @@ switch (region): caseof {
   ---------------------------------
     --print("RONFAURE");
 
-    local Doladepaiton = 17187525;
+    local Doladepaiton = GetNPCIDByName(100, "Doladepaiton_RK");
 
     npc  = {
     --
@@ -689,7 +689,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ZULKHEIM");
 
-    local Quanteilleron = 17199709;
+    local Quanteilleron = GetNPCIDByName(103, "Quanteilleron_RK");
 
     npc  = {
     --
@@ -720,7 +720,7 @@ switch (region): caseof {
   ---------------------------------
     --print("NORVALLEN");
 
-    local Chaplion = 17203848;
+    local Chaplion = GetNPCIDByName(104, "Chaplion_RK");
 
     npc  = {
     --
@@ -751,7 +751,7 @@ switch (region): caseof {
   ---------------------------------
     --print("GUSTABERG");
 
-    local Ennigreaud = 17212060;
+    local Ennigreaud = GetNPCIDByName(106, "Ennigreaud_RK");
 
     npc  = {
     --
@@ -782,7 +782,7 @@ switch (region): caseof {
   ---------------------------------
     --print("DERFLAND");
 
-    local Mesachedeau = 17224326;
+    local Mesachedeau = GetNPCIDByName(109, "Mesachedeau_RK");
 
     npc  = {
     --
@@ -813,7 +813,7 @@ switch (region): caseof {
   ---------------------------------
     --print("SARUTABARUTA");
 
-    local Naguipeillont = 17248825;
+    local Naguipeillont = GetNPCIDByName(115, "Naguipeillont_RK");
 
     npc  = {
     --
@@ -844,7 +844,7 @@ switch (region): caseof {
   ---------------------------------
     --print("KOLSHUSHU");
 
-    local Bonbavour = 17261143;
+    local Bonbavour = GetNPCIDByName(118, "Bonbavour_RK");
 
     npc  = {
     --
@@ -875,7 +875,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ARAGONEU");
 
-    local Chegourt = 17265271;
+    local Chegourt = GetNPCIDByName(119, "Chegourt_RK");
 
     npc  = {
     --
@@ -906,7 +906,7 @@ switch (region): caseof {
   ---------------------------------
     --print("FAUREGANDI");
 
-    local Parledaire = 17232209;
+    local Parledaire = GetNPCIDByName(111, "Parledaire_RK");
 
     npc  = {
     --
@@ -937,7 +937,7 @@ switch (region): caseof {
   ---------------------------------
     --print("VALDEAUNIA");
 
-    local Jeantelas = 17236290;
+    local Jeantelas = GetNPCIDByName(112, "Jeantelas_RK");
 
     npc  = {
     --
@@ -968,7 +968,7 @@ switch (region): caseof {
   ---------------------------------
     --print("QUFIMISLAND");
 
-    local Pitoire = 17293716;
+    local Pitoire = GetNPCIDByName(126, "Pitoire_RK");
 
     npc  = {
     --
@@ -999,7 +999,7 @@ switch (region): caseof {
   ---------------------------------
     --print("LITELOR");
 
-    local Credaurion = 17273365;
+    local Credaurion = GetNPCIDByName(121, "Credaurion_RK");
 
     npc  = {
     --
@@ -1030,7 +1030,7 @@ switch (region): caseof {
   ---------------------------------
     --print("KUZOTZ");
 
-    local Eaulevisat = 17244627;
+    local Eaulevisat = GetNPCIDByName(114, "Eaulevisat_RK");
 
     npc  = {
     --
@@ -1061,7 +1061,7 @@ switch (region): caseof {
   ---------------------------------
     --print("VOLLBOW");
 
-    local Salimardi = 17240472;
+    local Salimardi = GetNPCIDByName(113, "Salimardi_RK");
 
     npc  = {
     --
@@ -1092,7 +1092,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ELSHIMOLOWLANDS");
 
-    local Zorchorevi = 17281600;
+    local Zorchorevi = GetNPCIDByName(123, "Zorchorevi_RK");
 
     npc  = {
     --
@@ -1123,7 +1123,7 @@ switch (region): caseof {
   ---------------------------------
     --print("ELSHIMOUPLANDS");
 
-    local Ilieumort = 17285650;
+    local Ilieumort = GetNPCIDByName(124, "Ilieumort_RK");
 
     npc  ={
     --
@@ -1154,7 +1154,7 @@ switch (region): caseof {
   ---------------------------------
     --print("TULIA");
     
-    local RuAun_Banner = 17310080;
+    local RuAun_Banner = GetNPCIDByName(130, "Conquest_Banner");
 
     npc  = {
     --
@@ -1173,7 +1173,7 @@ switch (region): caseof {
   ---------------------------------
     --print("MOVALPOLOS");
 
-    local Oldton_Banner_Offset = 16822509;
+    local Oldton_Banner_Offset = GetNPCIDByName(11, "Conquest_Banner");
 
     npc  = {
     --
@@ -1192,7 +1192,7 @@ switch (region): caseof {
   ---------------------------------
     --print("TAVNAZIA");
 
-    local Jemmoquel = 16875865;
+    local Jemmoquel = GetNPCIDByName(24, "Jemmoquel_RK");
 
     npc  = {
     --
