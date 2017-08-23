@@ -2699,7 +2699,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // Exiting Mog House..
         if (zoneLineID == 1903324538)
         {
-            uint16 prevzone = PChar->loc.prevzone;
+            uint16 prevzone = PChar->getZone();
 
             // If zero, return to previous zone.. otherwise, determine the zone..
             if (zone != 0)
@@ -2720,7 +2720,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else if (zone == 125)
                 {
-                    prevzone = PChar->loc.prevzone;
+                    prevzone = PChar->getZone();
                 }
             }
             PChar->m_moghouseID = 0;
@@ -2765,7 +2765,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     //TODO: for entering another persons mog house, it must be set here
                     PChar->m_moghouseID = PChar->id;
                     PChar->loc.p = PZoneLine->m_toPos;
-                    PChar->loc.destination = PChar->loc.prevzone;
+                    PChar->loc.destination = PChar->getZone();
                 }
                 else
                 {
