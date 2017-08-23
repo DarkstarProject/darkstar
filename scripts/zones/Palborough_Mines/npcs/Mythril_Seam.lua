@@ -73,18 +73,16 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    player:tradeComplete();
 
     -- Rock Racketeer
     if (csid == 0x0033) then
+        player:tradeComplete();
         player:addItem(598);
         player:messageSpecial(ITEM_OBTAINED, 598);
 
     -- Standard
     elseif (csid == 0x002b) then
+        player:tradeComplete();
         player:addItem(597);
         player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel
     end
