@@ -80,8 +80,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-
-    local waterfall = GetNPCByID(16798112);
+    local waterfall = GetNPCByID(GetNPCIDByName(5, "_058"));
 
     if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
         if (waterfall:getAnimation() ~= 9) then

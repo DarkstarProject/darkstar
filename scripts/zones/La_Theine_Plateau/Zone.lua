@@ -124,7 +124,7 @@ end;
 -----------------------------------
 
 function onInitialize(zone)
-    local fallenEgg = GetNPCByID(17195583);
+    local fallenEgg = GetNPCByID(GetNPCIDByName(102, "FallenEgg"));
     local newPosition = npcUtil.pickNewPosition(fallenEgg:getID(), fallenEggPositions);
 
     fallenEgg:setPos(newPosition.x, newPosition.y, newPosition.z);
@@ -209,14 +209,14 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-    local _2u0 = GetNPCByID(17195607);
+    local rainbow = GetNPCByID(GetNPCIDByName(102, "_2u0"));
     local VanadielTOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and weather ~= WEATHER_RAIN and VanadielTOTD >= TIME_DAWN and VanadielTOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
-        _2u0:setAnimation(8);
-    elseif (I_Can_Hear_a_Rainbow == 1 and weather == WEATHER_RAIN and _2u0:getAnimation() == 8) then
-        _2u0:setAnimation(9);
+    if (I_Can_Hear_a_Rainbow == 1 and weather ~= WEATHER_RAIN and VanadielTOTD >= TIME_DAWN and VanadielTOTD <= TIME_EVENING and rainbow:getAnimation() == 9) then
+        rainbow:setAnimation(8);
+    elseif (I_Can_Hear_a_Rainbow == 1 and weather == WEATHER_RAIN and rainbow:getAnimation() == 8) then
+        rainbow:setAnimation(9);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;
@@ -226,13 +226,13 @@ end;
 -----------------------------------
 
 function onTOTDChange(TOTD)
-    local _2u0 = GetNPCByID(17195607);
+    local rainbow = GetNPCByID(GetNPCIDByName(102, "_2u0"));
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and _2u0:getAnimation() == 9) then
-        _2u0:setAnimation(8);
-    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < TIME_DAWN or TOTD > TIME_EVENING and _2u0:getAnimation() == 8) then
-        _2u0:setAnimation(9);
+    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= TIME_DAWN and TOTD <= TIME_EVENING and rainbow:getAnimation() == 9) then
+        rainbow:setAnimation(8);
+    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < TIME_DAWN or TOTD > TIME_EVENING and rainbow:getAnimation() == 8) then
+        rainbow:setAnimation(9);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;

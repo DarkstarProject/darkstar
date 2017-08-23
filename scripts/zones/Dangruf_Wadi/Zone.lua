@@ -54,19 +54,21 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+    local geyser = GetNPCIDByName(191, "blank");
+
     switch (region:GetRegionID()): caseof
     {
     [1] = function (x)
     player:startEvent(0x000A);
-    SendEntityVisualPacket(17559897, "kkj2");
+    SendEntityVisualPacket(geyser, "kkj2");
     end,
     [2] = function (x)
     player:startEvent(0x000B);
-    SendEntityVisualPacket(17559898, "kkj1");
+    SendEntityVisualPacket(geyser + 1, "kkj1");
     end,
     [3] = function (x)
     player:startEvent(0x000C);
-    SendEntityVisualPacket(17559899, "kkj3");
+    SendEntityVisualPacket(geyser + 2, "kkj3");
     end,
     }
     if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then
@@ -101,7 +103,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local qm2 = GetNPCByID(17559911); -- Quest: An Empty Vessel
+    local qm2 = GetNPCByID(GetNPCIDByName(191, "qm2")); -- Quest: An Empty Vessel
     if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
         qm2:setStatus(STATUS_NORMAL);
     else

@@ -56,9 +56,8 @@ end;
 -----------------------------------
 
 function onGameDay()
-
     -- Full moon + "clear" weather stuff (actually "sunshine" weather, widespread misconception since Ro'Maeve does not have "clear" weather ever)
-    local Moongate_Offset = 17277195; -- _3e0 in npc_list
+    local Moongate_Offset = GetNPCIDByName(122, "_3e0");
     local hour = VanadielHour();
 
     if (IsMoonFull() == true and GetNPCByID(Moongate_Offset):getWeather() == WEATHER_SUNSHINE) then
@@ -73,8 +72,7 @@ end;
 -----------------------------------
 
 function onZoneWeatherChange(weather)
-
-    local Moongate_Offset = 17277195;
+    local Moongate_Offset = GetNPCIDByName(122, "_3e0");
 
     if (weather ~= WEATHER_SUNSHINE and GetNPCByID(Moongate_Offset):getAnimation() ~= 9) then -- return to inactive state
         GetNPCByID(Moongate_Offset):setAnimation(9);
