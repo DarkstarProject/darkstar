@@ -120,12 +120,12 @@ function onTrigger(player,npc)
             if (player:needToZone()) then
                 player:startEvent(0x0059); -- Mihgos Amigo complete text
             else
-            player:startEvent(0x005D); -- quest start
+                player:startEvent(0x005D); -- quest start
             end
-        elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 2) then
-            player:startEvent(0x005F); -- not sold reminder
         elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 1) then
             player:startEvent(0x0062); -- advance quest talk to Varun
+        elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 2) then
+            player:startEvent(0x005F); -- not sold reminder
         elseif (RockRacketeer == QUEST_ACCEPTED) then
             player:startEvent(0x005E); -- quest reminder
 
@@ -176,6 +176,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x0050 or csid == 0x0051) then
         player:addQuest(WINDURST,MIHGO_S_AMIGO);
+    elseif (csid == 0x005D) then -- start quest "rock racketeer"
+        player:addQuest(WINDURST,ROCK_RACKETTER);
+        player:addKeyItem(SHARP_GRAY_STONE);
+    elseif (csid == 0x0062) then
+        player:delGil(10*GIL_RATE);
+        player:setVar("rockracketeer_sold",3);
     elseif (csid == 0x0058) then
         player:tradeComplete();
         player:addGil(GIL_RATE*200);
