@@ -5605,9 +5605,9 @@ INSERT INTO `item_mods` VALUES (11728,57,-50);
 INSERT INTO `item_mods` VALUES (11728,58,-50);
 INSERT INTO `item_mods` VALUES (11728,59,-50);
 INSERT INTO `item_mods` VALUES (11728,384,71);
-INSERT INTO `item_mods` VALUES (11729,27,3);
-INSERT INTO `item_mods` VALUES (11729,384,51);
-INSERT INTO `item_mods` VALUES (11729,486,5);
+INSERT INTO `item_mods` VALUES (11729,27,3); -- Goading Belt - Enmity +3
+INSERT INTO `item_mods` VALUES (11729,384,51); -- Haste +5
+INSERT INTO `item_mods` VALUES (11729,73,5); -- Store tp +5
 INSERT INTO `item_mods` VALUES (11730,160,-3);
 INSERT INTO `item_mods` VALUES (11731,1,6);
 INSERT INTO `item_mods` VALUES (11731,23,15);
@@ -21760,7 +21760,8 @@ INSERT INTO `item_mods` VALUES (18115,73,1);
 INSERT INTO `item_mods` VALUES (18116,25,3);
 INSERT INTO `item_mods` VALUES (18118,431,1);
 INSERT INTO `item_mods` VALUES (18119,431,1);
-INSERT INTO `item_mods` VALUES (18121,288,3);
+INSERT INTO `item_mods` VALUES (18121,288,3); -- Valkyrie's fork - "Double Attack"+3%
+INSERT INTO `item_mods` VALUES (18121,73,3); -- Store tp +3
 INSERT INTO `item_mods` VALUES (18122,8,2);
 INSERT INTO `item_mods` VALUES (18122,12,-1);
 INSERT INTO `item_mods` VALUES (18122,13,-1);
@@ -23160,6 +23161,7 @@ INSERT INTO `item_mods` VALUES (18915,238,5);
 INSERT INTO `item_mods` VALUES (18916,3,5);       -- Heimdall's Doom: HP+5%
 INSERT INTO `item_mods` VALUES (18916,13,10);     -- MND+10
 INSERT INTO `item_mods` VALUES (18916,14,10);     -- CHR+10
+-- INSERT INTO `item_mods` VALUES (18916,431,1);     -- Additional effect: "Death"
 INSERT INTO `item_mods` VALUES (18946,25,7);
 INSERT INTO `item_mods` VALUES (18946,242,2);
 INSERT INTO `item_mods` VALUES (18947,8,3);
@@ -24347,6 +24349,12 @@ INSERT INTO `item_mods` VALUES (20512,355,14); -- Verethragna iLvL 119 - Victory
 INSERT INTO `item_mods` VALUES (20528,25,21);
 INSERT INTO `item_mods` VALUES (20528,165,4);
 INSERT INTO `item_mods` VALUES (20528,291,7);
+INSERT INTO `item_mods` VALUES (20529,9,12); -- Calved claws - DEX+12
+INSERT INTO `item_mods` VALUES (20529,12,12); -- INT+12
+INSERT INTO `item_mods` VALUES (20529,55,25); -- [Element: Ice]+25
+INSERT INTO `item_mods` VALUES (20529,25,25); -- Accuracy+20
+INSERT INTO `item_mods` VALUES (20529,174,5); -- "Skillchain Bonus"+5
+-- INSERT INTO `item_mods` VALUES (20529,431,1); -- Additional effect: Paralysis
 INSERT INTO `item_mods` VALUES (20536,8,3);
 INSERT INTO `item_mods` VALUES (20536,25,5);
 INSERT INTO `item_mods` VALUES (20540,23,10);
@@ -24428,6 +24436,12 @@ INSERT INTO `item_mods` VALUES (20613,113,10);    -- Pukulatmuj (iLvl 119): Enha
 INSERT INTO `item_mods` VALUES (20613,432,10);    -- Enspell damage bonus +10
 INSERT INTO `item_mods` VALUES (20614,113,11);    -- Pukulatmuj +1 (iLvl 119): Enhancing magic skill +11
 INSERT INTO `item_mods` VALUES (20614,432,11);    -- Enspell damage bonus +11
+INSERT INTO `item_mods` VALUES (20615,11,15); -- Levante dagger - AGI+15
+INSERT INTO `item_mods` VALUES (20615,25,27); -- Accuracy+27
+INSERT INTO `item_mods` VALUES (20615,62,15); -- Attack+15
+INSERT INTO `item_mods` VALUES (20615,68,27); -- Evasion+27
+INSERT INTO `item_mods` VALUES (20615,34,15); -- Wind elemental "Magic Atk. Bonus"+15
+INSERT INTO `item_mods` VALUES (20615,289,8); -- "Subtle Blow"+8
 INSERT INTO `item_mods` VALUES (20616,68,22);
 INSERT INTO `item_mods` VALUES (20618,11,10);     -- Sandung (iLvl 119): AGI +10
 INSERT INTO `item_mods` VALUES (20618,27,-10);    -- Enmity -10
@@ -24499,11 +24513,20 @@ INSERT INTO `item_mods` VALUES (20686,525,3);     -- Augments Convert 1:3
 INSERT INTO `item_mods` VALUES (20687,355,45); -- Burtgang iLvL 119 - Atonement
 INSERT INTO `item_mods` VALUES (20688,355,46); -- Tizona iLvL 119 - Expiacion
 INSERT INTO `item_mods` VALUES (20688,431,1); -- Tizona iLvL 119 - Additional Effect - scripts\globals\items\tizona.lua
-INSERT INTO `item_mods` VALUES (20689,355,225); -- Almace iLvL 119 - Chant du Cygne
+INSERT INTO `item_mods` VALUES (20689,355,225);   -- Almace iLvL 119 - Chant du Cygne
+INSERT INTO `item_mods` VALUES (20707,28,24);     -- Medeina kilij - "Magic Atk. Bonus"+24
+INSERT INTO `item_mods` VALUES (20707,311,123);   -- Magic Damage+123
+INSERT INTO `item_mods` VALUES (20707,122,10);    -- Blue Magic skill +10
+INSERT INTO `item_mods` VALUES (20707,369,5);     -- "Refresh"+1
 INSERT INTO `item_mods` VALUES (20715,25,15);     -- Acclimator (iLvl 119): Accuracy +15
 INSERT INTO `item_mods` VALUES (20715,30,15);     -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (20715,175,10);    -- Skillchain Bonus +10%
 INSERT INTO `item_mods` VALUES (20715,311,96);    -- Magic Damage +96
+INSERT INTO `item_mods` VALUES (20716,8,12);      -- Perfervid sword - STR+15
+INSERT INTO `item_mods` VALUES (20716,54,25);     -- [Element: Fire]+25
+INSERT INTO `item_mods` VALUES (20716,25,25);     -- Accuracy+20
+INSERT INTO `item_mods` VALUES (20716,32,15);     -- Fire elemental "Magic Atk. Bonus"+15
+-- INSERT INTO `item_mods` VALUES (20716,431,1);     -- Additional effect: Fire damage
 INSERT INTO `item_mods` VALUES (20717,25,27);     -- Arendsi Fleuret (iLvl 119): Accuracy +27
 INSERT INTO `item_mods` VALUES (20717,30,15);     -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (20717,68,13);     -- Evasion +13
