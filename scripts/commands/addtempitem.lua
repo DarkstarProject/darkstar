@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@addtempitem <itemID> <quantity>");
+    player:PrintToPlayer("!addtempitem <itemID> <quantity>");
 end;
 
 function onTrigger(player, itemId, quantity)

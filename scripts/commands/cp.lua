@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@cp <amount>");
+    player:PrintToPlayer("!cp <amount>");
 end;
 
 function onTrigger(player, cp)
