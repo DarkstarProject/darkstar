@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@capskill <skillID>");
+    player:PrintToPlayer("!capskill <skillID>");
 end;
 
 function onTrigger(player, skillId)

@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@getmod <modID>");
+    player:PrintToPlayer("!getmod <modID>");
 end;
 
 function onTrigger(player, id)
