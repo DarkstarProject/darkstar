@@ -150,8 +150,8 @@ local extracted =
         {0810, 736},   -- 8.10% Silver Ore
         {0600, 645},   -- 5.9% Darksteel Ore
         {0400, 769},   -- 4% Red Rock
-        {1280, 737},   -- 1.8% Gold Ore
-        {1280, 644}    -- 0.80% Mythril Ore
+        {0180, 737},   -- 1.8% Gold Ore
+        {0080, 644}    -- 0.80% Mythril Ore
 --      {0000, 0} -- Sturdy metal strip 16.7% for a quest
     },
     [205] = -- Ifrit's Cauldron
