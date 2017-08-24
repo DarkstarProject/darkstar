@@ -48,6 +48,9 @@ IF_YOU_WEAR_THIS = 7355; -- If you put this on and walk around, something...unex
        THANK_YOU = 7353; -- Thank you...<<<Prompt>>>
 
 -- Other dialog
+    NOKKHI_BAD_COUNT = 7373; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
+   NOKKHI_GOOD_TRADE = 7375; -- And here you go! Come back soon, and bring your friends!
+     NOKKHI_BAD_ITEM = 7376; -- I'm real sorry, but there's nothing I can do with those.
 ITEM_DELIVERY_DIALOG = 8405; -- Parcels delivered to rooms anywhere in Vana'diel!
         ROSEL_DIALOG = 7782; -- Hrmm... Now, this is interesting! It pays to keep an eye on the competition. Thanks for letting me know!
 
