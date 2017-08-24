@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@setweather <weather ID>");
+    player:PrintToPlayer("!setweather <weather ID>");
 end;
 
 function onTrigger(player, weather)

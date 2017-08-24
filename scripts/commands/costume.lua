@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@costume <costumeID>");
+    player:PrintToPlayer("!costume <costumeID>");
 end;
 
 function onTrigger(player, costumeId)

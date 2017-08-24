@@ -6285,6 +6285,13 @@ INSERT INTO `nm_spawn_points` VALUES (17363080,47,128.000,-15.000,249.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,48,121.000,-15.000,245.000);
 INSERT INTO `nm_spawn_points` VALUES (17363080,49,115.000,-15.000,246.000);
 
+-- Bu'Ghi Howlblade
+INSERT INTO `nm_spawn_points` VALUES (17363181,0,170,-15,179);
+INSERT INTO `nm_spawn_points` VALUES (17363181,1,170,-16,165);
+INSERT INTO `nm_spawn_points` VALUES (17363181,2,166,-16,135);
+INSERT INTO `nm_spawn_points` VALUES (17363181,3,167.207,-18.027,159.374);
+INSERT INTO `nm_spawn_points` VALUES (17363181,4,185.502,-31.864,175.730);
+
 -- 16806117 Sargas - Pos data needs correction, had nothing to go on except wiki saying sw corner of G-9.
 -- INSERT INTO `nm_spawn_points` VALUES (16806117,0,-247.000,2.750,-128.000);
 

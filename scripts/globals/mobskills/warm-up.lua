@@ -10,7 +10,13 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
+    -- only brown-skinned mamool should use this move
+    local mobSkin = mob:getModelId();
+    if (mobSkin == 1639 or mobSkin == 1619) then
+        return 0;
+    else
+        return 1;
+    end
 end;
 
 function onMobWeaponSkill(target, mob, skill)
@@ -25,7 +31,7 @@ function onMobWeaponSkill(target, mob, skill)
     if (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
         skill:setMsg(MobBuffMove(mob, EFFECT_EVASION_BOOST, power, 0, 180));
         EFFECT = EFFECT_EVASION_BOOST;
-    elseif (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST))
+    elseif (mob:hasStatusEffect(EFFECT_ACCURACY_BOOST)) then
         skill:setMsg(MobBuffMove(mob, EFFECT_ACCURACY_BOOST, power, 0, 180));
         EFFECT = EFFECT_ACCURACY_BOOST;
     else

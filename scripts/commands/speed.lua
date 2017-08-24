@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@speed <0-255>");
+    player:PrintToPlayer("!speed <0-255>");
 end;
 
 function onTrigger(player, speed)

@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@updateconquest <type>");
+    player:PrintToPlayer("!updateconquest <type>");
     player:PrintToPlayer("Type: 0 = Conquest_Tally_Start, 1 = Conquest_Tally_End, 2 = Conquest_Update");
 end;
 

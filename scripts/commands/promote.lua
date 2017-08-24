@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@promote <player> <level>");
+    player:PrintToPlayer("!promote <player> <level>");
 end;
 
 function onTrigger(player, target, level)
