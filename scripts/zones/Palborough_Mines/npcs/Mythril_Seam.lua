@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     local RRvar = player:getVar("rockracketeer_sold");
 
-    if (trade:hasItemQty(605,1) and trade:getItemCount() == 1)
+    if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
 
         if (player:getFreeSlotsCount() >= 1) then
 
