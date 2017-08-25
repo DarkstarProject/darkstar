@@ -18,16 +18,12 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    RRvar = player:getVar("rockracketeer_sold");
-    
+
+    local RRvar = player:getVar("rockracketeer_sold");
+
     -- Rock Racketeer
-    if (RRvar == 6) then
-        if (trade:hasItemQty(598,1) == true and trade:getItemCount() == 1) then  -- Sharp Stone
-            player:startEvent(0x0066,2100); -- finish quest
-        end
-    
-    
+    if (RRvar == 5 and trade:hasItemQty(598,1) == true and trade:getItemCount() == 1) then  -- Sharp Stone
+        player:startEvent(0x0066,2100); -- finish quest
     end
 end;
 
@@ -36,17 +32,17 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    RRvar = player:getVar("rockracketeer_sold");
-    
+
+    local RRvar = player:getVar("rockracketeer_sold");
+
     -- Rock Racketeer
-    if (RockRacketeer == QUEST_ACCEPTED and RRvar == 3) then 
-        player:startEvent(0x0064);                                     -- talk about lost stone
-    elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 4) then  
-        player:startEvent(0x0065,0,598);                            -- send player to Palborough Mines
-        
+    if (RockRacketeer == QUEST_ACCEPTED and RRvar == 3) then
+        player:startEvent(0x0064); -- talk about lost stone
+    elseif (RockRacketeer == QUEST_ACCEPTED and RRvar == 4) then
+        player:startEvent(0x0065,0,598); -- send player to Palborough Mines
+
     -- standard dialog
-    else    
+    else
         player:startEvent(0x01b0);
     end
 end;
@@ -67,7 +63,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     -- Rock Racketeer
     if (csid == 0x0064) then
         player:setVar("rockracketeer_sold",4);
@@ -79,7 +75,6 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*2100);
         player:completeQuest(WINDURST,ROCK_RACKETTER);
         player:setVar("rockracketeer_sold",0); -- finish cleanup of vars
-    
     end
 end;
 

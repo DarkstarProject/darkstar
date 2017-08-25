@@ -277,7 +277,7 @@ local zone_list =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@zone <zone ID or autotranslate phrase>");
+    player:PrintToPlayer("!zone <zone ID or autotranslate phrase>");
 end;
 
 function getBytePos(s,needle)

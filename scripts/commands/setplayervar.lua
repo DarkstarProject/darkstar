@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@setplayervar <player> <variable> <value>");
+    player:PrintToPlayer("!setplayervar <player> <variable> <value>");
 end;
 
 function onTrigger(player, target, variable, value)
