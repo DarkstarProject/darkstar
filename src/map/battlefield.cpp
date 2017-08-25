@@ -500,6 +500,19 @@ void CBattlefield::cleanup()
     delete this;
 }
 
+void CBattlefield::removePlayers()
+{
+    for (auto& PChar : m_PlayerList)
+    {
+        PChar->PBCNM = nullptr;
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_SJ_RESTRICTION);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_BATTLEFIELD);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
+    }
+    m_PlayerList.clear();
+    cleanup();
+}
+
 void CBattlefield::beforeCleanup()
 {
     m_cleared = true;
@@ -521,6 +534,7 @@ bool CBattlefield::winBcnm()
         PChar->PAI->Disengage();
         clearPlayerEnmity(PChar);
     }
+    removePlayers();
     return true;
 }
 
@@ -544,6 +558,7 @@ bool CBattlefield::loseBcnm()
         PChar->PAI->Disengage();
         clearPlayerEnmity(PChar);
     }
+    removePlayers();
     return true;
 }
 

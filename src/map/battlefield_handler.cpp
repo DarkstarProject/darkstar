@@ -196,7 +196,7 @@ void CBattlefieldHandler::handleBattlefields(time_point tick) {
                         }
                     }
                     //handle lose conditions
-                    else if (battlefieldutils::meetsLosingConditions(PBattlefield, tick) && !PBattlefield->cleared()) {
+                    else if (!PBattlefield->cleared() && battlefieldutils::meetsLosingConditions(PBattlefield, tick)) {
                         ShowDebug("BCNM %i battlefield %i : Losing conditions met. Exiting battlefield.\n", PBattlefield->getID(), PBattlefield->getBattlefieldNumber());
                         PBattlefield->loseBcnm();
                     }
