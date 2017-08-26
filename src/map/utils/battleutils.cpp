@@ -796,6 +796,9 @@ namespace battleutils
                     break;
             }
 
+            // Check for status effect proc. Todo: move to scripts soon™ after item additionalEffect refactor Teo is working on
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
             {
                 ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
@@ -877,14 +880,17 @@ namespace battleutils
         {
             lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
         }
+
         switch (Action->spikesEffect)
         {
             case SUBEFFECT_CURSE_SPIKES:
+            {
                 if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CURSE, EFFECT_CURSE, 15, 0, 180));
                 }
                 break;
+            }
             case SUBEFFECT_ICE_SPIKES:
             {
                 if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
