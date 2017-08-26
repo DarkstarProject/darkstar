@@ -867,6 +867,9 @@ namespace battleutils
                 PAttacker->addHP(-Action->spikesParam);
             }
 
+            // Temp till moved to script.
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             return true;
         }
 
