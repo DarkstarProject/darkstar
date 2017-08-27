@@ -6,7 +6,7 @@
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Quicksand_Caves/TextIDs");
-
+require("scripts/globals/status");
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
@@ -36,11 +36,11 @@ end;
 -----------------------------------
 function onMobDespawn(mob)
     -- printf("Despawning Triarius");
-    local mobsup = GetServerVariable("BastokFight8_1");
-    SetServerVariable("BastokFight8_1",mobsup - 1);
+    local ants = GetServerVariable("BastokFight8_1");
+    SetServerVariable("BastokFight8_1", ants + 1);
 
-    if (GetServerVariable("BastokFight8_1") == 0) then
+    if (GetServerVariable("BastokFight8_1") >= 3) then
         local npc = GetNPCByID(17629738); -- qm6
-        npc:setStatus(0); -- Reappear
+        npc:setStatus(STATUS_NORMAL); -- Reappear
     end
 end;
