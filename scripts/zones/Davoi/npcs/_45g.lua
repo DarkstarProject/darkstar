@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Groaning Pond
 -- Used In Quest: Whence Blows the Wind
--- @pos 101 0.1 60 149
+-- !pos 101 0.1 60 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -44,9 +44,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x0032 and player:getVar("miniQuestForORB_CS") == 1) then
-        
+
         local c = player:getVar("countRedPoolForORB");
-        
+
         if (c == 0) then
             player:setVar("countRedPoolForORB", c + 8);
             player:delKeyItem(WHITE_ORB);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(PINK_ORB);
             player:addKeyItem(RED_ORB);
             player:messageSpecial(KEYITEM_OBTAINED, RED_ORB);
-        elseif (c == 3 or c == 5 or c == 6) then 
+        elseif (c == 3 or c == 5 or c == 6) then
             player:setVar("countRedPoolForORB", c + 8);
             player:delKeyItem(RED_ORB);
             player:addKeyItem(BLOOD_ORB);

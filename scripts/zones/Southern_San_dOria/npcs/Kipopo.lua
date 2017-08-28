@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Kipopo
 -- Type: Leathercraft Synthesis Image Support
--- @pos -191.050 -2.15 12.285 230
+-- !pos -191.050 -2.15 12.285 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

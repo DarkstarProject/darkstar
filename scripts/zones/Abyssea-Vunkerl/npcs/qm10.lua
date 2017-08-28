@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm10 (???)
 -- Spawns Armillaria
--- @pos ? ? ? 217
+-- !pos ? ? ? 217
 -----------------------------------
 require("scripts/globals/status");
 

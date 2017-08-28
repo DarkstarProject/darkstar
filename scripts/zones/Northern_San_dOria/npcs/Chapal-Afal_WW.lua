@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern Sand Oria
 --  NPC: Chapal-Afal, W.W.
--- @pos -55 -2 31 231
+-- !pos -55 -2 31 231
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

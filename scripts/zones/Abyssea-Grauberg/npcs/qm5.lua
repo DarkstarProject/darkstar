@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Grauberg
 --  NPC: qm5 (???)
 -- Spawns Teekesselchen
--- @pos ? ? ? 254
+-- !pos ? ? ? 254
 -----------------------------------
 require("scripts/globals/status");
 

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Vunkerl
 --  NPC: qm8 (???)
 -- Spawns Xan
--- @pos ? ? ? 217
+-- !pos ? ? ? 217
 -----------------------------------
 require("scripts/globals/status");
 

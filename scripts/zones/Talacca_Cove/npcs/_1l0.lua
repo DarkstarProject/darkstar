@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Talacca_Cove
 -- NPC:  rock slab (corsair job flag quest)
--- @pos -99 -7 -91 57
+-- !pos -99 -7 -91 57
 -----------------------------------
 package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;

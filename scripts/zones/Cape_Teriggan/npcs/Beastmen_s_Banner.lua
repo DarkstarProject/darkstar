@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cape_Teriggan
 -- NPC:  Beastmen_s_Banner
--- @pos 162.059 -0.859 250.538 113
+-- !pos 162.059 -0.859 250.538 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,7 @@ require("scripts/zones/Cape_Teriggan/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

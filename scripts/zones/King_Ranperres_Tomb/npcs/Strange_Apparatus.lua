@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: King_Ranperre's Tomb
 -- NPC:  Strange Apparatus
--- @pos -260 7 -142 190
+-- !pos -260 7 -142 190
 -----------------------------------
 
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;

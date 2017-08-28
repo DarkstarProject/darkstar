@@ -2,7 +2,7 @@
 -- Area: Cloister of Frost
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Ice Fragment)
--- @pos 566 0 606 203
+-- !pos 566 0 606 203
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 -----------------------------------

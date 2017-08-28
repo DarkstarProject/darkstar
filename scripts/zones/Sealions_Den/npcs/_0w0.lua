@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sealion's Den
 -- NPC:  Iron Gate
--- @pos 612 132 774 32
+-- !pos 612 132 774 32
 -----------------------------------
 package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         return;
     elseif (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
         player:startEvent(0x000C);
-    end    
+    end
 end;
 
 -----------------------------------
@@ -49,17 +49,17 @@ function onEventUpdate(player,csid,option)
 end;
 
 -----------------------------------
--- onEventFinish Action 
+-- onEventFinish Action
 -----------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
-    
+
     if (EventFinishBCNM(player,csid,option)) then
         return;
     end
-    if (csid == 0x000c and option == 1) then 
+    if (csid == 0x000c and option == 1) then
         toPalaceEntrance(player);
     elseif (csid == 0x000D) then
         player:setVar("PromathiaStatus",0);

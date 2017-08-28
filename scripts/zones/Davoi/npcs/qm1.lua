@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  ??? (qm1)
 -- Involved in Quest: To Cure a Cough
--- @pos -115.830 -0.427 -184.289 149
+-- !pos -115.830 -0.427 -184.289 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -25,15 +25,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
-    
+
     if (toCureaCough == QUEST_ACCEPTED and player:hasKeyItem(THYME_MOSS) == false) then
         player:addKeyItem(THYME_MOSS);
         player:messageSpecial(KEYITEM_OBTAINED,THYME_MOSS);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

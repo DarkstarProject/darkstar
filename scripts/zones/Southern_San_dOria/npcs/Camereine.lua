@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Camereine
 -- Type: Chocobo Renter
--- @pos -8 1 -100
+-- !pos -8 1 -100
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

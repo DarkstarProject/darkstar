@@ -2,7 +2,7 @@
 --  Area: Port Jeuno
 --   NPC: Squintrox Dryeyes
 --  Type: Addon Mission Merchant
--- @pos -100.071 -1 11.869 246
+-- !pos -100.071 -1 11.869 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -50,7 +50,7 @@ function onTrade(player,npc,trade)
         elseif (sLux and sLuna and sAstrum and count == 3 and (now == LastCrimson or CrimsonKey == true)) then
             player:messageSpecial(DRYEYES_3,CRIMSON_KEY);
         -- White Coral Key:
-        -- elseif (ENABLE_AMK == 1 and 
+        -- elseif (ENABLE_AMK == 1 and
             -- haven't even started AMK related trades yet.
         end
     end

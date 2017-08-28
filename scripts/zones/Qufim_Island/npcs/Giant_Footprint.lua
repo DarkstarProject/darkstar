@@ -2,7 +2,7 @@
 -- Area: Qufim Island
 -- NPC:  Giant Footprint
 -- Involved in quest: Regaining Trust
--- @pos 501 -11 354 126
+-- !pos 501 -11 354 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------

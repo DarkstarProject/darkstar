@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis (S)
 -- NPC:  Erlene
 -- Involved in Quest: "A Little Knowledge"
--- @pos 376.936 -39.999 17.914 175
+-- !pos 376.936 -39.999 17.914 175
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
             player:startEvent(0x000D);
         end
     elseif (ALittleKnowledge == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= 5 and not (player:hasSpell(478) and player:hasSpell(502))) then
-            player:startEvent(0x002F);   
+            player:startEvent(0x002F);
     elseif (onSabbatical == QUEST_AVAILABLE and mJob == JOBS.SCH and mLvl >= AF1_QUEST_LEVEL) then
             player:startEvent(0x0012);
     elseif (onSabbatical == QUEST_ACCEPTED) then
@@ -92,8 +92,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x000F);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -111,7 +111,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x000A and option == 0) then
         player:addQuest(CRYSTAL_WAR, A_LITTLE_KNOWLEDGE);
         player:setVar("ALittleKnowledge", 1);

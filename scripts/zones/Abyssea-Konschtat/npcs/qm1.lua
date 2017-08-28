@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm1 (???)
 -- Spawns Ashtaerth the Gallavexd
--- @pos ? ? ? 15
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 

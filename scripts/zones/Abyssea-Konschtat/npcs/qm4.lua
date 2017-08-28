@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm4 (???)
 -- Spawns Hexenpilz
--- @pos ? ? ? 15
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 

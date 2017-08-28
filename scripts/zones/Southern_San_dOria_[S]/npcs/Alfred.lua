@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Alfred
 -- @zone 80
--- @pos 94 1 -58
+-- !pos 94 1 -58
 -----------------------------------
 
 -----------------------------------
@@ -40,5 +40,5 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0C8 and option == 1) then
         player:setPos(94,-62,266,40,81);
     end
-    
+
 end;

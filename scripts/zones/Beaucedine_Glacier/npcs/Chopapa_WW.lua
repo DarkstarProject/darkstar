@@ -2,7 +2,7 @@
 -- Area: Beaucedine Glacier
 --  NPC: Chopapa, W.W.
 -- Type: Border Conquest Guards
--- @pos -227.956 -81.475 260.442 111
+-- !pos -227.956 -81.475 260.442 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(getSupplyKey(region)) and player:getNation() == guardnation) then
         if (supplyRunFresh(player) == 1) then
             player:startEvent(csid,16,0,0,0,1,0,0,255); -- you have brought us supplies !
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
             player:startEvent(csid,arg1,0,0x3F0000,0,0,getArg6(player),0,0);
         end
     end
-    
+
 end;
 
 -----------------------------------

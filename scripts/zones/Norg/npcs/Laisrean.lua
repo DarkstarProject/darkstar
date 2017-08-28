@@ -3,7 +3,7 @@
 -- NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
 -- @zone 252
--- @pos -2.251 -1 21.654
+-- !pos -2.251 -1 21.654
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     Stash = player:getQuestStatus(OUTLANDS,THE_SAHAGINS_STASH);
     mLvl = player:getMainLvl();
     SeaStatue = player:hasKeyItem(SEA_SERPENT_STATUE);
-    
+
     if (Stash == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 4 and mLvl >= 5) then
         player:startEvent(0x0021); -- Start quest
     elseif (Stash == QUEST_ACCEPTED) then
@@ -61,8 +61,8 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0021 and option == 1) then
         player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
     elseif (csid == 0x0023) then
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946); 
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4946);
         else
             player:delKeyItem(SEA_SERPENT_STATUE);
             player:addItem(4946); -- Scroll of Utsusemi: Ichi

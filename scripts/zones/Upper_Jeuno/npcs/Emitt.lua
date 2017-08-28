@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --  NPC: Emitt
--- @pos -95 0 160 244
+-- !pos -95 0 160 244
 -------------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

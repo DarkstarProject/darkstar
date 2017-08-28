@@ -1,23 +1,20 @@
 -----------------------------------
 -- Area: Bastok Markets
---   NPC: Enu
---  Type: Quest NPC
--- @zone 235
--- @pos -253.673 -13 -92.326
+--  NPC: Enu
+-- Type: Quest NPC
+-- !pos -253.673 -13 -92.326 235
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
-require("scripts/globals/quests");
 require("scripts/globals/weather");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
       if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
         if (player:getVar("WishUponAStar_Status") == 3) then
             if (player:getWeather() == WEATHER_NONE and  (VanadielTOTD() == TIME_NIGHT or VanadielTOTD() == TIME_MIDNIGHT)) then
@@ -34,7 +31,6 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-
     if (player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_COMPLETED) then -- Quest: Wish Upon a Star - Quest has been completed.
         player:startEvent(0x014F);
     elseif (player:getVar("WishUponAStar_Status") == 2) then -- Quest: Wish Upon a Star - Player has spoken with Malene
@@ -62,17 +58,14 @@ end;
 function onEventFinish(player,csid,option)
     -- printf ("CSID: %u",csid);
     -- printf ("RESULT: %u",option);
-
     if (csid == 0x014C) then -- Quest: Wish Upon a Star
         player:setVar("WishUponAStar_Status",3);
     elseif (csid == 0x014e) then -- Quest: Wish Upon a Star - Traded Fallen Star
         player:tradeComplete( );
-
-        player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4 
-        player:messageSpecial(ITEM_OBTAINED,1236);
-
-        player:addFame(BASTOK,50);
         player:completeQuest(BASTOK,WISH_UPON_A_STAR);
         player:setVar("WishUponAStar_Status",0);
+        player:addFame(BASTOK,50);
+        player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4
+        player:messageSpecial(ITEM_OBTAINED,1236);
     end
 end;

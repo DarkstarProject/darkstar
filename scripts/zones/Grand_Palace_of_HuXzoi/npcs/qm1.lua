@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Grand Palace of Hu'Xzoi
 --  NPC: ???   (Ix'Aern - MNK)
--- @pos 460 0 540
+-- !pos 460 0 540
 --  ID: 16916819
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
@@ -14,7 +14,7 @@ require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local IxAern = 16916815; -- Ix'Aern (MNK). This is the ID base for Ix and his minions. 
+    local IxAern = 16916815; -- Ix'Aern (MNK). This is the ID base for Ix and his minions.
     local chance = 0; -- Rate in percent in which an item will drop.
     local validTrade = 0;
     -- Trade Organs
@@ -30,13 +30,13 @@ function onTrade(player,npc,trade)
             validTrade=3;
         end;
     end;
-    
+
     if (validTrade > 0) then -- Don't want to take their random shit
         player:tradeComplete(); -- Take the items
         npc:setLocalVar("[SEA]IxAern_DropRate", chance); -- Used to adjust droprates for IxAern's onMobSpawn.
         GetMobByID(IxAern):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos());
         SpawnMob(IxAern):updateClaim(player);
-        
+
         -- Minions
         if (validTrade > 1) then
             GetMobByID(IxAern+1):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()-4);
@@ -46,7 +46,7 @@ function onTrade(player,npc,trade)
             GetMobByID(IxAern+2):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos()+4);
             SpawnMob(IxAern+2):updateClaim(player);
         end
-        
+
         npc:setStatus(STATUS_DISAPPEAR);
          -- Change the location to G-7 or I-7
         if (math.random(0,1) ==1) then

@@ -2,7 +2,7 @@
 -- Area: Yhoator Jungle
 --  NPC: Etaj-Pohtaj, W.W.
 -- Outpost Conquest Guards
--- @pos 200.254 -1 -80.324 124
+-- !pos 200.254 -1 -80.324 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------

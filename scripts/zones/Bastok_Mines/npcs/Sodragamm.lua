@@ -3,7 +3,7 @@
 --   NPC: Sodragamm
 --  Type: Item Deliverer
 -- @zone 234
--- @pos -24.741 -1 -64.944
+-- !pos -24.741 -1 -64.944
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC:  Washu
 -- Involved in Quest: Yomi Okuri
 -- Starts and finishes Quest: Stop Your Whining
--- @pos 49 -6 15 252
+-- !pos 49 -6 15 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(OUTLANDS,YOMI_OKURI) == QUEST_ACCEPTED and player:getVar("yomiOkuriCS") == 2) then
         -- Trade Giant Sheep Meat, Frost Turnip, Bastore Sardine, Hecteyes Eye
-        if (trade:hasItemQty(4372,1) and trade:hasItemQty(4382,1) and (trade:hasItemQty(4360,1) or trade:hasItemQty(5792,1)) and trade:hasItemQty(939,1) and trade:getItemCount() == 4) then 
+        if (trade:hasItemQty(4372,1) and trade:hasItemQty(4382,1) and (trade:hasItemQty(4360,1) or trade:hasItemQty(5792,1)) and trade:hasItemQty(939,1) and trade:getItemCount() == 4) then
             player:startEvent(0x0096);
         end
     end
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     elseif (Whining == QUEST_ACCEPTED and player:hasKeyItem(BARREL_OF_OPOOPO_BREW) == true) then
         player:startEvent(0x0017); --Finish Quest
     elseif (Whining == QUEST_COMPLETED) then
-        player:startEvent(0x0018); 
+        player:startEvent(0x0018);
     else
         player:startEvent(0x0050);
     end
@@ -87,8 +87,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,STOP_YOUR_WHINING);
         player:messageSpecial(KEYITEM_OBTAINED,EMPTY_BARREL);
     elseif (csid == 0x0017) then
-        if (player:getFreeSlotsCount() == 0) then 
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4952); 
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4952);
         else
             player:delKeyItem(BARREL_OF_OPOOPO_BREW); --Filled Barrel
             player:addItem(4952); -- Scroll of Hojo: Ichi

@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest Giver
 --  Starts, Involved with, and Finishes Quest: 'F.A.I.L.ure Is Not an Option'
 --  @zone 256
---  @pos 44 4 -159 256
+--  !pos 44 4 -159 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

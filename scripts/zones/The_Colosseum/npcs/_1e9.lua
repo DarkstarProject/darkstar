@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Colosseum
 --  NPC: _1e9 (Gate: The Pit)
--- @pos -604 -1.949 40 71
+-- !pos -604 -1.949 40 71
 -----------------------------------
 package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
 -----------------------------------

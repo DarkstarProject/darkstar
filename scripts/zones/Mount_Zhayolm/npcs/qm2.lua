@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: ??? (Spawn Claret(ZNM T1))
--- @pos 497 -9 52 61
+-- !pos 497 -9 52 61
 -----------------------------------
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------

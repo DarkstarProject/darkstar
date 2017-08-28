@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: East Ronfaure
 --  NPC:  Cheval_River
--- @pos 223 -58 426 101
+-- !pos 223 -58 426 101
 --  Involved in Quest: Waters of Cheval
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
@@ -16,7 +16,7 @@ require("scripts/zones/East_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL) == QUEST_ACCEPTED and trade:hasItemQty(602, 1)) then
         if (trade:getItemCount() == 1 and player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 603);
         end;
     end;
-            
+
 end;
 
 -----------------------------------
@@ -34,14 +34,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasItem(602) == true) then
         player:messageSpecial(BLESSED_WATERSKIN);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

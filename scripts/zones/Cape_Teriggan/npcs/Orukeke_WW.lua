@@ -2,7 +2,7 @@
 -- Area: Cape Teriggan
 --  NPC: Orukeke, W.W.
 -- Type: Border Conquest Guards
--- @pos 119 0 282 113
+-- !pos 119 0 282 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------

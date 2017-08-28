@@ -2,7 +2,7 @@
 -- Area: Upper Jeuno
 -- NPC: Turlough
 -- Mission NPC
--- @pos 
+-- !pos
 -----------------------------------
 
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -16,7 +16,7 @@ require("scripts/globals/settings");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x27AE); --default dialogue
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

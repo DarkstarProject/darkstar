@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm4 (???)
 -- Spawns Emperor de Altepa
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

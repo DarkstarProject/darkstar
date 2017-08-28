@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Silver_Sea_route_to_Nashmau
 -- NPC:  Map
--- @pos 0.340 -12.232 -4.120 58
+-- !pos 0.340 -12.232 -4.120 58
 -----------------------------------
 package.loaded["scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -13,15 +13,15 @@ require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:startEvent(0x0400); 
-end; 
+    player:startEvent(0x0400);
+end;
 
 -----------------------------------
 -- onEventUpdate

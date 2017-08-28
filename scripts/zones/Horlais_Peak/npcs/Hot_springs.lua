@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC: Hot Springs
 -- @zone 139
--- @pos  444 -37 -18
+-- !pos  444 -37 -18
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0x0002) then
         player:tradeComplete();
         player:addItem(4949); -- Scroll of Jubaku: Ichi
-        player:messageSpecial(ITEM_OBTAINED, 4949); 
+        player:messageSpecial(ITEM_OBTAINED, 4949);
         player:addFame(NORG,75);
         player:addTitle(CRACKER_OF_THE_SECRET_CODE);
         player:completeQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);

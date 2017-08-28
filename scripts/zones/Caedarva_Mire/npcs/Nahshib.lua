@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 --  NPC: Nahshib
 -- Type: Assault
--- @pos -274.334 -9.287 -64.255 79
+-- !pos -274.334 -9.287 -64.255 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

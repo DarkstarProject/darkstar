@@ -2,7 +2,7 @@
 -- Area: Rolanberry Fields
 --  NPC: Saarlan
 -- Legion NPC
--- @pos 242 24.395 468
+-- !pos 242 24.395 468
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------

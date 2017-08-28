@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Tahrongi
 --  NPC: qm8 (???)
 -- Spawns Abas
--- @pos ? ? ? 45
+-- !pos ? ? ? 45
 -----------------------------------
 require("scripts/globals/status");
 

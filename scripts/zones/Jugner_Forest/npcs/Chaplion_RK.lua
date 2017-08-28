@@ -2,7 +2,7 @@
 -- Area: Jugner Forest
 --  NPC: Chaplion, R.K.
 -- Outpost Conquest Guards
--- @pos 54 0 -11 104
+-- !pos 54 0 -11 104
 -------------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -------------------------------------

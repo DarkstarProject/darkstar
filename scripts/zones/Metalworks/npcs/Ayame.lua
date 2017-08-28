@@ -3,7 +3,7 @@
 -- NPC:  Ayame
 -- Involved in Missions
 -- Starts and Finishes Quest: True Strength
--- @pos 133 -19 34 237
+-- !pos 133 -19 34 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -20,13 +20,13 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED) then 
+
+    if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1100,1) and trade:getItemCount() == 1) then -- Trade Xalmo Feather
             player:startEvent(0x02ed); -- Finish Quest "True Strength"
-        end    
+        end
     end
-    
+
 end;
 
 -----------------------------------
@@ -34,10 +34,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local trueStrength = player:getQuestStatus(BASTOK,TRUE_STRENGTH);
     local WildcatBastok = player:getVar("WildcatBastok");
-    
+
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,9) == false) then
         player:startEvent(0x03a7);
     elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x02bd); -- Standard dialog
     end
-    
+
 end;
 
 -----------------------------------
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x02ec) then
         player:addQuest(BASTOK,TRUE_STRENGTH);
     elseif (csid == 0x02ed) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14215); -- Temple Hose
         else
             player:tradeComplete();
@@ -85,5 +85,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x03a7) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",9,true);
     end
-    
+
 end;

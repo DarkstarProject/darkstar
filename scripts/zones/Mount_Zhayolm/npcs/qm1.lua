@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Mount Zhayolm
 --  NPC: ??? (Spawn Brass Borer(ZNM T1))
--- @pos 399 -27 120 61
+-- !pos 399 -27 120 61
 -----------------------------------
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Batallia Downs
 --  MOB: Sturmtiger
 -- Involved in Quest: Chasing Quotas
--- @pos -715.882,-10.75,65.982 (105)
+-- !pos -715.882,-10.75,65.982 (105)
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

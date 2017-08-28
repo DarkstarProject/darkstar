@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Carpenter's Landing
 -- NPC:  <this space intentionally left blank>
--- @pos -99 -0 -514 2
+-- !pos -99 -0 -514 2
 -----------------------------------
 package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
 -----------------------------------

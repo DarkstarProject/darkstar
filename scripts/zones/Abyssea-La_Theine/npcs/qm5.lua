@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm5 (???)
 -- Spawns Pantagruel
--- @pos ? ? ? 132
+-- !pos ? ? ? 132
 -----------------------------------
 require("scripts/globals/status");
 

@@ -2,7 +2,7 @@
 -- Area:  Temple of Uggalepih
 --  NPC:  _4f3
 -- Notes: Tonberry Priest Room (Offers Tonberry Hate Reset)
--- @pos 60.001 -1.653 -147.755 159
+-- !pos 60.001 -1.653 -147.755 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

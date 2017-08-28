@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm16 (???)
 -- Spawns Ironclad Pulverizor
--- @pos ? ? ? 216
+-- !pos ? ? ? 216
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

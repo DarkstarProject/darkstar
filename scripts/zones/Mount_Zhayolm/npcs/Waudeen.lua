@@ -2,7 +2,7 @@
 -- Area: Mount_Zhayolm
 --  NPC: Waudeen
 -- Type: Assault
--- @pos 673.882 -23.995 367.604 61
+-- !pos 673.882 -23.995 367.604 61
 -----------------------------------
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------

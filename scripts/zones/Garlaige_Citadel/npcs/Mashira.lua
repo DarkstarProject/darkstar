@@ -2,7 +2,7 @@
 -- Area: Garlaige Citadel
 -- NPC:  Mashira
 -- Involved in Quests: Rubbish day, Making Amens!
--- @pos 141 -6 138 200
+-- !pos 141 -6 138 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -17,14 +17,14 @@ require("scripts/zones/Garlaige_Citadel/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then 
+    if (player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then
         player:startEvent(0x000b,1); -- For the quest "Rubbish day"
     elseif (player:getQuestStatus(WINDURST,MAKING_AMENS) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(128) == true) then
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x000b,3); -- Standard dialog and menu
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

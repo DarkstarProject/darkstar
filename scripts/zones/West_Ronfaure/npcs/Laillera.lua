@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: West Ronfaure
 -- NPC:  Laillera
--- @pos -127.297 -62.000 266.800 100
+-- !pos -127.297 -62.000 266.800 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/West_Ronfaure/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

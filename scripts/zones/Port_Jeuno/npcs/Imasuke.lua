@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Imasuke
 -- Starts and Finishes Quest: The Antique Collector
--- @pos -165 11 94 246
+-- !pos -165 11 94 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

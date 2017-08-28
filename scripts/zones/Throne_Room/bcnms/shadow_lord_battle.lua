@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Throne Room
 -- Name: Mission 5-2
--- @pos -111 -6 0.1 165
+-- !pos -111 -6 0.1 165
 -----------------------------------
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------
@@ -36,13 +36,13 @@ function onBcnmLeave(player,instance,leavecode)
         end
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
-    end    
+    end
 end;
 
 function onEventUpdate(player,csid,option)
     -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 0x07d01) then
@@ -58,5 +58,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(SHADOW_FRAGMENT);
         player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
         player:setVar("MissionStatus",4);
-    end    
+    end
 end;

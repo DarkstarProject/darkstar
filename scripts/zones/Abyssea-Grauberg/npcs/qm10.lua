@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Grauberg
 --  NPC: qm10 (???)
 -- Spawns Burstrox Powderpate
--- @pos ? ? ? 254
+-- !pos ? ? ? 254
 -----------------------------------
 require("scripts/globals/status");
 

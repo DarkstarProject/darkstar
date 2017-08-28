@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago Reef
 --  NPC: ??? (Spawn Lil'Apkallu(ZNM T1))
--- @pos 488 -1 166 54
+-- !pos 488 -1 166 54
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------

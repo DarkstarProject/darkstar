@@ -3,7 +3,7 @@
 --   NPC: Umberto
 --  Type: Quest NPC
 -- Involved in Quest: Too Many Chefs
--- @pos -56.896 -5 -134.267 235
+-- !pos -56.896 -5 -134.267 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");

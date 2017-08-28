@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Ugrihd
 -- Coin Exchange Vendor
--- @pos -63.079 -6 -28.571 50
+-- !pos -63.079 -6 -28.571 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

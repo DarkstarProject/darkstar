@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 -- NPC: Ilita
 -- Linkshell merchant
---   @pos -142 -1 -25 236
+--   !pos -142 -1 -25 236
 -- Confirmed shop stock, August 2013
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;

@@ -1,12 +1,12 @@
 -----------------------------------
---  Area: Bastok Markets
+-- Area: Bastok Markets
 --  NPC: Teerth
---  Guild Merchant NPC: Goldsmithing Guild 
---  @zone 235
--- @pos -205.190 -7.814 -56.507
+--  Guild Merchant NPC: Goldsmithing Guild
+-- !zone
+-- !pos -205.190 -7.814 -56.507 235
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------

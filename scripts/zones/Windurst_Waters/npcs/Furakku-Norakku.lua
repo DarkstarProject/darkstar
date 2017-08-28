@@ -2,7 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Furakku-Norakku
 -- Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
---    @pos -19 -5 101 238
+-- !pos -19 -5 101 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

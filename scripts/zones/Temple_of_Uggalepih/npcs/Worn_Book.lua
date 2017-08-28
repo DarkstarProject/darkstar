@@ -2,7 +2,7 @@
 -- Area: Temple of Uggalepih
 -- NPC:  Worn Book
 -- Getting "Old Rusty Key (keyitem)"
--- @pos 59 0 19 159
+-- !pos 59 0 19 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm5 (???)
 -- Spawns Keratyrannos
--- @pos ? ? ? 15
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 

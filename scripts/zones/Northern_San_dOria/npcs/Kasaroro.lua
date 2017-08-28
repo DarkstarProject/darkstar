@@ -3,7 +3,7 @@
 -- NPC:  Kasaroro
 -- Type: Consulate Representative
 -- Involved in Mission: 2-3 Windurst
--- @pos -72 -3 34 231
+-- !pos -72 -3 34 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -16,13 +16,13 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -30,12 +30,12 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     pNation = player:getNation();
     if (pNation == NATION_WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
-    
+
         if (currentMission == THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then
                 player:startEvent(0x0222);
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0224);
     end
-    
+
 end;
 
 -----------------------------------
@@ -87,7 +87,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0222) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);
         player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
@@ -105,5 +105,5 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
         player:setVar("MissionStatus",11);
     end
-    
+
 end;

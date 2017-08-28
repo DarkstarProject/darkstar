@@ -2,7 +2,7 @@
 --  Area:  Heavens Tower
 --  NPC:   Gamimi
 --  Type:  GOLD WORLD PASS ARBITER
--- @pos 4 0.1 32 242
+-- !pos 4 0.1 32 242
 -----------------------------------
 
 -----------------------------------
@@ -10,7 +10,7 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x2710);--,0,0,0,0,0,-1,2);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

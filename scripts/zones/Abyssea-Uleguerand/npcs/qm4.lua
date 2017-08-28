@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm4 (???)
 -- Spawns Yaguarogui
--- @pos ? ? ? 253
+-- !pos ? ? ? 253
 -----------------------------------
 require("scripts/globals/status");
 

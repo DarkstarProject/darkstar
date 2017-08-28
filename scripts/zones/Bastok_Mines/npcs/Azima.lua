@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 --  NPC: Azima
 -- Alchemy Adv. Synthesis Image Support
--- @pos 123.5 2 1 234
+-- !pos 123.5 2 1 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

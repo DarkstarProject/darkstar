@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 -- NPC:  ??? (Tonberry Rattle ITEM)
--- @pos 269 0 91 159
+-- !pos 269 0 91 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

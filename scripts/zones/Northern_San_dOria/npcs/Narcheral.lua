@@ -3,7 +3,7 @@
 -- NPC:  Narcheral
 -- Starts and Finishes Quest: Messenger from Beyond, Prelude of Black and White (Finish), Pieuje's Decision (Finish)
 -- @zone 231
--- @pos 129 -11 126
+-- !pos 129 -11 126
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -38,13 +38,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     messengerFromBeyond = player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND);
-    
+
     -- Checking levels and jobs for af quest
     mLvl = player:getMainLvl();
     mJob = player:getMainJob();
-    
+
     if (messengerFromBeyond == QUEST_AVAILABLE and mJob == 3 and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(0x02b1); -- Start quest "Messenger from Beyond"
     else
@@ -69,11 +69,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x02b1) then
         player:addQuest(SANDORIA,MESSENGER_FROM_BEYOND);
     elseif (csid == 0x02b2) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17422);
         else
             player:addItem(17422);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(SANDORIA,MESSENGER_FROM_BEYOND);
         end
     elseif (csid == 0x02b3) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14091); -- Healer's Duckbills
         else
             player:addItem(14091);
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
         end
     elseif (csid == 0x02b4) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12640); -- Healer's Briault
         else
             player:addTitle(PARAGON_OF_WHITE_MAGE_EXCELLENCE);
@@ -105,5 +105,5 @@ function onEventFinish(player,csid,option)
             player:completeQuest(SANDORIA,PIEUJE_S_DECISION);
         end
     end
-    
+
 end;

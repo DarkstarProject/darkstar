@@ -3,7 +3,7 @@
 -- NPC: Pradiulot
 -- Involved in Quest: Unforgiven
 -- @zone 26
--- @pos -20.814 -22 8.399
+-- !pos -20.814 -22 8.399
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
@@ -14,8 +14,8 @@ require("scripts/globals/quests");
 -- at the end of if (player:getQuestStatus(REGION,QUEST_NAME)
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
--- == 2 means QUEST_COMPLETED 
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0 
+-- == 2 means QUEST_COMPLETED
+-- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
 -- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
 
 -----------------------------------
@@ -27,8 +27,8 @@ function onTrade(player,npc,trade)
 if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and trade:getGil() == 1 == true) then
         player:startEvent(0x00CE); -- Dialogue after completing quest (optional)
         end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -44,10 +44,10 @@ if (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
 elseif (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and player:getVar("UnforgivenVar") == 2) then
     player:startEvent(0x00CE); -- Dialogue after completing quest (optional)
 
-else    
+else
     player:startEvent(0x0173); -- Default Dialogue
 end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -71,10 +71,10 @@ if (csid == 0x00CC) then
     player:messageSpecial(KEYITEM_OBTAINED,440); -- Map of Tavnazia
     player:completeQuest(OTHER_AREAS,UNFORGIVEN);
     player:addFame(OTHER_AREAS,30);
-    
+
 elseif (csid == 0x00CE) then
     player:setVar("UnforgivenVar",0);
-    
+
     end
 end;
 

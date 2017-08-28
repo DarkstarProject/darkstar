@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
 -- NPC:  HomePoint#5
--- @pos -43.5 0 -145 241
+-- !pos -43.5 0 -145 241
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x2200, 119);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x2200) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

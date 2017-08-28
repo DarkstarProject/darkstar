@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 -- NPC:  ??? (Crimson-toothed Pawberry NM)
--- @pos -39 -24 27 159
+-- !pos -39 -24 27 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

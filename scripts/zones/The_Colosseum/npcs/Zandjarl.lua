@@ -2,7 +2,7 @@
 -- Area: The Colosseum
 --  NPC: Zandjarl
 -- Type: Pankration NPC
--- @pos -599 0 45 71
+-- !pos -599 0 45 71
 -----------------------------------
 package.loaded["scripts/zones/The_Colosseum/TextIDs"] = nil;
 -----------------------------------

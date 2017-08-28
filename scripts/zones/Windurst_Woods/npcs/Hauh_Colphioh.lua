@@ -1,15 +1,14 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Hauh Colphioh
---  Type: Guildworker's Union Representative
---  @zone 241
--- @pos -38.173 -1.25 -113.679
+-- Type: Guildworker's Union Representative
+-- !pos -38.173 -1.25 -113.679 241
 -----------------------------------
-
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Woods/TextIDs");
 
 local keyitems = {
      [0] = {

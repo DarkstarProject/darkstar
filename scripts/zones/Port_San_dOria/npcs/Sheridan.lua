@@ -3,7 +3,7 @@
 -- NPC: Sheridan
 -- Involved in Quests: Riding on the Clouds
 -- @zone 232
--- @pos -19 -8 -129
+-- !pos -19 -8 -129
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 5) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
@@ -32,8 +32,8 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action

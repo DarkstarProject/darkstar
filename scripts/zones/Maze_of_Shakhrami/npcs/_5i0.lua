@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 -- Quest: Corsair Af1 "Equiped for All Occasions"
 -- NPC: Iron Door (Spawn Lost Soul)
--- @pos 247.735 18.499 -142.267 198
+-- !pos 247.735 18.499 -142.267 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -52,6 +52,6 @@ function onEventFinish(player,csid,option)
         player:setVar("EquipedforAllOccasions",3);
         player:addKeyItem(WHEEL_LOCK_TRIGGER);
         player:messageSpecial(KEYITEM_OBTAINED, WHEEL_LOCK_TRIGGER);
-    end    
+    end
 end;
-    
+

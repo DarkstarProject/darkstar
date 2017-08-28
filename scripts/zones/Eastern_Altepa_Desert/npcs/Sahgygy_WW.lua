@@ -2,7 +2,7 @@
 -- Area: Eastern Altepa Desert
 --  NPC: Sahgygy, W.W.
 -- Border Conquest Guards
--- @pos 226.493 -12.231 260.194 114
+-- !pos 226.493 -12.231 260.194 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

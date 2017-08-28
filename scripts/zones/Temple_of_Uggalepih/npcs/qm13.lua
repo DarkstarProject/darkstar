@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 -- NPC:  ??? (San dOria Mission 8-2)
--- @pos -68 -17 -153
+-- !pos -68 -17 -153
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

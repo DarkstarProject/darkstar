@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Grand Palace of Hu'Xzoi
 --  NPC:  Particle Gate
--- @pos 1 0.1 -320 34
+-- !pos 1 0.1 -320 34
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 -----------------------------------

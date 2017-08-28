@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign [S]
 --  NPC: Cavernous Maw
--- @pos 369 8 -227 98
+-- !pos 369 8 -227 98
 -- Teleports Players to Sauromugue_Champaign
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
@@ -64,6 +64,6 @@ function onEventFinish(player,csid,option)
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,4);
         end
-        toMaw(player,6);        
+        toMaw(player,6);
     end
 end;

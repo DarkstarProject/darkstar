@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Aldo
 -- Involved in Mission: Magicite, Return to Delkfutt's Tower (Zilart)
--- @pos 20 3 -58 245
+-- !pos 20 3 -58 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     elseif (ZilartMission == THE_SEALED_SHRINE and ZilartStatus == 1) then
         player:startEvent(111);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0098) then
         player:delKeyItem(LETTERS_TO_ALDO);
         player:addKeyItem(SILVER_BELL);
@@ -63,5 +63,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0068) then
         player:setVar("ZilartStatus",1);
     end
-    
+
 end;

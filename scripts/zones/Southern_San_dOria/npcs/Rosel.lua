@@ -3,7 +3,7 @@
 -- NPC:  Rosel
 -- Starts and Finishes Quest: Rosel the Armorer
 -- @zone 230
--- @pos
+-- !pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

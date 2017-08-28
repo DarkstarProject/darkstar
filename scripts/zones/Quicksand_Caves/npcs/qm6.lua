@@ -2,7 +2,7 @@
 -- Area: Quicksand Caves
 -- NPC:  ??? (qm6)
 -- Bastok Mission 8.1 "The Chains That Bind Us"
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -26,20 +26,20 @@ function onTrigger(player,npc)
             SpawnMob(17629187):updateClaim(player); -- Centurio IV-VII
             SpawnMob(17629188):updateClaim(player); -- Triarius IV-XIV
             SpawnMob(17629189):updateClaim(player); -- Princeps IV-XLV
-            player:messageSpecial(SENSE_OF_FOREBODING); 
+            player:messageSpecial(SENSE_OF_FOREBODING);
             npc:setStatus(2); -- Disappear
             SetServerVariable("BastokFight8_1", 3);
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -49,13 +49,13 @@ function onEventUpdate(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);
 end;
- 
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
-    -- print("RESULT:",option);        
+    -- print("RESULT:",option);
     if (csid == 0x0B) then
         player:setVar("MissionStatus", 2);
     end

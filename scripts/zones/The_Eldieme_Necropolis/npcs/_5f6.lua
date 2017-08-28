@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 -- NPC:  Odin's Gate
--- @pos 260 -34 110 195
+-- !pos 260 -34 110 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     end
     return 0;
 end;
--- 
+--
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

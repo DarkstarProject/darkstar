@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 --  NPC: ??? (Spawn Armed Gears(ZNM T3))
--- @pos -42 -4 -169 72
+-- !pos -42 -4 -169 72
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------

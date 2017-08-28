@@ -2,7 +2,7 @@
 -- Area: Southern San dOria
 -- NPC: Vaquelage
 -- Type: Item Deliverer NPC
--- @pos 17.396 1.699 -29.357 230
+-- !pos 17.396 1.699 -29.357 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -34,7 +34,7 @@ end;
 function onTrigger(player,npc)
     player:showText(npc, ITEM_DELIVERY_DIALOG);
     player:openSendBox();
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

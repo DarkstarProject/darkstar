@@ -2,7 +2,7 @@
 -- Area: Mhaura
 -- NPC: Willah Maratahya
 -- Title Change NPC
--- @pos 23 -8 63 249
+-- !pos 23 -8 63 249
 -----------------------------------
 
 require("scripts/globals/titles");

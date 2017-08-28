@@ -4,7 +4,7 @@
 -- Starts and Finishes Quest: Mihgo's Amigo (R), The Tenshodo Showdown (start), Rock Racketeer (start, listed as ROCK_RACKETTER in quests.lua)
 -- Involved In Quest: Crying Over Onions
 -- Involved in Mission 2-1
--- @pos 62 -4 240 241
+-- !pos 62 -4 240 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

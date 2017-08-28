@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San dOria
 -- NPC:  HomePoint#1
--- @pos -178.101 4.000 71.279 231
+-- !pos -178.101 4.000 71.279 231
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -15,7 +15,7 @@ require("scripts/globals/homepoint");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21fc, 3);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21fc) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

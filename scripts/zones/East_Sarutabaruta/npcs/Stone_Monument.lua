@@ -2,7 +2,7 @@
 --  Area: East Sarutabaruta
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos 448.045 -7.808 319.980 116
+-- !pos 448.045 -7.808 319.980 116
 -----------------------------------
 package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------

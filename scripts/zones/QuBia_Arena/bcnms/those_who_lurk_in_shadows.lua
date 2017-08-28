@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- NPC:  Those Who Lurk in Shadows
--- @pos -221 -24 19 206
+-- !pos -221 -24 19 206
 -----------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------

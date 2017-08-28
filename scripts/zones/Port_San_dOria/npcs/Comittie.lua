@@ -3,8 +3,8 @@
 --   NPC: Comittie
 --  Type: Standard NPC
 -- @zone 232
--- @pos -6.570 -9.8 -147.952
--- 
+-- !pos -6.570 -9.8 -147.952
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

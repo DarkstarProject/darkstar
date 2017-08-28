@@ -2,7 +2,7 @@
 -- Area:  Bastok Markets
 -- NPC:   Salimah
 -- Notes: Start & Finishes Quest: Gourmet
--- @pos -31.687 -6.824 -73.282 235
+-- !pos -31.687 -6.824 -73.282 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

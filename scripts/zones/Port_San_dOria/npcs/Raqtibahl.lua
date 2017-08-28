@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Raqtibahl
--- (Corsair's Frac) @pos -59 -4 -39 232
+-- (Corsair's Frac) !pos -59 -4 -39 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -16,21 +16,21 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local letterRed = player:getVar("LeleroonsLetterRed");
-    
+
     -- magicmart flyer
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
         player:messageSpecial(FLYER_REFUSED);
-    
+
     -- gold chain, velvet cloth, red grass cloth, sailcloth
     elseif (letterRed == 2 and trade:getItemCount() == 4 and trade:hasItemQty(761,1) and trade:hasItemQty(828,1) and trade:hasItemQty(1829,1) and trade:hasItemQty(1997,1)) then
         player:startEvent(755); -- accepts materials, now bring me imperial gold piece
-    
+
     -- imperial gold piece
     elseif (letterRed == 3 and trade:getItemCount() == 1 and trade:hasItemQty(2187,1)) then
         player:startEvent(760); -- accepts gold piece, now wait for next vana'diel day
 
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

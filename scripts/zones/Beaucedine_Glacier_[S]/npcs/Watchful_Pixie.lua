@@ -3,8 +3,8 @@
 --   NPC: Watchful Pixie
 --  Type: Quest NPC
 -- @zone 136
--- @pos -56.000 -1.3 -392.000
--- 
+-- !pos -56.000 -1.3 -392.000
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier_[S]/TextIDs"] = nil;

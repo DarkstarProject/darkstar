@@ -2,7 +2,7 @@
 --  Area: Uleguerand Range
 --  NPC:  Chamnaet Spring
 --  Receive Chamnaet Ice upon trading Cotton Pouch
--- @pos -305.240 3.605 17.977
+-- !pos -305.240 3.605 17.977
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------

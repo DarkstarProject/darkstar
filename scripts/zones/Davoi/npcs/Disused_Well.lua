@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Disused Well
 -- Involved in Quest: A Knight's Test
--- @pos -221 2 -293 149
+-- !pos -221 2 -293 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/zones/Davoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,8 +29,8 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(A_WELL);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

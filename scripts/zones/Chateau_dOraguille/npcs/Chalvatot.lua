@@ -4,7 +4,7 @@
 -- Finish Mission "The Crystal Spring"
 -- Start & Finishes Quests: Her Majesty's Garden
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -105 0.1 72 233
+-- !pos -105 0.1 72 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     -- HER MAJESTY'S GARDEN (derfland humus)
     elseif (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
         player:startEvent(0x0053);
-        
+
     end;
 end;
 
@@ -45,11 +45,11 @@ function onTrigger(player,npc)
     local lureOfTheWildcat = player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
     local WildcatSandy = player:getVar("WildcatSandy");
     local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
-    
+
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
     if (currentMission == THE_CRYSTAL_SPRING and MissionStatus == 3) then
         player:startEvent(0x022c);
-        
+
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
     elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
         player:startEvent(0x006f);
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
     -- SAN D'ORIA MISSIONS
     if (csid == 0x022c or csid == 0x006f) then
         finishMissionTimeline(player,3,csid,option);
-        
+
     -- CIRCLE OF TIME
     elseif (csid == 0x0063 and option == 0) then
         player:setVar("circleTime",6);
@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         end;
-    
+
     -- LURE OF THE WILDCAT
     elseif (csid == 0x0231) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",19,true);

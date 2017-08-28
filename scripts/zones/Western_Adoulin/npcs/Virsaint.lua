@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'A Certain Substitute Patrolman'
 --  @zone 256
--- @pos 32 0 -5
+-- !pos 32 0 -5
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

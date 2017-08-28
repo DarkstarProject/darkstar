@@ -5,7 +5,7 @@
 --  Starts, Involved with, and Finishes Quest: 'Exotic Delicacies'
 --  Involved with Quest: 'All the Way to the Bank'
 --  @zone 256
---  @pos 70 0 -13 256
+--  !pos 70 0 -13 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 
 function onTrade(player,npc,trade)
     local Exotic_Delicacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
-    
+
     if (player:hasKeyItem(TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas(trade, nil, 5600)) then
         local ATWTTB_Paid_Flapano = player:getMaskBit(player:getVar("ATWTTB_Payments"), 2);
         -- Progresses Quest: 'All the Way to the Bank'
@@ -38,7 +38,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0B2E);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
         player:startEvent(0x00BF);
     else
         -- Flapano offers his quest every other time the player talks to him
-        if (player:getVar("Flapano_Odd_Even") > 0) then 
+        if (player:getVar("Flapano_Odd_Even") > 0) then
             if (Exotic_Delicacies == QUEST_ACCEPTED) then
                 -- Reminds player of items for Quest: 'Exotic Delicacies'
                 player:startEvent(0x0B2F);

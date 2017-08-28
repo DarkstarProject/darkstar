@@ -2,7 +2,7 @@
 -- Area: Beaucedine Glacier
 --  NPC: Leaufetie, R.K.
 -- Type: Conquest Overseer
--- @pos -227.956 -81.475 260.442 111
+-- !pos -227.956 -81.475 260.442 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------

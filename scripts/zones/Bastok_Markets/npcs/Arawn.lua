@@ -2,7 +2,7 @@
 -- Area: Bastok Markets
 -- NPC:  Arawn
 -- Starts & Finishes Quest: Stamp Hunt
--- @pos -121.492 -4.000 -123.923 235
+-- !pos -121.492 -4.000 -123.923 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

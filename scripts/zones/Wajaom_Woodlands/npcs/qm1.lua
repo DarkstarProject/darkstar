@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
 --  NPC: ??? (Spawn Vulpangue(ZNM T1))
--- @pos -697 -7 -123 51
+-- !pos -697 -7 -123 51
 -----------------------------------
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
 -----------------------------------

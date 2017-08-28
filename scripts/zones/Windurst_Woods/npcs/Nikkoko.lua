@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Nikkoko
 -- Type: Clothcraft Image Support
--- @pos -32.810 -3.25 -113.680 241
+-- !pos -32.810 -3.25 -113.680 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
