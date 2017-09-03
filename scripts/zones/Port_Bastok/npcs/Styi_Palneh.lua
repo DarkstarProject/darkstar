@@ -2,7 +2,7 @@
 -- Area: Port Bastok
 -- NPC: Styi Palneh
 -- Title Change NPC
--- @pos 28 4 -15 236
+-- !pos 28 4 -15 236
 -----------------------------------
 
 require("scripts/globals/titles");

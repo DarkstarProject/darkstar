@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Norg
 -- NPC:  Oaken door (Gilgamesh's room)
--- @pos 97 -7 -12 252
+-- !pos 97 -7 -12 252
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -12,7 +12,7 @@ require("scripts/globals/settings")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0002); -- Zilart Missions 2
     elseif (ZilartMission == ROMAEVE and player:getVar("ZilartStatus") <= 1) then
         player:startEvent(0x0003); -- Zilart Missions 9
-    elseif (ZilartMission == THE_HALL_OF_THE_GODS) then 
+    elseif (ZilartMission == THE_HALL_OF_THE_GODS) then
         player:startEvent(0x00a9); -- Zilart Missions 11
     elseif (currentMission == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 1) then
         player:startEvent(0x0062); -- Bastok Mission 6-2
@@ -45,13 +45,13 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0005);
     end
-    
+
     return 1;
-    
-end; 
+
+end;
 
 -- 0x00af  0x0005  0x0002  0x0003  0x00a9  0x00ac  0x00ce  0x00eb
--- 0x00af  0x0000  0x0002  0x0003  0x0004  0x0007  0x0008  0x0009  0x000a  0x0062  0x0063  0x001d  0x000c  0x000d 
+-- 0x00af  0x0000  0x0002  0x0003  0x0004  0x0007  0x0008  0x0009  0x000a  0x0062  0x0063  0x001d  0x000c  0x000d
 -- 0x0092  0x009e  0x00a4  0x00a9  0x00aa  0x00ab  0x00ac  0x00ad  0x00b0  0x00b1  0x00e8  0x00e9  0x00ea
 
 -----------------------------------
@@ -70,7 +70,7 @@ end;
 function onEventFinish(player,csid,option)
 printf("CSID: %u",csid);
 printf("RESULT: %u",option);
-    
+
     if (csid == 0x0002 and option == 0) then
         player:completeMission(ZILART,WELCOME_TNORG);
         player:addMission(ZILART,KAZAMS_CHIEFTAINESS);
@@ -86,5 +86,5 @@ printf("RESULT: %u",option);
     elseif (csid == 0x00ac and bit.band(option, 0x40000000) == 0) then
         player:setVar("ZilartStatus",1);
     end
-    
+
 end;

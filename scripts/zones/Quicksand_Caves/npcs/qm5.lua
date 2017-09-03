@@ -3,11 +3,11 @@
 --  NPC: ??? (qm5)
 -- Involved in Quest: The Missing Piece
 -- positions:
--- 1: @pos 770 0 -419
--- 2: @pos 657 0 -537
--- 3: @pos 749 0 -573
--- 4: @pos 451 -16 -739
--- 5: @pos 787 -16 -819
+-- 1: !pos 770 0 -419
+-- 2: !pos 657 0 -537
+-- 3: !pos 749 0 -573
+-- 4: !pos 451 -16 -739
+-- 5: !pos 787 -16 -819
 -- spawn in npc_list is 770 0 -419
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;

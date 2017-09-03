@@ -3,7 +3,7 @@
 -- NPC:  Nenne
 -- Starts and Finishes Quest: To Cure a Cough
 -- @zone 230
--- @pos -114 -6 102
+-- !pos -114 -6 102
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,10 +26,10 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
     toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
-    
+
     if (toCureaCough == QUEST_AVAILABLE and player:getVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
         player:startEvent(0x021A);
     elseif (player:hasKeyItem(COUGH_MEDICINE) == true) then
@@ -37,8 +37,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0248);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -69,5 +69,5 @@ function onEventFinish(player,csid,option)
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
     end
-    
+
 end;

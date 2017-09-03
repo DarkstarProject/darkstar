@@ -2,7 +2,7 @@
 -- Area: Monastic Cavern
 -- NPC:  Altar
 -- Involved in Quests: The Circle of Time
--- @pos 108 -2 -144 150
+-- !pos 108 -2 -144 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

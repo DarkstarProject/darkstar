@@ -2,7 +2,7 @@
 -- Area: Crawlers' Nest
 --  NPC: qm12 (??? - Exoray Mold Crumbs)
 -- Involved in Quest: In Defiant Challenge
--- @pos 99.326 -0.126 -188.869 197
+-- !pos 99.326 -0.126 -188.869 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------

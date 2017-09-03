@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Perfaumand
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
--- @pos -39 -3 69 233
+-- !pos -39 -3 69 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +31,7 @@ end;
 function onTrigger(player,npc)
 
     local WildcatSandy = player:getVar("WildcatSandy");
-    
+
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,18) == false) then
         player:startEvent(0x0230);
     else

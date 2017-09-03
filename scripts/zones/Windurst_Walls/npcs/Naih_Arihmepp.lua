@@ -2,7 +2,7 @@
 --  Area: Windurst Walls
 --  NPC:  Naih Arihmepp
 --  Type: Standard NPC
--- @pos -64.578 -13.465 202.147 239
+-- !pos -64.578 -13.465 202.147 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -48,10 +48,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x01f4) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",9,true);
-    end    
-    
+    end
+
 end;
 

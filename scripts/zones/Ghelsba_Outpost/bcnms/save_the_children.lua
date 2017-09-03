@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
--- Name: San d'Oria Mission 1-3 Save the children 
--- @pos -162 -11 78 140
+-- Name: San d'Oria Mission 1-3 Save the children
+-- !pos -162 -11 78 140
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +31,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print(leave code ..leavecode);
-    
+
     if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(SANDORIA,SAVE_THE_CHILDREN)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,0,1);
@@ -41,21 +41,21 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print(bc update csid ..csid.. and option ..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print(bc finish csid ..csid.. and option ..option);
-    
+
     if (csid == 0x7d01 and option == 0 and player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") == 2) then
         player:setTitle(FODDERCHIEF_FLAYER);
         player:addKeyItem(ORCISH_HUT_KEY);
         player:messageSpecial(KEYITEM_OBTAINED,ORCISH_HUT_KEY);
         player:setVar("MissionStatus",3);
     end
-    
+
 end;

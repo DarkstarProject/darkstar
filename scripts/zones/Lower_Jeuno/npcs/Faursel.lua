@@ -3,7 +3,7 @@
 --  NPC:  Faursel
 --  Type: Aht Urhgan Quest NPC
 -- Involved in Quests: The Road to Aht Urhgan
--- @pos 37.985 3.118 -45.208 245
+-- !pos 37.985 3.118 -45.208 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 
     if (questStatus == QUEST_ACCEPTED and questStatusVar == 1) then
 
-        if (trade:hasItemQty(537,1) == true and trade:hasItemQty(538,1) == true and trade:hasItemQty(539,1) == true 
+        if (trade:hasItemQty(537,1) == true and trade:hasItemQty(538,1) == true and trade:hasItemQty(539,1) == true
         and trade:hasItemQty(540,1) == true and trade:hasItemQty(541,1) == true and trade:hasItemQty(542,1) == true and trade:getItemCount() == 6 and trade:getGil() == 0) then -- Beginner List (Subjob Items)
             player:startEvent(0x2756);
         elseif (trade:hasItemQty(1532,1) and trade:hasItemQty(1533,1) and trade:hasItemQty(1535,1) and trade:getItemCount() == 3 and trade:getGil() == 0) then -- Intermediate List
@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
                 player:startEvent(0x2756);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         player:startEvent(0x2751); -- Regular chat dialog.
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -95,7 +95,7 @@ function onEventUpdate(player,csid,option)
         elseif (option == 14) then -- Gil Option
             player:updateEvent(1,1,1,1,1,1,player:getGil(),1);
         elseif (option == 2 or option == 1073741824) then  -- Let me think about it... / Cancel
-            
+
         end
     end
 

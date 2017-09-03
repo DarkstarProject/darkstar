@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
 -- NPC: Salaheem's Sentinels (Door)
--- @pos 23 -6 -63 50
+-- !pos 23 -6 -63 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     end
 
     npc:openDoor(npc:getID());
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

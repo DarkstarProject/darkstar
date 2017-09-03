@@ -2,7 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Jacodaut
 -- Type: Cooking Image Support
--- @pos -125.890 -2.999 62.499 238
+-- !pos -125.890 -2.999 62.499 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

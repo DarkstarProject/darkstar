@@ -3,7 +3,7 @@
 --   NPC: Tonule
 --  Type: Event Replayer
 -- @zone 240
--- @pos -209.385 -9.117 195.217
+-- !pos -209.385 -9.117 195.217
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

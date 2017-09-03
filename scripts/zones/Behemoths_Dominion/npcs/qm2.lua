@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 --  NPC: qm2 (???)
 -- Spawns Behemoth or King Behemoth
--- @pos -267 -19 74 127
+-- !pos -267 -19 74 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------

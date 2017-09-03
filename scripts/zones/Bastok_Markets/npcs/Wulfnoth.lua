@@ -2,7 +2,7 @@
 -- Area: Bastok Markets
 --  NPC: Wulfnoth
 -- Type: Goldsmithing Synthesis Image Support
--- @pos -211.937 -7.814 -56.292 235
+-- !pos -211.937 -7.814 -56.292 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------

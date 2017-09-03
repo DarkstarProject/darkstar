@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Ulamaal
 -- Type: Standard NPC
--- @pos 93.512 -7.5 -128.530 50
+-- !pos 93.512 -7.5 -128.530 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Macici
 -- Type: Smithing Normal/Adv. Image Support
--- @pos -35.163 -1 -31.351 48
+-- !pos -35.163 -1 -31.351 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

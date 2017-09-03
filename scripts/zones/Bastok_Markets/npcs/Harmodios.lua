@@ -2,7 +2,7 @@
 -- Area: Bastok Markets
 -- NPC: Harmodios
 -- Standard Merchant NPC
--- @pos -79.928 -4.824 -135.114 235
+-- !pos -79.928 -4.824 -135.114 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         showNationShop(player, NATION_BASTOK, stock);
 
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

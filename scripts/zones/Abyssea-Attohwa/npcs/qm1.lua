@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Attohwa
 --  NPC: qm1 (???)
 -- Spawns Granite Borer
--- @pos ? ? ? 215
+-- !pos ? ? ? 215
 -----------------------------------
 require("scripts/globals/status");
 

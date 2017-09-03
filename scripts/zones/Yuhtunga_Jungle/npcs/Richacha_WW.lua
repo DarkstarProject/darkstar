@@ -2,7 +2,7 @@
 -- Area: Yuhtunga Jungle
 --  NPC: Richacha, W.W.
 -- Border Conquest Guards
--- @pos -241.334 -1 478.602 123
+-- !pos -241.334 -1 478.602 123
 -----------------------------------
 package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 -----------------------------------

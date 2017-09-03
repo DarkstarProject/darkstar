@@ -3,7 +3,7 @@
 --  NPC: Koru-Moru
 -- Starts & Ends Quest: Star Struck
 -- Involved in Quest: Making the Grade, Riding on the Clouds
--- @pos -120 -6 124 239
+-- !pos -120 -6 124 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

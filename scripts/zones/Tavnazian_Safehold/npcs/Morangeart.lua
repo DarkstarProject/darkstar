@@ -3,8 +3,8 @@
 --   NPC: Morangeart
 --  Type: ENM Quest Activator
 -- @zone 26
--- @pos -74.308 -24.782 -28.475
--- 
+-- !pos -74.308 -24.782 -28.475
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

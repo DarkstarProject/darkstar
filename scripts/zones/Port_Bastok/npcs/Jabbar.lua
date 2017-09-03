@@ -3,7 +3,7 @@
 -- NPC: Jabbar
 -- Type: Tenshodo Merchant
 -- Involved in Quests: Tenshodo Menbership
--- @pos -99.718 -2.299 26.027 236
+-- !pos -99.718 -2.299 26.027 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -19,15 +19,15 @@ require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then 
-        if (player:sendGuild(60419, 1, 23, 4)) then 
+    if (player:hasKeyItem(TENSHODO_MEMBERS_CARD)) then
+        if (player:sendGuild(60419, 1, 23, 4)) then
             player:showText(npc,TENSHODO_SHOP_OPEN_DIALOG);
         end
     elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then

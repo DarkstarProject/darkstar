@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Quicksand Caves
 -- NPC:  Fountain of Kings
--- @pos 567 18 -939 208
+-- !pos 567 18 -939 208
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(POOL_OF_WATER);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

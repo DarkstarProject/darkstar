@@ -2,7 +2,7 @@
 --  Area: Port Bastok
 --  NPC:  Klaus
 --  Type: Standard NPC
--- @pos -89.355 -3.611 -15.256 236
+-- !pos -89.355 -3.611 -15.256 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(KLAUS_DIALOG); 
+    player:messageSpecial(KLAUS_DIALOG);
 end;
 
 -----------------------------------

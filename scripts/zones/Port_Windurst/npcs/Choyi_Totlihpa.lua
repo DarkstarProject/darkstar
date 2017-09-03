@@ -2,7 +2,7 @@
 --  Area: Port Windurst
 --  NPC:  Choyi Totlihpa
 --  Type: Standard NPC
--- @pos -58.927 -5.732 132.819 240
+-- !pos -58.927 -5.732 132.819 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -48,10 +48,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x026e) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",17,true);
-    end    
-    
+    end
+
 end;
 

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm9 (???)
 -- Spawns Karkatakam
--- @pos ? ? ? 216
+-- !pos ? ? ? 216
 -----------------------------------
 require("scripts/globals/status");
 

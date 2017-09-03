@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm8 (???)
 -- Spawns Anemic Aloysius
--- @pos ? ? ? 253
+-- !pos ? ? ? 253
 -----------------------------------
 require("scripts/globals/status");
 

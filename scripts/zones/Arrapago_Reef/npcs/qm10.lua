@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Arrapago Reef 
+-- Area: Arrapago Reef
 -- NPC: ???
 -- Starts: Corsair Af1 ,AF2 ,AF3
--- @pos 457.128 -8.249 60.795 54
+-- !pos 457.128 -8.249 60.795 54
 -----------------------------------
 
 require("scripts/globals/status");
@@ -25,12 +25,12 @@ function onTrigger(player,npc)
 
     local mJob = player:getMainJob();
     local mLvl = player:getMainLvl();
-    
+
     local equipedForAll = player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED);
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress");
-    
-    
+
+
     if (equipedForAll == QUEST_AVAILABLE and mJob == JOBS.COR and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(0x0E4);
     elseif (equipedForAll == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==3) then
@@ -64,7 +64,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0E4) then
         player:addQuest(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
         player:setVar("EquipedforAllOccasions",1);

@@ -2,7 +2,7 @@
 -- Area: Windurst Walls
 -- NPC: Scavnix
 -- Standard merchant, though he acts like a guild merchant
--- @pos 17.731 0.106 239.626 239
+-- !pos 17.731 0.106 239.626 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

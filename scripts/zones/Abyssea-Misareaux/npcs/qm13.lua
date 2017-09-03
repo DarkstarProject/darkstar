@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm13 (???)
 -- Spawns Cirein-Croin
--- @pos ? ? ? 216
+-- !pos ? ? ? 216
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

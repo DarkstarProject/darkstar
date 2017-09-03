@@ -3,7 +3,7 @@
 --   NPC: Archanne
 --  Type: Event Scene Replayer
 -- @zone 243
--- @pos -54.104 10.999 -34.144
+-- !pos -54.104 10.999 -34.144
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

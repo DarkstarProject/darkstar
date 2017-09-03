@@ -3,7 +3,7 @@
 -- NPC: Ephauge
 --  General Info NPC
 --  @zone 230
--- @pos -2 -2 45
+-- !pos -2 -2 45
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -11,9 +11,9 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -28,13 +28,13 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
-    player:startEvent(0x245); 
-end; 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
+    player:startEvent(0x245);
+end;
 
 -----------------------------------
 -- onEventUpdate

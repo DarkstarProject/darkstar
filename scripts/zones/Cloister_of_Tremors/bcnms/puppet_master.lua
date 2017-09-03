@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cloister of Tremors
 -- BCNM: The Puppet Master
--- @pos -539 1 -493 209
+-- !pos -539 1 -493 209
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
 -------------------------------------
@@ -41,7 +41,7 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 

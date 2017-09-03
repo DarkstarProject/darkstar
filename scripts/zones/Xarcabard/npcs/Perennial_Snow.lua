@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  Perennial Snow
 -- Involved in Quests: The Circle of Time
--- @pos 339 0 -379 112
+-- !pos 339 0 -379 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Mevreauche
 -- Type: Smithing Guild Master
--- @pos -193.584 10 148.655 231
+-- !pos -193.584 10 148.655 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm11 (???)
 -- Spawns Rani
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

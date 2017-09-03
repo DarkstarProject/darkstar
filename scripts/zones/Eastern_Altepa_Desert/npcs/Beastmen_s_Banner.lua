@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Eastern Altepa Desert
 -- NPC:  Beastmen_s_Banner
--- @pos -257 8 -249 114
+-- !pos -257 8 -249 114
 -----------------------------------
 package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,7 @@ require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

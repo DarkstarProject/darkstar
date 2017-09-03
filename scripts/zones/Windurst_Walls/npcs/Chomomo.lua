@@ -2,7 +2,7 @@
 --  Area: Windurst Walls
 --  NPC:  Chomomo
 --  Type: Standard NPC
--- @pos -1.262 -11 290.224 239
+-- !pos -1.262 -11 290.224 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0145);
     end
-    
+
 end;
 
 -----------------------------------
@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x01f3) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",8,true);
-    end    
+    end
 
 end;
 

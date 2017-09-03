@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Attohwa
 --  NPC: qm17 (???)
 -- Spawns Itzpapalotl
--- @pos ? ? ? 215
+-- !pos ? ? ? 215
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Halvung
 --  NPC: ??? (Spawn Achamoth(ZNM T3))
--- @pos -34 10 336 62
+-- !pos -34 10 336 62
 -----------------------------------
 package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
 -----------------------------------

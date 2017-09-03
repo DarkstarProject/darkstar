@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 -- NPC:  Yujuju
 --  Involved In Quest: Making Headlines
--- @pos 201.523 -4.785 138.978 240
+-- !pos 201.523 -4.785 138.978 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    
+
     local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
     local WildcatWindurst = player:getVar("WildcatWindurst");
 
@@ -51,8 +51,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0154); -- Standard Conversation
     end
-end; 
-    
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -78,5 +78,5 @@ function onEventFinish(player,csid,option)
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",10);
     elseif (csid == 0x026d) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",19,true);
-    end    
+    end
 end;

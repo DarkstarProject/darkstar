@@ -3,7 +3,7 @@
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
 -- @zone 236
--- @pos 146.962 7.499 -63.316
+-- !pos 146.962 7.499 -63.316
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -125,7 +125,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
--- 951     Wijinruit        
+-- 951     Wijinruit
 -- 1161    Uchitake        5308
 -- 1164    Tsurara            5309
 -- 1167    Kawahori-ogi    5310

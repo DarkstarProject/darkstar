@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm11 (???)
 -- Spawns Tuskertrap
--- @pos ? ? ? 216
+-- !pos ? ? ? 216
 -----------------------------------
 require("scripts/globals/status");
 

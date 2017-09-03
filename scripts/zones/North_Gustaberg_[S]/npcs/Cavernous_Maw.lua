@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: North Gustaberg [S]
 --  NPC: Cavernous Maw
--- @pos 466 0 479 88
+-- !pos 466 0 479 88
 -- Teleports Players to North Gustaberg
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;

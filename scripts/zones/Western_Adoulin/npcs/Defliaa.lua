@@ -4,7 +4,7 @@
 --  Type: Quest NPC and Shop NPC
 --  Involved with Quest: 'All the Way to the Bank'
 --  @zone 256
---  @pos 43 2 -113 256
+--  !pos 43 2 -113 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x13CD);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

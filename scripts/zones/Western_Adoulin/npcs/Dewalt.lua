@@ -5,7 +5,7 @@
 --  Involved with Quests: 'Flavors of our Lives'
 --                        'Dont Ever Leaf Me'
 --  @zone 256
---  @pos -23 0 28 256
+--  !pos -23 0 28 256
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

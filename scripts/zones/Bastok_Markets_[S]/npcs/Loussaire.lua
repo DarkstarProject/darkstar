@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Markets (S) (G-10)
 -- NPC:  Loussaire
--- @pos -248.677 -8.523 -125.734 87
+-- !pos -248.677 -8.523 -125.734 87
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;

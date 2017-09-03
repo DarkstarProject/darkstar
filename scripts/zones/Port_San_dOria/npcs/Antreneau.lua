@@ -2,7 +2,7 @@
 --  Area: Port San d'Oria
 --   NPC: Antreneau
 --  Type: Standard NPC
--- @pos -71 -5 -39 232
+-- !pos -71 -5 -39 232
 -- Involved in Quest: A Taste For Meat
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Mheca Khetashipah
---  Type: Standard NPC
--- @zone 241
--- @pos 66.881 -6.249 185.752
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-- Area: Windurst Woods
+--  NPC: Mheca Khetashipah
+-- Type: Standard NPC
+-- !pos 66.881 -6.249 185.752 241
 -----------------------------------
 
 -----------------------------------
@@ -42,4 +37,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

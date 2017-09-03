@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Ardea
--- @zone 235
--- @pos -198 -6 -69
+--  NPC: Ardea
+-- !pos -198 -6 -69 235
 -- Involved in quests: Chasing Quotas, Rock Racketeer
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -71,4 +71,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

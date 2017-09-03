@@ -1,9 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Samigo-Pormigo
---  Type: Guildworker's Union Representative
---  @zone 241
--- @pos -9.782 -5.249 -134.432
+-- Type: Guildworker's Union Representative
+-- !pos -9.782 -5.249 -134.432 241
 -----------------------------------
 
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;

@@ -3,8 +3,8 @@
 --   NPC: Hurr the Betrayer
 --  Type: Involved in the "Sahagin Key Quest"
 -- @zone 176
--- @pos 305.882 26.768 234.279
--- 
+-- !pos 305.882 26.768 234.279
+--
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 function onTrade(player,npc,trade)
     if (player:getVar("SahaginKeyItems") == 1) then --If player was told to use 3 Mythril Beastcoins
         if (trade:hasItemQty(749,3) and trade:hasItemQty(1135,1)) then
-            player:startEvent(0x006b); 
+            player:startEvent(0x006b);
         end
     elseif (player:getVar("SahaginKeyItems") == 2) then --If player was told to use a Gold Beastcoin
         if (trade:hasItemQty(748,1) and trade:hasItemQty(1135,1) and trade:getItemCount() == 2) then
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getVar("SahaginKeyProgress") == 2 and player:hasItem(1197) == false) then --If player has never before finished the quest
         player:startEvent(0x0069);
         player:setVar("SahaginKeyItems",1);
@@ -78,12 +78,12 @@ function onEventFinish(player,csid,option)
         player:setVar("SahaginKeyProgress",3); --Mark the quest progress
         player:setVar("SahaginKeyItems",0);
         player:addItem(1197); -- Sahagin Key
-        player:messageSpecial(ITEM_OBTAINED, 1197); 
+        player:messageSpecial(ITEM_OBTAINED, 1197);
     elseif (csid == 0x006b and player:getVar("SahaginKeyProgress") == 3) then
         player:tradeComplete();
         player:setVar("SahaginKeyItems",0);
         player:addItem(1197); -- Sahagin Key
-        player:messageSpecial(ITEM_OBTAINED, 1197); 
+        player:messageSpecial(ITEM_OBTAINED, 1197);
     end
 end;
 

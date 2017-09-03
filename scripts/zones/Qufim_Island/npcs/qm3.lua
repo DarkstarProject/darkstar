@@ -3,7 +3,7 @@
 -- NPC: ??? (qm3)
 -- Mission: ACP - The Echo Awakens
 -- @zone 126
--- @pos -120.342 -19.471 306.661
+-- !pos -120.342 -19.471 306.661
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
@@ -19,7 +19,7 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
     -- Trade Seedspall's Lux, Luna, Astrum
-    if (player:getCurrentMission(ACP) == THE_ECHO_AWAKENS and trade:getItemCount() == 3 
+    if (player:getCurrentMission(ACP) == THE_ECHO_AWAKENS and trade:getItemCount() == 3
     and trade:hasItemQty(2740,1) and trade:hasItemQty(2741,1) and trade:hasItemQty(2742,1)) then
         player:tradeComplete();
         player:startEvent(0x001F);

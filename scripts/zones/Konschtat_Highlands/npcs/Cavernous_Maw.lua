@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 --  NPC: Cavernous Maw
--- @pos 96.344, -69.080, -580.008 108
+-- !pos 96.344, -69.080, -580.008 108
 -- Teleports Players to Abyssea - Konschtat
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;

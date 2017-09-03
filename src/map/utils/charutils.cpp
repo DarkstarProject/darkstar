@@ -1685,8 +1685,11 @@ namespace charutils
 
         if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
             !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
-            (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
+            (PItem->getReqLvl() > (map_config.disable_gear_scaling ?
+            PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()])))
+        {
             return false;
+        }
 
         if (equipSlotID == SLOT_MAIN)
         {
@@ -2173,7 +2176,8 @@ namespace charutils
                 }
 
                 if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
-                    (PItem->getReqLvl() <= PChar->jobs.job[PChar->GetMJob()]) &&
+                    (PItem->getReqLvl() <= (map_config.disable_gear_scaling ?
+                    PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()])) &&
                     (PItem->getEquipSlotId() & (1 << slotID)))
                 {
                     continue;

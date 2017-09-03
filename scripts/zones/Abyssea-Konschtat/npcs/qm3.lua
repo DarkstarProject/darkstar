@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Konschtat
 --  NPC: qm3 (???)
 -- Spawns Bombadeel
--- @pos ? ? ? 15
+-- !pos ? ? ? 15
 -----------------------------------
 require("scripts/globals/status");
 

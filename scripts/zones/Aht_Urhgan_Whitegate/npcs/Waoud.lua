@@ -3,7 +3,7 @@
 -- NPC:  Waoud
 -- Standard Info NPC
 -- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1)
--- @pos 65 -6 -78 50
+-- !pos 65 -6 -78 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     if (anEmptyVessel == QUEST_ACCEPTED and anEmptyVesselProgress == 3 and trade:hasItemQty(StoneID,1) and trade:getItemCount() == 1) then
         player:startEvent(67,StoneID); -- get the stone to Aydeewa
     end;
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -54,7 +54,7 @@ function onTrigger(player,npc)
         end
     elseif (anEmptyVesselProgress == 3) then
         player:startEvent(66); -- reminds you about the item he wants
-    elseif (anEmptyVesselProgress == 4) then 
+    elseif (anEmptyVesselProgress == 4) then
         player:startEvent(68); -- reminds you to bring the item to Aydeewa
     elseif (anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getVar("BluAFBeginnings_Waoud") == 0) then
         player:startEvent(69); -- closing cutscene
@@ -106,7 +106,7 @@ function onEventUpdate(player,csid,option)
                 end;
             end;
 
-        -- determine results        
+        -- determine results
         elseif (option == 40) then
             if     (success <  2) then player:updateEvent(player:getGil(),0,0,0,0,0,0,10); -- Springserpent
             elseif (success <  4) then player:updateEvent(player:getGil(),0,0,0,0,0,0,20); -- Stoneserpent

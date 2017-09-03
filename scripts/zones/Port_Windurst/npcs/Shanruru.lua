@@ -3,7 +3,7 @@
 -- NPC:  Shanruru
 -- Involved in Quest: Riding on the Clouds
 -- @zone 240
--- @pos -1 -6 187
+-- !pos -1 -6 187
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 5) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
@@ -27,8 +27,8 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
         Message = math.random(0,1)
-        
+
         if (Message == 1) then
             player:startEvent(0x0211);
         else
@@ -67,7 +67,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x016f);
     end
-   
+
 end;
 
 -----------------------------------

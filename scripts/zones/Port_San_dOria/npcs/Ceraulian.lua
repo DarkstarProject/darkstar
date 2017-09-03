@@ -2,7 +2,7 @@
 -- Area: Port San d'Oria
 -- NPC: Ceraulian
 -- Involved in Quest: The Holy Crest
--- @pos 0 -8 -122 232
+-- !pos 0 -8 -122 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -80,7 +80,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x024b);
     end
-    
+
 end;
 
 -----------------------------------
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_Progress",2);
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
-        if (player:getFreeSlotsCount() < 1) then 
+        if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
         else
             player:delKeyItem(RANCHURIOMES_LEGACY);

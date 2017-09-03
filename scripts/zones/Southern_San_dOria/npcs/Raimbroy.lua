@@ -3,7 +3,7 @@
 -- NPC:  Raimbroy
 -- Starts and Finishes Quest: The Sweetest Things
 -- @zone 230
--- @pos 
+-- !pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -13,16 +13,16 @@ require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     -- "The Sweetest Things" quest status var
     local theSweetestThings = player:getQuestStatus(SANDORIA,THE_SWEETEST_THINGS);
-   
+
     if (theSweetestThings ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(4370,5) and trade:getItemCount() == 5) then
             player:startEvent(0x0217,GIL_RATE*400);
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x020a);
         end
     end
-   
+
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
@@ -38,17 +38,17 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
 end;
 
------------------------------------ 
--- onTrigger Action 
+-----------------------------------
+-- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc) 
-   
+function onTrigger(player,npc)
+
     local theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
-   
+
     -- "The Sweetest Things" Quest Dialogs
     if (player:getFameLevel(SANDORIA) >= 2 and theSweetestThings == QUEST_AVAILABLE) then
         theSweetestThingsVar = player:getVar("theSweetestThings");
@@ -64,8 +64,8 @@ function onTrigger(player,npc)
     elseif (theSweetestThings == QUEST_COMPLETED) then
         player:startEvent(0x0219);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -108,5 +108,5 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA, 5);
         end
     end
-    
+
 end;

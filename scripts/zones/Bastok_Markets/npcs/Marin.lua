@@ -1,14 +1,11 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Marin
---  Type: Quest Giver
--- @zone 235
--- @pos -340.060 -11.003 -148.181
---
--- Auto-Script: Requires Verification. Verified standard dialog is also "All By Myself" repeatable quest. - thrydwolf 12/18/2011
+-- Area: Bastok Markets
+--  NPC: Marin
+-- Type: Quest Giver
+-- !pos -340.060 -11.003 -148.181 235
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 
 -----------------------------------
@@ -43,4 +40,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

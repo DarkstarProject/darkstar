@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Grand Palace of Hu'Xzoi
 --  NPC:  cermet portal
--- @pos 440 0 401 34
+-- !pos 440 0 401 34
 -----------------------------------
 package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
 -----------------------------------

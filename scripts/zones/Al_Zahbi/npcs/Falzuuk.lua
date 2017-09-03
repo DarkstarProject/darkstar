@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Falzuuk
 -- Type: Imperial Gate Guard
--- @pos -60.486 0.999 105.397 48
+-- !pos -60.486 0.999 105.397 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

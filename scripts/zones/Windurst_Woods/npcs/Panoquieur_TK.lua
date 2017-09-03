@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Woods
 --  NPC: Panoquieur, T.K.
--- @pos -60 0 -31 241
+-- !pos -60 0 -31 241
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

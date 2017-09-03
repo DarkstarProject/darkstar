@@ -2,7 +2,7 @@
 -- Area: Giddeus
 -- NPC:  Uu Zhoumo
 -- Involved in Mission 2-3
--- @pos -179 16 155 145
+-- !pos -179 16 155 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST and trade:hasItemQty(16509,1) and trade:getItemCount() == 1) then -- Trade Aspir Knife
         player:startEvent(0x0029);
     end

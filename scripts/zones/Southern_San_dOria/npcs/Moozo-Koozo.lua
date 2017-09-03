@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC: Moozo-Koozo
 --  Title Change NPC
--- @pos 83 0 120 230
+-- !pos 83 0 120 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

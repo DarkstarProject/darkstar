@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 -- NPC:  Atiza
 -- Admits players to the dock in Aht Urhgan
--- @pos 5.195 -1 98.966 50
+-- !pos 5.195 -1 98.966 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -40,9 +40,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00df and option == 333) then
         player:delGil(100);
     end
-    
+
 end;

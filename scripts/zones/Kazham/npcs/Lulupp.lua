@@ -3,7 +3,7 @@
 --   NPC: Lulupp
 --  Type: Standard NPC
 -- @zone 250
--- @pos -26.567 -3.5 -3.544
+-- !pos -26.567 -3.5 -3.544
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 require("scripts/globals/pathfind");
@@ -54,7 +54,7 @@ end;
             -- 905       Wyvern Skull
             -- 1147      Ancient Salt
             -- 4600      Lucky Egg
-         
+
 function onTrade(player,npc,trade)
     local OpoOpoAndIStatus = player:getQuestStatus(OUTLANDS, THE_OPO_OPO_AND_I);
     local progress = player:getVar("OPO_OPO_PROGRESS");
@@ -69,7 +69,7 @@ function onTrade(player,npc,trade)
             elseif badtrade then
                 player:startEvent(0x00E5);
             end
-        end     
+        end
     end
 end;
 
@@ -82,12 +82,12 @@ function onTrigger(player,npc)
     local progress = player:getVar("OPO_OPO_PROGRESS");
     local failed = player:getVar("OPO_OPO_FAILED");
     local retry = player:getVar("OPO_OPO_RETRY");
-    
+
     if (player:getVar("BathedInScent") == 1 and OpoOpoAndIStatus == QUEST_AVAILABLE) then
         player:startEvent(0x00D9, 0, 483)  -- 483 broken mithran fishing rod
         npc:wait(-1);
     elseif (OpoOpoAndIStatus == QUEST_ACCEPTED) then
-        if retry == 1 then  
+        if retry == 1 then
             player:startEvent(0x00EF); -- gave 1st NPC wrong item instead of "Broken Mithran Fishing Rod"
         elseif retry == 2 then
             player:startEvent(0x00EF, 0, 0, 1); -- gave 2nd NPC wrong item instead of "Workbench"
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option,npc)
     if (csid == 0x00D9 and option == 1)  then                   -- Opo Opo and I quest start CS
         player:addQuest(OUTLANDS, THE_OPO_OPO_AND_I);
     elseif (csid == 0x00DB) then
-        if (player:getVar("OPO_OPO_PROGRESS") == 0) then 
+        if (player:getVar("OPO_OPO_PROGRESS") == 0) then
             player:tradeComplete();
             player:setVar("OPO_OPO_PROGRESS",1);
         else

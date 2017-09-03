@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 --  NPC: ??? (Spawn Experimental Lamia(ZNM T3))
--- @pos -773 -11 322 79
+-- !pos -773 -11 322 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

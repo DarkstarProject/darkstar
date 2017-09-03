@@ -1,10 +1,10 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
 --  MOB: Ix'aern (drk)
--- @pos -240 5.00 440 35
--- @pos -280 5.00 240 35
--- @pos -560 5.00 239 35
--- @pos -600 5.00 440 35
+-- !pos -240 5.00 440 35
+-- !pos -280 5.00 240 35
+-- !pos -560 5.00 239 35
+-- !pos -600 5.00 440 35
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -63,7 +63,7 @@ end;
 function onMobSpawn(mob)
     mob:AnimationSub(1);
     mob:setMobMod(MOBMOD_SCRIPTED_2HOUR,1);
-    
+
     -- drops either vice or deed
     if (math.random(0,100) <= 25) then
         SetDropRate(4397,1902,1000); -- Vice of Avarice
@@ -73,7 +73,7 @@ function onMobSpawn(mob)
         SetDropRate(4397,1854,1000); -- Deed of Moderation
     end
 end;
- 
+
 -----------------------------------
 -- onMobEngaged
 -----------------------------------
@@ -82,7 +82,7 @@ function onMobEngaged(mob)
     mob:setLocalVar("bloodMode", 0);
     mob:setLocalVar("bloodTime", os.time() + 120);
 end;
- 
+
 -----------------------------------
 -- onMobFight
 -----------------------------------
@@ -102,13 +102,13 @@ function onMobFight(mob)
             mob:SetMagicCastingEnabled(true);
         end;
     end
-    
+
 end;
- 
+
 -----------------------------------
 -- onMobDeath
 -----------------------------------
- 
+
 function onMobDeath(mob, player, isKiller)
 end;
 

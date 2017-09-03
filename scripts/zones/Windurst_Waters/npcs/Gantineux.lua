@@ -3,7 +3,7 @@
 -- NPC:  Gantineux
 -- Starts Quest: Acting in Good Faith
 -- @zone 238
--- @pos -83 -9 3
+-- !pos -83 -9 3
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
     ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
-    
+
     if (ActingInGoodFaith == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(0x2723); -- Start quest "Acting in Good Faith"
     elseif (ActingInGoodFaith == QUEST_ACCEPTED) then
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x2722); -- Standard dialog
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

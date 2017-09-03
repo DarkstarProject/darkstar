@@ -3,7 +3,7 @@
 -- Door: House of the Hero
 -- Involved in Mission 2-1
 -- Involved In Quest: Know One's Onions, Onion Rings, The Puppet Master, Class Reunion
--- @pos -26 -13 260 239
+-- !pos -26 -13 260 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------

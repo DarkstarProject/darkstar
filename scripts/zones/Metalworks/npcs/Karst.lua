@@ -3,7 +3,7 @@
 --  NPC: Karst
 -- Type: President
 -- Involved in Bastok Missions 5-2
--- @pos 106 -21 0 237
+-- !pos 106 -21 0 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

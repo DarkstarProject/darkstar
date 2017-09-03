@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: 
+-- Area:
 -- NPC:  Treasure Coffer
 -- @zone illrusi atoll
--- @pos
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
  print(correctcofferID);
   if (npcID == correctcofferID) then --correct coffer ??
    player:messageSpecial( GOLDEN);
-   
+
    if (player:getCurrentMission(ASSAULT)==GOLDEN_SALVAGE) then
    player:completeMission(ASSAULT,GOLDEN_SALVAGE);
    end
@@ -47,8 +47,8 @@ function onTrigger(player,npc)
    SpawnMob(npcID);
    end
 
-  
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

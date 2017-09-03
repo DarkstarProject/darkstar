@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Anillah
 -- Type: Clothcraft Image Support
--- @pos -34.800 -2.25 -119.950 241
+-- !pos -34.800 -2.25 -119.950 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

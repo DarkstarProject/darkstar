@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Misareaux
 --  NPC: qm3 (???)
 -- Spawns Funeral Apkallu
--- @pos ? ? ? 216
+-- !pos ? ? ? 216
 -----------------------------------
 require("scripts/globals/status");
 

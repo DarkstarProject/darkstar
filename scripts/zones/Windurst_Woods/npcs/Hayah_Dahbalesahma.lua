@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Hayah Dahbalesahma
---  Type: Standard NPC
--- @zone 241
--- @pos -50.363 -1.292 -147.883
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-- Area: Windurst Woods
+--  NPC: Hayah Dahbalesahma
+-- Type: Standard NPC
+-- !pos -50.363 -1.292 -147.883 241
 -----------------------------------
 
 -----------------------------------

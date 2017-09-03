@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Scarlette C.A
 -- @zone 80
--- @pos -27 2 -29
+-- !pos -27 2 -29
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

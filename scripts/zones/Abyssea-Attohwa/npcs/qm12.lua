@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Attohwa
 --  NPC: qm12 (???)
 -- Spawns Wherwetrice
--- @pos ? ? ? 215
+-- !pos ? ? ? 215
 -----------------------------------
 require("scripts/globals/status");
 

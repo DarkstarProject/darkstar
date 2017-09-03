@@ -2,7 +2,7 @@
 -- Area: Mhaura
 -- NPC:  Tya Padolih
 -- Standard Merchant NPC
--- @pos -48 -4 30 249
+-- !pos -48 -4 30 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -15,14 +15,14 @@ require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
 player:showText(npc,TYAPADOLIH_SHOP_DIALOG);
 
 stock = {0x126c,4147,  --Scroll of Regen
@@ -34,9 +34,9 @@ stock = {0x126c,4147,  --Scroll of Regen
          0x1289,2400,  --Scroll of Sneak
          0x128a,1243,  --Scroll of Deodorize
          0x1330,18032} --Scroll of Distract
- 
+
 showShop(player, STATIC, stock);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

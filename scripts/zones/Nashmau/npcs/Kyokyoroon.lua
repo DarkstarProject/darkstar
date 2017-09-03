@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC: Kyokyoroon
 -- Standard Info NPC
--- @pos 18.020 -6.000 10.467 53
+-- !pos 18.020 -6.000 10.467 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0137);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -31,17 +31,17 @@ end;
 function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
 
-    if (ratRaceProg == 5) then  
+    if (ratRaceProg == 5) then
        player:startEvent(0x0107);
-    elseif (ratRaceProg == 6) then  
+    elseif (ratRaceProg == 6) then
        player:startEvent(0x0013c);
-    elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then  
+    elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then
        player:startEvent(0x013d);
     else
        player:startEvent(0x0107);
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

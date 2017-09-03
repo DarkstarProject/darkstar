@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _47z (Torch Stand)
 -- Notes: Opens door _474
--- @pos -62.464 24.218 -67.313 151
+-- !pos -62.464 24.218 -67.313 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -19,13 +19,13 @@ function onTrigger(player,npc)
     DoorID = npc:getID() - 4;
     local DoorA = GetNPCByID(DoorID):getAnimation();
     local TorchStandA = npc:getAnimation();
-    Torch1 = npc:getID();    
-    Torch2 = npc:getID() - 1;    
-    
+    Torch1 = npc:getID();
+    Torch2 = npc:getID() - 1;
+
     if (DoorA == 9 and TorchStandA == 9) then
-        player:startEvent(0x000a);    
-    end    
-    
+        player:startEvent(0x000a);
+    end
+
 end;
 
 -----------------------------------
@@ -46,8 +46,8 @@ function onEventFinish(player,csid,option)
     if (option == 1) then
         GetNPCByID(Torch1):openDoor(10); -- Torch Lighting
         GetNPCByID(Torch2):openDoor(10); -- Torch Lighting
-        GetNPCByID(DoorID):openDoor(6);         
-    end    
+        GetNPCByID(DoorID):openDoor(6);
+    end
 
 end;
 

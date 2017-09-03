@@ -2,17 +2,14 @@
 -- Area: Windurst Waters
 -- NPC: Pechiru-Mashiru
 -- Involved in Quests: Hat in Hand
--- Working 100%
---  @zone = 238
--- @pos = 162 -2 159
+-- !pos 162 -2 159 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/zones/Windurst_Walls/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action

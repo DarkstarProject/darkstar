@@ -1,13 +1,8 @@
 -----------------------------------
---  Area: Windurst Woods
---   NPC: Pulonono
---  Type: VCS Chocobo Trainer
--- @zone 241
--- @pos 130.124 -6.35 -119.341
---
--- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-- Area: Windurst Woods
+--  NPC: Pulonono
+-- Type: VCS Chocobo Trainer
+-- !pos 130.124 -6.35 -119.341 241
 -----------------------------------
 
 -----------------------------------

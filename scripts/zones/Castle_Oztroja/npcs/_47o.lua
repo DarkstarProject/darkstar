@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area:  Castle Oztroja
 -- NPC:   _47o
--- @pos -155.228 21.500 -140.000 151
+-- !pos -155.228 21.500 -140.000 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
- 
+
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);

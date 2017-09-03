@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:   _0rn (Oil lamp)
--- @pos -60 -23 60 27
+-- !pos -60 -23 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -39,8 +39,8 @@ function onTrigger(player,npc)
             GetNPCByID(DoorOffset-2):openDoor(15); -- Open Door _0rk
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

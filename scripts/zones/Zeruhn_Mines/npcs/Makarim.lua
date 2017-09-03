@@ -2,7 +2,7 @@
 -- Area: Zeruhn Mines
 -- NPC:  Makarim
 -- Involved In Mission: The Zeruhn Report
--- @pos -58 8 -333 172
+-- !pos -58 8 -333 172
 -----------------------------------
 package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0068);
     end
-    
+
 end;
 
 -----------------------------------
@@ -58,5 +58,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(ZERUHN_REPORT);
         player:messageSpecial(KEYITEM_OBTAINED,ZERUHN_REPORT);
     end
-    
+
 end;

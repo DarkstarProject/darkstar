@@ -2,7 +2,7 @@
 -- Area: Buburimu Peninsula
 --  NPC: Song Runes
 --  Finishes Quest: The Old Monument
--- @pos -244 16 -280 40
+-- !pos -244 16 -280 40
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------

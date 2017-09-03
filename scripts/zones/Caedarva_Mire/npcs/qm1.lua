@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
 --  NPC: ??? (Spawn Verdelet(ZNM T2))
--- @pos 417 -19 -69 79
+-- !pos 417 -19 -69 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

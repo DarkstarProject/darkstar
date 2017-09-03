@@ -2,7 +2,7 @@
 -- Area: North Gustaberg (S) (F-8)
 -- NPC: ???
 -- Involved in Quests
--- @pos -232 41 425
+-- !pos -232 41 425
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
@@ -39,5 +39,5 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x0003) then
         player:setVar("BetterPartOfValProg",2);
-    end     
+    end
 end;

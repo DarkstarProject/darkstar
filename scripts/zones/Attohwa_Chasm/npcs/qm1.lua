@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Attohwa Chasm
 -- NPC:  ??? (qm1)
--- @pos -402.574 3.999 -202.750 7
+-- !pos -402.574 3.999 -202.750 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -------------------------------------
@@ -21,11 +21,11 @@ function onTrade(player,npc,trade)
     local npcX    = npc:getXPos();
     local npcY    = npc:getYPos();
     local npcZ    = npc:getZPos();
-    
+
     feelerAntlion:setSpawn(npcX-3,npcY-2,npcZ-1);
 
-    if (GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then 
-        player:tradeComplete();        
+    if (GetMobAction(feelerID) == 0 and trade:hasItemQty(1825,1) and trade:getItemCount() == 1) then
+        player:tradeComplete();
         SpawnMob(feelerID):updateClaim(player);
     end
 end;

@@ -3,7 +3,7 @@
 -- NPC:  Tsolag
 -- Type: NPC
 -- @zone 246
--- @pos -13 8 53
+-- !pos -13 8 53
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -15,14 +15,14 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

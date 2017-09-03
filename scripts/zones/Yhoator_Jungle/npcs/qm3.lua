@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  ??? (qm3)
 -- Involved in Quest: True will
--- @pos 203 0.1 82 124
+-- !pos 203 0.1 82 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:hasKeyItem(OLD_TRICK_BOX) == false) then
         if (player:getVar("trueWillKilledNM") >= 1) then
             if (GetMobAction(17285544) == 0 and GetMobAction(17285545) == 0 and GetMobAction(17285546) == 0) then
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
+
 end;
 
 -----------------------------------

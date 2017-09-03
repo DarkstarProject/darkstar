@@ -2,7 +2,7 @@
 --  Area: Batallia Downs
 --  NPC:  Stone Monument
 --  Involved in quest "An Explorer's Footsteps"
--- @pos 185.669 9.049 -614.025 105
+-- !pos 185.669 9.049 -614.025 105
 -----------------------------------
 package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
 -----------------------------------

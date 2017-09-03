@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Grauberg
 --  NPC: qm18 (???)
 -- Spawns Amphitrite
--- @pos ? ? ? 254
+-- !pos ? ? ? 254
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

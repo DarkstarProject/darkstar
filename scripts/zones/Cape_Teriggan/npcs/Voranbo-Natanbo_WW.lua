@@ -2,7 +2,7 @@
 -- Area: Cape Teriggan
 --  NPC: Voranbo-Natanbo, W.W.
 -- Type: Outpost Conquest Guards
--- @pos -185 7 -63 113
+-- !pos -185 7 -63 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------

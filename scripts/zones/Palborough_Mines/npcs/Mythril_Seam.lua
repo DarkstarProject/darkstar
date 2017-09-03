@@ -4,7 +4,7 @@
 -- Involved In Mission: Journey Abroad
 -- Involved in quest: Rock Racketeer
 -- @zone 143
--- @pos -68 -7 173  //  Rock Racketeer @pos 210 -32 -63
+-- !pos -68 -7 173  //  Rock Racketeer !pos 210 -32 -63
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------

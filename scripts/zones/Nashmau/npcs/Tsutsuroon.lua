@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC:  Tsutsuroon
 -- Type: Tenshodo Merchant
--- @pos -15.193 0.000 31.356 53
+-- !pos -15.193 0.000 31.356 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

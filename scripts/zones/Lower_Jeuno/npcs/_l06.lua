@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC:  Streetlamp
 -- Involved in Quests: Community Service
--- @pos -60 5 -75 245
+-- !pos -60 5 -75 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ local cs = lampCsOffset + lampNum;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

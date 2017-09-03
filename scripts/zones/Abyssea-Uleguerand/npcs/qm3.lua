@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Uleguerand
 --  NPC: qm3 (???)
 -- Spawns Blanga
--- @pos ? ? ? 253
+-- !pos ? ? ? 253
 -----------------------------------
 require("scripts/globals/status");
 
