@@ -456,3 +456,13 @@ INSERT INTO `item_mods_pet` VALUES (28356,28,5,1);        -- Avatar: MAB +5
 -- Samanisi Cape
 INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);        -- Avatar: Accuracy +7
 INSERT INTO `item_mods_pet` VALUES (28605,30,7,1);        -- Avatar: Magic Accuracy +7
+
+-- Pelagos Lance
+INSERT INTO `item_mods_pet` VALUES (20944,370,2,0); -- Wyvern: "Regen"+2
+INSERT INTO `item_mods_pet` VALUES (20944,161,3,0); -- Wyvern: Physical damage taken -3%
+
+-- Regimen mittens
+INSERT INTO `item_mods_pet` VALUES (28025,25,20,0); -- Pet: Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28025,26,20,0); -- Pet: Ranged Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28025,30,20,0); -- Pet: Magic Accuracy+20
+INSERT INTO `item_mods_pet` VALUES (28025,384,60,0); -- Pet: Haste+6%
