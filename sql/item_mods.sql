@@ -33366,6 +33366,42 @@ INSERT INTO `item_mods` VALUES (26874,68,41);
 INSERT INTO `item_mods` VALUES (26874,296,5);
 INSERT INTO `item_mods` VALUES (26874,369,2);
 INSERT INTO `item_mods` VALUES (26874,384,30);
+INSERT INTO `item_mods` VALUES (26883,1,131);    -- Sombra Harness : DEF 131
+INSERT INTO `item_mods` VALUES (26883,2,59);     -- HP +59
+INSERT INTO `item_mods` VALUES (26883,5,29);     -- MP +29
+INSERT INTO `item_mods` VALUES (26883,8,39);     -- STR +29
+INSERT INTO `item_mods` VALUES (26883,9,28);     -- DEX +28
+INSERT INTO `item_mods` VALUES (26883,10,23);    -- VIT +23
+INSERT INTO `item_mods` VALUES (26883,11,29);    -- AGI +29
+INSERT INTO `item_mods` VALUES (26883,12,29);    -- INT +29
+INSERT INTO `item_mods` VALUES (26883,13,24);    -- MND +24
+INSERT INTO `item_mods` VALUES (26883,14,24);    -- CHR +24
+INSERT INTO `item_mods` VALUES (26883,23,15);    -- Attack +15
+INSERT INTO `item_mods` VALUES (26883,24,15);    -- Ranged Attack +15
+INSERT INTO `item_mods` VALUES (26883,68,55);    -- Evasion +55
+INSERT INTO `item_mods` VALUES (26883,31,64);    -- Magic Evasion +64
+INSERT INTO `item_mods` VALUES (26883,28,10);    -- Magic Atk. Bonus +10
+INSERT INTO `item_mods` VALUES (26883,29,5);     -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (26883,384,30);   -- Haste +3%
+INSERT INTO `item_mods` VALUES (26883,302,1);    -- Triple Attack +1%
+INSERT INTO `item_mods` VALUES (26884,1,132);    -- Sombra Harness +1: DEF 132  
+INSERT INTO `item_mods` VALUES (26884,2,59);     -- HP +59
+INSERT INTO `item_mods` VALUES (26884,5,29);     -- MP +29
+INSERT INTO `item_mods` VALUES (26884,8,30);     -- STR +30
+INSERT INTO `item_mods` VALUES (26884,9,28);     -- DEX +28
+INSERT INTO `item_mods` VALUES (26884,10,23);    -- VIT +23
+INSERT INTO `item_mods` VALUES (26884,11,29);    -- AGI +29
+INSERT INTO `item_mods` VALUES (26884,12,30);    -- INT +30
+INSERT INTO `item_mods` VALUES (26884,13,24);    -- MND +24
+INSERT INTO `item_mods` VALUES (26884,14,24);    -- CHR +24
+INSERT INTO `item_mods` VALUES (26884,23,16);    -- Attack +16
+INSERT INTO `item_mods` VALUES (26884,24,16);    -- Ranged Attack +16
+INSERT INTO `item_mods` VALUES (26884,68,55);    -- Evasion +55
+INSERT INTO `item_mods` VALUES (26884,31,64);    -- Magic Evasion +64
+INSERT INTO `item_mods` VALUES (26884,28,11);    -- Magic Atk. Bonus +11
+INSERT INTO `item_mods` VALUES (26884,29,5);     -- Magic Def. Bonus +5
+INSERT INTO `item_mods` VALUES (26884,384,30);   -- Haste +3%
+INSERT INTO `item_mods` VALUES (26884,302,2);    -- Triple Attack +2%
 INSERT INTO `item_mods` VALUES (26888,1,127);
 INSERT INTO `item_mods` VALUES (26888,2,50);
 INSERT INTO `item_mods` VALUES (26888,5,85);
