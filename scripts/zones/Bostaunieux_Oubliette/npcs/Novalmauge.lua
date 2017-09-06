@@ -74,7 +74,7 @@ function onTrigger(player,npc)
     -- The Holy Crest Quest
     if (TheHolyCrest == 1) then
         player:startEvent(0x0006);
-    elseif (TheHolyCrest == 2) and (crestCheck == 0)then
+    elseif (TheHolyCrest == 2 and crestCheck == 0)then
         player:startEvent(0x0007);
         player:setVar("theHolyCrestCheck",1);
     -- Trouble at the Sluice Quest
