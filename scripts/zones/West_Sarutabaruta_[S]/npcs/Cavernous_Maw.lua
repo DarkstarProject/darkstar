@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: West Sarutabaruta [S]
 --  NPC: Cavernous Maw
--- @pos 0 0 -165 95
+-- !pos 0 0 -165 95
 -- Teleports Players to West Sarutabaruta
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;

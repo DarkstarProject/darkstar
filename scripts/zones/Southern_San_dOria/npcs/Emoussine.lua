@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Emoussine
 -- Type: Chocobo Renter
--- @pos -11 1 -100
+-- !pos -11 1 -100
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

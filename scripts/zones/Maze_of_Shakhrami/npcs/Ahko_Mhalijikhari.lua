@@ -2,7 +2,7 @@
 --  Area: Maze of Shakhrami
 --  NPC:  Ahko Mhalijikhari
 --  Type: Quest NPC
--- @pos -344.617 -12.226 -166.233 198
+-- !pos -344.617 -12.226 -166.233 198
 --  0x003d  0x003e  0x003f  0x0040  0x0041
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
@@ -27,11 +27,11 @@ end;
 function onTrigger(player,npc)
     --player:startEvent(0x0040);
     if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238) then
-        
+
         if (player:hasKeyItem(INDIGESTED_MEAT)) then
             player:startEvent(0x0041); -- After NM's dead
         elseif (player:hasStatusEffect(EFFECT_LEVEL_RESTRICTION) == false) then
-            player:startEvent(0x003e); -- 
+            player:startEvent(0x003e); --
         else
             player:startEvent(0x0040);
         end

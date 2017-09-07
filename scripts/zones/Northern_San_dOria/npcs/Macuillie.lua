@@ -3,7 +3,7 @@
 --  NPC: Macuillie
 --  Type: Guildworker's Union Representative
 --  @zone 231
--- @pos -191.738 11.001 138.656
+-- !pos -191.738 11.001 138.656
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

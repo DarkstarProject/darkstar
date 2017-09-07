@@ -3,8 +3,8 @@
 --   NPC: Ekki-Mokki
 --  Type: Standard NPC
 -- @zone 94
--- @pos -26.558 -4.5 62.930
--- 
+-- !pos -26.558 -4.5 62.930
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

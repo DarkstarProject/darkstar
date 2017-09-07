@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- Door: Great Hall
 -- Involved in Missions: 3-3, 5-2, 6-1, 8-2, 9-1
--- @pos 0 -1 13 233
+-- !pos 0 -1 13 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -24,11 +24,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    
+
+
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-            
+
     -- Mission San D'Oria 9-2 The Heir to the Light
     if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
          player:startEvent(0x0008);
@@ -56,9 +56,9 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x202);
     end
-    
+
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -77,7 +77,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0219) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(LETTER_TO_THE_AMBASSADOR);
@@ -100,5 +100,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x004c) then
         finishMissionTimeline(player,3,csid,option);
     end
-    
+
 end;

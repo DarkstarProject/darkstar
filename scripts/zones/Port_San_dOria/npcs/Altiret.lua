@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Altiret 
+-- NPC: Altiret
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -15,12 +15,12 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     -- "Flyers for Regine" conditional script
     local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     -- "The Pickpocket" Quest status
     thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-    
+
     -- "The Pickpocket" Quest, trading for light axe
     if (thePickpocket == 1) then
         local count = trade:getItemCount();
@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
             player:addFame(SANDORIA,30);
             player:addTitle(PICKPOCKET_PINCHER);
             player:completeQuest(SANDORIA,THE_PICKPOCKET);
-            player:startEvent(0x0226); 
+            player:startEvent(0x0226);
         elseif (giltGlasses == false) then
             player:startEvent(0x0227);
         else
@@ -46,21 +46,21 @@ function onTrade(player,npc,trade)
         elseif (MagicFlyer == false) then
             player:startEvent(0x0227);
         end
-    else 
+    else
         player:startEvent(0x0227);
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     -- Vars for the Quest "The Pickpocket"
     local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
     local openingCS = player:getVar("thePickpocket");
-    
+
     -- "The Pickpocket" Quest dialog
     if (thePickpocket == 0 and openingCS == 1) then
         player:startEvent(0x0223);
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0223);
     elseif (thePickpocket == 2) then
         player:startEvent(0x0244);
-    else 
+    else
         player:startEvent(0x022f);
     end;
 end;
@@ -94,6 +94,6 @@ function onEventFinish(player,csid,option)
     -- "The Pickpocket" reward with light axe, done with quest
     if (csid == 0x0226) then
         player:addItem(16667);
-        player:messageSpecial(6403, 16667);
+        player:messageSpecial(ITEM_OBTAINED, 16667);
     end;
 end;

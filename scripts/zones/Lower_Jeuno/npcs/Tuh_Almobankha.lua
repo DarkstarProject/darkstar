@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Tuh Almobankha
 -- Title Change NPC
--- @pos -14 0 -61 245
+-- !pos -14 0 -61 245
 -----------------------------------
 
 require("scripts/globals/titles");

@@ -2,7 +2,7 @@
 -- Area: Pashhow Marshlands
 --  NPC: Mokto-Lankto, W.W.
 -- Type: Outpost Conquest Guards
--- @pos 470.843 23.465 415.520 109
+-- !pos 470.843 23.465 415.520 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------

@@ -8,16 +8,16 @@
               KEYITEM_OBTAINED = 10971; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
            NOT_HAVE_ENOUGH_GIL = 10973; -- You do not have enough gil.
                  HOMEPOINT_SET = 11059; -- Home point set!
-        FISHING_MESSAGE_OFFSET = 11567; -- You can't fish here.
-               FISHING_SUPPORT = 11671; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
-      GUILD_TERMINATE_CONTRACT = 11685; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
-            GUILD_NEW_CONTRACT = 11693; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
-           NO_MORE_GP_ELIGIBLE =  11700; --You are not eligible to receive guild points at this time.
-                   GP_OBTAINED =  11705; -- Obtained: ?Numeric Parameter 0? guild points.
-            NOT_HAVE_ENOUGH_GP =  11706; --You do not have enough guild points.
+        FISHING_MESSAGE_OFFSET = 11569; -- You can't fish here.
+               FISHING_SUPPORT = 11673; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
+      GUILD_TERMINATE_CONTRACT = 11687; -- You have terminated your trading contract with the Multiple Choice (Parameter 1)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild and formed a new one with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+            GUILD_NEW_CONTRACT = 11695; -- You have formed a new trading contract with the Multiple Choice (Parameter 0)[Fishermen's/Carpenters'/Blacksmiths'/Goldsmiths'/Weavers'/Tanners'/Boneworkers'/Alchemists'/Culinarians'] Guild
+           NO_MORE_GP_ELIGIBLE =  11702; --You are not eligible to receive guild points at this time.
+                   GP_OBTAINED =  11707; -- Obtained: ?Numeric Parameter 0? guild points.
+            NOT_HAVE_ENOUGH_GP =  11708; --You do not have enough guild points.
 
 -- Conquest System
-CONQUEST = 11887; -- You've earned conquest points!
+CONQUEST = 11889; -- You've earned conquest points!
 
 -- Mission Dialogs
 YOU_ACCEPT_THE_MISSION = 11152; -- You have accepted the mission.
@@ -28,7 +28,7 @@ YOU_ACCEPT_THE_MISSION = 11152; -- You have accepted the mission.
            MELEK_DIALOG_B = 3250;  -- Take that sword to Giddeus. Good luck.
            MELEK_DIALOG_C = 3256;  -- I hope to see you safe and well again someday. Take care, Player Name.
 
-KOHLO_LAKOLO_DIALOG_A = 12430; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
+KOHLO_LAKOLO_DIALOG_A = 12432; -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
 
 -- Shop Texts
              KUSUSU_SHOP_DIALOG = 4133;  -- Welcome to Kususu's Hodos! We have low-level to medium-level magic on sale to help you through the early, rough spells in your life.
@@ -51,23 +51,23 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG = 4144; -- I'm a traveling merrrchant. There arr
            ZOREEN_CLOSED_DIALOG = 4146; -- Valdeaunia...
 
       KHEL_PAHLHAMA_SHOP_DIALOG = 11198; -- These magic shells are full of mysteries...
-               RYAN_SHOP_DIALOG = 11820; -- I have no time for white-livered scum that rely on magic alone.
-             DROZGA_SHOP_DIALOG = 11821; -- Not only is Ryan a boorish lout, but his craftsmanship leaves much to be desired, as well. You're better off buyin' from me.
+               RYAN_SHOP_DIALOG = 11822; -- I have no time for white-livered scum that rely on magic alone.
+             DROZGA_SHOP_DIALOG = 11823; -- Not only is Ryan a boorish lout, but his craftsmanship leaves much to be desired, as well. You're better off buyin' from me.
 
-           LEBONDUR_OPEN_DIALOG = 12541; -- I've risked my life traveling all the way from Vollbow to bring you these fine goods!
-         LEBONDUR_CLOSED_DIALOG = 12542; -- Where is my shipment from Vollbow? This is terrible for my image as a respected importer...
+           LEBONDUR_OPEN_DIALOG = 12543; -- I've risked my life traveling all the way from Vollbow to bring you these fine goods!
+         LEBONDUR_CLOSED_DIALOG = 12544; -- Where is my shipment from Vollbow? This is terrible for my image as a respected importer...
 
-   SATTSUHAHKANPARI_OPEN_DIALOG = 12543; -- You can look, but don't touch! And rememberrr, you break it, you bought it!
- SATTSUHAHKANPARI_CLOSED_DIALOG = 12544; -- You've heard of the Elshimo Uplands, haven't you? Well, if you'll hold on a minute, I'll have a shipment of goods coming in any time now.
+   SATTSUHAHKANPARI_OPEN_DIALOG = 12545; -- You can look, but don't touch! And rememberrr, you break it, you bought it!
+ SATTSUHAHKANPARI_CLOSED_DIALOG = 12546; -- You've heard of the Elshimo Uplands, haven't you? Well, if you'll hold on a minute, I'll have a shipment of goods coming in any time now.
 
-      KUCHAMALKOBHI_SHOP_DIALOG = 12689; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
+      KUCHAMALKOBHI_SHOP_DIALOG = 12691; -- How about a nice suit of adventurer-issue armorrr? Be careful though. We offer no rrrefunds!
 
-            ALIZABE_OPEN_DIALOG = 12869; -- Don't tell anybody, but I've managed to get my hands on some items from Tavnazia! Take a look!
-          ALIZABE_CLOSED_DIALOG = 12870; -- Pssst! Have you heard of Tavnazia? Boy, do they have some sweet items on those islands...
-      ALIZABE_COP_NOT_COMPLETED = 12871; -- It won't be long before I set up shop right here in this very place. And once I start, there won't be no stoppin' me!
+            ALIZABE_OPEN_DIALOG = 12871; -- Don't tell anybody, but I've managed to get my hands on some items from Tavnazia! Take a look!
+          ALIZABE_CLOSED_DIALOG = 12872; -- Pssst! Have you heard of Tavnazia? Boy, do they have some sweet items on those islands...
+      ALIZABE_COP_NOT_COMPLETED = 12873; -- It won't be long before I set up shop right here in this very place. And once I start, there won't be no stoppin' me!
 
 -- conquest Base
 CONQUEST_BASE = 4424;
 
 -- Porter Moogle
-            RETRIEVE_DIALOG_ID = 15870; -- You retrieve$ from the porter moogle's care.
+            RETRIEVE_DIALOG_ID = 15872; -- You retrieve$ from the porter moogle's care.

@@ -10,21 +10,33 @@ cmdprops =
     parameters = "is"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!mobhere {mobID} {noDepop}");
+end;
+
 function onTrigger(player, mobId, noDepop)
+    -- validate mobId
+    local targ;
     if (mobId == nil) then
-        player:PrintToPlayer("You must enter a valid MobID.");
-        return;
+        targ = player:getCursorTarget();
+        if (targ == nil or not targ:isMob()) then
+            error(player, "You must either provide a mobID or target a mob.");
+            return;
+        end
+    else
+        targ = GetMobByID(mobId);
+        if (targ == nil) then
+            error(player, "Invalid mobID.");
+            return;
+        end
     end
-
-    local mob = GetMobByID(mobId);
-    if (mob == nil) then
-        player:PrintToPlayer( string.format( "Mob with ID '%i' not found!", mobId ) );
-        return;
-    end
-
+    mobId = targ:getID();
+    
+    -- attempt to bring mob here
     SpawnMob( mobId );
-    if (player:getZoneID() == mob:getZoneID()) then
-        mob:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
+    if (player:getZoneID() == targ:getZoneID()) then
+        targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
     else
         if (noDepop == nil or noDepop == 0) then
             DespawnMob( mobId );

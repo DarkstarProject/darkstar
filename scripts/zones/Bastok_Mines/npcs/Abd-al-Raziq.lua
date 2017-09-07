@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 --  NPC: Abd-al-Raziq
 -- Type: Alchemy Guild Master
--- @pos 126.768 1.017 -0.234 234
+-- !pos 126.768 1.017 -0.234 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

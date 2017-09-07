@@ -3,7 +3,7 @@
 --  NPC: Andreas
 --  Type: Guildworker's Union Representative
 --  @zone 231
--- @pos -189.282 10.999 262.626
+-- !pos -189.282 10.999 262.626
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

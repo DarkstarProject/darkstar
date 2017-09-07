@@ -249,16 +249,6 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->loc.destination = destination = ZONE_RESIDENTIAL_AREA;
         }
 
-        if (zoneutils::IsResidentialArea(destination) && PChar->m_moghouseID == 0)
-        {
-            PChar->m_moghouseID = PChar->id;
-            destination = PChar->loc.prevzone;
-        }
-        else
-        {
-            PChar->m_moghouseID = 0;
-        }
-
         zoneutils::GetZone(destination)->IncreaseZoneCounter(PChar);
 
         PChar->m_ZonesList[PChar->getZone() >> 3] |= (1 << (PChar->getZone() % 8));
@@ -625,7 +615,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         CBaseEntity* PNpc = nullptr;
         PNpc = PChar->GetEntity(TargID, TYPE_NPC);
 
-        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10)
+        if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && (PNpc->PAI->IsSpawned() || PChar->m_moghouseID != 0))
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
@@ -2709,7 +2699,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         // Exiting Mog House..
         if (zoneLineID == 1903324538)
         {
-            uint16 prevzone = PChar->loc.prevzone;
+            uint16 prevzone = PChar->getZone();
 
             // If zero, return to previous zone.. otherwise, determine the zone..
             if (zone != 0)
@@ -2730,7 +2720,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 }
                 else if (zone == 125)
                 {
-                    prevzone = PChar->loc.prevzone;
+                    prevzone = PChar->getZone();
                 }
             }
             PChar->m_moghouseID = 0;
@@ -2769,6 +2759,13 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     PChar->status = STATUS_NORMAL;
                     return;
+                }
+                else if (PZoneLine->m_toZone == 0)
+                {
+                    //TODO: for entering another persons mog house, it must be set here
+                    PChar->m_moghouseID = PChar->id;
+                    PChar->loc.p = PZoneLine->m_toPos;
+                    PChar->loc.destination = PChar->getZone();
                 }
                 else
                 {
@@ -3806,7 +3803,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (RBUFB(data, (0x06)) == '@' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (RBUFB(data, (0x06)) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
     {
         //this makes sure a command isn't sent to chat
     }

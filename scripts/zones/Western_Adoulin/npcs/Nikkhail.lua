@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'A Thirst for the Ages'
 --  @zone 256
--- @pos -101 3 9
+-- !pos -101 3 9
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
     local ATFTA = player:getQuestStatus(ADOULIN, A_THIRST_FOR_THE_AGES);
     local ATFTA_Need_KI = ((player:getVar("ATFTA_Status") < 2) and (not player:hasKeyItem(COPY_OF_THE_ALLIANCE_AGREEMENT)));
- 
+
     local SOA_Mission = player:getCurrentMission(SOA);
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
@@ -55,7 +55,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     if (csid == 0x13BD) then
         -- Progresses Quest: 'A Thirst for the Ages'
         player:addKeyItem(COPY_OF_THE_ALLIANCE_AGREEMENT);

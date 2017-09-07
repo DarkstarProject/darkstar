@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
 -- NPC:  <this space intentionally left blank>
--- @pos 0 8 -40 243
+-- !pos 0 8 -40 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

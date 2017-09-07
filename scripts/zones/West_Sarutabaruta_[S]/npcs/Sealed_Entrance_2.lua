@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: West Sarutabaruta [S]
 --  NPC: Sealed Entrance (Sealed_Entrance_2)
--- @pos 263.600 -6.512 40.000 95
+-- !pos 263.600 -6.512 40.000 95
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
 -------------------------------------

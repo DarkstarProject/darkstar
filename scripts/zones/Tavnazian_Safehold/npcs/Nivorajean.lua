@@ -3,8 +3,8 @@
 --   NPC: Nivorajean
 --  Type: Standard NPC
 -- @zone 26
--- @pos 15.890 -22.999 13.322
--- 
+-- !pos 15.890 -22.999 13.322
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

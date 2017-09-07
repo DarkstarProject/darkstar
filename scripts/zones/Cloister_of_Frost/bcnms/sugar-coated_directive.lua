@@ -1,7 +1,7 @@
 ----------------------------------------
 -- Area: Cloister of Frost
 -- BCNM: Sugar Coated Directive (ASA-4)
--- @pos -721 0 -598 207
+-- !pos -721 0 -598 207
 ----------------------------------------
 package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
 ----------------------------------------
@@ -30,7 +30,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
-    
+
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompleteQuest(ASA,SUGAR_COATED_DIRECTIVE)) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,4,1);
@@ -40,19 +40,19 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
     -- print("bc update csid "..csid.." and option "..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    
+
     if (csid == 0x7d01) then
         player:addExp(400);
         player:setVar("ASA4_Azure","1");
     end
-    
+
 end;

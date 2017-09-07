@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Mines
 --  NPC: Door_House
--- 17735847 (Corsair's Bottes) @pos 10 0 -16 234
+-- 17735847 (Corsair's Bottes) !pos 10 0 -16 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
             end;
         end;
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

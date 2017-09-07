@@ -1,13 +1,11 @@
 ----------------------------------
---  Area: Al Zahbi
+-- Area: Al Zahbi
 --  NPC: Opococo
---  Type: Item Deliverer
---  @zone 48
--- @pos -24.702 0 -139.982
---
+-- Type: Item Deliverer
+-- !pos -24.702 0 -139.982 48
 -----------------------------------
-
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Al_Zahbi/TextIDs");
 
 -----------------------------------
@@ -43,4 +41,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

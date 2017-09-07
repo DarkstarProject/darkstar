@@ -3,8 +3,8 @@
 --   NPC: Dancing Wolf
 --  Type: Standard NPC
 -- @zone 247
--- @pos 7.619 7 81.209
--- 
+-- !pos 7.619 7 81.209
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
@@ -31,7 +31,7 @@ player:startEvent(0x0068);
 elseif (player:getVar("BASTOK91") == 4) then
 player:startEvent(0x0069);
 else
-player:startEvent(0x006A);    
+player:startEvent(0x006A);
 end
 end;
 -----------------------------------

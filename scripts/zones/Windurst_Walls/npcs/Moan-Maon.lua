@@ -2,7 +2,7 @@
 --  Area: Windurst Walls
 --  NPC:  Moan-Maon
 --  Type: Standard NPC
--- @pos 88.244 -6.32 148.912 239
+-- !pos 88.244 -6.32 148.912 239
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -49,10 +49,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x01f1) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",7,true);
     end
-    
+
 end;
 

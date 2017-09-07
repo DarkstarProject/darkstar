@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 -- NPC:  Marble Bridge Eatery (Door)
--- @pos -96.6 -0.2 92.3 244
+-- !pos -96.6 -0.2 92.3 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

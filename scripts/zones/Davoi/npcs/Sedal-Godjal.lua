@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Sedal-Godjal
 -- Mini Quest used in : Whence Blows the Wind
--- @pos 185 -3 -116 149
+-- !pos 185 -3 -116 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -46,25 +46,25 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x0077,0,17437);
         end
-        
+
     elseif (player:hasKeyItem(CRIMSON_ORB) == false) then
-        
+
         local miniQuestForORB_CS = player:getVar("miniQuestForORB_CS");
         local countRedPoolForORB = player:getVar("countRedPoolForORB");
-        
-        if (miniQuestForORB_CS == 0) then 
-            player:startEvent(0x0018); -- 
-        elseif (miniQuestForORB_CS == 99) then 
+
+        if (miniQuestForORB_CS == 0) then
+            player:startEvent(0x0018); --
+        elseif (miniQuestForORB_CS == 99) then
             player:startEvent(0x0016); -- Start mini quest
-        elseif (miniQuestForORB_CS == 1 and countRedPoolForORB ~= 15) then 
+        elseif (miniQuestForORB_CS == 1 and countRedPoolForORB ~= 15) then
             player:startEvent(0x0015); -- During mini quest
-        elseif (miniQuestForORB_CS == 1 and countRedPoolForORB == 15) then 
+        elseif (miniQuestForORB_CS == 1 and countRedPoolForORB == 15) then
             player:startEvent(0x0019,0,0,0,CRIMSON_ORB); -- Finish mini quest
         end
     else
         player:startEvent(0x0018); -- Standard dialog
     end
-    
+
 end;
 
 -----------------------------------
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:setVar("miniQuestForORB_CS",1);
         player:addKeyItem(WHITE_ORB);
         player:messageSpecial(KEYITEM_OBTAINED, WHITE_ORB);
-    elseif (csid == 0x0019) then 
+    elseif (csid == 0x0019) then
         player:setVar("miniQuestForORB_CS",0);
         player:setVar("countRedPoolForORB",0);
         player:delKeyItem(CURSED_ORB);

@@ -3,7 +3,7 @@
 -- NPC:  Exoroche
 -- Involved in Quests: Father and Son, A Boy's Dream
 -- @zone 230
--- @pos 72 -1 60
+-- !pos 72 -1 60
 
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-  
+
 --    player:startEvent(0x004f)  -- how the paper works -- under oath
 --    player:startEvent(0x0033)  -- it says what i dont beleive you -- under oath
 --    player:startEvent(0x0013)  -- thanks for your help i have to tell trion -- under oath
@@ -42,9 +42,9 @@ function onTrigger(player,npc)
 -- "Father and Son" Event Dialogs
     if (player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(0x021e);
-    elseif (player:getVar("aBoysDreamCS") == 2) then 
+    elseif (player:getVar("aBoysDreamCS") == 2) then
         player:startEvent(0x0032);
-    elseif (player:getVar("aBoysDreamCS") >= 7) then 
+    elseif (player:getVar("aBoysDreamCS") >= 7) then
         player:startEvent(0x0020);
     elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(0x004D);

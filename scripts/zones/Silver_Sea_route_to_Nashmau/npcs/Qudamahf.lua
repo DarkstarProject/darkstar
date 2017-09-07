@@ -2,7 +2,7 @@
 -- Area:  Silver_Sea_route_to_Nashmau
 -- NPC:   Qudamahf
 -- Notes: Tells ship ETA time
--- @pos 0.340 -12.232 -4.120 58
+-- !pos 0.340 -12.232 -4.120 58
 -----------------------------------
 package.loaded["scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Silver_Sea_route_to_Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -22,7 +22,7 @@ end;
 
 function onTrigger(player,npc)
     player:messageSpecial(ON_WAY_TO_NASHMAU,0,0); -- Earth Time, Vana Hours. Needs a get-time function for boat?
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Southern San d'Oria
 -- NPC:  Endracion
--- @pos -110 1 -34 230
+-- !pos -110 1 -34 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -59,7 +59,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
         MissionStatus = player:getVar("MissionStatus");
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
-    
+
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
@@ -73,7 +73,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
             player:startEvent(0x040d);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
-            player:startEvent(0x040f);                    
+            player:startEvent(0x040f);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
             player:startEvent(0x040f);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then

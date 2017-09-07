@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis
 -- NPC: Sarcophagus
 -- Involved in Quests: The Requiem (BARD AF2), A New Dawn (BST AF3)
--- @pos -420 8 500 195
+-- !pos -420 8 500 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -37,7 +37,7 @@ end;
 
 function onTrade(player,npc,trade)
     -- THE REQUIEM (holy water)
-    if (player:getVar("TheRequiemCS") == 3 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then 
+    if (player:getVar("TheRequiemCS") == 3 and trade:hasItemQty(4154,1) and trade:getItemCount() == 1) then
         if (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom") and player:getVar("TheRequiemYumKilled") == 0 and GetMobByID(YUM_KIMIL):isDead()) then
             player:tradeComplete();
             player:messageSpecial(SENSE_OF_FOREBODING);
@@ -51,7 +51,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(NOTHING_HAPPENED);
         end;
     end;
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -60,11 +60,11 @@ end;
 function onTrigger(player,npc)
     local ANewDawn = player:getQuestStatus(JEUNO,A_NEW_DAWN);
     local ANewDawnEvent = player:getVar("ANewDawn_Event");
-    
+
     -- A NEW DAWN (Beastmaster AF3)
     if (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == 4 and ANewDawn == QUEST_ACCEPTED) then
         if (ANewDawnEvent == 4) then
-            for i = STURM, TROMBE do 
+            for i = STURM, TROMBE do
                 if (GetMobByID(i):isDead()) then
                     SpawnMob(i):updateClaim(player); -- spawn sturm and its two guardians
                 end;
@@ -72,7 +72,7 @@ function onTrigger(player,npc)
         elseif (ANewDawnEvent == 5) then
             player:startEvent(45);
         end;
-    
+
     -- THE REQUIEM (Bard AF2)
     elseif (sarcophagusNumber(npc:getXPos(),npc:getZPos()) == player:getVar("TheRequiemRandom")) then
         if (player:getVar("TheRequiemYumKilled") == 1) then
@@ -87,12 +87,12 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(SARCOPHAGUS_CANNOT_BE_OPENED);
         end;
-        
+
     -- DEFAULT DIALOG
     else
         player:messageSpecial(SARCOPHAGUS_CANNOT_BE_OPENED);
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

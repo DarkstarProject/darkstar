@@ -2,7 +2,7 @@
 -- Area: Selbina
 --  NPC: Abelard
 --  An Explorer's Footsteps
--- @pos -52 -11 -13 248
+-- !pos -52 -11 -13 248
 -- This quest was changed to require a minimum amount of fame to combat RMTs POS-Hacking around to
 -- quickly earn gil. However, as this is not a legitimate concern on private servers players may
 -- complete this quest even with no fame.

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters
 --  NPC: Door_House
--- 17752333 (Corsair's Gants) @pos -200 -4 -111 238
+-- 17752333 (Corsair's Gants) !pos -200 -4 -111 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
             end;
         end;
     end;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

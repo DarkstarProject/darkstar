@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Jugner Forest
 --  NPC: Cavernous Maw
--- @pos 246.318, -0.709, 5.706 104
+-- !pos 246.318, -0.709, 5.706 104
 -- Teleports Players to Abyssea - Vunkerl
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;

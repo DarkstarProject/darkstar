@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Vhana Ehgaklywha
 -- Lights lamps in Lower Jeuno if nobody accepts Community Service by 1AM.
--- @pos -122.853 0.000 -195.605
+-- !pos -122.853 0.000 -195.605
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 function onTrigger(player,npc)
     -- speaking to pathing NPCs stops their progress, and they never resume
     -- so let's comment this out
-    
+
     -- player:showText(npc, 7160);
 end;
 
@@ -37,7 +37,7 @@ end;
 
 function onPath(npc)
     if npc:isFollowingPath() then
-    
+
         -- if vasha reaches the end node, halt and disappear her.
         -- do this at node 48 instead of 49 because isFollowingPath will be false by 49.
         -- if we remove the isFollowingPath check, this code runs every second forever.

@@ -2,7 +2,7 @@
 -- Area: Ru'Lude Gardens
 -- NPC:  Adolie
 -- @zone 243
--- @pos -35 2 59
+-- !pos -35 2 59
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +15,7 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

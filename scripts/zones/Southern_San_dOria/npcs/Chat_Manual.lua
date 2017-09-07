@@ -3,7 +3,7 @@
 --   NPC: Chat Manual
 --  Type: Tutorial NPC
 -- @zone: 230
---  @pos -68.800 2.000 -46.560
+--  !pos -68.800 2.000 -46.560
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

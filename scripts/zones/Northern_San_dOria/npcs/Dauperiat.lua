@@ -3,7 +3,7 @@
 -- NPC:  Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
 -- @zone 231
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     if (Black == QUEST_ACCEPTED and questState == 2 or Black == QUEST_COMPLETED) then
         count = trade:getItemCount();
         carta = trade:hasItemQty(530, 1);
-        
+
         if (carta == true and count == 1) then
             player:startEvent(0x0288,0,530); --648
         end
@@ -45,20 +45,20 @@ function onTrigger(player,npc)
     sanFame = player:getFameLevel(SANDORIA);
     homeRank = player:getRank(player:getNation());
     questState = player:getVar("BlackMailQuest");
-    
+
 
     if (blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then
         player:startEvent(0x0283); -- 643 gives me letter
-    elseif (blackMail == QUEST_ACCEPTED and envelope == true) then  
+    elseif (blackMail == QUEST_ACCEPTED and envelope == true) then
         player:startEvent(0x0285);  -- 645 recap, take envelope!
-        
+
     elseif (blackMail == QUEST_ACCEPTED and questState == 1) then
         player:startEvent(0x0286,0,530); --646  after giving letter to H, needs param
-        
-        
+
+
     elseif (blackMail == QUEST_ACCEPTED and questState == 2) then
         player:startEvent(0x0287,0,530); --647 recap of 646
-        
+
     else
         if (player:needToZone() ==true) then
             player:startEvent(0x0282); --642 Quiet!
@@ -66,9 +66,9 @@ function onTrigger(player,npc)
             player:startEvent(0x0281); --641 -- Quiet! leave me alone
             player:needToZone(true);
         end
-    end    
-    
-end; 
+    end
+
+end;
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

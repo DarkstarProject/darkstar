@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
 -- NPC:  ??? divine might mission
--- @pos -40 0 -151 178
+-- !pos -40 0 -151 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 -- NPC:  Grilau
--- @pos -241.987 6.999 57.887 231
+-- !pos -241.987 6.999 57.887 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -16,14 +16,14 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     CurrentMission = player:getCurrentMission(SANDORIA);
     OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
     BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
     TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
     MissionStatus = player:getVar("MissionStatus");
     Count = trade:getItemCount();
-    
+
     if (CurrentMission ~= 255) then
         if (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
             player:startEvent(0x03fc); -- Finish Mission "Smash the Orcish scouts" (First Time)
@@ -43,7 +43,7 @@ function onTrade(player,npc,trade)
     else
         player:startEvent(0x03f2); -- Mission not activated
     end
-    
+
 end;
 
 -----------------------------------
@@ -53,7 +53,7 @@ end;
 function onTrigger(player,npc)
 
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
-    
+
     if (player:getNation() ~= NATION_SANDORIA) then
         player:startEvent(0x03f3); -- for Non-San d'Orians
     else
@@ -61,7 +61,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
         MissionStatus = player:getVar("MissionStatus");
         pRank = player:getRank();
         cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
-        
+
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
@@ -89,7 +89,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
             player:startEvent(0x03f1,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -108,7 +108,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);
     -- printf("onFinishOPTION: %u",option);
-    
+
     finishMissionTimeline(player,1,csid,option);
     if (csid == 0x040b) then
        player:setVar("MissionStatus",4);
@@ -126,5 +126,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x0413) then
         finishMissionTimeline(player,2,csid,option);
     end
-    
+
 end;

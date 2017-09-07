@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: 
+-- NPC:
 -- @zone 80
--- @pos 
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

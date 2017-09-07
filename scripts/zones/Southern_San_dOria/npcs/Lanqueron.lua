@@ -4,7 +4,7 @@
 -- Type: Item Deliverer NPC
 -- Involved in Quest: Lost Chick
 -- @zone 230
--- @pos 0.335 1.199 -28.404
+-- !pos 0.335 1.199 -28.404
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -38,7 +38,7 @@ end;
 function onTrigger(player,npc)
     player:showText(npc, ITEM_DELIVERY_DIALOG);
     player:openSendBox();
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -2,7 +2,7 @@
 -- Area: Western Altepa Desert
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Earth Fragment)
--- @pos -108 10 -216 125
+-- !pos -108 10 -216 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

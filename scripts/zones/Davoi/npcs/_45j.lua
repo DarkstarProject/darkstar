@@ -2,7 +2,7 @@
 -- Area: Davoi
 -- NPC:  Screaming Pond
 -- Used In Quest: Whence Blows the Wind
--- @pos -219 0.1 -101 149
+-- !pos -219 0.1 -101 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
 -----------------------------------
@@ -44,9 +44,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x0035 and player:getVar("miniQuestForORB_CS") == 1) then
-        
+
         local c = player:getVar("countRedPoolForORB");
-        
+
         if (c == 0) then
             player:setVar("countRedPoolForORB", c + 4);
             player:delKeyItem(WHITE_ORB);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(PINK_ORB);
             player:addKeyItem(RED_ORB);
             player:messageSpecial(KEYITEM_OBTAINED, RED_ORB);
-        elseif (c == 3 or c == 9 or c == 10) then 
+        elseif (c == 3 or c == 9 or c == 10) then
             player:setVar("countRedPoolForORB", c + 4);
             player:delKeyItem(RED_ORB);
             player:addKeyItem(BLOOD_ORB);

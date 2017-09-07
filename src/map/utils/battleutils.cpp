@@ -508,7 +508,7 @@ namespace battleutils
             case JOB_SAM: id = 474; break;
             case JOB_NIN: id = 475; break;
             case JOB_DRG: id = 476; break;
-            case JOB_SMN: id = 2000; break;  // alt 2000
+            case JOB_SMN: id = 2000; break;  // alt 478
                 // case JOB_BLU: id = 1933; break; // alt 2001
                 // case JOB_COR: id = 1934; break; // alt 2002
                 // case JOB_PUP: id = 1935; break; // alt 2003
@@ -796,6 +796,9 @@ namespace battleutils
                     break;
             }
 
+            // Check for status effect proc. Todo: move to scripts soon™ after item additionalEffect refactor Teo is working on
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
             {
                 ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
@@ -864,6 +867,9 @@ namespace battleutils
                 PAttacker->addHP(-Action->spikesParam);
             }
 
+            // Temp till moved to script.
+            HandleSpikesStatusEffect(PAttacker, PDefender, Action);
+
             return true;
         }
 
@@ -877,14 +883,17 @@ namespace battleutils
         {
             lvlDiff = dsp_cap((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
         }
+
         switch (Action->spikesEffect)
         {
             case SUBEFFECT_CURSE_SPIKES:
+            {
                 if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_CURSE) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_CURSE, EFFECT_CURSE, 15, 0, 180));
                 }
                 break;
+            }
             case SUBEFFECT_ICE_SPIKES:
             {
                 if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
@@ -1043,7 +1052,18 @@ namespace battleutils
         }
         //check weapon for additional effects
         else if (PAttacker->objtype == TYPE_PC && battleutils::GetScaledItemModifier(PAttacker, weapon, Mod::ADDITIONAL_EFFECT) > 0 &&
-                 luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+            luautils::OnAdditionalEffect(PAttacker, PDefender, weapon, Action, finaldamage) == 0 && Action->additionalEffect)
+        {
+            if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
+            {
+                Action->addEffectMessage = 384;
+            }
+        }
+        //check script for grip if main failed
+        else if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB) &&
+            weapon == PAttacker->m_Weapons[SLOT_MAIN] && static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB))->getSkillType() == SKILL_NON &&
+            battleutils::GetScaledItemModifier(PAttacker, static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB), Mod::ADDITIONAL_EFFECT) > 0 &&
+            luautils::OnAdditionalEffect(PAttacker, PDefender, static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB)), Action, finaldamage) == 0 && Action->additionalEffect)
         {
             if (Action->addEffectMessage == 163 && Action->addEffectParam < 0)
             {

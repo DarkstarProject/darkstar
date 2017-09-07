@@ -2,7 +2,7 @@
 -- Area: Lufaise Meadows
 --  NPC: Chilaumme, R.K.
 -- Border Conquest Guards
--- @pos 414.659 0.905 -52.417 24
+-- !pos 414.659 0.905 -52.417 24
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------

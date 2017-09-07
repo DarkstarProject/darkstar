@@ -2,7 +2,7 @@
 -- Area: Ro'Maeve
 -- NPC:  qm2 (???)
 -- Involved in Mission: Bastok 7-1
--- @pos 102 -4 -114 122 and <many pos>
+-- !pos 102 -4 -114 122 and <many pos>
 -----------------------------------
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
@@ -16,14 +16,14 @@ require("scripts/zones/RoMaeve/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(BASTOK) == THE_FINAL_IMAGE and player:getVar("MissionStatus") == 1) then
         if (GetMobAction(17276929) == 0 and GetMobAction(17276930) == 0) then
             if (player:getVar("Mission7-1MobKilled") >= 1) then
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
                 local x = npc:getXPos();
                 local y = npc:getYPos();
                 local z = npc:getZPos();
-                
+
                 SpawnMob(17276929):setPos(x+1,y,z+1);
                 GetMobByID(17276929):updateClaim(player);
                 SpawnMob(17276930):setPos(x-1,y,z-1);
@@ -46,8 +46,8 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

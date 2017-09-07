@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 --  NPC: ??? (Spawn Cheese Hoarder Gigiroon(ZNM T1))
--- @pos -184 -8 24 72
+-- !pos -184 -8 24 72
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------

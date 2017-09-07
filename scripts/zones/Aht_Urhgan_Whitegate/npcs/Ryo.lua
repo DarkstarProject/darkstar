@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Ryo
 -- Type: ZNM assistant
--- @pos -127.086 0.999 22.693 50
+-- !pos -127.086 0.999 22.693 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

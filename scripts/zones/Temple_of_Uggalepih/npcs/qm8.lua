@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Temple of Uggalepih (159)
--- NPC:  qm8 (???) 
+-- NPC:  qm8 (???)
 -- Notes: Used to spawn Habetrot
--- @pos -57.434 -8.484 55.317 0
+-- !pos -57.434 -8.484 55.317 0
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
         end
         npc:setStatus(STATUS_DISAPPEAR);
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

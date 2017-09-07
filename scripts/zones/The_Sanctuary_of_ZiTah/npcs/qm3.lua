@@ -3,7 +3,7 @@
 -- NPC:  ???
 -- Involved In Quest: The Sacred Katana
 -- @zone 121
--- @pos -416 0 46
+-- !pos -416 0 46
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(OUTLANDS,THE_SACRED_KATANA) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1168,1) and trade:getItemCount() == 1) then -- Trade Sack of Fish Bait
             player:tradeComplete();
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             SpawnMob(17273285):updateClaim(player);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -34,7 +34,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getVar("IsonadeKilled") == 1) then
         player:setVar("IsonadeKilled",0);
         player:addKeyItem(HANDFUL_OF_CRYSTAL_SCALES);

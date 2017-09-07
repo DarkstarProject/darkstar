@@ -9,15 +9,20 @@ cmdprops =
     parameters = "iiiiiiiiiii"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!additem <itemId> {quantity} {aug1} {v1} {aug2} {v2} {aug3} {v3} {aug4} {v4} {trial}");
+end;
+
 function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val, trialId)
     -- Load needed text ids for players current zone..
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;
     require(TextIDs); 
 
-    -- Ensure item id was given..
+    -- validate itemId
     if (itemId == nil or tonumber(itemId) == nil or tonumber(itemId) == 0) then
-        player:PrintToPlayer( "You must enter a valid item id." );
+        error(player, "Invalid itemId.");
         return;
     end
     

@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Daigraffeaux
 -- @zone 80
--- @pos -7 2 -89
+-- !pos -7 2 -89
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

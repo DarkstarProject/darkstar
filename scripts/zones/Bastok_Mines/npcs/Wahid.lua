@@ -3,7 +3,7 @@
 -- NPC: Wahid
 -- Start & Finishes Quest: The Siren's Tear
 -- @zone 234
--- @pos 26.305 -1 -66.403
+-- !pos 26.305 -1 -66.403
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -23,8 +23,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(576,1) and trade:getItemCount() == 1) then
             player:startEvent(0x0052);
         end
-    end        
-end; 
+    end
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
 
     if (SirensTear == QUEST_AVAILABLE) then
         player:startEvent(0x0051);
-    else 
+    else
         player:startEvent(0x001c);
     end
 end;
@@ -56,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0051) then
         player:addQuest(BASTOK,THE_SIREN_S_TEAR);
     elseif (csid == 0x0052) then

@@ -2,7 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  ???
 -- Involved In Quest: Wild Card
--- @pos 19 17 59 169
+-- !pos 19 17 59 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 
 function onTrade(player,npc,trade)
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

@@ -2,7 +2,7 @@
 --  Area: Tahrongi Canyon
 --  NPC:  Luck Rune
 --  Involved in Quest: Mhaura Fortune
--- @pos -54.755 7.647 -379.945 117
+-- !pos -54.755 7.647 -379.945 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm8 (???)
 -- Spawns Chickcharney
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

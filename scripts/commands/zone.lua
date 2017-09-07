@@ -6,7 +6,7 @@
 cmdprops =
 {
     permission = 1,
-    parameters = "s"
+    parameters = "b"
 };
 
 ---------------------------------------------------------------------------------------------------
@@ -275,39 +275,78 @@ local zone_list =
     { 0x14, 0x09, 288 }, -- Escha - Zi'Tah
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!zone <zone ID or autotranslate phrase>");
+end;
+
+function getBytePos(s,needle)
+    local i;
+    local b;
+    for i=1,string.len(s),1 do 
+        if (string.byte(s, i) == needle) then
+            return i;
+        end
+    end
+    return nil;
+end;
+
 ---------------------------------------------------------------------------------------------------
 -- func: onTrigger
 -- desc: Called when this command is invoked.
 ---------------------------------------------------------------------------------------------------
-function onTrigger(player, zoneId)
-    local word  = "";
-    local i     = 0;
-    local zone  = zoneId;
+function onTrigger(player, bytes)
+    local x = 0;
+    local y = 0;
+    local z = 0;
+    local rot = 0;
+    local zone;
 
-    -- Ensure a zone was given..
-    if (zoneId == nil) then
-        player:PrintToPlayer("You must enter a zone id.");
+    if (bytes == nil) then
+        error(player, "You must provide a zone ID or autotranslate phrase.");
         return;
     end
-    
-    -- Was the zone auto-translated..
-    if (string.sub(zoneId, 1, 2) == '\253\02' and string.byte(zoneId, 5) ~= nil and string.byte(zoneId, 6) == 0xFD) then
-        -- Pull the group and message id from the translated string..
-        local groupId = string.byte(zoneId, 4);
-        local messageId = string.byte(zoneId, 5);
-    
-        -- Attempt to lookup this zone..
+    bytes = string.sub(bytes,6);
+    local atpos = getBytePos(bytes, 253);
+
+    -- validate destination
+    if (atpos ~= nil) then
+        -- destination is an auto-translate phrase
+        local groupId = string.byte(bytes, atpos + 3);
+        local messageId = string.byte(bytes, atpos + 4);
         for k, v in pairs(zone_list) do
             if (v[1] == groupId and v[2] == messageId) then
-                player:setPos(0, 0, 0, 0, v[3]);
-                return;
+                x = v[4] or 0;
+                y = v[5] or 0;
+                z = v[6] or 0;
+                rot = 0;
+                zone = v[3];
+                break;
             end
         end
-    
-        -- Zone was not found, allow the user to know..
-        player:PrintToPlayer('Unknown zone, could not teleport.');
-        return;
+        if (zone == nil) then
+            error(player,"Auto-translated phrase is not a zone.");
+            return;
+        end
+    else
+        -- destination is a zone ID.
+        zone = tonumber(bytes);
+        if (zone == nil or zone < 0 or zone > 288) then
+            error(player, "Invalid zone ID.");
+            return;
+        end
+        for k, v in pairs(zone_list) do
+            if (v[3] == zone) then
+                x = v[4] or 0;
+                y = v[5] or 0;
+                z = v[6] or 0;
+                rot = 0;
+                zone = v[3];
+                break;
+            end
+        end
     end
-    
-    player:setPos(0, 0, 0, 0, zoneId);
+
+    -- send player to destination
+    player:setPos(x, y, z, rot, zone);
 end

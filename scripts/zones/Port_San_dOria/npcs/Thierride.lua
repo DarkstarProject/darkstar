@@ -3,7 +3,7 @@
 --   NPC: Thierride
 --  Type: Quest Giver
 -- @zone 232
--- @pos -67 -5 -28
+-- !pos -67 -5 -28
 --
 -- Starts and Finishes Quest: A Taste For Meat
 -----------------------------------
@@ -49,8 +49,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x020c);
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -83,5 +83,5 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA, A_TASTE_FOR_MEAT);
         player:addTitle(RABBITER);
     end;
-    
+
 end;

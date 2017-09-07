@@ -2,7 +2,7 @@
 --  Area: Nashmau
 --  NPC:  Ququroon
 --  Type: Standard NPC
--- @pos -2.400 -1 66.824 53
+-- !pos -2.400 -1 66.824 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -31,11 +31,11 @@ end;
 
 function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
-    if (ratRaceProg == 3) then  
+    if (ratRaceProg == 3) then
        player:startEvent(0x0135);
-    elseif (ratRaceProg == 4) then  
+    elseif (ratRaceProg == 4) then
        player:startEvent(0x00f2);
-    elseif (ratRaceProg >= 5) then  
+    elseif (ratRaceProg >= 5) then
        player:startEvent(0x013b);
     else
        player:startEvent(0x00f1);
@@ -58,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0135) then            
+    if (csid == 0x0135) then
        player:setVar("ratraceCS",4);
     elseif (csid == 0x0136) then
         if (player:getFreeSlotsCount() < 1) then

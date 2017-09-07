@@ -1,14 +1,11 @@
 ----------------------------------
---  Area: Windurst Woods
+-- Area: Windurst Woods
 --  NPC: Ju Kamja
---  Type: Item Deliverer
---  @zone 241
--- @pos 58.145 -2.5 -136.91
-
---
+-- Type: Item Deliverer
+-- !pos 58.145 -2.5 -136.91 241
 -----------------------------------
-
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 -----------------------------------
@@ -44,4 +41,3 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-

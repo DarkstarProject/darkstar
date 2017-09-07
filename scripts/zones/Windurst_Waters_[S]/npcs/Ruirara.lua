@@ -3,8 +3,8 @@
 --   NPC: Ruirara
 --  Type: Standard NPC
 -- @zone 94
--- @pos -87.378 -2 -158.019
--- 
+-- !pos -87.378 -2 -158.019
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

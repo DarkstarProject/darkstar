@@ -3,7 +3,7 @@
 -- NPC: Melledanne
 -- Type: Melody Minstrel NPC
 -- @zone 230
--- @pos -33.194 0.000 34.662
+-- !pos -33.194 0.000 34.662
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -36,7 +36,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x03af);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

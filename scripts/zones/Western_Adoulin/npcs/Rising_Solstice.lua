@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest Giver
 --  Starts, Involved With, and Finishes Quest: 'A Certain Substitute Patrolman'
 --  @zone 256
---  @pos -154 4 -29 256
+--  !pos -154 4 -29 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
             end
         -- Starts Quest: 'A Certain Substitute Patrolman'
         elseif (ACSP == QUEST_AVAILABLE) then
-            player:startEvent(0x09F6);  
+            player:startEvent(0x09F6);
         else
             if ((SOA_Mission >= BEAUTY_AND_THE_BEAST) and (SOA_Mission <= SALVATION)) then
                 -- Speech while Arciela is 'kidnapped'

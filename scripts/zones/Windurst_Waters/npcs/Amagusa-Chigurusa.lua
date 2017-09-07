@@ -2,7 +2,7 @@
 --  Area: Windurst Waters
 --  NPC:  Amagusa-Chigurusa
 --  Type: Standard NPC
--- @pos -28.746 -4.5 61.954 238
+-- !pos -28.746 -4.5 61.954 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x03a9) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",12,true);
-    end    
+    end
 
 end;
 

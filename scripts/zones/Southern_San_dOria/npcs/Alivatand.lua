@@ -3,7 +3,7 @@
 --  NPC: Alivatand
 --  Type: Guildworker's Union Representative
 --  @zone 230
--- @pos -179.458 -1 15.857
+-- !pos -179.458 -1 15.857
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Heaven's Tower
 -- NPC:  Starway Stairway
--- @pos -10 0.1 30 242
+-- !pos -10 0.1 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Heavens_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(STAIRWAY_ONLY_CITIZENS);
     end
-    
+
     return 1;
 
 end;

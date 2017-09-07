@@ -2,7 +2,7 @@
 -- Area: Bhaflau Thickets
 --  NPC: Runic Portal
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
--- @pos -211 -11 -818 52
+-- !pos -211 -11 -818 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(RESPONSE);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -54,12 +54,12 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 111 and option == 1) then
         player:addNationTeleport(AHTURHGAN,8);
         toChamberOfPassage(player);
     elseif (csid == 109 and option == 1) then
         toChamberOfPassage(player);
     end
-    
+
 end;

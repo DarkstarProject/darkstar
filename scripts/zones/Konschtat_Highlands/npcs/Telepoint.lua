@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Telepoint
--- @pos 220.000 19.104 300.000 106
+-- !pos 220.000 19.104 300.000 106
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 
     local item = trade:getItemId();
 
-    if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then    
+    if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then
         if (player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
             player:tradeComplete();
             player:addItem(613);
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -34,14 +34,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(DEM_GATE_CRYSTAL) == false) then
         player:addKeyItem(DEM_GATE_CRYSTAL);
         player:messageSpecial(KEYITEM_OBTAINED,DEM_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end
-    
+
 end;
 
 -----------------------------------

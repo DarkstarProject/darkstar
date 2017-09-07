@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Caedarva Mire
--- NPC:  ??? 
--- @pos 456.993 -7.000 -270.815 79
+-- NPC:  ???
+-- !pos 456.993 -7.000 -270.815 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,7 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 -- onTrade Action
 -----------------------------------
 
-function onTrade(player,npc,trade)    
+function onTrade(player,npc,trade)
 end;
 
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         player:startEvent(0x0011);
     elseif (player:getVar("notmeanttobeMoshdahnKilled") == 1 and player:getVar("notmeanttobeLamia27Killed") == 1) then
         player:startEvent(0x0012);
-    else        
+    else
         player:messageSpecial(NOTHING_HAPPENS);
     end
 end;

@@ -2,7 +2,7 @@
 -- Area: Buburimu Peninsula
 --  NPC: Ganemu-Punnemu, W.W.
 -- Outpost Conquest Guards
--- @pos -481.164 -32.858 49.188 118
+-- !pos -481.164 -32.858 49.188 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------

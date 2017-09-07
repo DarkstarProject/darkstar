@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Port Windurst
 -- NPC: Babubu
--- Guild Merchant NPC: Fishing Guild 
--- @pos -175.185 -3.324 70.445 240
+-- Guild Merchant NPC: Fishing Guild
+-- !pos -175.185 -3.324 70.445 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

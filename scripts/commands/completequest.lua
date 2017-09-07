@@ -11,37 +11,55 @@ cmdprops =
     parameters = "sss"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!completequest <logID> <questID> {player}");
+end;
+
 function onTrigger(player, logId, questId, target)
 
+    -- validate logId
     local logName;
-    logId = tonumber(logId) or _G[logId];
-    if ((type(logId) == "table")) then
+    if (logId == nil) then
+        error(player, "You must provide a logID.");
+        return;
+    elseif (tonumber(logId) ~= nil) then
+        logId = tonumber(logId);
+        logId = QUEST_LOGS[logId];
+    end
+    if (logId ~= nil) then
+        logId = _G[string.upper(logId)];
+    end
+    if ((type(logId) == "table") and logId.quest_log ~= nil) then
         logName = logId.full_name;
         logId = logId.quest_log;
-    end
-
-    questId = tonumber(questId) or _G[questId];
-    
-    if (questId == nil or logId == nil) then
-        player:PrintToPlayer( "You must enter a valid log ID and quest ID!" );
-        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
+    else
+        error(player, "Invalid logID.");
         return;
     end
 
-    if (target == nil) then
-        target = player:getName();
+    -- validate questId
+    if (questId ~= nil) then
+        questId = tonumber(questId) or _G[string.upper(questId)];
+    end
+    if (questId == nil or questId < 0) then
+        error(player, "Invalid questID.");
+        return;
     end
 
-    local targ = GetPlayerByName(target);
-    if (targ ~= nil) then
-        targ:completeQuest( logId, questId );
-        if (logName) then
-            player:PrintToPlayer( string.format( "Completed %s Quest with ID %u for %s", logName, questId, target ) );
-        else
-            player:PrintToPlayer( string.format( "Completed Quest for log %u with ID %u for %s", logId, questId, target ) );
-        end
+    -- validate target
+    local targ;
+    if (target == nil) then
+        targ = player;
     else
-        player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-        player:PrintToPlayer( "@completequest <logID> <questID> <player>" );
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format("Player named '%s' not found!", target));
+            return;
+        end
     end
+
+    -- complete quest
+    targ:completeQuest( logId, questId );
+    player:PrintToPlayer( string.format( "Completed %s Quest with ID %u for %s", logName, questId, targ:getName() ) );
 end;

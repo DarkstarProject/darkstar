@@ -3,8 +3,8 @@
 --   NPC: Eih Lhogotan
 --  Type: Standard NPC
 -- @zone 94
--- @pos -29.887 -5.999 91.042
--- 
+-- !pos -29.887 -5.999 91.042
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

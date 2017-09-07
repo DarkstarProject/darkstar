@@ -2,7 +2,7 @@
 -- Area: West Ronfaure
 --  NPC: Yoshihiro, I.M.
 -- Outpost Conquest Guards
--- @pos -450.571 -20.807 -219.970 100
+-- !pos -450.571 -20.807 -219.970 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

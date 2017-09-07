@@ -9,22 +9,41 @@ cmdprops =
     parameters = "is"
 };
 
+function error(player, msg)
+    player:PrintToPlayer(msg);
+    player:PrintToPlayer("!mp <amount> {player}");
+end;
+
 function onTrigger(player, mp, target)
-    if (mp == nil) then
-        player:PrintToPlayer("You must enter a valid amount.");
-        player:PrintToPlayer( "@mp <amount> <player>" );
+    -- validate amount
+    if (mp == nil or tonumber(mp) == nil) then
+        error(player, "You must provide an amount.");
+        return;
+    elseif (mp < 0) then
+        error(player, "Invalid amount.");
         return;
     end
 
+    -- validate target
+    local targ;
     if (target == nil) then
-        player:setMP(mp);
+        targ = player;
     else
-        local targ = GetPlayerByName(target);
-        if (targ ~= nil) then
-            targ:setMP(mp);
-        else
-            player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );
-            player:PrintToPlayer( "@mp <amount> <player>" );
+        targ = GetPlayerByName(target);
+        if (targ == nil) then
+            error(player, string.format( "Player named '%s' not found!", target ) );
+            return;
         end
     end
+    
+    -- set mp
+    if (targ:getHP() > 0) then
+        targ:setMP(mp);
+        if(targ:getID() ~= player:getID()) then
+            player:PrintToPlayer(string.format("Set %s's MP to %i.", targ:getName(), targ:getMP()));
+        end
+    else
+        player:PrintToPlayer(string.format("%s is currently dead.", targ:getName()));
+    end
+
 end;

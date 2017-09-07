@@ -2,7 +2,7 @@
 --  Area: Al'Taieu
 --  NPC:  Quasilumin
 --  Type: Standard NPC
--- @pos -27.443 -1 -636.850 33
+-- !pos -27.443 -1 -636.850 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------

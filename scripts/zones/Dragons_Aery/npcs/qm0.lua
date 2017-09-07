@@ -2,7 +2,7 @@
 -- Area: Dragons Aery
 --  NPC: qm0 (???)
 -- Spawns Fafnir or Nidhogg
--- @pos -81 32 2 178
+-- !pos -81 32 2 178
 -----------------------------------
 package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
 -----------------------------------

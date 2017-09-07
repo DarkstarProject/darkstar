@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Collione
 --  General Info NPC
---  @zone 230 
--- @pos 10 2 -66
+--  @zone 230
+-- !pos 10 2 -66
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -11,9 +11,9 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -28,17 +28,17 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     player:startEvent(0x35b);
 -- player:startEvent(0x0356)  --chocobo dig game
 -- player:startEvent(0x0358)  -- play the chocobo game
 -- player:startEvent(0x0359)  -- rules for choc game
 -- player:startEvent(0x035a)  -- cant give more greens
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

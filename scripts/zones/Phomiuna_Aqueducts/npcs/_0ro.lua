@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:  Oil lamp
--- @pos -60 -23 60 27
+-- !pos -60 -23 60 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
@@ -14,7 +14,7 @@ require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
     local element = VanadielDayElement();
     --printf("element: %u",element);
-    
+
     if (element == 0) then -- fireday
         if (GetNPCByID(DoorOffset+6):getAnimation() == 8) then -- lamp fire open?
             GetNPCByID(DoorOffset-3):openDoor(15); -- Open Door _0rk
@@ -39,8 +39,8 @@ function onTrigger(player,npc)
             GetNPCByID(DoorOffset-3):openDoor(15); -- Open Door _0rk
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

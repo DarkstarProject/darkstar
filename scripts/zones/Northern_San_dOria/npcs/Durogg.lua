@@ -3,7 +3,7 @@
 --   NPC: Durogg
 --  Type: Past Event Watcher
 -- @zone 231
--- @pos 15 0 -18
+-- !pos 15 0 -18
 -----------------------------------
 
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
 
     -- Determine if any cutscenes are available for the player.
     local gil = player:getGil();
-    if (AddonScenarios    == 0xFFFFFFFE and 
+    if (AddonScenarios    == 0xFFFFFFFE and
         SeekersOfAdoulin  == 0xFFFFFFFE)
     then -- Player has no cutscenes available to be viewed.
         gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
@@ -59,12 +59,12 @@ end;
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (player:delGil(10) == false) then
         player:setLocalVar("Durogg_PlayCutscene", 2) ; -- Cancel the cutscene.
         player:updateEvent(0);
     else
-        player:setLocalVar("Durogg_PlayCutscene", 1) 
+        player:setLocalVar("Durogg_PlayCutscene", 1)
     end
 end;
 

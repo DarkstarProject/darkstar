@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
 --  NPC: ??? (Spawn Pandemonium Warden)
--- @pos 200 33 -140 68
+-- !pos 200 33 -140 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------

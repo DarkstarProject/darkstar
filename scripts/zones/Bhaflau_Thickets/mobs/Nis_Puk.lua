@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 --  NM:  Nis_Puk
--- @pos -155.319 -15.959 -599.366 52
+-- !pos -155.319 -15.959 -599.366 52
 -----------------------------------
 require("scripts/zones/Bhaflau_Thickets/MobIDs");
 

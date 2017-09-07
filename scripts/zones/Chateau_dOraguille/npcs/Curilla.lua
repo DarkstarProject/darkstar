@@ -2,7 +2,7 @@
 -- Area: Chateau d'Oraguille
 -- NPC:  Curilla
 -- Starts and Finishes Quest: The General's Secret, Enveloped in Darkness, Peace for the Spirit, Lure of the Wildcat (San d'Oria)
--- @pos 27 0.1 0.1 233
+-- !pos 27 0.1 0.1 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -16,13 +16,13 @@ require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -30,14 +30,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local mLvL = player:getMainLvl();
     local mJob = player:getMainJob();
     local theGeneralSecret = player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET);
     local envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
     local peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
     local WildcatSandy = player:getVar("WildcatSandy");
-    
+
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,15) == false) then
         player:startEvent(0x0232);
     elseif (theGeneralSecret == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
@@ -69,8 +69,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0212); -- Standard dialog
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -89,12 +89,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 0x0037 and option == 1) then 
+    if (csid == 0x0037 and option == 1) then
         player:addQuest(SANDORIA,THE_GENERAL_S_SECRET)
         player:addKeyItem(CURILLAS_BOTTLE_EMPTY);
         player:messageSpecial(KEYITEM_OBTAINED,CURILLAS_BOTTLE_EMPTY);
-    elseif (csid == 0x0036) then 
-        if (player:getFreeSlotsCount() == 0) then 
+    elseif (csid == 0x0036) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16409); -- Lynx Baghnakhs
         else
             player:delKeyItem(CURILLAS_BOTTLE_FULL);
@@ -110,7 +110,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x006D and option == 1) then
         player:addQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
         player:setVar("needs_crawler_blood",0);
-    elseif (csid == 0x0065) then 
+    elseif (csid == 0x0065) then
         player:setVar("needs_crawler_blood",1);
     elseif (csid == 0x0232) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",15,true);

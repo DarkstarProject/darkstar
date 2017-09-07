@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Monastic Cavern
 -- NPC:  ???
--- Used In Quest: Whence Blows the Wind 
--- @pos 168 -1 -22 150
+-- Used In Quest: Whence Blows the Wind
+-- !pos 168 -1 -22 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------
@@ -24,14 +24,14 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND) == QUEST_ACCEPTED and player:hasKeyItem(ORCISH_CREST) == false) then
         player:addKeyItem(ORCISH_CREST);
         player:messageSpecial(KEYITEM_OBTAINED, ORCISH_CREST);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
+
 end;
 
 -----------------------------------

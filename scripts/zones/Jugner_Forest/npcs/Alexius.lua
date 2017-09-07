@@ -2,7 +2,7 @@
 --  Area: Jugner Forest
 --  NPC:  Alexius
 --  Involved in Quest: A purchase of Arms & Sin Hunting
--- @pos  105 1 382 104
+-- !pos  105 1 382 104
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
@@ -24,13 +24,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-   
-      local SinHunting = player:getVar("sinHunting");    -- RNG AF1 
-   
+
+      local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+
     if (player:hasKeyItem(WEAPONS_ORDER) == true) then
         player:startEvent(0x0005);
     elseif (SinHunting == 3) then
-        player:startEvent(0x000a);        
+        player:startEvent(0x000a);
     end
 end;
 

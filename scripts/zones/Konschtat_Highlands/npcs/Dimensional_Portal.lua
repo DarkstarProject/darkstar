@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Dimensional_Portal
--- @pos 220.000 19.104 140.000 108
+-- !pos 220.000 19.104 140.000 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

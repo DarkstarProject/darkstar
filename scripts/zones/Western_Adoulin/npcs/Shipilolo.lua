@@ -7,7 +7,7 @@
 --                        'The Old Man and the Harpoon'
 --                        'Wayward Waypoints'
 --  @zone 256
--- @pos 84 0 -60
+-- !pos 84 0 -60
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -21,7 +21,7 @@ require("scripts/zones/Western_Adoulin/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

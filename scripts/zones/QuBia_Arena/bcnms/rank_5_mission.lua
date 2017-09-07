@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- NPC:  Mission Rank 5
--- @pos -221 -24 19 206
+-- !pos -221 -24 19 206
 -----------------------------------
 package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
 -----------------------------------
@@ -44,10 +44,10 @@ end;
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
-        
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-        
+
     if (csid == 0x7d01) then
         if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
             player:addKeyItem(BURNT_SEAL);
@@ -56,5 +56,5 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(NEW_FEIYIN_SEAL);
         end;
     end;
-    
+
 end;

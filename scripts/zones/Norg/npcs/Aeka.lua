@@ -3,7 +3,7 @@
 -- NPC: Aeka
 -- Involved in Quest: Forge Your Destiny
 -- @zone 252
--- @pos 4 0 -4
+-- !pos 4 0 -4
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -17,17 +17,17 @@ require("scripts/zones/Norg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     questItem = player:getVar("ForgeYourDestiny_Event");
-    checkItem = testflag(tonumber(questItem),0x01);    
-    
+    checkItem = testflag(tonumber(questItem),0x01);
+
     if (checkItem == true) then
         if (trade:hasItemQty(645,1) and trade:getItemCount() == 1) then
             player:startEvent(0x002f,0,1151,645); -- Oriental Steel, Darksteel Ore
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- Event Check
@@ -40,8 +40,8 @@ end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
-function onTrigger(player,npc)    
-    
+function onTrigger(player,npc)
+
     swordTimer = player:getVar("ForgeYourDestiny_timer")
 
     if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and swordTimer == 0) then
@@ -50,7 +50,7 @@ function onTrigger(player,npc)
         elseif (player:hasItem(1151) == false) then
             questItem = player:getVar("ForgeYourDestiny_Event");
             checkItem = testflag(tonumber(questItem),0x01);
-    
+
             if (checkItem == false) then
                 player:startEvent(0x002c,1152,1151); -- Bomb Steel, Oriental Steel
             elseif (checkItem == true) then
@@ -64,8 +64,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0078);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -83,9 +83,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     questItem = player:getVar("ForgeYourDestiny_Event");
-    
+
     if (csid == 0x002c) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1151);
@@ -103,5 +103,5 @@ function onEventFinish(player,csid,option)
            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
     end
-    
+
 end;

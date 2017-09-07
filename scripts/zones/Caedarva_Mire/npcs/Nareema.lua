@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 --  NPC: Nareema
 -- Type: Assault
--- @pos 518.387 -24.707 -467.297 79
+-- !pos 518.387 -24.707 -467.297 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

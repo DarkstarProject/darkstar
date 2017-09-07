@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Fochacha
 --  Type: Standard NPC
--- @pos 2.897 -1 -10.781 50
+-- !pos 2.897 -1 -10.781 50
 --  Quest: Delivering the Goods
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
@@ -25,7 +25,7 @@ end;
 
 function onTrigger(player,npc)
     local vanishingact = player:getQuestStatus(AHT_URHGAN,VANISHING_ACT);
-    local deliveryGoodsProg = player:getVar("deliveringTheGoodsCS"); 
+    local deliveryGoodsProg = player:getVar("deliveringTheGoodsCS");
     local vanishActProg = player:getVar("vanishingactCS");
     if (player:getQuestStatus(AHT_URHGAN,DELIVERING_THE_GOODS) == QUEST_AVAILABLE) then
         player:startEvent(0x0027);
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x002f);
     end
-    
+
 end;
 
 -----------------------------------

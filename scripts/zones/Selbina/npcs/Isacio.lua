@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC: Isacio
 -- Finishes Quest: Elder Memories
--- @pos -54 -1 -44 248
+-- !pos -54 -1 -44 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0075);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -48,19 +48,19 @@ function onTrigger(player,npc)
         IsacioElderMemVar = player:getVar("IsacioElderMemVar");
         if (IsacioElderMemVar == 1) then
             player:startEvent(0x0072,538);
-        elseif (IsacioElderMemVar == 2) then 
+        elseif (IsacioElderMemVar == 2) then
             player:startEvent(0x0072,537);
-        elseif (IsacioElderMemVar == 3) then 
+        elseif (IsacioElderMemVar == 3) then
             player:startEvent(0x0072,539);
         end
-    else 
+    else
         if (player:getMainLvl() >= SUBJOB_QUEST_LEVEL) then
             player:startEvent(0x006f,538);
         else
             player:startEvent(0x0077);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -79,22 +79,22 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x006f and option == 40) then
         player:addQuest(OTHER_AREAS, ELDER_MEMORIES);
         player:setVar("IsacioElderMemVar", 1);
     elseif (csid == 0x0073) then
         player:tradeComplete();
-        player:setVar("IsacioElderMemVar", 2); 
+        player:setVar("IsacioElderMemVar", 2);
     elseif (csid == 0x0074) then
         player:tradeComplete();
         player:setVar("IsacioElderMemVar", 3);
-    elseif (csid == 0x0075) then 
+    elseif (csid == 0x0075) then
         player:tradeComplete();
         player:unlockJob(0);
         player:setVar("IsacioElderMemVar", 0);
         player:messageSpecial(SUBJOB_UNLOCKED);
         player:completeQuest(OTHER_AREAS, ELDER_MEMORIES);
     end
-    
+
 end;

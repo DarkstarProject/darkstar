@@ -2,18 +2,15 @@
 -- Area: Windurst Waters
 -- NPC:  Paku-Nakku
 --  Involved in Quest: Making the Grade
--- Working 100% 
---  @zone = 238
--- @pos = 127 -6 165
+-- !pos 127 -6 165 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -32,7 +29,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01af);  -- Standard conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

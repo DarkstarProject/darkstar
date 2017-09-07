@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Rytaal
 -- Type: Standard NPC
--- @pos 112.002 -1.338 -45.038 50
+-- !pos 112.002 -1.338 -45.038 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

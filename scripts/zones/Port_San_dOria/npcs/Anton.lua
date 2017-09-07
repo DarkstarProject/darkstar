@@ -2,7 +2,7 @@
 -- Area: Port San d'Oria
 -- NPC:  Anton
 -- @zone 232
--- @pos -19 -8 27
+-- !pos -19 -8 27
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,15 +26,15 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    if (player:hasKeyItem(AIRSHIP_PASS) == false) then 
+
+    if (player:hasKeyItem(AIRSHIP_PASS) == false) then
         player:startEvent(0x0205);
     elseif (player:getGil() < 200) then
         player:startEvent(0x02cc);
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
         player:startEvent(0x025c);
     end
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x025c) then
         X = player:getXPos();
-        
+
         if (X >= -13 and X <= -8) then
             player:delGil(200);
         end

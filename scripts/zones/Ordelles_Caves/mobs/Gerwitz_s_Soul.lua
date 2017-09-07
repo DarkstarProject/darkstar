@@ -2,7 +2,7 @@
 -- Area: Ordelles Caves
 --  MOB: Gerwitz's Soul
 -- Involved In Quest: Dark Puppet
--- @pos -51 0.1 3 193
+-- !pos -51 0.1 3 193
 -----------------------------------
 
 require("scripts/globals/quests");

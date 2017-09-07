@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 --  NPC: ??? (Spawn Wulgaru(ZNM T2))
--- @pos -22 -4 204 72
+-- !pos -22 -4 204 72
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------

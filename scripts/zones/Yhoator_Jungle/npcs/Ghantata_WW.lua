@@ -2,7 +2,7 @@
 -- Area: Yhoator Jungle
 --  NPC: Ghantata, W.W.
 -- Border Conquest Guards
--- @pos -84.113 -0.449 224.902 124
+-- !pos -84.113 -0.449 224.902 124
 -----------------------------------
 package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
 -----------------------------------

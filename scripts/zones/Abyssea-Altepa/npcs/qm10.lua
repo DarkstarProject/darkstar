@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm10 (???)
 -- Spawns Bugul Noz
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

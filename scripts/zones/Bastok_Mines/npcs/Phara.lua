@@ -1,14 +1,13 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Phara
+--  NPC: Phara
 -- Starts and Finishes Quest: The doorman (start)
 -- Involved in Quest: The Talekeeper's Truth
--- @zone 234
--- @pos 75 0 -80
+-- !zone 234
+-- !pos 75 0 -80
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -28,8 +27,8 @@ end;
 
 function onTrigger(player,npc)
 
-    theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
-    theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
+    local theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
+    local theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
 
     if (theDoorman == QUEST_AVAILABLE and player:getMainJob() == JOBS.WAR and player:getMainLvl() >= 40) then
         player:startEvent(0x0097); -- Start Quests "The doorman"

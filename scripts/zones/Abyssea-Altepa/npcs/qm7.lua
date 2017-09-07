@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm7 (???)
 -- Spawns Waugyl
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

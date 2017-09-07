@@ -2,7 +2,7 @@
 -- Area: Arrapago Reef
 -- NPC: Cutter
 -- The ship for The Black Coffin Battle (TOAU-15)
--- @pos -462 -2 -394 54
+-- !pos -462 -2 -394 54
 -----------------------------------
 
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
@@ -76,7 +76,7 @@ end;
 -----------------------------------
 
 function onInstanceCreated(player,target,instance)
-    if (instance) then        
+    if (instance) then
         player:setInstance(instance);
         player:instanceEntry(target,4);
 

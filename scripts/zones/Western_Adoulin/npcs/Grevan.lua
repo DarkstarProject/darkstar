@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
 --  @zone 256
---  @pos 50 0 6 256
+--  !pos 50 0 6 256
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
                 player:startEvent(0x00BC);
             else
                 -- Standard dialogue before stamping out plague in Svenja quest line
-                player:startEvent(0x00AB); 
+                player:startEvent(0x00AB);
             end
         else
             -- Standard dialogue prior to Svenja quest line
@@ -53,7 +53,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)  
+function onEventFinish(player,csid,option)
     if (csid == 0x0045) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 10, true);

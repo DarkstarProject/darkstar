@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
 -- NPC:  _5cb (Gate of Darkness)
--- @pos -228 0 99 192
+-- !pos -228 0 99 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -26,8 +26,8 @@ function onTrigger(player,npc)
         player:messageSpecial(DOOR_FIRMLY_CLOSED);
     end
     return 1;
-end; 
-        
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

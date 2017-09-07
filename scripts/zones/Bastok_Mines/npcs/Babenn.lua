@@ -1,18 +1,17 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Babenn
+--  NPC: Babenn
 -- Finishes Quest: The Eleventh's Hour
 -- Involved in Quests: Riding on the Clouds
--- @zone 234
--- @pos 73 -1 34
+-- !pos 73 -1 34 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -76,5 +75,4 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16629);
         end
     end
-
 end;

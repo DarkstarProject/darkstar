@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Hall of Transference
 -- NPC:  Large Apparatus (Left) - Mea
--- @pos 269 -81 -39 14
+-- !pos 269 -81 -39 14
 -----------------------------------
 package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
 -----------------------------------
