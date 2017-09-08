@@ -26,6 +26,7 @@
 #include "../../utils/battleutils.h"
 #include "../../lua/luautils.h"
 #include "../../mobskill.h"
+#include "../../../common/utils.h"
 
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
@@ -82,7 +83,6 @@ bool CAutomatonController::TrySpellcast()
 
 bool CAutomatonController::TryTPMove()
 {
-    //TODO: range checks
     if (PAutomaton->health.tp > 1000)
     {
         const auto& FamilySkills = battleutils::GetMobSkillList(PAutomaton->m_Family);
@@ -110,11 +110,14 @@ bool CAutomatonController::TryTPMove()
         int8 currentManeuvers = -1;
         for (auto PSkill : validSkills)
         {
-            int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
-            if ( maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))
+            if(distance(PAutomaton->loc.p, PTarget->loc.p) <= PSkill->getDistance())
             {
-                currentManeuvers = maneuvers;
-                currentSkill = PSkill->getParam();
+                int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
+                if(maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))
+                {
+                    currentManeuvers = maneuvers;
+                    currentSkill = PSkill->getParam();
+                }
             }
         }
 

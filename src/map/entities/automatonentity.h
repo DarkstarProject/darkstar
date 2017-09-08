@@ -61,8 +61,8 @@ public:
 	~CAutomatonEntity();
 
     automaton_equip_t m_Equip;
-    std::array<uint8, 8> m_ElementMax;
-    std::array<uint8, 8> m_ElementEquip;
+    std::array<uint8, 8> m_ElementMax {};
+    std::array<uint8, 8> m_ElementEquip {};
 
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
