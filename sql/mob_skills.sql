@@ -1765,7 +1765,7 @@ INSERT INTO `mob_skills` VALUES (1945,1219,'provoke',0,7.0,2000,0,4,4,0,0);
 INSERT INTO `mob_skills` VALUES (1946,1690,'shock_absorber',0,7.0,2000,0,16,4,0,0);
 INSERT INTO `mob_skills` VALUES (1947,1691,'flashbulb',0,7.0,2000,0,4,4,0,0);
 INSERT INTO `mob_skills` VALUES (1948,1692,'mana_converter',0,7.0,2000,0,16,4,0,0);
-INSERT INTO `mob_skills` VALUES (1949,1757,'ranged_attack',0,25.0,2000,0,4,4,0,0);
+INSERT INTO `mob_skills` VALUES (1949,16,'ranged_attack',0,25.0,2000,0,4,4,0,0);
 -- INSERT INTO `mob_skills` VALUES (1950,1694,'belly_dance',0,7.0,2000,1500,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1951,1345,'magma_fan',4,10.0,2000,1000,4,0,0,0);
 INSERT INTO `mob_skills` VALUES (1952,1346,'erratic_flutter',1,15.0,2000,1000,4,0,0,0);
