@@ -2,17 +2,15 @@
 -- Area: Windurst Waters
 --  NPC: Sigismund
 -- Starts and Finishes Quest: To Catch a Falling Star
---    Working 100%
---  @zone = 240
--- @pos = -110 -10 82
+-- !pos -110 -10 82 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/quests");
+require("scripts/zones/Port_Windurst/TextIDs");
 require("scripts/globals/settings");
+require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-require("scripts/zones/Port_Windurst/TextIDs");
 
 -----------------------------------
 -- onTrade Action
@@ -32,7 +30,7 @@ end;
 function onTrigger(player,npc)
     starstatus = player:getQuestStatus(WINDURST,TO_CATCH_A_FALLIHG_STAR);
     if (starstatus == QUEST_AVAILABLE) then
-        player:startEvent(0x00c4,0,546); -- Quest Start 
+        player:startEvent(0x00c4,0,546); -- Quest Start
     elseif (starstatus == QUEST_ACCEPTED) then
         player:startEvent(0x00c5,0,546); -- Quest Reminder
     elseif (starstatus == QUEST_COMPLETED and player:getVar("QuestCatchAFallingStar_prog") > 0) then
@@ -41,7 +39,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0165);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -3,7 +3,7 @@
 -- NPC:  Ensetsu
 -- Finish Quest: Ayame and Kaede
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box
--- @pos 33 -6 67 236
+-- !pos 33 -6 67 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

@@ -3,8 +3,8 @@
 --   NPC: Avandale
 --  Type: Standard NPC
 -- @zone 232
--- @pos -105.524 -9 -125.274
--- 
+-- !pos -105.524 -9 -125.274
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;

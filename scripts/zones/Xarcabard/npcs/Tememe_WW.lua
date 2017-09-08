@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 --  NPC: Tememe, W.W.
 -- Type: Border Conquest Guards
--- @pos -133.678 -22.517 112.224 112
+-- !pos -133.678 -22.517 112.224 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------

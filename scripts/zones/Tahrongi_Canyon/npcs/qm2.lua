@@ -2,7 +2,7 @@
 --  Area: Tahrongi Canyon
 --  NPC:  qm2 (???)
 --  Note: Used to spawn Yara Ma Yha Who
--- @pos 271 0.001 -334 117
+-- !pos 271 0.001 -334 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -------------------------------------

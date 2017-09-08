@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 --  NPC: Glarociquet, T.K.
--- @pos 19 -16 -28 237
+-- !pos 19 -16 -28 237
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

@@ -13,7 +13,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@title <title ID> {player}");
+    player:PrintToPlayer("!title <title ID> {player}");
 end;
 
 function onTrigger(player, titleId, target)

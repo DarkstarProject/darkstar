@@ -2,7 +2,7 @@
 -- Area: Rolanberry Fields
 --  NPC: Legion Tome
 -- Legion NPC
--- @pos 238 24 469 110
+-- !pos 238 24 469 110
 -----------------------------------
 package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
 -----------------------------------

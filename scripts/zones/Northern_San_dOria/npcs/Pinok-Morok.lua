@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Pinok-Morok
 -- Type: Smithing Synthesis Image Support
--- @pos -186.650 10.25 148.380 231
+-- !pos -186.650 10.25 148.380 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC:  Paouala
 -- Starts and Finishes Quest: Sleepless Nights
 -- @zone 230
--- @pos 158 -6 17
+-- !pos 158 -6 17
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -13,9 +13,9 @@ require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -24,14 +24,14 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0054);
         end
     end
-    
+
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
 
     sleeplessNights = player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS);
 
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0052);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

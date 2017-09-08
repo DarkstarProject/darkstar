@@ -2,7 +2,7 @@
 -- Area: Outer Horutoto Ruins
 -- NPC:  Cracked Wall
 -- Involved In Mission: The Jester Who'd Be King
--- @pos -424.255 -1.909 619.995
+-- !pos -424.255 -1.909 619.995
 -----------------------------------
 package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
@@ -29,8 +29,8 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 5) then
         player:startEvent(0x0047);
     end
-end; 
-        
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

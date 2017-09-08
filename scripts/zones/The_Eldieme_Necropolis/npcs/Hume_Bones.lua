@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis
 -- NPC:  Hume Bones
 -- Involved in Quests: Blue Ribbon Blues
--- @pos 299 0.1 19 195
+-- !pos 299 0.1 19 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
 end;
--- 
+--
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

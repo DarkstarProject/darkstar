@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok Markets
 -- NPC:  HomePoint#4
--- @pos -191 -6 -68 235
+-- !pos -191 -6 -68 235
 -----------------------------------
 
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
@@ -14,7 +14,7 @@ require("scripts/globals/homepoint");
 -----------------------------------(
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -23,7 +23,7 @@ end;
 function onTrigger(player,npc)
 
     homepointMenu( player, 0x21ff, 100);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 0x21ff) then
 
-        if (option == 1) then    
+        if (option == 1) then
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else

@@ -3,7 +3,7 @@
 --   NPC: Rachocho
 --  Type: Standard NPC
 -- @zone 246
--- @pos 3.789 7 -59.411
+-- !pos 3.789 7 -59.411
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

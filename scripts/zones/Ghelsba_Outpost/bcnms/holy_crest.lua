@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
 -- Name: Holy Crest - DRG flag quest
--- @pos -162 -11 78 140
+-- !pos -162 -11 78 140
 -----------------------------------
 package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
 -----------------------------------
@@ -31,7 +31,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print(leave code ..leavecode);
-    
+
     if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
         if (player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
             player:startEvent(0x7d01,1,1,1,instance:getTimeInside(),1,1,0);
@@ -41,16 +41,16 @@ function onBcnmLeave(player,instance,leavecode)
     elseif (leavecode == 4) then
         player:startEvent(0x7d02);
     end
-    
+
 end;
 
 function onEventUpdate(player,csid,option)
 -- print(bc update csid ..csid.. and option ..option);
 end;
-    
+
 function onEventFinish(player,csid,option)
 -- print("bc finish csid: "..csid.."and option: "..option);
-    
+
     if (csid == 0x7d01 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
         player:addTitle(HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(DRAGON_CURSE_REMEDY);
@@ -61,5 +61,5 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA,THE_HOLY_CREST);
         player:setPetName(PETTYPE_WYVERN,option+1);
     end
-    
+
 end;

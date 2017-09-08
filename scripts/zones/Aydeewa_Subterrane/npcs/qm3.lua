@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
 --  NPC: ??? (Spawn Chigre(ZNM T1))
--- @pos -217 35 12 68
+-- !pos -217 35 12 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
 --  NPC: Cavernous Maw
--- @pos 418 25 27 90
+-- !pos 418 25 27 90
 -- Teleports Players to Pashhow_Marshlands
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;

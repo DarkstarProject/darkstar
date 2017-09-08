@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Chauxnatte
--- @pos 85 1 -51 80
+-- !pos 85 1 -51 80
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");

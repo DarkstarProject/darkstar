@@ -122,6 +122,8 @@ CCharJobExtraPacket::CCharJobExtraPacket(CCharEntity* PChar, bool mjob)
         WBUFW(data,(0x96)) = PChar->PAutomaton->getMod(Mod::MND);
         WBUFW(data,(0x98)) = PChar->PAutomaton->stats.CHR;
         WBUFW(data,(0x9A)) = PChar->PAutomaton->getMod(Mod::CHR);
+
+        WBUFB(data, 0x9C) = 0; //extra elemental capacity from gifts
     }
 
 }

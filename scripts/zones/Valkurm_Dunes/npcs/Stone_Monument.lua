@@ -1,8 +1,8 @@
 -----------------------------------
---  Area: Valkurm Dunes
---  NPC:  Stone Monument
---  Involved in quest "An Explorer's Footsteps"
---    @pos -311.299 -4.420 -138.878 103
+-- Area: Valkurm Dunes
+--  NPC: Stone Monument
+-- Involved in quest "An Explorer's Footsteps"
+-- !pos -311.299 -4.420 -138.878 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------

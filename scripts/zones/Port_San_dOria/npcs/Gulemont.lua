@@ -3,7 +3,7 @@
 --   NPC: Gulemont
 --  Type: Quest Giver
 -- @zone 232
--- @pos -69 -5 -38
+-- !pos -69 -5 -38
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------
@@ -26,8 +26,8 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end;
     end;
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -42,12 +42,12 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x025e);
         end;
-    elseif (theDismayedCustomer == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_COMPLETED) then 
+    elseif (theDismayedCustomer == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_COMPLETED) then
         player:startEvent(0x025d);
     else
         player:startEvent(0x0251);
     end;
-    
+
 end;
 
 -----------------------------------
@@ -66,7 +66,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     -- "The Dismayed Customer"
     if (csid == 0x025d and option == 0) then
         player:addQuest(SANDORIA, THE_DISMAYED_CUSTOMER);
@@ -79,5 +79,5 @@ function onEventFinish(player,csid,option)
         player:addGil(560*GIL_RATE);
         player:messageSpecial(GIL_OBTAINED,560*GIL_RATE);
     end;
-    
+
 end;

@@ -2,7 +2,7 @@
 -- Area: Gusgen Mines
 -- NPC:  Degga
 -- Type: Standard Info NPC
--- @pos 40 -68 -259
+-- !pos 40 -68 -259
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------

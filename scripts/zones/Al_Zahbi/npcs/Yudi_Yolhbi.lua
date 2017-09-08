@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Yudi Yolhbi
 -- Type: Woodworking Normal/Adv. Image Support
--- @pos -71.584 -7 -56.018 48
+-- !pos -71.584 -7 -56.018 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

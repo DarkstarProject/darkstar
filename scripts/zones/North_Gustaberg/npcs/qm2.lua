@@ -2,7 +2,7 @@
 -- Area: North Gustaberg
 -- NPC: qm2 (???)
 -- Involved in Quest "As Thick As Thieves"
--- @pos -232.924 99.107 442.990 106
+-- !pos -232.924 99.107 442.990 106
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
@@ -16,20 +16,20 @@ require("scripts/zones/North_Gustaberg/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
     local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
-    
+
     if (thickAsThievesGamblingCS == 5) then
         SpawnMob(17211848):updateClaim(player);
     elseif (thickAsThievesGamblingCS == 6) then
         player:startEvent(0x00c8,1092);
     end
-    
+
 end;
 -----------------------------------
 -- onEventUpdate
@@ -48,9 +48,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 0x00c8) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1092);
-        else 
+        else
             player:addItem(1092);
             player:messageSpecial(ITEM_OBTAINED,1092);
             player:setVar("thickAsThievesGamblingCS",7);

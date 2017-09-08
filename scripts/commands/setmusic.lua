@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@setmusic <type ID> <song ID>");
+    player:PrintToPlayer("!setmusic <type ID> <song ID>");
     player:PrintToPlayer("type IDs: 0 = BGM (Day), 1 = BGM (Night), 2 = Solo-Battle, 3 = Party-Battle, 4 = Chocobo");
 end;
 

@@ -3,7 +3,7 @@
 -- NPC:  ???
 -- Involved In Quest: The Talekeeper's Truth
 -- @zone 143
--- @pos 15 -31 -94
+-- !pos 15 -31 -94
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getVar("theTalekeeperTruthCS") == 3) then
         player:messageSpecial(SENSE_OF_FOREBODING);
         SpawnMob(17363318):updateClaim(player);

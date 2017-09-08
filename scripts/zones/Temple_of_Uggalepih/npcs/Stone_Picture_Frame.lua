@@ -2,7 +2,7 @@
 -- Area:  Temple of Uggalepih
 -- NPC:   Stone Picture Frame
 -- Notes: Opens door to Den of Rancor using Painbrush of Souls
--- @pos -52.239 -2.089 10.000 159
+-- !pos -52.239 -2.089 10.000 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

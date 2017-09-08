@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC: Shupah Mujuuk
 -- Title Change NPC
--- @pos 12 8 20 247
+-- !pos 12 8 20 247
 -----------------------------------
 
 require("scripts/globals/titles");

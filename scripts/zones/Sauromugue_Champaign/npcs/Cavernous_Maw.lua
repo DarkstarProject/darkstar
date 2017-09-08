@@ -2,7 +2,7 @@
 -- Area: Sauromugue Champaign
 --  NPC: Cavernous Maw
 -- Teleports Players to Sauromugue_Champaign_S
--- @pos 369 8 -227 120
+-- !pos 369 8 -227 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);    
+        player:addTitle(CAIT_SITHS_ASSISTANT);
         toMaw(player,5);
     end;
 end;

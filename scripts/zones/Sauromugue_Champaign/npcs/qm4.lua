@@ -1,8 +1,8 @@
 -----------------------------------
 --  Area: Sauromugue Champaign
---  NPC: qm4 (???) (Tower 4) 
+--  NPC: qm4 (???) (Tower 4)
 --  Involved in Quest: THF AF "As Thick As Thieves"
--- @pos 129.587 -0.600 -235.525 120
+-- !pos 129.587 -0.600 -235.525 120
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
@@ -35,22 +35,22 @@ function onTrigger(player,npc)
 
     local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES);
     local thickAsThievesGrapplingCS = player:getVar("thickAsThievesGrapplingCS");
-    
+
     if (thickAsThieves == QUEST_ACCEPTED) then
         if (thickAsThievesGrapplingCS == 4) then
             player:messageSpecial(THF_AF_MOB);
-            GetMobByID(17269107):setSpawn(122,0,-230); 
-            SpawnMob(17269107):updateClaim(player); -- Climbpix Highrise   
+            GetMobByID(17269107):setSpawn(122,0,-230);
+            SpawnMob(17269107):updateClaim(player); -- Climbpix Highrise
         elseif (thickAsThievesGrapplingCS == 0 or thickAsThievesGrapplingCS == 1 or
             thickAsThievesGrapplingCS == 2 or thickAsThievesGrapplingCS == 3 or
             thickAsThievesGrapplingCS == 5 or thickAsThievesGrapplingCS == 6 or
             thickAsThievesGrapplingCS == 7) then
-            player:messageSpecial(THF_AF_WALL_OFFSET);            
-        end    
-    else 
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);    
+            player:messageSpecial(THF_AF_WALL_OFFSET);
+        end
+    else
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
-    
+
 end;
 
 -----------------------------------

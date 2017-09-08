@@ -4,8 +4,8 @@
 -- Adventurer's Assistant
 -- Only recieving Adv.Coupon and simple talk event are scripted
 -- This NPC participates in Quests and Missions
--- @zone 230 
--- @pos -8 1 1
+-- @zone 230
+-- !pos -8 1 1
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -13,12 +13,12 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    --Adventurer coupon 
+    --Adventurer coupon
     if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
         player:startEvent(0x028f);
     end
@@ -34,13 +34,13 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     player:startEvent(0x0267); -- i know a thing or 2 about these streets
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -1,15 +1,14 @@
 -----------------------------------
---  Area: Bastok Mines
+-- Area: Bastok Mines
 --  NPC: Hemewmew
---  Type: Guildworker's Union Representative
---  @zone 234
--- @pos 117.970 1.017 -10.438
+-- Type: Guildworker's Union Representative
+-- !pos 117.970 1.017 -10.438 234
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Bastok_Mines/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Mines/TextIDs");
 
 local keyitems = {
     [0] = {

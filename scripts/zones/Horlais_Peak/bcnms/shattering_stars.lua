@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horlais Peak
 -- Name: Shattering stars - Maat Fight
--- @pos -509 158 -211 139
+-- !pos -509 158 -211 139
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------

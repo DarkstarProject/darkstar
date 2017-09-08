@@ -2,7 +2,7 @@
 -- Area: Full Moon Fountain
 -- NPC:  Moon Spiral
 -- Involved in Quests: The Moonlit Path
--- @pos -302 9 -260 170
+-- !pos -302 9 -260 170
 -----------------------------------
 package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
 -------------------------------------

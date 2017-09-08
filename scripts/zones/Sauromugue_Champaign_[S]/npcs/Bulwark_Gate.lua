@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sauromugue Champaign [S]
 --  NPC: Bulwark Gate
--- @pos -445 0 342
+-- !pos -445 0 342
 -- Quest NPC
 -----------------------------------
 package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;

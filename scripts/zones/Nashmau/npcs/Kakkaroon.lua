@@ -2,7 +2,7 @@
 -- Area: Nashmau
 -- NPC: Kakkaroon
 -- Standard Info NPC
--- @pos 13.245 0.000 -25.307 53
+-- !pos 13.245 0.000 -25.307 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,15 +27,15 @@ function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
     if (ratrace == QUEST_AVAILABLE) then
        player:startEvent(0x0134);
-    elseif (ratRaceProg == 6) then  
+    elseif (ratRaceProg == 6) then
        player:startEvent(0x0138);
-    elseif (ratrace == QUEST_ACCEPTED) then  
+    elseif (ratrace == QUEST_ACCEPTED) then
        player:startEvent(0x0139);
 
-    elseif (ratrace == QUEST_COMPLETED) then  
+    elseif (ratrace == QUEST_COMPLETED) then
        player:startEvent(0x013a);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

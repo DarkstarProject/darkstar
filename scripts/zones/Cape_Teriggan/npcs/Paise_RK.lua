@@ -2,7 +2,7 @@
 -- Area: Cape Teriggan
 --  NPC: Bright Moon
 -- Type: Border Conquest Guards
--- @pos 119 0 282 113
+-- !pos 119 0 282 113
 -----------------------------------
 package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 -----------------------------------
@@ -21,14 +21,14 @@ local csid        = 0x7ffa;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:hasKeyItem(getSupplyKey(region)) and player:getNation() == guardnation) then
         if (supplyRunFresh(player) == 1) then
             player:startEvent(csid,16,0,0,0,1,0,0,255); -- you have brought us supplies !
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
             player:startEvent(csid,arg1,0,0x3F0000,0,0,getArg6(player),0,0);
         end
     end
-    
+
 end;
 
 -----------------------------------

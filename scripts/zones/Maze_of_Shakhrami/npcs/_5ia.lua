@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 -- NPC: Strange Apparatus
--- @pos 375 20 -259 198
+-- !pos 375 20 -259 198
 -----------------------------------
 
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (trade ~= nil) then
 
         if ( trade == 1) then -- good trade
-        
+
             local drop    = player:getLocalVar("strAppDrop");
             local dropQty = player:getLocalVar("strAppDropQty");
 
@@ -40,7 +40,7 @@ function onTrade(player,npc,trade)
         delStrAppDocStatus(player);
         player:messageSpecial(DEVICE_NOT_WORKING);
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -75,7 +75,7 @@ function onEventUpdate(player,csid,option)
                 docStatus = 0; -- Doctor
                 giveStrAppDocStatus(player);
             end
-            
+
             player:updateEvent(docStatus, 0, INFINITY_CORE, 0, 0, 0, 0, 0);
         end
     end

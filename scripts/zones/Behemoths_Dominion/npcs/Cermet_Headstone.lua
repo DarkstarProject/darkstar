@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 -- NPC:  Cermet Headstone
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Lightning Headstone)
--- @pos -74 -4 -87 127
+-- !pos -74 -4 -87 127
 -----------------------------------
 package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
 -----------------------------------
@@ -17,14 +17,14 @@ require("scripts/zones/Behemoths_Dominion/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
         -- if requirements are met and 15 mins have passed since mobs were last defeated, spawn them
         if (player:hasKeyItem(LIGHTNING_FRAGMENT) == false and GetServerVariable("[ZM4]Lightning_Headstone_Active") < os.time()) then
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         elseif (player:hasKeyItem(LIGHTNING_FRAGMENT) == false and GetServerVariable("[ZM4]Lightning_Headstone_Active") > os.time()) then
             player:addKeyItem(LIGHTNING_FRAGMENT);
             -- Check and see if all fragments have been found (no need to check wind and dark frag)
-            if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and 
+            if (player:hasKeyItem(ICE_FRAGMENT) and player:hasKeyItem(EARTH_FRAGMENT) and player:hasKeyItem(WATER_FRAGMENT) and
                player:hasKeyItem(FIRE_FRAGMENT) and player:hasKeyItem(WIND_FRAGMENT) and player:hasKeyItem(LIGHT_FRAGMENT)) then
                 player:messageSpecial(FOUND_ALL_FRAGS,LIGHTNING_FRAGMENT);
                 player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
@@ -50,8 +50,8 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(CANNOT_REMOVE_FRAG);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -69,11 +69,11 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00C8 and option == 1) then
         SpawnMob(17297450):updateClaim(player); -- Legendary Weapon
         SpawnMob(17297449):updateClaim(player); -- Ancient Weapon
         SetServerVariable("[ZM4]Lightning_Headstone_Active",0);
     end
-    
+
 end;

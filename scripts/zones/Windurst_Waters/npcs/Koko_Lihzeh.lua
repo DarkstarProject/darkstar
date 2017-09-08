@@ -2,8 +2,8 @@
 -- Area: Windurst Waters
 -- NPC:  Koko Lihzeh
 -- Involved in Quest: Making the Grade, Riding on the Clouds
--- @zone 238 
--- @pos 135 -6 162
+-- @zone 238
+-- !pos 135 -6 162
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 1) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01ac); -- Standard conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

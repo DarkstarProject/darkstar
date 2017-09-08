@@ -825,7 +825,7 @@ function hasSleepEffects(target)
 end;
 
 ------------------------------------
--- These codes are the gateway to directly interacting with the pXI core program with status effects.
+-- These values are the codes that represent any statistic possible on an entity.
 -- These are NOT the actual status effects such as weakness or silence,
 -- but rather arbitrary codes chosen to represent different modifiers to the effected characters and mobs.
 --

@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Newton Movalpolos
 --  NPC:  Sleakachiq
--- @pos 162.504 14.999 136.901 12
+-- !pos 162.504 14.999 136.901 12
 -----------------------------------
 package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
 -----------------------------------
@@ -31,9 +31,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local Ypos = player:getYPos();
-    
+
     if (Ypos <= 16.5) then
         player:startEvent(0x001B);
     elseif (Ypos >= 19.5) then

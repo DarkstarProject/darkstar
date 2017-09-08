@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: 
+-- NPC:
 -- @zone 246
--- @pos 
+-- !pos
 -----------------------------------
 
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
@@ -13,7 +13,7 @@ require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

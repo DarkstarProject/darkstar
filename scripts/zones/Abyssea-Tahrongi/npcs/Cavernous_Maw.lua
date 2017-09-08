@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Abyssea - Tahrongi
 --  NPC: Cavernous Maw
--- @pos -31.000, 47.000, -681.000 45
+-- !pos -31.000, 47.000, -681.000 45
 -- Teleports Players to Tahrongi Canyon
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Tahrongi/TextIDs"] = nil;

@@ -3,7 +3,7 @@
 -- NPC:   qm2 (???)
 -- Involved in Quest: Open Sesame
 -- Notes: Used to obtain a Tremor Stone
--- @pos -545.184,1.855,-495.693 209
+-- !pos -545.184,1.855,-495.693 209
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
     local TREMORSTONE = 2796;
-    
+
     -- Give Player a Tremorstone if they don't have one
     if (player:hasItem(TREMORSTONE) == false) then
         player:addItem(TREMORSTONE);

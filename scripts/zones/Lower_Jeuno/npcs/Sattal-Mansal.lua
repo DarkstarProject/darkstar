@@ -3,7 +3,7 @@
 -- NPC:  Sattal-Mansal
 -- Starts and Finishes Quest: Mysteries of Beadeaux I & II
 -- @zone 245
--- @pos 40 3 -53
+-- !pos 40 3 -53
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -18,12 +18,12 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) and trade:getItemCount() == 1) then 
+    if (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_I) == QUEST_ACCEPTED and trade:hasItemQty(495,1) and trade:getItemCount() == 1) then
         player:startEvent(0x005B); -- Ending quest Mysteries I
-    elseif (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) and trade:getItemCount() == 1) then 
+    elseif (player:getQuestStatus(JEUNO,MYSTERIES_OF_BEADEAUX_II) == QUEST_ACCEPTED and trade:hasItemQty(494,1) and trade:getItemCount() == 1) then
         player:startEvent(0x005C); -- Ending quest Mysteries II
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -53,7 +53,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x0059) then 
+    if (csid == 0x0059) then
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
     elseif (csid == 0x005B) then

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: East Ronfaure
 --  NPC: Cavernous Maw
--- @pos 322 -59 503 101
+-- !pos 322 -59 503 101
 -- Teleports Players to East Ronfaure [S]
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;

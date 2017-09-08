@@ -3,7 +3,7 @@
 --   NPC: Geuhbe
 --  Type: Event Scene Replayer
 -- @zone 245
--- @pos -74.309 -1 -114.174
+-- !pos -74.309 -1 -114.174
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

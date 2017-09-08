@@ -372,6 +372,15 @@ namespace message
                     PChar->PLinkshell1->RemoveMemberByName((int8*)extra->data() + 4);
                 }
             }
+            else if (PChar && PChar->PLinkshell2 && PChar->PLinkshell2->getID() == RBUFL(extra->data(), 24))
+            {
+                uint8 kickerRank = RBUFB(extra->data(), 28);
+                CItemLinkshell* targetLS = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
+                if (kickerRank == LSTYPE_LINKSHELL || (kickerRank == LSTYPE_PEARLSACK && targetLS && targetLS->GetLSType() == LSTYPE_LINKPEARL))
+                {
+                    PChar->PLinkshell2->RemoveMemberByName((int8*)extra->data() + 4);
+                }
+            }
             break;
         }
         default:

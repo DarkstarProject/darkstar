@@ -335,26 +335,27 @@ namespace charutils
             "pos_x,"                //  4
             "pos_y,"                //  5
             "pos_z,"                //  6
-            "boundary,"             //  7
-            "home_zone,"            //  8
-            "home_rot,"             //  9
-            "home_x,"               // 10
-            "home_y,"               // 11
-            "home_z,"               // 12
-            "nation,"               // 13
-            "quests,"               // 14
-            "keyitems,"             // 15
-            "abilities,"            // 16
-            "weaponskills,"         // 17
-            "titles,"               // 18
-            "zones,"                // 19
-            "missions,"             // 20
-            "assault,"              // 21
-            "campaign,"             // 22
-            "playtime,"             // 23
-            "isnewplayer,"          // 24
-            "campaign_allegiance,"  // 25
-            "isstylelocked "        // 26
+            "moghouse,"             //  7
+            "boundary,"             //  8
+            "home_zone,"            //  9
+            "home_rot,"             // 10
+            "home_x,"               // 11
+            "home_y,"               // 12
+            "home_z,"               // 13
+            "nation,"               // 14
+            "quests,"               // 15
+            "keyitems,"             // 16
+            "abilities,"            // 17
+            "weaponskills,"         // 18
+            "titles,"               // 19
+            "zones,"                // 20
+            "missions,"             // 21
+            "assault,"              // 22
+            "campaign,"             // 23
+            "playtime,"             // 24
+            "isnewplayer,"          // 25
+            "campaign_allegiance,"  // 26
+            "isstylelocked "        // 27
             "FROM chars "
             "WHERE charid = %u";
 
@@ -373,65 +374,66 @@ namespace charutils
             PChar->loc.p.x = Sql_GetFloatData(SqlHandle, 4);
             PChar->loc.p.y = Sql_GetFloatData(SqlHandle, 5);
             PChar->loc.p.z = Sql_GetFloatData(SqlHandle, 6);
-            PChar->loc.boundary = (uint16)Sql_GetIntData(SqlHandle, 7);
+            PChar->m_moghouseID = Sql_GetIntData(SqlHandle, 7);
+            PChar->loc.boundary = (uint16)Sql_GetIntData(SqlHandle, 8);
 
-            PChar->profile.home_point.destination = (uint16)Sql_GetIntData(SqlHandle, 8);
-            PChar->profile.home_point.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 9);
-            PChar->profile.home_point.p.x = Sql_GetFloatData(SqlHandle, 10);
-            PChar->profile.home_point.p.y = Sql_GetFloatData(SqlHandle, 11);
-            PChar->profile.home_point.p.z = Sql_GetFloatData(SqlHandle, 12);
+            PChar->profile.home_point.destination = (uint16)Sql_GetIntData(SqlHandle, 9);
+            PChar->profile.home_point.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 10);
+            PChar->profile.home_point.p.x = Sql_GetFloatData(SqlHandle, 11);
+            PChar->profile.home_point.p.y = Sql_GetFloatData(SqlHandle, 12);
+            PChar->profile.home_point.p.z = Sql_GetFloatData(SqlHandle, 13);
 
-            PChar->profile.nation = (uint8)Sql_GetIntData(SqlHandle, 13);
+            PChar->profile.nation = (uint8)Sql_GetIntData(SqlHandle, 14);
 
             size_t length = 0;
             int8* quests = nullptr;
-            Sql_GetData(SqlHandle, 14, &quests, &length);
+            Sql_GetData(SqlHandle, 15, &quests, &length);
             memcpy(PChar->m_questLog, quests, (length > sizeof(PChar->m_questLog) ? sizeof(PChar->m_questLog) : length));
 
             length = 0;
             int8* keyitems = nullptr;
-            Sql_GetData(SqlHandle, 15, &keyitems, &length);
+            Sql_GetData(SqlHandle, 16, &keyitems, &length);
             memcpy((void*)&PChar->keys, keyitems, (length > sizeof(PChar->keys) ? sizeof(PChar->keys) : length));
 
             length = 0;
             int8* abilities = nullptr;
-            Sql_GetData(SqlHandle, 16, &abilities, &length);
+            Sql_GetData(SqlHandle, 17, &abilities, &length);
             memcpy(PChar->m_LearnedAbilities, abilities, (length > sizeof(PChar->m_LearnedAbilities) ? sizeof(PChar->m_LearnedAbilities) : length));
 
             length = 0;
             int8* weaponskills = nullptr;
-            Sql_GetData(SqlHandle, 17, &weaponskills, &length);
+            Sql_GetData(SqlHandle, 18, &weaponskills, &length);
             memcpy(&PChar->m_LearnedWeaponskills, weaponskills, (length > sizeof(PChar->m_LearnedWeaponskills) ? sizeof(PChar->m_LearnedWeaponskills) : length));
 
             length = 0;
             int8* titles = nullptr;
-            Sql_GetData(SqlHandle, 18, &titles, &length);
+            Sql_GetData(SqlHandle, 19, &titles, &length);
             memcpy(PChar->m_TitleList, titles, (length > sizeof(PChar->m_TitleList) ? sizeof(PChar->m_TitleList) : length));
 
             length = 0;
             int8* zones = nullptr;
-            Sql_GetData(SqlHandle, 19, &zones, &length);
+            Sql_GetData(SqlHandle, 20, &zones, &length);
             memcpy(PChar->m_ZonesList, zones, (length > sizeof(PChar->m_ZonesList) ? sizeof(PChar->m_ZonesList) : length));
 
             length = 0;
             int8* missions = nullptr;
-            Sql_GetData(SqlHandle, 20, &missions, &length);
+            Sql_GetData(SqlHandle, 21, &missions, &length);
             memcpy(PChar->m_missionLog, missions, (length > sizeof(PChar->m_missionLog) ? sizeof(PChar->m_missionLog) : length));
 
             length = 0;
             int8* assault = nullptr;
-            Sql_GetData(SqlHandle, 21, &assault, &length);
+            Sql_GetData(SqlHandle, 22, &assault, &length);
             memcpy(&PChar->m_assaultLog, assault, (length > sizeof(PChar->m_assaultLog) ? sizeof(PChar->m_assaultLog) : length));
 
             length = 0;
             int8* campaign = nullptr;
-            Sql_GetData(SqlHandle, 22, &campaign, &length);
+            Sql_GetData(SqlHandle, 23, &campaign, &length);
             memcpy(&PChar->m_campaignLog, campaign, (length > sizeof(PChar->m_campaignLog) ? sizeof(PChar->m_campaignLog) : length));
 
-            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 23));
-            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 24) == 1 ? true : false;
-            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
-            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
+            PChar->m_isNewPlayer = Sql_GetIntData(SqlHandle, 25) == 1 ? true : false;
+            PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 26);
+            PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 27) == 1 ? true : false);
         }
 
         LoadSpells(PChar);
@@ -797,8 +799,8 @@ namespace charutils
         PChar->StatusEffectContainer->LoadStatusEffects();
 
         charutils::LoadEquip(PChar);
-        PChar->health.hp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxHP() : HP;
-        PChar->health.mp = zoneutils::IsResidentialArea(PChar->loc.destination) ? PChar->GetMaxMP() : MP;
+        PChar->health.hp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxHP() : HP;
+        PChar->health.mp = zoneutils::IsResidentialArea(PChar) ? PChar->GetMaxMP() : MP;
         PChar->UpdateHealth();
         luautils::OnGameIn(PChar, zoning == 1);
     }
@@ -1683,8 +1685,11 @@ namespace charutils
 
         if ((PChar->m_EquipBlock & (1 << equipSlotID)) ||
             !(PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) ||
-            (PItem->getReqLvl() > PChar->jobs.job[PChar->GetMJob()]))
+            (PItem->getReqLvl() > (map_config.disable_gear_scaling ?
+            PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()])))
+        {
             return false;
+        }
 
         if (equipSlotID == SLOT_MAIN)
         {
@@ -2171,7 +2176,8 @@ namespace charutils
                 }
 
                 if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
-                    (PItem->getReqLvl() <= PChar->jobs.job[PChar->GetMJob()]) &&
+                    (PItem->getReqLvl() <= (map_config.disable_gear_scaling ?
+                    PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()])) &&
                     (PItem->getEquipSlotId() & (1 << slotID)))
                 {
                     continue;
@@ -4807,16 +4813,18 @@ namespace charutils
                 "pos_x = %.3f,"
                 "pos_y = %.3f,"
                 "pos_z = %.3f,"
+                "moghouse = %u,"
                 "boundary = %u "
                 "WHERE charid = %u;";
 
             Sql_Query(SqlHandle, Query,
                 PChar->loc.destination,
-                PChar->m_moghouseID ? 0 : PChar->getZone(),
+                (PChar->m_moghouseID || PChar->loc.destination == PChar->getZone()) ? PChar->loc.prevzone : PChar->getZone(),
                 PChar->loc.p.rotation,
                 PChar->loc.p.x,
                 PChar->loc.p.y,
                 PChar->loc.p.z,
+                PChar->m_moghouseID,
                 PChar->loc.boundary,
                 PChar->id);
         }

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 -- NPC: Clais
 -- Involved In Quest: Hat in Hand
---  @zone = 238
--- @pos = -31 -3 11
+-- !pos -31 -3 11 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +16,7 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

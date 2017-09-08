@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Sachetan, I.M.
--- @pos -82 -5 165 z 240
+-- !pos -82 -5 165 z 240
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

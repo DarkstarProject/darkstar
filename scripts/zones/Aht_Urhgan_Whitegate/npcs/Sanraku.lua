@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Sanraku
 -- Type: Zeni NM pop item and trophy management.
--- @pos -125.724 0.999 22.136 50
+-- !pos -125.724 0.999 22.136 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

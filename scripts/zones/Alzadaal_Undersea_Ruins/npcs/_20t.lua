@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 -- Door: Gilded Gateway (Arrapago)
--- @pos -580 0 -159 72
+-- !pos -580 0 -159 72
 -----------------------------------
 
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
@@ -46,9 +46,9 @@ function onEventUpdate(player,csid,option,target)
      printf("CSID: %u",csid);
      printf("RESULT: %u",option);
     local instanceid = bit.rshift(option, 19) + 70
-    
+
     local party = player:getParty();
-    
+
     if (party ~= nil) then
         for i,v in ipairs(party) do
             if (not v:hasKeyItem(REMNANTS_PERMIT)) then
@@ -66,9 +66,9 @@ function onEventUpdate(player,csid,option,target)
             end
         end
     end
-    
+
     player:createInstance(instanceid, 76);
-    
+
 end;
 
 -----------------------------------
@@ -78,7 +78,7 @@ end;
 function onEventFinish(player,csid,option,target)
       printf("CSID: %u",csid);
       printf("RESULT: %u",option);
- 
+
     if ((csid == 410 and option == 4) or csid == 0x74) then
         player:setPos(0,0,0,0,76);
     end

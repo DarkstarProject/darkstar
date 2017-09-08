@@ -2,7 +2,7 @@
 --  Area: Qufim Island
 --  NPC:  Luck Rune
 --  Involved in Quest: Mhaura Fortune
--- @pos -612.948 12.573 461.963 126
+-- !pos -612.948 12.573 461.963 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------

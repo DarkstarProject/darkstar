@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
 -- NPC:  _ir9 (Iron Gate)
--- @pos 70 -1.5 140 27
+-- !pos 70 -1.5 140 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
@@ -27,21 +27,21 @@ function onTrade(player,npc,trade)
         end
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-   
+
     if (player:getXPos() >= 70) then
         npc:openDoor(15); -- Retail timed
     elseif (npc:getAnimation() == 9) then
         player:messageSpecial(DOOR_LOCKED,1660);
     end
     return 1;
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

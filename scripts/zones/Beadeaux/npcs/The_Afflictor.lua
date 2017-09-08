@@ -1,15 +1,14 @@
 -----------------------------------
 -- Area: Beadeaux
--- NPC:  The Afflictor
+--  NPC: The Afflictor
 -- @zone 147
--- @pos <many>
+-- !pos <many.. Todo: list them?>
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Beadeaux/TextIDs");
-require("scripts/globals/quests");
 require("scripts/globals/settings");
+require("scripts/globals/quests");
 
 -----------------------------------
 -- onTrade Action

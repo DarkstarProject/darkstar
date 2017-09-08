@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Meriphataud Mountains
 --  NPC: Cavernous Maw
--- @pos 597 -32 279 119
+-- !pos 597 -32 279 119
 -- Teleports Players to Meriphataud Mountains [S]
 -----------------------------------
 package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;

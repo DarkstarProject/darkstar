@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 -- NPC: Valderotaux
 --  General Info NPC
--- @pos 97 0.1 113 230
+-- !pos 97 0.1 113 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -10,9 +10,9 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
------------------------------------ 
--- onTrade Action 
------------------------------------ 
+-----------------------------------
+-- onTrade Action
+-----------------------------------
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
@@ -24,11 +24,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------ 
--- onTrigger Action 
 -----------------------------------
- 
-function onTrigger(player,npc) 
+-- onTrigger Action
+-----------------------------------
+
+function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
     local lakeProg = player:getVar("Lakeside_Minuet_Progress");
     if (lakeProg == 1) then
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x03A);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -3,7 +3,7 @@
 -- NPC:  Raibaht
 -- Starts and Finishes Quest: Dark Legacy
 -- Involved in Quest: The Usual, Riding on the Clouds
--- @pos -27 -10 -1 237
+-- !pos -27 -10 -1 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 7) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -34,13 +34,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local darkLegacy = player:getQuestStatus(BASTOK,DARK_LEGACY);
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
-    
+
     local WildcatBastok = player:getVar("WildcatBastok");
-    
+
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(0x03a5);
     elseif (darkLegacy == QUEST_AVAILABLE and mJob == 8 and mLvl >= AF1_QUEST_LEVEL) then
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01f5);
     end
-    
+
 end;
 
 -----------------------------------
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,DARK_LEGACY);
         player:setVar("darkLegacyCS",1);
     elseif (csid == 0x02f3) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
         else
             player:delKeyItem(DARKSTEEL_FORMULA);

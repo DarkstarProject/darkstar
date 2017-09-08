@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
 --  @zone 256
--- @pos 127 4 -81
+-- !pos 127 4 -81
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -43,7 +43,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     if (csid == 0x0043) then
         -- Progresses Quest: 'Order Up'
         player:setMaskBit("Order_Up_NPCs", 7, true);

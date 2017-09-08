@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Port San d'Oria
 -- NPC:  Leonora
--- Involved in Quest: 
+-- Involved in Quest:
 -- @zone 232
--- @pos -24 -8 15
+-- !pos -24 -8 15
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,18 +26,18 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
-    if (player:getZPos() >= 12) then 
+
+    if (player:getZPos() >= 12) then
         player:startEvent(0x0206);
     end
-    
+
 end;
 
 -----------------------------------

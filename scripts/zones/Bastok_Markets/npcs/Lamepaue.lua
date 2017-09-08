@@ -1,13 +1,11 @@
 -----------------------------------
---  Area: Bastok Markets
---   NPC: Lamepaue
---  Type: Past Event Watcher
--- @zone 235
--- @pos -172.136 -5 -69.632
+-- Area: Bastok Markets
+--  NPC: Lamepaue
+-- Type: Past Event Watcher
+-- !pos -172.136 -5 -69.632 235
 -----------------------------------
-
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/quests");
 
@@ -25,7 +23,7 @@ end;
 function onTrigger(player,npc)
 
     -- Bastok Missions.
-    local BastokMissions = 0xFFFFFFFE; 
+    local BastokMissions = 0xFFFFFFFE;
     if (player:hasCompletedMission (BASTOK,FETICHISM)) then
         BastokMissions = BastokMissions - 2; -- Fetichism.
     end
@@ -34,7 +32,7 @@ function onTrigger(player,npc)
     end
 
     -- Bastok Quests.
-    local BastokQuests = 0xFFFFFFFE; 
+    local BastokQuests = 0xFFFFFFFE;
     if (player:hasCompleteQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER)) then
         BastokQuests = BastokQuests - 2;     -- The Return of the Adventurer
     end
@@ -55,9 +53,9 @@ function onTrigger(player,npc)
     if (player:hasCompleteQuest(BASTOK,ACHIEVING_TRUE_POWER)) then
         BastokQuests = BastokQuests - 128;   -- Achieving True Power
     end
-    if (player:hasCompleteQuest(BASTOK,TOO_MANY_CHEFS)) then 
+    if (player:hasCompleteQuest(BASTOK,TOO_MANY_CHEFS)) then
         BastokQuests = BastokQuests - 512;   -- Too Many Chefs
-        
+
     end
     if (player:hasCompleteQuest(BASTOK,A_PROPER_BURIAL)) then
         BastokQuests = BastokQuests - 1024;  -- A Proper Burial (pt.1)
@@ -92,7 +90,7 @@ function onTrigger(player,npc)
     if (player:hasCompleteQuest(JEUNO,COMEBACK_QUEEN)) then
         OtherQuests = OtherQuests - 1024;   -- Comeback Queen
     end
-    
+
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
 --     if (player:hasCompleteQuest(**Unknown**,DANCER_ATTIRE)) then
 --         OtherQuests = OtherQuests - 2048;   -- Dancer Attire (pt.1)
@@ -133,7 +131,7 @@ function onTrigger(player,npc)
 
     -- Determine if any cutscenes are available for the player.
     local gil = player:getGil();
-    if (BastokMissions   == 0xFFFFFFFE and 
+    if (BastokMissions   == 0xFFFFFFFE and
         BastokQuests     == 0xFFFFFFFE and
         OtherQuests      == 0xFFFFFFFE and
         SeekersOfAdoulin == 0xFFFFFFFE)
@@ -141,7 +139,7 @@ function onTrigger(player,npc)
         gil = 0; -- Setting gil to a value less than 10(cost) will trigger the appropriate response from this npc.
     end
 
-    player:startEvent(0x0146,BastokMissions,BastokQuests,OtherQuests,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,10,gil); 
+    player:startEvent(0x0146,BastokMissions,BastokQuests,OtherQuests,SeekersOfAdoulin,0xFFFFFFFE,0xFFFFFFFE,10,gil);
 end;
 
 -----------------------------------
@@ -156,7 +154,7 @@ function onEventUpdate(player,csid,option)
         player:setLocalVar("Lamepaue_PlayCutscene", 2) ; -- Cancel the cutscene.
         player:updateEvent(0);
     else
-        player:setLocalVar("Lamepaue_PlayCutscene", 1) 
+        player:setLocalVar("Lamepaue_PlayCutscene", 1)
     end
 end;
 
@@ -170,79 +168,79 @@ function onEventFinish(player,csid,option)
 
     if (player:getLocalVar("Lamepaue_PlayCutscene") < 2) then
         if (option ==   1) then        -- Fetichism.
-            player:startEvent(0x03F0); 
+            player:startEvent(0x03F0);
         elseif (option ==   2) then        -- To the Forsaken Mines.
             player:startEvent(0x03F2);
         elseif (option ==  33) then        -- The Return of the Adventurer
-            player:startEvent(0x00F3);            
+            player:startEvent(0x00F3);
 --        elseif (option ==  34) then        -- The First Meeting
---            player:startEvent(CSID);                   
+--            player:startEvent(CSID);
         elseif (option ==  35) then        -- Wish Upon a Star (pt.1)
-            player:startEvent(0x0149);                    
+            player:startEvent(0x0149);
         elseif (option ==  36) then        -- Wish Upon a Star (pt.2)
-            player:startEvent(0x014C);                     
+            player:startEvent(0x014C);
         elseif (option ==  37) then        -- Wish Upon a Star (pt.3)
-            player:startEvent(0x014E);                           
+            player:startEvent(0x014E);
 --        elseif (option ==  38) then        -- All by Myself
---            player:startEvent(0x00B9);                  
+--            player:startEvent(0x00B9);
         elseif (option ==  39) then        -- Achieving True Power
-            player:startEvent(0x01B9);                  
+            player:startEvent(0x01B9);
         elseif (option ==  40) then        -- Too Many Chefs
-            player:startEvent(0x019B);           
+            player:startEvent(0x019B);
         elseif (option ==  41) then        -- A Proper Burial (pt.1)
-            player:startEvent(0x01DB);           
+            player:startEvent(0x01DB);
         elseif (option ==  42) then        -- A Proper Burial (pt.2)
-            player:startEvent(0x01DD);           
+            player:startEvent(0x01DD);
         elseif (option ==  43) then        -- A Proper Burial (pt.3)
-            player:startEvent(0x01DF);                  
+            player:startEvent(0x01DF);
         elseif (option ==  44) then        -- A Proper Burial (pt.4)
-            player:startEvent(0x01E1);            
+            player:startEvent(0x01E1);
         elseif (option ==  45) then        -- A Proper Burial (pt.5)
-            player:startEvent(0x01E3);            
+            player:startEvent(0x01E3);
         elseif (option ==  46) then        -- A Proper Burial (pt.6)
-            player:startEvent(0x01E5);             
+            player:startEvent(0x01E5);
         elseif (option ==  65) then        -- Beat Around the Bushin
-            player:startEvent(0x0156);             
+            player:startEvent(0x0156);
         elseif (option ==  66) then        -- Confessions of a Bellmaker
             player:startEvent(0x0192);
--- Picture Perfect cutscenes need to be verified.            
+-- Picture Perfect cutscenes need to be verified.
         elseif (option ==  67) then        -- Picture Perfect (pt.1)
-            player:startEvent(0x0193);               
+            player:startEvent(0x0193);
         elseif (option ==  68) then        -- Picture Perfect (pt.2)
-            player:startEvent(0x0194);               
-        elseif (option ==  69) then        -- Picture Perfect (pt.3) 
-            player:startEvent(0x0195);            
+            player:startEvent(0x0194);
+        elseif (option ==  69) then        -- Picture Perfect (pt.3)
+            player:startEvent(0x0195);
         elseif (option ==  70) then        -- Picture Perfect (pt.4)
-            player:startEvent(0x0196);               
+            player:startEvent(0x0196);
         elseif (option ==  71) then        -- No Strings Attached
-            player:startEvent(0x01B2);                    
+            player:startEvent(0x01B2);
         elseif (option ==  72) then        -- Puppetmaster Blues (pt.1)
-            player:startEvent(0x01B5);        
+            player:startEvent(0x01B5);
         elseif (option ==  73) then        -- Puppetmaster Blues (pt.2)
-            player:startEvent(0x01B7);        
+            player:startEvent(0x01B7);
         elseif (option ==  74) then        -- Comeback Queen
-            player:startEvent(0x01EA);        
+            player:startEvent(0x01EA);
 --        elseif (option ==  75) then        -- Dancer Attire (pt.1)
---            player:startEvent(CSID);                      
+--            player:startEvent(CSID);
 --        elseif (option ==  76) then        -- Dancer Attire (pt.2)
 --            player:startEvent(CSID);
 -- Drafted by the Duchy and Battle on a New Front cutscenes need to be verified,ids may need to be changed or have additional parameters.
         elseif (option ==  77) then        -- Drafted by the Duchy
-            player:startEvent(0x0012);    
+            player:startEvent(0x0012);
         elseif (option ==  78) then        -- Battle on a New Front
-            player:startEvent(0x000C);            
+            player:startEvent(0x000C);
         elseif (option ==  79) then        -- VW Op. #126: Qufim Incursion
-            player:startEvent(0x0102);            
+            player:startEvent(0x0102);
 --        elseif (option ==  80) then        -- Records of Eminence
---            player:startEvent(CSID);        
+--            player:startEvent(CSID);
 --        elseif (option ==  81) then        -- Trust (Mumor)
---            player:startEvent(CSID);        
+--            player:startEvent(CSID);
 --        elseif (option ==  82) then        -- Unity Concord (pt.1)
---            player:startEvent(CSID);           
+--            player:startEvent(CSID);
 --        elseif (option ==  83) then        -- Unity Concord (pt.2)
---            player:startEvent(CSID);            
+--            player:startEvent(CSID);
 --        elseif (option ==  129) then        -- Rumors from the West
---            player:startEvent(CSID);            
+--            player:startEvent(CSID);
         end
     end
 

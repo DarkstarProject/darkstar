@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa Subterrane
 --  NPC: ??? (Spawn Nosferatu(ZNM T3))
--- @pos -199 8 -62 68
+-- !pos -199 8 -62 68
 -----------------------------------
 package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
 -----------------------------------

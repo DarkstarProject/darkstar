@@ -2,7 +2,7 @@
 -- Area: West Ronfaure
 -- NPC:  Esca
 -- Involved in Quest "The Pickpocket"
--- @pos -624.231 -51.499 278.369 100
+-- !pos -624.231 -51.499 278.369 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 
     -- "The Pickpocket" Quest status
     local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-    
+
     -- "The Pickpocket" Trading Esca for Gilt Glasses
     local count = trade:getItemCount();
     local freeSlot = player:getFreeSlotsCount();
@@ -35,7 +35,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(6378, 579); -- CANNOT_OBTAIN_ITEM
         end;
     end;
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
     -- "The Pickpocket" Quest status
     local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
-    
+
     -- "The Pickpocket" Quest Dialog
     if (Quotas_Status == 4) then
         player:startEvent(137); -- My earring!  I stole the last dragoon's armor.  Chosen option does not matter.

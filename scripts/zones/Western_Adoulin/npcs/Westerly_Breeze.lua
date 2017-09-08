@@ -6,7 +6,7 @@
 --                                              'The Starving'
 --                                              'Always More, Quoth the Ravenous'
 --  @zone 256
---  @pos 62 32 123 256
+--  !pos 62 32 123 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -75,7 +75,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -88,27 +88,27 @@ function onTrigger(player,npc)
     if (HS ~= QUEST_COMPLETED) then
         if (HS == QUEST_AVAILABLE) then
             -- Starts Quest: 'Hunger Strikes'
-            player:startEvent(0x09E2);  
+            player:startEvent(0x09E2);
         else
             -- Reminder for Quest: 'Hunger Strikes'
-            player:startEvent(0x09E3);  
+            player:startEvent(0x09E3);
         end
     elseif ((player:getFame(ADOULIN) >= 2) and (not player:needToZone()) and (vanaDay() > player:getVar("Westerly_Breeze_Wait"))) then
         if (TS ~= QUEST_COMPLETED) then
             if (TS == QUEST_AVAILABLE) then
                 -- Starts Quest: 'The Starving'
-                player:startEvent(0x0BBD);  
+                player:startEvent(0x0BBD);
             else
                 -- Reminder for Quest: 'The Starving'
-                player:startEvent(0x0BBE);  
+                player:startEvent(0x0BBE);
             end
         elseif ((AMQTR ~= QUEST_COMPLETED) and (player:getFame(ADOULIN) >= 3)) then
             if (AMQTR == QUEST_AVAILABLE) then
                 -- Starts Quest: 'Always More Quoth the Ravenous'
-                player:startEvent(0x0BC2);  
+                player:startEvent(0x0BC2);
             else
                 -- Reminder for Quest: 'Always More Quoth the Ravenous'
-                player:startEvent(0x0BC3);  
+                player:startEvent(0x0BC3);
             end
         else
             -- Standard dialogue

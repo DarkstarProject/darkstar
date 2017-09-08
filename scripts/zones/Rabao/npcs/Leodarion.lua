@@ -2,7 +2,7 @@
 -- Area: Rabao
 -- NPC:  Leodarion
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box, True Will
--- @pos -50 8 40 247
+-- !pos -50 8 40 247
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
@@ -17,24 +17,24 @@ require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 2) then 
+
+    if (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 2) then
         if (trade:hasItemQty(17098,1) and trade:getItemCount() == 1) then -- Trade Oak Pole
             player:startEvent(0x005c);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED) then
         illTakeTheBigBoxCS = player:getVar("illTakeTheBigBoxCS");
-        
+
         if (illTakeTheBigBoxCS == 1) then
             player:startEvent(0x005a);
         elseif (illTakeTheBigBoxCS == 2) then
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED) then
         trueWillCS = player:getVar("trueWillCS");
-        
+
         if (trueWillCS == 1) then
             player:startEvent(0x0061);
         elseif (trueWillCS == 2 and player:hasKeyItem(LARGE_TRICK_BOX) == false) then
@@ -59,7 +59,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0059);
     end
-    
+
 end;
 
 -----------------------------------
@@ -78,7 +78,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x005a) then
         player:setVar("illTakeTheBigBoxCS",2);
     elseif (csid == 0x005c) then
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(OLD_TRICK_BOX);
         player:setVar("trueWillCS",2);
     elseif (csid == 0x0063) then
-        if (player:getFreeSlotsCount() < 1) then 
+        if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13782);
         else
             player:delKeyItem(LARGE_TRICK_BOX);
@@ -105,5 +105,5 @@ function onEventFinish(player,csid,option)
             player:completeQuest(OUTLANDS,TRUE_WILL);
         end
     end
-    
+
 end;

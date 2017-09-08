@@ -2,7 +2,7 @@
 -- Area: La Theine Plateau
 --  NPC: FallenEgg
 -- Spawns Nihniknoovi randomly at multiple pos, default listed below
--- @pos 211.066 24.147 257.961
+-- !pos 211.066 24.147 257.961
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------

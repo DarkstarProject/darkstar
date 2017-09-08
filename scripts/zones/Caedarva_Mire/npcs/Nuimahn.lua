@@ -2,7 +2,7 @@
 -- Area: Caedarva Mire
 -- NPC:  Nuimahn
 -- Type: Alzadaal Undersea Ruins
--- @pos  -380 0 -381 79
+-- !pos  -380 0 -381 79
 -----------------------------------
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------

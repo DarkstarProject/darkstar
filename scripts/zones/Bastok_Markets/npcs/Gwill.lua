@@ -3,27 +3,26 @@
 -- NPC:  Gwill
 -- Starts & Ends Quest: The Return of the Adventurer
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
--- @zone 235
--- @pos 0 0 0
+-- !pos ? ? ? 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    returnOfAdven = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+    local returnOfAdven = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
     if (returnOfAdven == QUEST_ACCEPTED and trade:hasItemQty(628,1) and trade:getItemCount() == 1) then
         player:startEvent(0x00f3);
     end
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 2) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
@@ -32,8 +31,8 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -41,9 +40,9 @@ end;
 
 function onTrigger(player,npc)
 
-    pFame = player:getFameLevel(BASTOK);
-    FatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
-    TheReturn = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
+    local pFame = player:getFameLevel(BASTOK);
+    local FatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
+    local TheReturn = player:getQuestStatus(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
 
     if (FatherFigure == QUEST_COMPLETED and TheReturn == QUEST_AVAILABLE and pFame >= 3) then
         player:startEvent(0x00f2);
@@ -52,8 +51,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0071);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -86,5 +85,5 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);
         end
     end
-    
+
 end;

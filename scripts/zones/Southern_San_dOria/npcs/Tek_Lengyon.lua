@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Tek Lengyon
 -- Type: Leathercraft Synthesis Image Support
--- @pos -190.120 -2.999 2.770 230
+-- !pos -190.120 -2.999 2.770 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

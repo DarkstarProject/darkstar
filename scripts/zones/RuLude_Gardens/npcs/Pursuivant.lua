@@ -3,7 +3,7 @@
 --   NPC: Pursuivant
 --  Type: Pursuivant
 -- @zone 243
--- @pos 52.020 -1 -17.813
+-- !pos 52.020 -1 -17.813
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

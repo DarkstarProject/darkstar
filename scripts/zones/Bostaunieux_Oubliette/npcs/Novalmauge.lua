@@ -3,7 +3,7 @@
 -- NPC:  Novalmauge
 -- Starts and Finishes Quest: The Rumor
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
--- @pos 70 -24 21 167
+-- !pos 70 -24 21 167
 -----------------------------------
 package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
 -----------------------------------

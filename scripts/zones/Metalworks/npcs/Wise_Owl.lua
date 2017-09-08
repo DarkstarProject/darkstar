@@ -2,7 +2,7 @@
 -- Area: Metalworks
 --  NPC: Wise Owl
 -- Type: Smithing Adv. Image Support
--- @pos -106.336 2.000 26.117 237
+-- !pos -106.336 2.000 26.117 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

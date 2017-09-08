@@ -2,7 +2,7 @@
 -- Area: Konschtat Highlands
 --  NPC: Plaiaude
 -- Type: Chocobo Renter
--- @pos 244.705 24.034 296.973 108
+-- !pos 244.705 24.034 296.973 108
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");

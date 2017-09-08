@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bibiki Bay
 -- NPC:  Rhalo Davigoh
--- @pos -407 -3 -419 4
+-- !pos -407 -3 -419 4
 -----------------------------------
 
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;

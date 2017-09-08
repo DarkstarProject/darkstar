@@ -2,7 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Faulpie
 -- Type: Leathercraft Guild Master
--- @pos -178.882 -2 9.891 230
+-- !pos -178.882 -2 9.891 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Zone: Abyssea-LaTheine
 --  NPC: qm7 (???)
 -- Spawns La Theine Liege
--- @pos 81.958 16.110 193.761 132
+-- !pos 81.958 16.110 193.761 132
 -----------------------------------
 require("scripts/globals/status");
 

@@ -2,7 +2,7 @@
 -- Area: West Sarutabaruta
 --  NPC: Banege, R.K.
 -- Type: Border Conquest Guards
--- @pos 399.450 -25.858 727.545 115
+-- !pos 399.450 -25.858 727.545 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------

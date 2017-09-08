@@ -2,9 +2,7 @@
 -- Area: Windurst Waters
 -- NPC: Bondada
 -- Involved in Quests: Hat in Hand
--- Working 100%
---  @zone = 238
--- @pos = -66 -3 -148
+-- !pos -66 -3 -148 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
 --  NPC: ??? (Spawn Ob(ZNM T1))
--- @pos 542 0 -129 72
+-- !pos 542 0 -129 72
 -----------------------------------
 package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
 -----------------------------------

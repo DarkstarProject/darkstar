@@ -2,7 +2,7 @@
 --  Area: Port Windurst
 --  NPC:  Three of Clubs
 --  Type: Standard NPC
--- @pos -7.238 -5 106.982 240
+-- !pos -7.238 -5 106.982 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -48,10 +48,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0271) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",18,true);
-    end    
-    
+    end
+
 end;
 

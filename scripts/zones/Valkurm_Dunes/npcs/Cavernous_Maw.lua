@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 --  NPC: Cavernous Maw
--- @pos 368.980, -0.443, -119.874 103
+-- !pos 368.980, -0.443, -119.874 103
 -- Teleports Players to Abyssea Misareaux
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;

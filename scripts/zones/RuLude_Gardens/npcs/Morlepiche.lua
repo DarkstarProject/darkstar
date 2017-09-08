@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Rulude Gardens
 --  NPC: Morlepiche
--- @pos -95 0 160 243
+-- !pos -95 0 160 243
 -------------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

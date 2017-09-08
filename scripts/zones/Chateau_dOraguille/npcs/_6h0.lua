@@ -3,7 +3,7 @@
 -- Door: Prince Royal's
 -- Finishes Quest: A Boy's Dream, Under Oath
 -- Involved in Missions: 3-1, 5-2, 8-2
--- @pos -38 -3 73 233
+-- !pos -38 -3 73 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
@@ -27,16 +27,16 @@ end;
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)    
-    
+function onTrigger(player,npc)
+
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);    
-    
+    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+
     local Wait1DayRanperre = player:getVar("Wait1DayForRanperre_date");
     local osdate = tonumber(os.date("%j"));
-    
-    if (player:getVar("aBoysDreamCS") == 8) then 
+
+    if (player:getVar("aBoysDreamCS") == 8) then
         player:startEvent(0x0058);
     elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == JOBS.PLD) then
         player:startEvent(0x005A);
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
         player:startEvent(0x0051);
     elseif (CurrentMission == RANPERRE_S_FINAL_REST and MissionStatus == 4 and Wait1DayRanperre ~= osdate) then -- Ready now.
-        player:startEvent(0x0015);        
+        player:startEvent(0x0015);
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
         player:startEvent(0x0015);
     elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
@@ -59,9 +59,9 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x020a);
     end
-    
+
     return 1;
-    
+
 end;
 
 -----------------------------------
@@ -80,7 +80,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0229) then
         player:setVar("MissionStatus",2);
     elseif (csid == 0x0223) then
@@ -88,10 +88,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x022a) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 0x0058) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
         else
-            if (player:getMainJob() == JOBS.PLD) then 
+            if (player:getMainJob() == JOBS.PLD) then
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
             player:delKeyItem(KNIGHTS_BOOTS);
@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,UNDER_OATH);
         player:setVar("UnderOathCS",0);
     elseif (csid == 0x0059) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12644);
         else
             player:addItem(12644);
@@ -123,5 +123,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x003F) then
         player:setVar("Cutscenes_8-2",1)
     end
-    
+
 end;

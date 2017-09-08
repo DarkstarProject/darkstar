@@ -2,7 +2,7 @@
 -- Area: Konschtat Highlands
 -- NPC:  qm1 (???)
 -- Continues Quests: Past Perfect
--- @pos -201 16 80 108
+-- !pos -201 16 80 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

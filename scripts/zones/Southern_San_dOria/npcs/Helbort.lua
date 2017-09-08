@@ -3,7 +3,7 @@
 --  NPC: Helbort
 --  Starts and Finished Quest: A purchase of Arms
 --  @zone 230
--- @pos  71 -1 65
+-- !pos  71 -1 65
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +18,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     quest_fas = player:getQuestStatus(SANDORIA,FATHER_AND_SON);      -- 1st Quest in Series
     quest_poa = player:getQuestStatus(SANDORIA,A_PURCHASE_OF_ARMS);  -- 2nd Quest in Series
 
-    if (player:getFameLevel(SANDORIA) >= 2 and quest_fas == QUEST_COMPLETED and quest_poa == QUEST_AVAILABLE) then 
+    if (player:getFameLevel(SANDORIA) >= 2 and quest_fas == QUEST_COMPLETED and quest_poa == QUEST_AVAILABLE) then
         player:startEvent(0x0252);  -- Start quest A Purchase of Arms
     elseif (quest_poa == QUEST_ACCEPTED and player:hasKeyItem(WEAPONS_RECEIPT) == true) then
         player:startEvent(0x025f); -- Finish A Purchase of Arms quest
@@ -46,13 +46,13 @@ function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
-  
+
 -----------------------------------
 -- onEventFinish Action
 -----------------------------------
 function onEventFinish(player,csid,option)
 --print("CSID:",csid);
---print("RESULT:",option); 
+--print("RESULT:",option);
 
     if (csid == 0x0252 and option == 0) then
         player:addQuest(SANDORIA, A_PURCHASE_OF_ARMS);
@@ -64,11 +64,11 @@ function onEventFinish(player,csid,option)
         else
             player:addTitle(ARMS_TRADER);
             player:delKeyItem(WEAPONS_RECEIPT);
-            player:addItem(17090); 
+            player:addItem(17090);
             player:messageSpecial(ITEM_OBTAINED,17090); -- Elm Staff
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA, A_PURCHASE_OF_ARMS);
         end
     end
-    
+
 end;

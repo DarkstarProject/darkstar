@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Panja-Nanja
 -- Type: Fishing Adv. Image Support
--- @pos -194.499 -3 58.692 240
+-- !pos -194.499 -3 58.692 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

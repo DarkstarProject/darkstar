@@ -3,8 +3,8 @@
 --   NPC: Jovial Rat
 --  Type: Past Event Watcher
 -- @zone 32
--- @pos 
--- 
+-- !pos
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

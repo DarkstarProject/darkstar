@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
 --  NPC: _0q1 (Sewer Entrance)
--- @pos 28 -12 44 26
+-- !pos 28 -12 44 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

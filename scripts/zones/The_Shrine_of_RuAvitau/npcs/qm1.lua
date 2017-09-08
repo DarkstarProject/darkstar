@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
 -- NPC:  ??? (Spawn Olla Pequena)
--- @pos 851 0.1 92 178
+-- !pos 851 0.1 92 178
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
@@ -13,14 +13,14 @@ require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
-    if (GetMobAction(17506667) == 0 and GetMobAction(17506668) == 0 and GetMobAction(17506669) == 0 and 
+
+    if (GetMobAction(17506667) == 0 and GetMobAction(17506668) == 0 and GetMobAction(17506669) == 0 and
     trade:hasItemQty(1195,1) and trade:getItemCount() == 1) then -- Trade Ro'Maeve Water
         player:tradeComplete();
         SpawnMob(17506667):updateClaim(player);
         npc:setStatus(STATUS_DISAPPEAR);
     end
-    
+
 end;
 
 -----------------------------------

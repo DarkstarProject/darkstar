@@ -2,7 +2,7 @@
 -- Area:  Castle Oztroja
 -- NPC:   _m74 (Torch Stand)
 -- Notes: Opens door _477 when _m72 to _m75 are lit
--- @pos -59.525 -72.320 -62.379 151
+-- !pos -59.525 -72.320 -62.379 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     TorchStand4A = GetNPCByID(Torch4):getAnimation();
 
     if (DoorA == 9 and TorchStand3A == 9) then
-        player:startEvent(0x000a);    
+        player:startEvent(0x000a);
     else
         player:messageSpecial(TORCH_LIT);
     end

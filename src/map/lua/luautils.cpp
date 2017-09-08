@@ -1628,12 +1628,6 @@ namespace luautils
 
     int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
     {
-        //#TODO: move this to BCNM stuff when it's rewritten
-        // 32003 is the run away event
-        if (PChar->PBCNM && (PChar->PBCNM->won() || PChar->PBCNM->lost() || (eventID == 32003 && result == 4)))
-        {
-            PChar->PBCNM->delPlayerFromBcnm(PChar);
-        }
         int32 oldtop = lua_gettop(LuaHandle);
 
         lua_pushnil(LuaHandle);

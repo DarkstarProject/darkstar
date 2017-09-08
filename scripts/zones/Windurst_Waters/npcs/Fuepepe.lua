@@ -3,8 +3,7 @@
 --  NPC: Fuepepe
 -- Starts and Finishes Quest: Teacher's Pet
 -- Involved in Quest: Making the grade, Class Reunion
---  @zone = 238
--- @pos = 161 -2 161
+-- !pos 161 -2 161 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -45,7 +44,7 @@ function onTrigger(player,npc)
         elseif (prog == 1) then
             player:startEvent(0x01c8); -- Deliver Test Sheets Reminder
         elseif (prog == 2 or prog == 3) then
-            player:startEvent(0x01ca); -- Quest Finish    
+            player:startEvent(0x01ca); -- Quest Finish
         end
     elseif (gradestatus == QUEST_COMPLETED and player:needToZone() == true) then
         player:startEvent(0x01cb); -- After Quest
@@ -57,7 +56,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x1a7); -- Standard Conversation
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -92,5 +91,5 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 0x0331) then
         player:setVar("ClassReunion_TalkedToFupepe",1);
-    end    
+    end
 end;

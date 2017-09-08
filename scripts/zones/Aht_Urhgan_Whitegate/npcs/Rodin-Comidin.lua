@@ -3,7 +3,7 @@
 -- NPC: Rodin-Comidin
 -- Standard Info NPC
 -- Involved in Missions: TOAU-41
--- @pos 17.205 -5.999 51.161 50
+-- !pos 17.205 -5.999 51.161 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -17,7 +17,7 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0299);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@entityvisual <animation string>");
+    player:PrintToPlayer("!entityvisual <animation string>");
 end;
 
 function onTrigger(player, visualstring)

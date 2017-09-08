@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ru'Avitau Gate
 -- NPC:  _3m0
--- @pos 0.1 -45 -113 130
+-- !pos 0.1 -45 -113 130
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -13,7 +13,7 @@ require("scripts/zones/RuAun_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     GetNPCByID(DoorID):openDoor(7);
     GetNPCByID(DoorID+1):openDoor(7);
     GetNPCByID(DoorID+2):openDoor(7);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
