@@ -1034,6 +1034,11 @@ function handleWSGorgetBelt(attacker)
             end
         end
 
+        if (neck == 27510) then -- Fotia Gorget
+                accBonus = accBonus + 10;
+                ftpBonus = ftpBonus + 0.1;
+        end
+
         for i,v in ipairs(elementalBelt) do
             if (belt == v) then
                 if (doesElementMatchWeaponskill(i, SCProp1) or doesElementMatchWeaponskill(i, SCProp2) or doesElementMatchWeaponskill(i, SCProp3)) then
@@ -1042,6 +1047,11 @@ function handleWSGorgetBelt(attacker)
                 end
                 break;
             end
+        end
+
+        if (belt == 28420) then -- Fotia Belt
+            accBonus = accBonus + 10;
+            ftpBonus = ftpBonus + 0.1;
         end
     end
     return ftpBonus, accBonus;
