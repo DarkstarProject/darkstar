@@ -2862,7 +2862,7 @@ namespace battleutils
         return SC_NONE;
     }
 
-    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, uint32 id, std::initializer_list<SKILLCHAIN_ELEMENT> skillProperties)
     {
         CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
         CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
@@ -2871,16 +2871,11 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
         {
-            std::list<SKILLCHAIN_ELEMENT> skillProperties;
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
-
             std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
 
             // Chainbound active on target
@@ -2906,7 +2901,7 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
@@ -2958,7 +2953,7 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetPower(PWeaponSkill->getID());
+            PSCEffect->SetPower(id);
             PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;

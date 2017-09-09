@@ -758,7 +758,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                 CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getPrimarySkillchain());
                 if (PWeaponSkill)
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()),
+                        static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain())) } );
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
