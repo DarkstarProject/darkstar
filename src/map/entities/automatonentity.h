@@ -135,7 +135,7 @@ struct automaton_equip_t
 {
     uint8 Frame{ 0 };
     uint8 Head{ 0 };
-    std::array<uint8, 12> Attachments;
+    std::array<uint8, 12> Attachments {};
 };
 
 class CCharEntity;
@@ -184,7 +184,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
-    std::array<uint16, 8> m_Burden;
+    std::array<uint16, 8> m_Burden {};
 };
 
 #endif

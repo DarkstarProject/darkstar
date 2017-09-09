@@ -359,7 +359,7 @@ void CAutomatonController::Move()
 // Probably not exactly how decisions were decided
 bool CAutomatonController::TryAction()
 {
-    if (m_Tick > m_LastActionTime + (m_actionCooldown - std::chrono::microseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)))
+    if (m_Tick > m_LastActionTime + (m_actionCooldown - std::chrono::milliseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)))
     {
         m_LastActionTime = m_Tick;
         if (!m_deployed && PTarget != nullptr)
@@ -1341,7 +1341,7 @@ bool CAutomatonController::TryTPMove()
         if (PAutomaton->getFrame() == FRAME_SHARPSHOT)
             skilltype = SKILL_ARA;
 
-        for (auto& skillid : FamilySkills)
+        for (auto skillid : FamilySkills)
         {
             auto PSkill = battleutils::GetMobSkill(skillid);
             if (PSkill && PAutomaton->GetSkill(skilltype) > PSkill->getParam() && PSkill->getParam() != -1 &&
@@ -1387,7 +1387,7 @@ bool CAutomatonController::TryTPMove()
                     resonanceProperties.push_back((SKILLCHAIN_ELEMENT)PSCEffect->GetPower());
                 }
 
-                for (auto& PSkill : validSkills)
+                for (auto PSkill : validSkills)
                 {
                     if (PSkill->getParam() > currentSkill)
                     {
@@ -1412,7 +1412,7 @@ bool CAutomatonController::TryTPMove()
 
         if (!attemptChain || (currentManeuvers == -1 && PAutomaton->PMaster && PAutomaton->PMaster->health.tp < PAutomaton->getMod(Mod::AUTO_TP_EFFICIENCY)))
         {
-            for (auto& PSkill : validSkills)
+            for (auto PSkill : validSkills)
             {
                 int8 maneuvers = luautils::OnMobAutomatonSkillCheck(PTarget, PAutomaton, PSkill);
                 if (maneuvers > -1 && (maneuvers > currentManeuvers || (maneuvers == currentManeuvers && PSkill->getParam() > currentSkill)))

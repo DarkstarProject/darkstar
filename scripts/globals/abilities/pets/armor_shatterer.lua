@@ -10,17 +10,12 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_WIND_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_WIND_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
-        numHits = 4,
+        numHits = 2,
         atkmulti = 2.25,
         accBonus = 50,
         ftp100 = 6.0,
@@ -38,11 +33,12 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         chr_wsc = 0.0
     }
     skill:setSkillchain(141)
+    print (skill:getTP())
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, tp, true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill)
 
     if damage > 0 then
-        local bonusduration = 1 + 0.00033 * (tp - 1000)
+        local bonusduration = 1 + 0.00033 * (skill:getTP() - 1000)
         if not target:hasStatusEffect(EFFECT_DEFENSE_DOWN) then
             target:addStatusEffect(EFFECT_DEFENSE_DOWN, 15, 0, 90*bonusduration)
         end

@@ -3517,60 +3517,6 @@ namespace luautils
         return retVal;
     }
 
-    /***********************************************************************
-    *                                                                       *
-    *                                                                       *
-    *                                                                       *
-    ************************************************************************/
-
-    int32 OnAutomatonAbility(CBaseEntity* PAutomaton, CBaseEntity* PMob, CMobSkill* PMobSkill, uint16 tp, action_t* action)
-    {
-        lua_prepscript("scripts/globals/abilities/pets/%s.lua", PMobSkill->getName());
-
-        if (prepFile(File, "onAutomatonAbility"))
-        {
-            return 0;
-        }
-
-        CLuaBaseEntity LuaBaseEntity(PAutomaton);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
-
-        CLuaBaseEntity LuaMobEntity(PMob);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-
-        CLuaMobSkill LuaMobSkill(PMobSkill);
-        Lunar<CLuaMobSkill>::push(LuaHandle, &LuaMobSkill);
-
-        lua_pushnumber(LuaHandle, tp);
-
-        CLuaBaseEntity LuaMasterEntity(static_cast<CAutomatonEntity*>(PAutomaton)->PMaster);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMasterEntity);
-
-        CLuaAction LuaAction(action);
-        Lunar<CLuaAction>::push(LuaHandle, &LuaAction);
-
-        if (lua_pcall(LuaHandle, 6, LUA_MULTRET, 0))
-        {
-            ShowError("luautils::onAutomatonAbility: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return 0;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns < 1)
-        {
-            ShowError("luautils::onAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
-            return 0;
-        }
-        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-        lua_pop(LuaHandle, 1);
-        if (returns > 1)
-        {
-            ShowError("luautils::onAutomatonAbility (%s): 1 return expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns - 1);
-        }
-        return retVal;
-    }
-
     /************************************************************************
     *                                                                       *
     *                                                                       *

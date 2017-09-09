@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local hp = target:getHP()
     local duration = 30
     local amount = math.floor((hp/2)/10)

@@ -10,15 +10,10 @@ require("scripts/globals/weaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_WIND_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_WIND_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 1,
         atkmulti = 1,
@@ -47,7 +42,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ftp300 = 11.0
     end
 
-    local damage = doPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params)
+    local damage = doPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params)
 
     if damage > 0 then
         if not target:hasStatusEffect(EFFECT_EVASION_DOWN) then

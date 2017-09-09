@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local chance = 90
     local damage = (automaton:getSkillLevel(22)/2) + automaton:getMod(MOD_SHIELD_BASH)
 

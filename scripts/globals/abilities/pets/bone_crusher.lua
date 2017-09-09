@@ -10,15 +10,10 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_LIGHT_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_LIGHT_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 3,
         atkmulti = 1,
@@ -58,10 +53,10 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
     end
     
 
-    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill)
 
     if damage > 0 then
-        local chance = 0.033 * tp
+        local chance = 0.033 * skill:getTP()
         if not target:hasStatusEffect(EFFECT_STUN) and chance >= math.random()*100 then
             target:addStatusEffect(EFFECT_STUN, 1, 0, 4)
         end

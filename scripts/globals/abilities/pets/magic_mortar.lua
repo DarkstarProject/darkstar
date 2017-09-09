@@ -10,16 +10,12 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_LIGHT_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_LIGHT_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local ftp
+    local tp = skill:getTP()
 
     if not USE_ADOULIN_WEAPON_SKILL_CHANGES then
         ftp = 0.5 + ((0.5/3000) * tp)

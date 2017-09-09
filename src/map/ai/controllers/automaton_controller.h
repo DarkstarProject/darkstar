@@ -57,12 +57,12 @@ public:
     virtual void Disengage() override;
 protected:
     virtual void DoCombatTick(time_point tick) override;
-    void Move();
+    virtual void Move() override;
 
     void setCooldowns();
     void setMagicCooldowns();
     void setMovement();
-    bool CanCastSpells();
+    virtual bool CanCastSpells() override;
     bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget);
 
     bool m_deployed;
@@ -85,18 +85,18 @@ private:
     CAutomatonEntity* PAutomaton;
 
     duration m_actionCooldown{ 3s };
-    duration m_rangedCooldown{ duration::zero() };
+    duration m_rangedCooldown{};
     static constexpr int m_RangedAbility{ 1949 };
-    duration m_magicCooldown{ duration::zero() };
-    duration m_enfeebleCooldown{ duration::zero() };
-    duration m_elementalCooldown{ duration::zero() };
-    duration m_healCooldown{ duration::zero() };
-    duration m_enhanceCooldown{ duration::zero() };
-    duration m_statusCooldown{ duration::zero() };
-    duration m_shieldbashCooldown{ duration::zero() };
+    duration m_magicCooldown{};
+    duration m_enfeebleCooldown{};
+    duration m_elementalCooldown{};
+    duration m_healCooldown{};
+    duration m_enhanceCooldown{};
+    duration m_statusCooldown{};
+    duration m_shieldbashCooldown{};
     static constexpr int m_ShieldBashAbility{ 1944 };
 
-    std::array<bool, 12> m_checkAttachment; // If any of these are false then they will be skipped when checking if they enable a skill
+    std::array<bool, 12> m_checkAttachment {}; // If any of these are false then they will be skipped when checking if they enable a skill
 
     std::vector<AUTOSPELL> m_castPriority;
     std::vector<AUTOSPELL> m_defaultPriority;
