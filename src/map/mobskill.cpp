@@ -38,6 +38,8 @@ CMobSkill::CMobSkill(uint16 id)
 	m_Message = 0;
     m_Param = 0;
     m_primarySkillchain = 0;
+    m_secondarySkillchain = 0;
+    m_tertiarySkillchain = 0;
     m_HPP = 0;
 }
 
