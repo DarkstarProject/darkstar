@@ -37,13 +37,10 @@
 *                                                                       *
 ************************************************************************/
 
-CRecastContainer::CRecastContainer(CCharEntity* PChar) : m_PChar(PChar)
+CRecastContainer::CRecastContainer(CBattleEntity* PEntity) : m_PEntity(PEntity)
 {
-    DSP_DEBUG_BREAK_IF(m_PChar == nullptr || m_PChar->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PEntity == nullptr)
 }
-
-CRecastContainer::~CRecastContainer()
-{ }
 
 /************************************************************************
 *                                                                       *
@@ -57,8 +54,6 @@ RecastList_t* CRecastContainer::GetRecastList(RECASTTYPE type)
     {
         case RECAST_MAGIC:   return &RecastMagicList;
         case RECAST_ABILITY: return &RecastAbilityList;
-        case RECAST_ITEM:    return &RecastItemList;
-        case RECAST_LOOT:    return &RecastLootList;
     }
     //Unhandled Scenario
     DSP_DEBUG_BREAK_IF(true);
@@ -93,11 +88,6 @@ Recast_t* CRecastContainer::GetRecast(RECASTTYPE type, uint16 id)
 void CRecastContainer::Add(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
 {
     Recast_t* recast = Load(type, id, duration, chargeTime, maxCharges);
-
-    if (type == RECAST_ABILITY)
-    {
-        Sql_Query(SqlHandle, "REPLACE INTO char_recast VALUES (%u, %u, %u, %u);", m_PChar->id, recast->ID, static_cast<uint32>(recast->TimeStamp), recast->RecastTime);
-    }
 }
 
 Recast_t* CRecastContainer::Load(RECASTTYPE type, uint16 id, uint32 duration, uint32 chargeTime, uint8 maxCharges)
@@ -157,7 +147,6 @@ void CRecastContainer::Del(RECASTTYPE type)
         {
             recast.RecastTime = 0;
         }
-        Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u;", m_PChar->id);
     }
     else
     {
@@ -181,7 +170,6 @@ void CRecastContainer::Del(RECASTTYPE type, uint16 id)
         {
             recast->RecastTime = 0;
         }
-        Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, id);
     }
     else
     {
@@ -204,7 +192,6 @@ void CRecastContainer::DeleteByIndex(RECASTTYPE type, uint8 index)
     if (type == RECAST_ABILITY)
     {
         PRecastList->at(index).RecastTime = 0;
-        Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id = %u;", m_PChar->id, PRecastList->at(index).ID);
     }
     else
     {
@@ -283,13 +270,6 @@ void CRecastContainer::Check()
 
             if (time(nullptr) >= (recast->TimeStamp + recast->RecastTime))
             {
-                if (type == RECAST_ITEM)
-                {
-                    CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(recast->ID);
-
-                    m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, recast->ID));
-                    m_PChar->pushPacket(new CInventoryFinishPacket());
-                }
                 if (type == RECAST_ITEM || type == RECAST_MAGIC || type == RECAST_LOOT)
                 {
                     PRecastList->erase(PRecastList->begin() + i--);
@@ -313,9 +293,6 @@ void CRecastContainer::ResetAbilities()
 {
     RecastList_t* PRecastList = GetRecastList(RECAST_ABILITY);
 
-    uint32 timestamp = 0;
-    uint32 recastTime = 0;
-
     for (auto&& recast : *PRecastList)
     {
         if (recast.ID != 0)
@@ -323,24 +300,4 @@ void CRecastContainer::ResetAbilities()
             Load(RECAST_ABILITY, recast.ID, 0);
         }
     }
-
-    Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id != 0;", m_PChar->id);
-}
-
-/************************************************************************
-*                                                                       *
-*  Resets all job abilities except two-hour (change jobs)               *
-*                                                                       *
-************************************************************************/
-
-void CRecastContainer::ChangeJob()
-{
-    RecastList_t* PRecastList = GetRecastList(RECAST_ABILITY);
-
-    PRecastList->erase(std::remove_if(PRecastList->begin(), PRecastList->end(), [](auto& recast)
-    {
-        return recast.ID != 0;
-    }), PRecastList->end());
-
-    Sql_Query(SqlHandle, "DELETE FROM char_recast WHERE charid = %u AND id != 0;", m_PChar->id);
 }

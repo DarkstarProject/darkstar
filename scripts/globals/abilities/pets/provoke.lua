@@ -13,8 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-
-    automaton:setLocalVar("provoke", VanadielTime() + 180)
+    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
     target:addEnmity(automaton, 1, 1800)
     skill:setMsg(MSG_USES)
     return 0

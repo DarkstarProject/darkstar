@@ -36,6 +36,7 @@
 #include "../../enmity_container.h"
 #include "../../utils/itemutils.h"
 #include "../../utils/battleutils.h"
+#include "../../recast_container.h"
 
 std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> g_autoNaList{
     { EFFECT_POISON, AUTOSPELL_POISONA },
@@ -121,53 +122,11 @@ void CAutomatonController::setCooldowns()
     break;
     case FRAME_HARLEQUIN:
     {
-        // Old Automaton AI
-        /*switch (PAutomaton->getHead())
-        {
-        case HEAD_SOULSOOTHER:
-            m_magicCooldown = 31s;
-            break;
-        case HEAD_STORMWAKER:
-            m_magicCooldown = 32s;
-            break;
-        case HEAD_SPIRITREAVER:
-            m_magicCooldown = 33s;
-            break;
-        case HEAD_HARLEQUIN:
-            m_magicCooldown = 37s;
-            break;
-        case HEAD_SHARPSHOT:
-            m_magicCooldown = 55s;
-            break;
-        case HEAD_VALOREDGE:
-            m_magicCooldown = 57s;
-        }*/
-
         setMagicCooldowns();
     }
     break;
     case FRAME_STORMWAKER:
     {
-        // Old Automaton AI
-        /*switch (PAutomaton->getHead())
-        {
-        case HEAD_SOULSOOTHER:
-            m_magicCooldown = 25s;
-            break;
-        case HEAD_STORMWAKER:
-        case HEAD_SPIRITREAVER:
-            m_magicCooldown = 27s;
-            break;
-        case HEAD_HARLEQUIN:
-            m_magicCooldown = 32s;
-            break;
-        case HEAD_VALOREDGE:
-            m_magicCooldown = 46s;
-            break;
-        case HEAD_SHARPSHOT:
-            m_magicCooldown = 47s;
-        }*/
-
         setMagicCooldowns();
     }
     break;
@@ -253,7 +212,7 @@ void CAutomatonController::setMovement()
 
 CurrentManeuvers CAutomatonController::GetCurrentManeuvers() const
 {
-    auto statuses = PAutomaton->PMaster->StatusEffectContainer;
+    auto& statuses = PAutomaton->PMaster->StatusEffectContainer;
     return {
     statuses->GetEffectsCount(EFFECT_FIRE_MANEUVER),
     statuses->GetEffectsCount(EFFECT_EARTH_MANEUVER),
@@ -547,17 +506,18 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
     float threshold = 0;
     switch (maneuvers.light) // Light -> Higher healing threshold
     {
-    default:
-        threshold += 30;
-        break;
     case 1:
-        threshold += 40;
+        threshold = 40;
         break;
     case 2:
-        threshold += 50;
+        threshold = 50;
         break;
     case 3:
-        threshold += 75;
+        threshold = 75;
+        break;
+    default:
+        threshold = 30;
+        break;
     }
 
     threshold = dsp_cap(threshold + PAutomaton->getMod(Mod::AUTO_HEALING_THRESHOLD), 30, 90);
@@ -979,7 +939,7 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
     }
     }
 
-    CStatusEffectContainer* statuses = PTarget->StatusEffectContainer;
+    auto& statuses = PTarget->StatusEffectContainer;
     for (AUTOSPELL& id : castPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
@@ -1457,10 +1417,17 @@ bool CAutomatonController::CanCastSpells()
 
 bool CAutomatonController::Cast(uint16 targid, uint16 spellid)
 {
-    if (PAutomaton->m_RecastList[spellid] && time(nullptr) < PAutomaton->m_RecastList[spellid])
+    if (PAutomaton->PRecastContainer->Has(RECAST_MAGIC, spellid))
         return false;
 
     return CPetController::Cast(targid, spellid);
+}
+
+bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
+{
+    if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
+        return false;
+    return CPetController::MobSkill(targid, wsid);
 }
 
 bool CAutomatonController::Disengage()

@@ -30,6 +30,7 @@
 #include "../utils/battleutils.h"
 #include "../items/item_weapon.h"
 #include "../status_effect_container.h"
+#include "../recast_container.h"
 #include "../ai/ai_container.h"
 #include "../ai/states/attack_state.h"
 #include "../ai/states/magic_state.h"
@@ -72,7 +73,8 @@ CBattleEntity::CBattleEntity()
     PParty = nullptr;
     PMaster = nullptr;
 
-    StatusEffectContainer = new CStatusEffectContainer(this);
+    StatusEffectContainer = std::make_unique<CStatusEffectContainer>(this);
+    PRecastContainer = std::make_unique<CRecastContainer>(this);
 
     m_modStat[Mod::SLASHRES] = 1000;
     m_modStat[Mod::PIERCERES] = 1000;
@@ -86,7 +88,6 @@ CBattleEntity::CBattleEntity()
 
 CBattleEntity::~CBattleEntity()
 {
-    delete StatusEffectContainer;
 }
 
 bool CBattleEntity::isDead()

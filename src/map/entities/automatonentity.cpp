@@ -35,6 +35,7 @@
 #include "../packets/action.h"
 #include "../mob_modifier.h"
 #include "../utils/mobutils.h"
+#include "../recast_container.h"
 
 // Maybe move these to a sql table?
 std::unordered_map<AUTOSPELL, uint16, EnumClassHash> g_autoSpellList{
@@ -484,7 +485,7 @@ void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    m_RecastList[PSpell->getID()] = time(nullptr) + action.recast;
+    PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
 
     if (PSpell->tookEffect())
     {

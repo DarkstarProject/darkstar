@@ -150,8 +150,6 @@ public:
     std::array<uint8, 8> m_ElementMax {};
     std::array<uint8, 8> m_ElementEquip {};
 
-    std::unordered_map<uint16, uint32> m_RecastList;
-
     virtual bool CanUseSpell(CSpell* PSpell) override;
 
     void setFrame(AUTOFRAMETYPE frame);

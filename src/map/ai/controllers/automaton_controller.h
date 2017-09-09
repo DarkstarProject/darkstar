@@ -64,6 +64,7 @@ protected:
     void setMovement();
     virtual bool CanCastSpells() override;
     virtual bool Cast(uint16 targid, uint16 spellid) override;
+    virtual bool MobSkill(uint16 targid, uint16 wsid) override;
 
     bool m_deployed;
 private:
@@ -81,6 +82,7 @@ private:
 
     CurrentManeuvers GetCurrentManeuvers() const;
 
+private:
     CAutomatonEntity* PAutomaton;
 
     duration m_actionCooldown{ 3s };
@@ -94,9 +96,6 @@ private:
     duration m_statusCooldown{};
     duration m_shieldbashCooldown{};
     static constexpr int m_ShieldBashAbility{ 1944 };
-
-    //std::vector<AUTOSPELL> m_castPriority;
-    //std::vector<AUTOSPELL> m_defaultPriority;
 
     AUTOMOVEMENT m_movementType {AUTOMOVEMENT_MELEE};
 

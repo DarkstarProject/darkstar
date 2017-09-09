@@ -13,7 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:setLocalVar("mprestore", VanadielTime() + 180)
+    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
     local maneuvers = master:countEffect(EFFECT_DARK_MANEUVER)
     local amount = math.floor(automaton:getMaxMP() * 0.2 * maneuvers)
     skill:setMsg(MSG_RECOVER_MP)

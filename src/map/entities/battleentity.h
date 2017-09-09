@@ -452,6 +452,7 @@ class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
 class CDespawnState;
+class CRecastContainer;
 struct action_t;
 
 class CBattleEntity : public CBaseEntity
@@ -638,7 +639,9 @@ public:
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
-    CStatusEffectContainer* StatusEffectContainer;
+    std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
+    std::unique_ptr<CRecastContainer> PRecastContainer;         //
+
 
 
 private:

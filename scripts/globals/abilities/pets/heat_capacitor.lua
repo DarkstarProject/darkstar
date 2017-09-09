@@ -13,7 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:setLocalVar("meditate", VanadielTime() + 90)
+    automaton:addRecast(RECAST_ABILITY, skill:getID(), 90)
     local maneuvers = master:countEffect(EFFECT_FIRE_MANEUVER)
     skill:setMsg(MSG_TP_INCREASE)
 

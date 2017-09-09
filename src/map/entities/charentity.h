@@ -142,7 +142,7 @@ struct GearSetMod_t
 class CBasicPacket;
 class CLinkshell;
 class CMeritPoints;
-class CRecastContainer;
+class CCharRecastContainer;
 class CLatentEffectContainer;
 class CTradeContainer;
 class CItemContainer;
@@ -230,8 +230,6 @@ public:
     CTreasurePool*	  PTreasurePool;                // сокровища, добытые с монстров
     CMeritPoints*     PMeritPoints;                 //
     bool			  MeritMode;					//If true then player is meriting
-
-    CRecastContainer* PRecastContainer;             //
 
     CLatentEffectContainer* PLatentEffectContainer;
 

@@ -13,7 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:setLocalVar("erase", VanadielTime() + 30)
+    automaton:addRecast(RECAST_ABILITY, skill:getID(), 30)
     local maneuvers = master:countEffect(EFFECT_LIGHT_MANEUVER)
     skill:setMsg(MSG_USES)
 

@@ -65,7 +65,7 @@
 #include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
-#include "../recast_container.h"
+#include "../char_recast_container.h"
 #include "../latent_effect_container.h"
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
@@ -180,8 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
-
-    PRecastContainer = new CRecastContainer(this);
+    PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
     petZoningInfo.respawnPet = false;
@@ -217,7 +216,6 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
-    delete PRecastContainer;
 }
 
 uint8 CCharEntity::GetGender()

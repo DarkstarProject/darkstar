@@ -7342,18 +7342,20 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
-    if (m_PBaseEntity->objtype == TYPE_PC)
+    CBattleEntity* PBattleEntity = dynamic_cast<CBattleEntity*>(m_PBaseEntity);
+    if(PBattleEntity)
     {
-        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
         RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L, 1);
         uint16 recastID = lua_tointeger(L, 2);
         uint32 duration = lua_tointeger(L, 3);
 
-        PChar->PRecastContainer->Add(recastContainer, recastID, duration);
-
-        PChar->pushPacket(new CCharSkillsPacket(PChar));
-        PChar->pushPacket(new CCharRecastPacket(PChar));
+        PBattleEntity->PRecastContainer->Add(recastContainer, recastID, duration);
+        if(PBattleEntity->objtype == TYPE_PC)
+        {
+            CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+            PChar->pushPacket(new CCharSkillsPacket(PChar));
+            PChar->pushPacket(new CCharRecastPacket(PChar));
+        }
     }
     return 0;
 }
