@@ -32,7 +32,6 @@ function onPetAbility(target, automaton, skill, master, action)
         mnd_wsc = 0.0,
         chr_wsc = 0.0
     }
-    skill:setSkillchain(113)
 
     if USE_ADOULIN_WEAPON_SKILL_CHANGES then
         params.dex_wsc = 1.0

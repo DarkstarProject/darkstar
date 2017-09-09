@@ -755,11 +755,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
             target.knockback = PSkill->getKnockback();
             if (first && (PSkill->getPrimarySkillchain() != 0))
             {
-                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getPrimarySkillchain());
-                if (PWeaponSkill)
+                if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()),
-                        static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain())) } );
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PSkill->getPrimarySkillchain()),
+                        static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain())) } );
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);

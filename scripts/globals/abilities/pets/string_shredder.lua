@@ -36,7 +36,6 @@ function onPetAbility(target, automaton, skill, master, action)
         mnd_wsc = 0.0,
         chr_wsc = 0.0
     }
-    skill:setSkillchain(29)
 
     local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill)
 

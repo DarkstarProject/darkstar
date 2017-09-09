@@ -33,7 +33,6 @@ function onPetAbility(target, automaton, skill, master, action)
         mnd_wsc = 0.0,
         chr_wsc = 0.0
     }
-    skill:setSkillchain(150)
 
     if USE_ADOULIN_WEAPON_SKILL_CHANGES then
         params.ftp100 = 6.0

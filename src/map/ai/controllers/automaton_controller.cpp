@@ -75,23 +75,6 @@ std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> g_autoImmunityList{
     { AUTOSPELL_POISON_II, IMMUNITY_POISON },
     { AUTOSPELL_POISON, IMMUNITY_POISON }
 };
-std::unordered_map<uint16, uint16> g_autoSkillChainList = {
-    // Map of Automaton WS to player WS for skill chain property references
-    { 1940, 150 }, // Chimera Ripper
-    { 1941, 129 }, // String Clipper
-    { 2065, 179 }, // Cannibal Blade
-    { 2299, 24 },  // Bone Crusher
-    { 2743, 29 },  // String Shredder
-
-    { 1942, 192 }, // Arcuballista
-    { 2066, 113 }, // Daze
-    { 2300, 135 }, // Armor Piercer
-    { 2744, 141 }, // Armor Shatterer
-
-    { 1943, 38 },  // Slapstick
-    { 2067, 148 }, // Knockout
-    { 2301, 119 }  // Magic Mortar (This should be Liquefaction + Fusion, but no player WS has this combination!)
-};
 
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
@@ -1309,7 +1292,7 @@ bool CAutomatonController::TryTPMove()
         }
 
         int16 currentSkill = -1;
-        CMobSkill* PWSkill;
+        CMobSkill* PWSkill = nullptr;
         int8 currentManeuvers = -1;
 
         bool attemptChain = (PAutomaton->getMod(Mod::AUTO_TP_EFFICIENCY) != 0);
@@ -1348,19 +1331,15 @@ bool CAutomatonController::TryTPMove()
                 {
                     if (PSkill->getParam() > currentSkill)
                     {
-                        CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(g_autoSkillChainList[PSkill->getID()]);
-                        if (PWeaponSkill)
+                        std::list<SKILLCHAIN_ELEMENT> skillProperties;
+                        skillProperties.push_back((SKILLCHAIN_ELEMENT)PSkill->getPrimarySkillchain());
+                        skillProperties.push_back((SKILLCHAIN_ELEMENT)PSkill->getSecondarySkillchain());
+                        skillProperties.push_back((SKILLCHAIN_ELEMENT)PSkill->getTertiarySkillchain());
+                        if (battleutils::FormSkillchain(resonanceProperties, skillProperties) != SC_NONE)
                         {
-                            std::list<SKILLCHAIN_ELEMENT> skillProperties;
-                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
-                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
-                            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
-                            if (battleutils::FormSkillchain(resonanceProperties, skillProperties) != SC_NONE)
-                            {
-                                currentManeuvers = 1;
-                                currentSkill = PSkill->getParam();
-                                PWSkill = PSkill;
-                            }
+                            currentManeuvers = 1;
+                            currentSkill = PSkill->getParam();
+                            PWSkill = PSkill;
                         }
                     }
                 }
@@ -1385,7 +1364,8 @@ bool CAutomatonController::TryTPMove()
         if (currentManeuvers == -1)
             return false;
 
-        return MobSkill(PTarget->targid, PWSkill->getID());
+        if (PWSkill)
+            return MobSkill(PTarget->targid, PWSkill->getID());
     }
     return false;
 }

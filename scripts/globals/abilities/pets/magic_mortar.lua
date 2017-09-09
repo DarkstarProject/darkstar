@@ -19,7 +19,6 @@ function onPetAbility(target, automaton, skill, master, action)
 
     if not USE_ADOULIN_WEAPON_SKILL_CHANGES then
         ftp = 0.5 + ((0.5/3000) * tp)
-        skill:setSkillchain(119)
     else
         -- Might be wrong, it may only use max hp in its new form, also it may be able to miss and take defense into account as well
         if tp >= 3000 then
@@ -29,7 +28,6 @@ function onPetAbility(target, automaton, skill, master, action)
         else
             ftp = 1.5 + ((0.25/3000) * tp)
         end
-        skill:setSkillchain(119) -- No WS exists that is Liquefaction + Fusion
     end
 
     local hpdamage = (automaton:getMaxHP() - automaton:getHP()) * ftp
