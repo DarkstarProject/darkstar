@@ -9,24 +9,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
+    pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_REPLICATOR", function(automaton, target)
+        local master = pet:getMaster()
+        local hpthreshold = (pet:getLocalVar("damagegauge") > 0) and 75 or 50
+        if master and master:countEffect(EFFECT_WIND_MANEUVER) > 0 and automaton:getHPP() <= hpthreshold and not automaton:hasStatusEffect(EFFECT_BLINK) and automaton:getLocalVar("blink") < VanadielTime() then
+            automaton:useMobAbility(2132, automaton)
+        end
+    end)
 end
 
 function onUnequip(pet)
+    pet:removeListener("ATTACHMENT_REPLICATOR")
 end
 
 function onManeuverGain(pet,maneuvers)
 end
 
 function onManeuverLose(pet,maneuvers)
-end
-
-function onAttachmentCheck(pet,target)
-    local master = pet:getMaster()
-    local hpthreshold = (pet:getLocalVar("damagegauge") > 0) and 75 or 50
-    if master and master:countEffect(EFFECT_WIND_MANEUVER) > 0 and pet:getHPP() <= hpthreshold and not pet:hasStatusEffect(EFFECT_BLINK) and pet:getLocalVar("blink") < VanadielTime() then
-        pet:setLocalVar("blink", VanadielTime() + 60)
-        return 2132, pet
-    else
-        return 0
-    end
 end

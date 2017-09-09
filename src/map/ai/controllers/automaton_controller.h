@@ -96,8 +96,6 @@ private:
     duration m_shieldbashCooldown{};
     static constexpr int m_ShieldBashAbility{ 1944 };
 
-    std::array<bool, 12> m_checkAttachment {}; // If any of these are false then they will be skipped when checking if they enable a skill
-
     std::vector<AUTOSPELL> m_castPriority;
     std::vector<AUTOSPELL> m_defaultPriority;
 

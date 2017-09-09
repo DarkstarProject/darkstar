@@ -13,6 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
+    automaton:setLocalVar("dispel", VanadielTime() + 60)
     local effect = target:dispelStatusEffect()
     if effect ~= EFFECT_NONE then
         skill:setMsg(MSG_DISAPPEAR)

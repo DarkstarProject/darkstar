@@ -13,6 +13,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
+    automaton:setLocalVar("flash", VanadielTime() + 45)
 	local highest = automaton:getSkillLevel(22)
 	local highestskill = 22
 	if automaton:getSkillLevel(23) > highest then

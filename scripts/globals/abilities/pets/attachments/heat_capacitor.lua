@@ -9,23 +9,20 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
+    pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_HEAT_CAPACITOR", function(automaton, target)
+        local master = automaton:getMaster()
+        if master and master:countEffect(EFFECT_FIRE_MANEUVER) > 0 and automaton:getLocalVar("meditate") < VanadielTime() then
+            automaton:useMobAbility(2745, automaton)
+        end
+    end)
 end
 
 function onUnequip(pet)
+    pet:removeListener("ATTACHMENT_HEAT_CAPACITOR")
 end
 
 function onManeuverGain(pet,maneuvers)
 end
 
 function onManeuverLose(pet,maneuvers)
-end
-
-function onAttachmentCheck(pet,target)
-    local master = pet:getMaster()
-    if master and master:countEffect(EFFECT_FIRE_MANEUVER) > 0 and pet:getLocalVar("meditate") < VanadielTime() then
-        pet:setLocalVar("meditate", VanadielTime() + 90)
-        return 2745, pet
-    else
-        return 0
-    end
 end

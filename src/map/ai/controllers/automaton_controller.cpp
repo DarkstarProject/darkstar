@@ -95,7 +95,6 @@ std::unordered_map<uint16, uint16> g_autoSkillChainList = {
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
 {
-    memset(&m_checkAttachment, true, sizeof(m_checkAttachment));
     PPet->setInitialBurden();
     setCooldowns();
     setMovement();
@@ -1444,42 +1443,7 @@ bool CAutomatonController::TryAttachment()
 {
     if (!PAutomaton->PAI->CanChangeState())
         return false;
-
-    int16 skillid = 0;
-    CBattleEntity* PSkillTarget = nullptr;
-    for (uint8 i = 0; i < 12; i++)
-    {
-        if (m_checkAttachment[i])
-        {
-            CItemPuppet* PAttachment = nullptr;
-            // If an attachment returns -1, doesn't have an attachment check, or errors, disable it from being called to improve speed
-            if (PAutomaton->getAttachment(i) != 0 && (PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i))))
-            {
-                auto retValue = luautils::OnAttachmentCheck(PAutomaton, PTarget, PAttachment);
-                if (retValue.first >= 0)
-                {
-                    if (retValue.first > 0)
-                    {
-                        skillid = retValue.first;
-                        PSkillTarget = retValue.second;
-                        break;
-                    }
-                }
-                else
-                {
-                    m_checkAttachment[i] = false;
-                }
-            }
-            else
-            {
-                m_checkAttachment[i] = false;
-            }
-        }
-    }
-
-    if (skillid > 0)
-        return MobSkill(PSkillTarget->targid, skillid);
-
+    PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_ATTACHMENT_CHECK", PAutomaton, PTarget);
     return false;
 }
 

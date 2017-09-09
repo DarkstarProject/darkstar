@@ -9,6 +9,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
+    pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_DISRUPTOR", function(automaton, target)
+        local master = automaton:getMaster()
+        if master and master:countEffect(EFFECT_DARK_MANEUVER) > 0 and automaton:getLocalVar("dispel") < VanadielTime() and target:hasStatusEffectByFlag(EFFECTFLAG_DISPELABLE) and (automaton:checkDistance(target) - target:getModelSize()) < 7 then
+            automaton:useMobAbility(2747)
+        else
+            return 0
+        end
+    end)
 end
 
 function onUnequip(pet)
@@ -18,14 +26,4 @@ function onManeuverGain(pet,maneuvers)
 end
 
 function onManeuverLose(pet,maneuvers)
-end
-
-function onAttachmentCheck(pet,target)
-    local master = pet:getMaster()
-    if master and master:countEffect(EFFECT_DARK_MANEUVER) > 0 and pet:getLocalVar("dispel") < VanadielTime() and target:hasStatusEffectByFlag(EFFECTFLAG_DISPELABLE) and (pet:checkDistance(target) - target:getModelSize()) < 7 then
-        pet:setLocalVar("dispel", VanadielTime() + 60)
-        return 2747
-    else
-        return 0
-    end
 end

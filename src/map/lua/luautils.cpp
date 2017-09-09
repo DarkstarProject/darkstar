@@ -2030,48 +2030,6 @@ namespace luautils
         return 0;
     }
 
-    std::pair<int32, CBattleEntity*> OnAttachmentCheck(CBattleEntity* PEntity, CBattleEntity* PTarget, CItemPuppet* attachment)
-    {
-        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
-
-        if (prepFile(File, "onAttachmentCheck"))
-        {
-            return std::make_pair(-1, nullptr);
-        }
-
-        CLuaBaseEntity LuaMobEntity(PEntity);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaMobEntity);
-
-        CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
-
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
-        {
-            ShowError("luautils::onAttachmentCheck (%s): %s\n", attachment->getName(), lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
-            return std::make_pair(-1, nullptr);
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        CBattleEntity* PSkillTarget = nullptr;
-        uint32 skill = -1;
-        if (returns > 1 && !lua_isnil(LuaHandle, -1) && lua_isuserdata(LuaHandle, -1) && !lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2))
-        {
-            PSkillTarget = (CBattleEntity*)Lunar<CLuaBaseEntity>::check(LuaHandle, -1)->GetBaseEntity();
-            skill = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (uint32)lua_tonumber(LuaHandle, -2) : -1);
-        }
-        else
-        {
-            PSkillTarget = PTarget;
-            skill = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (uint32)lua_tonumber(LuaHandle, -1) : -1);
-        }
-        lua_pop(LuaHandle, returns);
-        if (returns > 2)
-        {
-            ShowError("luautils::onAttachmentCheck (%s): 0-2 returns expected, got %d\n", File, returns);
-        }
-        return std::make_pair(skill, PSkillTarget);
-    }
-
     /************************************************************************
     *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *
