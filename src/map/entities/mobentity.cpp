@@ -753,9 +753,9 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.speceffect = SPECEFFECT_RECOIL;
             target.knockback = PSkill->getKnockback();
-            if (first && (PSkill->getSkillchain() != 0))
+            if (first && (PSkill->getPrimarySkillchain() != 0))
             {
-                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getSkillchain());
+                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getPrimarySkillchain());
                 if (PWeaponSkill)
                 {
                     SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
