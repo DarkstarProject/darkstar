@@ -77,7 +77,7 @@ inline int32 CLuaMobSkill::setSkillchain(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PLuaMobSkill == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, -1) || !lua_isnumber(L, -1));
 
-    m_PLuaMobSkill->setSkillchain(lua_tointeger(L, -1));
+    m_PLuaMobSkill->setPrimarySkillchain(lua_tointeger(L, -1));
     return 0;
 }
 

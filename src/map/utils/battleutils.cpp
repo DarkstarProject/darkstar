@@ -195,7 +195,7 @@ namespace battleutils
         // Load all mob skills
         const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc \
         FROM mob_skills;";
 
         int32 ret = Sql_Query(SqlHandle, specialQuery);
@@ -215,6 +215,9 @@ namespace battleutils
                 PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
                 PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
                 PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
+                PMobSkill->setPrimarySkillchain(Sql_GetUIntData(SqlHandle, 11));
+                PMobSkill->setSecondarySkillchain(Sql_GetUIntData(SqlHandle, 12));
+                PMobSkill->setTertiarySkillchain(Sql_GetUIntData(SqlHandle, 13));
                 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
                 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
             }
