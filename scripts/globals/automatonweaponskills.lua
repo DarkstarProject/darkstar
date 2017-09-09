@@ -4,6 +4,7 @@ require("scripts/globals/utils");
 require("scripts/globals/magic");
 require("scripts/globals/magicburst");
 
+MSG_SHADOW = 31
 MSG_RESIST = 85
 MSG_USES = 101 -- simple uses message
 MSG_DISAPPEAR = 159 -- <target>'s stun effect disappears!
@@ -228,7 +229,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeAutoWeaponskillDamage(target, attacker, skill, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
     else
         skill:setMsg(MSG_MISS)
     end
@@ -271,7 +272,7 @@ function doAutoMagicWeaponskill(attacker, target, wsID, tp, primary, action, par
     dmg = dmg + firstHitBonus;
 
     dmg = dmg * WEAPON_SKILL_POWER
-    dmg = takeAutoWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
+    dmg = takeAutoWeaponskillDamage(target, attacker, skill, params, primary, dmg, SLOT_MAIN, 1, bonusTP, nil)
 
     return dmg, false, 1, 0;
 end
@@ -584,7 +585,7 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeAutoWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeAutoWeaponskillDamage(target, attacker, skill, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
     else
         skill:setMsg(MSG_MISS)
     end
@@ -638,7 +639,14 @@ function generateAutoPdif(cratiomin, cratiomax, melee)
     return pdif;
 end
 
-function takeAutoWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+function takeAutoWeaponskillDamage(defender, attacker, skill, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
+    finaldmg = utils.takeShadows(defender, finaldmg, tpHitsLanded);
+    -- dealt zero damage, so shadows took hit
+    if (finaldmg == 0) then
+        skill:setMsg(MSG_SHADOW);
+        return tpHitsLanded;
+    end
+
     local targetTPMult = params.targetTPMult or 1
     finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker;
