@@ -36166,6 +36166,21 @@ INSERT INTO `item_mods` VALUES (27228,31,107); -- 107 Meva
 INSERT INTO `item_mods` VALUES (27228,29,6); -- 6 Mdef
 INSERT INTO `item_mods` VALUES (27228,384,51); -- 5% Gear Haste
 INSERT INTO `item_mods` VALUES (27228,296,3); -- Conserve MP +3
+INSERT INTO `item_mods` VALUES (27229,1,108); -- Revealers Pants +1 -- 108 Def
+INSERT INTO `item_mods` VALUES (27229,2,73); -- 73 HP
+INSERT INTO `item_mods` VALUES (27229,5,59); -- 59 MP
+INSERT INTO `item_mods` VALUES (27229,8,25); -- 25 STR
+INSERT INTO `item_mods` VALUES (27229,10,12); -- 12 VIT
+INSERT INTO `item_mods` VALUES (27229,11,17); -- 17 AGI
+INSERT INTO `item_mods` VALUES (27229,12,40); -- 40 INT
+INSERT INTO `item_mods` VALUES (27229,13,30); -- 30 MND
+INSERT INTO `item_mods` VALUES (27229,14,19); -- 19 CHR
+INSERT INTO `item_mods` VALUES (27229,28,11); -- 11 Matt
+INSERT INTO `item_mods` VALUES (27229,68,27); -- 27 Eva
+INSERT INTO `item_mods` VALUES (27229,31,107); -- 107 Meva
+INSERT INTO `item_mods` VALUES (27229,29,6); -- 6 Mdef
+INSERT INTO `item_mods` VALUES (27229,384,51); -- 5% Gear Haste
+INSERT INTO `item_mods` VALUES (27229,296,4); -- Conserve MP +4
 INSERT INTO `item_mods` VALUES (27231,1,111);
 INSERT INTO `item_mods` VALUES (27231,2,47);
 INSERT INTO `item_mods` VALUES (27231,8,29);
