@@ -643,17 +643,17 @@ bool CAutomatonController::TryHeal()
     if (PCastTarget)
     {
         float missinghp = PCastTarget->GetMaxHP() - PCastTarget->health.hp;
-        if (missinghp > 850 && CastSpell(AUTOSPELL_CURE_VI, PCastTarget))
+        if (missinghp > 850 && Cast(PCastTarget->targid, AUTOSPELL_CURE_VI ))
             return true;
-        else if (missinghp > 600 && CastSpell(AUTOSPELL_CURE_V, PCastTarget))
+        else if (missinghp > 600 && Cast(PCastTarget->targid, AUTOSPELL_CURE_V))
             return true;
-        else if (missinghp > 350 && CastSpell(AUTOSPELL_CURE_IV, PCastTarget))
+        else if (missinghp > 350 && Cast(PCastTarget->targid, AUTOSPELL_CURE_IV))
             return true;
-        else if (missinghp > 190 && CastSpell(AUTOSPELL_CURE_III, PCastTarget))
+        else if (missinghp > 190 && Cast(PCastTarget->targid, AUTOSPELL_CURE_III))
             return true;
-        else if (missinghp > 120 && CastSpell(AUTOSPELL_CURE_II, PCastTarget))
+        else if (missinghp > 120 && Cast(PCastTarget->targid, AUTOSPELL_CURE_II))
             return true;
-        else if (CastSpell(AUTOSPELL_CURE, PCastTarget))
+        else if (Cast(PCastTarget->targid, AUTOSPELL_CURE))
             return true;
     }
 
@@ -737,11 +737,11 @@ bool CAutomatonController::TryElemental()
     for (int8 i = tier; i >= 0; --i)
     {
         for (AUTOSPELL& id : m_castPriority)
-            if (CastSpell((AUTOSPELL)(id + i), PTarget))
+            if (Cast(PTarget->targid, (AUTOSPELL)(id + i)))
                 return true;
 
         for (AUTOSPELL& id : m_defaultPriority)
-            if (CastSpell((AUTOSPELL)(id + i), PTarget))
+            if (Cast(PTarget->targid, (AUTOSPELL)(id + i)))
                 return true;
     }
 
@@ -981,14 +981,14 @@ bool CAutomatonController::TryEnfeeble()
     for (AUTOSPELL& id : m_castPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
-            CastSpell(id, PTarget))
+            Cast(PTarget->targid, id))
             return true;
     }
 
     for (AUTOSPELL& id : m_defaultPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
-            CastSpell(id, PTarget))
+            Cast(PTarget->targid, id))
             return true;
     }
 
@@ -1019,7 +1019,7 @@ bool CAutomatonController::TryStatusRemoval()
     });
 
     for (AUTOSPELL& id : queue)
-        if (CastSpell(id, PAutomaton->PMaster))
+        if (Cast(PAutomaton->PMaster->targid, id))
             return true;
 
     queue.clear();
@@ -1037,7 +1037,7 @@ bool CAutomatonController::TryStatusRemoval()
     });
 
     for (AUTOSPELL& id : queue)
-        if (CastSpell(id, PAutomaton))
+        if (Cast(PAutomaton->targid, id))
             return true;
 
     if (m_CurrentManeuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Water + Soulsoother head -> Remove party's statuses
@@ -1061,8 +1061,8 @@ bool CAutomatonController::TryStatusRemoval()
                     }
                 });
 
-                for (AUTOSPELL& id : queue)
-                    if (CastSpell(id, member))
+                for (auto id : queue)
+                    if (Cast(member->targid, id))
                         return true;
             }
         }
@@ -1079,7 +1079,7 @@ bool CAutomatonController::TryEnhance()
         return false;
 
     if (PAutomaton->getHead() == HEAD_SPIRITREAVER)
-        return CastSpell(AUTOSPELL_DREAD_SPIKES, PAutomaton);
+        return Cast(PAutomaton->targid, AUTOSPELL_DREAD_SPIKES);
 
     EnmityList_t* enmityList;
     auto PMob = dynamic_cast<CMobEntity*>(PTarget);
@@ -1282,46 +1282,46 @@ bool CAutomatonController::TryEnhance()
     }
 
     // No info on how this spell worked
-    if ((members - protectcount) >= 4)
-        CastSpell(AUTOSPELL_PROTECTRA_V, PAutomaton);
+    if((members - protectcount) >= 4)
+        Cast(PAutomaton->targid, AUTOSPELL_PROTECTRA_V);
 
     // No info on how this spell worked
     if ((members - shellcount) >= 4)
-        CastSpell(AUTOSPELL_SHELLRA_V, PAutomaton);
+        Cast(PAutomaton->targid, AUTOSPELL_SHELLRA_V);
 
     if (PRegenTarget && (PTarget->GetMLevel() + 5) >= PAutomaton->GetMLevel() && !(PRegenTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REGEN) ||
         PRegenTarget->StatusEffectContainer->HasStatusEffect(EFFECT_REGEN_II)))
-        if (CastSpell(AUTOSPELL_REGEN_III, PRegenTarget) ||
-            CastSpell(AUTOSPELL_REGEN_II, PRegenTarget) ||
-            CastSpell(AUTOSPELL_REGEN, PRegenTarget))
+        if (Cast(PRegenTarget->targid, AUTOSPELL_REGEN_III) ||
+            Cast(PRegenTarget->targid, AUTOSPELL_REGEN_II) ||
+            Cast(PRegenTarget->targid, AUTOSPELL_REGEN))
             return true;
 
     if (PProtectTarget)
-        if (CastSpell(AUTOSPELL_PROTECT_V, PProtectTarget) ||
-            CastSpell(AUTOSPELL_PROTECT_IV, PProtectTarget) ||
-            CastSpell(AUTOSPELL_PROTECT_III, PProtectTarget) ||
-            CastSpell(AUTOSPELL_PROTECT_II, PProtectTarget) ||
-            CastSpell(AUTOSPELL_PROTECT, PProtectTarget))
+        if (Cast(PProtectTarget->targid, AUTOSPELL_PROTECT_V) ||
+            Cast(PProtectTarget->targid, AUTOSPELL_PROTECT_IV) ||
+            Cast(PProtectTarget->targid, AUTOSPELL_PROTECT_III) ||
+            Cast(PProtectTarget->targid, AUTOSPELL_PROTECT_II) ||
+            Cast(PProtectTarget->targid, AUTOSPELL_PROTECT))
             return true;
 
     if (PShellTarget)
-        if (CastSpell(AUTOSPELL_SHELL_V, PShellTarget) ||
-            CastSpell(AUTOSPELL_SHELL_IV, PShellTarget) ||
-            CastSpell(AUTOSPELL_SHELL_III, PShellTarget) ||
-            CastSpell(AUTOSPELL_SHELL_II, PShellTarget) ||
-            CastSpell(AUTOSPELL_SHELL, PShellTarget))
+        if (Cast(PShellTarget->targid, AUTOSPELL_SHELL_V) ||
+            Cast(PShellTarget->targid, AUTOSPELL_SHELL_IV) ||
+            Cast(PShellTarget->targid, AUTOSPELL_SHELL_III) ||
+            Cast(PShellTarget->targid, AUTOSPELL_SHELL_II) ||
+            Cast(PShellTarget->targid, AUTOSPELL_SHELL))
             return true;
 
     if (PHasteTarget)
-        if (CastSpell(AUTOSPELL_HASTE_II, PHasteTarget) || CastSpell(AUTOSPELL_HASTE, PHasteTarget))
+        if (Cast(PHasteTarget->targid, AUTOSPELL_HASTE_II) || Cast(PHasteTarget->targid, AUTOSPELL_HASTE))
             return true;
 
     if (PStoneSkinTarget)
-        if (CastSpell(AUTOSPELL_STONESKIN, PStoneSkinTarget))
+        if (Cast(PStoneSkinTarget->targid, AUTOSPELL_STONESKIN))
             return true;
 
     if (PPhalanxTarget)
-        if (CastSpell(AUTOSPELL_PHALANX, PPhalanxTarget))
+        if (Cast(PPhalanxTarget->targid, AUTOSPELL_PHALANX))
             return true;
 
     return false;
@@ -1493,29 +1493,26 @@ bool CAutomatonController::CanCastSpells()
     return PAutomaton->PAI->CanChangeState();
 }
 
-bool CAutomatonController::CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget)
+bool CAutomatonController::Cast(uint16 targid, uint16 spellid)
 {
+    //TODO: move all this automaton-specific stuff to generic places
     CSpell* PSpell = spell::GetSpell(spellid);
 
-    if (!PAutomaton->hasSpell(spellid) || PAutomaton->health.mp < PSpell->getMPCost() ||
+    if (!PAutomaton->hasSpell((AUTOSPELL)spellid) || PAutomaton->health.mp < PSpell->getMPCost() ||
         (PAutomaton->m_RecastList[spellid] && time(nullptr) < PAutomaton->m_RecastList[spellid]))
         return false;
 
     if (PSpell == nullptr)
     {
-        ShowWarning(CL_YELLOW"CAutomatonController::CastSpell: SpellId <%i> is not found\n" CL_RESET, spellid);
+        ShowWarning(CL_YELLOW"CAutomatonController::Cast: SpellId <%i> is not found\n" CL_RESET, spellid);
         return false;
     }
-    else
-    {
-        Cast(PCastTarget->targid, spellid);
-    }
-    return true;
+    return CPetController::Cast(targid, spellid);
 }
 
-void CAutomatonController::Disengage()
+bool CAutomatonController::Disengage()
 {
     PTarget = nullptr; // Reset this so the AI will know when its deployed
     m_deployed = false;
-    CMobController::Disengage();
+    return CMobController::Disengage();
 }

@@ -45,7 +45,7 @@ enum AUTOHEADTYPE
     HEAD_SPIRITREAVER = 0x06
 };
 
-enum AUTOSPELL
+enum AUTOSPELL : uint16
 {
     AUTOSPELL_CURE         = 1,
     AUTOSPELL_CURE_II      = 2,

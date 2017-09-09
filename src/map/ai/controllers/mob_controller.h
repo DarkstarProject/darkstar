@@ -33,20 +33,20 @@ public:
     CMobController(CMobEntity* PMob);
 
     virtual void Tick(time_point tick) override;
-    virtual void Disengage() override;
+    virtual bool Disengage() override;
     virtual bool Engage(uint16 targid) override;
     virtual void Despawn() override;
     virtual void Reset() override;
 
     virtual bool MobSkill(uint16 targid, uint16 wsid);
-    virtual void Ability(uint16 targid, uint16 abilityid) override {}
+    virtual bool Ability(uint16 targid, uint16 abilityid) override { return false; }
     bool MobSkill(int list = 0);
     bool TryCastSpell();
     bool TrySpecialSkill();
 
     bool CanAggroTarget(CBattleEntity*);
     void TapDeaggroTime();
-    virtual void Cast(uint16 targid, uint16 spellid) override;
+    virtual bool Cast(uint16 targid, uint16 spellid) override;
 
 protected:
     virtual bool TryDeaggro();

@@ -54,7 +54,7 @@ class CAutomatonController : public CPetController
 public:
     CAutomatonController(CAutomatonEntity* PPet);
 
-    virtual void Disengage() override;
+    virtual bool Disengage() override;
 protected:
     virtual void DoCombatTick(time_point tick) override;
     virtual void Move() override;
@@ -63,7 +63,7 @@ protected:
     void setMagicCooldowns();
     void setMovement();
     virtual bool CanCastSpells() override;
-    bool CastSpell(AUTOSPELL spellid, CBattleEntity* PCastTarget);
+    virtual bool Cast(uint16 targid, uint16 spellid) override;
 
     bool m_deployed;
 private:
