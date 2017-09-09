@@ -58,9 +58,9 @@ protected:
     bool CheckHide(CBattleEntity* PTarget);
     bool CheckDetection(CBattleEntity* PTarget);
     bool CanSeePoint(position_t pos);
-    bool CanCastSpells();
+    virtual bool CanCastSpells();
     void CastSpell(uint16 spellid);
-    void Move();
+    virtual void Move();
 
     virtual void DoCombatTick(time_point tick);
     void FaceTarget(uint16 targid = 0);
