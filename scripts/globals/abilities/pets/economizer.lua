@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local maneuvers = master:countEffect(EFFECT_DARK_MANEUVER)
     local amount = math.floor(automaton:getMaxMP() * 0.2 * maneuvers)
     skill:setMsg(MSG_RECOVER_MP)

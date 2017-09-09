@@ -10,15 +10,10 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_THUNDER_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_THUNDER_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 2,
         atkmulti = 1.25,
@@ -43,10 +38,10 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ftp100 = 3.5
         params.ftp200 = 3.5
         params.ftp300 = 3.5
-        params.accBonus = 0.05 * tp
+        params.accBonus = 0.05 * skill:getTP()
     end
 
-    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, tp, true, action, false, params, skill)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill)
 
     return damage
 end

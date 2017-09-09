@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 1,
         atkmulti = 1.5,

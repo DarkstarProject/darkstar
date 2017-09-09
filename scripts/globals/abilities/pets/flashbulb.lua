@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
 	local highest = automaton:getSkillLevel(22)
 	local highestskill = 22
 	if automaton:getSkillLevel(23) > highest then

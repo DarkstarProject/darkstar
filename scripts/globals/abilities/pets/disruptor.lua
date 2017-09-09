@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
     return 0
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local effect = target:dispelStatusEffect()
     if effect ~= EFFECT_NONE then
         skill:setMsg(MSG_DISAPPEAR)

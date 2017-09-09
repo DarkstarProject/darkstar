@@ -10,15 +10,10 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    local effects = master:countEffect(EFFECT_DARK_MANEUVER)
-    if effects > 0 then
-        return effects
-    else
-        return -1
-    end
+    return master:countEffect(EFFECT_DARK_MANEUVER)
 end
 
-function onAutomatonAbility(automaton, target, skill, tp, master, action)
+function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 1,
         atkmulti = 1.5,
@@ -52,7 +47,7 @@ function onAutomatonAbility(automaton, target, skill, tp, master, action)
         params.ignored300 = 0.5
     end
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, tp, true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill)
 
     return damage
 end
