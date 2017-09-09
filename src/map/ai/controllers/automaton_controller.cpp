@@ -251,17 +251,19 @@ void CAutomatonController::setMovement()
     m_deployed = false;
 }
 
-void CAutomatonController::GetCurrentManeuvers()
+CurrentManeuvers CAutomatonController::GetCurrentManeuvers() const
 {
     auto statuses = PAutomaton->PMaster->StatusEffectContainer;
-    m_CurrentManeuvers.fire = statuses->GetEffectsCount(EFFECT_FIRE_MANEUVER);
-    m_CurrentManeuvers.earth = statuses->GetEffectsCount(EFFECT_EARTH_MANEUVER);
-    m_CurrentManeuvers.water = statuses->GetEffectsCount(EFFECT_WATER_MANEUVER);
-    m_CurrentManeuvers.wind = statuses->GetEffectsCount(EFFECT_WIND_MANEUVER);
-    m_CurrentManeuvers.ice = statuses->GetEffectsCount(EFFECT_ICE_MANEUVER);
-    m_CurrentManeuvers.thunder = statuses->GetEffectsCount(EFFECT_THUNDER_MANEUVER);
-    m_CurrentManeuvers.light = statuses->GetEffectsCount(EFFECT_LIGHT_MANEUVER);
-    m_CurrentManeuvers.dark = statuses->GetEffectsCount(EFFECT_DARK_MANEUVER);
+    return {
+    statuses->GetEffectsCount(EFFECT_FIRE_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_EARTH_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_WATER_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_WIND_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_ICE_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_THUNDER_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_LIGHT_MANEUVER),
+    statuses->GetEffectsCount(EFFECT_DARK_MANEUVER)
+    };
 }
 
 void CAutomatonController::DoCombatTick(time_point tick)
@@ -293,18 +295,16 @@ void CAutomatonController::DoCombatTick(time_point tick)
     // Automatons only attempt actions in 3 second intervals (Reduced by the Tactical Processor)
     if (TryAction())
     {
-        GetCurrentManeuvers();
+        auto maneuvers = GetCurrentManeuvers();
 
         if (TryShieldBash())
         {
             m_LastShieldBashTime = m_Tick;
             return;
         }
-        else if (TrySpellcast())
+        else if (TrySpellcast(maneuvers))
         {
             m_LastMagicTime = m_Tick;
-            m_castPriority.clear();
-            m_defaultPriority.clear();
             return;
         }
         else if (TryTPMove())
@@ -381,7 +381,7 @@ bool CAutomatonController::TryShieldBash()
     return false;
 }
 
-bool CAutomatonController::TrySpellcast()
+bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
 {
     // Note that the old AI used the Mana Booster attachment to reduce magic cooldown instead of giving fast cast
     if (!PAutomaton->PMaster || m_magicCooldown == 0s ||
@@ -392,7 +392,7 @@ bool CAutomatonController::TrySpellcast()
     {
     case HEAD_VALOREDGE:
     {
-        if (TryHeal())
+        if (TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -401,18 +401,18 @@ bool CAutomatonController::TrySpellcast()
     break;
     case HEAD_SHARPSHOT:
     {
-        if (m_CurrentManeuvers.light && TryHeal()) // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
         {
             m_LastHealTime = m_Tick;
             return true;
         }
 
-        if (TryEnfeeble())
+        if (TryEnfeeble(maneuvers))
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
         }
-        else if (!m_CurrentManeuvers.light && TryHeal())
+        else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -421,18 +421,18 @@ bool CAutomatonController::TrySpellcast()
     break;
     case HEAD_HARLEQUIN:
     {
-        if (m_CurrentManeuvers.light && TryHeal()) // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
         {
             m_LastHealTime = m_Tick;
             return true;
         }
 
-        if (TryEnfeeble())
+        if (TryEnfeeble(maneuvers))
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
         }
-        else if (!m_CurrentManeuvers.light && TryHeal())
+        else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -442,34 +442,34 @@ bool CAutomatonController::TrySpellcast()
     case HEAD_STORMWAKER:
     {
         bool lowHP = PTarget->GetHPP() <= 30 && PTarget->health.hp <= 300;
-        if (lowHP && TryElemental())  // Mob low HP -> Nuke
+        if (lowHP && TryElemental(maneuvers))  // Mob low HP -> Nuke
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
 
-        if (m_CurrentManeuvers.light && TryHeal()) // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
         {
             m_LastHealTime = m_Tick;
             return true;
         }
-        else if (!lowHP && m_CurrentManeuvers.ice && TryElemental())  // Ice -> Nuke
+        else if (!lowHP && maneuvers.ice && TryElemental(maneuvers))  // Ice -> Nuke
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
 
-        if (TryEnfeeble())
+        if (TryEnfeeble(maneuvers))
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
         }
-        else if (!m_CurrentManeuvers.light && TryHeal())
+        else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
         }
-        else if (!lowHP && !m_CurrentManeuvers.ice && TryElemental())
+        else if (!lowHP && !maneuvers.ice && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
@@ -483,18 +483,18 @@ bool CAutomatonController::TrySpellcast()
     break;
     case HEAD_SOULSOOTHER:
     {
-        if (m_CurrentManeuvers.light && TryHeal()) // Light -> Heal
+        if (maneuvers.light && TryHeal(maneuvers)) // Light -> Heal
         {
             m_LastHealTime = m_Tick;
             return true;
         }
 
-        if (TryStatusRemoval())
+        if (TryStatusRemoval(maneuvers))
         {
             m_LastStatusTime = m_Tick;
             return true;
         }
-        else if (!m_CurrentManeuvers.light && TryHeal())
+        else if (!maneuvers.light && TryHeal(maneuvers))
         {
             m_LastHealTime = m_Tick;
             return true;
@@ -504,7 +504,7 @@ bool CAutomatonController::TrySpellcast()
             m_LastEnhanceTime = m_Tick;
             return true;
         }
-        else if (TryEnfeeble())
+        else if (TryEnfeeble(maneuvers))
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
@@ -513,23 +513,23 @@ bool CAutomatonController::TrySpellcast()
     break;
     case HEAD_SPIRITREAVER:
     {
-        if (m_CurrentManeuvers.ice && TryElemental())  // Ice -> Nuke
+        if (maneuvers.ice && TryElemental(maneuvers))  // Ice -> Nuke
         {
             m_LastElementalTime = m_Tick;
             return true;
         }
-        else if (m_CurrentManeuvers.dark && TryEnhance())
+        else if (maneuvers.dark && TryEnhance())
         {
             m_LastEnhanceTime = m_Tick;
             return true;
         }
-        else if ((m_CurrentManeuvers.dark || PAutomaton->GetHPP() <= 75 || PAutomaton->GetMPP() <= 75) && TryEnfeeble()) // Dark or self HPP/MPP <= 75 -> Enfeeble
+        else if ((maneuvers.dark || PAutomaton->GetHPP() <= 75 || PAutomaton->GetMPP() <= 75) && TryEnfeeble(maneuvers)) // Dark or self HPP/MPP <= 75 -> Enfeeble
         {
             m_LastEnfeebleTime = m_Tick;
             return true;
         }
 
-        if (!m_CurrentManeuvers.ice && TryElemental())
+        if (!maneuvers.ice && TryElemental(maneuvers))
         {
             m_LastElementalTime = m_Tick;
             return true;
@@ -539,13 +539,13 @@ bool CAutomatonController::TrySpellcast()
     return false;
 }
 
-bool CAutomatonController::TryHeal()
+bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
 {
     if (!PAutomaton->PMaster || m_healCooldown == 0s || m_Tick <= m_LastHealTime + (m_healCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::AUTO_HEALING_DELAY))))
         return false;
 
     float threshold = 0;
-    switch (m_CurrentManeuvers.light) // Light -> Higher healing threshold
+    switch (maneuvers.light) // Light -> Higher healing threshold
     {
     default:
         threshold += 30;
@@ -601,7 +601,7 @@ bool CAutomatonController::TryHeal()
             PCastTarget = PAutomaton;
     }
 
-    if (m_CurrentManeuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Light + Soulsoother head -> Heal party
+    if (maneuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Light + Soulsoother head -> Heal party
     {
         if (PMob)
         {
@@ -663,10 +663,13 @@ inline bool resistanceComparator(const std::pair<AUTOSPELL, int16>& firstElem, c
     return firstElem.second < secondElem.second;
 }
 
-bool CAutomatonController::TryElemental()
+bool CAutomatonController::TryElemental(const CurrentManeuvers& maneuvers)
 {
     if (!PAutomaton->PMaster || m_elementalCooldown == 0s || m_Tick <= m_LastElementalTime + m_elementalCooldown)
         return false;
+
+    std::vector<AUTOSPELL> castPriority;
+    std::vector<AUTOSPELL> defaultPriority;
 
     int8 tier = 4;
     int32 hp = PTarget->health.hp;
@@ -694,66 +697,66 @@ bool CAutomatonController::TryElemental()
         };
         std::stable_sort(reslist.begin(), reslist.end(), resistanceComparator);
         for (std::pair<AUTOSPELL, int16>& res : reslist)
-            m_castPriority.push_back(res.first);
+            castPriority.push_back(res.first);
     }
     else if (PAutomaton->getHead() == HEAD_SPIRITREAVER)
     {
-        if (m_CurrentManeuvers.thunder) // Thunder -> Thunder spells
-            m_castPriority.push_back(AUTOSPELL_THUNDER);
+        if (maneuvers.thunder) // Thunder -> Thunder spells
+            castPriority.push_back(AUTOSPELL_THUNDER);
         else
-            m_defaultPriority.push_back(AUTOSPELL_THUNDER);
+            defaultPriority.push_back(AUTOSPELL_THUNDER);
 
-        if (m_CurrentManeuvers.ice) // Ice -> Blizzard spells
-            m_castPriority.push_back(AUTOSPELL_BLIZZARD);
+        if (maneuvers.ice) // Ice -> Blizzard spells
+            castPriority.push_back(AUTOSPELL_BLIZZARD);
         else
-            m_defaultPriority.push_back(AUTOSPELL_BLIZZARD);
+            defaultPriority.push_back(AUTOSPELL_BLIZZARD);
 
-        if (m_CurrentManeuvers.fire) // Fire -> Fire spells
-            m_castPriority.push_back(AUTOSPELL_FIRE);
+        if (maneuvers.fire) // Fire -> Fire spells
+            castPriority.push_back(AUTOSPELL_FIRE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_FIRE);
+            defaultPriority.push_back(AUTOSPELL_FIRE);
 
-        if (m_CurrentManeuvers.wind) // Wind -> Aero spells
-            m_castPriority.push_back(AUTOSPELL_AERO);
+        if (maneuvers.wind) // Wind -> Aero spells
+            castPriority.push_back(AUTOSPELL_AERO);
         else
-            m_defaultPriority.push_back(AUTOSPELL_AERO);
+            defaultPriority.push_back(AUTOSPELL_AERO);
 
-        if (m_CurrentManeuvers.water) // Water -> Water spells
-            m_castPriority.push_back(AUTOSPELL_WATER);
+        if (maneuvers.water) // Water -> Water spells
+            castPriority.push_back(AUTOSPELL_WATER);
         else
-            m_defaultPriority.push_back(AUTOSPELL_WATER);
+            defaultPriority.push_back(AUTOSPELL_WATER);
 
-        if (m_CurrentManeuvers.earth) // Earth -> Stone spells
-            m_castPriority.push_back(AUTOSPELL_STONE);
+        if (maneuvers.earth) // Earth -> Stone spells
+            castPriority.push_back(AUTOSPELL_STONE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_STONE);
+            defaultPriority.push_back(AUTOSPELL_STONE);
     }
     else
     {
-        m_defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
+        defaultPriority = { AUTOSPELL_THUNDER, AUTOSPELL_BLIZZARD, AUTOSPELL_FIRE, AUTOSPELL_AERO, AUTOSPELL_WATER, AUTOSPELL_STONE };
     }
 
     for (int8 i = tier; i >= 0; --i)
     {
-        for (AUTOSPELL& id : m_castPriority)
+        for (AUTOSPELL& id : castPriority)
             if (Cast(PTarget->targid, (AUTOSPELL)(id + i)))
                 return true;
 
-        for (AUTOSPELL& id : m_defaultPriority)
+        for (AUTOSPELL& id : defaultPriority)
             if (Cast(PTarget->targid, (AUTOSPELL)(id + i)))
                 return true;
     }
 
-    m_castPriority.clear();
-    m_defaultPriority.clear();
-
     return false;
 }
 
-bool CAutomatonController::TryEnfeeble()
+bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
 {
     if (!PAutomaton->PMaster || m_enfeebleCooldown == 0s || m_Tick <= m_LastEnfeebleTime + m_enfeebleCooldown)
         return false;
+
+    std::vector<AUTOSPELL> castPriority;
+    std::vector<AUTOSPELL> defaultPriority;
 
     switch (PAutomaton->getHead())
     {
@@ -772,302 +775,297 @@ bool CAutomatonController::TryEnfeeble()
             }
         });
         if (dispel)
-            m_castPriority.push_back(AUTOSPELL_DISPEL);
+            castPriority.push_back(AUTOSPELL_DISPEL);
     }
     default:
     {
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
         {
-            if (m_CurrentManeuvers.dark) // Dark -> Bio
+            if (maneuvers.dark) // Dark -> Bio
             {
-                m_castPriority.push_back(AUTOSPELL_BIO_II);
-                m_castPriority.push_back(AUTOSPELL_BIO);
+                castPriority.push_back(AUTOSPELL_BIO_II);
+                castPriority.push_back(AUTOSPELL_BIO);
             }
             else
             {
-                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
-                m_defaultPriority.push_back(AUTOSPELL_BIO);
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
             }
         }
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
-            if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia II
+            if (maneuvers.light >= 2) // 2 Light -> Dia II
             {
-                m_castPriority.push_back(AUTOSPELL_DIA_II);
+                castPriority.push_back(AUTOSPELL_DIA_II);
             }
 
-            if (m_CurrentManeuvers.light) // Light -> Dia
+            if (maneuvers.light) // Light -> Dia
             {
-                m_castPriority.push_back(AUTOSPELL_DIA);
+                castPriority.push_back(AUTOSPELL_DIA);
             }
         }
 
-        if (m_CurrentManeuvers.water) // Water -> Poison
+        if (maneuvers.water) // Water -> Poison
         {
-            m_castPriority.push_back(AUTOSPELL_POISON_II);
-            m_castPriority.push_back(AUTOSPELL_POISON);
+            castPriority.push_back(AUTOSPELL_POISON_II);
+            castPriority.push_back(AUTOSPELL_POISON);
         }
         else
         {
-            m_defaultPriority.push_back(AUTOSPELL_POISON_II);
-            m_defaultPriority.push_back(AUTOSPELL_POISON);
+            defaultPriority.push_back(AUTOSPELL_POISON_II);
+            defaultPriority.push_back(AUTOSPELL_POISON);
         }
 
-        if (m_CurrentManeuvers.wind) // Wind -> Silence
-            m_castPriority.push_back(AUTOSPELL_SILENCE);
+        if (maneuvers.wind) // Wind -> Silence
+            castPriority.push_back(AUTOSPELL_SILENCE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_SILENCE);
+            defaultPriority.push_back(AUTOSPELL_SILENCE);
 
-        if (m_CurrentManeuvers.earth) // Earth -> Slow
-            m_castPriority.push_back(AUTOSPELL_SLOW);
+        if (maneuvers.earth) // Earth -> Slow
+            castPriority.push_back(AUTOSPELL_SLOW);
         else
-            m_defaultPriority.push_back(AUTOSPELL_SLOW);
+            defaultPriority.push_back(AUTOSPELL_SLOW);
 
-        if (m_CurrentManeuvers.dark) // Dark -> Blind
-            m_castPriority.push_back(AUTOSPELL_BLIND);
+        if (maneuvers.dark) // Dark -> Blind
+            castPriority.push_back(AUTOSPELL_BLIND);
         else
-            m_defaultPriority.push_back(AUTOSPELL_BLIND);
+            defaultPriority.push_back(AUTOSPELL_BLIND);
 
-        if (m_CurrentManeuvers.ice) // Ice -> Paralyze
-            m_castPriority.push_back(AUTOSPELL_PARALYZE);
+        if (maneuvers.ice) // Ice -> Paralyze
+            castPriority.push_back(AUTOSPELL_PARALYZE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
+            defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
-        if (m_CurrentManeuvers.fire) // Fire -> Addle
-            m_castPriority.push_back(AUTOSPELL_ADDLE);
+        if (maneuvers.fire) // Fire -> Addle
+            castPriority.push_back(AUTOSPELL_ADDLE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_ADDLE);
+            defaultPriority.push_back(AUTOSPELL_ADDLE);
     }
     break;
     case HEAD_SPIRITREAVER:
     {
         if (PAutomaton->GetMPP() <= 75 && PTarget->health.mp > 0) // MPP <= 75 -> Aspir
         {
-            m_castPriority.push_back(AUTOSPELL_ASPIR_II);
-            m_castPriority.push_back(AUTOSPELL_ASPIR);
+            castPriority.push_back(AUTOSPELL_ASPIR_II);
+            castPriority.push_back(AUTOSPELL_ASPIR);
         }
 
         if (PAutomaton->GetHPP() <= 75 && PTarget->m_EcoSystem != SYSTEM_UNDEAD) // HPP <= 75 -> Drain
-            m_castPriority.push_back(AUTOSPELL_DRAIN);
+            castPriority.push_back(AUTOSPELL_DRAIN);
 
-        if (m_CurrentManeuvers.dark) // Dark -> Access to Enfeebles
+        if (maneuvers.dark) // Dark -> Access to Enfeebles
         {
             if (!PAutomaton->StatusEffectContainer->HasStatusEffect(EFFECT_INT_BOOST)) // Use it ASAP
-                m_defaultPriority.push_back(AUTOSPELL_ABSORB_INT);
+                defaultPriority.push_back(AUTOSPELL_ABSORB_INT);
 
             // Not prioritizable since it requires 1 Dark to access Enfeebles and requires 2 of another element to prioritize another
-            m_defaultPriority.push_back(AUTOSPELL_BLIND);
+            defaultPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
-                m_defaultPriority.push_back(AUTOSPELL_BIO);
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
             }
 
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
             {
-                if (m_CurrentManeuvers.light >= 2) // 2 Light -> Dia
+                if (maneuvers.light >= 2) // 2 Light -> Dia
                 {
-                    m_castPriority.push_back(AUTOSPELL_DIA_II);
-                    m_castPriority.push_back(AUTOSPELL_DIA);
+                    castPriority.push_back(AUTOSPELL_DIA_II);
+                    castPriority.push_back(AUTOSPELL_DIA);
                 }
             }
 
 
-            if (m_CurrentManeuvers.water >= 2) // 2 Water -> Poison
+            if (maneuvers.water >= 2) // 2 Water -> Poison
             {
-                m_castPriority.push_back(AUTOSPELL_POISON_II);
-                m_castPriority.push_back(AUTOSPELL_POISON);
+                castPriority.push_back(AUTOSPELL_POISON_II);
+                castPriority.push_back(AUTOSPELL_POISON);
             }
             else
             {
-                m_defaultPriority.push_back(AUTOSPELL_POISON_II);
-                m_defaultPriority.push_back(AUTOSPELL_POISON);
+                defaultPriority.push_back(AUTOSPELL_POISON_II);
+                defaultPriority.push_back(AUTOSPELL_POISON);
             }
 
-            if (m_CurrentManeuvers.wind >= 2) // 2 Wind -> Silence
-                m_castPriority.push_back(AUTOSPELL_SILENCE);
+            if (maneuvers.wind >= 2) // 2 Wind -> Silence
+                castPriority.push_back(AUTOSPELL_SILENCE);
             else
-                m_defaultPriority.push_back(AUTOSPELL_SILENCE);
+                defaultPriority.push_back(AUTOSPELL_SILENCE);
 
-            if (m_CurrentManeuvers.earth >= 2) // 2 Earth -> Slow
-                m_castPriority.push_back(AUTOSPELL_SLOW);
+            if (maneuvers.earth >= 2) // 2 Earth -> Slow
+                castPriority.push_back(AUTOSPELL_SLOW);
             else
-                m_defaultPriority.push_back(AUTOSPELL_SLOW);
+                defaultPriority.push_back(AUTOSPELL_SLOW);
 
-            if (m_CurrentManeuvers.ice >= 2) // 2 Ice -> Paralyze
-                m_castPriority.push_back(AUTOSPELL_PARALYZE);
+            if (maneuvers.ice >= 2) // 2 Ice -> Paralyze
+                castPriority.push_back(AUTOSPELL_PARALYZE);
             else
-                m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
+                defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
-            if (m_CurrentManeuvers.fire >= 2) // 2 Fire -> Addle
-                m_castPriority.push_back(AUTOSPELL_ADDLE);
+            if (maneuvers.fire >= 2) // 2 Fire -> Addle
+                castPriority.push_back(AUTOSPELL_ADDLE);
             else
-                m_defaultPriority.push_back(AUTOSPELL_ADDLE);
+                defaultPriority.push_back(AUTOSPELL_ADDLE);
         }
     }
     break;
     case HEAD_SOULSOOTHER:
     {
-        if (m_CurrentManeuvers.earth) // Earth -> Slow
-            m_castPriority.push_back(AUTOSPELL_SLOW);
+        if (maneuvers.earth) // Earth -> Slow
+            castPriority.push_back(AUTOSPELL_SLOW);
         else
-            m_defaultPriority.push_back(AUTOSPELL_SLOW);
+            defaultPriority.push_back(AUTOSPELL_SLOW);
 
-        if (m_CurrentManeuvers.water) // 2 Water -> Poison
+        if (maneuvers.water) // 2 Water -> Poison
         {
-            m_castPriority.push_back(AUTOSPELL_POISON_II);
-            m_castPriority.push_back(AUTOSPELL_POISON);
+            castPriority.push_back(AUTOSPELL_POISON_II);
+            castPriority.push_back(AUTOSPELL_POISON);
         }
         else
         {
-            m_defaultPriority.push_back(AUTOSPELL_POISON_II);
-            m_defaultPriority.push_back(AUTOSPELL_POISON);
+            defaultPriority.push_back(AUTOSPELL_POISON_II);
+            defaultPriority.push_back(AUTOSPELL_POISON);
         }
 
-        if (m_CurrentManeuvers.dark) // Dark -> Blind > Bio
+        if (maneuvers.dark) // Dark -> Blind > Bio
         {
-            m_castPriority.push_back(AUTOSPELL_BLIND);
+            castPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                m_castPriority.push_back(AUTOSPELL_BIO_II);
-                m_castPriority.push_back(AUTOSPELL_BIO);
+                castPriority.push_back(AUTOSPELL_BIO_II);
+                castPriority.push_back(AUTOSPELL_BIO);
             }
         }
         else
         {
-            m_defaultPriority.push_back(AUTOSPELL_BLIND);
+            defaultPriority.push_back(AUTOSPELL_BLIND);
             if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_DIA))
             {
-                m_defaultPriority.push_back(AUTOSPELL_BIO_II);
-                m_defaultPriority.push_back(AUTOSPELL_BIO);
+                defaultPriority.push_back(AUTOSPELL_BIO_II);
+                defaultPriority.push_back(AUTOSPELL_BIO);
             }
         }
 
         if (!PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_BIO))
         {
             // This is probably wrong
-            if (m_CurrentManeuvers.light) // Light -> Dia
+            if (maneuvers.light) // Light -> Dia
             {
-                m_castPriority.push_back(AUTOSPELL_DIA_II);
-                m_castPriority.push_back(AUTOSPELL_DIA);
+                castPriority.push_back(AUTOSPELL_DIA_II);
+                castPriority.push_back(AUTOSPELL_DIA);
             }
             else
             {
-                m_defaultPriority.push_back(AUTOSPELL_DIA_II);
-                m_defaultPriority.push_back(AUTOSPELL_DIA);
+                defaultPriority.push_back(AUTOSPELL_DIA_II);
+                defaultPriority.push_back(AUTOSPELL_DIA);
             }
         }
 
-        if (m_CurrentManeuvers.wind) // Wind -> Silence
-            m_castPriority.push_back(AUTOSPELL_SILENCE);
+        if (maneuvers.wind) // Wind -> Silence
+            castPriority.push_back(AUTOSPELL_SILENCE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_SILENCE);
+            defaultPriority.push_back(AUTOSPELL_SILENCE);
 
-        if (m_CurrentManeuvers.ice) // Ice -> Paralyze
-            m_castPriority.push_back(AUTOSPELL_PARALYZE);
+        if (maneuvers.ice) // Ice -> Paralyze
+            castPriority.push_back(AUTOSPELL_PARALYZE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_PARALYZE);
+            defaultPriority.push_back(AUTOSPELL_PARALYZE);
 
-        if (m_CurrentManeuvers.fire) // Fire -> Addle
-            m_castPriority.push_back(AUTOSPELL_ADDLE);
+        if (maneuvers.fire) // Fire -> Addle
+            castPriority.push_back(AUTOSPELL_ADDLE);
         else
-            m_defaultPriority.push_back(AUTOSPELL_ADDLE);
+            defaultPriority.push_back(AUTOSPELL_ADDLE);
     }
     }
 
     CStatusEffectContainer* statuses = PTarget->StatusEffectContainer;
-    for (AUTOSPELL& id : m_castPriority)
+    for (AUTOSPELL& id : castPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
             Cast(PTarget->targid, id))
             return true;
     }
 
-    for (AUTOSPELL& id : m_defaultPriority)
+    for (AUTOSPELL& id : defaultPriority)
     {
         if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
             Cast(PTarget->targid, id))
             return true;
     }
-
-    m_castPriority.clear();
-    m_defaultPriority.clear();
 
     return false;
 }
 
-bool CAutomatonController::TryStatusRemoval()
+bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
 {
     if (!PAutomaton->PMaster || m_statusCooldown == 0s || m_Tick <= m_LastStatusTime + m_statusCooldown)
         return false;
 
     std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash>& naList = g_autoNaList;
-    std::vector<AUTOSPELL>& queue = m_castPriority;
+    std::vector<AUTOSPELL> castPriority;
 
-    PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&naList, &queue](CStatusEffect* PStatus)
+    PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
     {
         if (PStatus->GetDuration() > 0)
         {
             auto id = naList[PStatus->GetStatusID()];
             if (id)
-                queue.push_back(id);
+                castPriority.push_back(id);
             else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                queue.push_back(AUTOSPELL_ERASE);
+                castPriority.push_back(AUTOSPELL_ERASE);
         }
     });
 
-    for (AUTOSPELL& id : queue)
+    for (AUTOSPELL& id : castPriority)
         if (Cast(PAutomaton->PMaster->targid, id))
             return true;
 
-    queue.clear();
+    castPriority.clear();
 
-    PAutomaton->StatusEffectContainer->ForEachEffect([&naList, &queue](CStatusEffect* PStatus)
+    PAutomaton->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
     {
         if (PStatus->GetDuration() > 0)
         {
             auto id = naList[PStatus->GetStatusID()];
             if (id)
-                queue.push_back(id);
+                castPriority.push_back(id);
             else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                queue.push_back(AUTOSPELL_ERASE);
+                castPriority.push_back(AUTOSPELL_ERASE);
         }
     });
 
-    for (AUTOSPELL& id : queue)
+    for (AUTOSPELL& id : castPriority)
         if (Cast(PAutomaton->targid, id))
             return true;
 
-    if (m_CurrentManeuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Water + Soulsoother head -> Remove party's statuses
+    if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && PAutomaton->PMaster->PParty) // Water + Soulsoother head -> Remove party's statuses
     {
         for (uint8 i = 0; i < PAutomaton->PMaster->PParty->members.size(); ++i)
         {
             CBattleEntity* member = PAutomaton->PMaster->PParty->members.at(i);
             if (member->id != PAutomaton->PMaster->id)
             {
-                queue.clear();
+                castPriority.clear();
 
-                member->StatusEffectContainer->ForEachEffect([&naList, &queue](CStatusEffect* PStatus)
+                member->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
                 {
                     if (PStatus->GetDuration() > 0)
                     {
                         auto id = naList[PStatus->GetStatusID()];
                         if (id)
-                            queue.push_back(id);
+                            castPriority.push_back(id);
                         else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                            queue.push_back(AUTOSPELL_ERASE);
+                            castPriority.push_back(AUTOSPELL_ERASE);
                     }
                 });
 
-                for (auto id : queue)
+                for (auto id : castPriority)
                     if (Cast(member->targid, id))
                         return true;
             }
         }
     }
-
-    queue.clear();
 
     return false;
 }
@@ -1459,18 +1457,9 @@ bool CAutomatonController::CanCastSpells()
 
 bool CAutomatonController::Cast(uint16 targid, uint16 spellid)
 {
-    //TODO: move all this automaton-specific stuff to generic places
-    CSpell* PSpell = spell::GetSpell(spellid);
-
-    if (!PAutomaton->hasSpell((AUTOSPELL)spellid) || PAutomaton->health.mp < PSpell->getMPCost() ||
-        (PAutomaton->m_RecastList[spellid] && time(nullptr) < PAutomaton->m_RecastList[spellid]))
+    if (PAutomaton->m_RecastList[spellid] && time(nullptr) < PAutomaton->m_RecastList[spellid])
         return false;
 
-    if (PSpell == nullptr)
-    {
-        ShowWarning(CL_YELLOW"CAutomatonController::Cast: SpellId <%i> is not found\n" CL_RESET, spellid);
-        return false;
-    }
     return CPetController::Cast(targid, spellid);
 }
 

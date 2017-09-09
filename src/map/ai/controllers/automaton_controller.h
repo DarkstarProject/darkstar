@@ -69,18 +69,17 @@ protected:
 private:
     bool TryAction();
     bool TryShieldBash();
-    bool TrySpellcast();
-    bool TryHeal();
-    bool TryElemental();
-    bool TryEnfeeble();
-    bool TryStatusRemoval();
+    bool TrySpellcast(const CurrentManeuvers& maneuvers);
+    bool TryHeal(const CurrentManeuvers& maneuvers);
+    bool TryElemental(const CurrentManeuvers& maneuvers);
+    bool TryEnfeeble(const CurrentManeuvers& maneuvers);
+    bool TryStatusRemoval(const CurrentManeuvers& maneuvers);
     bool TryEnhance();
     bool TryTPMove();
     bool TryRangedAttack();
     bool TryAttachment();
 
-    void GetCurrentManeuvers();
-    CurrentManeuvers m_CurrentManeuvers;
+    CurrentManeuvers GetCurrentManeuvers() const;
 
     CAutomatonEntity* PAutomaton;
 
@@ -96,10 +95,10 @@ private:
     duration m_shieldbashCooldown{};
     static constexpr int m_ShieldBashAbility{ 1944 };
 
-    std::vector<AUTOSPELL> m_castPriority;
-    std::vector<AUTOSPELL> m_defaultPriority;
+    //std::vector<AUTOSPELL> m_castPriority;
+    //std::vector<AUTOSPELL> m_defaultPriority;
 
-    AUTOMOVEMENT m_movementType;
+    AUTOMOVEMENT m_movementType {AUTOMOVEMENT_MELEE};
 
     time_point m_LastActionTime;
     time_point m_LastMagicTime;

@@ -131,9 +131,10 @@ CAutomatonEntity::CAutomatonEntity()
 CAutomatonEntity::~CAutomatonEntity()
 {}
 
-bool CAutomatonEntity::hasSpell(AUTOSPELL spellid)
+bool CAutomatonEntity::CanUseSpell(CSpell* PSpell)
 {
-    if (GetSkill(SKILL_AMA) < g_autoSpellList[spellid]) {
+    auto spellid = PSpell->getID();
+    if (GetSkill(SKILL_AMA) < g_autoSpellList[(AUTOSPELL)spellid]) {
         return false;
     }
 

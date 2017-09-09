@@ -152,7 +152,7 @@ public:
 
     std::unordered_map<uint16, uint32> m_RecastList;
 
-    bool hasSpell(AUTOSPELL spellid);
+    virtual bool CanUseSpell(CSpell* PSpell) override;
 
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
