@@ -739,25 +739,9 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                actionTarget.speceffect = (SPECEFFECT)((damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE) | actionTarget.speceffect);
-
-                if (actionTarget.reaction == REACTION_EVADE)
-                    actionTarget.messageID = primary ? 188 : 282; //but misses
-                else if (damage < 0)
+                if (primary && PBattleTarget->objtype == TYPE_MOB)
                 {
-                    actionTarget.param = -damage;
-                    actionTarget.messageID = primary ? 238 : 263; //absorbed ws
-                }
-                else
-                {
-                    actionTarget.param = damage;
-                    actionTarget.messageID = primary ? 185 : 264; //damage ws
-
-                    if (primary && PBattleTarget->objtype == TYPE_MOB)
-                    {
-                        luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
-                    }
+                    luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
                 }
             }
             else
