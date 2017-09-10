@@ -121,7 +121,7 @@ private:
 
 namespace autoSpell
 {
-    void    LoadAutomatonSpellList();
+    void LoadAutomatonSpellList();
     bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid);
     bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell);
     AUTOSPELL FindNaSpell(CStatusEffect* PStatus);

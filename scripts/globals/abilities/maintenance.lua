@@ -22,8 +22,10 @@ local idStrengths = {
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:getPet() == nil then
+    if not player:getPet() then
         return MSGBASIC_REQUIRES_A_PET, 0
+    elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
+        return MSGBASIC_NO_EFFECT_ON_PET, 0
     else
         local id = player:getEquipID(SLOT_AMMO)
         if idStrengths[id] then

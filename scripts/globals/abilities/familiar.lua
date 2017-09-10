@@ -14,11 +14,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getPet() == nil) then
+    local pet = player:getPet();
+    if not pet then
         return MSGBASIC_REQUIRES_A_PET,0;
+    elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
+        return MSGBASIC_NO_EFFECT_ON_PET,0;
+    else
+        return 0,0;
     end
-
-   return 0,0;
 end;
 
 -----------------------------------
