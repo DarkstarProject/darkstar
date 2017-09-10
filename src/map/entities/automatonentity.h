@@ -47,6 +47,7 @@ enum AUTOHEADTYPE
 
 enum AUTOSPELL : uint16
 {
+    AUTOSPELL_NONE         = 0,
     AUTOSPELL_CURE         = 1,
     AUTOSPELL_CURE_II      = 2,
     AUTOSPELL_CURE_III     = 3,
@@ -150,8 +151,6 @@ public:
     std::array<uint8, 8> m_ElementMax {};
     std::array<uint8, 8> m_ElementEquip {};
 
-    virtual bool CanUseSpell(CSpell* PSpell) override;
-
     void setFrame(AUTOFRAMETYPE frame);
     void setHead(AUTOHEADTYPE head);
     void setAttachment(uint8 slot, uint8 id);
@@ -169,7 +168,7 @@ public:
 
     void burdenTick();
     void setInitialBurden();
-    uint16 addBurden(uint8 element, int16 burden);
+    uint8 addBurden(uint8 element, int8 burden);
 
     void PostTick() override;
 
@@ -182,7 +181,7 @@ public:
     virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
-    std::array<uint16, 8> m_Burden {};
+    std::array<uint8, 8> m_Burden {};
 };
 
 #endif

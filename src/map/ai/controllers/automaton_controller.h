@@ -47,6 +47,15 @@ struct CurrentManeuvers
     int dark{ 0 };
 };
 
+struct AutomatonSpell
+{
+    uint16 skilllevel{ 0 };
+    uint8 heads{ 0 };
+    EFFECT enfeeble{ EFFECT_KO };
+    IMMUNITY immunity{ IMMUNITY_NONE };
+    std::vector<EFFECT> removes;
+};
+
 class CAutomatonEntity;
 
 class CAutomatonController : public CPetController
@@ -108,6 +117,14 @@ private:
     time_point m_LastStatusTime;
     time_point m_LastRangedTime;
     time_point m_LastShieldBashTime;
+};
+
+namespace autoSpell
+{
+    void    LoadAutomatonSpellList();
+    bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid);
+    bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell);
+    AUTOSPELL FindNaSpell(CStatusEffect* PStatus);
 };
 
 #endif
