@@ -38,44 +38,6 @@
 #include "../../utils/battleutils.h"
 #include "../../recast_container.h"
 
-std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash> g_autoNaList{
-    { EFFECT_POISON, AUTOSPELL_POISONA },
-    { EFFECT_PARALYSIS, AUTOSPELL_PARALYNA },
-    { EFFECT_CURSE, AUTOSPELL_CURSNA },
-    { EFFECT_CURSE_II, AUTOSPELL_CURSNA },
-    { EFFECT_BANE, AUTOSPELL_CURSNA },
-    { EFFECT_BLINDNESS, AUTOSPELL_BLINDNA },
-    { EFFECT_SILENCE, AUTOSPELL_SILENA },
-    { EFFECT_LULLABY, AUTOSPELL_CURE }, // This is probably wrong
-    { EFFECT_SLEEP, AUTOSPELL_CURE }, // This is probably wrong
-    { EFFECT_SLEEP_II, AUTOSPELL_CURE }, // This is probably wrong
-    { EFFECT_PETRIFICATION, AUTOSPELL_STONA },
-    { EFFECT_DISEASE, AUTOSPELL_VIRUNA },
-    { EFFECT_PLAGUE, AUTOSPELL_VIRUNA }
-};
-std::unordered_map<AUTOSPELL, EFFECT, EnumClassHash> g_autoEnfeebleList{
-    { AUTOSPELL_BIO_II, EFFECT_BIO },
-    { AUTOSPELL_BIO, EFFECT_BIO },
-    { AUTOSPELL_DIA_II, EFFECT_DIA },
-    { AUTOSPELL_DIA, EFFECT_DIA },
-    { AUTOSPELL_POISON_II, EFFECT_POISON },
-    { AUTOSPELL_POISON, EFFECT_POISON },
-    { AUTOSPELL_SILENCE, EFFECT_SILENCE },
-    { AUTOSPELL_SLOW, EFFECT_SLOW },
-    { AUTOSPELL_BLIND, EFFECT_BLINDNESS },
-    { AUTOSPELL_PARALYZE, EFFECT_PARALYSIS },
-    { AUTOSPELL_ADDLE, EFFECT_ADDLE },
-    { AUTOSPELL_ABSORB_INT, EFFECT_INT_DOWN }
-};
-std::unordered_map<AUTOSPELL, IMMUNITY, EnumClassHash> g_autoImmunityList{
-    { AUTOSPELL_SILENCE, IMMUNITY_SILENCE },
-    { AUTOSPELL_PARALYZE, IMMUNITY_PARALYZE },
-    { AUTOSPELL_BLIND, IMMUNITY_BLIND },
-    { AUTOSPELL_SLOW, IMMUNITY_SLOW },
-    { AUTOSPELL_POISON_II, IMMUNITY_POISON },
-    { AUTOSPELL_POISON, IMMUNITY_POISON }
-};
-
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetController(PPet),
     PAutomaton(PPet)
 {
@@ -922,18 +884,15 @@ bool CAutomatonController::TryEnfeeble(const CurrentManeuvers& maneuvers)
     }
     }
 
-    auto& statuses = PTarget->StatusEffectContainer;
     for (AUTOSPELL& id : castPriority)
     {
-        if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
-            Cast(PTarget->targid, id))
+        if (autoSpell::CanUseEnfeeble(PTarget, id) && Cast(PTarget->targid, id))
             return true;
     }
 
     for (AUTOSPELL& id : defaultPriority)
     {
-        if ((!g_autoEnfeebleList[id] || (!statuses->HasStatusEffect(g_autoEnfeebleList[id]) && !PTarget->hasImmunity(g_autoImmunityList[id]))) &&
-            Cast(PTarget->targid, id))
+        if (autoSpell::CanUseEnfeeble(PTarget, id) && Cast(PTarget->targid, id))
             return true;
     }
 
@@ -945,18 +904,17 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
     if (!PAutomaton->PMaster || m_statusCooldown == 0s || m_Tick <= m_LastStatusTime + m_statusCooldown)
         return false;
 
-    std::unordered_map<EFFECT, AUTOSPELL, EnumClassHash>& naList = g_autoNaList;
     std::vector<AUTOSPELL> castPriority;
 
-    PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
+    PAutomaton->PMaster->StatusEffectContainer->ForEachEffect([&castPriority](CStatusEffect* PStatus)
     {
         if (PStatus->GetDuration() > 0)
         {
-            auto id = naList[PStatus->GetStatusID()];
-            if (id)
+            AUTOSPELL id = autoSpell::FindNaSpell(PStatus);
+            if (id != AUTOSPELL_NONE)
+            {
                 castPriority.push_back(id);
-            else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                castPriority.push_back(AUTOSPELL_ERASE);
+            }
         }
     });
 
@@ -966,15 +924,15 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
 
     castPriority.clear();
 
-    PAutomaton->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
+    PAutomaton->StatusEffectContainer->ForEachEffect([&castPriority](CStatusEffect* PStatus)
     {
         if (PStatus->GetDuration() > 0)
         {
-            auto id = naList[PStatus->GetStatusID()];
-            if (id)
+            AUTOSPELL id = autoSpell::FindNaSpell(PStatus);
+            if (id != AUTOSPELL_NONE)
+            {
                 castPriority.push_back(id);
-            else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                castPriority.push_back(AUTOSPELL_ERASE);
+            }
         }
     });
 
@@ -991,15 +949,15 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
             {
                 castPriority.clear();
 
-                member->StatusEffectContainer->ForEachEffect([&naList, &castPriority](CStatusEffect* PStatus)
+                member->StatusEffectContainer->ForEachEffect([&castPriority](CStatusEffect* PStatus)
                 {
                     if (PStatus->GetDuration() > 0)
                     {
-                        auto id = naList[PStatus->GetStatusID()];
-                        if (id)
+                        AUTOSPELL id = autoSpell::FindNaSpell(PStatus);
+                        if (id != AUTOSPELL_NONE)
+                        {
                             castPriority.push_back(id);
-                        else if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
-                            castPriority.push_back(AUTOSPELL_ERASE);
+                        }
                     }
                 });
 
@@ -1397,7 +1355,7 @@ bool CAutomatonController::CanCastSpells()
 
 bool CAutomatonController::Cast(uint16 targid, uint16 spellid)
 {
-    if (PAutomaton->PRecastContainer->Has(RECAST_MAGIC, spellid))
+    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, spellid))
         return false;
 
     return CPetController::Cast(targid, spellid);
@@ -1415,4 +1373,72 @@ bool CAutomatonController::Disengage()
     PTarget = nullptr; // Reset this so the AI will know when its deployed
     m_deployed = false;
     return CMobController::Disengage();
+}
+
+namespace autoSpell
+{
+    std::unordered_map<AUTOSPELL, AutomatonSpell*, EnumClassHash> autoSpellList;
+    std::vector<AUTOSPELL> naSpells;
+
+    void LoadAutomatonSpellList()
+    {
+        const int8* Query = "SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells;";
+
+        int32 ret = Sql_Query(SqlHandle, Query);
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
+        {
+            while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+            {
+                AutomatonSpell* PSpell = new AutomatonSpell;
+                AUTOSPELL id = (AUTOSPELL)Sql_GetUIntData(SqlHandle, 0);
+                PSpell->skilllevel = Sql_GetUIntData(SqlHandle, 1);
+                PSpell->heads = Sql_GetUIntData(SqlHandle, 2);
+                PSpell->enfeeble = (EFFECT)Sql_GetUIntData(SqlHandle, 3);
+                PSpell->immunity = (IMMUNITY)Sql_GetUIntData(SqlHandle, 4);
+
+                uint32 removes = Sql_GetUIntData(SqlHandle, 5);
+                while (removes > 0)
+                {
+                    PSpell->removes.push_back((EFFECT)(removes & 0xFF));
+                    removes = removes >> 8;
+                }
+
+                autoSpellList[id] = PSpell;
+
+                if (!PSpell->removes.empty())
+                {
+                    naSpells.push_back(id);
+                }
+            }
+        }
+    }
+
+    bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid)
+    {
+        AutomatonSpell* PSpell = autoSpellList[(AUTOSPELL)spellid];
+        return ((PCaster->GetSkill(SKILL_AMA) >= PSpell->skilllevel) && (PSpell->heads & (1 << ((uint8)PCaster->getHead() - 1))));
+    }
+
+    bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell)
+    {
+        AutomatonSpell* PSpell = autoSpellList[spell];
+        auto& statuses = PTarget->StatusEffectContainer;
+        return (!statuses->HasStatusEffect(PSpell->enfeeble) && !PTarget->hasImmunity(PSpell->immunity));
+    }
+
+    AUTOSPELL FindNaSpell(CStatusEffect* PStatus)
+    {
+        for (auto spell : naSpells)
+        {
+            AutomatonSpell* PSpell = autoSpellList[spell];
+            if (std::find(PSpell->removes.begin(), PSpell->removes.end(), PStatus->GetStatusID()) != PSpell->removes.end())
+                return spell;
+        }
+
+        if (PStatus->GetFlag() & EFFECTFLAG_ERASABLE)
+            return AUTOSPELL_ERASE;
+        else
+            return AUTOSPELL_NONE;
+    }
 }
