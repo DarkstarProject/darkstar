@@ -100,6 +100,8 @@ function onEventFinish(player,csid,option)
         player:addItem(objecttrade);
         player:messageSpecial(ITEM_OBTAINED,objecttrade);
         player:setVar("harithreward",0);
+		player:completeQuest(JEUNO, EMPTY_MEMORIES)
+		player:addFame(JEUNO, 5);
     end
 
 end;
