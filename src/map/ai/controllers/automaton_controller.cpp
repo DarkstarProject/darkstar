@@ -43,7 +43,10 @@ CAutomatonController::CAutomatonController(CAutomatonEntity* PPet) : CPetControl
 {
     PPet->setInitialBurden();
     setCooldowns();
-    setMovement();
+    if (isRanged())
+    {
+        PAutomaton->m_Behaviour |= BEHAVIOUR_STANDBACK;
+    }
 }
 
 void CAutomatonController::setCooldowns()
@@ -135,24 +138,17 @@ void CAutomatonController::setMagicCooldowns()
     }
 }
 
-void CAutomatonController::setMovement()
+bool CAutomatonController::isRanged()
 {
     switch (PAutomaton->getHead())
     {
-    case HEAD_HARLEQUIN:
-    case HEAD_VALOREDGE:
-        m_movementType = AUTOMOVEMENT_MELEE;
-        break;
     case HEAD_SHARPSHOT:
-        m_movementType = AUTOMOVEMENT_RANGED;
-        break;
     case HEAD_STORMWAKER:
     case HEAD_SOULSOOTHER:
     case HEAD_SPIRITREAVER:
-        m_movementType = AUTOMOVEMENT_MAGIC;
+        return true;
     }
-
-    m_deployed = false;
+    return false;
 }
 
 CurrentManeuvers CAutomatonController::GetCurrentManeuvers() const
@@ -183,16 +179,6 @@ void CAutomatonController::DoCombatTick(time_point tick)
     if (TryDeaggro())
     {
         Disengage();
-        return;
-    }
-
-    // We just deployed, so reposition if needed
-    if (PPrevTarget != PTarget || (!m_deployed && PAutomaton->PAI->PathFind->IsFollowingPath()))
-    {
-        if (PTarget != nullptr && PPrevTarget != PTarget)
-            PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_ON_DEPLOY", PAutomaton, PTarget);
-        m_deployed = false;
-        Move();
         return;
     }
 
@@ -230,45 +216,20 @@ void CAutomatonController::DoCombatTick(time_point tick)
 
 void CAutomatonController::Move()
 {
-    if (!PAutomaton->PAI->CanFollowPath())
+    float currentDistance = distanceSquared(PAutomaton->loc.p, PTarget->loc.p);
+    if (isRanged() && (currentDistance > 225) || (PAutomaton->health.mp < 8 && PAutomaton->health.maxmp > 8))
     {
-        return;
+        PAutomaton->m_Behaviour &= ~BEHAVIOUR_STANDBACK;
     }
-
-    bool move = PAutomaton->PAI->PathFind->IsFollowingPath();
-    float attack_range = PAutomaton->GetMeleeRange();
-
-    float currentDistance = distance(PAutomaton->loc.p, PTarget->loc.p);
-
-    if ((move ||
-        (m_movementType == AUTOMOVEMENT_MELEE && currentDistance > attack_range - 0.2f) ||
-        (m_movementType == AUTOMOVEMENT_RANGED && currentDistance > 15) ||
-        (m_movementType == AUTOMOVEMENT_MAGIC && (currentDistance > 15 || (PAutomaton->health.mp < 8 && currentDistance > attack_range - 0.2f)))) &&
-        PAutomaton->speed != 0)
-    {
-        if (!move || distanceSquared(PAutomaton->PAI->PathFind->GetDestination(), PTarget->loc.p) > 10)
-        {
-            //path to the target if we don't have a path already
-            PAutomaton->PAI->PathFind->PathInRange(PTarget->loc.p, attack_range - 0.2f, PATHFLAG_WALLHACK | PATHFLAG_RUN);
-        }
-        PAutomaton->PAI->PathFind->FollowPath();
-    }
-    else
-    {
-        FaceTarget();
-    }
+    CPetController::Move();
 }
 
-// Probably not exactly how decisions were decided
 bool CAutomatonController::TryAction()
 {
     if (m_Tick > m_LastActionTime + (m_actionCooldown - std::chrono::milliseconds(PAutomaton->getMod(Mod::AUTO_DECISION_DELAY) * 10)))
     {
         m_LastActionTime = m_Tick;
-        if (!m_deployed && PTarget != nullptr)
-            PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_FINISHED_DEPLOY", PAutomaton, PTarget);
         PAutomaton->PAI->EventHandler.triggerListener("AUTOMATON_AI_TICK", PAutomaton, PTarget);
-        m_deployed = true;
         return true;
     }
     return false;
@@ -287,7 +248,6 @@ bool CAutomatonController::TryShieldBash()
 
 bool CAutomatonController::TrySpellcast(const CurrentManeuvers& maneuvers)
 {
-    // Note that the old AI used the Mana Booster attachment to reduce magic cooldown instead of giving fast cast
     if (!PAutomaton->PMaster || m_magicCooldown == 0s ||
         m_Tick <= m_LastMagicTime + (m_magicCooldown - std::chrono::seconds(PAutomaton->getMod(Mod::AUTO_MAGIC_DELAY))) || !CanCastSpells())
         return false;
@@ -1370,8 +1330,11 @@ bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
 
 bool CAutomatonController::Disengage()
 {
-    PTarget = nullptr; // Reset this so the AI will know when its deployed
-    m_deployed = false;
+    PTarget = nullptr;
+    if (isRanged())
+    {
+        PAutomaton->m_Behaviour |= BEHAVIOUR_STANDBACK;
+    }
     return CMobController::Disengage();
 }
 

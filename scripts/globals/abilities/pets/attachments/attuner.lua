@@ -9,7 +9,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEquip(pet)
-    pet:addListener("AUTOMATON_ON_DEPLOY", "AUTO_ATTUNER_ENGAGE", function(pet, target)
+    pet:addListener("ENGAGE", "AUTO_ATTUNER_ENGAGE", function(pet, target)
         local master = pet:getMaster()
         if pet:getLocalVar("attuner") > 0 then
             pet:delMod(MOD_ATTP, 5) -- Ignore 5% def

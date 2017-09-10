@@ -9,7 +9,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onEquip(pet)
-    pet:addListener("AUTOMATON_ON_DEPLOY", "AUTO_TARGETMARKER_ENGAGE", function(pet, target)
+    pet:addListener("ENGAGE", "AUTO_TARGETMARKER_ENGAGE", function(pet, target)
         local ignored = pet:getLocalVar("targetmarker")
         if ignored > 0 then
             pet:delMod(MOD_ACC, ignored)

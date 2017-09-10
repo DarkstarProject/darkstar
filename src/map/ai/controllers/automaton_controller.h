@@ -28,13 +28,6 @@
 #include "../../entities/automatonentity.h"
 #include "../../status_effect.h"
 
-enum AUTOMOVEMENT
-{
-    AUTOMOVEMENT_MELEE = 0,
-    AUTOMOVEMENT_RANGED = 1,
-    AUTOMOVEMENT_MAGIC = 2,
-};
-
 struct CurrentManeuvers
 {
     int fire{ 0 };
@@ -70,12 +63,10 @@ protected:
 
     void setCooldowns();
     void setMagicCooldowns();
-    void setMovement();
     virtual bool CanCastSpells() override;
     virtual bool Cast(uint16 targid, uint16 spellid) override;
     virtual bool MobSkill(uint16 targid, uint16 wsid) override;
 
-    bool m_deployed;
 private:
     bool TryAction();
     bool TryShieldBash();
@@ -88,25 +79,23 @@ private:
     bool TryTPMove();
     bool TryRangedAttack();
     bool TryAttachment();
+    bool isRanged();
 
     CurrentManeuvers GetCurrentManeuvers() const;
 
-private:
     CAutomatonEntity* PAutomaton;
 
     duration m_actionCooldown{ 3s };
-    duration m_rangedCooldown{};
+    duration m_rangedCooldown;
     static constexpr int m_RangedAbility{ 1949 };
-    duration m_magicCooldown{};
-    duration m_enfeebleCooldown{};
-    duration m_elementalCooldown{};
-    duration m_healCooldown{};
-    duration m_enhanceCooldown{};
-    duration m_statusCooldown{};
-    duration m_shieldbashCooldown{};
+    duration m_magicCooldown;
+    duration m_enfeebleCooldown;
+    duration m_elementalCooldown;
+    duration m_healCooldown;
+    duration m_enhanceCooldown;
+    duration m_statusCooldown;
+    duration m_shieldbashCooldown;
     static constexpr int m_ShieldBashAbility{ 1944 };
-
-    AUTOMOVEMENT m_movementType {AUTOMOVEMENT_MELEE};
 
     time_point m_LastActionTime;
     time_point m_LastMagicTime;
@@ -121,7 +110,7 @@ private:
 
 namespace autoSpell
 {
-    void    LoadAutomatonSpellList();
+    void LoadAutomatonSpellList();
     bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid);
     bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell);
     AUTOSPELL FindNaSpell(CStatusEffect* PStatus);
