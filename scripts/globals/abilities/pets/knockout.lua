@@ -4,7 +4,7 @@
 
 require("scripts/globals/status")
 require("scripts/globals/settings")
-require("scripts/globals/weaponskills")
+require("scripts/globals/automatonweaponskills")
 
 ---------------------------------------------------
 
@@ -41,7 +41,7 @@ function onPetAbility(target, automaton, skill, master, action)
         params.ftp300 = 11.0
     end
 
-    local damage = doPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill)
 
     if damage > 0 then
         if not target:hasStatusEffect(EFFECT_EVASION_DOWN) then
