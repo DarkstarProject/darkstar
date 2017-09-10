@@ -1377,7 +1377,7 @@ bool CAutomatonController::Disengage()
 
 namespace autoSpell
 {
-    std::unordered_map<AUTOSPELL, AutomatonSpell*, EnumClassHash> autoSpellList;
+    std::unordered_map<AUTOSPELL, AutomatonSpell, EnumClassHash> autoSpellList;
     std::vector<AUTOSPELL> naSpells;
 
     void LoadAutomatonSpellList()
@@ -1390,49 +1390,50 @@ namespace autoSpell
         {
             while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
             {
-                AutomatonSpell* PSpell = new AutomatonSpell;
                 AUTOSPELL id = (AUTOSPELL)Sql_GetUIntData(SqlHandle, 0);
-                PSpell->skilllevel = Sql_GetUIntData(SqlHandle, 1);
-                PSpell->heads = Sql_GetUIntData(SqlHandle, 2);
-                PSpell->enfeeble = (EFFECT)Sql_GetUIntData(SqlHandle, 3);
-                PSpell->immunity = (IMMUNITY)Sql_GetUIntData(SqlHandle, 4);
+                AutomatonSpell PSpell {
+                    Sql_GetUIntData(SqlHandle, 1),
+                    Sql_GetUIntData(SqlHandle, 2),
+                    (EFFECT)Sql_GetUIntData(SqlHandle, 3),
+                    (IMMUNITY)Sql_GetUIntData(SqlHandle, 4)
+                };
 
                 uint32 removes = Sql_GetUIntData(SqlHandle, 5);
                 while (removes > 0)
                 {
-                    PSpell->removes.push_back((EFFECT)(removes & 0xFF));
+                    PSpell.removes.push_back((EFFECT)(removes & 0xFF));
                     removes = removes >> 8;
                 }
 
-                autoSpellList[id] = PSpell;
-
-                if (!PSpell->removes.empty())
+                if (!PSpell.removes.empty())
                 {
                     naSpells.push_back(id);
                 }
+
+                autoSpellList[id] = std::move(PSpell);
             }
         }
     }
 
     bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid)
     {
-        AutomatonSpell* PSpell = autoSpellList[(AUTOSPELL)spellid];
-        return ((PCaster->GetSkill(SKILL_AMA) >= PSpell->skilllevel) && (PSpell->heads & (1 << ((uint8)PCaster->getHead() - 1))));
+        const AutomatonSpell& PSpell = autoSpellList[(AUTOSPELL)spellid];
+        return ((PCaster->GetSkill(SKILL_AMA) >= PSpell.skilllevel) && (PSpell.heads & (1 << ((uint8)PCaster->getHead() - 1))));
     }
 
     bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell)
     {
-        AutomatonSpell* PSpell = autoSpellList[spell];
+        const AutomatonSpell& PSpell = autoSpellList[spell];
         auto& statuses = PTarget->StatusEffectContainer;
-        return (!statuses->HasStatusEffect(PSpell->enfeeble) && !PTarget->hasImmunity(PSpell->immunity));
+        return (!statuses->HasStatusEffect(PSpell.enfeeble) && !PTarget->hasImmunity(PSpell.immunity));
     }
 
     AUTOSPELL FindNaSpell(CStatusEffect* PStatus)
     {
         for (auto spell : naSpells)
         {
-            AutomatonSpell* PSpell = autoSpellList[spell];
-            if (std::find(PSpell->removes.begin(), PSpell->removes.end(), PStatus->GetStatusID()) != PSpell->removes.end())
+            const AutomatonSpell& PSpell = autoSpellList[spell];
+            if (std::find(PSpell.removes.begin(), PSpell.removes.end(), PStatus->GetStatusID()) != PSpell.removes.end())
                 return spell;
         }
 
