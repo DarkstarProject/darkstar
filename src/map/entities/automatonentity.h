@@ -45,11 +45,98 @@ enum AUTOHEADTYPE
     HEAD_SPIRITREAVER = 0x06
 };
 
+enum AUTOSPELL : uint16
+{
+    AUTOSPELL_NONE         = 0,
+    AUTOSPELL_CURE         = 1,
+    AUTOSPELL_CURE_II      = 2,
+    AUTOSPELL_CURE_III     = 3,
+    AUTOSPELL_CURE_IV      = 4,
+    AUTOSPELL_CURE_V       = 5,
+    AUTOSPELL_CURE_VI      = 6,
+    AUTOSPELL_POISONA      = 14,
+    AUTOSPELL_PARALYNA     = 15,
+    AUTOSPELL_BLINDNA      = 16,
+    AUTOSPELL_SILENA       = 17,
+    AUTOSPELL_STONA        = 18,
+    AUTOSPELL_VIRUNA       = 19,
+    AUTOSPELL_CURSNA       = 20,
+    AUTOSPELL_DIA          = 23,
+    AUTOSPELL_DIA_II       = 24,
+    AUTOSPELL_PROTECT      = 43,
+    AUTOSPELL_PROTECT_II   = 44,
+    AUTOSPELL_PROTECT_III  = 45,
+    AUTOSPELL_PROTECT_IV   = 46,
+    AUTOSPELL_PROTECT_V    = 47,
+    AUTOSPELL_SHELL        = 48,
+    AUTOSPELL_SHELL_II     = 49,
+    AUTOSPELL_SHELL_III    = 50,
+    AUTOSPELL_SHELL_IV     = 51,
+    AUTOSPELL_SHELL_V      = 52,
+    AUTOSPELL_STONESKIN    = 54,
+    AUTOSPELL_SLOW         = 56,
+    AUTOSPELL_HASTE        = 57,
+    AUTOSPELL_PARALYZE     = 58,
+    AUTOSPELL_SILENCE      = 59,
+    AUTOSPELL_PHALANX      = 106,
+    AUTOSPELL_REGEN        = 108,
+    AUTOSPELL_REGEN_II     = 110,
+    AUTOSPELL_REGEN_III    = 111,
+    AUTOSPELL_PROTECTRA_V  = 129,
+    AUTOSPELL_SHELLRA_V    = 134,
+    AUTOSPELL_ERASE        = 143,
+    AUTOSPELL_FIRE         = 144,
+    AUTOSPELL_FIRE_II      = 145,
+    AUTOSPELL_FIRE_III     = 146,
+    AUTOSPELL_FIRE_IV      = 147,
+    AUTOSPELL_FIRE_V       = 148,
+    AUTOSPELL_BLIZZARD     = 149,
+    AUTOSPELL_BLIZZARD_II  = 150,
+    AUTOSPELL_BLIZZARD_III = 151,
+    AUTOSPELL_BLIZZARD_IV  = 152,
+    AUTOSPELL_BLIZZARD_V   = 153,
+    AUTOSPELL_AERO         = 154,
+    AUTOSPELL_AERO_II      = 155,
+    AUTOSPELL_AERO_III     = 156,
+    AUTOSPELL_AERO_IV      = 157,
+    AUTOSPELL_AERO_V       = 158,
+    AUTOSPELL_STONE        = 159,
+    AUTOSPELL_STONE_II     = 160,
+    AUTOSPELL_STONE_III    = 161,
+    AUTOSPELL_STONE_IV     = 162,
+    AUTOSPELL_STONE_V      = 163,
+    AUTOSPELL_THUNDER      = 164,
+    AUTOSPELL_THUNDER_II   = 165,
+    AUTOSPELL_THUNDER_III  = 166,
+    AUTOSPELL_THUNDER_IV   = 167,
+    AUTOSPELL_THUNDER_V    = 168,
+    AUTOSPELL_WATER        = 169,
+    AUTOSPELL_WATER_II     = 170,
+    AUTOSPELL_WATER_III    = 171,
+    AUTOSPELL_WATER_IV     = 172,
+    AUTOSPELL_WATER_V      = 173,
+    AUTOSPELL_POISON       = 220,
+    AUTOSPELL_POISON_II    = 221,
+    AUTOSPELL_BIO          = 230,
+    AUTOSPELL_BIO_II       = 231,
+    AUTOSPELL_DRAIN        = 245,
+    AUTOSPELL_ASPIR        = 247,
+    AUTOSPELL_ASPIR_II     = 248,
+    AUTOSPELL_BLIND        = 254,
+    AUTOSPELL_DISPEL       = 260,
+    AUTOSPELL_ABSORB_INT   = 270,
+    AUTOSPELL_DREAD_SPIKES = 277,
+    AUTOSPELL_ADDLE        = 286,
+    AUTOSPELL_REGEN_IV     = 477,
+    AUTOSPELL_HASTE_II     = 511,
+    AUTOSPELL_ABSORB_ATTRI = 847 // There is no spell id for this!
+};
+
 struct automaton_equip_t
 {
     uint8 Frame{ 0 };
     uint8 Head{ 0 };
-    std::array<uint8, 12> Attachments{};
+    std::array<uint8, 12> Attachments {};
 };
 
 class CCharEntity;
@@ -81,11 +168,17 @@ public:
 
     void burdenTick();
     void setInitialBurden();
-    uint8 addBurden(uint8 element, uint8 burden);
+    uint8 addBurden(uint8 element, int8 burden);
 
     void PostTick() override;
 
+    virtual void Spawn() override;
     virtual void Die() override;
+
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+
+    virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
     std::array<uint8, 8> m_Burden {};

@@ -432,9 +432,27 @@ namespace petutils
 
     void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats)
     {
-        PPet->WorkingSkills.automaton_melee = PMaster->GetSkill(SKILL_AME);
-        PPet->WorkingSkills.automaton_ranged = PMaster->GetSkill(SKILL_ARA);
-        PPet->WorkingSkills.automaton_magic = PMaster->GetSkill(SKILL_AMA);
+        PPet->WorkingSkills.automaton_melee = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AME), PMaster->GetSkill(SKILL_AME));
+        PPet->WorkingSkills.automaton_ranged = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_ARA), PMaster->GetSkill(SKILL_ARA));
+        PPet->WorkingSkills.automaton_magic = dsp_min(puppetutils::getSkillCap(PMaster, SKILL_AMA), PMaster->GetSkill(SKILL_AMA));
+
+        // Set capped flags
+        for (int i = 22; i <= 24; ++i)
+            if (PPet->GetSkill(i) == (puppetutils::getSkillCap(PMaster, (SKILLTYPE)i)))
+                PPet->WorkingSkills.skill[i] |= 0x8000;
+
+        // Add mods/merits
+        int32 meritbonus = PMaster->PMeritPoints->GetMeritValue(MERIT_AUTOMATON_SKILLS, PMaster);
+        PPet->WorkingSkills.automaton_melee += PMaster->getMod(Mod::AUTO_MELEE_SKILL) + meritbonus;
+        PPet->WorkingSkills.automaton_ranged += PMaster->getMod(Mod::AUTO_RANGED_SKILL) + meritbonus;
+        // Share its magic skills to prevent needing separate spells or checks to see which skill to use
+        uint16 amaSkill = PPet->WorkingSkills.automaton_magic + PMaster->getMod(Mod::AUTO_MAGIC_SKILL) + meritbonus;
+        PPet->WorkingSkills.automaton_magic = amaSkill;
+        PPet->WorkingSkills.healing = amaSkill;
+        PPet->WorkingSkills.enhancing = amaSkill;
+        PPet->WorkingSkills.enfeebling = amaSkill;
+        PPet->WorkingSkills.elemental = amaSkill;
+        PPet->WorkingSkills.dark = amaSkill;
 
         // Объявление переменных, нужных для рассчета.
         float raceStat = 0;			// конечное число HP для уровня на основе расы.
@@ -570,13 +588,18 @@ namespace petutils
         PPet->m_Weapons[SLOT_RANGED]->setDamage((PPet->GetSkill(SKILL_ARA) / 9) * 2 + 3);
 
         CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
+
+        // Automatons are hard to interrupt
+        PPet->addModifier(Mod::SPELLINTERRUPT, 85);
+
         switch (PAutomaton->getFrame())
         {
-        case FRAME_HARLEQUIN:
+        default: //case FRAME_HARLEQUIN:
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(2, PPet->GetMLevel());
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(10, PPet->GetMLevel()));
             break;
         case FRAME_VALOREDGE:
+            PPet->m_Weapons[SLOT_SUB]->setShieldSize(3);
             PPet->WorkingSkills.evasion = battleutils::GetMaxSkill(5, PPet->GetMLevel());
             PPet->setModifier(Mod::DEF, battleutils::GetMaxSkill(5, PPet->GetMLevel()));
             break;
@@ -778,6 +801,7 @@ namespace petutils
             {
                 PPet->health.tp = ((CCharEntity*)PMaster)->petZoningInfo.petTP;
                 PPet->health.hp = ((CCharEntity*)PMaster)->petZoningInfo.petHP;
+                PPet->health.mp = ((CCharEntity*)PMaster)->petZoningInfo.petMP;
             }
         }
         else if (PMaster->objtype == TYPE_PC)
@@ -1347,7 +1371,7 @@ namespace petutils
             CAutomatonEntity* PAutomaton = (CAutomatonEntity*)PPet;
             switch (PAutomaton->getFrame())
             {
-            case FRAME_HARLEQUIN:
+            default: //case FRAME_HARLEQUIN:
                 PPet->SetMJob(JOB_WAR);
                 PPet->SetSJob(JOB_RDM);
                 break;
@@ -1365,9 +1389,28 @@ namespace petutils
                 break;
             }
             //TEMP: should be MLevel when unsummoned, and PUP level when summoned
-            PPet->SetMLevel(PMaster->GetMLevel());
-            PPet->SetSLevel(PMaster->GetMLevel() / 2);
+            if (PMaster->GetMJob() == JOB_PUP)
+            {
+                PPet->SetMLevel(PMaster->GetMLevel());
+                PPet->SetSLevel(PMaster->GetMLevel() / 2);
+            }
+            else
+            {
+                PPet->SetMLevel(PMaster->GetSLevel());
+                PPet->SetSLevel(PMaster->GetSLevel() / 2);
+            }
             LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
+            if (PMaster->objtype == TYPE_PC)
+            {
+                CCharEntity* PChar = (CCharEntity*)PMaster;
+                PPet->addModifier(Mod::ATTP, PChar->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, PChar));
+                PPet->addModifier(Mod::DEFP, PChar->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, PChar));
+                PPet->addModifier(Mod::MATT, PChar->PMeritPoints->GetMeritValue(MERIT_OPTIMIZATION, PChar));
+                PPet->addModifier(Mod::ACC, PChar->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, PChar));
+                PPet->addModifier(Mod::RACC, PChar->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, PChar));
+                PPet->addModifier(Mod::EVA, PChar->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, PChar));
+                PPet->addModifier(Mod::MDEF, PChar->PMeritPoints->GetMeritValue(MERIT_FINE_TUNING, PChar));
+            }
         }
 
         FinalizePetStatistics(PMaster, PPet);
@@ -1409,8 +1452,10 @@ namespace petutils
         //set C magic evasion
         PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PPet->GetMLevel()));
         PPet->health.tp = 0;
-        PPet->UpdateHealth();
         PMaster->applyPetModifiers(PPet);
+        PPet->UpdateHealth();
+        PPet->health.hp = PPet->GetMaxHP();
+        PPet->health.mp = PPet->GetMaxMP();
     }
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)
@@ -1427,9 +1472,12 @@ namespace petutils
             {
                 return true;
             }
-            if (petmod == PetModType::Automaton && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
+            if (petmod >= PetModType::Automaton && petmod <= PetModType::Stormwaker && PPetEntity->getPetType() == PETTYPE_AUTOMATON)
             {
-                return true;
+                if (petmod == PetModType::Automaton || (uint16)petmod + 28 == (uint16)static_cast<CAutomatonEntity*>(PPetEntity)->getFrame())
+                {
+                    return true;
+                }
             }
         }
         else

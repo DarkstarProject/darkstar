@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `item_mods_pet` (
  `modId` smallint(5) unsigned NOT NULL,
  `value` smallint(5) NOT NULL DEFAULT '0',
  `petType` tinyint(3) unsigned NOT NULL DEFAULT '0',
- PRIMARY KEY (`itemId`,`modId`)
+ PRIMARY KEY (`itemId`,`modId`,`petType`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=13 PACK_KEYS=1;
 
 -- Please keep mods that apply to same item ID together
@@ -114,15 +114,48 @@ INSERT INTO `item_mods_pet` VALUES (11258,30,5,1);        -- Avatar: Magic Accur
 INSERT INTO `item_mods_pet` VALUES (11261,12,10,3);       -- Automaton: INT+10
 INSERT INTO `item_mods_pet` VALUES (11261,13,10,3);       -- Automaton: MND+10
 
+-- 	Puppetry Tobe +1 - LVL 74
+INSERT INTO `item_mods_pet` VALUES (11297,2,20,4);        -- Harlequin Automaton: HP+20
+INSERT INTO `item_mods_pet` VALUES (11297,5,20,4);        -- Harlequin Automaton: MP+20
+INSERT INTO `item_mods_pet` VALUES (11297,2,24,5);        -- Valoredge Automaton: HP+24
+INSERT INTO `item_mods_pet` VALUES (11297,2,18,6);        -- Sharpshot Automaton: HP+18
+INSERT INTO `item_mods_pet` VALUES (11297,2,16,7);        -- Stormwaker Automaton: HP+16
+INSERT INTO `item_mods_pet` VALUES (11297,5,24,7);        -- Stormwaker Automaton: MP+24
+
+-- Pantin Tobe - LVL 74
+INSERT INTO `item_mods_pet` VALUES (11298,25,10,3);       -- Automaton: Accuracy +10
+
+-- Pantin Tobe +1 - LVL 75
+INSERT INTO `item_mods_pet` VALUES (11299,25,10,3);       -- Automaton: Accuracy +10
+
 -- Aega's Doublet - LVL 32
 INSERT INTO `item_mods_pet` VALUES (11338,25,3,0);        -- Pet: accuracy +3
 INSERT INTO `item_mods_pet` VALUES (11338,289,3,0);       -- Pet: Subtle Blow +3
+
+-- Pantin Babouches - LVL 72
+INSERT INTO `item_mods_pet` VALUES (11388,28,5,3);        -- Automaton: MAB +5
+
+-- Pantin Babouches +1 - LVL 75
+INSERT INTO `item_mods_pet` VALUES (11389,28,5,3);        -- Automaton: MAB +5
+
+-- Puppetry Taj +1 - LVL 74
+INSERT INTO `item_mods_pet` VALUES (11470,72,3,3);        -- Automaton: HP recovered while healing +3
+INSERT INTO `item_mods_pet` VALUES (11470,71,3,3);        -- Automaton: MP recovered while healing +3
+
+-- Pantin Taj - LVL 75
+INSERT INTO `item_mods_pet` VALUES (11471,370,1,3);       -- Automaton: Adds "Regen" effect
+
+-- Pantin Taj +1 - LVL 75
+INSERT INTO `item_mods_pet` VALUES (11472,370,1,3);       -- Automaton: Adds "Regen" effect
 
 -- Spurrer Beret - LVL 75
 INSERT INTO `item_mods_pet` VALUES (11497,384,51,0);      -- Pet: Haste+5% (Gear)
 
 -- Fidelity Mantle - LVL 30
 INSERT INTO `item_mods_pet` VALUES (11531,73,3,0);        -- Pet: Store TP +3
+
+-- Wayang Kulit Mantle - LVL 74
+-- INSERT INTO `item_mods_pet` VALUES (11536,101,2,3);    -- Automaton: Melee skill +2 (Applies mod to the owner instead of pet for now)
 
 -- Ferine Mantle
 INSERT INTO `item_mods_pet` VALUES (11555,25,10,0);       -- Pet: Accuracy+10
@@ -184,6 +217,14 @@ INSERT INTO `item_mods_pet` VALUES (14468,27,5,1);        -- Avatar: Pet: Enmity
 -- Summoner's Doublet + 1 - LVL 75
 INSERT INTO `item_mods_pet` VALUES (14514,165,4,1);       -- Avatar: Critical Hit Rate +4%
 
+-- 	Puppetry Tobe - LVL 58
+INSERT INTO `item_mods_pet` VALUES (14523,2,20,4);        -- Harlequin Automaton: HP+20
+INSERT INTO `item_mods_pet` VALUES (14523,5,20,4);        -- Harlequin Automaton: MP+20
+INSERT INTO `item_mods_pet` VALUES (14523,2,24,5);        -- Valoredge Automaton: HP+24
+INSERT INTO `item_mods_pet` VALUES (14523,2,18,6);        -- Sharpshot Automaton: HP+18
+INSERT INTO `item_mods_pet` VALUES (14523,2,16,7);        -- Stormwaker Automaton: HP+16
+INSERT INTO `item_mods_pet` VALUES (14523,5,24,7);        -- Stormwaker Automaton: MP+24
+
 -- Ostreger Mitts - LVL 74
 INSERT INTO `item_mods_pet` VALUES (14872,2,10,2);        -- Wyvern: HP +10
 
@@ -199,6 +240,12 @@ INSERT INTO `item_mods_pet` VALUES (14923,25,14,1);       -- Avatar: Accuracy +1
 -- Beast Bazubands - LVL 70
 INSERT INTO `item_mods_pet` VALUES (14958,63,5,0);        -- Pet: Defense Bonus 5%
 
+-- Patin Dastanas - LVL 73
+INSERT INTO `item_mods_pet` VALUES (15031,384,30,3);      -- Automaton: Haste +3%
+
+-- Patin Dastanas +1 - LVL 75
+INSERT INTO `item_mods_pet` VALUES (15032,384,30,3);      -- Automaton: Haste +3%
+
 -- Summoner's Doublet - LVL 74
 INSERT INTO `item_mods_pet` VALUES (15101,165,3,1);       -- Avatar: Critical Hit Rate +3%
 
@@ -213,6 +260,10 @@ INSERT INTO `item_mods_pet` VALUES (15146,23,7,1);        -- Avatar: Attack +7
 
 -- Evoker's Horn +1
 INSERT INTO `item_mods_pet` VALUES (15239,27,-3,1);       -- Avatar: Enmity -3
+
+-- Puppetry Taj - LVL 60
+INSERT INTO `item_mods_pet` VALUES (15267,72,3,3);        -- Automaton: HP recovered while healing +3
+INSERT INTO `item_mods_pet` VALUES (15267,71,3,3);        -- Automaton: MP recovered while healing +3
 
 -- Evoker's Pigaches +1
 INSERT INTO `item_mods_pet` VALUES (15366,27,-4,1);       -- Avatar: Enmity -4
@@ -231,6 +282,10 @@ INSERT INTO `item_mods_pet` VALUES (15575,27,-2,1);       -- Avatar: Enmity -2
 -- Summoner's Spats +1
 INSERT INTO `item_mods_pet` VALUES (15594,27,2,1);        -- Avatar: Enmity +2
 -- INSERT INTO `item_mods_pet` VALUES (15594,???,???,1);  -- Avatar: Shortens magic recast time for spirits
+
+-- Puppetry Churidars - LVL 52
+INSERT INTO `item_mods_pet` VALUES (15602,374,5,3);       -- Automaton: Cure Potency +5%
+INSERT INTO `item_mods_pet` VALUES (15602,168,10,3);      -- Automaton: Spell interruption rate down 10% (?)
 
 -- Askar Dirs - LVL 75
 INSERT INTO `item_mods_pet` VALUES (15647,1,10,0);        -- Pet: DEF +10
@@ -255,11 +310,24 @@ INSERT INTO `item_mods_pet` VALUES (15944,163,-7,0);      -- Pet: Magic Damage t
 -- Pallas's Shield - LVL 72
 INSERT INTO `item_mods_pet` VALUES (16173,1,10,0);        -- Pet: DEF +10
 
+-- Pantin Cape - LVL 70
+INSERT INTO `item_mods_pet` VALUES (16245,23,15,3);       -- Automaton: Attack +15
+
 -- Chaonix's Gorget - LVL 70
 INSERT INTO `item_mods_pet` VALUES (16270,2,50,2);        -- Wyvern: HP+50
 
 -- Shepherd's Chain - LVL 60
 INSERT INTO `item_mods_pet` VALUES (16297,161,-2,0);      -- Pet: Damage taken -2%
+
+-- Puppetry Churidars +1 - LVL 74
+INSERT INTO `item_mods_pet` VALUES (16351,374,5,3);       -- Automaton: Cure Potency +5%
+INSERT INTO `item_mods_pet` VALUES (16351,168,10,3);      -- Automaton: Spell interruption rate down 10% (?)
+
+-- Pantin Churidars - LVL 71
+INSERT INTO `item_mods_pet` VALUES (16352,30,5,3);        -- Automaton: Magic Accuracy +5
+
+-- Pantin Churidars +1 - LVL 75
+INSERT INTO `item_mods_pet` VALUES (16353,30,7,3);        -- Automaton: Magic Accuracy +7
 
 -- Herder's Subligar - LVL 25
 INSERT INTO `item_mods_pet` VALUES (16368,25,10,0);       -- Pet: accuracy +10
@@ -274,11 +342,25 @@ INSERT INTO `item_mods_pet` VALUES (16843,23,10,2);       -- Wyvern: Attack+10
 -- 	Wyvern Perch - LVL 73
 INSERT INTO `item_mods_pet` VALUES (17579,2,50,2);        -- Wyvern: HP+50
 
+-- 	Animator +1 - LVL 71
+INSERT INTO `item_mods_pet` VALUES (17857,2,50,4);        -- Harlequin Automaton: HP+50
+INSERT INTO `item_mods_pet` VALUES (17857,5,50,4);        -- Harlequin Automaton: MP+50
+INSERT INTO `item_mods_pet` VALUES (17857,2,60,5);        -- Valoredge Automaton: HP+60
+INSERT INTO `item_mods_pet` VALUES (17857,2,45,6);        -- Sharpshot Automaton: HP+45
+INSERT INTO `item_mods_pet` VALUES (17857,2,40,7);        -- Stormwaker Automaton: HP+40
+INSERT INTO `item_mods_pet` VALUES (17857,5,60,7);        -- Stormwaker Automaton: MP+60
+
 -- Lion Tamer - LVL 74
 INSERT INTO `item_mods_pet` VALUES (17961,1,10,0);        -- Pet: DEF +10
 
 -- Ravana's Axe - LVL 99
 INSERT INTO `item_mods_pet` VALUES (18547,370,3,0);       -- Pet: Adds "Regen" effect
+
+-- Adaman Sainti - LVL 70
+INSERT INTO `item_mods_pet` VALUES (18745,3,1,3);         -- Automaton: HP +1% (Supposed to be 0.75%)
+
+-- Gem Sainti - LVL 70
+INSERT INTO `item_mods_pet` VALUES (18746,3,2,3);         -- Automaton: HP +2% (Supposed to be 1.5%)
 
 -- Marotte Claws - LVL 82
 INSERT INTO `item_mods_pet` VALUES (18778,369,1,3);       -- Automaton: Adds "Refresh" effect

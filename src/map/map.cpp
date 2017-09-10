@@ -58,6 +58,7 @@ This file is part of DarkStar-server source code.
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"
+#include "ai/controllers/automaton_controller.h"
 
 #include "lua/luautils.h"
 
@@ -205,6 +206,7 @@ int32 do_init(int32 argc, int8** argv)
     ShowStatus("do_init: loading spells");
     spell::LoadSpellList();
     mobSpellList::LoadMobSpellList();
+    autoSpell::LoadAutomatonSpellList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     guildutils::Initialize();

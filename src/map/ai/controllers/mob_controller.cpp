@@ -907,7 +907,7 @@ bool CMobController::MobSkill(uint16 targid, uint16 wsid)
     return false;
 }
 
-void CMobController::Disengage()
+bool CMobController::Disengage()
 {
     // this will let me decide to walk home or despawn
     m_LastActionTime = m_Tick - (std::chrono::milliseconds(PMob->getBigMobMod(MOBMOD_ROAM_COOL)) + 10s);
@@ -927,7 +927,7 @@ void CMobController::Disengage()
     PMob->CallForHelp(false);
     PMob->animation = ANIMATION_NONE;
 
-    CController::Disengage();
+    return CController::Disengage();
 }
 
 bool CMobController::Engage(uint16 targid)
@@ -983,10 +983,10 @@ void CMobController::TapDeaggroTime()
     m_DeaggroTime = m_Tick;
 }
 
-void CMobController::Cast(uint16 targid, uint16 spellid)
+bool CMobController::Cast(uint16 targid, uint16 spellid)
 {
     FaceTarget(targid);
-    CController::Cast(targid, spellid);
+    return CController::Cast(targid, spellid);
 }
 
 bool CMobController::CanMoveForward(float currentDistance)

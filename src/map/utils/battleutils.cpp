@@ -195,7 +195,7 @@ namespace battleutils
         // Load all mob skills
         const int8* specialQuery = "SELECT mob_skill_id, mob_anim_id, mob_skill_name, \
         mob_skill_aoe, mob_skill_distance, mob_anim_time, mob_prepare_time, \
-        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback \
+        mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc \
         FROM mob_skills;";
 
         int32 ret = Sql_Query(SqlHandle, specialQuery);
@@ -215,6 +215,9 @@ namespace battleutils
                 PMobSkill->setFlag(Sql_GetIntData(SqlHandle, 8));
                 PMobSkill->setParam(Sql_GetIntData(SqlHandle, 9));
                 PMobSkill->setKnockback(Sql_GetUIntData(SqlHandle, 10));
+                PMobSkill->setPrimarySkillchain(Sql_GetUIntData(SqlHandle, 11));
+                PMobSkill->setSecondarySkillchain(Sql_GetUIntData(SqlHandle, 12));
+                PMobSkill->setTertiarySkillchain(Sql_GetUIntData(SqlHandle, 13));
                 PMobSkill->setMsg(185); //standard damage message. Scripters will change this.
                 g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
             }
@@ -977,7 +980,8 @@ namespace battleutils
         }
 
         // Enspell overwrites weapon effects
-        if (PAttacker->getMod(Mod::ENSPELL) > 0)
+        if (PAttacker->getMod(Mod::ENSPELL) > 0 && (PAttacker->getMod(Mod::ENSPELL_CHANCE) == 0 ||
+            PAttacker->getMod(Mod::ENSPELL_CHANCE) > dsprand::GetRandomNumber(100)))
         {
             SUBEFFECT subeffects[8] = { SUBEFFECT_LIGHT_DAMAGE, SUBEFFECT_DARKNESS_DAMAGE, SUBEFFECT_FIRE_DAMAGE, SUBEFFECT_EARTH_DAMAGE,
                 SUBEFFECT_WATER_DAMAGE, SUBEFFECT_WIND_DAMAGE, SUBEFFECT_ICE_DAMAGE, SUBEFFECT_LIGHTNING_DAMAGE };
@@ -1716,6 +1720,15 @@ namespace battleutils
             if (PMob->m_EcoSystem != SYSTEM_UNDEAD && PMob->m_EcoSystem != SYSTEM_BEASTMEN)
                 return 0;
         }
+        else if (PDefender->objtype == TYPE_PET && static_cast<CPetEntity*>(PDefender)->getPetType() == PETTYPE_AUTOMATON && PDefender->GetMJob() == JOB_PLD)
+        {
+            float skillmodifier = (PDefender->GetSkill(SKILL_AME) - attackskill) * 0.215f;
+            base = PDefender->getMod(Mod::SHIELDBLOCKRATE);
+            if (base <= 0)
+                return 0;
+            else
+                return base + (int32)skillmodifier;
+        }
         else
             return 0;
 
@@ -1890,6 +1903,19 @@ namespace battleutils
                         //Shield Mastery
                         if ((dsp_max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
                             && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                        {
+                            // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
+                            // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
+                            PDefender->addTP(PDefender->getMod(Mod::SHIELD_MASTERY_TP));
+                        }
+                    }
+                    else if (PDefender->objtype == TYPE_PET)
+                    {
+                        absorb = 50;
+
+                        //Shield Mastery
+                        if ((dsp_max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
+                            && (PDefender->getMod(Mod::SHIELD_MASTERY_TP)))
                         {
                             // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                             // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
@@ -2094,9 +2120,18 @@ namespace battleutils
 
         if (PDefender->objtype == TYPE_MOB)
         {
-            PDefender->m_OwnerID.id = PChar->id;
-            PDefender->m_OwnerID.targid = PChar->targid;
-            PDefender->updatemask |= UPDATE_STATUS;
+            if (PChar->PMaster != nullptr)
+            {
+                PDefender->m_OwnerID.id = PChar->PMaster->id;
+                PDefender->m_OwnerID.targid = PChar->PMaster->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
+            else
+            {
+                PDefender->m_OwnerID.id = PChar->id;
+                PDefender->m_OwnerID.targid = PChar->targid;
+                PDefender->updatemask |= UPDATE_STATUS;
+            }
         }
 
         if (damage > 0)
@@ -2827,7 +2862,7 @@ namespace battleutils
         return SC_NONE;
     }
 
-    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, CWeaponSkill* PWeaponSkill)
+    SUBEFFECT GetSkillChainEffect(CBattleEntity* PDefender, uint32 id, std::initializer_list<SKILLCHAIN_ELEMENT> skillProperties)
     {
         CStatusEffect* PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
         CStatusEffect* PCBEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_CHAINBOUND, 0);
@@ -2836,16 +2871,11 @@ namespace battleutils
         if (PSCEffect == nullptr && PCBEffect == nullptr)
         {
             // No effect exists, apply an effect using the weaponskill ID as the power with a tier of 0.
-            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+            PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
             return SUBEFFECT_NONE;
         }
         else
         {
-            std::list<SKILLCHAIN_ELEMENT> skillProperties;
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getPrimarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getSecondarySkillchain());
-            skillProperties.push_back((SKILLCHAIN_ELEMENT)PWeaponSkill->getTertiarySkillchain());
-
             std::list<SKILLCHAIN_ELEMENT> resonanceProperties;
 
             // Chainbound active on target
@@ -2871,7 +2901,7 @@ namespace battleutils
 
                     skillchain = FormSkillchain(resonanceProperties, skillProperties);
                 }
-                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, PWeaponSkill->getID(), 0, 10, 0, 0, 0));
+                PDefender->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SKILLCHAIN, 0, id, 0, 10, 0, 0, 0));
                 PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_CHAINBOUND);
                 PSCEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_SKILLCHAIN, 0);
 
@@ -2923,7 +2953,7 @@ namespace battleutils
             PSCEffect->SetStartTime(server_clock::now());
             PSCEffect->SetDuration(10000);
             PSCEffect->SetTier(0);
-            PSCEffect->SetPower(PWeaponSkill->getID());
+            PSCEffect->SetPower(id);
             PSCEffect->SetSubPower(0);
 
             return SUBEFFECT_NONE;

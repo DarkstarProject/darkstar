@@ -65,7 +65,7 @@
 #include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
-#include "../recast_container.h"
+#include "../char_recast_container.h"
 #include "../latent_effect_container.h"
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
@@ -180,8 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
-
-    PRecastContainer = new CRecastContainer(this);
+    PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
     petZoningInfo.respawnPet = false;
@@ -217,7 +216,6 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
-    delete PRecastContainer;
 }
 
 uint8 CCharEntity::GetGender()
@@ -282,6 +280,7 @@ void CCharEntity::resetPetZoningInfo()
     // reset the petZoning info
     petZoningInfo.petHP = 0;
     petZoningInfo.petTP = 0;
+    petZoningInfo.petMP = 0;
     petZoningInfo.respawnPet = false;
     petZoningInfo.petType = PETTYPE_AVATAR;
 }
@@ -802,7 +801,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getID(),
+                        { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getTertiarySkillchain()) });
                         if (effect != SUBEFFECT_NONE)
                         {
                             actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);

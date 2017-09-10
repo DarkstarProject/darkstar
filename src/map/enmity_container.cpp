@@ -277,6 +277,40 @@ uint16 CEnmityContainer::GetVE(CBattleEntity* PEntity)
 
 /************************************************************************
 *                                                                       *
+*    Sets the CE or VE for the current entity                           *
+*                                                                       *
+************************************************************************/
+
+void CEnmityContainer::SetCE(CBattleEntity* PEntity, uint16 amount)
+{
+    auto PEnmity = m_EnmityList.find(PEntity->id);
+    if (PEnmity != m_EnmityList.end())
+    {
+        PEnmity->second.CE = amount;
+    }
+    else
+    {
+        AddBaseEnmity(PEntity);
+        SetCE(PEntity, amount);
+    }
+}
+
+void CEnmityContainer::SetVE(CBattleEntity* PEntity, uint16 amount)
+{
+    auto PEnmity = m_EnmityList.find(PEntity->id);
+    if (PEnmity != m_EnmityList.end())
+    {
+        PEnmity->second.VE = amount;
+    }
+    else
+    {
+        AddBaseEnmity(PEntity);
+        SetVE(PEntity, amount);
+    }
+}
+
+/************************************************************************
+*                                                                       *
 *                                                                       *
 *                                                                       *
 ************************************************************************/

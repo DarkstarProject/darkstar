@@ -23,8 +23,6 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT,1.1,1.2,1.3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    skill:setSkillchain(165);
-
     if (math.random(1,100) < skill:getTP()/3) then
         MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_INT_DOWN, 10, 3, 120);
     end

@@ -9,29 +9,29 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
-    pet:addMod(MOD_HASTE_MAGIC, 71)
+    pet:addMod(MOD_HASTE_MAGIC, 70)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_HASTE_MAGIC, 71)
+    pet:delMod(MOD_HASTE_MAGIC, 70)
 end
 
 function onManeuverGain(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:addMod(MOD_HASTE_MAGIC, 102);
+        pet:addMod(MOD_HASTE_MAGIC, 100);
     elseif (maneuvers == 2) then
-        pet:addMod(MOD_HASTE_MAGIC, 122); 
+        pet:addMod(MOD_HASTE_MAGIC, 120); 
     elseif (maneuvers == 3) then
-        pet:addMod(MOD_HASTE_MAGIC, 153);
+        pet:addMod(MOD_HASTE_MAGIC, 148);
     end
 end
 
 function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:delMod(MOD_HASTE_MAGIC, 102);
+        pet:delMod(MOD_HASTE_MAGIC, 100);
     elseif (maneuvers == 2) then
-        pet:delMod(MOD_HASTE_MAGIC, 122); 
+        pet:delMod(MOD_HASTE_MAGIC, 120); 
     elseif (maneuvers == 3) then
-        pet:delMod(MOD_HASTE_MAGIC, 153);
+        pet:delMod(MOD_HASTE_MAGIC, 148);
     end
 end

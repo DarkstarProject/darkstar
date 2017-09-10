@@ -2481,9 +2481,10 @@ namespace charutils
 
     void BuildingCharSkillsTable(CCharEntity* PChar)
     {
-        MERIT_TYPE skillMerit[] = {MERIT_H2H, MERIT_DAGGER, MERIT_SWORD, MERIT_GSWORD, MERIT_AXE, MERIT_GAXE, MERIT_SCYTHE, MERIT_POLEARM, MERIT_KATANA, MERIT_GKATANA, MERIT_CLUB, MERIT_STAFF,
-            MERIT_ARCHERY, MERIT_MARKSMANSHIP, MERIT_THROWING, MERIT_GUARDING, MERIT_EVASION, MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING,
-            MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING, MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL};
+        MERIT_TYPE skillMerit[] = {MERIT_H2H, MERIT_DAGGER, MERIT_SWORD, MERIT_GSWORD, MERIT_AXE, MERIT_GAXE, MERIT_SCYTHE, MERIT_POLEARM, MERIT_KATANA, MERIT_GKATANA, MERIT_CLUB,
+            MERIT_STAFF, MERIT_AUTOMATON_SKILLS, MERIT_AUTOMATON_SKILLS, MERIT_AUTOMATON_SKILLS, MERIT_ARCHERY, MERIT_MARKSMANSHIP, MERIT_THROWING, MERIT_GUARDING, MERIT_EVASION,
+            MERIT_SHIELD, MERIT_PARRYING, MERIT_DIVINE, MERIT_HEALING, MERIT_ENHANCING, MERIT_ENFEEBLING, MERIT_ELEMENTAL, MERIT_DARK, MERIT_SUMMONING, MERIT_NINJITSU, MERIT_SINGING,
+            MERIT_STRING, MERIT_WIND, MERIT_BLUE, MERIT_GEO, MERIT_HANDBELL};
 
         uint8 meritIndex = 0;
 
@@ -2556,12 +2557,12 @@ namespace charutils
             {
                 if (PChar->PAutomaton)
                 {
-                    MaxMSkill = puppetutils::getSkillCap(PChar, (SKILLTYPE)i);
+                    MaxMSkill = battleutils::GetMaxSkill(1, PChar->GetMLevel()); // A+ capped down to the Automaton's rating
                 }
             }
 
             //ignore these indexes when calculating merits
-            if (i > 0 && (i < 13 || i > 24) && i < 46)
+            if (i > 0 && (i < 13 || i > 21) && i < 46)
             {
                 skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
                 meritIndex++;

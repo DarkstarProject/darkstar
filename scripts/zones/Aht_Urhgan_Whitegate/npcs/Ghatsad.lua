@@ -213,7 +213,7 @@ function onTrade(player,npc,trade)
         end
     elseif (attachments == 3 and attachmentStatus == 11) then
         if (trade:getSlotCount() == 3) then
-            if (trade:getItemQty(2186) == 2) then
+            if (trade:getItemQty(2186) == 7) then
                 if (trade:getItemQty(2502) == 1) then
                     if (trade:getItemQty(4613) == 1) then
                         player:tradeComplete();
@@ -259,7 +259,7 @@ function onTrade(player,npc,trade)
         end
     elseif (attachments == 4 and attachmentStatus == 14) then
         if (trade:getSlotCount() == 3) then
-            if (trade:getItemQty(2186) == 4) then
+            if (trade:getItemQty(2186) == 7) then
                 if (trade:getItemQty(2502) == 1 and unlockedAttachments == 46) then
                     if (trade:getItemQty(4613) == 1) then
                         player:tradeComplete();

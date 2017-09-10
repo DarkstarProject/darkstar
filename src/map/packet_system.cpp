@@ -2672,6 +2672,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             case PETTYPE_WYVERN:
                 PChar->petZoningInfo.petHP = PPet->health.hp;
                 PChar->petZoningInfo.petTP = PPet->health.tp;
+                PChar->petZoningInfo.petMP = PPet->health.mp;
                 PChar->petZoningInfo.respawnPet = true;
                 PChar->petZoningInfo.petType = PPet->getPetType();
                 petutils::DespawnPet(PChar);
@@ -5286,7 +5287,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
         }
     }
-    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP && PChar->PAutomaton != nullptr)
+    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP && PChar->PAutomaton != nullptr && PChar->PPet == nullptr)
     {
         uint8 attachment = RBUFB(data, 0x04);
 
@@ -5306,6 +5307,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (RBUFB(data, 0x0C) != 0)
             {
                 puppetutils::setHead(PChar, RBUFB(data, 0x0C));
+                puppetutils::LoadAutomatonStats(PChar);
             }
             else if (RBUFB(data, 0x0D) != 0)
             {
