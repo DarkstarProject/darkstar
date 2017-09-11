@@ -381,7 +381,7 @@ enum class Mod
 
     // Samurai
     MEDITATE_DURATION         = 94, // Meditate duration in seconds
-    WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration in seconds
+    WARDING_CIRCLE_DURATION   = 95, // Warding Circle extended duration in seconds
     ZANSHIN                   = 306, // Zanshin percent chance
     THIRD_EYE_COUNTER_RATE    = 508, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
     THIRD_EYE_ANTICIPATE_RATE = 839, // Adds anticipate rate in percents
@@ -392,6 +392,7 @@ enum class Mod
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
 
     // Dragoon
+    ANCIENT_CIRCLE_DURATION   = 844, // Ancient Circle extended duration in seconds
     JUMP_TP_BONUS             = 361, // bonus tp player receives when using jump (must be divided by 10)
     JUMP_ATT_BONUS            = 362, // ATT% bonus for jump + high jump
     HIGH_JUMP_ENMITY_REDUCTION = 363, // for gear that reduces more enmity from high jump
