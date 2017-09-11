@@ -544,7 +544,6 @@ enum class Spell
     Foe_Lullaby_II          = 471,
     Refresh_II              = 473,
     Cura_II                 = 474,
-
     Cura_III                = 475,
     Regen_IV                = 477,
     Embrava                 = 478,

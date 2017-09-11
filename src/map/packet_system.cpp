@@ -347,7 +347,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
         }
     }
-
+    // reset the petZoning info
+    PChar->resetPetZoningInfo();
     return;
 }
 
@@ -407,6 +408,12 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->PParty->RemoveMember(PChar);
             }
         }
+
+        if (PChar->PPet != nullptr)
+        {
+            PChar->setPetZoningInfo();
+        }
+
         session->shuttingDown = 1;
         Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
     }
@@ -2656,35 +2663,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // handle pets on zone
     if (PChar->PPet != nullptr)
     {
-        CPetEntity* PPet = (CPetEntity*)PChar->PPet;
-
-        if (PPet->objtype == TYPE_MOB)
-        {
-            // uncharm a charmed mob
-            petutils::DespawnPet(PChar);
-        }
-        else if (PPet->objtype == TYPE_PET)
-        {
-            switch (PPet->getPetType())
-            {
-            case PETTYPE_JUG_PET:
-            case PETTYPE_AUTOMATON:
-            case PETTYPE_WYVERN:
-                PChar->petZoningInfo.petHP = PPet->health.hp;
-                PChar->petZoningInfo.petTP = PPet->health.tp;
-                PChar->petZoningInfo.petMP = PPet->health.mp;
-                PChar->petZoningInfo.respawnPet = true;
-                PChar->petZoningInfo.petType = PPet->getPetType();
-                petutils::DespawnPet(PChar);
-                break;
-
-            case PETTYPE_AVATAR:
-                petutils::DespawnPet(PChar);
-
-            default:
-                break;
-            }
-        }
+        PChar->setPetZoningInfo();
+        petutils::DespawnPet(PChar);
     }
 
     uint32 zoneLineID = RBUFL(data, (0x04));
