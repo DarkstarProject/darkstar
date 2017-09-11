@@ -151,32 +151,6 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
 
     if not multiHitfTP then dmg = base end
 
-    if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
-
-        local chance = math.random();
-        if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
-                and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
-            if not shadowAbsorbed(target) then
-                pdif = generatePdif(cratio[1], cratio[2], true);
-                if (params.canCrit) then
-                    critchance = math.random();
-                    if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
-                        criticalHit = true;
-                        cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
-                        finaldmg = finaldmg + dmg * cpdif;
-                    else
-                        finaldmg = finaldmg + dmg * pdif;
-                    end
-                else
-                    finaldmg = finaldmg + dmg * pdif;
-                end
-                tpHitsLanded = tpHitsLanded + 1;
-            else
-                shadowsAbsorbed = shadowsAbsorbed + 1
-            end
-        end
-    end
-
     -- Store first hit bonus for use after other calcs are done..
     local firstHitBonus = ((finaldmg * attacker:getMod(MOD_ALL_WSDMG_FIRST_HIT))/100);
 
