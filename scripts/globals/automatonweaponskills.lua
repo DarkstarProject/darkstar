@@ -19,7 +19,7 @@ MSG_ATTR_DRAINED = 369
 MSG_TP_INCREASE = 409
 
 -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick, accBonus, weaponType, weaponDamage
-function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill)
+function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params, skill, action)
 
     local criticalHit = false;
     local bonusTP = params.bonusTP or 0
@@ -116,18 +116,26 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
 
     local dmg = base * ftp;
     local tpHitsLanded = 0;
+    local shadowsAbsorbed = 0;
     if ((missChance <= hitrate or isSneakValid or isAssassinValid or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
             not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then
-        if (params.canCrit or isSneakValid or isAssassinValid) then
-            local critchance = math.random();
-            if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
-                local cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
-                finaldmg = dmg * cpdif;
-                if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
-                    finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
-                end
-                if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
-                    finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
+        if not shadowAbsorb(target) then
+            if (params.canCrit or isSneakValid or isAssassinValid) then
+                local critchance = math.random();
+                if (critchance <= critrate or hasMightyStrikes or isSneakValid or isAssassinValid) then -- crit hit!
+                    local cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+                    finaldmg = dmg * cpdif;
+                    if (isSneakValid and attacker:getMainJob() == JOBS.THF) then -- have to add on DEX bonus if on THF main
+                        finaldmg = finaldmg + (attacker:getStat(MOD_DEX) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_SA)))/100);
+                    end
+                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                        finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * cpdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
+                    end
+                else
+                    finaldmg = dmg * pdif;
+                    if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
+                        finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
+                    end
                 end
             else
                 finaldmg = dmg * pdif;
@@ -135,13 +143,10 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
                     finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
                 end
             end
+            tpHitsLanded = 1;
         else
-            finaldmg = dmg * pdif;
-            if (isTrickValid and attacker:getMainJob() == JOBS.THF) then
-                finaldmg = finaldmg + (attacker:getStat(MOD_AGI) * (1 + attacker:getMod(MOD_TRICK_ATK_AGI)/100) * ftp * pdif) * ((100+(attacker:getMod(MOD_AUGMENTS_TA)))/100);
-            end
+            shadowsAbsorbed = shadowsAbsorbed + 1
         end
-        tpHitsLanded = 1;
     end
 
     if not multiHitfTP then dmg = base end
@@ -151,20 +156,24 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
                 and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
-            pdif = generatePdif(cratio[1], cratio[2], true);
-            if (params.canCrit) then
-                critchance = math.random();
-                if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
-                    criticalHit = true;
-                    cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
-                    finaldmg = finaldmg + dmg * cpdif;
+            if not shadowAbsorbed(target) then
+                pdif = generatePdif(cratio[1], cratio[2], true);
+                if (params.canCrit) then
+                    critchance = math.random();
+                    if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
+                        criticalHit = true;
+                        cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+                        finaldmg = finaldmg + dmg * cpdif;
+                    else
+                        finaldmg = finaldmg + dmg * pdif;
+                    end
                 else
                     finaldmg = finaldmg + dmg * pdif;
                 end
+                tpHitsLanded = tpHitsLanded + 1;
             else
-                finaldmg = finaldmg + dmg * pdif;
+                shadowsAbsorbed = shadowsAbsorbed + 1
             end
-            tpHitsLanded = tpHitsLanded + 1;
         end
     end
 
@@ -182,20 +191,24 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
             local targetHP = target:getHP();
             if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100) and
                     not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then  -- it hit
-                pdif = generatePdif(cratio[1], cratio[2], true);
-                if (params.canCrit) then
-                    critchance = math.random();
-                    if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
-                        criticalHit = true;
-                        cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
-                        finaldmg = finaldmg + dmg * cpdif;
+                if not shadowAbsorb(target) then
+                    pdif = generatePdif(cratio[1], cratio[2], true);
+                    if (params.canCrit) then
+                        critchance = math.random();
+                        if (critchance <= nativecrit or hasMightyStrikes) then -- crit hit!
+                            criticalHit = true;
+                            cpdif = generatePdif(ccritratio[1], ccritratio[2], true);
+                            finaldmg = finaldmg + dmg * cpdif;
+                        else
+                            finaldmg = finaldmg + dmg * pdif;
+                        end
                     else
                         finaldmg = finaldmg + dmg * pdif;
                     end
+                    extraHitsLanded = extraHitsLanded + 1;
                 else
-                    finaldmg = finaldmg + dmg * pdif;
+                    shadowsAbsorbed = shadowsAbsorbed + 1
                 end
-                extraHitsLanded = extraHitsLanded + 1;
             end
             hitsdone = hitsdone + 1;
             if (finaldmg > targetHP) then
@@ -230,7 +243,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     attacker:delStatusEffectSilent(EFFECT_BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeAutoWeaponskillDamage(target, attacker, skill, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     else
         skill:setMsg(MSG_MISS)
     end
@@ -382,7 +395,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
 end;
 
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
- function doAutoRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill)
+ function doAutoRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill, action)
 
     local bonusTP = params.bonusTP or 0
     local multiHitfTP = params.multiHitfTP or false
@@ -447,20 +460,25 @@ end;
     end
 
     local tpHitsLanded = 0;
+    local shadowsAbsorbed = 0
     if (missChance <= hitrate) then
-        if (params.canCrit) then
-            local critchance = math.random();
-            if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
-                crit = true
-                local cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
-                finaldmg = dmg * cpdif;
+        if not shadowAbsorb(target) then
+            if (params.canCrit) then
+                local critchance = math.random();
+                if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
+                    crit = true
+                    local cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
+                    finaldmg = dmg * cpdif;
+                else
+                    finaldmg = dmg * pdif;
+                end
             else
                 finaldmg = dmg * pdif;
             end
+            tpHitsLanded = 1;
         else
-            finaldmg = dmg * pdif;
+            shadowsAbsorbed = shadowsAbsorbed + 1
         end
-        tpHitsLanded = 1;
     end
 
     -- Store first hit bonus for use after other calcs are done..
@@ -480,19 +498,23 @@ end;
         while (hitsdone < numHits) do
             chance = math.random();
             if (chance<=hitrate) then -- it hit
-                pdif = generatePdif(cratio[1],cratio[2], false);
-                if (canCrit) then
-                    critchance = math.random();
-                    if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
-                        cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
-                        finaldmg = finaldmg + dmg * cpdif;
+                if not shadowAbsorb(target) then
+                    pdif = generatePdif(cratio[1],cratio[2], false);
+                    if (canCrit) then
+                        critchance = math.random();
+                        if (critchance <= critrate or hasMightyStrikes) then -- crit hit!
+                            cpdif = generatePdif(ccritratio[1], ccritratio[2], false);
+                            finaldmg = finaldmg + dmg * cpdif;
+                        else
+                            finaldmg = finaldmg + dmg * pdif;
+                        end
                     else
-                        finaldmg = finaldmg + dmg * pdif;
+                        finaldmg = finaldmg + dmg * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
                     end
+                    extraHitsLanded = extraHitsLanded + 1;
                 else
-                    finaldmg = finaldmg + dmg * pdif; -- NOTE: not using 'dmg' since fTP is 1.0 for subsequent hits!!
+                    shadowsAbsorbed = shadowsAbsorbed + 1
                 end
-                extraHitsLanded = extraHitsLanded + 1;
             end
             hitsdone = hitsdone + 1;
         end
@@ -512,31 +534,10 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeAutoWeaponskillDamage(target, attacker, skill, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     else
         skill:setMsg(MSG_MISS)
     end
 
     return finaldmg, crit, tpHitsLanded, extraHitsLanded;
 end;
-
-function takeAutoWeaponskillDamage(defender, attacker, skill, params, primary, finaldmg, slot, tpHitsLanded, bonusTP, taChar)
-    finaldmg = utils.takeShadows(defender, finaldmg, tpHitsLanded);
-    -- dealt zero damage, so shadows took hit
-    if (finaldmg == 0) then
-        skill:setMsg(MSG_SHADOW);
-        return tpHitsLanded;
-    end
-
-    local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, bonusTP, targetTPMult)
-    local enmityEntity = taChar or attacker;
-    if (params.overrideCE and params.overrideVE) then
-        defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
-    else
-        local enmityMult = params.enmityMult or 1
-        defender:updateEnmityFromDamage(enmityEntity, finaldmg * enmityMult)
-    end
-
-    return finaldmg;
-end

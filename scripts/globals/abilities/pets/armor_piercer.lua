@@ -46,7 +46,7 @@ function onPetAbility(target, automaton, skill, master, action)
         params.ignored300 = 0.5
     end
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill, action)
 
     return damage
 end

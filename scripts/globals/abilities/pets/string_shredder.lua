@@ -37,7 +37,7 @@ function onPetAbility(target, automaton, skill, master, action)
         chr_wsc = 0.0
     }
 
-    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill)
+    local damage = doAutoPhysicalWeaponskill(automaton, target, 0, skill:getTP(), true, action, false, params, skill, action)
 
     return damage
 end

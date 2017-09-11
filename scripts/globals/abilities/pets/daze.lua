@@ -40,7 +40,7 @@ function onPetAbility(target, automaton, skill, master, action)
         params.ftp300 = 11.0
     end
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill, action)
 
     if damage > 0 then
         local chance = 0.033 * skill:getTP()

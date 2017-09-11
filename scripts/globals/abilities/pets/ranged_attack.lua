@@ -31,7 +31,7 @@ function onPetAbility(target, automaton, skill, master, action)
         chr_wsc = 0.0
     }
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, 1000, true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, 1000, true, skill, action)
 
     return damage
 end
