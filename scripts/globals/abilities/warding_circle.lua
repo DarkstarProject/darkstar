@@ -22,6 +22,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    local duration = 60 + player:getMod(MOD_WARDING_CIRCLE_DURATION);
-    target:addStatusEffect(EFFECT_WARDING_CIRCLE,1,0,duration);
+    local duration = 180 + player:getMod(MOD_WARDING_CIRCLE_DURATION);
+    target:addStatusEffect(EFFECT_WARDING_CIRCLE,15,0,duration);
 end;
