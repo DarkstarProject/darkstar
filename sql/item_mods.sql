@@ -12562,11 +12562,11 @@ INSERT INTO `item_mods` VALUES (14095,1,14);
 INSERT INTO `item_mods` VALUES (14095,2,15);
 INSERT INTO `item_mods` VALUES (14095,14,5);
 INSERT INTO `item_mods` VALUES (14095,109,10);
-INSERT INTO `item_mods` VALUES (14095,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (14095,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (14096,1,10);
 INSERT INTO `item_mods` VALUES (14096,2,15);
 INSERT INTO `item_mods` VALUES (14096,13,5);
-INSERT INTO `item_mods` VALUES (14096,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (14096,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (14097,1,10);
 INSERT INTO `item_mods` VALUES (14097,2,11);
 INSERT INTO `item_mods` VALUES (14097,11,3);
@@ -13072,7 +13072,7 @@ INSERT INTO `item_mods` VALUES (14226,26,10);
 INSERT INTO `item_mods` VALUES (14227,1,27);
 INSERT INTO `item_mods` VALUES (14227,2,15);
 INSERT INTO `item_mods` VALUES (14227,57,10);
-INSERT INTO `item_mods` VALUES (14227,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (14227,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (14228,1,25);
 INSERT INTO `item_mods` VALUES (14228,5,15);
 INSERT INTO `item_mods` VALUES (14228,108,10);
@@ -17049,13 +17049,13 @@ INSERT INTO `item_mods` VALUES (15358,1,19);
 INSERT INTO `item_mods` VALUES (15358,2,20);
 INSERT INTO `item_mods` VALUES (15358,14,5);
 INSERT INTO `item_mods` VALUES (15358,109,12);
-INSERT INTO `item_mods` VALUES (15358,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (15358,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (15359,1,17);
 INSERT INTO `item_mods` VALUES (15359,2,15);
 INSERT INTO `item_mods` VALUES (15359,5,15);
 INSERT INTO `item_mods` VALUES (15359,8,5);
 INSERT INTO `item_mods` VALUES (15359,13,5);
-INSERT INTO `item_mods` VALUES (15359,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (15359,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (15360,1,14);
 INSERT INTO `item_mods` VALUES (15360,2,11);
 INSERT INTO `item_mods` VALUES (15360,11,5);
@@ -17628,7 +17628,7 @@ INSERT INTO `item_mods` VALUES (15573,26,10);
 INSERT INTO `item_mods` VALUES (15574,1,32);
 INSERT INTO `item_mods` VALUES (15574,2,15);
 INSERT INTO `item_mods` VALUES (15574,25,9);
-INSERT INTO `item_mods` VALUES (15574,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (15574,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (15575,1,25);
 INSERT INTO `item_mods` VALUES (15575,5,22);
 INSERT INTO `item_mods` VALUES (15575,27,-3);
@@ -27030,7 +27030,7 @@ INSERT INTO `item_mods` VALUES (23254,31,85);     -- Magic Evasion+85
 INSERT INTO `item_mods` VALUES (23254,68,32);     -- Evasion+32
 INSERT INTO `item_mods` VALUES (23254,384,51);    -- Haste +5%
 INSERT INTO `item_mods` VALUES (23254,841,5);     -- Weapon Skill Damage+5%
-INSERT INTO `item_mods` VALUES (23254,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23254,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23255,1,114);     -- convo._spats_+2 DEF:114
 INSERT INTO `item_mods` VALUES (23255,2,57);      -- HP+57
 INSERT INTO `item_mods` VALUES (23255,5,99);      -- MP+99
@@ -27306,7 +27306,7 @@ INSERT INTO `item_mods` VALUES (23314,68,59);     -- Evasion+59
 INSERT INTO `item_mods` VALUES (23314,109,19);    -- Shield+19
 INSERT INTO `item_mods` VALUES (23314,384,30);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23314,516,5);     -- Converts Dmg to MP+5
-INSERT INTO `item_mods` VALUES (23314,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23314,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23315,1,96);      -- ig._sollerets_+2 DEF:96
 INSERT INTO `item_mods` VALUES (23315,2,57);      -- HP+57
 INSERT INTO `item_mods` VALUES (23315,5,30);      -- MP+30
@@ -27323,7 +27323,7 @@ INSERT INTO `item_mods` VALUES (23315,30,44);     -- Magic Accuracy+44
 INSERT INTO `item_mods` VALUES (23315,31,74);     -- Magic Evasion+74
 INSERT INTO `item_mods` VALUES (23315,68,59);     -- Evasion+59
 INSERT INTO `item_mods` VALUES (23315,384,30);    -- Haste +30
-INSERT INTO `item_mods` VALUES (23315,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23315,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23316,1,82);      -- tot._gaiters_+2 DEF:82
 INSERT INTO `item_mods` VALUES (23316,2,19);      -- HP+19
 INSERT INTO `item_mods` VALUES (23316,8,17);      -- STR+17
@@ -29001,7 +29001,7 @@ INSERT INTO `item_mods` VALUES (23589,29,4);      -- Magic Defense+4
 INSERT INTO `item_mods` VALUES (23589,31,95);     -- Magic Evasion+95
 INSERT INTO `item_mods` VALUES (23589,68,42);     -- Evasion+42
 INSERT INTO `item_mods` VALUES (23589,384,51);    -- Haste +5%
-INSERT INTO `item_mods` VALUES (23589,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23589,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23590,1,124);     -- convo._spats_+3 DEF:124
 INSERT INTO `item_mods` VALUES (23590,2,67);      -- HP+67
 INSERT INTO `item_mods` VALUES (23590,5,109);     -- MP+109
@@ -29277,7 +29277,7 @@ INSERT INTO `item_mods` VALUES (23649,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23649,109,21);    -- Shield+21
 INSERT INTO `item_mods` VALUES (23649,384,30);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23649,516,10);    -- Converts Dmg to MP+10
-INSERT INTO `item_mods` VALUES (23649,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23649,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23650,1,106);     -- ig._sollerets_+3 DEF:106
 INSERT INTO `item_mods` VALUES (23650,2,67);      -- HP+67
 INSERT INTO `item_mods` VALUES (23650,5,40);      -- MP+40
@@ -29294,7 +29294,7 @@ INSERT INTO `item_mods` VALUES (23650,30,54);     -- Magic Accuracy+54
 INSERT INTO `item_mods` VALUES (23650,31,84);     -- Magic Evasion+84
 INSERT INTO `item_mods` VALUES (23650,68,69);     -- Evasion+69
 INSERT INTO `item_mods` VALUES (23650,384,30);    -- Haste +30
-INSERT INTO `item_mods` VALUES (23650,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (23650,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (23651,1,92);      -- tot._gaiters_+3 DEF:92
 INSERT INTO `item_mods` VALUES (23651,2,29);      -- HP+29
 INSERT INTO `item_mods` VALUES (23651,8,22);      -- STR+22
@@ -43293,7 +43293,7 @@ INSERT INTO `item_mods` VALUES (28103,31,51);
 INSERT INTO `item_mods` VALUES (28103,68,10);
 INSERT INTO `item_mods` VALUES (28103,363,25);
 INSERT INTO `item_mods` VALUES (28103,384,51);
-INSERT INTO `item_mods` VALUES (28103,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28103,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28104,1,76);
 INSERT INTO `item_mods` VALUES (28104,2,18);
 INSERT INTO `item_mods` VALUES (28104,5,56);
@@ -43623,7 +43623,7 @@ INSERT INTO `item_mods` VALUES (28124,31,75);
 INSERT INTO `item_mods` VALUES (28124,68,22);
 INSERT INTO `item_mods` VALUES (28124,363,25);
 INSERT INTO `item_mods` VALUES (28124,384,51);
-INSERT INTO `item_mods` VALUES (28124,844,90);    -- Ancient Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28124,859,90);    -- Ancient Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28125,1,104);
 INSERT INTO `item_mods` VALUES (28125,2,38);
 INSERT INTO `item_mods` VALUES (28125,5,66);
@@ -44646,7 +44646,7 @@ INSERT INTO `item_mods` VALUES (28229,31,43);
 INSERT INTO `item_mods` VALUES (28229,68,23);
 INSERT INTO `item_mods` VALUES (28229,109,15);
 INSERT INTO `item_mods` VALUES (28229,384,30);
-INSERT INTO `item_mods` VALUES (28229,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28229,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28230,1,62);
 INSERT INTO `item_mods` VALUES (28230,2,28);      -- Ignominy Sollerets: HP +28
 INSERT INTO `item_mods` VALUES (28230,5,20);      -- MP +20
@@ -44663,7 +44663,7 @@ INSERT INTO `item_mods` VALUES (28230,30,17);
 INSERT INTO `item_mods` VALUES (28230,31,43);
 INSERT INTO `item_mods` VALUES (28230,68,23);
 INSERT INTO `item_mods` VALUES (28230,384,30);
-INSERT INTO `item_mods` VALUES (28230,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28230,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28231,1,52);
 INSERT INTO `item_mods` VALUES (28231,2,6);
 INSERT INTO `item_mods` VALUES (28231,8,8);
@@ -44956,7 +44956,7 @@ INSERT INTO `item_mods` VALUES (28250,31,64);
 INSERT INTO `item_mods` VALUES (28250,68,49);
 INSERT INTO `item_mods` VALUES (28250,109,17);
 INSERT INTO `item_mods` VALUES (28250,384,30);
-INSERT INTO `item_mods` VALUES (28250,842,90);    -- Holy Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28250,857,90);    -- Holy Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28251,1,86);
 INSERT INTO `item_mods` VALUES (28251,2,38);
 INSERT INTO `item_mods` VALUES (28251,5,20);
@@ -44973,7 +44973,7 @@ INSERT INTO `item_mods` VALUES (28251,30,17);
 INSERT INTO `item_mods` VALUES (28251,31,64);
 INSERT INTO `item_mods` VALUES (28251,68,49);
 INSERT INTO `item_mods` VALUES (28251,384,30);
-INSERT INTO `item_mods` VALUES (28251,843,90);    -- Arcane Circle duration +90 seconds
+INSERT INTO `item_mods` VALUES (28251,858,90);    -- Arcane Circle duration +90 seconds
 INSERT INTO `item_mods` VALUES (28252,1,72);
 INSERT INTO `item_mods` VALUES (28252,2,13);
 INSERT INTO `item_mods` VALUES (28252,8,12);
