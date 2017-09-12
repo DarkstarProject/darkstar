@@ -322,6 +322,7 @@ enum class Mod
     MUG_EFFECT                = 835, // Mug effect as multiplier
 
     // Paladin
+    HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
     RAMPART_DURATION          = 92,  // Rampart duration in seconds
     ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
     ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
@@ -329,6 +330,7 @@ enum class Mod
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
 
     // Dark Knight
+    ARCANE_CIRCLE_DURATION    = 858,  // Arcane Circle extended duration in seconds
     SOULEATER_EFFECT          = 96,  // Souleater power in percents
 
     // Beastmaster
@@ -380,8 +382,8 @@ enum class Mod
     SHARPSHOT                 = 314, //
 
     // Samurai
-    MEDITATE_DURATION         = 94, // Meditate duration in seconds
-    WARDING_CIRCLE_DURATION   = 95, // Warding Circle duration in seconds
+    WARDING_CIRCLE_DURATION   = 95,  // Warding Circle extended duration in seconds
+    MEDITATE_DURATION         = 94,  // Meditate duration in seconds
     ZANSHIN                   = 306, // Zanshin percent chance
     THIRD_EYE_COUNTER_RATE    = 508, // Adds counter to 3rd eye anticipates & if using Seigan counter rate is increased by 15%
     THIRD_EYE_ANTICIPATE_RATE = 839, // Adds anticipate rate in percents
@@ -392,6 +394,7 @@ enum class Mod
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
 
     // Dragoon
+    ANCIENT_CIRCLE_DURATION   = 859, // Ancient Circle extended duration in seconds
     JUMP_TP_BONUS             = 361, // bonus tp player receives when using jump (must be divided by 10)
     JUMP_ATT_BONUS            = 362, // ATT% bonus for jump + high jump
     HIGH_JUMP_ENMITY_REDUCTION = 363, // for gear that reduces more enmity from high jump
@@ -665,7 +668,7 @@ enum class Mod
     ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
 
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 857, // stuff
+    // SPARE = 860, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
