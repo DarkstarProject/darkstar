@@ -842,7 +842,7 @@ namespace charutils
             {
                 uint16 spellId = Sql_GetUIntData(SqlHandle, 0);
 
-                if (spell::GetSpell(spellId) != nullptr)
+                if (spell::GetSpell(static_cast<SpellID>(spellId)) != nullptr)
                 {
                     PChar->m_SpellList.set(spellId);
                 }

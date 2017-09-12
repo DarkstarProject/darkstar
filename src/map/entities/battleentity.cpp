@@ -1206,7 +1206,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
 
     action.id = id;
     action.actiontype = ACTION_MAGIC_FINISH;
-    action.actionid = PSpell->getID();
+    action.actionid = static_cast<uint16>(PSpell->getID());
     action.recast = state.GetRecast();
     action.spellgroup = PSpell->getSpellGroup();
 
@@ -1300,7 +1300,7 @@ void CBattleEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGB
     {
         action.id = id;
         action.actiontype = ACTION_MAGIC_INTERRUPT;
-        action.actionid = PSpell->getID();
+        action.actionid = static_cast<uint16>(PSpell->getID());
         action.spellgroup = PSpell->getSpellGroup();
 
         actionList_t& actionList = action.getNewActionList();

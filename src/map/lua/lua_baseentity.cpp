@@ -2303,13 +2303,13 @@ inline int32 CLuaBaseEntity::canLearnSpell(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     uint32 Message = 0;
-    uint16 SpellID = (uint16)lua_tointeger(L, 1);
+    uint16 spellID = (uint16)lua_tointeger(L, 1);
 
-    if (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID))
+    if (charutils::hasSpell((CCharEntity*)m_PBaseEntity, spellID))
     {
         Message = 96;
     }
-    else if (!spell::CanUseSpell((CCharEntity*)m_PBaseEntity, SpellID))
+    else if (!spell::CanUseSpell((CCharEntity*)m_PBaseEntity, static_cast<SpellID>(spellID)))
     {
         Message = 95;
     }
@@ -8905,7 +8905,7 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
 
     if (lua_isnumber(L, 1))
     {
-        auto spellid {lua_tointeger(L, 1)};
+        SpellID spellid = static_cast<SpellID>(lua_tointeger(L, 1));
         CBattleEntity* PTarget {nullptr};
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
@@ -9280,7 +9280,7 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
-    CSpell* PSpell = spell::GetSpell(lua_tonumber(L, 1));
+    CSpell* PSpell = spell::GetSpell(static_cast<SpellID>(lua_tointeger(L, 1)));
 
     if (PSpell != nullptr)
     {

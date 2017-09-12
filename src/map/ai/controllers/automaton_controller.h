@@ -27,6 +27,8 @@
 #include "pet_controller.h"
 #include "../../entities/automatonentity.h"
 #include "../../status_effect.h"
+#include "../../spell.h"
+#include <optional>
 
 struct CurrentManeuvers
 {
@@ -64,7 +66,7 @@ protected:
     void setCooldowns();
     void setMagicCooldowns();
     virtual bool CanCastSpells() override;
-    virtual bool Cast(uint16 targid, uint16 spellid) override;
+    virtual bool Cast(uint16 targid, SpellID spellid) override;
     virtual bool MobSkill(uint16 targid, uint16 wsid) override;
 
 private:
@@ -111,9 +113,9 @@ private:
 namespace autoSpell
 {
     void LoadAutomatonSpellList();
-    bool CanUseSpell(CAutomatonEntity* PCaster, uint16 spellid);
-    bool CanUseEnfeeble(CBattleEntity* PTarget, AUTOSPELL spell);
-    AUTOSPELL FindNaSpell(CStatusEffect* PStatus);
+    bool CanUseSpell(CAutomatonEntity* PCaster, SpellID spellid);
+    bool CanUseEnfeeble(CBattleEntity* PTarget, SpellID spell);
+    std::optional<SpellID> FindNaSpell(CStatusEffect* PStatus);
 };
 
 #endif

@@ -72,7 +72,7 @@ enum SPELLFLAG
     SPELLFLAG_WIPE_SHADOWS  = 0x02  // Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 };
 
-enum class Spell
+enum class SpellID : uint16
 {
     Cure                    = 1,
     Cure_II                 = 2,
@@ -544,7 +544,6 @@ enum class Spell
     Foe_Lullaby_II          = 471,
     Refresh_II              = 473,
     Cura_II                 = 474,
-
     Cura_III                = 475,
     Regen_IV                = 477,
     Embrava                 = 478,
@@ -751,7 +750,7 @@ class CSpell
 {
 public:
 
-    CSpell(uint16 id);
+    CSpell(SpellID id);
     virtual std::unique_ptr<CSpell> clone();
 
     bool        canTargetEnemy();
@@ -759,7 +758,7 @@ public:
     bool        dealsDamage(); // checks if the spell deals hp damage to target, this is relative to message
 
     uint16      getTotalTargets();
-    uint16      getID();
+    SpellID     getID();
     uint8       getJob(JOBTYPE JobID);
     uint16      getMPCost();
     uint32      getCastTime();
@@ -796,7 +795,7 @@ public:
 
     void        setRadius(float radius);
     void        setTotalTargets(uint16 total);
-    void        setID(uint16 id);
+    void        setID(SpellID id);
     void        setJob(int8* jobs);
     void        setMPCost(uint16 MP);
     void        setCastTime(uint32 CastTime);
@@ -831,34 +830,34 @@ protected:
     CSpell& operator=(const CSpell&) = default;
 
 private:
-    uint16      m_ID;                                   // spell id
-    uint32      m_castTime;                             // time to cast spell
-    uint32      m_recastTime;                           // recast time
-    uint16      m_animation;                            // animation for spell
-    uint16      m_animationTime;
-    uint8       m_skillType;
-    float       m_range;
-    float       m_radius;
-    uint8       m_totalTargets;
-    uint16      m_mpCost;                               // mpCost/itemId for ninjitsu tool
-    uint8       m_job[MAX_JOBTYPE];                     // job
-    uint8       m_ValidTarget;                          // target pc/npc/both
-    SPELLGROUP  m_spellGroup;                           // spellgroup
-    uint16      m_zoneMisc;                             // условия чтения заклинаний в зонах
-    uint8       m_AOE;                                  // aoe or single target spell
-    uint16      m_base;                                 // spell base damage
-    float       m_multiplier;                           // multiplier for upper tier spells
-    uint16      m_element;                              // element of spell
-    uint16      m_message;                              // message id
-    uint16      m_MagicBurstMessage;                    // Message used for magic bursts.
-    uint16      m_CE;                                   // cumulative enmity of spell
-    uint16      m_VE;                                   // volatile enmity of spell
-    string_t    m_name;                                 // spell name
-    uint32      m_modifiedRecastTime;                   // recast time after modifications
-    uint8       m_requirements;                         // requirements before being able to cast spell
-    uint16      m_meritId;                              // associated merit (if applicable)
-    uint8       m_flag;
-    int8*       m_contentTag;
+    SpellID     m_ID;                                      // spell id
+    uint32      m_castTime {};                             // time to cast spell
+    uint32      m_recastTime {};                           // recast time
+    uint16      m_animation {};                            // animation for spell
+    uint16      m_animationTime {};
+    uint8       m_skillType {};
+    float       m_range {};
+    float       m_radius {};
+    uint8       m_totalTargets {};
+    uint16      m_mpCost {};                               // mpCost/itemId for ninjitsu tool
+    uint8       m_job[MAX_JOBTYPE]{};                      // job
+    uint8       m_ValidTarget {};                          // target pc/npc/both
+    SPELLGROUP  m_spellGroup {SPELLGROUP_NONE};            // spellgroup
+    uint16      m_zoneMisc {};                             // условия чтения заклинаний в зонах
+    uint8       m_AOE {};                                  // aoe or single target spell
+    uint16      m_base {};                                 // spell base damage
+    float       m_multiplier {};                           // multiplier for upper tier spells
+    uint16      m_element {};                              // element of spell
+    uint16      m_message {};                              // message id
+    uint16      m_MagicBurstMessage {};                    // Message used for magic bursts.
+    uint16      m_CE {};                                   // cumulative enmity of spell
+    uint16      m_VE {};                                   // volatile enmity of spell
+    string_t    m_name;                                    // spell name
+    uint32      m_modifiedRecastTime {};                   // recast time after modifications
+    uint8       m_requirements {};                         // requirements before being able to cast spell
+    uint16      m_meritId {};                              // associated merit (if applicable)
+    uint8       m_flag {};
+    int8*       m_contentTag {};
 };
 
 //Namestpace to work with spells
@@ -867,10 +866,10 @@ namespace spell
     void    LoadSpellList();
 
     CSpell* GetSpellByMonsterSkillId(uint16 SkillID);
-    CSpell* GetSpell(uint16 SpellID);
-    bool    CanUseSpell(CBattleEntity* PCaster, uint16 SpellID);
+    CSpell* GetSpell(SpellID SpellID);
+    bool    CanUseSpell(CBattleEntity* PCaster, SpellID SpellID);
     bool    CanUseSpell(CBattleEntity* PCaster, CSpell* PSpell);
-    bool    CanUseSpellWith(uint16 spellId, JOBTYPE job, uint8 level);
+    bool    CanUseSpellWith(SpellID spellId, JOBTYPE job, uint8 level);
     float   GetSpellRadius(CSpell* spellId, CBattleEntity* PCaster);
 };
 

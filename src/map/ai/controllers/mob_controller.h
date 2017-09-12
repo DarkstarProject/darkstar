@@ -46,7 +46,7 @@ public:
 
     bool CanAggroTarget(CBattleEntity*);
     void TapDeaggroTime();
-    virtual bool Cast(uint16 targid, uint16 spellid) override;
+    virtual bool Cast(uint16 targid, SpellID spellid) override;
 
 protected:
     virtual bool TryDeaggro();
@@ -59,7 +59,7 @@ protected:
     bool CheckDetection(CBattleEntity* PTarget);
     bool CanSeePoint(position_t pos);
     virtual bool CanCastSpells();
-    void CastSpell(uint16 spellid);
+    void CastSpell(SpellID spellid);
     virtual void Move();
 
     virtual void DoCombatTick(time_point tick);

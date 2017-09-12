@@ -43,7 +43,7 @@ void CController::Reset()
 {
 }
 
-bool CController::Cast(uint16 targid, uint16 spellid)
+bool CController::Cast(uint16 targid, SpellID spellid)
 {
     if (POwner)
     {

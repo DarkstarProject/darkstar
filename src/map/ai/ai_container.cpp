@@ -61,7 +61,7 @@ CAIContainer::CAIContainer(CBaseEntity* _PEntity, std::unique_ptr<CPathFind>&& _
 {
 }
 
-bool CAIContainer::Cast(uint16 targid, uint16 spellid)
+bool CAIContainer::Cast(uint16 targid, SpellID spellid)
 {
     if (Controller)
     {
@@ -194,7 +194,7 @@ bool CAIContainer::Internal_Engage(uint16 targetid)
     return false;
 }
 
-bool CAIContainer::Internal_Cast(uint16 targetid, uint16 spellid)
+bool CAIContainer::Internal_Cast(uint16 targetid, SpellID spellid)
 {
     auto entity {dynamic_cast<CBattleEntity*>(PEntity)};
     if (entity)

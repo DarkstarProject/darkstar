@@ -79,6 +79,7 @@
 #include "../ai/states/ability_state.h"
 #include "../ai/states/mobskill_state.h"
 #include "../ai/states/magic_state.h"
+#include <optional>
 
 namespace luautils
 {
@@ -2223,7 +2224,7 @@ namespace luautils
         return 0;
     }
 
-    int32 OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
+    std::optional<SpellID> OnMonsterMagicPrepare(CBattleEntity* PCaster, CBattleEntity* PTarget)
     {
         DSP_DEBUG_BREAK_IF(PCaster == nullptr || PTarget == nullptr);
 
@@ -2231,7 +2232,7 @@ namespace luautils
 
         if (prepFile(File, "onMonsterMagicPrepare"))
         {
-            return -1;
+            return {};
         }
 
         CLuaBaseEntity LuaMobEntity(PCaster);
@@ -2241,26 +2242,19 @@ namespace luautils
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaTargetEntity);
 
 
-        if (lua_pcall(LuaHandle, 2, LUA_MULTRET, 0))
+        if (lua_pcall(LuaHandle, 2, 1, 0))
         {
             ShowError("luautils::onMonsterMagicPrepare: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return -1;
-        }
-        int32 returns = lua_gettop(LuaHandle) - oldtop;
-        if (returns < 1)
-        {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            return 0;
+            return {};
         }
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
-        if (returns > 1)
+        if (retVal > 0)
         {
-            ShowError("luautils::onMonsterMagicPrepare (%s): 1 return expected, got %d\n", File, returns);
-            lua_pop(LuaHandle, returns - 1);
+            return static_cast<SpellID>(retVal);
         }
-        return retVal;
+        return {};
     }
 
     /************************************************************************
@@ -4364,7 +4358,7 @@ namespace luautils
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
-            CSpell* PSpell = spell::GetSpell(lua_tointeger(L, 1));
+            CSpell* PSpell = spell::GetSpell(static_cast<SpellID>(lua_tointeger(L, 1)));
 
             lua_getglobal(L, CLuaSpell::className);
             lua_pushstring(L, "new");

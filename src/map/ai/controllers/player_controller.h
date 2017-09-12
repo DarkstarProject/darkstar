@@ -36,7 +36,7 @@ public:
 
     virtual void Tick(time_point) override;
 
-    virtual bool Cast(uint16 targid, uint16 spellid) override;
+    virtual bool Cast(uint16 targid, SpellID spellid) override;
     virtual bool Engage(uint16 targid) override;
     virtual bool ChangeTarget(uint16 targid) override;
     virtual bool Disengage() override;

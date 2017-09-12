@@ -52,7 +52,7 @@ public:
     CAIContainer(const CAIContainer&) = delete;
     CAIContainer& operator=(const CAIContainer&) = delete;
 
-    bool Cast(uint16 targid, uint16 spellid);
+    bool Cast(uint16 targid, SpellID spellid);
     bool Engage(uint16 targid);
     bool ChangeTarget(uint16 targid);
     bool Disengage();
@@ -66,7 +66,7 @@ public:
 
     /* Internal Controller functions */
     bool Internal_Engage(uint16 targetid);
-    bool Internal_Cast(uint16 targetid, uint16 spellid);
+    bool Internal_Cast(uint16 targetid, SpellID spellid);
     bool Internal_ChangeTarget(uint16 targetid);
     bool Internal_Disengage();
     bool Internal_WeaponSkill(uint16 targid, uint16 wsid);
