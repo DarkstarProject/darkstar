@@ -23,13 +23,8 @@
 
 #include "blue_spell.h"
 
-CBlueSpell::CBlueSpell(uint16 id) : CSpell(id)
+CBlueSpell::CBlueSpell(SpellID id) : CSpell(id)
 {
-	m_monsterSkillId = 0;
-    m_setPoints      = 0;
-    m_ecosystem      = 0;
-    m_traitCategory  = 0;
-    m_traitWeight    = 0;
 }
 
   std::unique_ptr<CSpell> CBlueSpell::clone()

@@ -49,7 +49,7 @@ struct automaton_equip_t
 {
     uint8 Frame{ 0 };
     uint8 Head{ 0 };
-    std::array<uint8, 12> Attachments{};
+    std::array<uint8, 12> Attachments {};
 };
 
 class CCharEntity;
@@ -81,11 +81,17 @@ public:
 
     void burdenTick();
     void setInitialBurden();
-    uint8 addBurden(uint8 element, uint8 burden);
+    uint8 addBurden(uint8 element, int8 burden);
 
     void PostTick() override;
 
+    virtual void Spawn() override;
     virtual void Die() override;
+
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+
+    virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
 
 private:
     std::array<uint8, 8> m_Burden {};

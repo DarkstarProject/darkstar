@@ -347,7 +347,8 @@ void SmallPacket0x00C(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
         }
     }
-
+    // reset the petZoning info
+    PChar->resetPetZoningInfo();
     return;
 }
 
@@ -407,6 +408,12 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 PChar->PParty->RemoveMember(PChar);
             }
         }
+
+        if (PChar->PPet != nullptr)
+        {
+            PChar->setPetZoningInfo();
+        }
+
         session->shuttingDown = 1;
         Sql_Query(SqlHandle, "UPDATE char_stats SET zoning = 0 WHERE charid = %u", PChar->id);
     }
@@ -634,8 +641,8 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x03: // spellcast
     {
-        uint16 SpellID = RBUFW(data, (0x0C));
-        PChar->PAI->Cast(TargID, SpellID);
+        SpellID spellID = (SpellID)RBUFW(data, (0x0C));
+        PChar->PAI->Cast(TargID, spellID);
     }
     break;
     case 0x04: // disengage
@@ -2656,34 +2663,8 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     // handle pets on zone
     if (PChar->PPet != nullptr)
     {
-        CPetEntity* PPet = (CPetEntity*)PChar->PPet;
-
-        if (PPet->objtype == TYPE_MOB)
-        {
-            // uncharm a charmed mob
-            petutils::DespawnPet(PChar);
-        }
-        else if (PPet->objtype == TYPE_PET)
-        {
-            switch (PPet->getPetType())
-            {
-            case PETTYPE_JUG_PET:
-            case PETTYPE_AUTOMATON:
-            case PETTYPE_WYVERN:
-                PChar->petZoningInfo.petHP = PPet->health.hp;
-                PChar->petZoningInfo.petTP = PPet->health.tp;
-                PChar->petZoningInfo.respawnPet = true;
-                PChar->petZoningInfo.petType = PPet->getPetType();
-                petutils::DespawnPet(PChar);
-                break;
-
-            case PETTYPE_AVATAR:
-                petutils::DespawnPet(PChar);
-
-            default:
-                break;
-            }
-        }
+        PChar->setPetZoningInfo();
+        petutils::DespawnPet(PChar);
     }
 
     uint32 zoneLineID = RBUFL(data, (0x04));
@@ -5238,7 +5219,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (RBUFB(data, i) > 0) {
                     spellInQuestion = RBUFB(data, i);
                     spellIndex = i - 0x0C;
-                    CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+                    CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(spellInQuestion + 0x200)); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
                     if (spell != nullptr) {
                         blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
@@ -5266,7 +5247,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
 
             if (spellIndex != -1 && spellInQuestion != 0) {
-                CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(spellInQuestion + 0x200); // the spells in this packet are offsetted by 0x200 from their spell IDs.
+                CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(spellInQuestion + 0x200)); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
                 if (spell != nullptr) {
                     blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
@@ -5286,7 +5267,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             }
         }
     }
-    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP && PChar->PAutomaton != nullptr)
+    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP && PChar->PAutomaton != nullptr && PChar->PPet == nullptr)
     {
         uint8 attachment = RBUFB(data, 0x04);
 
@@ -5306,6 +5287,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (RBUFB(data, 0x0C) != 0)
             {
                 puppetutils::setHead(PChar, RBUFB(data, 0x0C));
+                puppetutils::LoadAutomatonStats(PChar);
             }
             else if (RBUFB(data, 0x0D) != 0)
             {

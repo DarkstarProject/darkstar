@@ -23,8 +23,6 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_ACC_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
-    skill:setSkillchain(41);
-
     -- Around 700 damage from AA HM
     target:delHP(dmg);
     return dmg;

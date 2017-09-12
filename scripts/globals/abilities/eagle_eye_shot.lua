@@ -49,7 +49,7 @@ function onUseAbility(player,target,ability,action)
     params.atkmulti = 1
     params.enmityMult = 0.5
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true)
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
 
     if not (tpHits + extraHits > 0) then
         ability:setMsg(MSGBASIC_USES_BUT_MISSES)

@@ -715,7 +715,10 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
 
         if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() != PETTYPE_JUG_PET)
         {
-            target.animation = PSkill->getPetAnimationID();
+            if(static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_AVATAR || static_cast<CPetEntity*>(this)->getPetType() == PETTYPE_WYVERN)
+            {
+                target.animation = PSkill->getPetAnimationID();
+            }
             target.param = luautils::OnPetAbility(PTarget, this, PSkill, PMaster, &action);
         }
         else
@@ -750,12 +753,12 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         {
             target.speceffect = SPECEFFECT_RECOIL;
             target.knockback = PSkill->getKnockback();
-            if (first && (PSkill->getSkillchain() != 0))
+            if (first && (PSkill->getPrimarySkillchain() != 0))
             {
-                CWeaponSkill* PWeaponSkill = battleutils::GetWeaponSkill(PSkill->getSkillchain());
-                if (PWeaponSkill)
+                if (PSkill->getPrimarySkillchain())
                 {
-                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PWeaponSkill);
+                    SUBEFFECT effect = battleutils::GetSkillChainEffect(PTarget, PSkill->getID(), { static_cast<SKILLCHAIN_ELEMENT>(PSkill->getPrimarySkillchain()),
+                        static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain(), static_cast<SKILLCHAIN_ELEMENT>(PSkill->getSecondarySkillchain())) } );
                     if (effect != SUBEFFECT_NONE)
                     {
                         int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTarget, target.param, nullptr);
