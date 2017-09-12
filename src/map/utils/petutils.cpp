@@ -1123,7 +1123,6 @@ namespace petutils
         if (PMaster->objtype == TYPE_PC)
         {
             ((CCharEntity*)PMaster)->petZoningInfo.petID = PetID;
-            ((CCharEntity*)PMaster)->petZoningInfo.respawnPet = true;
         }
 
         PETTYPE petType = PETTYPE_JUG_PET;
@@ -1243,10 +1242,6 @@ namespace petutils
             PPet = new CPetEntity(petType);
 
         PPet->loc = PMaster->loc;
-
-
-        //assigning petType num to petZoningInfo
-        ((CCharEntity*)PMaster)->petZoningInfo.petType = petType;
 
         // spawn me randomly around master
         PPet->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, M_PI);
@@ -1415,12 +1410,8 @@ namespace petutils
 
         FinalizePetStatistics(PMaster, PPet);
         PPet->status = STATUS_NORMAL;
-        PPet->m_ModelSize += g_PPetList.at(PetID)->size;
+        PPet->m_ModelSize = g_PPetList.at(PetID)->size;
         PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
-
-        //finalizing petZoningInfo
-        ((CCharEntity*)PMaster)->petZoningInfo.petHP = PPet->GetMaxHP();
-        ((CCharEntity*)PMaster)->petZoningInfo.petMP = PPet->GetMaxMP();
 
         PMaster->PPet = PPet;
     }

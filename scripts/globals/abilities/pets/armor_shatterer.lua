@@ -33,7 +33,7 @@ function onPetAbility(target, automaton, skill, master, action)
         chr_wsc = 0.0
     }
 
-    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill)
+    local damage = doAutoRangedWeaponskill(automaton, target, 0, params, skill:getTP(), true, skill, action)
 
     if damage > 0 then
         local bonusduration = 1 + 0.00033 * (skill:getTP() - 1000)
