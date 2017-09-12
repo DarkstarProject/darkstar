@@ -1114,8 +1114,8 @@ function handleWSGorgetBelt(attacker)
         end
 
         if (neck == 27510) then -- Fotia Gorget
-            accBonus = accBonus + 10;
-            ftpBonus = ftpBonus + 0.1;
+                accBonus = accBonus + 10;
+                ftpBonus = ftpBonus + 0.1;
         end
 
         for i,v in ipairs(elementalBelt) do
