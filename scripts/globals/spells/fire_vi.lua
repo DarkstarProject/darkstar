@@ -18,13 +18,13 @@
 +    local spellParams = {};
 +    spellParams.hasMultipleTargetReduction = false;
 +    spellParams.resistBonus = 1.0;
-     spellParams.V0 = 1350;
-+    spellParams.V50 = 1100;
-+    spellParams.V100 = 1590;
-+    spellParams.V200 = 2100;
-+    spellParams.M0 = 4.35;
-+    spellParams.M50 = 4.74;
-+    spellParams.M100 = 4.75;
+     spellParams.V0 = 920;
++    spellParams.V50 = 1208;
++    spellParams.V100 = 1469;
++    spellParams.V200 = 1946;
++    spellParams.M0 = 5.76;
++    spellParams.M50 = 5.21;
++    spellParams.M100 = 4.77;
 +    spellParams.M200 = 4;
 
 +    return doElementalNuke(caster, spell, target, spellParams);
