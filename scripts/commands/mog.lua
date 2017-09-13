@@ -7,7 +7,7 @@
 cmdprops =
 {
     permission = 0,
-    parameters = "iiii"
+    parameters = ""
 };
 function onTrigger(player)
 	player:sendMenu(1);
