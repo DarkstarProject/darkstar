@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Ponono
 -- Type: Clothcraft Guild Master
--- @pos -38.243 -2.25 -120.954 241
+-- !pos -38.243 -2.25 -120.954 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

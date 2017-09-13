@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Kochahy-Muwachahy
--- @pos 40 0 6 246
+-- !pos 40 0 6 246
 -------------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

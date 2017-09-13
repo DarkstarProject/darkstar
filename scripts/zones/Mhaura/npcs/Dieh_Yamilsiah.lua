@@ -2,7 +2,7 @@
 -- Area: Mhaura
 -- NPC:  Dieh Yamilsiah
 -- Reports the time remaining before boat arrival.
--- @pos 7.057 -2.364 2.489 249
+-- !pos 7.057 -2.364 2.489 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -48,7 +48,7 @@ function onTrigger(player,npc)
    --[[Other cutscenes:
    233 "This ship is headed for Selbina."
    234 "The Selbina ferry will deparrrt soon!  Passengers are to board the ship immediately!"
-   
+
    Can't find a way to toggle the destination on 233 or 234, so they are not used.
    Users knowing which ferry is which > using all CSs.]]
 

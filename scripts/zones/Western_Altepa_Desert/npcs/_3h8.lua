@@ -2,7 +2,7 @@
 -- Area:  Western Altepa Desert
 -- NPC:   _3h8 (Sapphire Column)
 -- Notes: Mechanism for Altepa Gate
--- @pos -499 10 224 125
+-- !pos -499 10 224 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

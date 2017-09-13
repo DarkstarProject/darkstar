@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
 -- NPC:  Despachiaire
--- @pos 108 -40 -83 26
+-- !pos 108 -40 -83 26
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -11,7 +11,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -20,22 +20,22 @@ end;
 function onTrigger(player,npc)
  local currentCOPMission = player:getCurrentMission(COP);
  local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
- 
+
     if (currentCOPMission  == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(0x0066);
-    elseif (currentCOPMission  == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then    
+    elseif (currentCOPMission  == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(0x006C);
     elseif (currentCOPMission  == THE_ENDURING_TUMULT_OF_WAR and player:getVar("COP_optional_CS_Despachaire") == 0) then
         player:startEvent(0x0075); --117
-    elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 0) then                  
+    elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 0) then
         player:startEvent(0x0076);
     elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 1 ) then
          player:startEvent(0x0086);
     else
         player:startEvent(0x006A);
     end
-    
-end; 
+
+end;
 --Despachiaire     102 ++
 --Despachiaire     104 ++
 --Despachiaire     106 ++
@@ -79,13 +79,13 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-  
+
     if (csid == 0x0066 or csid == 0x006C) then
         player:setVar("PromathiaStatus",2);
     elseif (csid == 0x0075) then
-        player:setVar("COP_optional_CS_Despachaire",1);    
-    elseif (csid == 0x0076) then 
-        player:setVar("COP_Louverance_s_Path",1);        
+        player:setVar("COP_optional_CS_Despachaire",1);
+    elseif (csid == 0x0076) then
+        player:setVar("COP_Louverance_s_Path",1);
     end
-  
+
 end;

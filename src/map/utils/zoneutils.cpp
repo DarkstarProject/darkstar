@@ -1080,18 +1080,9 @@ uint64 GetZoneIPP(uint16 zoneID)
 *                                                                       *
 ************************************************************************/
 
-bool IsResidentialArea(uint16 ZoneID)
+bool IsResidentialArea(CCharEntity* PChar)
 {
-    switch (ZoneID)
-    {
-        case ZONE_RESIDENTIAL_AREA:
-        case ZONE_189:
-        case ZONE_199:
-        case ZONE_214:
-        case ZONE_219:
-            return true;
-    }
-    return false;
+    return PChar->m_moghouseID != 0;
 }
 
 }; // namespace zoneutils

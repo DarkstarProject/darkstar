@@ -2,7 +2,7 @@
 --  Area: Windurst Waters
 --  NPC:  Funpo-Shipo
 --  Type: Standard NPC
--- @pos -44.091 -4.499 41.728 238
+-- !pos -44.091 -4.499 41.728 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -48,9 +48,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x03aa) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",13,true);
-    end    
+    end
 end;
 

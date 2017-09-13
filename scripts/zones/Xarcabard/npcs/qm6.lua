@@ -2,7 +2,7 @@
 -- Area: Xarcabard
 -- NPC:  qm6 (???)
 -- Involved in Quests: RNG AF3 - Unbridled Passion
--- @pos -254.883 -17.003 -150.818 112
+-- !pos -254.883 -17.003 -150.818 112
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local UnbridledPassionCS = player:getVar("unbridledPassion");	
+    local UnbridledPassionCS = player:getVar("unbridledPassion");
 
     if (UnbridledPassionCS == 5) then
         player:startEvent(0x0006, 0, 13360);

@@ -2,7 +2,7 @@
 -- Area: Buburimu Peninsula
 --  NPC: Craigine, R.K.
 -- Border Conquest Guards
--- @pos -599.903 -41.441 165.776 118
+-- !pos -599.903 -41.441 165.776 118
 -----------------------------------
 package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------

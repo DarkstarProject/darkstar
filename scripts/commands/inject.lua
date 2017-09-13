@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@inject <packet>");
+    player:PrintToPlayer("!inject <packet>");
 end;
 
 function onTrigger(player, packet)

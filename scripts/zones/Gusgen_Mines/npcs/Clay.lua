@@ -2,7 +2,7 @@
 -- Area: Gusgen Mines
 -- NPC:  Clay
 -- Involved in Quest: A Potter's Preference
--- @pos 117 -21 432 196
+-- !pos 117 -21 432 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------

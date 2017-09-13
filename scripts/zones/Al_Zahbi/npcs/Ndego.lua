@@ -1,8 +1,8 @@
 -----------------------------------
 --  Area: Al Zahbi
 --  NPC: Ndego
---  Guild Merchant NPC: Smithing Guild 
--- @pos -37.192 0.000 -33.949 48
+--  Guild Merchant NPC: Smithing Guild
+-- !pos -37.192 0.000 -33.949 48
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

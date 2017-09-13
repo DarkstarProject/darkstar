@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria
 -- NPC: Aveline
 -- Standard Merchant NPC
--- @zone 230 
--- @pos -139 -6 46
+-- @zone 230
+-- !pos -139 -6 46
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -50,10 +50,10 @@ function onTrigger(player,npc)
              0x027e,166,3,    --Sage
              0x1125,28,3,    --San d'Orian Carrot
              0x114f,68,3}    --San d'Orian Grape
-     
+
     showNationShop(player, NATION_SANDORIA, stock);
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

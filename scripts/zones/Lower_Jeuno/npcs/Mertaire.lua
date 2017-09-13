@@ -2,7 +2,7 @@
 -- Area: Lower Jeuno
 -- NPC: Mertaire
 -- Starts and Finishes Quest: The Old Monument (start only), A Minstrel in Despair, Painful Memory (BARD AF1)
--- @pos -17 0 -61 245
+-- !pos -17 0 -61 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
     -- THE OLD MONUMENT
     if (theOldMonument == QUEST_AVAILABLE and level >= ADVANCED_JOB_LEVEL) then
         player:startEvent(102);
-        
+
     -- PAINFUL MEMORY (Bard AF1)
     elseif (painfulMemory == QUEST_AVAILABLE and job == JOBS.BRD and level >= AF1_QUEST_LEVEL) then
         if (player:getVar("PainfulMemoryCS") == 0) then
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
         end;
     elseif (painfulMemory == QUEST_ACCEPTED) then
         player:startEvent(136); -- During Quest "Painful Memory"
-        
+
     -- CIRCLE OF TIME (Bard AF3)
     elseif (theRequiem == QUEST_COMPLETED and circleOfTime == QUEST_AVAILABLE and job == JOBS.BRD and level >= AF3_QUEST_LEVEL) then
         player:startEvent(139); -- Start "The Circle of Time"

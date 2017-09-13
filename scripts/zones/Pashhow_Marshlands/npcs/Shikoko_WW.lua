@@ -2,7 +2,7 @@
 -- Area: Pashhow Marshlands
 --  NPC: Shikoko, W.W.
 -- Type: Border Conquest Guards
--- @pos 536.291 23.517 694.063 109
+-- !pos 536.291 23.517 694.063 109
 -----------------------------------
 package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------

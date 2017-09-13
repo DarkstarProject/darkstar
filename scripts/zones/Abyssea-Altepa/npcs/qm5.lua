@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm5 (???)
 -- Spawns Tablilla
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

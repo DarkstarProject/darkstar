@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Al'Taieu
 --  NPC:  Rubious Crystal (East Tower)
--- @pos 683.718 -6.250 -222.167 33
+-- !pos 683.718 -6.250 -222.167 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 ----------------------------------
 -- onTrigger Action
 -----------------------------------
- 
+
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2 and player:getVar("[SEA][AlTieu]EastTower") == 0 and player:getVar("[SEA][AlTieu]EastTowerCS") == 0) then
         player:messageSpecial(OMINOUS_SHADOW);
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 0x00A3) then    
+    if (csid == 0x00A3) then
         player:setVar("[SEA][AlTieu]EastTowerCS", 1);
         player:setVar("[SEA][AlTieu]EastTower", 0);
     end

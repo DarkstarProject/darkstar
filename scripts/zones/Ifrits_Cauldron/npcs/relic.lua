@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
 -- NPC:  <this space intentionally left blank>
--- @pos -18 40 20 205
+-- !pos -18 40 20 205
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------

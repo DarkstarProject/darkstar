@@ -2,7 +2,7 @@
 --  Area: Jugner Forest (S)
 --  NPC:  ???
 --  Type: Quest NPC
--- @pos -6 0 -295
+-- !pos -6 0 -295
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x00CC) then
         player:setVar("WrathOfTheGriffon",1);
     elseif (csid == 0x00CD) then
@@ -62,5 +62,5 @@ function onEventFinish(player,csid,option)
     elseif (csid ==0x00CE) then
         player:setVar("WrathOfTheGriffon",2);
     end
-    
+
 end;

@@ -2,7 +2,7 @@
 -- Area:  Western Altepa Desert
 -- NPC:   _3h5 (Ruby Column)
 -- Notes: Mechanism for Altepa Gate
--- @pos 59 10 -104 125
+-- !pos 59 10 -104 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------

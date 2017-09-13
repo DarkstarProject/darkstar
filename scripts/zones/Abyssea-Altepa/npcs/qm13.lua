@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm13 (???)
 -- Spawns Dragua
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/status");

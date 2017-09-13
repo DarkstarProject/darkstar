@@ -2,7 +2,7 @@
 -- Area: Arrapago Reef
 --  NPC: Runic Portal
 -- Arrapago Reef Teleporter Back to Aht Urgan Whitegate
--- @pos 15 -7 627 54
+-- !pos 15 -7 627 54
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------

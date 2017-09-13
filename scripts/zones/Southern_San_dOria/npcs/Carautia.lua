@@ -2,8 +2,8 @@
 -- Area: Carautia
 -- NPC: Southern San d'Oria
 -- Standard Merchant NPC
--- @zone 230 
--- @pos 70 0 39
+-- @zone 230
+-- !pos 70 0 39
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -50,13 +50,13 @@ function onTrigger(player,npc)
              0x3220,187,3,      --Bronze Subligar
              0x3221,1800,3,     --Brass Subligar
              0x3218,482,3,         --Leather Trousers
-             0x32a0,115,3,         --Bronze Leggings 
+             0x32a0,115,3,         --Bronze Leggings
              0x32a1,1116,3,     --Brass Leggings
              0x3298,302,3}         --Leather Highboots
-     
+
     showNationShop(player, NATION_SANDORIA, stock);
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

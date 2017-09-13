@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Signpost
--- @pos 350 -6 96 103
+-- !pos 350 -6 96 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(SIGNPOST1); 
+    player:messageSpecial(SIGNPOST1);
 end;
 
 -----------------------------------

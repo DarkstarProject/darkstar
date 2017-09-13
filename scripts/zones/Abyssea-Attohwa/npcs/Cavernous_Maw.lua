@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Abyssea - Attohwa
 --  NPC: Cavernous Maw
--- @pos -133.197 20.242 -181.658 215
+-- !pos -133.197 20.242 -181.658 215
 -- Notes: Teleports Players to Buburimu Peninsula
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;

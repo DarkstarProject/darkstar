@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'A Pioneers Best (Imaginary) Friend'
 --  @zone 256
---  @pos -144 4 -10 256
+--  !pos -144 4 -10 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -15,7 +15,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -50,7 +50,7 @@ end;
 -- onEventFinish
 -----------------------------------
 
-function onEventFinish(player,csid,option)    
+function onEventFinish(player,csid,option)
     if (csid == 0x09DB) then
         -- Progresses Quest: 'A Pioneers Best (Imaginary) Friend'
         player:addStatusEffect(EFFECT_IONIS, 0, 0, 9000);

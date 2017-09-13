@@ -2,7 +2,7 @@
 --  Area: Aht Urhgan Whitegate
 --  NPC:  Dkhaaya
 --  Type: Standard NPC
--- @pos -73.212 -1 -5.842 50
+-- !pos -73.212 -1 -5.842 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
@@ -10,18 +10,18 @@ package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/quests");
- 
+
 -----------------------------------
 -- onTrade Action
 -----------------------------------
- 
+
 function onTrade(player,npc,trade)
 end;
- 
+
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
- 
+
 function onTrigger(player,npc)
     local olduumQuest = player:getQuestStatus(AHT_URHGAN, OLDUUM);
     local ringCheck = player:hasItem(2217);
@@ -37,23 +37,23 @@ function onTrigger(player,npc)
         player:startEvent(0x005);
     else
         player:startEvent(0x007);
-   
+
     end
 end;
- 
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
- 
+
 function onEventUpdate(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 end;
- 
+
 -----------------------------------
 -- onEventFinish
 -----------------------------------
- 
+
 function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid);
     --printf("RESULT: %u",option);

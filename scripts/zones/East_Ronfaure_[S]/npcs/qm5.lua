@@ -2,7 +2,7 @@
 -- Area: East Ronfaure [S]
 -- NPC:  qm5 "???"
 -- Involved in Quests: Steamed Rams
--- @pos 380.015 -26.5 -22.525
+-- !pos 380.015 -26.5 -22.525
 -----------------------------------
 package.loaded["scripts/zones/East_Ronfaure_[S]/TextIDs"] = nil;
 -----------------------------------

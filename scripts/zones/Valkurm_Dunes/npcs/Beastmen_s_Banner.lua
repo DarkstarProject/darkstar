@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Valkurm Dunes
 -- NPC:  Beastmen_s_Banner
--- @pos -116.204 4.000 -113.608 104
+-- !pos -116.204 4.000 -113.608 104
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 -----------------------------------
@@ -12,7 +12,7 @@ require("scripts/zones/Valkurm_Dunes/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

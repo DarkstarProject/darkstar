@@ -2,7 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  ???
 -- Involved In Quest: Wild Card
--- @pos -95 16 -31 169
+-- !pos -95 16 -31 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
@@ -18,14 +18,14 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 
 function onTrade(player,npc,trade)
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getVar("rootProblem") == 2) then 
+    if (player:getVar("rootProblem") == 2) then
         if (player:getVar("rootProblemQ2") <= 1) then
             if (player:hasStatusEffect(EFFECT_MANAFONT) == true) then
                 player:startEvent(0x2F);

@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Ardea
--- @zone 235
--- @pos -198 -6 -69
+--  NPC: Ardea
+-- !pos -198 -6 -69 235
 -- Involved in quests: Chasing Quotas, Rock Racketeer
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -16,7 +16,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -30,6 +30,7 @@ function onTrigger(player,npc)
     -- Rock Racketeer
     if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(SHARP_GRAY_STONE)) then
         player:startEvent(0x0105);
+
     elseif (Quotas_Status == 3) then
         player:startEvent(264); -- Someone was just asking about that earring.
     elseif (Quotas_Status == 4) then
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x104);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -64,9 +65,9 @@ function onEventFinish(player,csid,option)
         player:setVar("rockracketeer_sold",1);
     elseif (csid == 0x0105 and option ~= 2) then
         player:setVar("rockracketeer_sold",2);
+
     elseif (csid == 264) then
         player:setVar("ChasingQuotas_Progress",4);
     end
 
 end;
-

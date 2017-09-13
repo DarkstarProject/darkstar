@@ -1,7 +1,7 @@
 -----------------------------------
 --  Area: Ranguemont Pass
 --  NPC:  Perchond
--- @pos -182.844 4 -164.948 166
+-- !pos -182.844 4 -164.948 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 3) then
         player:setVar("sinHunting",2);
     elseif (csid == 5) then
@@ -63,6 +63,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
-    
+
 end;
 

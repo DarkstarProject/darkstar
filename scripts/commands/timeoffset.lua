@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@timeoffset <offset>");
+    player:PrintToPlayer("!timeoffset <offset>");
 end;
 
 function onTrigger(player, offset)

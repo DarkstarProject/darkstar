@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Crawlers nest [S] (171)
 --  NM:  Morille Mortelle
--- @pos 59.788 -0.939 22.316 171
+-- !pos 59.788 -0.939 22.316 171
 -----------------------------------
 
 require("scripts/globals/status");
@@ -21,7 +21,7 @@ function onMobSpawn(mob)
     mob:setMod(MOD_DOUBLE_ATTACK, 20);
     mob:setMod(MOD_STORETP, 10);
 end;
-	
+
 
 -----------------------------------
 -- onMobDespawn

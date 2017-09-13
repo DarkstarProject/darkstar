@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Door:House
 -- @zone 80
--- @pos 148 0 27
+-- !pos 148 0 27
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/globals/quests");
@@ -19,11 +19,11 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 3) then
         player:startEvent(0x003F);
     end
-    
+
 end;
 
 -----------------------------------

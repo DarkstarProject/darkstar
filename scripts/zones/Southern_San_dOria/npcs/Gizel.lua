@@ -3,7 +3,7 @@
 -- NPC: Gizel
 -- Type: Event Scene Replayer NPC
 -- @zone 230
--- @pos -34.412 0.000 33.362
+-- !pos -34.412 0.000 33.362
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -34,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x02a4);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

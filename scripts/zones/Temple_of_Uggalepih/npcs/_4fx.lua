@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 --  NPC: Granite Door
--- @pos 340 0.1 329 159
+-- !pos 340 0.1 329 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

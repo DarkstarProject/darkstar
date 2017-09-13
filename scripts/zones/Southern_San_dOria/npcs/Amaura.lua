@@ -3,7 +3,7 @@
 -- NPC:  Amaura
 -- Involved in Quest: The Medicine Woman, To Cure a Cough
 -- @zone 230
--- @pos -85 -6 89
+-- !pos -85 -6 89
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x027D);
         end
     end
-        
+
 end;
 
 -----------------------------------
@@ -36,18 +36,18 @@ function onTrigger(player,npc)
 
     medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
     toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
-    
+
     if (medicineWoman == QUEST_ACCEPTED) then
         amaurasFormulaKI = player:hasKeyItem(AMAURAS_FORMULA);
         coldMedicine = player:hasKeyItem(COLD_MEDICINE);
-        
+
         if (amaurasFormulaKI == false and coldMedicine == false) then
             player:startEvent(0x027C);
         else
             player:startEvent(0x0282);
-        end        
+        end
     elseif (player:getVar("DiaryPage") == 3 or toCureaCough == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(THYME_MOSS) == false and player:hasKeyItem(COUGH_MEDICINE) == false) then 
+        if (player:hasKeyItem(THYME_MOSS) == false and player:hasKeyItem(COUGH_MEDICINE) == false) then
             player:startEvent(0x0285); -- need thyme moss for cough med
         elseif (player:hasKeyItem(THYME_MOSS) == true) then
             player:startEvent(0x0286); -- receive cough med for Nenne
@@ -55,8 +55,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0282);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -83,12 +83,12 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(AMAURAS_FORMULA);
         player:addKeyItem(COLD_MEDICINE);
         player:messageSpecial(KEYITEM_OBTAINED,COLD_MEDICINE);
-    elseif (csid == 0x0285) then 
+    elseif (csid == 0x0285) then
         player:addQuest(SANDORIA,TO_CURE_A_COUGH);
-    elseif (csid == 0x0286) then 
+    elseif (csid == 0x0286) then
         player:delKeyItem(THYME_MOSS);
         player:addKeyItem(COUGH_MEDICINE);
         player:messageSpecial(KEYITEM_OBTAINED,COUGH_MEDICINE);
     end
-    
+
 end;

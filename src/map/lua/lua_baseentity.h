@@ -56,6 +56,7 @@ public:
     int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
     int32 getPool(lua_State *L);            // Returns a mobs pool ID. If entity is not a mob, returns nil.
     int32 getName(lua_State *L);            // Gets Entity Name
+    int32 getModelSize(lua_State *L);       // Gets model size
 
     int32 getHPP(lua_State*);               // Returns Entity Health %
     int32 getHP(lua_State*);                // Returns Entity Health
@@ -306,6 +307,8 @@ public:
     int32 transferEnmity(lua_State*);
     int32 getCE(lua_State*);                //gets current CE the mob has towards the player
     int32 getVE(lua_State*);                //gets current VE the mob has towards the player
+    int32 setCE(lua_State*);                //sets current CE the mob has towards the player
+    int32 setVE(lua_State*);                //sets current VE the mob has towards the player
 
     int32 hasImmunity(lua_State*);          // Check if the mob has immunity for a type of spell (list at mobentity.h)
     int32 getBattleTime(lua_State*);        // Get the time in second of the battle
@@ -319,6 +322,7 @@ public:
     int32 addStatusEffectEx(lua_State*);      // Adds status effect to character
     int32 hasStatusEffect(lua_State*);        // Checks to see if character has specified effect
     int32 hasStatusEffectByFlag(lua_State*);  // Checks to see if a character has an effect with the specified flag
+    int32 countEffect(lua_State*);            // Gets the number of effects of a specific type on the player
     int32 hasBustEffect(lua_State*);          // Checks to see if a character has a specified busted corsair roll
     int32 numBustEffects(lua_State*);         // Gets the number of bust effects on the player
     int32 canGainStatusEffect(lua_State*);    // Returns true if the effect can be added

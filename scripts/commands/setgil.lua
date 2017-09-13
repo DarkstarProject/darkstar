@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@setgil <amount>");
+    player:PrintToPlayer("!setgil <amount>");
 end;
 
 function onTrigger(player, amount)

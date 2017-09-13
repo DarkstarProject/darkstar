@@ -3,7 +3,7 @@
 -- NPC:  Chululu
 -- Starts and Finishes Quests: Collect Tarut Cards, Rubbish Day
 -- Optional Cutscene at end of Quest: Searching for the Right Words
--- @pos -13 -6 -42 245
+-- !pos -13 -6 -42 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

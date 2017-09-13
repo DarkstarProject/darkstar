@@ -2,7 +2,7 @@
 -- Area: Hall of the Gods
 -- NPC:  Cermet Gate
 -- Gives qualified players access to Ru'Aun Gardens.
--- @pos 0 -12 48 251
+-- !pos 0 -12 48 251
 -----------------------------------
 
 require("scripts/globals/titles");
@@ -14,7 +14,7 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         end
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0001 and player:getCurrentMission(ZILART) == THE_TEMPLE_OF_DESOLATION) then
         player:addTitle(SEALER_OF_THE_PORTAL_OF_THE_GODS);
         player:completeMission(ZILART,THE_TEMPLE_OF_DESOLATION);
@@ -60,5 +60,5 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL);
         player:addMission(ZILART,THE_GATE_OF_THE_GODS);
     end
-    
+
 end;

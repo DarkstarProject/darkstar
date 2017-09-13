@@ -2,7 +2,7 @@
 --  Area: Castle Oztroja
 --  NPC:  Kaa Toru the Just
 --  Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
--- @pos -100.188 -62.125 145.422 151
+-- !pos -100.188 -62.125 145.422 151
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
@@ -24,7 +24,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then 
+    if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") == 2) then
         player:startEvent(0x002d,0,200);
     else
         player:startEvent(0x002e);

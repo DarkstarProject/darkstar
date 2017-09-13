@@ -3,8 +3,8 @@
 --   NPC: Chays-Ratays
 --  Type: Standard NPC
 -- @zone 94
--- @pos -6.013 -4.999 -185.219
--- 
+-- !pos -6.013 -4.999 -185.219
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Northern Sandoria
 --  NPC: Yevgeny, I.M.
--- @pos 45 -1 0 231
+-- !pos 45 -1 0 231
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

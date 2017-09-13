@@ -279,7 +279,7 @@ local zone_list =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@send <player to send> <destination player or zone>");
+    player:PrintToPlayer("!send <player to send> <destination player or zone>");
 end;
 
 function getBytePos(s,needle)

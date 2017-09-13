@@ -58,6 +58,7 @@ This file is part of DarkStar-server source code.
 #include "utils/zoneutils.h"
 #include "conquest_system.h"
 #include "utils/mobutils.h"
+#include "ai/controllers/automaton_controller.h"
 
 #include "lua/luautils.h"
 
@@ -125,16 +126,16 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
 
-	const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
+    const int8* fmtQuery = "SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '%s' LIMIT 1;";
 
-	int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, ip2str(map_session_data->client_addr, nullptr));
 
-	if (ret == SQL_ERROR ||
-		Sql_NumRows(SqlHandle) == 0)
-	{
-		ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
-		return nullptr;
-	}
+    if (ret == SQL_ERROR ||
+        Sql_NumRows(SqlHandle) == 0)
+    {
+        ShowError(CL_RED"recv_parse: Invalid login attempt from %s\n" CL_RESET, ip2str(map_session_data->client_addr, nullptr));
+        return nullptr;
+    }
     return map_session_data;
 }
 
@@ -205,6 +206,7 @@ int32 do_init(int32 argc, int8** argv)
     ShowStatus("do_init: loading spells");
     spell::LoadSpellList();
     mobSpellList::LoadMobSpellList();
+    autoSpell::LoadAutomatonSpellList();
     ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
     guildutils::Initialize();
@@ -359,7 +361,7 @@ int32 do_sockets(fd_set* rfd, duration next)
                 map_session_data = mapsession_createsession(ip, ntohs(from.sin_port));
                 if (map_session_data == nullptr)
                 {
-					map_session_list.erase(ipp);
+                    map_session_list.erase(ipp);
                     return -1;
                 }
             }
@@ -956,6 +958,7 @@ int32 map_config_default()
     map_config.exp_retain = 0.0f;
     map_config.exp_loss_level = 4;
     map_config.level_sync_enable = 0;
+    map_config.disable_gear_scaling = 0;
     map_config.all_jobs_widescan = 1;
     map_config.speed_mod = 0;
     map_config.mob_speed_mod = 0;
@@ -1188,6 +1191,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "level_sync_enable") == 0)
         {
             map_config.level_sync_enable = atoi(w2);
+        }
+        else if (strcmp(w1, "disable_gear_scaling") == 0)
+        {
+            map_config.disable_gear_scaling = atoi(w2);
         }
         else if (strcmp(w1, "all_jobs_widescan") == 0)
         {

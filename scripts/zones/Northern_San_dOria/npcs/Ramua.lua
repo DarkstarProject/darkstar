@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Ramua
 -- Type: Woodworking Synthesis Image Support
--- @pos -183.750 10.999 255.770 231
+-- !pos -183.750 10.999 255.770 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

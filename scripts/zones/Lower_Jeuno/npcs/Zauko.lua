@@ -3,7 +3,7 @@
 -- NPC:  Zauko
 -- Involved in Quests: Save the Clock Tower, Community Service
 -- @zone 245
--- @pos -3 0 11
+-- !pos -3 0 11
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -22,15 +22,15 @@ require("scripts/zones/Lower_Jeuno/TextIDs");
 function onTrade(player,npc,trade)
 
     ----- Save The Clock Tower Quest -----
-    if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then 
+    if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
         a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
-        if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and 
-           a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then 
+        if (a == 0 or (a ~= 256 and a ~= 288 and a ~= 320 and a ~= 384 and a ~= 768 and a ~= 352 and a ~= 896 and a ~= 416 and
+           a ~= 832 and a ~= 448 and a ~= 800 and a ~= 480 and a ~= 864 and a ~= 928 and a ~= 960 and a ~= 992)) then
             player:startEvent(0x0032,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
     local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
     local currCommService = player:getVar("currCommService");
     local hasMembershipCard = player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
-    
+
     local allLampsLit = true;
     for i=0,11 do
         local lamp = GetNPCByID(lampIdOffset + i);
@@ -53,9 +53,9 @@ function onTrigger(player,npc)
         end
     end
 
-    -- debug output    
+    -- debug output
     -- player:PrintToPlayer(string.format("pid=%i done=%i curr=%i card=%i lamps=%i",playerOnQuestId,doneCommService,currCommService,hasMembershipCard,allLampsLit and 1 or 0));
-    
+
     -- quest has already been accepted.
     if currCommService == 1 then
         if playerOnQuestId ~= player:getID() then
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
 
     end
 end;
-    
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
@@ -96,7 +96,7 @@ function onEventUpdate(player,csid,option)
         local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
-        
+
         if playerOnQuestId == 0 and (hour >= 20 or hour < 1) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
@@ -116,12 +116,12 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    -- ClockTower Quest --    
-    if (csid == 0x0032) then 
+    -- ClockTower Quest --
+    if (csid == 0x0032) then
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
-    
-    ---- Community Service Quest ----        
+
+    ---- Community Service Quest ----
 
     elseif csid == 0x0075 then
         if player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED then
@@ -142,7 +142,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 0x0076 and option == 1 then
         -- player drops membership card
         player:delKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD);
-            
+
     elseif csid == 0x0077 then
         -- player fails quest
         player:setVar("currCommService",0);

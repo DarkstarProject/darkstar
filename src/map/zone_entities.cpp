@@ -982,7 +982,7 @@ void CZoneEntities::ZoneServer(time_point tick)
                 CMobEntity* PCurrentMob = (CMobEntity*)PMobIt.second;
                 PCurrentMob->PEnmityContainer->Clear(PPet->id);
             }
-            if (PPet->getPetType() != PETTYPE_AUTOMATON)
+            if (PPet->getPetType() != PETTYPE_AUTOMATON || !PPet->PMaster)
             {
                 delete pit->second;
             }

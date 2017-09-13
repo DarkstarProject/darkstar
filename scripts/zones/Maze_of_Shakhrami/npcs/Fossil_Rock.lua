@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 -- NPC:  Fossil Rock
 -- Used in Mission: Windurst Mission 2-1
--- @pos 17 18 184 198 + <many pos>
+-- !pos 17 18 184 198 + <many pos>
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
             local rand = math.random(1,6);
             player:setVar("MissionStatus_randfoss",rand);
         end
-        
+
         if ((X > 33.739 and X < 45.739) and (Z > 205 and Z < 217)) then -- 39.739 19.024 211.796
             if (randfoss == 1) then
                 if (player:hasKeyItem(LAPIS_CORAL) == false) then
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
                     player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-                else 
+                else
                     -- Already removed the fossil
                     player:messageSpecial(FOSSIL_EXTRACTED);
                 end
@@ -68,7 +68,7 @@ function onTrigger(player,npc)
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
                     player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-                else 
+                else
                     -- Already removed the fossil
                     player:messageSpecial(FOSSIL_EXTRACTED);
                 end
@@ -81,7 +81,7 @@ function onTrigger(player,npc)
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
                     player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-                else 
+                else
                     -- Already removed the fossil
                     player:messageSpecial(FOSSIL_EXTRACTED);
                 end
@@ -107,7 +107,7 @@ function onTrigger(player,npc)
                     player:setVar("MissionStatus",3);
                     player:addKeyItem(LAPIS_CORAL);
                     player:messageSpecial(KEYITEM_OBTAINED,LAPIS_CORAL);
-                else 
+                else
                     -- Already removed the fossil
                     player:messageSpecial(FOSSIL_EXTRACTED);
                 end
@@ -115,7 +115,7 @@ function onTrigger(player,npc)
                 player:messageSpecial(NOTHING_FOSSIL);
             end
         end
-        
+
     elseif ((X > -97.281 and X < -85.281) and (Z > -110.974 and Z < -98.974)) then -- f-8 map 2
         if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and GetMobAction(17588225) == 0 and player:hasItem(16511) == false) then
             SpawnMob(17588225);
@@ -125,7 +125,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(NOTHING_FOSSIL);
     end
-    
+
 end;
 
 -----------------------------------

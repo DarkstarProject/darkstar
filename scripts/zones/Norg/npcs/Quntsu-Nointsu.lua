@@ -2,7 +2,7 @@
 -- Area: Norg
 -- NPC: Quntsu-Nointsu
 -- Title Change NPC
--- @pos -67 -1 34 252
+-- !pos -67 -1 34 252
 -----------------------------------
 
 require("scripts/globals/titles");

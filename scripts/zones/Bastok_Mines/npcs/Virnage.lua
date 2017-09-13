@@ -3,7 +3,7 @@
 -- NPC:  Virnage
 -- Starts Quest: Altana's Sorrow
 -- @zone 234
--- @pos 0 0 51
+-- !pos 0 0 51
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -19,7 +19,7 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -27,14 +27,14 @@ end;
 
 function onTrigger(player,npc)
     AltanaSorrow = player:getQuestStatus(BASTOK,ALTANA_S_SORROW);
-    
+
     if (AltanaSorrow == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(0x008d); -- Start quest "Altana's Sorrow"
     elseif (AltanaSorrow == QUEST_ACCEPTED) then
         if (player:hasKeyItem(BUCKET_OF_DIVINE_PAINT) == true) then
-            player:startEvent(0x008f); -- CS with Bucket of Divine Paint KI 
+            player:startEvent(0x008f); -- CS with Bucket of Divine Paint KI
         elseif (player:hasKeyItem(LETTER_FROM_VIRNAGE) == true) then
-            --player:showText(npc,VIRNAGE_DIALOG_2); 
+            --player:showText(npc,VIRNAGE_DIALOG_2);
             player:startEvent(0x0090); -- During quest (after KI)
         else
             -- player:showText(npc,VIRNAGE_DIALOG_1);

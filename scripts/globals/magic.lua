@@ -828,7 +828,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
     dmg = math.floor(dmg * mabbonus);
 
     if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
-        dmg = dmg * 1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100;
+        dmg = dmg * (1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100);
         caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
     end
 

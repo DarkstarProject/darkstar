@@ -2,7 +2,7 @@
 -- Area: Port Jeuno
 -- NPC: Shami
 -- Orb Seller (BCNM)
--- @pos -14 8 44 246
+-- !pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

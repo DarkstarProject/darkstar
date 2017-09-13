@@ -3,7 +3,7 @@
 -- NPC:  Melek
 -- Involved in Mission 2-3
 -- @zone 240
--- @pos -80 -5 158
+-- !pos -80 -5 158
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -24,9 +24,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     pNation = player:getNation();
-    
+
     if (player:getCurrentMission(BASTOK) ~= 255) then
         currentMission = player:getCurrentMission(pNation);
 
@@ -71,7 +71,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x002a);
     end
-    
+
 end;
 
 -----------------------------------
@@ -90,7 +90,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x0030) then
         player:addMission(BASTOK,THE_EMISSARY_WINDURST);
         player:setVar("MissionStatus",2);
@@ -113,5 +113,5 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",10);  -- return to Bastok
         player:delKeyItem(KINDRED_CREST)
     end
-    
+
 end;

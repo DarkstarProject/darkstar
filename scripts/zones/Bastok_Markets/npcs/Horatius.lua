@@ -3,7 +3,7 @@
 --  NPC:  Horatius
 --  Type: Quest Giver
 --  Starts and Finishes: Breaking Stones
--- @pos -158.392 -5.839 -117.061 235
+-- !pos -158.392 -5.839 -117.061 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
@@ -30,9 +30,9 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local WildcatBastok = player:getVar("WildcatBastok");
-    
+
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,12) == false) then
         player:startEvent(0x01ac);
     elseif (player:getQuestStatus(BASTOK,BREAKING_STONES) == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 2) then
@@ -58,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
      --printf("CSID: %u",csid);
      --printf("RESULT: %u",option);
-    
+
     if (csid == 0x0064 and option == 0) then
         player:addQuest(BASTOK,BREAKING_STONES);
     elseif (csid == 0x0065) then
@@ -69,6 +69,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01ac) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",12,true);
     end
-    
+
 end;
 

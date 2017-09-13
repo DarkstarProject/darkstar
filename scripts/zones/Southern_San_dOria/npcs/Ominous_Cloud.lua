@@ -3,7 +3,7 @@
 --   NPC: Ominous Cloud
 --  Type: Traveling Merchant NPC
 --  @zone 230
--- @pos -41.550 1.999 -2.845
+-- !pos -41.550 1.999 -2.845
 --
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -124,7 +124,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
--- 951     Wijinruit        
+-- 951     Wijinruit
 -- 1161    Uchitake        5308
 -- 1164    Tsurara            5309
 -- 1167    Kawahori-ogi    5310

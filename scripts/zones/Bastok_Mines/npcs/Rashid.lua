@@ -2,7 +2,7 @@
 -- Area: Bastok Mines
 -- NPC:  Rashid
 -- Type: Mission Giver
--- @pos -8.444 -2 -123.575 234
+-- !pos -8.444 -2 -123.575 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -17,10 +17,10 @@ require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     local CurrentMission = player:getCurrentMission(BASTOK);
     local Count = trade:getItemCount();
-    
+
     if (CurrentMission ~= 255) then
         if (CurrentMission == FETICHISM and player:hasCompletedMission(BASTOK,FETICHISM) == false and trade:hasItemQty(606,1) and trade:hasItemQty(607,1) and trade:hasItemQty(608,1) and trade:hasItemQty(609,1) and Count == 4) then
             player:startEvent(0x03F0); -- Finish Mission "Fetichism" (First Time)
@@ -32,7 +32,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x03EE); -- Finish Mission "To the forsaken mines" (Repeat)
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -40,13 +40,13 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getNation() ~= NATION_BASTOK) then
         player:startEvent(0x03eb); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
         local cs, p, offset = getMissionOffset(player,1,CurrentMission,player:getVar("MissionStatus"));
-        
+
         if (cs ~= 0 or offset ~= 0 or ((CurrentMission == 0 or CurrentMission == 16) and offset == 0)) then
             if (CurrentMission <= 15 and cs == 0) then
                 player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission (Rank 1~5)
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
              player:startEvent(0x03E9,flagMission,0,0,0,0,repeatMission); -- Mission List
         end
     end
-    
+
 end;
 
 -----------------------------------
@@ -85,5 +85,5 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,1,csid,option);
-    
+
 end;

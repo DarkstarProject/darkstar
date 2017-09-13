@@ -127,6 +127,7 @@ public:
     void		init();													// prepares new BCNM
     void 		beforeCleanup();										// called before players are removed
     void		cleanup();												// cleans up the existing active BCNM
+    void        removePlayers();
     bool		isPlayersFighting();									// true if mob has aggression, used for locking the BCNM
     bool		winBcnm();
     bool		loseBcnm();

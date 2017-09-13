@@ -2,7 +2,7 @@
 -- Zone: Abyssea-Altepa
 --  NPC: qm1 (???)
 -- Spawns Ironclad Smiter
--- @pos ? ? ? 218
+-- !pos ? ? ? 218
 -----------------------------------
 require("scripts/globals/status");
 

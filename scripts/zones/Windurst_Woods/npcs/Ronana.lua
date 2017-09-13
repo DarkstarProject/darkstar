@@ -2,7 +2,7 @@
 -- Area: Windurst Woods
 --  NPC: Ronana
 -- Type: Bonecraft Image Support
--- @pos -1.540 -6.25 -144.517 241
+-- !pos -1.540 -6.25 -144.517 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lower Jeuno
 --  NPC:Alrauverat
--- @pos -101 0 -182 245
+-- !pos -101 0 -182 245
 -------------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago Reef
 --  NPC: ??? (Spawn Zareehkl the Jubilant(ZNM T2))
--- @pos 176 -4 182 54
+-- !pos 176 -4 182 54
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------

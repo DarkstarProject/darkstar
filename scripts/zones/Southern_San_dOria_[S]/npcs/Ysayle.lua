@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Ysayle
 -- @zone 80
--- @pos 112 0 100
+-- !pos 112 0 100
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

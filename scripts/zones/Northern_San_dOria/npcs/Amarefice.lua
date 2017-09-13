@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Amarefice
 -- Type: Woodworking Synthesis Image Support
--- @pos -181.506 10.15 259.905 231
+-- !pos -181.506 10.15 259.905 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

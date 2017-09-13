@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sacrificial Chamber
 -- NPC:  Mahogany Door
--- @pos -331 0.1 -300 163
+-- !pos -331 0.1 -300 163
 -------------------------------------
 package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
 -------------------------------------

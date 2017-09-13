@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: 
+-- Area:
 -- NPC:  ancient lockbox
 -- @zone illrusi atoll
--- @pos
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Ilrusi_Atoll/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -28,8 +28,8 @@ end;
 function onTrigger(player,npc)
 
  --player:getBCNMloot();
-  
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

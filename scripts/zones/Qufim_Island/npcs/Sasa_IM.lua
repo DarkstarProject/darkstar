@@ -2,7 +2,7 @@
 -- Area: Qufim Island
 --  NPC: Sasa, I.M.
 -- Type: Outpost Conquest Guards
--- @pos -245.366 -20.344 299.502 126
+-- !pos -245.366 -20.344 299.502 126
 -------------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------

@@ -2,17 +2,15 @@
 -- Area: Windurst Waters
 --  NPC:  Kenapa Keppa
 -- Involved in Quest: Food For Thought, Hat in Hand
---  Working 100%
---  @zone = 238
--- @pos = 27 -6 -199
+-- !pos 27 -6 -199 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Waters/TextIDs");
-require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 
 -----------------------------------
 -- onTrade Action
@@ -21,7 +19,7 @@ require("scripts/globals/keyitems");
 function onTrade(player,npc,trade)
     local FoodForThought = player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT);
     local KenapaFood = player:getVar("Kenapa_Food_var"); -- Variable to track progress of Kenapa-Keppa in Food for Thought
-    
+
     if (FoodForThought == QUEST_ACCEPTED) then
         count = trade:getItemCount();
         gil = trade:getGil();
@@ -38,7 +36,7 @@ function onTrade(player,npc,trade)
             player:startEvent(0x0147,120);
         end
     end
-end;      
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -58,7 +56,7 @@ function onTrigger(player,npc)
     local needToZone = player:needToZone();
     local pFame = player:getFameLevel(WINDURST);
     local HourOfTheDay = VanadielHour();
-    
+
     if ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),4) == false) then
         player:startEvent(0x0038); -- Show Off Hat
     elseif (SayFlowers == QUEST_ACCEPTED and FlowerProgress == 1) then
@@ -66,13 +64,13 @@ function onTrigger(player,npc)
     elseif (FoodForThought == QUEST_AVAILABLE) then
         player:startEvent(0x0136); -- Hungry script
     elseif (FoodForThought == QUEST_ACCEPTED) then
-        if (KenapaFood == 0) then 
+        if (KenapaFood == 0) then
             player:startEvent(0x013e); -- Stammer 1/3
             player:setVar("Kenapa_Food_var",1);
-        elseif (KenapaFood == 1) then 
+        elseif (KenapaFood == 1) then
             player:startEvent(0x013f); -- Stammer 2/3
             player:setVar("Kenapa_Food_var",2);
-        elseif (KenapaFood == 2) then 
+        elseif (KenapaFood == 2) then
             player:startEvent(0x0140,0,4409); -- Gives Order
             player:setVar("Kenapa_Food_var",3);
         elseif (FoodForThought == QUEST_ACCEPTED and KenapaFood == 3) then
@@ -142,8 +140,8 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x012f); -- Standard converstation
         end
-    end       
-end; 
+    end
+end;
 
 -----------------------------------
 -- onEventUpdate
@@ -180,7 +178,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x014b) then
         if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:addGil(GIL_RATE*120);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120); 
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
             player:tradeComplete();
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
             player:addTitle(FAST_FOOD_DELIVERER);
@@ -192,7 +190,7 @@ function onEventFinish(player,csid,option)
         else
             player:tradeComplete();
             player:addGil(GIL_RATE*120);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120); 
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
             player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
         end
     elseif  (csid == 0x0038) then  -- Show Off Hat
@@ -227,11 +225,11 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x015c) then
         player:addItem(12590);
         player:delKeyItem(SMALL_BAG);
-        player:messageSpecial(ITEM_OBTAINED,12590); 
+        player:messageSpecial(ITEM_OBTAINED,12590);
         player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
         player:addFame(WINDURST,100);
         player:needToZone(true);
-        player:setVar("Kenapa_Overnight_var",0);   
+        player:setVar("Kenapa_Overnight_var",0);
         player:setVar("Kenapa_Overnight_Hour_var",0);
     end
 end;

@@ -3,7 +3,7 @@
 -- NPC:  Tall Mountain
 -- Involved in Quest: Stamp Hunt
 -- Finish Mission: Bastok 6-1
--- @pos 71 7 -7 234
+-- !pos 71 7 -7 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

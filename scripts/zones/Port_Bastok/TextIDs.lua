@@ -1,16 +1,16 @@
 -- Variable TextID   Description text
 
 -- General Texts
-       ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+   ITEM_CANNOT_BE_OBTAINED = 6379; -- You cannot obtain the item <item>. Come back after sorting your inventory.
 FULL_INVENTORY_AFTER_TRADE = 6383; -- You cannot obtain the item (item>. Try trading again after sorting your inventory.
-                                  ITEM_OBTAINED = 6385; -- Obtained: #.
-                                     GIL_OBTAINED = 6386; -- Obtained <<<Numeric Parameter 0>>> gil.
-                          KEYITEM_OBTAINED = 6388; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-                                    KEYITEM_LOST = 6389; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
-                NOT_HAVE_ENOUGH_GIL = 6390; -- You do not have enough gil.
-                                HOMEPOINT_SET = 6503; -- Home point set!
-         FISHING_MESSAGE_OFFSET = 7079; -- You can't fish here.
-                               MOGHOUSE_EXIT = 7942; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
+             ITEM_OBTAINED = 6385; -- Obtained: #.
+              GIL_OBTAINED = 6386; -- Obtained <<<Numeric Parameter 0>>> gil.
+          KEYITEM_OBTAINED = 6388; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+              KEYITEM_LOST = 6389; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
+       NOT_HAVE_ENOUGH_GIL = 6390; -- You do not have enough gil.
+             HOMEPOINT_SET = 6503; -- Home point set!
+    FISHING_MESSAGE_OFFSET = 7079; -- You can't fish here.
+             MOGHOUSE_EXIT = 7942; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Conquest System
 CONQUEST = 7998; -- You've earned conquest points!
@@ -26,6 +26,9 @@ POWHATAN_DIALOG_1 = 7267; -- I'm sick and tired of entertaining guests.
  PAUJEAN_DIALOG_1 = 7644; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea.
      UNLOCK_NINJA = 8425; -- You can now become a ninja.
    TITAN_UNLOCKED = 8530; -- You are now able to summon
+ NOKKHI_BAD_COUNT = 8786; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
+NOKKHI_GOOD_TRADE = 8788; -- And here you go! Come back soon, and bring your friends!
+  NOKKHI_BAD_ITEM = 8789; -- I'm real sorry, but there's nothing I can do with those.
 
 -- Shop Texts
   TENSHODO_SHOP_OPEN_DIALOG = 6724; -- Ah, one of our members. Welcome to the Tenshodo shop.

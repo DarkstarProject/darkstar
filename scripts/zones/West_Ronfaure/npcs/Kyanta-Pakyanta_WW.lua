@@ -2,7 +2,7 @@
 -- Area: West Ronfaure
 --  NPC: Kyanta-Pakyanta, W.W.
 -- Type: Outpost Conquest Guards
--- @pos -450.571 -20.807 -219.970 100
+-- !pos -450.571 -20.807 -219.970 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------

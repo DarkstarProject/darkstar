@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Dahaaba
 -- Type: Chocobo Renter
--- @pos -65.309 -1 -39.585
+-- !pos -65.309 -1 -39.585
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");

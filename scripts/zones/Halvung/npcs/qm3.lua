@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Halvung
 --  NPC: ??? (Spawn Reacton(ZNM T2))
--- @pos 18 -9 213 62
+-- !pos 18 -9 213 62
 -----------------------------------
 package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
 -----------------------------------

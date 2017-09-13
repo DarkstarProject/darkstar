@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Fiaudie
 -- @zone 80
--- @pos -10 1 35
+-- !pos -10 1 35
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

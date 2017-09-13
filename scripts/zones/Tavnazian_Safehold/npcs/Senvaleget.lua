@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
 -- NPC:  Senvaleget
--- @pos -103 -26 -49 26
+-- !pos -103 -26 -49 26
 -----------------------------------
 
 require("scripts/globals/missions");
@@ -11,18 +11,18 @@ require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
-function onTrigger(player,npc)    
+function onTrigger(player,npc)
     if (player:hasCompletedMission(COP,DARKNESS_NAMED)) then
         player:sendMenu(3);
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onEventUpdate

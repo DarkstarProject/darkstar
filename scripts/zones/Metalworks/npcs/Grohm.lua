@@ -2,7 +2,7 @@
 -- Area: Metalworks
 -- NPC:  Grohm
 -- Involved In Mission: Journey Abroad
--- @pos -18 -11 -27 237
+-- !pos -18 -11 -27 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
@@ -22,7 +22,7 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK) then
         if (player:getVar("notReceivePickaxe") == 1) then
             player:startEvent(0x01a9);
@@ -58,7 +58,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x01ab);--0x01a6
     end
-    
+
 end;
 
 -----------------------------------
@@ -77,9 +77,9 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    
+
     if (csid == 0x01a7 or csid == 0x01a9) then
-        if (player:getFreeSlotsCount() == 0) then 
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,605); -- Pickaxes
             player:setVar("notReceivePickaxe",1);
         else
@@ -91,5 +91,5 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x01aa) then
         player:setVar("MissionStatus",10);
     end
-    
+
 end;

@@ -2,7 +2,7 @@
 -- Area: West Sarutabaruta
 --  NPC: Naguipeillont, R.K.
 -- Type: Outpost Conquest Guards
--- @pos -11.322 -13.459 317.696 115
+-- !pos -11.322 -13.459 317.696 115
 -----------------------------------
 package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 -----------------------------------

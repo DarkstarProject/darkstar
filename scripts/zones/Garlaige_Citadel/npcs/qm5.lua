@@ -2,7 +2,7 @@
 -- Area: Garlaige Citadel
 -- NPC:  qm5 (???)
 -- Involved in Quest: Hitting the Marquisate (THF AF3)
--- @pos -259.927 -5.500 194.410 200
+-- !pos -259.927 -5.500 194.410 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -26,11 +26,11 @@ function onTrigger(player,npc)
 
     local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
-    if (hittingTheMarquisateHagainCS == 3) then 
+    if (hittingTheMarquisateHagainCS == 3) then
         player:messageSpecial(PRESENCE_FROM_CEILING);
-        player:setVar("hittingTheMarquisateHagainCS",4);        
+        player:setVar("hittingTheMarquisateHagainCS",4);
     end
-    
+
 end;
 
 -----------------------------------

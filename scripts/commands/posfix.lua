@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@posfix <player>");
+    player:PrintToPlayer("!posfix <player>");
 end;
 
 function onTrigger(player, target)

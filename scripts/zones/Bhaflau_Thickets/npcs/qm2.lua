@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
 --  NPC: ??? (Spawn Dea(ZNM T3))
--- @pos -34 -32 481 52
+-- !pos -34 -32 481 52
 -----------------------------------
 package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------

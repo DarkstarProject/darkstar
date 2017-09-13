@@ -2,7 +2,7 @@
 -- Area: Selbina
 -- NPC:  Elfriede
 -- Involved In Quest: The Tenshodo Showdown
--- @pos 61 -15 10 248
+-- !pos 61 -15 10 248
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
@@ -22,16 +22,16 @@ function onTrade(player,npc,trade)
         end
     end
 
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     local theTenshodoShowdownCS = player:getVar("theTenshodoShowdownCS");
-    
+
     if (theTenshodoShowdownCS == 2) then
         player:startEvent(0x2712,0,TENSHODO_ENVELOPE,4569); -- During Quest "The Tenshodo Showdown"
         player:setVar("theTenshodoShowdownCS",3);
@@ -40,8 +40,8 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x0019); -- Standard dialog
     end
-    
-end; 
+
+end;
 
 -- 0x0019  0x2712  0x2713  0x2714 4569
 

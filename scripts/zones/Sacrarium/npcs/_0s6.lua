@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area:  Sacrarium
 -- NPC:   _0s6 (Wooden Gate)
--- @pos 213.375 -3.499 20.000 28
+-- !pos 213.375 -3.499 20.000 28
 -----------------------------------
 -----------------------------------
 -- onTrigger Action
@@ -9,8 +9,8 @@
 
 function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
-        npc:openDoor();    
-    end    
+        npc:openDoor();
+    end
 end;
 
 -----------------------------------

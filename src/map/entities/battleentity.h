@@ -452,6 +452,7 @@ class CAttackState;
 class CWeaponSkillState;
 class CMagicState;
 class CDespawnState;
+class CRecastContainer;
 struct action_t;
 
 class CBattleEntity : public CBaseEntity
@@ -638,7 +639,9 @@ public:
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
 
-    CStatusEffectContainer* StatusEffectContainer;
+    std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
+    std::unique_ptr<CRecastContainer> PRecastContainer;         //
+
 
 
 private:
@@ -652,7 +655,7 @@ private:
 
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStat;	// массив модификаторов
     std::unordered_map<Mod, int16, EnumClassHash>		m_modStatSave;	// saved state
-    std::unordered_map<Mod, int16, EnumClassHash>       m_petMod;
+    std::unordered_map<PetModType, std::unordered_map<Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
 };
 
 #endif

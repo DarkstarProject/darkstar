@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Western Altepa Desert
 -- NPC:  _3h0 (Altepa Gate)
--- @pos -19 12 131 125
+-- !pos -19 12 131 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         else
             player:messageSpecial(THE_DOOR_IS_LOCKED);
         end
-    end    
+    end
 end;
 
 -----------------------------------

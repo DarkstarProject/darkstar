@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Mhaura
 -- NPC:  Mololo
--- Guild Merchant NPC: Blacksmithing Guild 
--- @pos -64.278 -16.624 34.120 249
+-- Guild Merchant NPC: Blacksmithing Guild
+-- !pos -64.278 -16.624 34.120 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +16,7 @@ require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

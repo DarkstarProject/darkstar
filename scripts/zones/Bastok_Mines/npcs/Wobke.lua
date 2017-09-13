@@ -3,7 +3,7 @@
 --   NPC: Wobke
 --  Type: Quest NPC
 -- @zone 234
--- @pos 29.028 -0.126 -111.626
+-- !pos 29.028 -0.126 -111.626
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

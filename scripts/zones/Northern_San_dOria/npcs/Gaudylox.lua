@@ -2,7 +2,7 @@
 -- Area: Northern San d'Oria
 -- NPC: Gaudylox
 -- Standard merchant, though he acts like a guild merchant
--- @pos -147.593 11.999 222.550 231
+-- !pos -147.593 11.999 222.550 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -36,7 +36,7 @@ function onTrigger(player,npc)
     if (player:sendGuild(60418,11,22,0)) then
         player:showText(npc,GAUDYLOX_SHOP_DIALOG);
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

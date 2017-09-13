@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 -- NPC: Sagheera
--- @pos -3 0.1 -9 246
+-- !pos -3 0.1 -9 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

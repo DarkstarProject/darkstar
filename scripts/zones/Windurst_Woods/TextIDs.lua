@@ -22,6 +22,9 @@ CONQUEST = 8925; -- You've earned conquest points!
 
 -- Other Texts
 ITEM_DELIVERY_DIALOG =  6824; -- We can deliver goods to your residence or to the residences of your friends.
+    NOKKHI_BAD_COUNT =  9754; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
+   NOKKHI_GOOD_TRADE =  9756; -- And here you go! Come back soon, and bring your friends!
+     NOKKHI_BAD_ITEM =  9757; -- I'm real sorry, but there's nothing I can do with those.
       CHOCOBO_DIALOG = 10400; -- Kweh!
 
 -- Mission Dialogs

@@ -19,11 +19,11 @@ function onTrade(player,npc,trade)
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
     local offer = trade:getItemId();
     
-    if (player:getVar("FLOWER_PROGRESS") == 2) then
+    if (FlowerProgress >= 1) then
         if (trade:hasItemQty(950, 1) and trade:getItemCount() == 1) then
             if (SayFlowers == QUEST_COMPLETED) then
                 player:startEvent(0x020D,GIL_RATE*400);
-            elseif (SayFlowers == QUEST_ACCEPTED) then
+            else
                 player:startEvent(0x0208);
             end
         elseif (offer == 941 or offer == 948 or offer == 949 or offer == 956 or offer == 957 or offer == 958) then

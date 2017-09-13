@@ -3,7 +3,7 @@
 --   NPC: Dienger
 --  Type: Melody Minstrel
 -- @zone 238
--- @pos -46.448 -6.312 212.384
+-- !pos -46.448 -6.312 212.384
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

@@ -3,7 +3,7 @@
 -- NPC:  Balasiel
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
 -- @zone 230
--- @pos -136 -11 64
+-- !pos -136 -11 64
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -56,7 +56,7 @@ function onTrigger(player,npc)
         player:startEvent(0x029f);
     elseif (LvL >= 15 and ASquiresTestII ~= QUEST_COMPLETED) then
         local StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
-        
+
         if (ASquiresTestII == QUEST_AVAILABLE) then
             player:startEvent(0x0271);
         elseif (ASquiresTestII == QUEST_ACCEPTED and StalactiteDew == false) then
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(0x029b);
     end
-    
+
 end;
 
 -----------------------------------
@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
             player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
         else
             player:setVar("SquiresTest_Event",1);
-        end 
+        end
     elseif (csid == 0x0277 and option == 0) then
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST);
         player:setVar("SquiresTest_Event",0);
@@ -165,12 +165,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 63) then
         player:setVar("KnightStalker_Progress",3);
     end
-    
+
 end;
 --    player:startEvent(0x7fb2)     -- starlight celebration
---    player:startEvent(0x000a)     -- methods create madness you havent used the weapon to full extent 
+--    player:startEvent(0x000a)     -- methods create madness you havent used the weapon to full extent
 --    player:startEvent(0x0008)      -- methods create madness start
 --    player:startEvent(0x000b)      -- methods create nadness menu
---    player:startEvent(0x0009)      -- methods create madness map 
---    player:startEvent(0x000c)     -- methods create madness map reminder  
+--    player:startEvent(0x0009)      -- methods create madness map
+--    player:startEvent(0x000c)     -- methods create madness map reminder
 --    player:startEvent(0x000d)     -- methods create madness end

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Konschtat Highlands
 -- NPC:  Signpost
--- @pos 387 32 386 108
+-- !pos 387 32 386 108
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------

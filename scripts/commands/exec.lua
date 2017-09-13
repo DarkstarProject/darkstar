@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@exec <Lua string>");
+    player:PrintToPlayer("!exec <Lua string>");
 end;
 
 function onTrigger(player, str)

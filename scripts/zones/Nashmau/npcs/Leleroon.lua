@@ -2,7 +2,7 @@
 -- Area: Nashmau
 --  NPC: Leleroon
 -- Corsair AF2 and AF3 quests
--- @pos -14.687 0.000 25.114 53
+-- !pos -14.687 0.000 25.114 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             player:setVar("NavigatingtheUnfriendlySeas",2);
         end
     end
-end;  
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -53,7 +53,7 @@ function onTrigger(player,npc)
     else
         player:startEvent(264); -- default dialog
     end
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

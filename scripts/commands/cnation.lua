@@ -11,7 +11,7 @@ cmdprops =
 
 function error(player, msg)
     player:PrintToPlayer(msg);
-    player:PrintToPlayer("@cnation <player> <campaign allegiance>");
+    player:PrintToPlayer("!cnation <player> <campaign allegiance>");
 end;
 
 function onTrigger(player, target, nation)

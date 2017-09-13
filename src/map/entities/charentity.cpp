@@ -65,7 +65,7 @@
 #include "../items/item_usable.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
-#include "../recast_container.h"
+#include "../char_recast_container.h"
 #include "../latent_effect_container.h"
 #include "../status_effect_container.h"
 #include "../treasure_pool.h"
@@ -180,8 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
-
-    PRecastContainer = new CRecastContainer(this);
+    PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
     petZoningInfo.respawnPet = false;
@@ -217,7 +216,6 @@ CCharEntity::~CCharEntity()
     delete UContainer;
     delete CraftContainer;
     delete PMeritPoints;
-    delete PRecastContainer;
 }
 
 uint8 CCharEntity::GetGender()
@@ -277,11 +275,32 @@ void CCharEntity::erasePackets(uint8 num)
     }
 }
 
+void CCharEntity::setPetZoningInfo()
+{
+    if (PPet->objtype == TYPE_PET)
+    {
+        switch (((CPetEntity*)PPet)->getPetType())
+        {
+        case PETTYPE_JUG_PET:
+        case PETTYPE_AUTOMATON:
+        case PETTYPE_WYVERN:
+            petZoningInfo.petHP = PPet->health.hp;
+            petZoningInfo.petTP = PPet->health.tp;
+            petZoningInfo.petMP = PPet->health.mp;
+            petZoningInfo.petType = ((CPetEntity*)PPet)->getPetType();
+            break;
+        default:
+            break;
+        }
+    }
+}
+
 void CCharEntity::resetPetZoningInfo()
 {
     // reset the petZoning info
     petZoningInfo.petHP = 0;
     petZoningInfo.petTP = 0;
+    petZoningInfo.petMP = 0;
     petZoningInfo.respawnPet = false;
     petZoningInfo.petType = PETTYPE_AVATAR;
 }
@@ -537,8 +556,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 
 bool CCharEntity::CanUseSpell(CSpell* PSpell)
 {
-    return charutils::hasSpell(this, PSpell->getID()) && CBattleEntity::CanUseSpell(PSpell) &&
-        !PRecastContainer->Has(RECAST_MAGIC, PSpell->getID());
+    return charutils::hasSpell(this, static_cast<uint16>(PSpell->getID())) && CBattleEntity::CanUseSpell(PSpell) &&
+        !PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()));
 }
 
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
@@ -623,7 +642,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     auto PSpell = state.GetSpell();
     auto PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, PSpell->getID(), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
 
     for (auto&& actionList : action.actionLists)
     {
@@ -740,25 +759,9 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
 
             if (!battleutils::isValidSelfTargetWeaponskill(PWeaponSkill->getID()))
             {
-                actionTarget.reaction = (tpHitsLanded || extraHitsLanded ? REACTION_HIT : REACTION_EVADE);
-                actionTarget.speceffect = (SPECEFFECT)((damage > 0 ? SPECEFFECT_RECOIL : SPECEFFECT_NONE) | actionTarget.speceffect);
-
-                if (actionTarget.reaction == REACTION_EVADE)
-                    actionTarget.messageID = primary ? 188 : 282; //but misses
-                else if (damage < 0)
+                if (primary && PBattleTarget->objtype == TYPE_MOB)
                 {
-                    actionTarget.param = -damage;
-                    actionTarget.messageID = primary ? 238 : 263; //absorbed ws
-                }
-                else
-                {
-                    actionTarget.param = damage;
-                    actionTarget.messageID = primary ? 185 : 264; //damage ws
-
-                    if (primary && PBattleTarget->objtype == TYPE_MOB)
-                    {
-                        luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
-                    }
+                    luautils::OnWeaponskillHit(PBattleTarget, this, PWeaponSkill->getID());
                 }
             }
             else
@@ -802,7 +805,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
-                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill);
+                        SUBEFFECT effect = battleutils::GetSkillChainEffect(PBattleTarget, PWeaponSkill->getID(),
+                        { static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getPrimarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getSecondarySkillchain()), static_cast<SKILLCHAIN_ELEMENT>(PWeaponSkill->getTertiarySkillchain()) });
                         if (effect != SUBEFFECT_NONE)
                         {
                             actionTarget.addEffectParam = battleutils::TakeSkillchainDamage(this, PBattleTarget, damage, taChar);

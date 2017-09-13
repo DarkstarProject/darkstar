@@ -2,7 +2,7 @@
 -- Area: Southern SandOria [S]
 -- NPC: Moogle
 -- @zone 80
--- @pos <many>
+-- !pos <many>
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");

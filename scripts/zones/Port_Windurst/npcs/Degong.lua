@@ -2,7 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Degong
 -- Type: Fishing Synthesis Image Support
--- @pos -178.400 -3.835 60.480 240
+-- !pos -178.400 -3.835 60.480 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

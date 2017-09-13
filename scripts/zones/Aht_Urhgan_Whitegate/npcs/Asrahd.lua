@@ -2,7 +2,7 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Asrahd
 -- Type: Imperial Gate Guard
--- @pos 0.011 -1 10.587 50
+-- !pos 0.011 -1 10.587 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------

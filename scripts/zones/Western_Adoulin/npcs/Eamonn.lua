@@ -4,7 +4,7 @@
 --  Type: Standard NPC and Quest NPC
 --  Starts and Involved with Quests: 'Scaredy-Cats'
 --  @zone 256
---  @pos -91 3 2 256
+--  !pos -91 3 2 256
 -----------------------------------
 require("scripts/globals/quests");
 
@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 -----------------------------------
 -- onTrigger Action

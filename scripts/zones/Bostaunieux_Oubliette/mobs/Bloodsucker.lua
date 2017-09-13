@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bostaunieux Oubliette (167)
 --  MOB: Bloodsucker (NM)
--- @pos -21.776 16.983 -231.477 167
+-- !pos -21.776 16.983 -231.477 167
 -----------------------------------
 
 require("scripts/globals/groundsofvalor");

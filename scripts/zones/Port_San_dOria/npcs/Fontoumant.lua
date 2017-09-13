@@ -4,7 +4,7 @@
 -- Starts Quest: The Brugaire Consortium
 -- Involved in Quests: Riding on the Clouds
 -- @zone 232
--- @pos -10 -10 -122
+-- !pos -10 -10 -122
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -35,13 +35,13 @@ function onTrade(player,npc,trade)
             end
         end
     end
-    
+
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
     if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 6) then
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
@@ -50,8 +50,8 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
         end
     end
-    
-end; 
+
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
     if (TheBrugaireConsortium == QUEST_AVAILABLE) then
         player:startEvent(0x01fd);
     elseif (TheBrugaireConsortium == QUEST_ACCEPTED) then
-    
+
         local prog = player:getVar("TheBrugaireConsortium-Parcels");
         if (prog == 11) then
             player:startEvent(0x01ff);

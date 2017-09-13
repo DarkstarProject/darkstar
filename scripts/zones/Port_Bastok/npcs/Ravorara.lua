@@ -3,7 +3,7 @@
 --   NPC: Ravorara
 --  Type: Quest Giver
 -- @zone 236
--- @pos -151.062 -7 -7.243
+-- !pos -151.062 -7 -7.243
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

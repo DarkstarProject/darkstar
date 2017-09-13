@@ -2,25 +2,23 @@
 -- Area: Windurst Waters
 --  NPC: Angelica
 -- Starts and Finished Quest: A Pose By Any Other Name
---    Working 100%
---  @zone = 238
--- @pos = -70 -10 -6
+-- !pos -70 -10 -6 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
 require("scripts/zones/Windurst_Waters/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
+require("scripts/globals/status");
 
 -----------------------------------
 -- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;      
+end;
 
 -----------------------------------
 -- onTrigger Action
@@ -46,7 +44,7 @@ function onTrigger(player,npc)
         elseif (mjob == JOBS.WHM or mjob == JOBS.BLM or mjob == JOBS.SMN or mjob == JOBS.PUP or mjob == JOBS.SCH) then     -- Quest Start: Tunic (Whm/Blm/Rdm/Smn/Pup/Sch)
             player:startEvent(0x005c,0,0,0,12608);
             player:setVar("QuestAPoseByOtherName_equip",12608);
-        elseif (mjob == JOBS.SAM or mjob == JOBS.NIN) then                                         -- Quest Start: Kenpogi(Sam/Nin) 
+        elseif (mjob == JOBS.SAM or mjob == JOBS.NIN) then                                         -- Quest Start: Kenpogi(Sam/Nin)
             player:startEvent(0x005c,0,0,0,12584);
             player:setVar("QuestAPoseByOtherName_equip",12584);
         end
@@ -54,7 +52,7 @@ function onTrigger(player,npc)
         starttime = player:getVar("QuestAPoseByOtherName_time");
         if ((starttime + 600) >= os.time()) then
             if (player:getEquipID(SLOT_BODY) == player:getVar("QuestAPoseByOtherName_equip")) then
-                player:startEvent(0x0060);     ------------------------------------------  QUEST FINISH 
+                player:startEvent(0x0060);     ------------------------------------------  QUEST FINISH
             else
                 player:startEvent(0x005d,0,0,0,player:getVar("QuestAPoseByOtherName_equip"));-- QUEST REMINDER
             end
@@ -72,8 +70,8 @@ function onTrigger(player,npc)
         else
             player:startEvent(0x0059); -------------------------------------------- Standard Conversation 3
         end
-    end    
-end; 
+    end
+end;
 
 -----------------------------------
 -- onEventUpdate

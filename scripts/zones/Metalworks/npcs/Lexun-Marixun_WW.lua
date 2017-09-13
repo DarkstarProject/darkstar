@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Metalworks
 --  NPC: Lexun-Maxirun, W.W.
--- @pos 28 -16 28 237
+-- !pos 28 -16 28 237
 -- X Grant Signet
 -- X Recharge Emperor Band, Empress Band, or Chariot Band
 -- X Accepts traded Crystals to fill up the Rank bar to open new Missions.

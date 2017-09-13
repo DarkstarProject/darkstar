@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Yughott Grotto
 -- NPC:  Treasure Chest
--- @zone 142
+-- !zone 142
 -----------------------------------
 package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
     local questItemNeeded = 0;
 
     -- Player traded a key.
-    if ((trade:hasItemQty(1024,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then 
+    if ((trade:hasItemQty(1024,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         local pack = openChance(player,npc,trade,TreasureType,TreasureLvL,TreasureMinLvL,questItemNeeded);
         local success = 0;
@@ -43,7 +43,7 @@ function onTrade(player,npc,trade)
             if (math.random() <= success) then
                 -- Succeded to open the coffer
                 player:messageSpecial(CHEST_UNLOCKED);
-                player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME)); 
+                player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
                 local loot = chestLoot(zone,npc);
                 -- print("loot array: "); -- debug
@@ -71,7 +71,7 @@ end;
 
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1024);
-end; 
+end;
 
 -----------------------------------
 -- onEventUpdate

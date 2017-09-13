@@ -3,8 +3,8 @@
 --   NPC: Latteaune
 --  Type: Event Scene Replayer
 -- @zone 26
--- @pos -16.426 -28.889 109.626
--- 
+-- !pos -16.426 -28.889 109.626
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

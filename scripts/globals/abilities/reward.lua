@@ -15,8 +15,11 @@ require("scripts/globals/pets");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getPet() == nil) then
+    local pet = player:getPet();
+    if not pet then
         return MSGBASIC_REQUIRES_A_PET,0;
+    elseif not player:isJugPet() and pet:getObjType() ~= TYPE_MOB then
+        return MSGBASIC_NO_EFFECT_ON_PET,0;
     else
         local id = player:getEquipID(SLOT_AMMO);
         if (id >= 17016 and id <= 17023) then

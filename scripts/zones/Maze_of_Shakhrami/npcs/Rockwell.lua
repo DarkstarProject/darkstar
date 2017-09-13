@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 --  NPC: Rockwell
 -- Quest: Your Crystal Ball
--- @pos -18 -13 181 198
+-- !pos -18 -13 181 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------

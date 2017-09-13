@@ -3,7 +3,7 @@
 -- NPC: Ojha Rhawash
 -- Starts and Finishes Quest: Flower Child
 -- @zone 239
--- @pos -209 0 -134
+-- !pos -209 0 -134
 
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
@@ -55,7 +55,7 @@ itemQuality = 0;
     if (itemQuality == 2) then
         if (FlowerChild == QUEST_COMPLETED) then
             player:startEvent(0x2710, 0, 239, 4);
-        else 
+        else
             player:startEvent(0x2710, 0, 239, 2);
         end
     elseif (itemQuality == 1) then
@@ -63,14 +63,14 @@ itemQuality = 0;
             player:startEvent(0x2710, 0, 239, 5);
         elseif (FlowerChild == QUEST_ACCEPTED) then
             player:startEvent(0x2710, 0, 239, 3);
-        else 
+        else
             player:startEvent(0x2710, 0, 239, 1);
         end
-    else 
+    else
         player:startEvent(0x2710, 0, 239, 0);
     end
 
-end; 
+end;
 
 
 -----------------------------------
@@ -79,7 +79,7 @@ end;
 
 function onTrigger(player,npc)
     player:startEvent(0x2710, 0, 239, 10);
-end; 
+end;
 
 
 -----------------------------------

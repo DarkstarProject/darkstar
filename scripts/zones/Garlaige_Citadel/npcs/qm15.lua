@@ -2,7 +2,7 @@
 -- Area: Garlaige Citadel
 -- NPC:  qm15 (???)
 -- Involved in Quest: Hitting the Marquisate (THF AF3)
--- @pos 19.893 -5.500 325.767 200
+-- !pos 19.893 -5.500 325.767 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------
@@ -26,12 +26,12 @@ function onTrigger(player,npc)
 
     local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
-    if (hittingTheMarquisateHagainCS == 8) then 
+    if (hittingTheMarquisateHagainCS == 8) then
         player:messageSpecial(HEAT_FROM_CEILING);
         -- TODO: player must wait 10 minutes before they can spawn bomb again
         SpawnMob(17596533):updateClaim(player); -- Chandelier
     end
-    
+
 end;
 
 -----------------------------------

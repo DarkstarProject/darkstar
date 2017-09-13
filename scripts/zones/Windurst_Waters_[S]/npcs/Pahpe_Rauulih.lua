@@ -3,8 +3,8 @@
 --   NPC: Pahpe Rauulih
 --  Type: Standard NPC
 -- @zone 94
--- @pos -39.740 -4.499 53.223
--- 
+-- !pos -39.740 -4.499 53.223
+--
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;

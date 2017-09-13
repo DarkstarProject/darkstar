@@ -2,7 +2,7 @@
 -- Area: Sea Serpent Grotto
 -- NPC:  ??? Used for Norg quest "It's not your vault"
 -- @zone 176
--- @pos -173 26 252 2
+-- !pos -173 26 252 2
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -24,15 +24,15 @@ end;
 -----------------------------------
 
 function onTrigger(player,npc)
-    
+
     Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
-    
+
     if (Vault == QUEST_ACCEPTED and player:hasKeyItem(295) == false) then
         player:addKeyItem(295);
         player:messageSpecial(KEYITEM_OBTAINED,295);
     end
-end; 
-        
+end;
+
 -----------------------------------
 -- onEventUpdate
 -----------------------------------
