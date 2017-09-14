@@ -25395,8 +25395,6 @@ INSERT INTO `item_mods` VALUES (21366,12,5);
 INSERT INTO `item_mods` VALUES (21366,23,10);
 INSERT INTO `item_mods` VALUES (21367,11,3); -- Tengu-no-Hane AGI+3
 INSERT INTO `item_mods` VALUES (21367,289,3); -- "Subtle Blow"+3
--- INSERT INTO `item_mods` VALUES (21367,Daytime: Accuracy,15); -- Daytime: Accuracy+15
--- INSERT INTO `item_mods` VALUES (21367,Daytime: Attack,15); -- Daytime: Attack+15
 INSERT INTO `item_mods` VALUES (21371,23,10);
 INSERT INTO `item_mods` VALUES (21371,25,5);
 INSERT INTO `item_mods` VALUES (21371,73,3);
@@ -31199,6 +31197,8 @@ INSERT INTO `item_mods` VALUES (25945,68,60);     -- Evasion+60
 INSERT INTO `item_mods` VALUES (25945,311,46);    -- Magic Damage+46
 INSERT INTO `item_mods` VALUES (25945,384,20);    -- Haste +20
 INSERT INTO `item_mods` VALUES (25945,516,10);    -- Converts Dmg to MP+10
+INSERT INTO `item_mods` VALUES (26003,28,13);   -- Baetyl pendant: Magic attack bonus +13
+INSERT INTO `item_mods` VALUES (26003,170,4);   -- Fast cast +4%
 INSERT INTO `item_mods` VALUES (26016,111,10);    -- Incanter's Torque: Divine magic skill +10
 INSERT INTO `item_mods` VALUES (26016,112,10);    -- Healing magic skill +10
 INSERT INTO `item_mods` VALUES (26016,113,10);    -- Enhancing magic skill +10
@@ -39827,6 +39827,45 @@ INSERT INTO `item_mods` VALUES (27763,30,10);
 INSERT INTO `item_mods` VALUES (27763,31,43);
 INSERT INTO `item_mods` VALUES (27763,68,10);
 INSERT INTO `item_mods` VALUES (27763,384,51);
+INSERT INTO `item_mods` VALUES (27764,1,116); -- Founder's Corona: DEF+116
+INSERT INTO `item_mods` VALUES (27764,2,47); -- HP +47
+INSERT INTO `item_mods` VALUES (27764,8,24); -- STR +24
+INSERT INTO `item_mods` VALUES (27764,9,20); -- DEX +20
+INSERT INTO `item_mods` VALUES (27764,10,23); -- VIT +23
+INSERT INTO `item_mods` VALUES (27764,11,17); -- AGI +17
+INSERT INTO `item_mods` VALUES (27764,12,14); -- INT +14
+INSERT INTO `item_mods` VALUES (27764,13,14); -- MND +14
+INSERT INTO `item_mods` VALUES (27764,14,14); -- CHR +14
+INSERT INTO `item_mods` VALUES (27764,54,25); -- FIRERES+25
+INSERT INTO `item_mods` VALUES (27764,55,25); -- ICERES+25
+INSERT INTO `item_mods` VALUES (27764,56,25); -- WINDRES+25
+INSERT INTO `item_mods` VALUES (27764,57,25); -- EARTHRES+25
+INSERT INTO `item_mods` VALUES (27764,58,25); -- THUNDERRES+25
+INSERT INTO `item_mods` VALUES (27764,59,25); -- WATERRES+25
+INSERT INTO `item_mods` VALUES (27764,60,25); -- LIGHTRES+25
+INSERT INTO `item_mods` VALUES (27764,61,25); -- DARKRES+25
+INSERT INTO `item_mods` VALUES (27764,25,20); -- Accuracy +20
+INSERT INTO `item_mods` VALUES (27764,30,20); -- Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (27764,68,36); -- Evasion +36
+INSERT INTO `item_mods` VALUES (27764,31,48); -- Magic Evasion +48
+INSERT INTO `item_mods` VALUES (27764,29,2); -- "Magic Def. Bonus" +2
+INSERT INTO `item_mods` VALUES (27764,384,71); -- Haste +7%
+INSERT INTO `item_mods` VALUES (27764,288,2); -- "Double Attack" +2
+INSERT INTO `item_mods` VALUES (27764,224,2); -- Enhances "Vermin Killer" effect
+INSERT INTO `item_mods` VALUES (27764,225,2); -- Enhances "Bird Killer" effect
+INSERT INTO `item_mods` VALUES (27764,226,2); -- Enhances "Amorph Killer" effect
+INSERT INTO `item_mods` VALUES (27764,227,2); -- Enhances "Lizard Killer" effect
+INSERT INTO `item_mods` VALUES (27764,228,2); -- Enhances "Aquan Killer" effect
+INSERT INTO `item_mods` VALUES (27764,229,2); -- Enhances "Plantiod Killer" effect
+INSERT INTO `item_mods` VALUES (27764,230,2); -- Enhances "Beast Killer" effect
+INSERT INTO `item_mods` VALUES (27764,231,2); -- Enhances "Undead Killer" effect
+INSERT INTO `item_mods` VALUES (27764,232,2); -- Enhances "Arcana Killer" effect
+INSERT INTO `item_mods` VALUES (27764,233,2); -- Enhances "Dragon Killer" effect
+INSERT INTO `item_mods` VALUES (27764,234,2); -- Enhances "Demon Killer" effect
+INSERT INTO `item_mods` VALUES (27764,235,2); -- Enhances "Empty Killer" effect
+INSERT INTO `item_mods` VALUES (27764,236,2); -- Enhances "Humanoid Killer" effect
+INSERT INTO `item_mods` VALUES (27764,237,2); -- Enhances "Lumorian Killer" effect
+INSERT INTO `item_mods` VALUES (27764,238,2); -- Enhances "Luminion Killer" effect
 INSERT INTO `item_mods` VALUES (27765,1,1);
 INSERT INTO `item_mods` VALUES (27766,1,95);
 INSERT INTO `item_mods` VALUES (27766,2,28);
@@ -41429,6 +41468,40 @@ INSERT INTO `item_mods` VALUES (27909,29,2);
 INSERT INTO `item_mods` VALUES (27909,31,47);
 INSERT INTO `item_mods` VALUES (27909,68,12);
 INSERT INTO `item_mods` VALUES (27909,384,20);
+INSERT INTO `item_mods` VALUES (27910,1,146); -- Founder's breastplate: Def+146
+INSERT INTO `item_mods` VALUES (27910,2,70); -- HP +70
+INSERT INTO `item_mods` VALUES (27910,8,30); -- STR +30
+INSERT INTO `item_mods` VALUES (27910,9,26); -- DEX +26
+INSERT INTO `item_mods` VALUES (27910,10,30); -- VIT +30
+INSERT INTO `item_mods` VALUES (27910,11,21); -- AGI +21
+INSERT INTO `item_mods` VALUES (27910,12,21); -- INT +21
+INSERT INTO `item_mods` VALUES (27910,13,21); -- MND +21
+INSERT INTO `item_mods` VALUES (27910,14,21); -- CHR +21
+INSERT INTO `item_mods` VALUES (27910,25,20); -- Accuracy +20
+INSERT INTO `item_mods` VALUES (27910,23,20); -- Attack +20
+INSERT INTO `item_mods` VALUES (27910,30,20); -- Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (27910,68,44); -- Evasion +44
+INSERT INTO `item_mods` VALUES (27910,31,59); -- Magic Evasion +59
+INSERT INTO `item_mods` VALUES (27910,28,20); -- "Magic Atk. Bonus" +20
+INSERT INTO `item_mods` VALUES (27910,29,4); -- "Magic Def. Bonus" +4
+INSERT INTO `item_mods` VALUES (27910,384,30); -- Haste +3%
+INSERT INTO `item_mods` VALUES (27910,288,3); -- "Double Attack" +3
+INSERT INTO `item_mods` VALUES (27910,224,2); -- Augments "Vermin Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,225,2); -- Augments "Bird Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,226,2); -- Augments "Amorph Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,227,2); -- Augments "Lizard Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,228,2); -- Augments "Aquan Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,229,2); -- Augments "Plantiod Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,230,2); -- Augments "Beast Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,231,2); -- Augments "Undead Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,232,2); -- Augments "Arcana Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,233,2); -- Augments "Dragon Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,234,2); -- Augments "Demon Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,235,2); -- Augments "Empty Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,236,2); -- Augments "Humanoid Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,237,2); -- Augments "Lumorian Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,238,2); -- Augments "Luminion Killer" effect?
+INSERT INTO `item_mods` VALUES (27910,160,2); -- Annuls damage taken +2%?
 INSERT INTO `item_mods` VALUES (27911,1,1);
 INSERT INTO `item_mods` VALUES (27912,1,118); -- Cizin Mail -- 118 Def
 INSERT INTO `item_mods` VALUES (27912,2,43); -- 43 HP
@@ -42941,6 +43014,38 @@ INSERT INTO `item_mods` VALUES (28048,31,21);
 INSERT INTO `item_mods` VALUES (28048,68,6);
 INSERT INTO `item_mods` VALUES (28048,374,8);
 INSERT INTO `item_mods` VALUES (28048,384,30);
+INSERT INTO `item_mods` VALUES (28049,1,102); -- Founder's gauntlets: DEF+102
+INSERT INTO `item_mods` VALUES (28049,2,31); -- HP +31
+INSERT INTO `item_mods` VALUES (28049,8,11); -- STR +11
+INSERT INTO `item_mods` VALUES (28049,9,34); -- DEX +34
+INSERT INTO `item_mods` VALUES (28049,10,34); -- VIT +34
+INSERT INTO `item_mods` VALUES (28049,11,10); -- AGI +10
+INSERT INTO `item_mods` VALUES (28049,12,8); -- INT +8
+INSERT INTO `item_mods` VALUES (28049,13,25); -- MND +25
+INSERT INTO `item_mods` VALUES (28049,14,19); -- CHR +19
+INSERT INTO `item_mods` VALUES (28049,23,20); -- Attack +20
+INSERT INTO `item_mods` VALUES (28049,68,24); -- Evasion +24
+INSERT INTO `item_mods` VALUES (28049,31,32); -- Magic Evasio +32
+INSERT INTO `item_mods` VALUES (28049,28,20); -- "Magic Atk. Bonus" +20
+INSERT INTO `item_mods` VALUES (28049,29,1); -- "Magic Def. Bonus" +1
+INSERT INTO `item_mods` VALUES (28049,384,41); -- Haste +4%
+INSERT INTO `item_mods` VALUES (28049,291,3); -- Counter +3
+INSERT INTO `item_mods` VALUES (28049,288,2); -- "Double Attack" +2
+INSERT INTO `item_mods` VALUES (28049,224,2); -- "Vermin Killer" effect
+INSERT INTO `item_mods` VALUES (28049,225,2); -- "Bird Killer" effect
+INSERT INTO `item_mods` VALUES (28049,226,2); -- "Amorph Killer" effect
+INSERT INTO `item_mods` VALUES (28049,227,2); -- "Lizard Killer" effect
+INSERT INTO `item_mods` VALUES (28049,228,2); -- "Aquan Killer" effect
+INSERT INTO `item_mods` VALUES (28049,229,2); -- "Plantiod Killer" effect
+INSERT INTO `item_mods` VALUES (28049,230,2); -- "Beast Killer" effect
+INSERT INTO `item_mods` VALUES (28049,231,2); -- "Undead Killer" effect
+INSERT INTO `item_mods` VALUES (28049,232,2); -- "Arcana Killer" effect
+INSERT INTO `item_mods` VALUES (28049,233,2); -- "Dragon Killer" effect
+INSERT INTO `item_mods` VALUES (28049,234,2); -- "Demon Killer" effect
+INSERT INTO `item_mods` VALUES (28049,235,2); -- "Empty Killer" effect
+INSERT INTO `item_mods` VALUES (28049,236,2); -- "Humanoid Killer" effect
+INSERT INTO `item_mods` VALUES (28049,237,2); -- "Lumorian Killer" effect
+INSERT INTO `item_mods` VALUES (28049,238,2); -- "Luminion Killer" effect
 INSERT INTO `item_mods` VALUES (28050,1,74);
 INSERT INTO `item_mods` VALUES (28050,2,19);
 INSERT INTO `item_mods` VALUES (28050,8,9);
@@ -44415,6 +44520,37 @@ INSERT INTO `item_mods` VALUES (28190,29,2);
 INSERT INTO `item_mods` VALUES (28190,31,62);
 INSERT INTO `item_mods` VALUES (28190,68,9);
 INSERT INTO `item_mods` VALUES (28190,384,30);
+INSERT INTO `item_mods` VALUES (28191,1,127); -- Founder's hose: DEF+127
+INSERT INTO `item_mods` VALUES (28191,2,54); -- HP +54
+INSERT INTO `item_mods` VALUES (28191,8,40); -- STR +40
+INSERT INTO `item_mods` VALUES (28191,10,28); -- VIT +28
+INSERT INTO `item_mods` VALUES (28191,11,17); -- AGI +17
+INSERT INTO `item_mods` VALUES (28191,12,25); -- INT 25
+INSERT INTO `item_mods` VALUES (28191,13,15); -- MND +15
+INSERT INTO `item_mods` VALUES (28191,14,12); -- CHR +12
+INSERT INTO `item_mods` VALUES (28191,23,20); -- Attack +20
+INSERT INTO `item_mods` VALUES (28191,30,20); -- Magic Accuracy +20
+INSERT INTO `item_mods` VALUES (28191,68,24); -- Evasion +24
+INSERT INTO `item_mods` VALUES (28191,31,80); -- Magic Evasion +80
+INSERT INTO `item_mods` VALUES (28191,29,20); -- "Magic Def. Bonus" +20
+INSERT INTO `item_mods` VALUES (28191,384,51); -- Haste +5%
+INSERT INTO `item_mods` VALUES (28191,288,2); -- "Double Attack" +2
+INSERT INTO `item_mods` VALUES (28191,168,30); -- Spell interruption rate down 30%
+INSERT INTO `item_mods` VALUES (28191,224,2); -- Enhances "Vermin Killer" effect
+INSERT INTO `item_mods` VALUES (28191,225,2); -- Enhances "Bird Killer" effect
+INSERT INTO `item_mods` VALUES (28191,226,2); -- Enhances "Amorph Killer" effect
+INSERT INTO `item_mods` VALUES (28191,227,2); -- Enhances "Lizard Killer" effect
+INSERT INTO `item_mods` VALUES (28191,228,2); -- Enhances "Aquan Killer" effect
+INSERT INTO `item_mods` VALUES (28191,229,2); -- Enhances "Plantiod Killer" effect
+INSERT INTO `item_mods` VALUES (28191,230,2); -- Enhances "Beast Killer" effect
+INSERT INTO `item_mods` VALUES (28191,231,2); -- Enhances "Undead Killer" effect
+INSERT INTO `item_mods` VALUES (28191,232,2); -- Enhances "Arcana Killer" effect
+INSERT INTO `item_mods` VALUES (28191,233,2); -- Enhances "Dragon Killer" effect
+INSERT INTO `item_mods` VALUES (28191,234,2); -- Enhances "Demon Killer" effect
+INSERT INTO `item_mods` VALUES (28191,235,2); -- Enhances "Empty Killer" effect
+INSERT INTO `item_mods` VALUES (28191,236,2); -- Enhances "Humanoid Killer" effect
+INSERT INTO `item_mods` VALUES (28191,237,2); -- Enhances "Lumorian Killer" effect
+INSERT INTO `item_mods` VALUES (28191,238,2); -- Enhances "Luminion Killer" effect
 INSERT INTO `item_mods` VALUES (28192,1,103); -- Cizin Breeches -- 103 Def
 INSERT INTO `item_mods` VALUES (28192,2,35); -- 35 HP
 INSERT INTO `item_mods` VALUES (28192,8,28); -- 28 STR
