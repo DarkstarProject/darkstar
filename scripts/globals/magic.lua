@@ -75,31 +75,31 @@ require("scripts/globals/settings");
 SOFT_CAP = 60; --guesstimated
 HARD_CAP = 120; --guesstimated
 
-function calculateMagicDamage(V,M,player,spell,target,skilltype,atttype,hasMultipleTargetReduction)
+function calculateMagicDamage(caster, target, spell, params)
 
-    local dint = player:getStat(atttype) - target:getStat(atttype);
-    local dmg = V;
+    local dINT = caster:getStat(params.attribute) - target:getStat(params.attribute);
+    local dmg = params.dmg;
 
-    if (dint<=0) then --ifdINT penalises, it's always M=1
-        dmg = dmg + dint;
+    if (dINT <= 0) then --if dINT penalises, it's always M=1
+        dmg = dmg + dINT;
         if (dmg <= 0) then --dINT penalty cannot result in negative damage (target absorption)
             return 0;
         end
-    elseif (dint > 0 and dint <= SOFT_CAP) then --The standard calc, most spells hit this
-        dmg = dmg + (dint*M);
-    elseif (dint > 0 and dint > SOFT_CAP and dint < HARD_CAP) then --After SOFT_CAP, INT is only half effective
-        dmg = dmg + SOFT_CAP*M + ((dint-SOFT_CAP)*M)/2;
-    elseif (dint > 0 and dint > SOFT_CAP and dint >= HARD_CAP) then --After HARD_CAP, INT has no effect.
-        dmg = dmg + HARD_CAP*M;
+    elseif (dINT > 0 and dINT <= SOFT_CAP) then --The standard calc, most spells hit this
+        dmg = dmg + (dINT * params.multiplier);
+    elseif (dINT > 0 and dINT > SOFT_CAP and dINT < HARD_CAP) then --After SOFT_CAP, INT is only half effective
+        dmg = dmg + SOFT_CAP * params.multiplier + ((dINT - SOFT_CAP) * params.multiplier) / 2;
+    elseif (dINT > 0 and dINT > SOFT_CAP and dINT >= HARD_CAP) then --After HARD_CAP, INT has no effect.
+        dmg = dmg + HARD_CAP * params.multiplier;
     end
 
 
-    if (skilltype == DIVINE_MAGIC_SKILL and target:isUndead()) then
+    if (params.skillType == DIVINE_MAGIC_SKILL and target:isUndead()) then
         -- 150% bonus damage
         dmg = dmg * 1.5;
     end
 
-    -- printf("dmg: %d dint: %d\n", dmg, dint);
+    -- printf("dmg: %d dINT: %d\n", dmg, dINT);
 
     return dmg;
 

@@ -3,7 +3,7 @@
 --     Deals wind damage that gradually reduces
 --  a target's HP. Damage dealt is greatly affected by the weather.
 --------------------------------------
- 
+
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
@@ -21,7 +21,14 @@ function onSpellCast(caster,target,spell)
     local merit = caster:getMerit(MERIT_HELIX_MAGIC_ACC_ATT);
 
     -- calculate raw damage
-    local dmg = calculateMagicDamage(35,1,caster,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+    local params = {};
+    params.dmg = 35;
+    params.multiplier = 1;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.attribute = MOD_INT;
+    params.hasMultipleTargetReduction = false;
+
+    local dmg = calculateMagicDamage(caster, target, spell, params);
     dmg = dmg + caster:getMod(MOD_HELIX_EFFECT);
     -- get resist multiplier (1x if no resist)
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,merit*3);

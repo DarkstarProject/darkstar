@@ -64,7 +64,14 @@ function onSpellCast(caster,target,spell)
 
     --local dmg = doElementalNuke(939,2.335,caster,spell,target,false,1.0);
     --calculate raw damage
-    local dmg = calculateMagicDamage(939,2.335,caster,spell,target,ELEMENTAL_MAGIC_SKILL,MOD_INT,false);
+    local params = {};
+    params.dmg = 939;
+    params.multiplier = 2.335;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.attribute = MOD_INT;
+    params.hasMultipleTargetReduction = false;
+
+    local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
     local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,1.0);
     --get the resisted damage
