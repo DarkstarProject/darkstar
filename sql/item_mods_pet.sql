@@ -449,7 +449,7 @@ INSERT INTO `item_mods_pet` VALUES (27180,30,10,1);       -- Avatar: Magic Accur
 INSERT INTO `item_mods_pet` VALUES (27181,30,13,1);       -- Avatar: Magic Accuracy +13
 -- INSERT INTO `item_mods_pet` VALUES (27181,???,???,1);  -- Avatar: Shortens magic recast time for spirits
 
--- Beckoners Spats 
+-- Beckoners Spats
 INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);	-- Avatar: TP Bonus +550
 
 -- Beckoners Spats +1
@@ -547,4 +547,27 @@ INSERT INTO `item_mods_pet` VALUES (20944,161,3,0); -- Wyvern: Physical damage t
 INSERT INTO `item_mods_pet` VALUES (28025,25,20,0); -- Pet: Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,26,20,0); -- Pet: Ranged Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,30,20,0); -- Pet: Magic Accuracy+20
-INSERT INTO `item_mods_pet` VALUES (28025,384,60,0); -- Pet: Haste+6%
+INSERT INTO `item_mods_pet` VALUES (28025,384,61,0); -- Pet: Haste+6%
+
+-- Marquetry staff
+INSERT INTO `item_mods_pet` VALUES (21155,30,35,1); -- Avatar: Magic Accuracy+35 un
+INSERT INTO `item_mods_pet` VALUES (21155,28,110,1); -- Avatar:"Magic Atk. Bonus"+110
+-- INSERT INTO `item_mods_pet` VALUES (21155,Blood Pact,3,1); -- Avatar:"Blood Pact" damage +3 [unassign mod]
+
+-- Frazil Staff
+INSERT INTO `item_mods_pet` VALUES (21167,30,35,1); -- Avatar: Magic Accuracy+35
+INSERT INTO `item_mods_pet` VALUES (21167,28,110,1); -- Avatar:"Magic Atk. Bonus"+110
+-- INSERT INTO `item_mods_pet` VALUES (21167,Blood Pact,3,1); -- Avatar:"Blood Pact" damage +3 [unassign mod]
+INSERT INTO `item_mods_pet` VALUES (21167,27,5,1); -- Avatar: Enmity+5
+
+-- Ukko Sash
+INSERT INTO `item_mods_pet` VALUES (28432,25,15,3); -- Automaton: Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (28432,26,15,3); -- Automaton: Ranged Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (28432,30,15,3); -- Automaton: Magic Accuracy+15
+INSERT INTO `item_mods_pet` VALUES (28432,384,51,3); -- Automaton: Haste+5%
+INSERT INTO `item_mods_pet` VALUES (28432,170,5,3); -- Automaton: "Fast Cast"+5%
+
+-- Rimeice Earring
+INSERT INTO `item_mods_pet` VALUES (28495,384,30,0); -- Pet: Haste+3%
+INSERT INTO `item_mods_pet` VALUES (28495,27,5,0); -- Pet: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (28495,160,1,0); -- Pet: Damage taken -1%
