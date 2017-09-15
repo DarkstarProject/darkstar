@@ -304,7 +304,7 @@ end;
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
 function applyResistance(player, spell, target, params)
-    return applyResistanceEffect(player, spell, target, params, nil);
+    return applyResistanceEffect(player, spell, target, params);
 end;
 
 -- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
@@ -1123,8 +1123,12 @@ function doElementalNuke(caster, spell, target, spellParams)
     end
 
     --get resist multiplier (1x if no resist)
-    local diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistance(caster, target, spell, diff, ELEMENTAL_MAGIC_SKILL, resistBonus);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.resistBonus = resistBonus;
+
+    local resist = applyResistance(caster, target, spell, params);
 
     --get the resisted damage
     DMG = DMG * resist;
@@ -1221,7 +1225,7 @@ function doDivineBanishNuke(caster, target, spell, params)
     local V = params.dmg;
     local M = params.multiplier;
     --calculate raw damage
-    local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
+    local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
