@@ -27,13 +27,15 @@ function onSpellCast(caster,target,spell)
 
     local params = {};
 
-    params.dmg = 134,1.5;
+    params.dmg = 134;
 
-    params.multiplier = caster;
+    params.multiplier = 1.5;
 
-    params.hasMultipleTargetReduction = bonusAcc;
+    params.hasMultipleTargetReduction = false;
 
-    params.resistBonus = bonusMab;
+    params.resistBonus = bonusAcc;
+
+    params.mabBonus = bonusMab;
 
     dmg = doNinjutsuNuke(caster, target, spell, params);
     handleNinjutsuDebuff(caster,target,spell,30,duration,MOD_ICERES);
