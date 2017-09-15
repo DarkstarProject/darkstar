@@ -175,7 +175,7 @@ inline int32 CLuaSpell::tookEffect(lua_State* L)
 inline int32 CLuaSpell::getID(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaSpell == nullptr);
-    lua_pushinteger(L, m_PLuaSpell->getID());
+    lua_pushinteger(L, static_cast<uint16>(m_PLuaSpell->getID()));
     return 1;
 }
 

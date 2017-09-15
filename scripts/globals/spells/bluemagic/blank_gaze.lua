@@ -30,9 +30,13 @@ end;
 -----------------------------------------
 
 function onSpellCast(caster,target,spell)
-    
+
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local params = {};
+    params.attribute = MOD_INT;
+    params.skillType = BLUE_SKILL;
+
+    local resist = applyResistance(caster, target, spell, params);
     local effect = EFFECT_NONE;
 
     if (resist > 0.0625) then

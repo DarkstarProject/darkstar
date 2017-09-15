@@ -30,7 +30,7 @@ class CBlueSpell : public CSpell
 {
 public:
 
-    CBlueSpell(uint16 id);
+    CBlueSpell(SpellID id);
     virtual std::unique_ptr<CSpell> clone() override;
 
     uint16		getMonsterSkillId();
@@ -54,13 +54,13 @@ public:
 
 private:
 
-	uint16		m_monsterSkillId;						// matching skill for a blue spell
-    uint8       m_setPoints;
-    uint8       m_ecosystem;
-    uint8       m_traitCategory;
-    uint8       m_traitWeight;
-    uint8       m_PrimarySkillchain;
-    uint8       m_SecondarySkillchain;
+	uint16		m_monsterSkillId {};						// matching skill for a blue spell
+    uint8       m_setPoints {};
+    uint8       m_ecosystem {};
+    uint8       m_traitCategory {};
+    uint8       m_traitWeight {};
+    uint8       m_PrimarySkillchain {};
+    uint8       m_SecondarySkillchain {};
 
 };
 

@@ -9,11 +9,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
-    pet:addMod(MOD_MATT, 15)
+    pet:addMod(MOD_MATT, 20)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_MATT, 15)
+    pet:delMod(MOD_MATT, 20)
 end
 
 function onManeuverGain(pet,maneuvers)

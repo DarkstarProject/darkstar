@@ -27,6 +27,7 @@
 #include "attack.h"
 #include "status_effect_container.h"
 #include "items/item_weapon.h"
+#include "utils/puppetutils.h"
 
 #include <math.h>
 
@@ -468,6 +469,12 @@ void CAttack::ProcessDamage()
     if (m_damage > 0)
     {
         charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
+
+        if (m_attacker->objtype == TYPE_PET && m_attacker->PMaster && m_attacker->PMaster->objtype == TYPE_PC &&
+            static_cast<CPetEntity*>(m_attacker)->getPetType() == PETTYPE_AUTOMATON)
+        {
+            puppetutils::TrySkillUP((CAutomatonEntity*)m_attacker, SKILL_AME, m_victim->GetMLevel());
+        }
     }
     m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);
 }

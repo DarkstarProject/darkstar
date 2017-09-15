@@ -22,5 +22,6 @@ end;
 -----------------------------------
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_HOLY_CIRCLE,1,0,60);
+    local duration = 180 + player:getMod(MOD_HOLY_CIRCLE_DURATION);
+    target:addStatusEffect(EFFECT_HOLY_CIRCLE,15,0,duration);
 end;

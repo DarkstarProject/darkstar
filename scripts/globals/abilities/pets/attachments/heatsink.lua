@@ -1,5 +1,5 @@
 -----------------------------------
--- Attachment: Inhibitor
+-- Attachment: Heatsink
 -----------------------------------
 
 require("scripts/globals/status");
@@ -9,29 +9,29 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEquip(pet)
-    pet:addMod(MOD_STORE_TP, 5)
+    pet:addMod(MOD_BURDEN_DECAY, 1)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_STORE_TP, 5)
+    pet:delMod(MOD_BURDEN_DECAY, 1)
 end
 
 function onManeuverGain(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:addMod(MOD_STORE_TP, 10);
+        pet:addMod(MOD_BURDEN_DECAY, 2);
     elseif (maneuvers == 2) then
-        pet:addMod(MOD_STORE_TP, 10); 
+        pet:addMod(MOD_BURDEN_DECAY, 1);
     elseif (maneuvers == 3) then
-        pet:addMod(MOD_STORE_TP, 15);
+        pet:addMod(MOD_BURDEN_DECAY, 1);
     end
 end
 
 function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:delMod(MOD_STORE_TP, 10);
+        pet:delMod(MOD_BURDEN_DECAY, 2);
     elseif (maneuvers == 2) then
-        pet:delMod(MOD_STORE_TP, 10); 
+        pet:delMod(MOD_BURDEN_DECAY, 1);
     elseif (maneuvers == 3) then
-        pet:delMod(MOD_STORE_TP, 15);
+        pet:delMod(MOD_BURDEN_DECAY, 1);
     end
 end
