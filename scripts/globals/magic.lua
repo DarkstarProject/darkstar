@@ -303,15 +303,25 @@ end;
 -- Output:
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
-function applyResistance(player,spell,target,diff,skill,bonus)
-    return applyResistanceEffect(player, spell, target, diff, skill, bonus, nil);
+function applyResistance(player, spell, target, params)
+    return applyResistanceEffect(player, spell, target, params, nil);
 end;
 
 -- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
 -- Output:
 -- The factor to multiply down duration (1/2 1/4 1/8 1/16)
-
-function applyResistanceEffect(player,spell,target,diff,skill,bonus,effect)
+--[[
+local params = {};
+params.attribute = $2;
+params.skillType = $3;
+params.bonus = $4;
+params.effect = $5;
+]]
+function applyResistanceEffect(caster, target, spell, params)
+    local diff = params.diff or (caster:getStat(params.attribute) - target:getStat(params.attribute));
+    local skill = params.skillType;
+    local bonus = params.bonus;
+    local effect = params.effect;
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.

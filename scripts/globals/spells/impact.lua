@@ -73,7 +73,12 @@ function onSpellCast(caster,target,spell)
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL,1.0);
+    local params = {};
+    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+    params.attribute = MOD_INT;
+    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.bonus = 1.0;
+    resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

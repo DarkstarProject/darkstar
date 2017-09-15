@@ -108,7 +108,12 @@ function onSpellCast(caster,target,spell)
             params.hasMultipleTargetReduction = false;
 
             local dmg = calculateMagicDamage(caster, target, spell, params)*0.5;
-            local resist = applyResistance(caster,spell,target,caster:getStat(MOD_MND)-target:getStat(MOD_MND),HEALING_MAGIC_SKILL,1.0);
+            local params = {};
+            params.diff = caster:getStat(MOD_MND)-target:getStat(MOD_MND);
+            params.attribute = MOD_MND;
+            params.skillType = HEALING_MAGIC_SKILL;
+            params.bonus = 1.0;
+            resist = applyResistance(caster, target, spell, params);
             dmg = dmg*resist;
             dmg = addBonuses(caster,spell,target,dmg);
             dmg = adjustForTarget(target,dmg,spell:getElement());
