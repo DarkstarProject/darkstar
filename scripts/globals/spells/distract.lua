@@ -22,7 +22,7 @@ function onSpellCast(caster,target,spell)
     local power = 35;
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_EVASION_DOWN);
+    local duration = 120 * applyResistanceEffect(caster,spell,target, MOD_MND,35,0,EFFECT_EVASION_DOWN);
 
     if (duration >= 60) then -- Do it!
         if (target:addStatusEffect(EFFECT_EVASION_DOWN,power,0,duration)) then

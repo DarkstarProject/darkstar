@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     local power = 60; -- 60% reduction
     
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_WEIGHT);
+    local duration = 180 * applyResistanceEffect(caster,spell,target, MOD_INT,35,0,EFFECT_WEIGHT);
 
     if (duration >= 60) then --Do it!
     

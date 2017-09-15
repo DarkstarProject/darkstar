@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     local subPower = math.floor( targetMagicAccuracy * (power / 100) );
 
     --Duration, including resistance.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_ADDLE);
+    local duration = 180 * applyResistanceEffect(caster,spell,target, MOD_MND,35,0,EFFECT_ADDLE);
 
     if (duration >= 60) then -- Do it!
         if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then

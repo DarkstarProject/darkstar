@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
     end
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180 * applyResistanceEffect(caster,spell,target,dINT,35,merits*2,EFFECT_BLINDNESS);
+    local duration = 180 * applyResistanceEffect(caster,spell,target, MOD_INT,35,merits*2,EFFECT_BLINDNESS);
 
     if (duration >= 90) then --Do it!
     

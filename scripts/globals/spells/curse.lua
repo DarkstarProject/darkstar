@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
     power = 50;
 
     -- Duration, including resistance.  Unconfirmed.
-    duration = 300 * applyResistanceEffect(caster,spell,target,dINT,35,0,EFFECT_CURSE_I);
+    duration = 300 * applyResistanceEffect(caster,spell,target, MOD_INT,35,0,EFFECT_CURSE_I);
 
     if (duration >= 150) then --Do it!
         if (target:addStatusEffect(EFFECT_CURSE_I,power,0,duration)) then

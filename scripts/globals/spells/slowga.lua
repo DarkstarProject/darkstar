@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
     end
 
     --Duration, including resistance.
-    local duration = 120 * applyResistanceEffect(caster,spell,target,dMND,35,0,EFFECT_SLOW);
+    local duration = 120 * applyResistanceEffect(caster,spell,target, MOD_MND,35,0,EFFECT_SLOW);
     if (duration >= 60) then --Do it!
 
         if (target:addStatusEffect(EFFECT_SLOW,power,0,duration, 0, 1)) then

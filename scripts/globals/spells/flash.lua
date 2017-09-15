@@ -18,7 +18,19 @@ function onSpellCast(caster,target,spell)
     -- Pull base stats.
     local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
 
-    local resist = applyResistance(caster,spell,target,dINT,DIVINE_MAGIC_SKILL, 150);
+    local params = {};
+
+    params.diff = nil;
+
+    params.attribute = MOD_INT;
+
+    params.skillType = DIVINE_MAGIC_SKILL;
+
+    params.bonus =  150;
+
+    params.effect = nil;
+
+    resist = applyResistance(caster, target, spell, params);
     local duration = 12 * resist;
 
     if (resist > 0.0625) then

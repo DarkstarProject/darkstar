@@ -15,7 +15,13 @@ function onSpellCast(caster,target,spell)
     local duration = 5;
 
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistanceEffect(caster,spell,target,dINT,37,0,EFFECT_STUN);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 37;
+    params.bonus = 0;
+    params.effect = EFFECT_STUN;
+    resist = applyResistanceEffect(caster, target, spell, params);
     if (resist <= (1/16)) then
         -- resisted!
         spell:setMsg(85);

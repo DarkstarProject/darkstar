@@ -16,7 +16,13 @@ function onSpellCast(caster,target,spell)
     local pINT = caster:getStat(MOD_INT);
     local mINT = target:getStat(MOD_INT);
     local dINT = (pINT - mINT);
-    local resm = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,EFFECT_SLEEP_I);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.bonus = 0;
+    params.effect = EFFECT_SLEEP_I;
+    resm = applyResistanceEffect(caster, target, spell, params);
 
     if (caster:isMob()) then
         if (caster:getPool() == 5310) then -- Amnaf (Flayer)

@@ -21,7 +21,13 @@ end;
 
 function onSpellCast(caster,target,spell)
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistance(caster,spell,target,dINT,37,0);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = 37;
+    params.bonus = 0;
+    params.effect = nil;
+    resist = applyResistance(caster, target, spell, params);
     local STR_Loss = ((target:getStat(MOD_STR) / 100) * 20); -- Should be 20%
     local DEX_Loss = ((target:getStat(MOD_DEX) / 100) * 20);
     local VIT_Loss = ((target:getStat(MOD_VIT) / 100) * 20);

@@ -27,7 +27,19 @@ function onSpellCast(caster,target,spell)
         power = 15;
     end
 
-    local resist = applyResistanceEffect(caster,spell,target,dINT,ENFEEBLING_MAGIC_SKILL,0,effect);
+    local params = {};
+
+    params.diff = nil;
+
+    params.attribute = MOD_INT;
+
+    params.skillType = ENFEEBLING_MAGIC_SKILL;
+
+    params.bonus = 0;
+
+    params.effect = effect;
+
+    resist = applyResistanceEffect(caster, target, spell, params);
     if (resist == 1 or resist == 0.5) then -- effect taken
         duration = duration * resist;
 
