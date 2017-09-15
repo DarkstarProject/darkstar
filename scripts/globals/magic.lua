@@ -64,8 +64,8 @@ require("scripts/globals/settings");
 --Calculates magic damage using the standard magic damage calc.
 --Does NOT handle resistance.
 -- Inputs:
--- V - The base damage of the spell
--- M - The INT multiplier of the spell
+-- dmg - The base damage of the spell
+-- multiplier - The INT multiplier of the spell
 -- skilltype - The skill ID of the spell.
 -- atttype - The attribute type (usually MOD_INT , except for things like Banish which is MOD_MND)
 -- hasMultipleTargetReduction - true ifdamage is reduced on AoE. False otherwise (e.g. Charged Whisker vs -ga3 spells)
@@ -325,21 +325,21 @@ function applyResistanceEffect(caster, target, spell, params)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == ENFEEBLING_MAGIC_SKILL and player:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
-            player:delStatusEffect(EFFECT_STYMIE);
+        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
+            caster:delStatusEffect(EFFECT_STYMIE);
             return 1;
         end
     end
 
-    if (skill == SINGING_SKILL and player:hasStatusEffect(EFFECT_TROUBADOUR)) then
-        if (math.random(0,99) < player:getMerit(MERIT_TROUBADOUR)-25) then
+    if (skill == SINGING_SKILL and caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        if (math.random(0,99) < caster:getMerit(MERIT_TROUBADOUR)-25) then
             return 1.0;
         end
     end
 
     local element = spell:getElement();
     local percentBonus = 0;
-    local magicaccbonus = getSpellBonusAcc(player, target, spell);
+    local magicaccbonus = getSpellBonusAcc(caster, target, spell);
 
     if (diff > 10) then
         magicaccbonus = magicaccbonus + 10 + (diff - 10)/2;
@@ -355,7 +355,7 @@ function applyResistanceEffect(caster, target, spell, params)
         percentBonus = percentBonus - getEffectResistance(target, effect);
     end
 
-    local p = getMagicHitRate(player, target, skill, element, percentBonus, magicaccbonus);
+    local p = getMagicHitRate(caster, target, skill, element, percentBonus, magicaccbonus);
 
     return getMagicResist(p);
 end;
@@ -1018,7 +1018,12 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     -- print("staff=" .. staff);
     local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
     -- print("dCHR=" .. dCHR);
-    local resm = applyResistance(caster, spell, target, dCHR, SINGING_SKILL, staff);
+    local params = {};
+    params.attribute = MOD_CHR;
+    params.skillType = SINGING_SKILL;
+    params.bonus = staff;
+
+    local resm = applyResistance(caster, target, spell, params);
     -- print("rsem=" .. resm);
 
     if (resm < 0.5) then
@@ -1119,7 +1124,7 @@ function doElementalNuke(caster, spell, target, spellParams)
 
     --get resist multiplier (1x if no resist)
     local diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    local resist = applyResistance(caster, spell, target, diff, ELEMENTAL_MAGIC_SKILL, resistBonus);
+    local resist = applyResistance(caster, target, spell, diff, ELEMENTAL_MAGIC_SKILL, resistBonus);
 
     --get the resisted damage
     DMG = DMG * resist;
@@ -1137,25 +1142,46 @@ function doElementalNuke(caster, spell, target, spellParams)
     return DMG;
 end
 
-function doDivineNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
-    return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,DIVINE_MAGIC_SKILL,MOD_MND);
+function doDivineNuke(caster, target, spell, params)
+    params.skillType = DIVINE_MAGIC_SKILL;
+    params.attribute = MOD_MND;
+
+    return doNuke(caster, target, spell, params);
 end
 
-function doNinjutsuNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,mabBonus)
+function doNinjutsuNuke(caster, target, spell, params)
+    local V = params.dmg;
+    local M = params.mutliplier;
+    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
+    local resistBonus = params.resistBonus;
+    local mabBonus = params.mabBonus;
+
     mabBonus = mabBonus or 0;
 
     mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
     if (caster:hasStatusEffect(EFFECT_INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
         mabBonus = mabBonus + caster:getStatusEffect(EFFECT_INNIN):getPower();
     end
-    return doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,NINJUTSU_SKILL,MOD_INT,mabBonus);
+    params.skillType = NINJUTSU_SKILL;
+    params.attribute = MOD_INT;
+    params.mabBonus = mabBonus;
+
+    return doNuke(caster, target, spell, params);
 end
 
-function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,skill,modStat,mabBonus)
+function doNuke(caster, target, spell, params)
+    local V = params.dmg;
+    local M = params.mutliplier;
+    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
+    local resistBonus = params.resistBonus;
+    local mabBonus = params.mabBonus;
+    local modStat = params.attribute;
+    local skill = params.skillType;
+
     --calculate raw damage
-    local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
+    local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
     if (skill == NINJUTSU_SKILL) then
@@ -1187,14 +1213,17 @@ function doNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus,s
     return dmg;
 end
 
-function doDivineBanishNuke(V,M,caster,spell,target,hasMultipleTargetReduction,resistBonus)
+function doDivineBanishNuke(caster, target, spell, params)
     local skill = DIVINE_MAGIC_SKILL;
     local modStat = MOD_MND;
-
+    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
+    local resistBonus = params.resistBonus;
+    local V = params.dmg;
+    local M = params.multiplier;
     --calculate raw damage
     local dmg = calculateMagicDamage(V,M,caster,spell,target,skill,modStat,hasMultipleTargetReduction);
     --get resist multiplier (1x if no resist)
-    local resist = applyResistance(caster,spell,target,caster:getStat(modStat)-target:getStat(modStat),skill,resistBonus);
+    local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
 

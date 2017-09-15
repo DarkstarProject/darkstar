@@ -68,7 +68,7 @@ function onSpellCast(caster,target,spell)
 
     --diverting use of doElementalNuke till spellParams is implemented for this spell
 
-    --local dmg = doElementalNuke(939,2.335,caster,spell,target,false,1.0);
+local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleTargetReduction = false;params.resistBonus = 1.0;   --local dmg = doElementalNuke(caster, target, spell, params);
     --calculate raw damage
     local params = {};
     params.dmg = 939;
