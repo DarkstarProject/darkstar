@@ -27,7 +27,7 @@ function onTrigger(player,npc)
 
     local Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 
-    if (Hearts == QUEST_ACCEPTED) then
+    if (Hearts == QUEST_ACCEPTED and player:hasKeyItem(BOUQUETS_FOR_THE_PIONEERS)) then
         player:startEvent(0x000b);
     end
 
