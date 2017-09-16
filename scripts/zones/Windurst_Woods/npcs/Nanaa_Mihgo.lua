@@ -179,6 +179,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 0x005D) then -- start quest "rock racketeer"
         player:addQuest(WINDURST,ROCK_RACKETTER);
         player:addKeyItem(SHARP_GRAY_STONE);
+        player:messageSpecial(KEYITEM_OBTAINED,SHARP_GRAY_STONE);
     elseif (csid == 0x0062) then
         player:delGil(10*GIL_RATE);
         player:setVar("rockracketeer_sold",3);
