@@ -482,6 +482,17 @@ void SmallPacket0x011(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CEquipPacket(PChar->equip[i], i, PChar->equipLoc[i]));
         }
     }
+
+    // todo: kill player til theyre dead and bsod
+    const int8* fmtQuery = "SELECT version_mismatch FROM accounts_sessions WHERE charid = %u";
+    int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
+    if (ret != SQL_ERROR && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        if ((bool)Sql_GetUIntData(SqlHandle, 0))
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
+        else
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs at DSP bugtracker if !revision output matches latest commit hash and server admin confirms the bug occurs on stock DSP."));
+    }
     return;
 }
 
