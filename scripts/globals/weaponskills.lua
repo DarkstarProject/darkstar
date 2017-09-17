@@ -181,7 +181,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(MOD_ZANSHIN)/100 or isSneakValid)
                 and not target:hasStatusEffect(EFFECT_PERFECT_DODGE) and not target:hasStatusEffect(EFFECT_ALL_MISS) ) then -- it hit
-            if not shadowAbsorbed(target) then
+            if not shadowAbsorb(target) then
                 pdif = generatePdif (cratio[1], cratio[2], true);
                 if (params.canCrit) then
                     critchance = math.random();
