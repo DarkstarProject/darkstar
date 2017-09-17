@@ -39,7 +39,7 @@ local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
     elseif (C3 == QUEST_ACCEPTED) then
         count = trade:getItemCount();
         if (trade:hasItemQty(551,1) and count == 1) then
-            player:startEvent(0x0145,0,6000,5000); -- finish C3
+            player:startEvent(0x0145,0,20000,5000); -- finish C3
         end
 
     end
@@ -108,9 +108,9 @@ local MissionStatus = player:getVar("MissionStatus");
 
     -- Can Cardians Cry?
     elseif (ANC3K == QUEST_COMPLETED and C3 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 5) then
-        player:startEvent(0x013F,0,6000); -- start C3
+        player:startEvent(0x013F,0,20000); -- start C3
     elseif (C3 == QUEST_ACCEPTED) then
-        player:startEvent(0x0140,0,6000); -- C3 reminder
+        player:startEvent(0x0140,0,20000); -- C3 reminder
     elseif (C3 == QUEST_COMPLETED) then
         player:startEvent(0x014A); -- new dialog after C3
 
@@ -212,5 +212,14 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
         player:messageSpecial(KEYITEM_LOST,LETTER_FROM_ZONPAZIPPA);
         player:delKeyItem(LETTER_FROM_ZONPAZIPPA);
+
+    -- Can Cardians Cry
+    elseif (csid == 0x013f) then
+        player:addQuest(WINDURST,CAN_CARDIANS_CRY);
+    elseif (csid == 0x0145) then
+        player:completeQuest(WINDURST,CAN_CARDIANS_CRY);
+        player:addGil(GIL_RATE*5000);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
+        player:tradeComplete();
     end
 end;
