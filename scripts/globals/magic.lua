@@ -1149,7 +1149,7 @@ end
 function doDivineNuke(caster, target, spell, params)
     params.skillType = DIVINE_MAGIC_SKILL;
     params.attribute = MOD_MND;
-    print("ass")
+
     return doNuke(caster, target, spell, params);
 end
 
