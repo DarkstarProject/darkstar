@@ -283,7 +283,7 @@ end;
 function getBytePos(s,needle)
     local i;
     local b;
-    for i=1,string.len(s),1 do 
+    for i=1,string.len(s),1 do
         if (string.byte(s, i) == needle) then
             return i;
         end
@@ -331,7 +331,7 @@ function onTrigger(player, bytes)
     else
         -- destination is a zone ID.
         zone = tonumber(bytes);
-        if (zone == nil or zone < 0 or zone > 288) then
+        if (zone == nil or zone < 0 or zone > 293) then
             error(player, "Invalid zone ID.");
             return;
         end
