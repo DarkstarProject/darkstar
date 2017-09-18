@@ -30,7 +30,7 @@ end;
 -- onUseAbility
 -----------------------------------
 
-function onUseAbility(player,target,ability)
+function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
     local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
@@ -38,42 +38,49 @@ function onUseAbility(player,target,ability)
     dmg = dmg * applyResistanceAbility(player,target,ELE_WIND,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_WIND);
     
-    dmg = takeWeaponskillDamage(target, player, {}, true, dmg, SLOT_RANGED, 1, 0, nil);
-    
-    local effects = {};
-    local counter = 1;
-    local choke = target:getStatusEffect(EFFECT_CHOKE);
-    if (choke ~= nil) then
-        effects[counter] = choke;
-        counter = counter + 1;
+    local shadowsAbsorbed = 0
+    if shadowAbsorb(target) then
+        shadowsAbsorbed = 1
     end
-    local threnody = target:getStatusEffect(EFFECT_THRENODY);
-    if (threnody ~= nil and threnody:getSubPower() == MOD_EARTHRES) then
-        effects[counter] = threnody;
-        counter = counter + 1;
-    end
-    --TODO: Frightful Roar
-    --[[local frightfulRoar = target:getStatusEffect(EFFECT_);
-    if (frightfulRoar ~= nil) then
-        effects[counter] = frightfulRoar;
-        counter = counter + 1;
-    end]]
+
+    dmg = takeAbilityDamage(target, player, {}, true, dmg, SLOT_RANGED, 1, shadowsAbsorbed, 0, 0, action, nil);
     
-    if counter > 1 then
-        local effect = effects[math.random(1, counter-1)];
-        local duration = effect:getDuration();
-        local startTime = effect:getStartTime();
-        local tick = effect:getTick();
-        local power = effect:getPower();
-        local subpower = effect:getSubPower();
-        local tier = effect:getTier();
-        local effectId = effect:getType();
-        local subId = effect:getSubType();
-        power = power * 1.2;
-        target:delStatusEffectSilent(effectId);
-        target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier);
-        local newEffect = target:getStatusEffect(effectId);
-        newEffect:setStartTime(startTime);
+    if shadowsAbsorbed == 0 then
+        local effects = {};
+        local counter = 1;
+        local choke = target:getStatusEffect(EFFECT_CHOKE);
+        if (choke ~= nil) then
+            effects[counter] = choke;
+            counter = counter + 1;
+        end
+        local threnody = target:getStatusEffect(EFFECT_THRENODY);
+        if (threnody ~= nil and threnody:getSubPower() == MOD_EARTHRES) then
+            effects[counter] = threnody;
+            counter = counter + 1;
+        end
+        --TODO: Frightful Roar
+        --[[local frightfulRoar = target:getStatusEffect(EFFECT_);
+        if (frightfulRoar ~= nil) then
+            effects[counter] = frightfulRoar;
+            counter = counter + 1;
+        end]]
+        
+        if counter > 1 then
+            local effect = effects[math.random(1, counter-1)];
+            local duration = effect:getDuration();
+            local startTime = effect:getStartTime();
+            local tick = effect:getTick();
+            local power = effect:getPower();
+            local subpower = effect:getSubPower();
+            local tier = effect:getTier();
+            local effectId = effect:getType();
+            local subId = effect:getSubType();
+            power = power * 1.2;
+            target:delStatusEffectSilent(effectId);
+            target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier);
+            local newEffect = target:getStatusEffect(effectId);
+            newEffect:setStartTime(startTime);
+        end
     end
 
     local del = player:delItem(2178, 1) or player:delItem(2974, 1)

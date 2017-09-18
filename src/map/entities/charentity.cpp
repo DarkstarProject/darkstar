@@ -1008,7 +1008,6 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 actionTarget.speceffect = SPECEFFECT_NONE;
                 actionTarget.animation = PAbility->getAnimationID();
                 actionTarget.messageID = PAbility->getMessage();
-                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
 
                 if (msg == 0) {
                     msg = PAbility->getMessage();
@@ -1024,6 +1023,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 }
 
                 actionTarget.messageID = msg;
+                actionTarget.param = luautils::OnUseAbility(this, PTarget, PAbility, &action);
             }
         }
         else
