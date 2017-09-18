@@ -32,7 +32,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local resist = applyResistance(caster,spell,target, MOD_INT,BLUE_SKILL);
     local power = 300 * resist;
     
     if (target:getTP() == 0) then

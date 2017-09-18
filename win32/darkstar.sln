@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DSConnect-server", "vcxproj\DSConnect-server.vcxproj", "{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}"
 EndProject
@@ -15,10 +15,6 @@ Global
 		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
-		v140_Debug|Win32 = v140_Debug|Win32
-		v140_Debug|x64 = v140_Debug|x64
-		v140_Release|Win32 = v140_Release|Win32
-		v140_Release|x64 = v140_Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -29,14 +25,6 @@ Global
 		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.Release|Win32.Build.0 = Release|Win32
 		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.Release|x64.ActiveCfg = Release|x64
 		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.Release|x64.Build.0 = Release|x64
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Debug|Win32.ActiveCfg = v140_Debug|Win32
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Debug|Win32.Build.0 = v140_Debug|Win32
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Debug|x64.ActiveCfg = v140_Debug|x64
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Debug|x64.Build.0 = v140_Debug|x64
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Release|Win32.ActiveCfg = v140_Release|Win32
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Release|Win32.Build.0 = v140_Release|Win32
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Release|x64.ActiveCfg = v140_Release|x64
-		{E50EB22C-08C8-4FDA-91AD-DE5062AF5619}.v140_Release|x64.Build.0 = v140_Release|x64
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Debug|Win32.ActiveCfg = Debug|Win32
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Debug|Win32.Build.0 = Debug|Win32
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Debug|x64.ActiveCfg = Debug|x64
@@ -45,14 +33,6 @@ Global
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Release|Win32.Build.0 = Release|Win32
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Release|x64.ActiveCfg = Release|x64
 		{89A19910-84DB-454D-9C7F-0A47A293867B}.Release|x64.Build.0 = Release|x64
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Debug|Win32.ActiveCfg = v140_Debug|Win32
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Debug|Win32.Build.0 = v140_Debug|Win32
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Debug|x64.ActiveCfg = v140_Debug|x64
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Debug|x64.Build.0 = v140_Debug|x64
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Release|Win32.ActiveCfg = v140_Release|Win32
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Release|Win32.Build.0 = v140_Release|Win32
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Release|x64.ActiveCfg = v140_Release|x64
-		{89A19910-84DB-454D-9C7F-0A47A293867B}.v140_Release|x64.Build.0 = v140_Release|x64
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Debug|Win32.ActiveCfg = Debug|Win32
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Debug|Win32.Build.0 = Debug|Win32
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Debug|x64.ActiveCfg = Debug|x64
@@ -61,16 +41,11 @@ Global
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Release|Win32.Build.0 = Release|Win32
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Release|x64.ActiveCfg = Release|x64
 		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.Release|x64.Build.0 = Release|x64
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Debug|Win32.ActiveCfg = v140_Debug|Win32
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Debug|Win32.Build.0 = v140_Debug|Win32
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Debug|x64.ActiveCfg = v140_Debug|x64
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Debug|x64.Build.0 = v140_Debug|x64
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Release|Win32.ActiveCfg = v140_Release|Win32
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Release|Win32.Build.0 = v140_Release|Win32
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Release|x64.ActiveCfg = v140_Release|x64
-		{5C763F9B-F332-434F-9EE6-B64B15E1E520}.v140_Release|x64.Build.0 = v140_Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {028CF459-E5F3-46BE-994B-4185ADE2361C}
 	EndGlobalSection
 EndGlobal

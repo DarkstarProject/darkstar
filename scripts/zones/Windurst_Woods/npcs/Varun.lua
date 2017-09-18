@@ -30,6 +30,7 @@ end;
 function onTrigger(player,npc)
 
     local RRvar = player:getVar("rockracketeer_sold");
+    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
 
     -- Rock Racketeer
     if (RockRacketeer == QUEST_ACCEPTED and RRvar == 3) then

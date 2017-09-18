@@ -18,7 +18,13 @@ function onSpellCast(caster,target,spell)
     -- Base Stats
     local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
     --Duration Calculation
-    local resist = applyResistance(caster,spell,target,dINT,NINJUTSU_SKILL,0);
+    local params = {};
+    params.diff = nil;
+    params.attribute = MOD_INT;
+    params.skillType = NINJUTSU_SKILL;
+    params.bonus = 0;
+    params.effect = nil;
+    resist = applyResistance(caster, target, spell, params);
     --Base power is 10 and is not affected by resistaces.
     local power = 10;
 

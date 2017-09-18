@@ -20,7 +20,19 @@ function onSpellCast(caster,target,spell)
     local bonusAcc = 0;
     local bonusMab = caster:getMerit(MERIT_SUITON_EFFECT); -- T1 mag atk
 
-    local dmg = doNinjutsuNuke(69,1,caster,spell,target,false,bonusAcc,bonusMab);
+    local params = {};
+
+    params.dmg = 69;
+
+    params.multiplier = 1;
+
+    params.hasMultipleTargetReduction = false;
+
+    params.resistBonus = bonusAcc;
+
+    params.mabBonus = bonusMab;
+
+    dmg = doNinjutsuNuke(caster, target, spell, params);
     handleNinjutsuDebuff(caster,target,spell,30,duration,MOD_THUNDERRES);
 
     return dmg;

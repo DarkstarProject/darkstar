@@ -30,6 +30,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <thread>
+#include <iostream>
 
 #include "login.h"
 #include "login_auth.h"
@@ -45,6 +46,7 @@ version_info_t version_info;
 
 Sql_t *SqlHandle = nullptr;
 std::thread messageThread;
+std::thread consoleInputThread;
 
 int32 do_init(int32 argc, char** argv)
 {
@@ -108,8 +110,33 @@ int32 do_init(int32 argc, char** argv)
     }
 
     messageThread = std::thread(message_server_init);
-
     ShowStatus("The login-server is " CL_GREEN"ready" CL_RESET" to work...\n");
+
+    consoleInputThread = std::thread([&]()
+    {
+        ShowStatus("Console input thread is ready..\r\n");
+        // ctrl c apparently causes log spam
+        auto lastInputTime = server_clock::now();
+        while (true)
+        {
+            if ((server_clock::now() - lastInputTime) > 1s)
+            {
+                std::string input;
+                std::cin >> input;
+
+                if (strcmp(input.c_str(), "verlock") == 0)
+                {
+                    version_info.enable_ver_lock = !version_info.enable_ver_lock;
+                    ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                }
+                else
+                {
+                    ShowStatus("Unknown console input command\r\n");
+                }
+                lastInputTime = server_clock::now();
+            }
+        };
+    });
     return 0;
 }
 
@@ -411,7 +438,11 @@ int32 version_info_read(const char *fileName)
 
         if (strcmp(w1, "CLIENT_VER") == 0)
         {
-            version_info.CLIENT_VER = std::string(w2);
+            version_info.client_ver = std::string(w2);
+        }
+        else if (strcmp(w1, "ENABLE_VER_LOCK") == 0)
+        {
+            version_info.enable_ver_lock = strcmp(w2, "true") == 0 || std::atoi(w2) == 1;
         }
     }
     fclose(fp);
@@ -446,7 +477,8 @@ int32 login_config_default()
 
 int32 version_info_default()
 {
-    version_info.CLIENT_VER = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.client_ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
+    version_info.enable_ver_lock = true;
     // version_info.DSP_VER = 0;
     return 0;
 }

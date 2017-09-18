@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
 
     local typeEffect = EFFECT_VIT_DOWN;
     local dINT = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
-    local resist = applyResistance(caster,spell,target,dINT,BLUE_SKILL);
+    local resist = applyResistance(caster,spell,target, MOD_INT,BLUE_SKILL);
     local duration = 60 * resist;
     local power = 5;
 

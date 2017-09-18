@@ -800,7 +800,7 @@ INSERT INTO `mob_skills` VALUES (976,673,'berserk-ruf',1,15,2000,200,1,0,0,0,0,0
 -- INSERT INTO `mob_skills` VALUES (978,722,'warp',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (979,682,'power_slash',0,10,2000,500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (980,683,'freeze_bite',0,10,2000,500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (981,684,'groundstrike',0,10,2000,500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (981,684,'ground_strike',0,10,2000,500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (982,671,'abyssal_drain',0,10,2000,500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (983,672,'abyssal_strike',0,10,2000,500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (984,685,'electrocharge',0,15.0,2000,1500,4,0,0,0,0,0,0);

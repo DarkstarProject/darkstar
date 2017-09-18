@@ -305,9 +305,9 @@ int32 lobbydata_parse(int32 fd)
             int8 session_key[sizeof(key3) * 2 + 1];
             bin2hex(session_key, key3, sizeof(key3));
 
-            fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr) VALUES(%u,%u,x'%s',%u,%u,%u)";
+            fmtQuery = "INSERT INTO accounts_sessions(accid,charid,session_key,server_addr,server_port,client_addr, version_mismatch) VALUES(%u,%u,x'%s',%u,%u,%u,%u)";
 
-            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr) == SQL_ERROR)
+            if (Sql_Query(SqlHandle, fmtQuery, sd->accid, charid, session_key, ZoneIP, ZonePort, sd->client_addr, (uint8)session[sd->login_lobbyview_fd]->ver_mismatch) == SQL_ERROR)
             {
                 //отправляем клиенту сообщение об ошибке
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
@@ -463,25 +463,26 @@ int32 lobbyview_parse(int32 fd)
             string_t client_ver_data((char*)(buff + 0x74), 6); // Full length is 10 but we drop last 4
             client_ver_data = client_ver_data+"xx_x";          // And then we replace those last 4..
 
-            string_t expected_version(version_info.CLIENT_VER, 0, 6); // Same deal here!
+            string_t expected_version(version_info.client_ver, 0, 6); // Same deal here!
             expected_version = expected_version+"xx_x";
+            bool ver_mismatch;
 
-            if (expected_version > client_ver_data)
+            if ((ver_mismatch = (expected_version != client_ver_data)))
+            {
+                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
+                if (expected_version < client_ver_data)
+                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                else
+                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
+            }
+
+            if (ver_mismatch && version_info.enable_ver_lock)
             {
                 sendsize = 0x24;
                 LOBBBY_ERROR_MESSAGE(ReservePacket);
 
                 WBUFW(ReservePacket, 32) = 331;
                 memcpy(MainReservePacket, ReservePacket, sendsize);
-                ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
-                if (expected_version < client_ver_data)
-                {
-                    ShowError("lobbyview_parse: The server must be updated to support this client version\n");
-                }
-                else
-                {
-                    ShowError("lobbyview_parse: The client must be updated to support this server version\n");
-                }
             }
             else
             {
@@ -490,13 +491,14 @@ int32 lobbyview_parse(int32 fd)
                 WBUFW(ReservePacket, 36) = login_config.features; // Bitmask for account features
                 memcpy(MainReservePacket, ReservePacket, sendsize);
             }
+
             //Хеширование пакета, и запись значения Хеш функции в пакет
             unsigned char Hash[16];
             md5(MainReservePacket, Hash, sendsize);
             memcpy(MainReservePacket + 12, Hash, 16);
             //Запись итогового пакета
             session[fd]->wdata.assign((const char*)MainReservePacket, sendsize);
-
+            session[fd]->ver_mismatch = ver_mismatch;
             RFIFOSKIP(fd, session[fd]->rdata.size());
             RFIFOFLUSH(fd);
         }
@@ -532,7 +534,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x1F:
         {
             if (session[sd->login_lobbydata_fd] == nullptr) {
-                ShowInfo("0x1F nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+                ShowInfo("0x1F nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
                 uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {
@@ -566,7 +568,7 @@ int32 lobbyview_parse(int32 fd)
         case 0x07:
         {
             if (session[sd->login_lobbydata_fd] == nullptr) {
-                ShowInfo("0x07 nullptr pointer: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
+                ShowInfo("0x07 nullptr: fd %i lobbydata fd %i lobbyview fd %i . Closing session. \n",
                     fd, sd->login_lobbydata_fd, sd->login_lobbyview_fd);
                 uint32 val = 1337;
                 if (sd->login_lobbydata_fd - 1 >= 0 && session[sd->login_lobbydata_fd - 1] != nullptr) {

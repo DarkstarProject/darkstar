@@ -21,11 +21,6 @@ Contact Darkstar
 **Discord:**
 https://discord.gg/4dgAzfC
 
-**IRC Channel**
- * **Server:** irc.rizon.net
- * **Port:** 6667
- * **Channel:** #darkstarproject
-
 Bug Reports
 ========
 You can find the tracker here: https://github.com/DarkstarProject/darkstar/issues
