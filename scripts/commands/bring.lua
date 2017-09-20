@@ -22,10 +22,12 @@ function onTrigger(player, target, forceZone)
     end
     local targ = GetPlayerByName( target );
     if (targ == nil) then
-        error(player, string.format( "Player named '%s' not found!", target ) );
+        if not player:bringPlayer( target ) then
+            error(player, string.format( "Player named '%s' not found!", target ) );
+        end;
         return;
     end
-    
+
     -- validate forceZone
     if (forceZone ~= nil) then
         if (forceZone ~= 0 and forceZone ~= 1) then
@@ -35,7 +37,7 @@ function onTrigger(player, target, forceZone)
     else
         forceZone = 1;
     end
-    
+
     -- bring target
     if (targ:getZoneID() ~= player:getZoneID() or forceZone == 1) then
         targ:setPos( player:getXPos(), player:getYPos(), player:getZPos(), player:getRotPos(), player:getZoneID() );
