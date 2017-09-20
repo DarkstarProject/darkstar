@@ -4325,6 +4325,14 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         break;
     case 0x0004:
         PChar->nameflags.flags ^= FLAG_ANON;
+        if (PChar->nameflags.flags & FLAG_ANON)
+        {
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 175));
+        } 
+        else
+        {
+            PChar->pushPacket(new CMessageSystemPacket(0, 0, 176));
+        }
         break;
     case 0x4000:
         if (RBUFB(data, (0x10)) == 1)
