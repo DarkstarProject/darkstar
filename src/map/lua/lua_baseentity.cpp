@@ -215,7 +215,7 @@ int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
             memset(&buf[0], 0, sizeof(buf));
 
             WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
-            WBUFW(&buf, 4) = m_PBaseEntity->id; // wanting to bring target char here so wont give our id
+            WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
             
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;
