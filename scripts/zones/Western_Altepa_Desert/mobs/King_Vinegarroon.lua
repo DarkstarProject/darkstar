@@ -2,10 +2,10 @@
 -- Area: Western Altepa Desert
 --   NM: King Vinegarroon
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/weather");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobInitialize Action
@@ -82,6 +82,6 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(EFFECT_PETRIFICATION)) then
             player:addStatusEffect(EFFECT_PETRIFICATION, 1, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
+        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
     end
 end;

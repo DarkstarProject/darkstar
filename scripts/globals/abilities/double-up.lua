@@ -5,10 +5,10 @@
 -- Recast Time: 8 seconds
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/ability");
+require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -17,7 +17,7 @@ require("scripts/globals/ability");
 function onAbilityCheck(player,target,ability)
     ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
     if (not player:hasStatusEffect(EFFECT_DOUBLE_UP_CHANCE)) then
-        return MSGBASIC_NO_ELIGIBLE_ROLL,0;
+        return msgBasic.NO_ELIGIBLE_ROLL,0;
     else
         return 0,0;
     end

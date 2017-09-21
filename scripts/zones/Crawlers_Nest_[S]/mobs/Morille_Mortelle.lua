@@ -3,8 +3,8 @@
 --  NM:  Morille Mortelle
 -- !pos 59.788 -0.939 22.316 171
 -----------------------------------
-
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onMobDeath
@@ -58,6 +58,6 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(EFFECT_PLAGUE)) then
             player:addStatusEffect(EFFECT_PLAGUE, 1, 0, duration);
         end
-        return SUBEFFECT_PLAGUE, MSGBASIC_ADD_EFFECT_STATUS, EFFECT_PLAGUE;
+        return SUBEFFECT_PLAGUE, msgBasic.ADD_EFFECT_STATUS, EFFECT_PLAGUE;
     end
 end;

@@ -5,10 +5,10 @@
 -- Recast Time: 1:30
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/pets")
+require("scripts/globals/msg");
 
 local idStrengths = {
     [18731] = 1, -- Automaton Oil
@@ -23,15 +23,15 @@ local idStrengths = {
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return MSGBASIC_REQUIRES_A_PET, 0
+        return msgBasic.REQUIRES_A_PET, 0
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return MSGBASIC_NO_EFFECT_ON_PET, 0
+        return msgBasic.NO_EFFECT_ON_PET, 0
     else
         local id = player:getEquipID(SLOT_AMMO)
         if idStrengths[id] then
             return 0, 0
         else
-            return MSGBASIC_UNABLE_TO_USE_JA, 0
+            return msgBasic.UNABLE_TO_USE_JA, 0
         end
     end
 end

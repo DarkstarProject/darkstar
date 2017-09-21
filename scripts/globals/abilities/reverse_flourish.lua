@@ -5,9 +5,9 @@
 -- Finishing Moves Used: 1-5
 -- Recast Time: 00:30
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -29,9 +29,9 @@ function onAbilityCheck(player,target,ability)
 
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         return 0,0;
-    
-    else    
-        return MSGBASIC_NO_FINISHINGMOVES,0;
+
+    else
+        return msgBasic.NO_FINISHINGMOVES,0;
     end;
 end;
 
@@ -61,15 +61,15 @@ function onUseAbility(player,target,ability)
     elseif (player:hasStatusEffect(EFFECT_FINISHING_MOVE_5)) then
         TPGain = 9.5 * 5 + STM * 5 ^ 2 + Merits;
     end;
-    
+
     TPGain = TPGain * 10;
-    
+
     player:addTP(TPGain);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_1);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_2);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_3);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_4);
     player:delStatusEffect(EFFECT_FINISHING_MOVE_5);
-    
+
     return TPGain;
 end;

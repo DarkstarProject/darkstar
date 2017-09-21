@@ -6,10 +6,10 @@
 -- Modeled after our cure_iii.lua, which was modeled after the below reference
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
+require("scripts/globals/msg");
 
 -----------------------------------------
 -- OnSpellCast
@@ -17,7 +17,7 @@ require("scripts/globals/magic");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getID() ~= target:getID()) then
-        return MSGBASIC_CANNOT_PERFORM_TARG;
+        return msgBasic.CANNOT_PERFORM_TARG;
     else
         return 0;
     end;
@@ -73,38 +73,38 @@ function onSpellCast(caster,target,spell)
     else
         basecure = getBaseCure(power,divisor,constant,basepower);
     end
-    
+
     --Apply Afflatus Misery Bonus to the Result
     if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
         if (caster:getID() == target:getID()) then -- Let's use a local var to hold the power of Misery so the boost is applied to all targets,
             caster:setLocalVar("Misery_Power", caster:getMod(MOD_AFFLATUS_MISERY));
         end;
         local misery = caster:getLocalVar("Misery_Power");
-        
+
         --THIS IS LARELY SEMI-EDUCATED GUESSWORK. THERE IS NOT A
         --LOT OF CONCRETE INFO OUT THERE ON CURA THAT I COULD FIND
-        
+
         --Not very much documentation for Cura II known at all.
         --As with Cura, the Afflatus Misery bonus can boost this spell up
         --to roughly the level of a Curaga 4. For Cura II vs Curaga III,
         --this is document at ~375HP, 15HP less than the cap of 390HP. So
         --for Cura II, i'll go with 15 less than the cap of Curaga IV (690): 675
         --So with lack of available formula documentation, I'll go with that.
-        
+
         --printf("BEFORE AFFLATUS MISERY BONUS: %d", basecure);
-        
+
         basecure = basecure + misery;
-        
+
         if (basecure > 675) then
             basecure = 675;
         end
-        
+
         --printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
-        
+
         --Afflatus Misery Mod Gets Used Up
         caster:setMod(MOD_AFFLATUS_MISERY, 0);
     end
-    
+
     final = getCureFinal(caster,spell,basecure,minCure,false);
     final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
 
@@ -120,7 +120,7 @@ function onSpellCast(caster,target,spell)
     target:wakeUp();
 
     --Enmity for Cura III is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
-    
+
     spell:setMsg(367);
 
     return final;

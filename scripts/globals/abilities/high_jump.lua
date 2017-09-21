@@ -5,10 +5,10 @@
 -- Recast Time: 2:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/weaponskills");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -41,12 +41,12 @@ function onUseAbility(player,target,ability,action)
 
     if (target:isMob()) then
         local enmityShed = 50;
-        if player:getMainJob() ~= JOBS.DRG then 
+        if player:getMainJob() ~= JOBS.DRG then
             enmityShed = 30;
         end
         target:lowerEnmity(player, enmityShed + player:getMod(MOD_HIGH_JUMP_ENMITY_REDUCTION)); -- reduce total accumulated enmity
     end
-    
+
     local taChar = player:getTrickAttackChar(target);
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, 0, 0, true, action, taChar, params);
@@ -61,7 +61,7 @@ function onUseAbility(player,target,ability,action)
         end
         action:speceffect(target:getID(), 32)
     else
-        ability:setMsg(MSGBASIC_USES_BUT_MISSES)
+        ability:setMsg(msgBasic.USES_BUT_MISSES)
         action:speceffect(target:getID(), 0)
     end
 

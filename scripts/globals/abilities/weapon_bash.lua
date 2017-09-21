@@ -6,9 +6,9 @@
 -- Recast Time: 3:00 minutes
 -- Note: This ability requires a two-handed weapon to use
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -16,7 +16,7 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return MSGBASIC_NEEDS_2H_WEAPON,0;
+        return msgBasic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end
@@ -31,7 +31,7 @@ function onUseAbility(player,target,ability)
     if (math.random()*100 < 99) then
         target:addStatusEffect(EFFECT_STUN,1,0,6);
     end
-    
+
     -- Weapon Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0;
     if (player:getMainJob() == JOBS.DRK) then
@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
     elseif (player:getSubJob() == JOBS.DRK) then
         darkKnightLvl = player:getSubLvl();    -- Use Subjob Lvl
     end
-    
+
     -- Calculating and applying Weapon Bash damage
     local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
     target:delHP(damage);

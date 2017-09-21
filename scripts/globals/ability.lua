@@ -4,6 +4,7 @@
 --
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 ABILITY_MIGHTY_STRIKES     = 0;
 ABILITY_HUNDRED_FISTS      = 1;
@@ -415,8 +416,6 @@ ABILITY_CHAOTIC_STRIKE     = 614;
 ABILITY_THUNDERSTORM       = 615;
 ABILITY_JUDGMENT_BOLT      = 616;
 
-MSG_SHADOW = 31
-
 REACTION_NONE = 0x00
 REACTION_MISS = 0x01
 REACTION_PARRY = 0x03
@@ -436,7 +435,7 @@ function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
     caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
     caster:addStatusEffectEx(EFFECT_DOUBLE_UP_CHANCE,
-                             EFFECT_DOUBLE_UP_CHANCE, 
+                             EFFECT_DOUBLE_UP_CHANCE,
                              roll,
                              0,
                              45,
@@ -488,13 +487,13 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     --handle pd
     if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
-        skill:setMsg(MSGBASIC_USES_BUT_MISSES);
+        skill:setMsg(msgBasic.USES_BUT_MISSES);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(MSGBASIC_USES_JA_TAKE_DAMAGE);
+    skill:setMsg(msgBasic.USES_JA_TAKE_DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -503,7 +502,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(MSG_SHADOW);
+            skill:setMsg(msgBasic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
@@ -515,7 +514,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(MSG_ANTICIPATE);
+        skill:setMsg(msgBasic.ANTICIPATE);
         return 0;
     end
 
@@ -556,11 +555,11 @@ function takeAbilityDamage(defender, attacker, params, primary, finaldmg, slot, 
             end
         else
             -- TODO: ability absorb messages (if there are any)
-            -- action:messageID(defender:getID(), MSG_ABSORB)
+            -- action:messageID(defender:getID(), msgBasic.WHATEVER)
         end
         action:param(defender:getID(), finaldmg)
     elseif shadowsAbsorbed > 0 then
-        action:messageID(defender:getID(), MSG_SHADOW)
+        action:messageID(defender:getID(), msgBasic.SHADOW_ABSORB)
         action:param(defender:getID(), shadowsAbsorbed)
     else
         -- no abilities that use ability message can miss (the rest use ws messages)

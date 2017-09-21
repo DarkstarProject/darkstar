@@ -5,8 +5,8 @@
 -- Recast Time: 1:30
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/status");
+require("scripts/globals/msg");
 
 -----------------------------------
 -- onAbilityCheck
@@ -14,10 +14,10 @@ require("scripts/globals/status");
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return MSGBASIC_REQUIRES_A_PET,0;
+        return msgBasic.REQUIRES_A_PET,0;
     else
         if (player:getPet():getHP() == player:getPet():getMaxHP() and player:getMerit(MERIT_EMPATHY) == 0) then
-            return MSGBASIC_UNABLE_TO_USE_JA,0;
+            return msgBasic.UNABLE_TO_USE_JA,0;
         else
             return 0,0;
         end
@@ -35,18 +35,18 @@ function onUseAbility(player,target,ability)
     if (player:getPet():getHP() == player:getPet():getMaxHP()) then
         drainamount = 0; -- Prevents player HP lose if wyvern is at full HP
     end
-    
+
     if (player:hasStatusEffect(EFFECT_STONESKIN)) then
         local skin = player:getMod(MOD_STONESKIN);
-        
+
         if (skin >= drainamount) then
-            if (skin == drainamount) then 
+            if (skin == drainamount) then
                 player:delStatusEffect(EFFECT_STONESKIN);
             else
                 local effect = player:getStatusEffect(EFFECT_STONESKIN);
                 effect:setPower(effect:getPower() - drainamount); -- fixes the status effeect so when it ends it uses the new power instead of old
                 player:delMod(MOD_STONESKIN,drainamount); --removes the amount from the mod
-                
+
             end
         else
             player:delStatusEffect(EFFECT_STONESKIN);
@@ -56,12 +56,12 @@ function onUseAbility(player,target,ability)
     else
         player:delHP(drainamount);
     end
-    
-    local pet = player:getPet();    
+
+    local pet = player:getPet();
     local healPet = drainamount * 2;
     local petTP = pet:getTP();
     local regenAmount = player:getMainLvl()/3; -- level/3 tic regen
-    
+
     if (player:getEquipID(SLOT_HEAD)==15238) then
         healPet = healPet + 15;
     end
@@ -69,7 +69,7 @@ function onUseAbility(player,target,ability)
     pet:delStatusEffect(EFFECT_POISON);
     pet:delStatusEffect(EFFECT_BLINDNESS);
     pet:delStatusEffect(EFFECT_PARALYSIS);
-    
+
     if (math.random(1,2) == 1) then
         pet:delStatusEffect(EFFECT_DOOM);
     end
