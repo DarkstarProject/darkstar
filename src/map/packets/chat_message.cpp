@@ -26,7 +26,7 @@ This file is part of DarkStar-server source code.
 #include "chat_message.h"
 #include "../entities/charentity.h"
 
-CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, const std::string& message, const std::string sender)
+CChatMessagePacket::CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, const std::string& message, const std::string& sender)
 {
     //there seems to be some sort of variable cap on the length of the packet, which I cannot determine
     // (it changed when zoning, but not when zoning back)

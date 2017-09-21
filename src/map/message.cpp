@@ -403,6 +403,7 @@ namespace message
                     WBUFF(&buf, 14) = PChar->loc.p.y;
                     WBUFF(&buf, 18) = PChar->loc.p.z;
                     WBUFB(&buf, 22) = PChar->loc.p.rotation;
+                    WBUFL(&buf, 23) = PChar->m_moghouseID;
 
                     message::send(MSG_SEND_TO_ZONE, &buf, sizeof(buf), nullptr);
                     break;
@@ -413,6 +414,7 @@ namespace message
                 float y = RBUFF(extra->data(), 14);
                 float z = RBUFF(extra->data(), 18);
                 uint8 rot = RBUFB(extra->data(), 22);
+                uint32 moghouseID = RBUFL(extra->data(), 23);
 
                 PChar->updatemask = 0;
 
@@ -423,6 +425,7 @@ namespace message
                 PChar->loc.p.z = z;
                 PChar->loc.p.rotation = rot;
                 PChar->loc.destination = zoneId;
+                PChar->m_moghouseID = moghouseID;
                 PChar->loc.boundary = 0;
                 PChar->status = STATUS_DISAPPEAR;
                 PChar->animation = ANIMATION_NONE;
