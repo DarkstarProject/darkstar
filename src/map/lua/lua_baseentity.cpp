@@ -132,6 +132,7 @@
 #include "../transport.h"
 #include "../treasure_pool.h"
 #include "../mob_modifier.h"
+#include "../message.h"
 
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
@@ -164,6 +165,64 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
     charutils::SendToZone((CCharEntity*)m_PBaseEntity, 1, 0);
 
     return 0;
+}
+
+inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+
+    bool found = false;
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            char buf[30];
+            memset(&buf[0], 0, sizeof(buf));
+
+            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            WBUFW(&buf, 4) = 0; // wanting to bring target char here so wont give our id
+            WBUFW(&buf, 8) = m_PBaseEntity->getZone();
+            WBUFW(&buf, 10) = m_PBaseEntity->loc.p.x;
+            WBUFW(&buf, 14) = m_PBaseEntity->loc.p.y;
+            WBUFW(&buf, 18) = m_PBaseEntity->loc.p.z;
+            WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
+
+            message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
+            found = true;
+        }
+    }
+    lua_pushboolean(L, found);
+    return 1;
+}
+
+int32 CLuaBaseEntity::gotoPlayer(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    bool found = false;
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        const int8* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s';";
+        int32 ret = Sql_Query(SqlHandle, fmtQuery, std::string(lua_tostring(L, 1)).c_str());
+
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            char buf[30];
+            memset(&buf[0], 0, sizeof(buf));
+
+            WBUFW(&buf, 0) = Sql_GetUIntData(SqlHandle, 0); // target char
+            WBUFW(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
+            
+            message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
+            found = true;
+        }
+    }
+    lua_pushboolean(L, found);
+    return 1;
 }
 
 //==========================================================//
@@ -9400,8 +9459,10 @@ inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, (char*)lua_tostring(L, 1)));
+    CHAT_MESSAGE_TYPE messageType = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? MESSAGE_SYSTEM_1 : (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2);
+    std::string name = (lua_isnil(L, 3) || !lua_isstring(L, 3)) ? std::string() : lua_tostring(L, 3);
 
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, messageType, (char*)lua_tostring(L, 1), name));
     return 0;
 }
 /*
@@ -11111,6 +11172,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,ChangeMusic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,warp),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getShortID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getCursorTarget),

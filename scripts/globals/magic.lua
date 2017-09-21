@@ -1154,10 +1154,6 @@ function doDivineNuke(caster, target, spell, params)
 end
 
 function doNinjutsuNuke(caster, target, spell, params)
-    local V = params.dmg;
-    local M = params.mutliplier;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
     local mabBonus = params.mabBonus;
 
     mabBonus = mabBonus or 0;
@@ -1174,14 +1170,6 @@ function doNinjutsuNuke(caster, target, spell, params)
 end
 
 function doNuke(caster, target, spell, params)
-    local V = params.dmg;
-    local M = params.mutliplier;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
-    local mabBonus = params.mabBonus;
-    local modStat = params.attribute;
-    local skill = params.skillType;
-
     --calculate raw damage
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)
@@ -1218,12 +1206,9 @@ function doNuke(caster, target, spell, params)
 end
 
 function doDivineBanishNuke(caster, target, spell, params)
-    local skill = DIVINE_MAGIC_SKILL;
-    local modStat = MOD_MND;
-    local hasMultipleTargetReduction = params.hasMultipleTargetReduction;
-    local resistBonus = params.resistBonus;
-    local V = params.dmg;
-    local M = params.multiplier;
+    params.skillType = DIVINE_MAGIC_SKILL;
+    params.attribute = MOD_MND;
+
     --calculate raw damage
     local dmg = calculateMagicDamage(caster, target, spell, params);
     --get resist multiplier (1x if no resist)

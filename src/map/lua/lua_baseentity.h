@@ -50,7 +50,8 @@ public:
 
     int32 warp(lua_State*);                 // Returns Character to home point
     int32 leavegame(lua_State*);            // Character leaving game
-
+    int32 bringPlayer(lua_State*);          // warps target to self
+    int32 gotoPlayer(lua_State*);           // warps self to target player
     int32 getID(lua_State *L);              // Gets Entity Id
     int32 getShortID(lua_State *L);
     int32 getCursorTarget(lua_State *L);    // Returns the ID any object under players in game cursor.
