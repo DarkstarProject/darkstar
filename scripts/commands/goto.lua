@@ -10,7 +10,7 @@ cmdprops =
 };
 
 function error(player, msg)
-    player:PrintToPlayer(msg, 1, "Assquif");
+    player:PrintToPlayer(msg);
     player:PrintToPlayer("!goto <player> {forceZone}");
 end;
 
