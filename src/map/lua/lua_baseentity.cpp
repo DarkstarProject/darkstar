@@ -9459,7 +9459,14 @@ inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, (char*)lua_tostring(L, 1)));
+    CHAT_MESSAGE_TYPE messageType = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? MESSAGE_SYSTEM_1 : (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2);
+    char name[15];
+    memset(&name, 0, 15);
+
+    if (!lua_isnil(L, 3) && lua_isstring(L, 3))
+        memcpy(&name, lua_tostring(L, 3), 15);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, messageType, (char*)lua_tostring(L, 1), &name[0]));
 
     return 0;
 }

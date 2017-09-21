@@ -55,7 +55,7 @@ class CChatMessagePacket : public CBasicPacket
 {
 public:
     static const uint16 id {0x17};
-	CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, int8* buff);
+	CChatMessagePacket(CCharEntity* PChar, CHAT_MESSAGE_TYPE MessageType, const std::string& message, const std::string sender = std::string());
 };
 
 #endif
