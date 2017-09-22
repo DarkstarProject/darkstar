@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
-    local resist = applyResistance(caster,spell,target,params);
+    local resist = applyResistance(caster, target, spell, params);
     local effect = EFFECT_NONE;
 
     if (resist > 0.0625) then

@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.effect = EFFECT_TERROR;
-    local resist = applyResistance(caster,spell,target,params);
+    local resist = applyResistance(caster, target, spell, params);
     local duration = 5 * resist;
 
     if (resist > 0.5) then -- Do it!

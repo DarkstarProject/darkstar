@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
     params.effect = EFFECT_INT_DOWN;
-    local resist = applyResistance(caster,spell,target,params);
+    local resist = applyResistance(caster, target, spell, params);
     local duration = 30 * resist;
     local power = 6;
 

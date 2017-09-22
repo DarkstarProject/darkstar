@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = MOD_INT;
     params.skillType = BLUE_SKILL;
-    local resist = applyResistance(caster,spell,target,params);
+    local resist = applyResistance(caster, target, spell, params);
     local power = 300 * resist;
     
     if (target:getTP() == 0) then

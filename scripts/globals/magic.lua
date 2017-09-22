@@ -303,8 +303,8 @@ end;
 -- Output:
 -- The factor to multiply down damage (1/2 1/4 1/8 1/16) - In this format so this func can be used for enfeebs on duration.
 
-function applyResistance(player, spell, target, params)
-    return applyResistanceEffect(player, spell, target, params);
+function applyResistance(caster, target, spell, params)
+    return applyResistanceEffect(caster, target, spell, params);
 end;
 
 -- USED FOR Status Effect Enfeebs (blind, slow, para, etc.)
