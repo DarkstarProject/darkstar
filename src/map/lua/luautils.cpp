@@ -4175,14 +4175,7 @@ namespace luautils
             {
                 if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
                 {
-                    if (lua_toboolean(L, 2) == 0)
-                    {
-                        PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
-                    }
-                    else
-                    {
-                        PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
-                    }
+                    PMob->m_AllowRespawn = !lua_toboolean(L, 2);
                     //ShowDebug(CL_RED"AllowRespawn: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
                     return 1;
                 }
