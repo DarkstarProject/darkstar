@@ -189,6 +189,9 @@ inline int32 CLuaBaseEntity::bringPlayer(lua_State* L)
             WBUFW(&buf, 14) = m_PBaseEntity->loc.p.y;
             WBUFW(&buf, 18) = m_PBaseEntity->loc.p.z;
             WBUFB(&buf, 22) = m_PBaseEntity->loc.p.rotation;
+            
+            if (m_PBaseEntity->objtype == TYPE_PC)
+                WBUFL(&buf, 23) = ((CCharEntity*)m_PBaseEntity)->m_moghouseID;
 
             message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
             found = true;
