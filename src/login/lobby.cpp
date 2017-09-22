@@ -211,8 +211,9 @@ int32 lobbydata_parse(int32 fd)
                 uint16 realZone = zone == 0 ? prevzone : zone;
 
                 if (realZone < 256)
-                    WBUFB(CharList, 72 + 32 + i * 140) = realZone;      // если персонаж в MogHouse
+                    WBUFB(CharList, 72 + 32 + i * 140) = realZone;
                 else
+                    WBUFB(CharList, 72 + 32 + i * 140) = realZone - 256;
                     WBUFW(CharList, 78 + 32 + i * 140) = realZone;
                 ///////////////////////////////////////////////////
                 ++i;
