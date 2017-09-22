@@ -208,7 +208,12 @@ int32 lobbydata_parse(int32 fd)
                 WBUFW(CharList, 70 + 32 + i * 140) = (uint16)Sql_GetIntData(SqlHandle, 13); // sub;
 
                 // todo: cap login packet for zones > 255
-                WBUFB(CharList, 72 + 32 + i * 140) = (uint8)(zone == 0 ? prevzone : zone);      // если персонаж в MogHouse
+                uint16 realZone = zone == 0 ? prevzone : zone;
+
+                if (realZone < 256)
+                    WBUFB(CharList, 72 + 32 + i * 140) = realZone;      // если персонаж в MogHouse
+                else
+                    WBUFW(CharList, 78 + 32 + i * 140) = realZone;
                 ///////////////////////////////////////////////////
                 ++i;
             }
