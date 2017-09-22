@@ -46,10 +46,10 @@ function onMobDespawn(mob)
     if (LandKingSystem_HQ ~= 1 and ToD <= os.time() and popNow == true) then
         -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
         if (LandKingSystem_NQ == 0) then
-            AllowRespawn(Behemoth, true);
+            DisallowRespawn(Behemoth, true);
         end
 
-        AllowRespawn(King_Behemoth, false);
+        DisallowRespawn(King_Behemoth, false);
         UpdateNMSpawnPoint(King_Behemoth);
         GetMobByID(King_Behemoth):setRespawnTime(math.random(75600,86400));
     else

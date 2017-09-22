@@ -24,7 +24,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Bu_Ghi_Howlblade);
                 GetMobByID(Bu_Ghi_Howlblade):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Bu_Ghi_Howlblade", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

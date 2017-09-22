@@ -18,7 +18,7 @@ end;
 function onMobDespawn(mob)
     -- Set ToD, Deter NM, set placeholder respawn time, set Placeholder back to normal
     SetServerVariable("[ToD]Zi_Ghi_Boneeater", os.time() + 3600); -- 1 hour
-    AllowRespawn(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
     GetMobByID(Zi_Ghi_Boneeater_PH):setRespawnTime(GetMobRespawnTime(Zi_Ghi_Boneeater_PH));
-    AllowRespawn(Zi_Ghi_Boneeater_PH, false);
+    DisallowRespawn(Zi_Ghi_Boneeater_PH, false);
 end;

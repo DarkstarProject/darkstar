@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Ge_Dha_Evileye);
                 GetMobByID(Ge_Dha_Evileye):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Ge_Dha_Evileye", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

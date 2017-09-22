@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Tom_Tit_Tat);
                 GetMobByID(Tom_Tit_Tat):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Tom_Tit_Tat", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

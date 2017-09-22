@@ -33,7 +33,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Taxim);
                 GetMobByID(Taxim):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Taxim", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

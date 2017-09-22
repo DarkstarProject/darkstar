@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Valkurm_Emperor);
                 GetMobByID(Valkurm_Emperor):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Valkurm_Emperor", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

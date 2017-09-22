@@ -26,7 +26,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Carnero);
                 GetMobByID(Carnero):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Carnero", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Shii);
                 GetMobByID(Shii):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Shii", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

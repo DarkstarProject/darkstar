@@ -18,9 +18,9 @@ end;
 function onMobDespawn(mob)
     -- Set ToD, Deter NM, set placeholder respawn time, set Placeholder back to normal
     SetServerVariable("[ToD]Bu_Ghi_Howlblade", os.time() + 3600); -- 1 hour
-    AllowRespawn(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
     local PH = GetServerVariable("[PH]Bu_Ghi_Howlblade");
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
     SetServerVariable("[PH]Bu_Ghi_Howlblade", 0);
-    AllowRespawn(PH, false);
+    DisallowRespawn(PH, false);
 end;

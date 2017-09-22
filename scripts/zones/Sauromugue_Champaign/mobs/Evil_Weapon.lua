@@ -29,7 +29,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Blighting_Brand);
                 GetMobByID(Blighting_Brand):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Blighting_Brand", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
      end

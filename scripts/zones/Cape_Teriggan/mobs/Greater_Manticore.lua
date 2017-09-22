@@ -29,7 +29,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Frostmane);
                 GetMobByID(Frostmane):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Frostmane", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

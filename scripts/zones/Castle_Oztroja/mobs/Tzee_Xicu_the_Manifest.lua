@@ -45,7 +45,7 @@ function onMobDespawn(mob)
     -- Set Yagudo_Avatar's spawnpoint and respawn time (21-24 hours)
     SetServerVariable("[PH]Tzee_Xicu_the_Manifest", 0);
     Yagudo_Avatar = 17396134;
-    AllowRespawn(Yagudo_Avatar, false);
+    DisallowRespawn(Yagudo_Avatar, false);
     UpdateNMSpawnPoint(Yagudo_Avatar);
     GetMobByID(Yagudo_Avatar):setRespawnTime(math.random(75600,86400));
 

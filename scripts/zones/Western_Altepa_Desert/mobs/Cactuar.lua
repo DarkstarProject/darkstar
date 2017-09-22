@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Cactuar_Cantautor);
                 GetMobByID(Cactuar_Cantautor):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Cactuar_Cantautor", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

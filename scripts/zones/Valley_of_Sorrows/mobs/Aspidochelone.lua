@@ -43,7 +43,7 @@ function onMobDespawn(mob)
         local wait = 72 * 3600;
         SetServerVariable("[POP]Aspidochelone", os.time() + wait); -- 3 days
         if (LandKingSystem_HQ == 0) then -- Is time spawn only
-            AllowRespawn(mob:getID(), true);
+            DisallowRespawn(mob:getID(), true);
         end
     end
 
@@ -51,7 +51,7 @@ function onMobDespawn(mob)
     if (LandKingSystem_NQ ~= 1) then
         Adamantoise = mob:getID()-1;
         SetServerVariable("[PH]Aspidochelone", 0);
-        AllowRespawn(Adamantoise, false);
+        DisallowRespawn(Adamantoise, false);
         UpdateNMSpawnPoint(Adamantoise);
         GetMobByID(Adamantoise):setRespawnTime(math.random(75600,86400));
     end

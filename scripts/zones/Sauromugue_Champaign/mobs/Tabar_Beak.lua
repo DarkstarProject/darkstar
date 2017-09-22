@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Deadly_Dodo);
                 GetMobByID(Deadly_Dodo):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Deadly_Dodo", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

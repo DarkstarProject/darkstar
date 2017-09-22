@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Tumbling_Truffle);
                 GetMobByID(Tumbling_Truffle):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Tumbling_Truffle", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

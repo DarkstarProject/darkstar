@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Ashmaker_Gotblut);
                 GetMobByID(Ashmaker_Gotblut):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Ashmaker_Gotblut", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

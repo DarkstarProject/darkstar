@@ -23,9 +23,9 @@ function onMobRoam(mob)
         SetServerVariable("Taisaijin_PH", ph);
 
         -- despawn ph, spawn nm
-        AllowRespawn(ph, true);
+        DisallowRespawn(ph, true);
         DespawnMob(ph);
-        AllowRespawn(MobIDs.Taisaijin, false);
+        DisallowRespawn(MobIDs.Taisaijin, false);
         SpawnMob(MobIDs.Taisaijin);
 
         -- reset

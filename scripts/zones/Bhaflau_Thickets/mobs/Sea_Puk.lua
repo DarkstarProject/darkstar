@@ -25,7 +25,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Nis_Puk);
                 GetMobByID(Nis_Puk):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Nis_Puk", mobID);
-                AllowRespawn(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
