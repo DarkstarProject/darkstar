@@ -25,7 +25,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Morille_Mortelle);
                 GetMobByID(Morille_Mortelle):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Morille_Mortelle", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

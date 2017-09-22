@@ -44,11 +44,11 @@ end;
 function onMobDespawn(mob)
     -- Set Window Open Time
     SetServerVariable("[POP]Da_Dha_Hundredmask", os.time() + 7200); -- 2 hours
-    DeterMob(mob:getID(), true);
+    AllowRespawn(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Da_Dha_Hundredmask");
     SetServerVariable("[PH]Da_Dha_Hundredmask", 0);
-    DeterMob(PH, false);
+    AllowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 end;

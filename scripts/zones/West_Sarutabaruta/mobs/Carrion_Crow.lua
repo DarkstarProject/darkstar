@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Nunyenunc);
                 GetMobByID(Nunyenunc):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Nunyenunc", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

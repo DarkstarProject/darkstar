@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Vuu_Puqu_the_Beguiler);
                 GetMobByID(Vuu_Puqu_the_Beguiler):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Vuu_Puqu_the_Beguiler", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

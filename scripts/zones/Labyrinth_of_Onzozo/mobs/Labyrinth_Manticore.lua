@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Narasimha);
                 GetMobByID(Narasimha):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Narasimha", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

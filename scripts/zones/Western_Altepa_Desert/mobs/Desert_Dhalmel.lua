@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Celphie);
                 GetMobByID(Celphie):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Celphie", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

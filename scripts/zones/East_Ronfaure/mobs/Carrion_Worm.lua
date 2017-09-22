@@ -29,7 +29,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Bigmouth_Billy);
                 GetMobByID(Bigmouth_Billy):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Bigmouth_Billy", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

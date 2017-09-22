@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Helldiver);
                 GetMobByID(Helldiver):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Helldiver", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

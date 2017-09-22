@@ -38,7 +38,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Leaping_Lizzy);
                 GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Leaping_Lizzy", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

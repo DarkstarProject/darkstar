@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Orctrap);
                 GetMobByID(Orctrap):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Orctrap", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

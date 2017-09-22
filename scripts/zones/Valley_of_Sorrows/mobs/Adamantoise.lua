@@ -46,10 +46,10 @@ function onMobDespawn(mob)
     if (LandKingSystem_HQ ~= 1 and ToD <= os.time() and popNow == true) then
         -- 0 = timed spawn, 1 = force pop only, 2 = BOTH
         if (LandKingSystem_NQ == 0) then
-            DeterMob(Adamantoise, true);
+            AllowRespawn(Adamantoise, true);
         end
 
-        DeterMob(Aspidochelone, false);
+        AllowRespawn(Aspidochelone, false);
         UpdateNMSpawnPoint(Aspidochelone);
         GetMobByID(Aspidochelone):setRespawnTime(math.random(75600,86400));
     else

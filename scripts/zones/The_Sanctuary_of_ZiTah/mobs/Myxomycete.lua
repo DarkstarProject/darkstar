@@ -28,8 +28,8 @@ function onMobRoam(mob)
                 )
             ) then
                 SetServerVariable("Noble_Mold_PH", Noble_Mold_PH_Table[Noble_Mold_PH]);
-                DeterMob(Noble_Mold_PH_Table[Noble_Mold_PH], true);
-                DeterMob(Noble_Mold, false);
+                AllowRespawn(Noble_Mold_PH_Table[Noble_Mold_PH], true);
+                AllowRespawn(Noble_Mold, false);
                 DespawnMob(Noble_Mold_PH_Table[Noble_Mold_PH]);
                 SpawnMob(Noble_Mold, "", 0);
             end

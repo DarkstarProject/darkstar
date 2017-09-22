@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Golden_Bat);
                 GetMobByID(Golden_Bat):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Golden_Bat", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

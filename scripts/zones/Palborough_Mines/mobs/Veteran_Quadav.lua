@@ -22,7 +22,7 @@ function onMobDespawn(mob)
         if (ToD <= os.time() and GetMobAction(Zi_Ghi_Boneeater):isDead()) then
             if (math.random(1,10) == 5) then
                 GetMobByID(Zi_Ghi_Boneeater):setRespawnTime(GetMobRespawnTime(mobID));
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

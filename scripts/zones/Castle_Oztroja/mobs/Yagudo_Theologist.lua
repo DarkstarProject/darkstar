@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Moo_Ouzi_the_Swiftblade);
                 GetMobByID(Moo_Ouzi_the_Swiftblade):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Moo_Ouzi_the_Swiftblade", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

@@ -44,7 +44,7 @@ function onMobDespawn(mob)
 
     -- Set Diamond_Quadav's spawnpoint and respawn time (21-24 hours)
     local Diamond_Quadav = 17383442;
-    DeterMob(Diamond_Quadav, false);
+    AllowRespawn(Diamond_Quadav, false);
     GetMobByID(Diamond_Quadav):setRespawnTime(math.random(75600,86400)); -- 21 to 24 hours
 
 end;

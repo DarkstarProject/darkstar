@@ -29,7 +29,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Swamfisk);
                 GetMobByID(Swamfisk):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Swamfisk", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Spiny_Spipi);
                 GetMobByID(Spiny_Spipi):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Spiny_Spipi", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

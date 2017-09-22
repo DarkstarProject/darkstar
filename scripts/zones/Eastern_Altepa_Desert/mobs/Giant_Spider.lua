@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Dune_Widow);
                 GetMobByID(Dune_Widow):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Dune_Widow", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

@@ -20,7 +20,7 @@ function onMobDeath(mob, player, isKiller)
                 UpdateNMSpawnPoint(Hellion);
                 GetMobByID(Hellion):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Hellion", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

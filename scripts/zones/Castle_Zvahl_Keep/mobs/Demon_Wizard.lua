@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Baron_Vapula);
                 GetMobByID(Baron_Vapula):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Baron_Vapula", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

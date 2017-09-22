@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Viscount_Morax);
                 GetMobByID(Viscount_Morax):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Viscount_Morax", mobID);
-                DeterMob(mobID, true);
+                AllowRespawn(mobID, true);
             end
         end
     end

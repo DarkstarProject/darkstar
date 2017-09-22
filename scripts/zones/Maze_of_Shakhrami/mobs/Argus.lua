@@ -21,10 +21,10 @@ function onMobDespawn(mob)
 
     if (whichNM < 10) then
         SetRespawnTime(Argus, 64800, 108000); -- 18-30 hours
-        DeterMob(Leech_King, true);
+        AllowRespawn(Leech_King, true);
     else
         SetRespawnTime(Leech_King, 64800, 108000); -- 18-30 hours
-        DeterMob(Argus, true);
+        AllowRespawn(Argus, true);
     end
 
 end;

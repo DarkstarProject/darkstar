@@ -28,9 +28,9 @@ function onMobDespawn(mob)
 
     -- reset ph and nm
     SetServerVariable("Taisaijin_PH", 0);
-    DeterMob(ph, false);
+    AllowRespawn(ph, false);
 
-    DeterMob(MobIDs.Taisaijin, true);
+    AllowRespawn(MobIDs.Taisaijin, true);
     SpawnMob(ph, "", GetMobRespawnTime(ph));
 
 end;
