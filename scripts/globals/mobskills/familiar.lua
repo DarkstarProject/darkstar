@@ -2,11 +2,10 @@
 -- Familiar
 -- pet powers increase.
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     mob:familiar();
 
-    skill:setMsg(MSG_FAMILIAR);
+    skill:setMsg(msgBasic.FAMILIAR);
 
     return 0;
 end;

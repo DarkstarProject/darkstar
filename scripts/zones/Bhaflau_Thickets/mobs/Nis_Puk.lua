@@ -20,12 +20,12 @@ function onMobDespawn(mob)
 
     -- Set NP's ToD
     SetServerVariable("[POP]Nis_Puk", os.time() + 43200); -- 12 hours
-    DeterMob(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Nis_Puk");
     SetServerVariable("[PH]Nis_Puk", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

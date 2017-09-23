@@ -37,13 +37,13 @@ function onMobDespawn(mob)
     -- Set Ge_Dha_Evileye ToD
     local wait = math.random(3600,7200);
     SetServerVariable("[POP]Ge_Dha_Evileye",os.time()); -- 1-2 hours
-    DeterMob(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
 
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Ge_Dha_Evileye");
     SetServerVariable("[PH]Ge_Dha_Evileye", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

@@ -27,7 +27,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Baronet_Romwe);
                 GetMobByID(Baronet_Romwe):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Baronet_Romwe", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

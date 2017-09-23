@@ -22,12 +22,12 @@ function onMobDespawn(mob)
     -- Set Soulstealer_Skullnix's Window Open Time
     local wait = math.random((7200),(10800))
     SetServerVariable("[POP]Ose", os.time() + wait); -- 2-3 hours
-    DeterMob(mob:getID(), true);
+    DisallowRespawn(mob:getID(), true);
 
     -- Set PH back to normal, then set to respawn spawn
     local PH = GetServerVariable("[PH]Soulstealer_Skullnix");
     SetServerVariable("[PH]Soulstealer_Skullnix", 0);
-    DeterMob(PH, false);
+    DisallowRespawn(PH, false);
     GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
 
 end;

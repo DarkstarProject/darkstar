@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Pelican);
                 GetMobByID(Pelican):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Pelican", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

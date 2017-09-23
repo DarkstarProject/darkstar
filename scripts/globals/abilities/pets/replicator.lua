@@ -1,11 +1,10 @@
 ---------------------------------------------
 --  Replicator
 ---------------------------------------------
-
-require("scripts/globals/status")
-require("scripts/globals/settings")
 require("scripts/globals/automatonweaponskills")
-
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -19,12 +18,12 @@ function onPetAbility(target, automaton, skill, master, action)
     local shadows = 1 + maneuvers -- math.floor(maneuvers * 3.5) currently on retail
 
     if target:addStatusEffect(EFFECT_BLINK, shadows, 0, duration) then
-        skill:setMsg(MSG_BUFF)
+        skill:setMsg(msgBasic.BUFF)
         for i = 1, maneuvers do
             master:delStatusEffectSilent(EFFECT_WIND_MANEUVER)
         end
     else
-        skill:setMsg(MSG_NO_EFFECT)
+        skill:setMsg(msgBasic.NO_EFFECT)
     end
 
     return EFFECT_BLINK

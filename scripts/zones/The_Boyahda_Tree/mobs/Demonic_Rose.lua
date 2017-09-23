@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Voluptuous_Vivian);
                 GetMobByID(Voluptuous_Vivian):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Voluptuous_Vivian", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -28,8 +28,8 @@ function onMobRoam(mob)
         for i=1, #Heliodromos_Table, 1 do
             if (Heliodromos_PH_Table[i] ~= nil) then
                 if (GetMobAction(Heliodromos_PH_Table[i]) == 0) then
-                    DeterMob(Heliodromos_Table[i], true);
-                    DeterMob(Heliodromos_PH_Table[i], false);
+                    DisallowRespawn(Heliodromos_Table[i], true);
+                    DisallowRespawn(Heliodromos_PH_Table[i], false);
                     DespawnMob(Heliodromos_Table[i]);
                     SpawnMob(Heliodromos_PH_Table[i], "", GetMobRespawnTime(Heliodromos_PH_Table[i]));
                 end
@@ -70,8 +70,8 @@ function onMobDespawn(mob)
         if (Heliodromos_Table[i] ~= nil) then
             if (Heliodromos == Heliodromos_Table[i]) then
                 SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
-                DeterMob(Heliodromos_PH_Table[i], false);
-                DeterMob(Heliodromos_Table[i], true);
+                DisallowRespawn(Heliodromos_PH_Table[i], false);
+                DisallowRespawn(Heliodromos_Table[i], true);
                 SpawnMob(Heliodromos_PH_Table[i], "", GetMobRespawnTime(Heliodromos_PH_Table[i]));
             end
         end

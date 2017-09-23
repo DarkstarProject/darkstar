@@ -257,7 +257,7 @@ namespace luautils
     int32 OnInstanceComplete(CInstance* PInstance);                             // triggers when an instance is completed
 
     int32 GetMobRespawnTime(lua_State* L);                                      // get the respawn time of a mob
-    int32 DeterMob(lua_State* L);                                               // Allow or prevent a mob from spawning
+    int32 DisallowRespawn(lua_State* L);                                               // Allow or prevent a mob from spawning
     int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM
     int32 SetDropRate(lua_State*);                                              // Set drop rate of a mob setDropRate(dropid,itemid,newrate)
     int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure

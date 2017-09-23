@@ -37,7 +37,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Energetic_Eruca);
                 GetMobByID(Energetic_Eruca):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Energetic_Eruca", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

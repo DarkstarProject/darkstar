@@ -1,11 +1,10 @@
 ---------------------------------------------
 --  Mana Converter
 ---------------------------------------------
-
-require("scripts/globals/status")
-require("scripts/globals/settings")
 require("scripts/globals/automatonweaponskills")
-
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -18,7 +17,7 @@ function onPetAbility(target, automaton, skill, master, action)
     local duration = 30
     local amount = math.floor((hp/2)/10)
     local difference = math.ceil(hp/2 - (amount*10))
-    skill:setMsg(MSG_BUFF)
+    skill:setMsg(msgBasic.BUFF)
 
     target:addMP(difference) -- To prevent possible loss of MP from flooring the refresh
     target:setHP(math.floor(hp/2))

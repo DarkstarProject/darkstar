@@ -29,7 +29,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Dame_Blanche);
                 GetMobByID(Dame_Blanche):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Dame_Blanche", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

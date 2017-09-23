@@ -142,7 +142,7 @@ namespace luautils
         lua_register(LuaHandle, "UpdateServerMessage", luautils::UpdateServerMessage);
         lua_register(LuaHandle, "UpdateTreasureSpawnPoint", luautils::UpdateTreasureSpawnPoint);
         lua_register(LuaHandle, "GetMobRespawnTime", luautils::GetMobRespawnTime);
-        lua_register(LuaHandle, "DeterMob", luautils::DeterMob);
+        lua_register(LuaHandle, "DisallowRespawn", luautils::DisallowRespawn);
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
         lua_register(LuaHandle, "SetDropRate", luautils::SetDropRate);
         lua_register(LuaHandle, "NearLocation", luautils::nearLocation);
@@ -4164,7 +4164,7 @@ namespace luautils
     * Set SpawnType of mob to scripted (128) or normal (0) usind mob id     *
     *                                                                       *
     ************************************************************************/
-    int32 DeterMob(lua_State* L)
+    int32 DisallowRespawn(lua_State* L)
     {
         if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
@@ -4175,25 +4175,18 @@ namespace luautils
             {
                 if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
                 {
-                    if (lua_toboolean(L, 2) == 0)
-                    {
-                        PMob->m_AllowRespawn = true; // Do not deter the mob, allow mob to respawn
-                    }
-                    else
-                    {
-                        PMob->m_AllowRespawn = false; // Deter the mob, do not allow mob to respawn
-                    }
-                    //ShowDebug(CL_RED"DeterMob: Mob <%u> AllowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
+                    PMob->m_AllowRespawn = !lua_toboolean(L, 2);
+                    //ShowDebug(CL_RED"DisallowRespawn: Mob <%u> DisallowRespawn is now <%s>.\n" CL_RESET, mobid, PMob->m_AllowRespawn ? "true" : "false");
                     return 1;
                 }
                 else
                 {
-                    ShowDebug(CL_RED"DeterMob: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
+                    ShowDebug(CL_RED"DisallowRespawn: Boolean parameter not given, mob <%u> SpawnType unchanged.\n" CL_RESET, mobid);
                 }
             }
             else
             {
-                ShowDebug(CL_RED"DeterMob: mob <%u> not found\n" CL_RESET, mobid);
+                ShowDebug(CL_RED"DisallowRespawn: mob <%u> not found\n" CL_RESET, mobid);
             }
             return 0;
         }

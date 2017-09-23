@@ -33,7 +33,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Soulstealer_Skullnix);
                 GetMobByID(Soulstealer_Skullnix):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Soulstealer_Skullnix", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

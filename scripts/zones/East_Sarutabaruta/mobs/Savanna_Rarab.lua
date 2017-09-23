@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Sharp_Eared_Ropipi);
                 GetMobByID(Sharp_Eared_Ropipi):setRespawnTime(mob);
                 SetServerVariable("[PH]Sharp_Eared_Ropipi", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

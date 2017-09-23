@@ -32,7 +32,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Goblinsavior_Heronox);
                 GetMobByID(Goblinsavior_Heronox):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Goblinsavior_Heronox", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

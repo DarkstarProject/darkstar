@@ -34,19 +34,19 @@ function onMobDespawn(mob)
                     GetMobByID(Bomb_King):setRespawnTime(GetMobRespawnTime(mobid));
                     SetServerVariable("[PH]MultiNM_Zone_194", mobid);
                     SetServerVariable("[NM]MultiNM_Zone_194", Bomb_King);
-                    DeterMob(mobid, true);
+                    DisallowRespawn(mobid, true);
                 elseif (whichNM >= 33 and whichNM <= 65) then
                     UpdateNMSpawnPoint(Doppelganger_Gog);
                     GetMobByID(Doppelganger_Gog):setRespawnTime(GetMobRespawnTime(mobid));
                     SetServerVariable("[PH]MultiNM_Zone_194", mobid);
                     SetServerVariable("[NM]MultiNM_Zone_194", Doppelganger_Gog);
-                    DeterMob(mobid, true);
+                    DisallowRespawn(mobid, true);
                 else
                     UpdateNMSpawnPoint(Doppelganger_Dio);
                     GetMobByID(Doppelganger_Dio):setRespawnTime(GetMobRespawnTime(mobid));
                     SetServerVariable("[PH]MultiNM_Zone_194", mobid);
                     SetServerVariable("[NM]MultiNM_Zone_194", Doppelganger_Dio);
-                    DeterMob(mobid, true);
+                    DisallowRespawn(mobid, true);
                 end
             end
 
@@ -55,7 +55,7 @@ function onMobDespawn(mob)
             if (math.random(1,20) > 16) then  -- set higher pop chance because of testimonials
                 UpdateNMSpawnPoint(SpawnNM);
                 GetMobByID(SpawnNM):setRespawnTime(GetMobRespawnTime(mobid));
-                DeterMob(mobid, true);
+                DisallowRespawn(mobid, true);
             end
         end
     end

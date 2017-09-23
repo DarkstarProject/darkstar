@@ -30,7 +30,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Jaggedy_Eared_Jack);
                 GetMobByID(Jaggedy_Eared_Jack):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Jaggedy_Eared_Jack", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -28,7 +28,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Count_Bifrons);
                 GetMobByID(Count_Bifrons):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Count_Bifrons", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end

@@ -4,11 +4,10 @@
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Melee?
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -22,12 +21,12 @@ function onMobWeaponSkill(target, mob, skill)
         effect = target:dispelStatusEffect();
 
         if (effect == EFFECT_NONE) then
-            skill:setMsg(MSG_NO_EFFECT); -- no effect
+            skill:setMsg(msgBasic.NO_EFFECT); -- no effect
         else
-            skill:setMsg(MSG_DISAPPEAR);
+            skill:setMsg(msgBasic.DISAPPEAR);
         end
     else
-        skill:setMsg(MSG_NO_EFFECT); -- no effect
+        skill:setMsg(msgBasic.NO_EFFECT); -- no effect
     end
 
     return effect;

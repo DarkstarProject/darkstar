@@ -1,11 +1,10 @@
 ---------------------------------------------
 --  Eraser
 ---------------------------------------------
-
-require("scripts/globals/status")
-require("scripts/globals/settings")
 require("scripts/globals/automatonweaponskills")
-
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -15,7 +14,7 @@ end
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(RECAST_ABILITY, skill:getID(), 30)
     local maneuvers = master:countEffect(EFFECT_LIGHT_MANEUVER)
-    skill:setMsg(MSG_USES)
+    skill:setMsg(msgBasic.USES)
 
     local function removeStatus()
         if target:delStatusEffect(EFFECT_PETRIFICATION) then return true end

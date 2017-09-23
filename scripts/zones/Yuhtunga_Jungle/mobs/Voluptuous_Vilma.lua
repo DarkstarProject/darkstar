@@ -23,8 +23,8 @@ function onMobDespawn(mob)
         
     GetMobByID(Rose_Garden):setLocalVar("1",os.time() + math.random(36000,37800));
     SetServerVariable("Voluptuous_Vilma_PH", 0);
-    DeterMob(Voluptuous_Vilma, true);
-    DeterMob(Rose_Garden_PH, false);
+    DisallowRespawn(Voluptuous_Vilma, true);
+    DisallowRespawn(Rose_Garden_PH, false);
     SpawnMob(Rose_Garden_PH, "", GetMobRespawnTime(Rose_Garden_PH));
     
 end;

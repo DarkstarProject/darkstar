@@ -31,7 +31,7 @@ function onMobDespawn(mob)
                 UpdateNMSpawnPoint(Bloodthirster_Madkix);
                 GetMobByID(Bloodthirster_Madkix):setRespawnTime(GetMobRespawnTime(mobID));
                 SetServerVariable("[PH]Bloodthirster_Madkix", mobID);
-                DeterMob(mobID, true);
+                DisallowRespawn(mobID, true);
             end
         end
     end
