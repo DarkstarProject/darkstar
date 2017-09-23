@@ -959,6 +959,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         PMob->StatusEffectContainer->CheckEffects(tick);
         PMob->PAI->Tick(tick);
         PMob->StatusEffectContainer->CheckRegen(tick);
+        PMob->PRecastContainer->Check();
     }
 
     for (EntityList_t::const_iterator it = m_npcList.begin(); it != m_npcList.end(); ++it)
@@ -975,6 +976,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         PPet->StatusEffectContainer->CheckEffects(tick);
         PPet->PAI->Tick(tick);
         PPet->StatusEffectContainer->CheckRegen(tick);
+        PPet->PRecastContainer->Check();
         if (PPet->status == STATUS_DISAPPEAR)
         {
             for (auto PMobIt : m_mobList)
