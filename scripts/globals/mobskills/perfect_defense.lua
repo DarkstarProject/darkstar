@@ -14,6 +14,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -23,6 +24,6 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     MobBuffMove(mob, EFFECT_PERFECT_DEFENSE, 1, 0, skill:getParam());
 
-    skill:setMsg(MSG_USES);
+    skill:setMsg(msgBasic.USES);
     return EFFECT_PERFECT_DEFENSE;
 end;

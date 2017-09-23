@@ -50,26 +50,32 @@ msgBasic =
 {
     NONE = 0, -- Display nothing
 
-    -- Unsorted messages used by ability.lua and monstertpmoves.lua
-    RESIST = 85,
-    FAMILIAR = 108,
-    DISAPPEAR = 159, -- <target>'s stun effect disappears!
-    DAMAGE = 185, -- player uses, target takes 10 damage. DEFAULT
-    BUFF = 186,
-    DRAIN_HP = 187,
-    MISS = 188,
-    NO_EFFECT = 189,
-    DRAIN_MP = 225,
-    DRAIN_TP = 226,
-    DISAPPEAR_NUM = 231, -- <num> of <target>'s effects disappear!
-    SELF_HEAL = 238,
-    ENFEEB_IS = 242, -- XXX is petrified.
-    ENFEEB = 243, -- XXX receives the effect of petrification.
-    TP_REDUCED = 362, -- tp reduced to
-    ATTR_DRAINED = 369,
-    EFFECT_DRAINED = 370, -- <num> status effects are drained from <target>.
+    -- Unsorted messages used by ability.lua, monstertpmoves.lua, and automatonweaponskills.lua
+    BUFF_FAIL              = 75;
+    RESIST                 = 85,
+    FAMILIAR               = 108,
+    DISAPPEAR              = 159, -- <target>'s stun effect disappears!
+    DAMAGE                 = 185, -- player uses, target takes 10 damage. DEFAULT
+    DAMAGE_SECONDARY       = 264,
+    BUFF                   = 186,
+    DRAIN_HP               = 187,
+    MISS                   = 188,
+    MISS_SECONDARY         = 282,
+    NO_EFFECT              = 189,
+    RECOVER_MP             = 224,
+    DRAIN_MP               = 225,
+    DRAIN_TP               = 226,
+    DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
+    SELF_HEAL              = 238,
+    SELF_HEAL_SECONDARY    = 263,
+    ENFEEB_IS              = 242, -- XXX is petrified.
+    ENFEEB                 = 243, -- XXX receives the effect of petrification.
+    TP_REDUCED             = 362, -- tp reduced to
+    ATTR_DRAINED           = 369,
+    EFFECT_DRAINED         = 370, -- <num> status effects are drained from <target>.
+    TP_INCREASE            = 409,
 
-    -- Misc
+    -- Misc other unsorted
     DEFEATS_TARG           = 6, -- The <player> defeats <target>.
     ALREADY_CLAIMED        = 12, -- Cannot attack. Your target is already claimed.
     IS_INTERRUPTED         = 16, -- The <player>'s casting is interrupted.

@@ -1,11 +1,13 @@
 ---------------------------------------------
---  Wheel of Impregnability
+-- Rejuvenation
 ---------------------------------------------
+require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/msg");
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     return 1;
 end;
@@ -15,7 +17,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:addHP(hp);
     target:addMP(target:getMaxMP() - target:getMP());
     target:addTP(3000 - target:getTP());
-    
-    skill:setMsg(MSG_SELF_HEAL);
+
+    skill:setMsg(msgBasic.SELF_HEAL);
     return hp;
 end;

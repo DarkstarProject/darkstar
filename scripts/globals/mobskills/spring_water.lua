@@ -7,6 +7,7 @@
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -20,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local multiplier = 1+(1- (mob:getHP()/mob:getMaxHP())) * M;    --higher multiplier the lower your HP. at 15% HP, multiplier is 1+0.85*M
     base = base * multiplier;
 
-    skill:setMsg(MSG_SELF_HEAL);
+    skill:setMsg(msgBasic.SELF_HEAL);
 
     return MobHealMove(target, base);
 end

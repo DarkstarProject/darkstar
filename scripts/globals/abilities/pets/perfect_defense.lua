@@ -1,11 +1,10 @@
 ---------------------------------------------------
 -- Perfect Defense
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onAbilityCheck(player, target, ability)
@@ -24,7 +23,7 @@ function onPetAbility(target, pet, skill, master)
     end
     target:delStatusEffect(EFFECT_PERFECT_DEFENSE);
     target:addStatusEffect(EFFECT_PERFECT_DEFENSE,power,3,duration);
-    skill:setMsg(MSG_BUFF);
+    skill:setMsg(msgBasic.BUFF);
     master:setMP(0);
     return EFFECT_PERFECT_DEFENSE;
 end

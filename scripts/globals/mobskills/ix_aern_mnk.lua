@@ -2,10 +2,10 @@
 -- Hundred Fists
 -- Meant for Ix'Aern (MNK)
 ---------------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -21,6 +21,6 @@ function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_HUNDRED_FISTS;
     MobBuffMove(mob, typeEffect, 1, 0, 45);
     mob:setLocalVar("BracerMode", 2);
-    skill:setMsg(MSG_USES);
+    skill:setMsg(msgBasic.USES);
     return typeEffect;
 end;

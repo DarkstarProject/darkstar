@@ -2,11 +2,12 @@
 --  Chains of Apathy
 --
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/keyitems");
 require("scripts/zones/Empyreal_Paradox/TextIDs");
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     local targets = mob:getEnmityList();
@@ -31,7 +32,7 @@ function onMobWeaponSkill(target, mob, skill)
     if target:isPC() and ((target:getRace() == 1 or target:getRace() == 2) and not target:hasKeyItem(LIGHT_OF_VAHZL)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
     else
-        skill:setMsg(MSG_NO_EFFECT);
+        skill:setMsg(msgBasic.NO_EFFECT);
     end
     return typeEffect;
 end;

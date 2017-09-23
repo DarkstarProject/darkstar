@@ -7,11 +7,10 @@
 --  Range: AoE
 --  Notes: Bio effect can take away up to 39/tick.
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -26,15 +25,15 @@ function onMobWeaponSkill(target, mob, skill)
     blinded = MobStatusEffectMove(mob, target, EFFECT_BLINDNESS, 20, 0, 120);
     bio = MobStatusEffectMove(mob, target, EFFECT_BIO, 39, 0, 120);
 
-    skill:setMsg(MSG_ENFEEB_IS);
+    skill:setMsg(msgBasic.ENFEEB_IS);
 
     -- display blind first, else bio
-    if (blinded == MSG_ENFEEB_IS) then
+    if (blinded == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_BLINDNESS;
-    elseif (bio == MSG_ENFEEB_IS) then
+    elseif (bio == msgBasic.ENFEEB_IS) then
         typeEffect = EFFECT_BIO;
     else
-        skill:setMsg(MSG_MISS);
+        skill:setMsg(msgBasic.MISS);
     end
 
     return typeEffect;
