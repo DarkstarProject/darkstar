@@ -5,5 +5,4 @@
 -----------------------------------
 
 Ge_Dha_Evileye = 17379450; -- -238 1 -202, 254
-Ge_Dha_Evileye_PH = 
-{[17379447] = '1',};  -- Old Quadav
+Ge_Dha_Evileye_PH = 17379447; -- Not tabled because we only have ONE placeholder.
