@@ -696,20 +696,20 @@ switch (region): caseof {
         Quanteilleron,NATION_SANDORIA,        -- Quanteilleron, R.K.
         Quanteilleron+7,NATION_SANDORIA,    -- Prunilla, R.K.
         Quanteilleron+3,NATION_SANDORIA,    -- flag
-        Quanteilleron+11,NATION_SANDORIA,    -- flag
+        Quanteilleron+12,NATION_SANDORIA,    -- flag
     --
         Quanteilleron+1,NATION_BASTOK,        -- Tsunashige, I.M.
         Quanteilleron+8,NATION_BASTOK,        -- Fighting Ant, I.M.
         Quanteilleron+4,NATION_BASTOK,        -- flag
-        Quanteilleron+12,NATION_BASTOK,    -- flag
+        Quanteilleron+13,NATION_BASTOK,    -- flag
     --
         Quanteilleron+2,NATION_WINDURST,    -- Nyata-Mobuta, W.W.
         Quanteilleron+9,NATION_WINDURST,    -- Tebubu, W.W.
         Quanteilleron+5,NATION_WINDURST,    -- flag
-        Quanteilleron+13,NATION_WINDURST,    -- flag
+        Quanteilleron+14,NATION_WINDURST,    -- flag
     --
         Quanteilleron+6,BEASTMEN,    -- flag
-        Quanteilleron+14,BEASTMEN,    -- flag
+        Quanteilleron+15,BEASTMEN,    -- flag
     --
         Quanteilleron+10,OTHER,        -- Medicine Axe
     }
