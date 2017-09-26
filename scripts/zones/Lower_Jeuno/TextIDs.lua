@@ -12,19 +12,15 @@ ITEM_CANNOT_BE_OBTAINED = 6380; -- You cannot obtain the item <item>. Come back 
              ITS_LOCKED = 7582; -- It's locked.
 
 -- Other Texts
-ITEM_DELIVERY_DIALOG = 7778; -- Now offering quick and easy delivery of packages to residences everywhere!
-
-          GUIDE_STONE = 7135; -- Up: Upper Jeuno (Selection Dialogfacing San d'Oria) Down: Port Jeuno (Selection Dialogfacing Windurst)
-   STREETLAMP_EXAMINE = 7249; -- You examine the lamp. It seems that it must be lit manually.
-  ZAUKO_IS_RECRUITING = 7252; -- Zauko is recruiting an adventurer to light the lamps.
-PARIKE_PORANKE_DIALOG = 8949; -- All these people running back and forth... There have to be a few that have munched down more mithkabobs than they can manage.
-    WAYPOINT_EXAMINE = 10340; -- An enigmatic contrivance hovers in silence...
-
-                 NO_KEY = 9901; -- You do not have a usable key in your possession.
+          GUIDE_STONE   = 7135; -- Up: Upper Jeuno (Selection Dialogfacing San d'Oria) Down: Port Jeuno (Selection Dialogfacing Windurst)
             ALDO_DIALOG = 7140; -- Hi. I'm Aldo, head of Tenshodo. We deal in things you can't buy anywhere else. Take your time and have a look around.
+        LAMP_MSG_OFFSET = 7244; -- All the lamps are lit.
+    ZAUKO_IS_RECRUITING = 7252; -- Zauko is recruiting an adventurer to light the lamps.
          CHOCOBO_DIALOG = 7314; -- Hmph.
        MERTAIRE_DEFAULT = 7420; -- Who are you? Leave me alone!
+   ITEM_DELIVERY_DIALOG = 7778; -- Now offering quick and easy delivery of packages to residences everywhere!
           MERTAIRE_RING = 8039; -- So, what did you do with that ring? Maybe it's valuable. I'd ask a collector if I were you. Of course, he might just say it's worthless...
+  PARIKE_PORANKE_DIALOG = 8949; -- All these people running back and forth... There have to be a few that have munched down more mithkabobs than they can manage.
        PARIKE_PORANKE_1 = 8950; -- Hey you! Belly bursting? Intestines inflating? Bladder bulging? I can tell by the notch on your belt that you've been overindulging yourself in culinary delights.
        PARIKE_PORANKE_2 = 8953; -- I mean, this is a new era. If somebody wants to go around with their flabby-flubber hanging out of their cloaks, they should have every right to do so. If someone wants to walk around town with breath reeking of Kazham pines and roasted sleepshrooms, who am I to stop them
        PARIKE_PORANKE_3 = 8954; -- What? You want me to tend to your tummy trouble? No problem! And don't worry, this won't hurt at all! I'm only going to be flushing your bowels with thousands of tiny lightning bolts. It's all perfectly safe!
@@ -40,6 +36,9 @@ PARIKE_PORANKE_DIALOG = 8949; -- All these people running back and forth... Ther
       PARIKE_PORANKE_14 = 8977; -- Speaker Name's all in the name of science skill rises one level.
       PARIKE_PORANKE_15 = 8978; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 = 8979; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
+
+                 NO_KEY = 9901; -- You do not have a usable key in your possession.
+       WAYPOINT_EXAMINE = 10340; -- An enigmatic contrivance hovers in silence...
 
 -- Conquest system
 CONQUEST = 8051; -- You've earned conquest points!
