@@ -2284,7 +2284,7 @@ INSERT INTO `item_latents` VALUES(11474, 163, -3, 26, 1); -- Nighttime: Magic da
 -- -------------------------------------------------------
 -- Lycopodium Sash
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15928, 370, 1, 26, 0); -- Daytime: Regen +1HP/tick
+INSERT INTO `item_latents` VALUES(15928, 370, 3, 26, 0); -- Daytime: Regen +3HP/tick
 
 -- -------------------------------------------------------
 -- Vampire Cloak
