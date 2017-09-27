@@ -31,6 +31,7 @@ function onMobDespawn(mob)
         -- printf("%u is a PH",mobID);
         -- Get Despot previous ToD
         local Despot_ToD = GetServerVariable("[POP]Despot");
+        local checkPH = GetServerVariable("[PH]Despot");
 
         -- Check if Despot window is open, and there is not an Despot popped already(ACTION_NONE = 0)
         if (Despot_ToD <= os.time() and GetMobAction(Despot) == 0) then
@@ -40,8 +41,10 @@ function onMobDespawn(mob)
             if (math.random(1,20) == 5) then
                 -- printf("Despot will pop");
                 GetMobByID(Despot):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Despot", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Despot", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
