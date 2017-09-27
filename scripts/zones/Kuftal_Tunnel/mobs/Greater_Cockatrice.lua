@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Pelican_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Pelican");
+        local checkPH = GetServerVariable("[PH]Pelican");
         if (ToD <= os.time() and GetMobAction(Pelican) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Pelican);
                 GetMobByID(Pelican):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Pelican", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Pelican", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end

@@ -26,12 +26,15 @@ function onMobDespawn(mob)
 
     if (Sabotender_Mariachi_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Sabotender_Mariachi");
+        local checkPH = GetServerVariable("[PH]Sabotender_Mariachi");
         if (ToD <= os.time() and GetMobAction(Sabotender_Mariachi) == 0) then
             if (math.random((1),(20)) == 5) then
                 UpdateNMSpawnPoint(Sabotender_Mariachi);
                 GetMobByID(Sabotender_Mariachi):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Sabotender_Mariachi", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Sabotender_Mariachi", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
