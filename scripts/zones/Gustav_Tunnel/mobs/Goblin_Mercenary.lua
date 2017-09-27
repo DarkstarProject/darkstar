@@ -27,12 +27,15 @@ function onMobDespawn(mob)
 
     if (Wyvernpoacher_Drachlox_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Wyvernpoacher_Drachlox");
+        local checkPH = GetServerVariable("[PH]Wyvernpoacher_Drachlox");
         if (ToD <= os.time() and GetMobAction(Wyvernpoacher_Drachlox) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Wyvernpoacher_Drachlox);
                 GetMobByID(Wyvernpoacher_Drachlox):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Wyvernpoacher_Drachlox", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Wyvernpoacher_Drachlox", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
