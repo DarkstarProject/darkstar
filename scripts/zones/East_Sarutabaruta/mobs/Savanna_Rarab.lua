@@ -25,12 +25,15 @@ function onMobDespawn(mob)
 
     if (Sharp_Eared_Ropipi_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Sharp_Eared_Ropipi");
+        local checkPH = GetServerVariable("[PH]Sharp_Eared_Ropipi");
         if (ToD <= os.time() and GetMobAction(Sharp_Eared_Ropipi) == 0) then
             if (math.random(1,5) == 3) then
                 UpdateNMSpawnPoint(Sharp_Eared_Ropipi);
                 GetMobByID(Sharp_Eared_Ropipi):setRespawnTime(mob);
-                SetServerVariable("[PH]Sharp_Eared_Ropipi", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Sharp_Eared_Ropipi", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
