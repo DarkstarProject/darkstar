@@ -208,6 +208,8 @@ public:
     int32 startEvent(lua_State*);           // Begins Event
     int32 startEventString(lua_State*);     // Begins Event with string param (0x33 packet)
     int32 updateEvent(lua_State*);          // Updates event
+    int32 updateEventString(lua_State*);    // (string, string, string, string, uint32, ...)
+
     int32 getEventTarget(lua_State*);       //
     int32 openSendBox(lua_State*);          // Opens send box (to deliver items)
 

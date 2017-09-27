@@ -58,6 +58,7 @@
 #include "../packets/event.h"
 #include "../packets/event_string.h"
 #include "../packets/event_update.h"
+#include "../packets/event_update_string.h"
 #include "../packets/guild_menu.h"
 #include "../packets/guild_menu_buy.h"
 #include "../packets/instance_entry.h"
@@ -2996,8 +2997,64 @@ inline int32 CLuaBaseEntity::updateEvent(lua_State *L)
             param5,
             param6,
             param7));
-
     return 0;
+}
+
+inline int32 CLuaBaseEntity::updateEventString(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    std::string string0 = "";
+    std::string string1 = "";
+    std::string string2 = "";
+    std::string string3 = "";
+
+    uint32 param0 = 0;
+    uint32 param1 = 0;
+    uint32 param2 = 0;
+    uint32 param3 = 0;
+    uint32 param4 = 0;
+    uint32 param5 = 0;
+    uint32 param6 = 0;
+    uint32 param7 = 0;
+    uint32 param8 = 0;
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+        string0 = std::string(lua_tostring(L, 1));
+    if (!lua_isnil(L, 2) && lua_isstring(L, 2))
+        string1 = std::string(lua_tostring(L, 2));
+    if (!lua_isnil(L, 3) && lua_isstring(L, 3))
+        string2 = std::string(lua_tostring(L, 3));
+    if (!lua_isnil(L, 4) && lua_isstring(L, 4))
+        string3 = std::string(lua_tostring(L, 4));
+
+
+    if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
+        param0 = (uint32)lua_tointeger(L, 5);
+    if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
+        param1 = (uint32)lua_tointeger(L, 6);
+    if (!lua_isnil(L, 7) && lua_isnumber(L, 7))
+        param2 = (uint32)lua_tointeger(L, 7);
+    if (!lua_isnil(L, 8) && lua_isnumber(L, 8))
+        param3 = (uint32)lua_tointeger(L, 8);
+    if (!lua_isnil(L, 9) && lua_isnumber(L, 9))
+        param4 = (uint32)lua_tointeger(L, 9);
+    if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
+        param5 = (uint32)lua_tointeger(L, 10);
+    if (!lua_isnil(L, 11) && lua_isnumber(L, 11))
+        param6 = (uint32)lua_tointeger(L, 11);
+    if (!lua_isnil(L, 12) && lua_isnumber(L, 12))
+        param7 = (uint32)lua_tointeger(L, 12);
+
+    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+        new CEventUpdateStringPacket(
+            string0, string1, string2, string3,
+            param0, param1, param2, param3, param4,
+            param5, param6, param7, param8
+        )
+    );
+
 }
 
 /************************************************************************
@@ -11300,6 +11357,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEvent),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,startEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEvent),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateEventString),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEventTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
