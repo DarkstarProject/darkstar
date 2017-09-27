@@ -28,6 +28,7 @@ function onMobDespawn(mob)
         -- printf("%u is a PH",mob);
         -- Get LL's previous ToD
         local LL_ToD = GetServerVariable("[POP]Leaping_Lizzy");
+        local checkPH = GetServerVariable("[PH]Leaping_Lizzy");
 
         -- Check if LL window is open, and there is not an LL popped already(ACTION_NONE = 0)
         if (LL_ToD <= os.time() and GetMobAction(Leaping_Lizzy) == 0) then
@@ -37,8 +38,10 @@ function onMobDespawn(mob)
                 -- printf("LL will pop");
                 UpdateNMSpawnPoint(Leaping_Lizzy);
                 GetMobByID(Leaping_Lizzy):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Leaping_Lizzy", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Leaping_Lizzy", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
