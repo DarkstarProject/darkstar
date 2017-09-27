@@ -22,12 +22,15 @@ function onMobDespawn(mob)
 
     if (Hovering_Hotpot_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Hovering_Hotpot");
+        local checkPH = GetServerVariable("[PH]Hovering_Hotpot");
         if (ToD <= os.time(t) and GetMobAction(Hovering_Hotpot) == 0) then
             if (math.random(1,4) == 4) then
                 UpdateNMSpawnPoint(Hovering_Hotpot);
                 GetMobByID(Hovering_Hotpot):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Hovering_Hotpot", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Hovering_Hotpot", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
