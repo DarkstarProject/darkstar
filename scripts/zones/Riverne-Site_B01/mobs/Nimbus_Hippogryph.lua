@@ -27,6 +27,7 @@ function onMobDespawn(mob)
         -- printf("%u is a PH",mobID);
         -- Get Imdugud previous ToD
         local Imdugud_ToD = GetServerVariable("[POP]Imdugud");
+        local checkPH = GetServerVariable("[PH]Imdugud");
 
         -- Check if Imdugud window is open, and there is not an Imdugud popped already(ACTION_NONE = 0)
         if (Imdugud_ToD <= os.time() and GetMobAction(Imdugud) == 0) then
@@ -36,8 +37,10 @@ function onMobDespawn(mob)
                 -- printf("Imdugud will pop");
                 UpdateNMSpawnPoint(Imdugud);
                 GetMobByID(Imdugud):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Imdugud", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Imdugud", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
