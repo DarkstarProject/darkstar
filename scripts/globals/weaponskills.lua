@@ -385,7 +385,7 @@ function getHitRate(attacker,target,capHitRate,bonus)
     if (target:hasStatusEffect(EFFECT_YONIN) and attacker:isFacing(target, 23)) then -- Yonin evasion boost if attacker is facing target
         bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
     end
-    if (attacker:hasTrait(TRAIT_AMBUSH) and attacker:isBehind(target, 23)) then
+    if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
         bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
     end
 
@@ -432,7 +432,7 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
     if (target:hasStatusEffect(EFFECT_YONIN) and target:isFacing(attacker, 23)) then -- Yonin evasion boost if defender is facing attacker
         bonus = bonus - target:getStatusEffect(EFFECT_YONIN):getPower();
     end
-    if (attacker:hasTrait(TRAIT_AMBUSH) and attacker:isBehind(target, 23)) then
+    if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
         bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
     end
 
