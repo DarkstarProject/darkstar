@@ -25,48 +25,40 @@
 
 #include <string.h>
 
-#include "event_string.h"
+#include "event_update_string.h"
 #include "../entities/charentity.h"
 
 
-CEventStringPacket::CEventStringPacket(
-	CCharEntity* PChar,
-	uint16 EventID, 
+CEventUpdateStringPacket::CEventUpdateStringPacket(
     const std::string& string0,
     const std::string& string1,
     const std::string& string2,
     const std::string& string3,
-	uint32 param0,
-	uint32 param1,
-	uint32 param2,
-	uint32 param3,
-	uint32 param4,
-	uint32 param5,
-	uint32 param6,
-	uint32 param7)
+    uint32 param0,
+    uint32 param1,
+    uint32 param2,
+    uint32 param3,
+    uint32 param4,
+    uint32 param5,
+    uint32 param6,
+    uint32 param7,
+    uint32 param8)
 {
-	this->type = 0x33;
-	this->size = 0x38;
+    this->type = 0x5D;
+    this->size = 0x2C;
 
-	WBUFL(data,(0x04)) = PChar->id;
-	WBUFW(data,(0x08)) = PChar->m_TargID;
-    WBUFW(data,(0x0A)) = PChar->getZone();
-	WBUFW(data,(0x0C)) = EventID;
-	WBUFB(data,(0x0E)) = 8; // camera "jumps" behind the character if < 8 params
+    ref<uint32>(0x04) = param0;
+    ref<uint32>(0x08) = param1;
+    ref<uint32>(0x0C) = param2;
+    ref<uint32>(0x10) = param3;
+    ref<uint32>(0x14) = param4;
+    ref<uint32>(0x18) = param5;
+    ref<uint32>(0x1C) = param6;
+    ref<uint32>(0x20) = param7;
+    ref<uint32>(0x24) = param8;
 
-    memcpy(data+(0x10), string0.c_str(), string0.size());
-    memcpy(data+(0x20), string1.c_str(), string1.size());
-    memcpy(data+(0x30), string2.c_str(), string2.size());
-    memcpy(data+(0x40), string3.c_str(), string3.size());
-
-	WBUFL(data,(0x50)) = param0;
-	WBUFL(data,(0x54)) = param1;
-	WBUFL(data,(0x58)) = param2;
-	WBUFL(data,(0x5C)) = param3;
-	WBUFL(data,(0x60)) = param4;
-	WBUFL(data,(0x64)) = param5;
-	WBUFL(data,(0x68)) = param6;
-	WBUFL(data,(0x6C)) = param7;
-
-	PChar->m_event.EventID = EventID;
+    memcpy(data + 0x28, string0.c_str(), 15);
+    memcpy(data + 0x38, string1.c_str(), 15);
+    memcpy(data + 0x48, string2.c_str(), 15);
+    memcpy(data + 0x58, string3.c_str(), 15);
 }

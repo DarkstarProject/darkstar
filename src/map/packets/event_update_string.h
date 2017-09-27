@@ -21,8 +21,8 @@
 ===========================================================================
 */
 
-#ifndef _CEVENTSTRINGPACKET_H
-#define _CEVENTSTRINGPACKET_H
+#ifndef _CEVENTUPDATESTRINGPACKET_H
+#define _CEVENTUPDATESTRINGPACKET_H
 
 #include "../../common/cbasetypes.h"
 #include "../../common/mmo.h"
@@ -39,13 +39,11 @@
 
 class CCharEntity;
 
-class CEventStringPacket : public CBasicPacket
+class CEventUpdateStringPacket : public CBasicPacket
 {
 public:
 
-	CEventStringPacket(
-		CCharEntity* PChar,
-		uint16 EventID, 
+	CEventUpdateStringPacket(
         const std::string& string0 = "",
         const std::string& string1 = "",
         const std::string& string2 = "",
@@ -57,7 +55,8 @@ public:
 		uint32 param4 = 0,
 		uint32 param5 = 0,
 		uint32 param6 = 0,
-		uint32 param7 = 0);
+		uint32 param7 = 0,
+        uint32 param8 = 0);
 };
 
 #endif
