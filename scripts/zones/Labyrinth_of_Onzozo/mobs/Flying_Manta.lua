@@ -36,12 +36,15 @@ function onMobDespawn(mob)
         end
     elseif (Peg_Powler_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Peg_Powler");
+        local checkPH = GetServerVariable("[PH]Peg_Powler");
         if (ToD <= os.time() and GetMobAction(Peg_Powler) == 0) then
             if (math.random(1,25) == 5) then
                 UpdateNMSpawnPoint(Peg_Powler);
                 GetMobByID(Peg_Powler):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Peg_Powler", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Peg_Powler", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
