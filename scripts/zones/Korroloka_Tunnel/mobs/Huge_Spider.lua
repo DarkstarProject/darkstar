@@ -24,12 +24,15 @@ function onMobDespawn(mob)
 
     if (Falcatus_Aranei_PH[mobID] ~= nil) then
         local ToD = GetServerVariable("[POP]Falcatus_Aranei");
+        local checkPH = GetServerVariable("[PH]Falcatus_Aranei");
         if (ToD <= os.time() and GetMobAction(Falcatus_Aranei) == 0) then
             if (math.random(1,20) == 5) then
                 UpdateNMSpawnPoint(Falcatus_Aranei);
                 GetMobByID(Falcatus_Aranei):setRespawnTime(GetMobRespawnTime(mobID));
-                SetServerVariable("[PH]Falcatus_Aranei", mobID);
-                DisallowRespawn(mobID, true);
+                if (checkPH == 0) then
+                    SetServerVariable("[PH]Falcatus_Aranei", mobID);
+                    DisallowRespawn(mobID, true);
+                end
             end
         end
     end
