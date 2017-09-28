@@ -202,7 +202,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         if (inst > 0) then
             player:setVar("bcnm_instanceid", inst)
             player:setVar("bcnm_instanceid_tick", 0)
-            player:updateEvent(0, GetBattleBitmask(player, player:getZoneID(), 2), 0, 0, 5, 0)
+            player:updateEvent(0, GetBattleBitmask(id, player:getZoneID(), 1), 0, 0, 5, 0)
 
             if (entrance ~= nil and player:getBattlefield() ~= nil) then
                 player:getBattlefield():setEntrance(entrance)
