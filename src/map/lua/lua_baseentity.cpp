@@ -3054,7 +3054,7 @@ inline int32 CLuaBaseEntity::updateEventString(lua_State* L)
             param5, param6, param7, param8
         )
     );
-
+    return 0;
 }
 
 /************************************************************************
