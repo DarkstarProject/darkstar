@@ -1,4 +1,5 @@
-﻿/*
+﻿
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -43,7 +44,7 @@ namespace battlefieldutils {
         a new Battlefield object.
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
-        const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId \
+        const int8* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
@@ -67,6 +68,11 @@ namespace battlefieldutils {
             PBattlefield->setMaxParticipants(Sql_GetUIntData(SqlHandle, 8));
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
             PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
+
+            PBattlefield->setRecord(Sql_GetData(SqlHandle, 2),
+                (uint8)Sql_GetUIntData(SqlHandle, 10),
+                std::chrono::seconds((uint32)Sql_GetUIntData(SqlHandle, 3)));
+
             return PBattlefield;
         }
         return nullptr;

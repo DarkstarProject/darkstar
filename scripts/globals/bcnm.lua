@@ -202,7 +202,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         if (inst > 0) then
             player:setVar("bcnm_instanceid", inst)
             player:setVar("bcnm_instanceid_tick", 0)
-            player:updateEvent(0, GetBattleBitmask(id, player:getZoneID(), 1), 0, 0, 69, 0)
+            player:updateEvent(0, GetBattleBitmask(player, player:getZoneID(), 2), 0, 0, 5, 0)
 
             if (entrance ~= nil and player:getBattlefield() ~= nil) then
                 player:getBattlefield():setEntrance(entrance)
@@ -228,10 +228,23 @@ function EventUpdateBCNM(player, csid, option, entrance)
             local mask = GetBattleBitmask(id, player:getZoneID(), 2)
             local status = player:getStatusEffect(EFFECT_BATTLEFIELD)
             local playerbcnmid = status:getPower()
+            local battlefield = player:getBattlefield()
+            local name = 'Meme';
+            local partySize = 5;
+            local clearTime = 260;
+            
+            if battlefield then
+                local record = battlefield:getRecord()
+                name = record.name
+                partySize = record.partySize
+                clearTime = record.clearTime
+            end
+            print("aaaaaaaaaaaaaaaaasssssssssssss " ..partySize)
+            print("shiiiiiiiiiiiiiiiiiiiiiiiiiiit "..clearTime)
             if (mask < playerbcnmid) then
                 mask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, 1, 69, skip) -- Add mask number for the correct entering CS
-                player:updateEventString('Meme','Meme','Meme','Meme');
+                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
                 -- print("mask is "..mask)
@@ -239,8 +252,8 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
             elseif (mask >= playerbcnmid) then
                 mask = GetBattleBitmask(id, player:getZoneID(), 2)
-                player:updateEvent(2, mask, 0, 1, 1, skip) -- Add mask number for the correct entering CS
-                player:updateEventString('Meme','Meme','Meme','Meme','Meme');
+                player:updateEvent(2, mask, 0, clearTime, partySize, skip) -- Add mask number for the correct entering CS
+                player:updateEventString(name);
                 player:bcnmEnter(id)
                 player:setVar("bcnm_instanceid_tick", 0)
                 -- print("mask2 is "..mask)
@@ -285,6 +298,12 @@ function EventFinishBCNM(player, csid, option)
             player:tradeComplete() -- Removes the item
         elseif ((item >= 1426 and item <= 1440) or item == 1130 or item == 1131 or item == 1175 or item == 1177 or item == 1180 or item == 1178 or item == 1551 or item == 1552 or item == 1553) then -- Orb and Testimony (one time item)
             player:createWornItem(item)
+        end
+
+        if csid == 0x7d03 and option == 4 then
+            if player:getBattlefield() then
+                player:bcnmLeave(1);
+            end
         end
         return true
     end
@@ -579,7 +598,9 @@ function checkNonTradeBCNM(player, npc, mode)
     for keyid, condition in pairs(checks[Zone]) do
         if condition() and GetBattleBitmask(keyid, Zone, mode) ~= -1 then
             mask = mask + GetBattleBitmask(keyid, Zone, mode);
-            player:setVar("trade_bcnmid", keyid);
+            if mode == 2 then
+                player:setVar("trade_bcnmid", keyid);
+            end
             -- todo: multiple choice bcnms
             break;
         end;

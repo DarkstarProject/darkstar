@@ -7581,9 +7581,9 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L)
 
     if (ZoneID > 184 && ZoneID < 189 || ZoneID > 133 && ZoneID < 136 || ZoneID > 38 && ZoneID < 43)
     {
-        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS, 0))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_DYNAMIS))
         {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS, 0)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_DYNAMIS)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7595,7 +7595,7 @@ inline int32 CLuaBaseEntity::bcnmEnter(lua_State *L)
     {
         if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
         {
-            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+            uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
             if (PZone->m_BattlefieldHandler->enterBcnm(effect_bcnmid, PChar))
             {
                 lua_pushinteger(L, 1);
@@ -7626,7 +7626,7 @@ inline int32 CLuaBaseEntity::bcnmLeave(lua_State *L)
 
     if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
-        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD, 0)->GetPower();
+        uint16 effect_bcnmid = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)->GetPower();
         uint8 typeOfExit = lua_tointeger(L, 1);
         if (typeOfExit == 1 && PChar->loc.zone->m_BattlefieldHandler->leaveBcnm(effect_bcnmid, PChar))
         {
@@ -9843,13 +9843,23 @@ inline int32 CLuaBaseEntity::getBattlefield(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
 
-    if (m_PBaseEntity->PBCNM)
+    CBattlefield* PBattlefield = m_PBaseEntity->PBCNM;
+    if (m_PBaseEntity->loc.zone && m_PBaseEntity->loc.zone->m_BattlefieldHandler)
+    {
+        auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+        CStatusEffect* PStatusEffect = nullptr;
+
+        if (PChar && (PStatusEffect = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_BATTLEFIELD)))
+            PBattlefield = m_PBaseEntity->loc.zone->m_BattlefieldHandler->getBattlefield(PChar->loc.zone->GetCharByID(PStatusEffect->GetSubID()));
+    }
+
+    if (PBattlefield)
     {
         lua_getglobal(L, CLuaBattlefield::className);
         lua_pushstring(L, "new");
         lua_gettable(L, -2);
         lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)m_PBaseEntity->PBCNM);
+        lua_pushlightuserdata(L, (void*)PBattlefield);
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
